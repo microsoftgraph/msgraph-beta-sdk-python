@@ -15,17 +15,17 @@ from .application_segment import ApplicationSegment
 class IpApplicationSegment(ApplicationSegment, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.ipApplicationSegment"
-    # The application property
+    # The on-premises nonweb application published through Microsoft Entra application proxy. Expanded by default and supports $expand.
     application: Optional[Application] = None
-    # The destinationHost property
+    # Either the IP address, IP range, or FQDN of the applicationSegment, with or without wildcards.
     destination_host: Optional[str] = None
-    # The destinationType property
+    # The possible values are: ipAddress, ipRange, ipRangeCidr, fqdn, dnsSuffix, unknownFutureValue.
     destination_type: Optional[PrivateNetworkDestinationType] = None
-    # The port property
+    # Port supported for the application segment. DO NOT USE.
     port: Optional[int] = None
-    # The ports property
+    # List of ports supported for the application segment.
     ports: Optional[List[str]] = None
-    # The protocol property
+    # Indicates the protocol of the network traffic acquired for the application segment. The possible values are: tcp, udp, unknownFutureValue.
     protocol: Optional[PrivateNetworkProtocol] = None
     
     @staticmethod

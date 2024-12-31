@@ -22,23 +22,23 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # If you're configuring a traffic manager in front of multiple App Proxy applications, the alternateUrl is the user-friendly URL that points to the traffic manager.
+    # If you're configuring a traffic manager in front of multiple app proxy applications, this user-friendly URL points to the traffic manager.
     alternate_url: Optional[str] = None
     # The duration the connector waits for a response from the backend application before closing the connection. Possible values are default, long. When set to default, the backend application timeout has a length of 85 seconds. When set to long, the backend timeout is increased to 180 seconds. Use long if your server takes more than 85 seconds to respond to requests or if you are unable to access the application and the error status is 'Backend Timeout'. Default value is default.
     application_server_timeout: Optional[str] = None
-    # Indicates if this application is an Application Proxy configured application. This is pre-set by the system. Read-only.
+    # System-defined value that indicates whether this application is an application proxy configured application. The possible values are quickaccessapp and nonwebapp. Read-only.
     application_type: Optional[str] = None
     # Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Pass through doesn't require authentication. Possible values are: passthru, aadPreAuthentication.
     external_authentication_type: Optional[ExternalAuthenticationType] = None
-    # The published external url for the application. For example, https://intranet-contoso.msappproxy.net/.
+    # The published external URL for the application. For example, https://intranet-contoso.msappproxy.net/.
     external_url: Optional[str] = None
     # The internal url of the application. For example, https://intranet/.
     internal_url: Optional[str] = None
-    # The isAccessibleViaZTNAClient property
+    # Indicates whether the application is accessible via a Global Secure Access client on a managed device.
     is_accessible_via_z_t_n_a_client: Optional[bool] = None
     # Indicates whether backend SSL certificate validation is enabled for the application. For all new Application Proxy apps, the property is set to true by default. For all existing apps, the property is set to false.
     is_backend_certificate_validation_enabled: Optional[bool] = None
-    # The isDnsResolutionEnabled property
+    # Indicates Microsoft Entra Private Access should handle DNS resolution. false by default.
     is_dns_resolution_enabled: Optional[bool] = None
     # Indicates if the HTTPOnly cookie flag should be set in the HTTP response headers. Set this value to true to have Application Proxy cookies include the HTTPOnly flag in the HTTP response headers. If using Remote Desktop Services, set this value to False. Default value is false.
     is_http_only_cookie_enabled: Optional[bool] = None
@@ -62,7 +62,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     segments_configuration: Optional[SegmentConfiguration] = None
     # Represents the single sign-on configuration for the on-premises application.
     single_sign_on_settings: Optional[OnPremisesPublishingSingleSignOn] = None
-    # The useAlternateUrlForTranslationAndRedirect property
+    # Indicates whether the application should use alternateUrl instead of externalUrl.
     use_alternate_url_for_translation_and_redirect: Optional[bool] = None
     # Details of the certificate associated with the application when a custom domain is in use. null when using the default domain. Read-only.
     verified_custom_domain_certificates_metadata: Optional[VerifiedCustomDomainCertificatesMetadata] = None

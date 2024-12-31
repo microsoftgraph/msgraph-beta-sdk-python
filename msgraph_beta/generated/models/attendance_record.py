@@ -17,7 +17,7 @@ class AttendanceRecord(Entity, Parsable):
     attendance_intervals: Optional[List[AttendanceInterval]] = None
     # Email address of the user associated with this attendance record.
     email_address: Optional[str] = None
-    # The externalRegistrationInformation property
+    # The external information for a virtual event registration.
     external_registration_information: Optional[VirtualEventExternalRegistrationInformation] = None
     # Identity of the user associated with this attendance record. The specific type will be one of the following derived types of identity, depending on the type of the user: communicationsUserIdentity, azureCommunicationServicesUserIdentity.
     identity: Optional[Identity] = None

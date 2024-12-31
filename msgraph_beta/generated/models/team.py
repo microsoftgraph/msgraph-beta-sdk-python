@@ -45,7 +45,7 @@ class Team(Entity, Parsable):
     discovery_settings: Optional[TeamDiscoverySettings] = None
     # The name of the team.
     display_name: Optional[str] = None
-    # The firstChannelName property
+    # The name of the first channel in the team. This property is only used during team creation and isn't returned in methods to get and list teams.
     first_channel_name: Optional[str] = None
     # Settings to configure the use of Giphy, memes, and stickers in the team.
     fun_settings: Optional[TeamFunSettings] = None

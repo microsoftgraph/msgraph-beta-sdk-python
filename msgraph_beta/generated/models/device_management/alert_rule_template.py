@@ -8,4 +8,5 @@ class AlertRuleTemplate(str, Enum):
     CloudPcInGracePeriodScenario = "cloudPcInGracePeriodScenario",
     CloudPcFrontlineInsufficientLicensesScenario = "cloudPcFrontlineInsufficientLicensesScenario",
     CloudPcInaccessibleScenario = "cloudPcInaccessibleScenario",
+    CloudPcFrontlineConcurrencyScenario = "cloudPcFrontlineConcurrencyScenario",
 

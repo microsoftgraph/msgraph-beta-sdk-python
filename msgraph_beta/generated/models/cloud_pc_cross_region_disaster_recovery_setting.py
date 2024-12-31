@@ -25,6 +25,8 @@ class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedMode
     maintain_cross_region_restore_point_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Indicates whether the client allows the end user to initiate a disaster recovery activation. True indicates that the client includes the option for the end user to activate Backup Cloud PC. When false, the end user doesn't have the option to activate disaster recovery. The default value is false. Currently, only premium disaster recovery is supported.
+    user_initiated_disaster_recovery_allowed: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcCrossRegionDisasterRecoverySetting:
@@ -54,6 +56,7 @@ class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedMode
             "disasterRecoveryType": lambda n : setattr(self, 'disaster_recovery_type', n.get_enum_value(CloudPcDisasterRecoveryType)),
             "maintainCrossRegionRestorePointEnabled": lambda n : setattr(self, 'maintain_cross_region_restore_point_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "userInitiatedDisasterRecoveryAllowed": lambda n : setattr(self, 'user_initiated_disaster_recovery_allowed', n.get_bool_value()),
         }
         return fields
     
@@ -73,6 +76,7 @@ class CloudPcCrossRegionDisasterRecoverySetting(AdditionalDataHolder, BackedMode
         writer.write_enum_value("disasterRecoveryType", self.disaster_recovery_type)
         writer.write_bool_value("maintainCrossRegionRestorePointEnabled", self.maintain_cross_region_restore_point_enabled)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_bool_value("userInitiatedDisasterRecoveryAllowed", self.user_initiated_disaster_recovery_allowed)
         writer.write_additional_data_value(self.additional_data)
     
 

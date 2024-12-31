@@ -6,4 +6,5 @@ class AggregationType(str, Enum):
     AffectedCloudPcCount = "affectedCloudPcCount",
     AffectedCloudPcPercentage = "affectedCloudPcPercentage",
     UnknownFutureValue = "unknownFutureValue",
+    DurationInMinutes = "durationInMinutes",
 

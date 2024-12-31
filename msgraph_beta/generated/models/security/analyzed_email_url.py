@@ -21,6 +21,8 @@ class AnalyzedEmailUrl(AdditionalDataHolder, BackedModel, Parsable):
     detonation_details: Optional[DetonationDetails] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The tenantAllowBlockListDetailInfo property
+    tenant_allow_block_list_detail_info: Optional[str] = None
     # The type of threat associated with the URL. The possible values are: unknown, spam, malware, phishing, none, unknownFutureValue.
     threat_type: Optional[ThreatType] = None
     # The URL that is found in the email. This is full URL string, including query parameters.
@@ -52,6 +54,7 @@ class AnalyzedEmailUrl(AdditionalDataHolder, BackedModel, Parsable):
             "detectionMethod": lambda n : setattr(self, 'detection_method', n.get_str_value()),
             "detonationDetails": lambda n : setattr(self, 'detonation_details', n.get_object_value(DetonationDetails)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "tenantAllowBlockListDetailInfo": lambda n : setattr(self, 'tenant_allow_block_list_detail_info', n.get_str_value()),
             "threatType": lambda n : setattr(self, 'threat_type', n.get_enum_value(ThreatType)),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
@@ -71,6 +74,7 @@ class AnalyzedEmailUrl(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("detectionMethod", self.detection_method)
         writer.write_object_value("detonationDetails", self.detonation_details)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("tenantAllowBlockListDetailInfo", self.tenant_allow_block_list_detail_info)
         writer.write_enum_value("threatType", self.threat_type)
         writer.write_str_value("url", self.url)
         writer.write_additional_data_value(self.additional_data)

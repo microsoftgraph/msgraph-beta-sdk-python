@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .channel_layout_type import ChannelLayoutType
     from .channel_membership_type import ChannelMembershipType
     from .channel_moderation_settings import ChannelModerationSettings
     from .channel_summary import ChannelSummary
@@ -19,6 +20,8 @@ from .entity import Entity
 
 @dataclass
 class Channel(Entity, Parsable):
+    # A collection of membership records associated with the channel. It includes both direct and indirect members of shared channels.
+    all_members: Optional[List[ConversationMember]] = None
     # Read only. Timestamp at which the channel was created.
     created_date_time: Optional[datetime.datetime] = None
     # Optional textual description for the channel.
@@ -29,12 +32,12 @@ class Channel(Entity, Parsable):
     email: Optional[str] = None
     # Metadata for the location where the channel's files are stored.
     files_folder: Optional[DriveItem] = None
-    # The getAllMembers property
-    get_all_members: Optional[List[ConversationMember]] = None
     # Indicates whether the channel is archived. Read-only.
     is_archived: Optional[bool] = None
     # Indicates whether the channel should be marked as recommended for all members of the team to show in their channel list. Note: All recommended channels automatically show in the channels list for education and frontline worker users. The property can only be set programmatically via the Create team method. The default value is false.
     is_favorite_by_default: Optional[bool] = None
+    # The layoutType property
+    layout_type: Optional[ChannelLayoutType] = None
     # A collection of membership records associated with the channel.
     members: Optional[List[ConversationMember]] = None
     # The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. You must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.
@@ -72,6 +75,7 @@ class Channel(Entity, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .channel_layout_type import ChannelLayoutType
         from .channel_membership_type import ChannelMembershipType
         from .channel_moderation_settings import ChannelModerationSettings
         from .channel_summary import ChannelSummary
@@ -82,6 +86,7 @@ class Channel(Entity, Parsable):
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
         from .teams_tab import TeamsTab
 
+        from .channel_layout_type import ChannelLayoutType
         from .channel_membership_type import ChannelMembershipType
         from .channel_moderation_settings import ChannelModerationSettings
         from .channel_summary import ChannelSummary
@@ -93,14 +98,15 @@ class Channel(Entity, Parsable):
         from .teams_tab import TeamsTab
 
         fields: Dict[str, Callable[[Any], None]] = {
+            "allMembers": lambda n : setattr(self, 'all_members', n.get_collection_of_object_values(ConversationMember)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "filesFolder": lambda n : setattr(self, 'files_folder', n.get_object_value(DriveItem)),
-            "getAllMembers": lambda n : setattr(self, 'get_all_members', n.get_collection_of_object_values(ConversationMember)),
             "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
             "isFavoriteByDefault": lambda n : setattr(self, 'is_favorite_by_default', n.get_bool_value()),
+            "layoutType": lambda n : setattr(self, 'layout_type', n.get_enum_value(ChannelLayoutType)),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(ConversationMember)),
             "membershipType": lambda n : setattr(self, 'membership_type', n.get_enum_value(ChannelMembershipType)),
             "messages": lambda n : setattr(self, 'messages', n.get_collection_of_object_values(ChatMessage)),
@@ -124,6 +130,7 @@ class Channel(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        from .channel_layout_type import ChannelLayoutType
         from .channel_membership_type import ChannelMembershipType
         from .channel_moderation_settings import ChannelModerationSettings
         from .channel_summary import ChannelSummary
@@ -134,14 +141,15 @@ class Channel(Entity, Parsable):
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
         from .teams_tab import TeamsTab
 
+        writer.write_collection_of_object_values("allMembers", self.all_members)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("email", self.email)
         writer.write_object_value("filesFolder", self.files_folder)
-        writer.write_collection_of_object_values("getAllMembers", self.get_all_members)
         writer.write_bool_value("isArchived", self.is_archived)
         writer.write_bool_value("isFavoriteByDefault", self.is_favorite_by_default)
+        writer.write_enum_value("layoutType", self.layout_type)
         writer.write_collection_of_object_values("members", self.members)
         writer.write_enum_value("membershipType", self.membership_type)
         writer.write_collection_of_object_values("messages", self.messages)

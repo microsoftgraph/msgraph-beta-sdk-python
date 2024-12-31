@@ -48,7 +48,7 @@ class ProductChangesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ProductChangesRequestBuilderGetQueryParameters]] = None) -> Optional[ChangeItemBaseCollectionResponse]:
         """
-        Get a list of the changeItemBase objects and their properties.
+        Get a list of the changeItemBase objects and their properties. The API returns both Microsoft Entra change announcements and releases.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChangeItemBaseCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/identitycontainer-list-productchanges?view=graph-rest-beta
@@ -92,7 +92,7 @@ class ProductChangesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ProductChangesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the changeItemBase objects and their properties.
+        Get a list of the changeItemBase objects and their properties. The API returns both Microsoft Entra change announcements and releases.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class ProductChangesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProductChangesRequestBuilderGetQueryParameters():
         """
-        Get a list of the changeItemBase objects and their properties.
+        Get a list of the changeItemBase objects and their properties. The API returns both Microsoft Entra change announcements and releases.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

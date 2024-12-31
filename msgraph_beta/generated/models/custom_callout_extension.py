@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .identity_governance.custom_task_extension import CustomTaskExtension
     from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
     from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
+    from .on_otp_send_custom_extension import OnOtpSendCustomExtension
     from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
 from .entity import Entity
@@ -76,6 +77,10 @@ class CustomCalloutExtension(Entity, Parsable):
             from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
 
             return OnAttributeCollectionSubmitCustomExtension()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onOtpSendCustomExtension".casefold():
+            from .on_otp_send_custom_extension import OnOtpSendCustomExtension
+
+            return OnOtpSendCustomExtension()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onTokenIssuanceStartCustomExtension".casefold():
             from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
@@ -98,6 +103,7 @@ class CustomCalloutExtension(Entity, Parsable):
         from .identity_governance.custom_task_extension import CustomTaskExtension
         from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
         from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
+        from .on_otp_send_custom_extension import OnOtpSendCustomExtension
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
         from .access_package_assignment_request_workflow_extension import AccessPackageAssignmentRequestWorkflowExtension
@@ -111,6 +117,7 @@ class CustomCalloutExtension(Entity, Parsable):
         from .identity_governance.custom_task_extension import CustomTaskExtension
         from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
         from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
+        from .on_otp_send_custom_extension import OnOtpSendCustomExtension
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -144,6 +151,7 @@ class CustomCalloutExtension(Entity, Parsable):
         from .identity_governance.custom_task_extension import CustomTaskExtension
         from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
         from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
+        from .on_otp_send_custom_extension import OnOtpSendCustomExtension
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
         writer.write_object_value("authenticationConfiguration", self.authentication_configuration)

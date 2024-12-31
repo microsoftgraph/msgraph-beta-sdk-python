@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .cloud_pc_status_details import CloudPcStatusDetails
     from .cloud_pc_user_account_type import CloudPcUserAccountType
     from .entity import Entity
+    from .frontline_cloud_pc_availability import FrontlineCloudPcAvailability
 
 from .entity import Entity
 
@@ -45,6 +46,8 @@ class CloudPC(Entity, Parsable):
     disk_encryption_state: Optional[CloudPcDiskEncryptionState] = None
     # The display name of the Cloud PC.
     display_name: Optional[str] = None
+    # The frontlineCloudPcAvailability property
+    frontline_cloud_pc_availability: Optional[FrontlineCloudPcAvailability] = None
     # The date and time when the grace period ends and reprovisioning or deprovisioning happens. Required only if the status is inGracePeriod. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     grace_period_end_date_time: Optional[datetime.datetime] = None
     # Name of the OS image that's on the Cloud PC.
@@ -127,6 +130,7 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_status_details import CloudPcStatusDetails
         from .cloud_pc_user_account_type import CloudPcUserAccountType
         from .entity import Entity
+        from .frontline_cloud_pc_availability import FrontlineCloudPcAvailability
 
         from .cloud_pc_connection_setting import CloudPcConnectionSetting
         from .cloud_pc_connection_settings import CloudPcConnectionSettings
@@ -145,6 +149,7 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_status_details import CloudPcStatusDetails
         from .cloud_pc_user_account_type import CloudPcUserAccountType
         from .entity import Entity
+        from .frontline_cloud_pc_availability import FrontlineCloudPcAvailability
 
         fields: Dict[str, Callable[[Any], None]] = {
             "aadDeviceId": lambda n : setattr(self, 'aad_device_id', n.get_str_value()),
@@ -156,6 +161,7 @@ class CloudPC(Entity, Parsable):
             "disasterRecoveryCapability": lambda n : setattr(self, 'disaster_recovery_capability', n.get_object_value(CloudPcDisasterRecoveryCapability)),
             "diskEncryptionState": lambda n : setattr(self, 'disk_encryption_state', n.get_enum_value(CloudPcDiskEncryptionState)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "frontlineCloudPcAvailability": lambda n : setattr(self, 'frontline_cloud_pc_availability', n.get_enum_value(FrontlineCloudPcAvailability)),
             "gracePeriodEndDateTime": lambda n : setattr(self, 'grace_period_end_date_time', n.get_datetime_value()),
             "imageDisplayName": lambda n : setattr(self, 'image_display_name', n.get_str_value()),
             "lastLoginResult": lambda n : setattr(self, 'last_login_result', n.get_object_value(CloudPcLoginResult)),
@@ -210,6 +216,7 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_status_details import CloudPcStatusDetails
         from .cloud_pc_user_account_type import CloudPcUserAccountType
         from .entity import Entity
+        from .frontline_cloud_pc_availability import FrontlineCloudPcAvailability
 
         writer.write_str_value("aadDeviceId", self.aad_device_id)
         writer.write_str_value("allotmentDisplayName", self.allotment_display_name)
@@ -220,6 +227,7 @@ class CloudPC(Entity, Parsable):
         writer.write_object_value("disasterRecoveryCapability", self.disaster_recovery_capability)
         writer.write_enum_value("diskEncryptionState", self.disk_encryption_state)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_enum_value("frontlineCloudPcAvailability", self.frontline_cloud_pc_availability)
         writer.write_datetime_value("gracePeriodEndDateTime", self.grace_period_end_date_time)
         writer.write_str_value("imageDisplayName", self.image_display_name)
         writer.write_object_value("lastLoginResult", self.last_login_result)

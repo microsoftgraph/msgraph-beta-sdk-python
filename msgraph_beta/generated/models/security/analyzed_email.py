@@ -9,11 +9,15 @@ if TYPE_CHECKING:
     from .analyzed_email_attachment import AnalyzedEmailAttachment
     from .analyzed_email_authentication_detail import AnalyzedEmailAuthenticationDetail
     from .analyzed_email_delivery_detail import AnalyzedEmailDeliveryDetail
+    from .analyzed_email_dlp_rule_info import AnalyzedEmailDlpRuleInfo
     from .analyzed_email_exchange_transport_rule_info import AnalyzedEmailExchangeTransportRuleInfo
+    from .analyzed_email_recipient_detail import AnalyzedEmailRecipientDetail
     from .analyzed_email_sender_detail import AnalyzedEmailSenderDetail
     from .analyzed_email_url import AnalyzedEmailUrl
     from .antispam_directionality import AntispamDirectionality
+    from .threat_detection_detail import ThreatDetectionDetail
     from .threat_type import ThreatType
+    from .timeline_event import TimelineEvent
 
 from ..entity import Entity
 
@@ -23,12 +27,12 @@ class AnalyzedEmail(Entity, Parsable):
     alert_ids: Optional[List[str]] = None
     # A collection of the attachments in the email.
     attachments: Optional[List[AnalyzedEmailAttachment]] = None
-    # The number of attachments in the email.
-    attachments_count: Optional[int] = None
     # The authentication details associated with the email.
     authentication_details: Optional[AnalyzedEmailAuthenticationDetail] = None
     # The bulk complaint level of the email. A higher level is more likely to be spam.
     bulk_complaint_level: Optional[str] = None
+    # The clientType property
+    client_type: Optional[str] = None
     # Provides context of the email.
     contexts: Optional[List[str]] = None
     # The methods of detection used.
@@ -37,10 +41,16 @@ class AnalyzedEmail(Entity, Parsable):
     directionality: Optional[AntispamDirectionality] = None
     # The distribution list details to which the email was sent.
     distribution_list: Optional[str] = None
+    # The dlpRules property
+    dlp_rules: Optional[List[AnalyzedEmailDlpRuleInfo]] = None
     # The identifier for the group of similar emails clustered based on heuristic analysis of their content.
     email_cluster_id: Optional[str] = None
     # The name of the Exchange transport rules (ETRs) associated with the email.
     exchange_transport_rules: Optional[List[AnalyzedEmailExchangeTransportRuleInfo]] = None
+    # The forwardingDetail property
+    forwarding_detail: Optional[str] = None
+    # The inboundConnectorFormattedName property
+    inbound_connector_formatted_name: Optional[str] = None
     # A public-facing identifier for the email that is sent. The message ID is in the format specified by RFC2822.
     internet_message_id: Optional[str] = None
     # The detected language of the email content.
@@ -63,6 +73,12 @@ class AnalyzedEmail(Entity, Parsable):
     policy: Optional[str] = None
     # The action taken on the email based on the configured policy.
     policy_action: Optional[str] = None
+    # The policyType property
+    policy_type: Optional[str] = None
+    # The primaryOverrideSource property
+    primary_override_source: Optional[str] = None
+    # The recipientDetail property
+    recipient_detail: Optional[AnalyzedEmailRecipientDetail] = None
     # Contains the email address of the recipient.
     recipient_email_address: Optional[str] = None
     # A field that indicates where and how bounced emails are processed.
@@ -75,12 +91,14 @@ class AnalyzedEmail(Entity, Parsable):
     spam_confidence_level: Optional[str] = None
     # Subject of the email.
     subject: Optional[str] = None
+    # The threatDetectionDetails property
+    threat_detection_details: Optional[List[ThreatDetectionDetail]] = None
     # Indicates the threat types. The possible values are: unknown, spam, malware, phish, none, unknownFutureValue.
     threat_types: Optional[List[ThreatType]] = None
+    # The timelineEvents property
+    timeline_events: Optional[List[TimelineEvent]] = None
     # A collection of the URLs in the email.
     urls: Optional[List[AnalyzedEmailUrl]] = None
-    # The number of URLs in the email.
-    urls_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AnalyzedEmail:
@@ -102,34 +120,45 @@ class AnalyzedEmail(Entity, Parsable):
         from .analyzed_email_attachment import AnalyzedEmailAttachment
         from .analyzed_email_authentication_detail import AnalyzedEmailAuthenticationDetail
         from .analyzed_email_delivery_detail import AnalyzedEmailDeliveryDetail
+        from .analyzed_email_dlp_rule_info import AnalyzedEmailDlpRuleInfo
         from .analyzed_email_exchange_transport_rule_info import AnalyzedEmailExchangeTransportRuleInfo
+        from .analyzed_email_recipient_detail import AnalyzedEmailRecipientDetail
         from .analyzed_email_sender_detail import AnalyzedEmailSenderDetail
         from .analyzed_email_url import AnalyzedEmailUrl
         from .antispam_directionality import AntispamDirectionality
+        from .threat_detection_detail import ThreatDetectionDetail
         from .threat_type import ThreatType
+        from .timeline_event import TimelineEvent
 
         from ..entity import Entity
         from .analyzed_email_attachment import AnalyzedEmailAttachment
         from .analyzed_email_authentication_detail import AnalyzedEmailAuthenticationDetail
         from .analyzed_email_delivery_detail import AnalyzedEmailDeliveryDetail
+        from .analyzed_email_dlp_rule_info import AnalyzedEmailDlpRuleInfo
         from .analyzed_email_exchange_transport_rule_info import AnalyzedEmailExchangeTransportRuleInfo
+        from .analyzed_email_recipient_detail import AnalyzedEmailRecipientDetail
         from .analyzed_email_sender_detail import AnalyzedEmailSenderDetail
         from .analyzed_email_url import AnalyzedEmailUrl
         from .antispam_directionality import AntispamDirectionality
+        from .threat_detection_detail import ThreatDetectionDetail
         from .threat_type import ThreatType
+        from .timeline_event import TimelineEvent
 
         fields: Dict[str, Callable[[Any], None]] = {
             "alertIds": lambda n : setattr(self, 'alert_ids', n.get_collection_of_primitive_values(str)),
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(AnalyzedEmailAttachment)),
-            "attachmentsCount": lambda n : setattr(self, 'attachments_count', n.get_int_value()),
             "authenticationDetails": lambda n : setattr(self, 'authentication_details', n.get_object_value(AnalyzedEmailAuthenticationDetail)),
             "bulkComplaintLevel": lambda n : setattr(self, 'bulk_complaint_level', n.get_str_value()),
+            "clientType": lambda n : setattr(self, 'client_type', n.get_str_value()),
             "contexts": lambda n : setattr(self, 'contexts', n.get_collection_of_primitive_values(str)),
             "detectionMethods": lambda n : setattr(self, 'detection_methods', n.get_collection_of_primitive_values(str)),
             "directionality": lambda n : setattr(self, 'directionality', n.get_enum_value(AntispamDirectionality)),
             "distributionList": lambda n : setattr(self, 'distribution_list', n.get_str_value()),
+            "dlpRules": lambda n : setattr(self, 'dlp_rules', n.get_collection_of_object_values(AnalyzedEmailDlpRuleInfo)),
             "emailClusterId": lambda n : setattr(self, 'email_cluster_id', n.get_str_value()),
             "exchangeTransportRules": lambda n : setattr(self, 'exchange_transport_rules', n.get_collection_of_object_values(AnalyzedEmailExchangeTransportRuleInfo)),
+            "forwardingDetail": lambda n : setattr(self, 'forwarding_detail', n.get_str_value()),
+            "inboundConnectorFormattedName": lambda n : setattr(self, 'inbound_connector_formatted_name', n.get_str_value()),
             "internetMessageId": lambda n : setattr(self, 'internet_message_id', n.get_str_value()),
             "language": lambda n : setattr(self, 'language', n.get_str_value()),
             "latestDelivery": lambda n : setattr(self, 'latest_delivery', n.get_object_value(AnalyzedEmailDeliveryDetail)),
@@ -140,15 +169,19 @@ class AnalyzedEmail(Entity, Parsable):
             "phishConfidenceLevel": lambda n : setattr(self, 'phish_confidence_level', n.get_str_value()),
             "policy": lambda n : setattr(self, 'policy', n.get_str_value()),
             "policyAction": lambda n : setattr(self, 'policy_action', n.get_str_value()),
+            "policyType": lambda n : setattr(self, 'policy_type', n.get_str_value()),
+            "primaryOverrideSource": lambda n : setattr(self, 'primary_override_source', n.get_str_value()),
+            "recipientDetail": lambda n : setattr(self, 'recipient_detail', n.get_object_value(AnalyzedEmailRecipientDetail)),
             "recipientEmailAddress": lambda n : setattr(self, 'recipient_email_address', n.get_str_value()),
             "returnPath": lambda n : setattr(self, 'return_path', n.get_str_value()),
             "senderDetail": lambda n : setattr(self, 'sender_detail', n.get_object_value(AnalyzedEmailSenderDetail)),
             "sizeInBytes": lambda n : setattr(self, 'size_in_bytes', n.get_int_value()),
             "spamConfidenceLevel": lambda n : setattr(self, 'spam_confidence_level', n.get_str_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
+            "threatDetectionDetails": lambda n : setattr(self, 'threat_detection_details', n.get_collection_of_object_values(ThreatDetectionDetail)),
             "threatTypes": lambda n : setattr(self, 'threat_types', n.get_collection_of_enum_values(ThreatType)),
+            "timelineEvents": lambda n : setattr(self, 'timeline_events', n.get_collection_of_object_values(TimelineEvent)),
             "urls": lambda n : setattr(self, 'urls', n.get_collection_of_object_values(AnalyzedEmailUrl)),
-            "urlsCount": lambda n : setattr(self, 'urls_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -167,23 +200,30 @@ class AnalyzedEmail(Entity, Parsable):
         from .analyzed_email_attachment import AnalyzedEmailAttachment
         from .analyzed_email_authentication_detail import AnalyzedEmailAuthenticationDetail
         from .analyzed_email_delivery_detail import AnalyzedEmailDeliveryDetail
+        from .analyzed_email_dlp_rule_info import AnalyzedEmailDlpRuleInfo
         from .analyzed_email_exchange_transport_rule_info import AnalyzedEmailExchangeTransportRuleInfo
+        from .analyzed_email_recipient_detail import AnalyzedEmailRecipientDetail
         from .analyzed_email_sender_detail import AnalyzedEmailSenderDetail
         from .analyzed_email_url import AnalyzedEmailUrl
         from .antispam_directionality import AntispamDirectionality
+        from .threat_detection_detail import ThreatDetectionDetail
         from .threat_type import ThreatType
+        from .timeline_event import TimelineEvent
 
         writer.write_collection_of_primitive_values("alertIds", self.alert_ids)
         writer.write_collection_of_object_values("attachments", self.attachments)
-        writer.write_int_value("attachmentsCount", self.attachments_count)
         writer.write_object_value("authenticationDetails", self.authentication_details)
         writer.write_str_value("bulkComplaintLevel", self.bulk_complaint_level)
+        writer.write_str_value("clientType", self.client_type)
         writer.write_collection_of_primitive_values("contexts", self.contexts)
         writer.write_collection_of_primitive_values("detectionMethods", self.detection_methods)
         writer.write_enum_value("directionality", self.directionality)
         writer.write_str_value("distributionList", self.distribution_list)
+        writer.write_collection_of_object_values("dlpRules", self.dlp_rules)
         writer.write_str_value("emailClusterId", self.email_cluster_id)
         writer.write_collection_of_object_values("exchangeTransportRules", self.exchange_transport_rules)
+        writer.write_str_value("forwardingDetail", self.forwarding_detail)
+        writer.write_str_value("inboundConnectorFormattedName", self.inbound_connector_formatted_name)
         writer.write_str_value("internetMessageId", self.internet_message_id)
         writer.write_str_value("language", self.language)
         writer.write_object_value("latestDelivery", self.latest_delivery)
@@ -194,14 +234,18 @@ class AnalyzedEmail(Entity, Parsable):
         writer.write_str_value("phishConfidenceLevel", self.phish_confidence_level)
         writer.write_str_value("policy", self.policy)
         writer.write_str_value("policyAction", self.policy_action)
+        writer.write_str_value("policyType", self.policy_type)
+        writer.write_str_value("primaryOverrideSource", self.primary_override_source)
+        writer.write_object_value("recipientDetail", self.recipient_detail)
         writer.write_str_value("recipientEmailAddress", self.recipient_email_address)
         writer.write_str_value("returnPath", self.return_path)
         writer.write_object_value("senderDetail", self.sender_detail)
         writer.write_int_value("sizeInBytes", self.size_in_bytes)
         writer.write_str_value("spamConfidenceLevel", self.spam_confidence_level)
         writer.write_str_value("subject", self.subject)
+        writer.write_collection_of_object_values("threatDetectionDetails", self.threat_detection_details)
         writer.write_collection_of_enum_values("threatTypes", self.threat_types)
+        writer.write_collection_of_object_values("timelineEvents", self.timeline_events)
         writer.write_collection_of_object_values("urls", self.urls)
-        writer.write_int_value("urlsCount", self.urls_count)
     
 

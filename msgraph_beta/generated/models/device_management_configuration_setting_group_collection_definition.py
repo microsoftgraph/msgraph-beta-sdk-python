@@ -10,9 +10,9 @@ from .device_management_configuration_setting_group_definition import DeviceMana
 
 @dataclass
 class DeviceManagementConfigurationSettingGroupCollectionDefinition(DeviceManagementConfigurationSettingGroupDefinition, Parsable):
-    # Maximum number of setting group count in the collection. Valid values 1 to 100
+    # Maximum number of setting group count in the collection
     maximum_count: Optional[int] = None
-    # Minimum number of setting group count in the collection. Valid values 1 to 100
+    # Minimum number of setting group count in the collection
     minimum_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None

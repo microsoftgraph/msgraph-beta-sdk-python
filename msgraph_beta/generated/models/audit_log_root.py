@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .custom_security_attribute_audit import CustomSecurityAttributeAudit
     from .directory_audit import DirectoryAudit
     from .provisioning_object_summary import ProvisioningObjectSummary
+    from .self_service_sign_up import SelfServiceSignUp
     from .sign_in import SignIn
 
 @dataclass
@@ -29,6 +30,8 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
     provisioning: Optional[List[ProvisioningObjectSummary]] = None
     # The signIns property
     sign_ins: Optional[List[SignIn]] = None
+    # The signUps property
+    sign_ups: Optional[List[SelfServiceSignUp]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AuditLogRoot:
@@ -49,11 +52,13 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
         from .directory_audit import DirectoryAudit
         from .provisioning_object_summary import ProvisioningObjectSummary
+        from .self_service_sign_up import SelfServiceSignUp
         from .sign_in import SignIn
 
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
         from .directory_audit import DirectoryAudit
         from .provisioning_object_summary import ProvisioningObjectSummary
+        from .self_service_sign_up import SelfServiceSignUp
         from .sign_in import SignIn
 
         fields: Dict[str, Callable[[Any], None]] = {
@@ -63,6 +68,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "provisioning": lambda n : setattr(self, 'provisioning', n.get_collection_of_object_values(ProvisioningObjectSummary)),
             "signIns": lambda n : setattr(self, 'sign_ins', n.get_collection_of_object_values(SignIn)),
+            "signUps": lambda n : setattr(self, 'sign_ups', n.get_collection_of_object_values(SelfServiceSignUp)),
         }
         return fields
     
@@ -77,6 +83,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
         from .directory_audit import DirectoryAudit
         from .provisioning_object_summary import ProvisioningObjectSummary
+        from .self_service_sign_up import SelfServiceSignUp
         from .sign_in import SignIn
 
         writer.write_collection_of_object_values("customSecurityAttributeAudits", self.custom_security_attribute_audits)
@@ -85,6 +92,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("provisioning", self.provisioning)
         writer.write_collection_of_object_values("signIns", self.sign_ins)
+        writer.write_collection_of_object_values("signUps", self.sign_ups)
         writer.write_additional_data_value(self.additional_data)
     
 

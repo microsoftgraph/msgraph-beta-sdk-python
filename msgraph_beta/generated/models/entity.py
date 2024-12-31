@@ -1180,7 +1180,9 @@ if TYPE_CHECKING:
     from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
     from .on_attribute_collection_submit_listener import OnAttributeCollectionSubmitListener
     from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
+    from .on_email_otp_send_listener import OnEmailOtpSendListener
     from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
+    from .on_otp_send_custom_extension import OnOtpSendCustomExtension
     from .on_premises_agent import OnPremisesAgent
     from .on_premises_agent_group import OnPremisesAgentGroup
     from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
@@ -1203,7 +1205,6 @@ if TYPE_CHECKING:
     from .organizational_branding import OrganizationalBranding
     from .organizational_branding_localization import OrganizationalBrandingLocalization
     from .organizational_branding_properties import OrganizationalBrandingProperties
-    from .organizational_branding_theme import OrganizationalBrandingTheme
     from .organization_settings import OrganizationSettings
     from .org_contact import OrgContact
     from .outlook_category import OutlookCategory
@@ -1556,6 +1557,7 @@ if TYPE_CHECKING:
     from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
     from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
     from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
+    from .self_service_sign_up import SelfServiceSignUp
     from .send_dtmf_tones_operation import SendDtmfTonesOperation
     from .sensitive_type import SensitiveType
     from .sensitivity_label import SensitivityLabel
@@ -6770,6 +6772,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
 
             return OneDriveForBusinessRestoreSession()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onEmailOtpSendListener".casefold():
+            from .on_email_otp_send_listener import OnEmailOtpSendListener
+
+            return OnEmailOtpSendListener()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onenote".casefold():
             from .onenote import Onenote
 
@@ -6814,6 +6820,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .online_meeting_base import OnlineMeetingBase
 
             return OnlineMeetingBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onOtpSendCustomExtension".casefold():
+            from .on_otp_send_custom_extension import OnOtpSendCustomExtension
+
+            return OnOtpSendCustomExtension()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPremisesAgent".casefold():
             from .on_premises_agent import OnPremisesAgent
 
@@ -6903,10 +6913,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .organizational_branding_properties import OrganizationalBrandingProperties
 
             return OrganizationalBrandingProperties()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.organizationalBrandingTheme".casefold():
-            from .organizational_branding_theme import OrganizationalBrandingTheme
-
-            return OrganizationalBrandingTheme()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.organizationSettings".casefold():
             from .organization_settings import OrganizationSettings
 
@@ -8330,6 +8336,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
 
             return SecurityToolAwsUserAdministratorFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.selfServiceSignUp".casefold():
+            from .self_service_sign_up import SelfServiceSignUp
+
+            return SelfServiceSignUp()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sendDtmfTonesOperation".casefold():
             from .send_dtmf_tones_operation import SendDtmfTonesOperation
 
@@ -11453,7 +11463,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
         from .on_attribute_collection_submit_listener import OnAttributeCollectionSubmitListener
         from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
+        from .on_email_otp_send_listener import OnEmailOtpSendListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
+        from .on_otp_send_custom_extension import OnOtpSendCustomExtension
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
         from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
@@ -11476,7 +11488,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
-        from .organizational_branding_theme import OrganizationalBrandingTheme
         from .organization_settings import OrganizationSettings
         from .org_contact import OrgContact
         from .outlook_category import OutlookCategory
@@ -11829,6 +11840,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
         from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
         from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
+        from .self_service_sign_up import SelfServiceSignUp
         from .send_dtmf_tones_operation import SendDtmfTonesOperation
         from .sensitive_type import SensitiveType
         from .sensitivity_label import SensitivityLabel
@@ -13489,7 +13501,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
         from .on_attribute_collection_submit_listener import OnAttributeCollectionSubmitListener
         from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
+        from .on_email_otp_send_listener import OnEmailOtpSendListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
+        from .on_otp_send_custom_extension import OnOtpSendCustomExtension
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
         from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
@@ -13512,7 +13526,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
-        from .organizational_branding_theme import OrganizationalBrandingTheme
         from .organization_settings import OrganizationSettings
         from .org_contact import OrgContact
         from .outlook_category import OutlookCategory
@@ -13865,6 +13878,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
         from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
         from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
+        from .self_service_sign_up import SelfServiceSignUp
         from .send_dtmf_tones_operation import SendDtmfTonesOperation
         from .sensitive_type import SensitiveType
         from .sensitivity_label import SensitivityLabel
@@ -15539,7 +15553,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
         from .on_attribute_collection_submit_listener import OnAttributeCollectionSubmitListener
         from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
+        from .on_email_otp_send_listener import OnEmailOtpSendListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
+        from .on_otp_send_custom_extension import OnOtpSendCustomExtension
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
         from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
@@ -15562,7 +15578,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
-        from .organizational_branding_theme import OrganizationalBrandingTheme
         from .organization_settings import OrganizationSettings
         from .org_contact import OrgContact
         from .outlook_category import OutlookCategory
@@ -15915,6 +15930,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
         from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
         from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
+        from .self_service_sign_up import SelfServiceSignUp
         from .send_dtmf_tones_operation import SendDtmfTonesOperation
         from .sensitive_type import SensitiveType
         from .sensitivity_label import SensitivityLabel

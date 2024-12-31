@@ -21,7 +21,7 @@ class TextColumn(AdditionalDataHolder, BackedModel, Parsable):
     max_length: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The type of text being stored. Must be one of plain or richText
+    # The type of text being stored. Must be one of plain or richText.
     text_type: Optional[str] = None
     
     @staticmethod

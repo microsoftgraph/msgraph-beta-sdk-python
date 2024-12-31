@@ -47,7 +47,7 @@ class ApplicationSegmentsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ApplicationSegmentsRequestBuilderGetQueryParameters]] = None) -> Optional[IpApplicationSegmentCollectionResponse]:
         """
-        Get applicationSegments from onPremisesPublishingProfiles
+        Represents the segment configurations that are allowed for an on-premises non-web application published through Microsoft Entra application proxy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IpApplicationSegmentCollectionResponse]
         """
@@ -67,7 +67,7 @@ class ApplicationSegmentsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ApplicationSegmentsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get applicationSegments from onPremisesPublishingProfiles
+        Represents the segment configurations that are allowed for an on-premises non-web application published through Microsoft Entra application proxy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,7 +98,7 @@ class ApplicationSegmentsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApplicationSegmentsRequestBuilderGetQueryParameters():
         """
-        Get applicationSegments from onPremisesPublishingProfiles
+        Represents the segment configurations that are allowed for an on-premises non-web application published through Microsoft Entra application proxy.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
