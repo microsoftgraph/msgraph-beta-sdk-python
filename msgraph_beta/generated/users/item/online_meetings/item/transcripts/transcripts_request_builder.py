@@ -49,7 +49,7 @@ class TranscriptsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TranscriptsRequestBuilderGetQueryParameters]] = None) -> Optional[CallTranscriptCollectionResponse]:
         """
-        Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings. 
+        Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API supports the retrieval of call transcripts from private chat meetings and channel meetings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CallTranscriptCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/onlinemeeting-list-transcripts?view=graph-rest-beta
@@ -93,7 +93,7 @@ class TranscriptsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TranscriptsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings. 
+        Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API supports the retrieval of call transcripts from private chat meetings and channel meetings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class TranscriptsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TranscriptsRequestBuilderGetQueryParameters():
         """
-        Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings. 
+        Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API supports the retrieval of call transcripts from private chat meetings and channel meetings.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

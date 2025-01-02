@@ -17,16 +17,22 @@ class AnalyzedEmailAttachment(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The detonation details of the attachment.
     detonation_details: Optional[DetonationDetails] = None
+    # The fileExtension property
+    file_extension: Optional[str] = None
     # The name of the attachment in the email.
     file_name: Optional[str] = None
+    # The fileSize property
+    file_size: Optional[int] = None
     # The type of the attachment in the email.
     file_type: Optional[str] = None
+    # The malwareFamily property
+    malware_family: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The SHA256 file hash of the attachment.
     sha256: Optional[str] = None
-    # The threat name associated with the threat type.
-    threat_name: Optional[str] = None
+    # The tenantAllowBlockListDetailInfo property
+    tenant_allow_block_list_detail_info: Optional[str] = None
     # The threat type associated with the attachment. The possible values are: unknown, spam, malware, phishing, none, unknownFutureValue.
     threat_type: Optional[ThreatType] = None
     
@@ -54,11 +60,14 @@ class AnalyzedEmailAttachment(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "detonationDetails": lambda n : setattr(self, 'detonation_details', n.get_object_value(DetonationDetails)),
+            "fileExtension": lambda n : setattr(self, 'file_extension', n.get_str_value()),
             "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
+            "fileSize": lambda n : setattr(self, 'file_size', n.get_int_value()),
             "fileType": lambda n : setattr(self, 'file_type', n.get_str_value()),
+            "malwareFamily": lambda n : setattr(self, 'malware_family', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "sha256": lambda n : setattr(self, 'sha256', n.get_str_value()),
-            "threatName": lambda n : setattr(self, 'threat_name', n.get_str_value()),
+            "tenantAllowBlockListDetailInfo": lambda n : setattr(self, 'tenant_allow_block_list_detail_info', n.get_str_value()),
             "threatType": lambda n : setattr(self, 'threat_type', n.get_enum_value(ThreatType)),
         }
         return fields
@@ -75,11 +84,14 @@ class AnalyzedEmailAttachment(AdditionalDataHolder, BackedModel, Parsable):
         from .threat_type import ThreatType
 
         writer.write_object_value("detonationDetails", self.detonation_details)
+        writer.write_str_value("fileExtension", self.file_extension)
         writer.write_str_value("fileName", self.file_name)
+        writer.write_int_value("fileSize", self.file_size)
         writer.write_str_value("fileType", self.file_type)
+        writer.write_str_value("malwareFamily", self.malware_family)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("sha256", self.sha256)
-        writer.write_str_value("threatName", self.threat_name)
+        writer.write_str_value("tenantAllowBlockListDetailInfo", self.tenant_allow_block_list_detail_info)
         writer.write_enum_value("threatType", self.threat_type)
         writer.write_additional_data_value(self.additional_data)
     

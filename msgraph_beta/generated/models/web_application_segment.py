@@ -13,7 +13,7 @@ from .application_segment import ApplicationSegment
 class WebApplicationSegment(ApplicationSegment, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.webApplicationSegment"
-    # If you're configuring a traffic manager in front of multiple App Proxy application segments, this property contains the user-friendly URL that will point to the traffic manager.
+    # If you're configuring a traffic manager in front of multiple app proxy application segments, this property contains the user-friendly URL that points to the traffic manager.
     alternate_url: Optional[str] = None
     # A collection of CORS Rule definitions for a particular application segment.
     cors_configurations: Optional[List[CorsConfiguration_v2]] = None

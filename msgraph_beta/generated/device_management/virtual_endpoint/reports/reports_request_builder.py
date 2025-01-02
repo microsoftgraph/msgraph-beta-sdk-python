@@ -27,9 +27,9 @@ if TYPE_CHECKING:
     from .get_real_time_remote_connection_latency_with_cloud_pc_id.get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder import GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder
     from .get_real_time_remote_connection_status_with_cloud_pc_id.get_real_time_remote_connection_status_with_cloud_pc_id_request_builder import GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder
     from .get_remote_connection_historical_reports.get_remote_connection_historical_reports_request_builder import GetRemoteConnectionHistoricalReportsRequestBuilder
-    from .get_shared_use_license_usage_report.get_shared_use_license_usage_report_request_builder import GetSharedUseLicenseUsageReportRequestBuilder
     from .get_total_aggregated_remote_connection_reports.get_total_aggregated_remote_connection_reports_request_builder import GetTotalAggregatedRemoteConnectionReportsRequestBuilder
     from .retrieve_bulk_action_status_report.retrieve_bulk_action_status_report_request_builder import RetrieveBulkActionStatusReportRequestBuilder
+    from .retrieve_cloud_pc_troubleshoot_reports.retrieve_cloud_pc_troubleshoot_reports_request_builder import RetrieveCloudPcTroubleshootReportsRequestBuilder
     from .retrieve_connection_quality_reports.retrieve_connection_quality_reports_request_builder import RetrieveConnectionQualityReportsRequestBuilder
     from .retrieve_cross_region_disaster_recovery_report.retrieve_cross_region_disaster_recovery_report_request_builder import RetrieveCrossRegionDisasterRecoveryReportRequestBuilder
     from .retrieve_frontline_reports.retrieve_frontline_reports_request_builder import RetrieveFrontlineReportsRequestBuilder
@@ -270,15 +270,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetRemoteConnectionHistoricalReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_shared_use_license_usage_report(self) -> GetSharedUseLicenseUsageReportRequestBuilder:
-        """
-        Provides operations to call the getSharedUseLicenseUsageReport method.
-        """
-        from .get_shared_use_license_usage_report.get_shared_use_license_usage_report_request_builder import GetSharedUseLicenseUsageReportRequestBuilder
-
-        return GetSharedUseLicenseUsageReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def get_total_aggregated_remote_connection_reports(self) -> GetTotalAggregatedRemoteConnectionReportsRequestBuilder:
         """
         Provides operations to call the getTotalAggregatedRemoteConnectionReports method.
@@ -295,6 +286,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .retrieve_bulk_action_status_report.retrieve_bulk_action_status_report_request_builder import RetrieveBulkActionStatusReportRequestBuilder
 
         return RetrieveBulkActionStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_cloud_pc_troubleshoot_reports(self) -> RetrieveCloudPcTroubleshootReportsRequestBuilder:
+        """
+        Provides operations to call the retrieveCloudPcTroubleshootReports method.
+        """
+        from .retrieve_cloud_pc_troubleshoot_reports.retrieve_cloud_pc_troubleshoot_reports_request_builder import RetrieveCloudPcTroubleshootReportsRequestBuilder
+
+        return RetrieveCloudPcTroubleshootReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_connection_quality_reports(self) -> RetrieveConnectionQualityReportsRequestBuilder:

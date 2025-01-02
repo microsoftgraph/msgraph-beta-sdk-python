@@ -20,6 +20,7 @@ class CloudPcOnPremisesConnectionHealthCheckErrorType(str, Enum):
     EndpointConnectivityCheckIntuneUrlNotAllowListed = "endpointConnectivityCheckIntuneUrlNotAllowListed",
     EndpointConnectivityCheckAzureADUrlNotAllowListed = "endpointConnectivityCheckAzureADUrlNotAllowListed",
     EndpointConnectivityCheckLocaleUrlNotAllowListed = "endpointConnectivityCheckLocaleUrlNotAllowListed",
+    EndpointConnectivityCheckVMAgentEndPointCommunicationError = "endpointConnectivityCheckVMAgentEndPointCommunicationError",
     EndpointConnectivityCheckUnknownError = "endpointConnectivityCheckUnknownError",
     AzureAdDeviceSyncCheckDeviceNotFound = "azureAdDeviceSyncCheckDeviceNotFound",
     AzureAdDeviceSyncCheckLongSyncCircle = "azureAdDeviceSyncCheckLongSyncCircle",

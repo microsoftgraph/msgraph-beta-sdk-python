@@ -11,6 +11,9 @@ from .entity import Entity
 
 @dataclass
 class ThumbnailSet(Entity, Parsable):
+    """
+    The ThumbnailSet resource is a keyed collection of thumbnail resources.
+    """
     # A 1920x1920 scaled thumbnail.
     large: Optional[Thumbnail] = None
     # A 176x176 scaled thumbnail.

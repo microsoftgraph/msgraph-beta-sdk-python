@@ -15,7 +15,7 @@ class WorkbookSessionInfo(AdditionalDataHolder, BackedModel, Parsable):
     id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # true for persistent session. false for non-persistent session (view mode)
+    # Set to true for persistent session. Set to false for non-persistent session (view mode).
     persist_changes: Optional[bool] = None
     
     @staticmethod

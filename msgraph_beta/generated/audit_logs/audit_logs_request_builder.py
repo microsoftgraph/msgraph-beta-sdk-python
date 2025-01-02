@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .directory_provisioning.directory_provisioning_request_builder import DirectoryProvisioningRequestBuilder
     from .provisioning.provisioning_request_builder import ProvisioningRequestBuilder
     from .sign_ins.sign_ins_request_builder import SignInsRequestBuilder
+    from .sign_ups.sign_ups_request_builder import SignUpsRequestBuilder
 
 class AuditLogsRequestBuilder(BaseRequestBuilder):
     """
@@ -157,6 +158,15 @@ class AuditLogsRequestBuilder(BaseRequestBuilder):
         from .sign_ins.sign_ins_request_builder import SignInsRequestBuilder
 
         return SignInsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sign_ups(self) -> SignUpsRequestBuilder:
+        """
+        Provides operations to manage the signUps property of the microsoft.graph.auditLogRoot entity.
+        """
+        from .sign_ups.sign_ups_request_builder import SignUpsRequestBuilder
+
+        return SignUpsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AuditLogsRequestBuilderGetQueryParameters():

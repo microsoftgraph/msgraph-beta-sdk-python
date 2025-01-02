@@ -22,8 +22,8 @@ class CertificateAuthorityDetail(DirectoryObject, Parsable):
     certificate_revocation_list_url: Optional[str] = None
     # The date and time when the certificate authority was created.
     created_date_time: Optional[datetime.datetime] = None
-    # The URL to check to find out whether the certificate is revoked.
-    deltacertificate_revocation_list_url: Optional[str] = None
+    # The deltaCertificateRevocationListUrl property
+    delta_certificate_revocation_list_url: Optional[str] = None
     # The display name of the certificate authority.
     display_name: Optional[str] = None
     # The date and time when the certificate authority expires. Supports $filter (eq) and $orderby.
@@ -64,7 +64,7 @@ class CertificateAuthorityDetail(DirectoryObject, Parsable):
             "certificateAuthorityType": lambda n : setattr(self, 'certificate_authority_type', n.get_enum_value(CertificateAuthorityType)),
             "certificateRevocationListUrl": lambda n : setattr(self, 'certificate_revocation_list_url', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "deltacertificateRevocationListUrl": lambda n : setattr(self, 'deltacertificate_revocation_list_url', n.get_str_value()),
+            "deltaCertificateRevocationListUrl": lambda n : setattr(self, 'delta_certificate_revocation_list_url', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "isIssuerHintEnabled": lambda n : setattr(self, 'is_issuer_hint_enabled', n.get_bool_value()),
@@ -92,7 +92,7 @@ class CertificateAuthorityDetail(DirectoryObject, Parsable):
         writer.write_enum_value("certificateAuthorityType", self.certificate_authority_type)
         writer.write_str_value("certificateRevocationListUrl", self.certificate_revocation_list_url)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
-        writer.write_str_value("deltacertificateRevocationListUrl", self.deltacertificate_revocation_list_url)
+        writer.write_str_value("deltaCertificateRevocationListUrl", self.delta_certificate_revocation_list_url)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_bool_value("isIssuerHintEnabled", self.is_issuer_hint_enabled)

@@ -6,6 +6,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .compromise_indicator import CompromiseIndicator
+    from .detonation_behaviour_details import DetonationBehaviourDetails
     from .detonation_chain import DetonationChain
     from .detonation_observables import DetonationObservables
 
@@ -18,10 +20,16 @@ class DetonationDetails(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The time of detonation.
     analysis_date_time: Optional[datetime.datetime] = None
+    # The compromiseIndicators property
+    compromise_indicators: Optional[List[CompromiseIndicator]] = None
+    # The detonationBehaviourDetails property
+    detonation_behaviour_details: Optional[DetonationBehaviourDetails] = None
     # The chain of detonation.
     detonation_chain: Optional[DetonationChain] = None
     # All observables in the detonation tree.
     detonation_observables: Optional[DetonationObservables] = None
+    # The detonationScreenshotUri property
+    detonation_screenshot_uri: Optional[str] = None
     # The verdict of the detonation.
     detonation_verdict: Optional[str] = None
     # The reason for the verdict of the detonation.
@@ -45,16 +53,23 @@ class DetonationDetails(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
+        from .compromise_indicator import CompromiseIndicator
+        from .detonation_behaviour_details import DetonationBehaviourDetails
         from .detonation_chain import DetonationChain
         from .detonation_observables import DetonationObservables
 
+        from .compromise_indicator import CompromiseIndicator
+        from .detonation_behaviour_details import DetonationBehaviourDetails
         from .detonation_chain import DetonationChain
         from .detonation_observables import DetonationObservables
 
         fields: Dict[str, Callable[[Any], None]] = {
             "analysisDateTime": lambda n : setattr(self, 'analysis_date_time', n.get_datetime_value()),
+            "compromiseIndicators": lambda n : setattr(self, 'compromise_indicators', n.get_collection_of_object_values(CompromiseIndicator)),
+            "detonationBehaviourDetails": lambda n : setattr(self, 'detonation_behaviour_details', n.get_object_value(DetonationBehaviourDetails)),
             "detonationChain": lambda n : setattr(self, 'detonation_chain', n.get_object_value(DetonationChain)),
             "detonationObservables": lambda n : setattr(self, 'detonation_observables', n.get_object_value(DetonationObservables)),
+            "detonationScreenshotUri": lambda n : setattr(self, 'detonation_screenshot_uri', n.get_str_value()),
             "detonationVerdict": lambda n : setattr(self, 'detonation_verdict', n.get_str_value()),
             "detonationVerdictReason": lambda n : setattr(self, 'detonation_verdict_reason', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -69,12 +84,17 @@ class DetonationDetails(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        from .compromise_indicator import CompromiseIndicator
+        from .detonation_behaviour_details import DetonationBehaviourDetails
         from .detonation_chain import DetonationChain
         from .detonation_observables import DetonationObservables
 
         writer.write_datetime_value("analysisDateTime", self.analysis_date_time)
+        writer.write_collection_of_object_values("compromiseIndicators", self.compromise_indicators)
+        writer.write_object_value("detonationBehaviourDetails", self.detonation_behaviour_details)
         writer.write_object_value("detonationChain", self.detonation_chain)
         writer.write_object_value("detonationObservables", self.detonation_observables)
+        writer.write_str_value("detonationScreenshotUri", self.detonation_screenshot_uri)
         writer.write_str_value("detonationVerdict", self.detonation_verdict)
         writer.write_str_value("detonationVerdictReason", self.detonation_verdict_reason)
         writer.write_str_value("@odata.type", self.odata_type)

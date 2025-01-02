@@ -10,4 +10,6 @@ class ConditionCategory(str, Enum):
     CloudPcHostHealthCheckFailures = "cloudPcHostHealthCheckFailures",
     CloudPcZoneOutage = "cloudPcZoneOutage",
     UnknownFutureValue = "unknownFutureValue",
+    FrontlineBufferUsageDuration = "frontlineBufferUsageDuration",
+    FrontlineBufferUsageThreshold = "frontlineBufferUsageThreshold",
 

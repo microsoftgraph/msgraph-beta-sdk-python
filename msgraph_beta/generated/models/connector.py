@@ -22,7 +22,7 @@ class Connector(Entity, Parsable):
     odata_type: Optional[str] = None
     # The status property
     status: Optional[ConnectorStatus] = None
-    # The version of the connector.
+    # The version of the connector. Read-only.
     version: Optional[str] = None
     
     @staticmethod

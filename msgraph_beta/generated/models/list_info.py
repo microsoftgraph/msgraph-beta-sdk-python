@@ -11,13 +11,13 @@ class ListInfo(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: Dict[str, Any] = field(default_factory=dict)
-    # If true, indicates that content types are enabled for this list.
+    # If true, it indicates that content types are enabled for this list.
     content_types_enabled: Optional[bool] = None
-    # If true, indicates that the list isn't normally visible in the SharePoint user experience.
+    # If true, it indicates that the list isn't normally visible in the SharePoint user experience.
     hidden: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # An enumerated value that represents the base list template used in creating the list. Possible values include documentLibrary, genericList, task, survey, announcements, contacts, and more.
+    # Represents the base list template used in creating the list. Possible values include documentLibrary, genericList, task, survey, announcements, contacts, and more.
     template: Optional[str] = None
     
     @staticmethod

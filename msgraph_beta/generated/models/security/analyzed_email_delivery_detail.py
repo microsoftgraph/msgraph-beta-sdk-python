@@ -17,10 +17,14 @@ class AnalyzedEmailDeliveryDetail(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # The delivery action of the email. The possible values are: unknown, deliveredToJunk, delivered, blocked, replaced, unknownFutureValue.
     action: Optional[DeliveryAction] = None
+    # The latestThreats property
+    latest_threats: Optional[str] = None
     # The delivery location of the email. The possible values are: unknown, inboxfolder, junkFolder, deletedFolder, quarantine, onpremexternal, failed, dropped, others, unknownFutureValue.
     location: Optional[DeliveryLocation] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The originalThreats property
+    original_threats: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AnalyzedEmailDeliveryDetail:
@@ -46,8 +50,10 @@ class AnalyzedEmailDeliveryDetail(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(DeliveryAction)),
+            "latestThreats": lambda n : setattr(self, 'latest_threats', n.get_str_value()),
             "location": lambda n : setattr(self, 'location', n.get_enum_value(DeliveryLocation)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "originalThreats": lambda n : setattr(self, 'original_threats', n.get_str_value()),
         }
         return fields
     
@@ -63,8 +69,10 @@ class AnalyzedEmailDeliveryDetail(AdditionalDataHolder, BackedModel, Parsable):
         from .delivery_location import DeliveryLocation
 
         writer.write_enum_value("action", self.action)
+        writer.write_str_value("latestThreats", self.latest_threats)
         writer.write_enum_value("location", self.location)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("originalThreats", self.original_threats)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -13,7 +13,7 @@ class DateTimeColumn(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: Dict[str, Any] = field(default_factory=dict)
     # How the value should be presented in the UX. Must be one of default, friendly, or standard. See below for more details. If unspecified, treated as default.
     display_as: Optional[str] = None
-    # Indicates whether the value should be presented as a date only or a date and time. Must be one of dateOnly or dateTime
+    # Indicates whether the value should be presented as a date only or a date and time. It must be either dateOnly or dateTime.
     format: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

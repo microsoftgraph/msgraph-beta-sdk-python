@@ -4,8 +4,6 @@ class CloudPcReportName(str, Enum):
     RemoteConnectionHistoricalReports = "remoteConnectionHistoricalReports",
     DailyAggregatedRemoteConnectionReports = "dailyAggregatedRemoteConnectionReports",
     TotalAggregatedRemoteConnectionReports = "totalAggregatedRemoteConnectionReports",
-    SharedUseLicenseUsageReport = "sharedUseLicenseUsageReport",
-    SharedUseLicenseUsageRealTimeReport = "sharedUseLicenseUsageRealTimeReport",
     UnknownFutureValue = "unknownFutureValue",
     NoLicenseAvailableConnectivityFailureReport = "noLicenseAvailableConnectivityFailureReport",
     FrontlineLicenseUsageReport = "frontlineLicenseUsageReport",
@@ -24,4 +22,8 @@ class CloudPcReportName(str, Enum):
     FrontlineLicenseHourlyUsageReport = "frontlineLicenseHourlyUsageReport",
     FrontlineRealtimeUserConnectionsReport = "frontlineRealtimeUserConnectionsReport",
     BulkActionStatusReport = "bulkActionStatusReport",
+    TroubleshootDetailsReport = "troubleshootDetailsReport",
+    TroubleshootTrendCountReport = "troubleshootTrendCountReport",
+    TroubleshootRegionalReport = "troubleshootRegionalReport",
+    TroubleshootIssueCountReport = "troubleshootIssueCountReport",
 

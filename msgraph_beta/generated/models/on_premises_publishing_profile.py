@@ -21,7 +21,7 @@ class OnPremisesPublishingProfile(Entity, Parsable):
     agent_groups: Optional[List[OnPremisesAgentGroup]] = None
     # List of existing onPremisesAgent objects. Read-only. Nullable.
     agents: Optional[List[OnPremisesAgent]] = None
-    # The applicationSegments property
+    # Represents the segment configurations that are allowed for an on-premises non-web application published through Microsoft Entra application proxy.
     application_segments: Optional[List[IpApplicationSegment]] = None
     # List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
     connector_groups: Optional[List[ConnectorGroup]] = None
@@ -29,7 +29,7 @@ class OnPremisesPublishingProfile(Entity, Parsable):
     connectors: Optional[List[Connector]] = None
     # Represents a hybridAgentUpdaterConfiguration object.
     hybrid_agent_updater_configuration: Optional[HybridAgentUpdaterConfiguration] = None
-    # The isDefaultAccessEnabled property
+    # Specifies whether default access for app proxy is enabled or disabled.
     is_default_access_enabled: Optional[bool] = None
     # Represents if Microsoft Entra application proxy is enabled for the tenant.
     is_enabled: Optional[bool] = None
