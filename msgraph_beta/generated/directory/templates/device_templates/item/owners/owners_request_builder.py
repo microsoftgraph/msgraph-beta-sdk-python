@@ -47,9 +47,10 @@ class OwnersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[OwnersRequestBuilderGetQueryParameters]] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Get owners from directory
+        Get a list of owners for a deviceTemplate object. Owners can be represented as service principals, users, or applications.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/devicetemplate-list-owners?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -67,7 +68,7 @@ class OwnersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[OwnersRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get owners from directory
+        Get a list of owners for a deviceTemplate object. Owners can be represented as service principals, users, or applications.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,7 +99,7 @@ class OwnersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OwnersRequestBuilderGetQueryParameters():
         """
-        Get owners from directory
+        Get a list of owners for a deviceTemplate object. Owners can be represented as service principals, users, or applications.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -34,7 +34,7 @@ class DeviceInstancesWithDeviceIdRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeviceInstancesWithDeviceIdRequestBuilderGetQueryParameters]] = None) -> Optional[Device]:
         """
-        Get deviceInstances from directory
+        Collection of device objects created based on this template.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Device]
         """
@@ -54,7 +54,7 @@ class DeviceInstancesWithDeviceIdRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeviceInstancesWithDeviceIdRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get deviceInstances from directory
+        Collection of device objects created based on this template.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -76,7 +76,7 @@ class DeviceInstancesWithDeviceIdRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceInstancesWithDeviceIdRequestBuilderGetQueryParameters():
         """
-        Get deviceInstances from directory
+        Collection of device objects created based on this template.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

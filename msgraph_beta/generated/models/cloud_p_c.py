@@ -46,7 +46,7 @@ class CloudPC(Entity, Parsable):
     disk_encryption_state: Optional[CloudPcDiskEncryptionState] = None
     # The display name of the Cloud PC.
     display_name: Optional[str] = None
-    # The frontlineCloudPcAvailability property
+    # The current availability of a frontline assigned Cloud PC. Possible values: notApplicable, available,notAvailable and unknownFutureValue. Default value is notApplicable. Read Only.
     frontline_cloud_pc_availability: Optional[FrontlineCloudPcAvailability] = None
     # The date and time when the grace period ends and reprovisioning or deprovisioning happens. Required only if the status is inGracePeriod. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     grace_period_end_date_time: Optional[datetime.datetime] = None

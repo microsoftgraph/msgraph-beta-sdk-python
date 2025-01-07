@@ -48,7 +48,7 @@ class MutualTlsOauthConfigurationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MutualTlsOauthConfigurationsRequestBuilderGetQueryParameters]] = None) -> Optional[MutualTlsOauthConfigurationCollectionResponse]:
         """
-        Get mutualTlsOauthConfigurations from certificateAuthorities
+        Defines the trusted certificate authorities for certificates that can be added to Internet of Things (IoT) devices.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MutualTlsOauthConfigurationCollectionResponse]
         """
@@ -91,7 +91,7 @@ class MutualTlsOauthConfigurationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MutualTlsOauthConfigurationsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get mutualTlsOauthConfigurations from certificateAuthorities
+        Defines the trusted certificate authorities for certificates that can be added to Internet of Things (IoT) devices.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +137,7 @@ class MutualTlsOauthConfigurationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MutualTlsOauthConfigurationsRequestBuilderGetQueryParameters():
         """
-        Get mutualTlsOauthConfigurations from certificateAuthorities
+        Defines the trusted certificate authorities for certificates that can be added to Internet of Things (IoT) devices.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

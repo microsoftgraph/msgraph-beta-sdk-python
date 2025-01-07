@@ -35,9 +35,10 @@ class DeviceTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property deviceTemplates for directory
+        Delete a registered deviceTemplate. You must first delete all devices linked to the template before deleting the template itself. Only registered owners of the template can perform this operation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/devicetemplate-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -65,9 +66,10 @@ class DeviceTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeviceTemplateItemRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceTemplate]:
         """
-        Get deviceTemplates from directory
+        Get the properties and relationships of a deviceTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceTemplate]
+        Find more info here: https://learn.microsoft.com/graph/api/devicetemplate-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -108,7 +110,7 @@ class DeviceTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property deviceTemplates for directory
+        Delete a registered deviceTemplate. You must first delete all devices linked to the template before deleting the template itself. Only registered owners of the template can perform this operation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,7 +121,7 @@ class DeviceTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeviceTemplateItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get deviceTemplates from directory
+        Get the properties and relationships of a deviceTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -190,7 +192,7 @@ class DeviceTemplateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceTemplateItemRequestBuilderGetQueryParameters():
         """
-        Get deviceTemplates from directory
+        Get the properties and relationships of a deviceTemplate object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

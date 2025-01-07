@@ -48,9 +48,10 @@ class DeviceTemplatesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeviceTemplatesRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceTemplateCollectionResponse]:
         """
-        Get deviceTemplates from directory
+        Get a list of deviceTemplate objects registered in the directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceTemplateCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/template-list-devicetemplates?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,10 +69,11 @@ class DeviceTemplatesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: DeviceTemplate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DeviceTemplate]:
         """
-        Create new navigation property to deviceTemplates for directory
+        Create a new deviceTemplate used to identify attributes and manage a group of devices with similar characteristics.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceTemplate]
+        Find more info here: https://learn.microsoft.com/graph/api/template-post-devicetemplates?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -91,7 +93,7 @@ class DeviceTemplatesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeviceTemplatesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get deviceTemplates from directory
+        Get a list of deviceTemplate objects registered in the directory.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +104,7 @@ class DeviceTemplatesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: DeviceTemplate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to deviceTemplates for directory
+        Create a new deviceTemplate used to identify attributes and manage a group of devices with similar characteristics.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +139,7 @@ class DeviceTemplatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceTemplatesRequestBuilderGetQueryParameters():
         """
-        Get deviceTemplates from directory
+        Get a list of deviceTemplate objects registered in the directory.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

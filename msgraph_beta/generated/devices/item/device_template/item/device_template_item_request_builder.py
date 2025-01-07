@@ -31,7 +31,7 @@ class DeviceTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeviceTemplateItemRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceTemplate]:
         """
-        Get deviceTemplate from devices
+        Device template used to instantiate this device. Nullable. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceTemplate]
         """
@@ -51,7 +51,7 @@ class DeviceTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeviceTemplateItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get deviceTemplate from devices
+        Device template used to instantiate this device. Nullable. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -73,7 +73,7 @@ class DeviceTemplateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceTemplateItemRequestBuilderGetQueryParameters():
         """
-        Get deviceTemplate from devices
+        Device template used to instantiate this device. Nullable. Read-only.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

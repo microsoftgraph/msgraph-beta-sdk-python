@@ -13,21 +13,21 @@ from .directory_object import DirectoryObject
 class DeviceTemplate(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.deviceTemplate"
-    # The deviceAuthority property
+    # A tenant-defined name for the party that's responsible for provisioning and managing devices on the Microsoft Entra tenant. For example, Tailwind Traders (the manufacturer) makes security cameras that are installed in customer buildings and managed by Lakeshore Retail (the device authority). This value is provided to the customer by the device authority (manufacturer or reseller).
     device_authority: Optional[str] = None
-    # The deviceInstances property
+    # Collection of device objects created based on this template.
     device_instances: Optional[List[Device]] = None
-    # The manufacturer property
+    # Manufacturer name.
     manufacturer: Optional[str] = None
-    # The model property
+    # Model name.
     model: Optional[str] = None
-    # The mutualTlsOauthConfigurationId property
+    # Object ID of the mutualTlsOauthConfiguration. This value isn't required if self-signed certificates are used. This value is provided to the customer by the device authority (manufacturer or reseller).
     mutual_tls_oauth_configuration_id: Optional[str] = None
-    # The mutualTlsOauthConfigurationTenantId property
+    # ID (tenant ID for device authority) of the tenant that contains the mutualTlsOauthConfiguration. This value isn't required if self-signed certificates are used. This value is provided to the customer by the device authority (manufacturer or reseller).
     mutual_tls_oauth_configuration_tenant_id: Optional[str] = None
-    # The operatingSystem property
+    # Operating system type. Supports $filter (eq, in).
     operating_system: Optional[str] = None
-    # The owners property
+    # Collection of directory objects that can manage the device template and the related deviceInstances. Owners can be represented as service principals, users, or applications. An owner has full privileges over the device template and doesn't require other administrator roles to create, update, or delete devices from this template, as well as to add or remove template owners.  Supports $expand.
     owners: Optional[List[DirectoryObject]] = None
     
     @staticmethod

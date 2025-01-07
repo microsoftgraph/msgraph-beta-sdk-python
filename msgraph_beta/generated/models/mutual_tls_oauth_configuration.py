@@ -13,7 +13,7 @@ from .trusted_certificate_authority_base import TrustedCertificateAuthorityBase
 class MutualTlsOauthConfiguration(TrustedCertificateAuthorityBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.mutualTlsOauthConfiguration"
-    # The displayName property
+    # Friendly name. Supports $filter (eq, in).
     display_name: Optional[str] = None
     # The tlsClientAuthParameter property
     tls_client_auth_parameter: Optional[TlsClientRegistrationMetadata] = None

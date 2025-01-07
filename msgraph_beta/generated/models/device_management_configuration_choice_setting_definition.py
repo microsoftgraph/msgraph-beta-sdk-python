@@ -12,11 +12,11 @@ from .device_management_configuration_setting_definition import DeviceManagement
 
 @dataclass
 class DeviceManagementConfigurationChoiceSettingDefinition(DeviceManagementConfigurationSettingDefinition, Parsable):
-    # Default option for choice setting
+    # Default option for the choice setting.
     default_option_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Options for the setting that can be selected
+    # Options for the setting that can be selected.
     options: Optional[List[DeviceManagementConfigurationOptionDefinition]] = None
     
     @staticmethod

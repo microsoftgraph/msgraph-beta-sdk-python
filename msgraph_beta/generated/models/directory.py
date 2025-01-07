@@ -36,7 +36,7 @@ class Directory(Entity, Parsable):
     attribute_sets: Optional[List[AttributeSet]] = None
     # Exposes the hardware OATH method in the directory.
     authentication_method_devices: Optional[AuthenticationMethodDevice] = None
-    # The certificateAuthorities property
+    # Container for certificate authorities-related configurations for applications in the tenant.
     certificate_authorities: Optional[CertificateAuthorityPath] = None
     # Schema of a custom security attributes (key-value pairs).
     custom_security_attribute_definitions: Optional[List[CustomSecurityAttributeDefinition]] = None
@@ -70,7 +70,7 @@ class Directory(Entity, Parsable):
     shared_email_domains: Optional[List[SharedEmailDomain]] = None
     # List of commercial subscriptions that an organization has.
     subscriptions: Optional[List[CompanySubscription]] = None
-    # The templates property
+    # A container for templates, such as device templates used for onboarding devices in Microsoft Entra ID.
     templates: Optional[Template] = None
     
     @staticmethod

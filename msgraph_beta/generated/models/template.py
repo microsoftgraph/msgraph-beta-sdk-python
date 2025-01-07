@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class Template(Entity, Parsable):
-    # The deviceTemplates property
+    # Defines the templates that are common to a set of device objects, such as IoT devices.
     device_templates: Optional[List[DeviceTemplate]] = None
     # The OdataType property
     odata_type: Optional[str] = None

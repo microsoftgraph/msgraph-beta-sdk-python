@@ -48,7 +48,7 @@ class DeviceTemplatesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeviceTemplatesRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceTemplateCollectionResponse]:
         """
-        Get deviceTemplates from templates
+        Defines the templates that are common to a set of device objects, such as IoT devices.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceTemplateCollectionResponse]
         """
@@ -91,7 +91,7 @@ class DeviceTemplatesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeviceTemplatesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get deviceTemplates from templates
+        Defines the templates that are common to a set of device objects, such as IoT devices.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -137,7 +137,7 @@ class DeviceTemplatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceTemplatesRequestBuilderGetQueryParameters():
         """
-        Get deviceTemplates from templates
+        Defines the templates that are common to a set of device objects, such as IoT devices.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

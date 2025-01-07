@@ -14,7 +14,7 @@ from .entity import Entity
 class CertificateAuthorityPath(Entity, Parsable):
     # Defines the trusted certificate authorities for certificates that can be added to apps and service principals in the tenant.
     certificate_based_application_configurations: Optional[List[CertificateBasedApplicationConfiguration]] = None
-    # The mutualTlsOauthConfigurations property
+    # Defines the trusted certificate authorities for certificates that can be added to Internet of Things (IoT) devices.
     mutual_tls_oauth_configurations: Optional[List[MutualTlsOauthConfiguration]] = None
     # The OdataType property
     odata_type: Optional[str] = None

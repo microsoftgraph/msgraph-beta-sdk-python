@@ -32,10 +32,11 @@ class CreateDeviceFromTemplateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CreateDeviceFromTemplatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Device]:
         """
-        Invoke action createDeviceFromTemplate
+        Create a new device from a deviceTemplate.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Device]
+        Find more info here: https://learn.microsoft.com/graph/api/devicetemplate-createdevicefromtemplate?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -55,7 +56,7 @@ class CreateDeviceFromTemplateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CreateDeviceFromTemplatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action createDeviceFromTemplate
+        Create a new device from a deviceTemplate.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -48,9 +48,10 @@ class MutualTlsOauthConfigurationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MutualTlsOauthConfigurationsRequestBuilderGetQueryParameters]] = None) -> Optional[MutualTlsOauthConfigurationCollectionResponse]:
         """
-        Get mutualTlsOauthConfigurations from directory
+        Get a list of the available mutualTlsOauthConfiguration resources.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MutualTlsOauthConfigurationCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/certificateauthoritypath-list-mutualtlsoauthconfigurations?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,10 +69,11 @@ class MutualTlsOauthConfigurationsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: MutualTlsOauthConfiguration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MutualTlsOauthConfiguration]:
         """
-        Create new navigation property to mutualTlsOauthConfigurations for directory
+        Create a mutualTlsOauthConfiguration resource that contains a specified certificate authority object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MutualTlsOauthConfiguration]
+        Find more info here: https://learn.microsoft.com/graph/api/certificateauthoritypath-post-mutualtlsoauthconfigurations?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -91,7 +93,7 @@ class MutualTlsOauthConfigurationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MutualTlsOauthConfigurationsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get mutualTlsOauthConfigurations from directory
+        Get a list of the available mutualTlsOauthConfiguration resources.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -102,7 +104,7 @@ class MutualTlsOauthConfigurationsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: MutualTlsOauthConfiguration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to mutualTlsOauthConfigurations for directory
+        Create a mutualTlsOauthConfiguration resource that contains a specified certificate authority object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -137,7 +139,7 @@ class MutualTlsOauthConfigurationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MutualTlsOauthConfigurationsRequestBuilderGetQueryParameters():
         """
-        Get mutualTlsOauthConfigurations from directory
+        Get a list of the available mutualTlsOauthConfiguration resources.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

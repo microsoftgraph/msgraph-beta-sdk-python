@@ -50,7 +50,7 @@ class TemplatesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TemplatesRequestBuilderGetQueryParameters]] = None) -> Optional[Template]:
         """
-        Get templates from directory
+        A container for templates, such as device templates used for onboarding devices in Microsoft Entra ID.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Template]
         """
@@ -104,7 +104,7 @@ class TemplatesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TemplatesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get templates from directory
+        A container for templates, such as device templates used for onboarding devices in Microsoft Entra ID.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +157,7 @@ class TemplatesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TemplatesRequestBuilderGetQueryParameters():
         """
-        Get templates from directory
+        A container for templates, such as device templates used for onboarding devices in Microsoft Entra ID.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

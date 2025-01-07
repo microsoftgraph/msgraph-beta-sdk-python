@@ -21,7 +21,7 @@ class Device(DirectoryObject, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.device"
     # true if the account is enabled; otherwise, false. Default is true.  Supports $filter (eq, ne, not, in). Only callers with at least the Cloud Device Administrator role can set this property.
     account_enabled: Optional[bool] = None
-    # The alternativeNames property
+    # List of alternative names for the device.
     alternative_names: Optional[List[str]] = None
     # For internal use only. Not nullable. Supports $filter (eq, not, ge, le).
     alternative_security_ids: Optional[List[AlternativeSecurityId]] = None
@@ -33,23 +33,23 @@ class Device(DirectoryObject, Parsable):
     compliance_expiration_date_time: Optional[datetime.datetime] = None
     # User-defined property set by Intune to automatically add devices to groups and simplify managing devices.
     device_category: Optional[str] = None
-    # Unique Identifier set by Azure Device Registration Service at the time of registration. This is an alternate key that can be used to reference the device object. Also Supports $filter (eq, ne, not, startsWith).
+    # Unique identifier set by Azure Device Registration Service at the time of registration. This ID is an alternate key that can be used to reference the device object. Also supports $filter (eq, ne, not, startsWith).
     device_id: Optional[str] = None
     # For internal use only. Set to null.
     device_metadata: Optional[str] = None
-    # Ownership of the device. This property is set by Intune. Possible values are: unknown, company, personal.
+    # Ownership of the device. Intune sets this property. Possible values are: unknown, company, personal.
     device_ownership: Optional[str] = None
-    # The deviceTemplate property
+    # Device template used to instantiate this device. Nullable. Read-only.
     device_template: Optional[List[DeviceTemplate]] = None
     # For internal use only.
     device_version: Optional[int] = None
     # The display name for the device. Maximum length is 256 characters. Required. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     display_name: Optional[str] = None
-    # The on-premises domain name of Microsoft Entra hybrid joined devices. This property is set by Intune.
+    # The on-premises domain name of Microsoft Entra hybrid joined devices. Intune sets this property.
     domain_name: Optional[str] = None
-    # Enrollment profile applied to the device. For example, Apple Device Enrollment Profile, Device enrollment - Corporate device identifiers, or Windows Autopilot profile name. This property is set by Intune.
+    # Enrollment profile applied to the device. For example, Apple Device Enrollment Profile, Device enrollment - Corporate device identifiers, or Windows Autopilot profile name. Intune sets this property.
     enrollment_profile_name: Optional[str] = None
-    # Enrollment type of the device. This property is set by Intune. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement, windowsAzureADJoinUsingDeviceAuth,appleUserEnrollment, appleUserEnrollmentWithServiceAccount. NOTE: This property might return other values apart from those listed.
+    # Enrollment type of the device. Intune sets this property. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement, windowsAzureADJoinUsingDeviceAuth,appleUserEnrollment, appleUserEnrollmentWithServiceAccount. NOTE: This property might return other values apart from those listed.
     enrollment_type: Optional[str] = None
     # Contains extension attributes 1-15 for the device. The individual extension attributes aren't selectable. These properties are mastered in cloud and can be set during creation or update of a device object in Microsoft Entra ID. Supports $filter (eq, not, startsWith, and eq on null values).
     extension_attributes: Optional[OnPremisesExtensionAttributes] = None
@@ -67,7 +67,7 @@ class Device(DirectoryObject, Parsable):
     is_rooted: Optional[bool] = None
     # Form factor of the device. Only returned if the user signs in with a Microsoft account as part of Project Rome.
     kind: Optional[str] = None
-    # Management channel of the device.  This property is set by Intune. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController.
+    # Management channel of the device. Intune sets this property. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController.
     management_type: Optional[str] = None
     # Manufacturer of the device. Read-only.
     manufacturer: Optional[str] = None

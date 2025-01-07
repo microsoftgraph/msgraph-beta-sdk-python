@@ -49,9 +49,10 @@ class MutualTlsOauthConfigurationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MutualTlsOauthConfigurationItemRequestBuilderGetQueryParameters]] = None) -> Optional[MutualTlsOauthConfiguration]:
         """
-        Get mutualTlsOauthConfigurations from directory
+        Get the properties and relationships of the specified mutualTlsOauthConfiguration resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MutualTlsOauthConfiguration]
+        Find more info here: https://learn.microsoft.com/graph/api/mutualtlsoauthconfiguration-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class MutualTlsOauthConfigurationItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: MutualTlsOauthConfiguration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MutualTlsOauthConfiguration]:
         """
-        Update the navigation property mutualTlsOauthConfigurations in directory
+        Update the specified mutualTlsOauthConfiguration resource. You can only update the following two properties: displayName, certificateAuthority. To update a subset of objects in the certificateAuthorities collection, first get the complete list, make your modifications, and then repost the entire contents of the certificateAuthorities attribute list in the request body. Excluding a subset of objects removes them from the collection.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MutualTlsOauthConfiguration]
+        Find more info here: https://learn.microsoft.com/graph/api/mutualtlsoauthconfiguration-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -103,7 +105,7 @@ class MutualTlsOauthConfigurationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MutualTlsOauthConfigurationItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get mutualTlsOauthConfigurations from directory
+        Get the properties and relationships of the specified mutualTlsOauthConfiguration resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -114,7 +116,7 @@ class MutualTlsOauthConfigurationItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: MutualTlsOauthConfiguration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property mutualTlsOauthConfigurations in directory
+        Update the specified mutualTlsOauthConfiguration resource. You can only update the following two properties: displayName, certificateAuthority. To update a subset of objects in the certificateAuthorities collection, first get the complete list, make your modifications, and then repost the entire contents of the certificateAuthorities attribute list in the request body. Excluding a subset of objects removes them from the collection.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -147,7 +149,7 @@ class MutualTlsOauthConfigurationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MutualTlsOauthConfigurationItemRequestBuilderGetQueryParameters():
         """
-        Get mutualTlsOauthConfigurations from directory
+        Get the properties and relationships of the specified mutualTlsOauthConfiguration resource.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
