@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .eap_fast_configuration import EapFastConfiguration
@@ -36,9 +37,9 @@ class MacOSEnterpriseWiFiConfiguration(MacOSWiFiConfiguration, Parsable):
     # Trusted Root Certificate for Server Validation when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP.
     root_certificate_for_server_validation: Optional[MacOSTrustedRootCertificate] = None
     # Trusted Root Certificates for Server Validation when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. If you provide this value you do not need to provide trustedServerCertificateNames, and vice versa. This collection can contain a maximum of 500 elements.
-    root_certificates_for_server_validation: Optional[List[MacOSTrustedRootCertificate]] = None
+    root_certificates_for_server_validation: Optional[list[MacOSTrustedRootCertificate]] = None
     # Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users devices when they connect to this Wi-Fi network.
-    trusted_server_certificate_names: Optional[List[str]] = None
+    trusted_server_certificate_names: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MacOSEnterpriseWiFiConfiguration:
@@ -51,10 +52,10 @@ class MacOSEnterpriseWiFiConfiguration(MacOSWiFiConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSEnterpriseWiFiConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .eap_fast_configuration import EapFastConfiguration
         from .eap_type import EapType
@@ -72,7 +73,7 @@ class MacOSEnterpriseWiFiConfiguration(MacOSWiFiConfiguration, Parsable):
         from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
         from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WiFiAuthenticationMethod)),
             "eapFastConfiguration": lambda n : setattr(self, 'eap_fast_configuration', n.get_enum_value(EapFastConfiguration)),
             "eapType": lambda n : setattr(self, 'eap_type', n.get_enum_value(EapType)),
@@ -96,14 +97,6 @@ class MacOSEnterpriseWiFiConfiguration(MacOSWiFiConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .eap_fast_configuration import EapFastConfiguration
-        from .eap_type import EapType
-        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
-        from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
-        from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
-        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
-        from .wi_fi_authentication_method import WiFiAuthenticationMethod
-
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_enum_value("eapFastConfiguration", self.eap_fast_configuration)
         writer.write_enum_value("eapType", self.eap_type)

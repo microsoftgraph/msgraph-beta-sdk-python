@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_configuration_choice_setting_collection_definition import DeviceManagementConfigurationChoiceSettingCollectionDefinition
@@ -39,9 +40,9 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
     # Help text of the item
     help_text: Optional[str] = None
     # List of links more info for the setting can be found at
-    info_urls: Optional[List[str]] = None
+    info_urls: Optional[list[str]] = None
     # Tokens which to search settings on
-    keywords: Optional[List[str]] = None
+    keywords: Optional[list[str]] = None
     # Name of the item
     name: Optional[str] = None
     # Indicates whether the setting is required or not
@@ -51,7 +52,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
     # Offset CSP Path from Base
     offset_uri: Optional[str] = None
     # List of referred setting information.
-    referred_setting_information_list: Optional[List[DeviceManagementConfigurationReferredSettingInformation]] = None
+    referred_setting_information_list: Optional[list[DeviceManagementConfigurationReferredSettingInformation]] = None
     # Root setting definition if the setting is a child setting.
     root_definition_id: Optional[str] = None
     # Supported setting types
@@ -107,10 +108,10 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
             return DeviceManagementConfigurationSimpleSettingDefinition()
         return DeviceManagementConfigurationSettingDefinition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_configuration_choice_setting_collection_definition import DeviceManagementConfigurationChoiceSettingCollectionDefinition
         from .device_management_configuration_choice_setting_definition import DeviceManagementConfigurationChoiceSettingDefinition
@@ -144,7 +145,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
         from .device_management_configuration_simple_setting_definition import DeviceManagementConfigurationSimpleSettingDefinition
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessTypes": lambda n : setattr(self, 'access_types', n.get_collection_of_enum_values(DeviceManagementConfigurationSettingAccessTypes)),
             "applicability": lambda n : setattr(self, 'applicability', n.get_object_value(DeviceManagementConfigurationSettingApplicability)),
             "baseUri": lambda n : setattr(self, 'base_uri', n.get_str_value()),
@@ -177,22 +178,6 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_configuration_choice_setting_collection_definition import DeviceManagementConfigurationChoiceSettingCollectionDefinition
-        from .device_management_configuration_choice_setting_definition import DeviceManagementConfigurationChoiceSettingDefinition
-        from .device_management_configuration_control_type import DeviceManagementConfigurationControlType
-        from .device_management_configuration_redirect_setting_definition import DeviceManagementConfigurationRedirectSettingDefinition
-        from .device_management_configuration_referred_setting_information import DeviceManagementConfigurationReferredSettingInformation
-        from .device_management_configuration_setting_access_types import DeviceManagementConfigurationSettingAccessTypes
-        from .device_management_configuration_setting_applicability import DeviceManagementConfigurationSettingApplicability
-        from .device_management_configuration_setting_group_collection_definition import DeviceManagementConfigurationSettingGroupCollectionDefinition
-        from .device_management_configuration_setting_group_definition import DeviceManagementConfigurationSettingGroupDefinition
-        from .device_management_configuration_setting_occurrence import DeviceManagementConfigurationSettingOccurrence
-        from .device_management_configuration_setting_usage import DeviceManagementConfigurationSettingUsage
-        from .device_management_configuration_setting_visibility import DeviceManagementConfigurationSettingVisibility
-        from .device_management_configuration_simple_setting_collection_definition import DeviceManagementConfigurationSimpleSettingCollectionDefinition
-        from .device_management_configuration_simple_setting_definition import DeviceManagementConfigurationSimpleSettingDefinition
-        from .entity import Entity
-
         writer.write_enum_value("accessTypes", self.access_types)
         writer.write_object_value("applicability", self.applicability)
         writer.write_str_value("baseUri", self.base_uri)

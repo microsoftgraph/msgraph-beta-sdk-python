@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -29,7 +30,7 @@ class RestrictedAppsViolation(Entity, Parsable):
     # Supported platform types for policies.
     platform_type: Optional[PolicyPlatformType] = None
     # List of violated restricted apps
-    restricted_apps: Optional[List[ManagedDeviceReportedApp]] = None
+    restricted_apps: Optional[list[ManagedDeviceReportedApp]] = None
     # Restricted apps state
     restricted_apps_state: Optional[RestrictedAppsState] = None
     # User unique identifier, must be Guid
@@ -48,10 +49,10 @@ class RestrictedAppsViolation(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RestrictedAppsViolation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .managed_device_reported_app import ManagedDeviceReportedApp
@@ -63,7 +64,7 @@ class RestrictedAppsViolation(Entity, Parsable):
         from .policy_platform_type import PolicyPlatformType
         from .restricted_apps_state import RestrictedAppsState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deviceConfigurationId": lambda n : setattr(self, 'device_configuration_id', n.get_str_value()),
             "deviceConfigurationName": lambda n : setattr(self, 'device_configuration_name', n.get_str_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
@@ -87,11 +88,6 @@ class RestrictedAppsViolation(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .managed_device_reported_app import ManagedDeviceReportedApp
-        from .policy_platform_type import PolicyPlatformType
-        from .restricted_apps_state import RestrictedAppsState
-
         writer.write_str_value("deviceConfigurationId", self.device_configuration_id)
         writer.write_str_value("deviceConfigurationName", self.device_configuration_name)
         writer.write_str_value("deviceName", self.device_name)

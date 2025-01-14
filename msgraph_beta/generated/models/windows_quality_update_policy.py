@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -16,7 +17,7 @@ class WindowsQualityUpdatePolicy(Entity, Parsable):
     Windows Quality Update Policy
     """
     # List of the groups this profile is assgined to.
-    assignments: Optional[List[WindowsQualityUpdatePolicyAssignment]] = None
+    assignments: Optional[list[WindowsQualityUpdatePolicyAssignment]] = None
     # Timestamp of when the profile was created. The value cannot be modified and is automatically populated when the profile is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. Read-only
     created_date_time: Optional[datetime.datetime] = None
     # The description of the policy which is specified by the user. Max allowed length is 1500 chars.
@@ -30,7 +31,7 @@ class WindowsQualityUpdatePolicy(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of the scope tag ids for this profile.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WindowsQualityUpdatePolicy:
@@ -43,10 +44,10 @@ class WindowsQualityUpdatePolicy(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsQualityUpdatePolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .windows_quality_update_policy_assignment import WindowsQualityUpdatePolicyAssignment
@@ -54,7 +55,7 @@ class WindowsQualityUpdatePolicy(Entity, Parsable):
         from .entity import Entity
         from .windows_quality_update_policy_assignment import WindowsQualityUpdatePolicyAssignment
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(WindowsQualityUpdatePolicyAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -76,9 +77,6 @@ class WindowsQualityUpdatePolicy(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .windows_quality_update_policy_assignment import WindowsQualityUpdatePolicyAssignment
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

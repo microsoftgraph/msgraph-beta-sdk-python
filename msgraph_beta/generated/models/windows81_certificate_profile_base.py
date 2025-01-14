@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_subject_alternative_name import CustomSubjectAlternativeName
@@ -19,9 +20,9 @@ class Windows81CertificateProfileBase(WindowsCertificateProfileBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windows81CertificateProfileBase"
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-    custom_subject_alternative_names: Optional[List[CustomSubjectAlternativeName]] = None
+    custom_subject_alternative_names: Optional[list[CustomSubjectAlternativeName]] = None
     # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-    extended_key_usages: Optional[List[ExtendedKeyUsage]] = None
+    extended_key_usages: Optional[list[ExtendedKeyUsage]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Windows81CertificateProfileBase:
@@ -43,10 +44,10 @@ class Windows81CertificateProfileBase(WindowsCertificateProfileBase, Parsable):
             return Windows81SCEPCertificateProfile()
         return Windows81CertificateProfileBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .extended_key_usage import ExtendedKeyUsage
@@ -58,7 +59,7 @@ class Windows81CertificateProfileBase(WindowsCertificateProfileBase, Parsable):
         from .windows81_s_c_e_p_certificate_profile import Windows81SCEPCertificateProfile
         from .windows_certificate_profile_base import WindowsCertificateProfileBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(CustomSubjectAlternativeName)),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
         }
@@ -75,11 +76,6 @@ class Windows81CertificateProfileBase(WindowsCertificateProfileBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .custom_subject_alternative_name import CustomSubjectAlternativeName
-        from .extended_key_usage import ExtendedKeyUsage
-        from .windows81_s_c_e_p_certificate_profile import Windows81SCEPCertificateProfile
-        from .windows_certificate_profile_base import WindowsCertificateProfileBase
-
         writer.write_collection_of_object_values("customSubjectAlternativeNames", self.custom_subject_alternative_names)
         writer.write_collection_of_object_values("extendedKeyUsages", self.extended_key_usages)
     

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -18,11 +19,11 @@ class GroupPolicyConfiguration(Entity, Parsable):
     The group policy configuration entity contains the configured values for one or more group policy definitions.
     """
     # The list of group assignments for the configuration.
-    assignments: Optional[List[GroupPolicyConfigurationAssignment]] = None
+    assignments: Optional[list[GroupPolicyConfigurationAssignment]] = None
     # The date and time the object was created.
     created_date_time: Optional[datetime.datetime] = None
     # The list of enabled or disabled group policy definition values for the configuration.
-    definition_values: Optional[List[GroupPolicyDefinitionValue]] = None
+    definition_values: Optional[list[GroupPolicyDefinitionValue]] = None
     # User provided description for the resource object.
     description: Optional[str] = None
     # User provided name for the resource object.
@@ -34,7 +35,7 @@ class GroupPolicyConfiguration(Entity, Parsable):
     # Group Policy Configuration Ingestion Type
     policy_configuration_ingestion_type: Optional[GroupPolicyConfigurationIngestionType] = None
     # The list of scope tags for the configuration.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GroupPolicyConfiguration:
@@ -47,10 +48,10 @@ class GroupPolicyConfiguration(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GroupPolicyConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .group_policy_configuration_assignment import GroupPolicyConfigurationAssignment
@@ -62,7 +63,7 @@ class GroupPolicyConfiguration(Entity, Parsable):
         from .group_policy_configuration_ingestion_type import GroupPolicyConfigurationIngestionType
         from .group_policy_definition_value import GroupPolicyDefinitionValue
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(GroupPolicyConfigurationAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "definitionValues": lambda n : setattr(self, 'definition_values', n.get_collection_of_object_values(GroupPolicyDefinitionValue)),
@@ -85,11 +86,6 @@ class GroupPolicyConfiguration(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .group_policy_configuration_assignment import GroupPolicyConfigurationAssignment
-        from .group_policy_configuration_ingestion_type import GroupPolicyConfigurationIngestionType
-        from .group_policy_definition_value import GroupPolicyDefinitionValue
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_collection_of_object_values("definitionValues", self.definition_values)

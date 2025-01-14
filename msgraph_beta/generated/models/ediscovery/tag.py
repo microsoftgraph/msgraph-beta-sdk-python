@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -16,7 +17,7 @@ class Tag(Entity, Parsable):
     # Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.  This value controls whether the UX presents the tags as checkboxes or a radio button group.
     child_selectability: Optional[ChildSelectability] = None
     # Returns the tags that are a child of a tag.
-    child_tags: Optional[List[Tag]] = None
+    child_tags: Optional[list[Tag]] = None
     # The user who created the tag.
     created_by: Optional[IdentitySet] = None
     # The description for the tag.
@@ -41,10 +42,10 @@ class Tag(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Tag()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from ..identity_set import IdentitySet
@@ -54,7 +55,7 @@ class Tag(Entity, Parsable):
         from ..identity_set import IdentitySet
         from .child_selectability import ChildSelectability
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "childSelectability": lambda n : setattr(self, 'child_selectability', n.get_enum_value(ChildSelectability)),
             "childTags": lambda n : setattr(self, 'child_tags', n.get_collection_of_object_values(Tag)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
@@ -76,10 +77,6 @@ class Tag(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from ..identity_set import IdentitySet
-        from .child_selectability import ChildSelectability
-
         writer.write_enum_value("childSelectability", self.child_selectability)
         writer.write_collection_of_object_values("childTags", self.child_tags)
         writer.write_object_value("createdBy", self.created_by)

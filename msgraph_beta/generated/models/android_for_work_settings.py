@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_for_work_bind_status import AndroidForWorkBindStatus
@@ -36,7 +37,7 @@ class AndroidForWorkSettings(Entity, Parsable):
     # Owner UPN that created the enterprise
     owner_user_principal_name: Optional[str] = None
     # Specifies which AAD groups can enroll devices in Android for Work device management if enrollmentTarget is set to 'Targeted'
-    target_group_ids: Optional[List[str]] = None
+    target_group_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AndroidForWorkSettings:
@@ -49,10 +50,10 @@ class AndroidForWorkSettings(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidForWorkSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_for_work_bind_status import AndroidForWorkBindStatus
         from .android_for_work_enrollment_target import AndroidForWorkEnrollmentTarget
@@ -64,7 +65,7 @@ class AndroidForWorkSettings(Entity, Parsable):
         from .android_for_work_sync_status import AndroidForWorkSyncStatus
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "bindStatus": lambda n : setattr(self, 'bind_status', n.get_enum_value(AndroidForWorkBindStatus)),
             "deviceOwnerManagementEnabled": lambda n : setattr(self, 'device_owner_management_enabled', n.get_bool_value()),
             "enrollmentTarget": lambda n : setattr(self, 'enrollment_target', n.get_enum_value(AndroidForWorkEnrollmentTarget)),
@@ -88,11 +89,6 @@ class AndroidForWorkSettings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_for_work_bind_status import AndroidForWorkBindStatus
-        from .android_for_work_enrollment_target import AndroidForWorkEnrollmentTarget
-        from .android_for_work_sync_status import AndroidForWorkSyncStatus
-        from .entity import Entity
-
         writer.write_enum_value("bindStatus", self.bind_status)
         writer.write_bool_value("deviceOwnerManagementEnabled", self.device_owner_management_enabled)
         writer.write_enum_value("enrollmentTarget", self.enrollment_target)

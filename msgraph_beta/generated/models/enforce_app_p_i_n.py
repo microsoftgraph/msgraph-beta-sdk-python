@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .exclude_target import ExcludeTarget
@@ -14,11 +15,11 @@ class EnforceAppPIN(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The excludeTargets property
-    exclude_targets: Optional[List[ExcludeTarget]] = None
+    exclude_targets: Optional[list[ExcludeTarget]] = None
     # The includeTargets property
-    include_targets: Optional[List[IncludeTarget]] = None
+    include_targets: Optional[list[IncludeTarget]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -33,10 +34,10 @@ class EnforceAppPIN(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EnforceAppPIN()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .exclude_target import ExcludeTarget
         from .include_target import IncludeTarget
@@ -44,7 +45,7 @@ class EnforceAppPIN(AdditionalDataHolder, BackedModel, Parsable):
         from .exclude_target import ExcludeTarget
         from .include_target import IncludeTarget
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "excludeTargets": lambda n : setattr(self, 'exclude_targets', n.get_collection_of_object_values(ExcludeTarget)),
             "includeTargets": lambda n : setattr(self, 'include_targets', n.get_collection_of_object_values(IncludeTarget)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -59,9 +60,6 @@ class EnforceAppPIN(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .exclude_target import ExcludeTarget
-        from .include_target import IncludeTarget
-
         writer.write_collection_of_object_values("excludeTargets", self.exclude_targets)
         writer.write_collection_of_object_values("includeTargets", self.include_targets)
         writer.write_str_value("@odata.type", self.odata_type)

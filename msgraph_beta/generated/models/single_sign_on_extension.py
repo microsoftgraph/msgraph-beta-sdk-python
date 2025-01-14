@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .credential_single_sign_on_extension import CredentialSingleSignOnExtension
@@ -28,7 +29,7 @@ class SingleSignOnExtension(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -100,10 +101,10 @@ class SingleSignOnExtension(AdditionalDataHolder, BackedModel, Parsable):
             return RedirectSingleSignOnExtension()
         return SingleSignOnExtension()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .credential_single_sign_on_extension import CredentialSingleSignOnExtension
         from .ios_azure_ad_single_sign_on_extension import IosAzureAdSingleSignOnExtension
@@ -133,7 +134,7 @@ class SingleSignOnExtension(AdditionalDataHolder, BackedModel, Parsable):
         from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
         from .redirect_single_sign_on_extension import RedirectSingleSignOnExtension
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -146,20 +147,6 @@ class SingleSignOnExtension(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .credential_single_sign_on_extension import CredentialSingleSignOnExtension
-        from .ios_azure_ad_single_sign_on_extension import IosAzureAdSingleSignOnExtension
-        from .ios_credential_single_sign_on_extension import IosCredentialSingleSignOnExtension
-        from .ios_kerberos_single_sign_on_extension import IosKerberosSingleSignOnExtension
-        from .ios_redirect_single_sign_on_extension import IosRedirectSingleSignOnExtension
-        from .ios_single_sign_on_extension import IosSingleSignOnExtension
-        from .kerberos_single_sign_on_extension import KerberosSingleSignOnExtension
-        from .mac_o_s_azure_ad_single_sign_on_extension import MacOSAzureAdSingleSignOnExtension
-        from .mac_o_s_credential_single_sign_on_extension import MacOSCredentialSingleSignOnExtension
-        from .mac_o_s_kerberos_single_sign_on_extension import MacOSKerberosSingleSignOnExtension
-        from .mac_o_s_redirect_single_sign_on_extension import MacOSRedirectSingleSignOnExtension
-        from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
-        from .redirect_single_sign_on_extension import RedirectSingleSignOnExtension
-
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authorization_system_identity import AuthorizationSystemIdentity
@@ -61,10 +62,10 @@ class AwsSecretInformationAccessFinding(Finding, Parsable):
             return SecretInformationAccessAwsUserFinding()
         return AwsSecretInformationAccessFinding()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authorization_system_identity import AuthorizationSystemIdentity
         from .aws_secret_information_web_services import AwsSecretInformationWebServices
@@ -86,7 +87,7 @@ class AwsSecretInformationAccessFinding(Finding, Parsable):
         from .secret_information_access_aws_serverless_function_finding import SecretInformationAccessAwsServerlessFunctionFinding
         from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "identity": lambda n : setattr(self, 'identity', n.get_object_value(AuthorizationSystemIdentity)),
             "identityDetails": lambda n : setattr(self, 'identity_details', n.get_object_value(IdentityDetails)),
             "permissionsCreepIndex": lambda n : setattr(self, 'permissions_creep_index', n.get_object_value(PermissionsCreepIndex)),
@@ -105,16 +106,6 @@ class AwsSecretInformationAccessFinding(Finding, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authorization_system_identity import AuthorizationSystemIdentity
-        from .aws_secret_information_web_services import AwsSecretInformationWebServices
-        from .finding import Finding
-        from .identity_details import IdentityDetails
-        from .permissions_creep_index import PermissionsCreepIndex
-        from .secret_information_access_aws_resource_finding import SecretInformationAccessAwsResourceFinding
-        from .secret_information_access_aws_role_finding import SecretInformationAccessAwsRoleFinding
-        from .secret_information_access_aws_serverless_function_finding import SecretInformationAccessAwsServerlessFunctionFinding
-        from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
-
         writer.write_object_value("identity", self.identity)
         writer.write_object_value("identityDetails", self.identity_details)
         writer.write_object_value("permissionsCreepIndex", self.permissions_creep_index)

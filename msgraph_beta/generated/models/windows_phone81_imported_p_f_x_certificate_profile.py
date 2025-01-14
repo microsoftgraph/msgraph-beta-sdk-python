@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .intended_purpose import IntendedPurpose
@@ -20,7 +21,7 @@ class WindowsPhone81ImportedPFXCertificateProfile(WindowsCertificateProfileBase,
     # PFX Import Options.
     intended_purpose: Optional[IntendedPurpose] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-    managed_device_certificate_states: Optional[List[ManagedDeviceCertificateState]] = None
+    managed_device_certificate_states: Optional[list[ManagedDeviceCertificateState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WindowsPhone81ImportedPFXCertificateProfile:
@@ -33,10 +34,10 @@ class WindowsPhone81ImportedPFXCertificateProfile(WindowsCertificateProfileBase,
             raise TypeError("parse_node cannot be null.")
         return WindowsPhone81ImportedPFXCertificateProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .intended_purpose import IntendedPurpose
         from .managed_device_certificate_state import ManagedDeviceCertificateState
@@ -46,7 +47,7 @@ class WindowsPhone81ImportedPFXCertificateProfile(WindowsCertificateProfileBase,
         from .managed_device_certificate_state import ManagedDeviceCertificateState
         from .windows_certificate_profile_base import WindowsCertificateProfileBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "intendedPurpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(IntendedPurpose)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),
         }
@@ -63,10 +64,6 @@ class WindowsPhone81ImportedPFXCertificateProfile(WindowsCertificateProfileBase,
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .intended_purpose import IntendedPurpose
-        from .managed_device_certificate_state import ManagedDeviceCertificateState
-        from .windows_certificate_profile_base import WindowsCertificateProfileBase
-
         writer.write_enum_value("intendedPurpose", self.intended_purpose)
         writer.write_collection_of_object_values("managedDeviceCertificateStates", self.managed_device_certificate_states)
     

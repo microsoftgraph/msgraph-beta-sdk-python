@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ...entity import Entity
@@ -17,9 +18,9 @@ class PartnerSecurityScore(Entity, Parsable):
     # The current security score for the partner.
     current_score: Optional[float] = None
     # Contains customer-specific information for certain requirements.
-    customer_insights: Optional[List[CustomerInsight]] = None
+    customer_insights: Optional[list[CustomerInsight]] = None
     # Contains a list of recent score changes.
-    history: Optional[List[SecurityScoreHistory]] = None
+    history: Optional[list[SecurityScoreHistory]] = None
     # The last time the data was checked.
     last_refresh_date_time: Optional[datetime.datetime] = None
     # The maximum score possible.
@@ -27,7 +28,7 @@ class PartnerSecurityScore(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Contains the list of security requirements that make up the score.
-    requirements: Optional[List[SecurityRequirement]] = None
+    requirements: Optional[list[SecurityRequirement]] = None
     # The last time the security score or related properties changed.
     updated_date_time: Optional[datetime.datetime] = None
     
@@ -42,10 +43,10 @@ class PartnerSecurityScore(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PartnerSecurityScore()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ...entity import Entity
         from .customer_insight import CustomerInsight
@@ -57,7 +58,7 @@ class PartnerSecurityScore(Entity, Parsable):
         from .security_requirement import SecurityRequirement
         from .security_score_history import SecurityScoreHistory
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "currentScore": lambda n : setattr(self, 'current_score', n.get_float_value()),
             "customerInsights": lambda n : setattr(self, 'customer_insights', n.get_collection_of_object_values(CustomerInsight)),
             "history": lambda n : setattr(self, 'history', n.get_collection_of_object_values(SecurityScoreHistory)),
@@ -79,11 +80,6 @@ class PartnerSecurityScore(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ...entity import Entity
-        from .customer_insight import CustomerInsight
-        from .security_requirement import SecurityRequirement
-        from .security_score_history import SecurityScoreHistory
-
         writer.write_float_value("currentScore", self.current_score)
         writer.write_collection_of_object_values("customerInsights", self.customer_insights)
         writer.write_collection_of_object_values("history", self.history)

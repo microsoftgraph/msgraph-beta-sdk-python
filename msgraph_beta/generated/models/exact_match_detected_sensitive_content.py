@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .detected_sensitive_content_base import DetectedSensitiveContentBase
@@ -12,7 +13,7 @@ from .detected_sensitive_content_base import DetectedSensitiveContentBase
 @dataclass
 class ExactMatchDetectedSensitiveContent(DetectedSensitiveContentBase, Parsable):
     # The matches property
-    matches: Optional[List[SensitiveContentLocation]] = None
+    matches: Optional[list[SensitiveContentLocation]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -27,10 +28,10 @@ class ExactMatchDetectedSensitiveContent(DetectedSensitiveContentBase, Parsable)
             raise TypeError("parse_node cannot be null.")
         return ExactMatchDetectedSensitiveContent()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .detected_sensitive_content_base import DetectedSensitiveContentBase
         from .sensitive_content_location import SensitiveContentLocation
@@ -38,7 +39,7 @@ class ExactMatchDetectedSensitiveContent(DetectedSensitiveContentBase, Parsable)
         from .detected_sensitive_content_base import DetectedSensitiveContentBase
         from .sensitive_content_location import SensitiveContentLocation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "matches": lambda n : setattr(self, 'matches', n.get_collection_of_object_values(SensitiveContentLocation)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,9 +55,6 @@ class ExactMatchDetectedSensitiveContent(DetectedSensitiveContentBase, Parsable)
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .detected_sensitive_content_base import DetectedSensitiveContentBase
-        from .sensitive_content_location import SensitiveContentLocation
-
         writer.write_collection_of_object_values("matches", self.matches)
     
 

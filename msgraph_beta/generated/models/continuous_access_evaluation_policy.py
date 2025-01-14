@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -15,7 +16,7 @@ class ContinuousAccessEvaluationPolicy(Entity, Parsable):
     # The value is always Continuous Access Evaluation. Read-only.
     display_name: Optional[str] = None
     # The collection of group identifiers in scope for evaluation. All groups are in scope when the collection is empty. Read-only.
-    groups: Optional[List[str]] = None
+    groups: Optional[list[str]] = None
     # true to indicate whether continuous access evaluation should be performed; otherwise false. Read-only.
     is_enabled: Optional[bool] = None
     # true to indicate that the continuous access evaluation policy settings should be or has been migrated to the conditional access policy.
@@ -23,7 +24,7 @@ class ContinuousAccessEvaluationPolicy(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The collection of user identifiers in scope for evaluation. All users are in scope when the collection is empty. Read-only.
-    users: Optional[List[str]] = None
+    users: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ContinuousAccessEvaluationPolicy:
@@ -36,16 +37,16 @@ class ContinuousAccessEvaluationPolicy(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ContinuousAccessEvaluationPolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
 
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "groups": lambda n : setattr(self, 'groups', n.get_collection_of_primitive_values(str)),
@@ -66,8 +67,6 @@ class ContinuousAccessEvaluationPolicy(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_primitive_values("groups", self.groups)

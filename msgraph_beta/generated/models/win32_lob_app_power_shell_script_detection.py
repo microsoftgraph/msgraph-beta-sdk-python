@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .win32_lob_app_detection import Win32LobAppDetection
@@ -33,16 +34,16 @@ class Win32LobAppPowerShellScriptDetection(Win32LobAppDetection, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Win32LobAppPowerShellScriptDetection()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .win32_lob_app_detection import Win32LobAppDetection
 
         from .win32_lob_app_detection import Win32LobAppDetection
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "enforceSignatureCheck": lambda n : setattr(self, 'enforce_signature_check', n.get_bool_value()),
             "runAs32Bit": lambda n : setattr(self, 'run_as32_bit', n.get_bool_value()),
             "scriptContent": lambda n : setattr(self, 'script_content', n.get_str_value()),
@@ -60,8 +61,6 @@ class Win32LobAppPowerShellScriptDetection(Win32LobAppDetection, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .win32_lob_app_detection import Win32LobAppDetection
-
         writer.write_bool_value("enforceSignatureCheck", self.enforce_signature_check)
         writer.write_bool_value("runAs32Bit", self.run_as32_bit)
         writer.write_str_value("scriptContent", self.script_content)

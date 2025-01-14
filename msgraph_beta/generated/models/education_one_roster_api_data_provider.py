@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
@@ -23,9 +24,9 @@ class EducationOneRosterApiDataProvider(EducationSynchronizationDataProvider, Pa
     # The OneRoster Service Provider name as defined by the OneRoster specification.
     provider_name: Optional[str] = None
     # The list of School/Org sourcedId to sync.
-    schools_ids: Optional[List[str]] = None
+    schools_ids: Optional[list[str]] = None
     # The list of academic sessions to sync.
-    term_ids: Optional[List[str]] = None
+    term_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EducationOneRosterApiDataProvider:
@@ -38,10 +39,10 @@ class EducationOneRosterApiDataProvider(EducationSynchronizationDataProvider, Pa
             raise TypeError("parse_node cannot be null.")
         return EducationOneRosterApiDataProvider()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
         from .education_synchronization_customizations import EducationSynchronizationCustomizations
@@ -51,7 +52,7 @@ class EducationOneRosterApiDataProvider(EducationSynchronizationDataProvider, Pa
         from .education_synchronization_customizations import EducationSynchronizationCustomizations
         from .education_synchronization_data_provider import EducationSynchronizationDataProvider
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "connectionSettings": lambda n : setattr(self, 'connection_settings', n.get_object_value(EducationSynchronizationConnectionSettings)),
             "connectionUrl": lambda n : setattr(self, 'connection_url', n.get_str_value()),
             "customizations": lambda n : setattr(self, 'customizations', n.get_object_value(EducationSynchronizationCustomizations)),
@@ -72,10 +73,6 @@ class EducationOneRosterApiDataProvider(EducationSynchronizationDataProvider, Pa
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .education_synchronization_connection_settings import EducationSynchronizationConnectionSettings
-        from .education_synchronization_customizations import EducationSynchronizationCustomizations
-        from .education_synchronization_data_provider import EducationSynchronizationDataProvider
-
         writer.write_object_value("connectionSettings", self.connection_settings)
         writer.write_str_value("connectionUrl", self.connection_url)
         writer.write_object_value("customizations", self.customizations)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -29,15 +30,15 @@ class AuthorizationPolicy(PolicyBase, Parsable):
     # To disable the use of the MSOnline PowerShell module set this property to true. This also disables user-based access to the legacy service endpoint used by the MSOnline PowerShell module. This doesn't affect Microsoft Entra Connect or Microsoft Graph.
     block_msol_power_shell: Optional[bool] = None
     # The defaultUserRoleOverrides property
-    default_user_role_overrides: Optional[List[DefaultUserRoleOverride]] = None
+    default_user_role_overrides: Optional[list[DefaultUserRoleOverride]] = None
     # The defaultUserRolePermissions property
     default_user_role_permissions: Optional[DefaultUserRolePermissions] = None
     # List of features enabled for private preview on the tenant.
-    enabled_preview_features: Optional[List[str]] = None
+    enabled_preview_features: Optional[list[str]] = None
     # Represents role templateId for the role that should be granted to guests. Refer to List unifiedRoleDefinitions to find the list of available role templates. Currently following roles are supported:  User (a0b1b346-4d3e-4e8b-98f8-753987be4970), Guest User (10dae51f-b6af-4016-8d66-8c2a99b929b3), and Restricted Guest User (2af84b1e-32c8-42b7-82bc-daa82404023b).
     guest_user_role_id: Optional[UUID] = None
     # Indicates if user consent to apps is allowed, and if it is, the app consent policy that governs the permission for users to grant consent. Values should be in the format managePermissionGrantsForSelf.{id} for user consent policies or managePermissionGrantsForOwnedResource.{id} for resource-specific consent policies, where {id} is the id of a built-in or custom app consent policy. An empty list indicates user consent to apps is disabled.
-    permission_grant_policy_ids_assigned_to_default_user_role: Optional[List[str]] = None
+    permission_grant_policy_ids_assigned_to_default_user_role: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AuthorizationPolicy:
@@ -50,10 +51,10 @@ class AuthorizationPolicy(PolicyBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AuthorizationPolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .allow_invites_from import AllowInvitesFrom
         from .default_user_role_override import DefaultUserRoleOverride
@@ -65,7 +66,7 @@ class AuthorizationPolicy(PolicyBase, Parsable):
         from .default_user_role_permissions import DefaultUserRolePermissions
         from .policy_base import PolicyBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowEmailVerifiedUsersToJoinOrganization": lambda n : setattr(self, 'allow_email_verified_users_to_join_organization', n.get_bool_value()),
             "allowInvitesFrom": lambda n : setattr(self, 'allow_invites_from', n.get_enum_value(AllowInvitesFrom)),
             "allowUserConsentForRiskyApps": lambda n : setattr(self, 'allow_user_consent_for_risky_apps', n.get_bool_value()),
@@ -91,11 +92,6 @@ class AuthorizationPolicy(PolicyBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .allow_invites_from import AllowInvitesFrom
-        from .default_user_role_override import DefaultUserRoleOverride
-        from .default_user_role_permissions import DefaultUserRolePermissions
-        from .policy_base import PolicyBase
-
         writer.write_bool_value("allowEmailVerifiedUsersToJoinOrganization", self.allow_email_verified_users_to_join_organization)
         writer.write_enum_value("allowInvitesFrom", self.allow_invites_from)
         writer.write_bool_value("allowUserConsentForRiskyApps", self.allow_user_consent_for_risky_apps)

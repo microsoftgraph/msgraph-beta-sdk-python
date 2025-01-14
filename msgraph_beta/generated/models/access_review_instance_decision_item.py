@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_review_instance import AccessReviewInstance
@@ -29,7 +30,7 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
     # Result of the review. Possible values: Approve, Deny, NotReviewed, or DontKnow. Supports $select, $orderby, and $filter (eq only).
     decision: Optional[str] = None
     # Insights are recommendations to reviewers on whether to approve or deny a decision. There can be multiple insights associated with an accessReviewInstanceDecisionItem.
-    insights: Optional[List[GovernanceInsight]] = None
+    insights: Optional[list[GovernanceInsight]] = None
     # There's exactly one accessReviewInstance associated with each decision. The instance is the parent of the decision item, representing the recurrence of the access review the decision is made on.
     instance: Optional[AccessReviewInstance] = None
     # Justification left by the reviewer when they made the decision.
@@ -66,10 +67,10 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AccessReviewInstanceDecisionItem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_review_instance import AccessReviewInstance
         from .access_review_instance_decision_item_resource import AccessReviewInstanceDecisionItemResource
@@ -89,7 +90,7 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
         from .identity import Identity
         from .user_identity import UserIdentity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessReviewId": lambda n : setattr(self, 'access_review_id', n.get_str_value()),
             "appliedBy": lambda n : setattr(self, 'applied_by', n.get_object_value(UserIdentity)),
             "appliedDateTime": lambda n : setattr(self, 'applied_date_time', n.get_datetime_value()),
@@ -121,15 +122,6 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .access_review_instance import AccessReviewInstance
-        from .access_review_instance_decision_item_resource import AccessReviewInstanceDecisionItemResource
-        from .access_review_instance_decision_item_target import AccessReviewInstanceDecisionItemTarget
-        from .decision_item_principal_resource_membership import DecisionItemPrincipalResourceMembership
-        from .entity import Entity
-        from .governance_insight import GovernanceInsight
-        from .identity import Identity
-        from .user_identity import UserIdentity
-
         writer.write_str_value("accessReviewId", self.access_review_id)
         writer.write_object_value("appliedBy", self.applied_by)
         writer.write_datetime_value("appliedDateTime", self.applied_date_time)

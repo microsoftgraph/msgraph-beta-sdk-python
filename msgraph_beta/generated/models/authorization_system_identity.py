@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authorization_system import AuthorizationSystem
@@ -129,10 +130,10 @@ class AuthorizationSystemIdentity(Entity, Parsable):
             return GcpUser()
         return AuthorizationSystemIdentity()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authorization_system import AuthorizationSystem
         from .authorization_system_identity_source import AuthorizationSystemIdentitySource
@@ -178,7 +179,7 @@ class AuthorizationSystemIdentity(Entity, Parsable):
         from .gcp_service_account import GcpServiceAccount
         from .gcp_user import GcpUser
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authorizationSystem": lambda n : setattr(self, 'authorization_system', n.get_object_value(AuthorizationSystem)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
@@ -197,28 +198,6 @@ class AuthorizationSystemIdentity(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authorization_system import AuthorizationSystem
-        from .authorization_system_identity_source import AuthorizationSystemIdentitySource
-        from .aws_access_key import AwsAccessKey
-        from .aws_ec2_instance import AwsEc2Instance
-        from .aws_group import AwsGroup
-        from .aws_identity import AwsIdentity
-        from .aws_lambda import AwsLambda
-        from .aws_role import AwsRole
-        from .aws_user import AwsUser
-        from .azure_group import AzureGroup
-        from .azure_identity import AzureIdentity
-        from .azure_managed_identity import AzureManagedIdentity
-        from .azure_serverless_function import AzureServerlessFunction
-        from .azure_service_principal import AzureServicePrincipal
-        from .azure_user import AzureUser
-        from .entity import Entity
-        from .gcp_cloud_function import GcpCloudFunction
-        from .gcp_group import GcpGroup
-        from .gcp_identity import GcpIdentity
-        from .gcp_service_account import GcpServiceAccount
-        from .gcp_user import GcpUser
-
         writer.write_object_value("authorizationSystem", self.authorization_system)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("externalId", self.external_id)

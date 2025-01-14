@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -31,10 +32,10 @@ class UsageRight(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UsageRight()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .usage_right_state import UsageRightState
@@ -42,7 +43,7 @@ class UsageRight(Entity, Parsable):
         from .entity import Entity
         from .usage_right_state import UsageRightState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
             "serviceIdentifier": lambda n : setattr(self, 'service_identifier', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(UsageRightState)),
@@ -60,9 +61,6 @@ class UsageRight(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .usage_right_state import UsageRightState
-
         writer.write_str_value("catalogId", self.catalog_id)
         writer.write_str_value("serviceIdentifier", self.service_identifier)
         writer.write_enum_value("state", self.state)

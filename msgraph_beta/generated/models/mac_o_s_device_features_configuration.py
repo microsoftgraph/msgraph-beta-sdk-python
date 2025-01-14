@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
@@ -29,9 +30,9 @@ class MacOSDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Par
     # Whether to show admin host information on the login window.
     admin_show_host_info: Optional[bool] = None
     # Gets or sets a list that maps apps to their associated domains. Application identifiers must be unique. This collection can contain a maximum of 500 elements.
-    app_associated_domains: Optional[List[MacOSAssociatedDomainsItem]] = None
+    app_associated_domains: Optional[list[MacOSAssociatedDomainsItem]] = None
     # DEPRECATED: use appAssociatedDomains instead. Gets or sets a list that maps apps to their associated domains. The key should match the app's ID, and the value should be a string in the form of 'service:domain' where domain is a fully qualified hostname (e.g. webcredentials:example.com). This collection can contain a maximum of 500 elements.
-    associated_domains: Optional[List[KeyValuePair]] = None
+    associated_domains: Optional[list[KeyValuePair]] = None
     # Whether to show the name and password dialog or a list of users on the login window.
     authorized_users_list_hidden: Optional[bool] = None
     # Whether to hide admin users in the authorized users list on the login window.
@@ -45,13 +46,13 @@ class MacOSDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Par
     # Whether to show other users in the authorized users list on the login window.
     authorized_users_list_show_other_managed_users: Optional[bool] = None
     # List of applications, files, folders, and other items to launch when the user logs in. This collection can contain a maximum of 500 elements.
-    auto_launch_items: Optional[List[MacOSLaunchItem]] = None
+    auto_launch_items: Optional[list[MacOSLaunchItem]] = None
     # Whether the Other user will disregard use of the console special user name.
     console_access_disabled: Optional[bool] = None
     # Prevents content caches from purging content to free up disk space for other apps.
     content_caching_block_deletion: Optional[bool] = None
     # A list of custom IP ranges content caches will use to listen for clients. This collection can contain a maximum of 500 elements.
-    content_caching_client_listen_ranges: Optional[List[IpRange]] = None
+    content_caching_client_listen_ranges: Optional[list[IpRange]] = None
     # Determines which clients a content cache will serve.
     content_caching_client_policy: Optional[MacOSContentCachingClientPolicy] = None
     # The path to the directory used to store cached content. The value must be (or end with) /Library/Application Support/Apple/AssetCache/Data
@@ -71,17 +72,17 @@ class MacOSDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Par
     # Determines how content caches select a parent cache.
     content_caching_parent_selection_policy: Optional[MacOSContentCachingParentSelectionPolicy] = None
     # A list of IP addresses representing parent content caches.
-    content_caching_parents: Optional[List[str]] = None
+    content_caching_parents: Optional[list[str]] = None
     # A list of custom IP ranges content caches will use to query for content from peers caches. This collection can contain a maximum of 500 elements.
-    content_caching_peer_filter_ranges: Optional[List[IpRange]] = None
+    content_caching_peer_filter_ranges: Optional[list[IpRange]] = None
     # A list of custom IP ranges content caches will use to listen for peer caches. This collection can contain a maximum of 500 elements.
-    content_caching_peer_listen_ranges: Optional[List[IpRange]] = None
+    content_caching_peer_listen_ranges: Optional[list[IpRange]] = None
     # Determines which content caches other content caches will peer with.
     content_caching_peer_policy: Optional[MacOSContentCachingPeerPolicy] = None
     # Sets the port used for content caching. If the value is 0, a random available port will be selected. Valid values 0 to 65535
     content_caching_port: Optional[int] = None
     # A list of custom IP ranges that Apple's content caching service should use to match clients to content caches. This collection can contain a maximum of 500 elements.
-    content_caching_public_ranges: Optional[List[IpRange]] = None
+    content_caching_public_ranges: Optional[list[IpRange]] = None
     # Display content caching alerts as system notifications.
     content_caching_show_alerts: Optional[bool] = None
     # Indicates the type of content allowed to be cached by Apple's content caching service.
@@ -122,10 +123,10 @@ class MacOSDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Par
             raise TypeError("parse_node cannot be null.")
         return MacOSDeviceFeaturesConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
         from .ip_range import IpRange
@@ -153,7 +154,7 @@ class MacOSDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Par
         from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
         from .single_sign_on_extension import SingleSignOnExtension
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "adminShowHostInfo": lambda n : setattr(self, 'admin_show_host_info', n.get_bool_value()),
             "appAssociatedDomains": lambda n : setattr(self, 'app_associated_domains', n.get_collection_of_object_values(MacOSAssociatedDomainsItem)),
             "associatedDomains": lambda n : setattr(self, 'associated_domains', n.get_collection_of_object_values(KeyValuePair)),
@@ -210,19 +211,6 @@ class MacOSDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Par
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
-        from .ip_range import IpRange
-        from .key_value_pair import KeyValuePair
-        from .mac_o_s_associated_domains_item import MacOSAssociatedDomainsItem
-        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
-        from .mac_o_s_content_caching_client_policy import MacOSContentCachingClientPolicy
-        from .mac_o_s_content_caching_parent_selection_policy import MacOSContentCachingParentSelectionPolicy
-        from .mac_o_s_content_caching_peer_policy import MacOSContentCachingPeerPolicy
-        from .mac_o_s_content_caching_type import MacOSContentCachingType
-        from .mac_o_s_launch_item import MacOSLaunchItem
-        from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
-        from .single_sign_on_extension import SingleSignOnExtension
-
         writer.write_bool_value("adminShowHostInfo", self.admin_show_host_info)
         writer.write_collection_of_object_values("appAssociatedDomains", self.app_associated_domains)
         writer.write_collection_of_object_values("associatedDomains", self.associated_domains)

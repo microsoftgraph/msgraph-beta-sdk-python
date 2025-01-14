@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
@@ -50,10 +51,10 @@ class InactiveUsersByApplicationMetricBase(Entity, Parsable):
             return MonthlyInactiveUsersByApplicationMetric()
         return InactiveUsersByApplicationMetricBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
         from .entity import Entity
@@ -63,7 +64,7 @@ class InactiveUsersByApplicationMetricBase(Entity, Parsable):
         from .entity import Entity
         from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "factDate": lambda n : setattr(self, 'fact_date', n.get_date_value()),
             "inactive30DayCount": lambda n : setattr(self, 'inactive30_day_count', n.get_int_value()),
@@ -83,10 +84,6 @@ class InactiveUsersByApplicationMetricBase(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
-        from .entity import Entity
-        from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
-
         writer.write_str_value("appId", self.app_id)
         writer.write_date_value("factDate", self.fact_date)
         writer.write_int_value("inactive30DayCount", self.inactive30_day_count)

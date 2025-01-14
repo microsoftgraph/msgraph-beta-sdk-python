@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -15,9 +16,9 @@ class ReportsRoot(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The readingAssignmentSubmissions property
-    reading_assignment_submissions: Optional[List[ReadingAssignmentSubmission]] = None
+    reading_assignment_submissions: Optional[list[ReadingAssignmentSubmission]] = None
     # The reflectCheckInResponses property
-    reflect_check_in_responses: Optional[List[ReflectCheckInResponse]] = None
+    reflect_check_in_responses: Optional[list[ReflectCheckInResponse]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ReportsRoot:
@@ -30,10 +31,10 @@ class ReportsRoot(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ReportsRoot()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .reading_assignment_submission import ReadingAssignmentSubmission
@@ -43,7 +44,7 @@ class ReportsRoot(Entity, Parsable):
         from .reading_assignment_submission import ReadingAssignmentSubmission
         from .reflect_check_in_response import ReflectCheckInResponse
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "readingAssignmentSubmissions": lambda n : setattr(self, 'reading_assignment_submissions', n.get_collection_of_object_values(ReadingAssignmentSubmission)),
             "reflectCheckInResponses": lambda n : setattr(self, 'reflect_check_in_responses', n.get_collection_of_object_values(ReflectCheckInResponse)),
         }
@@ -60,10 +61,6 @@ class ReportsRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .reading_assignment_submission import ReadingAssignmentSubmission
-        from .reflect_check_in_response import ReflectCheckInResponse
-
         writer.write_collection_of_object_values("readingAssignmentSubmissions", self.reading_assignment_submissions)
         writer.write_collection_of_object_values("reflectCheckInResponses", self.reflect_check_in_responses)
     

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_enrollment_profile_assignment import AppleEnrollmentProfileAssignment
@@ -19,9 +20,9 @@ class AppleUserInitiatedEnrollmentProfile(Entity, Parsable):
     The enrollmentProfile resource represents a collection of configurations which must be provided pre-enrollment to enable enrolling certain devices whose identities have been pre-staged. Pre-staged device identities are assigned to this type of profile to apply the profile's configurations at enrollment of the corresponding device.
     """
     # The list of assignments for this profile.
-    assignments: Optional[List[AppleEnrollmentProfileAssignment]] = None
+    assignments: Optional[list[AppleEnrollmentProfileAssignment]] = None
     # List of available enrollment type options
-    available_enrollment_type_options: Optional[List[AppleOwnerTypeEnrollmentType]] = None
+    available_enrollment_type_options: Optional[list[AppleOwnerTypeEnrollmentType]] = None
     # Profile creation time
     created_date_time: Optional[datetime.datetime] = None
     # The defaultEnrollmentType property
@@ -50,10 +51,10 @@ class AppleUserInitiatedEnrollmentProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AppleUserInitiatedEnrollmentProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .apple_enrollment_profile_assignment import AppleEnrollmentProfileAssignment
         from .apple_owner_type_enrollment_type import AppleOwnerTypeEnrollmentType
@@ -67,7 +68,7 @@ class AppleUserInitiatedEnrollmentProfile(Entity, Parsable):
         from .device_platform_type import DevicePlatformType
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(AppleEnrollmentProfileAssignment)),
             "availableEnrollmentTypeOptions": lambda n : setattr(self, 'available_enrollment_type_options', n.get_collection_of_object_values(AppleOwnerTypeEnrollmentType)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -91,12 +92,6 @@ class AppleUserInitiatedEnrollmentProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .apple_enrollment_profile_assignment import AppleEnrollmentProfileAssignment
-        from .apple_owner_type_enrollment_type import AppleOwnerTypeEnrollmentType
-        from .apple_user_initiated_enrollment_type import AppleUserInitiatedEnrollmentType
-        from .device_platform_type import DevicePlatformType
-        from .entity import Entity
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_collection_of_object_values("availableEnrollmentTypeOptions", self.available_enrollment_type_options)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

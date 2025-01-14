@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .content_approval_rule import ContentApprovalRule
@@ -14,7 +15,7 @@ class ComplianceChangeRule(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The date and time when the rule was created.
     created_date_time: Optional[datetime.datetime] = None
     # The date and time when the rule was last evaluated.
@@ -44,16 +45,16 @@ class ComplianceChangeRule(AdditionalDataHolder, BackedModel, Parsable):
             return ContentApprovalRule()
         return ComplianceChangeRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .content_approval_rule import ContentApprovalRule
 
         from .content_approval_rule import ContentApprovalRule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "lastEvaluatedDateTime": lambda n : setattr(self, 'last_evaluated_date_time', n.get_datetime_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -69,8 +70,6 @@ class ComplianceChangeRule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .content_approval_rule import ContentApprovalRule
-
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("lastEvaluatedDateTime", self.last_evaluated_date_time)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)

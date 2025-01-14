@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -36,10 +37,10 @@ class Settings(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Settings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .conditional_access_settings import ConditionalAccessSettings
@@ -53,7 +54,7 @@ class Settings(Entity, Parsable):
         from .enriched_audit_logs import EnrichedAuditLogs
         from .forwarding_options import ForwardingOptions
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "conditionalAccess": lambda n : setattr(self, 'conditional_access', n.get_object_value(ConditionalAccessSettings)),
             "crossTenantAccess": lambda n : setattr(self, 'cross_tenant_access', n.get_object_value(CrossTenantAccessSettings)),
             "enrichedAuditLogs": lambda n : setattr(self, 'enriched_audit_logs', n.get_object_value(EnrichedAuditLogs)),
@@ -72,12 +73,6 @@ class Settings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .conditional_access_settings import ConditionalAccessSettings
-        from .cross_tenant_access_settings import CrossTenantAccessSettings
-        from .enriched_audit_logs import EnrichedAuditLogs
-        from .forwarding_options import ForwardingOptions
-
         writer.write_object_value("conditionalAccess", self.conditional_access)
         writer.write_object_value("crossTenantAccess", self.cross_tenant_access)
         writer.write_object_value("enrichedAuditLogs", self.enriched_audit_logs)

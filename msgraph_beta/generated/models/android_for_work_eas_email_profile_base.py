@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_for_work_certificate_profile_base import AndroidForWorkCertificateProfileBase
@@ -61,10 +62,10 @@ class AndroidForWorkEasEmailProfileBase(DeviceConfiguration, Parsable):
             return AndroidForWorkNineWorkEasConfiguration()
         return AndroidForWorkEasEmailProfileBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_for_work_certificate_profile_base import AndroidForWorkCertificateProfileBase
         from .android_for_work_gmail_eas_configuration import AndroidForWorkGmailEasConfiguration
@@ -84,7 +85,7 @@ class AndroidForWorkEasEmailProfileBase(DeviceConfiguration, Parsable):
         from .email_sync_duration import EmailSyncDuration
         from .user_email_source import UserEmailSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(EasAuthenticationMethod)),
             "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(EmailSyncDuration)),
             "emailAddressSource": lambda n : setattr(self, 'email_address_source', n.get_enum_value(UserEmailSource)),
@@ -106,15 +107,6 @@ class AndroidForWorkEasEmailProfileBase(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_for_work_certificate_profile_base import AndroidForWorkCertificateProfileBase
-        from .android_for_work_gmail_eas_configuration import AndroidForWorkGmailEasConfiguration
-        from .android_for_work_nine_work_eas_configuration import AndroidForWorkNineWorkEasConfiguration
-        from .android_username_source import AndroidUsernameSource
-        from .device_configuration import DeviceConfiguration
-        from .eas_authentication_method import EasAuthenticationMethod
-        from .email_sync_duration import EmailSyncDuration
-        from .user_email_source import UserEmailSource
-
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_enum_value("durationOfEmailToSync", self.duration_of_email_to_sync)
         writer.write_enum_value("emailAddressSource", self.email_address_source)

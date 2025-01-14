@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_abstract_complex_setting_definition import DeviceManagementAbstractComplexSettingDefinition
@@ -20,9 +21,9 @@ class DeviceManagementSettingDefinition(Entity, Parsable):
     Entity representing the defintion for a given setting
     """
     # Collection of constraints for the setting value
-    constraints: Optional[List[DeviceManagementConstraint]] = None
+    constraints: Optional[list[DeviceManagementConstraint]] = None
     # Collection of dependencies on other settings
-    dependencies: Optional[List[DeviceManagementSettingDependency]] = None
+    dependencies: Optional[list[DeviceManagementSettingDependency]] = None
     # The setting's description
     description: Optional[str] = None
     # The setting's display name
@@ -36,7 +37,7 @@ class DeviceManagementSettingDefinition(Entity, Parsable):
     # If the setting is top level, it can be configured without the need to be wrapped in a collection or complex setting
     is_top_level: Optional[bool] = None
     # Keywords associated with the setting
-    keywords: Optional[List[str]] = None
+    keywords: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Placeholder text as an example of valid input
@@ -72,10 +73,10 @@ class DeviceManagementSettingDefinition(Entity, Parsable):
             return DeviceManagementComplexSettingDefinition()
         return DeviceManagementSettingDefinition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_abstract_complex_setting_definition import DeviceManagementAbstractComplexSettingDefinition
         from .device_management_collection_setting_definition import DeviceManagementCollectionSettingDefinition
@@ -93,7 +94,7 @@ class DeviceManagementSettingDefinition(Entity, Parsable):
         from .device_manangement_intent_value_type import DeviceManangementIntentValueType
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "constraints": lambda n : setattr(self, 'constraints', n.get_collection_of_object_values(DeviceManagementConstraint)),
             "dependencies": lambda n : setattr(self, 'dependencies', n.get_collection_of_object_values(DeviceManagementSettingDependency)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -119,14 +120,6 @@ class DeviceManagementSettingDefinition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_abstract_complex_setting_definition import DeviceManagementAbstractComplexSettingDefinition
-        from .device_management_collection_setting_definition import DeviceManagementCollectionSettingDefinition
-        from .device_management_complex_setting_definition import DeviceManagementComplexSettingDefinition
-        from .device_management_constraint import DeviceManagementConstraint
-        from .device_management_setting_dependency import DeviceManagementSettingDependency
-        from .device_manangement_intent_value_type import DeviceManangementIntentValueType
-        from .entity import Entity
-
         writer.write_collection_of_object_values("constraints", self.constraints)
         writer.write_collection_of_object_values("dependencies", self.dependencies)
         writer.write_str_value("description", self.description)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .broadcast_meeting_settings import BroadcastMeetingSettings
@@ -22,7 +23,7 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onlineMeeting"
     # The aiInsights property
-    ai_insights: Optional[List[CallAiInsight]] = None
+    ai_insights: Optional[list[CallAiInsight]] = None
     # The content stream of the alternative recording of a Microsoft Teams live event. Read-only.
     alternative_recording: Optional[bytes] = None
     # The content stream of the attendee report of a Teams live event. Read-only.
@@ -32,7 +33,7 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
     # Settings related to a live event.
     broadcast_settings: Optional[BroadcastMeetingSettings] = None
     # The list of meeting capabilities. Possible values are: questionAndAnswer,unknownFutureValue.
-    capabilities: Optional[List[MeetingCapabilities]] = None
+    capabilities: Optional[list[MeetingCapabilities]] = None
     # The meeting creation time in UTC. Read-only.
     creation_date_time: Optional[datetime.datetime] = None
     # The meeting end time in UTC. Required when you create an online meeting.
@@ -52,13 +53,13 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
     # The content stream of the recording of a Teams live event. Read-only.
     recording: Optional[bytes] = None
     # The recordings of an online meeting. Read-only.
-    recordings: Optional[List[CallRecording]] = None
+    recordings: Optional[list[CallRecording]] = None
     # The registration that is enabled for an online meeting. One online meeting can only have one registration enabled.
     registration: Optional[MeetingRegistration] = None
     # The meeting start time in UTC. Required when you create an online meeting.
     start_date_time: Optional[datetime.datetime] = None
     # The transcripts of an online meeting. Read-only.
-    transcripts: Optional[List[CallTranscript]] = None
+    transcripts: Optional[list[CallTranscript]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OnlineMeeting:
@@ -71,10 +72,10 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OnlineMeeting()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .broadcast_meeting_settings import BroadcastMeetingSettings
         from .call_ai_insight import CallAiInsight
@@ -96,7 +97,7 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
         from .meeting_registration import MeetingRegistration
         from .online_meeting_base import OnlineMeetingBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "aiInsights": lambda n : setattr(self, 'ai_insights', n.get_collection_of_object_values(CallAiInsight)),
             "alternativeRecording": lambda n : setattr(self, 'alternative_recording', n.get_bytes_value()),
             "attendeeReport": lambda n : setattr(self, 'attendee_report', n.get_bytes_value()),
@@ -130,16 +131,6 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .broadcast_meeting_settings import BroadcastMeetingSettings
-        from .call_ai_insight import CallAiInsight
-        from .call_recording import CallRecording
-        from .call_transcript import CallTranscript
-        from .meeting_attendance_report import MeetingAttendanceReport
-        from .meeting_capabilities import MeetingCapabilities
-        from .meeting_participants import MeetingParticipants
-        from .meeting_registration import MeetingRegistration
-        from .online_meeting_base import OnlineMeetingBase
-
         writer.write_collection_of_object_values("aiInsights", self.ai_insights)
         writer.write_bytes_value("alternativeRecording", self.alternative_recording)
         writer.write_bytes_value("attendeeReport", self.attendee_report)

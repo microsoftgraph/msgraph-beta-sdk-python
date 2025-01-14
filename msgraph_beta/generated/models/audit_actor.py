@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .role_scope_tag_info import RoleScopeTagInfo
@@ -16,7 +17,7 @@ class AuditActor(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Name of the Application.
     application_display_name: Optional[str] = None
     # AAD Application Id.
@@ -38,11 +39,11 @@ class AuditActor(AdditionalDataHolder, BackedModel, Parsable):
     # User Id.
     user_id: Optional[str] = None
     # List of user permissions when the audit was performed.
-    user_permissions: Optional[List[str]] = None
+    user_permissions: Optional[list[str]] = None
     # User Principal Name (UPN).
     user_principal_name: Optional[str] = None
     # List of user scope tags when the audit was performed.
-    user_role_scope_tags: Optional[List[RoleScopeTagInfo]] = None
+    user_role_scope_tags: Optional[list[RoleScopeTagInfo]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AuditActor:
@@ -55,16 +56,16 @@ class AuditActor(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AuditActor()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .role_scope_tag_info import RoleScopeTagInfo
 
         from .role_scope_tag_info import RoleScopeTagInfo
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applicationDisplayName": lambda n : setattr(self, 'application_display_name', n.get_str_value()),
             "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
             "auditActorType": lambda n : setattr(self, 'audit_actor_type', n.get_str_value()),
@@ -89,8 +90,6 @@ class AuditActor(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .role_scope_tag_info import RoleScopeTagInfo
-
         writer.write_str_value("applicationDisplayName", self.application_display_name)
         writer.write_str_value("applicationId", self.application_id)
         writer.write_str_value("auditActorType", self.audit_actor_type)

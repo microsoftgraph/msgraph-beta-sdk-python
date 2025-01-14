@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .product_revision import ProductRevision
@@ -23,7 +24,7 @@ class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry, Parsable):
     # Indicates whether the content can be deployed as an expedited quality update. Read-only.
     is_expeditable: Optional[bool] = None
     # The operating system product revisions that are released as part of this quality update.
-    product_revisions: Optional[List[ProductRevision]] = None
+    product_revisions: Optional[list[ProductRevision]] = None
     # The publishing cadence of the quality update. Possible values are: monthly, outOfBand, unknownFutureValue. Read-only.
     quality_update_cadence: Optional[QualityUpdateCadence] = None
     # The qualityUpdateClassification property
@@ -42,10 +43,10 @@ class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry, Parsable):
             raise TypeError("parse_node cannot be null.")
         return QualityUpdateCatalogEntry()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .product_revision import ProductRevision
         from .quality_update_cadence import QualityUpdateCadence
@@ -59,7 +60,7 @@ class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry, Parsable):
         from .quality_update_cve_severity_information import QualityUpdateCveSeverityInformation
         from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "catalogName": lambda n : setattr(self, 'catalog_name', n.get_str_value()),
             "cveSeverityInformation": lambda n : setattr(self, 'cve_severity_information', n.get_object_value(QualityUpdateCveSeverityInformation)),
             "isExpeditable": lambda n : setattr(self, 'is_expeditable', n.get_bool_value()),
@@ -81,12 +82,6 @@ class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .product_revision import ProductRevision
-        from .quality_update_cadence import QualityUpdateCadence
-        from .quality_update_classification import QualityUpdateClassification
-        from .quality_update_cve_severity_information import QualityUpdateCveSeverityInformation
-        from .software_update_catalog_entry import SoftwareUpdateCatalogEntry
-
         writer.write_str_value("catalogName", self.catalog_name)
         writer.write_object_value("cveSeverityInformation", self.cve_severity_information)
         writer.write_bool_value("isExpeditable", self.is_expeditable)

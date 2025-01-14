@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aws_authorization_system import AwsAuthorizationSystem
@@ -53,10 +54,10 @@ class AuthorizationSystem(Entity, Parsable):
             return GcpAuthorizationSystem()
         return AuthorizationSystem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aws_authorization_system import AwsAuthorizationSystem
         from .azure_authorization_system import AzureAuthorizationSystem
@@ -70,7 +71,7 @@ class AuthorizationSystem(Entity, Parsable):
         from .entity import Entity
         from .gcp_authorization_system import GcpAuthorizationSystem
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authorizationSystemId": lambda n : setattr(self, 'authorization_system_id', n.get_str_value()),
             "authorizationSystemName": lambda n : setattr(self, 'authorization_system_name', n.get_str_value()),
             "authorizationSystemType": lambda n : setattr(self, 'authorization_system_type', n.get_str_value()),
@@ -89,12 +90,6 @@ class AuthorizationSystem(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .aws_authorization_system import AwsAuthorizationSystem
-        from .azure_authorization_system import AzureAuthorizationSystem
-        from .data_collection_info import DataCollectionInfo
-        from .entity import Entity
-        from .gcp_authorization_system import GcpAuthorizationSystem
-
         writer.write_str_value("authorizationSystemId", self.authorization_system_id)
         writer.write_str_value("authorizationSystemName", self.authorization_system_name)
         writer.write_str_value("authorizationSystemType", self.authorization_system_type)

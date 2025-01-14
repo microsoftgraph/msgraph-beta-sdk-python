@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -17,7 +18,7 @@ class WindowsFeatureUpdateProfile(Entity, Parsable):
     Windows Feature Update Profile
     """
     # The list of group assignments of the profile.
-    assignments: Optional[List[WindowsFeatureUpdateProfileAssignment]] = None
+    assignments: Optional[list[WindowsFeatureUpdateProfileAssignment]] = None
     # The date time that the profile was created.
     created_date_time: Optional[datetime.datetime] = None
     # Friendly display name of the quality update profile deployable content
@@ -39,7 +40,7 @@ class WindowsFeatureUpdateProfile(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of Scope Tags for this Feature Update entity.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # The windows update rollout settings, including offer start date time, offer end date time, and days between each set of offers.
     rollout_settings: Optional[WindowsUpdateRolloutSettings] = None
     
@@ -54,10 +55,10 @@ class WindowsFeatureUpdateProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsFeatureUpdateProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .windows_feature_update_profile_assignment import WindowsFeatureUpdateProfileAssignment
@@ -67,7 +68,7 @@ class WindowsFeatureUpdateProfile(Entity, Parsable):
         from .windows_feature_update_profile_assignment import WindowsFeatureUpdateProfileAssignment
         from .windows_update_rollout_settings import WindowsUpdateRolloutSettings
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(WindowsFeatureUpdateProfileAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deployableContentDisplayName": lambda n : setattr(self, 'deployable_content_display_name', n.get_str_value()),
@@ -94,10 +95,6 @@ class WindowsFeatureUpdateProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .windows_feature_update_profile_assignment import WindowsFeatureUpdateProfileAssignment
-        from .windows_update_rollout_settings import WindowsUpdateRolloutSettings
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("deployableContentDisplayName", self.deployable_content_display_name)

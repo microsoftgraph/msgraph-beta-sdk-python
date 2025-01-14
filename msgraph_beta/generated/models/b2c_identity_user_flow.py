@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .identity_provider import IdentityProvider
@@ -20,17 +21,17 @@ class B2cIdentityUserFlow(IdentityUserFlow, Parsable):
     # Indicates the default language of the b2cIdentityUserFlow that is used when no ui_locale tag is specified in the request. This field is RFC 5646 compliant.
     default_language_tag: Optional[str] = None
     # The identity providers included in the user flow.
-    identity_providers: Optional[List[IdentityProvider]] = None
+    identity_providers: Optional[list[IdentityProvider]] = None
     # The property that determines whether language customization is enabled within the B2C user flow. Language customization is not enabled by default for B2C user flows.
     is_language_customization_enabled: Optional[bool] = None
     # The languages supported for customization within the user flow. Language customization is not enabled by default in B2C user flows.
-    languages: Optional[List[UserFlowLanguageConfiguration]] = None
+    languages: Optional[list[UserFlowLanguageConfiguration]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The user attribute assignments included in the user flow.
-    user_attribute_assignments: Optional[List[IdentityUserFlowAttributeAssignment]] = None
+    user_attribute_assignments: Optional[list[IdentityUserFlowAttributeAssignment]] = None
     # The identity providers included in the user flow.
-    user_flow_identity_providers: Optional[List[IdentityProviderBase]] = None
+    user_flow_identity_providers: Optional[list[IdentityProviderBase]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> B2cIdentityUserFlow:
@@ -43,10 +44,10 @@ class B2cIdentityUserFlow(IdentityUserFlow, Parsable):
             raise TypeError("parse_node cannot be null.")
         return B2cIdentityUserFlow()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .identity_provider import IdentityProvider
         from .identity_provider_base import IdentityProviderBase
@@ -62,7 +63,7 @@ class B2cIdentityUserFlow(IdentityUserFlow, Parsable):
         from .user_flow_api_connector_configuration import UserFlowApiConnectorConfiguration
         from .user_flow_language_configuration import UserFlowLanguageConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "apiConnectorConfiguration": lambda n : setattr(self, 'api_connector_configuration', n.get_object_value(UserFlowApiConnectorConfiguration)),
             "defaultLanguageTag": lambda n : setattr(self, 'default_language_tag', n.get_str_value()),
             "identityProviders": lambda n : setattr(self, 'identity_providers', n.get_collection_of_object_values(IdentityProvider)),
@@ -84,13 +85,6 @@ class B2cIdentityUserFlow(IdentityUserFlow, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .identity_provider import IdentityProvider
-        from .identity_provider_base import IdentityProviderBase
-        from .identity_user_flow import IdentityUserFlow
-        from .identity_user_flow_attribute_assignment import IdentityUserFlowAttributeAssignment
-        from .user_flow_api_connector_configuration import UserFlowApiConnectorConfiguration
-        from .user_flow_language_configuration import UserFlowLanguageConfiguration
-
         writer.write_object_value("apiConnectorConfiguration", self.api_connector_configuration)
         writer.write_str_value("defaultLanguageTag", self.default_language_tag)
         writer.write_collection_of_object_values("identityProviders", self.identity_providers)

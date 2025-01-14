@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .time_card_break import TimeCardBreak
@@ -14,9 +15,9 @@ class TimeCardEntry(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The list of breaks associated with the timeCard.
-    breaks: Optional[List[TimeCardBreak]] = None
+    breaks: Optional[list[TimeCardBreak]] = None
     # The clock-in event of the timeCard.
     clock_in_event: Optional[TimeCardEvent] = None
     # The clock-out event of the timeCard.
@@ -35,10 +36,10 @@ class TimeCardEntry(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TimeCardEntry()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .time_card_break import TimeCardBreak
         from .time_card_event import TimeCardEvent
@@ -46,7 +47,7 @@ class TimeCardEntry(AdditionalDataHolder, BackedModel, Parsable):
         from .time_card_break import TimeCardBreak
         from .time_card_event import TimeCardEvent
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "breaks": lambda n : setattr(self, 'breaks', n.get_collection_of_object_values(TimeCardBreak)),
             "clockInEvent": lambda n : setattr(self, 'clock_in_event', n.get_object_value(TimeCardEvent)),
             "clockOutEvent": lambda n : setattr(self, 'clock_out_event', n.get_object_value(TimeCardEvent)),
@@ -62,9 +63,6 @@ class TimeCardEntry(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .time_card_break import TimeCardBreak
-        from .time_card_event import TimeCardEvent
-
         writer.write_collection_of_object_values("breaks", self.breaks)
         writer.write_object_value("clockInEvent", self.clock_in_event)
         writer.write_object_value("clockOutEvent", self.clock_out_event)

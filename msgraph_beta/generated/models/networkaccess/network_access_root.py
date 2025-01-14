@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -21,17 +22,17 @@ from ..entity import Entity
 @dataclass
 class NetworkAccessRoot(Entity, Parsable):
     # The alerts property
-    alerts: Optional[List[Alert]] = None
+    alerts: Optional[list[Alert]] = None
     # Connectivity represents all the connectivity components in Global Secure Access.
     connectivity: Optional[Connectivity] = None
     # A filtering policy defines the specific traffic that is allowed or blocked through the Global Secure Access services for a filtering profile.
-    filtering_policies: Optional[List[FilteringPolicy]] = None
+    filtering_policies: Optional[list[FilteringPolicy]] = None
     # A filtering profile associates network access policies with Microsoft Entra ID Conditional Access policies, so that access policies can be applied to users and groups.
-    filtering_profiles: Optional[List[FilteringProfile]] = None
+    filtering_profiles: Optional[list[FilteringProfile]] = None
     # A forwarding policy defines the specific traffic that is routed through the Global Secure Access Service. It's then added to a forwarding profile.
-    forwarding_policies: Optional[List[ForwardingPolicy]] = None
+    forwarding_policies: Optional[list[ForwardingPolicy]] = None
     # A forwarding profile determines which types of traffic are routed through the Global Secure Access services and which ones are skipped. The handling of specific traffic is determined by the forwarding policies that are added to the forwarding profile.
-    forwarding_profiles: Optional[List[ForwardingProfile]] = None
+    forwarding_profiles: Optional[list[ForwardingProfile]] = None
     # Represents network connections that are routed through Global Secure Access.
     logs: Optional[Logs] = None
     # The OdataType property
@@ -54,10 +55,10 @@ class NetworkAccessRoot(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return NetworkAccessRoot()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .alert import Alert
@@ -83,7 +84,7 @@ class NetworkAccessRoot(Entity, Parsable):
         from .settings import Settings
         from .tenant_status import TenantStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(Alert)),
             "connectivity": lambda n : setattr(self, 'connectivity', n.get_object_value(Connectivity)),
             "filteringPolicies": lambda n : setattr(self, 'filtering_policies', n.get_collection_of_object_values(FilteringPolicy)),
@@ -108,18 +109,6 @@ class NetworkAccessRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .alert import Alert
-        from .connectivity import Connectivity
-        from .filtering_policy import FilteringPolicy
-        from .filtering_profile import FilteringProfile
-        from .forwarding_policy import ForwardingPolicy
-        from .forwarding_profile import ForwardingProfile
-        from .logs import Logs
-        from .reports import Reports
-        from .settings import Settings
-        from .tenant_status import TenantStatus
-
         writer.write_collection_of_object_values("alerts", self.alerts)
         writer.write_object_value("connectivity", self.connectivity)
         writer.write_collection_of_object_values("filteringPolicies", self.filtering_policies)

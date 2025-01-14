@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -15,15 +16,15 @@ from ..entity import Entity
 @dataclass
 class ThreatSubmissionRoot(Entity, Parsable):
     # The emailThreatSubmissionPolicies property
-    email_threat_submission_policies: Optional[List[EmailThreatSubmissionPolicy]] = None
+    email_threat_submission_policies: Optional[list[EmailThreatSubmissionPolicy]] = None
     # The emailThreats property
-    email_threats: Optional[List[EmailThreatSubmission]] = None
+    email_threats: Optional[list[EmailThreatSubmission]] = None
     # The fileThreats property
-    file_threats: Optional[List[FileThreatSubmission]] = None
+    file_threats: Optional[list[FileThreatSubmission]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The urlThreats property
-    url_threats: Optional[List[UrlThreatSubmission]] = None
+    url_threats: Optional[list[UrlThreatSubmission]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ThreatSubmissionRoot:
@@ -36,10 +37,10 @@ class ThreatSubmissionRoot(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ThreatSubmissionRoot()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .email_threat_submission import EmailThreatSubmission
@@ -53,7 +54,7 @@ class ThreatSubmissionRoot(Entity, Parsable):
         from .file_threat_submission import FileThreatSubmission
         from .url_threat_submission import UrlThreatSubmission
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "emailThreatSubmissionPolicies": lambda n : setattr(self, 'email_threat_submission_policies', n.get_collection_of_object_values(EmailThreatSubmissionPolicy)),
             "emailThreats": lambda n : setattr(self, 'email_threats', n.get_collection_of_object_values(EmailThreatSubmission)),
             "fileThreats": lambda n : setattr(self, 'file_threats', n.get_collection_of_object_values(FileThreatSubmission)),
@@ -72,12 +73,6 @@ class ThreatSubmissionRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .email_threat_submission import EmailThreatSubmission
-        from .email_threat_submission_policy import EmailThreatSubmissionPolicy
-        from .file_threat_submission import FileThreatSubmission
-        from .url_threat_submission import UrlThreatSubmission
-
         writer.write_collection_of_object_values("emailThreatSubmissionPolicies", self.email_threat_submission_policies)
         writer.write_collection_of_object_values("emailThreats", self.email_threats)
         writer.write_collection_of_object_values("fileThreats", self.file_threats)

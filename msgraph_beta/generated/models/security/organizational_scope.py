@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .scope_type import ScopeType
@@ -13,11 +14,11 @@ class OrganizationalScope(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
     # List of groups to which the custom detection rule applies.
-    scope_names: Optional[List[str]] = None
+    scope_names: Optional[list[str]] = None
     # The scopeType property
     scope_type: Optional[ScopeType] = None
     
@@ -32,16 +33,16 @@ class OrganizationalScope(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OrganizationalScope()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .scope_type import ScopeType
 
         from .scope_type import ScopeType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "scopeNames": lambda n : setattr(self, 'scope_names', n.get_collection_of_primitive_values(str)),
             "scopeType": lambda n : setattr(self, 'scope_type', n.get_enum_value(ScopeType)),
@@ -56,8 +57,6 @@ class OrganizationalScope(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .scope_type import ScopeType
-
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_primitive_values("scopeNames", self.scope_names)
         writer.write_enum_value("scopeType", self.scope_type)

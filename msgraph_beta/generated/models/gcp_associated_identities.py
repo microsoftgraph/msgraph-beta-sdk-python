@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .gcp_identity import GcpIdentity
@@ -15,15 +16,15 @@ class GcpAssociatedIdentities(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The all property
-    all: Optional[List[GcpIdentity]] = None
+    all: Optional[list[GcpIdentity]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The serviceAccounts property
-    service_accounts: Optional[List[GcpServiceAccount]] = None
+    service_accounts: Optional[list[GcpServiceAccount]] = None
     # The users property
-    users: Optional[List[GcpUser]] = None
+    users: Optional[list[GcpUser]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GcpAssociatedIdentities:
@@ -36,10 +37,10 @@ class GcpAssociatedIdentities(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GcpAssociatedIdentities()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .gcp_identity import GcpIdentity
         from .gcp_service_account import GcpServiceAccount
@@ -49,7 +50,7 @@ class GcpAssociatedIdentities(AdditionalDataHolder, BackedModel, Parsable):
         from .gcp_service_account import GcpServiceAccount
         from .gcp_user import GcpUser
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "all": lambda n : setattr(self, 'all', n.get_collection_of_object_values(GcpIdentity)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "serviceAccounts": lambda n : setattr(self, 'service_accounts', n.get_collection_of_object_values(GcpServiceAccount)),
@@ -65,10 +66,6 @@ class GcpAssociatedIdentities(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .gcp_identity import GcpIdentity
-        from .gcp_service_account import GcpServiceAccount
-        from .gcp_user import GcpUser
-
         writer.write_collection_of_object_values("all", self.all)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("serviceAccounts", self.service_accounts)

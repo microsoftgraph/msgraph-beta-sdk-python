@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .label_action_base import LabelActionBase
@@ -29,10 +30,10 @@ class ProtectSite(LabelActionBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ProtectSite()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .label_action_base import LabelActionBase
         from .site_access_type import SiteAccessType
@@ -40,7 +41,7 @@ class ProtectSite(LabelActionBase, Parsable):
         from .label_action_base import LabelActionBase
         from .site_access_type import SiteAccessType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessType": lambda n : setattr(self, 'access_type', n.get_enum_value(SiteAccessType)),
             "conditionalAccessProtectionLevelId": lambda n : setattr(self, 'conditional_access_protection_level_id', n.get_str_value()),
         }
@@ -57,9 +58,6 @@ class ProtectSite(LabelActionBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .label_action_base import LabelActionBase
-        from .site_access_type import SiteAccessType
-
         writer.write_enum_value("accessType", self.access_type)
         writer.write_str_value("conditionalAccessProtectionLevelId", self.conditional_access_protection_level_id)
     

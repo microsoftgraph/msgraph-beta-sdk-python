@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
@@ -17,7 +18,7 @@ class UnsupportedDeviceConfiguration(DeviceConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.unsupportedDeviceConfiguration"
     # Details describing why the entity is unsupported. This collection can contain a maximum of 1000 elements.
-    details: Optional[List[UnsupportedDeviceConfigurationDetail]] = None
+    details: Optional[list[UnsupportedDeviceConfigurationDetail]] = None
     # The type of entity that would be returned otherwise.
     original_entity_type_name: Optional[str] = None
     
@@ -32,10 +33,10 @@ class UnsupportedDeviceConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UnsupportedDeviceConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
         from .unsupported_device_configuration_detail import UnsupportedDeviceConfigurationDetail
@@ -43,7 +44,7 @@ class UnsupportedDeviceConfiguration(DeviceConfiguration, Parsable):
         from .device_configuration import DeviceConfiguration
         from .unsupported_device_configuration_detail import UnsupportedDeviceConfigurationDetail
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "details": lambda n : setattr(self, 'details', n.get_collection_of_object_values(UnsupportedDeviceConfigurationDetail)),
             "originalEntityTypeName": lambda n : setattr(self, 'original_entity_type_name', n.get_str_value()),
         }
@@ -60,9 +61,6 @@ class UnsupportedDeviceConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_configuration import DeviceConfiguration
-        from .unsupported_device_configuration_detail import UnsupportedDeviceConfigurationDetail
-
         writer.write_collection_of_object_values("details", self.details)
         writer.write_str_value("originalEntityTypeName", self.original_entity_type_name)
     

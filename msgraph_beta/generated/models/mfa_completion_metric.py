@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -25,7 +26,7 @@ class MfaCompletionMetric(Entity, Parsable):
     # The language property
     language: Optional[str] = None
     # The mfaFailures property
-    mfa_failures: Optional[List[MfaFailure]] = None
+    mfa_failures: Optional[list[MfaFailure]] = None
     # The MFA authentication method used by the customers. Supports $filter (eq).
     mfa_method: Optional[str] = None
     # The OdataType property
@@ -46,10 +47,10 @@ class MfaCompletionMetric(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MfaCompletionMetric()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .mfa_failure import MfaFailure
@@ -57,7 +58,7 @@ class MfaCompletionMetric(Entity, Parsable):
         from .entity import Entity
         from .mfa_failure import MfaFailure
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "attemptsCount": lambda n : setattr(self, 'attempts_count', n.get_int_value()),
             "country": lambda n : setattr(self, 'country', n.get_str_value()),
@@ -82,9 +83,6 @@ class MfaCompletionMetric(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .mfa_failure import MfaFailure
-
         writer.write_str_value("appId", self.app_id)
         writer.write_int_value("attemptsCount", self.attempts_count)
         writer.write_str_value("country", self.country)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .challenging_word import ChallengingWord
@@ -19,7 +20,7 @@ class ReadingAssignmentSubmission(Entity, Parsable):
     # ID of the assignment with which this submission is associated.
     assignment_id: Optional[str] = None
     # List of words that the student found challenging during the reading session.
-    challenging_words: Optional[List[ChallengingWord]] = None
+    challenging_words: Optional[list[ChallengingWord]] = None
     # ID of the class this reading progress is associated with.
     class_id: Optional[str] = None
     # Insertions of the reading progress.
@@ -68,10 +69,10 @@ class ReadingAssignmentSubmission(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ReadingAssignmentSubmission()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .challenging_word import ChallengingWord
         from .entity import Entity
@@ -79,7 +80,7 @@ class ReadingAssignmentSubmission(Entity, Parsable):
         from .challenging_word import ChallengingWord
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accuracyScore": lambda n : setattr(self, 'accuracy_score', n.get_float_value()),
             "action": lambda n : setattr(self, 'action', n.get_str_value()),
             "assignmentId": lambda n : setattr(self, 'assignment_id', n.get_str_value()),
@@ -115,9 +116,6 @@ class ReadingAssignmentSubmission(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .challenging_word import ChallengingWord
-        from .entity import Entity
-
         writer.write_float_value("accuracyScore", self.accuracy_score)
         writer.write_str_value("action", self.action)
         writer.write_str_value("assignmentId", self.assignment_id)

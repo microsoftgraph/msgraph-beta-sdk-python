@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .conditional_access_guest_or_external_user_types import ConditionalAccessGuestOrExternalUserTypes
@@ -31,10 +32,10 @@ class UserSubject(ConditionalAccessWhatIfSubject, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UserSubject()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .conditional_access_guest_or_external_user_types import ConditionalAccessGuestOrExternalUserTypes
         from .conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
@@ -42,7 +43,7 @@ class UserSubject(ConditionalAccessWhatIfSubject, Parsable):
         from .conditional_access_guest_or_external_user_types import ConditionalAccessGuestOrExternalUserTypes
         from .conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "externalTenantId": lambda n : setattr(self, 'external_tenant_id', n.get_str_value()),
             "externalUserType": lambda n : setattr(self, 'external_user_type', n.get_collection_of_enum_values(ConditionalAccessGuestOrExternalUserTypes)),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
@@ -60,9 +61,6 @@ class UserSubject(ConditionalAccessWhatIfSubject, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .conditional_access_guest_or_external_user_types import ConditionalAccessGuestOrExternalUserTypes
-        from .conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
-
         writer.write_str_value("externalTenantId", self.external_tenant_id)
         writer.write_enum_value("externalUserType", self.external_user_type)
         writer.write_str_value("userId", self.user_id)

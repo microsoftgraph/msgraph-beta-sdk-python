@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ...entity import Entity
@@ -69,10 +70,10 @@ class SecurityRequirement(Entity, Parsable):
             return ResponseTimeSecurityRequirement()
         return SecurityRequirement()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ...entity import Entity
         from .admins_mfa_enforced_security_requirement import AdminsMfaEnforcedSecurityRequirement
@@ -92,7 +93,7 @@ class SecurityRequirement(Entity, Parsable):
         from .security_requirement_state import SecurityRequirementState
         from .security_requirement_type import SecurityRequirementType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionUrl": lambda n : setattr(self, 'action_url', n.get_str_value()),
             "complianceStatus": lambda n : setattr(self, 'compliance_status', n.get_enum_value(ComplianceStatus)),
             "helpUrl": lambda n : setattr(self, 'help_url', n.get_str_value()),
@@ -115,15 +116,6 @@ class SecurityRequirement(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ...entity import Entity
-        from .admins_mfa_enforced_security_requirement import AdminsMfaEnforcedSecurityRequirement
-        from .compliance_status import ComplianceStatus
-        from .customers_mfa_enforced_security_requirement import CustomersMfaEnforcedSecurityRequirement
-        from .customers_spending_budget_security_requirement import CustomersSpendingBudgetSecurityRequirement
-        from .response_time_security_requirement import ResponseTimeSecurityRequirement
-        from .security_requirement_state import SecurityRequirementState
-        from .security_requirement_type import SecurityRequirementType
-
         writer.write_str_value("actionUrl", self.action_url)
         writer.write_enum_value("complianceStatus", self.compliance_status)
         writer.write_str_value("helpUrl", self.help_url)

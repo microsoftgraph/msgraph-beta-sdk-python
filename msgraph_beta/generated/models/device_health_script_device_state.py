@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -18,7 +19,7 @@ class DeviceHealthScriptDeviceState(Entity, Parsable):
     Contains properties for device run state of the device health script.
     """
     # A list of the assignment filter ids used for health script applicability evaluation
-    assignment_filter_ids: Optional[List[str]] = None
+    assignment_filter_ids: Optional[list[str]] = None
     # Indicates the type of execution status of the device management script.
     detection_state: Optional[RunState] = None
     # The next timestamp of when the device health script is expected to execute
@@ -55,10 +56,10 @@ class DeviceHealthScriptDeviceState(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceHealthScriptDeviceState()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .managed_device import ManagedDevice
@@ -70,7 +71,7 @@ class DeviceHealthScriptDeviceState(Entity, Parsable):
         from .remediation_state import RemediationState
         from .run_state import RunState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignmentFilterIds": lambda n : setattr(self, 'assignment_filter_ids', n.get_collection_of_primitive_values(str)),
             "detectionState": lambda n : setattr(self, 'detection_state', n.get_enum_value(RunState)),
             "expectedStateUpdateDateTime": lambda n : setattr(self, 'expected_state_update_date_time', n.get_datetime_value()),
@@ -97,11 +98,6 @@ class DeviceHealthScriptDeviceState(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .managed_device import ManagedDevice
-        from .remediation_state import RemediationState
-        from .run_state import RunState
-
         writer.write_collection_of_primitive_values("assignmentFilterIds", self.assignment_filter_ids)
         writer.write_enum_value("detectionState", self.detection_state)
         writer.write_datetime_value("expectedStateUpdateDateTime", self.expected_state_update_date_time)

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .trust_framework_key_status import TrustFrameworkKeyStatus
@@ -13,7 +14,7 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # RSA Key - private exponent. The field isn't readable.
     d: Optional[str] = None
     # RSA Key - first exponent. The field isn't readable.
@@ -47,7 +48,7 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
     # The use (public key use) parameter identifies the intended use of the public key. The use parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Possible values are: sig (signature), enc (encryption).
     use: Optional[str] = None
     # The x5c (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates. For more information, see RFC 5280.
-    x5c: Optional[List[str]] = None
+    x5c: Optional[list[str]] = None
     # The x5t (X.509 certificate SHA-1 thumbprint) parameter is a base64url-encoded SHA-1 thumbprint (also known as digest) of the DER encoding of an X.509 certificate. For more information, see RFC 5280.
     x5t: Optional[str] = None
     
@@ -62,16 +63,16 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TrustFrameworkKey()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .trust_framework_key_status import TrustFrameworkKeyStatus
 
         from .trust_framework_key_status import TrustFrameworkKeyStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "d": lambda n : setattr(self, 'd', n.get_str_value()),
             "dp": lambda n : setattr(self, 'dp', n.get_str_value()),
             "dq": lambda n : setattr(self, 'dq', n.get_str_value()),
@@ -101,8 +102,6 @@ class TrustFrameworkKey(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .trust_framework_key_status import TrustFrameworkKeyStatus
-
         writer.write_str_value("d", self.d)
         writer.write_str_value("dp", self.dp)
         writer.write_str_value("dq", self.dq)

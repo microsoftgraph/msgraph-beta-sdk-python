@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -90,10 +91,10 @@ class GroupPolicyPresentation(Entity, Parsable):
             return GroupPolicyUploadedPresentation()
         return GroupPolicyPresentation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .group_policy_definition import GroupPolicyDefinition
@@ -121,7 +122,7 @@ class GroupPolicyPresentation(Entity, Parsable):
         from .group_policy_presentation_text_box import GroupPolicyPresentationTextBox
         from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "definition": lambda n : setattr(self, 'definition', n.get_object_value(GroupPolicyDefinition)),
             "label": lambda n : setattr(self, 'label', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -139,19 +140,6 @@ class GroupPolicyPresentation(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .group_policy_definition import GroupPolicyDefinition
-        from .group_policy_presentation_check_box import GroupPolicyPresentationCheckBox
-        from .group_policy_presentation_combo_box import GroupPolicyPresentationComboBox
-        from .group_policy_presentation_decimal_text_box import GroupPolicyPresentationDecimalTextBox
-        from .group_policy_presentation_dropdown_list import GroupPolicyPresentationDropdownList
-        from .group_policy_presentation_list_box import GroupPolicyPresentationListBox
-        from .group_policy_presentation_long_decimal_text_box import GroupPolicyPresentationLongDecimalTextBox
-        from .group_policy_presentation_multi_text_box import GroupPolicyPresentationMultiTextBox
-        from .group_policy_presentation_text import GroupPolicyPresentationText
-        from .group_policy_presentation_text_box import GroupPolicyPresentationTextBox
-        from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
-
         writer.write_object_value("definition", self.definition)
         writer.write_str_value("label", self.label)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)

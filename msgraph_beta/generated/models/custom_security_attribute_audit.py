@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .audit_activity_initiator import AuditActivityInitiator
@@ -20,7 +21,7 @@ class CustomSecurityAttributeAudit(Entity, Parsable):
     # The activityDisplayName property
     activity_display_name: Optional[str] = None
     # The additionalDetails property
-    additional_details: Optional[List[KeyValue]] = None
+    additional_details: Optional[list[KeyValue]] = None
     # The category property
     category: Optional[str] = None
     # The correlationId property
@@ -38,7 +39,7 @@ class CustomSecurityAttributeAudit(Entity, Parsable):
     # The resultReason property
     result_reason: Optional[str] = None
     # The targetResources property
-    target_resources: Optional[List[TargetResource]] = None
+    target_resources: Optional[list[TargetResource]] = None
     # The userAgent property
     user_agent: Optional[str] = None
     
@@ -53,10 +54,10 @@ class CustomSecurityAttributeAudit(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CustomSecurityAttributeAudit()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .audit_activity_initiator import AuditActivityInitiator
         from .entity import Entity
@@ -70,7 +71,7 @@ class CustomSecurityAttributeAudit(Entity, Parsable):
         from .operation_result import OperationResult
         from .target_resource import TargetResource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activityDateTime": lambda n : setattr(self, 'activity_date_time', n.get_datetime_value()),
             "activityDisplayName": lambda n : setattr(self, 'activity_display_name', n.get_str_value()),
             "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_collection_of_object_values(KeyValue)),
@@ -97,12 +98,6 @@ class CustomSecurityAttributeAudit(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .audit_activity_initiator import AuditActivityInitiator
-        from .entity import Entity
-        from .key_value import KeyValue
-        from .operation_result import OperationResult
-        from .target_resource import TargetResource
-
         writer.write_datetime_value("activityDateTime", self.activity_date_time)
         writer.write_str_value("activityDisplayName", self.activity_display_name)
         writer.write_collection_of_object_values("additionalDetails", self.additional_details)

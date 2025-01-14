@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .application import Application
@@ -24,7 +25,7 @@ class IpApplicationSegment(ApplicationSegment, Parsable):
     # Port supported for the application segment. DO NOT USE.
     port: Optional[int] = None
     # List of ports supported for the application segment.
-    ports: Optional[List[str]] = None
+    ports: Optional[list[str]] = None
     # Indicates the protocol of the network traffic acquired for the application segment. The possible values are: tcp, udp, unknownFutureValue.
     protocol: Optional[PrivateNetworkProtocol] = None
     
@@ -39,10 +40,10 @@ class IpApplicationSegment(ApplicationSegment, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IpApplicationSegment()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .application import Application
         from .application_segment import ApplicationSegment
@@ -54,7 +55,7 @@ class IpApplicationSegment(ApplicationSegment, Parsable):
         from .private_network_destination_type import PrivateNetworkDestinationType
         from .private_network_protocol import PrivateNetworkProtocol
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "application": lambda n : setattr(self, 'application', n.get_object_value(Application)),
             "destinationHost": lambda n : setattr(self, 'destination_host', n.get_str_value()),
             "destinationType": lambda n : setattr(self, 'destination_type', n.get_enum_value(PrivateNetworkDestinationType)),
@@ -75,11 +76,6 @@ class IpApplicationSegment(ApplicationSegment, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .application import Application
-        from .application_segment import ApplicationSegment
-        from .private_network_destination_type import PrivateNetworkDestinationType
-        from .private_network_protocol import PrivateNetworkProtocol
-
         writer.write_object_value("application", self.application)
         writer.write_str_value("destinationHost", self.destination_host)
         writer.write_enum_value("destinationType", self.destination_type)

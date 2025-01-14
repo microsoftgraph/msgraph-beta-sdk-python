@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .networking_protocol import NetworkingProtocol
@@ -33,10 +34,10 @@ class RelatedDestination(RelatedResource, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RelatedDestination()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .networking_protocol import NetworkingProtocol
         from .related_resource import RelatedResource
@@ -44,7 +45,7 @@ class RelatedDestination(RelatedResource, Parsable):
         from .networking_protocol import NetworkingProtocol
         from .related_resource import RelatedResource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "fqdn": lambda n : setattr(self, 'fqdn', n.get_str_value()),
             "ip": lambda n : setattr(self, 'ip', n.get_str_value()),
             "networkingProtocol": lambda n : setattr(self, 'networking_protocol', n.get_enum_value(NetworkingProtocol)),
@@ -63,9 +64,6 @@ class RelatedDestination(RelatedResource, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .networking_protocol import NetworkingProtocol
-        from .related_resource import RelatedResource
-
         writer.write_str_value("fqdn", self.fqdn)
         writer.write_str_value("ip", self.ip)
         writer.write_enum_value("networkingProtocol", self.networking_protocol)

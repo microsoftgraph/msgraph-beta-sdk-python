@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .inbound_api_flow import InboundApiFlow
@@ -53,10 +54,10 @@ class InboundFlow(IndustryDataActivity, Parsable):
             return InboundFileFlow()
         return InboundFlow()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .inbound_api_flow import InboundApiFlow
         from .inbound_domain import InboundDomain
@@ -72,7 +73,7 @@ class InboundFlow(IndustryDataActivity, Parsable):
         from .industry_data_connector import IndustryDataConnector
         from .year_time_period_definition import YearTimePeriodDefinition
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dataConnector": lambda n : setattr(self, 'data_connector', n.get_object_value(IndustryDataConnector)),
             "dataDomain": lambda n : setattr(self, 'data_domain', n.get_enum_value(InboundDomain)),
             "effectiveDateTime": lambda n : setattr(self, 'effective_date_time', n.get_datetime_value()),
@@ -92,13 +93,6 @@ class InboundFlow(IndustryDataActivity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .inbound_api_flow import InboundApiFlow
-        from .inbound_domain import InboundDomain
-        from .inbound_file_flow import InboundFileFlow
-        from .industry_data_activity import IndustryDataActivity
-        from .industry_data_connector import IndustryDataConnector
-        from .year_time_period_definition import YearTimePeriodDefinition
-
         writer.write_object_value("dataConnector", self.data_connector)
         writer.write_enum_value("dataDomain", self.data_domain)
         writer.write_datetime_value("effectiveDateTime", self.effective_date_time)

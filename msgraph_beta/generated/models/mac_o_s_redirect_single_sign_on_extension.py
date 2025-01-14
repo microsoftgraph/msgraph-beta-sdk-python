@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .key_typed_value_pair import KeyTypedValuePair
@@ -17,13 +18,13 @@ class MacOSRedirectSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOSRedirectSingleSignOnExtension"
     # Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
-    configurations: Optional[List[KeyTypedValuePair]] = None
+    configurations: Optional[list[KeyTypedValuePair]] = None
     # Gets or sets the bundle ID of the app extension that performs SSO for the specified URLs.
     extension_identifier: Optional[str] = None
     # Gets or sets the team ID of the app extension that performs SSO for the specified URLs.
     team_identifier: Optional[str] = None
     # One or more URL prefixes of identity providers on whose behalf the app extension performs single sign-on. URLs must begin with http:// or https://. All URL prefixes must be unique for all profiles.
-    url_prefixes: Optional[List[str]] = None
+    url_prefixes: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MacOSRedirectSingleSignOnExtension:
@@ -36,10 +37,10 @@ class MacOSRedirectSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSRedirectSingleSignOnExtension()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .key_typed_value_pair import KeyTypedValuePair
         from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
@@ -47,7 +48,7 @@ class MacOSRedirectSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
         from .key_typed_value_pair import KeyTypedValuePair
         from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "configurations": lambda n : setattr(self, 'configurations', n.get_collection_of_object_values(KeyTypedValuePair)),
             "extensionIdentifier": lambda n : setattr(self, 'extension_identifier', n.get_str_value()),
             "teamIdentifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),
@@ -66,9 +67,6 @@ class MacOSRedirectSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .key_typed_value_pair import KeyTypedValuePair
-        from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
-
         writer.write_collection_of_object_values("configurations", self.configurations)
         writer.write_str_value("extensionIdentifier", self.extension_identifier)
         writer.write_str_value("teamIdentifier", self.team_identifier)

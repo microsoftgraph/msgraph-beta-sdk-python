@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
@@ -24,7 +25,7 @@ class WindowsVpnConfiguration(DeviceConfiguration, Parsable):
     # Custom XML commands that configures the VPN connection. (UTF8 encoded byte array)
     custom_xml: Optional[bytes] = None
     # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-    servers: Optional[List[VpnServer]] = None
+    servers: Optional[list[VpnServer]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WindowsVpnConfiguration:
@@ -54,10 +55,10 @@ class WindowsVpnConfiguration(DeviceConfiguration, Parsable):
             return WindowsPhone81VpnConfiguration()
         return WindowsVpnConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
         from .vpn_server import VpnServer
@@ -71,7 +72,7 @@ class WindowsVpnConfiguration(DeviceConfiguration, Parsable):
         from .windows81_vpn_configuration import Windows81VpnConfiguration
         from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
             "customXml": lambda n : setattr(self, 'custom_xml', n.get_bytes_value()),
             "servers": lambda n : setattr(self, 'servers', n.get_collection_of_object_values(VpnServer)),
@@ -89,12 +90,6 @@ class WindowsVpnConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_configuration import DeviceConfiguration
-        from .vpn_server import VpnServer
-        from .windows10_vpn_configuration import Windows10VpnConfiguration
-        from .windows81_vpn_configuration import Windows81VpnConfiguration
-        from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
-
         writer.write_str_value("connectionName", self.connection_name)
         writer.write_bytes_value("customXml", self.custom_xml)
         writer.write_collection_of_object_values("servers", self.servers)

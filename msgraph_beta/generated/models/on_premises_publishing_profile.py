@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .connector import Connector
@@ -18,15 +19,15 @@ from .entity import Entity
 @dataclass
 class OnPremisesPublishingProfile(Entity, Parsable):
     # List of existing onPremisesAgentGroup objects. Read-only. Nullable.
-    agent_groups: Optional[List[OnPremisesAgentGroup]] = None
+    agent_groups: Optional[list[OnPremisesAgentGroup]] = None
     # List of existing onPremisesAgent objects. Read-only. Nullable.
-    agents: Optional[List[OnPremisesAgent]] = None
+    agents: Optional[list[OnPremisesAgent]] = None
     # Represents the segment configurations that are allowed for an on-premises non-web application published through Microsoft Entra application proxy.
-    application_segments: Optional[List[IpApplicationSegment]] = None
+    application_segments: Optional[list[IpApplicationSegment]] = None
     # List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
-    connector_groups: Optional[List[ConnectorGroup]] = None
+    connector_groups: Optional[list[ConnectorGroup]] = None
     # List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
-    connectors: Optional[List[Connector]] = None
+    connectors: Optional[list[Connector]] = None
     # Represents a hybridAgentUpdaterConfiguration object.
     hybrid_agent_updater_configuration: Optional[HybridAgentUpdaterConfiguration] = None
     # Specifies whether default access for app proxy is enabled or disabled.
@@ -36,7 +37,7 @@ class OnPremisesPublishingProfile(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of existing publishedResource objects. Read-only. Nullable.
-    published_resources: Optional[List[PublishedResource]] = None
+    published_resources: Optional[list[PublishedResource]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OnPremisesPublishingProfile:
@@ -49,10 +50,10 @@ class OnPremisesPublishingProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OnPremisesPublishingProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .connector import Connector
         from .connector_group import ConnectorGroup
@@ -72,7 +73,7 @@ class OnPremisesPublishingProfile(Entity, Parsable):
         from .on_premises_agent_group import OnPremisesAgentGroup
         from .published_resource import PublishedResource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(OnPremisesAgentGroup)),
             "agents": lambda n : setattr(self, 'agents', n.get_collection_of_object_values(OnPremisesAgent)),
             "applicationSegments": lambda n : setattr(self, 'application_segments', n.get_collection_of_object_values(IpApplicationSegment)),
@@ -96,15 +97,6 @@ class OnPremisesPublishingProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .connector import Connector
-        from .connector_group import ConnectorGroup
-        from .entity import Entity
-        from .hybrid_agent_updater_configuration import HybridAgentUpdaterConfiguration
-        from .ip_application_segment import IpApplicationSegment
-        from .on_premises_agent import OnPremisesAgent
-        from .on_premises_agent_group import OnPremisesAgentGroup
-        from .published_resource import PublishedResource
-
         writer.write_collection_of_object_values("agentGroups", self.agent_groups)
         writer.write_collection_of_object_values("agents", self.agents)
         writer.write_collection_of_object_values("applicationSegments", self.application_segments)

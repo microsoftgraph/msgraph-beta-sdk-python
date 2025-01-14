@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -200,10 +201,10 @@ class DiscoveredCloudAppInfo(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DiscoveredCloudAppInfo()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .app_info_csa_star_level import AppInfoCsaStarLevel
@@ -227,7 +228,7 @@ class DiscoveredCloudAppInfo(Entity, Parsable):
         from .app_info_uploaded_data_types import AppInfoUploadedDataTypes
         from .cloud_app_info_state import CloudAppInfoState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "csaStarLevel": lambda n : setattr(self, 'csa_star_level', n.get_enum_value(AppInfoCsaStarLevel)),
             "dataAtRestEncryptionMethod": lambda n : setattr(self, 'data_at_rest_encryption_method', n.get_enum_value(AppInfoDataAtRestEncryptionMethod)),
             "dataCenter": lambda n : setattr(self, 'data_center', n.get_str_value()),
@@ -325,17 +326,6 @@ class DiscoveredCloudAppInfo(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .app_info_csa_star_level import AppInfoCsaStarLevel
-        from .app_info_data_at_rest_encryption_method import AppInfoDataAtRestEncryptionMethod
-        from .app_info_data_retention_policy import AppInfoDataRetentionPolicy
-        from .app_info_encryption_protocol import AppInfoEncryptionProtocol
-        from .app_info_fed_ramp_level import AppInfoFedRampLevel
-        from .app_info_holding import AppInfoHolding
-        from .app_info_pci_dss_version import AppInfoPciDssVersion
-        from .app_info_uploaded_data_types import AppInfoUploadedDataTypes
-        from .cloud_app_info_state import CloudAppInfoState
-
         writer.write_enum_value("csaStarLevel", self.csa_star_level)
         writer.write_enum_value("dataAtRestEncryptionMethod", self.data_at_rest_encryption_method)
         writer.write_str_value("dataCenter", self.data_center)

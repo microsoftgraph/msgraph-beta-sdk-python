@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_for_work_app import AndroidForWorkApp
@@ -60,12 +61,12 @@ class MobileApp(Entity, Parsable):
     An abstract class containing the base properties for Intune mobile apps. Note: Listing mobile apps with `$expand=assignments` has been deprecated. Instead get the list of apps without the `$expand` query on `assignments`. Then, perform the expansion on individual applications.
     """
     # The list of group assignments for this mobile app.
-    assignments: Optional[List[MobileAppAssignment]] = None
+    assignments: Optional[list[MobileAppAssignment]] = None
     # The list of categories for this app.
-    categories: Optional[List[MobileAppCategory]] = None
-    # The date and time the app was created.
+    categories: Optional[list[MobileAppCategory]] = None
+    # The date and time the app was created. This property is read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # The total number of dependencies the child app has.
+    # The total number of dependencies the child app has. This property is read-only.
     dependent_app_count: Optional[int] = None
     # The description of the app.
     description: Optional[str] = None
@@ -75,13 +76,13 @@ class MobileApp(Entity, Parsable):
     display_name: Optional[str] = None
     # The more information Url.
     information_url: Optional[str] = None
-    # The value indicating whether the app is assigned to at least one group.
+    # The value indicating whether the app is assigned to at least one group. This property is read-only.
     is_assigned: Optional[bool] = None
     # The value indicating whether the app is marked as featured by the admin.
     is_featured: Optional[bool] = None
     # The large icon, to be displayed in the app details and used for upload of the icon.
     large_icon: Optional[MimeContent] = None
-    # The date and time the app was last modified.
+    # The date and time the app was last modified. This property is read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # Notes for the app.
     notes: Optional[str] = None
@@ -95,15 +96,15 @@ class MobileApp(Entity, Parsable):
     publisher: Optional[str] = None
     # Indicates the publishing state of an app.
     publishing_state: Optional[MobileAppPublishingState] = None
-    # List of relationships for this mobile app.
-    relationships: Optional[List[MobileAppRelationship]] = None
+    # The set of direct relationships for this app.
+    relationships: Optional[list[MobileAppRelationship]] = None
     # List of scope tag ids for this mobile app.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # The total number of apps this app is directly or indirectly superseded by. This property is read-only.
     superseded_app_count: Optional[int] = None
     # The total number of apps this app directly or indirectly supersedes. This property is read-only.
     superseding_app_count: Optional[int] = None
-    # The upload state.
+    # The upload state. Possible values are: 0 - Not Ready, 1 - Ready, 2 - Processing. This property is read-only.
     upload_state: Optional[int] = None
     
     @staticmethod
@@ -282,10 +283,10 @@ class MobileApp(Entity, Parsable):
             return WinGetApp()
         return MobileApp()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_for_work_app import AndroidForWorkApp
         from .android_lob_app import AndroidLobApp
@@ -381,7 +382,7 @@ class MobileApp(Entity, Parsable):
         from .windows_web_app import WindowsWebApp
         from .win_get_app import WinGetApp
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(MobileAppAssignment)),
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_object_values(MobileAppCategory)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -418,53 +419,6 @@ class MobileApp(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_for_work_app import AndroidForWorkApp
-        from .android_lob_app import AndroidLobApp
-        from .android_managed_store_app import AndroidManagedStoreApp
-        from .android_managed_store_web_app import AndroidManagedStoreWebApp
-        from .android_store_app import AndroidStoreApp
-        from .entity import Entity
-        from .iosi_pad_o_s_web_clip import IosiPadOSWebClip
-        from .ios_lob_app import IosLobApp
-        from .ios_store_app import IosStoreApp
-        from .ios_vpp_app import IosVppApp
-        from .mac_os_vpp_app import MacOsVppApp
-        from .mac_o_s_dmg_app import MacOSDmgApp
-        from .mac_o_s_lob_app import MacOSLobApp
-        from .mac_o_s_microsoft_defender_app import MacOSMicrosoftDefenderApp
-        from .mac_o_s_microsoft_edge_app import MacOSMicrosoftEdgeApp
-        from .mac_o_s_office_suite_app import MacOSOfficeSuiteApp
-        from .mac_o_s_pkg_app import MacOSPkgApp
-        from .mac_o_s_web_clip import MacOSWebClip
-        from .managed_android_lob_app import ManagedAndroidLobApp
-        from .managed_android_store_app import ManagedAndroidStoreApp
-        from .managed_app import ManagedApp
-        from .managed_i_o_s_lob_app import ManagedIOSLobApp
-        from .managed_i_o_s_store_app import ManagedIOSStoreApp
-        from .managed_mobile_lob_app import ManagedMobileLobApp
-        from .microsoft_store_for_business_app import MicrosoftStoreForBusinessApp
-        from .mime_content import MimeContent
-        from .mobile_app_assignment import MobileAppAssignment
-        from .mobile_app_category import MobileAppCategory
-        from .mobile_app_publishing_state import MobileAppPublishingState
-        from .mobile_app_relationship import MobileAppRelationship
-        from .mobile_lob_app import MobileLobApp
-        from .office_suite_app import OfficeSuiteApp
-        from .web_app import WebApp
-        from .win32_catalog_app import Win32CatalogApp
-        from .win32_lob_app import Win32LobApp
-        from .windows_app_x import WindowsAppX
-        from .windows_microsoft_edge_app import WindowsMicrosoftEdgeApp
-        from .windows_mobile_m_s_i import WindowsMobileMSI
-        from .windows_phone81_app_x import WindowsPhone81AppX
-        from .windows_phone81_app_x_bundle import WindowsPhone81AppXBundle
-        from .windows_phone81_store_app import WindowsPhone81StoreApp
-        from .windows_phone_x_a_p import WindowsPhoneXAP
-        from .windows_store_app import WindowsStoreApp
-        from .windows_universal_app_x import WindowsUniversalAppX
-        from .windows_web_app import WindowsWebApp
-        from .win_get_app import WinGetApp
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_collection_of_object_values("categories", self.categories)
         writer.write_str_value("description", self.description)

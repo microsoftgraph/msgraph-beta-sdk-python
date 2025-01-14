@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -19,7 +20,7 @@ class MeetingRegistrationBase(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Registrants of the online meeting.
-    registrants: Optional[List[MeetingRegistrantBase]] = None
+    registrants: Optional[list[MeetingRegistrantBase]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MeetingRegistrationBase:
@@ -45,10 +46,10 @@ class MeetingRegistrationBase(Entity, Parsable):
             return MeetingRegistration()
         return MeetingRegistrationBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .external_meeting_registration import ExternalMeetingRegistration
@@ -62,7 +63,7 @@ class MeetingRegistrationBase(Entity, Parsable):
         from .meeting_registrant_base import MeetingRegistrantBase
         from .meeting_registration import MeetingRegistration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedRegistrant": lambda n : setattr(self, 'allowed_registrant', n.get_enum_value(MeetingAudience)),
             "registrants": lambda n : setattr(self, 'registrants', n.get_collection_of_object_values(MeetingRegistrantBase)),
         }
@@ -79,12 +80,6 @@ class MeetingRegistrationBase(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .external_meeting_registration import ExternalMeetingRegistration
-        from .meeting_audience import MeetingAudience
-        from .meeting_registrant_base import MeetingRegistrantBase
-        from .meeting_registration import MeetingRegistration
-
         writer.write_enum_value("allowedRegistrant", self.allowed_registrant)
         writer.write_collection_of_object_values("registrants", self.registrants)
     

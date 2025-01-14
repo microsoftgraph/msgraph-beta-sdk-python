@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .application import Application
@@ -15,13 +16,13 @@ from .entity import Entity
 @dataclass
 class ConnectorGroup(Entity, Parsable):
     # The applications property
-    applications: Optional[List[Application]] = None
+    applications: Optional[list[Application]] = None
     # The connectorGroupType property
     connector_group_type: Optional[ConnectorGroupType] = None
     # Indicates if the connectorGroup is the default connectorGroup. Only a single connector group can be the default connectorGroup and this is pre-set by the system. Read-only.
     is_default: Optional[bool] = None
     # The members property
-    members: Optional[List[Connector]] = None
+    members: Optional[list[Connector]] = None
     # The name associated with the connectorGroup.
     name: Optional[str] = None
     # The OdataType property
@@ -40,10 +41,10 @@ class ConnectorGroup(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ConnectorGroup()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .application import Application
         from .connector import Connector
@@ -57,7 +58,7 @@ class ConnectorGroup(Entity, Parsable):
         from .connector_group_type import ConnectorGroupType
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applications": lambda n : setattr(self, 'applications', n.get_collection_of_object_values(Application)),
             "connectorGroupType": lambda n : setattr(self, 'connector_group_type', n.get_enum_value(ConnectorGroupType)),
             "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
@@ -78,12 +79,6 @@ class ConnectorGroup(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .application import Application
-        from .connector import Connector
-        from .connector_group_region import ConnectorGroupRegion
-        from .connector_group_type import ConnectorGroupType
-        from .entity import Entity
-
         writer.write_collection_of_object_values("applications", self.applications)
         writer.write_enum_value("connectorGroupType", self.connector_group_type)
         writer.write_bool_value("isDefault", self.is_default)

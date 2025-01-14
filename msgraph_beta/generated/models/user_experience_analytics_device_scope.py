@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_scope_operator import DeviceScopeOperator
@@ -53,10 +54,10 @@ class UserExperienceAnalyticsDeviceScope(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsDeviceScope()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_scope_operator import DeviceScopeOperator
         from .device_scope_parameter import DeviceScopeParameter
@@ -68,7 +69,7 @@ class UserExperienceAnalyticsDeviceScope(Entity, Parsable):
         from .device_scope_status import DeviceScopeStatus
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deviceScopeName": lambda n : setattr(self, 'device_scope_name', n.get_str_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
@@ -94,11 +95,6 @@ class UserExperienceAnalyticsDeviceScope(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_scope_operator import DeviceScopeOperator
-        from .device_scope_parameter import DeviceScopeParameter
-        from .device_scope_status import DeviceScopeStatus
-        from .entity import Entity
-
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("deviceScopeName", self.device_scope_name)
         writer.write_bool_value("enabled", self.enabled)

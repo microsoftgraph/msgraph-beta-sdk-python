@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package_answer import AccessPackageAnswer
@@ -16,9 +17,9 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, BackedMod
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Answers that have already been provided.
-    existing_answers: Optional[List[AccessPackageAnswer]] = None
+    existing_answers: Optional[list[AccessPackageAnswer]] = None
     # Indicates whether a request must be approved by an approver.
     is_approval_required: Optional[bool] = None
     # Indicates whether approval is required when a user tries to extend their access.
@@ -36,7 +37,7 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, BackedMod
     # The identifier of the policy that these requirements are associated with. This identifier can be used when creating a new assignment request.
     policy_id: Optional[str] = None
     # Questions that are configured on the policy. The questions can be required or optional; callers can determine whether a question is required or optional based on the isRequired property on accessPackageQuestion.
-    questions: Optional[List[AccessPackageQuestion]] = None
+    questions: Optional[list[AccessPackageQuestion]] = None
     # Schedule restrictions enforced, if any.
     schedule: Optional[RequestSchedule] = None
     # The status of the process to process the verifiable credential, if any.
@@ -53,10 +54,10 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, BackedMod
             raise TypeError("parse_node cannot be null.")
         return AccessPackageAssignmentRequestRequirements()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package_answer import AccessPackageAnswer
         from .access_package_question import AccessPackageQuestion
@@ -68,7 +69,7 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, BackedMod
         from .request_schedule import RequestSchedule
         from .verifiable_credential_requirement_status import VerifiableCredentialRequirementStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "existingAnswers": lambda n : setattr(self, 'existing_answers', n.get_collection_of_object_values(AccessPackageAnswer)),
             "isApprovalRequired": lambda n : setattr(self, 'is_approval_required', n.get_bool_value()),
             "isApprovalRequiredForExtension": lambda n : setattr(self, 'is_approval_required_for_extension', n.get_bool_value()),
@@ -92,11 +93,6 @@ class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, BackedMod
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .access_package_answer import AccessPackageAnswer
-        from .access_package_question import AccessPackageQuestion
-        from .request_schedule import RequestSchedule
-        from .verifiable_credential_requirement_status import VerifiableCredentialRequirementStatus
-
         writer.write_collection_of_object_values("existingAnswers", self.existing_answers)
         writer.write_bool_value("isApprovalRequired", self.is_approval_required)
         writer.write_bool_value("isApprovalRequiredForExtension", self.is_approval_required_for_extension)

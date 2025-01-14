@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -28,7 +29,7 @@ class Case(Entity, Parsable):
     # The date and time when the entity was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     created_date_time: Optional[datetime.datetime] = None
     # Returns a list of case custodian objects for this case.  Nullable.
-    custodians: Optional[List[Custodian]] = None
+    custodians: Optional[list[Custodian]] = None
     # The case description.
     description: Optional[str] = None
     # The case name.
@@ -40,23 +41,23 @@ class Case(Entity, Parsable):
     # The latest date and time when the case was modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     last_modified_date_time: Optional[datetime.datetime] = None
     # Returns a list of case legalHold objects for this case.  Nullable.
-    legal_holds: Optional[List[LegalHold]] = None
+    legal_holds: Optional[list[LegalHold]] = None
     # Returns a list of case noncustodialDataSource objects for this case.  Nullable.
-    noncustodial_data_sources: Optional[List[NoncustodialDataSource]] = None
+    noncustodial_data_sources: Optional[list[NoncustodialDataSource]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Returns a list of case operation objects for this case. Nullable.
-    operations: Optional[List[CaseOperation]] = None
+    operations: Optional[list[CaseOperation]] = None
     # Returns a list of reviewSet objects in the case. Read-only. Nullable.
-    review_sets: Optional[List[ReviewSet]] = None
+    review_sets: Optional[list[ReviewSet]] = None
     # The settings property
     settings: Optional[CaseSettings] = None
     # Returns a list of sourceCollection objects associated with this case.
-    source_collections: Optional[List[SourceCollection]] = None
+    source_collections: Optional[list[SourceCollection]] = None
     # The case status. Possible values are unknown, active, pendingDelete, closing, closed, and closedWithError. For details, see the following table.
     status: Optional[CaseStatus] = None
     # Returns a list of tag objects associated to this case.
-    tags: Optional[List[Tag]] = None
+    tags: Optional[list[Tag]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Case:
@@ -69,10 +70,10 @@ class Case(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Case()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from ..identity_set import IdentitySet
@@ -98,7 +99,7 @@ class Case(Entity, Parsable):
         from .source_collection import SourceCollection
         from .tag import Tag
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "closedBy": lambda n : setattr(self, 'closed_by', n.get_object_value(IdentitySet)),
             "closedDateTime": lambda n : setattr(self, 'closed_date_time', n.get_datetime_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -130,18 +131,6 @@ class Case(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from ..identity_set import IdentitySet
-        from .case_operation import CaseOperation
-        from .case_settings import CaseSettings
-        from .case_status import CaseStatus
-        from .custodian import Custodian
-        from .legal_hold import LegalHold
-        from .noncustodial_data_source import NoncustodialDataSource
-        from .review_set import ReviewSet
-        from .source_collection import SourceCollection
-        from .tag import Tag
-
         writer.write_object_value("closedBy", self.closed_by)
         writer.write_datetime_value("closedDateTime", self.closed_date_time)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

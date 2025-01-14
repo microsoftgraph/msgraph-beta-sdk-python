@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_claim_transformation import CustomClaimTransformation
@@ -14,7 +15,7 @@ class RegexReplaceTransformation(CustomClaimTransformation, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.regexReplaceTransformation"
     # Additional attributes that can be referenced within the replacement string.
-    additional_attributes: Optional[List[SourcedAttribute]] = None
+    additional_attributes: Optional[list[SourcedAttribute]] = None
     # The regular expression to be applied on the input directory attribute or constant.
     regex: Optional[str] = None
     # The transformation output replacement pattern with regular expression output group and input parameter group reference.
@@ -31,10 +32,10 @@ class RegexReplaceTransformation(CustomClaimTransformation, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RegexReplaceTransformation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_claim_transformation import CustomClaimTransformation
         from .sourced_attribute import SourcedAttribute
@@ -42,7 +43,7 @@ class RegexReplaceTransformation(CustomClaimTransformation, Parsable):
         from .custom_claim_transformation import CustomClaimTransformation
         from .sourced_attribute import SourcedAttribute
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "additionalAttributes": lambda n : setattr(self, 'additional_attributes', n.get_collection_of_object_values(SourcedAttribute)),
             "regex": lambda n : setattr(self, 'regex', n.get_str_value()),
             "replacement": lambda n : setattr(self, 'replacement', n.get_str_value()),
@@ -60,9 +61,6 @@ class RegexReplaceTransformation(CustomClaimTransformation, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .custom_claim_transformation import CustomClaimTransformation
-        from .sourced_attribute import SourcedAttribute
-
         writer.write_collection_of_object_values("additionalAttributes", self.additional_attributes)
         writer.write_str_value("regex", self.regex)
         writer.write_str_value("replacement", self.replacement)

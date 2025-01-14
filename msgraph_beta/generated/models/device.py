@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .alternative_security_id import AlternativeSecurityId
@@ -21,42 +22,42 @@ class Device(DirectoryObject, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.device"
     # true if the account is enabled; otherwise, false. Default is true.  Supports $filter (eq, ne, not, in). Only callers with at least the Cloud Device Administrator role can set this property.
     account_enabled: Optional[bool] = None
-    # The alternativeNames property
-    alternative_names: Optional[List[str]] = None
+    # List of alternative names for the device.
+    alternative_names: Optional[list[str]] = None
     # For internal use only. Not nullable. Supports $filter (eq, not, ge, le).
-    alternative_security_ids: Optional[List[AlternativeSecurityId]] = None
+    alternative_security_ids: Optional[list[AlternativeSecurityId]] = None
     # The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderby.
     approximate_last_sign_in_date_time: Optional[datetime.datetime] = None
     # Set of commands sent to this device.
-    commands: Optional[List[Command]] = None
+    commands: Optional[list[Command]] = None
     # The timestamp when the device is no longer deemed compliant. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     compliance_expiration_date_time: Optional[datetime.datetime] = None
     # User-defined property set by Intune to automatically add devices to groups and simplify managing devices.
     device_category: Optional[str] = None
-    # Unique Identifier set by Azure Device Registration Service at the time of registration. This is an alternate key that can be used to reference the device object. Also Supports $filter (eq, ne, not, startsWith).
+    # Unique identifier set by Azure Device Registration Service at the time of registration. This ID is an alternate key that can be used to reference the device object. Also supports $filter (eq, ne, not, startsWith).
     device_id: Optional[str] = None
     # For internal use only. Set to null.
     device_metadata: Optional[str] = None
-    # Ownership of the device. This property is set by Intune. Possible values are: unknown, company, personal.
+    # Ownership of the device. Intune sets this property. Possible values are: unknown, company, personal.
     device_ownership: Optional[str] = None
-    # The deviceTemplate property
-    device_template: Optional[List[DeviceTemplate]] = None
+    # Device template used to instantiate this device. Nullable. Read-only.
+    device_template: Optional[list[DeviceTemplate]] = None
     # For internal use only.
     device_version: Optional[int] = None
     # The display name for the device. Maximum length is 256 characters. Required. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     display_name: Optional[str] = None
-    # The on-premises domain name of Microsoft Entra hybrid joined devices. This property is set by Intune.
+    # The on-premises domain name of Microsoft Entra hybrid joined devices. Intune sets this property.
     domain_name: Optional[str] = None
-    # Enrollment profile applied to the device. For example, Apple Device Enrollment Profile, Device enrollment - Corporate device identifiers, or Windows Autopilot profile name. This property is set by Intune.
+    # Enrollment profile applied to the device. For example, Apple Device Enrollment Profile, Device enrollment - Corporate device identifiers, or Windows Autopilot profile name. Intune sets this property.
     enrollment_profile_name: Optional[str] = None
-    # Enrollment type of the device. This property is set by Intune. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement, windowsAzureADJoinUsingDeviceAuth,appleUserEnrollment, appleUserEnrollmentWithServiceAccount. NOTE: This property might return other values apart from those listed.
+    # Enrollment type of the device. Intune sets this property. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement, windowsAzureADJoinUsingDeviceAuth,appleUserEnrollment, appleUserEnrollmentWithServiceAccount. NOTE: This property might return other values apart from those listed.
     enrollment_type: Optional[str] = None
     # Contains extension attributes 1-15 for the device. The individual extension attributes aren't selectable. These properties are mastered in cloud and can be set during creation or update of a device object in Microsoft Entra ID. Supports $filter (eq, not, startsWith, and eq on null values).
     extension_attributes: Optional[OnPremisesExtensionAttributes] = None
     # The collection of open extensions defined for the device. Read-only. Nullable.
-    extensions: Optional[List[Extension]] = None
+    extensions: Optional[list[Extension]] = None
     # List of host names for the device.
-    hostnames: Optional[List[str]] = None
+    hostnames: Optional[list[str]] = None
     # true if the device complies with Mobile Device Management (MDM) policies; otherwise, false. Read-only. This can only be updated by Intune for any device OS type or by an approved MDM app for Windows OS devices. Supports $filter (eq, ne, not).
     is_compliant: Optional[bool] = None
     # true if the device is managed by a Mobile Device Management (MDM) app; otherwise, false. This can only be updated by Intune for any device OS type or by an approved MDM app for Windows OS devices. Supports $filter (eq, ne, not).
@@ -67,14 +68,14 @@ class Device(DirectoryObject, Parsable):
     is_rooted: Optional[bool] = None
     # Form factor of the device. Only returned if the user signs in with a Microsoft account as part of Project Rome.
     kind: Optional[str] = None
-    # Management channel of the device.  This property is set by Intune. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController.
+    # Management channel of the device. Intune sets this property. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController.
     management_type: Optional[str] = None
     # Manufacturer of the device. Read-only.
     manufacturer: Optional[str] = None
     # Application identifier used to register device into MDM. Read-only. Supports $filter (eq, ne, not, startsWith).
     mdm_app_id: Optional[str] = None
     # Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.
-    member_of: Optional[List[DirectoryObject]] = None
+    member_of: Optional[list[DirectoryObject]] = None
     # Model of the device. Read-only.
     model: Optional[str] = None
     # Friendly name of the device. Only returned if user signs in with a Microsoft account as part of Project Rome.
@@ -90,27 +91,27 @@ class Device(DirectoryObject, Parsable):
     # Operating system version of the device. Required. Supports $filter (eq, ne, not, ge, le, startsWith, and eq on null values).
     operating_system_version: Optional[str] = None
     # For internal use only. Not nullable. Supports $filter (eq, not, ge, le, startsWith, /$count eq 0, /$count ne 0.
-    physical_ids: Optional[List[str]] = None
+    physical_ids: Optional[list[str]] = None
     # Platform of device. Only returned if the user signs in with a Microsoft account as part of Project Rome.
     platform: Optional[str] = None
     # The profile type of the device. Possible values: RegisteredDevice (default), SecureVM, Printer, Shared, IoT.
     profile_type: Optional[str] = None
     # The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.
-    registered_owners: Optional[List[DirectoryObject]] = None
+    registered_owners: Optional[list[DirectoryObject]] = None
     # Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.
-    registered_users: Optional[List[DirectoryObject]] = None
+    registered_users: Optional[list[DirectoryObject]] = None
     # Date and time of when the device was registered. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     registration_date_time: Optional[datetime.datetime] = None
     # Device is online or offline. Only returned if user signs in with a Microsoft account as part of Project Rome.
     status: Optional[str] = None
     # List of labels applied to the device by the system. Supports $filter (/$count eq 0, /$count ne 0).
-    system_labels: Optional[List[str]] = None
+    system_labels: Optional[list[str]] = None
     # Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.
-    transitive_member_of: Optional[List[DirectoryObject]] = None
+    transitive_member_of: Optional[list[DirectoryObject]] = None
     # Type of trust for the joined device. Read-only. Possible values: Workplace (indicates bring your own personal devices), AzureAd (Cloud only joined devices), ServerAd (on-premises domain joined devices joined to Microsoft Entra ID). For more information, see Introduction to device management in Microsoft Entra ID.
     trust_type: Optional[str] = None
     # Represents the usage rights a device has been granted.
-    usage_rights: Optional[List[UsageRight]] = None
+    usage_rights: Optional[list[UsageRight]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Device:
@@ -123,10 +124,10 @@ class Device(DirectoryObject, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Device()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .alternative_security_id import AlternativeSecurityId
         from .command import Command
@@ -144,7 +145,7 @@ class Device(DirectoryObject, Parsable):
         from .on_premises_extension_attributes import OnPremisesExtensionAttributes
         from .usage_right import UsageRight
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accountEnabled": lambda n : setattr(self, 'account_enabled', n.get_bool_value()),
             "alternativeNames": lambda n : setattr(self, 'alternative_names', n.get_collection_of_primitive_values(str)),
             "alternativeSecurityIds": lambda n : setattr(self, 'alternative_security_ids', n.get_collection_of_object_values(AlternativeSecurityId)),
@@ -205,14 +206,6 @@ class Device(DirectoryObject, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .alternative_security_id import AlternativeSecurityId
-        from .command import Command
-        from .device_template import DeviceTemplate
-        from .directory_object import DirectoryObject
-        from .extension import Extension
-        from .on_premises_extension_attributes import OnPremisesExtensionAttributes
-        from .usage_right import UsageRight
-
         writer.write_bool_value("accountEnabled", self.account_enabled)
         writer.write_collection_of_primitive_values("alternativeNames", self.alternative_names)
         writer.write_collection_of_object_values("alternativeSecurityIds", self.alternative_security_ids)

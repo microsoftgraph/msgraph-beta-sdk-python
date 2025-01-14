@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .advanced_bit_locker_state import AdvancedBitLockerState
@@ -39,7 +40,7 @@ class ManagedDeviceEncryptionState(Entity, Parsable):
     # Operating system version of the device
     os_version: Optional[str] = None
     # Policy Details
-    policy_details: Optional[List[EncryptionReportPolicyDetails]] = None
+    policy_details: Optional[list[EncryptionReportPolicyDetails]] = None
     # Device TPM Version
     tpm_specification_version: Optional[str] = None
     # User name
@@ -56,10 +57,10 @@ class ManagedDeviceEncryptionState(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagedDeviceEncryptionState()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .advanced_bit_locker_state import AdvancedBitLockerState
         from .compliance_status import ComplianceStatus
@@ -79,7 +80,7 @@ class ManagedDeviceEncryptionState(Entity, Parsable):
         from .entity import Entity
         from .file_vault_state import FileVaultState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "advancedBitLockerStates": lambda n : setattr(self, 'advanced_bit_locker_states', n.get_collection_of_enum_values(AdvancedBitLockerState)),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(DeviceTypes)),
@@ -105,15 +106,6 @@ class ManagedDeviceEncryptionState(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .advanced_bit_locker_state import AdvancedBitLockerState
-        from .compliance_status import ComplianceStatus
-        from .device_types import DeviceTypes
-        from .encryption_readiness_state import EncryptionReadinessState
-        from .encryption_report_policy_details import EncryptionReportPolicyDetails
-        from .encryption_state import EncryptionState
-        from .entity import Entity
-        from .file_vault_state import FileVaultState
-
         writer.write_enum_value("advancedBitLockerStates", self.advanced_bit_locker_states)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_enum_value("deviceType", self.device_type)

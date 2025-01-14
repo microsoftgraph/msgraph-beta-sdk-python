@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .certificate_validity_period_scale import CertificateValidityPeriodScale
@@ -78,10 +79,10 @@ class WindowsCertificateProfileBase(DeviceConfiguration, Parsable):
             return WindowsPhone81ImportedPFXCertificateProfile()
         return WindowsCertificateProfileBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
         from .device_configuration import DeviceConfiguration
@@ -107,7 +108,7 @@ class WindowsCertificateProfileBase(DeviceConfiguration, Parsable):
         from .windows81_s_c_e_p_certificate_profile import Windows81SCEPCertificateProfile
         from .windows_phone81_imported_p_f_x_certificate_profile import WindowsPhone81ImportedPFXCertificateProfile
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
             "keyStorageProvider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(KeyStorageProviderOption)),
@@ -128,18 +129,6 @@ class WindowsCertificateProfileBase(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .certificate_validity_period_scale import CertificateValidityPeriodScale
-        from .device_configuration import DeviceConfiguration
-        from .key_storage_provider_option import KeyStorageProviderOption
-        from .subject_alternative_name_type import SubjectAlternativeNameType
-        from .subject_name_format import SubjectNameFormat
-        from .windows10_certificate_profile_base import Windows10CertificateProfileBase
-        from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
-        from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
-        from .windows81_certificate_profile_base import Windows81CertificateProfileBase
-        from .windows81_s_c_e_p_certificate_profile import Windows81SCEPCertificateProfile
-        from .windows_phone81_imported_p_f_x_certificate_profile import WindowsPhone81ImportedPFXCertificateProfile
-
         writer.write_enum_value("certificateValidityPeriodScale", self.certificate_validity_period_scale)
         writer.write_int_value("certificateValidityPeriodValue", self.certificate_validity_period_value)
         writer.write_enum_value("keyStorageProvider", self.key_storage_provider)

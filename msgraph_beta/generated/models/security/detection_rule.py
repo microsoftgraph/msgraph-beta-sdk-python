@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .detection_action import DetectionAction
@@ -38,10 +39,10 @@ class DetectionRule(ProtectionRule, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DetectionRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .detection_action import DetectionAction
         from .protection_rule import ProtectionRule
@@ -55,7 +56,7 @@ class DetectionRule(ProtectionRule, Parsable):
         from .rule_schedule import RuleSchedule
         from .run_details import RunDetails
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "detectionAction": lambda n : setattr(self, 'detection_action', n.get_object_value(DetectionAction)),
             "detectorId": lambda n : setattr(self, 'detector_id', n.get_str_value()),
             "lastRunDetails": lambda n : setattr(self, 'last_run_details', n.get_object_value(RunDetails)),
@@ -75,12 +76,6 @@ class DetectionRule(ProtectionRule, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .detection_action import DetectionAction
-        from .protection_rule import ProtectionRule
-        from .query_condition import QueryCondition
-        from .rule_schedule import RuleSchedule
-        from .run_details import RunDetails
-
         writer.write_object_value("detectionAction", self.detection_action)
         writer.write_str_value("detectorId", self.detector_id)
         writer.write_object_value("lastRunDetails", self.last_run_details)

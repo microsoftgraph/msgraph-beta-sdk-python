@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -17,7 +18,7 @@ class RelyingPartyDetailedSummary(Entity, Parsable):
     # The migrationStatus property
     migration_status: Optional[MigrationStatus] = None
     # Specifies all the validations check done on applications configuration details to evaluate if the application is ready to be moved to Microsoft Entra ID.
-    migration_validation_details: Optional[List[KeyValuePair]] = None
+    migration_validation_details: Optional[list[KeyValuePair]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # This identifier is used to identify the relying party to this Federation Service. It's used when issuing claims to the relying party.
@@ -25,7 +26,7 @@ class RelyingPartyDetailedSummary(Entity, Parsable):
     # Name of application or other entity on the internet that uses an identity provider to authenticate a user who wants to sign in.
     relying_party_name: Optional[str] = None
     # Specifies where the relying party expects to receive the token.
-    reply_urls: Optional[List[str]] = None
+    reply_urls: Optional[list[str]] = None
     # Uniquely identifies the Active Directory forest.
     service_id: Optional[str] = None
     # Number of successful / (number of successful + number of failed sign ins) on Active Directory Federation Service in the period specified.
@@ -48,10 +49,10 @@ class RelyingPartyDetailedSummary(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RelyingPartyDetailedSummary()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .key_value_pair import KeyValuePair
@@ -61,7 +62,7 @@ class RelyingPartyDetailedSummary(Entity, Parsable):
         from .key_value_pair import KeyValuePair
         from .migration_status import MigrationStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "failedSignInCount": lambda n : setattr(self, 'failed_sign_in_count', n.get_int_value()),
             "migrationStatus": lambda n : setattr(self, 'migration_status', n.get_enum_value(MigrationStatus)),
             "migrationValidationDetails": lambda n : setattr(self, 'migration_validation_details', n.get_collection_of_object_values(KeyValuePair)),
@@ -87,10 +88,6 @@ class RelyingPartyDetailedSummary(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .key_value_pair import KeyValuePair
-        from .migration_status import MigrationStatus
-
         writer.write_int_value("failedSignInCount", self.failed_sign_in_count)
         writer.write_enum_value("migrationStatus", self.migration_status)
         writer.write_collection_of_object_values("migrationValidationDetails", self.migration_validation_details)

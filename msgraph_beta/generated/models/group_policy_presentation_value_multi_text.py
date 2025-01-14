@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .group_policy_presentation_value import GroupPolicyPresentationValue
@@ -16,7 +17,7 @@ class GroupPolicyPresentationValueMultiText(GroupPolicyPresentationValue, Parsab
     # The OdataType property
     odata_type: Optional[str] = None
     # A collection of non-empty strings for the associated presentation.
-    values: Optional[List[str]] = None
+    values: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GroupPolicyPresentationValueMultiText:
@@ -29,16 +30,16 @@ class GroupPolicyPresentationValueMultiText(GroupPolicyPresentationValue, Parsab
             raise TypeError("parse_node cannot be null.")
         return GroupPolicyPresentationValueMultiText()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .group_policy_presentation_value import GroupPolicyPresentationValue
 
         from .group_policy_presentation_value import GroupPolicyPresentationValue
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "values": lambda n : setattr(self, 'values', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,8 +55,6 @@ class GroupPolicyPresentationValueMultiText(GroupPolicyPresentationValue, Parsab
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .group_policy_presentation_value import GroupPolicyPresentationValue
-
         writer.write_collection_of_primitive_values("values", self.values)
     
 

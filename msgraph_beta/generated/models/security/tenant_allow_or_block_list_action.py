@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .tenant_allow_block_list_action import TenantAllowBlockListAction
@@ -15,7 +16,7 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Specifies whether the tenant allow-or-block list is an allow or block. The possible values are: allow, block, and unkownFutureValue.
     action: Optional[TenantAllowBlockListAction] = None
     # Specifies when the tenant allow-block-list expires in date time.
@@ -25,7 +26,7 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Contains the result of the submission that lead to the tenant allow-block-list entry creation.
-    results: Optional[List[TenantAllowBlockListEntryResult]] = None
+    results: Optional[list[TenantAllowBlockListEntryResult]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TenantAllowOrBlockListAction:
@@ -38,10 +39,10 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TenantAllowOrBlockListAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .tenant_allow_block_list_action import TenantAllowBlockListAction
         from .tenant_allow_block_list_entry_result import TenantAllowBlockListEntryResult
@@ -49,7 +50,7 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
         from .tenant_allow_block_list_action import TenantAllowBlockListAction
         from .tenant_allow_block_list_entry_result import TenantAllowBlockListEntryResult
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(TenantAllowBlockListAction)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "note": lambda n : setattr(self, 'note', n.get_str_value()),
@@ -66,9 +67,6 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .tenant_allow_block_list_action import TenantAllowBlockListAction
-        from .tenant_allow_block_list_entry_result import TenantAllowBlockListEntryResult
-
         writer.write_enum_value("action", self.action)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("note", self.note)

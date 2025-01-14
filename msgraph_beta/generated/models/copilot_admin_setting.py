@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .copilot_admin_limited_mode import CopilotAdminLimitedMode
@@ -11,7 +12,7 @@ from .entity import Entity
 
 @dataclass
 class CopilotAdminSetting(Entity, Parsable):
-    # Represents a setting that controls whether Microsoft 365 Copilot in Teams Meetings users can receive responses to sentiment-related prompts. Read-only. Nullable.
+    # Represents a setting that controls whether Microsoft 365 Copilot in Teams meetings users can receive responses to sentiment-related prompts. Read-only. Nullable.
     limited_mode: Optional[CopilotAdminLimitedMode] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -27,10 +28,10 @@ class CopilotAdminSetting(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CopilotAdminSetting()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .copilot_admin_limited_mode import CopilotAdminLimitedMode
         from .entity import Entity
@@ -38,7 +39,7 @@ class CopilotAdminSetting(Entity, Parsable):
         from .copilot_admin_limited_mode import CopilotAdminLimitedMode
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "limitedMode": lambda n : setattr(self, 'limited_mode', n.get_object_value(CopilotAdminLimitedMode)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,9 +55,6 @@ class CopilotAdminSetting(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .copilot_admin_limited_mode import CopilotAdminLimitedMode
-        from .entity import Entity
-
         writer.write_object_value("limitedMode", self.limited_mode)
     
 

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_event_handler_result import AuthenticationEventHandlerResult
@@ -35,16 +36,16 @@ class CustomExtensionCalloutResult(AuthenticationEventHandlerResult, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CustomExtensionCalloutResult()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_event_handler_result import AuthenticationEventHandlerResult
 
         from .authentication_event_handler_result import AuthenticationEventHandlerResult
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "calloutDateTime": lambda n : setattr(self, 'callout_date_time', n.get_datetime_value()),
             "customExtensionId": lambda n : setattr(self, 'custom_extension_id', n.get_str_value()),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
@@ -64,8 +65,6 @@ class CustomExtensionCalloutResult(AuthenticationEventHandlerResult, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authentication_event_handler_result import AuthenticationEventHandlerResult
-
         writer.write_datetime_value("calloutDateTime", self.callout_date_time)
         writer.write_str_value("customExtensionId", self.custom_extension_id)
         writer.write_int_value("errorCode", self.error_code)

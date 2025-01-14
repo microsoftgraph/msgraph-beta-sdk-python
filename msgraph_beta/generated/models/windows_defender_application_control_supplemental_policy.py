@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -15,7 +16,7 @@ from .entity import Entity
 @dataclass
 class WindowsDefenderApplicationControlSupplementalPolicy(Entity, Parsable):
     # The associated group assignments for the Windows Defender Application Control Supplemental Policy.
-    assignments: Optional[List[WindowsDefenderApplicationControlSupplementalPolicyAssignment]] = None
+    assignments: Optional[list[WindowsDefenderApplicationControlSupplementalPolicyAssignment]] = None
     # Indicates the content of the Windows Defender Application Control Supplemental Policy in byte array format.
     content: Optional[bytes] = None
     # Indicates the file name associated with the content of the Windows Defender Application Control Supplemental Policy.
@@ -27,7 +28,7 @@ class WindowsDefenderApplicationControlSupplementalPolicy(Entity, Parsable):
     # The description of the Windows Defender Application Control Supplemental Policy.
     description: Optional[str] = None
     # The list of device deployment states for this WindowsDefenderApplicationControl supplemental policy.
-    device_statuses: Optional[List[WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus]] = None
+    device_statuses: Optional[list[WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus]] = None
     # The display name of the Windows Defender Application Control Supplemental Policy.
     display_name: Optional[str] = None
     # Indicates the last modified date and time of the Windows Defender Application Control Supplemental Policy.
@@ -35,7 +36,7 @@ class WindowsDefenderApplicationControlSupplementalPolicy(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of Scope Tags for the Windows Defender Application Control Supplemental Policy entity.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # Indicates the Windows Defender Application Control Supplemental Policy's version.
     version: Optional[str] = None
     
@@ -50,10 +51,10 @@ class WindowsDefenderApplicationControlSupplementalPolicy(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsDefenderApplicationControlSupplementalPolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
@@ -65,7 +66,7 @@ class WindowsDefenderApplicationControlSupplementalPolicy(Entity, Parsable):
         from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
         from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(WindowsDefenderApplicationControlSupplementalPolicyAssignment)),
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
             "contentFileName": lambda n : setattr(self, 'content_file_name', n.get_str_value()),
@@ -91,11 +92,6 @@ class WindowsDefenderApplicationControlSupplementalPolicy(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
-        from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-        from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_bytes_value("content", self.content)
         writer.write_str_value("contentFileName", self.content_file_name)

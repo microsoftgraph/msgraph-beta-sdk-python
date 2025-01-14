@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .business_scenario_task import BusinessScenarioTask
@@ -115,10 +116,10 @@ class PlannerTask(PlannerDelta, Parsable):
             return BusinessScenarioTask()
         return PlannerTask()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .business_scenario_task import BusinessScenarioTask
         from .identity_set import IdentitySet
@@ -150,7 +151,7 @@ class PlannerTask(PlannerDelta, Parsable):
         from .planner_task_details import PlannerTaskDetails
         from .planner_task_recurrence import PlannerTaskRecurrence
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activeChecklistItemCount": lambda n : setattr(self, 'active_checklist_item_count', n.get_int_value()),
             "appliedCategories": lambda n : setattr(self, 'applied_categories', n.get_object_value(PlannerAppliedCategories)),
             "archivalInfo": lambda n : setattr(self, 'archival_info', n.get_object_value(PlannerArchivalInfo)),
@@ -199,21 +200,6 @@ class PlannerTask(PlannerDelta, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .business_scenario_task import BusinessScenarioTask
-        from .identity_set import IdentitySet
-        from .planner_applied_categories import PlannerAppliedCategories
-        from .planner_archival_info import PlannerArchivalInfo
-        from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
-        from .planner_assignments import PlannerAssignments
-        from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
-        from .planner_delta import PlannerDelta
-        from .planner_preview_type import PlannerPreviewType
-        from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
-        from .planner_task_completion_requirements import PlannerTaskCompletionRequirements
-        from .planner_task_creation import PlannerTaskCreation
-        from .planner_task_details import PlannerTaskDetails
-        from .planner_task_recurrence import PlannerTaskRecurrence
-
         writer.write_int_value("activeChecklistItemCount", self.active_checklist_item_count)
         writer.write_object_value("appliedCategories", self.applied_categories)
         writer.write_object_value("archivalInfo", self.archival_info)

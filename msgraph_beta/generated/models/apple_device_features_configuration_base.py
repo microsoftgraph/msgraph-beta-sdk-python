@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .air_print_destination import AirPrintDestination
@@ -19,7 +20,7 @@ class AppleDeviceFeaturesConfigurationBase(DeviceConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.appleDeviceFeaturesConfigurationBase"
     # An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
-    air_print_destinations: Optional[List[AirPrintDestination]] = None
+    air_print_destinations: Optional[list[AirPrintDestination]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AppleDeviceFeaturesConfigurationBase:
@@ -45,10 +46,10 @@ class AppleDeviceFeaturesConfigurationBase(DeviceConfiguration, Parsable):
             return MacOSDeviceFeaturesConfiguration()
         return AppleDeviceFeaturesConfigurationBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .air_print_destination import AirPrintDestination
         from .device_configuration import DeviceConfiguration
@@ -60,7 +61,7 @@ class AppleDeviceFeaturesConfigurationBase(DeviceConfiguration, Parsable):
         from .ios_device_features_configuration import IosDeviceFeaturesConfiguration
         from .mac_o_s_device_features_configuration import MacOSDeviceFeaturesConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "airPrintDestinations": lambda n : setattr(self, 'air_print_destinations', n.get_collection_of_object_values(AirPrintDestination)),
         }
         super_fields = super().get_field_deserializers()
@@ -76,11 +77,6 @@ class AppleDeviceFeaturesConfigurationBase(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .air_print_destination import AirPrintDestination
-        from .device_configuration import DeviceConfiguration
-        from .ios_device_features_configuration import IosDeviceFeaturesConfiguration
-        from .mac_o_s_device_features_configuration import MacOSDeviceFeaturesConfiguration
-
         writer.write_collection_of_object_values("airPrintDestinations", self.air_print_destinations)
     
 

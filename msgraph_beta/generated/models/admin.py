@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .admin_apps_and_services import AdminAppsAndServices
@@ -24,7 +25,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The appsAndServices property
     apps_and_services: Optional[AdminAppsAndServices] = None
     # The dynamics property
@@ -63,10 +64,10 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Admin()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .admin_apps_and_services import AdminAppsAndServices
         from .admin_dynamics import AdminDynamics
@@ -94,7 +95,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .service_announcement import ServiceAnnouncement
         from .sharepoint import Sharepoint
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appsAndServices": lambda n : setattr(self, 'apps_and_services', n.get_object_value(AdminAppsAndServices)),
             "dynamics": lambda n : setattr(self, 'dynamics', n.get_object_value(AdminDynamics)),
             "edge": lambda n : setattr(self, 'edge', n.get_object_value(Edge)),
@@ -119,19 +120,6 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .admin_apps_and_services import AdminAppsAndServices
-        from .admin_dynamics import AdminDynamics
-        from .admin_forms import AdminForms
-        from .admin_microsoft365_apps import AdminMicrosoft365Apps
-        from .admin_report_settings import AdminReportSettings
-        from .admin_todo import AdminTodo
-        from .admin_windows import AdminWindows
-        from .edge import Edge
-        from .entra import Entra
-        from .people_admin_settings import PeopleAdminSettings
-        from .service_announcement import ServiceAnnouncement
-        from .sharepoint import Sharepoint
-
         writer.write_object_value("appsAndServices", self.apps_and_services)
         writer.write_object_value("dynamics", self.dynamics)
         writer.write_object_value("edge", self.edge)

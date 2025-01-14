@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
@@ -22,7 +23,7 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration, Parsable):
     # Dynamically generated characters used as suffix for computer name. Valid values 3 to 14
     computer_name_suffix_random_char_count: Optional[int] = None
     # Reference to device configurations required for network connectivity
-    network_access_configurations: Optional[List[DeviceConfiguration]] = None
+    network_access_configurations: Optional[list[DeviceConfiguration]] = None
     # Organizational unit (OU) where the computer account will be created. If this parameter is NULL, the well known computer object container will be used as published in the domain.
     organizational_unit: Optional[str] = None
     
@@ -37,16 +38,16 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsDomainJoinConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
 
         from .device_configuration import DeviceConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activeDirectoryDomainName": lambda n : setattr(self, 'active_directory_domain_name', n.get_str_value()),
             "computerNameStaticPrefix": lambda n : setattr(self, 'computer_name_static_prefix', n.get_str_value()),
             "computerNameSuffixRandomCharCount": lambda n : setattr(self, 'computer_name_suffix_random_char_count', n.get_int_value()),
@@ -66,8 +67,6 @@ class WindowsDomainJoinConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_configuration import DeviceConfiguration
-
         writer.write_str_value("activeDirectoryDomainName", self.active_directory_domain_name)
         writer.write_str_value("computerNameStaticPrefix", self.computer_name_static_prefix)
         writer.write_int_value("computerNameSuffixRandomCharCount", self.computer_name_suffix_random_char_count)

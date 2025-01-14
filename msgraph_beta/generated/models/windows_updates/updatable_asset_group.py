@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .updatable_asset import UpdatableAsset
@@ -13,7 +14,7 @@ class UpdatableAssetGroup(UpdatableAsset, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.updatableAssetGroup"
     # Members of the group. Read-only.
-    members: Optional[List[UpdatableAsset]] = None
+    members: Optional[list[UpdatableAsset]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> UpdatableAssetGroup:
@@ -26,16 +27,16 @@ class UpdatableAssetGroup(UpdatableAsset, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UpdatableAssetGroup()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .updatable_asset import UpdatableAsset
 
         from .updatable_asset import UpdatableAsset
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(UpdatableAsset)),
         }
         super_fields = super().get_field_deserializers()
@@ -51,8 +52,6 @@ class UpdatableAssetGroup(UpdatableAsset, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .updatable_asset import UpdatableAsset
-
         writer.write_collection_of_object_values("members", self.members)
     
 

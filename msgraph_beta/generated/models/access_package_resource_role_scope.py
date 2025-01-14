@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package_resource_role import AccessPackageResourceRole
@@ -39,10 +40,10 @@ class AccessPackageResourceRoleScope(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AccessPackageResourceRoleScope()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package_resource_role import AccessPackageResourceRole
         from .access_package_resource_scope import AccessPackageResourceScope
@@ -52,7 +53,7 @@ class AccessPackageResourceRoleScope(Entity, Parsable):
         from .access_package_resource_scope import AccessPackageResourceScope
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessPackageResourceRole": lambda n : setattr(self, 'access_package_resource_role', n.get_object_value(AccessPackageResourceRole)),
             "accessPackageResourceScope": lambda n : setattr(self, 'access_package_resource_scope', n.get_object_value(AccessPackageResourceScope)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),
@@ -73,10 +74,6 @@ class AccessPackageResourceRoleScope(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .access_package_resource_role import AccessPackageResourceRole
-        from .access_package_resource_scope import AccessPackageResourceScope
-        from .entity import Entity
-
         writer.write_object_value("accessPackageResourceRole", self.access_package_resource_role)
         writer.write_object_value("accessPackageResourceScope", self.access_package_resource_scope)
         writer.write_str_value("createdBy", self.created_by)

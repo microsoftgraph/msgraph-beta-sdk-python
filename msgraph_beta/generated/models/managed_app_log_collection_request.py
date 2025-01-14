@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -31,7 +32,7 @@ class ManagedAppLogCollectionRequest(Entity, Parsable):
     # Indicates the status for the app log collection request - pending, completed or failed. Default is pending.
     status: Optional[str] = None
     # The collection of log upload results as reported by each component on the device. Such components can be the application itself, the Mobile Application Management (MAM) SDK, and other on-device components that are requested to upload diagnostic logs. Read-only.
-    uploaded_logs: Optional[List[ManagedAppLogUpload]] = None
+    uploaded_logs: Optional[list[ManagedAppLogUpload]] = None
     # Represents the current consent status of the associated `managedAppLogCollectionRequest`.
     user_log_upload_consent: Optional[ManagedAppLogUploadConsent] = None
     # Version of the entity.
@@ -48,10 +49,10 @@ class ManagedAppLogCollectionRequest(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagedAppLogCollectionRequest()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .managed_app_log_upload import ManagedAppLogUpload
@@ -61,7 +62,7 @@ class ManagedAppLogCollectionRequest(Entity, Parsable):
         from .managed_app_log_upload import ManagedAppLogUpload
         from .managed_app_log_upload_consent import ManagedAppLogUploadConsent
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "managedAppRegistrationId": lambda n : setattr(self, 'managed_app_registration_id', n.get_str_value()),
             "requestedBy": lambda n : setattr(self, 'requested_by', n.get_str_value()),
@@ -85,10 +86,6 @@ class ManagedAppLogCollectionRequest(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .managed_app_log_upload import ManagedAppLogUpload
-        from .managed_app_log_upload_consent import ManagedAppLogUploadConsent
-
         writer.write_datetime_value("completedDateTime", self.completed_date_time)
         writer.write_str_value("managedAppRegistrationId", self.managed_app_registration_id)
         writer.write_str_value("requestedBy", self.requested_by)

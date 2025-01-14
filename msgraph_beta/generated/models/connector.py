@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .connector_group import ConnectorGroup
@@ -17,7 +18,7 @@ class Connector(Entity, Parsable):
     # The name of the computer on which the connector is installed and runs on.
     machine_name: Optional[str] = None
     # The connectorGroup that the connector is a member of. Read-only.
-    member_of: Optional[List[ConnectorGroup]] = None
+    member_of: Optional[list[ConnectorGroup]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The status property
@@ -36,10 +37,10 @@ class Connector(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Connector()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .connector_group import ConnectorGroup
         from .connector_status import ConnectorStatus
@@ -49,7 +50,7 @@ class Connector(Entity, Parsable):
         from .connector_status import ConnectorStatus
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "externalIp": lambda n : setattr(self, 'external_ip', n.get_str_value()),
             "machineName": lambda n : setattr(self, 'machine_name', n.get_str_value()),
             "memberOf": lambda n : setattr(self, 'member_of', n.get_collection_of_object_values(ConnectorGroup)),
@@ -69,10 +70,6 @@ class Connector(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .connector_group import ConnectorGroup
-        from .connector_status import ConnectorStatus
-        from .entity import Entity
-
         writer.write_str_value("externalIp", self.external_ip)
         writer.write_str_value("machineName", self.machine_name)
         writer.write_collection_of_object_values("memberOf", self.member_of)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -19,11 +20,11 @@ class GroupPolicySettingMapping(Entity, Parsable):
     # Admx Group Policy Id
     admx_setting_definition_id: Optional[str] = None
     # List of Child Ids of the group policy setting.
-    child_id_list: Optional[List[str]] = None
+    child_id_list: Optional[list[str]] = None
     # The Intune Setting Definition Id
     intune_setting_definition_id: Optional[str] = None
     # The list of Intune Setting URIs this group policy setting maps to
-    intune_setting_uri_list: Optional[List[str]] = None
+    intune_setting_uri_list: Optional[list[str]] = None
     # Indicates if the setting is supported by Intune or not
     is_mdm_supported: Optional[bool] = None
     # The CSP name this group policy setting maps to.
@@ -70,10 +71,10 @@ class GroupPolicySettingMapping(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GroupPolicySettingMapping()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .group_policy_setting_scope import GroupPolicySettingScope
@@ -85,7 +86,7 @@ class GroupPolicySettingMapping(Entity, Parsable):
         from .group_policy_setting_type import GroupPolicySettingType
         from .mdm_supported_state import MdmSupportedState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "admxSettingDefinitionId": lambda n : setattr(self, 'admx_setting_definition_id', n.get_str_value()),
             "childIdList": lambda n : setattr(self, 'child_id_list', n.get_collection_of_primitive_values(str)),
             "intuneSettingDefinitionId": lambda n : setattr(self, 'intune_setting_definition_id', n.get_str_value()),
@@ -120,11 +121,6 @@ class GroupPolicySettingMapping(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .group_policy_setting_scope import GroupPolicySettingScope
-        from .group_policy_setting_type import GroupPolicySettingType
-        from .mdm_supported_state import MdmSupportedState
-
         writer.write_str_value("admxSettingDefinitionId", self.admx_setting_definition_id)
         writer.write_collection_of_primitive_values("childIdList", self.child_id_list)
         writer.write_str_value("intuneSettingDefinitionId", self.intune_setting_definition_id)

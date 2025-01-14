@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .ios_device_type import IosDeviceType
@@ -26,7 +27,7 @@ class IosVppApp(MobileApp, Parsable):
     # The applicable iOS Device Type.
     applicable_device_type: Optional[IosDeviceType] = None
     # The licenses assigned to this app.
-    assigned_licenses: Optional[List[IosVppAppAssignedLicense]] = None
+    assigned_licenses: Optional[list[IosVppAppAssignedLicense]] = None
     # The Identity Name.
     bundle_id: Optional[str] = None
     # The supported License Type.
@@ -34,7 +35,7 @@ class IosVppApp(MobileApp, Parsable):
     # The VPP application release date and time.
     release_date_time: Optional[datetime.datetime] = None
     # Results of revoke license actions on this app.
-    revoke_license_action_results: Optional[List[IosVppAppRevokeLicensesActionResult]] = None
+    revoke_license_action_results: Optional[list[IosVppAppRevokeLicensesActionResult]] = None
     # The total number of VPP licenses.
     total_license_count: Optional[int] = None
     # The number of VPP licenses in use.
@@ -59,10 +60,10 @@ class IosVppApp(MobileApp, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IosVppApp()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .ios_device_type import IosDeviceType
         from .ios_vpp_app_assigned_license import IosVppAppAssignedLicense
@@ -78,7 +79,7 @@ class IosVppApp(MobileApp, Parsable):
         from .vpp_licensing_type import VppLicensingType
         from .vpp_token_account_type import VppTokenAccountType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
             "applicableDeviceType": lambda n : setattr(self, 'applicable_device_type', n.get_object_value(IosDeviceType)),
             "assignedLicenses": lambda n : setattr(self, 'assigned_licenses', n.get_collection_of_object_values(IosVppAppAssignedLicense)),
@@ -106,13 +107,6 @@ class IosVppApp(MobileApp, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .ios_device_type import IosDeviceType
-        from .ios_vpp_app_assigned_license import IosVppAppAssignedLicense
-        from .ios_vpp_app_revoke_licenses_action_result import IosVppAppRevokeLicensesActionResult
-        from .mobile_app import MobileApp
-        from .vpp_licensing_type import VppLicensingType
-        from .vpp_token_account_type import VppTokenAccountType
-
         writer.write_str_value("appStoreUrl", self.app_store_url)
         writer.write_object_value("applicableDeviceType", self.applicable_device_type)
         writer.write_collection_of_object_values("assignedLicenses", self.assigned_licenses)

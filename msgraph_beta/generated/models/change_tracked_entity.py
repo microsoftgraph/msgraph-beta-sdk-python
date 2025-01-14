@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .day_note import DayNote
@@ -109,10 +110,10 @@ class ChangeTrackedEntity(Entity, Parsable):
             return WorkforceIntegration()
         return ChangeTrackedEntity()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .day_note import DayNote
         from .entity import Entity
@@ -148,7 +149,7 @@ class ChangeTrackedEntity(Entity, Parsable):
         from .time_off_request import TimeOffRequest
         from .workforce_integration import WorkforceIntegration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
@@ -167,23 +168,6 @@ class ChangeTrackedEntity(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .day_note import DayNote
-        from .entity import Entity
-        from .identity_set import IdentitySet
-        from .offer_shift_request import OfferShiftRequest
-        from .open_shift import OpenShift
-        from .open_shift_change_request import OpenShiftChangeRequest
-        from .schedule_change_request import ScheduleChangeRequest
-        from .scheduling_group import SchedulingGroup
-        from .shift import Shift
-        from .shift_preferences import ShiftPreferences
-        from .swap_shifts_change_request import SwapShiftsChangeRequest
-        from .time_card import TimeCard
-        from .time_off import TimeOff
-        from .time_off_reason import TimeOffReason
-        from .time_off_request import TimeOffRequest
-        from .workforce_integration import WorkforceIntegration
-
         writer.write_object_value("createdBy", self.created_by)
     
 

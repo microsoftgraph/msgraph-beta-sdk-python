@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_required_password_complexity import AndroidRequiredPasswordComplexity
@@ -96,10 +97,10 @@ class AndroidWorkProfileCompliancePolicy(DeviceCompliancePolicy, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidWorkProfileCompliancePolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_required_password_complexity import AndroidRequiredPasswordComplexity
         from .android_required_password_type import AndroidRequiredPasswordType
@@ -115,7 +116,7 @@ class AndroidWorkProfileCompliancePolicy(DeviceCompliancePolicy, Parsable):
         from .device_compliance_policy import DeviceCompliancePolicy
         from .device_threat_protection_level import DeviceThreatProtectionLevel
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "advancedThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(DeviceThreatProtectionLevel)),
             "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
             "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(DeviceThreatProtectionLevel)),
@@ -162,13 +163,6 @@ class AndroidWorkProfileCompliancePolicy(DeviceCompliancePolicy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_required_password_complexity import AndroidRequiredPasswordComplexity
-        from .android_required_password_type import AndroidRequiredPasswordType
-        from .android_safety_net_evaluation_type import AndroidSafetyNetEvaluationType
-        from .android_work_profile_required_password_type import AndroidWorkProfileRequiredPasswordType
-        from .device_compliance_policy import DeviceCompliancePolicy
-        from .device_threat_protection_level import DeviceThreatProtectionLevel
-
         writer.write_enum_value("advancedThreatProtectionRequiredSecurityLevel", self.advanced_threat_protection_required_security_level)
         writer.write_bool_value("deviceThreatProtectionEnabled", self.device_threat_protection_enabled)
         writer.write_enum_value("deviceThreatProtectionRequiredSecurityLevel", self.device_threat_protection_required_security_level)

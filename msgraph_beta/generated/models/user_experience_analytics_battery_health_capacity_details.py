@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -38,16 +39,16 @@ class UserExperienceAnalyticsBatteryHealthCapacityDetails(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsBatteryHealthCapacityDetails()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
 
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activeDevices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
             "batteryCapacityFair": lambda n : setattr(self, 'battery_capacity_fair', n.get_int_value()),
             "batteryCapacityGood": lambda n : setattr(self, 'battery_capacity_good', n.get_int_value()),
@@ -67,8 +68,6 @@ class UserExperienceAnalyticsBatteryHealthCapacityDetails(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-
         writer.write_int_value("activeDevices", self.active_devices)
         writer.write_int_value("batteryCapacityFair", self.battery_capacity_fair)
         writer.write_int_value("batteryCapacityGood", self.battery_capacity_good)

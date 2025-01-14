@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .action_state import ActionState
@@ -16,7 +17,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The specified action. Supported values in the Microsoft Endpoint Manager portal are: Reprovision, Resize, Restore. Supported values in enterprise Cloud PC devices are: Reboot, Rename, Reprovision, Troubleshoot.
     action_name: Optional[str] = None
     # State of the action. Possible values are: None, pending, canceled, active, done, failed, notSupported. Read-only.
@@ -47,10 +48,10 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CloudPcRemoteActionResult()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .action_state import ActionState
         from .cloud_pc_status_detail import CloudPcStatusDetail
@@ -60,7 +61,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_status_detail import CloudPcStatusDetail
         from .cloud_pc_status_details import CloudPcStatusDetails
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionName": lambda n : setattr(self, 'action_name', n.get_str_value()),
             "actionState": lambda n : setattr(self, 'action_state', n.get_enum_value(ActionState)),
             "cloudPcId": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
@@ -81,10 +82,6 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .action_state import ActionState
-        from .cloud_pc_status_detail import CloudPcStatusDetail
-        from .cloud_pc_status_details import CloudPcStatusDetails
-
         writer.write_str_value("actionName", self.action_name)
         writer.write_enum_value("actionState", self.action_state)
         writer.write_str_value("cloudPcId", self.cloud_pc_id)

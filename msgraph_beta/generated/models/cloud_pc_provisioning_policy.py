@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_autopilot_configuration import CloudPcAutopilotConfiguration
@@ -23,7 +24,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
     # The URL of the alternate resource that links to this provisioning policy. Read-only.
     alternate_resource_url: Optional[str] = None
     # A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Microsoft Entra ID that have provisioning policy assigned. Returned only on $expand. For an example about how to get the assignments relationship, see Get cloudPcProvisioningPolicy.
-    assignments: Optional[List[CloudPcProvisioningPolicyAssignment]] = None
+    assignments: Optional[list[CloudPcProvisioningPolicyAssignment]] = None
     # The specific settings for Windows Autopatch that enable its customers to experience it on Cloud PC. The settings take effect when the tenant enrolls in Windows Autopatch and the managedType of the microsoftManagedDesktop property is set as starterManaged. Supports $select.
     autopatch: Optional[CloudPcProvisioningPolicyAutopatch] = None
     # The specific settings for Windows Autopilot that enable Windows 365 customers to experience it on Cloud PC. Supports $select.
@@ -37,7 +38,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
     # The display name for the provisioning policy.
     display_name: Optional[str] = None
     # Specifies a list ordered by priority on how Cloud PCs join Microsoft Entra ID (Azure AD). Supports $select.
-    domain_join_configurations: Optional[List[CloudPcDomainJoinConfiguration]] = None
+    domain_join_configurations: Optional[list[CloudPcDomainJoinConfiguration]] = None
     # True if single sign-on can access the provisioned Cloud PC. False indicates that the provisioned Cloud PC doesn't support this feature. The default value is false. Windows 365 users can use single sign-on to authenticate to Microsoft Entra ID with passwordless options (for example, FIDO keys) to access their Cloud PC. Optional.
     enable_single_sign_on: Optional[bool] = None
     # The number of hours to wait before reprovisioning/deprovisioning happens. Read-only.
@@ -59,7 +60,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
     # Specifies the type of licenses to be used when provisioning Cloud PCs using this policy. The possible values are dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member. For example, a dedicated service plan can be assigned to only one user and provision only one Cloud PC. The shared and sharedByUser plans require customers to purchase a shared service plan. Each shared license purchased can enable up to three Cloud PCs, with only one user signed in at a time. The sharedByEntraGroup plan also requires the purchase of a shared service plan. Each shared license under this plan can enable one Cloud PC, which is shared for the group according to the assignments of this policy. By default, the license type is dedicated if the provisioningType isn't specified when you create the cloudPcProvisioningPolicy. You can't change this property after the cloudPcProvisioningPolicy is created.
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The scopeIds property
-    scope_ids: Optional[List[str]] = None
+    scope_ids: Optional[list[str]] = None
     # Indicates a specific Windows setting to configure during the creation of Cloud PCs for this provisioning policy. Supports $select.
     windows_setting: Optional[CloudPcWindowsSetting] = None
     # Specific Windows settings to configure during the creation of Cloud PCs for this provisioning policy. Supports $select. The windowsSettings property is deprecated and will stop returning data on January 31, 2024. Going forward, use the windowsSetting property.
@@ -76,10 +77,10 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CloudPcProvisioningPolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_autopilot_configuration import CloudPcAutopilotConfiguration
         from .cloud_pc_domain_join_configuration import CloudPcDomainJoinConfiguration
@@ -105,7 +106,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
         from .entity import Entity
         from .microsoft_managed_desktop import MicrosoftManagedDesktop
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alternateResourceUrl": lambda n : setattr(self, 'alternate_resource_url', n.get_str_value()),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(CloudPcProvisioningPolicyAssignment)),
             "autopatch": lambda n : setattr(self, 'autopatch', n.get_object_value(CloudPcProvisioningPolicyAutopatch)),
@@ -141,18 +142,6 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .cloud_pc_autopilot_configuration import CloudPcAutopilotConfiguration
-        from .cloud_pc_domain_join_configuration import CloudPcDomainJoinConfiguration
-        from .cloud_pc_management_service import CloudPcManagementService
-        from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
-        from .cloud_pc_provisioning_policy_autopatch import CloudPcProvisioningPolicyAutopatch
-        from .cloud_pc_provisioning_policy_image_type import CloudPcProvisioningPolicyImageType
-        from .cloud_pc_provisioning_type import CloudPcProvisioningType
-        from .cloud_pc_windows_setting import CloudPcWindowsSetting
-        from .cloud_pc_windows_settings import CloudPcWindowsSettings
-        from .entity import Entity
-        from .microsoft_managed_desktop import MicrosoftManagedDesktop
-
         writer.write_str_value("alternateResourceUrl", self.alternate_resource_url)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_object_value("autopatch", self.autopatch)

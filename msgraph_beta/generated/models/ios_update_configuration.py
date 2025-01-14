@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_update_time_window import CustomUpdateTimeWindow
@@ -24,7 +25,7 @@ class IosUpdateConfiguration(DeviceConfiguration, Parsable):
     # Active Hours Start (active hours mean the time window when updates install should not happen)
     active_hours_start: Optional[datetime.time] = None
     # If update schedule type is set to use time window scheduling, custom time windows when updates will be scheduled. This collection can contain a maximum of 20 elements.
-    custom_update_time_windows: Optional[List[CustomUpdateTimeWindow]] = None
+    custom_update_time_windows: Optional[list[CustomUpdateTimeWindow]] = None
     # If left unspecified, devices will update to the latest version of the OS.
     desired_os_version: Optional[str] = None
     # Days before software updates are visible to iOS devices ranging from 0 to 90 inclusive
@@ -32,7 +33,7 @@ class IosUpdateConfiguration(DeviceConfiguration, Parsable):
     # Is setting enabled in UI
     is_enabled: Optional[bool] = None
     # Days in week for which active hours are configured. This collection can contain a maximum of 7 elements.
-    scheduled_install_days: Optional[List[DayOfWeek]] = None
+    scheduled_install_days: Optional[list[DayOfWeek]] = None
     # Update schedule type for iOS software updates.
     update_schedule_type: Optional[IosSoftwareUpdateScheduleType] = None
     # UTC Time Offset indicated in minutes
@@ -49,10 +50,10 @@ class IosUpdateConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IosUpdateConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_update_time_window import CustomUpdateTimeWindow
         from .day_of_week import DayOfWeek
@@ -64,7 +65,7 @@ class IosUpdateConfiguration(DeviceConfiguration, Parsable):
         from .device_configuration import DeviceConfiguration
         from .ios_software_update_schedule_type import IosSoftwareUpdateScheduleType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activeHoursEnd": lambda n : setattr(self, 'active_hours_end', n.get_time_value()),
             "activeHoursStart": lambda n : setattr(self, 'active_hours_start', n.get_time_value()),
             "customUpdateTimeWindows": lambda n : setattr(self, 'custom_update_time_windows', n.get_collection_of_object_values(CustomUpdateTimeWindow)),
@@ -88,11 +89,6 @@ class IosUpdateConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .custom_update_time_window import CustomUpdateTimeWindow
-        from .day_of_week import DayOfWeek
-        from .device_configuration import DeviceConfiguration
-        from .ios_software_update_schedule_type import IosSoftwareUpdateScheduleType
-
         writer.write_time_value("activeHoursEnd", self.active_hours_end)
         writer.write_time_value("activeHoursStart", self.active_hours_start)
         writer.write_collection_of_object_values("customUpdateTimeWindows", self.custom_update_time_windows)

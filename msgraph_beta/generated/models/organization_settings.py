@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -34,10 +35,10 @@ class OrganizationSettings(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OrganizationSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .insights_settings import InsightsSettings
@@ -47,7 +48,7 @@ class OrganizationSettings(Entity, Parsable):
         from .insights_settings import InsightsSettings
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "contactInsights": lambda n : setattr(self, 'contact_insights', n.get_object_value(InsightsSettings)),
             "itemInsights": lambda n : setattr(self, 'item_insights', n.get_object_value(InsightsSettings)),
             "microsoftApplicationDataAccess": lambda n : setattr(self, 'microsoft_application_data_access', n.get_object_value(MicrosoftApplicationDataAccessSettings)),
@@ -66,10 +67,6 @@ class OrganizationSettings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .insights_settings import InsightsSettings
-        from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
-
         writer.write_object_value("contactInsights", self.contact_insights)
         writer.write_object_value("itemInsights", self.item_insights)
         writer.write_object_value("microsoftApplicationDataAccess", self.microsoft_application_data_access)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_managed_app_protection import AndroidManagedAppProtection
@@ -33,9 +34,9 @@ class ManagedAppProtection(ManagedAppPolicy, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.managedAppProtection"
     # Data storage locations where a user may store managed data.
-    allowed_data_ingestion_locations: Optional[List[ManagedAppDataIngestionLocation]] = None
+    allowed_data_ingestion_locations: Optional[list[ManagedAppDataIngestionLocation]] = None
     # Data storage locations where a user may store managed data.
-    allowed_data_storage_locations: Optional[List[ManagedAppDataStorageLocation]] = None
+    allowed_data_storage_locations: Optional[list[ManagedAppDataStorageLocation]] = None
     # Data can be transferred from/to these classes of apps
     allowed_inbound_data_transfer_sources: Optional[ManagedAppDataTransferLevel] = None
     # Specify the number of characters that may be cut or copied from Org data and accounts to any application. This setting overrides the AllowedOutboundClipboardSharingLevel restriction. Default value of '0' means no exception is allowed.
@@ -159,10 +160,10 @@ class ManagedAppProtection(ManagedAppPolicy, Parsable):
             return TargetedManagedAppProtection()
         return ManagedAppProtection()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_managed_app_protection import AndroidManagedAppProtection
         from .default_managed_app_protection import DefaultManagedAppProtection
@@ -200,7 +201,7 @@ class ManagedAppProtection(ManagedAppPolicy, Parsable):
         from .mobile_threat_defense_partner_priority import MobileThreatDefensePartnerPriority
         from .targeted_managed_app_protection import TargetedManagedAppProtection
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedDataIngestionLocations": lambda n : setattr(self, 'allowed_data_ingestion_locations', n.get_collection_of_enum_values(ManagedAppDataIngestionLocation)),
             "allowedDataStorageLocations": lambda n : setattr(self, 'allowed_data_storage_locations', n.get_collection_of_enum_values(ManagedAppDataStorageLocation)),
             "allowedInboundDataTransferSources": lambda n : setattr(self, 'allowed_inbound_data_transfer_sources', n.get_enum_value(ManagedAppDataTransferLevel)),
@@ -262,24 +263,6 @@ class ManagedAppProtection(ManagedAppPolicy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_managed_app_protection import AndroidManagedAppProtection
-        from .default_managed_app_protection import DefaultManagedAppProtection
-        from .ios_managed_app_protection import IosManagedAppProtection
-        from .managed_app_clipboard_sharing_level import ManagedAppClipboardSharingLevel
-        from .managed_app_data_ingestion_location import ManagedAppDataIngestionLocation
-        from .managed_app_data_storage_location import ManagedAppDataStorageLocation
-        from .managed_app_data_transfer_level import ManagedAppDataTransferLevel
-        from .managed_app_device_threat_level import ManagedAppDeviceThreatLevel
-        from .managed_app_notification_restriction import ManagedAppNotificationRestriction
-        from .managed_app_phone_number_redirect_level import ManagedAppPhoneNumberRedirectLevel
-        from .managed_app_pin_character_set import ManagedAppPinCharacterSet
-        from .managed_app_policy import ManagedAppPolicy
-        from .managed_app_remediation_action import ManagedAppRemediationAction
-        from .managed_browser_type import ManagedBrowserType
-        from .messaging_redirect_app_type import MessagingRedirectAppType
-        from .mobile_threat_defense_partner_priority import MobileThreatDefensePartnerPriority
-        from .targeted_managed_app_protection import TargetedManagedAppProtection
-
         writer.write_collection_of_enum_values("allowedDataIngestionLocations", self.allowed_data_ingestion_locations)
         writer.write_collection_of_enum_values("allowedDataStorageLocations", self.allowed_data_storage_locations)
         writer.write_enum_value("allowedInboundDataTransferSources", self.allowed_inbound_data_transfer_sources)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .install_intent import InstallIntent
@@ -33,10 +34,10 @@ class MobileAppPolicySetItem(PolicySetItem, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MobileAppPolicySetItem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .install_intent import InstallIntent
         from .mobile_app_assignment_settings import MobileAppAssignmentSettings
@@ -46,7 +47,7 @@ class MobileAppPolicySetItem(PolicySetItem, Parsable):
         from .mobile_app_assignment_settings import MobileAppAssignmentSettings
         from .policy_set_item import PolicySetItem
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "intent": lambda n : setattr(self, 'intent', n.get_enum_value(InstallIntent)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(MobileAppAssignmentSettings)),
         }
@@ -63,10 +64,6 @@ class MobileAppPolicySetItem(PolicySetItem, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .install_intent import InstallIntent
-        from .mobile_app_assignment_settings import MobileAppAssignmentSettings
-        from .policy_set_item import PolicySetItem
-
         writer.write_enum_value("intent", self.intent)
         writer.write_object_value("settings", self.settings)
     

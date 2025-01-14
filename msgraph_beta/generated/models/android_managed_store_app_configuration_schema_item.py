@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_managed_store_app_configuration_schema_item_data_type import AndroidManagedStoreAppConfigurationSchemaItemDataType
@@ -17,7 +18,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Backed
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Data type for a configuration item inside an Android application's custom configuration schema
     data_type: Optional[AndroidManagedStoreAppConfigurationSchemaItemDataType] = None
     # Default value for boolean type items, if specified by the app developer
@@ -25,7 +26,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Backed
     # Default value for integer type items, if specified by the app developer
     default_int_value: Optional[int] = None
     # Default value for string array type items, if specified by the app developer
-    default_string_array_value: Optional[List[str]] = None
+    default_string_array_value: Optional[list[str]] = None
     # Default value for string type items, if specified by the app developer
     default_string_value: Optional[str] = None
     # Description of what the item controls within the application
@@ -41,7 +42,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Backed
     # Unique key the application uses to identify the item
     schema_item_key: Optional[str] = None
     # List of human readable name/value pairs for the valid values that can be set for this item (Choice and Multiselect items only)
-    selections: Optional[List[KeyValuePair]] = None
+    selections: Optional[list[KeyValuePair]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AndroidManagedStoreAppConfigurationSchemaItem:
@@ -54,10 +55,10 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Backed
             raise TypeError("parse_node cannot be null.")
         return AndroidManagedStoreAppConfigurationSchemaItem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_managed_store_app_configuration_schema_item_data_type import AndroidManagedStoreAppConfigurationSchemaItemDataType
         from .key_value_pair import KeyValuePair
@@ -65,7 +66,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Backed
         from .android_managed_store_app_configuration_schema_item_data_type import AndroidManagedStoreAppConfigurationSchemaItemDataType
         from .key_value_pair import KeyValuePair
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dataType": lambda n : setattr(self, 'data_type', n.get_enum_value(AndroidManagedStoreAppConfigurationSchemaItemDataType)),
             "defaultBoolValue": lambda n : setattr(self, 'default_bool_value', n.get_bool_value()),
             "defaultIntValue": lambda n : setattr(self, 'default_int_value', n.get_int_value()),
@@ -89,9 +90,6 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Backed
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .android_managed_store_app_configuration_schema_item_data_type import AndroidManagedStoreAppConfigurationSchemaItemDataType
-        from .key_value_pair import KeyValuePair
-
         writer.write_enum_value("dataType", self.data_type)
         writer.write_bool_value("defaultBoolValue", self.default_bool_value)
         writer.write_int_value("defaultIntValue", self.default_int_value)

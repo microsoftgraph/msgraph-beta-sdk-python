@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .email_type import EmailType
@@ -31,10 +32,10 @@ class ItemEmail(ItemFacet, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ItemEmail()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .email_type import EmailType
         from .item_facet import ItemFacet
@@ -42,7 +43,7 @@ class ItemEmail(ItemFacet, Parsable):
         from .email_type import EmailType
         from .item_facet import ItemFacet
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(EmailType)),
@@ -60,9 +61,6 @@ class ItemEmail(ItemFacet, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .email_type import EmailType
-        from .item_facet import ItemFacet
-
         writer.write_str_value("address", self.address)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("type", self.type)

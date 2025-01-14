@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_comanagement_authority_configuration import DeviceComanagementAuthorityConfiguration
@@ -24,7 +25,7 @@ class DeviceEnrollmentConfiguration(Entity, Parsable):
     The Base Class of Device Enrollment Configuration
     """
     # The list of group assignments for the device configuration profile
-    assignments: Optional[List[EnrollmentConfigurationAssignment]] = None
+    assignments: Optional[list[EnrollmentConfigurationAssignment]] = None
     # Created date time in UTC of the device enrollment configuration
     created_date_time: Optional[datetime.datetime] = None
     # The description of the device enrollment configuration
@@ -40,7 +41,7 @@ class DeviceEnrollmentConfiguration(Entity, Parsable):
     # Priority is used when a user exists in multiple groups that are assigned enrollment configuration. Users are subject only to the configuration with the lowest priority value.
     priority: Optional[int] = None
     # Optional role scope tags for the enrollment restrictions.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # The version of the device enrollment configuration
     version: Optional[int] = None
     
@@ -88,10 +89,10 @@ class DeviceEnrollmentConfiguration(Entity, Parsable):
             return Windows10EnrollmentCompletionPageConfiguration()
         return DeviceEnrollmentConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_comanagement_authority_configuration import DeviceComanagementAuthorityConfiguration
         from .device_enrollment_configuration_type import DeviceEnrollmentConfigurationType
@@ -115,7 +116,7 @@ class DeviceEnrollmentConfiguration(Entity, Parsable):
         from .entity import Entity
         from .windows10_enrollment_completion_page_configuration import Windows10EnrollmentCompletionPageConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(EnrollmentConfigurationAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -139,17 +140,6 @@ class DeviceEnrollmentConfiguration(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_comanagement_authority_configuration import DeviceComanagementAuthorityConfiguration
-        from .device_enrollment_configuration_type import DeviceEnrollmentConfigurationType
-        from .device_enrollment_limit_configuration import DeviceEnrollmentLimitConfiguration
-        from .device_enrollment_notification_configuration import DeviceEnrollmentNotificationConfiguration
-        from .device_enrollment_platform_restrictions_configuration import DeviceEnrollmentPlatformRestrictionsConfiguration
-        from .device_enrollment_platform_restriction_configuration import DeviceEnrollmentPlatformRestrictionConfiguration
-        from .device_enrollment_windows_hello_for_business_configuration import DeviceEnrollmentWindowsHelloForBusinessConfiguration
-        from .enrollment_configuration_assignment import EnrollmentConfigurationAssignment
-        from .entity import Entity
-        from .windows10_enrollment_completion_page_configuration import Windows10EnrollmentCompletionPageConfiguration
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

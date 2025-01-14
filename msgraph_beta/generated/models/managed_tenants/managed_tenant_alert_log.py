@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -39,10 +40,10 @@ class ManagedTenantAlertLog(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagedTenantAlertLog()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .alert_log_content import AlertLogContent
@@ -52,7 +53,7 @@ class ManagedTenantAlertLog(Entity, Parsable):
         from .alert_log_content import AlertLogContent
         from .managed_tenant_alert import ManagedTenantAlert
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alert": lambda n : setattr(self, 'alert', n.get_object_value(ManagedTenantAlert)),
             "content": lambda n : setattr(self, 'content', n.get_object_value(AlertLogContent)),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
@@ -73,10 +74,6 @@ class ManagedTenantAlertLog(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .alert_log_content import AlertLogContent
-        from .managed_tenant_alert import ManagedTenantAlert
-
         writer.write_object_value("alert", self.alert)
         writer.write_object_value("content", self.content)
         writer.write_str_value("createdByUserId", self.created_by_user_id)

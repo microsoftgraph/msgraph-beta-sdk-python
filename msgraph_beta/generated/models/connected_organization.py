@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .connected_organization_state import ConnectedOrganizationState
@@ -23,11 +24,11 @@ class ConnectedOrganization(Entity, Parsable):
     # The display name of the connected organization. Supports $filter (eq).
     display_name: Optional[str] = None
     # The externalSponsors property
-    external_sponsors: Optional[List[DirectoryObject]] = None
+    external_sponsors: Optional[list[DirectoryObject]] = None
     # The identity sources in this connected organization, one of azureActiveDirectoryTenant, crossCloudAzureActiveDirectoryTenant, domainIdentitySource, externalDomainFederation, or socialIdentitySource. Read-only. Nullable. Supports $select and $filter(eq). To filter by the derived types, you must declare the resource using its full OData cast, for example, $filter=identitySources/any(is:is/microsoft.graph.azureActiveDirectoryTenant/tenantId eq 'bcfdfff4-cbc3-43f2-9000-ba7b7515054f').
-    identity_sources: Optional[List[IdentitySource]] = None
+    identity_sources: Optional[list[IdentitySource]] = None
     # The internalSponsors property
-    internal_sponsors: Optional[List[DirectoryObject]] = None
+    internal_sponsors: Optional[list[DirectoryObject]] = None
     # UPN of the user who last modified this resource. Read-only.
     modified_by: Optional[str] = None
     # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
@@ -48,10 +49,10 @@ class ConnectedOrganization(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ConnectedOrganization()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .connected_organization_state import ConnectedOrganizationState
         from .directory_object import DirectoryObject
@@ -63,7 +64,7 @@ class ConnectedOrganization(Entity, Parsable):
         from .entity import Entity
         from .identity_source import IdentitySource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -88,11 +89,6 @@ class ConnectedOrganization(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .connected_organization_state import ConnectedOrganizationState
-        from .directory_object import DirectoryObject
-        from .entity import Entity
-        from .identity_source import IdentitySource
-
         writer.write_str_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

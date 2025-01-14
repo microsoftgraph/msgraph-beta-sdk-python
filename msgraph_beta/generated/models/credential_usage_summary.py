@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -34,10 +35,10 @@ class CredentialUsageSummary(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CredentialUsageSummary()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .feature_type import FeatureType
@@ -47,7 +48,7 @@ class CredentialUsageSummary(Entity, Parsable):
         from .feature_type import FeatureType
         from .usage_auth_method import UsageAuthMethod
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authMethod": lambda n : setattr(self, 'auth_method', n.get_enum_value(UsageAuthMethod)),
             "failureActivityCount": lambda n : setattr(self, 'failure_activity_count', n.get_int_value()),
             "feature": lambda n : setattr(self, 'feature', n.get_enum_value(FeatureType)),
@@ -66,10 +67,6 @@ class CredentialUsageSummary(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .feature_type import FeatureType
-        from .usage_auth_method import UsageAuthMethod
-
         writer.write_enum_value("authMethod", self.auth_method)
         writer.write_int_value("failureActivityCount", self.failure_activity_count)
         writer.write_enum_value("feature", self.feature)

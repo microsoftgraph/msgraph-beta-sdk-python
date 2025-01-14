@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -26,7 +27,7 @@ class DeviceEnrollmentNotificationConfiguration(DeviceEnrollmentConfiguration, P
     # Notification Message Template Id
     notification_message_template_id: Optional[UUID] = None
     # The list of notification data -
-    notification_templates: Optional[List[str]] = None
+    notification_templates: Optional[list[str]] = None
     # This enum indicates the platform type for which the enrollment restriction applies.
     platform_type: Optional[EnrollmentRestrictionPlatformType] = None
     # This enum indicates the Template type for which the enrollment notification applies.
@@ -43,10 +44,10 @@ class DeviceEnrollmentNotificationConfiguration(DeviceEnrollmentConfiguration, P
             raise TypeError("parse_node cannot be null.")
         return DeviceEnrollmentNotificationConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_enrollment_configuration import DeviceEnrollmentConfiguration
         from .enrollment_notification_branding_options import EnrollmentNotificationBrandingOptions
@@ -58,7 +59,7 @@ class DeviceEnrollmentNotificationConfiguration(DeviceEnrollmentConfiguration, P
         from .enrollment_notification_template_type import EnrollmentNotificationTemplateType
         from .enrollment_restriction_platform_type import EnrollmentRestrictionPlatformType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "brandingOptions": lambda n : setattr(self, 'branding_options', n.get_collection_of_enum_values(EnrollmentNotificationBrandingOptions)),
             "defaultLocale": lambda n : setattr(self, 'default_locale', n.get_str_value()),
             "notificationMessageTemplateId": lambda n : setattr(self, 'notification_message_template_id', n.get_uuid_value()),
@@ -79,11 +80,6 @@ class DeviceEnrollmentNotificationConfiguration(DeviceEnrollmentConfiguration, P
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_enrollment_configuration import DeviceEnrollmentConfiguration
-        from .enrollment_notification_branding_options import EnrollmentNotificationBrandingOptions
-        from .enrollment_notification_template_type import EnrollmentNotificationTemplateType
-        from .enrollment_restriction_platform_type import EnrollmentRestrictionPlatformType
-
         writer.write_enum_value("brandingOptions", self.branding_options)
         writer.write_str_value("defaultLocale", self.default_locale)
         writer.write_uuid_value("notificationMessageTemplateId", self.notification_message_template_id)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .business_scenario_task import BusinessScenarioTask
@@ -20,7 +21,7 @@ class BusinessScenarioPlanner(Entity, Parsable):
     # The configuration of Planner tasks that will be created for the scenario.
     task_configuration: Optional[PlannerTaskConfiguration] = None
     # The Planner tasks for the scenario.
-    tasks: Optional[List[BusinessScenarioTask]] = None
+    tasks: Optional[list[BusinessScenarioTask]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> BusinessScenarioPlanner:
@@ -33,10 +34,10 @@ class BusinessScenarioPlanner(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return BusinessScenarioPlanner()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .business_scenario_task import BusinessScenarioTask
         from .entity import Entity
@@ -48,7 +49,7 @@ class BusinessScenarioPlanner(Entity, Parsable):
         from .planner_plan_configuration import PlannerPlanConfiguration
         from .planner_task_configuration import PlannerTaskConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "planConfiguration": lambda n : setattr(self, 'plan_configuration', n.get_object_value(PlannerPlanConfiguration)),
             "taskConfiguration": lambda n : setattr(self, 'task_configuration', n.get_object_value(PlannerTaskConfiguration)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(BusinessScenarioTask)),
@@ -66,11 +67,6 @@ class BusinessScenarioPlanner(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .business_scenario_task import BusinessScenarioTask
-        from .entity import Entity
-        from .planner_plan_configuration import PlannerPlanConfiguration
-        from .planner_task_configuration import PlannerTaskConfiguration
-
         writer.write_object_value("planConfiguration", self.plan_configuration)
         writer.write_object_value("taskConfiguration", self.task_configuration)
         writer.write_collection_of_object_values("tasks", self.tasks)

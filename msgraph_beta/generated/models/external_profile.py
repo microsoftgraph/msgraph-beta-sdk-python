@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .directory_object import DirectoryObject
@@ -63,10 +64,10 @@ class ExternalProfile(DirectoryObject, Parsable):
             return PendingExternalUserProfile()
         return ExternalProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .directory_object import DirectoryObject
         from .external_user_profile import ExternalUserProfile
@@ -78,7 +79,7 @@ class ExternalProfile(DirectoryObject, Parsable):
         from .pending_external_user_profile import PendingExternalUserProfile
         from .physical_office_address import PhysicalOfficeAddress
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(PhysicalOfficeAddress)),
             "companyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),
@@ -104,11 +105,6 @@ class ExternalProfile(DirectoryObject, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .directory_object import DirectoryObject
-        from .external_user_profile import ExternalUserProfile
-        from .pending_external_user_profile import PendingExternalUserProfile
-        from .physical_office_address import PhysicalOfficeAddress
-
         writer.write_object_value("address", self.address)
         writer.write_str_value("companyName", self.company_name)
         writer.write_str_value("createdBy", self.created_by)

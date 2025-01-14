@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -24,9 +25,9 @@ from ..entity import Entity
 @dataclass
 class AnalyzedEmail(Entity, Parsable):
     # A collection of values that contain the IDs of any alerts associated with the email.
-    alert_ids: Optional[List[str]] = None
+    alert_ids: Optional[list[str]] = None
     # A collection of the attachments in the email.
-    attachments: Optional[List[AnalyzedEmailAttachment]] = None
+    attachments: Optional[list[AnalyzedEmailAttachment]] = None
     # The authentication details associated with the email.
     authentication_details: Optional[AnalyzedEmailAuthenticationDetail] = None
     # The bulk complaint level of the email. A higher level is more likely to be spam.
@@ -34,19 +35,19 @@ class AnalyzedEmail(Entity, Parsable):
     # The clientType property
     client_type: Optional[str] = None
     # Provides context of the email.
-    contexts: Optional[List[str]] = None
+    contexts: Optional[list[str]] = None
     # The methods of detection used.
-    detection_methods: Optional[List[str]] = None
+    detection_methods: Optional[list[str]] = None
     # The direction of the emails. The possible values are: unknown, inbound, outbound, intraOrg, unknownFutureValue.
     directionality: Optional[AntispamDirectionality] = None
     # The distribution list details to which the email was sent.
     distribution_list: Optional[str] = None
     # The dlpRules property
-    dlp_rules: Optional[List[AnalyzedEmailDlpRuleInfo]] = None
+    dlp_rules: Optional[list[AnalyzedEmailDlpRuleInfo]] = None
     # The identifier for the group of similar emails clustered based on heuristic analysis of their content.
     email_cluster_id: Optional[str] = None
     # The name of the Exchange transport rules (ETRs) associated with the email.
-    exchange_transport_rules: Optional[List[AnalyzedEmailExchangeTransportRuleInfo]] = None
+    exchange_transport_rules: Optional[list[AnalyzedEmailExchangeTransportRuleInfo]] = None
     # The forwardingDetail property
     forwarding_detail: Optional[str] = None
     # The inboundConnectorFormattedName property
@@ -66,7 +67,7 @@ class AnalyzedEmail(Entity, Parsable):
     # The original delivery details of the email.
     original_delivery: Optional[AnalyzedEmailDeliveryDetail] = None
     # An aggregated list of all overrides with source on email.
-    override_sources: Optional[List[str]] = None
+    override_sources: Optional[list[str]] = None
     # The phish confidence level associated with the email
     phish_confidence_level: Optional[str] = None
     # The action policy that took effect.
@@ -92,13 +93,13 @@ class AnalyzedEmail(Entity, Parsable):
     # Subject of the email.
     subject: Optional[str] = None
     # The threatDetectionDetails property
-    threat_detection_details: Optional[List[ThreatDetectionDetail]] = None
+    threat_detection_details: Optional[list[ThreatDetectionDetail]] = None
     # Indicates the threat types. The possible values are: unknown, spam, malware, phish, none, unknownFutureValue.
-    threat_types: Optional[List[ThreatType]] = None
+    threat_types: Optional[list[ThreatType]] = None
     # The timelineEvents property
-    timeline_events: Optional[List[TimelineEvent]] = None
+    timeline_events: Optional[list[TimelineEvent]] = None
     # A collection of the URLs in the email.
-    urls: Optional[List[AnalyzedEmailUrl]] = None
+    urls: Optional[list[AnalyzedEmailUrl]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AnalyzedEmail:
@@ -111,10 +112,10 @@ class AnalyzedEmail(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AnalyzedEmail()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .analyzed_email_attachment import AnalyzedEmailAttachment
@@ -144,7 +145,7 @@ class AnalyzedEmail(Entity, Parsable):
         from .threat_type import ThreatType
         from .timeline_event import TimelineEvent
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alertIds": lambda n : setattr(self, 'alert_ids', n.get_collection_of_primitive_values(str)),
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(AnalyzedEmailAttachment)),
             "authenticationDetails": lambda n : setattr(self, 'authentication_details', n.get_object_value(AnalyzedEmailAuthenticationDetail)),
@@ -196,20 +197,6 @@ class AnalyzedEmail(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .analyzed_email_attachment import AnalyzedEmailAttachment
-        from .analyzed_email_authentication_detail import AnalyzedEmailAuthenticationDetail
-        from .analyzed_email_delivery_detail import AnalyzedEmailDeliveryDetail
-        from .analyzed_email_dlp_rule_info import AnalyzedEmailDlpRuleInfo
-        from .analyzed_email_exchange_transport_rule_info import AnalyzedEmailExchangeTransportRuleInfo
-        from .analyzed_email_recipient_detail import AnalyzedEmailRecipientDetail
-        from .analyzed_email_sender_detail import AnalyzedEmailSenderDetail
-        from .analyzed_email_url import AnalyzedEmailUrl
-        from .antispam_directionality import AntispamDirectionality
-        from .threat_detection_detail import ThreatDetectionDetail
-        from .threat_type import ThreatType
-        from .timeline_event import TimelineEvent
-
         writer.write_collection_of_primitive_values("alertIds", self.alert_ids)
         writer.write_collection_of_object_values("attachments", self.attachments)
         writer.write_object_value("authenticationDetails", self.authentication_details)

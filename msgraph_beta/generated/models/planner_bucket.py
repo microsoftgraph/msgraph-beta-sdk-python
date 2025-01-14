@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .planner_archival_info import PlannerArchivalInfo
@@ -28,7 +29,7 @@ class PlannerBucket(PlannerDelta, Parsable):
     # Plan ID to which the bucket belongs.
     plan_id: Optional[str] = None
     # Read-only. Nullable. The collection of tasks in the bucket.
-    tasks: Optional[List[PlannerTask]] = None
+    tasks: Optional[list[PlannerTask]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PlannerBucket:
@@ -41,10 +42,10 @@ class PlannerBucket(PlannerDelta, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PlannerBucket()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .planner_archival_info import PlannerArchivalInfo
         from .planner_bucket_creation import PlannerBucketCreation
@@ -56,7 +57,7 @@ class PlannerBucket(PlannerDelta, Parsable):
         from .planner_delta import PlannerDelta
         from .planner_task import PlannerTask
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "archivalInfo": lambda n : setattr(self, 'archival_info', n.get_object_value(PlannerArchivalInfo)),
             "creationSource": lambda n : setattr(self, 'creation_source', n.get_object_value(PlannerBucketCreation)),
             "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
@@ -78,11 +79,6 @@ class PlannerBucket(PlannerDelta, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .planner_archival_info import PlannerArchivalInfo
-        from .planner_bucket_creation import PlannerBucketCreation
-        from .planner_delta import PlannerDelta
-        from .planner_task import PlannerTask
-
         writer.write_object_value("archivalInfo", self.archival_info)
         writer.write_object_value("creationSource", self.creation_source)
         writer.write_bool_value("isArchived", self.is_archived)

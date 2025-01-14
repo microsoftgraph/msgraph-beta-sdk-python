@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.driver_approval_action import DriverApprovalAction
@@ -14,13 +15,13 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # An enum type to represent approval actions of single or list of drivers.
     action_name: Optional[DriverApprovalAction] = None
     # The deploymentDate property
     deployment_date: Optional[datetime.datetime] = None
     # The driverIds property
-    driver_ids: Optional[List[str]] = None
+    driver_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ExecuteActionPostRequestBody:
@@ -33,16 +34,16 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ExecuteActionPostRequestBody()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .....models.driver_approval_action import DriverApprovalAction
 
         from .....models.driver_approval_action import DriverApprovalAction
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionName": lambda n : setattr(self, 'action_name', n.get_enum_value(DriverApprovalAction)),
             "deploymentDate": lambda n : setattr(self, 'deployment_date', n.get_datetime_value()),
             "driverIds": lambda n : setattr(self, 'driver_ids', n.get_collection_of_primitive_values(str)),
@@ -57,8 +58,6 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .....models.driver_approval_action import DriverApprovalAction
-
         writer.write_enum_value("actionName", self.action_name)
         writer.write_datetime_value("deploymentDate", self.deployment_date)
         writer.write_collection_of_primitive_values("driverIds", self.driver_ids)

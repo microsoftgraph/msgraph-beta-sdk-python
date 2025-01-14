@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
@@ -89,10 +90,10 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase, Parsable
             raise TypeError("parse_node cannot be null.")
         return IosEasEmailProfileConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
         from .eas_authentication_method import EasAuthenticationMethod
@@ -114,7 +115,7 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase, Parsable
         from .ios_certificate_profile_base import IosCertificateProfileBase
         from .user_email_source import UserEmailSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(EasAuthenticationMethod)),
             "blockMovingMessagesToOtherEmailAccounts": lambda n : setattr(self, 'block_moving_messages_to_other_email_accounts', n.get_bool_value()),
@@ -156,16 +157,6 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase, Parsable
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-        from .eas_authentication_method import EasAuthenticationMethod
-        from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
-        from .eas_services import EasServices
-        from .email_certificate_type import EmailCertificateType
-        from .email_sync_duration import EmailSyncDuration
-        from .ios_certificate_profile import IosCertificateProfile
-        from .ios_certificate_profile_base import IosCertificateProfileBase
-        from .user_email_source import UserEmailSource
-
         writer.write_str_value("accountName", self.account_name)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_bool_value("blockMovingMessagesToOtherEmailAccounts", self.block_moving_messages_to_other_email_accounts)

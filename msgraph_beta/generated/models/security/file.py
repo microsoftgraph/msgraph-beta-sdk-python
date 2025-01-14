@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -34,7 +35,7 @@ class File(Entity, Parsable):
     # The processingStatus property
     processing_status: Optional[FileProcessingStatus] = None
     # The senderOrAuthors property
-    sender_or_authors: Optional[List[str]] = None
+    sender_or_authors: Optional[list[str]] = None
     # The size property
     size: Optional[int] = None
     # The sourceType property
@@ -62,10 +63,10 @@ class File(Entity, Parsable):
             return EdiscoveryFile()
         return File()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .ediscovery_file import EdiscoveryFile
@@ -79,7 +80,7 @@ class File(Entity, Parsable):
         from .source_type import SourceType
         from .string_value_dictionary import StringValueDictionary
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
             "dateTime": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
             "extension": lambda n : setattr(self, 'extension', n.get_str_value()),
@@ -106,12 +107,6 @@ class File(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .ediscovery_file import EdiscoveryFile
-        from .file_processing_status import FileProcessingStatus
-        from .source_type import SourceType
-        from .string_value_dictionary import StringValueDictionary
-
         writer.write_bytes_value("content", self.content)
         writer.write_datetime_value("dateTime", self.date_time)
         writer.write_str_value("extension", self.extension)

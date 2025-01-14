@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .managed_app_device_threat_level import ManagedAppDeviceThreatLevel
@@ -32,9 +33,9 @@ class WindowsManagedAppProtection(ManagedAppPolicy, Parsable):
     # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Some possible values are block or wipe. If this property is not set, no action will be taken. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_unable_to_authenticate_user: Optional[ManagedAppRemediationAction] = None
     # List of apps to which the policy is deployed.
-    apps: Optional[List[ManagedMobileApp]] = None
+    apps: Optional[list[ManagedMobileApp]] = None
     # Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
-    assignments: Optional[List[TargetedManagedAppPolicyAssignment]] = None
+    assignments: Optional[list[TargetedManagedAppPolicyAssignment]] = None
     # Indicates the total number of applications for which the current policy is deployed.
     deployed_app_count: Optional[int] = None
     # Navigation property to deployment summary of the configuration.
@@ -85,10 +86,10 @@ class WindowsManagedAppProtection(ManagedAppPolicy, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsManagedAppProtection()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .managed_app_device_threat_level import ManagedAppDeviceThreatLevel
         from .managed_app_policy import ManagedAppPolicy
@@ -108,7 +109,7 @@ class WindowsManagedAppProtection(ManagedAppPolicy, Parsable):
         from .windows_managed_app_clipboard_sharing_level import WindowsManagedAppClipboardSharingLevel
         from .windows_managed_app_data_transfer_level import WindowsManagedAppDataTransferLevel
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedInboundDataTransferSources": lambda n : setattr(self, 'allowed_inbound_data_transfer_sources', n.get_enum_value(WindowsManagedAppDataTransferLevel)),
             "allowedOutboundClipboardSharingLevel": lambda n : setattr(self, 'allowed_outbound_clipboard_sharing_level', n.get_enum_value(WindowsManagedAppClipboardSharingLevel)),
             "allowedOutboundDataTransferDestinations": lambda n : setattr(self, 'allowed_outbound_data_transfer_destinations', n.get_enum_value(WindowsManagedAppDataTransferLevel)),
@@ -148,15 +149,6 @@ class WindowsManagedAppProtection(ManagedAppPolicy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .managed_app_device_threat_level import ManagedAppDeviceThreatLevel
-        from .managed_app_policy import ManagedAppPolicy
-        from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
-        from .managed_app_remediation_action import ManagedAppRemediationAction
-        from .managed_mobile_app import ManagedMobileApp
-        from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
-        from .windows_managed_app_clipboard_sharing_level import WindowsManagedAppClipboardSharingLevel
-        from .windows_managed_app_data_transfer_level import WindowsManagedAppDataTransferLevel
-
         writer.write_enum_value("allowedInboundDataTransferSources", self.allowed_inbound_data_transfer_sources)
         writer.write_enum_value("allowedOutboundClipboardSharingLevel", self.allowed_outbound_clipboard_sharing_level)
         writer.write_enum_value("allowedOutboundDataTransferDestinations", self.allowed_outbound_data_transfer_destinations)

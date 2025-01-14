@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .windows_quality_update_classification import WindowsQualityUpdateClassification
@@ -34,10 +35,10 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsQualityUpdateCatalogItem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .windows_quality_update_classification import WindowsQualityUpdateClassification
         from .windows_update_catalog_item import WindowsUpdateCatalogItem
@@ -45,7 +46,7 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem, Parsable):
         from .windows_quality_update_classification import WindowsQualityUpdateClassification
         from .windows_update_catalog_item import WindowsUpdateCatalogItem
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "classification": lambda n : setattr(self, 'classification', n.get_enum_value(WindowsQualityUpdateClassification)),
             "isExpeditable": lambda n : setattr(self, 'is_expeditable', n.get_bool_value()),
             "kbArticleId": lambda n : setattr(self, 'kb_article_id', n.get_str_value()),
@@ -63,9 +64,6 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .windows_quality_update_classification import WindowsQualityUpdateClassification
-        from .windows_update_catalog_item import WindowsUpdateCatalogItem
-
         writer.write_enum_value("classification", self.classification)
         writer.write_bool_value("isExpeditable", self.is_expeditable)
         writer.write_str_value("kbArticleId", self.kb_article_id)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_for_work_certificate_profile_base import AndroidForWorkCertificateProfileBase
@@ -28,9 +29,9 @@ class AndroidForWorkVpnConfiguration(DeviceConfiguration, Parsable):
     # Android For Work VPN connection type.
     connection_type: Optional[AndroidForWorkVpnConnectionType] = None
     # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-    custom_data: Optional[List[KeyValue]] = None
+    custom_data: Optional[list[KeyValue]] = None
     # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-    custom_key_value_data: Optional[List[KeyValuePair]] = None
+    custom_key_value_data: Optional[list[KeyValuePair]] = None
     # Fingerprint is a string that will be used to verify the VPN server can be trusted, which is only applicable when connection type is Check Point Capsule VPN.
     fingerprint: Optional[str] = None
     # Identity certificate for client authentication when authentication method is certificate.
@@ -40,7 +41,7 @@ class AndroidForWorkVpnConfiguration(DeviceConfiguration, Parsable):
     # Role when connection type is set to Pulse Secure.
     role: Optional[str] = None
     # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-    servers: Optional[List[VpnServer]] = None
+    servers: Optional[list[VpnServer]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AndroidForWorkVpnConfiguration:
@@ -53,10 +54,10 @@ class AndroidForWorkVpnConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidForWorkVpnConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_for_work_certificate_profile_base import AndroidForWorkCertificateProfileBase
         from .android_for_work_vpn_connection_type import AndroidForWorkVpnConnectionType
@@ -74,7 +75,7 @@ class AndroidForWorkVpnConfiguration(DeviceConfiguration, Parsable):
         from .vpn_authentication_method import VpnAuthenticationMethod
         from .vpn_server import VpnServer
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(VpnAuthenticationMethod)),
             "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
             "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(AndroidForWorkVpnConnectionType)),
@@ -99,14 +100,6 @@ class AndroidForWorkVpnConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_for_work_certificate_profile_base import AndroidForWorkCertificateProfileBase
-        from .android_for_work_vpn_connection_type import AndroidForWorkVpnConnectionType
-        from .device_configuration import DeviceConfiguration
-        from .key_value import KeyValue
-        from .key_value_pair import KeyValuePair
-        from .vpn_authentication_method import VpnAuthenticationMethod
-        from .vpn_server import VpnServer
-
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_str_value("connectionName", self.connection_name)
         writer.write_enum_value("connectionType", self.connection_type)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .certificate_issuance_states import CertificateIssuanceStates
@@ -81,10 +82,10 @@ class ManagedDeviceCertificateState(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagedDeviceCertificateState()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .certificate_issuance_states import CertificateIssuanceStates
         from .certificate_revocation_status import CertificateRevocationStatus
@@ -106,7 +107,7 @@ class ManagedDeviceCertificateState(Entity, Parsable):
         from .subject_alternative_name_type import SubjectAlternativeNameType
         from .subject_name_format import SubjectNameFormat
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificateEnhancedKeyUsage": lambda n : setattr(self, 'certificate_enhanced_key_usage', n.get_str_value()),
             "certificateErrorCode": lambda n : setattr(self, 'certificate_error_code', n.get_int_value()),
             "certificateExpirationDateTime": lambda n : setattr(self, 'certificate_expiration_date_time', n.get_datetime_value()),
@@ -145,16 +146,6 @@ class ManagedDeviceCertificateState(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .certificate_issuance_states import CertificateIssuanceStates
-        from .certificate_revocation_status import CertificateRevocationStatus
-        from .certificate_validity_period_scale import CertificateValidityPeriodScale
-        from .device_platform_type import DevicePlatformType
-        from .entity import Entity
-        from .key_storage_provider_option import KeyStorageProviderOption
-        from .key_usages import KeyUsages
-        from .subject_alternative_name_type import SubjectAlternativeNameType
-        from .subject_name_format import SubjectNameFormat
-
         writer.write_str_value("certificateEnhancedKeyUsage", self.certificate_enhanced_key_usage)
         writer.write_int_value("certificateErrorCode", self.certificate_error_code)
         writer.write_datetime_value("certificateExpirationDateTime", self.certificate_expiration_date_time)

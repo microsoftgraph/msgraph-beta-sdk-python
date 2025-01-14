@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -16,7 +17,7 @@ class Item(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The baseUnitOfMeasureId property
     base_unit_of_measure_id: Optional[UUID] = None
     # The blocked property
@@ -42,7 +43,7 @@ class Item(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The picture property
-    picture: Optional[List[Picture]] = None
+    picture: Optional[list[Picture]] = None
     # The priceIncludesTax property
     price_includes_tax: Optional[bool] = None
     # The taxGroupCode property
@@ -67,10 +68,10 @@ class Item(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Item()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .item_category import ItemCategory
         from .picture import Picture
@@ -78,7 +79,7 @@ class Item(AdditionalDataHolder, BackedModel, Parsable):
         from .item_category import ItemCategory
         from .picture import Picture
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "baseUnitOfMeasureId": lambda n : setattr(self, 'base_unit_of_measure_id', n.get_uuid_value()),
             "blocked": lambda n : setattr(self, 'blocked', n.get_bool_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -109,9 +110,6 @@ class Item(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .item_category import ItemCategory
-        from .picture import Picture
-
         writer.write_uuid_value("baseUnitOfMeasureId", self.base_unit_of_measure_id)
         writer.write_bool_value("blocked", self.blocked)
         writer.write_str_value("displayName", self.display_name)

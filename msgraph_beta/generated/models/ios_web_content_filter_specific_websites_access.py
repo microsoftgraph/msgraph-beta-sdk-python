@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .ios_bookmark import IosBookmark
@@ -17,9 +18,9 @@ class IosWebContentFilterSpecificWebsitesAccess(IosWebContentFilterBase, Parsabl
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.iosWebContentFilterSpecificWebsitesAccess"
     # URL bookmarks which will be installed into built-in browser and user is only allowed to access websites through bookmarks. This collection can contain a maximum of 500 elements.
-    specific_websites_only: Optional[List[IosBookmark]] = None
+    specific_websites_only: Optional[list[IosBookmark]] = None
     # URL bookmarks which will be installed into built-in browser and user is only allowed to access websites through bookmarks. This collection can contain a maximum of 500 elements.
-    website_list: Optional[List[IosBookmark]] = None
+    website_list: Optional[list[IosBookmark]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> IosWebContentFilterSpecificWebsitesAccess:
@@ -32,10 +33,10 @@ class IosWebContentFilterSpecificWebsitesAccess(IosWebContentFilterBase, Parsabl
             raise TypeError("parse_node cannot be null.")
         return IosWebContentFilterSpecificWebsitesAccess()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .ios_bookmark import IosBookmark
         from .ios_web_content_filter_base import IosWebContentFilterBase
@@ -43,7 +44,7 @@ class IosWebContentFilterSpecificWebsitesAccess(IosWebContentFilterBase, Parsabl
         from .ios_bookmark import IosBookmark
         from .ios_web_content_filter_base import IosWebContentFilterBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "specificWebsitesOnly": lambda n : setattr(self, 'specific_websites_only', n.get_collection_of_object_values(IosBookmark)),
             "websiteList": lambda n : setattr(self, 'website_list', n.get_collection_of_object_values(IosBookmark)),
         }
@@ -60,9 +61,6 @@ class IosWebContentFilterSpecificWebsitesAccess(IosWebContentFilterBase, Parsabl
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .ios_bookmark import IosBookmark
-        from .ios_web_content_filter_base import IosWebContentFilterBase
-
         writer.write_collection_of_object_values("specificWebsitesOnly", self.specific_websites_only)
         writer.write_collection_of_object_values("websiteList", self.website_list)
     

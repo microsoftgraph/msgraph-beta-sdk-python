@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .forwarding_rule import ForwardingRule
@@ -14,7 +15,7 @@ class InternetAccessForwardingRule(ForwardingRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.internetAccessForwardingRule"
     # The ports property
-    ports: Optional[List[str]] = None
+    ports: Optional[list[str]] = None
     # The protocol property
     protocol: Optional[NetworkingProtocol] = None
     
@@ -29,10 +30,10 @@ class InternetAccessForwardingRule(ForwardingRule, Parsable):
             raise TypeError("parse_node cannot be null.")
         return InternetAccessForwardingRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .forwarding_rule import ForwardingRule
         from .networking_protocol import NetworkingProtocol
@@ -40,7 +41,7 @@ class InternetAccessForwardingRule(ForwardingRule, Parsable):
         from .forwarding_rule import ForwardingRule
         from .networking_protocol import NetworkingProtocol
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "ports": lambda n : setattr(self, 'ports', n.get_collection_of_primitive_values(str)),
             "protocol": lambda n : setattr(self, 'protocol', n.get_enum_value(NetworkingProtocol)),
         }
@@ -57,9 +58,6 @@ class InternetAccessForwardingRule(ForwardingRule, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .forwarding_rule import ForwardingRule
-        from .networking_protocol import NetworkingProtocol
-
         writer.write_collection_of_primitive_values("ports", self.ports)
         writer.write_enum_value("protocol", self.protocol)
     

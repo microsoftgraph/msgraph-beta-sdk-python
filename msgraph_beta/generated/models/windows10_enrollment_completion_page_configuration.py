@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_enrollment_configuration import DeviceEnrollmentConfiguration
@@ -34,7 +35,7 @@ class Windows10EnrollmentCompletionPageConfiguration(DeviceEnrollmentConfigurati
     # Allows quality updates installation during OOBE
     install_quality_updates: Optional[bool] = None
     # Selected applications to track the installation status. It is in the form of an array of GUIDs.
-    selected_mobile_app_ids: Optional[List[str]] = None
+    selected_mobile_app_ids: Optional[list[str]] = None
     # When TRUE, shows installation progress to user. When false, hides installation progress. The default is false.
     show_installation_progress: Optional[bool] = None
     # When TRUE, installation progress is tracked for only Autopilot enrollment scenarios. When false, other scenarios are tracked as well. The default is false.
@@ -51,16 +52,16 @@ class Windows10EnrollmentCompletionPageConfiguration(DeviceEnrollmentConfigurati
             raise TypeError("parse_node cannot be null.")
         return Windows10EnrollmentCompletionPageConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_enrollment_configuration import DeviceEnrollmentConfiguration
 
         from .device_enrollment_configuration import DeviceEnrollmentConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowDeviceResetOnInstallFailure": lambda n : setattr(self, 'allow_device_reset_on_install_failure', n.get_bool_value()),
             "allowDeviceUseOnInstallFailure": lambda n : setattr(self, 'allow_device_use_on_install_failure', n.get_bool_value()),
             "allowLogCollectionOnInstallFailure": lambda n : setattr(self, 'allow_log_collection_on_install_failure', n.get_bool_value()),
@@ -87,8 +88,6 @@ class Windows10EnrollmentCompletionPageConfiguration(DeviceEnrollmentConfigurati
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_enrollment_configuration import DeviceEnrollmentConfiguration
-
         writer.write_bool_value("allowDeviceResetOnInstallFailure", self.allow_device_reset_on_install_failure)
         writer.write_bool_value("allowDeviceUseOnInstallFailure", self.allow_device_use_on_install_failure)
         writer.write_bool_value("allowLogCollectionOnInstallFailure", self.allow_log_collection_on_install_failure)

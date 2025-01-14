@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .classification_request_content_meta_data import ClassificationRequestContentMetaData
@@ -24,7 +25,7 @@ class TextClassificationRequest(Entity, Parsable):
     # The scopesToRun property
     scopes_to_run: Optional[SensitiveTypeScope] = None
     # The sensitiveTypeIds property
-    sensitive_type_ids: Optional[List[str]] = None
+    sensitive_type_ids: Optional[list[str]] = None
     # The text property
     text: Optional[str] = None
     
@@ -39,10 +40,10 @@ class TextClassificationRequest(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TextClassificationRequest()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .classification_request_content_meta_data import ClassificationRequestContentMetaData
         from .entity import Entity
@@ -54,7 +55,7 @@ class TextClassificationRequest(Entity, Parsable):
         from .ml_classification_match_tolerance import MlClassificationMatchTolerance
         from .sensitive_type_scope import SensitiveTypeScope
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "contentMetaData": lambda n : setattr(self, 'content_meta_data', n.get_object_value(ClassificationRequestContentMetaData)),
             "fileExtension": lambda n : setattr(self, 'file_extension', n.get_str_value()),
             "matchTolerancesToInclude": lambda n : setattr(self, 'match_tolerances_to_include', n.get_collection_of_enum_values(MlClassificationMatchTolerance)),
@@ -75,11 +76,6 @@ class TextClassificationRequest(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .classification_request_content_meta_data import ClassificationRequestContentMetaData
-        from .entity import Entity
-        from .ml_classification_match_tolerance import MlClassificationMatchTolerance
-        from .sensitive_type_scope import SensitiveTypeScope
-
         writer.write_object_value("contentMetaData", self.content_meta_data)
         writer.write_str_value("fileExtension", self.file_extension)
         writer.write_enum_value("matchTolerancesToInclude", self.match_tolerances_to_include)

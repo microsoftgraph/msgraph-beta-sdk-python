@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .attachment import Attachment
@@ -30,21 +31,21 @@ class Message(OutlookItem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.message"
     # The fileAttachment and itemAttachment attachments for the message.
-    attachments: Optional[List[Attachment]] = None
+    attachments: Optional[list[Attachment]] = None
     # The Bcc: recipients for the message.
-    bcc_recipients: Optional[List[Recipient]] = None
+    bcc_recipients: Optional[list[Recipient]] = None
     # The body of the message. It can be in HTML or text format. Find out about safe HTML in a message body.
     body: Optional[ItemBody] = None
     # The first 255 characters of the message body. It is in text format. If the message contains instances of mention, this property would contain a concatenation of these mentions as well.
     body_preview: Optional[str] = None
     # The Cc: recipients for the message.
-    cc_recipients: Optional[List[Recipient]] = None
+    cc_recipients: Optional[list[Recipient]] = None
     # The ID of the conversation the email belongs to.
     conversation_id: Optional[str] = None
     # Indicates the position of the message within the conversation.
     conversation_index: Optional[bytes] = None
     # The collection of open extensions defined for the message. Nullable.
-    extensions: Optional[List[Extension]] = None
+    extensions: Optional[list[Extension]] = None
     # The flag value that indicates the status, start date, due date, or completion date for the message.
     flag: Optional[FollowupFlag] = None
     # The owner of the mailbox from which the message is sent. In most cases, this value is the same as the sender property, except for sharing or delegation scenarios. The value must correspond to the actual mailbox used. Find out more about setting the from and sender properties of a message.
@@ -56,7 +57,7 @@ class Message(OutlookItem, Parsable):
     # The classification of the message for the user, based on inferred relevance or importance, or on an explicit override. Possible values are: focused, other.
     inference_classification: Optional[InferenceClassificationType] = None
     # A collection of message headers defined by RFC5322. The set includes message headers indicating the network path taken by a message from the sender to the recipient. It can also contain custom message headers that hold app data for the message.  Returned only on applying a $select query option. Read-only.
-    internet_message_headers: Optional[List[InternetMessageHeader]] = None
+    internet_message_headers: Optional[list[InternetMessageHeader]] = None
     # The message ID in the format specified by RFC5322. Updatable only if isDraft is true.
     internet_message_id: Optional[str] = None
     # Indicates whether a read receipt is requested for the message.
@@ -68,31 +69,31 @@ class Message(OutlookItem, Parsable):
     # Indicates whether a read receipt is requested for the message.
     is_read_receipt_requested: Optional[bool] = None
     # A collection of mentions in the message, ordered by the createdDateTime from the newest to the oldest. By default, a GET /messages does not return this property unless you apply $expand on the property.
-    mentions: Optional[List[Mention]] = None
+    mentions: Optional[list[Mention]] = None
     # Information about mentions in the message. When processing a GET /messages request, the server sets this property and includes it in the response by default. The server returns null if there are no mentions in the message. Optional.
     mentions_preview: Optional[MentionsPreview] = None
     # The collection of multi-value extended properties defined for the message. Nullable.
-    multi_value_extended_properties: Optional[List[MultiValueLegacyExtendedProperty]] = None
+    multi_value_extended_properties: Optional[list[MultiValueLegacyExtendedProperty]] = None
     # The unique identifier for the message's parent mailFolder.
     parent_folder_id: Optional[str] = None
     # The date and time the message was received.  The date and time information uses ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     received_date_time: Optional[datetime.datetime] = None
     # The email addresses to use when replying.
-    reply_to: Optional[List[Recipient]] = None
+    reply_to: Optional[list[Recipient]] = None
     # The account that is actually used to generate the message. In most cases, this value is the same as the from property. You can set this property to a different value when sending a message from a shared mailbox, for a shared calendar, or as a delegate. In any case, the value must correspond to the actual mailbox used. Find out more about setting the from and sender properties of a message.
     sender: Optional[Recipient] = None
     # The date and time the message was sent.  The date and time information uses ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     sent_date_time: Optional[datetime.datetime] = None
     # The collection of single-value extended properties defined for the message. Nullable.
-    single_value_extended_properties: Optional[List[SingleValueLegacyExtendedProperty]] = None
+    single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
     # The subject of the message.
     subject: Optional[str] = None
     # The To: recipients for the message.
-    to_recipients: Optional[List[Recipient]] = None
+    to_recipients: Optional[list[Recipient]] = None
     # The part of the body of the message that is unique to the current message. uniqueBody is not returned by default but can be retrieved for a given message by use of the ?$select=uniqueBody query. It can be in HTML or text format.
     unique_body: Optional[ItemBody] = None
     # The valid entries parsed from the List-Unsubscribe header.  This is the data for the mail command in the List-Unsubscribe header if UnsubscribeEnabled property is true.
-    unsubscribe_data: Optional[List[str]] = None
+    unsubscribe_data: Optional[list[str]] = None
     # Indicates whether the message is enabled for unsubscribe.  Its valueTrue if the list-Unsubscribe header conforms to rfc-2369.
     unsubscribe_enabled: Optional[bool] = None
     # The URL to open the message in Outlook on the web.You can append an ispopout argument to the end of the URL to change how the message is displayed. If ispopout is not present or if it is set to 1, then the message is shown in a popout window. If ispopout is set to 0, the browser shows the message in the Outlook on the web review pane.The message opens in the browser if you are signed in to your mailbox via Outlook on the web. You are prompted to sign in if you are not already signed in with the browser.This URL cannot be accessed from within an iFrame.
@@ -130,10 +131,10 @@ class Message(OutlookItem, Parsable):
             return EventMessageResponse()
         return Message()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .attachment import Attachment
         from .calendar_sharing_message import CalendarSharingMessage
@@ -171,7 +172,7 @@ class Message(OutlookItem, Parsable):
         from .recipient import Recipient
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(Attachment)),
             "bccRecipients": lambda n : setattr(self, 'bcc_recipients', n.get_collection_of_object_values(Recipient)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(ItemBody)),
@@ -220,24 +221,6 @@ class Message(OutlookItem, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .attachment import Attachment
-        from .calendar_sharing_message import CalendarSharingMessage
-        from .event_message import EventMessage
-        from .event_message_request import EventMessageRequest
-        from .event_message_response import EventMessageResponse
-        from .extension import Extension
-        from .followup_flag import FollowupFlag
-        from .importance import Importance
-        from .inference_classification_type import InferenceClassificationType
-        from .internet_message_header import InternetMessageHeader
-        from .item_body import ItemBody
-        from .mention import Mention
-        from .mentions_preview import MentionsPreview
-        from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
-        from .outlook_item import OutlookItem
-        from .recipient import Recipient
-        from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-
         writer.write_collection_of_object_values("attachments", self.attachments)
         writer.write_collection_of_object_values("bccRecipients", self.bcc_recipients)
         writer.write_object_value("body", self.body)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_context_class_reference import AuthenticationContextClassReference
@@ -16,19 +17,19 @@ from .entity import Entity
 @dataclass
 class ConditionalAccessRoot(Entity, Parsable):
     # Read-only. Nullable. Returns a collection of the specified authentication context class references.
-    authentication_context_class_references: Optional[List[AuthenticationContextClassReference]] = None
+    authentication_context_class_references: Optional[list[AuthenticationContextClassReference]] = None
     # Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy.
     authentication_strength: Optional[AuthenticationStrengthRoot] = None
     # DEPRECATED. See the authenticationStrength relationship instead.
     authentication_strengths: Optional[AuthenticationStrengthRoot] = None
     # Read-only. Nullable. Returns a collection of the specified named locations.
-    named_locations: Optional[List[NamedLocation]] = None
+    named_locations: Optional[list[NamedLocation]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
-    policies: Optional[List[ConditionalAccessPolicy]] = None
+    policies: Optional[list[ConditionalAccessPolicy]] = None
     # Read-only. Nullable. Returns a collection of the specified Conditional Access templates.
-    templates: Optional[List[ConditionalAccessTemplate]] = None
+    templates: Optional[list[ConditionalAccessTemplate]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ConditionalAccessRoot:
@@ -41,10 +42,10 @@ class ConditionalAccessRoot(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ConditionalAccessRoot()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_context_class_reference import AuthenticationContextClassReference
         from .authentication_strength_root import AuthenticationStrengthRoot
@@ -60,7 +61,7 @@ class ConditionalAccessRoot(Entity, Parsable):
         from .entity import Entity
         from .named_location import NamedLocation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationContextClassReferences": lambda n : setattr(self, 'authentication_context_class_references', n.get_collection_of_object_values(AuthenticationContextClassReference)),
             "authenticationStrength": lambda n : setattr(self, 'authentication_strength', n.get_object_value(AuthenticationStrengthRoot)),
             "authenticationStrengths": lambda n : setattr(self, 'authentication_strengths', n.get_object_value(AuthenticationStrengthRoot)),
@@ -81,13 +82,6 @@ class ConditionalAccessRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authentication_context_class_reference import AuthenticationContextClassReference
-        from .authentication_strength_root import AuthenticationStrengthRoot
-        from .conditional_access_policy import ConditionalAccessPolicy
-        from .conditional_access_template import ConditionalAccessTemplate
-        from .entity import Entity
-        from .named_location import NamedLocation
-
         writer.write_collection_of_object_values("authenticationContextClassReferences", self.authentication_context_class_references)
         writer.write_object_value("authenticationStrength", self.authentication_strength)
         writer.write_object_value("authenticationStrengths", self.authentication_strengths)

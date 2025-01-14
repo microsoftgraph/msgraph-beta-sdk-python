@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .on_premises_accidental_deletion_prevention import OnPremisesAccidentalDeletionPrevention
@@ -16,7 +17,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Back
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Contains the accidental deletion prevention configuration for a tenant.
     accidental_deletion_prevention: Optional[OnPremisesAccidentalDeletionPrevention] = None
     # The anchor attribute allows customers to customize the property used to create source anchors for synchronization enabled objects.
@@ -47,10 +48,10 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Back
             raise TypeError("parse_node cannot be null.")
         return OnPremisesDirectorySynchronizationConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .on_premises_accidental_deletion_prevention import OnPremisesAccidentalDeletionPrevention
         from .on_premises_current_export_data import OnPremisesCurrentExportData
@@ -60,7 +61,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Back
         from .on_premises_current_export_data import OnPremisesCurrentExportData
         from .on_premises_writeback_configuration import OnPremisesWritebackConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accidentalDeletionPrevention": lambda n : setattr(self, 'accidental_deletion_prevention', n.get_object_value(OnPremisesAccidentalDeletionPrevention)),
             "anchorAttribute": lambda n : setattr(self, 'anchor_attribute', n.get_str_value()),
             "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
@@ -81,10 +82,6 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Back
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .on_premises_accidental_deletion_prevention import OnPremisesAccidentalDeletionPrevention
-        from .on_premises_current_export_data import OnPremisesCurrentExportData
-        from .on_premises_writeback_configuration import OnPremisesWritebackConfiguration
-
         writer.write_object_value("accidentalDeletionPrevention", self.accidental_deletion_prevention)
         writer.write_str_value("anchorAttribute", self.anchor_attribute)
         writer.write_str_value("applicationId", self.application_id)

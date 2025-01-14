@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .app_consent_request_scope import AppConsentRequestScope
@@ -21,9 +22,9 @@ class AppConsentRequest(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # A list of pending scopes waiting for approval. This is empty if the consentType is Static. Required.
-    pending_scopes: Optional[List[AppConsentRequestScope]] = None
+    pending_scopes: Optional[list[AppConsentRequestScope]] = None
     # A list of pending user consent requests. Supports $filter (eq).
-    user_consent_requests: Optional[List[UserConsentRequest]] = None
+    user_consent_requests: Optional[list[UserConsentRequest]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AppConsentRequest:
@@ -36,10 +37,10 @@ class AppConsentRequest(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AppConsentRequest()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .app_consent_request_scope import AppConsentRequestScope
         from .entity import Entity
@@ -49,7 +50,7 @@ class AppConsentRequest(Entity, Parsable):
         from .entity import Entity
         from .user_consent_request import UserConsentRequest
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "consentType": lambda n : setattr(self, 'consent_type', n.get_str_value()),
@@ -69,10 +70,6 @@ class AppConsentRequest(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .app_consent_request_scope import AppConsentRequestScope
-        from .entity import Entity
-        from .user_consent_request import UserConsentRequest
-
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("consentType", self.consent_type)

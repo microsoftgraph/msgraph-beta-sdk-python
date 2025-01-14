@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .file_content_threat_submission import FileContentThreatSubmission
@@ -41,10 +42,10 @@ class FileThreatSubmission(ThreatSubmission, Parsable):
             return FileUrlThreatSubmission()
         return FileThreatSubmission()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .file_content_threat_submission import FileContentThreatSubmission
         from .file_url_threat_submission import FileUrlThreatSubmission
@@ -54,7 +55,7 @@ class FileThreatSubmission(ThreatSubmission, Parsable):
         from .file_url_threat_submission import FileUrlThreatSubmission
         from .threat_submission import ThreatSubmission
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -70,10 +71,6 @@ class FileThreatSubmission(ThreatSubmission, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .file_content_threat_submission import FileContentThreatSubmission
-        from .file_url_threat_submission import FileUrlThreatSubmission
-        from .threat_submission import ThreatSubmission
-
         writer.write_str_value("fileName", self.file_name)
     
 

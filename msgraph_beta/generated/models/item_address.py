@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .geo_coordinates import GeoCoordinates
@@ -32,10 +33,10 @@ class ItemAddress(ItemFacet, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ItemAddress()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .geo_coordinates import GeoCoordinates
         from .item_facet import ItemFacet
@@ -45,7 +46,7 @@ class ItemAddress(ItemFacet, Parsable):
         from .item_facet import ItemFacet
         from .physical_address import PhysicalAddress
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "detail": lambda n : setattr(self, 'detail', n.get_object_value(PhysicalAddress)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "geoCoordinates": lambda n : setattr(self, 'geo_coordinates', n.get_object_value(GeoCoordinates)),
@@ -63,10 +64,6 @@ class ItemAddress(ItemFacet, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .geo_coordinates import GeoCoordinates
-        from .item_facet import ItemFacet
-        from .physical_address import PhysicalAddress
-
         writer.write_object_value("detail", self.detail)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("geoCoordinates", self.geo_coordinates)

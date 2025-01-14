@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
@@ -23,7 +24,7 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(DeviceConfi
     # Tenant level settings for the Derived Credentials to be used for authentication.
     derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None
     # Certificate access information. This collection can contain a maximum of 50 elements.
-    silent_certificate_access_details: Optional[List[AndroidDeviceOwnerSilentCertificateAccess]] = None
+    silent_certificate_access_details: Optional[list[AndroidDeviceOwnerSilentCertificateAccess]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration:
@@ -36,10 +37,10 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(DeviceConfi
             raise TypeError("parse_node cannot be null.")
         return AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
         from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
@@ -51,7 +52,7 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(DeviceConfi
         from .device_configuration import DeviceConfiguration
         from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(AndroidDeviceOwnerCertificateAccessType)),
             "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(DeviceManagementDerivedCredentialSettings)),
             "silentCertificateAccessDetails": lambda n : setattr(self, 'silent_certificate_access_details', n.get_collection_of_object_values(AndroidDeviceOwnerSilentCertificateAccess)),
@@ -69,11 +70,6 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(DeviceConfi
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
-        from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
-        from .device_configuration import DeviceConfiguration
-        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-
         writer.write_enum_value("certificateAccessType", self.certificate_access_type)
         writer.write_object_value("derivedCredentialSettings", self.derived_credential_settings)
         writer.write_collection_of_object_values("silentCertificateAccessDetails", self.silent_certificate_access_details)

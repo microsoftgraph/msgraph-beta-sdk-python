@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -83,10 +84,10 @@ class CaseOperation(Entity, Parsable):
             return TagOperation()
         return CaseOperation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from ..identity_set import IdentitySet
@@ -114,7 +115,7 @@ class CaseOperation(Entity, Parsable):
         from .purge_data_operation import PurgeDataOperation
         from .tag_operation import TagOperation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(CaseAction)),
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
@@ -136,19 +137,6 @@ class CaseOperation(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from ..identity_set import IdentitySet
-        from ..result_info import ResultInfo
-        from .add_to_review_set_operation import AddToReviewSetOperation
-        from .case_action import CaseAction
-        from .case_export_operation import CaseExportOperation
-        from .case_hold_operation import CaseHoldOperation
-        from .case_index_operation import CaseIndexOperation
-        from .case_operation_status import CaseOperationStatus
-        from .estimate_statistics_operation import EstimateStatisticsOperation
-        from .purge_data_operation import PurgeDataOperation
-        from .tag_operation import TagOperation
-
         writer.write_enum_value("action", self.action)
         writer.write_datetime_value("completedDateTime", self.completed_date_time)
         writer.write_object_value("createdBy", self.created_by)

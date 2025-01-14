@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -49,10 +50,10 @@ class TeamworkDeviceHealth(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TeamworkDeviceHealth()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .identity_set import IdentitySet
@@ -70,7 +71,7 @@ class TeamworkDeviceHealth(Entity, Parsable):
         from .teamwork_peripherals_health import TeamworkPeripheralsHealth
         from .teamwork_software_update_health import TeamworkSoftwareUpdateHealth
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "connection": lambda n : setattr(self, 'connection', n.get_object_value(TeamworkConnection)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -94,14 +95,6 @@ class TeamworkDeviceHealth(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .identity_set import IdentitySet
-        from .teamwork_connection import TeamworkConnection
-        from .teamwork_hardware_health import TeamworkHardwareHealth
-        from .teamwork_login_status import TeamworkLoginStatus
-        from .teamwork_peripherals_health import TeamworkPeripheralsHealth
-        from .teamwork_software_update_health import TeamworkSoftwareUpdateHealth
-
         writer.write_object_value("connection", self.connection)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

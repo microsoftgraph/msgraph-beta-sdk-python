@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .data_type import DataType
@@ -16,7 +17,7 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Data types for rules.
     data_type: Optional[DataType] = None
     # Operator for rules.
@@ -43,10 +44,10 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceComplianceScriptRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .data_type import DataType
         from .device_compliance_script_rule_data_type import DeviceComplianceScriptRuleDataType
@@ -58,7 +59,7 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, BackedModel, Parsable):
         from .device_compliance_script_rul_operator import DeviceComplianceScriptRulOperator
         from .operator import Operator
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dataType": lambda n : setattr(self, 'data_type', n.get_enum_value(DataType)),
             "deviceComplianceScriptRulOperator": lambda n : setattr(self, 'device_compliance_script_rul_operator', n.get_enum_value(DeviceComplianceScriptRulOperator)),
             "deviceComplianceScriptRuleDataType": lambda n : setattr(self, 'device_compliance_script_rule_data_type', n.get_enum_value(DeviceComplianceScriptRuleDataType)),
@@ -77,11 +78,6 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .data_type import DataType
-        from .device_compliance_script_rule_data_type import DeviceComplianceScriptRuleDataType
-        from .device_compliance_script_rul_operator import DeviceComplianceScriptRulOperator
-        from .operator import Operator
-
         writer.write_enum_value("dataType", self.data_type)
         writer.write_enum_value("deviceComplianceScriptRulOperator", self.device_compliance_script_rul_operator)
         writer.write_enum_value("deviceComplianceScriptRuleDataType", self.device_compliance_script_rule_data_type)

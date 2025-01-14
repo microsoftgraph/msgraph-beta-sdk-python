@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .attendance_record import AttendanceRecord
@@ -14,9 +15,9 @@ from .entity import Entity
 @dataclass
 class MeetingAttendanceReport(Entity, Parsable):
     # List of attendance records of an attendance report. Read-only.
-    attendance_records: Optional[List[AttendanceRecord]] = None
+    attendance_records: Optional[list[AttendanceRecord]] = None
     # The external information of a virtual event. Returned only for event organizers or coorganizers. Read-only.
-    external_event_information: Optional[List[VirtualEventExternalInformation]] = None
+    external_event_information: Optional[list[VirtualEventExternalInformation]] = None
     # UTC time when the meeting ended. Read-only.
     meeting_end_date_time: Optional[datetime.datetime] = None
     # UTC time when the meeting started. Read-only.
@@ -37,10 +38,10 @@ class MeetingAttendanceReport(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MeetingAttendanceReport()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .attendance_record import AttendanceRecord
         from .entity import Entity
@@ -50,7 +51,7 @@ class MeetingAttendanceReport(Entity, Parsable):
         from .entity import Entity
         from .virtual_event_external_information import VirtualEventExternalInformation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "attendanceRecords": lambda n : setattr(self, 'attendance_records', n.get_collection_of_object_values(AttendanceRecord)),
             "externalEventInformation": lambda n : setattr(self, 'external_event_information', n.get_collection_of_object_values(VirtualEventExternalInformation)),
             "meetingEndDateTime": lambda n : setattr(self, 'meeting_end_date_time', n.get_datetime_value()),
@@ -70,10 +71,6 @@ class MeetingAttendanceReport(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .attendance_record import AttendanceRecord
-        from .entity import Entity
-        from .virtual_event_external_information import VirtualEventExternalInformation
-
         writer.write_collection_of_object_values("attendanceRecords", self.attendance_records)
         writer.write_collection_of_object_values("externalEventInformation", self.external_event_information)
         writer.write_datetime_value("meetingEndDateTime", self.meeting_end_date_time)

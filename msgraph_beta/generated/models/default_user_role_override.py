@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -16,7 +17,7 @@ class DefaultUserRoleOverride(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The rolePermissions property
-    role_permissions: Optional[List[UnifiedRolePermission]] = None
+    role_permissions: Optional[list[UnifiedRolePermission]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DefaultUserRoleOverride:
@@ -29,10 +30,10 @@ class DefaultUserRoleOverride(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DefaultUserRoleOverride()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .unified_role_permission import UnifiedRolePermission
@@ -40,7 +41,7 @@ class DefaultUserRoleOverride(Entity, Parsable):
         from .entity import Entity
         from .unified_role_permission import UnifiedRolePermission
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
             "rolePermissions": lambda n : setattr(self, 'role_permissions', n.get_collection_of_object_values(UnifiedRolePermission)),
         }
@@ -57,9 +58,6 @@ class DefaultUserRoleOverride(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .unified_role_permission import UnifiedRolePermission
-
         writer.write_bool_value("isDefault", self.is_default)
         writer.write_collection_of_object_values("rolePermissions", self.role_permissions)
     

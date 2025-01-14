@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .allowed_audiences import AllowedAudiences
@@ -55,7 +56,7 @@ class ItemFacet(Entity, Parsable):
     # Where the values within an entity originated if synced from another service.
     source: Optional[PersonDataSources] = None
     # Where the values within an entity originated if synced from another source.
-    sources: Optional[List[ProfileSourceAnnotation]] = None
+    sources: Optional[list[ProfileSourceAnnotation]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ItemFacet:
@@ -153,10 +154,10 @@ class ItemFacet(Entity, Parsable):
             return WorkPosition()
         return ItemFacet()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .allowed_audiences import AllowedAudiences
         from .educational_activity import EducationalActivity
@@ -212,7 +213,7 @@ class ItemFacet(Entity, Parsable):
         from .web_account import WebAccount
         from .work_position import WorkPosition
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedAudiences": lambda n : setattr(self, 'allowed_audiences', n.get_collection_of_enum_values(AllowedAudiences)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -236,33 +237,6 @@ class ItemFacet(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .allowed_audiences import AllowedAudiences
-        from .educational_activity import EducationalActivity
-        from .entity import Entity
-        from .identity_set import IdentitySet
-        from .inference_data import InferenceData
-        from .item_address import ItemAddress
-        from .item_email import ItemEmail
-        from .item_patent import ItemPatent
-        from .item_phone import ItemPhone
-        from .item_publication import ItemPublication
-        from .language_proficiency import LanguageProficiency
-        from .person_annotation import PersonAnnotation
-        from .person_annual_event import PersonAnnualEvent
-        from .person_award import PersonAward
-        from .person_certification import PersonCertification
-        from .person_data_sources import PersonDataSources
-        from .person_interest import PersonInterest
-        from .person_name import PersonName
-        from .person_responsibility import PersonResponsibility
-        from .person_website import PersonWebsite
-        from .profile_source_annotation import ProfileSourceAnnotation
-        from .project_participation import ProjectParticipation
-        from .skill_proficiency import SkillProficiency
-        from .user_account_information import UserAccountInformation
-        from .web_account import WebAccount
-        from .work_position import WorkPosition
-
         writer.write_enum_value("allowedAudiences", self.allowed_audiences)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

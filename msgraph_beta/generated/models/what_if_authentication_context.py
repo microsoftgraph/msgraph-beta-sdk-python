@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .conditional_access_context import ConditionalAccessContext
@@ -26,16 +27,16 @@ class WhatIfAuthenticationContext(ConditionalAccessContext, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WhatIfAuthenticationContext()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .conditional_access_context import ConditionalAccessContext
 
         from .conditional_access_context import ConditionalAccessContext
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationContext": lambda n : setattr(self, 'authentication_context', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -51,8 +52,6 @@ class WhatIfAuthenticationContext(ConditionalAccessContext, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .conditional_access_context import ConditionalAccessContext
-
         writer.write_str_value("authenticationContext", self.authentication_context)
     
 

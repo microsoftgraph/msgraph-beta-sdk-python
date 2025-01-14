@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .key_value_pair import KeyValuePair
@@ -31,7 +32,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
     # Represents the level to which app data is encrypted for managed apps
     app_data_encryption_type: Optional[ManagedAppDataEncryptionType] = None
     # List of apps to which the policy is deployed.
-    apps: Optional[List[ManagedMobileApp]] = None
+    apps: Optional[list[ManagedMobileApp]] = None
     # A custom browser protocol to open weblink on iOS.
     custom_browser_protocol: Optional[str] = None
     # Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
@@ -43,15 +44,15 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
     # Disable protection of data transferred to other apps through IOS OpenIn option. This setting is only allowed to be True when AllowedOutboundDataTransferDestinations is set to ManagedApps.
     disable_protection_of_managed_outbound_open_in_data: Optional[bool] = None
     # Apps in this list will be exempt from the policy and will be able to receive data from managed apps.
-    exempted_app_protocols: Optional[List[KeyValuePair]] = None
+    exempted_app_protocols: Optional[list[KeyValuePair]] = None
     # A list of custom urls that are allowed to invocate an unmanaged app
-    exempted_universal_links: Optional[List[str]] = None
+    exempted_universal_links: Optional[list[str]] = None
     # Indicates whether use of the FaceID is allowed in place of a pin if PinRequired is set to True.
     face_id_blocked: Optional[bool] = None
     # Defines if open-in operation is supported from the managed app to the filesharing locations selected. This setting only applies when AllowedOutboundDataTransferDestinations is set to ManagedApps and DisableProtectionOfManagedOutboundOpenInData is set to False.
     filter_open_in_to_only_managed_apps: Optional[bool] = None
     # A list of custom urls that are allowed to invocate a managed app
-    managed_universal_links: Optional[List[str]] = None
+    managed_universal_links: Optional[list[str]] = None
     # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app url redirect schemes which are allowed to be used.
     messaging_redirect_app_url_scheme: Optional[str] = None
     # Versions less than the specified version will block the managed app from accessing company data.
@@ -76,10 +77,10 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IosManagedAppProtection()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .key_value_pair import KeyValuePair
         from .managed_app_data_encryption_type import ManagedAppDataEncryptionType
@@ -95,7 +96,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
         from .managed_mobile_app import ManagedMobileApp
         from .targeted_managed_app_protection import TargetedManagedAppProtection
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowWidgetContentSync": lambda n : setattr(self, 'allow_widget_content_sync', n.get_bool_value()),
             "allowedIosDeviceModels": lambda n : setattr(self, 'allowed_ios_device_models', n.get_str_value()),
             "appActionIfAccountIsClockedOut": lambda n : setattr(self, 'app_action_if_account_is_clocked_out', n.get_enum_value(ManagedAppRemediationAction)),
@@ -132,13 +133,6 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .key_value_pair import KeyValuePair
-        from .managed_app_data_encryption_type import ManagedAppDataEncryptionType
-        from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
-        from .managed_app_remediation_action import ManagedAppRemediationAction
-        from .managed_mobile_app import ManagedMobileApp
-        from .targeted_managed_app_protection import TargetedManagedAppProtection
-
         writer.write_bool_value("allowWidgetContentSync", self.allow_widget_content_sync)
         writer.write_str_value("allowedIosDeviceModels", self.allowed_ios_device_models)
         writer.write_enum_value("appActionIfAccountIsClockedOut", self.app_action_if_account_is_clocked_out)

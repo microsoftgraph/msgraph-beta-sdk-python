@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -22,15 +23,15 @@ class ManagedTenantAlert(Entity, Parsable):
     # The alertData property
     alert_data: Optional[AlertData] = None
     # The alertDataReferenceStrings property
-    alert_data_reference_strings: Optional[List[AlertDataReferenceString]] = None
+    alert_data_reference_strings: Optional[list[AlertDataReferenceString]] = None
     # The alertLogs property
-    alert_logs: Optional[List[ManagedTenantAlertLog]] = None
+    alert_logs: Optional[list[ManagedTenantAlertLog]] = None
     # The alertRule property
     alert_rule: Optional[ManagedTenantAlertRule] = None
     # The alertRuleDisplayName property
     alert_rule_display_name: Optional[str] = None
     # The apiNotifications property
-    api_notifications: Optional[List[ManagedTenantApiNotification]] = None
+    api_notifications: Optional[list[ManagedTenantApiNotification]] = None
     # The assignedToUserId property
     assigned_to_user_id: Optional[str] = None
     # The correlationCount property
@@ -42,7 +43,7 @@ class ManagedTenantAlert(Entity, Parsable):
     # The createdDateTime property
     created_date_time: Optional[datetime.datetime] = None
     # The emailNotifications property
-    email_notifications: Optional[List[ManagedTenantEmailNotification]] = None
+    email_notifications: Optional[list[ManagedTenantEmailNotification]] = None
     # The lastActionByUserId property
     last_action_by_user_id: Optional[str] = None
     # The lastActionDateTime property
@@ -71,10 +72,10 @@ class ManagedTenantAlert(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagedTenantAlert()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .alert_data import AlertData
@@ -96,7 +97,7 @@ class ManagedTenantAlert(Entity, Parsable):
         from .managed_tenant_api_notification import ManagedTenantApiNotification
         from .managed_tenant_email_notification import ManagedTenantEmailNotification
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alertData": lambda n : setattr(self, 'alert_data', n.get_object_value(AlertData)),
             "alertDataReferenceStrings": lambda n : setattr(self, 'alert_data_reference_strings', n.get_collection_of_object_values(AlertDataReferenceString)),
             "alertLogs": lambda n : setattr(self, 'alert_logs', n.get_collection_of_object_values(ManagedTenantAlertLog)),
@@ -130,16 +131,6 @@ class ManagedTenantAlert(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .alert_data import AlertData
-        from .alert_data_reference_string import AlertDataReferenceString
-        from .alert_severity import AlertSeverity
-        from .alert_status import AlertStatus
-        from .managed_tenant_alert_log import ManagedTenantAlertLog
-        from .managed_tenant_alert_rule import ManagedTenantAlertRule
-        from .managed_tenant_api_notification import ManagedTenantApiNotification
-        from .managed_tenant_email_notification import ManagedTenantEmailNotification
-
         writer.write_object_value("alertData", self.alert_data)
         writer.write_collection_of_object_values("alertDataReferenceStrings", self.alert_data_reference_strings)
         writer.write_collection_of_object_values("alertLogs", self.alert_logs)

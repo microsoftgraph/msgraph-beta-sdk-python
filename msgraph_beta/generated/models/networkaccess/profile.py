@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -24,7 +25,7 @@ class Profile(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The traffic forwarding policies associated with this profile.
-    policies: Optional[List[PolicyLink]] = None
+    policies: Optional[list[PolicyLink]] = None
     # The state property
     state: Optional[Status] = None
     # Profile version.
@@ -54,10 +55,10 @@ class Profile(Entity, Parsable):
             return ForwardingProfile()
         return Profile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .filtering_profile import FilteringProfile
@@ -71,7 +72,7 @@ class Profile(Entity, Parsable):
         from .policy_link import PolicyLink
         from .status import Status
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
@@ -92,12 +93,6 @@ class Profile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .filtering_profile import FilteringProfile
-        from .forwarding_profile import ForwardingProfile
-        from .policy_link import PolicyLink
-        from .status import Status
-
         writer.write_str_value("description", self.description)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("name", self.name)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
@@ -28,9 +29,9 @@ class DepOnboardingSetting(Entity, Parsable):
     # Default MacOs Enrollment Profile
     default_mac_os_enrollment_profile: Optional[DepMacOSEnrollmentProfile] = None
     # The enrollment profiles.
-    enrollment_profiles: Optional[List[EnrollmentProfile]] = None
+    enrollment_profiles: Optional[list[EnrollmentProfile]] = None
     # The imported Apple device identities.
-    imported_apple_device_identities: Optional[List[ImportedAppleDeviceIdentity]] = None
+    imported_apple_device_identities: Optional[list[ImportedAppleDeviceIdentity]] = None
     # When the service was onboarded.
     last_modified_date_time: Optional[datetime.datetime] = None
     # When the service last syned with Intune
@@ -42,7 +43,7 @@ class DepOnboardingSetting(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of Scope Tags for this Entity instance.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # Whether or not the Dep token sharing is enabled with the School Data Sync service.
     share_token_with_school_data_sync_service: Optional[bool] = None
     # Gets synced device count
@@ -65,10 +66,10 @@ class DepOnboardingSetting(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DepOnboardingSetting()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
         from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
@@ -84,7 +85,7 @@ class DepOnboardingSetting(Entity, Parsable):
         from .entity import Entity
         from .imported_apple_device_identity import ImportedAppleDeviceIdentity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appleIdentifier": lambda n : setattr(self, 'apple_identifier', n.get_str_value()),
             "dataSharingConsentGranted": lambda n : setattr(self, 'data_sharing_consent_granted', n.get_bool_value()),
             "defaultIosEnrollmentProfile": lambda n : setattr(self, 'default_ios_enrollment_profile', n.get_object_value(DepIOSEnrollmentProfile)),
@@ -115,13 +116,6 @@ class DepOnboardingSetting(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
-        from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
-        from .dep_token_type import DepTokenType
-        from .enrollment_profile import EnrollmentProfile
-        from .entity import Entity
-        from .imported_apple_device_identity import ImportedAppleDeviceIdentity
-
         writer.write_str_value("appleIdentifier", self.apple_identifier)
         writer.write_bool_value("dataSharingConsentGranted", self.data_sharing_consent_granted)
         writer.write_object_value("defaultIosEnrollmentProfile", self.default_ios_enrollment_profile)

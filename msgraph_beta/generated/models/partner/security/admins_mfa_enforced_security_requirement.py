@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .policy_status import PolicyStatus
@@ -43,10 +44,10 @@ class AdminsMfaEnforcedSecurityRequirement(SecurityRequirement, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AdminsMfaEnforcedSecurityRequirement()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .policy_status import PolicyStatus
         from .security_requirement import SecurityRequirement
@@ -54,7 +55,7 @@ class AdminsMfaEnforcedSecurityRequirement(SecurityRequirement, Parsable):
         from .policy_status import PolicyStatus
         from .security_requirement import SecurityRequirement
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "adminsRequiredNotUsingMfaCount": lambda n : setattr(self, 'admins_required_not_using_mfa_count', n.get_int_value()),
             "legacyPerUserMfaStatus": lambda n : setattr(self, 'legacy_per_user_mfa_status', n.get_enum_value(PolicyStatus)),
             "mfaConditionalAccessPolicyStatus": lambda n : setattr(self, 'mfa_conditional_access_policy_status', n.get_enum_value(PolicyStatus)),
@@ -78,9 +79,6 @@ class AdminsMfaEnforcedSecurityRequirement(SecurityRequirement, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .policy_status import PolicyStatus
-        from .security_requirement import SecurityRequirement
-
         writer.write_int_value("adminsRequiredNotUsingMfaCount", self.admins_required_not_using_mfa_count)
         writer.write_enum_value("legacyPerUserMfaStatus", self.legacy_per_user_mfa_status)
         writer.write_enum_value("mfaConditionalAccessPolicyStatus", self.mfa_conditional_access_policy_status)

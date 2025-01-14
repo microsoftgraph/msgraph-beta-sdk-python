@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_required_password_complexity import AndroidRequiredPasswordComplexity
@@ -21,7 +22,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidWorkProfileGeneralDeviceConfiguration"
     # Determine domains allow-list for accounts that can be added to work profile.
-    allowed_google_account_domains: Optional[List[str]] = None
+    allowed_google_account_domains: Optional[list[str]] = None
     # Prevent using unified password for unlocking device and work profile.
     block_unified_password_for_work_profile: Optional[bool] = None
     # Indicates whether or not to block face unlock.
@@ -128,10 +129,10 @@ class AndroidWorkProfileGeneralDeviceConfiguration(DeviceConfiguration, Parsable
             raise TypeError("parse_node cannot be null.")
         return AndroidWorkProfileGeneralDeviceConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_required_password_complexity import AndroidRequiredPasswordComplexity
         from .android_work_profile_account_use import AndroidWorkProfileAccountUse
@@ -147,7 +148,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(DeviceConfiguration, Parsable
         from .android_work_profile_required_password_type import AndroidWorkProfileRequiredPasswordType
         from .device_configuration import DeviceConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedGoogleAccountDomains": lambda n : setattr(self, 'allowed_google_account_domains', n.get_collection_of_primitive_values(str)),
             "blockUnifiedPasswordForWorkProfile": lambda n : setattr(self, 'block_unified_password_for_work_profile', n.get_bool_value()),
             "passwordBlockFaceUnlock": lambda n : setattr(self, 'password_block_face_unlock', n.get_bool_value()),
@@ -210,13 +211,6 @@ class AndroidWorkProfileGeneralDeviceConfiguration(DeviceConfiguration, Parsable
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_required_password_complexity import AndroidRequiredPasswordComplexity
-        from .android_work_profile_account_use import AndroidWorkProfileAccountUse
-        from .android_work_profile_cross_profile_data_sharing_type import AndroidWorkProfileCrossProfileDataSharingType
-        from .android_work_profile_default_app_permission_policy_type import AndroidWorkProfileDefaultAppPermissionPolicyType
-        from .android_work_profile_required_password_type import AndroidWorkProfileRequiredPasswordType
-        from .device_configuration import DeviceConfiguration
-
         writer.write_collection_of_primitive_values("allowedGoogleAccountDomains", self.allowed_google_account_domains)
         writer.write_bool_value("blockUnifiedPasswordForWorkProfile", self.block_unified_password_for_work_profile)
         writer.write_bool_value("passwordBlockFaceUnlock", self.password_block_face_unlock)

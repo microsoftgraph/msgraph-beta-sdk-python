@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
@@ -27,10 +28,10 @@ class GcpCloudFunction(GcpIdentity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GcpCloudFunction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
         from .gcp_identity import GcpIdentity
@@ -38,7 +39,7 @@ class GcpCloudFunction(GcpIdentity, Parsable):
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
         from .gcp_identity import GcpIdentity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "resource": lambda n : setattr(self, 'resource', n.get_object_value(GcpAuthorizationSystemResource)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,9 +55,6 @@ class GcpCloudFunction(GcpIdentity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
-        from .gcp_identity import GcpIdentity
-
         writer.write_object_value("resource", self.resource)
     
 

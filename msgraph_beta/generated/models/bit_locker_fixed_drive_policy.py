@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .bit_locker_encryption_method import BitLockerEncryptionMethod
@@ -17,7 +18,7 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Select the encryption method for fixed drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
     encryption_method: Optional[BitLockerEncryptionMethod] = None
     # The OdataType property
@@ -38,10 +39,10 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return BitLockerFixedDrivePolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .bit_locker_encryption_method import BitLockerEncryptionMethod
         from .bit_locker_recovery_options import BitLockerRecoveryOptions
@@ -49,7 +50,7 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
         from .bit_locker_encryption_method import BitLockerEncryptionMethod
         from .bit_locker_recovery_options import BitLockerRecoveryOptions
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(BitLockerEncryptionMethod)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recoveryOptions": lambda n : setattr(self, 'recovery_options', n.get_object_value(BitLockerRecoveryOptions)),
@@ -65,9 +66,6 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .bit_locker_encryption_method import BitLockerEncryptionMethod
-        from .bit_locker_recovery_options import BitLockerRecoveryOptions
-
         writer.write_enum_value("encryptionMethod", self.encryption_method)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("recoveryOptions", self.recovery_options)

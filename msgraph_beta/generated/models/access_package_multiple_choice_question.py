@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package_answer_choice import AccessPackageAnswerChoice
@@ -16,7 +17,7 @@ class AccessPackageMultipleChoiceQuestion(AccessPackageQuestion, Parsable):
     # Indicates whether requestor can select multiple choices as their answer.
     allows_multiple_selection: Optional[bool] = None
     # List of answer choices.
-    choices: Optional[List[AccessPackageAnswerChoice]] = None
+    choices: Optional[list[AccessPackageAnswerChoice]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AccessPackageMultipleChoiceQuestion:
@@ -29,10 +30,10 @@ class AccessPackageMultipleChoiceQuestion(AccessPackageQuestion, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AccessPackageMultipleChoiceQuestion()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package_answer_choice import AccessPackageAnswerChoice
         from .access_package_question import AccessPackageQuestion
@@ -40,7 +41,7 @@ class AccessPackageMultipleChoiceQuestion(AccessPackageQuestion, Parsable):
         from .access_package_answer_choice import AccessPackageAnswerChoice
         from .access_package_question import AccessPackageQuestion
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowsMultipleSelection": lambda n : setattr(self, 'allows_multiple_selection', n.get_bool_value()),
             "choices": lambda n : setattr(self, 'choices', n.get_collection_of_object_values(AccessPackageAnswerChoice)),
         }
@@ -57,9 +58,6 @@ class AccessPackageMultipleChoiceQuestion(AccessPackageQuestion, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .access_package_answer_choice import AccessPackageAnswerChoice
-        from .access_package_question import AccessPackageQuestion
-
         writer.write_bool_value("allowsMultipleSelection", self.allows_multiple_selection)
         writer.write_collection_of_object_values("choices", self.choices)
     

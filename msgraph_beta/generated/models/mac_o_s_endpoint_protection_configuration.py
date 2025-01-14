@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
@@ -26,13 +27,13 @@ class MacOSEndpointProtectionConfiguration(DeviceConfiguration, Parsable):
     # Possible values of a property
     advanced_threat_protection_diagnostic_data_collection: Optional[Enablement] = None
     # A list of file extensions to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
-    advanced_threat_protection_excluded_extensions: Optional[List[str]] = None
+    advanced_threat_protection_excluded_extensions: Optional[list[str]] = None
     # A list of paths to files to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
-    advanced_threat_protection_excluded_files: Optional[List[str]] = None
+    advanced_threat_protection_excluded_files: Optional[list[str]] = None
     # A list of paths to folders to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
-    advanced_threat_protection_excluded_folders: Optional[List[str]] = None
+    advanced_threat_protection_excluded_folders: Optional[list[str]] = None
     # A list of process names to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
-    advanced_threat_protection_excluded_processes: Optional[List[str]] = None
+    advanced_threat_protection_excluded_processes: Optional[list[str]] = None
     # Possible values of a property
     advanced_threat_protection_real_time: Optional[Enablement] = None
     # Optional. If set to true, the user can defer the enabling of FileVault until they sign out.
@@ -56,7 +57,7 @@ class MacOSEndpointProtectionConfiguration(DeviceConfiguration, Parsable):
     # Recovery key types for macOS FileVault
     file_vault_selected_recovery_key_types: Optional[MacOSFileVaultRecoveryKeyTypes] = None
     # List of applications with firewall settings. Firewall settings for applications not on this list are determined by the user. This collection can contain a maximum of 500 elements.
-    firewall_applications: Optional[List[MacOSFirewallApplication]] = None
+    firewall_applications: Optional[list[MacOSFirewallApplication]] = None
     # Corresponds to the 'Block all incoming connections' option.
     firewall_block_all_incoming: Optional[bool] = None
     # Corresponds to 'Enable stealth mode.'
@@ -79,10 +80,10 @@ class MacOSEndpointProtectionConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSEndpointProtectionConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
         from .enablement import Enablement
@@ -96,7 +97,7 @@ class MacOSEndpointProtectionConfiguration(DeviceConfiguration, Parsable):
         from .mac_o_s_firewall_application import MacOSFirewallApplication
         from .mac_o_s_gatekeeper_app_sources import MacOSGatekeeperAppSources
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "advancedThreatProtectionAutomaticSampleSubmission": lambda n : setattr(self, 'advanced_threat_protection_automatic_sample_submission', n.get_enum_value(Enablement)),
             "advancedThreatProtectionCloudDelivered": lambda n : setattr(self, 'advanced_threat_protection_cloud_delivered', n.get_enum_value(Enablement)),
             "advancedThreatProtectionDiagnosticDataCollection": lambda n : setattr(self, 'advanced_threat_protection_diagnostic_data_collection', n.get_enum_value(Enablement)),
@@ -135,12 +136,6 @@ class MacOSEndpointProtectionConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_configuration import DeviceConfiguration
-        from .enablement import Enablement
-        from .mac_o_s_file_vault_recovery_key_types import MacOSFileVaultRecoveryKeyTypes
-        from .mac_o_s_firewall_application import MacOSFirewallApplication
-        from .mac_o_s_gatekeeper_app_sources import MacOSGatekeeperAppSources
-
         writer.write_enum_value("advancedThreatProtectionAutomaticSampleSubmission", self.advanced_threat_protection_automatic_sample_submission)
         writer.write_enum_value("advancedThreatProtectionCloudDelivered", self.advanced_threat_protection_cloud_delivered)
         writer.write_enum_value("advancedThreatProtectionDiagnosticDataCollection", self.advanced_threat_protection_diagnostic_data_collection)

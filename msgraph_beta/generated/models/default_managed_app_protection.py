@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
@@ -28,7 +29,7 @@ class DefaultManagedAppProtection(ManagedAppProtection, Parsable):
     # Semicolon seperated list of device manufacturers allowed, as a string, for the managed app to work. (Android only)
     allowed_android_device_manufacturers: Optional[str] = None
     # List of device models allowed, as a string, for the managed app to work. (Android Only)
-    allowed_android_device_models: Optional[List[str]] = None
+    allowed_android_device_models: Optional[list[str]] = None
     # Semicolon seperated list of device models allowed, as a string, for the managed app to work. (iOS Only)
     allowed_ios_device_models: Optional[str] = None
     # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
@@ -54,7 +55,7 @@ class DefaultManagedAppProtection(ManagedAppProtection, Parsable):
     # Represents the level to which app data is encrypted for managed apps
     app_data_encryption_type: Optional[ManagedAppDataEncryptionType] = None
     # List of apps to which the policy is deployed.
-    apps: Optional[List[ManagedMobileApp]] = None
+    apps: Optional[list[ManagedMobileApp]] = None
     # Indicates whether use of the biometric authentication is allowed in place of a pin if PinRequired is set to True. (Android Only)
     biometric_authentication_blocked: Optional[bool] = None
     # Maximum number of days Company Portal update can be deferred on the device or app access will be blocked.
@@ -74,7 +75,7 @@ class DefaultManagedAppProtection(ManagedAppProtection, Parsable):
     # Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
     custom_dialer_app_protocol: Optional[str] = None
     # A set of string key and string value pairs to be sent to the affected users, unalterned by this service
-    custom_settings: Optional[List[KeyValuePair]] = None
+    custom_settings: Optional[list[KeyValuePair]] = None
     # Count of apps to which the current policy is deployed.
     deployed_app_count: Optional[int] = None
     # Navigation property to deployment summary of the configuration.
@@ -88,9 +89,9 @@ class DefaultManagedAppProtection(ManagedAppProtection, Parsable):
     # Indicates whether managed-app data should be encrypted. (Android only)
     encrypt_app_data: Optional[bool] = None
     # Android App packages in this list will be exempt from the policy and will be able to receive data from managed apps. (Android only)
-    exempted_app_packages: Optional[List[KeyValuePair]] = None
+    exempted_app_packages: Optional[list[KeyValuePair]] = None
     # iOS Apps in this list will be exempt from the policy and will be able to receive data from managed apps. (iOS Only)
-    exempted_app_protocols: Optional[List[KeyValuePair]] = None
+    exempted_app_protocols: Optional[list[KeyValuePair]] = None
     # Indicates whether use of the FaceID is allowed in place of a pin if PinRequired is set to True. (iOS Only)
     face_id_blocked: Optional[bool] = None
     # Defines if open-in operation is supported from the managed app to the filesharing locations selected. This setting only applies when AllowedOutboundDataTransferDestinations is set to ManagedApps and DisableProtectionOfManagedOutboundOpenInData is set to False. (iOS Only)
@@ -153,10 +154,10 @@ class DefaultManagedAppProtection(ManagedAppProtection, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DefaultManagedAppProtection()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
         from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
@@ -178,7 +179,7 @@ class DefaultManagedAppProtection(ManagedAppProtection, Parsable):
         from .managed_app_remediation_action import ManagedAppRemediationAction
         from .managed_mobile_app import ManagedMobileApp
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowWidgetContentSync": lambda n : setattr(self, 'allow_widget_content_sync', n.get_bool_value()),
             "allowedAndroidDeviceManufacturers": lambda n : setattr(self, 'allowed_android_device_manufacturers', n.get_str_value()),
             "allowedAndroidDeviceModels": lambda n : setattr(self, 'allowed_android_device_models', n.get_collection_of_primitive_values(str)),
@@ -252,16 +253,6 @@ class DefaultManagedAppProtection(ManagedAppProtection, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
-        from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
-        from .android_managed_app_safety_net_evaluation_type import AndroidManagedAppSafetyNetEvaluationType
-        from .key_value_pair import KeyValuePair
-        from .managed_app_data_encryption_type import ManagedAppDataEncryptionType
-        from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
-        from .managed_app_protection import ManagedAppProtection
-        from .managed_app_remediation_action import ManagedAppRemediationAction
-        from .managed_mobile_app import ManagedMobileApp
-
         writer.write_bool_value("allowWidgetContentSync", self.allow_widget_content_sync)
         writer.write_str_value("allowedAndroidDeviceManufacturers", self.allowed_android_device_manufacturers)
         writer.write_collection_of_primitive_values("allowedAndroidDeviceModels", self.allowed_android_device_models)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .assigned_compute_instance_details import AssignedComputeInstanceDetails
@@ -14,7 +15,7 @@ from .finding import Finding
 @dataclass
 class OpenAwsSecurityGroupFinding(Finding, Parsable):
     # A set of AWS EC2 compute instances related to this open security group.
-    assigned_compute_instances_details: Optional[List[AssignedComputeInstanceDetails]] = None
+    assigned_compute_instances_details: Optional[list[AssignedComputeInstanceDetails]] = None
     # The inboundPorts property
     inbound_ports: Optional[InboundPorts] = None
     # The OdataType property
@@ -35,10 +36,10 @@ class OpenAwsSecurityGroupFinding(Finding, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OpenAwsSecurityGroupFinding()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .assigned_compute_instance_details import AssignedComputeInstanceDetails
         from .aws_authorization_system_resource import AwsAuthorizationSystemResource
@@ -50,7 +51,7 @@ class OpenAwsSecurityGroupFinding(Finding, Parsable):
         from .finding import Finding
         from .inbound_ports import InboundPorts
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignedComputeInstancesDetails": lambda n : setattr(self, 'assigned_compute_instances_details', n.get_collection_of_object_values(AssignedComputeInstanceDetails)),
             "inboundPorts": lambda n : setattr(self, 'inbound_ports', n.get_object_value(InboundPorts)),
             "securityGroup": lambda n : setattr(self, 'security_group', n.get_object_value(AwsAuthorizationSystemResource)),
@@ -69,11 +70,6 @@ class OpenAwsSecurityGroupFinding(Finding, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .assigned_compute_instance_details import AssignedComputeInstanceDetails
-        from .aws_authorization_system_resource import AwsAuthorizationSystemResource
-        from .finding import Finding
-        from .inbound_ports import InboundPorts
-
         writer.write_collection_of_object_values("assignedComputeInstancesDetails", self.assigned_compute_instances_details)
         writer.write_object_value("inboundPorts", self.inbound_ports)
         writer.write_object_value("securityGroup", self.security_group)

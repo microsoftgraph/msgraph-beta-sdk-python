@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .action_summary import ActionSummary
@@ -39,10 +40,10 @@ class AwsIdentityAccessManagementKeyUsageFinding(Finding, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AwsIdentityAccessManagementKeyUsageFinding()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .action_summary import ActionSummary
         from .aws_access_key import AwsAccessKey
@@ -58,7 +59,7 @@ class AwsIdentityAccessManagementKeyUsageFinding(Finding, Parsable):
         from .iam_status import IamStatus
         from .permissions_creep_index import PermissionsCreepIndex
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessKey": lambda n : setattr(self, 'access_key', n.get_object_value(AwsAccessKey)),
             "actionSummary": lambda n : setattr(self, 'action_summary', n.get_object_value(ActionSummary)),
             "awsAccessKeyDetails": lambda n : setattr(self, 'aws_access_key_details', n.get_object_value(AwsAccessKeyDetails)),
@@ -78,13 +79,6 @@ class AwsIdentityAccessManagementKeyUsageFinding(Finding, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .action_summary import ActionSummary
-        from .aws_access_key import AwsAccessKey
-        from .aws_access_key_details import AwsAccessKeyDetails
-        from .finding import Finding
-        from .iam_status import IamStatus
-        from .permissions_creep_index import PermissionsCreepIndex
-
         writer.write_object_value("accessKey", self.access_key)
         writer.write_object_value("actionSummary", self.action_summary)
         writer.write_object_value("awsAccessKeyDetails", self.aws_access_key_details)

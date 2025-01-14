@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .base_item import BaseItem
@@ -24,27 +25,27 @@ class List_(BaseItem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.list"
     # The recent activities that took place within this list.
-    activities: Optional[List[ItemActivityOLD]] = None
+    activities: Optional[list[ItemActivityOLD]] = None
     # The collection of field definitions for this list.
-    columns: Optional[List[ColumnDefinition]] = None
+    columns: Optional[list[ColumnDefinition]] = None
     # The collection of content types present in this list.
-    content_types: Optional[List[ContentType]] = None
+    content_types: Optional[list[ContentType]] = None
     # The displayable title of the list.
     display_name: Optional[str] = None
     # Allows access to the list as a drive resource with driveItems. Only present on document libraries.
     drive: Optional[Drive] = None
     # All items contained in the list.
-    items: Optional[List[ListItem]] = None
+    items: Optional[list[ListItem]] = None
     # Contains more details about the list.
     list_: Optional[ListInfo] = None
     # The collection of long-running operations on the list.
-    operations: Optional[List[RichLongRunningOperation]] = None
+    operations: Optional[list[RichLongRunningOperation]] = None
     # The set of permissions for the item. Read-only. Nullable.
-    permissions: Optional[List[Permission]] = None
+    permissions: Optional[list[Permission]] = None
     # Returns identifiers useful for SharePoint REST compatibility. Read-only.
     sharepoint_ids: Optional[SharepointIds] = None
     # The set of subscriptions on the list.
-    subscriptions: Optional[List[Subscription]] = None
+    subscriptions: Optional[list[Subscription]] = None
     # If present, indicates that the list is system-managed. Read-only.
     system: Optional[SystemFacet] = None
     
@@ -59,10 +60,10 @@ class List_(BaseItem, Parsable):
             raise TypeError("parse_node cannot be null.")
         return List_()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .base_item import BaseItem
         from .column_definition import ColumnDefinition
@@ -90,7 +91,7 @@ class List_(BaseItem, Parsable):
         from .subscription import Subscription
         from .system_facet import SystemFacet
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activities": lambda n : setattr(self, 'activities', n.get_collection_of_object_values(ItemActivityOLD)),
             "columns": lambda n : setattr(self, 'columns', n.get_collection_of_object_values(ColumnDefinition)),
             "contentTypes": lambda n : setattr(self, 'content_types', n.get_collection_of_object_values(ContentType)),
@@ -117,19 +118,6 @@ class List_(BaseItem, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .base_item import BaseItem
-        from .column_definition import ColumnDefinition
-        from .content_type import ContentType
-        from .drive import Drive
-        from .item_activity_o_l_d import ItemActivityOLD
-        from .list_info import ListInfo
-        from .list_item import ListItem
-        from .permission import Permission
-        from .rich_long_running_operation import RichLongRunningOperation
-        from .sharepoint_ids import SharepointIds
-        from .subscription import Subscription
-        from .system_facet import SystemFacet
-
         writer.write_collection_of_object_values("activities", self.activities)
         writer.write_collection_of_object_values("columns", self.columns)
         writer.write_collection_of_object_values("contentTypes", self.content_types)

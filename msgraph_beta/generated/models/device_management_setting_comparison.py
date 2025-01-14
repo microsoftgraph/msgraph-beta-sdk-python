@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_comparison_result import DeviceManagementComparisonResult
@@ -16,7 +17,7 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, BackedModel, Parsa
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Setting comparison result type
     comparison_result: Optional[DeviceManagementComparisonResult] = None
     # JSON representation of current intent (or) template setting's value
@@ -43,16 +44,16 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, BackedModel, Parsa
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementSettingComparison()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_comparison_result import DeviceManagementComparisonResult
 
         from .device_management_comparison_result import DeviceManagementComparisonResult
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "comparisonResult": lambda n : setattr(self, 'comparison_result', n.get_enum_value(DeviceManagementComparisonResult)),
             "currentValueJson": lambda n : setattr(self, 'current_value_json', n.get_str_value()),
             "definitionId": lambda n : setattr(self, 'definition_id', n.get_str_value()),
@@ -71,8 +72,6 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .device_management_comparison_result import DeviceManagementComparisonResult
-
         writer.write_enum_value("comparisonResult", self.comparison_result)
         writer.write_str_value("currentValueJson", self.current_value_json)
         writer.write_str_value("definitionId", self.definition_id)

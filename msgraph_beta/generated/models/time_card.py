@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .change_tracked_entity import ChangeTrackedEntity
@@ -19,7 +20,7 @@ class TimeCard(ChangeTrackedEntity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.timeCard"
     # The list of breaks associated with the timeCard.
-    breaks: Optional[List[TimeCardBreak]] = None
+    breaks: Optional[list[TimeCardBreak]] = None
     # The clock-in event of the timeCard.
     clock_in_event: Optional[TimeCardEvent] = None
     # The clock-out event of the timeCard.
@@ -46,10 +47,10 @@ class TimeCard(ChangeTrackedEntity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TimeCard()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .change_tracked_entity import ChangeTrackedEntity
         from .confirmed_by import ConfirmedBy
@@ -67,7 +68,7 @@ class TimeCard(ChangeTrackedEntity, Parsable):
         from .time_card_event import TimeCardEvent
         from .time_card_state import TimeCardState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "breaks": lambda n : setattr(self, 'breaks', n.get_collection_of_object_values(TimeCardBreak)),
             "clockInEvent": lambda n : setattr(self, 'clock_in_event', n.get_object_value(TimeCardEvent)),
             "clockOutEvent": lambda n : setattr(self, 'clock_out_event', n.get_object_value(TimeCardEvent)),
@@ -90,14 +91,6 @@ class TimeCard(ChangeTrackedEntity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .change_tracked_entity import ChangeTrackedEntity
-        from .confirmed_by import ConfirmedBy
-        from .item_body import ItemBody
-        from .time_card_break import TimeCardBreak
-        from .time_card_entry import TimeCardEntry
-        from .time_card_event import TimeCardEvent
-        from .time_card_state import TimeCardState
-
         writer.write_collection_of_object_values("breaks", self.breaks)
         writer.write_object_value("clockInEvent", self.clock_in_event)
         writer.write_object_value("clockOutEvent", self.clock_out_event)

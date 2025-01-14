@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .exact_match_data_store_base import ExactMatchDataStoreBase
@@ -14,7 +15,7 @@ class ExactMatchDataStore(ExactMatchDataStoreBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The sessions property
-    sessions: Optional[List[ExactMatchSession]] = None
+    sessions: Optional[list[ExactMatchSession]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ExactMatchDataStore:
@@ -27,10 +28,10 @@ class ExactMatchDataStore(ExactMatchDataStoreBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ExactMatchDataStore()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .exact_match_data_store_base import ExactMatchDataStoreBase
         from .exact_match_session import ExactMatchSession
@@ -38,7 +39,7 @@ class ExactMatchDataStore(ExactMatchDataStoreBase, Parsable):
         from .exact_match_data_store_base import ExactMatchDataStoreBase
         from .exact_match_session import ExactMatchSession
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "sessions": lambda n : setattr(self, 'sessions', n.get_collection_of_object_values(ExactMatchSession)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,9 +55,6 @@ class ExactMatchDataStore(ExactMatchDataStoreBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .exact_match_data_store_base import ExactMatchDataStoreBase
-        from .exact_match_session import ExactMatchSession
-
         writer.write_collection_of_object_values("sessions", self.sessions)
     
 

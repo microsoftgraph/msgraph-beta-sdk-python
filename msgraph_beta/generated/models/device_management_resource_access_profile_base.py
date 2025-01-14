@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_resource_access_profile_assignment import DeviceManagementResourceAccessProfileAssignment
@@ -21,7 +22,7 @@ class DeviceManagementResourceAccessProfileBase(Entity, Parsable):
     Base Profile Type for Resource Access
     """
     # The list of assignments for the device configuration profile.
-    assignments: Optional[List[DeviceManagementResourceAccessProfileAssignment]] = None
+    assignments: Optional[list[DeviceManagementResourceAccessProfileAssignment]] = None
     # DateTime profile was created
     creation_date_time: Optional[datetime.datetime] = None
     # Profile description
@@ -33,7 +34,7 @@ class DeviceManagementResourceAccessProfileBase(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Scope Tags
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # Version of the profile
     version: Optional[int] = None
     
@@ -73,10 +74,10 @@ class DeviceManagementResourceAccessProfileBase(Entity, Parsable):
             return Windows10XWifiConfiguration()
         return DeviceManagementResourceAccessProfileBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_resource_access_profile_assignment import DeviceManagementResourceAccessProfileAssignment
         from .entity import Entity
@@ -94,7 +95,7 @@ class DeviceManagementResourceAccessProfileBase(Entity, Parsable):
         from .windows10_x_vpn_configuration import Windows10XVpnConfiguration
         from .windows10_x_wifi_configuration import Windows10XWifiConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(DeviceManagementResourceAccessProfileAssignment)),
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -116,14 +117,6 @@ class DeviceManagementResourceAccessProfileBase(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_resource_access_profile_assignment import DeviceManagementResourceAccessProfileAssignment
-        from .entity import Entity
-        from .windows10_x_certificate_profile import Windows10XCertificateProfile
-        from .windows10_x_s_c_e_p_certificate_profile import Windows10XSCEPCertificateProfile
-        from .windows10_x_trusted_root_certificate import Windows10XTrustedRootCertificate
-        from .windows10_x_vpn_configuration import Windows10XVpnConfiguration
-        from .windows10_x_wifi_configuration import Windows10XWifiConfiguration
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_str_value("description", self.description)

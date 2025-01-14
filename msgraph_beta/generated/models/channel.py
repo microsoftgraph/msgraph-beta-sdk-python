@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .channel_layout_type import ChannelLayoutType
@@ -21,7 +22,7 @@ from .entity import Entity
 @dataclass
 class Channel(Entity, Parsable):
     # A collection of membership records associated with the channel. It includes both direct and indirect members of shared channels.
-    all_members: Optional[List[ConversationMember]] = None
+    all_members: Optional[list[ConversationMember]] = None
     # Read only. Timestamp at which the channel was created.
     created_date_time: Optional[datetime.datetime] = None
     # Optional textual description for the channel.
@@ -39,21 +40,21 @@ class Channel(Entity, Parsable):
     # The layoutType property
     layout_type: Optional[ChannelLayoutType] = None
     # A collection of membership records associated with the channel.
-    members: Optional[List[ConversationMember]] = None
+    members: Optional[list[ConversationMember]] = None
     # The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. You must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.
     membership_type: Optional[ChannelMembershipType] = None
     # A collection of all the messages in the channel. A navigation property. Nullable.
-    messages: Optional[List[ChatMessage]] = None
+    messages: Optional[list[ChatMessage]] = None
     # Settings to configure channel moderation to control who can start new posts and reply to posts in that channel.
     moderation_settings: Optional[ChannelModerationSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # A collection of teams with which a channel is shared.
-    shared_with_teams: Optional[List[SharedWithChannelTeamInfo]] = None
+    shared_with_teams: Optional[list[SharedWithChannelTeamInfo]] = None
     # Contains summary information about the channel, including number of guests, members, owners, and an indicator for members from other tenants. The summary property is only returned if it appears in the $select clause of the Get channel method.
     summary: Optional[ChannelSummary] = None
     # A collection of all the tabs in the channel. A navigation property.
-    tabs: Optional[List[TeamsTab]] = None
+    tabs: Optional[list[TeamsTab]] = None
     # The ID of the Microsoft Entra tenant.
     tenant_id: Optional[str] = None
     # A hyperlink to the channel in Microsoft Teams. This URL is supplied when you right-click a channel in Microsoft Teams and select Get link to channel. This URL should be treated as an opaque blob, and not parsed. Read-only.
@@ -70,10 +71,10 @@ class Channel(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Channel()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .channel_layout_type import ChannelLayoutType
         from .channel_membership_type import ChannelMembershipType
@@ -97,7 +98,7 @@ class Channel(Entity, Parsable):
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
         from .teams_tab import TeamsTab
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allMembers": lambda n : setattr(self, 'all_members', n.get_collection_of_object_values(ConversationMember)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -130,17 +131,6 @@ class Channel(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .channel_layout_type import ChannelLayoutType
-        from .channel_membership_type import ChannelMembershipType
-        from .channel_moderation_settings import ChannelModerationSettings
-        from .channel_summary import ChannelSummary
-        from .chat_message import ChatMessage
-        from .conversation_member import ConversationMember
-        from .drive_item import DriveItem
-        from .entity import Entity
-        from .shared_with_channel_team_info import SharedWithChannelTeamInfo
-        from .teams_tab import TeamsTab
-
         writer.write_collection_of_object_values("allMembers", self.all_members)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

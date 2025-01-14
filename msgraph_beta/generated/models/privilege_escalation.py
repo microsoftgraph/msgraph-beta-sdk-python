@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authorization_system_resource import AuthorizationSystemResource
@@ -13,7 +14,7 @@ from .entity import Entity
 @dataclass
 class PrivilegeEscalation(Entity, Parsable):
     # The list of actions that the identity could perform.
-    actions: Optional[List[AuthorizationSystemTypeAction]] = None
+    actions: Optional[list[AuthorizationSystemTypeAction]] = None
     # A detailed description of the privilege escalation.
     description: Optional[str] = None
     # The name of the policy that defines the escalation
@@ -21,7 +22,7 @@ class PrivilegeEscalation(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The list of resources that the identity could perform actions on.
-    resources: Optional[List[AuthorizationSystemResource]] = None
+    resources: Optional[list[AuthorizationSystemResource]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PrivilegeEscalation:
@@ -34,10 +35,10 @@ class PrivilegeEscalation(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PrivilegeEscalation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authorization_system_resource import AuthorizationSystemResource
         from .authorization_system_type_action import AuthorizationSystemTypeAction
@@ -47,7 +48,7 @@ class PrivilegeEscalation(Entity, Parsable):
         from .authorization_system_type_action import AuthorizationSystemTypeAction
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(AuthorizationSystemTypeAction)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -66,10 +67,6 @@ class PrivilegeEscalation(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authorization_system_resource import AuthorizationSystemResource
-        from .authorization_system_type_action import AuthorizationSystemTypeAction
-        from .entity import Entity
-
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

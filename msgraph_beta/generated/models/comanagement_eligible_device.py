@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .comanagement_eligible_type import ComanagementEligibleType
@@ -71,10 +72,10 @@ class ComanagementEligibleDevice(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ComanagementEligibleDevice()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .comanagement_eligible_type import ComanagementEligibleType
         from .device_registration_state import DeviceRegistrationState
@@ -92,7 +93,7 @@ class ComanagementEligibleDevice(Entity, Parsable):
         from .management_state import ManagementState
         from .owner_type import OwnerType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "clientRegistrationStatus": lambda n : setattr(self, 'client_registration_status', n.get_enum_value(DeviceRegistrationState)),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(DeviceType)),
@@ -126,14 +127,6 @@ class ComanagementEligibleDevice(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .comanagement_eligible_type import ComanagementEligibleType
-        from .device_registration_state import DeviceRegistrationState
-        from .device_type import DeviceType
-        from .entity import Entity
-        from .management_agent_type import ManagementAgentType
-        from .management_state import ManagementState
-        from .owner_type import OwnerType
-
         writer.write_enum_value("clientRegistrationStatus", self.client_registration_status)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_enum_value("deviceType", self.device_type)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -75,10 +76,10 @@ class UnifiedRoleManagementAlertConfiguration(Entity, Parsable):
             return TooManyGlobalAdminsAssignedToTenantAlertConfiguration()
         return UnifiedRoleManagementAlertConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .invalid_license_alert_configuration import InvalidLicenseAlertConfiguration
@@ -100,7 +101,7 @@ class UnifiedRoleManagementAlertConfiguration(Entity, Parsable):
         from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
         from .unified_role_management_alert_definition import UnifiedRoleManagementAlertDefinition
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alertDefinition": lambda n : setattr(self, 'alert_definition', n.get_object_value(UnifiedRoleManagementAlertDefinition)),
             "alertDefinitionId": lambda n : setattr(self, 'alert_definition_id', n.get_str_value()),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
@@ -120,16 +121,6 @@ class UnifiedRoleManagementAlertConfiguration(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .invalid_license_alert_configuration import InvalidLicenseAlertConfiguration
-        from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
-        from .redundant_assignment_alert_configuration import RedundantAssignmentAlertConfiguration
-        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
-        from .sequential_activation_renewals_alert_configuration import SequentialActivationRenewalsAlertConfiguration
-        from .stale_sign_in_alert_configuration import StaleSignInAlertConfiguration
-        from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
-        from .unified_role_management_alert_definition import UnifiedRoleManagementAlertDefinition
-
         writer.write_object_value("alertDefinition", self.alert_definition)
         writer.write_str_value("alertDefinitionId", self.alert_definition_id)
         writer.write_bool_value("isEnabled", self.is_enabled)

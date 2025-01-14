@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -20,19 +21,19 @@ class AdminWindowsUpdates(Entity, Parsable):
     # Catalog of content that can be approved for deployment by Windows Autopatch. Read-only.
     catalog: Optional[Catalog] = None
     # The set of updatableAsset resources to which a deployment can apply.
-    deployment_audiences: Optional[List[DeploymentAudience]] = None
+    deployment_audiences: Optional[list[DeploymentAudience]] = None
     # Deployments created using Windows Autopatch.
-    deployments: Optional[List[Deployment]] = None
+    deployments: Optional[list[Deployment]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # A collection of Windows products.
-    products: Optional[List[Product]] = None
+    products: Optional[list[Product]] = None
     # Service connections to external resources such as analytics workspaces.
-    resource_connections: Optional[List[ResourceConnection]] = None
+    resource_connections: Optional[list[ResourceConnection]] = None
     # Assets registered with Windows Autopatch that can receive updates.
-    updatable_assets: Optional[List[UpdatableAsset]] = None
+    updatable_assets: Optional[list[UpdatableAsset]] = None
     # A collection of policies for approving the deployment of different content to an audience over time.
-    update_policies: Optional[List[UpdatePolicy]] = None
+    update_policies: Optional[list[UpdatePolicy]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AdminWindowsUpdates:
@@ -45,10 +46,10 @@ class AdminWindowsUpdates(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AdminWindowsUpdates()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .windows_updates.catalog import Catalog
@@ -68,7 +69,7 @@ class AdminWindowsUpdates(Entity, Parsable):
         from .windows_updates.updatable_asset import UpdatableAsset
         from .windows_updates.update_policy import UpdatePolicy
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "catalog": lambda n : setattr(self, 'catalog', n.get_object_value(Catalog)),
             "deploymentAudiences": lambda n : setattr(self, 'deployment_audiences', n.get_collection_of_object_values(DeploymentAudience)),
             "deployments": lambda n : setattr(self, 'deployments', n.get_collection_of_object_values(Deployment)),
@@ -90,15 +91,6 @@ class AdminWindowsUpdates(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .windows_updates.catalog import Catalog
-        from .windows_updates.deployment import Deployment
-        from .windows_updates.deployment_audience import DeploymentAudience
-        from .windows_updates.product import Product
-        from .windows_updates.resource_connection import ResourceConnection
-        from .windows_updates.updatable_asset import UpdatableAsset
-        from .windows_updates.update_policy import UpdatePolicy
-
         writer.write_object_value("catalog", self.catalog)
         writer.write_collection_of_object_values("deploymentAudiences", self.deployment_audiences)
         writer.write_collection_of_object_values("deployments", self.deployments)

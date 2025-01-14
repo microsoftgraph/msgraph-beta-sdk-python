@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -52,7 +53,7 @@ class TeamworkDevice(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The async operations on the device.
-    operations: Optional[List[TeamworkDeviceOperation]] = None
+    operations: Optional[list[TeamworkDeviceOperation]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TeamworkDevice:
@@ -65,10 +66,10 @@ class TeamworkDevice(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TeamworkDevice()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .identity_set import IdentitySet
@@ -94,7 +95,7 @@ class TeamworkDevice(Entity, Parsable):
         from .teamwork_hardware_detail import TeamworkHardwareDetail
         from .teamwork_user_identity import TeamworkUserIdentity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activity": lambda n : setattr(self, 'activity', n.get_object_value(TeamworkDeviceActivity)),
             "activityState": lambda n : setattr(self, 'activity_state', n.get_enum_value(TeamworkDeviceActivityState)),
             "companyAssetTag": lambda n : setattr(self, 'company_asset_tag', n.get_str_value()),
@@ -124,18 +125,6 @@ class TeamworkDevice(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .identity_set import IdentitySet
-        from .teamwork_device_activity import TeamworkDeviceActivity
-        from .teamwork_device_activity_state import TeamworkDeviceActivityState
-        from .teamwork_device_configuration import TeamworkDeviceConfiguration
-        from .teamwork_device_health import TeamworkDeviceHealth
-        from .teamwork_device_health_status import TeamworkDeviceHealthStatus
-        from .teamwork_device_operation import TeamworkDeviceOperation
-        from .teamwork_device_type import TeamworkDeviceType
-        from .teamwork_hardware_detail import TeamworkHardwareDetail
-        from .teamwork_user_identity import TeamworkUserIdentity
-
         writer.write_object_value("activity", self.activity)
         writer.write_enum_value("activityState", self.activity_state)
         writer.write_str_value("companyAssetTag", self.company_asset_tag)

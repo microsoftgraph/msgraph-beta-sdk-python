@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -15,7 +16,7 @@ from .entity import Entity
 @dataclass
 class PlannerPlanConfiguration(Entity, Parsable):
     # List the buckets that should be created in the plan.
-    buckets: Optional[List[PlannerPlanConfigurationBucketDefinition]] = None
+    buckets: Optional[list[PlannerPlanConfigurationBucketDefinition]] = None
     # The identity of the creator of the plan configuration.
     created_by: Optional[IdentitySet] = None
     # The date and time when the plan configuration was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
@@ -27,7 +28,7 @@ class PlannerPlanConfiguration(Entity, Parsable):
     # The date and time when the plan configuration was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # Localized names for the plan configuration.
-    localizations: Optional[List[PlannerPlanConfigurationLocalization]] = None
+    localizations: Optional[list[PlannerPlanConfigurationLocalization]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -42,10 +43,10 @@ class PlannerPlanConfiguration(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PlannerPlanConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .identity_set import IdentitySet
@@ -57,7 +58,7 @@ class PlannerPlanConfiguration(Entity, Parsable):
         from .planner_plan_configuration_bucket_definition import PlannerPlanConfigurationBucketDefinition
         from .planner_plan_configuration_localization import PlannerPlanConfigurationLocalization
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_object_values(PlannerPlanConfigurationBucketDefinition)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -79,11 +80,6 @@ class PlannerPlanConfiguration(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .identity_set import IdentitySet
-        from .planner_plan_configuration_bucket_definition import PlannerPlanConfigurationBucketDefinition
-        from .planner_plan_configuration_localization import PlannerPlanConfigurationLocalization
-
         writer.write_collection_of_object_values("buckets", self.buckets)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

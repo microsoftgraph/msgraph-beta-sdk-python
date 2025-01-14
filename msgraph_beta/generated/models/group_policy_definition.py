@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -49,7 +50,7 @@ class GroupPolicyDefinition(Entity, Parsable):
     # Type of Group Policy File or Definition.
     policy_type: Optional[GroupPolicyType] = None
     # The group policy presentations associated with the definition.
-    presentations: Optional[List[GroupPolicyPresentation]] = None
+    presentations: Optional[list[GroupPolicyPresentation]] = None
     # Definition of the previous version of this definition
     previous_version_definition: Optional[GroupPolicyDefinition] = None
     # Localized string used to specify what operating system or application version is affected by the policy.
@@ -68,10 +69,10 @@ class GroupPolicyDefinition(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GroupPolicyDefinition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .group_policy_category import GroupPolicyCategory
@@ -87,7 +88,7 @@ class GroupPolicyDefinition(Entity, Parsable):
         from .group_policy_presentation import GroupPolicyPresentation
         from .group_policy_type import GroupPolicyType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_object_value(GroupPolicyCategory)),
             "categoryPath": lambda n : setattr(self, 'category_path', n.get_str_value()),
             "classType": lambda n : setattr(self, 'class_type', n.get_enum_value(GroupPolicyDefinitionClassType)),
@@ -119,13 +120,6 @@ class GroupPolicyDefinition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .group_policy_category import GroupPolicyCategory
-        from .group_policy_definition_class_type import GroupPolicyDefinitionClassType
-        from .group_policy_definition_file import GroupPolicyDefinitionFile
-        from .group_policy_presentation import GroupPolicyPresentation
-        from .group_policy_type import GroupPolicyType
-
         writer.write_object_value("category", self.category)
         writer.write_str_value("categoryPath", self.category_path)
         writer.write_enum_value("classType", self.class_type)

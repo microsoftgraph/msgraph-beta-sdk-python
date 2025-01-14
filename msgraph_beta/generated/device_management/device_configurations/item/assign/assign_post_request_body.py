@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.device_configuration_assignment import DeviceConfigurationAssignment
@@ -14,11 +15,11 @@ class AssignPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The assignments property
-    assignments: Optional[List[DeviceConfigurationAssignment]] = None
+    assignments: Optional[list[DeviceConfigurationAssignment]] = None
     # The deviceConfigurationGroupAssignments property
-    device_configuration_group_assignments: Optional[List[DeviceConfigurationGroupAssignment]] = None
+    device_configuration_group_assignments: Optional[list[DeviceConfigurationGroupAssignment]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AssignPostRequestBody:
@@ -31,10 +32,10 @@ class AssignPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AssignPostRequestBody()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .....models.device_configuration_assignment import DeviceConfigurationAssignment
         from .....models.device_configuration_group_assignment import DeviceConfigurationGroupAssignment
@@ -42,7 +43,7 @@ class AssignPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         from .....models.device_configuration_assignment import DeviceConfigurationAssignment
         from .....models.device_configuration_group_assignment import DeviceConfigurationGroupAssignment
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(DeviceConfigurationAssignment)),
             "deviceConfigurationGroupAssignments": lambda n : setattr(self, 'device_configuration_group_assignments', n.get_collection_of_object_values(DeviceConfigurationGroupAssignment)),
         }
@@ -56,9 +57,6 @@ class AssignPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .....models.device_configuration_assignment import DeviceConfigurationAssignment
-        from .....models.device_configuration_group_assignment import DeviceConfigurationGroupAssignment
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_collection_of_object_values("deviceConfigurationGroupAssignments", self.device_configuration_group_assignments)
         writer.write_additional_data_value(self.additional_data)

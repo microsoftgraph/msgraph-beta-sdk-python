@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_device_compliance_local_action_base import AndroidDeviceComplianceLocalActionBase
@@ -31,16 +32,16 @@ class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(AndroidDeviceComp
             raise TypeError("parse_node cannot be null.")
         return AndroidDeviceComplianceLocalActionLockDeviceWithPasscode()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_device_compliance_local_action_base import AndroidDeviceComplianceLocalActionBase
 
         from .android_device_compliance_local_action_base import AndroidDeviceComplianceLocalActionBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "passcode": lambda n : setattr(self, 'passcode', n.get_str_value()),
             "passcodeSignInFailureCountBeforeWipe": lambda n : setattr(self, 'passcode_sign_in_failure_count_before_wipe', n.get_int_value()),
         }
@@ -57,8 +58,6 @@ class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(AndroidDeviceComp
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_device_compliance_local_action_base import AndroidDeviceComplianceLocalActionBase
-
         writer.write_int_value("passcodeSignInFailureCountBeforeWipe", self.passcode_sign_in_failure_count_before_wipe)
     
 

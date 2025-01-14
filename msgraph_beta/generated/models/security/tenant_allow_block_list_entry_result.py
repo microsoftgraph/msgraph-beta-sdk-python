@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .long_running_operation_status import LongRunningOperationStatus
@@ -15,7 +16,7 @@ class TenantAllowBlockListEntryResult(AdditionalDataHolder, BackedModel, Parsabl
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The tenant allow-block list entry type. The possible values are: url, fileHash, sender, recipient and unkownFutureValue.
     entry_type: Optional[TenantAllowBlockListEntryType] = None
     # Specifies the date and time when the entry expires.
@@ -40,10 +41,10 @@ class TenantAllowBlockListEntryResult(AdditionalDataHolder, BackedModel, Parsabl
             raise TypeError("parse_node cannot be null.")
         return TenantAllowBlockListEntryResult()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .long_running_operation_status import LongRunningOperationStatus
         from .tenant_allow_block_list_entry_type import TenantAllowBlockListEntryType
@@ -51,7 +52,7 @@ class TenantAllowBlockListEntryResult(AdditionalDataHolder, BackedModel, Parsabl
         from .long_running_operation_status import LongRunningOperationStatus
         from .tenant_allow_block_list_entry_type import TenantAllowBlockListEntryType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "entryType": lambda n : setattr(self, 'entry_type', n.get_enum_value(TenantAllowBlockListEntryType)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "identity": lambda n : setattr(self, 'identity', n.get_str_value()),
@@ -69,9 +70,6 @@ class TenantAllowBlockListEntryResult(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .long_running_operation_status import LongRunningOperationStatus
-        from .tenant_allow_block_list_entry_type import TenantAllowBlockListEntryType
-
         writer.write_enum_value("entryType", self.entry_type)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("identity", self.identity)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_method import AuthenticationMethod
@@ -32,10 +33,10 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(AuthenticationMetho
             raise TypeError("parse_node cannot be null.")
         return PasswordlessMicrosoftAuthenticatorAuthenticationMethod()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_method import AuthenticationMethod
         from .device import Device
@@ -43,7 +44,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(AuthenticationMetho
         from .authentication_method import AuthenticationMethod
         from .device import Device
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "device": lambda n : setattr(self, 'device', n.get_object_value(Device)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -61,9 +62,6 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(AuthenticationMetho
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authentication_method import AuthenticationMethod
-        from .device import Device
-
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_object_value("device", self.device)
         writer.write_str_value("displayName", self.display_name)

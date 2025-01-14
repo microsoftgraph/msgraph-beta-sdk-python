@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .calendar_color import CalendarColor
@@ -18,13 +19,13 @@ from .entity import Entity
 @dataclass
 class Calendar(Entity, Parsable):
     # Represent the online meeting service providers that can be used to create online meetings in this calendar. Possible values are: unknown, skypeForBusiness, skypeForConsumer, teamsForBusiness.
-    allowed_online_meeting_providers: Optional[List[OnlineMeetingProviderType]] = None
+    allowed_online_meeting_providers: Optional[list[OnlineMeetingProviderType]] = None
     # The calendarGroup in which to create the calendar. If the user has never explicitly set a group for the calendar, this property is  null.
     calendar_group_id: Optional[str] = None
     # The permissions of the users with whom the calendar is shared.
-    calendar_permissions: Optional[List[CalendarPermission]] = None
+    calendar_permissions: Optional[list[CalendarPermission]] = None
     # The calendar view for the calendar. Navigation property. Read-only.
-    calendar_view: Optional[List[Event]] = None
+    calendar_view: Optional[list[Event]] = None
     # true if the user can write to the calendar, false otherwise. This property is true for the user who created the calendar. This property is also true for a user who has been shared a calendar and granted write access, through an Outlook client or the corresponding calendarPermission resource. Read-only.
     can_edit: Optional[bool] = None
     # true if the user has the permission to share the calendar, false otherwise. Only the user who created the calendar can share it. Read-only.
@@ -38,7 +39,7 @@ class Calendar(Entity, Parsable):
     # The default online meeting provider for meetings sent from this calendar. Possible values are: unknown, skypeForBusiness, skypeForConsumer, teamsForBusiness.
     default_online_meeting_provider: Optional[OnlineMeetingProviderType] = None
     # The events in the calendar. Navigation property. Read-only.
-    events: Optional[List[Event]] = None
+    events: Optional[list[Event]] = None
     # The calendar color, expressed in a hex color code of three hexadecimal values, each ranging from 00 to FF and representing the red, green, or blue components of the color in the RGB color space. If the user has never explicitly set a color for the calendar, this property is  empty.
     hex_color: Optional[str] = None
     # true if this is the default calendar where new events are created by default, false otherwise.
@@ -52,7 +53,7 @@ class Calendar(Entity, Parsable):
     # Indicates whether this user calendar supports tracking of meeting responses. Only meeting invites sent from users' primary calendars support tracking of meeting responses.
     is_tallying_responses: Optional[bool] = None
     # The collection of multi-value extended properties defined for the calendar. Read-only. Nullable.
-    multi_value_extended_properties: Optional[List[MultiValueLegacyExtendedProperty]] = None
+    multi_value_extended_properties: Optional[list[MultiValueLegacyExtendedProperty]] = None
     # The calendar name.
     name: Optional[str] = None
     # The OdataType property
@@ -60,7 +61,7 @@ class Calendar(Entity, Parsable):
     # If set, this represents the user who created or added the calendar. For a calendar that the user created or added, the owner property is set to the user. For a calendar shared with the user, the owner property is set to the person who shared that calendar with the user. Read-only.
     owner: Optional[EmailAddress] = None
     # The collection of single-value extended properties defined for the calendar. Read-only. Nullable.
-    single_value_extended_properties: Optional[List[SingleValueLegacyExtendedProperty]] = None
+    single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Calendar:
@@ -73,10 +74,10 @@ class Calendar(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Calendar()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .calendar_color import CalendarColor
         from .calendar_permission import CalendarPermission
@@ -96,7 +97,7 @@ class Calendar(Entity, Parsable):
         from .online_meeting_provider_type import OnlineMeetingProviderType
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedOnlineMeetingProviders": lambda n : setattr(self, 'allowed_online_meeting_providers', n.get_collection_of_enum_values(OnlineMeetingProviderType)),
             "calendarGroupId": lambda n : setattr(self, 'calendar_group_id', n.get_str_value()),
             "calendarPermissions": lambda n : setattr(self, 'calendar_permissions', n.get_collection_of_object_values(CalendarPermission)),
@@ -132,15 +133,6 @@ class Calendar(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .calendar_color import CalendarColor
-        from .calendar_permission import CalendarPermission
-        from .email_address import EmailAddress
-        from .entity import Entity
-        from .event import Event
-        from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
-        from .online_meeting_provider_type import OnlineMeetingProviderType
-        from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-
         writer.write_collection_of_enum_values("allowedOnlineMeetingProviders", self.allowed_online_meeting_providers)
         writer.write_str_value("calendarGroupId", self.calendar_group_id)
         writer.write_collection_of_object_values("calendarPermissions", self.calendar_permissions)

@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -20,7 +21,7 @@ class Customer(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The address property
     address: Optional[PostalAddressType] = None
     # The blocked property
@@ -54,7 +55,7 @@ class Customer(AdditionalDataHolder, BackedModel, Parsable):
     # The phoneNumber property
     phone_number: Optional[str] = None
     # The picture property
-    picture: Optional[List[Picture]] = None
+    picture: Optional[list[Picture]] = None
     # The shipmentMethod property
     shipment_method: Optional[ShipmentMethod] = None
     # The shipmentMethodId property
@@ -83,10 +84,10 @@ class Customer(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Customer()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .currency import Currency
         from .payment_method import PaymentMethod
@@ -102,7 +103,7 @@ class Customer(AdditionalDataHolder, BackedModel, Parsable):
         from .postal_address_type import PostalAddressType
         from .shipment_method import ShipmentMethod
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(PostalAddressType)),
             "blocked": lambda n : setattr(self, 'blocked', n.get_str_value()),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(Currency)),
@@ -139,13 +140,6 @@ class Customer(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .currency import Currency
-        from .payment_method import PaymentMethod
-        from .payment_term import PaymentTerm
-        from .picture import Picture
-        from .postal_address_type import PostalAddressType
-        from .shipment_method import ShipmentMethod
-
         writer.write_object_value("address", self.address)
         writer.write_str_value("blocked", self.blocked)
         writer.write_object_value("currency", self.currency)

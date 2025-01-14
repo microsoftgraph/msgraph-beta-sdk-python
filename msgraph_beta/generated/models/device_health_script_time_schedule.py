@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_health_script_daily_schedule import DeviceHealthScriptDailySchedule
@@ -47,10 +48,10 @@ class DeviceHealthScriptTimeSchedule(DeviceHealthScriptRunSchedule, Parsable):
             return DeviceHealthScriptRunOnceSchedule()
         return DeviceHealthScriptTimeSchedule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_health_script_daily_schedule import DeviceHealthScriptDailySchedule
         from .device_health_script_run_once_schedule import DeviceHealthScriptRunOnceSchedule
@@ -60,7 +61,7 @@ class DeviceHealthScriptTimeSchedule(DeviceHealthScriptRunSchedule, Parsable):
         from .device_health_script_run_once_schedule import DeviceHealthScriptRunOnceSchedule
         from .device_health_script_run_schedule import DeviceHealthScriptRunSchedule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "time": lambda n : setattr(self, 'time', n.get_time_value()),
             "useUtc": lambda n : setattr(self, 'use_utc', n.get_bool_value()),
         }
@@ -77,10 +78,6 @@ class DeviceHealthScriptTimeSchedule(DeviceHealthScriptRunSchedule, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_health_script_daily_schedule import DeviceHealthScriptDailySchedule
-        from .device_health_script_run_once_schedule import DeviceHealthScriptRunOnceSchedule
-        from .device_health_script_run_schedule import DeviceHealthScriptRunSchedule
-
         writer.write_time_value("time", self.time)
         writer.write_bool_value("useUtc", self.use_utc)
     

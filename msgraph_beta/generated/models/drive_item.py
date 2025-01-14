@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .audio import Audio
@@ -45,7 +46,7 @@ class DriveItem(BaseItem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.driveItem"
     # The list of recent activities that took place on this item.
-    activities: Optional[List[ItemActivityOLD]] = None
+    activities: Optional[list[ItemActivityOLD]] = None
     # Analytics about the view activities that took place on this item.
     analytics: Optional[ItemAnalytics] = None
     # Audio metadata, if the item is an audio file. Read-only. Only on OneDrive Personal.
@@ -55,7 +56,7 @@ class DriveItem(BaseItem, Parsable):
     # An eTag for the content of the item. This eTag isn't changed if only the metadata is changed. Note This property isn't returned if the item is a folder. Read-only.
     c_tag: Optional[str] = None
     # Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.
-    children: Optional[List[DriveItem]] = None
+    children: Optional[list[DriveItem]] = None
     # The content stream, if the item represents a file. The content property will have a potentially breaking change in behavior in the future. It will stream content directly instead of redirecting. To proactively opt in to the new behavior ahead of time, use the contentStream property instead.
     content: Optional[bytes] = None
     # The content stream, if the item represents a file.
@@ -83,7 +84,7 @@ class DriveItem(BaseItem, Parsable):
     # If present, indicates that indicates that one or more operations that might affect the state of the driveItem are pending completion. Read-only.
     pending_operations: Optional[PendingOperations] = None
     # The set of permissions for the item. Read-only. Nullable.
-    permissions: Optional[List[Permission]] = None
+    permissions: Optional[list[Permission]] = None
     # Photo metadata, if the item is a photo. Read-only.
     photo: Optional[Photo] = None
     # Provides information about the published or checked-out state of an item, in locations that support such actions. This property isn't returned by default. Read-only.
@@ -107,11 +108,11 @@ class DriveItem(BaseItem, Parsable):
     # If the current item is also available as a special folder, this facet is returned. Read-only.
     special_folder: Optional[SpecialFolder] = None
     # The set of subscriptions on the item. Only supported on the root of a drive.
-    subscriptions: Optional[List[Subscription]] = None
+    subscriptions: Optional[list[Subscription]] = None
     # Collection of thumbnailSet objects associated with the item. For more information, see getting thumbnails. Read-only. Nullable.
-    thumbnails: Optional[List[ThumbnailSet]] = None
+    thumbnails: Optional[list[ThumbnailSet]] = None
     # The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.
-    versions: Optional[List[DriveItemVersion]] = None
+    versions: Optional[list[DriveItemVersion]] = None
     # Video metadata, if the item is a video. Read-only.
     video: Optional[Video] = None
     # Returns information specific to the calling user for this drive item. Read-only.
@@ -132,10 +133,10 @@ class DriveItem(BaseItem, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DriveItem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .audio import Audio
         from .base_item import BaseItem
@@ -205,7 +206,7 @@ class DriveItem(BaseItem, Parsable):
         from .video import Video
         from .workbook import Workbook
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activities": lambda n : setattr(self, 'activities', n.get_collection_of_object_values(ItemActivityOLD)),
             "analytics": lambda n : setattr(self, 'analytics', n.get_object_value(ItemAnalytics)),
             "audio": lambda n : setattr(self, 'audio', n.get_object_value(Audio)),
@@ -258,40 +259,6 @@ class DriveItem(BaseItem, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .audio import Audio
-        from .base_item import BaseItem
-        from .bundle import Bundle
-        from .deleted import Deleted
-        from .drive_item_source import DriveItemSource
-        from .drive_item_version import DriveItemVersion
-        from .drive_item_viewpoint import DriveItemViewpoint
-        from .file import File
-        from .file_system_info import FileSystemInfo
-        from .folder import Folder
-        from .geo_coordinates import GeoCoordinates
-        from .image import Image
-        from .item_activity_o_l_d import ItemActivityOLD
-        from .item_analytics import ItemAnalytics
-        from .item_retention_label import ItemRetentionLabel
-        from .list_item import ListItem
-        from .malware import Malware
-        from .media import Media
-        from .package import Package
-        from .pending_operations import PendingOperations
-        from .permission import Permission
-        from .photo import Photo
-        from .publication_facet import PublicationFacet
-        from .remote_item import RemoteItem
-        from .root import Root
-        from .search_result import SearchResult
-        from .shared import Shared
-        from .sharepoint_ids import SharepointIds
-        from .special_folder import SpecialFolder
-        from .subscription import Subscription
-        from .thumbnail_set import ThumbnailSet
-        from .video import Video
-        from .workbook import Workbook
-
         writer.write_collection_of_object_values("activities", self.activities)
         writer.write_object_value("analytics", self.analytics)
         writer.write_object_value("audio", self.audio)

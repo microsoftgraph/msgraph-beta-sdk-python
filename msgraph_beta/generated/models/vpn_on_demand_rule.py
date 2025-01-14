@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .vpn_on_demand_rule_connection_action import VpnOnDemandRuleConnectionAction
@@ -18,17 +19,17 @@ class VpnOnDemandRule(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # VPN On-Demand Rule Connection Action.
     action: Optional[VpnOnDemandRuleConnectionAction] = None
     # DNS Search Domains.
-    dns_search_domains: Optional[List[str]] = None
+    dns_search_domains: Optional[list[str]] = None
     # DNS Search Server Address.
-    dns_server_address_match: Optional[List[str]] = None
+    dns_server_address_match: Optional[list[str]] = None
     # VPN On-Demand Rule Connection Domain Action.
     domain_action: Optional[VpnOnDemandRuleConnectionDomainAction] = None
     # Domains (Only applicable when Action is evaluate connection).
-    domains: Optional[List[str]] = None
+    domains: Optional[list[str]] = None
     # VPN On-Demand Rule Connection network interface type.
     interface_type_match: Optional[VpnOnDemandRuleInterfaceTypeMatch] = None
     # The OdataType property
@@ -38,7 +39,7 @@ class VpnOnDemandRule(AdditionalDataHolder, BackedModel, Parsable):
     # A URL to probe. If this URL is successfully fetched (returning a 200 HTTP status code) without redirection, this rule matches.
     probe_url: Optional[str] = None
     # Network Service Set Identifiers (SSIDs).
-    ssids: Optional[List[str]] = None
+    ssids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> VpnOnDemandRule:
@@ -51,10 +52,10 @@ class VpnOnDemandRule(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return VpnOnDemandRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .vpn_on_demand_rule_connection_action import VpnOnDemandRuleConnectionAction
         from .vpn_on_demand_rule_connection_domain_action import VpnOnDemandRuleConnectionDomainAction
@@ -64,7 +65,7 @@ class VpnOnDemandRule(AdditionalDataHolder, BackedModel, Parsable):
         from .vpn_on_demand_rule_connection_domain_action import VpnOnDemandRuleConnectionDomainAction
         from .vpn_on_demand_rule_interface_type_match import VpnOnDemandRuleInterfaceTypeMatch
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(VpnOnDemandRuleConnectionAction)),
             "dnsSearchDomains": lambda n : setattr(self, 'dns_search_domains', n.get_collection_of_primitive_values(str)),
             "dnsServerAddressMatch": lambda n : setattr(self, 'dns_server_address_match', n.get_collection_of_primitive_values(str)),
@@ -86,10 +87,6 @@ class VpnOnDemandRule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .vpn_on_demand_rule_connection_action import VpnOnDemandRuleConnectionAction
-        from .vpn_on_demand_rule_connection_domain_action import VpnOnDemandRuleConnectionDomainAction
-        from .vpn_on_demand_rule_interface_type_match import VpnOnDemandRuleInterfaceTypeMatch
-
         writer.write_enum_value("action", self.action)
         writer.write_collection_of_primitive_values("dnsSearchDomains", self.dns_search_domains)
         writer.write_collection_of_primitive_values("dnsServerAddressMatch", self.dns_server_address_match)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -11,11 +12,11 @@ from .entity import Entity
 @dataclass
 class CorsConfiguration_v2(Entity, Parsable):
     # The request headers that the origin domain may specify on the CORS request. The wildcard character * indicates that any header beginning with the specified prefix is allowed.
-    allowed_headers: Optional[List[str]] = None
+    allowed_headers: Optional[list[str]] = None
     # The HTTP request methods that the origin domain may use for a CORS request.
-    allowed_methods: Optional[List[str]] = None
+    allowed_methods: Optional[list[str]] = None
     # The origin domains that are permitted to make a request against the service via CORS. The origin domain is the domain from which the request originates. The origin must be an exact case-sensitive match with the origin that the user agent sends to the service.
-    allowed_origins: Optional[List[str]] = None
+    allowed_origins: Optional[list[str]] = None
     # The maximum amount of time that a browser should cache the response to the preflight OPTIONS request.
     max_age_in_seconds: Optional[int] = None
     # The OdataType property
@@ -34,16 +35,16 @@ class CorsConfiguration_v2(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CorsConfiguration_v2()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
 
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedHeaders": lambda n : setattr(self, 'allowed_headers', n.get_collection_of_primitive_values(str)),
             "allowedMethods": lambda n : setattr(self, 'allowed_methods', n.get_collection_of_primitive_values(str)),
             "allowedOrigins": lambda n : setattr(self, 'allowed_origins', n.get_collection_of_primitive_values(str)),
@@ -63,8 +64,6 @@ class CorsConfiguration_v2(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-
         writer.write_collection_of_primitive_values("allowedHeaders", self.allowed_headers)
         writer.write_collection_of_primitive_values("allowedMethods", self.allowed_methods)
         writer.write_collection_of_primitive_values("allowedOrigins", self.allowed_origins)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
@@ -31,16 +32,16 @@ class DeliveryOptimizationBandwidthPercentage(DeliveryOptimizationBandwidth, Par
             raise TypeError("parse_node cannot be null.")
         return DeliveryOptimizationBandwidthPercentage()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
 
         from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "maximumBackgroundBandwidthPercentage": lambda n : setattr(self, 'maximum_background_bandwidth_percentage', n.get_int_value()),
             "maximumForegroundBandwidthPercentage": lambda n : setattr(self, 'maximum_foreground_bandwidth_percentage', n.get_int_value()),
         }
@@ -57,8 +58,6 @@ class DeliveryOptimizationBandwidthPercentage(DeliveryOptimizationBandwidth, Par
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
-
         writer.write_int_value("maximumBackgroundBandwidthPercentage", self.maximum_background_bandwidth_percentage)
         writer.write_int_value("maximumForegroundBandwidthPercentage", self.maximum_foreground_bandwidth_percentage)
     

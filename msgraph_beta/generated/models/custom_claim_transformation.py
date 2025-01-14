@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .contains_transformation import ContainsTransformation
@@ -28,7 +29,7 @@ class CustomClaimTransformation(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The input attribute that provides the source for the transformation. This parameter is required if it's the first or only transformation in the list of transformations to be applied. Subsequent transformations use the output of the prior transformation as input.
     input: Optional[TransformationAttribute] = None
     # The OdataType property
@@ -110,10 +111,10 @@ class CustomClaimTransformation(AdditionalDataHolder, BackedModel, Parsable):
             return TrimTransformation()
         return CustomClaimTransformation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .contains_transformation import ContainsTransformation
         from .ends_with_transformation import EndsWithTransformation
@@ -149,7 +150,7 @@ class CustomClaimTransformation(AdditionalDataHolder, BackedModel, Parsable):
         from .transformation_attribute import TransformationAttribute
         from .trim_transformation import TrimTransformation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "input": lambda n : setattr(self, 'input', n.get_object_value(TransformationAttribute)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -163,23 +164,6 @@ class CustomClaimTransformation(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .contains_transformation import ContainsTransformation
-        from .ends_with_transformation import EndsWithTransformation
-        from .extract_alpha_transformation import ExtractAlphaTransformation
-        from .extract_mail_prefix_transformation import ExtractMailPrefixTransformation
-        from .extract_number_transformation import ExtractNumberTransformation
-        from .extract_transformation import ExtractTransformation
-        from .if_empty_transformation import IfEmptyTransformation
-        from .if_not_empty_transformation import IfNotEmptyTransformation
-        from .join_transformation import JoinTransformation
-        from .regex_replace_transformation import RegexReplaceTransformation
-        from .starts_with_transformation import StartsWithTransformation
-        from .substring_transformation import SubstringTransformation
-        from .to_lowercase_transformation import ToLowercaseTransformation
-        from .to_uppercase_transformation import ToUppercaseTransformation
-        from .transformation_attribute import TransformationAttribute
-        from .trim_transformation import TrimTransformation
-
         writer.write_object_value("input", self.input)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

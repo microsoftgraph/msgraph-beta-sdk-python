@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .windows_app_start_layout_tile_size import WindowsAppStartLayoutTileSize
@@ -20,7 +21,7 @@ class WindowsKioskAppBase(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The type of Windows kiosk app.
     app_type: Optional[WindowsKioskAppType] = None
     # Allow the app to be auto-launched in multi-app kiosk mode
@@ -60,10 +61,10 @@ class WindowsKioskAppBase(AdditionalDataHolder, BackedModel, Parsable):
             return WindowsKioskWin32App()
         return WindowsKioskAppBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .windows_app_start_layout_tile_size import WindowsAppStartLayoutTileSize
         from .windows_kiosk_app_type import WindowsKioskAppType
@@ -77,7 +78,7 @@ class WindowsKioskAppBase(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_kiosk_u_w_p_app import WindowsKioskUWPApp
         from .windows_kiosk_win32_app import WindowsKioskWin32App
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appType": lambda n : setattr(self, 'app_type', n.get_enum_value(WindowsKioskAppType)),
             "autoLaunch": lambda n : setattr(self, 'auto_launch', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
@@ -94,12 +95,6 @@ class WindowsKioskAppBase(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .windows_app_start_layout_tile_size import WindowsAppStartLayoutTileSize
-        from .windows_kiosk_app_type import WindowsKioskAppType
-        from .windows_kiosk_desktop_app import WindowsKioskDesktopApp
-        from .windows_kiosk_u_w_p_app import WindowsKioskUWPApp
-        from .windows_kiosk_win32_app import WindowsKioskWin32App
-
         writer.write_enum_value("appType", self.app_type)
         writer.write_bool_value("autoLaunch", self.auto_launch)
         writer.write_str_value("name", self.name)

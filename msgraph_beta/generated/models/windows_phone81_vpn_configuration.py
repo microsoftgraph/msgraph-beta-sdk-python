@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .vpn_authentication_method import VpnAuthenticationMethod
@@ -24,7 +25,7 @@ class WindowsPhone81VpnConfiguration(Windows81VpnConfiguration, Parsable):
     # Bypass VPN on home Wi-Fi.
     bypass_vpn_on_home_wifi: Optional[bool] = None
     # DNS suffix search list.
-    dns_suffix_search_list: Optional[List[str]] = None
+    dns_suffix_search_list: Optional[list[str]] = None
     # Identity certificate for client authentication when authentication method is certificate.
     identity_certificate: Optional[WindowsPhone81CertificateProfileBase] = None
     # Remember user credentials.
@@ -41,10 +42,10 @@ class WindowsPhone81VpnConfiguration(Windows81VpnConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsPhone81VpnConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .vpn_authentication_method import VpnAuthenticationMethod
         from .windows81_vpn_configuration import Windows81VpnConfiguration
@@ -54,7 +55,7 @@ class WindowsPhone81VpnConfiguration(Windows81VpnConfiguration, Parsable):
         from .windows81_vpn_configuration import Windows81VpnConfiguration
         from .windows_phone81_certificate_profile_base import WindowsPhone81CertificateProfileBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(VpnAuthenticationMethod)),
             "bypassVpnOnCompanyWifi": lambda n : setattr(self, 'bypass_vpn_on_company_wifi', n.get_bool_value()),
             "bypassVpnOnHomeWifi": lambda n : setattr(self, 'bypass_vpn_on_home_wifi', n.get_bool_value()),
@@ -75,10 +76,6 @@ class WindowsPhone81VpnConfiguration(Windows81VpnConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .vpn_authentication_method import VpnAuthenticationMethod
-        from .windows81_vpn_configuration import Windows81VpnConfiguration
-        from .windows_phone81_certificate_profile_base import WindowsPhone81CertificateProfileBase
-
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_bool_value("bypassVpnOnCompanyWifi", self.bypass_vpn_on_company_wifi)
         writer.write_bool_value("bypassVpnOnHomeWifi", self.bypass_vpn_on_home_wifi)

@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -19,7 +20,7 @@ class SalesCreditMemo(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The billToCustomerId property
     bill_to_customer_id: Optional[UUID] = None
     # The billToCustomerNumber property
@@ -75,7 +76,7 @@ class SalesCreditMemo(AdditionalDataHolder, BackedModel, Parsable):
     # The pricesIncludeTax property
     prices_include_tax: Optional[bool] = None
     # The salesCreditMemoLines property
-    sales_credit_memo_lines: Optional[List[SalesCreditMemoLine]] = None
+    sales_credit_memo_lines: Optional[list[SalesCreditMemoLine]] = None
     # The salesperson property
     salesperson: Optional[str] = None
     # The sellingPostalAddress property
@@ -100,10 +101,10 @@ class SalesCreditMemo(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SalesCreditMemo()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .currency import Currency
         from .customer import Customer
@@ -117,7 +118,7 @@ class SalesCreditMemo(AdditionalDataHolder, BackedModel, Parsable):
         from .postal_address_type import PostalAddressType
         from .sales_credit_memo_line import SalesCreditMemoLine
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "billToCustomerId": lambda n : setattr(self, 'bill_to_customer_id', n.get_uuid_value()),
             "billToCustomerNumber": lambda n : setattr(self, 'bill_to_customer_number', n.get_str_value()),
             "billToName": lambda n : setattr(self, 'bill_to_name', n.get_str_value()),
@@ -163,12 +164,6 @@ class SalesCreditMemo(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .currency import Currency
-        from .customer import Customer
-        from .payment_term import PaymentTerm
-        from .postal_address_type import PostalAddressType
-        from .sales_credit_memo_line import SalesCreditMemoLine
-
         writer.write_uuid_value("billToCustomerId", self.bill_to_customer_id)
         writer.write_str_value("billToCustomerNumber", self.bill_to_customer_number)
         writer.write_str_value("billToName", self.bill_to_name)

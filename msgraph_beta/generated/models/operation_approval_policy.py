@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -18,7 +19,7 @@ class OperationApprovalPolicy(Entity, Parsable):
     The OperationApprovalPolicy entity allows an administrator to configure which operations require admin approval and the set of admins who can perform that approval. Creating a policy enables the multiple admin approval service to catch requests which are targeted by the specific policy type defined.
     """
     # The Microsoft Entra ID (Azure AD) security group IDs for the approvers for the policy. This property is required when the policy is created, and is defined by the IT Admins to define the possible approvers for the policy.
-    approver_group_ids: Optional[List[str]] = None
+    approver_group_ids: Optional[list[str]] = None
     # Indicates the description of the policy. Maximum length of the description is 1024 characters. This property is not required, but can be used by the IT Admin to describe the policy.
     description: Optional[str] = None
     # Indicates the display name of the policy. Maximum length of the display name is 128 characters. This property is required when the policy is created, and is defined by the IT Admins to identify the policy.
@@ -45,10 +46,10 @@ class OperationApprovalPolicy(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OperationApprovalPolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .operation_approval_policy_platform import OperationApprovalPolicyPlatform
@@ -60,7 +61,7 @@ class OperationApprovalPolicy(Entity, Parsable):
         from .operation_approval_policy_set import OperationApprovalPolicySet
         from .operation_approval_policy_type import OperationApprovalPolicyType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "approverGroupIds": lambda n : setattr(self, 'approver_group_ids', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -82,11 +83,6 @@ class OperationApprovalPolicy(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .operation_approval_policy_platform import OperationApprovalPolicyPlatform
-        from .operation_approval_policy_set import OperationApprovalPolicySet
-        from .operation_approval_policy_type import OperationApprovalPolicyType
-
         writer.write_collection_of_primitive_values("approverGroupIds", self.approver_group_ids)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

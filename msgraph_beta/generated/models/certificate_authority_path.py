@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
@@ -13,9 +14,9 @@ from .entity import Entity
 @dataclass
 class CertificateAuthorityPath(Entity, Parsable):
     # Defines the trusted certificate authorities for certificates that can be added to apps and service principals in the tenant.
-    certificate_based_application_configurations: Optional[List[CertificateBasedApplicationConfiguration]] = None
-    # The mutualTlsOauthConfigurations property
-    mutual_tls_oauth_configurations: Optional[List[MutualTlsOauthConfiguration]] = None
+    certificate_based_application_configurations: Optional[list[CertificateBasedApplicationConfiguration]] = None
+    # Defines the trusted certificate authorities for certificates that can be added to Internet of Things (IoT) devices.
+    mutual_tls_oauth_configurations: Optional[list[MutualTlsOauthConfiguration]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -30,10 +31,10 @@ class CertificateAuthorityPath(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CertificateAuthorityPath()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
         from .entity import Entity
@@ -43,7 +44,7 @@ class CertificateAuthorityPath(Entity, Parsable):
         from .entity import Entity
         from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificateBasedApplicationConfigurations": lambda n : setattr(self, 'certificate_based_application_configurations', n.get_collection_of_object_values(CertificateBasedApplicationConfiguration)),
             "mutualTlsOauthConfigurations": lambda n : setattr(self, 'mutual_tls_oauth_configurations', n.get_collection_of_object_values(MutualTlsOauthConfiguration)),
         }
@@ -60,10 +61,6 @@ class CertificateAuthorityPath(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
-        from .entity import Entity
-        from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
-
         writer.write_collection_of_object_values("certificateBasedApplicationConfigurations", self.certificate_based_application_configurations)
         writer.write_collection_of_object_values("mutualTlsOauthConfigurations", self.mutual_tls_oauth_configurations)
     

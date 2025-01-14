@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .planner_field_rules import PlannerFieldRules
@@ -22,31 +23,31 @@ class PlannerTaskPropertyRule(PlannerPropertyRule, Parsable):
     # Rules and restrictions for checklist. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, update, check, reorder, block.
     check_lists: Optional[PlannerFieldRules] = None
     # Rules and restrictions for completion requirements of the task. Accepted values are allow, add, remove, edit, and block.
-    completion_requirements: Optional[List[str]] = None
+    completion_requirements: Optional[list[str]] = None
     # Rules and restrictions for deleting the task. Accepted values are allow and block.
-    delete: Optional[List[str]] = None
+    delete: Optional[list[str]] = None
     # Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
-    due_date: Optional[List[str]] = None
+    due_date: Optional[list[str]] = None
     # Rules and restrictions for forms. Allowed overrides are userCreated and applicationCreated. The following are the accepted values for the default rule and individual overrides: allow, add, addResponse, remove, update, block.
     forms: Optional[PlannerFieldRules] = None
     # Rules and restrictions for moving the task between buckets or plans. Accepted values are allow, moveBetweenPlans, moveBetweenBuckets, and block.
-    move: Optional[List[str]] = None
+    move: Optional[list[str]] = None
     # Rules and restrictions for changing the notes of the task. Accepted values are allow and block.
-    notes: Optional[List[str]] = None
+    notes: Optional[list[str]] = None
     # Rules and restrictions for changing the order of the task. Accepted values are allow and block.
-    order: Optional[List[str]] = None
+    order: Optional[list[str]] = None
     # Rules and restrictions for changing the completion percentage of the task. Accepted values are allow, setToComplete, overrideRequirements, setToNotStarted, setToInProgress, and block.
-    percent_complete: Optional[List[str]] = None
+    percent_complete: Optional[list[str]] = None
     # Rules and restrictions for changing the preview type of the task. Accepted values are allow and block.
-    preview_type: Optional[List[str]] = None
+    preview_type: Optional[list[str]] = None
     # Rules and restrictions for changing the priority of the task. Accepted values are allow and block.
-    priority: Optional[List[str]] = None
+    priority: Optional[list[str]] = None
     # Rules and restrictions for references. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, block.
     references: Optional[PlannerFieldRules] = None
     # Rules and restrictions for changing the start date of the task. Accepted values are allow and block.
-    start_date: Optional[List[str]] = None
+    start_date: Optional[list[str]] = None
     # Rules and restrictions for changing the title of the task. Accepted values are allow and block.
-    title: Optional[List[str]] = None
+    title: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PlannerTaskPropertyRule:
@@ -59,10 +60,10 @@ class PlannerTaskPropertyRule(PlannerPropertyRule, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PlannerTaskPropertyRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .planner_field_rules import PlannerFieldRules
         from .planner_property_rule import PlannerPropertyRule
@@ -70,7 +71,7 @@ class PlannerTaskPropertyRule(PlannerPropertyRule, Parsable):
         from .planner_field_rules import PlannerFieldRules
         from .planner_property_rule import PlannerPropertyRule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appliedCategories": lambda n : setattr(self, 'applied_categories', n.get_object_value(PlannerFieldRules)),
             "approvalAttachment": lambda n : setattr(self, 'approval_attachment', n.get_object_value(PlannerFieldRules)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_object_value(PlannerFieldRules)),
@@ -102,9 +103,6 @@ class PlannerTaskPropertyRule(PlannerPropertyRule, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .planner_field_rules import PlannerFieldRules
-        from .planner_property_rule import PlannerPropertyRule
-
         writer.write_object_value("appliedCategories", self.applied_categories)
         writer.write_object_value("approvalAttachment", self.approval_attachment)
         writer.write_object_value("assignments", self.assignments)

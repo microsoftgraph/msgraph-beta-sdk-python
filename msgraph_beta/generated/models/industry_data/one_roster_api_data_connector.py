@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .api_data_connector import ApiDataConnector
@@ -32,16 +33,16 @@ class OneRosterApiDataConnector(ApiDataConnector, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OneRosterApiDataConnector()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .api_data_connector import ApiDataConnector
 
         from .api_data_connector import ApiDataConnector
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "apiVersion": lambda n : setattr(self, 'api_version', n.get_str_value()),
             "isContactsEnabled": lambda n : setattr(self, 'is_contacts_enabled', n.get_bool_value()),
             "isDemographicsEnabled": lambda n : setattr(self, 'is_demographics_enabled', n.get_bool_value()),
@@ -60,8 +61,6 @@ class OneRosterApiDataConnector(ApiDataConnector, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .api_data_connector import ApiDataConnector
-
         writer.write_str_value("apiVersion", self.api_version)
         writer.write_bool_value("isContactsEnabled", self.is_contacts_enabled)
         writer.write_bool_value("isDemographicsEnabled", self.is_demographics_enabled)

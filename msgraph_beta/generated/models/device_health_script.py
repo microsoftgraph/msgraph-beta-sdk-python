@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_health_script_assignment import DeviceHealthScriptAssignment
@@ -21,7 +22,7 @@ class DeviceHealthScript(Entity, Parsable):
     Intune will provide customer the ability to run their Powershell Health scripts (remediation + detection) on the enrolled windows 10 Azure Active Directory joined devices.
     """
     # The list of group assignments for the device health script
-    assignments: Optional[List[DeviceHealthScriptAssignment]] = None
+    assignments: Optional[list[DeviceHealthScriptAssignment]] = None
     # The timestamp of when the device health script was created. This property is read-only.
     created_date_time: Optional[datetime.datetime] = None
     # Description of the device health script
@@ -29,11 +30,11 @@ class DeviceHealthScript(Entity, Parsable):
     # The entire content of the detection powershell script
     detection_script_content: Optional[bytes] = None
     # List of ComplexType DetectionScriptParameters objects.
-    detection_script_parameters: Optional[List[DeviceHealthScriptParameter]] = None
+    detection_script_parameters: Optional[list[DeviceHealthScriptParameter]] = None
     # Indicates the type of device script.
     device_health_script_type: Optional[DeviceHealthScriptType] = None
     # List of run states for the device health script across all devices
-    device_run_states: Optional[List[DeviceHealthScriptDeviceState]] = None
+    device_run_states: Optional[list[DeviceHealthScriptDeviceState]] = None
     # Name of the device health script
     display_name: Optional[str] = None
     # Indicate whether the script signature needs be checked
@@ -51,9 +52,9 @@ class DeviceHealthScript(Entity, Parsable):
     # The entire content of the remediation powershell script
     remediation_script_content: Optional[bytes] = None
     # List of ComplexType RemediationScriptParameters objects.
-    remediation_script_parameters: Optional[List[DeviceHealthScriptParameter]] = None
+    remediation_script_parameters: Optional[list[DeviceHealthScriptParameter]] = None
     # List of Scope Tag IDs for the device health script
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # Indicates the type of execution context the app runs in.
     run_as_account: Optional[RunAsAccountType] = None
     # Indicate whether PowerShell script(s) should run as 32-bit
@@ -74,10 +75,10 @@ class DeviceHealthScript(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceHealthScript()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_health_script_assignment import DeviceHealthScriptAssignment
         from .device_health_script_device_state import DeviceHealthScriptDeviceState
@@ -95,7 +96,7 @@ class DeviceHealthScript(Entity, Parsable):
         from .entity import Entity
         from .run_as_account_type import RunAsAccountType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(DeviceHealthScriptAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -130,14 +131,6 @@ class DeviceHealthScript(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_health_script_assignment import DeviceHealthScriptAssignment
-        from .device_health_script_device_state import DeviceHealthScriptDeviceState
-        from .device_health_script_parameter import DeviceHealthScriptParameter
-        from .device_health_script_run_summary import DeviceHealthScriptRunSummary
-        from .device_health_script_type import DeviceHealthScriptType
-        from .entity import Entity
-        from .run_as_account_type import RunAsAccountType
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_str_value("description", self.description)
         writer.write_bytes_value("detectionScriptContent", self.detection_script_content)

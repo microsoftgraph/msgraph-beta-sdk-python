@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -42,10 +43,10 @@ class DeviceManagementScriptDeviceState(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementScriptDeviceState()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .managed_device import ManagedDevice
@@ -55,7 +56,7 @@ class DeviceManagementScriptDeviceState(Entity, Parsable):
         from .managed_device import ManagedDevice
         from .run_state import RunState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
             "errorDescription": lambda n : setattr(self, 'error_description', n.get_str_value()),
             "lastStateUpdateDateTime": lambda n : setattr(self, 'last_state_update_date_time', n.get_datetime_value()),
@@ -76,10 +77,6 @@ class DeviceManagementScriptDeviceState(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .managed_device import ManagedDevice
-        from .run_state import RunState
-
         writer.write_int_value("errorCode", self.error_code)
         writer.write_str_value("errorDescription", self.error_description)
         writer.write_datetime_value("lastStateUpdateDateTime", self.last_state_update_date_time)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -38,10 +39,10 @@ class GroupPolicyOperation(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GroupPolicyOperation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .group_policy_operation_status import GroupPolicyOperationStatus
@@ -51,7 +52,7 @@ class GroupPolicyOperation(Entity, Parsable):
         from .group_policy_operation_status import GroupPolicyOperationStatus
         from .group_policy_operation_type import GroupPolicyOperationType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "operationStatus": lambda n : setattr(self, 'operation_status', n.get_enum_value(GroupPolicyOperationStatus)),
             "operationType": lambda n : setattr(self, 'operation_type', n.get_enum_value(GroupPolicyOperationType)),
@@ -70,10 +71,6 @@ class GroupPolicyOperation(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .group_policy_operation_status import GroupPolicyOperationStatus
-        from .group_policy_operation_type import GroupPolicyOperationType
-
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_enum_value("operationStatus", self.operation_status)
         writer.write_enum_value("operationType", self.operation_type)

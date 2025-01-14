@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .change_uefi_settings_permission import ChangeUefiSettingsPermission
@@ -71,10 +72,10 @@ class Windows10DeviceFirmwareConfigurationInterface(DeviceConfiguration, Parsabl
             raise TypeError("parse_node cannot be null.")
         return Windows10DeviceFirmwareConfigurationInterface()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .change_uefi_settings_permission import ChangeUefiSettingsPermission
         from .device_configuration import DeviceConfiguration
@@ -84,7 +85,7 @@ class Windows10DeviceFirmwareConfigurationInterface(DeviceConfiguration, Parsabl
         from .device_configuration import DeviceConfiguration
         from .enablement import Enablement
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "bluetooth": lambda n : setattr(self, 'bluetooth', n.get_enum_value(Enablement)),
             "bootFromBuiltInNetworkAdapters": lambda n : setattr(self, 'boot_from_built_in_network_adapters', n.get_enum_value(Enablement)),
             "bootFromExternalMedia": lambda n : setattr(self, 'boot_from_external_media', n.get_enum_value(Enablement)),
@@ -120,10 +121,6 @@ class Windows10DeviceFirmwareConfigurationInterface(DeviceConfiguration, Parsabl
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .change_uefi_settings_permission import ChangeUefiSettingsPermission
-        from .device_configuration import DeviceConfiguration
-        from .enablement import Enablement
-
         writer.write_enum_value("bluetooth", self.bluetooth)
         writer.write_enum_value("bootFromBuiltInNetworkAdapters", self.boot_from_built_in_network_adapters)
         writer.write_enum_value("bootFromExternalMedia", self.boot_from_external_media)

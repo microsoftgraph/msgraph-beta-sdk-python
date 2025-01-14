@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_event_handler_result import AuthenticationEventHandlerResult
@@ -14,7 +15,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, BackedModel, Pars
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The type of authentication event that triggered the custom authentication extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
     event_type: Optional[AuthenticationEventType] = None
     # ID of the authentication event listener that was executed.
@@ -35,10 +36,10 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, BackedModel, Pars
             raise TypeError("parse_node cannot be null.")
         return AppliedAuthenticationEventListener()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_event_handler_result import AuthenticationEventHandlerResult
         from .authentication_event_type import AuthenticationEventType
@@ -46,7 +47,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, BackedModel, Pars
         from .authentication_event_handler_result import AuthenticationEventHandlerResult
         from .authentication_event_type import AuthenticationEventType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "eventType": lambda n : setattr(self, 'event_type', n.get_enum_value(AuthenticationEventType)),
             "executedListenerId": lambda n : setattr(self, 'executed_listener_id', n.get_str_value()),
             "handlerResult": lambda n : setattr(self, 'handler_result', n.get_object_value(AuthenticationEventHandlerResult)),
@@ -62,9 +63,6 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, BackedModel, Pars
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .authentication_event_handler_result import AuthenticationEventHandlerResult
-        from .authentication_event_type import AuthenticationEventType
-
         writer.write_enum_value("eventType", self.event_type)
         writer.write_str_value("executedListenerId", self.executed_listener_id)
         writer.write_object_value("handlerResult", self.handler_result)

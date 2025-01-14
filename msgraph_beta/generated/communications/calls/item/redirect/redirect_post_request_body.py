@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.call_disposition import CallDisposition
@@ -14,7 +15,7 @@ class RedirectPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The callbackUri property
     callback_uri: Optional[str] = None
     # The maskCallee property
@@ -24,7 +25,7 @@ class RedirectPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # The targetDisposition property
     target_disposition: Optional[CallDisposition] = None
     # The targets property
-    targets: Optional[List[InvitationParticipantInfo]] = None
+    targets: Optional[list[InvitationParticipantInfo]] = None
     # The timeout property
     timeout: Optional[int] = None
     
@@ -39,10 +40,10 @@ class RedirectPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RedirectPostRequestBody()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .....models.call_disposition import CallDisposition
         from .....models.invitation_participant_info import InvitationParticipantInfo
@@ -50,7 +51,7 @@ class RedirectPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         from .....models.call_disposition import CallDisposition
         from .....models.invitation_participant_info import InvitationParticipantInfo
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "callbackUri": lambda n : setattr(self, 'callback_uri', n.get_str_value()),
             "maskCallee": lambda n : setattr(self, 'mask_callee', n.get_bool_value()),
             "maskCaller": lambda n : setattr(self, 'mask_caller', n.get_bool_value()),
@@ -68,9 +69,6 @@ class RedirectPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .....models.call_disposition import CallDisposition
-        from .....models.invitation_participant_info import InvitationParticipantInfo
-
         writer.write_str_value("callbackUri", self.callback_uri)
         writer.write_bool_value("maskCallee", self.mask_callee)
         writer.write_bool_value("maskCaller", self.mask_caller)

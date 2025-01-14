@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package import AccessPackage
@@ -23,9 +24,9 @@ class AccessPackageAssignment(Entity, Parsable):
     # Read-only. Nullable. Supports $filter (eq) on the id property
     access_package_assignment_policy: Optional[AccessPackageAssignmentPolicy] = None
     # The accessPackageAssignmentRequests property
-    access_package_assignment_requests: Optional[List[AccessPackageAssignmentRequest]] = None
+    access_package_assignment_requests: Optional[list[AccessPackageAssignmentRequest]] = None
     # The resource roles delivered to the target user for this assignment. Read-only. Nullable.
-    access_package_assignment_resource_roles: Optional[List[AccessPackageAssignmentResourceRole]] = None
+    access_package_assignment_resource_roles: Optional[list[AccessPackageAssignmentResourceRole]] = None
     # The identifier of the access package. Read-only.
     access_package_id: Optional[str] = None
     # The identifier of the access package assignment policy. Read-only.
@@ -37,7 +38,7 @@ class AccessPackageAssignment(Entity, Parsable):
     # The identifier of the catalog containing the access package. Read-only.
     catalog_id: Optional[str] = None
     # Information about all the custom extension calls that were made during the access package assignment workflow.
-    custom_extension_callout_instances: Optional[List[CustomExtensionCalloutInstance]] = None
+    custom_extension_callout_instances: Optional[list[CustomExtensionCalloutInstance]] = None
     # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     expired_date_time: Optional[datetime.datetime] = None
     # Indicates whether the access package assignment is extended. Read-only.
@@ -62,10 +63,10 @@ class AccessPackageAssignment(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AccessPackageAssignment()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package import AccessPackage
         from .access_package_assignment_policy import AccessPackageAssignmentPolicy
@@ -85,7 +86,7 @@ class AccessPackageAssignment(Entity, Parsable):
         from .entity import Entity
         from .request_schedule import RequestSchedule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessPackage": lambda n : setattr(self, 'access_package', n.get_object_value(AccessPackage)),
             "accessPackageAssignmentPolicy": lambda n : setattr(self, 'access_package_assignment_policy', n.get_object_value(AccessPackageAssignmentPolicy)),
             "accessPackageAssignmentRequests": lambda n : setattr(self, 'access_package_assignment_requests', n.get_collection_of_object_values(AccessPackageAssignmentRequest)),
@@ -115,15 +116,6 @@ class AccessPackageAssignment(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .access_package import AccessPackage
-        from .access_package_assignment_policy import AccessPackageAssignmentPolicy
-        from .access_package_assignment_request import AccessPackageAssignmentRequest
-        from .access_package_assignment_resource_role import AccessPackageAssignmentResourceRole
-        from .access_package_subject import AccessPackageSubject
-        from .custom_extension_callout_instance import CustomExtensionCalloutInstance
-        from .entity import Entity
-        from .request_schedule import RequestSchedule
-
         writer.write_object_value("accessPackage", self.access_package)
         writer.write_object_value("accessPackageAssignmentPolicy", self.access_package_assignment_policy)
         writer.write_collection_of_object_values("accessPackageAssignmentRequests", self.access_package_assignment_requests)

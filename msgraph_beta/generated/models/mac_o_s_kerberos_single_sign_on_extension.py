@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
@@ -24,13 +25,13 @@ class MacOSKerberosSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
     # Gets or sets the Generic Security Services name of the Kerberos cache to use for this profile.
     cache_name: Optional[str] = None
     # Gets or sets a list of app Bundle IDs allowed to access the Kerberos Ticket Granting Ticket.
-    credential_bundle_id_access_control_list: Optional[List[str]] = None
+    credential_bundle_id_access_control_list: Optional[list[str]] = None
     # When set to True, the credential is requested on the next matching Kerberos challenge or network state change. When the credential is expired or missing, a new credential is created. Available for devices running macOS versions 12 and later.
     credentials_cache_monitored: Optional[bool] = None
     # Gets or sets a list of realms for custom domain-realm mapping. Realms are case sensitive.
-    domain_realms: Optional[List[str]] = None
+    domain_realms: Optional[list[str]] = None
     # Gets or sets a list of hosts or domain names for which the app extension performs SSO.
-    domains: Optional[List[str]] = None
+    domains: Optional[list[str]] = None
     # When true, this profile's realm will be selected as the default. Necessary if multiple Kerberos-type profiles are configured.
     is_default_realm: Optional[bool] = None
     # When set to True, the Kerberos extension allows any apps entered with the app bundle ID, managed apps, and standard Kerberos utilities, such as TicketViewer and klist, to access and use the credential. Available for devices running macOS versions 12 and later.
@@ -60,7 +61,7 @@ class MacOSKerberosSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
     # Gets or sets a description of the password complexity requirements.
     password_requirements_description: Optional[str] = None
     # Add creates an ordered list of preferred Key Distribution Centers (KDCs) to use for Kerberos traffic. This list is used when the servers are not discoverable using DNS. When the servers are discoverable, the list is used for both connectivity checks, and used first for Kerberos traffic. If the servers don’t respond, then the device uses DNS discovery. Delete removes an existing list, and devices use DNS discovery. Available for devices running macOS versions 12 and later.
-    preferred_k_d_cs: Optional[List[str]] = None
+    preferred_k_d_cs: Optional[list[str]] = None
     # Gets or sets the case-sensitive realm name for this profile.
     realm: Optional[str] = None
     # Gets or sets whether to require authentication via Touch ID, Face ID, or a passcode to access the keychain entry.
@@ -87,16 +88,16 @@ class MacOSKerberosSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSKerberosSingleSignOnExtension()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
 
         from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activeDirectorySiteCode": lambda n : setattr(self, 'active_directory_site_code', n.get_str_value()),
             "blockActiveDirectorySiteAutoDiscovery": lambda n : setattr(self, 'block_active_directory_site_auto_discovery', n.get_bool_value()),
             "blockAutomaticLogin": lambda n : setattr(self, 'block_automatic_login', n.get_bool_value()),
@@ -141,8 +142,6 @@ class MacOSKerberosSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
-
         writer.write_str_value("activeDirectorySiteCode", self.active_directory_site_code)
         writer.write_bool_value("blockActiveDirectorySiteAutoDiscovery", self.block_active_directory_site_auto_discovery)
         writer.write_bool_value("blockAutomaticLogin", self.block_automatic_login)

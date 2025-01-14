@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_connection_setting import CloudPcConnectionSetting
@@ -40,13 +41,13 @@ class CloudPC(Entity, Parsable):
     connectivity_result: Optional[CloudPcConnectivityResult] = None
     # The name of the geographical region where the Cloud PC is currently provisioned. For example, westus3, eastus2, and southeastasia. Read-only.
     device_region_name: Optional[str] = None
-    # The disaster recovery status of the Cloud PC, including the primary region, secondary region, and capability type. The default value is null that indicates that the disaster recovery setting is disabled. To receive a response with the disasterRecoveryCapability property, $select and $filter it by disasterRecoveryCapability/{subProperty} in the request URL. For more information, see Example 4: List Cloud PCs filtered by disaster recovery capability type. Read-only.
+    # The disaster recovery status of the Cloud PC, including the primary region, secondary region, and capability type. The default value is null that indicates that the disaster recovery setting is disabled. To receive a response with the disasterRecoveryCapability property, $select and $filter it by disasterRecoveryCapability/{subProperty} in the request URL. For more information, see Example 3: List Cloud PCs filtered by disaster recovery capability type. Read-only.
     disaster_recovery_capability: Optional[CloudPcDisasterRecoveryCapability] = None
     # The disk encryption applied to the Cloud PC. Possible values: notAvailable, notEncrypted, encryptedUsingPlatformManagedKey, encryptedUsingCustomerManagedKey, and unknownFutureValue.
     disk_encryption_state: Optional[CloudPcDiskEncryptionState] = None
     # The display name of the Cloud PC.
     display_name: Optional[str] = None
-    # The frontlineCloudPcAvailability property
+    # The current availability of a frontline assigned Cloud PC. Possible values: notApplicable, available,notAvailable and unknownFutureValue. Default value is notApplicable. Read Only.
     frontline_cloud_pc_availability: Optional[FrontlineCloudPcAvailability] = None
     # The date and time when the grace period ends and reprovisioning or deprovisioning happens. Required only if the status is inGracePeriod. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     grace_period_end_date_time: Optional[datetime.datetime] = None
@@ -69,7 +70,7 @@ class CloudPC(Entity, Parsable):
     # The version of the operating system (OS) to provision on Cloud PCs. Possible values are: windows10, windows11, unknownFutureValue.
     os_version: Optional[CloudPcOperatingSystem] = None
     # The results of every partner agent's installation status on Cloud PC.
-    partner_agent_install_results: Optional[List[CloudPcPartnerAgentInstallResult]] = None
+    partner_agent_install_results: Optional[list[CloudPcPartnerAgentInstallResult]] = None
     # The power state of a Cloud PC. The possible values are: running, poweredOff, unknown. This property only supports shift work Cloud PCs.
     power_state: Optional[CloudPcPowerState] = None
     # The provisioning policy ID of the Cloud PC.
@@ -79,7 +80,7 @@ class CloudPC(Entity, Parsable):
     # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue,sharedByUser, sharedByEntraGroup. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup. The default value is dedicated. CAUTION: The shared member is deprecated and will stop returning on April 30, 2027； in the future, use the sharedByUser member.
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The scopeIds property
-    scope_ids: Optional[List[str]] = None
+    scope_ids: Optional[list[str]] = None
     # The service plan ID of the Cloud PC.
     service_plan_id: Optional[str] = None
     # The service plan name of the Cloud PC.
@@ -108,10 +109,10 @@ class CloudPC(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CloudPC()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_connection_setting import CloudPcConnectionSetting
         from .cloud_pc_connection_settings import CloudPcConnectionSettings
@@ -151,7 +152,7 @@ class CloudPC(Entity, Parsable):
         from .entity import Entity
         from .frontline_cloud_pc_availability import FrontlineCloudPcAvailability
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "aadDeviceId": lambda n : setattr(self, 'aad_device_id', n.get_str_value()),
             "allotmentDisplayName": lambda n : setattr(self, 'allotment_display_name', n.get_str_value()),
             "connectionSetting": lambda n : setattr(self, 'connection_setting', n.get_object_value(CloudPcConnectionSetting)),
@@ -199,25 +200,6 @@ class CloudPC(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .cloud_pc_connection_setting import CloudPcConnectionSetting
-        from .cloud_pc_connection_settings import CloudPcConnectionSettings
-        from .cloud_pc_connectivity_result import CloudPcConnectivityResult
-        from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
-        from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
-        from .cloud_pc_login_result import CloudPcLoginResult
-        from .cloud_pc_operating_system import CloudPcOperatingSystem
-        from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
-        from .cloud_pc_power_state import CloudPcPowerState
-        from .cloud_pc_provisioning_type import CloudPcProvisioningType
-        from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
-        from .cloud_pc_service_plan_type import CloudPcServicePlanType
-        from .cloud_pc_status import CloudPcStatus
-        from .cloud_pc_status_detail import CloudPcStatusDetail
-        from .cloud_pc_status_details import CloudPcStatusDetails
-        from .cloud_pc_user_account_type import CloudPcUserAccountType
-        from .entity import Entity
-        from .frontline_cloud_pc_availability import FrontlineCloudPcAvailability
-
         writer.write_str_value("aadDeviceId", self.aad_device_id)
         writer.write_str_value("allotmentDisplayName", self.allotment_display_name)
         writer.write_object_value("connectionSetting", self.connection_setting)

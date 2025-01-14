@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -25,13 +26,13 @@ class MicrosoftTunnelSite(Entity, Parsable):
     # The MicrosoftTunnelConfiguration that has been applied to this MicrosoftTunnelSite
     microsoft_tunnel_configuration: Optional[MicrosoftTunnelConfiguration] = None
     # A list of MicrosoftTunnelServers that are registered to this MicrosoftTunnelSite
-    microsoft_tunnel_servers: Optional[List[MicrosoftTunnelServer]] = None
+    microsoft_tunnel_servers: Optional[list[MicrosoftTunnelServer]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The site's public domain name or IP address
     public_address: Optional[str] = None
     # List of Scope Tags for this Entity instance
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # The site's automatic upgrade setting. True for automatic upgrades, false for manual control
     upgrade_automatically: Optional[bool] = None
     # The site provides the state of when an upgrade is available
@@ -54,10 +55,10 @@ class MicrosoftTunnelSite(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MicrosoftTunnelSite()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .microsoft_tunnel_configuration import MicrosoftTunnelConfiguration
@@ -67,7 +68,7 @@ class MicrosoftTunnelSite(Entity, Parsable):
         from .microsoft_tunnel_configuration import MicrosoftTunnelConfiguration
         from .microsoft_tunnel_server import MicrosoftTunnelServer
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "internalNetworkProbeUrl": lambda n : setattr(self, 'internal_network_probe_url', n.get_str_value()),
@@ -94,10 +95,6 @@ class MicrosoftTunnelSite(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .microsoft_tunnel_configuration import MicrosoftTunnelConfiguration
-        from .microsoft_tunnel_server import MicrosoftTunnelServer
-
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("internalNetworkProbeUrl", self.internal_network_probe_url)

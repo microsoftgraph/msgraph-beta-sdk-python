@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -13,11 +14,11 @@ from ..entity import Entity
 @dataclass
 class DeploymentAudience(Entity, Parsable):
     # Content eligible to deploy to devices in the audience. Not nullable. Read-only.
-    applicable_content: Optional[List[ApplicableContent]] = None
+    applicable_content: Optional[list[ApplicableContent]] = None
     # Specifies the assets to exclude from the audience.
-    exclusions: Optional[List[UpdatableAsset]] = None
+    exclusions: Optional[list[UpdatableAsset]] = None
     # Specifies the assets to include in the audience.
-    members: Optional[List[UpdatableAsset]] = None
+    members: Optional[list[UpdatableAsset]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -32,10 +33,10 @@ class DeploymentAudience(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeploymentAudience()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .applicable_content import ApplicableContent
@@ -45,7 +46,7 @@ class DeploymentAudience(Entity, Parsable):
         from .applicable_content import ApplicableContent
         from .updatable_asset import UpdatableAsset
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applicableContent": lambda n : setattr(self, 'applicable_content', n.get_collection_of_object_values(ApplicableContent)),
             "exclusions": lambda n : setattr(self, 'exclusions', n.get_collection_of_object_values(UpdatableAsset)),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(UpdatableAsset)),
@@ -63,10 +64,6 @@ class DeploymentAudience(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .applicable_content import ApplicableContent
-        from .updatable_asset import UpdatableAsset
-
         writer.write_collection_of_object_values("applicableContent", self.applicable_content)
         writer.write_collection_of_object_values("exclusions", self.exclusions)
         writer.write_collection_of_object_values("members", self.members)

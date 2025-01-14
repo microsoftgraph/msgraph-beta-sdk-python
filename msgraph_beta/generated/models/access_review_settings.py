@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_review_recurrence_settings import AccessReviewRecurrenceSettings
@@ -15,7 +16,7 @@ class AccessReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Indicates whether showing recommendations to reviewers is enabled.
     access_recommendations_enabled: Optional[bool] = None
     # The number of days of user activities to show to reviewers.
@@ -57,10 +58,10 @@ class AccessReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
             return BusinessFlowSettings()
         return AccessReviewSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_review_recurrence_settings import AccessReviewRecurrenceSettings
         from .auto_review_settings import AutoReviewSettings
@@ -70,7 +71,7 @@ class AccessReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
         from .auto_review_settings import AutoReviewSettings
         from .business_flow_settings import BusinessFlowSettings
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessRecommendationsEnabled": lambda n : setattr(self, 'access_recommendations_enabled', n.get_bool_value()),
             "activityDurationInDays": lambda n : setattr(self, 'activity_duration_in_days', n.get_int_value()),
             "autoApplyReviewResultsEnabled": lambda n : setattr(self, 'auto_apply_review_results_enabled', n.get_bool_value()),
@@ -92,10 +93,6 @@ class AccessReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .access_review_recurrence_settings import AccessReviewRecurrenceSettings
-        from .auto_review_settings import AutoReviewSettings
-        from .business_flow_settings import BusinessFlowSettings
-
         writer.write_bool_value("accessRecommendationsEnabled", self.access_recommendations_enabled)
         writer.write_int_value("activityDurationInDays", self.activity_duration_in_days)
         writer.write_bool_value("autoApplyReviewResultsEnabled", self.auto_apply_review_results_enabled)

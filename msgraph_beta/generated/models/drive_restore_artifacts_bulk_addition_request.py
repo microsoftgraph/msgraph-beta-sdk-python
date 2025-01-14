@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
@@ -11,9 +12,9 @@ from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
 @dataclass
 class DriveRestoreArtifactsBulkAdditionRequest(RestoreArtifactsBulkRequestBase, Parsable):
     # The list of directory object IDs that are added to the corresponding OneDrive for work or school restore session in a bulk operation. This property isn't implemented yet. Future value; don't use.
-    directory_object_ids: Optional[List[str]] = None
+    directory_object_ids: Optional[list[str]] = None
     # The list of email addresses that are added to the corresponding OneDrive for work or school restore session in a bulk operation.
-    drives: Optional[List[str]] = None
+    drives: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -28,16 +29,16 @@ class DriveRestoreArtifactsBulkAdditionRequest(RestoreArtifactsBulkRequestBase, 
             raise TypeError("parse_node cannot be null.")
         return DriveRestoreArtifactsBulkAdditionRequest()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
 
         from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "directoryObjectIds": lambda n : setattr(self, 'directory_object_ids', n.get_collection_of_primitive_values(str)),
             "drives": lambda n : setattr(self, 'drives', n.get_collection_of_primitive_values(str)),
         }
@@ -54,8 +55,6 @@ class DriveRestoreArtifactsBulkAdditionRequest(RestoreArtifactsBulkRequestBase, 
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
-
         writer.write_collection_of_primitive_values("directoryObjectIds", self.directory_object_ids)
         writer.write_collection_of_primitive_values("drives", self.drives)
     

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -27,7 +28,7 @@ class FileStorageContainer(Entity, Parsable):
     # Sensitivity label assigned to the fileStorageContainer. Read-write.
     assigned_sensitivity_label: Optional[AssignedLabel] = None
     # The set of custom structured metadata supported by the fileStorageContainer. Read-write.
-    columns: Optional[List[ColumnDefinition]] = None
+    columns: Optional[list[ColumnDefinition]] = None
     # Container type ID of the fileStorageContainer. Each container must have only one container type. Read-only.
     container_type_id: Optional[UUID] = None
     # Date and time of the fileStorageContainer creation. Read-only.
@@ -51,11 +52,11 @@ class FileStorageContainer(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of users who own the fileStorageContainer. Read-only.
-    owners: Optional[List[UserIdentity]] = None
+    owners: Optional[list[UserIdentity]] = None
     # Ownership type of the fileStorageContainer. The possible values are: tenantOwned. Read-only.
     ownership_type: Optional[FileStorageContainerOwnershipType] = None
     # The set of permissions for users in the fileStorageContainer. The permission for each user is set by the roles property. The possible values are reader, writer, manager, and owner. Read-write.
-    permissions: Optional[List[Permission]] = None
+    permissions: Optional[list[Permission]] = None
     # Recycle bin of the fileStorageContainer. Read-only.
     recycle_bin: Optional[RecycleBin] = None
     # The settings property
@@ -78,10 +79,10 @@ class FileStorageContainer(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return FileStorageContainer()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .assigned_label import AssignedLabel
         from .column_definition import ColumnDefinition
@@ -111,7 +112,7 @@ class FileStorageContainer(Entity, Parsable):
         from .site_lock_state import SiteLockState
         from .user_identity import UserIdentity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignedSensitivityLabel": lambda n : setattr(self, 'assigned_sensitivity_label', n.get_object_value(AssignedLabel)),
             "columns": lambda n : setattr(self, 'columns', n.get_collection_of_object_values(ColumnDefinition)),
             "containerTypeId": lambda n : setattr(self, 'container_type_id', n.get_uuid_value()),
@@ -146,20 +147,6 @@ class FileStorageContainer(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .assigned_label import AssignedLabel
-        from .column_definition import ColumnDefinition
-        from .drive import Drive
-        from .entity import Entity
-        from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
-        from .file_storage_container_ownership_type import FileStorageContainerOwnershipType
-        from .file_storage_container_settings import FileStorageContainerSettings
-        from .file_storage_container_status import FileStorageContainerStatus
-        from .file_storage_container_viewpoint import FileStorageContainerViewpoint
-        from .permission import Permission
-        from .recycle_bin import RecycleBin
-        from .site_lock_state import SiteLockState
-        from .user_identity import UserIdentity
-
         writer.write_object_value("assignedSensitivityLabel", self.assigned_sensitivity_label)
         writer.write_collection_of_object_values("columns", self.columns)
         writer.write_uuid_value("containerTypeId", self.container_type_id)

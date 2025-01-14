@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_for_work_app_configuration_schema_item import AndroidForWorkAppConfigurationSchemaItem
@@ -19,7 +20,7 @@ class AndroidForWorkAppConfigurationSchema(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Collection of items each representing a named configuration option in the schema
-    schema_items: Optional[List[AndroidForWorkAppConfigurationSchemaItem]] = None
+    schema_items: Optional[list[AndroidForWorkAppConfigurationSchemaItem]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AndroidForWorkAppConfigurationSchema:
@@ -32,10 +33,10 @@ class AndroidForWorkAppConfigurationSchema(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidForWorkAppConfigurationSchema()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_for_work_app_configuration_schema_item import AndroidForWorkAppConfigurationSchemaItem
         from .entity import Entity
@@ -43,7 +44,7 @@ class AndroidForWorkAppConfigurationSchema(Entity, Parsable):
         from .android_for_work_app_configuration_schema_item import AndroidForWorkAppConfigurationSchemaItem
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "exampleJson": lambda n : setattr(self, 'example_json', n.get_bytes_value()),
             "schemaItems": lambda n : setattr(self, 'schema_items', n.get_collection_of_object_values(AndroidForWorkAppConfigurationSchemaItem)),
         }
@@ -60,9 +61,6 @@ class AndroidForWorkAppConfigurationSchema(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_for_work_app_configuration_schema_item import AndroidForWorkAppConfigurationSchemaItem
-        from .entity import Entity
-
         writer.write_bytes_value("exampleJson", self.example_json)
         writer.write_collection_of_object_values("schemaItems", self.schema_items)
     

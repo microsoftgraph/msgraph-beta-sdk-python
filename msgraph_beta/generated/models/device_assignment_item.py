@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_assignment_item_intent import DeviceAssignmentItemIntent
@@ -19,7 +20,7 @@ class DeviceAssignmentItem(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # A list of possible assignment item action intent values on the application or configuration when executing this action on the managed device. For example, if the application or configuration is intended to be removed on the managed device, then the intent value is remove, and if the application or configuration already under removal through previous actions and is now intended to be restored on the managed device, then the intent value is restore
     assignment_item_action_intent: Optional[DeviceAssignmentItemIntent] = None
     # A list of possible assignment item action status values for the application or configuration regarding their executed action on the managed device. For example, a configuration included in the deviceAssignmentItems list has just been executed the action. Its status starts with inProgress until it's successfully removed to reflect as removed status or failed to be removed to reflect as error status on the managed device. Similar status change happens for restoration process
@@ -54,10 +55,10 @@ class DeviceAssignmentItem(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceAssignmentItem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_assignment_item_intent import DeviceAssignmentItemIntent
         from .device_assignment_item_status import DeviceAssignmentItemStatus
@@ -67,7 +68,7 @@ class DeviceAssignmentItem(AdditionalDataHolder, BackedModel, Parsable):
         from .device_assignment_item_status import DeviceAssignmentItemStatus
         from .device_assignment_item_type import DeviceAssignmentItemType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignmentItemActionIntent": lambda n : setattr(self, 'assignment_item_action_intent', n.get_enum_value(DeviceAssignmentItemIntent)),
             "assignmentItemActionStatus": lambda n : setattr(self, 'assignment_item_action_status', n.get_enum_value(DeviceAssignmentItemStatus)),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
@@ -90,10 +91,6 @@ class DeviceAssignmentItem(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .device_assignment_item_intent import DeviceAssignmentItemIntent
-        from .device_assignment_item_status import DeviceAssignmentItemStatus
-        from .device_assignment_item_type import DeviceAssignmentItemType
-
         writer.write_enum_value("assignmentItemActionIntent", self.assignment_item_action_intent)
         writer.write_enum_value("assignmentItemActionStatus", self.assignment_item_action_status)
         writer.write_str_value("itemId", self.item_id)

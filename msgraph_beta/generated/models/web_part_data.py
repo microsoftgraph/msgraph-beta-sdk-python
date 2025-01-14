@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .server_processed_content import ServerProcessedContent
@@ -13,9 +14,9 @@ class WebPartData(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Audience information of the web part. By using this property, specific content is prioritized to specific audiences.
-    audiences: Optional[List[str]] = None
+    audiences: Optional[list[str]] = None
     # Data version of the web part. The value is defined by the web part developer. Different dataVersions usually refers to a different property structure.
     data_version: Optional[str] = None
     # Description of the web part.
@@ -38,16 +39,16 @@ class WebPartData(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WebPartData()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .server_processed_content import ServerProcessedContent
 
         from .server_processed_content import ServerProcessedContent
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "audiences": lambda n : setattr(self, 'audiences', n.get_collection_of_primitive_values(str)),
             "dataVersion": lambda n : setattr(self, 'data_version', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -65,8 +66,6 @@ class WebPartData(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .server_processed_content import ServerProcessedContent
-
         writer.write_collection_of_primitive_values("audiences", self.audiences)
         writer.write_str_value("dataVersion", self.data_version)
         writer.write_str_value("description", self.description)

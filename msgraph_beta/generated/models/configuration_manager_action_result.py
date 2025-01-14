@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .configuration_manager_action_delivery_status import ConfigurationManagerActionDeliveryStatus
@@ -32,10 +33,10 @@ class ConfigurationManagerActionResult(DeviceActionResult, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ConfigurationManagerActionResult()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .configuration_manager_action_delivery_status import ConfigurationManagerActionDeliveryStatus
         from .device_action_result import DeviceActionResult
@@ -43,7 +44,7 @@ class ConfigurationManagerActionResult(DeviceActionResult, Parsable):
         from .configuration_manager_action_delivery_status import ConfigurationManagerActionDeliveryStatus
         from .device_action_result import DeviceActionResult
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionDeliveryStatus": lambda n : setattr(self, 'action_delivery_status', n.get_enum_value(ConfigurationManagerActionDeliveryStatus)),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
         }
@@ -60,9 +61,6 @@ class ConfigurationManagerActionResult(DeviceActionResult, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .configuration_manager_action_delivery_status import ConfigurationManagerActionDeliveryStatus
-        from .device_action_result import DeviceActionResult
-
         writer.write_enum_value("actionDeliveryStatus", self.action_delivery_status)
         writer.write_int_value("errorCode", self.error_code)
     

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .api_format import ApiFormat
@@ -42,10 +43,10 @@ class ApiDataConnector(IndustryDataConnector, Parsable):
             return OneRosterApiDataConnector()
         return ApiDataConnector()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .api_format import ApiFormat
         from .credential import Credential
@@ -57,7 +58,7 @@ class ApiDataConnector(IndustryDataConnector, Parsable):
         from .industry_data_connector import IndustryDataConnector
         from .one_roster_api_data_connector import OneRosterApiDataConnector
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "apiFormat": lambda n : setattr(self, 'api_format', n.get_enum_value(ApiFormat)),
             "baseUrl": lambda n : setattr(self, 'base_url', n.get_str_value()),
             "credential": lambda n : setattr(self, 'credential', n.get_object_value(Credential)),
@@ -75,11 +76,6 @@ class ApiDataConnector(IndustryDataConnector, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .api_format import ApiFormat
-        from .credential import Credential
-        from .industry_data_connector import IndustryDataConnector
-        from .one_roster_api_data_connector import OneRosterApiDataConnector
-
         writer.write_enum_value("apiFormat", self.api_format)
         writer.write_str_value("baseUrl", self.base_url)
         writer.write_object_value("credential", self.credential)

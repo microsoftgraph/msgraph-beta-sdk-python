@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -48,10 +49,10 @@ class Alert(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Alert()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .alert_state import AlertState
@@ -71,7 +72,7 @@ class Alert(Entity, Parsable):
         from .scenario import Scenario
         from .signals import Signals
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alertType": lambda n : setattr(self, 'alert_type', n.get_enum_value(AlertType)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(Category)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -94,15 +95,6 @@ class Alert(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .alert_state import AlertState
-        from .alert_type import AlertType
-        from .category import Category
-        from .documentation import Documentation
-        from .enrichment import Enrichment
-        from .scenario import Scenario
-        from .signals import Signals
-
         writer.write_enum_value("alertType", self.alert_type)
         writer.write_enum_value("category", self.category)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

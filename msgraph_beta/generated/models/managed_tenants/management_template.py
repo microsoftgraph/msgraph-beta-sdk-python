@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..action_url import ActionUrl
@@ -29,19 +30,19 @@ class ManagementTemplate(Entity, Parsable):
     # The display name for the management template. Required. Read-only.
     display_name: Optional[str] = None
     # The informationLinks property
-    information_links: Optional[List[ActionUrl]] = None
+    information_links: Optional[list[ActionUrl]] = None
     # The lastActionByUserId property
     last_action_by_user_id: Optional[str] = None
     # The lastActionDateTime property
     last_action_date_time: Optional[datetime.datetime] = None
     # The managementTemplateCollections property
-    management_template_collections: Optional[List[ManagementTemplateCollection]] = None
+    management_template_collections: Optional[list[ManagementTemplateCollection]] = None
     # The managementTemplateSteps property
-    management_template_steps: Optional[List[ManagementTemplateStep]] = None
+    management_template_steps: Optional[list[ManagementTemplateStep]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The collection of parameters used by the management template. Optional. Read-only.
-    parameters: Optional[List[TemplateParameter]] = None
+    parameters: Optional[list[TemplateParameter]] = None
     # The priority property
     priority: Optional[int] = None
     # The provider property
@@ -51,7 +52,7 @@ class ManagementTemplate(Entity, Parsable):
     # The version property
     version: Optional[int] = None
     # The collection of workload actions associated with the management template. Optional. Read-only.
-    workload_actions: Optional[List[WorkloadAction]] = None
+    workload_actions: Optional[list[WorkloadAction]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ManagementTemplate:
@@ -64,10 +65,10 @@ class ManagementTemplate(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagementTemplate()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..action_url import ActionUrl
         from ..entity import Entity
@@ -87,7 +88,7 @@ class ManagementTemplate(Entity, Parsable):
         from .template_parameter import TemplateParameter
         from .workload_action import WorkloadAction
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(ManagementCategory)),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -118,15 +119,6 @@ class ManagementTemplate(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..action_url import ActionUrl
-        from ..entity import Entity
-        from .management_category import ManagementCategory
-        from .management_provider import ManagementProvider
-        from .management_template_collection import ManagementTemplateCollection
-        from .management_template_step import ManagementTemplateStep
-        from .template_parameter import TemplateParameter
-        from .workload_action import WorkloadAction
-
         writer.write_enum_value("category", self.category)
         writer.write_str_value("createdByUserId", self.created_by_user_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

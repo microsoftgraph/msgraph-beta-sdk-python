@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
@@ -12,7 +13,7 @@ from .base_collection_pagination_count_response import BaseCollectionPaginationC
 @dataclass
 class EmbeddedSIMActivationCodePoolCollectionResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
-    value: Optional[List[EmbeddedSIMActivationCodePool]] = None
+    value: Optional[list[EmbeddedSIMActivationCodePool]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EmbeddedSIMActivationCodePoolCollectionResponse:
@@ -25,10 +26,10 @@ class EmbeddedSIMActivationCodePoolCollectionResponse(BaseCollectionPaginationCo
             raise TypeError("parse_node cannot be null.")
         return EmbeddedSIMActivationCodePoolCollectionResponse()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
         from .embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
@@ -36,7 +37,7 @@ class EmbeddedSIMActivationCodePoolCollectionResponse(BaseCollectionPaginationCo
         from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
         from .embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(EmbeddedSIMActivationCodePool)),
         }
         super_fields = super().get_field_deserializers()
@@ -52,9 +53,6 @@ class EmbeddedSIMActivationCodePoolCollectionResponse(BaseCollectionPaginationCo
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
-        from .embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
-
         writer.write_collection_of_object_values("value", self.value)
     
 

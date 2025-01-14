@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -22,7 +23,7 @@ class ManagementTemplateStepVersion(Entity, Parsable):
     # The createdDateTime property
     created_date_time: Optional[datetime.datetime] = None
     # The deployments property
-    deployments: Optional[List[ManagementTemplateStepDeployment]] = None
+    deployments: Optional[list[ManagementTemplateStepDeployment]] = None
     # The lastActionByUserId property
     last_action_by_user_id: Optional[str] = None
     # The lastActionDateTime property
@@ -49,10 +50,10 @@ class ManagementTemplateStepVersion(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagementTemplateStepVersion()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .management_template_step import ManagementTemplateStep
@@ -62,7 +63,7 @@ class ManagementTemplateStepVersion(Entity, Parsable):
         from .management_template_step import ManagementTemplateStep
         from .management_template_step_deployment import ManagementTemplateStepDeployment
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "acceptedFor": lambda n : setattr(self, 'accepted_for', n.get_object_value(ManagementTemplateStep)),
             "contentMarkdown": lambda n : setattr(self, 'content_markdown', n.get_str_value()),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
@@ -88,10 +89,6 @@ class ManagementTemplateStepVersion(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .management_template_step import ManagementTemplateStep
-        from .management_template_step_deployment import ManagementTemplateStepDeployment
-
         writer.write_object_value("acceptedFor", self.accepted_for)
         writer.write_str_value("contentMarkdown", self.content_markdown)
         writer.write_str_value("createdByUserId", self.created_by_user_id)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
@@ -50,10 +51,10 @@ class WindowsPhoneEASEmailProfileConfiguration(EasEmailProfileConfigurationBase,
             raise TypeError("parse_node cannot be null.")
         return WindowsPhoneEASEmailProfileConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
         from .email_sync_duration import EmailSyncDuration
@@ -65,7 +66,7 @@ class WindowsPhoneEASEmailProfileConfiguration(EasEmailProfileConfigurationBase,
         from .email_sync_schedule import EmailSyncSchedule
         from .user_email_source import UserEmailSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
             "applyOnlyToWindowsPhone81": lambda n : setattr(self, 'apply_only_to_windows_phone81', n.get_bool_value()),
             "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(EmailSyncDuration)),
@@ -90,11 +91,6 @@ class WindowsPhoneEASEmailProfileConfiguration(EasEmailProfileConfigurationBase,
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
-        from .email_sync_duration import EmailSyncDuration
-        from .email_sync_schedule import EmailSyncSchedule
-        from .user_email_source import UserEmailSource
-
         writer.write_str_value("accountName", self.account_name)
         writer.write_enum_value("durationOfEmailToSync", self.duration_of_email_to_sync)
         writer.write_enum_value("emailAddressSource", self.email_address_source)

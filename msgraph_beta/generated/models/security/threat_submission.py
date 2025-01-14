@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -93,10 +94,10 @@ class ThreatSubmission(Entity, Parsable):
             return UrlThreatSubmission()
         return ThreatSubmission()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .email_content_threat_submission import EmailContentThreatSubmission
@@ -132,7 +133,7 @@ class ThreatSubmission(Entity, Parsable):
         from .submission_user_identity import SubmissionUserIdentity
         from .url_threat_submission import UrlThreatSubmission
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "adminReview": lambda n : setattr(self, 'admin_review', n.get_object_value(SubmissionAdminReview)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(SubmissionCategory)),
             "clientSource": lambda n : setattr(self, 'client_source', n.get_enum_value(SubmissionClientSource)),
@@ -157,23 +158,6 @@ class ThreatSubmission(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .email_content_threat_submission import EmailContentThreatSubmission
-        from .email_threat_submission import EmailThreatSubmission
-        from .email_url_threat_submission import EmailUrlThreatSubmission
-        from .file_content_threat_submission import FileContentThreatSubmission
-        from .file_threat_submission import FileThreatSubmission
-        from .file_url_threat_submission import FileUrlThreatSubmission
-        from .long_running_operation_status import LongRunningOperationStatus
-        from .submission_admin_review import SubmissionAdminReview
-        from .submission_category import SubmissionCategory
-        from .submission_client_source import SubmissionClientSource
-        from .submission_content_type import SubmissionContentType
-        from .submission_result import SubmissionResult
-        from .submission_source import SubmissionSource
-        from .submission_user_identity import SubmissionUserIdentity
-        from .url_threat_submission import UrlThreatSubmission
-
         writer.write_object_value("adminReview", self.admin_review)
         writer.write_enum_value("category", self.category)
         writer.write_enum_value("clientSource", self.client_source)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package_resource import AccessPackageResource
@@ -14,7 +15,7 @@ from .entity import Entity
 @dataclass
 class AccessPackageResourceEnvironment(Entity, Parsable):
     # Read-only. Required.
-    access_package_resources: Optional[List[AccessPackageResource]] = None
+    access_package_resources: Optional[list[AccessPackageResource]] = None
     # Connection information of an environment used to connect to a resource.
     connection_info: Optional[ConnectionInfo] = None
     # The display name of the user that created this object.
@@ -49,10 +50,10 @@ class AccessPackageResourceEnvironment(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AccessPackageResourceEnvironment()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package_resource import AccessPackageResource
         from .connection_info import ConnectionInfo
@@ -62,7 +63,7 @@ class AccessPackageResourceEnvironment(Entity, Parsable):
         from .connection_info import ConnectionInfo
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessPackageResources": lambda n : setattr(self, 'access_package_resources', n.get_collection_of_object_values(AccessPackageResource)),
             "connectionInfo": lambda n : setattr(self, 'connection_info', n.get_object_value(ConnectionInfo)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),
@@ -88,10 +89,6 @@ class AccessPackageResourceEnvironment(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .access_package_resource import AccessPackageResource
-        from .connection_info import ConnectionInfo
-        from .entity import Entity
-
         writer.write_collection_of_object_values("accessPackageResources", self.access_package_resources)
         writer.write_object_value("connectionInfo", self.connection_info)
         writer.write_str_value("createdBy", self.created_by)

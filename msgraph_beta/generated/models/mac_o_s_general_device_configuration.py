@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .app_list_item import AppListItem
@@ -43,13 +44,13 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration, Parsable):
     # Possible values of the compliance app list.
     compliant_app_list_type: Optional[AppListType] = None
     # List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.
-    compliant_apps_list: Optional[List[AppListItem]] = None
+    compliant_apps_list: Optional[list[AppListItem]] = None
     # Indicates whether or not to allow content caching.
     content_caching_blocked: Optional[bool] = None
     # Indicates whether or not to block definition lookup.
     definition_lookup_blocked: Optional[bool] = None
     # An email address lacking a suffix that matches any of these strings will be considered out-of-domain.
-    email_in_domain_suffixes: Optional[List[str]] = None
+    email_in_domain_suffixes: Optional[list[str]] = None
     # TRUE disables the reset option on supervised devices. FALSE enables the reset option on supervised devices. Available for devices running macOS versions 12.0 and later.
     erase_content_and_settings_blocked: Optional[bool] = None
     # Yes disables Game Center, and the Game Center icon is removed from the Home screen. Available for devices running macOS versions 10.13 and later.
@@ -119,7 +120,7 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration, Parsable):
     # Possible values of required passwords.
     password_required_type: Optional[RequiredPasswordType] = None
     # List of privacy preference policy controls. This collection can contain a maximum of 10000 elements.
-    privacy_access_controls: Optional[List[MacOSPrivacyAccessControlItem]] = None
+    privacy_access_controls: Optional[list[MacOSPrivacyAccessControlItem]] = None
     # Indicates whether or not to block the user from using Auto fill in Safari.
     safari_block_autofill: Optional[bool] = None
     # Indicates whether or not to block the user from taking Screenshots.
@@ -152,10 +153,10 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSGeneralDeviceConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .app_list_item import AppListItem
         from .app_list_type import AppListType
@@ -171,7 +172,7 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration, Parsable):
         from .mac_o_s_software_update_delay_policy import MacOSSoftwareUpdateDelayPolicy
         from .required_password_type import RequiredPasswordType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activationLockWhenSupervisedAllowed": lambda n : setattr(self, 'activation_lock_when_supervised_allowed', n.get_bool_value()),
             "addingGameCenterFriendsBlocked": lambda n : setattr(self, 'adding_game_center_friends_blocked', n.get_bool_value()),
             "airDropBlocked": lambda n : setattr(self, 'air_drop_blocked', n.get_bool_value()),
@@ -246,13 +247,6 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .app_list_item import AppListItem
-        from .app_list_type import AppListType
-        from .device_configuration import DeviceConfiguration
-        from .mac_o_s_privacy_access_control_item import MacOSPrivacyAccessControlItem
-        from .mac_o_s_software_update_delay_policy import MacOSSoftwareUpdateDelayPolicy
-        from .required_password_type import RequiredPasswordType
-
         writer.write_bool_value("activationLockWhenSupervisedAllowed", self.activation_lock_when_supervised_allowed)
         writer.write_bool_value("addingGameCenterFriendsBlocked", self.adding_game_center_friends_blocked)
         writer.write_bool_value("airDropBlocked", self.air_drop_blocked)

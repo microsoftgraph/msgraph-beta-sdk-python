@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -12,7 +13,7 @@ from .entity import Entity
 @dataclass
 class Program(Entity, Parsable):
     # Controls associated with the program.
-    controls: Optional[List[ProgramControl]] = None
+    controls: Optional[list[ProgramControl]] = None
     # The description of the program.
     description: Optional[str] = None
     # The name of the program.  Required on create.
@@ -31,10 +32,10 @@ class Program(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Program()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .program_control import ProgramControl
@@ -42,7 +43,7 @@ class Program(Entity, Parsable):
         from .entity import Entity
         from .program_control import ProgramControl
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "controls": lambda n : setattr(self, 'controls', n.get_collection_of_object_values(ProgramControl)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -60,9 +61,6 @@ class Program(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .program_control import ProgramControl
-
         writer.write_collection_of_object_values("controls", self.controls)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

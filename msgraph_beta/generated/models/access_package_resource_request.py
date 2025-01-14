@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package_resource import AccessPackageResource
@@ -47,10 +48,10 @@ class AccessPackageResourceRequest(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AccessPackageResourceRequest()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package_resource import AccessPackageResource
         from .access_package_subject import AccessPackageSubject
@@ -60,7 +61,7 @@ class AccessPackageResourceRequest(Entity, Parsable):
         from .access_package_subject import AccessPackageSubject
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessPackageResource": lambda n : setattr(self, 'access_package_resource', n.get_object_value(AccessPackageResource)),
             "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
             "executeImmediately": lambda n : setattr(self, 'execute_immediately', n.get_bool_value()),
@@ -85,10 +86,6 @@ class AccessPackageResourceRequest(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .access_package_resource import AccessPackageResource
-        from .access_package_subject import AccessPackageSubject
-        from .entity import Entity
-
         writer.write_object_value("accessPackageResource", self.access_package_resource)
         writer.write_str_value("catalogId", self.catalog_id)
         writer.write_bool_value("executeImmediately", self.execute_immediately)

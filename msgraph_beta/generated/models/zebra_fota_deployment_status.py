@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .zebra_fota_deployment_state import ZebraFotaDeploymentState
@@ -18,7 +19,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # A boolean that indicates if a cancellation was requested on the deployment. NOTE: A cancellation request does not guarantee that the deployment was canceled.
     cancel_requested: Optional[bool] = None
     # The date and time when this deployment was completed or canceled. The actual date time is determined by the value of state. If the state is canceled, this property holds the cancellation date/time. If the the state is completed, this property holds the completion date/time. If the deployment is not completed before the deployment end date, then completed date/time and end date/time are the same. This is always in the deployment timezone. Note: An installation that is in progress can continue past the deployment end date.
@@ -63,10 +64,10 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ZebraFotaDeploymentStatus()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .zebra_fota_deployment_state import ZebraFotaDeploymentState
         from .zebra_fota_error_code import ZebraFotaErrorCode
@@ -74,7 +75,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable):
         from .zebra_fota_deployment_state import ZebraFotaDeploymentState
         from .zebra_fota_error_code import ZebraFotaErrorCode
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "cancelRequested": lambda n : setattr(self, 'cancel_requested', n.get_bool_value()),
             "completeOrCanceledDateTime": lambda n : setattr(self, 'complete_or_canceled_date_time', n.get_datetime_value()),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_enum_value(ZebraFotaErrorCode)),
@@ -102,9 +103,6 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .zebra_fota_deployment_state import ZebraFotaDeploymentState
-        from .zebra_fota_error_code import ZebraFotaErrorCode
-
         writer.write_bool_value("cancelRequested", self.cancel_requested)
         writer.write_datetime_value("completeOrCanceledDateTime", self.complete_or_canceled_date_time)
         writer.write_enum_value("errorCode", self.error_code)

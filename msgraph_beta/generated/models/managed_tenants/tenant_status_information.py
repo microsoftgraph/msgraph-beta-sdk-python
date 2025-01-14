@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .delegated_privilege_status import DelegatedPrivilegeStatus
@@ -17,7 +18,7 @@ class TenantStatusInformation(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The status of the delegated admin privilege relationship between the managing entity and the managed tenant. Possible values are: none, delegatedAdminPrivileges, unknownFutureValue, granularDelegatedAdminPrivileges, delegatedAndGranularDelegetedAdminPrivileges. You must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: granularDelegatedAdminPrivileges , delegatedAndGranularDelegetedAdminPrivileges. Optional. Read-only.
     delegated_privilege_status: Optional[DelegatedPrivilegeStatus] = None
     # The date and time the delegated admin privileges status was updated. Optional. Read-only.
@@ -37,7 +38,7 @@ class TenantStatusInformation(AdditionalDataHolder, BackedModel, Parsable):
     # Organization's onboarding eligibility reason in Microsoft 365 Lighthouse.. Possible values are: none, contractType, delegatedAdminPrivileges,usersCount,license and unknownFutureValue. Optional. Read-only.
     tenant_onboarding_eligibility_reason: Optional[TenantOnboardingEligibilityReason] = None
     # The collection of workload statues for the managed tenant. Optional. Read-only.
-    workload_statuses: Optional[List[WorkloadStatus]] = None
+    workload_statuses: Optional[list[WorkloadStatus]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TenantStatusInformation:
@@ -50,10 +51,10 @@ class TenantStatusInformation(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TenantStatusInformation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .delegated_privilege_status import DelegatedPrivilegeStatus
         from .tenant_onboarding_eligibility_reason import TenantOnboardingEligibilityReason
@@ -65,7 +66,7 @@ class TenantStatusInformation(AdditionalDataHolder, BackedModel, Parsable):
         from .tenant_onboarding_status import TenantOnboardingStatus
         from .workload_status import WorkloadStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "delegatedPrivilegeStatus": lambda n : setattr(self, 'delegated_privilege_status', n.get_enum_value(DelegatedPrivilegeStatus)),
             "lastDelegatedPrivilegeRefreshDateTime": lambda n : setattr(self, 'last_delegated_privilege_refresh_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -87,11 +88,6 @@ class TenantStatusInformation(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .delegated_privilege_status import DelegatedPrivilegeStatus
-        from .tenant_onboarding_eligibility_reason import TenantOnboardingEligibilityReason
-        from .tenant_onboarding_status import TenantOnboardingStatus
-        from .workload_status import WorkloadStatus
-
         writer.write_enum_value("delegatedPrivilegeStatus", self.delegated_privilege_status)
         writer.write_datetime_value("lastDelegatedPrivilegeRefreshDateTime", self.last_delegated_privilege_refresh_date_time)
         writer.write_str_value("@odata.type", self.odata_type)

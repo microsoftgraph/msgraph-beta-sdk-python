@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package_assignment import AccessPackageAssignment
@@ -15,7 +16,7 @@ from .entity import Entity
 @dataclass
 class AccessPackageAssignmentResourceRole(Entity, Parsable):
     # The access package assignments resulting in this role assignment. Read-only. Nullable.
-    access_package_assignments: Optional[List[AccessPackageAssignment]] = None
+    access_package_assignments: Optional[list[AccessPackageAssignment]] = None
     # The accessPackageResourceRole property
     access_package_resource_role: Optional[AccessPackageResourceRole] = None
     # The accessPackageResourceScope property
@@ -42,10 +43,10 @@ class AccessPackageAssignmentResourceRole(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AccessPackageAssignmentResourceRole()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package_assignment import AccessPackageAssignment
         from .access_package_resource_role import AccessPackageResourceRole
@@ -59,7 +60,7 @@ class AccessPackageAssignmentResourceRole(Entity, Parsable):
         from .access_package_subject import AccessPackageSubject
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessPackageAssignments": lambda n : setattr(self, 'access_package_assignments', n.get_collection_of_object_values(AccessPackageAssignment)),
             "accessPackageResourceRole": lambda n : setattr(self, 'access_package_resource_role', n.get_object_value(AccessPackageResourceRole)),
             "accessPackageResourceScope": lambda n : setattr(self, 'access_package_resource_scope', n.get_object_value(AccessPackageResourceScope)),
@@ -81,12 +82,6 @@ class AccessPackageAssignmentResourceRole(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .access_package_assignment import AccessPackageAssignment
-        from .access_package_resource_role import AccessPackageResourceRole
-        from .access_package_resource_scope import AccessPackageResourceScope
-        from .access_package_subject import AccessPackageSubject
-        from .entity import Entity
-
         writer.write_collection_of_object_values("accessPackageAssignments", self.access_package_assignments)
         writer.write_object_value("accessPackageResourceRole", self.access_package_resource_role)
         writer.write_object_value("accessPackageResourceScope", self.access_package_resource_scope)

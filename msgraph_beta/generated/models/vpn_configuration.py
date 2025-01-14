@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_device_owner_vpn_configuration import AndroidDeviceOwnerVpnConfiguration
@@ -27,7 +28,7 @@ class VpnConfiguration(DeviceConfiguration, Parsable):
     # Role when connection type is set to Pulse Secure.
     role: Optional[str] = None
     # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-    servers: Optional[List[VpnServer]] = None
+    servers: Optional[list[VpnServer]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> VpnConfiguration:
@@ -49,10 +50,10 @@ class VpnConfiguration(DeviceConfiguration, Parsable):
             return AndroidDeviceOwnerVpnConfiguration()
         return VpnConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_device_owner_vpn_configuration import AndroidDeviceOwnerVpnConfiguration
         from .device_configuration import DeviceConfiguration
@@ -64,7 +65,7 @@ class VpnConfiguration(DeviceConfiguration, Parsable):
         from .vpn_authentication_method import VpnAuthenticationMethod
         from .vpn_server import VpnServer
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(VpnAuthenticationMethod)),
             "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
             "realm": lambda n : setattr(self, 'realm', n.get_str_value()),
@@ -84,11 +85,6 @@ class VpnConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_device_owner_vpn_configuration import AndroidDeviceOwnerVpnConfiguration
-        from .device_configuration import DeviceConfiguration
-        from .vpn_authentication_method import VpnAuthenticationMethod
-        from .vpn_server import VpnServer
-
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_str_value("connectionName", self.connection_name)
         writer.write_str_value("realm", self.realm)

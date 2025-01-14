@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_certification_authority_certificate_key_size import CloudCertificationAuthorityCertificateKeySize
@@ -38,7 +39,7 @@ class CloudCertificationAuthority(Entity, Parsable):
     # Enum type of possible certificate hashing algorithms used by the certification authority to create certificates.
     cloud_certification_authority_hashing_algorithm: Optional[CloudCertificationAuthorityHashingAlgorithm] = None
     # Required OData property to expose leaf certificate API.
-    cloud_certification_authority_leaf_certificate: Optional[List[CloudCertificationAuthorityLeafCertificate]] = None
+    cloud_certification_authority_leaf_certificate: Optional[list[CloudCertificationAuthorityLeafCertificate]] = None
     # Enum type of possible certificate authority types. This feature supports a two-tier certification authority model with a root certification authority and one or more child issuing (intermediate) certification authorities.
     cloud_certification_authority_type: Optional[CloudCertificationAuthorityType] = None
     # The common name of the certificate subject name, which must be unique. This property is a relative distinguished name used to compose the certificate subject name. Read-only. Supports $select.
@@ -54,7 +55,7 @@ class CloudCertificationAuthority(Entity, Parsable):
     # ETag for optimistic concurrency control. Read/write.
     e_tag: Optional[str] = None
     # The certificate extended key usages, which specify the usage capabilities of the certificate. Read-only.
-    extended_key_usages: Optional[List[ExtendedKeyUsage]] = None
+    extended_key_usages: Optional[list[ExtendedKeyUsage]] = None
     # The issuerCommonName property
     issuer_common_name: Optional[str] = None
     # Enum type of possible key platforms used by the certification authority.
@@ -72,7 +73,7 @@ class CloudCertificationAuthority(Entity, Parsable):
     # The organization unit name that is used as a distinguished name in the subject name of a certification authority certificate in the form 'OU='. Nullable. Example: Security. Read-only.
     organization_unit: Optional[str] = None
     # List of Scope Tags for this entity instance. Scope tags limit access to an entity instance. Nullable. Read/write.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # The common name of the certificate subject name of the certification authority issuer. This property can be used to identify the certification authority that issued the current certification authority. For issuing certification authorities, this is the common name of the certificate subject name of the root certification authority to which it is anchored. For externally signed certification authorities, this is the common name of the certificate subject name of the signing certification authority. For root certification authorities, this is the common name of the certification authority's own certificate subject name. Read-only.
     root_certificate_common_name: Optional[str] = None
     # The SCEP server URL for device SCEP connections to request certificates. Read-only.
@@ -105,10 +106,10 @@ class CloudCertificationAuthority(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CloudCertificationAuthority()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_certification_authority_certificate_key_size import CloudCertificationAuthorityCertificateKeySize
         from .cloud_certification_authority_hashing_algorithm import CloudCertificationAuthorityHashingAlgorithm
@@ -128,7 +129,7 @@ class CloudCertificationAuthority(Entity, Parsable):
         from .entity import Entity
         from .extended_key_usage import ExtendedKeyUsage
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificateDownloadUrl": lambda n : setattr(self, 'certificate_download_url', n.get_str_value()),
             "certificateKeySize": lambda n : setattr(self, 'certificate_key_size', n.get_enum_value(CloudCertificationAuthorityCertificateKeySize)),
             "certificateRevocationListUrl": lambda n : setattr(self, 'certificate_revocation_list_url', n.get_str_value()),
@@ -178,15 +179,6 @@ class CloudCertificationAuthority(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .cloud_certification_authority_certificate_key_size import CloudCertificationAuthorityCertificateKeySize
-        from .cloud_certification_authority_hashing_algorithm import CloudCertificationAuthorityHashingAlgorithm
-        from .cloud_certification_authority_key_platform_type import CloudCertificationAuthorityKeyPlatformType
-        from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
-        from .cloud_certification_authority_status import CloudCertificationAuthorityStatus
-        from .cloud_certification_authority_type import CloudCertificationAuthorityType
-        from .entity import Entity
-        from .extended_key_usage import ExtendedKeyUsage
-
         writer.write_str_value("certificateDownloadUrl", self.certificate_download_url)
         writer.write_enum_value("certificateKeySize", self.certificate_key_size)
         writer.write_str_value("certificateRevocationListUrl", self.certificate_revocation_list_url)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .updatable_asset import UpdatableAsset
@@ -15,9 +16,9 @@ class AzureADDevice(UpdatableAsset, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.azureADDevice"
     # Specifies areas in which the device is enrolled. Read-only. Returned by default.
-    enrollments: Optional[List[UpdatableAssetEnrollment]] = None
+    enrollments: Optional[list[UpdatableAssetEnrollment]] = None
     # Specifies any errors that prevent the device from being enrolled in update management or receving deployed content. Read-only. Returned by default.
-    errors: Optional[List[UpdatableAssetError]] = None
+    errors: Optional[list[UpdatableAssetError]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AzureADDevice:
@@ -30,10 +31,10 @@ class AzureADDevice(UpdatableAsset, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AzureADDevice()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .updatable_asset import UpdatableAsset
         from .updatable_asset_enrollment import UpdatableAssetEnrollment
@@ -43,7 +44,7 @@ class AzureADDevice(UpdatableAsset, Parsable):
         from .updatable_asset_enrollment import UpdatableAssetEnrollment
         from .updatable_asset_error import UpdatableAssetError
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "enrollments": lambda n : setattr(self, 'enrollments', n.get_collection_of_object_values(UpdatableAssetEnrollment)),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_object_values(UpdatableAssetError)),
         }
@@ -60,10 +61,6 @@ class AzureADDevice(UpdatableAsset, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .updatable_asset import UpdatableAsset
-        from .updatable_asset_enrollment import UpdatableAssetEnrollment
-        from .updatable_asset_error import UpdatableAssetError
-
         writer.write_collection_of_object_values("enrollments", self.enrollments)
         writer.write_collection_of_object_values("errors", self.errors)
     

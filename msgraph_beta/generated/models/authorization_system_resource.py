@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authorization_system import AuthorizationSystem
@@ -53,10 +54,10 @@ class AuthorizationSystemResource(Entity, Parsable):
             return GcpAuthorizationSystemResource()
         return AuthorizationSystemResource()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authorization_system import AuthorizationSystem
         from .aws_authorization_system_resource import AwsAuthorizationSystemResource
@@ -70,7 +71,7 @@ class AuthorizationSystemResource(Entity, Parsable):
         from .entity import Entity
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authorizationSystem": lambda n : setattr(self, 'authorization_system', n.get_object_value(AuthorizationSystem)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
@@ -89,12 +90,6 @@ class AuthorizationSystemResource(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authorization_system import AuthorizationSystem
-        from .aws_authorization_system_resource import AwsAuthorizationSystemResource
-        from .azure_authorization_system_resource import AzureAuthorizationSystemResource
-        from .entity import Entity
-        from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
-
         writer.write_object_value("authorizationSystem", self.authorization_system)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("externalId", self.external_id)

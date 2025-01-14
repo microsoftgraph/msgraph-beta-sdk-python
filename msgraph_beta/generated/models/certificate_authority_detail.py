@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .certificate_authority_type import CertificateAuthorityType
@@ -48,10 +49,10 @@ class CertificateAuthorityDetail(DirectoryObject, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CertificateAuthorityDetail()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .certificate_authority_type import CertificateAuthorityType
         from .directory_object import DirectoryObject
@@ -59,7 +60,7 @@ class CertificateAuthorityDetail(DirectoryObject, Parsable):
         from .certificate_authority_type import CertificateAuthorityType
         from .directory_object import DirectoryObject
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificate": lambda n : setattr(self, 'certificate', n.get_bytes_value()),
             "certificateAuthorityType": lambda n : setattr(self, 'certificate_authority_type', n.get_enum_value(CertificateAuthorityType)),
             "certificateRevocationListUrl": lambda n : setattr(self, 'certificate_revocation_list_url', n.get_str_value()),
@@ -85,9 +86,6 @@ class CertificateAuthorityDetail(DirectoryObject, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .certificate_authority_type import CertificateAuthorityType
-        from .directory_object import DirectoryObject
-
         writer.write_bytes_value("certificate", self.certificate)
         writer.write_enum_value("certificateAuthorityType", self.certificate_authority_type)
         writer.write_str_value("certificateRevocationListUrl", self.certificate_revocation_list_url)

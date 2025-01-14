@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_deployment_channel import AppleDeploymentChannel
@@ -30,11 +31,11 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase, Parsable):
     # PKCS certification authority Name.
     certification_authority_name: Optional[str] = None
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-    custom_subject_alternative_names: Optional[List[CustomSubjectAlternativeName]] = None
+    custom_subject_alternative_names: Optional[list[CustomSubjectAlternativeName]] = None
     # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
     deployment_channel: Optional[AppleDeploymentChannel] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-    managed_device_certificate_states: Optional[List[ManagedDeviceCertificateState]] = None
+    managed_device_certificate_states: Optional[list[ManagedDeviceCertificateState]] = None
     # Format string that defines the subject alternative name.
     subject_alternative_name_format_string: Optional[str] = None
     # Format string that defines the subject name. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
@@ -51,10 +52,10 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSPkcsCertificateProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .apple_deployment_channel import AppleDeploymentChannel
         from .certificate_store import CertificateStore
@@ -68,7 +69,7 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase, Parsable):
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowAllAppsAccess": lambda n : setattr(self, 'allow_all_apps_access', n.get_bool_value()),
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
             "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
@@ -93,12 +94,6 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .apple_deployment_channel import AppleDeploymentChannel
-        from .certificate_store import CertificateStore
-        from .custom_subject_alternative_name import CustomSubjectAlternativeName
-        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
-        from .managed_device_certificate_state import ManagedDeviceCertificateState
-
         writer.write_bool_value("allowAllAppsAccess", self.allow_all_apps_access)
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_str_value("certificateTemplateName", self.certificate_template_name)

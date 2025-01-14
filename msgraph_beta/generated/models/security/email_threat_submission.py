@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .attack_simulation_info import AttackSimulationInfo
@@ -61,10 +62,10 @@ class EmailThreatSubmission(ThreatSubmission, Parsable):
             return EmailUrlThreatSubmission()
         return EmailThreatSubmission()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .attack_simulation_info import AttackSimulationInfo
         from .email_content_threat_submission import EmailContentThreatSubmission
@@ -80,7 +81,7 @@ class EmailThreatSubmission(ThreatSubmission, Parsable):
         from .tenant_allow_or_block_list_action import TenantAllowOrBlockListAction
         from .threat_submission import ThreatSubmission
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "attackSimulationInfo": lambda n : setattr(self, 'attack_simulation_info', n.get_object_value(AttackSimulationInfo)),
             "internetMessageId": lambda n : setattr(self, 'internet_message_id', n.get_str_value()),
             "originalCategory": lambda n : setattr(self, 'original_category', n.get_enum_value(SubmissionCategory)),
@@ -104,13 +105,6 @@ class EmailThreatSubmission(ThreatSubmission, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .attack_simulation_info import AttackSimulationInfo
-        from .email_content_threat_submission import EmailContentThreatSubmission
-        from .email_url_threat_submission import EmailUrlThreatSubmission
-        from .submission_category import SubmissionCategory
-        from .tenant_allow_or_block_list_action import TenantAllowOrBlockListAction
-        from .threat_submission import ThreatSubmission
-
         writer.write_object_value("attackSimulationInfo", self.attack_simulation_info)
         writer.write_str_value("internetMessageId", self.internet_message_id)
         writer.write_enum_value("originalCategory", self.original_category)

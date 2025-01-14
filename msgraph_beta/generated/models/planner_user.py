@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .planner_delta import PlannerDelta
@@ -15,25 +16,25 @@ from .planner_delta import PlannerDelta
 @dataclass
 class PlannerUser(PlannerDelta, Parsable):
     # The all property
-    all: Optional[List[PlannerDelta]] = None
+    all: Optional[list[PlannerDelta]] = None
     # A collection that contains the references to the plans that the user marked as favorites.
     favorite_plan_references: Optional[PlannerFavoritePlanReferenceCollection] = None
     # Read-only. Nullable. Returns the plannerPlans that the user marked as favorites.
-    favorite_plans: Optional[List[PlannerPlan]] = None
+    favorite_plans: Optional[list[PlannerPlan]] = None
     # Read-only. Nullable. Returns the plannerTasks to be shown in the My Day view of the user.
-    my_day_tasks: Optional[List[PlannerTask]] = None
+    my_day_tasks: Optional[list[PlannerTask]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The plans property
-    plans: Optional[List[PlannerPlan]] = None
+    plans: Optional[list[PlannerPlan]] = None
     # A collection that contains references to the plans that the user recently viewed in apps that support recent plans.
     recent_plan_references: Optional[PlannerRecentPlanReferenceCollection] = None
     # Read-only. Nullable. Returns the plannerPlans that the user recently viewed in apps that support recent plans.
-    recent_plans: Optional[List[PlannerPlan]] = None
+    recent_plans: Optional[list[PlannerPlan]] = None
     # Read-only. Nullable. Returns the plannerPlans contained by the plannerRosters the user is a member.
-    roster_plans: Optional[List[PlannerPlan]] = None
+    roster_plans: Optional[list[PlannerPlan]] = None
     # Read-only. Nullable. Returns the plannerTasks assigned to the user.
-    tasks: Optional[List[PlannerTask]] = None
+    tasks: Optional[list[PlannerTask]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PlannerUser:
@@ -46,10 +47,10 @@ class PlannerUser(PlannerDelta, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PlannerUser()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .planner_delta import PlannerDelta
         from .planner_favorite_plan_reference_collection import PlannerFavoritePlanReferenceCollection
@@ -63,7 +64,7 @@ class PlannerUser(PlannerDelta, Parsable):
         from .planner_recent_plan_reference_collection import PlannerRecentPlanReferenceCollection
         from .planner_task import PlannerTask
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "all": lambda n : setattr(self, 'all', n.get_collection_of_object_values(PlannerDelta)),
             "favoritePlanReferences": lambda n : setattr(self, 'favorite_plan_references', n.get_object_value(PlannerFavoritePlanReferenceCollection)),
             "favoritePlans": lambda n : setattr(self, 'favorite_plans', n.get_collection_of_object_values(PlannerPlan)),
@@ -87,12 +88,6 @@ class PlannerUser(PlannerDelta, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .planner_delta import PlannerDelta
-        from .planner_favorite_plan_reference_collection import PlannerFavoritePlanReferenceCollection
-        from .planner_plan import PlannerPlan
-        from .planner_recent_plan_reference_collection import PlannerRecentPlanReferenceCollection
-        from .planner_task import PlannerTask
-
         writer.write_collection_of_object_values("all", self.all)
         writer.write_object_value("favoritePlanReferences", self.favorite_plan_references)
         writer.write_collection_of_object_values("favoritePlans", self.favorite_plans)

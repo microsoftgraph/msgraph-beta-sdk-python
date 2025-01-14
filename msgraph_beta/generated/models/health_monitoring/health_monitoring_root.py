@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -13,9 +14,9 @@ from ..entity import Entity
 @dataclass
 class HealthMonitoringRoot(Entity, Parsable):
     # The configuration of an alert type, which defines behavior that occurs when an alert is created.
-    alert_configurations: Optional[List[AlertConfiguration]] = None
+    alert_configurations: Optional[list[AlertConfiguration]] = None
     # The collection of health monitoring system detected alerts for anomalous usage patterns found in a Microsoft Entra tenant.
-    alerts: Optional[List[Alert]] = None
+    alerts: Optional[list[Alert]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -30,10 +31,10 @@ class HealthMonitoringRoot(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return HealthMonitoringRoot()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .alert import Alert
@@ -43,7 +44,7 @@ class HealthMonitoringRoot(Entity, Parsable):
         from .alert import Alert
         from .alert_configuration import AlertConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alertConfigurations": lambda n : setattr(self, 'alert_configurations', n.get_collection_of_object_values(AlertConfiguration)),
             "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(Alert)),
         }
@@ -60,10 +61,6 @@ class HealthMonitoringRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .alert import Alert
-        from .alert_configuration import AlertConfiguration
-
         writer.write_collection_of_object_values("alertConfigurations", self.alert_configurations)
         writer.write_collection_of_object_values("alerts", self.alerts)
     

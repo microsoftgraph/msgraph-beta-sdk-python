@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -22,7 +23,7 @@ class ManagedTenantAlertRule(Entity, Parsable):
     # The alertTTL property
     alert_t_t_l: Optional[int] = None
     # The alerts property
-    alerts: Optional[List[ManagedTenantAlert]] = None
+    alerts: Optional[list[ManagedTenantAlert]] = None
     # The createdByUserId property
     created_by_user_id: Optional[str] = None
     # The createdDateTime property
@@ -46,9 +47,9 @@ class ManagedTenantAlertRule(Entity, Parsable):
     # The severity property
     severity: Optional[AlertSeverity] = None
     # The targets property
-    targets: Optional[List[NotificationTarget]] = None
+    targets: Optional[list[NotificationTarget]] = None
     # The tenantIds property
-    tenant_ids: Optional[List[TenantInfo]] = None
+    tenant_ids: Optional[list[TenantInfo]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ManagedTenantAlertRule:
@@ -61,10 +62,10 @@ class ManagedTenantAlertRule(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagedTenantAlertRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .alert_severity import AlertSeverity
@@ -82,7 +83,7 @@ class ManagedTenantAlertRule(Entity, Parsable):
         from .notification_target import NotificationTarget
         from .tenant_info import TenantInfo
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alertDisplayName": lambda n : setattr(self, 'alert_display_name', n.get_str_value()),
             "alertTTL": lambda n : setattr(self, 'alert_t_t_l', n.get_int_value()),
             "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(ManagedTenantAlert)),
@@ -112,14 +113,6 @@ class ManagedTenantAlertRule(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .alert_severity import AlertSeverity
-        from .managed_tenant_alert import ManagedTenantAlert
-        from .managed_tenant_alert_rule_definition import ManagedTenantAlertRuleDefinition
-        from .notification_destination import NotificationDestination
-        from .notification_target import NotificationTarget
-        from .tenant_info import TenantInfo
-
         writer.write_str_value("alertDisplayName", self.alert_display_name)
         writer.write_int_value("alertTTL", self.alert_t_t_l)
         writer.write_collection_of_object_values("alerts", self.alerts)

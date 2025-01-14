@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -16,9 +17,9 @@ from .entity import Entity
 @dataclass
 class WorkbookDocumentTask(Entity, Parsable):
     # A collection of user identities the task is assigned to.
-    assignees: Optional[List[WorkbookEmailIdentity]] = None
+    assignees: Optional[list[WorkbookEmailIdentity]] = None
     # A collection of task change histories.
-    changes: Optional[List[WorkbookDocumentTaskChange]] = None
+    changes: Optional[list[WorkbookDocumentTaskChange]] = None
     # The comment that the task is associated with.
     comment: Optional[WorkbookComment] = None
     # The identity of the user who completed the task. Nullable.
@@ -51,10 +52,10 @@ class WorkbookDocumentTask(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WorkbookDocumentTask()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .workbook_comment import WorkbookComment
@@ -68,7 +69,7 @@ class WorkbookDocumentTask(Entity, Parsable):
         from .workbook_document_task_schedule import WorkbookDocumentTaskSchedule
         from .workbook_email_identity import WorkbookEmailIdentity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignees": lambda n : setattr(self, 'assignees', n.get_collection_of_object_values(WorkbookEmailIdentity)),
             "changes": lambda n : setattr(self, 'changes', n.get_collection_of_object_values(WorkbookDocumentTaskChange)),
             "comment": lambda n : setattr(self, 'comment', n.get_object_value(WorkbookComment)),
@@ -94,12 +95,6 @@ class WorkbookDocumentTask(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .workbook_comment import WorkbookComment
-        from .workbook_document_task_change import WorkbookDocumentTaskChange
-        from .workbook_document_task_schedule import WorkbookDocumentTaskSchedule
-        from .workbook_email_identity import WorkbookEmailIdentity
-
         writer.write_collection_of_object_values("assignees", self.assignees)
         writer.write_collection_of_object_values("changes", self.changes)
         writer.write_object_value("comment", self.comment)

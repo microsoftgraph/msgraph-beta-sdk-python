@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_events_flow import AuthenticationEventsFlow
@@ -24,33 +25,33 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Represents entry point for API connectors.
-    api_connectors: Optional[List[IdentityApiConnector]] = None
+    api_connectors: Optional[list[IdentityApiConnector]] = None
     # The authenticationEventListeners property
-    authentication_event_listeners: Optional[List[AuthenticationEventListener]] = None
+    authentication_event_listeners: Optional[list[AuthenticationEventListener]] = None
     # Represents the entry point for self-service sign-up and sign-in user flows in both Microsoft Entra workforce and external tenants.
-    authentication_events_flows: Optional[List[AuthenticationEventsFlow]] = None
+    authentication_events_flows: Optional[list[AuthenticationEventsFlow]] = None
     # Represents entry point for B2C identity userflows.
-    b2c_user_flows: Optional[List[B2cIdentityUserFlow]] = None
+    b2c_user_flows: Optional[list[B2cIdentityUserFlow]] = None
     # Represents entry point for B2X and self-service sign-up identity userflows.
-    b2x_user_flows: Optional[List[B2xIdentityUserFlow]] = None
+    b2x_user_flows: Optional[list[B2xIdentityUserFlow]] = None
     # the entry point for the Conditional Access (CA) object model.
     conditional_access: Optional[ConditionalAccessRoot] = None
     # Represents entry point for continuous access evaluation policy.
     continuous_access_evaluation_policy: Optional[ContinuousAccessEvaluationPolicy] = None
     # The customAuthenticationExtensions property
-    custom_authentication_extensions: Optional[List[CustomAuthenticationExtension]] = None
+    custom_authentication_extensions: Optional[list[CustomAuthenticationExtension]] = None
     # Represents entry point for identity provider base.
-    identity_providers: Optional[List[IdentityProviderBase]] = None
+    identity_providers: Optional[list[IdentityProviderBase]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents entry point for Microsoft Entra product changes and planned new features.
-    product_changes: Optional[List[ChangeItemBase]] = None
+    product_changes: Optional[list[ChangeItemBase]] = None
     # Represents entry point for identity userflow attributes.
-    user_flow_attributes: Optional[List[IdentityUserFlowAttribute]] = None
+    user_flow_attributes: Optional[list[IdentityUserFlowAttribute]] = None
     # The userFlows property
-    user_flows: Optional[List[IdentityUserFlow]] = None
+    user_flows: Optional[list[IdentityUserFlow]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> IdentityContainer:
@@ -63,10 +64,10 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IdentityContainer()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_events_flow import AuthenticationEventsFlow
         from .authentication_event_listener import AuthenticationEventListener
@@ -94,7 +95,7 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_user_flow import IdentityUserFlow
         from .identity_user_flow_attribute import IdentityUserFlowAttribute
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "apiConnectors": lambda n : setattr(self, 'api_connectors', n.get_collection_of_object_values(IdentityApiConnector)),
             "authenticationEventListeners": lambda n : setattr(self, 'authentication_event_listeners', n.get_collection_of_object_values(AuthenticationEventListener)),
             "authenticationEventsFlows": lambda n : setattr(self, 'authentication_events_flows', n.get_collection_of_object_values(AuthenticationEventsFlow)),
@@ -119,19 +120,6 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .authentication_events_flow import AuthenticationEventsFlow
-        from .authentication_event_listener import AuthenticationEventListener
-        from .b2c_identity_user_flow import B2cIdentityUserFlow
-        from .b2x_identity_user_flow import B2xIdentityUserFlow
-        from .change_item_base import ChangeItemBase
-        from .conditional_access_root import ConditionalAccessRoot
-        from .continuous_access_evaluation_policy import ContinuousAccessEvaluationPolicy
-        from .custom_authentication_extension import CustomAuthenticationExtension
-        from .identity_api_connector import IdentityApiConnector
-        from .identity_provider_base import IdentityProviderBase
-        from .identity_user_flow import IdentityUserFlow
-        from .identity_user_flow_attribute import IdentityUserFlowAttribute
-
         writer.write_collection_of_object_values("apiConnectors", self.api_connectors)
         writer.write_collection_of_object_values("authenticationEventListeners", self.authentication_event_listeners)
         writer.write_collection_of_object_values("authenticationEventsFlows", self.authentication_events_flows)

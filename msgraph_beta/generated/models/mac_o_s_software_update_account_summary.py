@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -16,7 +17,7 @@ class MacOSSoftwareUpdateAccountSummary(Entity, Parsable):
     MacOS software update account summary report for a device and user
     """
     # Summary of the updates by category.
-    category_summaries: Optional[List[MacOSSoftwareUpdateCategorySummary]] = None
+    category_summaries: Optional[list[MacOSSoftwareUpdateCategorySummary]] = None
     # The device ID.
     device_id: Optional[str] = None
     # The device name.
@@ -51,10 +52,10 @@ class MacOSSoftwareUpdateAccountSummary(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSSoftwareUpdateAccountSummary()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .mac_o_s_software_update_category_summary import MacOSSoftwareUpdateCategorySummary
@@ -62,7 +63,7 @@ class MacOSSoftwareUpdateAccountSummary(Entity, Parsable):
         from .entity import Entity
         from .mac_o_s_software_update_category_summary import MacOSSoftwareUpdateCategorySummary
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "categorySummaries": lambda n : setattr(self, 'category_summaries', n.get_collection_of_object_values(MacOSSoftwareUpdateCategorySummary)),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
@@ -88,9 +89,6 @@ class MacOSSoftwareUpdateAccountSummary(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .mac_o_s_software_update_category_summary import MacOSSoftwareUpdateCategorySummary
-
         writer.write_collection_of_object_values("categorySummaries", self.category_summaries)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("deviceName", self.device_name)

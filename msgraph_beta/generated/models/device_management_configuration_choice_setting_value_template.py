@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_configuration_choice_setting_value_default_template import DeviceManagementConfigurationChoiceSettingValueDefaultTemplate
@@ -17,7 +18,7 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Choice Setting Value Default Template.
     default_value: Optional[DeviceManagementConfigurationChoiceSettingValueDefaultTemplate] = None
     # The OdataType property
@@ -40,10 +41,10 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationChoiceSettingValueTemplate()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_configuration_choice_setting_value_default_template import DeviceManagementConfigurationChoiceSettingValueDefaultTemplate
         from .device_management_configuration_choice_setting_value_definition_template import DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate
@@ -51,7 +52,7 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         from .device_management_configuration_choice_setting_value_default_template import DeviceManagementConfigurationChoiceSettingValueDefaultTemplate
         from .device_management_configuration_choice_setting_value_definition_template import DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "defaultValue": lambda n : setattr(self, 'default_value', n.get_object_value(DeviceManagementConfigurationChoiceSettingValueDefaultTemplate)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recommendedValueDefinition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate)),
@@ -68,9 +69,6 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .device_management_configuration_choice_setting_value_default_template import DeviceManagementConfigurationChoiceSettingValueDefaultTemplate
-        from .device_management_configuration_choice_setting_value_definition_template import DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate
-
         writer.write_object_value("defaultValue", self.default_value)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("recommendedValueDefinition", self.recommended_value_definition)

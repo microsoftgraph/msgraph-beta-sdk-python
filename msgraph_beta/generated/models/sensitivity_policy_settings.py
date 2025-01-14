@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -33,10 +34,10 @@ class SensitivityPolicySettings(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SensitivityPolicySettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .sensitivity_label_target import SensitivityLabelTarget
@@ -44,7 +45,7 @@ class SensitivityPolicySettings(Entity, Parsable):
         from .entity import Entity
         from .sensitivity_label_target import SensitivityLabelTarget
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_collection_of_enum_values(SensitivityLabelTarget)),
             "downgradeSensitivityRequiresJustification": lambda n : setattr(self, 'downgrade_sensitivity_requires_justification', n.get_bool_value()),
             "helpWebUrl": lambda n : setattr(self, 'help_web_url', n.get_str_value()),
@@ -63,9 +64,6 @@ class SensitivityPolicySettings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .sensitivity_label_target import SensitivityLabelTarget
-
         writer.write_enum_value("applicableTo", self.applicable_to)
         writer.write_bool_value("downgradeSensitivityRequiresJustification", self.downgrade_sensitivity_requires_justification)
         writer.write_str_value("helpWebUrl", self.help_web_url)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
@@ -12,7 +13,7 @@ from ....models.base_collection_pagination_count_response import BaseCollectionP
 @dataclass
 class RetrieveManagedDevicesWithAppInstallationIssuesGetResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
-    value: Optional[List[ManagedDeviceSummarizedAppState]] = None
+    value: Optional[list[ManagedDeviceSummarizedAppState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RetrieveManagedDevicesWithAppInstallationIssuesGetResponse:
@@ -25,10 +26,10 @@ class RetrieveManagedDevicesWithAppInstallationIssuesGetResponse(BaseCollectionP
             raise TypeError("parse_node cannot be null.")
         return RetrieveManagedDevicesWithAppInstallationIssuesGetResponse()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
         from ....models.managed_device_summarized_app_state import ManagedDeviceSummarizedAppState
@@ -36,7 +37,7 @@ class RetrieveManagedDevicesWithAppInstallationIssuesGetResponse(BaseCollectionP
         from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
         from ....models.managed_device_summarized_app_state import ManagedDeviceSummarizedAppState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(ManagedDeviceSummarizedAppState)),
         }
         super_fields = super().get_field_deserializers()
@@ -52,9 +53,6 @@ class RetrieveManagedDevicesWithAppInstallationIssuesGetResponse(BaseCollectionP
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
-        from ....models.managed_device_summarized_app_state import ManagedDeviceSummarizedAppState
-
         writer.write_collection_of_object_values("value", self.value)
     
 

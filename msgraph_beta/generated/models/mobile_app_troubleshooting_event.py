@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .app_log_collection_request import AppLogCollectionRequest
@@ -16,13 +17,13 @@ class MobileAppTroubleshootingEvent(DeviceManagementTroubleshootingEvent, Parsab
     Event representing a users device application install status.
     """
     # Indicates collection of App Log Upload Request.
-    app_log_collection_requests: Optional[List[AppLogCollectionRequest]] = None
+    app_log_collection_requests: Optional[list[AppLogCollectionRequest]] = None
     # Intune application identifier.
     application_id: Optional[str] = None
     # Device identifier created or collected by Intune.
     device_id: Optional[str] = None
     # Intune Mobile Application Troubleshooting History Item
-    history: Optional[List[MobileAppTroubleshootingHistoryItem]] = None
+    history: Optional[list[MobileAppTroubleshootingHistoryItem]] = None
     # Device identifier created or collected by Intune.
     managed_device_identifier: Optional[str] = None
     # The OdataType property
@@ -41,10 +42,10 @@ class MobileAppTroubleshootingEvent(DeviceManagementTroubleshootingEvent, Parsab
             raise TypeError("parse_node cannot be null.")
         return MobileAppTroubleshootingEvent()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .app_log_collection_request import AppLogCollectionRequest
         from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
@@ -54,7 +55,7 @@ class MobileAppTroubleshootingEvent(DeviceManagementTroubleshootingEvent, Parsab
         from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
         from .mobile_app_troubleshooting_history_item import MobileAppTroubleshootingHistoryItem
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appLogCollectionRequests": lambda n : setattr(self, 'app_log_collection_requests', n.get_collection_of_object_values(AppLogCollectionRequest)),
             "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
@@ -75,10 +76,6 @@ class MobileAppTroubleshootingEvent(DeviceManagementTroubleshootingEvent, Parsab
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .app_log_collection_request import AppLogCollectionRequest
-        from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
-        from .mobile_app_troubleshooting_history_item import MobileAppTroubleshootingHistoryItem
-
         writer.write_collection_of_object_values("appLogCollectionRequests", self.app_log_collection_requests)
         writer.write_str_value("applicationId", self.application_id)
         writer.write_str_value("deviceId", self.device_id)

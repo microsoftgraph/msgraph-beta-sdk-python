@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .day_note import DayNote
@@ -28,7 +29,7 @@ class Schedule(Entity, Parsable):
     # Indicates whether copied shifts should include the activities.
     activities_included_when_copying_shifts_enabled: Optional[bool] = None
     # The day notes in the schedule.
-    day_notes: Optional[List[DayNote]] = None
+    day_notes: Optional[list[DayNote]] = None
     # Indicates whether the schedule is enabled for the team. Required.
     enabled: Optional[bool] = None
     # Indicates whether approval is required by a manager of this schedule for cross location shift requests.
@@ -38,13 +39,13 @@ class Schedule(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The offer requests for shifts in the schedule.
-    offer_shift_requests: Optional[List[OfferShiftRequest]] = None
+    offer_shift_requests: Optional[list[OfferShiftRequest]] = None
     # Indicates whether offer shift requests are enabled for the schedule.
     offer_shift_requests_enabled: Optional[bool] = None
     # The open shift requests in the schedule.
-    open_shift_change_requests: Optional[List[OpenShiftChangeRequest]] = None
+    open_shift_change_requests: Optional[list[OpenShiftChangeRequest]] = None
     # The set of open shifts in a scheduling group in the schedule.
-    open_shifts: Optional[List[OpenShift]] = None
+    open_shifts: Optional[list[OpenShift]] = None
     # Indicates whether open shifts are enabled for the schedule.
     open_shifts_enabled: Optional[bool] = None
     # The status of the schedule provisioning. The possible values are notStarted, running, completed, failed.
@@ -52,35 +53,35 @@ class Schedule(Entity, Parsable):
     # Additional information about why schedule provisioning failed.
     provision_status_code: Optional[str] = None
     # The logical grouping of users in the schedule (usually by role).
-    scheduling_groups: Optional[List[SchedulingGroup]] = None
+    scheduling_groups: Optional[list[SchedulingGroup]] = None
     # The shifts in the schedule.
-    shifts: Optional[List[Shift]] = None
+    shifts: Optional[list[Shift]] = None
     # The definitions of the roles in the schedule.
-    shifts_role_definitions: Optional[List[ShiftsRoleDefinition]] = None
+    shifts_role_definitions: Optional[list[ShiftsRoleDefinition]] = None
     # Indicates the start day of the week. The possible values are: sunday, monday, tuesday, wednesday, thursday, friday, saturday.
     start_day_of_week: Optional[DayOfWeek] = None
     # The swap requests for shifts in the schedule.
-    swap_shifts_change_requests: Optional[List[SwapShiftsChangeRequest]] = None
+    swap_shifts_change_requests: Optional[list[SwapShiftsChangeRequest]] = None
     # Indicates whether swap shifts requests are enabled for the schedule.
     swap_shifts_requests_enabled: Optional[bool] = None
     # The time cards in the schedule.
-    time_cards: Optional[List[TimeCard]] = None
+    time_cards: Optional[list[TimeCard]] = None
     # Indicates whether time clock is enabled for the schedule.
     time_clock_enabled: Optional[bool] = None
     # The time clock location settings for this schedule.
     time_clock_settings: Optional[TimeClockSettings] = None
     # The set of reasons for a time off in the schedule.
-    time_off_reasons: Optional[List[TimeOffReason]] = None
+    time_off_reasons: Optional[list[TimeOffReason]] = None
     # The time off requests in the schedule.
-    time_off_requests: Optional[List[TimeOffRequest]] = None
+    time_off_requests: Optional[list[TimeOffRequest]] = None
     # Indicates whether time off requests are enabled for the schedule.
     time_off_requests_enabled: Optional[bool] = None
     # Indicates the time zone of the schedule team using tz database format. Required.
     time_zone: Optional[str] = None
     # The instances of times off in the schedule.
-    times_off: Optional[List[TimeOff]] = None
+    times_off: Optional[list[TimeOff]] = None
     # The IDs for the workforce integrations associated with this schedule.
-    workforce_integration_ids: Optional[List[str]] = None
+    workforce_integration_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Schedule:
@@ -93,10 +94,10 @@ class Schedule(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Schedule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .day_note import DayNote
         from .day_of_week import DayOfWeek
@@ -132,7 +133,7 @@ class Schedule(Entity, Parsable):
         from .time_off_reason import TimeOffReason
         from .time_off_request import TimeOffRequest
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activitiesIncludedWhenCopyingShiftsEnabled": lambda n : setattr(self, 'activities_included_when_copying_shifts_enabled', n.get_bool_value()),
             "dayNotes": lambda n : setattr(self, 'day_notes', n.get_collection_of_object_values(DayNote)),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
@@ -174,23 +175,6 @@ class Schedule(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .day_note import DayNote
-        from .day_of_week import DayOfWeek
-        from .entity import Entity
-        from .offer_shift_request import OfferShiftRequest
-        from .open_shift import OpenShift
-        from .open_shift_change_request import OpenShiftChangeRequest
-        from .operation_status import OperationStatus
-        from .scheduling_group import SchedulingGroup
-        from .shift import Shift
-        from .shifts_role_definition import ShiftsRoleDefinition
-        from .swap_shifts_change_request import SwapShiftsChangeRequest
-        from .time_card import TimeCard
-        from .time_clock_settings import TimeClockSettings
-        from .time_off import TimeOff
-        from .time_off_reason import TimeOffReason
-        from .time_off_request import TimeOffRequest
-
         writer.write_bool_value("activitiesIncludedWhenCopyingShiftsEnabled", self.activities_included_when_copying_shifts_enabled)
         writer.write_collection_of_object_values("dayNotes", self.day_notes)
         writer.write_bool_value("enabled", self.enabled)

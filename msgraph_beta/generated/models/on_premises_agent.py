@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .agent_status import AgentStatus
@@ -14,7 +15,7 @@ from .entity import Entity
 @dataclass
 class OnPremisesAgent(Entity, Parsable):
     # List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
-    agent_groups: Optional[List[OnPremisesAgentGroup]] = None
+    agent_groups: Optional[list[OnPremisesAgentGroup]] = None
     # The external IP address as detected by the service for the agent machine. Read-only
     external_ip: Optional[str] = None
     # The name of the machine that the agent is running on. Read-only
@@ -24,7 +25,7 @@ class OnPremisesAgent(Entity, Parsable):
     # The status property
     status: Optional[AgentStatus] = None
     # Possible values are: applicationProxy, exchangeOnline, authentication, provisioning, adAdministration.
-    supported_publishing_types: Optional[List[OnPremisesPublishingType]] = None
+    supported_publishing_types: Optional[list[OnPremisesPublishingType]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OnPremisesAgent:
@@ -37,10 +38,10 @@ class OnPremisesAgent(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OnPremisesAgent()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .agent_status import AgentStatus
         from .entity import Entity
@@ -52,7 +53,7 @@ class OnPremisesAgent(Entity, Parsable):
         from .on_premises_agent_group import OnPremisesAgentGroup
         from .on_premises_publishing_type import OnPremisesPublishingType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(OnPremisesAgentGroup)),
             "externalIp": lambda n : setattr(self, 'external_ip', n.get_str_value()),
             "machineName": lambda n : setattr(self, 'machine_name', n.get_str_value()),
@@ -72,11 +73,6 @@ class OnPremisesAgent(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .agent_status import AgentStatus
-        from .entity import Entity
-        from .on_premises_agent_group import OnPremisesAgentGroup
-        from .on_premises_publishing_type import OnPremisesPublishingType
-
         writer.write_collection_of_object_values("agentGroups", self.agent_groups)
         writer.write_str_value("externalIp", self.external_ip)
         writer.write_str_value("machineName", self.machine_name)

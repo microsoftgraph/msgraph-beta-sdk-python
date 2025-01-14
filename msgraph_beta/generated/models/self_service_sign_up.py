@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .applied_authentication_event_listener import AppliedAuthenticationEventListener
@@ -21,7 +22,7 @@ class SelfServiceSignUp(Entity, Parsable):
     # The appId property
     app_id: Optional[str] = None
     # The appliedEventListeners property
-    applied_event_listeners: Optional[List[AppliedAuthenticationEventListener]] = None
+    applied_event_listeners: Optional[list[AppliedAuthenticationEventListener]] = None
     # The correlationId property
     correlation_id: Optional[str] = None
     # The createdDateTime property
@@ -50,10 +51,10 @@ class SelfServiceSignUp(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SelfServiceSignUp()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .applied_authentication_event_listener import AppliedAuthenticationEventListener
         from .ciam_user_snapshot import CiamUserSnapshot
@@ -69,7 +70,7 @@ class SelfServiceSignUp(Entity, Parsable):
         from .sign_up_stage import SignUpStage
         from .sign_up_status import SignUpStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "appliedEventListeners": lambda n : setattr(self, 'applied_event_listeners', n.get_collection_of_object_values(AppliedAuthenticationEventListener)),
@@ -94,13 +95,6 @@ class SelfServiceSignUp(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .applied_authentication_event_listener import AppliedAuthenticationEventListener
-        from .ciam_user_snapshot import CiamUserSnapshot
-        from .entity import Entity
-        from .sign_up_identity import SignUpIdentity
-        from .sign_up_stage import SignUpStage
-        from .sign_up_status import SignUpStatus
-
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appId", self.app_id)
         writer.write_collection_of_object_values("appliedEventListeners", self.applied_event_listeners)

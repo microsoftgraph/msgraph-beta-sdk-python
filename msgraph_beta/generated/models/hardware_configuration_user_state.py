@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -48,16 +49,16 @@ class HardwareConfigurationUserState(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return HardwareConfigurationUserState()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
 
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "errorDeviceCount": lambda n : setattr(self, 'error_device_count', n.get_int_value()),
             "failedDeviceCount": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
             "lastStateUpdateDateTime": lambda n : setattr(self, 'last_state_update_date_time', n.get_datetime_value()),
@@ -82,8 +83,6 @@ class HardwareConfigurationUserState(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-
         writer.write_int_value("errorDeviceCount", self.error_device_count)
         writer.write_int_value("failedDeviceCount", self.failed_device_count)
         writer.write_datetime_value("lastStateUpdateDateTime", self.last_state_update_date_time)

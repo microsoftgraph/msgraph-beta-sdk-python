@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -54,10 +55,10 @@ class IndustryDataConnector(Entity, Parsable):
             return OneRosterApiDataConnector()
         return IndustryDataConnector()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .api_data_connector import ApiDataConnector
@@ -73,7 +74,7 @@ class IndustryDataConnector(Entity, Parsable):
         from .one_roster_api_data_connector import OneRosterApiDataConnector
         from .source_system_definition import SourceSystemDefinition
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "sourceSystem": lambda n : setattr(self, 'source_system', n.get_object_value(SourceSystemDefinition)),
         }
@@ -90,13 +91,6 @@ class IndustryDataConnector(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .api_data_connector import ApiDataConnector
-        from .azure_data_lake_connector import AzureDataLakeConnector
-        from .file_data_connector import FileDataConnector
-        from .one_roster_api_data_connector import OneRosterApiDataConnector
-        from .source_system_definition import SourceSystemDefinition
-
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("sourceSystem", self.source_system)
     

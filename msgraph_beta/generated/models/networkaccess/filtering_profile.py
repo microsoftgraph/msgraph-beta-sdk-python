@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .conditional_access_policy import ConditionalAccessPolicy
@@ -15,7 +16,7 @@ class FilteringProfile(Profile, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.filteringProfile"
     # A set of associated policies defined to regulate access to resources or systems based on specific conditions. Automatically expanded.
-    conditional_access_policies: Optional[List[ConditionalAccessPolicy]] = None
+    conditional_access_policies: Optional[list[ConditionalAccessPolicy]] = None
     # The date and time when the filteringProfile was created.
     created_date_time: Optional[datetime.datetime] = None
     # The priority used to order the profile for processing within a list.
@@ -32,10 +33,10 @@ class FilteringProfile(Profile, Parsable):
             raise TypeError("parse_node cannot be null.")
         return FilteringProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .conditional_access_policy import ConditionalAccessPolicy
         from .profile import Profile
@@ -43,7 +44,7 @@ class FilteringProfile(Profile, Parsable):
         from .conditional_access_policy import ConditionalAccessPolicy
         from .profile import Profile
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "conditionalAccessPolicies": lambda n : setattr(self, 'conditional_access_policies', n.get_collection_of_object_values(ConditionalAccessPolicy)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
@@ -61,9 +62,6 @@ class FilteringProfile(Profile, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .conditional_access_policy import ConditionalAccessPolicy
-        from .profile import Profile
-
         writer.write_collection_of_object_values("conditionalAccessPolicies", self.conditional_access_policies)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_int_value("priority", self.priority)

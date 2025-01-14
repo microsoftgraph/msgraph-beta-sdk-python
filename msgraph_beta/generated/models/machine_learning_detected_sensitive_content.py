@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .detected_sensitive_content import DetectedSensitiveContent
@@ -29,10 +30,10 @@ class MachineLearningDetectedSensitiveContent(DetectedSensitiveContent, Parsable
             raise TypeError("parse_node cannot be null.")
         return MachineLearningDetectedSensitiveContent()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .detected_sensitive_content import DetectedSensitiveContent
         from .ml_classification_match_tolerance import MlClassificationMatchTolerance
@@ -40,7 +41,7 @@ class MachineLearningDetectedSensitiveContent(DetectedSensitiveContent, Parsable
         from .detected_sensitive_content import DetectedSensitiveContent
         from .ml_classification_match_tolerance import MlClassificationMatchTolerance
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "matchTolerance": lambda n : setattr(self, 'match_tolerance', n.get_collection_of_enum_values(MlClassificationMatchTolerance)),
             "modelVersion": lambda n : setattr(self, 'model_version', n.get_str_value()),
         }
@@ -57,9 +58,6 @@ class MachineLearningDetectedSensitiveContent(DetectedSensitiveContent, Parsable
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .detected_sensitive_content import DetectedSensitiveContent
-        from .ml_classification_match_tolerance import MlClassificationMatchTolerance
-
         writer.write_enum_value("matchTolerance", self.match_tolerance)
         writer.write_str_value("modelVersion", self.model_version)
     

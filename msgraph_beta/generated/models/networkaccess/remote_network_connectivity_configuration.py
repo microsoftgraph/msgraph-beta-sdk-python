@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .connectivity_configuration_link import ConnectivityConfigurationLink
@@ -13,9 +14,9 @@ class RemoteNetworkConnectivityConfiguration(AdditionalDataHolder, BackedModel, 
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # List of connectivity configurations for deviceLink objects.
-    links: Optional[List[ConnectivityConfigurationLink]] = None
+    links: Optional[list[ConnectivityConfigurationLink]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Unique identifier or a specific reference assigned to a branchSite. Key.
@@ -34,16 +35,16 @@ class RemoteNetworkConnectivityConfiguration(AdditionalDataHolder, BackedModel, 
             raise TypeError("parse_node cannot be null.")
         return RemoteNetworkConnectivityConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .connectivity_configuration_link import ConnectivityConfigurationLink
 
         from .connectivity_configuration_link import ConnectivityConfigurationLink
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "links": lambda n : setattr(self, 'links', n.get_collection_of_object_values(ConnectivityConfigurationLink)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "remoteNetworkId": lambda n : setattr(self, 'remote_network_id', n.get_str_value()),
@@ -59,8 +60,6 @@ class RemoteNetworkConnectivityConfiguration(AdditionalDataHolder, BackedModel, 
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .connectivity_configuration_link import ConnectivityConfigurationLink
-
         writer.write_collection_of_object_values("links", self.links)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("remoteNetworkId", self.remote_network_id)

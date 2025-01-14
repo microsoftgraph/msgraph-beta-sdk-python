@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -19,17 +20,17 @@ from ..entity import Entity
 @dataclass
 class Incident(Entity, Parsable):
     # The list of related alerts. Supports $expand.
-    alerts: Optional[List[Alert]] = None
+    alerts: Optional[list[Alert]] = None
     # Owner of the incident, or null if no owner is assigned. Free editable text.
     assigned_to: Optional[str] = None
     # The specification for the incident. Possible values are: unknown, falsePositive, truePositive, informationalExpectedActivity, unknownFutureValue.
     classification: Optional[AlertClassification] = None
     # Array of comments created by the Security Operations (SecOps) team when the incident is managed.
-    comments: Optional[List[AlertComment]] = None
+    comments: Optional[list[AlertComment]] = None
     # Time when the incident was first created.
     created_date_time: Optional[datetime.datetime] = None
     # The collection of custom tags that are associated with an incident.
-    custom_tags: Optional[List[str]] = None
+    custom_tags: Optional[list[str]] = None
     # Description of the incident.
     description: Optional[str] = None
     # Specifies the determination of the incident. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.
@@ -47,7 +48,7 @@ class Incident(Entity, Parsable):
     # A rich text string that represents the actions that are reccomnded to take in order to resolve the incident.
     recommended_actions: Optional[str] = None
     # List of hunting Kusto Query Language (KQL) queries related to the incident.
-    recommended_hunting_queries: Optional[List[RecommendedHuntingQuery]] = None
+    recommended_hunting_queries: Optional[list[RecommendedHuntingQuery]] = None
     # Only populated in case an incident is grouped together with another incident, as part of the logic that processes incidents. In such a case, the status property is redirected.
     redirect_incident_id: Optional[str] = None
     # User input that explains the resolution of the incident and the classification choice. This property contains free editable text.
@@ -59,7 +60,7 @@ class Incident(Entity, Parsable):
     # The overview of an attack. When applicable, the summary contains details of what occurred, impacted assets, and the type of attack.
     summary: Optional[str] = None
     # The collection of system tags that are associated with the incident.
-    system_tags: Optional[List[str]] = None
+    system_tags: Optional[list[str]] = None
     # The Microsoft Entra tenant in which the alert was created.
     tenant_id: Optional[str] = None
     
@@ -74,10 +75,10 @@ class Incident(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Incident()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .alert import Alert
@@ -97,7 +98,7 @@ class Incident(Entity, Parsable):
         from .incident_status import IncidentStatus
         from .recommended_hunting_query import RecommendedHuntingQuery
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(Alert)),
             "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
             "classification": lambda n : setattr(self, 'classification', n.get_enum_value(AlertClassification)),
@@ -133,15 +134,6 @@ class Incident(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .alert import Alert
-        from .alert_classification import AlertClassification
-        from .alert_comment import AlertComment
-        from .alert_determination import AlertDetermination
-        from .alert_severity import AlertSeverity
-        from .incident_status import IncidentStatus
-        from .recommended_hunting_query import RecommendedHuntingQuery
-
         writer.write_collection_of_object_values("alerts", self.alerts)
         writer.write_str_value("assignedTo", self.assigned_to)
         writer.write_enum_value("classification", self.classification)

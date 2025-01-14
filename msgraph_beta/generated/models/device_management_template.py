@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_setting_instance import DeviceManagementSettingInstance
@@ -21,7 +22,7 @@ class DeviceManagementTemplate(Entity, Parsable):
     Entity that represents a defined collection of device settings
     """
     # Collection of setting categories within the template
-    categories: Optional[List[DeviceManagementTemplateSettingCategory]] = None
+    categories: Optional[list[DeviceManagementTemplateSettingCategory]] = None
     # The template's description
     description: Optional[str] = None
     # The template's display name
@@ -31,7 +32,7 @@ class DeviceManagementTemplate(Entity, Parsable):
     # The template is deprecated or not. Intents cannot be created from a deprecated template.
     is_deprecated: Optional[bool] = None
     # Collection of templates this template can migrate to
-    migratable_to: Optional[List[DeviceManagementTemplate]] = None
+    migratable_to: Optional[list[DeviceManagementTemplate]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Supported platform types for policies.
@@ -39,7 +40,7 @@ class DeviceManagementTemplate(Entity, Parsable):
     # When the template was published
     published_date_time: Optional[datetime.datetime] = None
     # Collection of all settings this template has
-    settings: Optional[List[DeviceManagementSettingInstance]] = None
+    settings: Optional[list[DeviceManagementSettingInstance]] = None
     # Template subtype
     template_subtype: Optional[DeviceManagementTemplateSubtype] = None
     # Template type
@@ -67,10 +68,10 @@ class DeviceManagementTemplate(Entity, Parsable):
             return SecurityBaselineTemplate()
         return DeviceManagementTemplate()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_setting_instance import DeviceManagementSettingInstance
         from .device_management_template_setting_category import DeviceManagementTemplateSettingCategory
@@ -88,7 +89,7 @@ class DeviceManagementTemplate(Entity, Parsable):
         from .policy_platform_type import PolicyPlatformType
         from .security_baseline_template import SecurityBaselineTemplate
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_object_values(DeviceManagementTemplateSettingCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -115,14 +116,6 @@ class DeviceManagementTemplate(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_setting_instance import DeviceManagementSettingInstance
-        from .device_management_template_setting_category import DeviceManagementTemplateSettingCategory
-        from .device_management_template_subtype import DeviceManagementTemplateSubtype
-        from .device_management_template_type import DeviceManagementTemplateType
-        from .entity import Entity
-        from .policy_platform_type import PolicyPlatformType
-        from .security_baseline_template import SecurityBaselineTemplate
-
         writer.write_collection_of_object_values("categories", self.categories)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

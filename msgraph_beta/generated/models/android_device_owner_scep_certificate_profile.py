@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
@@ -28,7 +29,7 @@ class AndroidDeviceOwnerScepCertificateProfile(AndroidDeviceOwnerCertificateProf
     # Target store certificate. Possible values are: user, machine.
     certificate_store: Optional[CertificateStore] = None
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-    custom_subject_alternative_names: Optional[List[CustomSubjectAlternativeName]] = None
+    custom_subject_alternative_names: Optional[list[CustomSubjectAlternativeName]] = None
     # Hash Algorithm Options.
     hash_algorithm: Optional[HashAlgorithms] = None
     # Key Size Options.
@@ -36,11 +37,11 @@ class AndroidDeviceOwnerScepCertificateProfile(AndroidDeviceOwnerCertificateProf
     # Key Usage Options.
     key_usage: Optional[KeyUsages] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-    managed_device_certificate_states: Optional[List[ManagedDeviceCertificateState]] = None
+    managed_device_certificate_states: Optional[list[ManagedDeviceCertificateState]] = None
     # SCEP Server Url(s)
-    scep_server_urls: Optional[List[str]] = None
+    scep_server_urls: Optional[list[str]] = None
     # Certificate access information. This collection can contain a maximum of 50 elements.
-    silent_certificate_access_details: Optional[List[AndroidDeviceOwnerSilentCertificateAccess]] = None
+    silent_certificate_access_details: Optional[list[AndroidDeviceOwnerSilentCertificateAccess]] = None
     # Custom String that defines the AAD Attribute.
     subject_alternative_name_format_string: Optional[str] = None
     # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
@@ -57,10 +58,10 @@ class AndroidDeviceOwnerScepCertificateProfile(AndroidDeviceOwnerCertificateProf
             raise TypeError("parse_node cannot be null.")
         return AndroidDeviceOwnerScepCertificateProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
         from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
@@ -82,7 +83,7 @@ class AndroidDeviceOwnerScepCertificateProfile(AndroidDeviceOwnerCertificateProf
         from .key_usages import KeyUsages
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(AndroidDeviceOwnerCertificateAccessType)),
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(CustomSubjectAlternativeName)),
@@ -108,16 +109,6 @@ class AndroidDeviceOwnerScepCertificateProfile(AndroidDeviceOwnerCertificateProf
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_device_owner_certificate_access_type import AndroidDeviceOwnerCertificateAccessType
-        from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
-        from .android_device_owner_silent_certificate_access import AndroidDeviceOwnerSilentCertificateAccess
-        from .certificate_store import CertificateStore
-        from .custom_subject_alternative_name import CustomSubjectAlternativeName
-        from .hash_algorithms import HashAlgorithms
-        from .key_size import KeySize
-        from .key_usages import KeyUsages
-        from .managed_device_certificate_state import ManagedDeviceCertificateState
-
         writer.write_enum_value("certificateAccessType", self.certificate_access_type)
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_collection_of_object_values("customSubjectAlternativeNames", self.custom_subject_alternative_names)

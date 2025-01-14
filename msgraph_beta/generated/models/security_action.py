@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -37,9 +38,9 @@ class SecurityAction(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Collection of parameters (key-value pairs) necessary to invoke the action, for example, URL or fileHash to block.). Required.
-    parameters: Optional[List[KeyValuePair]] = None
+    parameters: Optional[list[KeyValuePair]] = None
     # Collection of securityActionState to keep the history of an action.
-    states: Optional[List[SecurityActionState]] = None
+    states: Optional[list[SecurityActionState]] = None
     # Status of the action. Possible values are: NotStarted, Running, Completed, Failed.
     status: Optional[OperationStatus] = None
     # The user principal name of the signed-in user that submitted  (POST) the action. The user should be extracted from the auth token and not entered manually by the calling application.
@@ -58,10 +59,10 @@ class SecurityAction(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SecurityAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .key_value_pair import KeyValuePair
@@ -77,7 +78,7 @@ class SecurityAction(Entity, Parsable):
         from .security_action_state import SecurityActionState
         from .security_vendor_information import SecurityVendorInformation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionReason": lambda n : setattr(self, 'action_reason', n.get_str_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
@@ -106,13 +107,6 @@ class SecurityAction(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .key_value_pair import KeyValuePair
-        from .operation_status import OperationStatus
-        from .result_info import ResultInfo
-        from .security_action_state import SecurityActionState
-        from .security_vendor_information import SecurityVendorInformation
-
         writer.write_str_value("actionReason", self.action_reason)
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("azureTenantId", self.azure_tenant_id)

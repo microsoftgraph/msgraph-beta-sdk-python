@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .connected_organization_members import ConnectedOrganizationMembers
@@ -19,7 +20,7 @@ class UserSet(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # For a user in an approval stage, this property indicates whether the user is a backup fallback approver.
     is_backup: Optional[bool] = None
     # The OdataType property
@@ -69,10 +70,10 @@ class UserSet(AdditionalDataHolder, BackedModel, Parsable):
             return TargetUserSponsors()
         return UserSet()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .connected_organization_members import ConnectedOrganizationMembers
         from .external_sponsors import ExternalSponsors
@@ -90,7 +91,7 @@ class UserSet(AdditionalDataHolder, BackedModel, Parsable):
         from .single_user import SingleUser
         from .target_user_sponsors import TargetUserSponsors
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "isBackup": lambda n : setattr(self, 'is_backup', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -104,14 +105,6 @@ class UserSet(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .connected_organization_members import ConnectedOrganizationMembers
-        from .external_sponsors import ExternalSponsors
-        from .group_members import GroupMembers
-        from .internal_sponsors import InternalSponsors
-        from .requestor_manager import RequestorManager
-        from .single_user import SingleUser
-        from .target_user_sponsors import TargetUserSponsors
-
         writer.write_bool_value("isBackup", self.is_backup)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

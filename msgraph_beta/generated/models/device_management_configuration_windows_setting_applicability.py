@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_configuration_azure_ad_trust_type import DeviceManagementConfigurationAzureAdTrustType
@@ -25,7 +26,7 @@ class DeviceManagementConfigurationWindowsSettingApplicability(DeviceManagementC
     # AzureAD setting requirement
     requires_azure_ad: Optional[bool] = None
     # List of Windows SKUs that the setting is applicable for
-    windows_skus: Optional[List[DeviceManagementConfigurationWindowsSkus]] = None
+    windows_skus: Optional[list[DeviceManagementConfigurationWindowsSkus]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationWindowsSettingApplicability:
@@ -38,10 +39,10 @@ class DeviceManagementConfigurationWindowsSettingApplicability(DeviceManagementC
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationWindowsSettingApplicability()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_configuration_azure_ad_trust_type import DeviceManagementConfigurationAzureAdTrustType
         from .device_management_configuration_setting_applicability import DeviceManagementConfigurationSettingApplicability
@@ -51,7 +52,7 @@ class DeviceManagementConfigurationWindowsSettingApplicability(DeviceManagementC
         from .device_management_configuration_setting_applicability import DeviceManagementConfigurationSettingApplicability
         from .device_management_configuration_windows_skus import DeviceManagementConfigurationWindowsSkus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "configurationServiceProviderVersion": lambda n : setattr(self, 'configuration_service_provider_version', n.get_str_value()),
             "maximumSupportedVersion": lambda n : setattr(self, 'maximum_supported_version', n.get_str_value()),
             "minimumSupportedVersion": lambda n : setattr(self, 'minimum_supported_version', n.get_str_value()),
@@ -72,10 +73,6 @@ class DeviceManagementConfigurationWindowsSettingApplicability(DeviceManagementC
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_configuration_azure_ad_trust_type import DeviceManagementConfigurationAzureAdTrustType
-        from .device_management_configuration_setting_applicability import DeviceManagementConfigurationSettingApplicability
-        from .device_management_configuration_windows_skus import DeviceManagementConfigurationWindowsSkus
-
         writer.write_str_value("configurationServiceProviderVersion", self.configuration_service_provider_version)
         writer.write_str_value("maximumSupportedVersion", self.maximum_supported_version)
         writer.write_str_value("minimumSupportedVersion", self.minimum_supported_version)

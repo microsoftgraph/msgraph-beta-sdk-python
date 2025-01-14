@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .sharing_operation_status import SharingOperationStatus
@@ -13,7 +14,7 @@ class DirectSharingAbilities(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Indicates whether the current user can add existing guest recipients to this item using direct sharing.
     add_existing_external_users: Optional[SharingOperationStatus] = None
     # Indicates whether the current user can add internal recipients to this item using direct sharing.
@@ -36,16 +37,16 @@ class DirectSharingAbilities(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DirectSharingAbilities()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .sharing_operation_status import SharingOperationStatus
 
         from .sharing_operation_status import SharingOperationStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "addExistingExternalUsers": lambda n : setattr(self, 'add_existing_external_users', n.get_object_value(SharingOperationStatus)),
             "addInternalUsers": lambda n : setattr(self, 'add_internal_users', n.get_object_value(SharingOperationStatus)),
             "addNewExternalUsers": lambda n : setattr(self, 'add_new_external_users', n.get_object_value(SharingOperationStatus)),
@@ -62,8 +63,6 @@ class DirectSharingAbilities(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .sharing_operation_status import SharingOperationStatus
-
         writer.write_object_value("addExistingExternalUsers", self.add_existing_external_users)
         writer.write_object_value("addInternalUsers", self.add_internal_users)
         writer.write_object_value("addNewExternalUsers", self.add_new_external_users)

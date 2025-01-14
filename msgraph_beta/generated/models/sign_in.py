@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .applied_authentication_event_listener import AppliedAuthenticationEventListener
@@ -49,27 +50,27 @@ class SignIn(Entity, Parsable):
     # Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the app token was bound to the device.
     app_token_protection_status: Optional[TokenProtectionStatus] = None
     # A list of conditional access policies that the corresponding sign-in activity triggers. Apps need more Conditional Access-related privileges to read the details of this property. For more information, see Permissions for viewing applied conditional access (CA) policies in sign-ins.
-    applied_conditional_access_policies: Optional[List[AppliedConditionalAccessPolicy]] = None
+    applied_conditional_access_policies: Optional[list[AppliedConditionalAccessPolicy]] = None
     # Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, which the corresponding events in the sign-in event triggered.
-    applied_event_listeners: Optional[List[AppliedAuthenticationEventListener]] = None
+    applied_event_listeners: Optional[list[AppliedAuthenticationEventListener]] = None
     # Provides details about the app and device used during a Microsoft Entra authentication step.
     authentication_app_device_details: Optional[AuthenticationAppDeviceDetails] = None
     # Provides details of the Microsoft Entra policies applied to a user and client authentication app during an authentication step.
-    authentication_app_policy_evaluation_details: Optional[List[AuthenticationAppPolicyDetails]] = None
+    authentication_app_policy_evaluation_details: Optional[list[AuthenticationAppPolicyDetails]] = None
     # Contains a collection of values that represent the conditional access authentication contexts applied to the sign-in.
-    authentication_context_class_references: Optional[List[AuthenticationContext]] = None
+    authentication_context_class_references: Optional[list[AuthenticationContext]] = None
     # The result of the authentication attempt and more details on the authentication method.
-    authentication_details: Optional[List[AuthenticationDetail]] = None
+    authentication_details: Optional[list[AuthenticationDetail]] = None
     # The authentication methods used. Possible values: SMS, Authenticator App, App Verification code, Password, FIDO, PTA, or PHS.
-    authentication_methods_used: Optional[List[str]] = None
+    authentication_methods_used: Optional[list[str]] = None
     # More authentication processing details, such as the agent name for PTA and PHS, or a server or farm name for federated authentication.
-    authentication_processing_details: Optional[List[KeyValue]] = None
+    authentication_processing_details: Optional[list[KeyValue]] = None
     # Lists the protocol type or grant type used in the authentication. The possible values are: none, oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue, authenticationTransfer, nativeAuth. Use none for all authentications that don't have a specific value in that list. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: authenticationTransfer, nativeAuth.
     authentication_protocol: Optional[ProtocolType] = None
     # This holds the highest level of authentication needed through all the sign-in steps, for sign-in to succeed.  Supports $filter (eq, startsWith).
     authentication_requirement: Optional[str] = None
     # Sources of authentication requirement, such as conditional access, per-user MFA, identity protection, and security defaults.
-    authentication_requirement_policies: Optional[List[AuthenticationRequirementPolicy]] = None
+    authentication_requirement_policies: Optional[list[AuthenticationRequirementPolicy]] = None
     # The Autonomous System Number (ASN) of the network used by the actor.
     autonomous_system_number: Optional[int] = None
     # Contains a fully qualified Azure Resource Manager ID of an Azure resource accessed during the sign-in.
@@ -79,7 +80,7 @@ class SignIn(Entity, Parsable):
     # Describes the credential type that a user client or service principal provided to Microsoft Entra ID to authenticate itself. You can review this property to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
     client_credential_type: Optional[ClientCredentialType] = None
     # A list that indicates the audience that Conditional Access evaluated during a sign-in event.  Supports $filter (eq).
-    conditional_access_audiences: Optional[List[ConditionalAccessAudience]] = None
+    conditional_access_audiences: Optional[list[ConditionalAccessAudience]] = None
     # The status of the conditional access policy triggered. Possible values: success, failure, notApplied, or unknownFutureValue.  Supports $filter (eq).
     conditional_access_status: Optional[ConditionalAccessStatus] = None
     # The identifier the client sends when sign-in is initiated. This property is used for troubleshooting the corresponding sign-in activity when calling for support.  Supports $filter (eq).
@@ -119,7 +120,7 @@ class SignIn(Entity, Parsable):
     # This property is deprecated.
     mfa_detail: Optional[MfaDetail] = None
     # The network location details including the type of network used and its names.
-    network_location_details: Optional[List[NetworkLocationDetail]] = None
+    network_location_details: Optional[list[NetworkLocationDetail]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The request identifier of the first request in the authentication sequence.  Supports $filter (eq).
@@ -141,7 +142,7 @@ class SignIn(Entity, Parsable):
     # The reason behind a specific state of a risky user, sign-in, or a risk event. The possible values are none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal, m365DAdminDismissedDetection, userChangedPasswordOnPremises, adminDismissedRiskForSignIn, adminConfirmedAccountSafe.  You must use the Prefer: include-unknown-enum-members request header to get the following value or values in this evolvable enum: adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal, m365DAdminDismissedDetection, userChangedPasswordOnPremises, adminDismissedRiskForSignIn, adminConfirmedAccountSafe.The value none means that Microsoft Entra risk detection hasn't flagged the user or the sign-in as a risky event so far.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
     risk_detail: Optional[RiskDetail] = None
     # The list of risk event types associated with the sign-in. Possible values: unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence,  generic, or unknownFutureValue.  Supports $filter (eq, startsWith).
-    risk_event_types_v2: Optional[List[str]] = None
+    risk_event_types_v2: Optional[list[str]] = None
     # The aggregated risk level. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in wasn't enabled for Microsoft Entra ID Protection.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
     risk_level_aggregated: Optional[RiskLevel] = None
     # The risk level during sign-in. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in wasn't enabled for Microsoft Entra ID Protection.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.
@@ -159,9 +160,9 @@ class SignIn(Entity, Parsable):
     # Identifier of the session that was generated during the sign-in.
     session_id: Optional[str] = None
     # Any conditional access session management policies that were applied during the sign-in event.
-    session_lifetime_policies: Optional[List[SessionLifetimePolicy]] = None
+    session_lifetime_policies: Optional[list[SessionLifetimePolicy]] = None
     # Indicates the category of sign in that the event represents. For user sign ins, the category can be interactiveUser or nonInteractiveUser and corresponds to the value for the isInteractive property on the signin resource. For managed identity sign ins, the category is managedIdentity. For service principal sign-ins, the category is servicePrincipal. Possible values are: interactiveUser, nonInteractiveUser, servicePrincipal, managedIdentity, unknownFutureValue.  Supports $filter (eq, ne).
-    sign_in_event_types: Optional[List[str]] = None
+    sign_in_event_types: Optional[list[str]] = None
     # The identification that the user provided to sign in. It can be the userPrincipalName, but is also populated when a user signs in using other identifiers.
     sign_in_identifier: Optional[str] = None
     # The type of sign in identifier. Possible values are: userPrincipalName, phoneNumber, proxyAddress, qrCode, onPremisesUserPrincipalName, unknownFutureValue.
@@ -200,10 +201,10 @@ class SignIn(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SignIn()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .applied_authentication_event_listener import AppliedAuthenticationEventListener
         from .applied_conditional_access_policy import AppliedConditionalAccessPolicy
@@ -271,7 +272,7 @@ class SignIn(Entity, Parsable):
         from .token_protection_status import TokenProtectionStatus
         from .token_protection_status_details import TokenProtectionStatusDetails
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "appTokenProtectionStatus": lambda n : setattr(self, 'app_token_protection_status', n.get_enum_value(TokenProtectionStatus)),
@@ -358,39 +359,6 @@ class SignIn(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .applied_authentication_event_listener import AppliedAuthenticationEventListener
-        from .applied_conditional_access_policy import AppliedConditionalAccessPolicy
-        from .authentication_app_device_details import AuthenticationAppDeviceDetails
-        from .authentication_app_policy_details import AuthenticationAppPolicyDetails
-        from .authentication_context import AuthenticationContext
-        from .authentication_detail import AuthenticationDetail
-        from .authentication_requirement_policy import AuthenticationRequirementPolicy
-        from .client_credential_type import ClientCredentialType
-        from .conditional_access_audience import ConditionalAccessAudience
-        from .conditional_access_status import ConditionalAccessStatus
-        from .device_detail import DeviceDetail
-        from .entity import Entity
-        from .incoming_token_type import IncomingTokenType
-        from .key_value import KeyValue
-        from .managed_identity import ManagedIdentity
-        from .mfa_detail import MfaDetail
-        from .network_location_detail import NetworkLocationDetail
-        from .original_transfer_methods import OriginalTransferMethods
-        from .private_link_details import PrivateLinkDetails
-        from .protocol_type import ProtocolType
-        from .risk_detail import RiskDetail
-        from .risk_level import RiskLevel
-        from .risk_state import RiskState
-        from .session_lifetime_policy import SessionLifetimePolicy
-        from .sign_in_access_type import SignInAccessType
-        from .sign_in_identifier_type import SignInIdentifierType
-        from .sign_in_location import SignInLocation
-        from .sign_in_status import SignInStatus
-        from .sign_in_user_type import SignInUserType
-        from .token_issuer_type import TokenIssuerType
-        from .token_protection_status import TokenProtectionStatus
-        from .token_protection_status_details import TokenProtectionStatusDetails
-
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appId", self.app_id)
         writer.write_enum_value("appTokenProtectionStatus", self.app_token_protection_status)

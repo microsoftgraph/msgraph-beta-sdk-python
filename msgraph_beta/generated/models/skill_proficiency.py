@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .item_facet import ItemFacet
@@ -14,9 +15,9 @@ class SkillProficiency(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.skillProficiency"
     # Contains categories a user has associated with the skill (for example, personal, professional, hobby).
-    categories: Optional[List[str]] = None
+    categories: Optional[list[str]] = None
     # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
-    collaboration_tags: Optional[List[str]] = None
+    collaboration_tags: Optional[list[str]] = None
     # Contains a friendly name for the skill.
     display_name: Optional[str] = None
     # Detail of the users proficiency with this skill. Possible values are: elementary, limitedWorking, generalProfessional, advancedProfessional, expert, unknownFutureValue.
@@ -37,10 +38,10 @@ class SkillProficiency(ItemFacet, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SkillProficiency()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .item_facet import ItemFacet
         from .skill_proficiency_level import SkillProficiencyLevel
@@ -48,7 +49,7 @@ class SkillProficiency(ItemFacet, Parsable):
         from .item_facet import ItemFacet
         from .skill_proficiency_level import SkillProficiencyLevel
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "collaborationTags": lambda n : setattr(self, 'collaboration_tags', n.get_collection_of_primitive_values(str)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -69,9 +70,6 @@ class SkillProficiency(ItemFacet, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .item_facet import ItemFacet
-        from .skill_proficiency_level import SkillProficiencyLevel
-
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_collection_of_primitive_values("collaborationTags", self.collaboration_tags)
         writer.write_str_value("displayName", self.display_name)

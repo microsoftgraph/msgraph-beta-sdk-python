@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_deployment_channel import AppleDeploymentChannel
@@ -44,7 +45,7 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration, Parsable):
     # Trusted Root Certificate for Server Validation when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP.
     root_certificate_for_server_validation: Optional[MacOSTrustedRootCertificate] = None
     # Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users devices when they connect to this wired network.
-    trusted_server_certificate_names: Optional[List[str]] = None
+    trusted_server_certificate_names: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MacOSWiredNetworkConfiguration:
@@ -57,10 +58,10 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSWiredNetworkConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .apple_deployment_channel import AppleDeploymentChannel
         from .device_configuration import DeviceConfiguration
@@ -82,7 +83,7 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration, Parsable):
         from .wired_network_interface import WiredNetworkInterface
         from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WiFiAuthenticationMethod)),
             "deploymentChannel": lambda n : setattr(self, 'deployment_channel', n.get_enum_value(AppleDeploymentChannel)),
             "eapFastConfiguration": lambda n : setattr(self, 'eap_fast_configuration', n.get_enum_value(EapFastConfiguration)),
@@ -108,16 +109,6 @@ class MacOSWiredNetworkConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .apple_deployment_channel import AppleDeploymentChannel
-        from .device_configuration import DeviceConfiguration
-        from .eap_fast_configuration import EapFastConfiguration
-        from .eap_type import EapType
-        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
-        from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
-        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
-        from .wired_network_interface import WiredNetworkInterface
-        from .wi_fi_authentication_method import WiFiAuthenticationMethod
-
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_enum_value("eapFastConfiguration", self.eap_fast_configuration)

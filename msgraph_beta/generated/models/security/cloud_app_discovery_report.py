@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -40,9 +41,9 @@ class CloudAppDiscoveryReport(Entity, Parsable):
     # The applicable receiver protocol. Possible values are: ftp, ftps, syslogUdp, syslogTcp, syslogTls, unknownFutureValue.
     receiver_protocol: Optional[ReceiverProtocol] = None
     # The supported entity type. Possible values are: userName, ipAddress, machineName, other, unknown, unknownFutureValue.
-    supported_entity_types: Optional[List[EntityType]] = None
+    supported_entity_types: Optional[list[EntityType]] = None
     # The supported traffic type. Possible values are: downloadedBytes, uploadedBytes, unknown, unknownFutureValue.
-    supported_traffic_types: Optional[List[TrafficType]] = None
+    supported_traffic_types: Optional[list[TrafficType]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CloudAppDiscoveryReport:
@@ -55,10 +56,10 @@ class CloudAppDiscoveryReport(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CloudAppDiscoveryReport()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .entity_type import EntityType
@@ -72,7 +73,7 @@ class CloudAppDiscoveryReport(Entity, Parsable):
         from .receiver_protocol import ReceiverProtocol
         from .traffic_type import TrafficType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "anonymizeMachineData": lambda n : setattr(self, 'anonymize_machine_data', n.get_bool_value()),
             "anonymizeUserData": lambda n : setattr(self, 'anonymize_user_data', n.get_bool_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -100,12 +101,6 @@ class CloudAppDiscoveryReport(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .entity_type import EntityType
-        from .log_data_provider import LogDataProvider
-        from .receiver_protocol import ReceiverProtocol
-        from .traffic_type import TrafficType
-
         writer.write_bool_value("anonymizeMachineData", self.anonymize_machine_data)
         writer.write_bool_value("anonymizeUserData", self.anonymize_user_data)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -25,7 +26,7 @@ class DiscoveredCloudAppDetail(Entity, Parsable):
     # The app name.
     display_name: Optional[str] = None
     # The domain.
-    domains: Optional[List[str]] = None
+    domains: Optional[list[str]] = None
     # The download traffic size.
     download_network_traffic_in_bytes: Optional[int] = None
     # The firstSeenDateTime property
@@ -33,7 +34,7 @@ class DiscoveredCloudAppDetail(Entity, Parsable):
     # The IP address.
     ip_address_count: Optional[int] = None
     # The list of IP addresses accessed by the app.
-    ip_addresses: Optional[List[DiscoveredCloudAppIPAddress]] = None
+    ip_addresses: Optional[list[DiscoveredCloudAppIPAddress]] = None
     # The last seen date of the discovered app. The Timestamp represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_seen_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -41,7 +42,7 @@ class DiscoveredCloudAppDetail(Entity, Parsable):
     # The risk score of the app.
     risk_score: Optional[int] = None
     # The tags applied to an app. Possible values include Unsanctioned, Sanctioned, Monitored, or a custom value.
-    tags: Optional[List[str]] = None
+    tags: Optional[list[str]] = None
     # The app transaction count.
     transaction_count: Optional[int] = None
     # The app upload traffic size, in bytes.
@@ -49,7 +50,7 @@ class DiscoveredCloudAppDetail(Entity, Parsable):
     # The count of users who use the app.
     user_count: Optional[int] = None
     # The list of users who access the app.
-    users: Optional[List[DiscoveredCloudAppUser]] = None
+    users: Optional[list[DiscoveredCloudAppUser]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DiscoveredCloudAppDetail:
@@ -71,10 +72,10 @@ class DiscoveredCloudAppDetail(Entity, Parsable):
             return EndpointDiscoveredCloudAppDetail()
         return DiscoveredCloudAppDetail()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .app_category import AppCategory
@@ -90,7 +91,7 @@ class DiscoveredCloudAppDetail(Entity, Parsable):
         from .discovered_cloud_app_user import DiscoveredCloudAppUser
         from .endpoint_discovered_cloud_app_detail import EndpointDiscoveredCloudAppDetail
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appInfo": lambda n : setattr(self, 'app_info', n.get_object_value(DiscoveredCloudAppInfo)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(AppCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -121,13 +122,6 @@ class DiscoveredCloudAppDetail(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .app_category import AppCategory
-        from .discovered_cloud_app_info import DiscoveredCloudAppInfo
-        from .discovered_cloud_app_i_p_address import DiscoveredCloudAppIPAddress
-        from .discovered_cloud_app_user import DiscoveredCloudAppUser
-        from .endpoint_discovered_cloud_app_detail import EndpointDiscoveredCloudAppDetail
-
         writer.write_object_value("appInfo", self.app_info)
         writer.write_enum_value("category", self.category)
         writer.write_str_value("description", self.description)

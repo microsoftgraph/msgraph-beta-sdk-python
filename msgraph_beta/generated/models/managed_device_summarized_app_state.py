@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_script_run_state import DeviceManagementScriptRunState
@@ -16,7 +17,7 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, BackedModel, Parsabl
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The unique identifier (DeviceId) associated with the device.
     device_id: Optional[str] = None
     # The OdataType property
@@ -35,16 +36,16 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, BackedModel, Parsabl
             raise TypeError("parse_node cannot be null.")
         return ManagedDeviceSummarizedAppState()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_script_run_state import DeviceManagementScriptRunState
 
         from .device_management_script_run_state import DeviceManagementScriptRunState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "summarizedAppState": lambda n : setattr(self, 'summarized_app_state', n.get_enum_value(DeviceManagementScriptRunState)),
@@ -59,8 +60,6 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .device_management_script_run_state import DeviceManagementScriptRunState
-
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("summarizedAppState", self.summarized_app_state)

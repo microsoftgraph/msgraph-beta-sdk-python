@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .approval import Approval
@@ -23,27 +24,27 @@ class RbacApplication(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The resourceNamespaces property
-    resource_namespaces: Optional[List[UnifiedRbacResourceNamespace]] = None
+    resource_namespaces: Optional[list[UnifiedRbacResourceNamespace]] = None
     # The roleAssignmentApprovals property
-    role_assignment_approvals: Optional[List[Approval]] = None
+    role_assignment_approvals: Optional[list[Approval]] = None
     # The roleAssignmentScheduleInstances property
-    role_assignment_schedule_instances: Optional[List[UnifiedRoleAssignmentScheduleInstance]] = None
+    role_assignment_schedule_instances: Optional[list[UnifiedRoleAssignmentScheduleInstance]] = None
     # The roleAssignmentScheduleRequests property
-    role_assignment_schedule_requests: Optional[List[UnifiedRoleAssignmentScheduleRequest]] = None
+    role_assignment_schedule_requests: Optional[list[UnifiedRoleAssignmentScheduleRequest]] = None
     # The roleAssignmentSchedules property
-    role_assignment_schedules: Optional[List[UnifiedRoleAssignmentSchedule]] = None
+    role_assignment_schedules: Optional[list[UnifiedRoleAssignmentSchedule]] = None
     # The roleAssignments property
-    role_assignments: Optional[List[UnifiedRoleAssignment]] = None
+    role_assignments: Optional[list[UnifiedRoleAssignment]] = None
     # The roleDefinitions property
-    role_definitions: Optional[List[UnifiedRoleDefinition]] = None
+    role_definitions: Optional[list[UnifiedRoleDefinition]] = None
     # The roleEligibilityScheduleInstances property
-    role_eligibility_schedule_instances: Optional[List[UnifiedRoleEligibilityScheduleInstance]] = None
+    role_eligibility_schedule_instances: Optional[list[UnifiedRoleEligibilityScheduleInstance]] = None
     # The roleEligibilityScheduleRequests property
-    role_eligibility_schedule_requests: Optional[List[UnifiedRoleEligibilityScheduleRequest]] = None
+    role_eligibility_schedule_requests: Optional[list[UnifiedRoleEligibilityScheduleRequest]] = None
     # The roleEligibilitySchedules property
-    role_eligibility_schedules: Optional[List[UnifiedRoleEligibilitySchedule]] = None
+    role_eligibility_schedules: Optional[list[UnifiedRoleEligibilitySchedule]] = None
     # The transitiveRoleAssignments property
-    transitive_role_assignments: Optional[List[UnifiedRoleAssignment]] = None
+    transitive_role_assignments: Optional[list[UnifiedRoleAssignment]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RbacApplication:
@@ -56,10 +57,10 @@ class RbacApplication(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RbacApplication()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .approval import Approval
         from .entity import Entity
@@ -85,7 +86,7 @@ class RbacApplication(Entity, Parsable):
         from .unified_role_eligibility_schedule_instance import UnifiedRoleEligibilityScheduleInstance
         from .unified_role_eligibility_schedule_request import UnifiedRoleEligibilityScheduleRequest
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "resourceNamespaces": lambda n : setattr(self, 'resource_namespaces', n.get_collection_of_object_values(UnifiedRbacResourceNamespace)),
             "roleAssignmentApprovals": lambda n : setattr(self, 'role_assignment_approvals', n.get_collection_of_object_values(Approval)),
             "roleAssignmentScheduleInstances": lambda n : setattr(self, 'role_assignment_schedule_instances', n.get_collection_of_object_values(UnifiedRoleAssignmentScheduleInstance)),
@@ -111,18 +112,6 @@ class RbacApplication(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .approval import Approval
-        from .entity import Entity
-        from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
-        from .unified_role_assignment import UnifiedRoleAssignment
-        from .unified_role_assignment_schedule import UnifiedRoleAssignmentSchedule
-        from .unified_role_assignment_schedule_instance import UnifiedRoleAssignmentScheduleInstance
-        from .unified_role_assignment_schedule_request import UnifiedRoleAssignmentScheduleRequest
-        from .unified_role_definition import UnifiedRoleDefinition
-        from .unified_role_eligibility_schedule import UnifiedRoleEligibilitySchedule
-        from .unified_role_eligibility_schedule_instance import UnifiedRoleEligibilityScheduleInstance
-        from .unified_role_eligibility_schedule_request import UnifiedRoleEligibilityScheduleRequest
-
         writer.write_collection_of_object_values("resourceNamespaces", self.resource_namespaces)
         writer.write_collection_of_object_values("roleAssignmentApprovals", self.role_assignment_approvals)
         writer.write_collection_of_object_values("roleAssignmentScheduleInstances", self.role_assignment_schedule_instances)

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 @dataclass
 class WebauthnPublicKeyCredentialUserEntity(AdditionalDataHolder, BackedModel, Parsable):
@@ -10,7 +11,7 @@ class WebauthnPublicKeyCredentialUserEntity(AdditionalDataHolder, BackedModel, P
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The display name of the user account bound to the generated credential, as displayed in Microsoft Entra ID.
     display_name: Optional[str] = None
     # The Microsoft Entra ID-assigned object ID of the user account bound to the generated credential. The ID is encoded to WebAuthn spec by Microsoft Entra ID and is not represented as a GUID.
@@ -31,12 +32,12 @@ class WebauthnPublicKeyCredentialUserEntity(AdditionalDataHolder, BackedModel, P
             raise TypeError("parse_node cannot be null.")
         return WebauthnPublicKeyCredentialUserEntity()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),

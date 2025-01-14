@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .enrollment_state import EnrollmentState
@@ -90,10 +91,10 @@ class WindowsAutopilotDeviceIdentity(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsAutopilotDeviceIdentity()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .enrollment_state import EnrollmentState
         from .entity import Entity
@@ -111,7 +112,7 @@ class WindowsAutopilotDeviceIdentity(Entity, Parsable):
         from .windows_autopilot_profile_assignment_status import WindowsAutopilotProfileAssignmentStatus
         from .windows_autopilot_userless_enrollment_status import WindowsAutopilotUserlessEnrollmentStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "addressableUserName": lambda n : setattr(self, 'addressable_user_name', n.get_str_value()),
             "azureActiveDirectoryDeviceId": lambda n : setattr(self, 'azure_active_directory_device_id', n.get_str_value()),
             "azureAdDeviceId": lambda n : setattr(self, 'azure_ad_device_id', n.get_str_value()),
@@ -154,14 +155,6 @@ class WindowsAutopilotDeviceIdentity(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .enrollment_state import EnrollmentState
-        from .entity import Entity
-        from .windows_autopilot_deployment_profile import WindowsAutopilotDeploymentProfile
-        from .windows_autopilot_device_remediation_state import WindowsAutopilotDeviceRemediationState
-        from .windows_autopilot_profile_assignment_detailed_status import WindowsAutopilotProfileAssignmentDetailedStatus
-        from .windows_autopilot_profile_assignment_status import WindowsAutopilotProfileAssignmentStatus
-        from .windows_autopilot_userless_enrollment_status import WindowsAutopilotUserlessEnrollmentStatus
-
         writer.write_str_value("addressableUserName", self.addressable_user_name)
         writer.write_str_value("azureActiveDirectoryDeviceId", self.azure_active_directory_device_id)
         writer.write_str_value("azureAdDeviceId", self.azure_ad_device_id)

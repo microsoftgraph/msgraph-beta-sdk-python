@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -29,7 +30,7 @@ class GroupPolicyMigrationReport(Entity, Parsable):
     # The Group Policy Object GUID from GPO Xml content
     group_policy_object_id: Optional[UUID] = None
     # A list of group policy settings to MDM/Intune mappings.
-    group_policy_setting_mappings: Optional[List[GroupPolicySettingMapping]] = None
+    group_policy_setting_mappings: Optional[list[GroupPolicySettingMapping]] = None
     # The date and time at which the GroupPolicyMigrationReport was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # Indicates if the Group Policy Object file is covered and ready for Intune migration.
@@ -39,7 +40,7 @@ class GroupPolicyMigrationReport(Entity, Parsable):
     # The distinguished name of the OU.
     ou_distinguished_name: Optional[str] = None
     # The list of scope tags for the configuration.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # The number of Group Policy Settings supported by Intune.
     supported_settings_count: Optional[int] = None
     # The Percentage of Group Policy Settings supported by Intune.
@@ -49,7 +50,7 @@ class GroupPolicyMigrationReport(Entity, Parsable):
     # The total number of Group Policy Settings from GPO file.
     total_settings_count: Optional[int] = None
     # A list of unsupported group policy extensions inside the Group Policy Object.
-    unsupported_group_policy_extensions: Optional[List[UnsupportedGroupPolicyExtension]] = None
+    unsupported_group_policy_extensions: Optional[list[UnsupportedGroupPolicyExtension]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GroupPolicyMigrationReport:
@@ -62,10 +63,10 @@ class GroupPolicyMigrationReport(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GroupPolicyMigrationReport()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .group_policy_migration_readiness import GroupPolicyMigrationReadiness
@@ -77,7 +78,7 @@ class GroupPolicyMigrationReport(Entity, Parsable):
         from .group_policy_setting_mapping import GroupPolicySettingMapping
         from .unsupported_group_policy_extension import UnsupportedGroupPolicyExtension
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "groupPolicyCreatedDateTime": lambda n : setattr(self, 'group_policy_created_date_time', n.get_datetime_value()),
@@ -107,11 +108,6 @@ class GroupPolicyMigrationReport(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .group_policy_migration_readiness import GroupPolicyMigrationReadiness
-        from .group_policy_setting_mapping import GroupPolicySettingMapping
-        from .unsupported_group_policy_extension import UnsupportedGroupPolicyExtension
-
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("groupPolicyCreatedDateTime", self.group_policy_created_date_time)

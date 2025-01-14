@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -18,7 +19,7 @@ class AlertRule(Entity, Parsable):
     # The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue, cloudPcInGracePeriodScenario, cloudPcFrontlineInsufficientLicensesScenario, cloudPcInaccessibleScenario, and cloudPcFrontlineConcurrencyScenario.  Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: cloudPcInGracePeriodScenario, cloudPcFrontlineInsufficientLicensesScenario, cloudPcInaccessibleScenario, and cloudPcFrontlineConcurrencyScenario.
     alert_rule_template: Optional[AlertRuleTemplate] = None
     # The conditions that determine when to send alerts. For example, you can configure a condition to send an alert when provisioning fails for six or more Cloud PCs.
-    conditions: Optional[List[RuleCondition]] = None
+    conditions: Optional[list[RuleCondition]] = None
     # The rule description.
     description: Optional[str] = None
     # The display name of the rule.
@@ -28,7 +29,7 @@ class AlertRule(Entity, Parsable):
     # Indicates whether the rule is a system rule. If true, the rule is a system rule; otherwise, the rule is a custom-defined rule and can be edited. System rules are built in and only a few properties can be edited.
     is_system_rule: Optional[bool] = None
     # The notification channels of the rule selected by the user.
-    notification_channels: Optional[List[NotificationChannel]] = None
+    notification_channels: Optional[list[NotificationChannel]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The severity of the rule. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
@@ -47,10 +48,10 @@ class AlertRule(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AlertRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .alert_rule_template import AlertRuleTemplate
@@ -66,7 +67,7 @@ class AlertRule(Entity, Parsable):
         from .rule_severity_type import RuleSeverityType
         from .rule_threshold import RuleThreshold
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(AlertRuleTemplate)),
             "conditions": lambda n : setattr(self, 'conditions', n.get_collection_of_object_values(RuleCondition)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -90,13 +91,6 @@ class AlertRule(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .alert_rule_template import AlertRuleTemplate
-        from .notification_channel import NotificationChannel
-        from .rule_condition import RuleCondition
-        from .rule_severity_type import RuleSeverityType
-        from .rule_threshold import RuleThreshold
-
         writer.write_enum_value("alertRuleTemplate", self.alert_rule_template)
         writer.write_collection_of_object_values("conditions", self.conditions)
         writer.write_str_value("description", self.description)

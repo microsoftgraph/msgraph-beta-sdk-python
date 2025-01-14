@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mobile_app_catalog_package import MobileAppCatalogPackage
@@ -21,7 +22,7 @@ class Win32MobileAppCatalogPackage(MobileAppCatalogPackage, Parsable):
     # The product branch name, which is a specific subset of product functionality as defined by the publisher (example: "Fabrikam for Business (x64)"). A specific product will have one or more branchDisplayNames. Read-only. Supports $filter, $search, $select. This property is read-only.
     branch_display_name: Optional[str] = None
     # One or more locale(s) supported by the branch. Value is a two-letter ISO 639 language tags with optional two-letter subtags (example: en-US, ko, de, de-DE), or mul to indicate multi-language. Read-only. This property is read-only.
-    locales: Optional[List[str]] = None
+    locales: Optional[list[str]] = None
     # Indicates whether the package is capable to auto-update to latest when software/application updates are available. When TRUE, it indicates it is an auto-updating application. When FALSE, it indicates that it is not an auto-updating application. This property is read-only.
     package_auto_update_capable: Optional[bool] = None
     
@@ -36,10 +37,10 @@ class Win32MobileAppCatalogPackage(MobileAppCatalogPackage, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Win32MobileAppCatalogPackage()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .windows_architecture import WindowsArchitecture
@@ -47,7 +48,7 @@ class Win32MobileAppCatalogPackage(MobileAppCatalogPackage, Parsable):
         from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .windows_architecture import WindowsArchitecture
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
             "branchDisplayName": lambda n : setattr(self, 'branch_display_name', n.get_str_value()),
             "locales": lambda n : setattr(self, 'locales', n.get_collection_of_primitive_values(str)),
@@ -66,9 +67,6 @@ class Win32MobileAppCatalogPackage(MobileAppCatalogPackage, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .mobile_app_catalog_package import MobileAppCatalogPackage
-        from .windows_architecture import WindowsArchitecture
-
         writer.write_enum_value("applicableArchitectures", self.applicable_architectures)
     
 

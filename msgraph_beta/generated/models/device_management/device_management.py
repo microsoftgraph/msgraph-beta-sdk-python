@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -199,235 +200,235 @@ class DeviceManagement(Entity, Parsable):
     # The summary state of ATP onboarding state for this account.
     advanced_threat_protection_onboarding_state_summary: Optional[AdvancedThreatProtectionOnboardingStateSummary] = None
     # Android device owner enrollment profile entities.
-    android_device_owner_enrollment_profiles: Optional[List[AndroidDeviceOwnerEnrollmentProfile]] = None
+    android_device_owner_enrollment_profiles: Optional[list[AndroidDeviceOwnerEnrollmentProfile]] = None
     # Android for Work app configuration schema entities.
-    android_for_work_app_configuration_schemas: Optional[List[AndroidForWorkAppConfigurationSchema]] = None
+    android_for_work_app_configuration_schemas: Optional[list[AndroidForWorkAppConfigurationSchema]] = None
     # Android for Work enrollment profile entities.
-    android_for_work_enrollment_profiles: Optional[List[AndroidForWorkEnrollmentProfile]] = None
+    android_for_work_enrollment_profiles: Optional[list[AndroidForWorkEnrollmentProfile]] = None
     # The singleton Android for Work settings entity.
     android_for_work_settings: Optional[AndroidForWorkSettings] = None
     # The singleton Android managed store account enterprise settings entity.
     android_managed_store_account_enterprise_settings: Optional[AndroidManagedStoreAccountEnterpriseSettings] = None
     # Android Enterprise app configuration schema entities.
-    android_managed_store_app_configuration_schemas: Optional[List[AndroidManagedStoreAppConfigurationSchema]] = None
+    android_managed_store_app_configuration_schemas: Optional[list[AndroidManagedStoreAppConfigurationSchema]] = None
     # Apple push notification certificate.
     apple_push_notification_certificate: Optional[ApplePushNotificationCertificate] = None
     # Apple user initiated enrollment profiles
-    apple_user_initiated_enrollment_profiles: Optional[List[AppleUserInitiatedEnrollmentProfile]] = None
+    apple_user_initiated_enrollment_profiles: Optional[list[AppleUserInitiatedEnrollmentProfile]] = None
     # The list of assignment filters
-    assignment_filters: Optional[List[DeviceAndAppManagementAssignmentFilter]] = None
+    assignment_filters: Optional[list[DeviceAndAppManagementAssignmentFilter]] = None
     # The Audit Events
-    audit_events: Optional[List[AuditEvent]] = None
+    audit_events: Optional[list[AuditEvent]] = None
     # The list of autopilot events for the tenant.
-    autopilot_events: Optional[List[DeviceManagementAutopilotEvent]] = None
+    autopilot_events: Optional[list[DeviceManagementAutopilotEvent]] = None
     # The Cart To Class Associations.
-    cart_to_class_associations: Optional[List[CartToClassAssociation]] = None
+    cart_to_class_associations: Optional[list[CartToClassAssociation]] = None
     # The available categories
-    categories: Optional[List[DeviceManagementSettingCategory]] = None
+    categories: Optional[list[DeviceManagementSettingCategory]] = None
     # Collection of certificate connector details, each associated with a corresponding Intune Certificate Connector.
-    certificate_connector_details: Optional[List[CertificateConnectorDetails]] = None
+    certificate_connector_details: Optional[list[CertificateConnectorDetails]] = None
     # Collection of ChromeOSOnboardingSettings settings associated with account.
-    chrome_o_s_onboarding_settings: Optional[List[ChromeOSOnboardingSettings]] = None
+    chrome_o_s_onboarding_settings: Optional[list[ChromeOSOnboardingSettings]] = None
     # Collection of CloudCertificationAuthority records associated with account.
-    cloud_certification_authority: Optional[List[CloudCertificationAuthority]] = None
+    cloud_certification_authority: Optional[list[CloudCertificationAuthority]] = None
     # Collection of CloudCertificationAuthorityLeafCertificate records associated with account.
-    cloud_certification_authority_leaf_certificate: Optional[List[CloudCertificationAuthorityLeafCertificate]] = None
+    cloud_certification_authority_leaf_certificate: Optional[list[CloudCertificationAuthorityLeafCertificate]] = None
     # The list of CloudPC Connectivity Issue.
-    cloud_p_c_connectivity_issues: Optional[List[CloudPCConnectivityIssue]] = None
+    cloud_p_c_connectivity_issues: Optional[list[CloudPCConnectivityIssue]] = None
     # The list of co-managed devices report
-    comanaged_devices: Optional[List[ManagedDevice]] = None
+    comanaged_devices: Optional[list[ManagedDevice]] = None
     # The list of co-management eligible devices report
-    comanagement_eligible_devices: Optional[List[ComanagementEligibleDevice]] = None
+    comanagement_eligible_devices: Optional[list[ComanagementEligibleDevice]] = None
     # List of all compliance categories
-    compliance_categories: Optional[List[DeviceManagementConfigurationCategory]] = None
+    compliance_categories: Optional[list[DeviceManagementConfigurationCategory]] = None
     # The list of Compliance Management Partners configured by the tenant.
-    compliance_management_partners: Optional[List[ComplianceManagementPartner]] = None
+    compliance_management_partners: Optional[list[ComplianceManagementPartner]] = None
     # List of all compliance policies
-    compliance_policies: Optional[List[DeviceManagementCompliancePolicy]] = None
+    compliance_policies: Optional[list[DeviceManagementCompliancePolicy]] = None
     # List of all ComplianceSettings
-    compliance_settings: Optional[List[DeviceManagementConfigurationSettingDefinition]] = None
+    compliance_settings: Optional[list[DeviceManagementConfigurationSettingDefinition]] = None
     # The Exchange on premises conditional access settings. On premises conditional access will require devices to be both enrolled and compliant for mail access
     conditional_access_settings: Optional[OnPremisesConditionalAccessSettings] = None
     # A list of ConfigManagerCollection
-    config_manager_collections: Optional[List[ConfigManagerCollection]] = None
+    config_manager_collections: Optional[list[ConfigManagerCollection]] = None
     # List of all Configuration Categories
-    configuration_categories: Optional[List[DeviceManagementConfigurationCategory]] = None
+    configuration_categories: Optional[list[DeviceManagementConfigurationCategory]] = None
     # List of all Configuration policies
-    configuration_policies: Optional[List[DeviceManagementConfigurationPolicy]] = None
+    configuration_policies: Optional[list[DeviceManagementConfigurationPolicy]] = None
     # List of all templates
-    configuration_policy_templates: Optional[List[DeviceManagementConfigurationPolicyTemplate]] = None
+    configuration_policy_templates: Optional[list[DeviceManagementConfigurationPolicyTemplate]] = None
     # List of all ConfigurationSettings
-    configuration_settings: Optional[List[DeviceManagementConfigurationSettingDefinition]] = None
+    configuration_settings: Optional[list[DeviceManagementConfigurationSettingDefinition]] = None
     # The list of connector status for the tenant.
-    connector_status: Optional[List[ConnectorStatusDetails]] = None
+    connector_status: Optional[list[ConnectorStatusDetails]] = None
     # A configuration entity for MEM features that utilize Data Processor Service for Windows (DPSW) data.
     data_processor_service_for_windows_features_onboarding: Optional[DataProcessorServiceForWindowsFeaturesOnboarding] = None
     # Data sharing consents.
-    data_sharing_consents: Optional[List[DataSharingConsent]] = None
+    data_sharing_consents: Optional[list[DataSharingConsent]] = None
     # This collections of multiple DEP tokens per-tenant.
-    dep_onboarding_settings: Optional[List[DepOnboardingSetting]] = None
+    dep_onboarding_settings: Optional[list[DepOnboardingSetting]] = None
     # Collection of Derived credential settings associated with account.
-    derived_credentials: Optional[List[DeviceManagementDerivedCredentialSettings]] = None
+    derived_credentials: Optional[list[DeviceManagementDerivedCredentialSettings]] = None
     # The list of detected apps associated with a device.
-    detected_apps: Optional[List[DetectedApp]] = None
+    detected_apps: Optional[list[DetectedApp]] = None
     # The list of device categories with the tenant.
-    device_categories: Optional[List[DeviceCategory]] = None
+    device_categories: Optional[list[DeviceCategory]] = None
     # The device compliance policies.
-    device_compliance_policies: Optional[List[DeviceCompliancePolicy]] = None
+    device_compliance_policies: Optional[list[DeviceCompliancePolicy]] = None
     # The device compliance state summary for this account.
     device_compliance_policy_device_state_summary: Optional[DeviceCompliancePolicyDeviceStateSummary] = None
     # The summary states of compliance policy settings for this account.
-    device_compliance_policy_setting_state_summaries: Optional[List[DeviceCompliancePolicySettingStateSummary]] = None
+    device_compliance_policy_setting_state_summaries: Optional[list[DeviceCompliancePolicySettingStateSummary]] = None
     # The last requested time of device compliance reporting for this account. This property is read-only.
     device_compliance_report_summarization_date_time: Optional[datetime.datetime] = None
     # The list of device compliance scripts associated with the tenant.
-    device_compliance_scripts: Optional[List[DeviceComplianceScript]] = None
+    device_compliance_scripts: Optional[list[DeviceComplianceScript]] = None
     # Summary of policies in conflict state for this account.
-    device_configuration_conflict_summary: Optional[List[DeviceConfigurationConflictSummary]] = None
+    device_configuration_conflict_summary: Optional[list[DeviceConfigurationConflictSummary]] = None
     # The device configuration device state summary for this account.
     device_configuration_device_state_summaries: Optional[DeviceConfigurationDeviceStateSummary] = None
     # Restricted apps violations for this account.
-    device_configuration_restricted_apps_violations: Optional[List[RestrictedAppsViolation]] = None
+    device_configuration_restricted_apps_violations: Optional[list[RestrictedAppsViolation]] = None
     # The device configuration user state summary for this account.
     device_configuration_user_state_summaries: Optional[DeviceConfigurationUserStateSummary] = None
     # The device configurations.
-    device_configurations: Optional[List[DeviceConfiguration]] = None
+    device_configurations: Optional[list[DeviceConfiguration]] = None
     # Summary of all certificates for all devices.
-    device_configurations_all_managed_device_certificate_states: Optional[List[ManagedAllDeviceCertificateState]] = None
+    device_configurations_all_managed_device_certificate_states: Optional[list[ManagedAllDeviceCertificateState]] = None
     # The list of device custom attribute shell scripts associated with the tenant.
-    device_custom_attribute_shell_scripts: Optional[List[DeviceCustomAttributeShellScript]] = None
+    device_custom_attribute_shell_scripts: Optional[list[DeviceCustomAttributeShellScript]] = None
     # The list of device enrollment configurations
-    device_enrollment_configurations: Optional[List[DeviceEnrollmentConfiguration]] = None
+    device_enrollment_configurations: Optional[list[DeviceEnrollmentConfiguration]] = None
     # The list of device health scripts associated with the tenant.
-    device_health_scripts: Optional[List[DeviceHealthScript]] = None
+    device_health_scripts: Optional[list[DeviceHealthScript]] = None
     # The list of Device Management Partners configured by the tenant.
-    device_management_partners: Optional[List[DeviceManagementPartner]] = None
+    device_management_partners: Optional[list[DeviceManagementPartner]] = None
     # The list of device management scripts associated with the tenant.
-    device_management_scripts: Optional[List[DeviceManagementScript]] = None
+    device_management_scripts: Optional[list[DeviceManagementScript]] = None
     # Device protection overview.
     device_protection_overview: Optional[DeviceProtectionOverview] = None
     # The list of device shell scripts associated with the tenant.
-    device_shell_scripts: Optional[List[DeviceShellScript]] = None
+    device_shell_scripts: Optional[list[DeviceShellScript]] = None
     # A list of connector objects.
-    domain_join_connectors: Optional[List[DeviceManagementDomainJoinConnector]] = None
+    domain_join_connectors: Optional[list[DeviceManagementDomainJoinConnector]] = None
     # List of elevation requests
-    elevation_requests: Optional[List[PrivilegeManagementElevationRequest]] = None
+    elevation_requests: Optional[list[PrivilegeManagementElevationRequest]] = None
     # The embedded SIM activation code pools created by this account.
-    embedded_s_i_m_activation_code_pools: Optional[List[EmbeddedSIMActivationCodePool]] = None
+    embedded_s_i_m_activation_code_pools: Optional[list[EmbeddedSIMActivationCodePool]] = None
     # Endpoint privilege management (EPM) tenant provisioning status contains tenant level license and onboarding state information.
     endpoint_privilege_management_provisioning_status: Optional[EndpointPrivilegeManagementProvisioningStatus] = None
     # The list of Exchange Connectors configured by the tenant.
-    exchange_connectors: Optional[List[DeviceManagementExchangeConnector]] = None
+    exchange_connectors: Optional[list[DeviceManagementExchangeConnector]] = None
     # The list of Exchange On Premisis policies configured by the tenant.
-    exchange_on_premises_policies: Optional[List[DeviceManagementExchangeOnPremisesPolicy]] = None
+    exchange_on_premises_policies: Optional[list[DeviceManagementExchangeOnPremisesPolicy]] = None
     # The policy which controls mobile device access to Exchange On Premises
     exchange_on_premises_policy: Optional[DeviceManagementExchangeOnPremisesPolicy] = None
     # The available group policy categories for this account.
-    group_policy_categories: Optional[List[GroupPolicyCategory]] = None
+    group_policy_categories: Optional[list[GroupPolicyCategory]] = None
     # The group policy configurations created by this account.
-    group_policy_configurations: Optional[List[GroupPolicyConfiguration]] = None
+    group_policy_configurations: Optional[list[GroupPolicyConfiguration]] = None
     # The available group policy definition files for this account.
-    group_policy_definition_files: Optional[List[GroupPolicyDefinitionFile]] = None
+    group_policy_definition_files: Optional[list[GroupPolicyDefinitionFile]] = None
     # The available group policy definitions for this account.
-    group_policy_definitions: Optional[List[GroupPolicyDefinition]] = None
+    group_policy_definitions: Optional[list[GroupPolicyDefinition]] = None
     # A list of Group Policy migration reports.
-    group_policy_migration_reports: Optional[List[GroupPolicyMigrationReport]] = None
+    group_policy_migration_reports: Optional[list[GroupPolicyMigrationReport]] = None
     # A list of Group Policy Object files uploaded.
-    group_policy_object_files: Optional[List[GroupPolicyObjectFile]] = None
+    group_policy_object_files: Optional[list[GroupPolicyObjectFile]] = None
     # The available group policy uploaded definition files for this account.
-    group_policy_uploaded_definition_files: Optional[List[GroupPolicyUploadedDefinitionFile]] = None
+    group_policy_uploaded_definition_files: Optional[list[GroupPolicyUploadedDefinitionFile]] = None
     # BIOS configuration and other settings provides customers the ability to configure hardware/bios settings on the enrolled Windows 10/11 Entra ID joined devices by uploading a configuration file generated with their OEM tool (e.g. Dell Command tool). A BIOS configuration policy can be assigned to multiple devices, allowing admins to remotely control a device's hardware properties (e.g. enable Secure Boot) from the Intune Portal. Supported for Dell only at this time.
-    hardware_configurations: Optional[List[HardwareConfiguration]] = None
+    hardware_configurations: Optional[list[HardwareConfiguration]] = None
     # Device BIOS password information for devices with managed BIOS and firmware configuration, which provides device serial number, list of previous passwords, and current password.
-    hardware_password_details: Optional[List[HardwarePasswordDetail]] = None
+    hardware_password_details: Optional[list[HardwarePasswordDetail]] = None
     # Intune will provide customer the ability to configure BIOS configuration settings on the enrolled Windows 10 and Windows 11 Microsoft Entra joined devices. Starting from June, 2024, customers should start using hardwarePasswordDetail resource type - Microsoft Graph beta | Microsoft Learn. HardwarePasswordInfo will be marked as deprecated with Intune Release 2409
-    hardware_password_info: Optional[List[HardwarePasswordInfo]] = None
+    hardware_password_info: Optional[list[HardwarePasswordInfo]] = None
     # The imported device identities.
-    imported_device_identities: Optional[List[ImportedDeviceIdentity]] = None
+    imported_device_identities: Optional[list[ImportedDeviceIdentity]] = None
     # Collection of imported Windows autopilot devices.
-    imported_windows_autopilot_device_identities: Optional[List[ImportedWindowsAutopilotDeviceIdentity]] = None
+    imported_windows_autopilot_device_identities: Optional[list[ImportedWindowsAutopilotDeviceIdentity]] = None
     # The device management intents
-    intents: Optional[List[DeviceManagementIntent]] = None
+    intents: Optional[list[DeviceManagementIntent]] = None
     # Intune Account ID for given tenant
     intune_account_id: Optional[UUID] = None
     # intuneBrand contains data which is used in customizing the appearance of the Company Portal applications as well as the end user web portal.
     intune_brand: Optional[IntuneBrand] = None
     # Intune branding profiles targeted to AAD groups
-    intune_branding_profiles: Optional[List[IntuneBrandingProfile]] = None
+    intune_branding_profiles: Optional[list[IntuneBrandingProfile]] = None
     # The IOS software update installation statuses for this account.
-    ios_update_statuses: Optional[List[IosUpdateDeviceStatus]] = None
+    ios_update_statuses: Optional[list[IosUpdateDeviceStatus]] = None
     # The last modified time of reporting for this account. This property is read-only.
     last_report_aggregation_date_time: Optional[datetime.datetime] = None
     # The property to enable Non-MDM managed legacy PC management for this account. This property is read-only.
     legacy_pc_manangement_enabled: Optional[bool] = None
     # The MacOS software update account summaries for this account.
-    mac_o_s_software_update_account_summaries: Optional[List[MacOSSoftwareUpdateAccountSummary]] = None
+    mac_o_s_software_update_account_summaries: Optional[list[MacOSSoftwareUpdateAccountSummary]] = None
     # Device cleanup rule V2
-    managed_device_cleanup_rules: Optional[List[ManagedDeviceCleanupRule]] = None
+    managed_device_cleanup_rules: Optional[list[ManagedDeviceCleanupRule]] = None
     # Device cleanup rule
     managed_device_cleanup_settings: Optional[ManagedDeviceCleanupSettings] = None
     # Encryption report for devices in this account
-    managed_device_encryption_states: Optional[List[ManagedDeviceEncryptionState]] = None
+    managed_device_encryption_states: Optional[list[ManagedDeviceEncryptionState]] = None
     # Device overview
     managed_device_overview: Optional[ManagedDeviceOverview] = None
     # A list of ManagedDeviceWindowsOperatingSystemImages
-    managed_device_windows_o_s_images: Optional[List[ManagedDeviceWindowsOperatingSystemImage]] = None
+    managed_device_windows_o_s_images: Optional[list[ManagedDeviceWindowsOperatingSystemImage]] = None
     # The list of managed devices.
-    managed_devices: Optional[List[ManagedDevice]] = None
+    managed_devices: Optional[list[ManagedDevice]] = None
     # Maximum number of DEP tokens allowed per-tenant.
     maximum_dep_tokens: Optional[int] = None
     # Collection of MicrosoftTunnelConfiguration settings associated with account.
-    microsoft_tunnel_configurations: Optional[List[MicrosoftTunnelConfiguration]] = None
+    microsoft_tunnel_configurations: Optional[list[MicrosoftTunnelConfiguration]] = None
     # Collection of MicrosoftTunnelHealthThreshold settings associated with account.
-    microsoft_tunnel_health_thresholds: Optional[List[MicrosoftTunnelHealthThreshold]] = None
+    microsoft_tunnel_health_thresholds: Optional[list[MicrosoftTunnelHealthThreshold]] = None
     # Collection of MicrosoftTunnelServerLogCollectionResponse settings associated with account.
-    microsoft_tunnel_server_log_collection_responses: Optional[List[MicrosoftTunnelServerLogCollectionResponse]] = None
+    microsoft_tunnel_server_log_collection_responses: Optional[list[MicrosoftTunnelServerLogCollectionResponse]] = None
     # Collection of MicrosoftTunnelSite settings associated with account.
-    microsoft_tunnel_sites: Optional[List[MicrosoftTunnelSite]] = None
+    microsoft_tunnel_sites: Optional[list[MicrosoftTunnelSite]] = None
     # The collection property of MobileAppTroubleshootingEvent.
-    mobile_app_troubleshooting_events: Optional[List[MobileAppTroubleshootingEvent]] = None
+    mobile_app_troubleshooting_events: Optional[list[MobileAppTroubleshootingEvent]] = None
     # The list of Mobile threat Defense connectors configured by the tenant.
-    mobile_threat_defense_connectors: Optional[List[MobileThreatDefenseConnector]] = None
+    mobile_threat_defense_connectors: Optional[list[MobileThreatDefenseConnector]] = None
     # The monitoring property
     monitoring: Optional[Monitoring] = None
     # The collection of Ndes connectors for this account.
-    ndes_connectors: Optional[List[NdesConnector]] = None
+    ndes_connectors: Optional[list[NdesConnector]] = None
     # The Notification Message Templates.
-    notification_message_templates: Optional[List[NotificationMessageTemplate]] = None
+    notification_message_templates: Optional[list[NotificationMessageTemplate]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The Operation Approval Policies
-    operation_approval_policies: Optional[List[OperationApprovalPolicy]] = None
+    operation_approval_policies: Optional[list[OperationApprovalPolicy]] = None
     # The Operation Approval Requests
-    operation_approval_requests: Optional[List[OperationApprovalRequest]] = None
+    operation_approval_requests: Optional[list[OperationApprovalRequest]] = None
     # The endpoint privilege management elevation event entity contains elevation details.
-    privilege_management_elevations: Optional[List[PrivilegeManagementElevation]] = None
+    privilege_management_elevations: Optional[list[PrivilegeManagementElevation]] = None
     # The list of device remote action audits with the tenant.
-    remote_action_audits: Optional[List[RemoteActionAudit]] = None
+    remote_action_audits: Optional[list[RemoteActionAudit]] = None
     # The remote assist partners.
-    remote_assistance_partners: Optional[List[RemoteAssistancePartner]] = None
+    remote_assistance_partners: Optional[list[RemoteAssistancePartner]] = None
     # The remote assistance settings singleton
     remote_assistance_settings: Optional[RemoteAssistanceSettings] = None
     # Reports singleton
     reports: Optional[DeviceManagementReports] = None
     # Collection of resource access settings associated with account.
-    resource_access_profiles: Optional[List[DeviceManagementResourceAccessProfileBase]] = None
+    resource_access_profiles: Optional[list[DeviceManagementResourceAccessProfileBase]] = None
     # The Resource Operations.
-    resource_operations: Optional[List[ResourceOperation]] = None
+    resource_operations: Optional[list[ResourceOperation]] = None
     # List of all reusable settings that can be referred in a policy
-    reusable_policy_settings: Optional[List[DeviceManagementReusablePolicySetting]] = None
+    reusable_policy_settings: Optional[list[DeviceManagementReusablePolicySetting]] = None
     # List of all reusable settings
-    reusable_settings: Optional[List[DeviceManagementConfigurationSettingDefinition]] = None
+    reusable_settings: Optional[list[DeviceManagementConfigurationSettingDefinition]] = None
     # The Role Assignments.
-    role_assignments: Optional[List[DeviceAndAppManagementRoleAssignment]] = None
+    role_assignments: Optional[list[DeviceAndAppManagementRoleAssignment]] = None
     # The Role Definitions.
-    role_definitions: Optional[List[RoleDefinition]] = None
+    role_definitions: Optional[list[RoleDefinition]] = None
     # The Role Scope Tags.
-    role_scope_tags: Optional[List[RoleScopeTag]] = None
+    role_scope_tags: Optional[list[RoleScopeTag]] = None
     # A list of ServiceNowConnections
-    service_now_connections: Optional[List[ServiceNowConnection]] = None
+    service_now_connections: Optional[list[ServiceNowConnection]] = None
     # The device management intent setting definitions
-    setting_definitions: Optional[List[DeviceManagementSettingDefinition]] = None
+    setting_definitions: Optional[list[DeviceManagementSettingDefinition]] = None
     # Account level settings.
     settings: Optional[DeviceManagementSettings] = None
     # The software update status summary.
@@ -437,147 +438,147 @@ class DeviceManagement(Entity, Parsable):
     # Tenant mobile device management subscriptions.
     subscriptions: Optional[DeviceManagementSubscriptions] = None
     # The telecom expense management partners.
-    telecom_expense_management_partners: Optional[List[TelecomExpenseManagementPartner]] = None
+    telecom_expense_management_partners: Optional[list[TelecomExpenseManagementPartner]] = None
     # List of setting insights in a template
-    template_insights: Optional[List[DeviceManagementTemplateInsightsDefinition]] = None
+    template_insights: Optional[list[DeviceManagementTemplateInsightsDefinition]] = None
     # List of all TemplateSettings
-    template_settings: Optional[List[DeviceManagementConfigurationSettingTemplate]] = None
+    template_settings: Optional[list[DeviceManagementConfigurationSettingTemplate]] = None
     # The available templates
-    templates: Optional[List[DeviceManagementTemplate]] = None
+    templates: Optional[list[DeviceManagementTemplate]] = None
     # TenantAttach RBAC Enablement
     tenant_attach_r_b_a_c: Optional[TenantAttachRBAC] = None
     # The terms and conditions associated with device management of the company.
-    terms_and_conditions: Optional[List[TermsAndConditions]] = None
+    terms_and_conditions: Optional[list[TermsAndConditions]] = None
     # The list of troubleshooting events for the tenant.
-    troubleshooting_events: Optional[List[DeviceManagementTroubleshootingEvent]] = None
+    troubleshooting_events: Optional[list[DeviceManagementTroubleshootingEvent]] = None
     # When enabled, users assigned as administrators via Role Assignment Memberships do not require an assigned Intune license. Prior to this, only Intune licensed users were granted permissions with an Intune role unless they were assigned a role via Azure Active Directory. You are limited to 350 unlicensed direct members for each AAD security group in a role assignment, but you can assign multiple AAD security groups to a role if you need to support more than 350 unlicensed administrators. Licensed administrators are unaffected, do not have to be direct members, nor does the 350 member limit apply. This property is read-only.
     unlicensed_adminstrators_enabled: Optional[bool] = None
     # The user experience analytics anomaly entity contains anomaly details.
-    user_experience_analytics_anomaly: Optional[List[UserExperienceAnalyticsAnomaly]] = None
+    user_experience_analytics_anomaly: Optional[list[UserExperienceAnalyticsAnomaly]] = None
     # The user experience analytics anomaly correlation group overview entity contains the information for each correlation group of an anomaly.
-    user_experience_analytics_anomaly_correlation_group_overview: Optional[List[UserExperienceAnalyticsAnomalyCorrelationGroupOverview]] = None
+    user_experience_analytics_anomaly_correlation_group_overview: Optional[list[UserExperienceAnalyticsAnomalyCorrelationGroupOverview]] = None
     # The user experience analytics anomaly entity contains device details.
-    user_experience_analytics_anomaly_device: Optional[List[UserExperienceAnalyticsAnomalyDevice]] = None
+    user_experience_analytics_anomaly_device: Optional[list[UserExperienceAnalyticsAnomalyDevice]] = None
     # The user experience analytics anomaly severity overview entity contains the count information for each severity of anomaly.
     user_experience_analytics_anomaly_severity_overview: Optional[UserExperienceAnalyticsAnomalySeverityOverview] = None
     # User experience analytics appHealth Application Performance
-    user_experience_analytics_app_health_application_performance: Optional[List[UserExperienceAnalyticsAppHealthApplicationPerformance]] = None
+    user_experience_analytics_app_health_application_performance: Optional[list[UserExperienceAnalyticsAppHealthApplicationPerformance]] = None
     # User experience analytics appHealth Application Performance by App Version
-    user_experience_analytics_app_health_application_performance_by_app_version: Optional[List[UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion]] = None
+    user_experience_analytics_app_health_application_performance_by_app_version: Optional[list[UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion]] = None
     # User experience analytics appHealth Application Performance by App Version details
-    user_experience_analytics_app_health_application_performance_by_app_version_details: Optional[List[UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails]] = None
+    user_experience_analytics_app_health_application_performance_by_app_version_details: Optional[list[UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails]] = None
     # User experience analytics appHealth Application Performance by App Version Device Id
-    user_experience_analytics_app_health_application_performance_by_app_version_device_id: Optional[List[UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId]] = None
+    user_experience_analytics_app_health_application_performance_by_app_version_device_id: Optional[list[UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId]] = None
     # User experience analytics appHealth Application Performance by OS Version
-    user_experience_analytics_app_health_application_performance_by_o_s_version: Optional[List[UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion]] = None
+    user_experience_analytics_app_health_application_performance_by_o_s_version: Optional[list[UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion]] = None
     # User experience analytics appHealth Model Performance
-    user_experience_analytics_app_health_device_model_performance: Optional[List[UserExperienceAnalyticsAppHealthDeviceModelPerformance]] = None
+    user_experience_analytics_app_health_device_model_performance: Optional[list[UserExperienceAnalyticsAppHealthDeviceModelPerformance]] = None
     # User experience analytics appHealth Device Performance
-    user_experience_analytics_app_health_device_performance: Optional[List[UserExperienceAnalyticsAppHealthDevicePerformance]] = None
+    user_experience_analytics_app_health_device_performance: Optional[list[UserExperienceAnalyticsAppHealthDevicePerformance]] = None
     # User experience analytics device performance details
-    user_experience_analytics_app_health_device_performance_details: Optional[List[UserExperienceAnalyticsAppHealthDevicePerformanceDetails]] = None
+    user_experience_analytics_app_health_device_performance_details: Optional[list[UserExperienceAnalyticsAppHealthDevicePerformanceDetails]] = None
     # User experience analytics appHealth OS version Performance
-    user_experience_analytics_app_health_o_s_version_performance: Optional[List[UserExperienceAnalyticsAppHealthOSVersionPerformance]] = None
+    user_experience_analytics_app_health_o_s_version_performance: Optional[list[UserExperienceAnalyticsAppHealthOSVersionPerformance]] = None
     # User experience analytics appHealth overview
     user_experience_analytics_app_health_overview: Optional[UserExperienceAnalyticsCategory] = None
     # User experience analytics baselines
-    user_experience_analytics_baselines: Optional[List[UserExperienceAnalyticsBaseline]] = None
+    user_experience_analytics_baselines: Optional[list[UserExperienceAnalyticsBaseline]] = None
     # User Experience Analytics Battery Health App Impact
-    user_experience_analytics_battery_health_app_impact: Optional[List[UserExperienceAnalyticsBatteryHealthAppImpact]] = None
+    user_experience_analytics_battery_health_app_impact: Optional[list[UserExperienceAnalyticsBatteryHealthAppImpact]] = None
     # User Experience Analytics Battery Health Capacity Details
     user_experience_analytics_battery_health_capacity_details: Optional[UserExperienceAnalyticsBatteryHealthCapacityDetails] = None
     # User Experience Analytics Battery Health Device App Impact
-    user_experience_analytics_battery_health_device_app_impact: Optional[List[UserExperienceAnalyticsBatteryHealthDeviceAppImpact]] = None
+    user_experience_analytics_battery_health_device_app_impact: Optional[list[UserExperienceAnalyticsBatteryHealthDeviceAppImpact]] = None
     # User Experience Analytics Battery Health Device Performance
-    user_experience_analytics_battery_health_device_performance: Optional[List[UserExperienceAnalyticsBatteryHealthDevicePerformance]] = None
+    user_experience_analytics_battery_health_device_performance: Optional[list[UserExperienceAnalyticsBatteryHealthDevicePerformance]] = None
     # User Experience Analytics Battery Health Device Runtime History
-    user_experience_analytics_battery_health_device_runtime_history: Optional[List[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory]] = None
+    user_experience_analytics_battery_health_device_runtime_history: Optional[list[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory]] = None
     # User Experience Analytics Battery Health Model Performance
-    user_experience_analytics_battery_health_model_performance: Optional[List[UserExperienceAnalyticsBatteryHealthModelPerformance]] = None
+    user_experience_analytics_battery_health_model_performance: Optional[list[UserExperienceAnalyticsBatteryHealthModelPerformance]] = None
     # User Experience Analytics Battery Health Os Performance
-    user_experience_analytics_battery_health_os_performance: Optional[List[UserExperienceAnalyticsBatteryHealthOsPerformance]] = None
+    user_experience_analytics_battery_health_os_performance: Optional[list[UserExperienceAnalyticsBatteryHealthOsPerformance]] = None
     # User Experience Analytics Battery Health Runtime Details
     user_experience_analytics_battery_health_runtime_details: Optional[UserExperienceAnalyticsBatteryHealthRuntimeDetails] = None
     # User experience analytics categories
-    user_experience_analytics_categories: Optional[List[UserExperienceAnalyticsCategory]] = None
+    user_experience_analytics_categories: Optional[list[UserExperienceAnalyticsCategory]] = None
     # User experience analytics device metric history. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://learn.microsoft.com/windows-365/enterprise/report-cloud-pc-connection-quality.
-    user_experience_analytics_device_metric_history: Optional[List[UserExperienceAnalyticsMetricHistory]] = None
+    user_experience_analytics_device_metric_history: Optional[list[UserExperienceAnalyticsMetricHistory]] = None
     # User experience analytics device performance
-    user_experience_analytics_device_performance: Optional[List[UserExperienceAnalyticsDevicePerformance]] = None
+    user_experience_analytics_device_performance: Optional[list[UserExperienceAnalyticsDevicePerformance]] = None
     # The user experience analytics device scope entity endpoint to trigger on the service to either START or STOP computing metrics data based on a device scope configuration.
     user_experience_analytics_device_scope: Optional[UserExperienceAnalyticsDeviceScope] = None
     # The user experience analytics device scope entity contains device scope configuration use to apply filtering on the endpoint analytics reports.
-    user_experience_analytics_device_scopes: Optional[List[UserExperienceAnalyticsDeviceScope]] = None
+    user_experience_analytics_device_scopes: Optional[list[UserExperienceAnalyticsDeviceScope]] = None
     # User experience analytics device scores
-    user_experience_analytics_device_scores: Optional[List[UserExperienceAnalyticsDeviceScores]] = None
+    user_experience_analytics_device_scores: Optional[list[UserExperienceAnalyticsDeviceScores]] = None
     # User experience analytics device Startup History
-    user_experience_analytics_device_startup_history: Optional[List[UserExperienceAnalyticsDeviceStartupHistory]] = None
+    user_experience_analytics_device_startup_history: Optional[list[UserExperienceAnalyticsDeviceStartupHistory]] = None
     # User experience analytics device Startup Process Performance
-    user_experience_analytics_device_startup_process_performance: Optional[List[UserExperienceAnalyticsDeviceStartupProcessPerformance]] = None
+    user_experience_analytics_device_startup_process_performance: Optional[list[UserExperienceAnalyticsDeviceStartupProcessPerformance]] = None
     # User experience analytics device Startup Processes
-    user_experience_analytics_device_startup_processes: Optional[List[UserExperienceAnalyticsDeviceStartupProcess]] = None
+    user_experience_analytics_device_startup_processes: Optional[list[UserExperienceAnalyticsDeviceStartupProcess]] = None
     # The user experience analytics device events entity contains NRT device timeline event details.
-    user_experience_analytics_device_timeline_event: Optional[List[UserExperienceAnalyticsDeviceTimelineEvent]] = None
+    user_experience_analytics_device_timeline_event: Optional[list[UserExperienceAnalyticsDeviceTimelineEvent]] = None
     # User experience analytics devices without cloud identity.
-    user_experience_analytics_devices_without_cloud_identity: Optional[List[UserExperienceAnalyticsDeviceWithoutCloudIdentity]] = None
+    user_experience_analytics_devices_without_cloud_identity: Optional[list[UserExperienceAnalyticsDeviceWithoutCloudIdentity]] = None
     # User experience analytics impacting process
-    user_experience_analytics_impacting_process: Optional[List[UserExperienceAnalyticsImpactingProcess]] = None
+    user_experience_analytics_impacting_process: Optional[list[UserExperienceAnalyticsImpactingProcess]] = None
     # User experience analytics metric history
-    user_experience_analytics_metric_history: Optional[List[UserExperienceAnalyticsMetricHistory]] = None
+    user_experience_analytics_metric_history: Optional[list[UserExperienceAnalyticsMetricHistory]] = None
     # User experience analytics model scores
-    user_experience_analytics_model_scores: Optional[List[UserExperienceAnalyticsModelScores]] = None
+    user_experience_analytics_model_scores: Optional[list[UserExperienceAnalyticsModelScores]] = None
     # User experience analytics devices not Windows Autopilot ready.
-    user_experience_analytics_not_autopilot_ready_device: Optional[List[UserExperienceAnalyticsNotAutopilotReadyDevice]] = None
+    user_experience_analytics_not_autopilot_ready_device: Optional[list[UserExperienceAnalyticsNotAutopilotReadyDevice]] = None
     # User experience analytics overview
     user_experience_analytics_overview: Optional[UserExperienceAnalyticsOverview] = None
     # User experience analytics remote connection. The report will be retired on December 31, 2024. You can start using the Cloud PC connection quality report now via https://learn.microsoft.com/windows-365/enterprise/report-cloud-pc-connection-quality.
-    user_experience_analytics_remote_connection: Optional[List[UserExperienceAnalyticsRemoteConnection]] = None
+    user_experience_analytics_remote_connection: Optional[list[UserExperienceAnalyticsRemoteConnection]] = None
     # User experience analytics resource performance
-    user_experience_analytics_resource_performance: Optional[List[UserExperienceAnalyticsResourcePerformance]] = None
+    user_experience_analytics_resource_performance: Optional[list[UserExperienceAnalyticsResourcePerformance]] = None
     # User experience analytics device Startup Score History
-    user_experience_analytics_score_history: Optional[List[UserExperienceAnalyticsScoreHistory]] = None
+    user_experience_analytics_score_history: Optional[list[UserExperienceAnalyticsScoreHistory]] = None
     # User experience analytics device settings
     user_experience_analytics_settings: Optional[UserExperienceAnalyticsSettings] = None
     # User experience analytics work from anywhere hardware readiness metrics.
     user_experience_analytics_work_from_anywhere_hardware_readiness_metric: Optional[UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric] = None
     # User experience analytics work from anywhere metrics.
-    user_experience_analytics_work_from_anywhere_metrics: Optional[List[UserExperienceAnalyticsWorkFromAnywhereMetric]] = None
+    user_experience_analytics_work_from_anywhere_metrics: Optional[list[UserExperienceAnalyticsWorkFromAnywhereMetric]] = None
     # The user experience analytics work from anywhere model performance
-    user_experience_analytics_work_from_anywhere_model_performance: Optional[List[UserExperienceAnalyticsWorkFromAnywhereModelPerformance]] = None
+    user_experience_analytics_work_from_anywhere_model_performance: Optional[list[UserExperienceAnalyticsWorkFromAnywhereModelPerformance]] = None
     # Collection of PFX certificates associated with a user.
-    user_pfx_certificates: Optional[List[UserPFXCertificate]] = None
+    user_pfx_certificates: Optional[list[UserPFXCertificate]] = None
     # The virtualEndpoint property
     virtual_endpoint: Optional[VirtualEndpoint] = None
     # Windows auto pilot deployment profiles
-    windows_autopilot_deployment_profiles: Optional[List[WindowsAutopilotDeploymentProfile]] = None
+    windows_autopilot_deployment_profiles: Optional[list[WindowsAutopilotDeploymentProfile]] = None
     # The Windows autopilot device identities contained collection.
-    windows_autopilot_device_identities: Optional[List[WindowsAutopilotDeviceIdentity]] = None
+    windows_autopilot_device_identities: Optional[list[WindowsAutopilotDeviceIdentity]] = None
     # The Windows autopilot account settings.
     windows_autopilot_settings: Optional[WindowsAutopilotSettings] = None
     # A collection of windows driver update profiles
-    windows_driver_update_profiles: Optional[List[WindowsDriverUpdateProfile]] = None
+    windows_driver_update_profiles: Optional[list[WindowsDriverUpdateProfile]] = None
     # A collection of windows feature update profiles
-    windows_feature_update_profiles: Optional[List[WindowsFeatureUpdateProfile]] = None
+    windows_feature_update_profiles: Optional[list[WindowsFeatureUpdateProfile]] = None
     # The windows information protection app learning summaries.
-    windows_information_protection_app_learning_summaries: Optional[List[WindowsInformationProtectionAppLearningSummary]] = None
+    windows_information_protection_app_learning_summaries: Optional[list[WindowsInformationProtectionAppLearningSummary]] = None
     # The windows information protection network learning summaries.
-    windows_information_protection_network_learning_summaries: Optional[List[WindowsInformationProtectionNetworkLearningSummary]] = None
+    windows_information_protection_network_learning_summaries: Optional[list[WindowsInformationProtectionNetworkLearningSummary]] = None
     # The list of affected malware in the tenant.
-    windows_malware_information: Optional[List[WindowsMalwareInformation]] = None
+    windows_malware_information: Optional[list[WindowsMalwareInformation]] = None
     # Malware overview for windows devices.
     windows_malware_overview: Optional[WindowsMalwareOverview] = None
     # A collection of Windows quality update policies
-    windows_quality_update_policies: Optional[List[WindowsQualityUpdatePolicy]] = None
+    windows_quality_update_policies: Optional[list[WindowsQualityUpdatePolicy]] = None
     # A collection of windows quality update profiles
-    windows_quality_update_profiles: Optional[List[WindowsQualityUpdateProfile]] = None
+    windows_quality_update_profiles: Optional[list[WindowsQualityUpdateProfile]] = None
     # A collection of windows update catalog items (fetaure updates item , quality updates item)
-    windows_update_catalog_items: Optional[List[WindowsUpdateCatalogItem]] = None
+    windows_update_catalog_items: Optional[list[WindowsUpdateCatalogItem]] = None
     # The Collection of ZebraFotaArtifacts.
-    zebra_fota_artifacts: Optional[List[ZebraFotaArtifact]] = None
+    zebra_fota_artifacts: Optional[list[ZebraFotaArtifact]] = None
     # The singleton ZebraFotaConnector associated with account.
     zebra_fota_connector: Optional[ZebraFotaConnector] = None
     # Collection of ZebraFotaDeployments associated with account.
-    zebra_fota_deployments: Optional[List[ZebraFotaDeployment]] = None
+    zebra_fota_deployments: Optional[list[ZebraFotaDeployment]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagement:
@@ -590,10 +591,10 @@ class DeviceManagement(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagement()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..admin_consent import AdminConsent
         from ..advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
@@ -953,7 +954,7 @@ class DeviceManagement(Entity, Parsable):
         from ..zebra_fota_deployment import ZebraFotaDeployment
         from .monitoring import Monitoring
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accountMoveCompletionDateTime": lambda n : setattr(self, 'account_move_completion_date_time', n.get_datetime_value()),
             "adminConsent": lambda n : setattr(self, 'admin_consent', n.get_object_value(AdminConsent)),
             "advancedThreatProtectionOnboardingStateSummary": lambda n : setattr(self, 'advanced_threat_protection_onboarding_state_summary', n.get_object_value(AdvancedThreatProtectionOnboardingStateSummary)),
@@ -1160,185 +1161,6 @@ class DeviceManagement(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..admin_consent import AdminConsent
-        from ..advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
-        from ..android_device_owner_enrollment_profile import AndroidDeviceOwnerEnrollmentProfile
-        from ..android_for_work_app_configuration_schema import AndroidForWorkAppConfigurationSchema
-        from ..android_for_work_enrollment_profile import AndroidForWorkEnrollmentProfile
-        from ..android_for_work_settings import AndroidForWorkSettings
-        from ..android_managed_store_account_enterprise_settings import AndroidManagedStoreAccountEnterpriseSettings
-        from ..android_managed_store_app_configuration_schema import AndroidManagedStoreAppConfigurationSchema
-        from ..apple_push_notification_certificate import ApplePushNotificationCertificate
-        from ..apple_user_initiated_enrollment_profile import AppleUserInitiatedEnrollmentProfile
-        from ..audit_event import AuditEvent
-        from ..cart_to_class_association import CartToClassAssociation
-        from ..certificate_connector_details import CertificateConnectorDetails
-        from ..chrome_o_s_onboarding_settings import ChromeOSOnboardingSettings
-        from ..cloud_certification_authority import CloudCertificationAuthority
-        from ..cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
-        from ..cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
-        from ..comanagement_eligible_device import ComanagementEligibleDevice
-        from ..compliance_management_partner import ComplianceManagementPartner
-        from ..config_manager_collection import ConfigManagerCollection
-        from ..connector_status_details import ConnectorStatusDetails
-        from ..data_processor_service_for_windows_features_onboarding import DataProcessorServiceForWindowsFeaturesOnboarding
-        from ..data_sharing_consent import DataSharingConsent
-        from ..dep_onboarding_setting import DepOnboardingSetting
-        from ..detected_app import DetectedApp
-        from ..device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
-        from ..device_and_app_management_role_assignment import DeviceAndAppManagementRoleAssignment
-        from ..device_category import DeviceCategory
-        from ..device_compliance_policy import DeviceCompliancePolicy
-        from ..device_compliance_policy_device_state_summary import DeviceCompliancePolicyDeviceStateSummary
-        from ..device_compliance_policy_setting_state_summary import DeviceCompliancePolicySettingStateSummary
-        from ..device_compliance_script import DeviceComplianceScript
-        from ..device_configuration import DeviceConfiguration
-        from ..device_configuration_conflict_summary import DeviceConfigurationConflictSummary
-        from ..device_configuration_device_state_summary import DeviceConfigurationDeviceStateSummary
-        from ..device_configuration_user_state_summary import DeviceConfigurationUserStateSummary
-        from ..device_custom_attribute_shell_script import DeviceCustomAttributeShellScript
-        from ..device_enrollment_configuration import DeviceEnrollmentConfiguration
-        from ..device_health_script import DeviceHealthScript
-        from ..device_management_autopilot_event import DeviceManagementAutopilotEvent
-        from ..device_management_compliance_policy import DeviceManagementCompliancePolicy
-        from ..device_management_configuration_category import DeviceManagementConfigurationCategory
-        from ..device_management_configuration_policy import DeviceManagementConfigurationPolicy
-        from ..device_management_configuration_policy_template import DeviceManagementConfigurationPolicyTemplate
-        from ..device_management_configuration_setting_definition import DeviceManagementConfigurationSettingDefinition
-        from ..device_management_configuration_setting_template import DeviceManagementConfigurationSettingTemplate
-        from ..device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-        from ..device_management_domain_join_connector import DeviceManagementDomainJoinConnector
-        from ..device_management_exchange_connector import DeviceManagementExchangeConnector
-        from ..device_management_exchange_on_premises_policy import DeviceManagementExchangeOnPremisesPolicy
-        from ..device_management_intent import DeviceManagementIntent
-        from ..device_management_partner import DeviceManagementPartner
-        from ..device_management_reports import DeviceManagementReports
-        from ..device_management_resource_access_profile_base import DeviceManagementResourceAccessProfileBase
-        from ..device_management_reusable_policy_setting import DeviceManagementReusablePolicySetting
-        from ..device_management_script import DeviceManagementScript
-        from ..device_management_settings import DeviceManagementSettings
-        from ..device_management_setting_category import DeviceManagementSettingCategory
-        from ..device_management_setting_definition import DeviceManagementSettingDefinition
-        from ..device_management_subscriptions import DeviceManagementSubscriptions
-        from ..device_management_subscription_state import DeviceManagementSubscriptionState
-        from ..device_management_template import DeviceManagementTemplate
-        from ..device_management_template_insights_definition import DeviceManagementTemplateInsightsDefinition
-        from ..device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
-        from ..device_protection_overview import DeviceProtectionOverview
-        from ..device_shell_script import DeviceShellScript
-        from ..embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
-        from ..endpoint_privilege_management_provisioning_status import EndpointPrivilegeManagementProvisioningStatus
-        from ..entity import Entity
-        from ..group_policy_category import GroupPolicyCategory
-        from ..group_policy_configuration import GroupPolicyConfiguration
-        from ..group_policy_definition import GroupPolicyDefinition
-        from ..group_policy_definition_file import GroupPolicyDefinitionFile
-        from ..group_policy_migration_report import GroupPolicyMigrationReport
-        from ..group_policy_object_file import GroupPolicyObjectFile
-        from ..group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
-        from ..hardware_configuration import HardwareConfiguration
-        from ..hardware_password_detail import HardwarePasswordDetail
-        from ..hardware_password_info import HardwarePasswordInfo
-        from ..imported_device_identity import ImportedDeviceIdentity
-        from ..imported_windows_autopilot_device_identity import ImportedWindowsAutopilotDeviceIdentity
-        from ..intune_brand import IntuneBrand
-        from ..intune_branding_profile import IntuneBrandingProfile
-        from ..ios_update_device_status import IosUpdateDeviceStatus
-        from ..mac_o_s_software_update_account_summary import MacOSSoftwareUpdateAccountSummary
-        from ..managed_all_device_certificate_state import ManagedAllDeviceCertificateState
-        from ..managed_device import ManagedDevice
-        from ..managed_device_cleanup_rule import ManagedDeviceCleanupRule
-        from ..managed_device_cleanup_settings import ManagedDeviceCleanupSettings
-        from ..managed_device_encryption_state import ManagedDeviceEncryptionState
-        from ..managed_device_overview import ManagedDeviceOverview
-        from ..managed_device_windows_operating_system_image import ManagedDeviceWindowsOperatingSystemImage
-        from ..microsoft_tunnel_configuration import MicrosoftTunnelConfiguration
-        from ..microsoft_tunnel_health_threshold import MicrosoftTunnelHealthThreshold
-        from ..microsoft_tunnel_server_log_collection_response import MicrosoftTunnelServerLogCollectionResponse
-        from ..microsoft_tunnel_site import MicrosoftTunnelSite
-        from ..mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
-        from ..mobile_threat_defense_connector import MobileThreatDefenseConnector
-        from ..ndes_connector import NdesConnector
-        from ..notification_message_template import NotificationMessageTemplate
-        from ..on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
-        from ..operation_approval_policy import OperationApprovalPolicy
-        from ..operation_approval_request import OperationApprovalRequest
-        from ..privilege_management_elevation import PrivilegeManagementElevation
-        from ..privilege_management_elevation_request import PrivilegeManagementElevationRequest
-        from ..remote_action_audit import RemoteActionAudit
-        from ..remote_assistance_partner import RemoteAssistancePartner
-        from ..remote_assistance_settings import RemoteAssistanceSettings
-        from ..resource_operation import ResourceOperation
-        from ..restricted_apps_violation import RestrictedAppsViolation
-        from ..role_definition import RoleDefinition
-        from ..role_scope_tag import RoleScopeTag
-        from ..service_now_connection import ServiceNowConnection
-        from ..software_update_status_summary import SoftwareUpdateStatusSummary
-        from ..telecom_expense_management_partner import TelecomExpenseManagementPartner
-        from ..tenant_attach_r_b_a_c import TenantAttachRBAC
-        from ..terms_and_conditions import TermsAndConditions
-        from ..user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
-        from ..user_experience_analytics_anomaly_correlation_group_overview import UserExperienceAnalyticsAnomalyCorrelationGroupOverview
-        from ..user_experience_analytics_anomaly_device import UserExperienceAnalyticsAnomalyDevice
-        from ..user_experience_analytics_anomaly_severity_overview import UserExperienceAnalyticsAnomalySeverityOverview
-        from ..user_experience_analytics_app_health_application_performance import UserExperienceAnalyticsAppHealthApplicationPerformance
-        from ..user_experience_analytics_app_health_app_performance_by_app_version import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion
-        from ..user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
-        from ..user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
-        from ..user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
-        from ..user_experience_analytics_app_health_device_model_performance import UserExperienceAnalyticsAppHealthDeviceModelPerformance
-        from ..user_experience_analytics_app_health_device_performance import UserExperienceAnalyticsAppHealthDevicePerformance
-        from ..user_experience_analytics_app_health_device_performance_details import UserExperienceAnalyticsAppHealthDevicePerformanceDetails
-        from ..user_experience_analytics_app_health_o_s_version_performance import UserExperienceAnalyticsAppHealthOSVersionPerformance
-        from ..user_experience_analytics_baseline import UserExperienceAnalyticsBaseline
-        from ..user_experience_analytics_battery_health_app_impact import UserExperienceAnalyticsBatteryHealthAppImpact
-        from ..user_experience_analytics_battery_health_capacity_details import UserExperienceAnalyticsBatteryHealthCapacityDetails
-        from ..user_experience_analytics_battery_health_device_app_impact import UserExperienceAnalyticsBatteryHealthDeviceAppImpact
-        from ..user_experience_analytics_battery_health_device_performance import UserExperienceAnalyticsBatteryHealthDevicePerformance
-        from ..user_experience_analytics_battery_health_device_runtime_history import UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory
-        from ..user_experience_analytics_battery_health_model_performance import UserExperienceAnalyticsBatteryHealthModelPerformance
-        from ..user_experience_analytics_battery_health_os_performance import UserExperienceAnalyticsBatteryHealthOsPerformance
-        from ..user_experience_analytics_battery_health_runtime_details import UserExperienceAnalyticsBatteryHealthRuntimeDetails
-        from ..user_experience_analytics_category import UserExperienceAnalyticsCategory
-        from ..user_experience_analytics_device_performance import UserExperienceAnalyticsDevicePerformance
-        from ..user_experience_analytics_device_scope import UserExperienceAnalyticsDeviceScope
-        from ..user_experience_analytics_device_scores import UserExperienceAnalyticsDeviceScores
-        from ..user_experience_analytics_device_startup_history import UserExperienceAnalyticsDeviceStartupHistory
-        from ..user_experience_analytics_device_startup_process import UserExperienceAnalyticsDeviceStartupProcess
-        from ..user_experience_analytics_device_startup_process_performance import UserExperienceAnalyticsDeviceStartupProcessPerformance
-        from ..user_experience_analytics_device_timeline_event import UserExperienceAnalyticsDeviceTimelineEvent
-        from ..user_experience_analytics_device_without_cloud_identity import UserExperienceAnalyticsDeviceWithoutCloudIdentity
-        from ..user_experience_analytics_impacting_process import UserExperienceAnalyticsImpactingProcess
-        from ..user_experience_analytics_metric_history import UserExperienceAnalyticsMetricHistory
-        from ..user_experience_analytics_model_scores import UserExperienceAnalyticsModelScores
-        from ..user_experience_analytics_not_autopilot_ready_device import UserExperienceAnalyticsNotAutopilotReadyDevice
-        from ..user_experience_analytics_overview import UserExperienceAnalyticsOverview
-        from ..user_experience_analytics_remote_connection import UserExperienceAnalyticsRemoteConnection
-        from ..user_experience_analytics_resource_performance import UserExperienceAnalyticsResourcePerformance
-        from ..user_experience_analytics_score_history import UserExperienceAnalyticsScoreHistory
-        from ..user_experience_analytics_settings import UserExperienceAnalyticsSettings
-        from ..user_experience_analytics_work_from_anywhere_hardware_readiness_metric import UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric
-        from ..user_experience_analytics_work_from_anywhere_metric import UserExperienceAnalyticsWorkFromAnywhereMetric
-        from ..user_experience_analytics_work_from_anywhere_model_performance import UserExperienceAnalyticsWorkFromAnywhereModelPerformance
-        from ..user_p_f_x_certificate import UserPFXCertificate
-        from ..virtual_endpoint import VirtualEndpoint
-        from ..windows_autopilot_deployment_profile import WindowsAutopilotDeploymentProfile
-        from ..windows_autopilot_device_identity import WindowsAutopilotDeviceIdentity
-        from ..windows_autopilot_settings import WindowsAutopilotSettings
-        from ..windows_driver_update_profile import WindowsDriverUpdateProfile
-        from ..windows_feature_update_profile import WindowsFeatureUpdateProfile
-        from ..windows_information_protection_app_learning_summary import WindowsInformationProtectionAppLearningSummary
-        from ..windows_information_protection_network_learning_summary import WindowsInformationProtectionNetworkLearningSummary
-        from ..windows_malware_information import WindowsMalwareInformation
-        from ..windows_malware_overview import WindowsMalwareOverview
-        from ..windows_quality_update_policy import WindowsQualityUpdatePolicy
-        from ..windows_quality_update_profile import WindowsQualityUpdateProfile
-        from ..windows_update_catalog_item import WindowsUpdateCatalogItem
-        from ..zebra_fota_artifact import ZebraFotaArtifact
-        from ..zebra_fota_connector import ZebraFotaConnector
-        from ..zebra_fota_deployment import ZebraFotaDeployment
-        from .monitoring import Monitoring
-
         writer.write_datetime_value("accountMoveCompletionDateTime", self.account_move_completion_date_time)
         writer.write_object_value("adminConsent", self.admin_consent)
         writer.write_object_value("advancedThreatProtectionOnboardingStateSummary", self.advanced_threat_protection_onboarding_state_summary)

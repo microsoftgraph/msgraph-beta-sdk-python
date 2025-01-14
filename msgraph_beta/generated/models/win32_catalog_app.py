@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mobile_app_catalog_package import MobileAppCatalogPackage
@@ -34,10 +35,10 @@ class Win32CatalogApp(Win32LobApp, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Win32CatalogApp()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .win32_lob_app import Win32LobApp
@@ -45,7 +46,7 @@ class Win32CatalogApp(Win32LobApp, Parsable):
         from .mobile_app_catalog_package import MobileAppCatalogPackage
         from .win32_lob_app import Win32LobApp
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "latestUpgradeCatalogPackage": lambda n : setattr(self, 'latest_upgrade_catalog_package', n.get_object_value(MobileAppCatalogPackage)),
             "mobileAppCatalogPackageId": lambda n : setattr(self, 'mobile_app_catalog_package_id', n.get_str_value()),
             "referencedCatalogPackage": lambda n : setattr(self, 'referenced_catalog_package', n.get_object_value(MobileAppCatalogPackage)),
@@ -63,9 +64,6 @@ class Win32CatalogApp(Win32LobApp, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .mobile_app_catalog_package import MobileAppCatalogPackage
-        from .win32_lob_app import Win32LobApp
-
         writer.write_object_value("latestUpgradeCatalogPackage", self.latest_upgrade_catalog_package)
         writer.write_str_value("mobileAppCatalogPackageId", self.mobile_app_catalog_package_id)
         writer.write_object_value("referencedCatalogPackage", self.referenced_catalog_package)

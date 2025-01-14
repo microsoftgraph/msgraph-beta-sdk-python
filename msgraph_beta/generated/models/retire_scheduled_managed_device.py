@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .compliance_status import ComplianceStatus
@@ -20,7 +21,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The complianceState property
     compliance_state: Optional[ComplianceStatus] = None
     # Device Compliance PolicyId
@@ -44,7 +45,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, BackedModel, Parsable):
     # Managed Device Retire After DateTime
     retire_after_date_time: Optional[datetime.datetime] = None
     # List of Scope Tags for this Entity instance.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RetireScheduledManagedDevice:
@@ -57,10 +58,10 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RetireScheduledManagedDevice()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .compliance_status import ComplianceStatus
         from .device_type import DeviceType
@@ -72,7 +73,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, BackedModel, Parsable):
         from .managed_device_owner_type import ManagedDeviceOwnerType
         from .management_agent_type import ManagementAgentType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "complianceState": lambda n : setattr(self, 'compliance_state', n.get_enum_value(ComplianceStatus)),
             "deviceCompliancePolicyId": lambda n : setattr(self, 'device_compliance_policy_id', n.get_str_value()),
             "deviceCompliancePolicyName": lambda n : setattr(self, 'device_compliance_policy_name', n.get_str_value()),
@@ -96,11 +97,6 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .compliance_status import ComplianceStatus
-        from .device_type import DeviceType
-        from .managed_device_owner_type import ManagedDeviceOwnerType
-        from .management_agent_type import ManagementAgentType
-
         writer.write_enum_value("complianceState", self.compliance_state)
         writer.write_str_value("deviceCompliancePolicyId", self.device_compliance_policy_id)
         writer.write_str_value("deviceCompliancePolicyName", self.device_compliance_policy_name)

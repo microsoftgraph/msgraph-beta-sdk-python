@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
@@ -66,10 +67,10 @@ class WindowsWifiConfiguration(DeviceConfiguration, Parsable):
             return WindowsWifiEnterpriseEAPConfiguration()
         return WindowsWifiConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
         from .metered_connection_limit_type import MeteredConnectionLimitType
@@ -83,7 +84,7 @@ class WindowsWifiConfiguration(DeviceConfiguration, Parsable):
         from .wi_fi_proxy_setting import WiFiProxySetting
         from .wi_fi_security_type import WiFiSecurityType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
             "connectToPreferredNetwork": lambda n : setattr(self, 'connect_to_preferred_network', n.get_bool_value()),
             "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
@@ -111,12 +112,6 @@ class WindowsWifiConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_configuration import DeviceConfiguration
-        from .metered_connection_limit_type import MeteredConnectionLimitType
-        from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
-        from .wi_fi_proxy_setting import WiFiProxySetting
-        from .wi_fi_security_type import WiFiSecurityType
-
         writer.write_bool_value("connectAutomatically", self.connect_automatically)
         writer.write_bool_value("connectToPreferredNetwork", self.connect_to_preferred_network)
         writer.write_bool_value("connectWhenNetworkNameIsHidden", self.connect_when_network_name_is_hidden)

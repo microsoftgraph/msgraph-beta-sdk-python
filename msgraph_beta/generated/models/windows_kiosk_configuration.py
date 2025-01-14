@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
@@ -20,9 +21,9 @@ class WindowsKioskConfiguration(DeviceConfiguration, Parsable):
     # Enable public browsing kiosk mode for the Microsoft Edge browser. The Default is false.
     edge_kiosk_enable_public_browsing: Optional[bool] = None
     # Specify URLs that the kiosk browsers should not navigate to
-    kiosk_browser_blocked_u_r_ls: Optional[List[str]] = None
+    kiosk_browser_blocked_u_r_ls: Optional[list[str]] = None
     # Specify URLs that the kiosk browser is allowed to navigate to
-    kiosk_browser_blocked_url_exceptions: Optional[List[str]] = None
+    kiosk_browser_blocked_url_exceptions: Optional[list[str]] = None
     # Specify the default URL the browser should navigate to on launch.
     kiosk_browser_default_url: Optional[str] = None
     # Enable the kiosk browser's end session button. By default, the end session button is disabled.
@@ -34,7 +35,7 @@ class WindowsKioskConfiguration(DeviceConfiguration, Parsable):
     # Specify the number of minutes the session is idle until the kiosk browser restarts in a fresh state.  Valid values are 1-1440. Valid values 1 to 1440
     kiosk_browser_restart_on_idle_time_in_minutes: Optional[int] = None
     # This policy setting allows to define a list of Kiosk profiles for a Kiosk configuration. This collection can contain a maximum of 3 elements.
-    kiosk_profiles: Optional[List[WindowsKioskProfile]] = None
+    kiosk_profiles: Optional[list[WindowsKioskProfile]] = None
     # force update schedule for Kiosk devices.
     windows_kiosk_force_update_schedule: Optional[WindowsKioskForceUpdateSchedule] = None
     
@@ -49,10 +50,10 @@ class WindowsKioskConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsKioskConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
         from .windows_kiosk_force_update_schedule import WindowsKioskForceUpdateSchedule
@@ -62,7 +63,7 @@ class WindowsKioskConfiguration(DeviceConfiguration, Parsable):
         from .windows_kiosk_force_update_schedule import WindowsKioskForceUpdateSchedule
         from .windows_kiosk_profile import WindowsKioskProfile
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "edgeKioskEnablePublicBrowsing": lambda n : setattr(self, 'edge_kiosk_enable_public_browsing', n.get_bool_value()),
             "kioskBrowserBlockedURLs": lambda n : setattr(self, 'kiosk_browser_blocked_u_r_ls', n.get_collection_of_primitive_values(str)),
             "kioskBrowserBlockedUrlExceptions": lambda n : setattr(self, 'kiosk_browser_blocked_url_exceptions', n.get_collection_of_primitive_values(str)),
@@ -87,10 +88,6 @@ class WindowsKioskConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_configuration import DeviceConfiguration
-        from .windows_kiosk_force_update_schedule import WindowsKioskForceUpdateSchedule
-        from .windows_kiosk_profile import WindowsKioskProfile
-
         writer.write_bool_value("edgeKioskEnablePublicBrowsing", self.edge_kiosk_enable_public_browsing)
         writer.write_collection_of_primitive_values("kioskBrowserBlockedURLs", self.kiosk_browser_blocked_u_r_ls)
         writer.write_collection_of_primitive_values("kioskBrowserBlockedUrlExceptions", self.kiosk_browser_blocked_url_exceptions)

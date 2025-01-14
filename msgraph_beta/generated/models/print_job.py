@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -29,7 +30,7 @@ class PrintJob(Entity, Parsable):
     # The name of the print job.
     display_name: Optional[str] = None
     # The documents property
-    documents: Optional[List[PrintDocument]] = None
+    documents: Optional[list[PrintDocument]] = None
     # The errorCode property
     error_code: Optional[int] = None
     # If true, document can be fetched by printer.
@@ -43,7 +44,7 @@ class PrintJob(Entity, Parsable):
     # The status property
     status: Optional[PrintJobStatus] = None
     # A list of printTasks that were triggered by this print job.
-    tasks: Optional[List[PrintTask]] = None
+    tasks: Optional[list[PrintTask]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PrintJob:
@@ -56,10 +57,10 @@ class PrintJob(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PrintJob()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .print_document import PrintDocument
@@ -75,7 +76,7 @@ class PrintJob(Entity, Parsable):
         from .print_task import PrintTask
         from .user_identity import UserIdentity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "acknowledgedDateTime": lambda n : setattr(self, 'acknowledged_date_time', n.get_datetime_value()),
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(PrintJobConfiguration)),
@@ -103,13 +104,6 @@ class PrintJob(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .print_document import PrintDocument
-        from .print_job_configuration import PrintJobConfiguration
-        from .print_job_status import PrintJobStatus
-        from .print_task import PrintTask
-        from .user_identity import UserIdentity
-
         writer.write_datetime_value("acknowledgedDateTime", self.acknowledged_date_time)
         writer.write_datetime_value("completedDateTime", self.completed_date_time)
         writer.write_object_value("configuration", self.configuration)

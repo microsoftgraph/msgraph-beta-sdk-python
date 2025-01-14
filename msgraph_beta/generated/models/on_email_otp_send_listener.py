@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_event_listener import AuthenticationEventListener
@@ -13,7 +14,7 @@ from .authentication_event_listener import AuthenticationEventListener
 class OnEmailOtpSendListener(AuthenticationEventListener, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onEmailOtpSendListener"
-    # The handler property
+    # Used to configure what to invoke if the onEmailOTPSend event resolves to this listener. This base class serves as a generic OTP event handler used for both email and SMS OTP messages.
     handler: Optional[OnOtpSendHandler] = None
     
     @staticmethod
@@ -27,10 +28,10 @@ class OnEmailOtpSendListener(AuthenticationEventListener, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OnEmailOtpSendListener()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_event_listener import AuthenticationEventListener
         from .on_otp_send_handler import OnOtpSendHandler
@@ -38,7 +39,7 @@ class OnEmailOtpSendListener(AuthenticationEventListener, Parsable):
         from .authentication_event_listener import AuthenticationEventListener
         from .on_otp_send_handler import OnOtpSendHandler
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "handler": lambda n : setattr(self, 'handler', n.get_object_value(OnOtpSendHandler)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,9 +55,6 @@ class OnEmailOtpSendListener(AuthenticationEventListener, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authentication_event_listener import AuthenticationEventListener
-        from .on_otp_send_handler import OnOtpSendHandler
-
         writer.write_object_value("handler", self.handler)
     
 

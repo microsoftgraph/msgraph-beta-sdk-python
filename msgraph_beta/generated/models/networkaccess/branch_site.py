@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -25,9 +26,9 @@ class BranchSite(Entity, Parsable):
     # The branch site is created in the specified country. DO NOT USE.
     country: Optional[str] = None
     # Each unique CPE device associated with a branch is specified. Supports $expand.
-    device_links: Optional[List[DeviceLink]] = None
+    device_links: Optional[list[DeviceLink]] = None
     # Each forwarding profile associated with a branch site is specified. Supports $expand.
-    forwarding_profiles: Optional[List[ForwardingProfile]] = None
+    forwarding_profiles: Optional[list[ForwardingProfile]] = None
     # last modified time.
     last_modified_date_time: Optional[datetime.datetime] = None
     # Name.
@@ -50,10 +51,10 @@ class BranchSite(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return BranchSite()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .branch_connectivity_configuration import BranchConnectivityConfiguration
@@ -69,7 +70,7 @@ class BranchSite(Entity, Parsable):
         from .forwarding_profile import ForwardingProfile
         from .region import Region
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "bandwidthCapacity": lambda n : setattr(self, 'bandwidth_capacity', n.get_int_value()),
             "connectivityConfiguration": lambda n : setattr(self, 'connectivity_configuration', n.get_object_value(BranchConnectivityConfiguration)),
             "connectivityState": lambda n : setattr(self, 'connectivity_state', n.get_enum_value(ConnectivityState)),
@@ -94,13 +95,6 @@ class BranchSite(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .branch_connectivity_configuration import BranchConnectivityConfiguration
-        from .connectivity_state import ConnectivityState
-        from .device_link import DeviceLink
-        from .forwarding_profile import ForwardingProfile
-        from .region import Region
-
         writer.write_int_value("bandwidthCapacity", self.bandwidth_capacity)
         writer.write_object_value("connectivityConfiguration", self.connectivity_configuration)
         writer.write_enum_value("connectivityState", self.connectivity_state)

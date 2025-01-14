@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_claim_base import CustomClaimBase
@@ -21,7 +22,7 @@ class CustomClaim(CustomClaimBase, Parsable):
     # If specified, it sets the nameFormat attribute associated with the claim in the SAML response. The possible values are: unspecified, uri, basic, unknownFutureValue.
     saml_attribute_name_format: Optional[SamlAttributeNameFormat] = None
     # List of token formats for which this claim should be emitted. The possible values are: saml,jwt, unknownFutureValue
-    token_format: Optional[List[TokenFormat]] = None
+    token_format: Optional[list[TokenFormat]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CustomClaim:
@@ -34,10 +35,10 @@ class CustomClaim(CustomClaimBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CustomClaim()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_claim_base import CustomClaimBase
         from .saml_attribute_name_format import SamlAttributeNameFormat
@@ -47,7 +48,7 @@ class CustomClaim(CustomClaimBase, Parsable):
         from .saml_attribute_name_format import SamlAttributeNameFormat
         from .token_format import TokenFormat
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "namespace": lambda n : setattr(self, 'namespace', n.get_str_value()),
             "samlAttributeNameFormat": lambda n : setattr(self, 'saml_attribute_name_format', n.get_enum_value(SamlAttributeNameFormat)),
@@ -66,10 +67,6 @@ class CustomClaim(CustomClaimBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .custom_claim_base import CustomClaimBase
-        from .saml_attribute_name_format import SamlAttributeNameFormat
-        from .token_format import TokenFormat
-
         writer.write_str_value("name", self.name)
         writer.write_str_value("namespace", self.namespace)
         writer.write_enum_value("samlAttributeNameFormat", self.saml_attribute_name_format)

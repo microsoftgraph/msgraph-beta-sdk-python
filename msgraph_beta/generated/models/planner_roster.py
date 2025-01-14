@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -16,11 +17,11 @@ class PlannerRoster(Entity, Parsable):
     # The sensitivity label applied to the roster. If mandatory labeling is enabled for the user and no label is specified, the user can't create the roster. Also, if labels are mandatory for the user, the user can't change the label of the roster to null. Possible values are: standard, privileged, auto, unknownFutureValue.
     assigned_sensitivity_label: Optional[SensitivityLabelAssignment] = None
     # Retrieves the members of the plannerRoster.
-    members: Optional[List[PlannerRosterMember]] = None
+    members: Optional[list[PlannerRosterMember]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Retrieves the plans contained by the plannerRoster.
-    plans: Optional[List[PlannerPlan]] = None
+    plans: Optional[list[PlannerPlan]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PlannerRoster:
@@ -33,10 +34,10 @@ class PlannerRoster(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PlannerRoster()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .planner_plan import PlannerPlan
@@ -48,7 +49,7 @@ class PlannerRoster(Entity, Parsable):
         from .planner_roster_member import PlannerRosterMember
         from .sensitivity_label_assignment import SensitivityLabelAssignment
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignedSensitivityLabel": lambda n : setattr(self, 'assigned_sensitivity_label', n.get_object_value(SensitivityLabelAssignment)),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(PlannerRosterMember)),
             "plans": lambda n : setattr(self, 'plans', n.get_collection_of_object_values(PlannerPlan)),
@@ -66,11 +67,6 @@ class PlannerRoster(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .planner_plan import PlannerPlan
-        from .planner_roster_member import PlannerRosterMember
-        from .sensitivity_label_assignment import SensitivityLabelAssignment
-
         writer.write_object_value("assignedSensitivityLabel", self.assigned_sensitivity_label)
         writer.write_collection_of_object_values("members", self.members)
         writer.write_collection_of_object_values("plans", self.plans)

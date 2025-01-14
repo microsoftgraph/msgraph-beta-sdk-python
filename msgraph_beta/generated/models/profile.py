@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .educational_activity import EducationalActivity
@@ -30,45 +31,45 @@ from .entity import Entity
 @dataclass
 class Profile(Entity, Parsable):
     # The account property
-    account: Optional[List[UserAccountInformation]] = None
+    account: Optional[list[UserAccountInformation]] = None
     # Represents details of addresses associated with the user.
-    addresses: Optional[List[ItemAddress]] = None
+    addresses: Optional[list[ItemAddress]] = None
     # Represents the details of meaningful dates associated with a person.
-    anniversaries: Optional[List[PersonAnnualEvent]] = None
+    anniversaries: Optional[list[PersonAnnualEvent]] = None
     # Represents the details of awards or honors associated with a person.
-    awards: Optional[List[PersonAward]] = None
+    awards: Optional[list[PersonAward]] = None
     # Represents the details of certifications associated with a person.
-    certifications: Optional[List[PersonCertification]] = None
+    certifications: Optional[list[PersonCertification]] = None
     # Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
-    educational_activities: Optional[List[EducationalActivity]] = None
+    educational_activities: Optional[list[EducationalActivity]] = None
     # Represents detailed information about email addresses associated with the user.
-    emails: Optional[List[ItemEmail]] = None
+    emails: Optional[list[ItemEmail]] = None
     # Provides detailed information about interests the user has associated with themselves in various services.
-    interests: Optional[List[PersonInterest]] = None
+    interests: Optional[list[PersonInterest]] = None
     # Represents detailed information about languages that a user has added to their profile.
-    languages: Optional[List[LanguageProficiency]] = None
+    languages: Optional[list[LanguageProficiency]] = None
     # Represents the names a user has added to their profile.
-    names: Optional[List[PersonName]] = None
+    names: Optional[list[PersonName]] = None
     # Represents notes that a user has added to their profile.
-    notes: Optional[List[PersonAnnotation]] = None
+    notes: Optional[list[PersonAnnotation]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents patents that a user has added to their profile.
-    patents: Optional[List[ItemPatent]] = None
+    patents: Optional[list[ItemPatent]] = None
     # Represents detailed information about phone numbers associated with a user in various services.
-    phones: Optional[List[ItemPhone]] = None
+    phones: Optional[list[ItemPhone]] = None
     # Represents detailed information about work positions associated with a user's profile.
-    positions: Optional[List[WorkPosition]] = None
+    positions: Optional[list[WorkPosition]] = None
     # Represents detailed information about projects associated with a user.
-    projects: Optional[List[ProjectParticipation]] = None
+    projects: Optional[list[ProjectParticipation]] = None
     # Represents details of any publications a user has added to their profile.
-    publications: Optional[List[ItemPublication]] = None
+    publications: Optional[list[ItemPublication]] = None
     # Represents detailed information about skills associated with a user in various services.
-    skills: Optional[List[SkillProficiency]] = None
+    skills: Optional[list[SkillProficiency]] = None
     # Represents web accounts the user has indicated they use or has added to their user profile.
-    web_accounts: Optional[List[WebAccount]] = None
+    web_accounts: Optional[list[WebAccount]] = None
     # Represents detailed information about websites associated with a user in various services.
-    websites: Optional[List[PersonWebsite]] = None
+    websites: Optional[list[PersonWebsite]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Profile:
@@ -81,10 +82,10 @@ class Profile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Profile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .educational_activity import EducationalActivity
         from .entity import Entity
@@ -128,7 +129,7 @@ class Profile(Entity, Parsable):
         from .web_account import WebAccount
         from .work_position import WorkPosition
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "account": lambda n : setattr(self, 'account', n.get_collection_of_object_values(UserAccountInformation)),
             "addresses": lambda n : setattr(self, 'addresses', n.get_collection_of_object_values(ItemAddress)),
             "anniversaries": lambda n : setattr(self, 'anniversaries', n.get_collection_of_object_values(PersonAnnualEvent)),
@@ -162,27 +163,6 @@ class Profile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .educational_activity import EducationalActivity
-        from .entity import Entity
-        from .item_address import ItemAddress
-        from .item_email import ItemEmail
-        from .item_patent import ItemPatent
-        from .item_phone import ItemPhone
-        from .item_publication import ItemPublication
-        from .language_proficiency import LanguageProficiency
-        from .person_annotation import PersonAnnotation
-        from .person_annual_event import PersonAnnualEvent
-        from .person_award import PersonAward
-        from .person_certification import PersonCertification
-        from .person_interest import PersonInterest
-        from .person_name import PersonName
-        from .person_website import PersonWebsite
-        from .project_participation import ProjectParticipation
-        from .skill_proficiency import SkillProficiency
-        from .user_account_information import UserAccountInformation
-        from .web_account import WebAccount
-        from .work_position import WorkPosition
-
         writer.write_collection_of_object_values("account", self.account)
         writer.write_collection_of_object_values("addresses", self.addresses)
         writer.write_collection_of_object_values("anniversaries", self.anniversaries)

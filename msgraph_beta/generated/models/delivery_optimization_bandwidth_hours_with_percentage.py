@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
@@ -32,10 +33,10 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(DeliveryOptimizationBandw
             raise TypeError("parse_node cannot be null.")
         return DeliveryOptimizationBandwidthHoursWithPercentage()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
         from .delivery_optimization_bandwidth_business_hours_limit import DeliveryOptimizationBandwidthBusinessHoursLimit
@@ -43,7 +44,7 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(DeliveryOptimizationBandw
         from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
         from .delivery_optimization_bandwidth_business_hours_limit import DeliveryOptimizationBandwidthBusinessHoursLimit
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "bandwidthBackgroundPercentageHours": lambda n : setattr(self, 'bandwidth_background_percentage_hours', n.get_object_value(DeliveryOptimizationBandwidthBusinessHoursLimit)),
             "bandwidthForegroundPercentageHours": lambda n : setattr(self, 'bandwidth_foreground_percentage_hours', n.get_object_value(DeliveryOptimizationBandwidthBusinessHoursLimit)),
         }
@@ -60,9 +61,6 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(DeliveryOptimizationBandw
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
-        from .delivery_optimization_bandwidth_business_hours_limit import DeliveryOptimizationBandwidthBusinessHoursLimit
-
         writer.write_object_value("bandwidthBackgroundPercentageHours", self.bandwidth_background_percentage_hours)
         writer.write_object_value("bandwidthForegroundPercentageHours", self.bandwidth_foreground_percentage_hours)
     

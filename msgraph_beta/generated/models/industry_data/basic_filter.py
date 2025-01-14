@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .filter import Filter
@@ -16,7 +17,7 @@ class BasicFilter(Filter, Parsable):
     # The attribute property
     attribute: Optional[FilterOptions] = None
     # The condition to filter with.
-    in_: Optional[List[str]] = None
+    in_: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> BasicFilter:
@@ -29,10 +30,10 @@ class BasicFilter(Filter, Parsable):
             raise TypeError("parse_node cannot be null.")
         return BasicFilter()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .filter import Filter
         from .filter_options import FilterOptions
@@ -40,7 +41,7 @@ class BasicFilter(Filter, Parsable):
         from .filter import Filter
         from .filter_options import FilterOptions
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "attribute": lambda n : setattr(self, 'attribute', n.get_enum_value(FilterOptions)),
             "in": lambda n : setattr(self, 'in_', n.get_collection_of_primitive_values(str)),
         }
@@ -57,9 +58,6 @@ class BasicFilter(Filter, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .filter import Filter
-        from .filter_options import FilterOptions
-
         writer.write_enum_value("attribute", self.attribute)
         writer.write_collection_of_primitive_values("in", self.in_)
     

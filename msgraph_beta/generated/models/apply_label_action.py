@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -18,11 +19,11 @@ class ApplyLabelAction(InformationProtectionAction, Parsable):
     # The actionSource property
     action_source: Optional[ActionSource] = None
     # The collection of specific actions that should be taken by the consuming application to label the document. See  informationProtectionAction for the full list.
-    actions: Optional[List[InformationProtectionAction]] = None
+    actions: Optional[list[InformationProtectionAction]] = None
     # Object that describes the details of the label to apply.
     label: Optional[LabelDetails] = None
     # If the label was the result of an automatic classification, supply the list of sensitive info type GUIDs that resulted in the returned label.
-    responsible_sensitive_type_ids: Optional[List[UUID]] = None
+    responsible_sensitive_type_ids: Optional[list[UUID]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ApplyLabelAction:
@@ -35,10 +36,10 @@ class ApplyLabelAction(InformationProtectionAction, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ApplyLabelAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .action_source import ActionSource
         from .information_protection_action import InformationProtectionAction
@@ -48,7 +49,7 @@ class ApplyLabelAction(InformationProtectionAction, Parsable):
         from .information_protection_action import InformationProtectionAction
         from .label_details import LabelDetails
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionSource": lambda n : setattr(self, 'action_source', n.get_enum_value(ActionSource)),
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(InformationProtectionAction)),
             "label": lambda n : setattr(self, 'label', n.get_object_value(LabelDetails)),
@@ -67,10 +68,6 @@ class ApplyLabelAction(InformationProtectionAction, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .action_source import ActionSource
-        from .information_protection_action import InformationProtectionAction
-        from .label_details import LabelDetails
-
         writer.write_enum_value("actionSource", self.action_source)
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_object_value("label", self.label)

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .app_list_item import AppListItem
@@ -16,11 +17,11 @@ class IosSingleSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # List of app identifiers that are allowed to use this login. If this field is omitted, the login applies to all applications on the device. This collection can contain a maximum of 500 elements.
-    allowed_apps_list: Optional[List[AppListItem]] = None
+    allowed_apps_list: Optional[list[AppListItem]] = None
     # List of HTTP URLs that must be matched in order to use this login. With iOS 9.0 or later, a wildcard characters may be used.
-    allowed_urls: Optional[List[str]] = None
+    allowed_urls: Optional[list[str]] = None
     # The display name of login settings shown on the receiving device.
     display_name: Optional[str] = None
     # A Kerberos principal name. If not provided, the user is prompted for one during profile installation.
@@ -41,16 +42,16 @@ class IosSingleSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IosSingleSignOnSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .app_list_item import AppListItem
 
         from .app_list_item import AppListItem
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedAppsList": lambda n : setattr(self, 'allowed_apps_list', n.get_collection_of_object_values(AppListItem)),
             "allowedUrls": lambda n : setattr(self, 'allowed_urls', n.get_collection_of_primitive_values(str)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -68,8 +69,6 @@ class IosSingleSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .app_list_item import AppListItem
-
         writer.write_collection_of_object_values("allowedAppsList", self.allowed_apps_list)
         writer.write_collection_of_primitive_values("allowedUrls", self.allowed_urls)
         writer.write_str_value("displayName", self.display_name)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_vpp_token_troubleshooting_event import AppleVppTokenTroubleshootingEvent
@@ -20,7 +21,7 @@ class DeviceManagementTroubleshootingEvent(Entity, Parsable):
     Event representing an general failure.
     """
     # A set of string key and string value pairs which provides additional information on the Troubleshooting event
-    additional_information: Optional[List[KeyValuePair]] = None
+    additional_information: Optional[list[KeyValuePair]] = None
     # Id used for tracing the failure in the service.
     correlation_id: Optional[str] = None
     # Time when the event occurred .
@@ -60,10 +61,10 @@ class DeviceManagementTroubleshootingEvent(Entity, Parsable):
             return MobileAppTroubleshootingEvent()
         return DeviceManagementTroubleshootingEvent()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .apple_vpp_token_troubleshooting_event import AppleVppTokenTroubleshootingEvent
         from .device_management_troubleshooting_error_details import DeviceManagementTroubleshootingErrorDetails
@@ -79,7 +80,7 @@ class DeviceManagementTroubleshootingEvent(Entity, Parsable):
         from .key_value_pair import KeyValuePair
         from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_collection_of_object_values(KeyValuePair)),
             "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
             "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
@@ -99,13 +100,6 @@ class DeviceManagementTroubleshootingEvent(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .apple_vpp_token_troubleshooting_event import AppleVppTokenTroubleshootingEvent
-        from .device_management_troubleshooting_error_details import DeviceManagementTroubleshootingErrorDetails
-        from .enrollment_troubleshooting_event import EnrollmentTroubleshootingEvent
-        from .entity import Entity
-        from .key_value_pair import KeyValuePair
-        from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
-
         writer.write_collection_of_object_values("additionalInformation", self.additional_information)
         writer.write_str_value("correlationId", self.correlation_id)
         writer.write_datetime_value("eventDateTime", self.event_date_time)

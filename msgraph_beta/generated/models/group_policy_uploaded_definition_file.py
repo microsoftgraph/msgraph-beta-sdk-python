@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .group_policy_definition_file import GroupPolicyDefinitionFile
@@ -24,9 +25,9 @@ class GroupPolicyUploadedDefinitionFile(GroupPolicyDefinitionFile, Parsable):
     # The default language of the uploaded ADMX file.
     default_language_code: Optional[str] = None
     # The list of operations on the uploaded ADMX file.
-    group_policy_operations: Optional[List[GroupPolicyOperation]] = None
+    group_policy_operations: Optional[list[GroupPolicyOperation]] = None
     # The list of ADML files associated with the uploaded ADMX file.
-    group_policy_uploaded_language_files: Optional[List[GroupPolicyUploadedLanguageFile]] = None
+    group_policy_uploaded_language_files: Optional[list[GroupPolicyUploadedLanguageFile]] = None
     # Type of Group Policy uploaded definition file status.
     status: Optional[GroupPolicyUploadedDefinitionFileStatus] = None
     # The uploaded time of the uploaded ADMX file.
@@ -43,10 +44,10 @@ class GroupPolicyUploadedDefinitionFile(GroupPolicyDefinitionFile, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GroupPolicyUploadedDefinitionFile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .group_policy_definition_file import GroupPolicyDefinitionFile
         from .group_policy_operation import GroupPolicyOperation
@@ -58,7 +59,7 @@ class GroupPolicyUploadedDefinitionFile(GroupPolicyDefinitionFile, Parsable):
         from .group_policy_uploaded_definition_file_status import GroupPolicyUploadedDefinitionFileStatus
         from .group_policy_uploaded_language_file import GroupPolicyUploadedLanguageFile
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
             "defaultLanguageCode": lambda n : setattr(self, 'default_language_code', n.get_str_value()),
             "groupPolicyOperations": lambda n : setattr(self, 'group_policy_operations', n.get_collection_of_object_values(GroupPolicyOperation)),
@@ -79,11 +80,6 @@ class GroupPolicyUploadedDefinitionFile(GroupPolicyDefinitionFile, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .group_policy_definition_file import GroupPolicyDefinitionFile
-        from .group_policy_operation import GroupPolicyOperation
-        from .group_policy_uploaded_definition_file_status import GroupPolicyUploadedDefinitionFileStatus
-        from .group_policy_uploaded_language_file import GroupPolicyUploadedLanguageFile
-
         writer.write_bytes_value("content", self.content)
         writer.write_str_value("defaultLanguageCode", self.default_language_code)
         writer.write_collection_of_object_values("groupPolicyOperations", self.group_policy_operations)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .policy_set_item import PolicySetItem
@@ -31,16 +32,16 @@ class EnrollmentRestrictionsConfigurationPolicySetItem(PolicySetItem, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EnrollmentRestrictionsConfigurationPolicySetItem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .policy_set_item import PolicySetItem
 
         from .policy_set_item import PolicySetItem
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "limit": lambda n : setattr(self, 'limit', n.get_int_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
         }
@@ -57,8 +58,6 @@ class EnrollmentRestrictionsConfigurationPolicySetItem(PolicySetItem, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .policy_set_item import PolicySetItem
-
         writer.write_int_value("limit", self.limit)
         writer.write_int_value("priority", self.priority)
     

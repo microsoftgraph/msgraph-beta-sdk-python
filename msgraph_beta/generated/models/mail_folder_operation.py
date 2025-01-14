@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -39,10 +40,10 @@ class MailFolderOperation(Entity, Parsable):
             return UpdateAllMessagesReadStateOperation()
         return MailFolderOperation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .mail_folder_operation_status import MailFolderOperationStatus
@@ -52,7 +53,7 @@ class MailFolderOperation(Entity, Parsable):
         from .mail_folder_operation_status import MailFolderOperationStatus
         from .update_all_messages_read_state_operation import UpdateAllMessagesReadStateOperation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "resourceLocation": lambda n : setattr(self, 'resource_location', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(MailFolderOperationStatus)),
         }
@@ -69,10 +70,6 @@ class MailFolderOperation(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .mail_folder_operation_status import MailFolderOperationStatus
-        from .update_all_messages_read_state_operation import UpdateAllMessagesReadStateOperation
-
         writer.write_str_value("resourceLocation", self.resource_location)
         writer.write_enum_value("status", self.status)
     

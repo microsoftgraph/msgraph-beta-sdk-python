@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -57,10 +58,10 @@ class UserExperienceAnalyticsAnomaly(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsAnomaly()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .user_experience_analytics_anomaly_severity import UserExperienceAnalyticsAnomalySeverity
@@ -72,7 +73,7 @@ class UserExperienceAnalyticsAnomaly(Entity, Parsable):
         from .user_experience_analytics_anomaly_state import UserExperienceAnalyticsAnomalyState
         from .user_experience_analytics_anomaly_type import UserExperienceAnalyticsAnomalyType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "anomalyFirstOccurrenceDateTime": lambda n : setattr(self, 'anomaly_first_occurrence_date_time', n.get_datetime_value()),
             "anomalyId": lambda n : setattr(self, 'anomaly_id', n.get_str_value()),
             "anomalyLatestOccurrenceDateTime": lambda n : setattr(self, 'anomaly_latest_occurrence_date_time', n.get_datetime_value()),
@@ -100,11 +101,6 @@ class UserExperienceAnalyticsAnomaly(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .user_experience_analytics_anomaly_severity import UserExperienceAnalyticsAnomalySeverity
-        from .user_experience_analytics_anomaly_state import UserExperienceAnalyticsAnomalyState
-        from .user_experience_analytics_anomaly_type import UserExperienceAnalyticsAnomalyType
-
         writer.write_datetime_value("anomalyFirstOccurrenceDateTime", self.anomaly_first_occurrence_date_time)
         writer.write_str_value("anomalyId", self.anomaly_id)
         writer.write_datetime_value("anomalyLatestOccurrenceDateTime", self.anomaly_latest_occurrence_date_time)

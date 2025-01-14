@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_managed_store_app_configuration_schema_item import AndroidManagedStoreAppConfigurationSchemaItem
@@ -17,11 +18,11 @@ class AndroidManagedStoreAppConfigurationSchema(Entity, Parsable):
     # UTF8 encoded byte array containing example JSON string conforming to this schema that demonstrates how to set the configuration for this app
     example_json: Optional[bytes] = None
     # Collection of items each representing a named configuration option in the schema. It contains a flat list of all configuration.
-    nested_schema_items: Optional[List[AndroidManagedStoreAppConfigurationSchemaItem]] = None
+    nested_schema_items: Optional[list[AndroidManagedStoreAppConfigurationSchemaItem]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Collection of items each representing a named configuration option in the schema. It only contains the root-level configuration.
-    schema_items: Optional[List[AndroidManagedStoreAppConfigurationSchemaItem]] = None
+    schema_items: Optional[list[AndroidManagedStoreAppConfigurationSchemaItem]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AndroidManagedStoreAppConfigurationSchema:
@@ -34,10 +35,10 @@ class AndroidManagedStoreAppConfigurationSchema(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidManagedStoreAppConfigurationSchema()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_managed_store_app_configuration_schema_item import AndroidManagedStoreAppConfigurationSchemaItem
         from .entity import Entity
@@ -45,7 +46,7 @@ class AndroidManagedStoreAppConfigurationSchema(Entity, Parsable):
         from .android_managed_store_app_configuration_schema_item import AndroidManagedStoreAppConfigurationSchemaItem
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "exampleJson": lambda n : setattr(self, 'example_json', n.get_bytes_value()),
             "nestedSchemaItems": lambda n : setattr(self, 'nested_schema_items', n.get_collection_of_object_values(AndroidManagedStoreAppConfigurationSchemaItem)),
             "schemaItems": lambda n : setattr(self, 'schema_items', n.get_collection_of_object_values(AndroidManagedStoreAppConfigurationSchemaItem)),
@@ -63,9 +64,6 @@ class AndroidManagedStoreAppConfigurationSchema(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_managed_store_app_configuration_schema_item import AndroidManagedStoreAppConfigurationSchemaItem
-        from .entity import Entity
-
         writer.write_bytes_value("exampleJson", self.example_json)
         writer.write_collection_of_object_values("nestedSchemaItems", self.nested_schema_items)
         writer.write_collection_of_object_values("schemaItems", self.schema_items)

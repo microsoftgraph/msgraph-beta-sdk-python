@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aggregation_type import AggregationType
@@ -16,7 +17,7 @@ class RuleCondition(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The built-in aggregation method for the rule condition. The possible values are: count, percentage, affectedCloudPcCount, affectedCloudPcPercentage, unknownFutureValue.
     aggregation: Optional[AggregationType] = None
     # The property that the rule condition monitors. Possible values are:  provisionFailures, imageUploadFailures, azureNetworkConnectionCheckFailures, cloudPcInGracePeriod, frontlineInsufficientLicenses, cloudPcConnectionErrors, cloudPcHostHealthCheckFailures, cloudPcZoneOutage, unknownFutureValue.
@@ -41,10 +42,10 @@ class RuleCondition(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RuleCondition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aggregation_type import AggregationType
         from .condition_category import ConditionCategory
@@ -56,7 +57,7 @@ class RuleCondition(AdditionalDataHolder, BackedModel, Parsable):
         from .operator_type import OperatorType
         from .relationship_type import RelationshipType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "aggregation": lambda n : setattr(self, 'aggregation', n.get_enum_value(AggregationType)),
             "conditionCategory": lambda n : setattr(self, 'condition_category', n.get_enum_value(ConditionCategory)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -74,11 +75,6 @@ class RuleCondition(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .aggregation_type import AggregationType
-        from .condition_category import ConditionCategory
-        from .operator_type import OperatorType
-        from .relationship_type import RelationshipType
-
         writer.write_enum_value("aggregation", self.aggregation)
         writer.write_enum_value("conditionCategory", self.condition_category)
         writer.write_str_value("@odata.type", self.odata_type)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_review_policy import AccessReviewPolicy
@@ -41,25 +42,25 @@ class PolicyRoot(Entity, Parsable):
     # The policy that contains directory-level access review settings.
     access_review_policy: Optional[AccessReviewPolicy] = None
     # The policy that controls the idle time-out for web sessions for applications.
-    activity_based_timeout_policies: Optional[List[ActivityBasedTimeoutPolicy]] = None
+    activity_based_timeout_policies: Optional[list[ActivityBasedTimeoutPolicy]] = None
     # The policy by which consent requests are created and managed for the entire tenant.
     admin_consent_request_policy: Optional[AdminConsentRequestPolicy] = None
     # The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
-    app_management_policies: Optional[List[AppManagementPolicy]] = None
+    app_management_policies: Optional[list[AppManagementPolicy]] = None
     # The policy configuration of the self-service sign-up experience of guests.
     authentication_flows_policy: Optional[AuthenticationFlowsPolicy] = None
     # The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Microsoft Entra ID.
     authentication_methods_policy: Optional[AuthenticationMethodsPolicy] = None
     # The authentication method combinations that are to be used in scenarios defined by Microsoft Entra Conditional Access.
-    authentication_strength_policies: Optional[List[AuthenticationStrengthPolicy]] = None
+    authentication_strength_policies: Optional[list[AuthenticationStrengthPolicy]] = None
     # The policy that controls Microsoft Entra authorization settings.
-    authorization_policy: Optional[List[AuthorizationPolicy]] = None
+    authorization_policy: Optional[list[AuthorizationPolicy]] = None
     # The Azure AD B2C policies that define how end users register via local accounts.
     b2c_authentication_methods_policy: Optional[B2cAuthenticationMethodsPolicy] = None
     # The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
-    claims_mapping_policies: Optional[List[ClaimsMappingPolicy]] = None
+    claims_mapping_policies: Optional[list[ClaimsMappingPolicy]] = None
     # The custom rules that define an access scenario.
-    conditional_access_policies: Optional[List[ConditionalAccessPolicy]] = None
+    conditional_access_policies: Optional[list[ConditionalAccessPolicy]] = None
     # The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.
     cross_tenant_access_policy: Optional[CrossTenantAccessPolicy] = None
     # The tenant-wide policy that enforces app management restrictions for all applications and service principals.
@@ -71,33 +72,33 @@ class PolicyRoot(Entity, Parsable):
     # Represents the tenant-wide policy that controls whether guests can leave a Microsoft Entra tenant via self-service controls.
     external_identities_policy: Optional[ExternalIdentitiesPolicy] = None
     # The feature rollout policy associated with a directory object.
-    feature_rollout_policies: Optional[List[FeatureRolloutPolicy]] = None
+    feature_rollout_policies: Optional[list[FeatureRolloutPolicy]] = None
     # Represents a policy to control enabling or disabling validation of federation authentication tokens.
     federated_token_validation_policy: Optional[FederatedTokenValidationPolicy] = None
     # The policy to control Microsoft Entra authentication behavior for federated users.
-    home_realm_discovery_policies: Optional[List[HomeRealmDiscoveryPolicy]] = None
+    home_realm_discovery_policies: Optional[list[HomeRealmDiscoveryPolicy]] = None
     # The policy that represents the security defaults that protect against common attacks.
     identity_security_defaults_enforcement_policy: Optional[IdentitySecurityDefaultsEnforcementPolicy] = None
     # The policy that defines autoenrollment configuration for a mobility management (MDM or MAM) application.
-    mobile_app_management_policies: Optional[List[MobilityManagementPolicy]] = None
+    mobile_app_management_policies: Optional[list[MobilityManagementPolicy]] = None
     # The mobileDeviceManagementPolicies property
-    mobile_device_management_policies: Optional[List[MobilityManagementPolicy]] = None
+    mobile_device_management_policies: Optional[list[MobilityManagementPolicy]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The policy that specifies the conditions under which consent can be granted.
-    permission_grant_policies: Optional[List[PermissionGrantPolicy]] = None
+    permission_grant_policies: Optional[list[PermissionGrantPolicy]] = None
     # Policies that specify the conditions under which consent can be granted to a specific application.
-    permission_grant_pre_approval_policies: Optional[List[PermissionGrantPreApprovalPolicy]] = None
+    permission_grant_pre_approval_policies: Optional[list[PermissionGrantPreApprovalPolicy]] = None
     # Represents the role management policies.
-    role_management_policies: Optional[List[UnifiedRoleManagementPolicy]] = None
+    role_management_policies: Optional[list[UnifiedRoleManagementPolicy]] = None
     # Represents the role management policy assignments.
-    role_management_policy_assignments: Optional[List[UnifiedRoleManagementPolicyAssignment]] = None
+    role_management_policy_assignments: Optional[list[UnifiedRoleManagementPolicyAssignment]] = None
     # The servicePrincipalCreationPolicies property
-    service_principal_creation_policies: Optional[List[ServicePrincipalCreationPolicy]] = None
+    service_principal_creation_policies: Optional[list[ServicePrincipalCreationPolicy]] = None
     # The policy that specifies the characteristics of SAML tokens issued by Microsoft Entra ID.
-    token_issuance_policies: Optional[List[TokenIssuancePolicy]] = None
+    token_issuance_policies: Optional[list[TokenIssuancePolicy]] = None
     # The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Microsoft Entra ID.
-    token_lifetime_policies: Optional[List[TokenLifetimePolicy]] = None
+    token_lifetime_policies: Optional[list[TokenLifetimePolicy]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PolicyRoot:
@@ -110,10 +111,10 @@ class PolicyRoot(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PolicyRoot()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_review_policy import AccessReviewPolicy
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
@@ -175,7 +176,7 @@ class PolicyRoot(Entity, Parsable):
         from .unified_role_management_policy import UnifiedRoleManagementPolicy
         from .unified_role_management_policy_assignment import UnifiedRoleManagementPolicyAssignment
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessReviewPolicy": lambda n : setattr(self, 'access_review_policy', n.get_object_value(AccessReviewPolicy)),
             "activityBasedTimeoutPolicies": lambda n : setattr(self, 'activity_based_timeout_policies', n.get_collection_of_object_values(ActivityBasedTimeoutPolicy)),
             "adminConsentRequestPolicy": lambda n : setattr(self, 'admin_consent_request_policy', n.get_object_value(AdminConsentRequestPolicy)),
@@ -219,36 +220,6 @@ class PolicyRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .access_review_policy import AccessReviewPolicy
-        from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
-        from .admin_consent_request_policy import AdminConsentRequestPolicy
-        from .app_management_policy import AppManagementPolicy
-        from .authentication_flows_policy import AuthenticationFlowsPolicy
-        from .authentication_methods_policy import AuthenticationMethodsPolicy
-        from .authentication_strength_policy import AuthenticationStrengthPolicy
-        from .authorization_policy import AuthorizationPolicy
-        from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
-        from .claims_mapping_policy import ClaimsMappingPolicy
-        from .conditional_access_policy import ConditionalAccessPolicy
-        from .cross_tenant_access_policy import CrossTenantAccessPolicy
-        from .device_registration_policy import DeviceRegistrationPolicy
-        from .directory_role_access_review_policy import DirectoryRoleAccessReviewPolicy
-        from .entity import Entity
-        from .external_identities_policy import ExternalIdentitiesPolicy
-        from .feature_rollout_policy import FeatureRolloutPolicy
-        from .federated_token_validation_policy import FederatedTokenValidationPolicy
-        from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
-        from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
-        from .mobility_management_policy import MobilityManagementPolicy
-        from .permission_grant_policy import PermissionGrantPolicy
-        from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
-        from .service_principal_creation_policy import ServicePrincipalCreationPolicy
-        from .tenant_app_management_policy import TenantAppManagementPolicy
-        from .token_issuance_policy import TokenIssuancePolicy
-        from .token_lifetime_policy import TokenLifetimePolicy
-        from .unified_role_management_policy import UnifiedRoleManagementPolicy
-        from .unified_role_management_policy_assignment import UnifiedRoleManagementPolicyAssignment
-
         writer.write_object_value("accessReviewPolicy", self.access_review_policy)
         writer.write_collection_of_object_values("activityBasedTimeoutPolicies", self.activity_based_timeout_policies)
         writer.write_object_value("adminConsentRequestPolicy", self.admin_consent_request_policy)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -42,10 +43,10 @@ class MicrosoftTunnelServer(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MicrosoftTunnelServer()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .microsoft_tunnel_deployment_mode import MicrosoftTunnelDeploymentMode
@@ -55,7 +56,7 @@ class MicrosoftTunnelServer(Entity, Parsable):
         from .microsoft_tunnel_deployment_mode import MicrosoftTunnelDeploymentMode
         from .microsoft_tunnel_server_health_status import MicrosoftTunnelServerHealthStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "agentImageDigest": lambda n : setattr(self, 'agent_image_digest', n.get_str_value()),
             "deploymentMode": lambda n : setattr(self, 'deployment_mode', n.get_enum_value(MicrosoftTunnelDeploymentMode)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -76,10 +77,6 @@ class MicrosoftTunnelServer(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .microsoft_tunnel_deployment_mode import MicrosoftTunnelDeploymentMode
-        from .microsoft_tunnel_server_health_status import MicrosoftTunnelServerHealthStatus
-
         writer.write_str_value("agentImageDigest", self.agent_image_digest)
         writer.write_enum_value("deploymentMode", self.deployment_mode)
         writer.write_str_value("displayName", self.display_name)

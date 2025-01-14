@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -16,7 +17,7 @@ from .entity import Entity
 @dataclass
 class FileSecurityProfile(Entity, Parsable):
     # The activityGroupNames property
-    activity_group_names: Optional[List[str]] = None
+    activity_group_names: Optional[list[str]] = None
     # The azureSubscriptionId property
     azure_subscription_id: Optional[str] = None
     # The azureTenantId property
@@ -24,19 +25,19 @@ class FileSecurityProfile(Entity, Parsable):
     # The certificateThumbprint property
     certificate_thumbprint: Optional[str] = None
     # The extensions property
-    extensions: Optional[List[str]] = None
+    extensions: Optional[list[str]] = None
     # The fileType property
     file_type: Optional[str] = None
     # The firstSeenDateTime property
     first_seen_date_time: Optional[datetime.datetime] = None
     # The hashes property
-    hashes: Optional[List[FileHash]] = None
+    hashes: Optional[list[FileHash]] = None
     # The lastSeenDateTime property
     last_seen_date_time: Optional[datetime.datetime] = None
     # The malwareStates property
-    malware_states: Optional[List[MalwareState]] = None
+    malware_states: Optional[list[MalwareState]] = None
     # The names property
-    names: Optional[List[str]] = None
+    names: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The riskScore property
@@ -44,11 +45,11 @@ class FileSecurityProfile(Entity, Parsable):
     # The size property
     size: Optional[int] = None
     # The tags property
-    tags: Optional[List[str]] = None
+    tags: Optional[list[str]] = None
     # The vendorInformation property
     vendor_information: Optional[SecurityVendorInformation] = None
     # The vulnerabilityStates property
-    vulnerability_states: Optional[List[VulnerabilityState]] = None
+    vulnerability_states: Optional[list[VulnerabilityState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> FileSecurityProfile:
@@ -61,10 +62,10 @@ class FileSecurityProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return FileSecurityProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .file_hash import FileHash
@@ -78,7 +79,7 @@ class FileSecurityProfile(Entity, Parsable):
         from .security_vendor_information import SecurityVendorInformation
         from .vulnerability_state import VulnerabilityState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
             "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
             "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
@@ -109,12 +110,6 @@ class FileSecurityProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .file_hash import FileHash
-        from .malware_state import MalwareState
-        from .security_vendor_information import SecurityVendorInformation
-        from .vulnerability_state import VulnerabilityState
-
         writer.write_collection_of_primitive_values("activityGroupNames", self.activity_group_names)
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)
         writer.write_str_value("azureTenantId", self.azure_tenant_id)

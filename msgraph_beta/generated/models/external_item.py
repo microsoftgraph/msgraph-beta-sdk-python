@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .acl import Acl
@@ -14,7 +15,7 @@ from .entity import Entity
 @dataclass
 class ExternalItem(Entity, Parsable):
     # The acl property
-    acl: Optional[List[Acl]] = None
+    acl: Optional[list[Acl]] = None
     # The content property
     content: Optional[ExternalItemContent] = None
     # The OdataType property
@@ -33,10 +34,10 @@ class ExternalItem(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ExternalItem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .acl import Acl
         from .entity import Entity
@@ -48,7 +49,7 @@ class ExternalItem(Entity, Parsable):
         from .external_item_content import ExternalItemContent
         from .properties import Properties
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "acl": lambda n : setattr(self, 'acl', n.get_collection_of_object_values(Acl)),
             "content": lambda n : setattr(self, 'content', n.get_object_value(ExternalItemContent)),
             "properties": lambda n : setattr(self, 'properties', n.get_object_value(Properties)),
@@ -66,11 +67,6 @@ class ExternalItem(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .acl import Acl
-        from .entity import Entity
-        from .external_item_content import ExternalItemContent
-        from .properties import Properties
-
         writer.write_collection_of_object_values("acl", self.acl)
         writer.write_object_value("content", self.content)
         writer.write_object_value("properties", self.properties)

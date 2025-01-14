@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -31,9 +32,9 @@ class Windows10XSCEPCertificateProfile(Windows10XCertificateProfile, Parsable):
     # Value for the Certificate Validity Period
     certificate_validity_period_value: Optional[int] = None
     # Extended Key Usage (EKU) settings.
-    extended_key_usages: Optional[List[ExtendedKeyUsage]] = None
+    extended_key_usages: Optional[list[ExtendedKeyUsage]] = None
     # SCEP Hash Algorithm.
-    hash_algorithm: Optional[List[HashAlgorithms]] = None
+    hash_algorithm: Optional[list[HashAlgorithms]] = None
     # Key Size Options.
     key_size: Optional[KeySize] = None
     # Key Storage Provider (KSP) Import Options.
@@ -45,9 +46,9 @@ class Windows10XSCEPCertificateProfile(Windows10XCertificateProfile, Parsable):
     # Trusted Root Certificate ID
     root_certificate_id: Optional[UUID] = None
     # SCEP Server Url(s).
-    scep_server_urls: Optional[List[str]] = None
+    scep_server_urls: Optional[list[str]] = None
     # Custom AAD Attributes.
-    subject_alternative_name_formats: Optional[List[Windows10XCustomSubjectAlternativeName]] = None
+    subject_alternative_name_formats: Optional[list[Windows10XCustomSubjectAlternativeName]] = None
     # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
     subject_name_format_string: Optional[str] = None
     
@@ -62,10 +63,10 @@ class Windows10XSCEPCertificateProfile(Windows10XCertificateProfile, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Windows10XSCEPCertificateProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .certificate_store import CertificateStore
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
@@ -87,7 +88,7 @@ class Windows10XSCEPCertificateProfile(Windows10XCertificateProfile, Parsable):
         from .windows10_x_certificate_profile import Windows10XCertificateProfile
         from .windows10_x_custom_subject_alternative_name import Windows10XCustomSubjectAlternativeName
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
@@ -115,16 +116,6 @@ class Windows10XSCEPCertificateProfile(Windows10XCertificateProfile, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .certificate_store import CertificateStore
-        from .certificate_validity_period_scale import CertificateValidityPeriodScale
-        from .extended_key_usage import ExtendedKeyUsage
-        from .hash_algorithms import HashAlgorithms
-        from .key_size import KeySize
-        from .key_storage_provider_option import KeyStorageProviderOption
-        from .key_usages import KeyUsages
-        from .windows10_x_certificate_profile import Windows10XCertificateProfile
-        from .windows10_x_custom_subject_alternative_name import Windows10XCustomSubjectAlternativeName
-
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_enum_value("certificateValidityPeriodScale", self.certificate_validity_period_scale)
         writer.write_int_value("certificateValidityPeriodValue", self.certificate_validity_period_value)

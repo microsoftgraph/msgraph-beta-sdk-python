@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -14,7 +15,7 @@ from ..entity import Entity
 @dataclass
 class ManagedTenantAlertRuleDefinition(Entity, Parsable):
     # The alertRules property
-    alert_rules: Optional[List[ManagedTenantAlertRule]] = None
+    alert_rules: Optional[list[ManagedTenantAlertRule]] = None
     # The createdByUserId property
     created_by_user_id: Optional[str] = None
     # The createdDateTime property
@@ -41,10 +42,10 @@ class ManagedTenantAlertRuleDefinition(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagedTenantAlertRuleDefinition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .alert_rule_definition_template import AlertRuleDefinitionTemplate
@@ -54,7 +55,7 @@ class ManagedTenantAlertRuleDefinition(Entity, Parsable):
         from .alert_rule_definition_template import AlertRuleDefinitionTemplate
         from .managed_tenant_alert_rule import ManagedTenantAlertRule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alertRules": lambda n : setattr(self, 'alert_rules', n.get_collection_of_object_values(ManagedTenantAlertRule)),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -76,10 +77,6 @@ class ManagedTenantAlertRuleDefinition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .alert_rule_definition_template import AlertRuleDefinitionTemplate
-        from .managed_tenant_alert_rule import ManagedTenantAlertRule
-
         writer.write_collection_of_object_values("alertRules", self.alert_rules)
         writer.write_str_value("createdByUserId", self.created_by_user_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

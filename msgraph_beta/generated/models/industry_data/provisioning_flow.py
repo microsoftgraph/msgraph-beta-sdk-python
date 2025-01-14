@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -57,10 +58,10 @@ class ProvisioningFlow(Entity, Parsable):
             return UserProvisioningFlow()
         return ProvisioningFlow()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .administrative_unit_provisioning_flow import AdministrativeUnitProvisioningFlow
@@ -76,7 +77,7 @@ class ProvisioningFlow(Entity, Parsable):
         from .security_group_provisioning_flow import SecurityGroupProvisioningFlow
         from .user_provisioning_flow import UserProvisioningFlow
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "readinessStatus": lambda n : setattr(self, 'readiness_status', n.get_enum_value(ReadinessStatus)),
@@ -94,12 +95,5 @@ class ProvisioningFlow(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .administrative_unit_provisioning_flow import AdministrativeUnitProvisioningFlow
-        from .class_group_provisioning_flow import ClassGroupProvisioningFlow
-        from .readiness_status import ReadinessStatus
-        from .security_group_provisioning_flow import SecurityGroupProvisioningFlow
-        from .user_provisioning_flow import UserProvisioningFlow
-
     
 

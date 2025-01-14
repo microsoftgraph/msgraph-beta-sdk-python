@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ...entity import Entity
@@ -15,7 +16,7 @@ class PartnerSecurity(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The security alerts or a vulnerability of a Cloud Solution Provider (CSP) partner's customer that the partner must be made aware of for further action.
-    security_alerts: Optional[List[PartnerSecurityAlert]] = None
+    security_alerts: Optional[list[PartnerSecurityAlert]] = None
     # The security score calculated for the CSP partner and their customers.
     security_score: Optional[PartnerSecurityScore] = None
     
@@ -30,10 +31,10 @@ class PartnerSecurity(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PartnerSecurity()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ...entity import Entity
         from .partner_security_alert import PartnerSecurityAlert
@@ -43,7 +44,7 @@ class PartnerSecurity(Entity, Parsable):
         from .partner_security_alert import PartnerSecurityAlert
         from .partner_security_score import PartnerSecurityScore
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "securityAlerts": lambda n : setattr(self, 'security_alerts', n.get_collection_of_object_values(PartnerSecurityAlert)),
             "securityScore": lambda n : setattr(self, 'security_score', n.get_object_value(PartnerSecurityScore)),
         }
@@ -60,10 +61,6 @@ class PartnerSecurity(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ...entity import Entity
-        from .partner_security_alert import PartnerSecurityAlert
-        from .partner_security_score import PartnerSecurityScore
-
         writer.write_collection_of_object_values("securityAlerts", self.security_alerts)
         writer.write_object_value("securityScore", self.security_score)
     

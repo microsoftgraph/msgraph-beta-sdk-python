@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -32,16 +33,16 @@ class InformationProtectionPolicySetting(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return InformationProtectionPolicySetting()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
 
         from ..entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "defaultLabelId": lambda n : setattr(self, 'default_label_id', n.get_str_value()),
             "isDowngradeJustificationRequired": lambda n : setattr(self, 'is_downgrade_justification_required', n.get_bool_value()),
             "isMandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
@@ -60,8 +61,6 @@ class InformationProtectionPolicySetting(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-
         writer.write_str_value("defaultLabelId", self.default_label_id)
         writer.write_bool_value("isDowngradeJustificationRequired", self.is_downgrade_justification_required)
         writer.write_bool_value("isMandatory", self.is_mandatory)

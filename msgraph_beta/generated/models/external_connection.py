@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .configuration import Configuration
@@ -21,15 +22,15 @@ class ExternalConnection(Entity, Parsable):
     # The description property
     description: Optional[str] = None
     # The groups property
-    groups: Optional[List[ExternalGroup]] = None
+    groups: Optional[list[ExternalGroup]] = None
     # The items property
-    items: Optional[List[ExternalItem]] = None
+    items: Optional[list[ExternalItem]] = None
     # The name property
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The operations property
-    operations: Optional[List[ConnectionOperation]] = None
+    operations: Optional[list[ConnectionOperation]] = None
     # The schema property
     schema: Optional[Schema] = None
     # The state property
@@ -46,10 +47,10 @@ class ExternalConnection(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ExternalConnection()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .configuration import Configuration
         from .connection_operation import ConnectionOperation
@@ -67,7 +68,7 @@ class ExternalConnection(Entity, Parsable):
         from .external_item import ExternalItem
         from .schema import Schema
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(Configuration)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "groups": lambda n : setattr(self, 'groups', n.get_collection_of_object_values(ExternalGroup)),
@@ -90,14 +91,6 @@ class ExternalConnection(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .configuration import Configuration
-        from .connection_operation import ConnectionOperation
-        from .connection_state import ConnectionState
-        from .entity import Entity
-        from .external_group import ExternalGroup
-        from .external_item import ExternalItem
-        from .schema import Schema
-
         writer.write_object_value("configuration", self.configuration)
         writer.write_str_value("description", self.description)
         writer.write_collection_of_object_values("groups", self.groups)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .analytics_activity_type import AnalyticsActivityType
@@ -66,10 +67,10 @@ class ActivityStatistics(Entity, Parsable):
             return MeetingActivityStatistics()
         return ActivityStatistics()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .analytics_activity_type import AnalyticsActivityType
         from .call_activity_statistics import CallActivityStatistics
@@ -87,7 +88,7 @@ class ActivityStatistics(Entity, Parsable):
         from .focus_activity_statistics import FocusActivityStatistics
         from .meeting_activity_statistics import MeetingActivityStatistics
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activity": lambda n : setattr(self, 'activity', n.get_enum_value(AnalyticsActivityType)),
             "duration": lambda n : setattr(self, 'duration', n.get_timedelta_value()),
             "endDate": lambda n : setattr(self, 'end_date', n.get_date_value()),
@@ -107,14 +108,6 @@ class ActivityStatistics(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .analytics_activity_type import AnalyticsActivityType
-        from .call_activity_statistics import CallActivityStatistics
-        from .chat_activity_statistics import ChatActivityStatistics
-        from .email_activity_statistics import EmailActivityStatistics
-        from .entity import Entity
-        from .focus_activity_statistics import FocusActivityStatistics
-        from .meeting_activity_statistics import MeetingActivityStatistics
-
         writer.write_enum_value("activity", self.activity)
         writer.write_timedelta_value("duration", self.duration)
         writer.write_date_value("endDate", self.end_date)

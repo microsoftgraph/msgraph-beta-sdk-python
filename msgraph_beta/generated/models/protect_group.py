@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .group_privacy import GroupPrivacy
@@ -31,10 +32,10 @@ class ProtectGroup(LabelActionBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ProtectGroup()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .group_privacy import GroupPrivacy
         from .label_action_base import LabelActionBase
@@ -42,7 +43,7 @@ class ProtectGroup(LabelActionBase, Parsable):
         from .group_privacy import GroupPrivacy
         from .label_action_base import LabelActionBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowEmailFromGuestUsers": lambda n : setattr(self, 'allow_email_from_guest_users', n.get_bool_value()),
             "allowGuestUsers": lambda n : setattr(self, 'allow_guest_users', n.get_bool_value()),
             "privacy": lambda n : setattr(self, 'privacy', n.get_enum_value(GroupPrivacy)),
@@ -60,9 +61,6 @@ class ProtectGroup(LabelActionBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .group_privacy import GroupPrivacy
-        from .label_action_base import LabelActionBase
-
         writer.write_bool_value("allowEmailFromGuestUsers", self.allow_email_from_guest_users)
         writer.write_bool_value("allowGuestUsers", self.allow_guest_users)
         writer.write_enum_value("privacy", self.privacy)

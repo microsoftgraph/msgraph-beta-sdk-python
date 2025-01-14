@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -39,10 +40,10 @@ class WindowsManagementAppHealthState(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsManagementAppHealthState()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .health_state import HealthState
@@ -50,7 +51,7 @@ class WindowsManagementAppHealthState(Entity, Parsable):
         from .entity import Entity
         from .health_state import HealthState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "deviceOSVersion": lambda n : setattr(self, 'device_o_s_version', n.get_str_value()),
             "healthState": lambda n : setattr(self, 'health_state', n.get_enum_value(HealthState)),
@@ -70,9 +71,6 @@ class WindowsManagementAppHealthState(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .health_state import HealthState
-
         writer.write_str_value("deviceName", self.device_name)
         writer.write_str_value("deviceOSVersion", self.device_o_s_version)
         writer.write_enum_value("healthState", self.health_state)

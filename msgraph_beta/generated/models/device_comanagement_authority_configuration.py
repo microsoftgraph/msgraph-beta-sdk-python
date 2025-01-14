@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_enrollment_configuration import DeviceEnrollmentConfiguration
@@ -33,16 +34,16 @@ class DeviceComanagementAuthorityConfiguration(DeviceEnrollmentConfiguration, Pa
             raise TypeError("parse_node cannot be null.")
         return DeviceComanagementAuthorityConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_enrollment_configuration import DeviceEnrollmentConfiguration
 
         from .device_enrollment_configuration import DeviceEnrollmentConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "configurationManagerAgentCommandLineArgument": lambda n : setattr(self, 'configuration_manager_agent_command_line_argument', n.get_str_value()),
             "installConfigurationManagerAgent": lambda n : setattr(self, 'install_configuration_manager_agent', n.get_bool_value()),
             "managedDeviceAuthority": lambda n : setattr(self, 'managed_device_authority', n.get_int_value()),
@@ -60,8 +61,6 @@ class DeviceComanagementAuthorityConfiguration(DeviceEnrollmentConfiguration, Pa
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_enrollment_configuration import DeviceEnrollmentConfiguration
-
         writer.write_str_value("configurationManagerAgentCommandLineArgument", self.configuration_manager_agent_command_line_argument)
         writer.write_bool_value("installConfigurationManagerAgent", self.install_configuration_manager_agent)
         writer.write_int_value("managedDeviceAuthority", self.managed_device_authority)

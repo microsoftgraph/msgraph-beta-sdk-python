@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -67,16 +68,16 @@ class Office365GroupsActivityDetail(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Office365GroupsActivityDetail()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
 
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "exchangeMailboxStorageUsedInBytes": lambda n : setattr(self, 'exchange_mailbox_storage_used_in_bytes', n.get_int_value()),
             "exchangeMailboxTotalItemCount": lambda n : setattr(self, 'exchange_mailbox_total_item_count', n.get_int_value()),
             "exchangeReceivedEmailCount": lambda n : setattr(self, 'exchange_received_email_count', n.get_int_value()),
@@ -112,8 +113,6 @@ class Office365GroupsActivityDetail(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-
         writer.write_int_value("exchangeMailboxStorageUsedInBytes", self.exchange_mailbox_storage_used_in_bytes)
         writer.write_int_value("exchangeMailboxTotalItemCount", self.exchange_mailbox_total_item_count)
         writer.write_int_value("exchangeReceivedEmailCount", self.exchange_received_email_count)

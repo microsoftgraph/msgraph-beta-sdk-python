@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .delegate_allowed_actions import DelegateAllowedActions
@@ -32,10 +33,10 @@ class DelegationSettings(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DelegationSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .delegate_allowed_actions import DelegateAllowedActions
         from .entity import Entity
@@ -43,7 +44,7 @@ class DelegationSettings(Entity, Parsable):
         from .delegate_allowed_actions import DelegateAllowedActions
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedActions": lambda n : setattr(self, 'allowed_actions', n.get_object_value(DelegateAllowedActions)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "isActive": lambda n : setattr(self, 'is_active', n.get_bool_value()),
@@ -61,9 +62,6 @@ class DelegationSettings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .delegate_allowed_actions import DelegateAllowedActions
-        from .entity import Entity
-
         writer.write_object_value("allowedActions", self.allowed_actions)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_bool_value("isActive", self.is_active)

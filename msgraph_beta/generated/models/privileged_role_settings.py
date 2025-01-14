@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -14,7 +15,7 @@ class PrivilegedRoleSettings(Entity, Parsable):
     # The approvalOnElevation property
     approval_on_elevation: Optional[bool] = None
     # The approverIds property
-    approver_ids: Optional[List[str]] = None
+    approver_ids: Optional[list[str]] = None
     # The elevationDuration property
     elevation_duration: Optional[datetime.timedelta] = None
     # The isMfaOnElevationConfigurable property
@@ -45,16 +46,16 @@ class PrivilegedRoleSettings(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PrivilegedRoleSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
 
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "approvalOnElevation": lambda n : setattr(self, 'approval_on_elevation', n.get_bool_value()),
             "approverIds": lambda n : setattr(self, 'approver_ids', n.get_collection_of_primitive_values(str)),
             "elevationDuration": lambda n : setattr(self, 'elevation_duration', n.get_timedelta_value()),
@@ -79,8 +80,6 @@ class PrivilegedRoleSettings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-
         writer.write_bool_value("approvalOnElevation", self.approval_on_elevation)
         writer.write_collection_of_primitive_values("approverIds", self.approver_ids)
         writer.write_timedelta_value("elevationDuration", self.elevation_duration)

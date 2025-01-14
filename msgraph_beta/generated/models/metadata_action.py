@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .information_protection_action import InformationProtectionAction
@@ -14,9 +15,9 @@ class MetadataAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.metadataAction"
     # A collection of key value pairs that should be added to the file.
-    metadata_to_add: Optional[List[KeyValuePair]] = None
+    metadata_to_add: Optional[list[KeyValuePair]] = None
     # A collection of strings that indicate which keys to remove from the file metadata.
-    metadata_to_remove: Optional[List[str]] = None
+    metadata_to_remove: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MetadataAction:
@@ -29,10 +30,10 @@ class MetadataAction(InformationProtectionAction, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MetadataAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .information_protection_action import InformationProtectionAction
         from .key_value_pair import KeyValuePair
@@ -40,7 +41,7 @@ class MetadataAction(InformationProtectionAction, Parsable):
         from .information_protection_action import InformationProtectionAction
         from .key_value_pair import KeyValuePair
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "metadataToAdd": lambda n : setattr(self, 'metadata_to_add', n.get_collection_of_object_values(KeyValuePair)),
             "metadataToRemove": lambda n : setattr(self, 'metadata_to_remove', n.get_collection_of_primitive_values(str)),
         }
@@ -57,9 +58,6 @@ class MetadataAction(InformationProtectionAction, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .information_protection_action import InformationProtectionAction
-        from .key_value_pair import KeyValuePair
-
         writer.write_collection_of_object_values("metadataToAdd", self.metadata_to_add)
         writer.write_collection_of_primitive_values("metadataToRemove", self.metadata_to_remove)
     

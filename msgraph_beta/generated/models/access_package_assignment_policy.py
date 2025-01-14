@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package import AccessPackage
@@ -38,9 +39,9 @@ class AccessPackageAssignmentPolicy(Entity, Parsable):
     # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     created_date_time: Optional[datetime.datetime] = None
     # The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
-    custom_extension_handlers: Optional[List[CustomExtensionHandler]] = None
+    custom_extension_handlers: Optional[list[CustomExtensionHandler]] = None
     # The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
-    custom_extension_stage_settings: Optional[List[CustomExtensionStageSetting]] = None
+    custom_extension_stage_settings: Optional[list[CustomExtensionStageSetting]] = None
     # The description of the policy.
     description: Optional[str] = None
     # The display name of the policy. Supports $filter (eq).
@@ -56,7 +57,7 @@ class AccessPackageAssignmentPolicy(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Questions that are posed to the  requestor.
-    questions: Optional[List[AccessPackageQuestion]] = None
+    questions: Optional[list[AccessPackageQuestion]] = None
     # Who must approve requests for access package in this policy.
     request_approval_settings: Optional[ApprovalSettings] = None
     # Who can request this access package from this policy.
@@ -75,10 +76,10 @@ class AccessPackageAssignmentPolicy(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AccessPackageAssignmentPolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package import AccessPackage
         from .access_package_catalog import AccessPackageCatalog
@@ -104,7 +105,7 @@ class AccessPackageAssignmentPolicy(Entity, Parsable):
         from .requestor_settings import RequestorSettings
         from .verifiable_credential_settings import VerifiableCredentialSettings
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessPackage": lambda n : setattr(self, 'access_package', n.get_object_value(AccessPackage)),
             "accessPackageCatalog": lambda n : setattr(self, 'access_package_catalog', n.get_object_value(AccessPackageCatalog)),
             "accessPackageId": lambda n : setattr(self, 'access_package_id', n.get_str_value()),
@@ -139,18 +140,6 @@ class AccessPackageAssignmentPolicy(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .access_package import AccessPackage
-        from .access_package_catalog import AccessPackageCatalog
-        from .access_package_notification_settings import AccessPackageNotificationSettings
-        from .access_package_question import AccessPackageQuestion
-        from .approval_settings import ApprovalSettings
-        from .assignment_review_settings import AssignmentReviewSettings
-        from .custom_extension_handler import CustomExtensionHandler
-        from .custom_extension_stage_setting import CustomExtensionStageSetting
-        from .entity import Entity
-        from .requestor_settings import RequestorSettings
-        from .verifiable_credential_settings import VerifiableCredentialSettings
-
         writer.write_object_value("accessPackage", self.access_package)
         writer.write_object_value("accessPackageCatalog", self.access_package_catalog)
         writer.write_str_value("accessPackageId", self.access_package_id)

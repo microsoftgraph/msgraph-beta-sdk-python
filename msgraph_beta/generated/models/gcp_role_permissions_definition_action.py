@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .gcp_permissions_definition_action import GcpPermissionsDefinitionAction
@@ -14,7 +15,7 @@ class GcpRolePermissionsDefinitionAction(GcpPermissionsDefinitionAction, Parsabl
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.gcpRolePermissionsDefinitionAction"
     # The roles property
-    roles: Optional[List[PermissionsDefinitionGcpRole]] = None
+    roles: Optional[list[PermissionsDefinitionGcpRole]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GcpRolePermissionsDefinitionAction:
@@ -27,10 +28,10 @@ class GcpRolePermissionsDefinitionAction(GcpPermissionsDefinitionAction, Parsabl
             raise TypeError("parse_node cannot be null.")
         return GcpRolePermissionsDefinitionAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .gcp_permissions_definition_action import GcpPermissionsDefinitionAction
         from .permissions_definition_gcp_role import PermissionsDefinitionGcpRole
@@ -38,7 +39,7 @@ class GcpRolePermissionsDefinitionAction(GcpPermissionsDefinitionAction, Parsabl
         from .gcp_permissions_definition_action import GcpPermissionsDefinitionAction
         from .permissions_definition_gcp_role import PermissionsDefinitionGcpRole
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "roles": lambda n : setattr(self, 'roles', n.get_collection_of_object_values(PermissionsDefinitionGcpRole)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,9 +55,6 @@ class GcpRolePermissionsDefinitionAction(GcpPermissionsDefinitionAction, Parsabl
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .gcp_permissions_definition_action import GcpPermissionsDefinitionAction
-        from .permissions_definition_gcp_role import PermissionsDefinitionGcpRole
-
         writer.write_collection_of_object_values("roles", self.roles)
     
 

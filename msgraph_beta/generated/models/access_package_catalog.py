@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package import AccessPackage
@@ -18,15 +19,15 @@ from .entity import Entity
 @dataclass
 class AccessPackageCatalog(Entity, Parsable):
     # The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
-    access_package_custom_workflow_extensions: Optional[List[CustomCalloutExtension]] = None
+    access_package_custom_workflow_extensions: Optional[list[CustomCalloutExtension]] = None
     # The roles in each resource in a catalog. Read-only.
-    access_package_resource_roles: Optional[List[AccessPackageResourceRole]] = None
+    access_package_resource_roles: Optional[list[AccessPackageResourceRole]] = None
     # The accessPackageResourceScopes property
-    access_package_resource_scopes: Optional[List[AccessPackageResourceScope]] = None
+    access_package_resource_scopes: Optional[list[AccessPackageResourceScope]] = None
     # The accessPackageResources property
-    access_package_resources: Optional[List[AccessPackageResource]] = None
+    access_package_resources: Optional[list[AccessPackageResource]] = None
     # The access packages in this catalog. Read-only. Nullable. Supports $expand.
-    access_packages: Optional[List[AccessPackage]] = None
+    access_packages: Optional[list[AccessPackage]] = None
     # Has the value Published if the access packages are available for management.
     catalog_status: Optional[str] = None
     # One of UserManaged or ServiceDefault.
@@ -36,7 +37,7 @@ class AccessPackageCatalog(Entity, Parsable):
     # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     created_date_time: Optional[datetime.datetime] = None
     # The customAccessPackageWorkflowExtensions property
-    custom_access_package_workflow_extensions: Optional[List[CustomAccessPackageWorkflowExtension]] = None
+    custom_access_package_workflow_extensions: Optional[list[CustomAccessPackageWorkflowExtension]] = None
     # The description of the access package catalog.
     description: Optional[str] = None
     # The display name of the access package catalog. Supports $filter (eq, contains).
@@ -63,10 +64,10 @@ class AccessPackageCatalog(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AccessPackageCatalog()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package import AccessPackage
         from .access_package_resource import AccessPackageResource
@@ -84,7 +85,7 @@ class AccessPackageCatalog(Entity, Parsable):
         from .custom_callout_extension import CustomCalloutExtension
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessPackageCustomWorkflowExtensions": lambda n : setattr(self, 'access_package_custom_workflow_extensions', n.get_collection_of_object_values(CustomCalloutExtension)),
             "accessPackageResourceRoles": lambda n : setattr(self, 'access_package_resource_roles', n.get_collection_of_object_values(AccessPackageResourceRole)),
             "accessPackageResourceScopes": lambda n : setattr(self, 'access_package_resource_scopes', n.get_collection_of_object_values(AccessPackageResourceScope)),
@@ -115,14 +116,6 @@ class AccessPackageCatalog(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .access_package import AccessPackage
-        from .access_package_resource import AccessPackageResource
-        from .access_package_resource_role import AccessPackageResourceRole
-        from .access_package_resource_scope import AccessPackageResourceScope
-        from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
-        from .custom_callout_extension import CustomCalloutExtension
-        from .entity import Entity
-
         writer.write_collection_of_object_values("accessPackageCustomWorkflowExtensions", self.access_package_custom_workflow_extensions)
         writer.write_collection_of_object_values("accessPackageResourceRoles", self.access_package_resource_roles)
         writer.write_collection_of_object_values("accessPackageResourceScopes", self.access_package_resource_scopes)

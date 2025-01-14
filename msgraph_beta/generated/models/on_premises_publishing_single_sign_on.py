@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .kerberos_sign_on_settings import KerberosSignOnSettings
@@ -14,7 +15,7 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, BackedModel, Parsab
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The Kerberos Constrained Delegation settings for applications that use Integrated Window Authentication.
     kerberos_sign_on_settings: Optional[KerberosSignOnSettings] = None
     # The OdataType property
@@ -33,10 +34,10 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, BackedModel, Parsab
             raise TypeError("parse_node cannot be null.")
         return OnPremisesPublishingSingleSignOn()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .kerberos_sign_on_settings import KerberosSignOnSettings
         from .single_sign_on_mode import SingleSignOnMode
@@ -44,7 +45,7 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, BackedModel, Parsab
         from .kerberos_sign_on_settings import KerberosSignOnSettings
         from .single_sign_on_mode import SingleSignOnMode
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "kerberosSignOnSettings": lambda n : setattr(self, 'kerberos_sign_on_settings', n.get_object_value(KerberosSignOnSettings)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "singleSignOnMode": lambda n : setattr(self, 'single_sign_on_mode', n.get_enum_value(SingleSignOnMode)),
@@ -59,9 +60,6 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .kerberos_sign_on_settings import KerberosSignOnSettings
-        from .single_sign_on_mode import SingleSignOnMode
-
         writer.write_object_value("kerberosSignOnSettings", self.kerberos_sign_on_settings)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("singleSignOnMode", self.single_sign_on_mode)

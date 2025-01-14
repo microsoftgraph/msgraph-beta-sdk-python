@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -18,13 +19,13 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity, Parsable):
     # Estimated battery age. Unit in days. Valid values 0 to 2147483647
     battery_age_in_days: Optional[int] = None
     # Properties (maxCapacity and cycleCount) related to all batteries of the device.
-    device_batteries_details: Optional[List[UserExperienceAnalyticsDeviceBatteryDetail]] = None
+    device_batteries_details: Optional[list[UserExperienceAnalyticsDeviceBatteryDetail]] = None
     # Number of batteries in a user device. Valid values 0 to 2147483647
     device_battery_count: Optional[int] = None
     # A weighted average of a device’s maximum capacity score and runtime estimate score. Values range from 0-100. Valid values 0 to 2147483647
     device_battery_health_score: Optional[int] = None
     # Tags for computed information on how battery on the device is behaving. E.g. newbattery, batterycapacityred, designcapacityzero, etc.
-    device_battery_tags: Optional[List[str]] = None
+    device_battery_tags: Optional[list[str]] = None
     # The unique identifier of the device, Intune DeviceID.
     device_id: Optional[str] = None
     # The manufacturer name of the device.
@@ -59,10 +60,10 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsBatteryHealthDevicePerformance()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .user_experience_analytics_device_battery_detail import UserExperienceAnalyticsDeviceBatteryDetail
@@ -72,7 +73,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity, Parsable):
         from .user_experience_analytics_device_battery_detail import UserExperienceAnalyticsDeviceBatteryDetail
         from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "batteryAgeInDays": lambda n : setattr(self, 'battery_age_in_days', n.get_int_value()),
             "deviceBatteriesDetails": lambda n : setattr(self, 'device_batteries_details', n.get_collection_of_object_values(UserExperienceAnalyticsDeviceBatteryDetail)),
             "deviceBatteryCount": lambda n : setattr(self, 'device_battery_count', n.get_int_value()),
@@ -102,10 +103,6 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .user_experience_analytics_device_battery_detail import UserExperienceAnalyticsDeviceBatteryDetail
-        from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
-
         writer.write_int_value("batteryAgeInDays", self.battery_age_in_days)
         writer.write_collection_of_object_values("deviceBatteriesDetails", self.device_batteries_details)
         writer.write_int_value("deviceBatteryCount", self.device_battery_count)

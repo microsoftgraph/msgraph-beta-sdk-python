@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_managed_app_protection import AndroidManagedAppProtection
@@ -23,7 +24,7 @@ class TargetedManagedAppProtection(ManagedAppProtection, Parsable):
     # Indicates a collection of apps to target which can be one of several pre-defined lists of apps or a manually selected list of apps
     app_group_type: Optional[TargetedManagedAppGroupType] = None
     # Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
-    assignments: Optional[List[TargetedManagedAppPolicyAssignment]] = None
+    assignments: Optional[list[TargetedManagedAppPolicyAssignment]] = None
     # Indicates if the policy is deployed to any inclusion groups or not.
     is_assigned: Optional[bool] = None
     # Management levels for apps
@@ -53,10 +54,10 @@ class TargetedManagedAppProtection(ManagedAppProtection, Parsable):
             return IosManagedAppProtection()
         return TargetedManagedAppProtection()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_managed_app_protection import AndroidManagedAppProtection
         from .app_management_level import AppManagementLevel
@@ -72,7 +73,7 @@ class TargetedManagedAppProtection(ManagedAppProtection, Parsable):
         from .targeted_managed_app_group_type import TargetedManagedAppGroupType
         from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appGroupType": lambda n : setattr(self, 'app_group_type', n.get_enum_value(TargetedManagedAppGroupType)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(TargetedManagedAppPolicyAssignment)),
             "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
@@ -91,13 +92,6 @@ class TargetedManagedAppProtection(ManagedAppProtection, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_managed_app_protection import AndroidManagedAppProtection
-        from .app_management_level import AppManagementLevel
-        from .ios_managed_app_protection import IosManagedAppProtection
-        from .managed_app_protection import ManagedAppProtection
-        from .targeted_managed_app_group_type import TargetedManagedAppGroupType
-        from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
-
         writer.write_enum_value("appGroupType", self.app_group_type)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_bool_value("isAssigned", self.is_assigned)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -23,7 +24,7 @@ class OutlookTaskGroup(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The collection of task folders in the task group. Read-only. Nullable.
-    task_folders: Optional[List[OutlookTaskFolder]] = None
+    task_folders: Optional[list[OutlookTaskFolder]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OutlookTaskGroup:
@@ -36,10 +37,10 @@ class OutlookTaskGroup(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OutlookTaskGroup()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .outlook_task_folder import OutlookTaskFolder
@@ -47,7 +48,7 @@ class OutlookTaskGroup(Entity, Parsable):
         from .entity import Entity
         from .outlook_task_folder import OutlookTaskFolder
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "changeKey": lambda n : setattr(self, 'change_key', n.get_str_value()),
             "groupKey": lambda n : setattr(self, 'group_key', n.get_uuid_value()),
             "isDefaultGroup": lambda n : setattr(self, 'is_default_group', n.get_bool_value()),
@@ -67,9 +68,6 @@ class OutlookTaskGroup(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .outlook_task_folder import OutlookTaskFolder
-
         writer.write_str_value("changeKey", self.change_key)
         writer.write_uuid_value("groupKey", self.group_key)
         writer.write_bool_value("isDefaultGroup", self.is_default_group)

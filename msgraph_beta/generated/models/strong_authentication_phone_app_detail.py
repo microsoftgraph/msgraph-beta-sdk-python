@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -57,10 +58,10 @@ class StrongAuthenticationPhoneAppDetail(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return StrongAuthenticationPhoneAppDetail()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .oath_token_metadata import OathTokenMetadata
@@ -68,7 +69,7 @@ class StrongAuthenticationPhoneAppDetail(Entity, Parsable):
         from .entity import Entity
         from .oath_token_metadata import OathTokenMetadata
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationType": lambda n : setattr(self, 'authentication_type', n.get_str_value()),
             "authenticatorFlavor": lambda n : setattr(self, 'authenticator_flavor', n.get_str_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_uuid_value()),
@@ -98,9 +99,6 @@ class StrongAuthenticationPhoneAppDetail(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .oath_token_metadata import OathTokenMetadata
-
         writer.write_str_value("authenticationType", self.authentication_type)
         writer.write_str_value("authenticatorFlavor", self.authenticator_flavor)
         writer.write_uuid_value("deviceId", self.device_id)

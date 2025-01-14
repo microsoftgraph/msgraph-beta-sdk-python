@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .allowed_role_principal_types import AllowedRolePrincipalTypes
@@ -19,7 +20,7 @@ class UnifiedRoleDefinition(Entity, Parsable):
     # The display name for the unifiedRoleDefinition. Read-only when isBuiltIn is true. Required.  Supports $filter (eq and startsWith).
     display_name: Optional[str] = None
     # Read-only collection of role definitions that the given role definition inherits from. Only Microsoft Entra built-in roles support this attribute.
-    inherits_permissions_from: Optional[List[UnifiedRoleDefinition]] = None
+    inherits_permissions_from: Optional[list[UnifiedRoleDefinition]] = None
     # Flag indicating if the unifiedRoleDefinition is part of the default set included with the product or custom. Read-only.  Supports $filter (eq).
     is_built_in: Optional[bool] = None
     # Flag indicating if the role is enabled for assignment. If false the role is not available for assignment. Read-only when isBuiltIn is true.
@@ -29,9 +30,9 @@ class UnifiedRoleDefinition(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of scopes permissions granted by the role definition apply to. Currently only / is supported. Read-only when isBuiltIn is true. DO NOT USE. This will be deprecated soon. Attach scope to role assignment.
-    resource_scopes: Optional[List[str]] = None
+    resource_scopes: Optional[list[str]] = None
     # List of permissions included in the role. Read-only when isBuiltIn is true. Required.
-    role_permissions: Optional[List[UnifiedRolePermission]] = None
+    role_permissions: Optional[list[UnifiedRolePermission]] = None
     # Custom template identifier that can be set when isBuiltIn is false. This identifier is typically used if one needs an identifier to be the same across different directories. Read-only when isBuiltIn is true.
     template_id: Optional[str] = None
     # Indicates the version of the unifiedRoleDefinition object. Read-only when isBuiltIn is true.
@@ -48,10 +49,10 @@ class UnifiedRoleDefinition(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UnifiedRoleDefinition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .allowed_role_principal_types import AllowedRolePrincipalTypes
         from .entity import Entity
@@ -61,7 +62,7 @@ class UnifiedRoleDefinition(Entity, Parsable):
         from .entity import Entity
         from .unified_role_permission import UnifiedRolePermission
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedPrincipalTypes": lambda n : setattr(self, 'allowed_principal_types', n.get_collection_of_enum_values(AllowedRolePrincipalTypes)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -87,10 +88,6 @@ class UnifiedRoleDefinition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .allowed_role_principal_types import AllowedRolePrincipalTypes
-        from .entity import Entity
-        from .unified_role_permission import UnifiedRolePermission
-
         writer.write_enum_value("allowedPrincipalTypes", self.allowed_principal_types)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

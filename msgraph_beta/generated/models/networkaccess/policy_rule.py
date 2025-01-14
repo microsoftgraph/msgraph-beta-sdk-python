@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -66,10 +67,10 @@ class PolicyRule(Entity, Parsable):
             return WebCategoryFilteringRule()
         return PolicyRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .filtering_rule import FilteringRule
@@ -89,7 +90,7 @@ class PolicyRule(Entity, Parsable):
         from .private_access_forwarding_rule import PrivateAccessForwardingRule
         from .web_category_filtering_rule import WebCategoryFilteringRule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -105,15 +106,6 @@ class PolicyRule(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .filtering_rule import FilteringRule
-        from .forwarding_rule import ForwardingRule
-        from .fqdn_filtering_rule import FqdnFilteringRule
-        from .internet_access_forwarding_rule import InternetAccessForwardingRule
-        from .m365_forwarding_rule import M365ForwardingRule
-        from .private_access_forwarding_rule import PrivateAccessForwardingRule
-        from .web_category_filtering_rule import WebCategoryFilteringRule
-
         writer.write_str_value("name", self.name)
     
 

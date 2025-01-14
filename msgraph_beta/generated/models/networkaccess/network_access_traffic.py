@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..device import Device
@@ -25,7 +26,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Indicates what action to take based on filtering policies. The possible values are: block, allow.
     action: Optional[FilteringPolicyAction] = None
     # Represents the version of the Global Secure Access client agent software. Supports $filter (eq) and $orderby.
@@ -119,7 +120,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     # Represents the user principal name (UPN) associated with a user. Supports $filter (eq) and $orderby.
     user_principal_name: Optional[str] = None
     # The vendorNames property
-    vendor_names: Optional[List[str]] = None
+    vendor_names: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> NetworkAccessTraffic:
@@ -132,10 +133,10 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return NetworkAccessTraffic()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..device import Device
         from ..user import User
@@ -163,7 +164,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         from .traffic_type import TrafficType
         from .web_category import WebCategory
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(FilteringPolicyAction)),
             "agentVersion": lambda n : setattr(self, 'agent_version', n.get_str_value()),
             "applicationSnapshot": lambda n : setattr(self, 'application_snapshot', n.get_object_value(ApplicationSnapshot)),
@@ -222,19 +223,6 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from ..device import Device
-        from ..user import User
-        from .application_snapshot import ApplicationSnapshot
-        from .device_category import DeviceCategory
-        from .filtering_policy_action import FilteringPolicyAction
-        from .headers import Headers
-        from .http_method import HttpMethod
-        from .networking_protocol import NetworkingProtocol
-        from .network_traffic_operation_status import NetworkTrafficOperationStatus
-        from .private_access_details import PrivateAccessDetails
-        from .traffic_type import TrafficType
-        from .web_category import WebCategory
-
         writer.write_enum_value("action", self.action)
         writer.write_str_value("agentVersion", self.agent_version)
         writer.write_object_value("applicationSnapshot", self.application_snapshot)

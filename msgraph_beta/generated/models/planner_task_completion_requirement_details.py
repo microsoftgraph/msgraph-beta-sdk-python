@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .planner_approval_requirement import PlannerApprovalRequirement
@@ -15,7 +16,7 @@ class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel,
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Information about the requirements of an approval.
     approval_requirement: Optional[PlannerApprovalRequirement] = None
     # Information about the requirements for completing the checklist.
@@ -36,10 +37,10 @@ class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel,
             raise TypeError("parse_node cannot be null.")
         return PlannerTaskCompletionRequirementDetails()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .planner_approval_requirement import PlannerApprovalRequirement
         from .planner_checklist_requirement import PlannerChecklistRequirement
@@ -49,7 +50,7 @@ class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel,
         from .planner_checklist_requirement import PlannerChecklistRequirement
         from .planner_forms_requirement import PlannerFormsRequirement
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "approvalRequirement": lambda n : setattr(self, 'approval_requirement', n.get_object_value(PlannerApprovalRequirement)),
             "checklistRequirement": lambda n : setattr(self, 'checklist_requirement', n.get_object_value(PlannerChecklistRequirement)),
             "formsRequirement": lambda n : setattr(self, 'forms_requirement', n.get_object_value(PlannerFormsRequirement)),
@@ -65,10 +66,6 @@ class PlannerTaskCompletionRequirementDetails(AdditionalDataHolder, BackedModel,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .planner_approval_requirement import PlannerApprovalRequirement
-        from .planner_checklist_requirement import PlannerChecklistRequirement
-        from .planner_forms_requirement import PlannerFormsRequirement
-
         writer.write_object_value("approvalRequirement", self.approval_requirement)
         writer.write_object_value("checklistRequirement", self.checklist_requirement)
         writer.write_object_value("formsRequirement", self.forms_requirement)

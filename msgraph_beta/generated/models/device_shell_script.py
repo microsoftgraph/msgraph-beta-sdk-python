@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_script_assignment import DeviceManagementScriptAssignment
@@ -21,7 +22,7 @@ class DeviceShellScript(Entity, Parsable):
     Intune will provide customer the ability to run their Shell scripts on the enrolled Mac OS devices. The script can be run once or periodically.
     """
     # The list of group assignments for the device management script.
-    assignments: Optional[List[DeviceManagementScriptAssignment]] = None
+    assignments: Optional[list[DeviceManagementScriptAssignment]] = None
     # Does not notify the user a script is being executed
     block_execution_notifications: Optional[bool] = None
     # The date and time the device management script was created. This property is read-only.
@@ -29,7 +30,7 @@ class DeviceShellScript(Entity, Parsable):
     # Optional description for the device management script.
     description: Optional[str] = None
     # List of run states for this script across all devices.
-    device_run_states: Optional[List[DeviceManagementScriptDeviceState]] = None
+    device_run_states: Optional[list[DeviceManagementScriptDeviceState]] = None
     # Name of the device management script.
     display_name: Optional[str] = None
     # The interval for script to run. If not defined the script will run once
@@ -37,7 +38,7 @@ class DeviceShellScript(Entity, Parsable):
     # Script file name.
     file_name: Optional[str] = None
     # The list of group assignments for the device management script.
-    group_assignments: Optional[List[DeviceManagementScriptGroupAssignment]] = None
+    group_assignments: Optional[list[DeviceManagementScriptGroupAssignment]] = None
     # The date and time the device management script was last modified. This property is read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -45,7 +46,7 @@ class DeviceShellScript(Entity, Parsable):
     # Number of times for the script to be retried if it fails
     retry_count: Optional[int] = None
     # List of Scope Tag IDs for this PowerShellScript instance.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # Indicates the type of execution context the app runs in.
     run_as_account: Optional[RunAsAccountType] = None
     # Run summary for device management script.
@@ -53,7 +54,7 @@ class DeviceShellScript(Entity, Parsable):
     # The script content.
     script_content: Optional[bytes] = None
     # List of run states for this script across all users.
-    user_run_states: Optional[List[DeviceManagementScriptUserState]] = None
+    user_run_states: Optional[list[DeviceManagementScriptUserState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceShellScript:
@@ -66,10 +67,10 @@ class DeviceShellScript(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceShellScript()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_script_assignment import DeviceManagementScriptAssignment
         from .device_management_script_device_state import DeviceManagementScriptDeviceState
@@ -87,7 +88,7 @@ class DeviceShellScript(Entity, Parsable):
         from .entity import Entity
         from .run_as_account_type import RunAsAccountType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(DeviceManagementScriptAssignment)),
             "blockExecutionNotifications": lambda n : setattr(self, 'block_execution_notifications', n.get_bool_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -118,14 +119,6 @@ class DeviceShellScript(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_script_assignment import DeviceManagementScriptAssignment
-        from .device_management_script_device_state import DeviceManagementScriptDeviceState
-        from .device_management_script_group_assignment import DeviceManagementScriptGroupAssignment
-        from .device_management_script_run_summary import DeviceManagementScriptRunSummary
-        from .device_management_script_user_state import DeviceManagementScriptUserState
-        from .entity import Entity
-        from .run_as_account_type import RunAsAccountType
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_bool_value("blockExecutionNotifications", self.block_execution_notifications)
         writer.write_str_value("description", self.description)

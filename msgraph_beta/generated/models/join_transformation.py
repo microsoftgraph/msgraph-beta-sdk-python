@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_claim_transformation import CustomClaimTransformation
@@ -29,10 +30,10 @@ class JoinTransformation(CustomClaimTransformation, Parsable):
             raise TypeError("parse_node cannot be null.")
         return JoinTransformation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_claim_transformation import CustomClaimTransformation
         from .transformation_attribute import TransformationAttribute
@@ -40,7 +41,7 @@ class JoinTransformation(CustomClaimTransformation, Parsable):
         from .custom_claim_transformation import CustomClaimTransformation
         from .transformation_attribute import TransformationAttribute
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "input2": lambda n : setattr(self, 'input2', n.get_object_value(TransformationAttribute)),
             "separator": lambda n : setattr(self, 'separator', n.get_str_value()),
         }
@@ -57,9 +58,6 @@ class JoinTransformation(CustomClaimTransformation, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .custom_claim_transformation import CustomClaimTransformation
-        from .transformation_attribute import TransformationAttribute
-
         writer.write_object_value("input2", self.input2)
         writer.write_str_value("separator", self.separator)
     

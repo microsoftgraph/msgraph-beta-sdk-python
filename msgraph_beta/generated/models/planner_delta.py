@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .business_scenario_task import BusinessScenarioTask
@@ -79,10 +80,10 @@ class PlannerDelta(Entity, Parsable):
             return PlannerUser()
         return PlannerDelta()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .business_scenario_task import BusinessScenarioTask
         from .entity import Entity
@@ -108,7 +109,7 @@ class PlannerDelta(Entity, Parsable):
         from .planner_task_details import PlannerTaskDetails
         from .planner_user import PlannerUser
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -123,17 +124,5 @@ class PlannerDelta(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .business_scenario_task import BusinessScenarioTask
-        from .entity import Entity
-        from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
-        from .planner_bucket import PlannerBucket
-        from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
-        from .planner_plan import PlannerPlan
-        from .planner_plan_details import PlannerPlanDetails
-        from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
-        from .planner_task import PlannerTask
-        from .planner_task_details import PlannerTaskDetails
-        from .planner_user import PlannerUser
-
     
 

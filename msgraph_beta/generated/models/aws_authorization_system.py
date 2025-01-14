@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authorization_system import AuthorizationSystem
@@ -18,15 +19,15 @@ class AwsAuthorizationSystem(AuthorizationSystem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.awsAuthorizationSystem"
     # List of actions for service in authorization system.
-    actions: Optional[List[AwsAuthorizationSystemTypeAction]] = None
+    actions: Optional[list[AwsAuthorizationSystemTypeAction]] = None
     # Identities in the authorization system.
     associated_identities: Optional[AwsAssociatedIdentities] = None
     # Policies associated with the AWS authorization system type.
-    policies: Optional[List[AwsPolicy]] = None
+    policies: Optional[list[AwsPolicy]] = None
     # Resources associated with the authorization system type.
-    resources: Optional[List[AwsAuthorizationSystemResource]] = None
+    resources: Optional[list[AwsAuthorizationSystemResource]] = None
     # Services associated with the authorization system type.
-    services: Optional[List[AuthorizationSystemTypeService]] = None
+    services: Optional[list[AuthorizationSystemTypeService]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AwsAuthorizationSystem:
@@ -39,10 +40,10 @@ class AwsAuthorizationSystem(AuthorizationSystem, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AwsAuthorizationSystem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authorization_system import AuthorizationSystem
         from .authorization_system_type_service import AuthorizationSystemTypeService
@@ -58,7 +59,7 @@ class AwsAuthorizationSystem(AuthorizationSystem, Parsable):
         from .aws_authorization_system_type_action import AwsAuthorizationSystemTypeAction
         from .aws_policy import AwsPolicy
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(AwsAuthorizationSystemTypeAction)),
             "associatedIdentities": lambda n : setattr(self, 'associated_identities', n.get_object_value(AwsAssociatedIdentities)),
             "policies": lambda n : setattr(self, 'policies', n.get_collection_of_object_values(AwsPolicy)),
@@ -78,13 +79,6 @@ class AwsAuthorizationSystem(AuthorizationSystem, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authorization_system import AuthorizationSystem
-        from .authorization_system_type_service import AuthorizationSystemTypeService
-        from .aws_associated_identities import AwsAssociatedIdentities
-        from .aws_authorization_system_resource import AwsAuthorizationSystemResource
-        from .aws_authorization_system_type_action import AwsAuthorizationSystemTypeAction
-        from .aws_policy import AwsPolicy
-
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_object_value("associatedIdentities", self.associated_identities)
         writer.write_collection_of_object_values("policies", self.policies)

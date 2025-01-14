@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_conditions import AuthenticationConditions
@@ -76,10 +77,10 @@ class AuthenticationEventListener(Entity, Parsable):
             return OnUserCreateStartListener()
         return AuthenticationEventListener()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_conditions import AuthenticationConditions
         from .entity import Entity
@@ -103,7 +104,7 @@ class AuthenticationEventListener(Entity, Parsable):
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationEventsFlowId": lambda n : setattr(self, 'authentication_events_flow_id', n.get_str_value()),
             "conditions": lambda n : setattr(self, 'conditions', n.get_object_value(AuthenticationConditions)),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
@@ -121,17 +122,6 @@ class AuthenticationEventListener(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authentication_conditions import AuthenticationConditions
-        from .entity import Entity
-        from .on_attribute_collection_listener import OnAttributeCollectionListener
-        from .on_attribute_collection_start_listener import OnAttributeCollectionStartListener
-        from .on_attribute_collection_submit_listener import OnAttributeCollectionSubmitListener
-        from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
-        from .on_email_otp_send_listener import OnEmailOtpSendListener
-        from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
-        from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
-        from .on_user_create_start_listener import OnUserCreateStartListener
-
         writer.write_str_value("authenticationEventsFlowId", self.authentication_events_flow_id)
         writer.write_object_value("conditions", self.conditions)
         writer.write_int_value("priority", self.priority)

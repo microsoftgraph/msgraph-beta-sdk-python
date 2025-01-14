@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.policy_set_assignment import PolicySetAssignment
@@ -14,15 +15,15 @@ class UpdatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The addedPolicySetItems property
-    added_policy_set_items: Optional[List[PolicySetItem]] = None
+    added_policy_set_items: Optional[list[PolicySetItem]] = None
     # The assignments property
-    assignments: Optional[List[PolicySetAssignment]] = None
+    assignments: Optional[list[PolicySetAssignment]] = None
     # The deletedPolicySetItems property
-    deleted_policy_set_items: Optional[List[str]] = None
+    deleted_policy_set_items: Optional[list[str]] = None
     # The updatedPolicySetItems property
-    updated_policy_set_items: Optional[List[PolicySetItem]] = None
+    updated_policy_set_items: Optional[list[PolicySetItem]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> UpdatePostRequestBody:
@@ -35,10 +36,10 @@ class UpdatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UpdatePostRequestBody()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .....models.policy_set_assignment import PolicySetAssignment
         from .....models.policy_set_item import PolicySetItem
@@ -46,7 +47,7 @@ class UpdatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         from .....models.policy_set_assignment import PolicySetAssignment
         from .....models.policy_set_item import PolicySetItem
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "addedPolicySetItems": lambda n : setattr(self, 'added_policy_set_items', n.get_collection_of_object_values(PolicySetItem)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(PolicySetAssignment)),
             "deletedPolicySetItems": lambda n : setattr(self, 'deleted_policy_set_items', n.get_collection_of_primitive_values(str)),
@@ -62,9 +63,6 @@ class UpdatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .....models.policy_set_assignment import PolicySetAssignment
-        from .....models.policy_set_item import PolicySetItem
-
         writer.write_collection_of_object_values("addedPolicySetItems", self.added_policy_set_items)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_collection_of_primitive_values("deletedPolicySetItems", self.deleted_policy_set_items)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -44,10 +45,10 @@ class ComplianceChange(Entity, Parsable):
             return ContentApproval()
         return ComplianceChange()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .content_approval import ContentApproval
@@ -57,7 +58,7 @@ class ComplianceChange(Entity, Parsable):
         from .content_approval import ContentApproval
         from .update_policy import UpdatePolicy
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "isRevoked": lambda n : setattr(self, 'is_revoked', n.get_bool_value()),
             "revokedDateTime": lambda n : setattr(self, 'revoked_date_time', n.get_datetime_value()),
@@ -76,10 +77,6 @@ class ComplianceChange(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .content_approval import ContentApproval
-        from .update_policy import UpdatePolicy
-
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_bool_value("isRevoked", self.is_revoked)
         writer.write_datetime_value("revokedDateTime", self.revoked_date_time)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_subject_name_format import AppleSubjectNameFormat
@@ -55,10 +56,10 @@ class IosCertificateProfileBase(IosCertificateProfile, Parsable):
             return IosScepCertificateProfile()
         return IosCertificateProfileBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .apple_subject_name_format import AppleSubjectNameFormat
         from .certificate_validity_period_scale import CertificateValidityPeriodScale
@@ -74,7 +75,7 @@ class IosCertificateProfileBase(IosCertificateProfile, Parsable):
         from .ios_scep_certificate_profile import IosScepCertificateProfile
         from .subject_alternative_name_type import SubjectAlternativeNameType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
             "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
@@ -94,13 +95,6 @@ class IosCertificateProfileBase(IosCertificateProfile, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .apple_subject_name_format import AppleSubjectNameFormat
-        from .certificate_validity_period_scale import CertificateValidityPeriodScale
-        from .ios_certificate_profile import IosCertificateProfile
-        from .ios_pkcs_certificate_profile import IosPkcsCertificateProfile
-        from .ios_scep_certificate_profile import IosScepCertificateProfile
-        from .subject_alternative_name_type import SubjectAlternativeNameType
-
         writer.write_enum_value("certificateValidityPeriodScale", self.certificate_validity_period_scale)
         writer.write_int_value("certificateValidityPeriodValue", self.certificate_validity_period_value)
         writer.write_int_value("renewalThresholdPercentage", self.renewal_threshold_percentage)

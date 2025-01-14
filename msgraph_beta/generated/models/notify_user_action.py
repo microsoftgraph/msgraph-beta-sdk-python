@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .dlp_action_info import DlpActionInfo
@@ -20,7 +21,7 @@ class NotifyUserAction(DlpActionInfo, Parsable):
     # The policyTip property
     policy_tip: Optional[str] = None
     # The recipients property
-    recipients: Optional[List[str]] = None
+    recipients: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> NotifyUserAction:
@@ -33,16 +34,16 @@ class NotifyUserAction(DlpActionInfo, Parsable):
             raise TypeError("parse_node cannot be null.")
         return NotifyUserAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .dlp_action_info import DlpActionInfo
 
         from .dlp_action_info import DlpActionInfo
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionLastModifiedDateTime": lambda n : setattr(self, 'action_last_modified_date_time', n.get_datetime_value()),
             "emailText": lambda n : setattr(self, 'email_text', n.get_str_value()),
             "policyTip": lambda n : setattr(self, 'policy_tip', n.get_str_value()),
@@ -61,8 +62,6 @@ class NotifyUserAction(DlpActionInfo, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .dlp_action_info import DlpActionInfo
-
         writer.write_datetime_value("actionLastModifiedDateTime", self.action_last_modified_date_time)
         writer.write_str_value("emailText", self.email_text)
         writer.write_str_value("policyTip", self.policy_tip)

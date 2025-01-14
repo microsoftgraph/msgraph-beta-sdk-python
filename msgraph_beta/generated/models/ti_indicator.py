@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .diamond_model import DiamondModel
@@ -18,7 +19,7 @@ class TiIndicator(Entity, Parsable):
     # The action to apply if the indicator is matched from within the targetProduct security tool. Possible values are: unknown, allow, block, alert. Required.
     action: Optional[TiAction] = None
     # The cyber threat intelligence name(s) for the parties responsible for the malicious activity covered by the threat indicator.
-    activity_group_names: Optional[List[str]] = None
+    activity_group_names: Optional[list[str]] = None
     # A catchall area for extra data from the indicator that is not specifically covered by other tiIndicator properties. The security tool specified by targetProduct typically does not utilize this data.
     additional_information: Optional[str] = None
     # Stamped by the system when the indicator is ingested. The Microsoft Entra tenant id of submitting client. Required.
@@ -78,13 +79,13 @@ class TiIndicator(Entity, Parsable):
     # Used to deactivate indicators within system. By default, any indicator submitted is set as active. However, providers may submit existing indicators with this set to ‘False’ to deactivate indicators in the system.
     is_active: Optional[bool] = None
     # A JSON array of strings that describes which point or points on the Kill Chain this indicator targets. See ‘killChain values’ below for exact values.
-    kill_chain: Optional[List[str]] = None
+    kill_chain: Optional[list[str]] = None
     # Scenarios in which the indicator may cause false positives. This should be human-readable text.
     known_false_positives: Optional[str] = None
     # The last time the indicator was seen. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     last_reported_date_time: Optional[datetime.datetime] = None
     # The malware family name associated with an indicator if it exists. Microsoft prefers the Microsoft malware family name if at all possible that can be found via the Windows Defender Security Intelligence threat encyclopedia.
-    malware_family_names: Optional[List[str]] = None
+    malware_family_names: Optional[list[str]] = None
     # The networkCidrBlock property
     network_cidr_block: Optional[str] = None
     # The networkDestinationAsn property
@@ -122,7 +123,7 @@ class TiIndicator(Entity, Parsable):
     # An integer representing the severity of the malicious behavior identified by the data within the indicator. Acceptable values are 0 – 5 where 5 is the most severe and zero isn't severe at all. Default value is 3.
     severity: Optional[int] = None
     # A JSON array of strings that stores arbitrary tags/keywords.
-    tags: Optional[List[str]] = None
+    tags: Optional[list[str]] = None
     # A string value representing a single security product to which the indicator should be applied. Acceptable values are: Azure Sentinel, Microsoft Defender ATP. Required
     target_product: Optional[str] = None
     # Each indicator must have a valid Indicator Threat Type. Possible values are: Botnet, C2, CryptoMining, Darknet, DDoS, MaliciousUrl, Malware, Phishing, Proxy, PUA, WatchList. Required.
@@ -145,10 +146,10 @@ class TiIndicator(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TiIndicator()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .diamond_model import DiamondModel
         from .entity import Entity
@@ -162,7 +163,7 @@ class TiIndicator(Entity, Parsable):
         from .ti_action import TiAction
         from .tlp_level import TlpLevel
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(TiAction)),
             "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
             "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_str_value()),
@@ -235,12 +236,6 @@ class TiIndicator(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .diamond_model import DiamondModel
-        from .entity import Entity
-        from .file_hash_type import FileHashType
-        from .ti_action import TiAction
-        from .tlp_level import TlpLevel
-
         writer.write_enum_value("action", self.action)
         writer.write_collection_of_primitive_values("activityGroupNames", self.activity_group_names)
         writer.write_str_value("additionalInformation", self.additional_information)

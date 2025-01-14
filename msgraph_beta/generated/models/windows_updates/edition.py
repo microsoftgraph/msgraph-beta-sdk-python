@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -27,7 +28,7 @@ class Edition(Entity, Parsable):
     # The public name of the edition. Read-only.
     released_name: Optional[str] = None
     # The servicingPeriods property
-    servicing_periods: Optional[List[ServicingPeriod]] = None
+    servicing_periods: Optional[list[ServicingPeriod]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Edition:
@@ -40,10 +41,10 @@ class Edition(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Edition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .servicing_period import ServicingPeriod
@@ -51,7 +52,7 @@ class Edition(Entity, Parsable):
         from ..entity import Entity
         from .servicing_period import ServicingPeriod
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deviceFamily": lambda n : setattr(self, 'device_family', n.get_str_value()),
             "endOfServiceDateTime": lambda n : setattr(self, 'end_of_service_date_time', n.get_datetime_value()),
             "generalAvailabilityDateTime": lambda n : setattr(self, 'general_availability_date_time', n.get_datetime_value()),
@@ -73,9 +74,6 @@ class Edition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .servicing_period import ServicingPeriod
-
         writer.write_str_value("deviceFamily", self.device_family)
         writer.write_datetime_value("endOfServiceDateTime", self.end_of_service_date_time)
         writer.write_datetime_value("generalAvailabilityDateTime", self.general_availability_date_time)

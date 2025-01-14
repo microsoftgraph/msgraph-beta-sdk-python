@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .media_info import MediaInfo
@@ -29,10 +30,10 @@ class MediaPrompt(Prompt, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MediaPrompt()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .media_info import MediaInfo
         from .prompt import Prompt
@@ -40,7 +41,7 @@ class MediaPrompt(Prompt, Parsable):
         from .media_info import MediaInfo
         from .prompt import Prompt
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "loop": lambda n : setattr(self, 'loop', n.get_int_value()),
             "mediaInfo": lambda n : setattr(self, 'media_info', n.get_object_value(MediaInfo)),
         }
@@ -57,9 +58,6 @@ class MediaPrompt(Prompt, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .media_info import MediaInfo
-        from .prompt import Prompt
-
         writer.write_int_value("loop", self.loop)
         writer.write_object_value("mediaInfo", self.media_info)
     

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -24,7 +25,7 @@ class OutboundProvisioningFlowSet(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # A flow that provisions relevant records of a given entity type in the Microsoft 365 tenant.
-    provisioning_flows: Optional[List[ProvisioningFlow]] = None
+    provisioning_flows: Optional[list[ProvisioningFlow]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OutboundProvisioningFlowSet:
@@ -37,10 +38,10 @@ class OutboundProvisioningFlowSet(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OutboundProvisioningFlowSet()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .filter import Filter
@@ -50,7 +51,7 @@ class OutboundProvisioningFlowSet(Entity, Parsable):
         from .filter import Filter
         from .provisioning_flow import ProvisioningFlow
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "filter": lambda n : setattr(self, 'filter', n.get_object_value(Filter)),
@@ -70,10 +71,6 @@ class OutboundProvisioningFlowSet(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .filter import Filter
-        from .provisioning_flow import ProvisioningFlow
-
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("filter", self.filter)
         writer.write_collection_of_object_values("provisioningFlows", self.provisioning_flows)

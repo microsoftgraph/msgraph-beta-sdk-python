@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .approval_state import ApprovalState
@@ -50,10 +51,10 @@ class PrivilegedApproval(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PrivilegedApproval()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .approval_state import ApprovalState
         from .entity import Entity
@@ -65,7 +66,7 @@ class PrivilegedApproval(Entity, Parsable):
         from .privileged_role import PrivilegedRole
         from .privileged_role_assignment_request import PrivilegedRoleAssignmentRequest
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "approvalDuration": lambda n : setattr(self, 'approval_duration', n.get_timedelta_value()),
             "approvalState": lambda n : setattr(self, 'approval_state', n.get_enum_value(ApprovalState)),
             "approvalType": lambda n : setattr(self, 'approval_type', n.get_str_value()),
@@ -91,11 +92,6 @@ class PrivilegedApproval(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .approval_state import ApprovalState
-        from .entity import Entity
-        from .privileged_role import PrivilegedRole
-        from .privileged_role_assignment_request import PrivilegedRoleAssignmentRequest
-
         writer.write_timedelta_value("approvalDuration", self.approval_duration)
         writer.write_enum_value("approvalState", self.approval_state)
         writer.write_str_value("approvalType", self.approval_type)

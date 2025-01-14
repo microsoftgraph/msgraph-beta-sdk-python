@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ...entity import Entity
@@ -19,11 +20,11 @@ from ...entity import Entity
 @dataclass
 class PartnerSecurityAlert(Entity, Parsable):
     # Represents the activity by a partner and includes details of state transitions, who performed them, and when they occurred.
-    activity_logs: Optional[List[ActivityLog]] = None
+    activity_logs: Optional[list[ActivityLog]] = None
     # A bag of name-value pairs that contain more details about an alert.
     additional_details: Optional[AdditionalDataDictionary] = None
     # Contains details of the resources affected by the security alert.
-    affected_resources: Optional[List[AffectedResource]] = None
+    affected_resources: Optional[list[AffectedResource]] = None
     # The type of vulnerability that impacts the customer due to this alert. For more information, see Security alerts reference guide.
     alert_type: Optional[str] = None
     # The modern offer category ID of the subscription.
@@ -72,10 +73,10 @@ class PartnerSecurityAlert(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PartnerSecurityAlert()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ...entity import Entity
         from .activity_log import ActivityLog
@@ -95,7 +96,7 @@ class PartnerSecurityAlert(Entity, Parsable):
         from .security_alert_severity import SecurityAlertSeverity
         from .security_alert_status import SecurityAlertStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activityLogs": lambda n : setattr(self, 'activity_logs', n.get_collection_of_object_values(ActivityLog)),
             "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_object_value(AdditionalDataDictionary)),
             "affectedResources": lambda n : setattr(self, 'affected_resources', n.get_collection_of_object_values(AffectedResource)),
@@ -130,15 +131,6 @@ class PartnerSecurityAlert(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ...entity import Entity
-        from .activity_log import ActivityLog
-        from .additional_data_dictionary import AdditionalDataDictionary
-        from .affected_resource import AffectedResource
-        from .security_alert_confidence import SecurityAlertConfidence
-        from .security_alert_resolved_reason import SecurityAlertResolvedReason
-        from .security_alert_severity import SecurityAlertSeverity
-        from .security_alert_status import SecurityAlertStatus
-
         writer.write_collection_of_object_values("activityLogs", self.activity_logs)
         writer.write_object_value("additionalDetails", self.additional_details)
         writer.write_collection_of_object_values("affectedResources", self.affected_resources)

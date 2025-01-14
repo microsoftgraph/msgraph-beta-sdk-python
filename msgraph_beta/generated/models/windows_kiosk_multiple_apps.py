@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .windows_kiosk_app_base import WindowsKioskAppBase
@@ -19,7 +20,7 @@ class WindowsKioskMultipleApps(WindowsKioskAppConfiguration, Parsable):
     # This setting allows access to Downloads folder in file explorer.
     allow_access_to_downloads_folder: Optional[bool] = None
     # These are the only Windows Store Apps that will be available to launch from the Start menu. This collection can contain a maximum of 128 elements.
-    apps: Optional[List[WindowsKioskAppBase]] = None
+    apps: Optional[list[WindowsKioskAppBase]] = None
     # This setting indicates that desktop apps are allowed. Default to true.
     disallow_desktop_apps: Optional[bool] = None
     # This setting allows the admin to specify whether the Task Bar is shown or not.
@@ -38,10 +39,10 @@ class WindowsKioskMultipleApps(WindowsKioskAppConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsKioskMultipleApps()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .windows_kiosk_app_base import WindowsKioskAppBase
         from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
@@ -49,7 +50,7 @@ class WindowsKioskMultipleApps(WindowsKioskAppConfiguration, Parsable):
         from .windows_kiosk_app_base import WindowsKioskAppBase
         from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowAccessToDownloadsFolder": lambda n : setattr(self, 'allow_access_to_downloads_folder', n.get_bool_value()),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(WindowsKioskAppBase)),
             "disallowDesktopApps": lambda n : setattr(self, 'disallow_desktop_apps', n.get_bool_value()),
@@ -69,9 +70,6 @@ class WindowsKioskMultipleApps(WindowsKioskAppConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .windows_kiosk_app_base import WindowsKioskAppBase
-        from .windows_kiosk_app_configuration import WindowsKioskAppConfiguration
-
         writer.write_bool_value("allowAccessToDownloadsFolder", self.allow_access_to_downloads_folder)
         writer.write_collection_of_object_values("apps", self.apps)
         writer.write_bool_value("disallowDesktopApps", self.disallow_desktop_apps)

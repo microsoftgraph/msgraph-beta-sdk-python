@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -37,10 +38,10 @@ class WindowsPrivacyDataAccessControlItem(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsPrivacyDataAccessControlItem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .windows_privacy_data_access_level import WindowsPrivacyDataAccessLevel
@@ -50,7 +51,7 @@ class WindowsPrivacyDataAccessControlItem(Entity, Parsable):
         from .windows_privacy_data_access_level import WindowsPrivacyDataAccessLevel
         from .windows_privacy_data_category import WindowsPrivacyDataCategory
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessLevel": lambda n : setattr(self, 'access_level', n.get_enum_value(WindowsPrivacyDataAccessLevel)),
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appPackageFamilyName": lambda n : setattr(self, 'app_package_family_name', n.get_str_value()),
@@ -69,10 +70,6 @@ class WindowsPrivacyDataAccessControlItem(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .windows_privacy_data_access_level import WindowsPrivacyDataAccessLevel
-        from .windows_privacy_data_category import WindowsPrivacyDataCategory
-
         writer.write_enum_value("accessLevel", self.access_level)
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appPackageFamilyName", self.app_package_family_name)

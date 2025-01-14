@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
@@ -60,7 +61,7 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration, Parsable):
     # Specify root certificate for client validation.
     root_certificate_for_client_validation: Optional[Windows81TrustedRootCertificate] = None
     # Specify root certificates for server validation. This collection can contain a maximum of 500 elements.
-    root_certificates_for_server_validation: Optional[List[Windows81TrustedRootCertificate]] = None
+    root_certificates_for_server_validation: Optional[list[Windows81TrustedRootCertificate]] = None
     # Specify the secondary authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential. Possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
     secondary_authentication_method: Optional[WiredNetworkAuthenticationMethod] = None
     # Specify secondary identity certificate for client authentication.
@@ -68,7 +69,7 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration, Parsable):
     # Specify secondary root certificate for client validation.
     secondary_root_certificate_for_client_validation: Optional[Windows81TrustedRootCertificate] = None
     # Specify trusted server certificate names.
-    trusted_server_certificate_names: Optional[List[str]] = None
+    trusted_server_certificate_names: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WindowsWiredNetworkConfiguration:
@@ -81,10 +82,10 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsWiredNetworkConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
         from .eap_type import EapType
@@ -102,7 +103,7 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration, Parsable):
         from .wired_network_authentication_method import WiredNetworkAuthenticationMethod
         from .wired_network_authentication_type import WiredNetworkAuthenticationType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationBlockPeriodInMinutes": lambda n : setattr(self, 'authentication_block_period_in_minutes', n.get_int_value()),
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WiredNetworkAuthenticationMethod)),
             "authenticationPeriodInSeconds": lambda n : setattr(self, 'authentication_period_in_seconds', n.get_int_value()),
@@ -141,14 +142,6 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_configuration import DeviceConfiguration
-        from .eap_type import EapType
-        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
-        from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
-        from .windows_certificate_profile_base import WindowsCertificateProfileBase
-        from .wired_network_authentication_method import WiredNetworkAuthenticationMethod
-        from .wired_network_authentication_type import WiredNetworkAuthenticationType
-
         writer.write_int_value("authenticationBlockPeriodInMinutes", self.authentication_block_period_in_minutes)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_int_value("authenticationPeriodInSeconds", self.authentication_period_in_seconds)

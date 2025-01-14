@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aws_external_system_access_finding import AwsExternalSystemAccessFinding
@@ -277,10 +278,10 @@ class Finding(Entity, Parsable):
             return VirtualMachineWithAwsStorageBucketAccessFinding()
         return Finding()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aws_external_system_access_finding import AwsExternalSystemAccessFinding
         from .aws_external_system_access_role_finding import AwsExternalSystemAccessRoleFinding
@@ -384,7 +385,7 @@ class Finding(Entity, Parsable):
         from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
         from .virtual_machine_with_aws_storage_bucket_access_finding import VirtualMachineWithAwsStorageBucketAccessFinding
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -400,57 +401,6 @@ class Finding(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .aws_external_system_access_finding import AwsExternalSystemAccessFinding
-        from .aws_external_system_access_role_finding import AwsExternalSystemAccessRoleFinding
-        from .aws_identity_access_management_key_age_finding import AwsIdentityAccessManagementKeyAgeFinding
-        from .aws_identity_access_management_key_usage_finding import AwsIdentityAccessManagementKeyUsageFinding
-        from .aws_secret_information_access_finding import AwsSecretInformationAccessFinding
-        from .aws_security_tool_administration_finding import AwsSecurityToolAdministrationFinding
-        from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
-        from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
-        from .encrypted_gcp_storage_bucket_finding import EncryptedGcpStorageBucketFinding
-        from .entity import Entity
-        from .externally_accessible_aws_storage_bucket_finding import ExternallyAccessibleAwsStorageBucketFinding
-        from .externally_accessible_azure_blob_container_finding import ExternallyAccessibleAzureBlobContainerFinding
-        from .externally_accessible_gcp_storage_bucket_finding import ExternallyAccessibleGcpStorageBucketFinding
-        from .identity_finding import IdentityFinding
-        from .inactive_aws_resource_finding import InactiveAwsResourceFinding
-        from .inactive_aws_role_finding import InactiveAwsRoleFinding
-        from .inactive_azure_service_principal_finding import InactiveAzureServicePrincipalFinding
-        from .inactive_gcp_service_account_finding import InactiveGcpServiceAccountFinding
-        from .inactive_group_finding import InactiveGroupFinding
-        from .inactive_serverless_function_finding import InactiveServerlessFunctionFinding
-        from .inactive_user_finding import InactiveUserFinding
-        from .open_aws_security_group_finding import OpenAwsSecurityGroupFinding
-        from .open_network_azure_security_group_finding import OpenNetworkAzureSecurityGroupFinding
-        from .overprovisioned_aws_resource_finding import OverprovisionedAwsResourceFinding
-        from .overprovisioned_aws_role_finding import OverprovisionedAwsRoleFinding
-        from .overprovisioned_azure_service_principal_finding import OverprovisionedAzureServicePrincipalFinding
-        from .overprovisioned_gcp_service_account_finding import OverprovisionedGcpServiceAccountFinding
-        from .overprovisioned_serverless_function_finding import OverprovisionedServerlessFunctionFinding
-        from .overprovisioned_user_finding import OverprovisionedUserFinding
-        from .privilege_escalation_aws_resource_finding import PrivilegeEscalationAwsResourceFinding
-        from .privilege_escalation_aws_role_finding import PrivilegeEscalationAwsRoleFinding
-        from .privilege_escalation_finding import PrivilegeEscalationFinding
-        from .privilege_escalation_gcp_service_account_finding import PrivilegeEscalationGcpServiceAccountFinding
-        from .privilege_escalation_user_finding import PrivilegeEscalationUserFinding
-        from .secret_information_access_aws_resource_finding import SecretInformationAccessAwsResourceFinding
-        from .secret_information_access_aws_role_finding import SecretInformationAccessAwsRoleFinding
-        from .secret_information_access_aws_serverless_function_finding import SecretInformationAccessAwsServerlessFunctionFinding
-        from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
-        from .security_tool_aws_resource_administrator_finding import SecurityToolAwsResourceAdministratorFinding
-        from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
-        from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
-        from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
-        from .super_aws_resource_finding import SuperAwsResourceFinding
-        from .super_aws_role_finding import SuperAwsRoleFinding
-        from .super_azure_service_principal_finding import SuperAzureServicePrincipalFinding
-        from .super_gcp_service_account_finding import SuperGcpServiceAccountFinding
-        from .super_serverless_function_finding import SuperServerlessFunctionFinding
-        from .super_user_finding import SuperUserFinding
-        from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
-        from .virtual_machine_with_aws_storage_bucket_access_finding import VirtualMachineWithAwsStorageBucketAccessFinding
-
         writer.write_datetime_value("createdDateTime", self.created_date_time)
     
 

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_vpn_configuration import AppleVpnConfiguration
@@ -24,7 +25,7 @@ class IosVpnConfiguration(AppleVpnConfiguration, Parsable):
     # Tenant level settings for the Derived Credentials to be used for authentication.
     derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None
     # Zscaler only. List of network addresses which are not sent through the Zscaler cloud.
-    exclude_list: Optional[List[str]] = None
+    exclude_list: Optional[list[str]] = None
     # Identity certificate for client authentication when authentication method is certificate.
     identity_certificate: Optional[IosCertificateProfileBase] = None
     # Microsoft Tunnel site ID.
@@ -32,7 +33,7 @@ class IosVpnConfiguration(AppleVpnConfiguration, Parsable):
     # Zscaler only. Blocks network traffic until the user signs into Zscaler app. 'True' means traffic is blocked.
     strict_enforcement: Optional[bool] = None
     # Targeted mobile apps. This collection can contain a maximum of 500 elements.
-    targeted_mobile_apps: Optional[List[AppListItem]] = None
+    targeted_mobile_apps: Optional[list[AppListItem]] = None
     # Zscaler only. Enter a static domain to pre-populate the login field with in the Zscaler app. If this is left empty, the user's Azure Active Directory domain will be used instead.
     user_domain: Optional[str] = None
     
@@ -56,10 +57,10 @@ class IosVpnConfiguration(AppleVpnConfiguration, Parsable):
             return IosikEv2VpnConfiguration()
         return IosVpnConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .apple_vpn_configuration import AppleVpnConfiguration
         from .app_list_item import AppListItem
@@ -73,7 +74,7 @@ class IosVpnConfiguration(AppleVpnConfiguration, Parsable):
         from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
         from .ios_certificate_profile_base import IosCertificateProfileBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "cloudName": lambda n : setattr(self, 'cloud_name', n.get_str_value()),
             "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(DeviceManagementDerivedCredentialSettings)),
             "excludeList": lambda n : setattr(self, 'exclude_list', n.get_collection_of_primitive_values(str)),
@@ -96,12 +97,6 @@ class IosVpnConfiguration(AppleVpnConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .apple_vpn_configuration import AppleVpnConfiguration
-        from .app_list_item import AppListItem
-        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
-        from .ios_certificate_profile_base import IosCertificateProfileBase
-
         writer.write_str_value("cloudName", self.cloud_name)
         writer.write_object_value("derivedCredentialSettings", self.derived_credential_settings)
         writer.write_collection_of_primitive_values("excludeList", self.exclude_list)

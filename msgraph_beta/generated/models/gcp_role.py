@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -21,7 +22,7 @@ class GcpRole(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Resources that an identity assigned this GCP role can perform actions on. Supports $filter and (eq).
-    scopes: Optional[List[GcpScope]] = None
+    scopes: Optional[list[GcpScope]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GcpRole:
@@ -34,10 +35,10 @@ class GcpRole(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GcpRole()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .gcp_role_type import GcpRoleType
@@ -47,7 +48,7 @@ class GcpRole(Entity, Parsable):
         from .gcp_role_type import GcpRoleType
         from .gcp_scope import GcpScope
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "gcpRoleType": lambda n : setattr(self, 'gcp_role_type', n.get_enum_value(GcpRoleType)),
@@ -66,10 +67,6 @@ class GcpRole(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .gcp_role_type import GcpRoleType
-        from .gcp_scope import GcpScope
-
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("externalId", self.external_id)
         writer.write_enum_value("gcpRoleType", self.gcp_role_type)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -34,7 +35,7 @@ class OperationApprovalRequest(Entity, Parsable):
     # The identity of the requestor as an Identity Set. Optionally contains the application ID, the device ID and the User ID. See information about this type here: https://learn.microsoft.com/graph/api/resources/identityset?view=graph-rest-1.0. Read-only. This property is read-only.
     requestor: Optional[IdentitySet] = None
     # Indicates the approval policy types required by the request in order for the request to be approved or rejected. Read-only. This property is read-only.
-    required_operation_approval_policy_types: Optional[List[OperationApprovalPolicyType]] = None
+    required_operation_approval_policy_types: Optional[list[OperationApprovalPolicyType]] = None
     # Indicates the status of the Approval Request. The status of a request will change when an action is successfully performed on it, such as when it is `approved` or `rejected`, or when the request's expiration DateTime passes and the result is `expired`.
     status: Optional[OperationApprovalRequestStatus] = None
     
@@ -49,10 +50,10 @@ class OperationApprovalRequest(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OperationApprovalRequest()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .identity_set import IdentitySet
@@ -64,7 +65,7 @@ class OperationApprovalRequest(Entity, Parsable):
         from .operation_approval_policy_type import OperationApprovalPolicyType
         from .operation_approval_request_status import OperationApprovalRequestStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "approvalJustification": lambda n : setattr(self, 'approval_justification', n.get_str_value()),
             "approver": lambda n : setattr(self, 'approver', n.get_object_value(IdentitySet)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
@@ -88,11 +89,6 @@ class OperationApprovalRequest(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .identity_set import IdentitySet
-        from .operation_approval_policy_type import OperationApprovalPolicyType
-        from .operation_approval_request_status import OperationApprovalRequestStatus
-
         writer.write_enum_value("status", self.status)
     
 

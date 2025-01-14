@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -18,9 +19,9 @@ class RemoteNetwork(Entity, Parsable):
     # Specifies the connectivity details of all device links associated with a remote network.
     connectivity_configuration: Optional[RemoteNetworkConnectivityConfiguration] = None
     # Each unique CPE device associated with a remote network is specified. Supports $expand.
-    device_links: Optional[List[DeviceLink]] = None
+    device_links: Optional[list[DeviceLink]] = None
     # Each forwarding profile associated with a remote network is specified. Supports $expand and $select.
-    forwarding_profiles: Optional[List[ForwardingProfile]] = None
+    forwarding_profiles: Optional[list[ForwardingProfile]] = None
     # last modified time.
     last_modified_date_time: Optional[datetime.datetime] = None
     # Name.
@@ -43,10 +44,10 @@ class RemoteNetwork(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RemoteNetwork()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .device_link import DeviceLink
@@ -60,7 +61,7 @@ class RemoteNetwork(Entity, Parsable):
         from .region import Region
         from .remote_network_connectivity_configuration import RemoteNetworkConnectivityConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "connectivityConfiguration": lambda n : setattr(self, 'connectivity_configuration', n.get_object_value(RemoteNetworkConnectivityConfiguration)),
             "deviceLinks": lambda n : setattr(self, 'device_links', n.get_collection_of_object_values(DeviceLink)),
             "forwardingProfiles": lambda n : setattr(self, 'forwarding_profiles', n.get_collection_of_object_values(ForwardingProfile)),
@@ -82,12 +83,6 @@ class RemoteNetwork(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .device_link import DeviceLink
-        from .forwarding_profile import ForwardingProfile
-        from .region import Region
-        from .remote_network_connectivity_configuration import RemoteNetworkConnectivityConfiguration
-
         writer.write_object_value("connectivityConfiguration", self.connectivity_configuration)
         writer.write_collection_of_object_values("deviceLinks", self.device_links)
         writer.write_collection_of_object_values("forwardingProfiles", self.forwarding_profiles)

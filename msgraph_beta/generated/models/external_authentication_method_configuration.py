@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_method_configuration import AuthenticationMethodConfiguration
@@ -19,7 +20,7 @@ class ExternalAuthenticationMethodConfiguration(AuthenticationMethodConfiguratio
     # Display name for the external authentication method. This name is shown to users during sign-in.
     display_name: Optional[str] = None
     # A collection of groups that are enabled to use an authentication method as part of an authentication method policy in Microsoft Entra ID.
-    include_targets: Optional[List[AuthenticationMethodTarget]] = None
+    include_targets: Optional[list[AuthenticationMethodTarget]] = None
     # The openIdConnectSetting property
     open_id_connect_setting: Optional[OpenIdConnectSetting] = None
     
@@ -34,10 +35,10 @@ class ExternalAuthenticationMethodConfiguration(AuthenticationMethodConfiguratio
             raise TypeError("parse_node cannot be null.")
         return ExternalAuthenticationMethodConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_method_configuration import AuthenticationMethodConfiguration
         from .authentication_method_target import AuthenticationMethodTarget
@@ -47,7 +48,7 @@ class ExternalAuthenticationMethodConfiguration(AuthenticationMethodConfiguratio
         from .authentication_method_target import AuthenticationMethodTarget
         from .open_id_connect_setting import OpenIdConnectSetting
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "includeTargets": lambda n : setattr(self, 'include_targets', n.get_collection_of_object_values(AuthenticationMethodTarget)),
@@ -66,10 +67,6 @@ class ExternalAuthenticationMethodConfiguration(AuthenticationMethodConfiguratio
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authentication_method_configuration import AuthenticationMethodConfiguration
-        from .authentication_method_target import AuthenticationMethodTarget
-        from .open_id_connect_setting import OpenIdConnectSetting
-
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("includeTargets", self.include_targets)

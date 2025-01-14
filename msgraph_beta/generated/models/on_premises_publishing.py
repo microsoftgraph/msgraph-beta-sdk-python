@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .external_authentication_type import ExternalAuthenticationType
@@ -21,7 +22,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # If you're configuring a traffic manager in front of multiple app proxy applications, this user-friendly URL points to the traffic manager.
     alternate_url: Optional[str] = None
     # The duration the connector waits for a response from the backend application before closing the connection. Possible values are default, long. When set to default, the backend application timeout has a length of 85 seconds. When set to long, the backend timeout is increased to 180 seconds. Use long if your server takes more than 85 seconds to respond to requests or if you are unable to access the application and the error status is 'Backend Timeout'. Default value is default.
@@ -57,7 +58,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents the application segment collection for an on-premises wildcard application. This property is deprecated and will stop returning data on June 1, 2023. Use segmentsConfiguration instead.
-    on_premises_application_segments: Optional[List[OnPremisesApplicationSegment]] = None
+    on_premises_application_segments: Optional[list[OnPremisesApplicationSegment]] = None
     # Represents the collection of application segments for an on-premises wildcard application that's published through Microsoft Entra application proxy.
     segments_configuration: Optional[SegmentConfiguration] = None
     # Represents the single sign-on configuration for the on-premises application.
@@ -73,7 +74,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     # The wafAllowedHeaders property
     waf_allowed_headers: Optional[WafAllowedHeadersDictionary] = None
     # The wafIpRanges property
-    waf_ip_ranges: Optional[List[IpRange]] = None
+    waf_ip_ranges: Optional[list[IpRange]] = None
     # The wafProvider property
     waf_provider: Optional[str] = None
     
@@ -88,10 +89,10 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OnPremisesPublishing()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .external_authentication_type import ExternalAuthenticationType
         from .ip_range import IpRange
@@ -113,7 +114,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         from .verified_custom_domain_certificates_metadata import VerifiedCustomDomainCertificatesMetadata
         from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alternateUrl": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
             "applicationServerTimeout": lambda n : setattr(self, 'application_server_timeout', n.get_str_value()),
             "applicationType": lambda n : setattr(self, 'application_type', n.get_str_value()),
@@ -152,16 +153,6 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .external_authentication_type import ExternalAuthenticationType
-        from .ip_range import IpRange
-        from .key_credential import KeyCredential
-        from .on_premises_application_segment import OnPremisesApplicationSegment
-        from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
-        from .password_credential import PasswordCredential
-        from .segment_configuration import SegmentConfiguration
-        from .verified_custom_domain_certificates_metadata import VerifiedCustomDomainCertificatesMetadata
-        from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
-
         writer.write_str_value("alternateUrl", self.alternate_url)
         writer.write_str_value("applicationServerTimeout", self.application_server_timeout)
         writer.write_str_value("applicationType", self.application_type)

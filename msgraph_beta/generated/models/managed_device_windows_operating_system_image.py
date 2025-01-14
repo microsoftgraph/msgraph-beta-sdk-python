@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -17,13 +18,13 @@ class ManagedDeviceWindowsOperatingSystemImage(Entity, Parsable):
     This entity defines different Windows Operating System products, like 'Windows 11 22H1', 'Windows 11 22H2' etc., along with their available configurations.
     """
     # Indicates the available Quality/Security updates for a specific Windows product version (example: Windows 11 22H1), for upto last 3 Patch Tuesdays . This value in the API response would be updated 2-3 days after every Patch Tuesday. Supports: $filter, $select, $top, $skip. Read-only.
-    available_updates: Optional[List[ManagedDeviceWindowsOperatingSystemUpdate]] = None
+    available_updates: Optional[list[ManagedDeviceWindowsOperatingSystemUpdate]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Indicates the list of architectures supported by the image. E.g. ['ARM64','X86']. Supports: $filter, $select, $top, $skip. Read-only.
-    supported_architectures: Optional[List[ManagedDeviceArchitecture]] = None
+    supported_architectures: Optional[list[ManagedDeviceArchitecture]] = None
     # Indicates the list of editions supported by the image along with their support dates. Supports: $filter, $select, $top, $skip. Read-only.
-    supported_editions: Optional[List[ManagedDeviceWindowsOperatingSystemEdition]] = None
+    supported_editions: Optional[list[ManagedDeviceWindowsOperatingSystemEdition]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ManagedDeviceWindowsOperatingSystemImage:
@@ -36,10 +37,10 @@ class ManagedDeviceWindowsOperatingSystemImage(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagedDeviceWindowsOperatingSystemImage()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .managed_device_architecture import ManagedDeviceArchitecture
@@ -51,7 +52,7 @@ class ManagedDeviceWindowsOperatingSystemImage(Entity, Parsable):
         from .managed_device_windows_operating_system_edition import ManagedDeviceWindowsOperatingSystemEdition
         from .managed_device_windows_operating_system_update import ManagedDeviceWindowsOperatingSystemUpdate
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "availableUpdates": lambda n : setattr(self, 'available_updates', n.get_collection_of_object_values(ManagedDeviceWindowsOperatingSystemUpdate)),
             "supportedArchitectures": lambda n : setattr(self, 'supported_architectures', n.get_collection_of_enum_values(ManagedDeviceArchitecture)),
             "supportedEditions": lambda n : setattr(self, 'supported_editions', n.get_collection_of_object_values(ManagedDeviceWindowsOperatingSystemEdition)),
@@ -69,11 +70,6 @@ class ManagedDeviceWindowsOperatingSystemImage(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .managed_device_architecture import ManagedDeviceArchitecture
-        from .managed_device_windows_operating_system_edition import ManagedDeviceWindowsOperatingSystemEdition
-        from .managed_device_windows_operating_system_update import ManagedDeviceWindowsOperatingSystemUpdate
-
         writer.write_collection_of_object_values("availableUpdates", self.available_updates)
         writer.write_collection_of_enum_values("supportedArchitectures", self.supported_architectures)
         writer.write_collection_of_object_values("supportedEditions", self.supported_editions)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -34,17 +35,17 @@ class ExternalConnection(Entity, Parsable):
     # The list of content experiences the connection will participate in. Possible values are search.
     enabled_content_experiences: Optional[ContentExperienceType] = None
     # The groups property
-    groups: Optional[List[ExternalGroup]] = None
+    groups: Optional[list[ExternalGroup]] = None
     # The number of items ingested into a connection. This value is refreshed every 15 minutes. If the connection state is draft, then ingestedItemsCount will be null.
     ingested_items_count: Optional[int] = None
     # The items property
-    items: Optional[List[ExternalItem]] = None
+    items: Optional[list[ExternalItem]] = None
     # The display name of the connection to be displayed in the Microsoft 365 admin center. Maximum length of 128 characters. Required.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The operations property
-    operations: Optional[List[ConnectionOperation]] = None
+    operations: Optional[list[ConnectionOperation]] = None
     # The quota property
     quota: Optional[ConnectionQuota] = None
     # The schema property
@@ -65,10 +66,10 @@ class ExternalConnection(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ExternalConnection()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .activity_settings import ActivitySettings
@@ -96,7 +97,7 @@ class ExternalConnection(Entity, Parsable):
         from .schema import Schema
         from .search_settings import SearchSettings
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activitySettings": lambda n : setattr(self, 'activity_settings', n.get_object_value(ActivitySettings)),
             "complianceSettings": lambda n : setattr(self, 'compliance_settings', n.get_object_value(ComplianceSettings)),
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(Configuration)),
@@ -126,19 +127,6 @@ class ExternalConnection(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .activity_settings import ActivitySettings
-        from .compliance_settings import ComplianceSettings
-        from .configuration import Configuration
-        from .connection_operation import ConnectionOperation
-        from .connection_quota import ConnectionQuota
-        from .connection_state import ConnectionState
-        from .content_experience_type import ContentExperienceType
-        from .external_group import ExternalGroup
-        from .external_item import ExternalItem
-        from .schema import Schema
-        from .search_settings import SearchSettings
-
         writer.write_object_value("activitySettings", self.activity_settings)
         writer.write_object_value("complianceSettings", self.compliance_settings)
         writer.write_object_value("configuration", self.configuration)

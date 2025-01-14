@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mobile_app_dependency_type import MobileAppDependencyType
@@ -34,10 +35,10 @@ class MobileAppDependency(MobileAppRelationship, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MobileAppDependency()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .mobile_app_dependency_type import MobileAppDependencyType
         from .mobile_app_relationship import MobileAppRelationship
@@ -45,7 +46,7 @@ class MobileAppDependency(MobileAppRelationship, Parsable):
         from .mobile_app_dependency_type import MobileAppDependencyType
         from .mobile_app_relationship import MobileAppRelationship
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dependencyType": lambda n : setattr(self, 'dependency_type', n.get_enum_value(MobileAppDependencyType)),
             "dependentAppCount": lambda n : setattr(self, 'dependent_app_count', n.get_int_value()),
             "dependsOnAppCount": lambda n : setattr(self, 'depends_on_app_count', n.get_int_value()),
@@ -63,9 +64,6 @@ class MobileAppDependency(MobileAppRelationship, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .mobile_app_dependency_type import MobileAppDependencyType
-        from .mobile_app_relationship import MobileAppRelationship
-
         writer.write_enum_value("dependencyType", self.dependency_type)
     
 

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
@@ -9,7 +10,7 @@ from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
@@ -20,7 +21,7 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the claimsPolicy property of the microsoft.graph.servicePrincipal entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
         Instantiates a new ClaimsPolicyRequestBuilder and sets the default values.
         param path_parameters: The raw url or the url-template parameters for the request.
@@ -41,7 +42,7 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, type[ParsableFactory]] = {
+        error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -52,11 +53,11 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: CustomClaimsPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CustomClaimsPolicy]:
         """
-        Create a new customClaimsPolicy object if it doesn't exist, or replace an existing one.
+        Update a customClaimsPolicy object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomClaimsPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-put-claimspolicy?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/customclaimspolicy-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -65,31 +66,7 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, type[ParsableFactory]] = {
-            "XXX": ODataError,
-        }
-        if not self.request_adapter:
-            raise Exception("Http core is null") 
-        from ....models.custom_claims_policy import CustomClaimsPolicy
-
-        return await self.request_adapter.send_async(request_info, CustomClaimsPolicy, error_mapping)
-    
-    async def put(self,body: CustomClaimsPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CustomClaimsPolicy]:
-        """
-        Create a new customClaimsPolicy object if it doesn't exist, or replace an existing one.
-        param body: The request body
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[CustomClaimsPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-put-claimspolicy?view=graph-rest-beta
-        """
-        if body is None:
-            raise TypeError("body cannot be null.")
-        request_info = self.to_put_request_information(
-            body, request_configuration
-        )
-        from ....models.o_data_errors.o_data_error import ODataError
-
-        error_mapping: Dict[str, type[ParsableFactory]] = {
+        error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -111,7 +88,7 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: CustomClaimsPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new customClaimsPolicy object if it doesn't exist, or replace an existing one.
+        Update a customClaimsPolicy object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -119,21 +96,6 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
-        request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
-        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
-        return request_info
-    
-    def to_put_request_information(self,body: CustomClaimsPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
-        """
-        Create a new customClaimsPolicy object if it doesn't exist, or replace an existing one.
-        param body: The request body
-        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        if body is None:
-            raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PUT, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -169,10 +131,10 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
             return original_name
         
         # Expand related entities
-        expand: Optional[List[str]] = None
+        expand: Optional[list[str]] = None
 
         # Select properties to be returned
-        select: Optional[List[str]] = None
+        select: Optional[list[str]] = None
 
     
     @dataclass
@@ -184,13 +146,6 @@ class ClaimsPolicyRequestBuilder(BaseRequestBuilder):
     
     @dataclass
     class ClaimsPolicyRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
-    
-    @dataclass
-    class ClaimsPolicyRequestBuilderPutRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mobile_app_intent import MobileAppIntent
@@ -18,7 +19,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, BackedModel, Parsable)
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # MobieApp identifier.
     application_id: Optional[str] = None
     # The admin provided or imported title of the app.
@@ -32,7 +33,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, BackedModel, Parsable)
     # The OdataType property
     odata_type: Optional[str] = None
     # The supported platforms for the app.
-    supported_device_types: Optional[List[MobileAppSupportedDeviceType]] = None
+    supported_device_types: Optional[list[MobileAppSupportedDeviceType]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MobileAppIntentAndStateDetail:
@@ -45,10 +46,10 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, BackedModel, Parsable)
             raise TypeError("parse_node cannot be null.")
         return MobileAppIntentAndStateDetail()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .mobile_app_intent import MobileAppIntent
         from .mobile_app_supported_device_type import MobileAppSupportedDeviceType
@@ -58,7 +59,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, BackedModel, Parsable)
         from .mobile_app_supported_device_type import MobileAppSupportedDeviceType
         from .resultant_app_state import ResultantAppState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "displayVersion": lambda n : setattr(self, 'display_version', n.get_str_value()),
@@ -77,10 +78,6 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .mobile_app_intent import MobileAppIntent
-        from .mobile_app_supported_device_type import MobileAppSupportedDeviceType
-        from .resultant_app_state import ResultantAppState
-
         writer.write_str_value("applicationId", self.application_id)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("displayVersion", self.display_version)
