@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
@@ -19,7 +20,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate(Devic
     # Linked policy may append values which are not present in the template.
     allow_unmanaged_values: Optional[bool] = None
     # Simple Setting Collection Value Template
-    simple_setting_collection_value_template: Optional[List[DeviceManagementConfigurationSimpleSettingValueTemplate]] = None
+    simple_setting_collection_value_template: Optional[list[DeviceManagementConfigurationSimpleSettingValueTemplate]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate:
@@ -32,10 +33,10 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate(Devic
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
         from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
@@ -43,7 +44,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate(Devic
         from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
         from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowUnmanagedValues": lambda n : setattr(self, 'allow_unmanaged_values', n.get_bool_value()),
             "simpleSettingCollectionValueTemplate": lambda n : setattr(self, 'simple_setting_collection_value_template', n.get_collection_of_object_values(DeviceManagementConfigurationSimpleSettingValueTemplate)),
         }
@@ -60,9 +61,6 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate(Devic
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
-        from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
-
         writer.write_bool_value("allowUnmanagedValues", self.allow_unmanaged_values)
         writer.write_collection_of_object_values("simpleSettingCollectionValueTemplate", self.simple_setting_collection_value_template)
     

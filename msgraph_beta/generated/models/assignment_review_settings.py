@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_review_timeout_behavior import AccessReviewTimeoutBehavior
@@ -15,7 +16,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The default decision to apply if the request isn't reviewed within the period specified in durationInDays. The possible values are: acceptAccessRecommendation, keepAccess, removeAccess, and unknownFutureValue.
     access_review_timeout_behavior: Optional[AccessReviewTimeoutBehavior] = None
     # The number of days within which reviewers should provide input.
@@ -33,7 +34,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
     # Who should be asked to do the review, either Self, Reviewers or Manager.
     reviewer_type: Optional[str] = None
     # If the reviewerType is Reviewers, this collection specifies the users who will be reviewers, either by ID or as members of a group, using a collection of singleUser and groupMembers.
-    reviewers: Optional[List[UserSet]] = None
+    reviewers: Optional[list[UserSet]] = None
     # When the first review should start.
     start_date_time: Optional[datetime.datetime] = None
     
@@ -48,10 +49,10 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AssignmentReviewSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_review_timeout_behavior import AccessReviewTimeoutBehavior
         from .user_set import UserSet
@@ -59,7 +60,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
         from .access_review_timeout_behavior import AccessReviewTimeoutBehavior
         from .user_set import UserSet
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessReviewTimeoutBehavior": lambda n : setattr(self, 'access_review_timeout_behavior', n.get_enum_value(AccessReviewTimeoutBehavior)),
             "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
             "isAccessRecommendationEnabled": lambda n : setattr(self, 'is_access_recommendation_enabled', n.get_bool_value()),
@@ -81,9 +82,6 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .access_review_timeout_behavior import AccessReviewTimeoutBehavior
-        from .user_set import UserSet
-
         writer.write_enum_value("accessReviewTimeoutBehavior", self.access_review_timeout_behavior)
         writer.write_int_value("durationInDays", self.duration_in_days)
         writer.write_bool_value("isAccessRecommendationEnabled", self.is_access_recommendation_enabled)

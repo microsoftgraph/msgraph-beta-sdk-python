@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .drive_restore_artifact import DriveRestoreArtifact
@@ -15,9 +16,9 @@ class OneDriveForBusinessRestoreSession(RestoreSessionBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.oneDriveForBusinessRestoreSession"
     # A collection of restore points and destination details that can be used to restore a OneDrive for work or school drive.
-    drive_restore_artifacts: Optional[List[DriveRestoreArtifact]] = None
+    drive_restore_artifacts: Optional[list[DriveRestoreArtifact]] = None
     # A collection of user mailboxes and destination details that can be used to restore a OneDrive for work or school drive.
-    drive_restore_artifacts_bulk_addition_requests: Optional[List[DriveRestoreArtifactsBulkAdditionRequest]] = None
+    drive_restore_artifacts_bulk_addition_requests: Optional[list[DriveRestoreArtifactsBulkAdditionRequest]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OneDriveForBusinessRestoreSession:
@@ -30,10 +31,10 @@ class OneDriveForBusinessRestoreSession(RestoreSessionBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OneDriveForBusinessRestoreSession()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .drive_restore_artifact import DriveRestoreArtifact
         from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
@@ -43,7 +44,7 @@ class OneDriveForBusinessRestoreSession(RestoreSessionBase, Parsable):
         from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
         from .restore_session_base import RestoreSessionBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "driveRestoreArtifacts": lambda n : setattr(self, 'drive_restore_artifacts', n.get_collection_of_object_values(DriveRestoreArtifact)),
             "driveRestoreArtifactsBulkAdditionRequests": lambda n : setattr(self, 'drive_restore_artifacts_bulk_addition_requests', n.get_collection_of_object_values(DriveRestoreArtifactsBulkAdditionRequest)),
         }
@@ -60,10 +61,6 @@ class OneDriveForBusinessRestoreSession(RestoreSessionBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .drive_restore_artifact import DriveRestoreArtifact
-        from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
-        from .restore_session_base import RestoreSessionBase
-
         writer.write_collection_of_object_values("driveRestoreArtifacts", self.drive_restore_artifacts)
         writer.write_collection_of_object_values("driveRestoreArtifactsBulkAdditionRequests", self.drive_restore_artifacts_bulk_addition_requests)
     

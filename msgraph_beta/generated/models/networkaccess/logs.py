@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -15,9 +16,9 @@ class Logs(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # A collection of remote network health events.
-    remote_networks: Optional[List[RemoteNetworkHealthEvent]] = None
+    remote_networks: Optional[list[RemoteNetworkHealthEvent]] = None
     # A network access traffic log entry that contains comprehensive information about network traffic events.
-    traffic: Optional[List[NetworkAccessTraffic]] = None
+    traffic: Optional[list[NetworkAccessTraffic]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Logs:
@@ -30,10 +31,10 @@ class Logs(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Logs()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .network_access_traffic import NetworkAccessTraffic
@@ -43,7 +44,7 @@ class Logs(Entity, Parsable):
         from .network_access_traffic import NetworkAccessTraffic
         from .remote_network_health_event import RemoteNetworkHealthEvent
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "remoteNetworks": lambda n : setattr(self, 'remote_networks', n.get_collection_of_object_values(RemoteNetworkHealthEvent)),
             "traffic": lambda n : setattr(self, 'traffic', n.get_collection_of_object_values(NetworkAccessTraffic)),
         }
@@ -60,10 +61,6 @@ class Logs(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .network_access_traffic import NetworkAccessTraffic
-        from .remote_network_health_event import RemoteNetworkHealthEvent
-
         writer.write_collection_of_object_values("remoteNetworks", self.remote_networks)
         writer.write_collection_of_object_values("traffic", self.traffic)
     

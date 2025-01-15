@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_enrollment_configuration import DeviceEnrollmentConfiguration
@@ -44,10 +45,10 @@ class DeviceEnrollmentPlatformRestrictionsConfiguration(DeviceEnrollmentConfigur
             raise TypeError("parse_node cannot be null.")
         return DeviceEnrollmentPlatformRestrictionsConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_enrollment_configuration import DeviceEnrollmentConfiguration
         from .device_enrollment_platform_restriction import DeviceEnrollmentPlatformRestriction
@@ -55,7 +56,7 @@ class DeviceEnrollmentPlatformRestrictionsConfiguration(DeviceEnrollmentConfigur
         from .device_enrollment_configuration import DeviceEnrollmentConfiguration
         from .device_enrollment_platform_restriction import DeviceEnrollmentPlatformRestriction
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "androidForWorkRestriction": lambda n : setattr(self, 'android_for_work_restriction', n.get_object_value(DeviceEnrollmentPlatformRestriction)),
             "androidRestriction": lambda n : setattr(self, 'android_restriction', n.get_object_value(DeviceEnrollmentPlatformRestriction)),
             "iosRestriction": lambda n : setattr(self, 'ios_restriction', n.get_object_value(DeviceEnrollmentPlatformRestriction)),
@@ -78,9 +79,6 @@ class DeviceEnrollmentPlatformRestrictionsConfiguration(DeviceEnrollmentConfigur
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_enrollment_configuration import DeviceEnrollmentConfiguration
-        from .device_enrollment_platform_restriction import DeviceEnrollmentPlatformRestriction
-
         writer.write_object_value("androidForWorkRestriction", self.android_for_work_restriction)
         writer.write_object_value("androidRestriction", self.android_restriction)
         writer.write_object_value("iosRestriction", self.ios_restriction)

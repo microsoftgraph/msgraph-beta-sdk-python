@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .conditional_access_policy import ConditionalAccessPolicy
@@ -16,7 +17,7 @@ class ConditionalAccessWhatIfPolicy(ConditionalAccessPolicy, Parsable):
     # The policyApplies property
     policy_applies: Optional[bool] = None
     # The reasons property
-    reasons: Optional[List[ConditionalAccessWhatIfReasons]] = None
+    reasons: Optional[list[ConditionalAccessWhatIfReasons]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ConditionalAccessWhatIfPolicy:
@@ -29,10 +30,10 @@ class ConditionalAccessWhatIfPolicy(ConditionalAccessPolicy, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ConditionalAccessWhatIfPolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_what_if_reasons import ConditionalAccessWhatIfReasons
@@ -40,7 +41,7 @@ class ConditionalAccessWhatIfPolicy(ConditionalAccessPolicy, Parsable):
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_what_if_reasons import ConditionalAccessWhatIfReasons
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "policyApplies": lambda n : setattr(self, 'policy_applies', n.get_bool_value()),
             "reasons": lambda n : setattr(self, 'reasons', n.get_collection_of_enum_values(ConditionalAccessWhatIfReasons)),
         }
@@ -57,9 +58,6 @@ class ConditionalAccessWhatIfPolicy(ConditionalAccessPolicy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .conditional_access_policy import ConditionalAccessPolicy
-        from .conditional_access_what_if_reasons import ConditionalAccessWhatIfReasons
-
         writer.write_bool_value("policyApplies", self.policy_applies)
         writer.write_collection_of_enum_values("reasons", self.reasons)
     

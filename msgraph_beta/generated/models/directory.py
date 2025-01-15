@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .administrative_unit import AdministrativeUnit
@@ -31,46 +32,46 @@ from .entity import Entity
 @dataclass
 class Directory(Entity, Parsable):
     # Conceptual container for user and group directory objects.
-    administrative_units: Optional[List[AdministrativeUnit]] = None
+    administrative_units: Optional[list[AdministrativeUnit]] = None
     # Group of related custom security attribute definitions.
-    attribute_sets: Optional[List[AttributeSet]] = None
+    attribute_sets: Optional[list[AttributeSet]] = None
     # Exposes the hardware OATH method in the directory.
     authentication_method_devices: Optional[AuthenticationMethodDevice] = None
-    # The certificateAuthorities property
+    # Container for certificate authorities-related configurations for applications in the tenant.
     certificate_authorities: Optional[CertificateAuthorityPath] = None
     # Schema of a custom security attributes (key-value pairs).
-    custom_security_attribute_definitions: Optional[List[CustomSecurityAttributeDefinition]] = None
+    custom_security_attribute_definitions: Optional[list[CustomSecurityAttributeDefinition]] = None
     # Recently deleted items. Read-only. Nullable.
-    deleted_items: Optional[List[DirectoryObject]] = None
+    deleted_items: Optional[list[DirectoryObject]] = None
     # The credentials of the device's local administrator account backed up to Microsoft Entra ID.
-    device_local_credentials: Optional[List[DeviceLocalCredentialInfo]] = None
+    device_local_credentials: Optional[list[DeviceLocalCredentialInfo]] = None
     # Collection of external user profiles that represent collaborators in the directory.
-    external_user_profiles: Optional[List[ExternalUserProfile]] = None
+    external_user_profiles: Optional[list[ExternalUserProfile]] = None
     # The featureRolloutPolicies property
-    feature_rollout_policies: Optional[List[FeatureRolloutPolicy]] = None
+    feature_rollout_policies: Optional[list[FeatureRolloutPolicy]] = None
     # Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
-    federation_configurations: Optional[List[IdentityProviderBase]] = None
+    federation_configurations: Optional[list[IdentityProviderBase]] = None
     # The impactedResources property
-    impacted_resources: Optional[List[ImpactedResource]] = None
+    impacted_resources: Optional[list[ImpactedResource]] = None
     # A collection of external users whose profile data is shared with the Microsoft Entra tenant. Nullable.
-    inbound_shared_user_profiles: Optional[List[InboundSharedUserProfile]] = None
+    inbound_shared_user_profiles: Optional[list[InboundSharedUserProfile]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # A container for on-premises directory synchronization functionalities that are available for the organization.
-    on_premises_synchronization: Optional[List[OnPremisesDirectorySynchronization]] = None
+    on_premises_synchronization: Optional[list[OnPremisesDirectorySynchronization]] = None
     # The outboundSharedUserProfiles property
-    outbound_shared_user_profiles: Optional[List[OutboundSharedUserProfile]] = None
+    outbound_shared_user_profiles: Optional[list[OutboundSharedUserProfile]] = None
     # Collection of pending external user profiles representing collaborators in the directory that are unredeemed.
-    pending_external_user_profiles: Optional[List[PendingExternalUserProfile]] = None
+    pending_external_user_profiles: Optional[list[PendingExternalUserProfile]] = None
     # The collection of public key infrastructure instances for the certificate-based authentication feature for users in a Microsoft Entra tenant.
     public_key_infrastructure: Optional[PublicKeyInfrastructureRoot] = None
     # List of recommended improvements to improve tenant posture.
-    recommendations: Optional[List[Recommendation]] = None
+    recommendations: Optional[list[Recommendation]] = None
     # The sharedEmailDomains property
-    shared_email_domains: Optional[List[SharedEmailDomain]] = None
+    shared_email_domains: Optional[list[SharedEmailDomain]] = None
     # List of commercial subscriptions that an organization has.
-    subscriptions: Optional[List[CompanySubscription]] = None
-    # The templates property
+    subscriptions: Optional[list[CompanySubscription]] = None
+    # A container for templates, such as device templates used for onboarding devices in Microsoft Entra ID.
     templates: Optional[Template] = None
     
     @staticmethod
@@ -84,10 +85,10 @@ class Directory(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Directory()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .administrative_unit import AdministrativeUnit
         from .attribute_set import AttributeSet
@@ -133,7 +134,7 @@ class Directory(Entity, Parsable):
         from .shared_email_domain import SharedEmailDomain
         from .template import Template
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "administrativeUnits": lambda n : setattr(self, 'administrative_units', n.get_collection_of_object_values(AdministrativeUnit)),
             "attributeSets": lambda n : setattr(self, 'attribute_sets', n.get_collection_of_object_values(AttributeSet)),
             "authenticationMethodDevices": lambda n : setattr(self, 'authentication_method_devices', n.get_object_value(AuthenticationMethodDevice)),
@@ -168,28 +169,6 @@ class Directory(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .administrative_unit import AdministrativeUnit
-        from .attribute_set import AttributeSet
-        from .authentication_method_device import AuthenticationMethodDevice
-        from .certificate_authority_path import CertificateAuthorityPath
-        from .company_subscription import CompanySubscription
-        from .custom_security_attribute_definition import CustomSecurityAttributeDefinition
-        from .device_local_credential_info import DeviceLocalCredentialInfo
-        from .directory_object import DirectoryObject
-        from .entity import Entity
-        from .external_user_profile import ExternalUserProfile
-        from .feature_rollout_policy import FeatureRolloutPolicy
-        from .identity_provider_base import IdentityProviderBase
-        from .impacted_resource import ImpactedResource
-        from .inbound_shared_user_profile import InboundSharedUserProfile
-        from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
-        from .outbound_shared_user_profile import OutboundSharedUserProfile
-        from .pending_external_user_profile import PendingExternalUserProfile
-        from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
-        from .recommendation import Recommendation
-        from .shared_email_domain import SharedEmailDomain
-        from .template import Template
-
         writer.write_collection_of_object_values("administrativeUnits", self.administrative_units)
         writer.write_collection_of_object_values("attributeSets", self.attribute_sets)
         writer.write_object_value("authenticationMethodDevices", self.authentication_method_devices)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -45,16 +46,16 @@ class AppPerformance(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AppPerformance()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
 
         from ..entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appFriendlyName": lambda n : setattr(self, 'app_friendly_name', n.get_str_value()),
             "appName": lambda n : setattr(self, 'app_name', n.get_str_value()),
             "appPublisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
@@ -79,8 +80,6 @@ class AppPerformance(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-
         writer.write_str_value("appFriendlyName", self.app_friendly_name)
         writer.write_str_value("appName", self.app_name)
         writer.write_str_value("appPublisher", self.app_publisher)

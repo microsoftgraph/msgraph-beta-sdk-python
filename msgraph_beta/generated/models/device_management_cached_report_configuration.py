@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_report_status import DeviceManagementReportStatus
@@ -26,11 +27,11 @@ class DeviceManagementCachedReportConfiguration(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Ordering of columns in the report.
-    order_by: Optional[List[str]] = None
+    order_by: Optional[list[str]] = None
     # Name of the report.
     report_name: Optional[str] = None
     # Columns selected from the report.
-    select: Optional[List[str]] = None
+    select: Optional[list[str]] = None
     # Possible statuses associated with a generated report.
     status: Optional[DeviceManagementReportStatus] = None
     
@@ -45,10 +46,10 @@ class DeviceManagementCachedReportConfiguration(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementCachedReportConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_report_status import DeviceManagementReportStatus
         from .entity import Entity
@@ -56,7 +57,7 @@ class DeviceManagementCachedReportConfiguration(Entity, Parsable):
         from .device_management_report_status import DeviceManagementReportStatus
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
             "lastRefreshDateTime": lambda n : setattr(self, 'last_refresh_date_time', n.get_datetime_value()),
@@ -79,9 +80,6 @@ class DeviceManagementCachedReportConfiguration(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_report_status import DeviceManagementReportStatus
-        from .entity import Entity
-
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("filter", self.filter)
         writer.write_datetime_value("lastRefreshDateTime", self.last_refresh_date_time)

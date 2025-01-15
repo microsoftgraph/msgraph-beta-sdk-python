@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -16,7 +17,7 @@ class MicrosoftTunnelConfiguration(Entity, Parsable):
     Entity that represents a collection of Microsoft Tunnel settings
     """
     # Additional settings that may be applied to the server
-    advanced_settings: Optional[List[KeyValuePair]] = None
+    advanced_settings: Optional[list[KeyValuePair]] = None
     # The Default Domain appendix that will be used by the clients
     default_domain_suffix: Optional[str] = None
     # The configuration's description (optional)
@@ -26,7 +27,7 @@ class MicrosoftTunnelConfiguration(Entity, Parsable):
     # The display name for the server configuration. This property is required when a server is created.
     display_name: Optional[str] = None
     # The DNS servers that will be used by the clients
-    dns_servers: Optional[List[str]] = None
+    dns_servers: Optional[list[str]] = None
     # The IPv6 subnet that will be used to allocate virtual address for the clients
     ipv6_network: Optional[str] = None
     # When the configuration was last updated
@@ -38,17 +39,17 @@ class MicrosoftTunnelConfiguration(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of Scope Tags for this Entity instance
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # Subsets of the routes that will not be routed by the server
-    route_excludes: Optional[List[str]] = None
+    route_excludes: Optional[list[str]] = None
     # The routes that will be routed by the server
-    route_includes: Optional[List[str]] = None
+    route_includes: Optional[list[str]] = None
     # Subsets of the routes that will not be routed by the server. This property is going to be deprecated with the option of using the new property, 'RouteExcludes'.
-    routes_exclude: Optional[List[str]] = None
+    routes_exclude: Optional[list[str]] = None
     # The routes that will be routed by the server. This property is going to be deprecated with the option of using the new property, 'RouteIncludes'.
-    routes_include: Optional[List[str]] = None
+    routes_include: Optional[list[str]] = None
     # The domains that will be resolved using the provided dns servers
-    split_d_n_s: Optional[List[str]] = None
+    split_d_n_s: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MicrosoftTunnelConfiguration:
@@ -61,10 +62,10 @@ class MicrosoftTunnelConfiguration(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MicrosoftTunnelConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .key_value_pair import KeyValuePair
@@ -72,7 +73,7 @@ class MicrosoftTunnelConfiguration(Entity, Parsable):
         from .entity import Entity
         from .key_value_pair import KeyValuePair
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "advancedSettings": lambda n : setattr(self, 'advanced_settings', n.get_collection_of_object_values(KeyValuePair)),
             "defaultDomainSuffix": lambda n : setattr(self, 'default_domain_suffix', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -103,9 +104,6 @@ class MicrosoftTunnelConfiguration(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .key_value_pair import KeyValuePair
-
         writer.write_collection_of_object_values("advancedSettings", self.advanced_settings)
         writer.write_str_value("defaultDomainSuffix", self.default_domain_suffix)
         writer.write_str_value("description", self.description)

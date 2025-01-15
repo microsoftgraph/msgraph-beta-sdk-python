@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .audio_routing_group import AudioRoutingGroup
@@ -32,23 +33,23 @@ from .entity import Entity
 @dataclass
 class Call(Entity, Parsable):
     # The list of active modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data. Read-only.
-    active_modalities: Optional[List[Modality]] = None
+    active_modalities: Optional[list[Modality]] = None
     # The participant that answered the call. Read-only.
     answered_by: Optional[ParticipantInfo] = None
     # The audioRoutingGroups property
-    audio_routing_groups: Optional[List[AudioRoutingGroup]] = None
+    audio_routing_groups: Optional[list[AudioRoutingGroup]] = None
     # A unique identifier for all the participant calls in a conference or a unique identifier for two participant calls in a P2P call.  This needs to be copied over from Microsoft.Graph.Call.CallChainId.
     call_chain_id: Optional[str] = None
     # Contains the optional features for the call.
     call_options: Optional[CallOptions] = None
     # The routing information on how the call was retargeted. Read-only.
-    call_routes: Optional[List[CallRoute]] = None
+    call_routes: Optional[list[CallRoute]] = None
     # The callback URL on which callbacks will be delivered. Must be https.
     callback_uri: Optional[str] = None
     # The chat information. Required information for meeting scenarios.
     chat_info: Optional[ChatInfo] = None
     # The contentSharingSessions property
-    content_sharing_sessions: Optional[List[ContentSharingSession]] = None
+    content_sharing_sessions: Optional[list[ContentSharingSession]] = None
     # The direction of the call. The possible values are incoming or outgoing. Read-only.
     direction: Optional[CallDirection] = None
     # The context associated with an incoming call. Read-only. Server generated.
@@ -66,17 +67,17 @@ class Call(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The operations property
-    operations: Optional[List[CommsOperation]] = None
+    operations: Optional[list[CommsOperation]] = None
     # The participants property
-    participants: Optional[List[Participant]] = None
+    participants: Optional[list[Participant]] = None
     # The list of requested modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data.
-    requested_modalities: Optional[List[Modality]] = None
+    requested_modalities: Optional[list[Modality]] = None
     # The result information. For example, the result can hold termination reason. Read-only.
     result_info: Optional[ResultInfo] = None
     # Ringing timeout in seconds for outgoing peer to peer calls. The max value for this attribute is 115 seconds.
     ringing_timeout_in_seconds: Optional[int] = None
     # This property is applicable for peer to peer calls only. Possible values are: none, noMissedCall, disableForwardingExceptPhone, disableForwarding, preferSkypeForBusiness, unknownFutureValue.
-    routing_policies: Optional[List[RoutingPolicy]] = None
+    routing_policies: Optional[list[RoutingPolicy]] = None
     # The originator of the call.
     source: Optional[ParticipantInfo] = None
     # The call state. Possible values are: incoming, establishing, ringing, established, hold, transferring, transferAccepted, redirecting, terminating, terminated. Read-only.
@@ -84,7 +85,7 @@ class Call(Entity, Parsable):
     # The subject of the conversation.
     subject: Optional[str] = None
     # The targets of the call. Required information for creating peer to peer call.
-    targets: Optional[List[InvitationParticipantInfo]] = None
+    targets: Optional[list[InvitationParticipantInfo]] = None
     # Read-only. tenantId in Microsoft Entra ID.
     tenant_id: Optional[str] = None
     # The terminationReason property
@@ -105,10 +106,10 @@ class Call(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Call()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .audio_routing_group import AudioRoutingGroup
         from .call_direction import CallDirection
@@ -156,7 +157,7 @@ class Call(Entity, Parsable):
         from .routing_policy import RoutingPolicy
         from .tone_info import ToneInfo
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activeModalities": lambda n : setattr(self, 'active_modalities', n.get_collection_of_enum_values(Modality)),
             "answeredBy": lambda n : setattr(self, 'answered_by', n.get_object_value(ParticipantInfo)),
             "audioRoutingGroups": lambda n : setattr(self, 'audio_routing_groups', n.get_collection_of_object_values(AudioRoutingGroup)),
@@ -201,29 +202,6 @@ class Call(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .audio_routing_group import AudioRoutingGroup
-        from .call_direction import CallDirection
-        from .call_media_state import CallMediaState
-        from .call_options import CallOptions
-        from .call_route import CallRoute
-        from .call_state import CallState
-        from .call_transcription_info import CallTranscriptionInfo
-        from .chat_info import ChatInfo
-        from .comms_operation import CommsOperation
-        from .content_sharing_session import ContentSharingSession
-        from .entity import Entity
-        from .incoming_context import IncomingContext
-        from .invitation_participant_info import InvitationParticipantInfo
-        from .media_config import MediaConfig
-        from .meeting_capability import MeetingCapability
-        from .meeting_info import MeetingInfo
-        from .modality import Modality
-        from .participant import Participant
-        from .participant_info import ParticipantInfo
-        from .result_info import ResultInfo
-        from .routing_policy import RoutingPolicy
-        from .tone_info import ToneInfo
-
         writer.write_collection_of_enum_values("activeModalities", self.active_modalities)
         writer.write_object_value("answeredBy", self.answered_by)
         writer.write_collection_of_object_values("audioRoutingGroups", self.audio_routing_groups)

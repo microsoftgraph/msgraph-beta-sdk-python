@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_certificate_profile_base import AndroidCertificateProfileBase
@@ -68,10 +69,10 @@ class AndroidEasEmailProfileConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidEasEmailProfileConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_username_source import AndroidUsernameSource
@@ -91,7 +92,7 @@ class AndroidEasEmailProfileConfiguration(DeviceConfiguration, Parsable):
         from .email_sync_schedule import EmailSyncSchedule
         from .user_email_source import UserEmailSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(EasAuthenticationMethod)),
             "customDomainName": lambda n : setattr(self, 'custom_domain_name', n.get_str_value()),
@@ -123,15 +124,6 @@ class AndroidEasEmailProfileConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_certificate_profile_base import AndroidCertificateProfileBase
-        from .android_username_source import AndroidUsernameSource
-        from .device_configuration import DeviceConfiguration
-        from .domain_name_source import DomainNameSource
-        from .eas_authentication_method import EasAuthenticationMethod
-        from .email_sync_duration import EmailSyncDuration
-        from .email_sync_schedule import EmailSyncSchedule
-        from .user_email_source import UserEmailSource
-
         writer.write_str_value("accountName", self.account_name)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_str_value("customDomainName", self.custom_domain_name)

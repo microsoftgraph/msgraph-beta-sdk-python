@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .call_log_row import CallLogRow
@@ -72,10 +73,10 @@ class PstnCallLogRow(CallLogRow, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PstnCallLogRow()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .call_log_row import CallLogRow
         from .pstn_call_duration_source import PstnCallDurationSource
@@ -83,7 +84,7 @@ class PstnCallLogRow(CallLogRow, Parsable):
         from .call_log_row import CallLogRow
         from .pstn_call_duration_source import PstnCallDurationSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "callDurationSource": lambda n : setattr(self, 'call_duration_source', n.get_enum_value(PstnCallDurationSource)),
             "callId": lambda n : setattr(self, 'call_id', n.get_str_value()),
             "callType": lambda n : setattr(self, 'call_type', n.get_str_value()),
@@ -121,9 +122,6 @@ class PstnCallLogRow(CallLogRow, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .call_log_row import CallLogRow
-        from .pstn_call_duration_source import PstnCallDurationSource
-
         writer.write_enum_value("callDurationSource", self.call_duration_source)
         writer.write_str_value("callId", self.call_id)
         writer.write_str_value("callType", self.call_type)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .compliance_change import ComplianceChange
@@ -20,7 +21,7 @@ class ContentApproval(ComplianceChange, Parsable):
     # Settings for governing how to deploy content.
     deployment_settings: Optional[DeploymentSettings] = None
     # Deployments created as a result of applying the approval.
-    deployments: Optional[List[Deployment]] = None
+    deployments: Optional[list[Deployment]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ContentApproval:
@@ -33,10 +34,10 @@ class ContentApproval(ComplianceChange, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ContentApproval()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .compliance_change import ComplianceChange
         from .deployable_content import DeployableContent
@@ -48,7 +49,7 @@ class ContentApproval(ComplianceChange, Parsable):
         from .deployment import Deployment
         from .deployment_settings import DeploymentSettings
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_object_value(DeployableContent)),
             "deploymentSettings": lambda n : setattr(self, 'deployment_settings', n.get_object_value(DeploymentSettings)),
             "deployments": lambda n : setattr(self, 'deployments', n.get_collection_of_object_values(Deployment)),
@@ -66,11 +67,6 @@ class ContentApproval(ComplianceChange, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .compliance_change import ComplianceChange
-        from .deployable_content import DeployableContent
-        from .deployment import Deployment
-        from .deployment_settings import DeploymentSettings
-
         writer.write_object_value("content", self.content)
         writer.write_object_value("deploymentSettings", self.deployment_settings)
         writer.write_collection_of_object_values("deployments", self.deployments)

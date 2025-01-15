@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_device_owner_enterprise_wi_fi_configuration import AndroidDeviceOwnerEnterpriseWiFiConfiguration
@@ -66,10 +67,10 @@ class AndroidDeviceOwnerWiFiConfiguration(DeviceConfiguration, Parsable):
             return AndroidDeviceOwnerEnterpriseWiFiConfiguration()
         return AndroidDeviceOwnerWiFiConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_device_owner_enterprise_wi_fi_configuration import AndroidDeviceOwnerEnterpriseWiFiConfiguration
         from .android_device_owner_wi_fi_security_type import AndroidDeviceOwnerWiFiSecurityType
@@ -83,7 +84,7 @@ class AndroidDeviceOwnerWiFiConfiguration(DeviceConfiguration, Parsable):
         from .mac_address_randomization_mode import MacAddressRandomizationMode
         from .wi_fi_proxy_setting import WiFiProxySetting
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
             "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
             "macAddressRandomizationMode": lambda n : setattr(self, 'mac_address_randomization_mode', n.get_enum_value(MacAddressRandomizationMode)),
@@ -111,12 +112,6 @@ class AndroidDeviceOwnerWiFiConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_device_owner_enterprise_wi_fi_configuration import AndroidDeviceOwnerEnterpriseWiFiConfiguration
-        from .android_device_owner_wi_fi_security_type import AndroidDeviceOwnerWiFiSecurityType
-        from .device_configuration import DeviceConfiguration
-        from .mac_address_randomization_mode import MacAddressRandomizationMode
-        from .wi_fi_proxy_setting import WiFiProxySetting
-
         writer.write_bool_value("connectAutomatically", self.connect_automatically)
         writer.write_bool_value("connectWhenNetworkNameIsHidden", self.connect_when_network_name_is_hidden)
         writer.write_enum_value("macAddressRandomizationMode", self.mac_address_randomization_mode)

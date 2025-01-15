@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -17,7 +18,7 @@ class KnownIssue(Entity, Parsable):
     # The description of the particular known issue.
     description: Optional[str] = None
     # The knownIssueHistories property
-    known_issue_histories: Optional[List[KnownIssueHistoryItem]] = None
+    known_issue_histories: Optional[list[KnownIssueHistoryItem]] = None
     # The date and time when the known issue was last updated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -29,7 +30,7 @@ class KnownIssue(Entity, Parsable):
     # Knowledge base article associated with the release when the known issue was resolved or mitigated.
     resolving_knowledge_base_article: Optional[KnowledgeBaseArticle] = None
     # The safeguardHoldIds property
-    safeguard_hold_ids: Optional[List[int]] = None
+    safeguard_hold_ids: Optional[list[int]] = None
     # The date and time when the known issue was first reported. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     start_date_time: Optional[datetime.datetime] = None
     # The status property
@@ -50,10 +51,10 @@ class KnownIssue(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return KnownIssue()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .knowledge_base_article import KnowledgeBaseArticle
@@ -65,7 +66,7 @@ class KnownIssue(Entity, Parsable):
         from .known_issue_history_item import KnownIssueHistoryItem
         from .windows_release_health_status import WindowsReleaseHealthStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "knownIssueHistories": lambda n : setattr(self, 'known_issue_histories', n.get_collection_of_object_values(KnownIssueHistoryItem)),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
@@ -91,11 +92,6 @@ class KnownIssue(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .knowledge_base_article import KnowledgeBaseArticle
-        from .known_issue_history_item import KnownIssueHistoryItem
-        from .windows_release_health_status import WindowsReleaseHealthStatus
-
         writer.write_str_value("description", self.description)
         writer.write_collection_of_object_values("knownIssueHistories", self.known_issue_histories)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)

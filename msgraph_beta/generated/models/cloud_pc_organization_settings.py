@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_operating_system import CloudPcOperatingSystem
@@ -37,10 +38,10 @@ class CloudPcOrganizationSettings(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CloudPcOrganizationSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_operating_system import CloudPcOperatingSystem
         from .cloud_pc_user_account_type import CloudPcUserAccountType
@@ -52,7 +53,7 @@ class CloudPcOrganizationSettings(Entity, Parsable):
         from .cloud_pc_windows_settings import CloudPcWindowsSettings
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "enableMEMAutoEnroll": lambda n : setattr(self, 'enable_m_e_m_auto_enroll', n.get_bool_value()),
             "enableSingleSignOn": lambda n : setattr(self, 'enable_single_sign_on', n.get_bool_value()),
             "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(CloudPcOperatingSystem)),
@@ -72,11 +73,6 @@ class CloudPcOrganizationSettings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .cloud_pc_operating_system import CloudPcOperatingSystem
-        from .cloud_pc_user_account_type import CloudPcUserAccountType
-        from .cloud_pc_windows_settings import CloudPcWindowsSettings
-        from .entity import Entity
-
         writer.write_bool_value("enableMEMAutoEnroll", self.enable_m_e_m_auto_enroll)
         writer.write_bool_value("enableSingleSignOn", self.enable_single_sign_on)
         writer.write_enum_value("osVersion", self.os_version)

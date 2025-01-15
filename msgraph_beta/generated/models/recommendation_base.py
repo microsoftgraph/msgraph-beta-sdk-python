@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .action_step import ActionStep
@@ -21,7 +22,7 @@ from .entity import Entity
 @dataclass
 class RecommendationBase(Entity, Parsable):
     # List of actions to take to complete a recommendation.
-    action_steps: Optional[List[ActionStep]] = None
+    action_steps: Optional[list[ActionStep]] = None
     # An explanation of why completing the recommendation will benefit you. Corresponds to the Value section of a recommendation shown in the Microsoft Entra admin center.
     benefits: Optional[str] = None
     # The category property
@@ -33,13 +34,13 @@ class RecommendationBase(Entity, Parsable):
     # The title of the recommendation.
     display_name: Optional[str] = None
     # The directory feature that the recommendation is related to.
-    feature_areas: Optional[List[RecommendationFeatureAreas]] = None
+    feature_areas: Optional[list[RecommendationFeatureAreas]] = None
     # The future date and time when a recommendation should be completed.
     impact_start_date_time: Optional[datetime.datetime] = None
     # Indicates the scope of impact of a recommendation. Tenant level indicates that the recommendation impacts the whole tenant. Other possible values include users, applications.
     impact_type: Optional[str] = None
     # The list of directory objects associated with the recommendation.
-    impacted_resources: Optional[List[ImpactedResource]] = None
+    impacted_resources: Optional[list[ImpactedResource]] = None
     # Describes why a recommendation uniquely applies to your directory. Corresponds to the Description section of a recommendation shown in the Microsoft Entra admin center.
     insights: Optional[str] = None
     # The most recent date and time a recommendation was deemed applicable to your directory.
@@ -87,10 +88,10 @@ class RecommendationBase(Entity, Parsable):
             return Recommendation()
         return RecommendationBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .action_step import ActionStep
         from .entity import Entity
@@ -114,7 +115,7 @@ class RecommendationBase(Entity, Parsable):
         from .recommendation_type import RecommendationType
         from .required_licenses import RequiredLicenses
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionSteps": lambda n : setattr(self, 'action_steps', n.get_collection_of_object_values(ActionStep)),
             "benefits": lambda n : setattr(self, 'benefits', n.get_str_value()),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(RecommendationCategory)),
@@ -151,17 +152,6 @@ class RecommendationBase(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .action_step import ActionStep
-        from .entity import Entity
-        from .impacted_resource import ImpactedResource
-        from .recommendation import Recommendation
-        from .recommendation_category import RecommendationCategory
-        from .recommendation_feature_areas import RecommendationFeatureAreas
-        from .recommendation_priority import RecommendationPriority
-        from .recommendation_status import RecommendationStatus
-        from .recommendation_type import RecommendationType
-        from .required_licenses import RequiredLicenses
-
         writer.write_collection_of_object_values("actionSteps", self.action_steps)
         writer.write_str_value("benefits", self.benefits)
         writer.write_enum_value("category", self.category)

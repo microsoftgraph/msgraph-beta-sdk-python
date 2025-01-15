@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_intent_assignment import DeviceManagementIntentAssignment
@@ -23,17 +24,17 @@ class DeviceManagementIntent(Entity, Parsable):
     Entity that represents an intent to apply settings to a device
     """
     # Collection of assignments
-    assignments: Optional[List[DeviceManagementIntentAssignment]] = None
+    assignments: Optional[list[DeviceManagementIntentAssignment]] = None
     # Collection of setting categories within the intent
-    categories: Optional[List[DeviceManagementIntentSettingCategory]] = None
+    categories: Optional[list[DeviceManagementIntentSettingCategory]] = None
     # The user given description
     description: Optional[str] = None
     # Collection of settings and their states and counts of devices that belong to corresponding state for all settings within the intent
-    device_setting_state_summaries: Optional[List[DeviceManagementIntentDeviceSettingStateSummary]] = None
+    device_setting_state_summaries: Optional[list[DeviceManagementIntentDeviceSettingStateSummary]] = None
     # A summary of device states and counts of devices that belong to corresponding state for all devices that the intent is applied to
     device_state_summary: Optional[DeviceManagementIntentDeviceStateSummary] = None
     # Collection of states of all devices that the intent is applied to
-    device_states: Optional[List[DeviceManagementIntentDeviceState]] = None
+    device_states: Optional[list[DeviceManagementIntentDeviceState]] = None
     # The user given display name
     display_name: Optional[str] = None
     # Signifies whether or not the intent is assigned to users
@@ -45,15 +46,15 @@ class DeviceManagementIntent(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of Scope Tags for this Entity instance.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # Collection of all settings to be applied
-    settings: Optional[List[DeviceManagementSettingInstance]] = None
+    settings: Optional[list[DeviceManagementSettingInstance]] = None
     # The ID of the template this intent was created from (if any)
     template_id: Optional[str] = None
     # A summary of user states and counts of users that belong to corresponding state for all users that the intent is applied to
     user_state_summary: Optional[DeviceManagementIntentUserStateSummary] = None
     # Collection of states of all users that the intent is applied to
-    user_states: Optional[List[DeviceManagementIntentUserState]] = None
+    user_states: Optional[list[DeviceManagementIntentUserState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementIntent:
@@ -66,10 +67,10 @@ class DeviceManagementIntent(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementIntent()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_intent_assignment import DeviceManagementIntentAssignment
         from .device_management_intent_device_setting_state_summary import DeviceManagementIntentDeviceSettingStateSummary
@@ -91,7 +92,7 @@ class DeviceManagementIntent(Entity, Parsable):
         from .device_management_setting_instance import DeviceManagementSettingInstance
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(DeviceManagementIntentAssignment)),
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_object_values(DeviceManagementIntentSettingCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -121,16 +122,6 @@ class DeviceManagementIntent(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_intent_assignment import DeviceManagementIntentAssignment
-        from .device_management_intent_device_setting_state_summary import DeviceManagementIntentDeviceSettingStateSummary
-        from .device_management_intent_device_state import DeviceManagementIntentDeviceState
-        from .device_management_intent_device_state_summary import DeviceManagementIntentDeviceStateSummary
-        from .device_management_intent_setting_category import DeviceManagementIntentSettingCategory
-        from .device_management_intent_user_state import DeviceManagementIntentUserState
-        from .device_management_intent_user_state_summary import DeviceManagementIntentUserStateSummary
-        from .device_management_setting_instance import DeviceManagementSettingInstance
-        from .entity import Entity
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_collection_of_object_values("categories", self.categories)
         writer.write_str_value("description", self.description)

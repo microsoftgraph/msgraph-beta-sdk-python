@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
@@ -25,7 +26,7 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
     # Semicolon seperated list of device manufacturers allowed, as a string, for the managed app to work.
     allowed_android_device_manufacturers: Optional[str] = None
     # List of device models allowed, as a string, for the managed app to work.
-    allowed_android_device_models: Optional[List[str]] = None
+    allowed_android_device_models: Optional[list[str]] = None
     # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_account_is_clocked_out: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
@@ -47,18 +48,18 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
     # Defines the behavior of a managed app when Samsung Knox Attestation is required. Possible values are null, warn, block & wipe. If the admin does not set this action, the default is null, which indicates this setting is not configured. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_samsung_knox_attestation_required: Optional[ManagedAppRemediationAction] = None
     # If Keyboard Restriction is enabled, only keyboards in this approved list will be allowed. A key should be Android package id for a keyboard and value should be a friendly name
-    approved_keyboards: Optional[List[KeyValuePair]] = None
+    approved_keyboards: Optional[list[KeyValuePair]] = None
     # List of apps to which the policy is deployed.
-    apps: Optional[List[ManagedMobileApp]] = None
+    apps: Optional[list[ManagedMobileApp]] = None
     # Indicates whether use of the biometric authentication is allowed in place of a pin if PinRequired is set to True.
     biometric_authentication_blocked: Optional[bool] = None
     # Maximum number of days Company Portal update can be deferred on the device or app access will be blocked.
     block_after_company_portal_update_deferral_in_days: Optional[int] = None
     # Whether the app should connect to the configured VPN on launch.
     connect_to_vpn_on_launch: Optional[bool] = None
-    # Friendly name of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
+    # Friendly name of the preferred custom browser to open weblink on Android.
     custom_browser_display_name: Optional[str] = None
-    # Unique identifier of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
+    # Unique identifier of a custom browser to open weblink on Android.
     custom_browser_package_id: Optional[str] = None
     # Friendly name of a custom dialer app to click-to-open a phone number on Android.
     custom_dialer_app_display_name: Optional[str] = None
@@ -75,7 +76,7 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
     # Indicates whether application data for managed apps should be encrypted
     encrypt_app_data: Optional[bool] = None
     # App packages in this list will be exempt from the policy and will be able to receive data from managed apps.
-    exempted_app_packages: Optional[List[KeyValuePair]] = None
+    exempted_app_packages: Optional[list[KeyValuePair]] = None
     # If null, this setting will be ignored. If false both fingerprints and biometrics will not be enabled. If true, both fingerprints and biometrics will be enabled.
     fingerprint_and_biometric_enabled: Optional[bool] = None
     # Indicates if keyboard restriction is enabled. If enabled list of approved keyboards must be provided as well.
@@ -124,10 +125,10 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidManagedAppProtection()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
         from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
@@ -147,7 +148,7 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
         from .managed_mobile_app import ManagedMobileApp
         from .targeted_managed_app_protection import TargetedManagedAppProtection
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedAndroidDeviceManufacturers": lambda n : setattr(self, 'allowed_android_device_manufacturers', n.get_str_value()),
             "allowedAndroidDeviceModels": lambda n : setattr(self, 'allowed_android_device_models', n.get_collection_of_primitive_values(str)),
             "appActionIfAccountIsClockedOut": lambda n : setattr(self, 'app_action_if_account_is_clocked_out', n.get_enum_value(ManagedAppRemediationAction)),
@@ -207,15 +208,6 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_managed_app_safety_net_apps_verification_type import AndroidManagedAppSafetyNetAppsVerificationType
-        from .android_managed_app_safety_net_device_attestation_type import AndroidManagedAppSafetyNetDeviceAttestationType
-        from .android_managed_app_safety_net_evaluation_type import AndroidManagedAppSafetyNetEvaluationType
-        from .key_value_pair import KeyValuePair
-        from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
-        from .managed_app_remediation_action import ManagedAppRemediationAction
-        from .managed_mobile_app import ManagedMobileApp
-        from .targeted_managed_app_protection import TargetedManagedAppProtection
-
         writer.write_str_value("allowedAndroidDeviceManufacturers", self.allowed_android_device_manufacturers)
         writer.write_collection_of_primitive_values("allowedAndroidDeviceModels", self.allowed_android_device_models)
         writer.write_enum_value("appActionIfAccountIsClockedOut", self.app_action_if_account_is_clocked_out)

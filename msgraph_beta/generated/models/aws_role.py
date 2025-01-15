@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aws_identity import AwsIdentity
@@ -30,10 +31,10 @@ class AwsRole(AwsIdentity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AwsRole()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aws_identity import AwsIdentity
         from .aws_role_trust_entity_type import AwsRoleTrustEntityType
@@ -43,7 +44,7 @@ class AwsRole(AwsIdentity, Parsable):
         from .aws_role_trust_entity_type import AwsRoleTrustEntityType
         from .aws_role_type import AwsRoleType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "roleType": lambda n : setattr(self, 'role_type', n.get_enum_value(AwsRoleType)),
             "trustEntityType": lambda n : setattr(self, 'trust_entity_type', n.get_collection_of_enum_values(AwsRoleTrustEntityType)),
         }
@@ -60,10 +61,6 @@ class AwsRole(AwsIdentity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .aws_identity import AwsIdentity
-        from .aws_role_trust_entity_type import AwsRoleTrustEntityType
-        from .aws_role_type import AwsRoleType
-
         writer.write_enum_value("roleType", self.role_type)
         writer.write_enum_value("trustEntityType", self.trust_entity_type)
     

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .assignment_filter_management_type import AssignmentFilterManagementType
@@ -31,11 +32,11 @@ class DeviceAndAppManagementAssignmentFilter(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Indicates associated assignments for a specific filter.
-    payloads: Optional[List[PayloadByFilter]] = None
+    payloads: Optional[list[PayloadByFilter]] = None
     # Supported platform types.
     platform: Optional[DevicePlatformType] = None
     # Indicates role scope tags assigned for the assignment filter.
-    role_scope_tags: Optional[List[str]] = None
+    role_scope_tags: Optional[list[str]] = None
     # Rule definition of the assignment filter.
     rule: Optional[str] = None
     
@@ -59,10 +60,10 @@ class DeviceAndAppManagementAssignmentFilter(Entity, Parsable):
             return PayloadCompatibleAssignmentFilter()
         return DeviceAndAppManagementAssignmentFilter()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .assignment_filter_management_type import AssignmentFilterManagementType
         from .device_platform_type import DevicePlatformType
@@ -76,7 +77,7 @@ class DeviceAndAppManagementAssignmentFilter(Entity, Parsable):
         from .payload_by_filter import PayloadByFilter
         from .payload_compatible_assignment_filter import PayloadCompatibleAssignmentFilter
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignmentFilterManagementType": lambda n : setattr(self, 'assignment_filter_management_type', n.get_enum_value(AssignmentFilterManagementType)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -100,12 +101,6 @@ class DeviceAndAppManagementAssignmentFilter(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .assignment_filter_management_type import AssignmentFilterManagementType
-        from .device_platform_type import DevicePlatformType
-        from .entity import Entity
-        from .payload_by_filter import PayloadByFilter
-        from .payload_compatible_assignment_filter import PayloadCompatibleAssignmentFilter
-
         writer.write_enum_value("assignmentFilterManagementType", self.assignment_filter_management_type)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

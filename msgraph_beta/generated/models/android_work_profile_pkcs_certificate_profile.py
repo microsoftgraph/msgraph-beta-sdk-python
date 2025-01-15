@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
@@ -27,9 +28,9 @@ class AndroidWorkProfilePkcsCertificateProfile(AndroidWorkProfileCertificateProf
     # PKCS Certification Authority Name
     certification_authority_name: Optional[str] = None
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-    custom_subject_alternative_names: Optional[List[CustomSubjectAlternativeName]] = None
+    custom_subject_alternative_names: Optional[list[CustomSubjectAlternativeName]] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-    managed_device_certificate_states: Optional[List[ManagedDeviceCertificateState]] = None
+    managed_device_certificate_states: Optional[list[ManagedDeviceCertificateState]] = None
     # Custom String that defines the AAD Attribute.
     subject_alternative_name_format_string: Optional[str] = None
     # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
@@ -46,10 +47,10 @@ class AndroidWorkProfilePkcsCertificateProfile(AndroidWorkProfileCertificateProf
             raise TypeError("parse_node cannot be null.")
         return AndroidWorkProfilePkcsCertificateProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
         from .certificate_store import CertificateStore
@@ -61,7 +62,7 @@ class AndroidWorkProfilePkcsCertificateProfile(AndroidWorkProfileCertificateProf
         from .custom_subject_alternative_name import CustomSubjectAlternativeName
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
             "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
             "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
@@ -84,11 +85,6 @@ class AndroidWorkProfilePkcsCertificateProfile(AndroidWorkProfileCertificateProf
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
-        from .certificate_store import CertificateStore
-        from .custom_subject_alternative_name import CustomSubjectAlternativeName
-        from .managed_device_certificate_state import ManagedDeviceCertificateState
-
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_str_value("certificateTemplateName", self.certificate_template_name)
         writer.write_str_value("certificationAuthority", self.certification_authority)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -46,10 +47,10 @@ class DeviceLink(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceLink()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .bandwidth_capacity_in_mbps import BandwidthCapacityInMbps
@@ -65,7 +66,7 @@ class DeviceLink(Entity, Parsable):
         from .redundancy_configuration import RedundancyConfiguration
         from .tunnel_configuration import TunnelConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "bandwidthCapacityInMbps": lambda n : setattr(self, 'bandwidth_capacity_in_mbps', n.get_enum_value(BandwidthCapacityInMbps)),
             "bgpConfiguration": lambda n : setattr(self, 'bgp_configuration', n.get_object_value(BgpConfiguration)),
             "deviceVendor": lambda n : setattr(self, 'device_vendor', n.get_enum_value(DeviceVendor)),
@@ -88,13 +89,6 @@ class DeviceLink(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .bandwidth_capacity_in_mbps import BandwidthCapacityInMbps
-        from .bgp_configuration import BgpConfiguration
-        from .device_vendor import DeviceVendor
-        from .redundancy_configuration import RedundancyConfiguration
-        from .tunnel_configuration import TunnelConfiguration
-
         writer.write_enum_value("bandwidthCapacityInMbps", self.bandwidth_capacity_in_mbps)
         writer.write_object_value("bgpConfiguration", self.bgp_configuration)
         writer.write_enum_value("deviceVendor", self.device_vendor)

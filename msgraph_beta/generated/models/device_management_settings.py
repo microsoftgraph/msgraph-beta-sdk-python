@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .derived_credential_provider_type import DerivedCredentialProviderType
@@ -13,7 +14,7 @@ class DeviceManagementSettings(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The property to determine if Android device administrator enrollment is enabled for this account.
     android_device_administrator_enrollment_enabled: Optional[bool] = None
     # Provider type for Derived Credentials.
@@ -56,16 +57,16 @@ class DeviceManagementSettings(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .derived_credential_provider_type import DerivedCredentialProviderType
 
         from .derived_credential_provider_type import DerivedCredentialProviderType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "androidDeviceAdministratorEnrollmentEnabled": lambda n : setattr(self, 'android_device_administrator_enrollment_enabled', n.get_bool_value()),
             "derivedCredentialProvider": lambda n : setattr(self, 'derived_credential_provider', n.get_enum_value(DerivedCredentialProviderType)),
             "derivedCredentialUrl": lambda n : setattr(self, 'derived_credential_url', n.get_str_value()),
@@ -92,8 +93,6 @@ class DeviceManagementSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .derived_credential_provider_type import DerivedCredentialProviderType
-
         writer.write_bool_value("androidDeviceAdministratorEnrollmentEnabled", self.android_device_administrator_enrollment_enabled)
         writer.write_enum_value("derivedCredentialProvider", self.derived_credential_provider)
         writer.write_str_value("derivedCredentialUrl", self.derived_credential_url)

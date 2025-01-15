@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .activity_statistics import ActivityStatistics
@@ -27,16 +28,16 @@ class CallActivityStatistics(ActivityStatistics, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CallActivityStatistics()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .activity_statistics import ActivityStatistics
 
         from .activity_statistics import ActivityStatistics
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "afterHours": lambda n : setattr(self, 'after_hours', n.get_timedelta_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -52,8 +53,6 @@ class CallActivityStatistics(ActivityStatistics, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .activity_statistics import ActivityStatistics
-
         writer.write_timedelta_value("afterHours", self.after_hours)
     
 

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .elevation_request_application_detail import ElevationRequestApplicationDetail
@@ -58,10 +59,10 @@ class PrivilegeManagementElevationRequest(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PrivilegeManagementElevationRequest()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .elevation_request_application_detail import ElevationRequestApplicationDetail
         from .elevation_request_state import ElevationRequestState
@@ -71,7 +72,7 @@ class PrivilegeManagementElevationRequest(Entity, Parsable):
         from .elevation_request_state import ElevationRequestState
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applicationDetail": lambda n : setattr(self, 'application_detail', n.get_object_value(ElevationRequestApplicationDetail)),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "requestCreatedDateTime": lambda n : setattr(self, 'request_created_date_time', n.get_datetime_value()),
@@ -100,10 +101,6 @@ class PrivilegeManagementElevationRequest(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .elevation_request_application_detail import ElevationRequestApplicationDetail
-        from .elevation_request_state import ElevationRequestState
-        from .entity import Entity
-
         writer.write_object_value("applicationDetail", self.application_detail)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_datetime_value("requestCreatedDateTime", self.request_created_date_time)

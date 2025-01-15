@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .win32_lob_app_registry_detection_type import Win32LobAppRegistryDetectionType
@@ -36,10 +37,10 @@ class Win32LobAppRegistryRequirement(Win32LobAppRequirement, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Win32LobAppRegistryRequirement()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .win32_lob_app_registry_detection_type import Win32LobAppRegistryDetectionType
         from .win32_lob_app_requirement import Win32LobAppRequirement
@@ -47,7 +48,7 @@ class Win32LobAppRegistryRequirement(Win32LobAppRequirement, Parsable):
         from .win32_lob_app_registry_detection_type import Win32LobAppRegistryDetectionType
         from .win32_lob_app_requirement import Win32LobAppRequirement
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "check32BitOn64System": lambda n : setattr(self, 'check32_bit_on64_system', n.get_bool_value()),
             "detectionType": lambda n : setattr(self, 'detection_type', n.get_enum_value(Win32LobAppRegistryDetectionType)),
             "keyPath": lambda n : setattr(self, 'key_path', n.get_str_value()),
@@ -66,9 +67,6 @@ class Win32LobAppRegistryRequirement(Win32LobAppRequirement, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .win32_lob_app_registry_detection_type import Win32LobAppRegistryDetectionType
-        from .win32_lob_app_requirement import Win32LobAppRequirement
-
         writer.write_bool_value("check32BitOn64System", self.check32_bit_on64_system)
         writer.write_enum_value("detectionType", self.detection_type)
         writer.write_str_value("keyPath", self.key_path)

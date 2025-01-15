@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .case_operation import CaseOperation
@@ -39,10 +40,10 @@ class EstimateStatisticsOperation(CaseOperation, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EstimateStatisticsOperation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .case_operation import CaseOperation
         from .source_collection import SourceCollection
@@ -50,7 +51,7 @@ class EstimateStatisticsOperation(CaseOperation, Parsable):
         from .case_operation import CaseOperation
         from .source_collection import SourceCollection
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "indexedItemCount": lambda n : setattr(self, 'indexed_item_count', n.get_int_value()),
             "indexedItemsSize": lambda n : setattr(self, 'indexed_items_size', n.get_int_value()),
             "mailboxCount": lambda n : setattr(self, 'mailbox_count', n.get_int_value()),
@@ -72,9 +73,6 @@ class EstimateStatisticsOperation(CaseOperation, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .case_operation import CaseOperation
-        from .source_collection import SourceCollection
-
         writer.write_int_value("indexedItemCount", self.indexed_item_count)
         writer.write_int_value("indexedItemsSize", self.indexed_items_size)
         writer.write_int_value("mailboxCount", self.mailbox_count)

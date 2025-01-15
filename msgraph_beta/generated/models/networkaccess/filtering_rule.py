@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .fqdn_filtering_rule import FqdnFilteringRule
@@ -17,7 +18,7 @@ class FilteringRule(PolicyRule, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.filteringRule"
     # Possible destinations and types of destinations accessed by the user in accordance with the network filtering policy, such as IP addresses and FQDNs/URLs.
-    destinations: Optional[List[RuleDestination]] = None
+    destinations: Optional[list[RuleDestination]] = None
     # The ruleType property
     rule_type: Optional[NetworkDestinationType] = None
     
@@ -45,10 +46,10 @@ class FilteringRule(PolicyRule, Parsable):
             return WebCategoryFilteringRule()
         return FilteringRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .fqdn_filtering_rule import FqdnFilteringRule
         from .network_destination_type import NetworkDestinationType
@@ -62,7 +63,7 @@ class FilteringRule(PolicyRule, Parsable):
         from .rule_destination import RuleDestination
         from .web_category_filtering_rule import WebCategoryFilteringRule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "destinations": lambda n : setattr(self, 'destinations', n.get_collection_of_object_values(RuleDestination)),
             "ruleType": lambda n : setattr(self, 'rule_type', n.get_enum_value(NetworkDestinationType)),
         }
@@ -79,12 +80,6 @@ class FilteringRule(PolicyRule, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .fqdn_filtering_rule import FqdnFilteringRule
-        from .network_destination_type import NetworkDestinationType
-        from .policy_rule import PolicyRule
-        from .rule_destination import RuleDestination
-        from .web_category_filtering_rule import WebCategoryFilteringRule
-
         writer.write_collection_of_object_values("destinations", self.destinations)
         writer.write_enum_value("ruleType", self.rule_type)
     

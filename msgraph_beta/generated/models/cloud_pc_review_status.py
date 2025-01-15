@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
@@ -15,7 +16,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The blob access tier of the Azure Storage account in which the Cloud PC snapshot is saved with. Possible values are hot, cool, cold, and archive, default value is hot.
     access_tier: Optional[CloudPcBlobAccessTier] = None
     # The resource ID of the Azure Storage account in which the Cloud PC snapshot is being saved.
@@ -50,10 +51,10 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CloudPcReviewStatus()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
         from .cloud_pc_user_access_level import CloudPcUserAccessLevel
@@ -61,7 +62,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
         from .cloud_pc_user_access_level import CloudPcUserAccessLevel
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessTier": lambda n : setattr(self, 'access_tier', n.get_enum_value(CloudPcBlobAccessTier)),
             "azureStorageAccountId": lambda n : setattr(self, 'azure_storage_account_id', n.get_str_value()),
             "azureStorageAccountName": lambda n : setattr(self, 'azure_storage_account_name', n.get_str_value()),
@@ -84,9 +85,6 @@ class CloudPcReviewStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .cloud_pc_blob_access_tier import CloudPcBlobAccessTier
-        from .cloud_pc_user_access_level import CloudPcUserAccessLevel
-
         writer.write_enum_value("accessTier", self.access_tier)
         writer.write_str_value("azureStorageAccountId", self.azure_storage_account_id)
         writer.write_str_value("azureStorageAccountName", self.azure_storage_account_name)

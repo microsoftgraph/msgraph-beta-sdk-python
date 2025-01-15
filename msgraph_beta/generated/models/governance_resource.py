@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -28,13 +29,13 @@ class GovernanceResource(Entity, Parsable):
     # The externalId of the resource's root scope that is registered in PIM. The root scope can be the parent, grandparent, or higher ancestor resources.
     registered_root: Optional[str] = None
     # The collection of role assignment requests for the resource.
-    role_assignment_requests: Optional[List[GovernanceRoleAssignmentRequest]] = None
+    role_assignment_requests: Optional[list[GovernanceRoleAssignmentRequest]] = None
     # The collection of role assignments for the resource.
-    role_assignments: Optional[List[GovernanceRoleAssignment]] = None
+    role_assignments: Optional[list[GovernanceRoleAssignment]] = None
     # The collection of role definitions for the resource.
-    role_definitions: Optional[List[GovernanceRoleDefinition]] = None
+    role_definitions: Optional[list[GovernanceRoleDefinition]] = None
     # The collection of role settings for the resource.
-    role_settings: Optional[List[GovernanceRoleSetting]] = None
+    role_settings: Optional[list[GovernanceRoleSetting]] = None
     # The status of a given resource. For example, it could represent whether the resource is locked or not (values: Active/Locked). Note: This property may be extended in the future to support more scenarios.
     status: Optional[str] = None
     # Required. Resource type. For example, for Azure resources, the type could be 'Subscription', 'ResourceGroup', 'Microsoft.Sql/server', etc.
@@ -51,10 +52,10 @@ class GovernanceResource(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GovernanceResource()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .governance_role_assignment import GovernanceRoleAssignment
@@ -68,7 +69,7 @@ class GovernanceResource(Entity, Parsable):
         from .governance_role_definition import GovernanceRoleDefinition
         from .governance_role_setting import GovernanceRoleSetting
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "parent": lambda n : setattr(self, 'parent', n.get_object_value(GovernanceResource)),
@@ -94,12 +95,6 @@ class GovernanceResource(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .governance_role_assignment import GovernanceRoleAssignment
-        from .governance_role_assignment_request import GovernanceRoleAssignmentRequest
-        from .governance_role_definition import GovernanceRoleDefinition
-        from .governance_role_setting import GovernanceRoleSetting
-
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("externalId", self.external_id)
         writer.write_object_value("parent", self.parent)

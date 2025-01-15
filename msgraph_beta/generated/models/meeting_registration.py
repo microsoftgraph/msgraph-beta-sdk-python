@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .meeting_registration_base import MeetingRegistrationBase
@@ -16,7 +17,7 @@ class MeetingRegistration(MeetingRegistrationBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.meetingRegistration"
     # Custom registration questions.
-    custom_questions: Optional[List[MeetingRegistrationQuestion]] = None
+    custom_questions: Optional[list[MeetingRegistrationQuestion]] = None
     # The description of the meeting.
     description: Optional[str] = None
     # The meeting end time in UTC.
@@ -26,7 +27,7 @@ class MeetingRegistration(MeetingRegistrationBase, Parsable):
     # The URL of the registration page. Read-only.
     registration_page_web_url: Optional[str] = None
     # The meeting speaker's information.
-    speakers: Optional[List[MeetingSpeaker]] = None
+    speakers: Optional[list[MeetingSpeaker]] = None
     # The meeting start time in UTC.
     start_date_time: Optional[datetime.datetime] = None
     # The subject of the meeting.
@@ -43,10 +44,10 @@ class MeetingRegistration(MeetingRegistrationBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MeetingRegistration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .meeting_registration_base import MeetingRegistrationBase
         from .meeting_registration_question import MeetingRegistrationQuestion
@@ -56,7 +57,7 @@ class MeetingRegistration(MeetingRegistrationBase, Parsable):
         from .meeting_registration_question import MeetingRegistrationQuestion
         from .meeting_speaker import MeetingSpeaker
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "customQuestions": lambda n : setattr(self, 'custom_questions', n.get_collection_of_object_values(MeetingRegistrationQuestion)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
@@ -79,10 +80,6 @@ class MeetingRegistration(MeetingRegistrationBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .meeting_registration_base import MeetingRegistrationBase
-        from .meeting_registration_question import MeetingRegistrationQuestion
-        from .meeting_speaker import MeetingSpeaker
-
         writer.write_collection_of_object_values("customQuestions", self.custom_questions)
         writer.write_str_value("description", self.description)
         writer.write_datetime_value("endDateTime", self.end_date_time)

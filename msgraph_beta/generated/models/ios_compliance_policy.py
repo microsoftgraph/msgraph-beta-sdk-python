@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .app_list_item import AppListItem
@@ -53,7 +54,7 @@ class IosCompliancePolicy(DeviceCompliancePolicy, Parsable):
     # Possible values of required passwords.
     passcode_required_type: Optional[RequiredPasswordType] = None
     # Require the device to not have the specified apps installed. This collection can contain a maximum of 100 elements.
-    restricted_apps: Optional[List[AppListItem]] = None
+    restricted_apps: Optional[list[AppListItem]] = None
     # Devices must not be jailbroken or rooted.
     security_block_jailbroken_devices: Optional[bool] = None
     
@@ -68,10 +69,10 @@ class IosCompliancePolicy(DeviceCompliancePolicy, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IosCompliancePolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .app_list_item import AppListItem
         from .device_compliance_policy import DeviceCompliancePolicy
@@ -83,7 +84,7 @@ class IosCompliancePolicy(DeviceCompliancePolicy, Parsable):
         from .device_threat_protection_level import DeviceThreatProtectionLevel
         from .required_password_type import RequiredPasswordType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "advancedThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(DeviceThreatProtectionLevel)),
             "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
             "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(DeviceThreatProtectionLevel)),
@@ -117,11 +118,6 @@ class IosCompliancePolicy(DeviceCompliancePolicy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .app_list_item import AppListItem
-        from .device_compliance_policy import DeviceCompliancePolicy
-        from .device_threat_protection_level import DeviceThreatProtectionLevel
-        from .required_password_type import RequiredPasswordType
-
         writer.write_enum_value("advancedThreatProtectionRequiredSecurityLevel", self.advanced_threat_protection_required_security_level)
         writer.write_bool_value("deviceThreatProtectionEnabled", self.device_threat_protection_enabled)
         writer.write_enum_value("deviceThreatProtectionRequiredSecurityLevel", self.device_threat_protection_required_security_level)

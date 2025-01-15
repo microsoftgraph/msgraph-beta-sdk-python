@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aad_risk_detection_audit_record import AadRiskDetectionAuditRecord
@@ -284,7 +285,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -1392,10 +1393,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             return YammerAuditRecord()
         return AuditData()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aad_risk_detection_audit_record import AadRiskDetectionAuditRecord
         from .aed_audit_record import AedAuditRecord
@@ -1943,7 +1944,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .workplace_analytics_audit_record import WorkplaceAnalyticsAuditRecord
         from .yammer_audit_record import YammerAuditRecord
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -1956,279 +1957,6 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .aad_risk_detection_audit_record import AadRiskDetectionAuditRecord
-        from .aed_audit_record import AedAuditRecord
-        from .aip_file_deleted import AipFileDeleted
-        from .aip_heart_beat import AipHeartBeat
-        from .aip_protection_action_log_request import AipProtectionActionLogRequest
-        from .aip_scanner_discover_event import AipScannerDiscoverEvent
-        from .aip_sensitivity_label_action_log_request import AipSensitivityLabelActionLogRequest
-        from .air_admin_action_investigation_data import AirAdminActionInvestigationData
-        from .air_investigation_data import AirInvestigationData
-        from .air_manual_investigation_data import AirManualInvestigationData
-        from .ai_app_interaction_audit_record import AiAppInteractionAuditRecord
-        from .attack_sim_admin_audit_record import AttackSimAdminAuditRecord
-        from .audit_search_audit_record import AuditSearchAuditRecord
-        from .azure_active_directory_account_logon_audit_record import AzureActiveDirectoryAccountLogonAuditRecord
-        from .azure_active_directory_audit_record import AzureActiveDirectoryAuditRecord
-        from .azure_active_directory_base_audit_record import AzureActiveDirectoryBaseAuditRecord
-        from .azure_active_directory_sts_logon_audit_record import AzureActiveDirectoryStsLogonAuditRecord
-        from .campaign_audit_record import CampaignAuditRecord
-        from .case_audit_record import CaseAuditRecord
-        from .case_investigation import CaseInvestigation
-        from .cdp_cold_crawl_status_record import CdpColdCrawlStatusRecord
-        from .cdp_content_explorer_aggregate_record import CdpContentExplorerAggregateRecord
-        from .cdp_dlp_sensitive_audit_record import CdpDlpSensitiveAuditRecord
-        from .cdp_dlp_sensitive_endpoint_audit_record import CdpDlpSensitiveEndpointAuditRecord
-        from .cdp_log_record import CdpLogRecord
-        from .cdp_ocr_billing_record import CdpOcrBillingRecord
-        from .cdp_resource_scope_change_event_record import CdpResourceScopeChangeEventRecord
-        from .cerner_s_m_s_link_record import CernerSMSLinkRecord
-        from .cerner_s_m_s_settings_update_record import CernerSMSSettingsUpdateRecord
-        from .cerner_s_m_s_unlink_record import CernerSMSUnlinkRecord
-        from .compliance_connector_audit_record import ComplianceConnectorAuditRecord
-        from .compliance_dlp_applications_audit_record import ComplianceDlpApplicationsAuditRecord
-        from .compliance_dlp_applications_classification_audit_record import ComplianceDlpApplicationsClassificationAuditRecord
-        from .compliance_dlp_base_audit_record import ComplianceDlpBaseAuditRecord
-        from .compliance_dlp_classification_base_audit_record import ComplianceDlpClassificationBaseAuditRecord
-        from .compliance_dlp_classification_base_cdp_record import ComplianceDlpClassificationBaseCdpRecord
-        from .compliance_dlp_endpoint_audit_record import ComplianceDlpEndpointAuditRecord
-        from .compliance_dlp_endpoint_discovery_audit_record import ComplianceDlpEndpointDiscoveryAuditRecord
-        from .compliance_dlp_exchange_audit_record import ComplianceDlpExchangeAuditRecord
-        from .compliance_dlp_exchange_classification_audit_record import ComplianceDlpExchangeClassificationAuditRecord
-        from .compliance_dlp_exchange_classification_cdp_record import ComplianceDlpExchangeClassificationCdpRecord
-        from .compliance_dlp_exchange_discovery_audit_record import ComplianceDlpExchangeDiscoveryAuditRecord
-        from .compliance_dlp_share_point_audit_record import ComplianceDlpSharePointAuditRecord
-        from .compliance_dlp_share_point_classification_audit_record import ComplianceDlpSharePointClassificationAuditRecord
-        from .compliance_dlp_share_point_classification_extended_audit_record import ComplianceDlpSharePointClassificationExtendedAuditRecord
-        from .compliance_d_l_m_exchange_audit_record import ComplianceDLMExchangeAuditRecord
-        from .compliance_d_l_m_share_point_audit_record import ComplianceDLMSharePointAuditRecord
-        from .compliance_manager_action_record import ComplianceManagerActionRecord
-        from .compliance_supervision_base_audit_record import ComplianceSupervisionBaseAuditRecord
-        from .compliance_supervision_exchange_audit_record import ComplianceSupervisionExchangeAuditRecord
-        from .consumption_resource_audit_record import ConsumptionResourceAuditRecord
-        from .copilot_interaction_audit_record import CopilotInteractionAuditRecord
-        from .core_reporting_settings_audit_record import CoreReportingSettingsAuditRecord
-        from .cortana_briefing_audit_record import CortanaBriefingAuditRecord
-        from .cps_common_policy_audit_record import CpsCommonPolicyAuditRecord
-        from .cps_policy_config_audit_record import CpsPolicyConfigAuditRecord
-        from .crm_base_audit_record import CrmBaseAuditRecord
-        from .crm_entity_operation_audit_record import CrmEntityOperationAuditRecord
-        from .customer_key_service_encryption_audit_record import CustomerKeyServiceEncryptionAuditRecord
-        from .data_center_security_base_audit_record import DataCenterSecurityBaseAuditRecord
-        from .data_center_security_cmdlet_audit_record import DataCenterSecurityCmdletAuditRecord
-        from .data_governance_audit_record import DataGovernanceAuditRecord
-        from .data_insights_rest_api_audit_record import DataInsightsRestApiAuditRecord
-        from .data_lake_export_operation_audit_record import DataLakeExportOperationAuditRecord
-        from .data_share_operation_audit_record import DataShareOperationAuditRecord
-        from .default_audit_data import DefaultAuditData
-        from .defender_security_alert_base_record import DefenderSecurityAlertBaseRecord
-        from .delete_certificate_record import DeleteCertificateRecord
-        from .disable_consent_record import DisableConsentRecord
-        from .discovery_audit_record import DiscoveryAuditRecord
-        from .dlp_endpoint_audit_record import DlpEndpointAuditRecord
-        from .dlp_sensitive_information_type_cmdlet_record import DlpSensitiveInformationTypeCmdletRecord
-        from .dlp_sensitive_information_type_rule_package_cmdlet_record import DlpSensitiveInformationTypeRulePackageCmdletRecord
-        from .download_certificate_record import DownloadCertificateRecord
-        from .dynamics365_business_central_audit_record import Dynamics365BusinessCentralAuditRecord
-        from .enable_consent_record import EnableConsentRecord
-        from .epic_s_m_s_link_record import EpicSMSLinkRecord
-        from .epic_s_m_s_settings_update_record import EpicSMSSettingsUpdateRecord
-        from .epic_s_m_s_unlink_record import EpicSMSUnlinkRecord
-        from .exchange_admin_audit_record import ExchangeAdminAuditRecord
-        from .exchange_aggregated_mailbox_audit_record import ExchangeAggregatedMailboxAuditRecord
-        from .exchange_aggregated_operation_record import ExchangeAggregatedOperationRecord
-        from .exchange_mailbox_audit_base_record import ExchangeMailboxAuditBaseRecord
-        from .exchange_mailbox_audit_group_record import ExchangeMailboxAuditGroupRecord
-        from .exchange_mailbox_audit_record import ExchangeMailboxAuditRecord
-        from .fhir_base_url_add_record import FhirBaseUrlAddRecord
-        from .fhir_base_url_approve_record import FhirBaseUrlApproveRecord
-        from .fhir_base_url_delete_record import FhirBaseUrlDeleteRecord
-        from .fhir_base_url_update_record import FhirBaseUrlUpdateRecord
-        from .healthcare_signal_record import HealthcareSignalRecord
-        from .hosted_rpa_audit_record import HostedRpaAuditRecord
-        from .hr_signal_audit_record import HrSignalAuditRecord
-        from .hygiene_event_record import HygieneEventRecord
-        from .information_barrier_policy_application_audit_record import InformationBarrierPolicyApplicationAuditRecord
-        from .information_worker_protection_audit_record import InformationWorkerProtectionAuditRecord
-        from .insider_risk_scoped_users_record import InsiderRiskScopedUsersRecord
-        from .insider_risk_scoped_user_insights_record import InsiderRiskScopedUserInsightsRecord
-        from .irm_security_alert_record import IrmSecurityAlertRecord
-        from .irm_user_defined_detection_record import IrmUserDefinedDetectionRecord
-        from .kaizala_audit_record import KaizalaAuditRecord
-        from .label_analytics_aggregate_audit_record import LabelAnalyticsAggregateAuditRecord
-        from .label_content_explorer_audit_record import LabelContentExplorerAuditRecord
-        from .large_content_metadata_audit_record import LargeContentMetadataAuditRecord
-        from .m365_compliance_connector_audit_record import M365ComplianceConnectorAuditRecord
-        from .m365_d_a_a_d_audit_record import M365DAADAuditRecord
-        from .mail_submission_data import MailSubmissionData
-        from .managed_services_audit_record import ManagedServicesAuditRecord
-        from .managed_tenants_audit_record import ManagedTenantsAuditRecord
-        from .mapg_alerts_audit_record import MapgAlertsAuditRecord
-        from .mapg_onboard_audit_record import MapgOnboardAuditRecord
-        from .mapg_policy_audit_record import MapgPolicyAuditRecord
-        from .mcas_alerts_audit_record import McasAlertsAuditRecord
-        from .mdatp_audit_record import MdatpAuditRecord
-        from .mda_data_security_signal_record import MdaDataSecuritySignalRecord
-        from .mdc_events_record import MdcEventsRecord
-        from .mdi_audit_record import MdiAuditRecord
-        from .mesh_worlds_audit_record import MeshWorldsAuditRecord
-        from .microsoft365_backup_backup_item_audit_record import Microsoft365BackupBackupItemAuditRecord
-        from .microsoft365_backup_backup_policy_audit_record import Microsoft365BackupBackupPolicyAuditRecord
-        from .microsoft365_backup_restore_item_audit_record import Microsoft365BackupRestoreItemAuditRecord
-        from .microsoft365_backup_restore_task_audit_record import Microsoft365BackupRestoreTaskAuditRecord
-        from .microsoft_defender_experts_base_audit_record import MicrosoftDefenderExpertsBaseAuditRecord
-        from .microsoft_defender_experts_x_d_r_audit_record import MicrosoftDefenderExpertsXDRAuditRecord
-        from .microsoft_flow_audit_record import MicrosoftFlowAuditRecord
-        from .microsoft_forms_audit_record import MicrosoftFormsAuditRecord
-        from .microsoft_graph_data_connect_consent import MicrosoftGraphDataConnectConsent
-        from .microsoft_graph_data_connect_operation import MicrosoftGraphDataConnectOperation
-        from .microsoft_purview_data_map_operation_record import MicrosoftPurviewDataMapOperationRecord
-        from .microsoft_purview_metadata_policy_operation_record import MicrosoftPurviewMetadataPolicyOperationRecord
-        from .microsoft_purview_policy_operation_record import MicrosoftPurviewPolicyOperationRecord
-        from .microsoft_purview_privacy_audit_event import MicrosoftPurviewPrivacyAuditEvent
-        from .microsoft_stream_audit_record import MicrosoftStreamAuditRecord
-        from .microsoft_teams_admin_audit_record import MicrosoftTeamsAdminAuditRecord
-        from .microsoft_teams_analytics_audit_record import MicrosoftTeamsAnalyticsAuditRecord
-        from .microsoft_teams_audit_record import MicrosoftTeamsAuditRecord
-        from .microsoft_teams_device_audit_record import MicrosoftTeamsDeviceAuditRecord
-        from .microsoft_teams_retention_label_action_audit_record import MicrosoftTeamsRetentionLabelActionAuditRecord
-        from .microsoft_teams_sensitivity_label_action_audit_record import MicrosoftTeamsSensitivityLabelActionAuditRecord
-        from .microsoft_teams_shifts_audit_record import MicrosoftTeamsShiftsAuditRecord
-        from .mip_auto_label_exchange_item_audit_record import MipAutoLabelExchangeItemAuditRecord
-        from .mip_auto_label_item_audit_record import MipAutoLabelItemAuditRecord
-        from .mip_auto_label_policy_audit_record import MipAutoLabelPolicyAuditRecord
-        from .mip_auto_label_progress_feedback_audit_record import MipAutoLabelProgressFeedbackAuditRecord
-        from .mip_auto_label_share_point_item_audit_record import MipAutoLabelSharePointItemAuditRecord
-        from .mip_auto_label_share_point_policy_location_audit_record import MipAutoLabelSharePointPolicyLocationAuditRecord
-        from .mip_auto_label_simulation_share_point_completion_record import MipAutoLabelSimulationSharePointCompletionRecord
-        from .mip_auto_label_simulation_share_point_progress_record import MipAutoLabelSimulationSharePointProgressRecord
-        from .mip_auto_label_simulation_statistics_record import MipAutoLabelSimulationStatisticsRecord
-        from .mip_auto_label_simulation_status_record import MipAutoLabelSimulationStatusRecord
-        from .mip_exact_data_match_audit_record import MipExactDataMatchAuditRecord
-        from .mip_label_analytics_audit_record import MipLabelAnalyticsAuditRecord
-        from .mip_label_audit_record import MipLabelAuditRecord
-        from .msde_general_settings_audit_record import MsdeGeneralSettingsAuditRecord
-        from .msde_indicators_settings_audit_record import MsdeIndicatorsSettingsAuditRecord
-        from .msde_response_actions_audit_record import MsdeResponseActionsAuditRecord
-        from .msde_roles_settings_audit_record import MsdeRolesSettingsAuditRecord
-        from .mstic_nation_state_notification_record import MsticNationStateNotificationRecord
-        from .multi_stage_disposition_audit_record import MultiStageDispositionAuditRecord
-        from .my_analytics_settings_audit_record import MyAnalyticsSettingsAuditRecord
-        from .m_s365_d_custom_detection_audit_record import MS365DCustomDetectionAuditRecord
-        from .m_s365_d_incident_audit_record import MS365DIncidentAuditRecord
-        from .m_s365_d_suppression_rule_audit_record import MS365DSuppressionRuleAuditRecord
-        from .office_native_audit_record import OfficeNativeAuditRecord
-        from .ome_portal_audit_record import OmePortalAuditRecord
-        from .one_drive_audit_record import OneDriveAuditRecord
-        from .on_premises_file_share_scanner_dlp_audit_record import OnPremisesFileShareScannerDlpAuditRecord
-        from .on_premises_scanner_dlp_audit_record import OnPremisesScannerDlpAuditRecord
-        from .on_premises_share_point_scanner_dlp_audit_record import OnPremisesSharePointScannerDlpAuditRecord
-        from .owa_get_access_token_for_resource_audit_record import OwaGetAccessTokenForResourceAuditRecord
-        from .people_admin_settings_audit_record import PeopleAdminSettingsAuditRecord
-        from .physical_badging_signal_audit_record import PhysicalBadgingSignalAuditRecord
-        from .planner_copy_plan_audit_record import PlannerCopyPlanAuditRecord
-        from .planner_plan_audit_record import PlannerPlanAuditRecord
-        from .planner_plan_list_audit_record import PlannerPlanListAuditRecord
-        from .planner_roster_audit_record import PlannerRosterAuditRecord
-        from .planner_roster_sensitivity_label_audit_record import PlannerRosterSensitivityLabelAuditRecord
-        from .planner_task_audit_record import PlannerTaskAuditRecord
-        from .planner_task_list_audit_record import PlannerTaskListAuditRecord
-        from .planner_tenant_settings_audit_record import PlannerTenantSettingsAuditRecord
-        from .power_apps_audit_app_record import PowerAppsAuditAppRecord
-        from .power_apps_audit_plan_record import PowerAppsAuditPlanRecord
-        from .power_apps_audit_resource_record import PowerAppsAuditResourceRecord
-        from .power_bi_audit_record import PowerBiAuditRecord
-        from .power_bi_dlp_audit_record import PowerBiDlpAuditRecord
-        from .power_pages_site_audit_record import PowerPagesSiteAuditRecord
-        from .power_platform_administrator_activity_record import PowerPlatformAdministratorActivityRecord
-        from .power_platform_admin_dlp_audit_record import PowerPlatformAdminDlpAuditRecord
-        from .power_platform_admin_environment_audit_record import PowerPlatformAdminEnvironmentAuditRecord
-        from .power_platform_lockbox_resource_access_request_audit_record import PowerPlatformLockboxResourceAccessRequestAuditRecord
-        from .power_platform_lockbox_resource_command_audit_record import PowerPlatformLockboxResourceCommandAuditRecord
-        from .power_platform_service_activity_audit_record import PowerPlatformServiceActivityAuditRecord
-        from .privacy_data_match_audit_record import PrivacyDataMatchAuditRecord
-        from .privacy_data_minimization_record import PrivacyDataMinimizationRecord
-        from .privacy_digest_email_record import PrivacyDigestEmailRecord
-        from .privacy_open_access_audit_record import PrivacyOpenAccessAuditRecord
-        from .privacy_portal_audit_record import PrivacyPortalAuditRecord
-        from .privacy_remediation_action_record import PrivacyRemediationActionRecord
-        from .privacy_remediation_record import PrivacyRemediationRecord
-        from .privacy_tenant_audit_history_record import PrivacyTenantAuditHistoryRecord
-        from .project_audit_record import ProjectAuditRecord
-        from .project_for_the_web_assigned_to_me_settings_audit_record import ProjectForTheWebAssignedToMeSettingsAuditRecord
-        from .project_for_the_web_project_audit_record import ProjectForTheWebProjectAuditRecord
-        from .project_for_the_web_project_settings_audit_record import ProjectForTheWebProjectSettingsAuditRecord
-        from .project_for_the_web_roadmap_audit_record import ProjectForTheWebRoadmapAuditRecord
-        from .project_for_the_web_roadmap_item_audit_record import ProjectForTheWebRoadmapItemAuditRecord
-        from .project_for_the_web_roadmap_settings_audit_record import ProjectForTheWebRoadmapSettingsAuditRecord
-        from .project_for_the_web_task_audit_record import ProjectForTheWebTaskAuditRecord
-        from .public_folder_audit_record import PublicFolderAuditRecord
-        from .purview_insider_risk_alerts_record import PurviewInsiderRiskAlertsRecord
-        from .purview_insider_risk_cases_record import PurviewInsiderRiskCasesRecord
-        from .quarantine_audit_record import QuarantineAuditRecord
-        from .records_management_audit_record import RecordsManagementAuditRecord
-        from .retention_policy_audit_record import RetentionPolicyAuditRecord
-        from .score_evidence import ScoreEvidence
-        from .score_platform_generic_audit_record import ScorePlatformGenericAuditRecord
-        from .script_run_audit_record import ScriptRunAuditRecord
-        from .search_audit_record import SearchAuditRecord
-        from .security_compliance_alert_record import SecurityComplianceAlertRecord
-        from .security_compliance_center_e_o_p_cmdlet_audit_record import SecurityComplianceCenterEOPCmdletAuditRecord
-        from .security_compliance_insights_audit_record import SecurityComplianceInsightsAuditRecord
-        from .security_compliance_r_b_a_c_audit_record import SecurityComplianceRBACAuditRecord
-        from .security_compliance_user_change_audit_record import SecurityComplianceUserChangeAuditRecord
-        from .share_point_app_permission_operation_audit_record import SharePointAppPermissionOperationAuditRecord
-        from .share_point_audit_record import SharePointAuditRecord
-        from .share_point_comment_operation_audit_record import SharePointCommentOperationAuditRecord
-        from .share_point_content_type_operation_audit_record import SharePointContentTypeOperationAuditRecord
-        from .share_point_e_signature_audit_record import SharePointESignatureAuditRecord
-        from .share_point_field_operation_audit_record import SharePointFieldOperationAuditRecord
-        from .share_point_file_operation_audit_record import SharePointFileOperationAuditRecord
-        from .share_point_list_operation_audit_record import SharePointListOperationAuditRecord
-        from .share_point_sharing_operation_audit_record import SharePointSharingOperationAuditRecord
-        from .skype_for_business_base_audit_record import SkypeForBusinessBaseAuditRecord
-        from .skype_for_business_cmdlets_audit_record import SkypeForBusinessCmdletsAuditRecord
-        from .skype_for_business_p_s_t_n_usage_audit_record import SkypeForBusinessPSTNUsageAuditRecord
-        from .skype_for_business_users_blocked_audit_record import SkypeForBusinessUsersBlockedAuditRecord
-        from .sms_create_phone_number_record import SmsCreatePhoneNumberRecord
-        from .sms_delete_phone_number_record import SmsDeletePhoneNumberRecord
-        from .supervisory_review_day_x_insights_audit_record import SupervisoryReviewDayXInsightsAuditRecord
-        from .synthetic_probe_audit_record import SyntheticProbeAuditRecord
-        from .teams_easy_approvals_audit_record import TeamsEasyApprovalsAuditRecord
-        from .teams_healthcare_audit_record import TeamsHealthcareAuditRecord
-        from .teams_updates_audit_record import TeamsUpdatesAuditRecord
-        from .tenant_allow_block_list_audit_record import TenantAllowBlockListAuditRecord
-        from .threat_finder_audit_record import ThreatFinderAuditRecord
-        from .threat_intelligence_atp_content_data import ThreatIntelligenceAtpContentData
-        from .threat_intelligence_mail_data import ThreatIntelligenceMailData
-        from .threat_intelligence_url_click_data import ThreatIntelligenceUrlClickData
-        from .todo_audit_record import TodoAuditRecord
-        from .uam_operation_audit_record import UamOperationAuditRecord
-        from .unified_group_audit_record import UnifiedGroupAuditRecord
-        from .unified_simulation_matched_item_audit_record import UnifiedSimulationMatchedItemAuditRecord
-        from .unified_simulation_summary_audit_record import UnifiedSimulationSummaryAuditRecord
-        from .upload_certificate_record import UploadCertificateRecord
-        from .urbac_assignment_audit_record import UrbacAssignmentAuditRecord
-        from .urbac_enable_state_audit_record import UrbacEnableStateAuditRecord
-        from .urbac_role_audit_record import UrbacRoleAuditRecord
-        from .user_training_audit_record import UserTrainingAuditRecord
-        from .vfam_base_policy_audit_record import VfamBasePolicyAuditRecord
-        from .vfam_create_policy_audit_record import VfamCreatePolicyAuditRecord
-        from .vfam_delete_policy_audit_record import VfamDeletePolicyAuditRecord
-        from .vfam_update_policy_audit_record import VfamUpdatePolicyAuditRecord
-        from .viva_goals_audit_record import VivaGoalsAuditRecord
-        from .viva_learning_admin_audit_record import VivaLearningAdminAuditRecord
-        from .viva_learning_audit_record import VivaLearningAuditRecord
-        from .viva_pulse_admin_audit_record import VivaPulseAdminAuditRecord
-        from .viva_pulse_organizer_audit_record import VivaPulseOrganizerAuditRecord
-        from .viva_pulse_report_audit_record import VivaPulseReportAuditRecord
-        from .viva_pulse_response_audit_record import VivaPulseResponseAuditRecord
-        from .wdatp_alerts_audit_record import WdatpAlertsAuditRecord
-        from .windows365_customer_lockbox_audit_record import Windows365CustomerLockboxAuditRecord
-        from .workplace_analytics_audit_record import WorkplaceAnalyticsAuditRecord
-        from .yammer_audit_record import YammerAuditRecord
-
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

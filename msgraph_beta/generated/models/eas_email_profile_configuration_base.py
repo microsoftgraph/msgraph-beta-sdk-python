@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
@@ -58,10 +59,10 @@ class EasEmailProfileConfigurationBase(DeviceConfiguration, Parsable):
             return WindowsPhoneEASEmailProfileConfiguration()
         return EasEmailProfileConfigurationBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
         from .domain_name_source import DomainNameSource
@@ -79,7 +80,7 @@ class EasEmailProfileConfigurationBase(DeviceConfiguration, Parsable):
         from .windows10_eas_email_profile_configuration import Windows10EasEmailProfileConfiguration
         from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "customDomainName": lambda n : setattr(self, 'custom_domain_name', n.get_str_value()),
             "userDomainNameSource": lambda n : setattr(self, 'user_domain_name_source', n.get_enum_value(DomainNameSource)),
             "usernameAADSource": lambda n : setattr(self, 'username_a_a_d_source', n.get_enum_value(UsernameSource)),
@@ -98,14 +99,6 @@ class EasEmailProfileConfigurationBase(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_configuration import DeviceConfiguration
-        from .domain_name_source import DomainNameSource
-        from .ios_eas_email_profile_configuration import IosEasEmailProfileConfiguration
-        from .username_source import UsernameSource
-        from .user_email_source import UserEmailSource
-        from .windows10_eas_email_profile_configuration import Windows10EasEmailProfileConfiguration
-        from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
-
         writer.write_str_value("customDomainName", self.custom_domain_name)
         writer.write_enum_value("userDomainNameSource", self.user_domain_name_source)
         writer.write_enum_value("usernameAADSource", self.username_a_a_d_source)

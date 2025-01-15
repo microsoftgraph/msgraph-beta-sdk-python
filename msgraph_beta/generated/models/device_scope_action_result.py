@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_scope_action_status import DeviceScopeActionStatus
@@ -16,7 +17,7 @@ class DeviceScopeActionResult(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Trigger on the service to either START or STOP computing metrics data based on a device scope configuration.
     device_scope_action: Optional[str] = None
     # The unique identifier of the device scope the action was triggered on.
@@ -39,16 +40,16 @@ class DeviceScopeActionResult(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceScopeActionResult()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_scope_action_status import DeviceScopeActionStatus
 
         from .device_scope_action_status import DeviceScopeActionStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deviceScopeAction": lambda n : setattr(self, 'device_scope_action', n.get_str_value()),
             "deviceScopeId": lambda n : setattr(self, 'device_scope_id', n.get_str_value()),
             "failedMessage": lambda n : setattr(self, 'failed_message', n.get_str_value()),
@@ -65,8 +66,6 @@ class DeviceScopeActionResult(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .device_scope_action_status import DeviceScopeActionStatus
-
         writer.write_str_value("deviceScopeAction", self.device_scope_action)
         writer.write_str_value("deviceScopeId", self.device_scope_id)
         writer.write_str_value("failedMessage", self.failed_message)

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 @dataclass
 class ElevationRequestApplicationDetail(AdditionalDataHolder, BackedModel, Parsable):
@@ -13,7 +14,7 @@ class ElevationRequestApplicationDetail(AdditionalDataHolder, BackedModel, Parsa
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The path of the file in the request for elevation, for example, %programfiles%/git/cmd
     file_description: Optional[str] = None
     # The SHA256 hash of the file in the request for elevation, for example, '18ee24150dcb1d96752a4d6dd0f20dfd8ba8c38527e40aa8509b7adecf78f9c6'
@@ -46,12 +47,12 @@ class ElevationRequestApplicationDetail(AdditionalDataHolder, BackedModel, Parsa
             raise TypeError("parse_node cannot be null.")
         return ElevationRequestApplicationDetail()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "fileDescription": lambda n : setattr(self, 'file_description', n.get_str_value()),
             "fileHash": lambda n : setattr(self, 'file_hash', n.get_str_value()),
             "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),

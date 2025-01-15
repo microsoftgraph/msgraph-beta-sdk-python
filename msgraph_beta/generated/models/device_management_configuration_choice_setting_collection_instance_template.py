@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_configuration_choice_setting_value_template import DeviceManagementConfigurationChoiceSettingValueTemplate
@@ -19,7 +20,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(Devic
     # Linked policy may append values which are not present in the template.
     allow_unmanaged_values: Optional[bool] = None
     # Choice Setting Collection Value Template
-    choice_setting_collection_value_template: Optional[List[DeviceManagementConfigurationChoiceSettingValueTemplate]] = None
+    choice_setting_collection_value_template: Optional[list[DeviceManagementConfigurationChoiceSettingValueTemplate]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate:
@@ -32,10 +33,10 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(Devic
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_configuration_choice_setting_value_template import DeviceManagementConfigurationChoiceSettingValueTemplate
         from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
@@ -43,7 +44,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(Devic
         from .device_management_configuration_choice_setting_value_template import DeviceManagementConfigurationChoiceSettingValueTemplate
         from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowUnmanagedValues": lambda n : setattr(self, 'allow_unmanaged_values', n.get_bool_value()),
             "choiceSettingCollectionValueTemplate": lambda n : setattr(self, 'choice_setting_collection_value_template', n.get_collection_of_object_values(DeviceManagementConfigurationChoiceSettingValueTemplate)),
         }
@@ -60,9 +61,6 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(Devic
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_configuration_choice_setting_value_template import DeviceManagementConfigurationChoiceSettingValueTemplate
-        from .device_management_configuration_setting_instance_template import DeviceManagementConfigurationSettingInstanceTemplate
-
         writer.write_bool_value("allowUnmanagedValues", self.allow_unmanaged_values)
         writer.write_collection_of_object_values("choiceSettingCollectionValueTemplate", self.choice_setting_collection_value_template)
     

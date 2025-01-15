@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .teamwork_software_update_status import TeamworkSoftwareUpdateStatus
@@ -13,7 +14,7 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The software update available for the admin agent.
     admin_agent_software_update_status: Optional[TeamworkSoftwareUpdateStatus] = None
     # The software update available for the company portal.
@@ -40,16 +41,16 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TeamworkSoftwareUpdateHealth()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .teamwork_software_update_status import TeamworkSoftwareUpdateStatus
 
         from .teamwork_software_update_status import TeamworkSoftwareUpdateStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "adminAgentSoftwareUpdateStatus": lambda n : setattr(self, 'admin_agent_software_update_status', n.get_object_value(TeamworkSoftwareUpdateStatus)),
             "companyPortalSoftwareUpdateStatus": lambda n : setattr(self, 'company_portal_software_update_status', n.get_object_value(TeamworkSoftwareUpdateStatus)),
             "firmwareSoftwareUpdateStatus": lambda n : setattr(self, 'firmware_software_update_status', n.get_object_value(TeamworkSoftwareUpdateStatus)),
@@ -68,8 +69,6 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .teamwork_software_update_status import TeamworkSoftwareUpdateStatus
-
         writer.write_object_value("adminAgentSoftwareUpdateStatus", self.admin_agent_software_update_status)
         writer.write_object_value("companyPortalSoftwareUpdateStatus", self.company_portal_software_update_status)
         writer.write_object_value("firmwareSoftwareUpdateStatus", self.firmware_software_update_status)

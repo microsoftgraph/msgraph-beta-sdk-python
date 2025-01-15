@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device import Device
@@ -13,22 +14,22 @@ from .directory_object import DirectoryObject
 class DeviceTemplate(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.deviceTemplate"
-    # The deviceAuthority property
+    # A tenant-defined name for the party that's responsible for provisioning and managing devices on the Microsoft Entra tenant. For example, Tailwind Traders (the manufacturer) makes security cameras that are installed in customer buildings and managed by Lakeshore Retail (the device authority). This value is provided to the customer by the device authority (manufacturer or reseller).
     device_authority: Optional[str] = None
-    # The deviceInstances property
-    device_instances: Optional[List[Device]] = None
-    # The manufacturer property
+    # Collection of device objects created based on this template.
+    device_instances: Optional[list[Device]] = None
+    # Manufacturer name.
     manufacturer: Optional[str] = None
-    # The model property
+    # Model name.
     model: Optional[str] = None
-    # The mutualTlsOauthConfigurationId property
+    # Object ID of the mutualTlsOauthConfiguration. This value isn't required if self-signed certificates are used. This value is provided to the customer by the device authority (manufacturer or reseller).
     mutual_tls_oauth_configuration_id: Optional[str] = None
-    # The mutualTlsOauthConfigurationTenantId property
+    # ID (tenant ID for device authority) of the tenant that contains the mutualTlsOauthConfiguration. This value isn't required if self-signed certificates are used. This value is provided to the customer by the device authority (manufacturer or reseller).
     mutual_tls_oauth_configuration_tenant_id: Optional[str] = None
-    # The operatingSystem property
+    # Operating system type. Supports $filter (eq, in).
     operating_system: Optional[str] = None
-    # The owners property
-    owners: Optional[List[DirectoryObject]] = None
+    # Collection of directory objects that can manage the device template and the related deviceInstances. Owners can be represented as service principals, users, or applications. An owner has full privileges over the device template and doesn't require other administrator roles to create, update, or delete devices from this template, as well as to add or remove template owners.  Supports $expand.
+    owners: Optional[list[DirectoryObject]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceTemplate:
@@ -41,10 +42,10 @@ class DeviceTemplate(DirectoryObject, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceTemplate()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device import Device
         from .directory_object import DirectoryObject
@@ -52,7 +53,7 @@ class DeviceTemplate(DirectoryObject, Parsable):
         from .device import Device
         from .directory_object import DirectoryObject
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deviceAuthority": lambda n : setattr(self, 'device_authority', n.get_str_value()),
             "deviceInstances": lambda n : setattr(self, 'device_instances', n.get_collection_of_object_values(Device)),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
@@ -75,9 +76,6 @@ class DeviceTemplate(DirectoryObject, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device import Device
-        from .directory_object import DirectoryObject
-
         writer.write_str_value("deviceAuthority", self.device_authority)
         writer.write_collection_of_object_values("deviceInstances", self.device_instances)
         writer.write_str_value("manufacturer", self.manufacturer)

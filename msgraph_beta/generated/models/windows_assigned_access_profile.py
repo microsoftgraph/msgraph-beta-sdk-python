@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -14,9 +15,9 @@ class WindowsAssignedAccessProfile(Entity, Parsable):
     Assigned Access profile for Windows.
     """
     # These are the only Windows Store Apps that will be available to launch from the Start menu.
-    app_user_model_ids: Optional[List[str]] = None
+    app_user_model_ids: Optional[list[str]] = None
     # These are the paths of the Desktop Apps that will be available on the Start menu and the only apps the user will be able to launch.
-    desktop_app_paths: Optional[List[str]] = None
+    desktop_app_paths: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # This is a friendly name used to identify a group of applications, the layout of these apps on the start menu and the users to whom this kiosk configuration is assigned.
@@ -26,7 +27,7 @@ class WindowsAssignedAccessProfile(Entity, Parsable):
     # Allows admins to override the default Start layout and prevents the user from changing it. The layout is modified by specifying an XML file based on a layout modification schema. XML needs to be in Binary format.
     start_menu_layout_xml: Optional[bytes] = None
     # The user accounts that will be locked to this kiosk configuration.
-    user_accounts: Optional[List[str]] = None
+    user_accounts: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WindowsAssignedAccessProfile:
@@ -39,16 +40,16 @@ class WindowsAssignedAccessProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsAssignedAccessProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
 
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appUserModelIds": lambda n : setattr(self, 'app_user_model_ids', n.get_collection_of_primitive_values(str)),
             "desktopAppPaths": lambda n : setattr(self, 'desktop_app_paths', n.get_collection_of_primitive_values(str)),
             "profileName": lambda n : setattr(self, 'profile_name', n.get_str_value()),
@@ -69,8 +70,6 @@ class WindowsAssignedAccessProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-
         writer.write_collection_of_primitive_values("appUserModelIds", self.app_user_model_ids)
         writer.write_collection_of_primitive_values("desktopAppPaths", self.desktop_app_paths)
         writer.write_str_value("profileName", self.profile_name)

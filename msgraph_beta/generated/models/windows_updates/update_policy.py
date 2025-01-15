@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -18,9 +19,9 @@ class UpdatePolicy(Entity, Parsable):
     # Specifies the audience to target.
     audience: Optional[DeploymentAudience] = None
     # Rules for governing the automatic creation of compliance changes.
-    compliance_change_rules: Optional[List[ComplianceChangeRule]] = None
+    compliance_change_rules: Optional[list[ComplianceChangeRule]] = None
     # Compliance changes like content approvals which result in the automatic creation of deployments using the audience and deploymentSettings of the policy.
-    compliance_changes: Optional[List[ComplianceChange]] = None
+    compliance_changes: Optional[list[ComplianceChange]] = None
     # The date and time when the update policy was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
     # Settings for governing how to deploy content.
@@ -39,10 +40,10 @@ class UpdatePolicy(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UpdatePolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .compliance_change import ComplianceChange
@@ -56,7 +57,7 @@ class UpdatePolicy(Entity, Parsable):
         from .deployment_audience import DeploymentAudience
         from .deployment_settings import DeploymentSettings
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "audience": lambda n : setattr(self, 'audience', n.get_object_value(DeploymentAudience)),
             "complianceChangeRules": lambda n : setattr(self, 'compliance_change_rules', n.get_collection_of_object_values(ComplianceChangeRule)),
             "complianceChanges": lambda n : setattr(self, 'compliance_changes', n.get_collection_of_object_values(ComplianceChange)),
@@ -76,12 +77,6 @@ class UpdatePolicy(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .compliance_change import ComplianceChange
-        from .compliance_change_rule import ComplianceChangeRule
-        from .deployment_audience import DeploymentAudience
-        from .deployment_settings import DeploymentSettings
-
         writer.write_object_value("audience", self.audience)
         writer.write_collection_of_object_values("complianceChangeRules", self.compliance_change_rules)
         writer.write_collection_of_object_values("complianceChanges", self.compliance_changes)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_compliance_policy import DeviceCompliancePolicy
@@ -89,11 +90,11 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy, Parsable):
     # Require Trusted Platform Module(TPM) to be present.
     tpm_required: Optional[bool] = None
     # The valid operating system build ranges on Windows devices. This collection can contain a maximum of 10000 elements.
-    valid_operating_system_build_ranges: Optional[List[OperatingSystemVersionRange]] = None
+    valid_operating_system_build_ranges: Optional[list[OperatingSystemVersionRange]] = None
     # When TRUE, indicates that Virtualization-based Security is required to be reported as healthy by Microsoft Azure Attestion. When FALSE, indicates that Virtualization-based Security is not required to be reported as healthy. Default value is FALSE.
     virtualization_based_security_enabled: Optional[bool] = None
     # The wslDistributions property
-    wsl_distributions: Optional[List[WslDistributionConfiguration]] = None
+    wsl_distributions: Optional[list[WslDistributionConfiguration]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Windows10CompliancePolicy:
@@ -106,10 +107,10 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Windows10CompliancePolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_compliance_policy import DeviceCompliancePolicy
         from .device_compliance_policy_script import DeviceCompliancePolicyScript
@@ -125,7 +126,7 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy, Parsable):
         from .required_password_type import RequiredPasswordType
         from .wsl_distribution_configuration import WslDistributionConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activeFirewallRequired": lambda n : setattr(self, 'active_firewall_required', n.get_bool_value()),
             "antiSpywareRequired": lambda n : setattr(self, 'anti_spyware_required', n.get_bool_value()),
             "antivirusRequired": lambda n : setattr(self, 'antivirus_required', n.get_bool_value()),
@@ -177,13 +178,6 @@ class Windows10CompliancePolicy(DeviceCompliancePolicy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_compliance_policy import DeviceCompliancePolicy
-        from .device_compliance_policy_script import DeviceCompliancePolicyScript
-        from .device_threat_protection_level import DeviceThreatProtectionLevel
-        from .operating_system_version_range import OperatingSystemVersionRange
-        from .required_password_type import RequiredPasswordType
-        from .wsl_distribution_configuration import WslDistributionConfiguration
-
         writer.write_bool_value("activeFirewallRequired", self.active_firewall_required)
         writer.write_bool_value("antiSpywareRequired", self.anti_spyware_required)
         writer.write_bool_value("antivirusRequired", self.antivirus_required)

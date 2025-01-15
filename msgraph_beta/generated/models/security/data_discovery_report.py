@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -14,7 +15,7 @@ class DataDiscoveryReport(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # A collection of streams available for generating cloud discovery report.
-    uploaded_streams: Optional[List[CloudAppDiscoveryReport]] = None
+    uploaded_streams: Optional[list[CloudAppDiscoveryReport]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DataDiscoveryReport:
@@ -27,10 +28,10 @@ class DataDiscoveryReport(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DataDiscoveryReport()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .cloud_app_discovery_report import CloudAppDiscoveryReport
@@ -38,7 +39,7 @@ class DataDiscoveryReport(Entity, Parsable):
         from ..entity import Entity
         from .cloud_app_discovery_report import CloudAppDiscoveryReport
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "uploadedStreams": lambda n : setattr(self, 'uploaded_streams', n.get_collection_of_object_values(CloudAppDiscoveryReport)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,9 +55,6 @@ class DataDiscoveryReport(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .cloud_app_discovery_report import CloudAppDiscoveryReport
-
         writer.write_collection_of_object_values("uploadedStreams", self.uploaded_streams)
     
 

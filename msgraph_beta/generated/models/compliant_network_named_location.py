@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .compliant_network_type import CompliantNetworkType
@@ -29,10 +30,10 @@ class CompliantNetworkNamedLocation(NamedLocation, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CompliantNetworkNamedLocation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .compliant_network_type import CompliantNetworkType
         from .named_location import NamedLocation
@@ -40,7 +41,7 @@ class CompliantNetworkNamedLocation(NamedLocation, Parsable):
         from .compliant_network_type import CompliantNetworkType
         from .named_location import NamedLocation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "compliantNetworkType": lambda n : setattr(self, 'compliant_network_type', n.get_enum_value(CompliantNetworkType)),
             "isTrusted": lambda n : setattr(self, 'is_trusted', n.get_bool_value()),
         }
@@ -57,9 +58,6 @@ class CompliantNetworkNamedLocation(NamedLocation, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .compliant_network_type import CompliantNetworkType
-        from .named_location import NamedLocation
-
         writer.write_enum_value("compliantNetworkType", self.compliant_network_type)
         writer.write_bool_value("isTrusted", self.is_trusted)
     

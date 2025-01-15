@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -24,7 +25,7 @@ class Person(Entity, Parsable):
     # The person's display name.
     display_name: Optional[str] = None
     # The person's email addresses.
-    email_addresses: Optional[List[RankedEmailAddress]] = None
+    email_addresses: Optional[list[RankedEmailAddress]] = None
     # The person's given name.
     given_name: Optional[str] = None
     # True if the user has flagged this person as a favorite.
@@ -40,13 +41,13 @@ class Person(Entity, Parsable):
     # The type of person, for example distribution list.
     person_type: Optional[str] = None
     # The person's phone numbers.
-    phones: Optional[List[Phone]] = None
+    phones: Optional[list[Phone]] = None
     # The person's addresses.
-    postal_addresses: Optional[List[Location]] = None
+    postal_addresses: Optional[list[Location]] = None
     # The person's profession.
     profession: Optional[str] = None
     # The sources the user data comes from, for example Directory or Outlook Contacts.
-    sources: Optional[List[PersonDataSource]] = None
+    sources: Optional[list[PersonDataSource]] = None
     # The person's surname.
     surname: Optional[str] = None
     # The person's title.
@@ -54,7 +55,7 @@ class Person(Entity, Parsable):
     # The user principal name (UPN) of the person. The UPN is an Internet-style login name for the person based on the Internet standard RFC 822. By convention, this should map to the person's email name. The general format is alias@domain.
     user_principal_name: Optional[str] = None
     # The person's websites.
-    websites: Optional[List[Website]] = None
+    websites: Optional[list[Website]] = None
     # The phonetic Japanese name of the person's company.
     yomi_company: Optional[str] = None
     
@@ -69,10 +70,10 @@ class Person(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Person()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .location import Location
@@ -88,7 +89,7 @@ class Person(Entity, Parsable):
         from .ranked_email_address import RankedEmailAddress
         from .website import Website
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "birthday": lambda n : setattr(self, 'birthday', n.get_str_value()),
             "companyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
             "department": lambda n : setattr(self, 'department', n.get_str_value()),
@@ -123,13 +124,6 @@ class Person(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .location import Location
-        from .person_data_source import PersonDataSource
-        from .phone import Phone
-        from .ranked_email_address import RankedEmailAddress
-        from .website import Website
-
         writer.write_str_value("birthday", self.birthday)
         writer.write_str_value("companyName", self.company_name)
         writer.write_str_value("department", self.department)

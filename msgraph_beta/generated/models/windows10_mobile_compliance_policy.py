@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_compliance_policy import DeviceCompliancePolicy
@@ -52,7 +53,7 @@ class Windows10MobileCompliancePolicy(DeviceCompliancePolicy, Parsable):
     # Require encryption on windows devices.
     storage_require_encryption: Optional[bool] = None
     # The valid operating system build ranges on Windows devices. This collection can contain a maximum of 10000 elements.
-    valid_operating_system_build_ranges: Optional[List[OperatingSystemVersionRange]] = None
+    valid_operating_system_build_ranges: Optional[list[OperatingSystemVersionRange]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Windows10MobileCompliancePolicy:
@@ -65,10 +66,10 @@ class Windows10MobileCompliancePolicy(DeviceCompliancePolicy, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Windows10MobileCompliancePolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_compliance_policy import DeviceCompliancePolicy
         from .operating_system_version_range import OperatingSystemVersionRange
@@ -78,7 +79,7 @@ class Windows10MobileCompliancePolicy(DeviceCompliancePolicy, Parsable):
         from .operating_system_version_range import OperatingSystemVersionRange
         from .required_password_type import RequiredPasswordType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activeFirewallRequired": lambda n : setattr(self, 'active_firewall_required', n.get_bool_value()),
             "bitLockerEnabled": lambda n : setattr(self, 'bit_locker_enabled', n.get_bool_value()),
             "codeIntegrityEnabled": lambda n : setattr(self, 'code_integrity_enabled', n.get_bool_value()),
@@ -111,10 +112,6 @@ class Windows10MobileCompliancePolicy(DeviceCompliancePolicy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_compliance_policy import DeviceCompliancePolicy
-        from .operating_system_version_range import OperatingSystemVersionRange
-        from .required_password_type import RequiredPasswordType
-
         writer.write_bool_value("activeFirewallRequired", self.active_firewall_required)
         writer.write_bool_value("bitLockerEnabled", self.bit_locker_enabled)
         writer.write_bool_value("codeIntegrityEnabled", self.code_integrity_enabled)

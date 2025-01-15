@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -16,25 +17,25 @@ from .entity import Entity
 @dataclass
 class DataClassificationService(Entity, Parsable):
     # The classifyFileJobs property
-    classify_file_jobs: Optional[List[JobResponseBase]] = None
+    classify_file_jobs: Optional[list[JobResponseBase]] = None
     # The classifyTextJobs property
-    classify_text_jobs: Optional[List[JobResponseBase]] = None
+    classify_text_jobs: Optional[list[JobResponseBase]] = None
     # The evaluateDlpPoliciesJobs property
-    evaluate_dlp_policies_jobs: Optional[List[JobResponseBase]] = None
+    evaluate_dlp_policies_jobs: Optional[list[JobResponseBase]] = None
     # The evaluateLabelJobs property
-    evaluate_label_jobs: Optional[List[JobResponseBase]] = None
+    evaluate_label_jobs: Optional[list[JobResponseBase]] = None
     # The exactMatchDataStores property
-    exact_match_data_stores: Optional[List[ExactMatchDataStore]] = None
+    exact_match_data_stores: Optional[list[ExactMatchDataStore]] = None
     # The exactMatchUploadAgents property
-    exact_match_upload_agents: Optional[List[ExactMatchUploadAgent]] = None
+    exact_match_upload_agents: Optional[list[ExactMatchUploadAgent]] = None
     # The jobs property
-    jobs: Optional[List[JobResponseBase]] = None
+    jobs: Optional[list[JobResponseBase]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The sensitiveTypes property
-    sensitive_types: Optional[List[SensitiveType]] = None
+    sensitive_types: Optional[list[SensitiveType]] = None
     # The sensitivityLabels property
-    sensitivity_labels: Optional[List[SensitivityLabel]] = None
+    sensitivity_labels: Optional[list[SensitivityLabel]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DataClassificationService:
@@ -47,10 +48,10 @@ class DataClassificationService(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DataClassificationService()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .exact_match_data_store import ExactMatchDataStore
@@ -66,7 +67,7 @@ class DataClassificationService(Entity, Parsable):
         from .sensitive_type import SensitiveType
         from .sensitivity_label import SensitivityLabel
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "classifyFileJobs": lambda n : setattr(self, 'classify_file_jobs', n.get_collection_of_object_values(JobResponseBase)),
             "classifyTextJobs": lambda n : setattr(self, 'classify_text_jobs', n.get_collection_of_object_values(JobResponseBase)),
             "evaluateDlpPoliciesJobs": lambda n : setattr(self, 'evaluate_dlp_policies_jobs', n.get_collection_of_object_values(JobResponseBase)),
@@ -90,13 +91,6 @@ class DataClassificationService(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .exact_match_data_store import ExactMatchDataStore
-        from .exact_match_upload_agent import ExactMatchUploadAgent
-        from .job_response_base import JobResponseBase
-        from .sensitive_type import SensitiveType
-        from .sensitivity_label import SensitivityLabel
-
         writer.write_collection_of_object_values("classifyFileJobs", self.classify_file_jobs)
         writer.write_collection_of_object_values("classifyTextJobs", self.classify_text_jobs)
         writer.write_collection_of_object_values("evaluateDlpPoliciesJobs", self.evaluate_dlp_policies_jobs)

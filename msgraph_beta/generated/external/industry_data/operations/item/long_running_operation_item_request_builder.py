@@ -1,4 +1,5 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
@@ -9,7 +10,7 @@ from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
@@ -20,7 +21,7 @@ class LongRunningOperationItemRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the operations property of the microsoft.graph.industryData.industryDataRoot entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
         Instantiates a new LongRunningOperationItemRequestBuilder and sets the default values.
         param path_parameters: The raw url or the url-template parameters for the request.
@@ -40,7 +41,7 @@ class LongRunningOperationItemRequestBuilder(BaseRequestBuilder):
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, type[ParsableFactory]] = {
+        error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -49,17 +50,17 @@ class LongRunningOperationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[LongRunningOperationItemRequestBuilderGetQueryParameters]] = None) -> Optional[LongRunningOperation]:
         """
-        Read the properties and relationships of a fileValidateOperation object.
+        Read the properties and relationships of a longRunningOperation object. This API allows you to retrieve the details and status of the following long-running Microsoft Graph API operations. The possible states of the long-running operation are notStarted, running, succeeded, failed, unknownFutureValue where succeeded and failed are terminal states.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LongRunningOperation]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-filevalidateoperation-get?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/longrunningoperation-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, type[ParsableFactory]] = {
+        error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -82,7 +83,7 @@ class LongRunningOperationItemRequestBuilder(BaseRequestBuilder):
         )
         from .....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, type[ParsableFactory]] = {
+        error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -104,7 +105,7 @@ class LongRunningOperationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[LongRunningOperationItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a fileValidateOperation object.
+        Read the properties and relationships of a longRunningOperation object. This API allows you to retrieve the details and status of the following long-running Microsoft Graph API operations. The possible states of the long-running operation are notStarted, running, succeeded, failed, unknownFutureValue where succeeded and failed are terminal states.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +149,7 @@ class LongRunningOperationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class LongRunningOperationItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a fileValidateOperation object.
+        Read the properties and relationships of a longRunningOperation object. This API allows you to retrieve the details and status of the following long-running Microsoft Graph API operations. The possible states of the long-running operation are notStarted, running, succeeded, failed, unknownFutureValue where succeeded and failed are terminal states.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -165,10 +166,10 @@ class LongRunningOperationItemRequestBuilder(BaseRequestBuilder):
             return original_name
         
         # Expand related entities
-        expand: Optional[List[str]] = None
+        expand: Optional[list[str]] = None
 
         # Select properties to be returned
-        select: Optional[List[str]] = None
+        select: Optional[list[str]] = None
 
     
     @dataclass

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .alignment import Alignment
@@ -29,10 +30,10 @@ class AddHeader(MarkContent, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AddHeader()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .alignment import Alignment
         from .mark_content import MarkContent
@@ -40,7 +41,7 @@ class AddHeader(MarkContent, Parsable):
         from .alignment import Alignment
         from .mark_content import MarkContent
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alignment": lambda n : setattr(self, 'alignment', n.get_enum_value(Alignment)),
             "margin": lambda n : setattr(self, 'margin', n.get_int_value()),
         }
@@ -57,9 +58,6 @@ class AddHeader(MarkContent, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .alignment import Alignment
-        from .mark_content import MarkContent
-
         writer.write_enum_value("alignment", self.alignment)
         writer.write_int_value("margin", self.margin)
     

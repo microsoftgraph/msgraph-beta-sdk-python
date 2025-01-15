@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
@@ -33,16 +34,16 @@ class MacOSCustomAppConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSCustomAppConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
 
         from .device_configuration import DeviceConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "bundleId": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
             "configurationXml": lambda n : setattr(self, 'configuration_xml', n.get_bytes_value()),
             "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
@@ -60,8 +61,6 @@ class MacOSCustomAppConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_configuration import DeviceConfiguration
-
         writer.write_str_value("bundleId", self.bundle_id)
         writer.write_bytes_value("configurationXml", self.configuration_xml)
         writer.write_str_value("fileName", self.file_name)

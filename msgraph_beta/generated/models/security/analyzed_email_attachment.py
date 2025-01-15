@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .detonation_details import DetonationDetails
@@ -14,7 +15,7 @@ class AnalyzedEmailAttachment(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The detonation details of the attachment.
     detonation_details: Optional[DetonationDetails] = None
     # The fileExtension property
@@ -47,10 +48,10 @@ class AnalyzedEmailAttachment(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AnalyzedEmailAttachment()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .detonation_details import DetonationDetails
         from .threat_type import ThreatType
@@ -58,7 +59,7 @@ class AnalyzedEmailAttachment(AdditionalDataHolder, BackedModel, Parsable):
         from .detonation_details import DetonationDetails
         from .threat_type import ThreatType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "detonationDetails": lambda n : setattr(self, 'detonation_details', n.get_object_value(DetonationDetails)),
             "fileExtension": lambda n : setattr(self, 'file_extension', n.get_str_value()),
             "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
@@ -80,9 +81,6 @@ class AnalyzedEmailAttachment(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .detonation_details import DetonationDetails
-        from .threat_type import ThreatType
-
         writer.write_object_value("detonationDetails", self.detonation_details)
         writer.write_str_value("fileExtension", self.file_extension)
         writer.write_str_value("fileName", self.file_name)

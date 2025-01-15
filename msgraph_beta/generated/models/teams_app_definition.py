@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -31,7 +32,7 @@ class TeamsAppDefinition(Entity, Parsable):
     # The createdBy property
     created_by: Optional[IdentitySet] = None
     # Dashboard cards specified in the Teams app manifest.
-    dashboard_cards: Optional[List[TeamsAppDashboardCardDefinition]] = None
+    dashboard_cards: Optional[list[TeamsAppDashboardCardDefinition]] = None
     # The description property
     description: Optional[str] = None
     # The name of the app provided by the app developer.
@@ -62,10 +63,10 @@ class TeamsAppDefinition(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TeamsAppDefinition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .identity_set import IdentitySet
@@ -85,7 +86,7 @@ class TeamsAppDefinition(Entity, Parsable):
         from .teams_app_publishing_state import TeamsAppPublishingState
         from .teamwork_bot import TeamworkBot
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedInstallationScopes": lambda n : setattr(self, 'allowed_installation_scopes', n.get_collection_of_enum_values(TeamsAppInstallationScopes)),
             "authorization": lambda n : setattr(self, 'authorization', n.get_object_value(TeamsAppAuthorization)),
             "azureADAppId": lambda n : setattr(self, 'azure_a_d_app_id', n.get_str_value()),
@@ -115,15 +116,6 @@ class TeamsAppDefinition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .identity_set import IdentitySet
-        from .teams_app_authorization import TeamsAppAuthorization
-        from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
-        from .teams_app_icon import TeamsAppIcon
-        from .teams_app_installation_scopes import TeamsAppInstallationScopes
-        from .teams_app_publishing_state import TeamsAppPublishingState
-        from .teamwork_bot import TeamworkBot
-
         writer.write_enum_value("allowedInstallationScopes", self.allowed_installation_scopes)
         writer.write_object_value("authorization", self.authorization)
         writer.write_str_value("azureADAppId", self.azure_a_d_app_id)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .policy_base import PolicyBase
@@ -17,13 +18,13 @@ class EdiscoveryHoldPolicy(PolicyBase, Parsable):
     # KQL query that specifies content to be held in the specified locations. To learn more, see Keyword queries and search conditions for Content Search and eDiscovery.  To hold all content in the specified locations, leave contentQuery blank.
     content_query: Optional[str] = None
     # Lists any errors that happened while placing the hold.
-    errors: Optional[List[str]] = None
+    errors: Optional[list[str]] = None
     # Indicates whether the hold is enabled and actively holding content.
     is_enabled: Optional[bool] = None
     # Data sources that represent SharePoint sites.
-    site_sources: Optional[List[SiteSource]] = None
+    site_sources: Optional[list[SiteSource]] = None
     # Data sources that represent Exchange mailboxes.
-    user_sources: Optional[List[UserSource]] = None
+    user_sources: Optional[list[UserSource]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EdiscoveryHoldPolicy:
@@ -36,10 +37,10 @@ class EdiscoveryHoldPolicy(PolicyBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EdiscoveryHoldPolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .policy_base import PolicyBase
         from .site_source import SiteSource
@@ -49,7 +50,7 @@ class EdiscoveryHoldPolicy(PolicyBase, Parsable):
         from .site_source import SiteSource
         from .user_source import UserSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "contentQuery": lambda n : setattr(self, 'content_query', n.get_str_value()),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_primitive_values(str)),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
@@ -69,10 +70,6 @@ class EdiscoveryHoldPolicy(PolicyBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .policy_base import PolicyBase
-        from .site_source import SiteSource
-        from .user_source import UserSource
-
         writer.write_str_value("contentQuery", self.content_query)
         writer.write_collection_of_primitive_values("errors", self.errors)
         writer.write_bool_value("isEnabled", self.is_enabled)

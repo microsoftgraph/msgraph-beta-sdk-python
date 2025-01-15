@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .alert_severity import AlertSeverity
@@ -14,15 +15,15 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Category assigned to the alert triggered by the custom detection rule.
     category: Optional[str] = None
     # Description of the alert triggered by the custom detection rule.
     description: Optional[str] = None
     # Which asset or assets were impacted based on the alert triggered by the custom detection rule.
-    impacted_assets: Optional[List[ImpactedAsset]] = None
+    impacted_assets: Optional[list[ImpactedAsset]] = None
     # MITRE technique assigned to the alert triggered by the custom detection rule.
-    mitre_techniques: Optional[List[str]] = None
+    mitre_techniques: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Recommended actions to mitigate the threat related to the alert triggered by the custom detection rule.
@@ -43,10 +44,10 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AlertTemplate()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .alert_severity import AlertSeverity
         from .impacted_asset import ImpactedAsset
@@ -54,7 +55,7 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
         from .alert_severity import AlertSeverity
         from .impacted_asset import ImpactedAsset
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "impactedAssets": lambda n : setattr(self, 'impacted_assets', n.get_collection_of_object_values(ImpactedAsset)),
@@ -74,9 +75,6 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .alert_severity import AlertSeverity
-        from .impacted_asset import ImpactedAsset
-
         writer.write_str_value("category", self.category)
         writer.write_str_value("description", self.description)
         writer.write_collection_of_object_values("impactedAssets", self.impacted_assets)

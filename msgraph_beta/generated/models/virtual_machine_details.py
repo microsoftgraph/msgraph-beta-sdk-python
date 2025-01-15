@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authorization_system_resource import AuthorizationSystemResource
@@ -27,10 +28,10 @@ class VirtualMachineDetails(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return VirtualMachineDetails()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authorization_system_resource import AuthorizationSystemResource
         from .entity import Entity
@@ -38,7 +39,7 @@ class VirtualMachineDetails(Entity, Parsable):
         from .authorization_system_resource import AuthorizationSystemResource
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "virtualMachine": lambda n : setattr(self, 'virtual_machine', n.get_object_value(AuthorizationSystemResource)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,9 +55,6 @@ class VirtualMachineDetails(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authorization_system_resource import AuthorizationSystemResource
-        from .entity import Entity
-
         writer.write_object_value("virtualMachine", self.virtual_machine)
     
 

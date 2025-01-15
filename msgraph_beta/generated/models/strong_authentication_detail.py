@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -28,16 +29,16 @@ class StrongAuthenticationDetail(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return StrongAuthenticationDetail()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
 
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "encryptedPinHashHistory": lambda n : setattr(self, 'encrypted_pin_hash_history', n.get_bytes_value()),
             "proofupTime": lambda n : setattr(self, 'proofup_time', n.get_int_value()),
         }
@@ -54,8 +55,6 @@ class StrongAuthenticationDetail(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-
         writer.write_bytes_value("encryptedPinHashHistory", self.encrypted_pin_hash_history)
         writer.write_int_value("proofupTime", self.proofup_time)
     

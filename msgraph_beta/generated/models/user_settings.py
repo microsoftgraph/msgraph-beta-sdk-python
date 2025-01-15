@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .contact_merge_suggestions import ContactMergeSuggestions
@@ -33,7 +34,7 @@ class UserSettings(Entity, Parsable):
     # The storage property
     storage: Optional[UserStorage] = None
     # The Windows settings of the user stored in the cloud.
-    windows: Optional[List[WindowsSetting]] = None
+    windows: Optional[list[WindowsSetting]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> UserSettings:
@@ -46,10 +47,10 @@ class UserSettings(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UserSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .contact_merge_suggestions import ContactMergeSuggestions
         from .entity import Entity
@@ -67,7 +68,7 @@ class UserSettings(Entity, Parsable):
         from .user_storage import UserStorage
         from .windows_setting import WindowsSetting
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "contactMergeSuggestions": lambda n : setattr(self, 'contact_merge_suggestions', n.get_object_value(ContactMergeSuggestions)),
             "contributionToContentDiscoveryAsOrganizationDisabled": lambda n : setattr(self, 'contribution_to_content_discovery_as_organization_disabled', n.get_bool_value()),
             "contributionToContentDiscoveryDisabled": lambda n : setattr(self, 'contribution_to_content_discovery_disabled', n.get_bool_value()),
@@ -90,14 +91,6 @@ class UserSettings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .contact_merge_suggestions import ContactMergeSuggestions
-        from .entity import Entity
-        from .regional_and_language_settings import RegionalAndLanguageSettings
-        from .shift_preferences import ShiftPreferences
-        from .user_insights_settings import UserInsightsSettings
-        from .user_storage import UserStorage
-        from .windows_setting import WindowsSetting
-
         writer.write_object_value("contactMergeSuggestions", self.contact_merge_suggestions)
         writer.write_bool_value("contributionToContentDiscoveryAsOrganizationDisabled", self.contribution_to_content_discovery_as_organization_disabled)
         writer.write_bool_value("contributionToContentDiscoveryDisabled", self.contribution_to_content_discovery_disabled)

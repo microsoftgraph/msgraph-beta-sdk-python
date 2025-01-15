@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -48,89 +49,89 @@ class Company(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The accounts property
-    accounts: Optional[List[Account]] = None
+    accounts: Optional[list[Account]] = None
     # The agedAccountsPayable property
-    aged_accounts_payable: Optional[List[AgedAccountsPayable]] = None
+    aged_accounts_payable: Optional[list[AgedAccountsPayable]] = None
     # The agedAccountsReceivable property
-    aged_accounts_receivable: Optional[List[AgedAccountsReceivable]] = None
+    aged_accounts_receivable: Optional[list[AgedAccountsReceivable]] = None
     # The businessProfileId property
     business_profile_id: Optional[str] = None
     # The companyInformation property
-    company_information: Optional[List[CompanyInformation]] = None
+    company_information: Optional[list[CompanyInformation]] = None
     # The countriesRegions property
-    countries_regions: Optional[List[CountryRegion]] = None
+    countries_regions: Optional[list[CountryRegion]] = None
     # The currencies property
-    currencies: Optional[List[Currency]] = None
+    currencies: Optional[list[Currency]] = None
     # The customerPaymentJournals property
-    customer_payment_journals: Optional[List[CustomerPaymentJournal]] = None
+    customer_payment_journals: Optional[list[CustomerPaymentJournal]] = None
     # The customerPayments property
-    customer_payments: Optional[List[CustomerPayment]] = None
+    customer_payments: Optional[list[CustomerPayment]] = None
     # The customers property
-    customers: Optional[List[Customer]] = None
+    customers: Optional[list[Customer]] = None
     # The dimensionValues property
-    dimension_values: Optional[List[DimensionValue]] = None
+    dimension_values: Optional[list[DimensionValue]] = None
     # The dimensions property
-    dimensions: Optional[List[Dimension]] = None
+    dimensions: Optional[list[Dimension]] = None
     # The displayName property
     display_name: Optional[str] = None
     # The employees property
-    employees: Optional[List[Employee]] = None
+    employees: Optional[list[Employee]] = None
     # The generalLedgerEntries property
-    general_ledger_entries: Optional[List[GeneralLedgerEntry]] = None
+    general_ledger_entries: Optional[list[GeneralLedgerEntry]] = None
     # The id property
     id: Optional[UUID] = None
     # The itemCategories property
-    item_categories: Optional[List[ItemCategory]] = None
+    item_categories: Optional[list[ItemCategory]] = None
     # The items property
-    items: Optional[List[Item]] = None
+    items: Optional[list[Item]] = None
     # The journalLines property
-    journal_lines: Optional[List[JournalLine]] = None
+    journal_lines: Optional[list[JournalLine]] = None
     # The journals property
-    journals: Optional[List[Journal]] = None
+    journals: Optional[list[Journal]] = None
     # The name property
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The paymentMethods property
-    payment_methods: Optional[List[PaymentMethod]] = None
+    payment_methods: Optional[list[PaymentMethod]] = None
     # The paymentTerms property
-    payment_terms: Optional[List[PaymentTerm]] = None
+    payment_terms: Optional[list[PaymentTerm]] = None
     # The picture property
-    picture: Optional[List[Picture]] = None
+    picture: Optional[list[Picture]] = None
     # The purchaseInvoiceLines property
-    purchase_invoice_lines: Optional[List[PurchaseInvoiceLine]] = None
+    purchase_invoice_lines: Optional[list[PurchaseInvoiceLine]] = None
     # The purchaseInvoices property
-    purchase_invoices: Optional[List[PurchaseInvoice]] = None
+    purchase_invoices: Optional[list[PurchaseInvoice]] = None
     # The salesCreditMemoLines property
-    sales_credit_memo_lines: Optional[List[SalesCreditMemoLine]] = None
+    sales_credit_memo_lines: Optional[list[SalesCreditMemoLine]] = None
     # The salesCreditMemos property
-    sales_credit_memos: Optional[List[SalesCreditMemo]] = None
+    sales_credit_memos: Optional[list[SalesCreditMemo]] = None
     # The salesInvoiceLines property
-    sales_invoice_lines: Optional[List[SalesInvoiceLine]] = None
+    sales_invoice_lines: Optional[list[SalesInvoiceLine]] = None
     # The salesInvoices property
-    sales_invoices: Optional[List[SalesInvoice]] = None
+    sales_invoices: Optional[list[SalesInvoice]] = None
     # The salesOrderLines property
-    sales_order_lines: Optional[List[SalesOrderLine]] = None
+    sales_order_lines: Optional[list[SalesOrderLine]] = None
     # The salesOrders property
-    sales_orders: Optional[List[SalesOrder]] = None
+    sales_orders: Optional[list[SalesOrder]] = None
     # The salesQuoteLines property
-    sales_quote_lines: Optional[List[SalesQuoteLine]] = None
+    sales_quote_lines: Optional[list[SalesQuoteLine]] = None
     # The salesQuotes property
-    sales_quotes: Optional[List[SalesQuote]] = None
+    sales_quotes: Optional[list[SalesQuote]] = None
     # The shipmentMethods property
-    shipment_methods: Optional[List[ShipmentMethod]] = None
+    shipment_methods: Optional[list[ShipmentMethod]] = None
     # The systemVersion property
     system_version: Optional[str] = None
     # The taxAreas property
-    tax_areas: Optional[List[TaxArea]] = None
+    tax_areas: Optional[list[TaxArea]] = None
     # The taxGroups property
-    tax_groups: Optional[List[TaxGroup]] = None
+    tax_groups: Optional[list[TaxGroup]] = None
     # The unitsOfMeasure property
-    units_of_measure: Optional[List[UnitOfMeasure]] = None
+    units_of_measure: Optional[list[UnitOfMeasure]] = None
     # The vendors property
-    vendors: Optional[List[Vendor]] = None
+    vendors: Optional[list[Vendor]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Company:
@@ -143,10 +144,10 @@ class Company(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Company()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .account import Account
         from .aged_accounts_payable import AgedAccountsPayable
@@ -220,7 +221,7 @@ class Company(AdditionalDataHolder, BackedModel, Parsable):
         from .unit_of_measure import UnitOfMeasure
         from .vendor import Vendor
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accounts": lambda n : setattr(self, 'accounts', n.get_collection_of_object_values(Account)),
             "agedAccountsPayable": lambda n : setattr(self, 'aged_accounts_payable', n.get_collection_of_object_values(AgedAccountsPayable)),
             "agedAccountsReceivable": lambda n : setattr(self, 'aged_accounts_receivable', n.get_collection_of_object_values(AgedAccountsReceivable)),
@@ -273,42 +274,6 @@ class Company(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .account import Account
-        from .aged_accounts_payable import AgedAccountsPayable
-        from .aged_accounts_receivable import AgedAccountsReceivable
-        from .company_information import CompanyInformation
-        from .country_region import CountryRegion
-        from .currency import Currency
-        from .customer import Customer
-        from .customer_payment import CustomerPayment
-        from .customer_payment_journal import CustomerPaymentJournal
-        from .dimension import Dimension
-        from .dimension_value import DimensionValue
-        from .employee import Employee
-        from .general_ledger_entry import GeneralLedgerEntry
-        from .item import Item
-        from .item_category import ItemCategory
-        from .journal import Journal
-        from .journal_line import JournalLine
-        from .payment_method import PaymentMethod
-        from .payment_term import PaymentTerm
-        from .picture import Picture
-        from .purchase_invoice import PurchaseInvoice
-        from .purchase_invoice_line import PurchaseInvoiceLine
-        from .sales_credit_memo import SalesCreditMemo
-        from .sales_credit_memo_line import SalesCreditMemoLine
-        from .sales_invoice import SalesInvoice
-        from .sales_invoice_line import SalesInvoiceLine
-        from .sales_order import SalesOrder
-        from .sales_order_line import SalesOrderLine
-        from .sales_quote import SalesQuote
-        from .sales_quote_line import SalesQuoteLine
-        from .shipment_method import ShipmentMethod
-        from .tax_area import TaxArea
-        from .tax_group import TaxGroup
-        from .unit_of_measure import UnitOfMeasure
-        from .vendor import Vendor
-
         writer.write_collection_of_object_values("accounts", self.accounts)
         writer.write_collection_of_object_values("agedAccountsPayable", self.aged_accounts_payable)
         writer.write_collection_of_object_values("agedAccountsReceivable", self.aged_accounts_receivable)

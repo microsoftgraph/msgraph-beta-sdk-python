@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -31,10 +32,10 @@ class WorkbookCommentReply(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WorkbookCommentReply()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .workbook_document_task import WorkbookDocumentTask
@@ -42,7 +43,7 @@ class WorkbookCommentReply(Entity, Parsable):
         from .entity import Entity
         from .workbook_document_task import WorkbookDocumentTask
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_str_value()),
             "contentType": lambda n : setattr(self, 'content_type', n.get_str_value()),
             "task": lambda n : setattr(self, 'task', n.get_object_value(WorkbookDocumentTask)),
@@ -60,9 +61,6 @@ class WorkbookCommentReply(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .workbook_document_task import WorkbookDocumentTask
-
         writer.write_str_value("content", self.content)
         writer.write_str_value("contentType", self.content_type)
         writer.write_object_value("task", self.task)

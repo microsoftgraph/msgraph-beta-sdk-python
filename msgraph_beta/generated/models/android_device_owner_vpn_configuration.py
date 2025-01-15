@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
@@ -29,9 +30,9 @@ class AndroidDeviceOwnerVpnConfiguration(VpnConfiguration, Parsable):
     # Android VPN connection type.
     connection_type: Optional[AndroidVpnConnectionType] = None
     # Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
-    custom_data: Optional[List[KeyValue]] = None
+    custom_data: Optional[list[KeyValue]] = None
     # Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
-    custom_key_value_data: Optional[List[KeyValuePair]] = None
+    custom_key_value_data: Optional[list[KeyValuePair]] = None
     # Tenant level settings for the Derived Credentials to be used for authentication.
     derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None
     # Identity certificate for client authentication when authentication method is certificate.
@@ -39,13 +40,13 @@ class AndroidDeviceOwnerVpnConfiguration(VpnConfiguration, Parsable):
     # Microsoft Tunnel site ID.
     microsoft_tunnel_site_id: Optional[str] = None
     # List of hosts to exclude using the proxy on connections for. These hosts can use wildcards such as .example.com.
-    proxy_exclusion_list: Optional[List[str]] = None
+    proxy_exclusion_list: Optional[list[str]] = None
     # Proxy server.
     proxy_server: Optional[VpnProxyServer] = None
     # Targeted mobile apps. This collection can contain a maximum of 500 elements.
-    targeted_mobile_apps: Optional[List[AppListItem]] = None
+    targeted_mobile_apps: Optional[list[AppListItem]] = None
     # Targeted App package IDs.
-    targeted_package_ids: Optional[List[str]] = None
+    targeted_package_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AndroidDeviceOwnerVpnConfiguration:
@@ -58,10 +59,10 @@ class AndroidDeviceOwnerVpnConfiguration(VpnConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidDeviceOwnerVpnConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
         from .android_vpn_connection_type import AndroidVpnConnectionType
@@ -81,7 +82,7 @@ class AndroidDeviceOwnerVpnConfiguration(VpnConfiguration, Parsable):
         from .vpn_configuration import VpnConfiguration
         from .vpn_proxy_server import VpnProxyServer
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alwaysOn": lambda n : setattr(self, 'always_on', n.get_bool_value()),
             "alwaysOnLockdown": lambda n : setattr(self, 'always_on_lockdown', n.get_bool_value()),
             "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(AndroidVpnConnectionType)),
@@ -108,15 +109,6 @@ class AndroidDeviceOwnerVpnConfiguration(VpnConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
-        from .android_vpn_connection_type import AndroidVpnConnectionType
-        from .app_list_item import AppListItem
-        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-        from .key_value import KeyValue
-        from .key_value_pair import KeyValuePair
-        from .vpn_configuration import VpnConfiguration
-        from .vpn_proxy_server import VpnProxyServer
-
         writer.write_bool_value("alwaysOn", self.always_on)
         writer.write_bool_value("alwaysOnLockdown", self.always_on_lockdown)
         writer.write_enum_value("connectionType", self.connection_type)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aosp_device_owner_enterprise_wi_fi_configuration import AospDeviceOwnerEnterpriseWiFiConfiguration
@@ -31,7 +32,7 @@ class AospDeviceOwnerWiFiConfiguration(DeviceConfiguration, Parsable):
     # Specify the proxy server configuration script URL.
     proxy_automatic_configuration_url: Optional[str] = None
     # List of hosts to exclude using the proxy on connections for. These hosts can use wildcards such as .example.com.
-    proxy_exclusion_list: Optional[List[str]] = None
+    proxy_exclusion_list: Optional[list[str]] = None
     # Specify the proxy server IP address. Both IPv4 and IPv6 addresses are supported. For example: 192.168.1.1.
     proxy_manual_address: Optional[str] = None
     # Specify the proxy server port.
@@ -63,10 +64,10 @@ class AospDeviceOwnerWiFiConfiguration(DeviceConfiguration, Parsable):
             return AospDeviceOwnerEnterpriseWiFiConfiguration()
         return AospDeviceOwnerWiFiConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aosp_device_owner_enterprise_wi_fi_configuration import AospDeviceOwnerEnterpriseWiFiConfiguration
         from .aosp_device_owner_wi_fi_security_type import AospDeviceOwnerWiFiSecurityType
@@ -78,7 +79,7 @@ class AospDeviceOwnerWiFiConfiguration(DeviceConfiguration, Parsable):
         from .device_configuration import DeviceConfiguration
         from .wi_fi_proxy_setting import WiFiProxySetting
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
             "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
             "networkName": lambda n : setattr(self, 'network_name', n.get_str_value()),
@@ -105,11 +106,6 @@ class AospDeviceOwnerWiFiConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .aosp_device_owner_enterprise_wi_fi_configuration import AospDeviceOwnerEnterpriseWiFiConfiguration
-        from .aosp_device_owner_wi_fi_security_type import AospDeviceOwnerWiFiSecurityType
-        from .device_configuration import DeviceConfiguration
-        from .wi_fi_proxy_setting import WiFiProxySetting
-
         writer.write_bool_value("connectAutomatically", self.connect_automatically)
         writer.write_bool_value("connectWhenNetworkNameIsHidden", self.connect_when_network_name_is_hidden)
         writer.write_str_value("networkName", self.network_name)

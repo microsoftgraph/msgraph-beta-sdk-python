@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
@@ -30,7 +31,7 @@ class WindowsDeliveryOptimizationConfiguration(DeviceConfiguration, Parsable):
     # Specifies number of seconds to delay a fall back from cache servers to an HTTP source for a foreground download. Valid values 0 to 2592000.​
     cache_server_foreground_download_fallback_to_http_delay_in_seconds: Optional[int] = None
     # Specifies cache servers host names.
-    cache_server_host_names: Optional[List[str]] = None
+    cache_server_host_names: Optional[list[str]] = None
     # Delivery optimization mode for peer distribution
     delivery_optimization_mode: Optional[WindowsDeliveryOptimizationMode] = None
     # Specifies number of seconds to delay an HTTP source in a foreground download that is allowed to use peer-to-peer (0-86400). Valid values 0 to 86400
@@ -67,10 +68,10 @@ class WindowsDeliveryOptimizationConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsDeliveryOptimizationConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
         from .delivery_optimization_group_id_source import DeliveryOptimizationGroupIdSource
@@ -88,7 +89,7 @@ class WindowsDeliveryOptimizationConfiguration(DeviceConfiguration, Parsable):
         from .enablement import Enablement
         from .windows_delivery_optimization_mode import WindowsDeliveryOptimizationMode
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "backgroundDownloadFromHttpDelayInSeconds": lambda n : setattr(self, 'background_download_from_http_delay_in_seconds', n.get_int_value()),
             "bandwidthMode": lambda n : setattr(self, 'bandwidth_mode', n.get_object_value(DeliveryOptimizationBandwidth)),
             "cacheServerBackgroundDownloadFallbackToHttpDelayInSeconds": lambda n : setattr(self, 'cache_server_background_download_fallback_to_http_delay_in_seconds', n.get_int_value()),
@@ -120,14 +121,6 @@ class WindowsDeliveryOptimizationConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .delivery_optimization_bandwidth import DeliveryOptimizationBandwidth
-        from .delivery_optimization_group_id_source import DeliveryOptimizationGroupIdSource
-        from .delivery_optimization_max_cache_size import DeliveryOptimizationMaxCacheSize
-        from .delivery_optimization_restrict_peer_selection_by_options import DeliveryOptimizationRestrictPeerSelectionByOptions
-        from .device_configuration import DeviceConfiguration
-        from .enablement import Enablement
-        from .windows_delivery_optimization_mode import WindowsDeliveryOptimizationMode
-
         writer.write_int_value("backgroundDownloadFromHttpDelayInSeconds", self.background_download_from_http_delay_in_seconds)
         writer.write_object_value("bandwidthMode", self.bandwidth_mode)
         writer.write_int_value("cacheServerBackgroundDownloadFallbackToHttpDelayInSeconds", self.cache_server_background_download_fallback_to_http_delay_in_seconds)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
@@ -46,10 +47,10 @@ class AospDeviceOwnerCompliancePolicy(DeviceCompliancePolicy, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AospDeviceOwnerCompliancePolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
         from .device_compliance_policy import DeviceCompliancePolicy
@@ -57,7 +58,7 @@ class AospDeviceOwnerCompliancePolicy(DeviceCompliancePolicy, Parsable):
         from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
         from .device_compliance_policy import DeviceCompliancePolicy
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "minAndroidSecurityPatchLevel": lambda n : setattr(self, 'min_android_security_patch_level', n.get_str_value()),
             "osMaximumVersion": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
             "osMinimumVersion": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
@@ -81,9 +82,6 @@ class AospDeviceOwnerCompliancePolicy(DeviceCompliancePolicy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
-        from .device_compliance_policy import DeviceCompliancePolicy
-
         writer.write_str_value("minAndroidSecurityPatchLevel", self.min_android_security_patch_level)
         writer.write_str_value("osMaximumVersion", self.os_maximum_version)
         writer.write_str_value("osMinimumVersion", self.os_minimum_version)

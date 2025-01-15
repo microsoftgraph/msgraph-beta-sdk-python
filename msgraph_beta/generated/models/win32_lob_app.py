@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mobile_lob_app import MobileLobApp
@@ -29,7 +30,7 @@ class Win32LobApp(MobileLobApp, Parsable):
     # Contains properties for Windows architecture.
     applicable_architectures: Optional[WindowsArchitecture] = None
     # The detection rules to detect Win32 Line of Business (LoB) app.
-    detection_rules: Optional[List[Win32LobAppDetection]] = None
+    detection_rules: Optional[list[Win32LobAppDetection]] = None
     # The version displayed in the UX for this app.
     display_version: Optional[str] = None
     # The command line to install this app
@@ -51,11 +52,11 @@ class Win32LobApp(MobileLobApp, Parsable):
     # The MSI details if this Win32 app is an MSI app.
     msi_information: Optional[Win32LobAppMsiInformation] = None
     # The requirement rules to detect Win32 Line of Business (LoB) app.
-    requirement_rules: Optional[List[Win32LobAppRequirement]] = None
+    requirement_rules: Optional[list[Win32LobAppRequirement]] = None
     # The return codes for post installation behavior.
-    return_codes: Optional[List[Win32LobAppReturnCode]] = None
+    return_codes: Optional[list[Win32LobAppReturnCode]] = None
     # The detection and requirement rules for this app.
-    rules: Optional[List[Win32LobAppRule]] = None
+    rules: Optional[list[Win32LobAppRule]] = None
     # The relative path of the setup file in the encrypted Win32LobApp package.
     setup_file_path: Optional[str] = None
     # The command line to uninstall this app
@@ -81,10 +82,10 @@ class Win32LobApp(MobileLobApp, Parsable):
             return Win32CatalogApp()
         return Win32LobApp()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .mobile_lob_app import MobileLobApp
         from .win32_catalog_app import Win32CatalogApp
@@ -108,7 +109,7 @@ class Win32LobApp(MobileLobApp, Parsable):
         from .windows_architecture import WindowsArchitecture
         from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowAvailableUninstall": lambda n : setattr(self, 'allow_available_uninstall', n.get_bool_value()),
             "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
             "detectionRules": lambda n : setattr(self, 'detection_rules', n.get_collection_of_object_values(Win32LobAppDetection)),
@@ -141,17 +142,6 @@ class Win32LobApp(MobileLobApp, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .mobile_lob_app import MobileLobApp
-        from .win32_catalog_app import Win32CatalogApp
-        from .win32_lob_app_detection import Win32LobAppDetection
-        from .win32_lob_app_install_experience import Win32LobAppInstallExperience
-        from .win32_lob_app_msi_information import Win32LobAppMsiInformation
-        from .win32_lob_app_requirement import Win32LobAppRequirement
-        from .win32_lob_app_return_code import Win32LobAppReturnCode
-        from .win32_lob_app_rule import Win32LobAppRule
-        from .windows_architecture import WindowsArchitecture
-        from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
-
         writer.write_bool_value("allowAvailableUninstall", self.allow_available_uninstall)
         writer.write_enum_value("applicableArchitectures", self.applicable_architectures)
         writer.write_collection_of_object_values("detectionRules", self.detection_rules)

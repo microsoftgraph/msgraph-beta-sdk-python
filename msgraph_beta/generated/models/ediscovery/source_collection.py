@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -20,7 +21,7 @@ class SourceCollection(Entity, Parsable):
     # Adds the results of the sourceCollection to the specified reviewSet.
     add_to_review_set_operation: Optional[AddToReviewSetOperation] = None
     # Adds an additional source to the sourceCollection.
-    additional_sources: Optional[List[DataSource]] = None
+    additional_sources: Optional[list[DataSource]] = None
     # The query string in KQL (Keyword Query Language) query. For details, see Keyword queries and search conditions for Content Search and eDiscovery. You can refine searches by using fields paired with values; for example, subject:'Quarterly Financials' AND Date>=06/01/2016 AND Date<=07/01/2016.
     content_query: Optional[str] = None
     # The user who created the sourceCollection.
@@ -28,7 +29,7 @@ class SourceCollection(Entity, Parsable):
     # The date and time the sourceCollection was created.
     created_date_time: Optional[datetime.datetime] = None
     # Custodian sources that are included in the sourceCollection.
-    custodian_sources: Optional[List[DataSource]] = None
+    custodian_sources: Optional[list[DataSource]] = None
     # When specified, the collection spans across a service for an entire workload. Possible values are: none, allTenantMailboxes, allTenantSites, allCaseCustodians, allCaseNoncustodialDataSources.
     data_source_scopes: Optional[DataSourceScopes] = None
     # The description of the sourceCollection.
@@ -42,7 +43,7 @@ class SourceCollection(Entity, Parsable):
     # The last date and time the sourceCollection was modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # noncustodialDataSource sources that are included in the sourceCollection
-    noncustodial_sources: Optional[List[NoncustodialDataSource]] = None
+    noncustodial_sources: Optional[list[NoncustodialDataSource]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -57,10 +58,10 @@ class SourceCollection(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SourceCollection()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from ..identity_set import IdentitySet
@@ -78,7 +79,7 @@ class SourceCollection(Entity, Parsable):
         from .estimate_statistics_operation import EstimateStatisticsOperation
         from .noncustodial_data_source import NoncustodialDataSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "addToReviewSetOperation": lambda n : setattr(self, 'add_to_review_set_operation', n.get_object_value(AddToReviewSetOperation)),
             "additionalSources": lambda n : setattr(self, 'additional_sources', n.get_collection_of_object_values(DataSource)),
             "contentQuery": lambda n : setattr(self, 'content_query', n.get_str_value()),
@@ -106,14 +107,6 @@ class SourceCollection(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from ..identity_set import IdentitySet
-        from .add_to_review_set_operation import AddToReviewSetOperation
-        from .data_source import DataSource
-        from .data_source_scopes import DataSourceScopes
-        from .estimate_statistics_operation import EstimateStatisticsOperation
-        from .noncustodial_data_source import NoncustodialDataSource
-
         writer.write_object_value("addToReviewSetOperation", self.add_to_review_set_operation)
         writer.write_collection_of_object_values("additionalSources", self.additional_sources)
         writer.write_str_value("contentQuery", self.content_query)

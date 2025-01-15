@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_compliance_scheduled_action_for_rule import DeviceManagementComplianceScheduledActionForRule
@@ -20,7 +21,7 @@ class DeviceManagementCompliancePolicy(Entity, Parsable):
     Device Management Compliance Policy
     """
     # Policy assignments
-    assignments: Optional[List[DeviceManagementConfigurationPolicyAssignment]] = None
+    assignments: Optional[list[DeviceManagementConfigurationPolicyAssignment]] = None
     # Policy creation date and time. This property is read-only.
     created_date_time: Optional[datetime.datetime] = None
     # Policy creation source
@@ -38,13 +39,13 @@ class DeviceManagementCompliancePolicy(Entity, Parsable):
     # Supported platform types.
     platforms: Optional[DeviceManagementConfigurationPlatforms] = None
     # List of Scope Tags for this Entity instance.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # The list of scheduled action for this rule
-    scheduled_actions_for_rule: Optional[List[DeviceManagementComplianceScheduledActionForRule]] = None
+    scheduled_actions_for_rule: Optional[list[DeviceManagementComplianceScheduledActionForRule]] = None
     # Number of settings. This property is read-only.
     setting_count: Optional[int] = None
     # Policy settings
-    settings: Optional[List[DeviceManagementConfigurationSetting]] = None
+    settings: Optional[list[DeviceManagementConfigurationSetting]] = None
     # Describes which technology this setting can be deployed with
     technologies: Optional[DeviceManagementConfigurationTechnologies] = None
     
@@ -59,10 +60,10 @@ class DeviceManagementCompliancePolicy(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementCompliancePolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_compliance_scheduled_action_for_rule import DeviceManagementComplianceScheduledActionForRule
         from .device_management_configuration_platforms import DeviceManagementConfigurationPlatforms
@@ -78,7 +79,7 @@ class DeviceManagementCompliancePolicy(Entity, Parsable):
         from .device_management_configuration_technologies import DeviceManagementConfigurationTechnologies
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(DeviceManagementConfigurationPolicyAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "creationSource": lambda n : setattr(self, 'creation_source', n.get_str_value()),
@@ -106,13 +107,6 @@ class DeviceManagementCompliancePolicy(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_compliance_scheduled_action_for_rule import DeviceManagementComplianceScheduledActionForRule
-        from .device_management_configuration_platforms import DeviceManagementConfigurationPlatforms
-        from .device_management_configuration_policy_assignment import DeviceManagementConfigurationPolicyAssignment
-        from .device_management_configuration_setting import DeviceManagementConfigurationSetting
-        from .device_management_configuration_technologies import DeviceManagementConfigurationTechnologies
-        from .entity import Entity
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_str_value("creationSource", self.creation_source)
         writer.write_str_value("description", self.description)

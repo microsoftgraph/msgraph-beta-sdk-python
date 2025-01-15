@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .remediation_state import RemediationState
@@ -18,9 +19,9 @@ class DeviceHealthScriptPolicyState(AdditionalDataHolder, BackedModel, Parsable)
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # A list of the assignment filter ids used for health script applicability evaluation
-    assignment_filter_ids: Optional[List[str]] = None
+    assignment_filter_ids: Optional[list[str]] = None
     # Indicates the type of execution status of the device management script.
     detection_state: Optional[RunState] = None
     # The Intune device Id
@@ -69,10 +70,10 @@ class DeviceHealthScriptPolicyState(AdditionalDataHolder, BackedModel, Parsable)
             raise TypeError("parse_node cannot be null.")
         return DeviceHealthScriptPolicyState()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .remediation_state import RemediationState
         from .run_state import RunState
@@ -80,7 +81,7 @@ class DeviceHealthScriptPolicyState(AdditionalDataHolder, BackedModel, Parsable)
         from .remediation_state import RemediationState
         from .run_state import RunState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignmentFilterIds": lambda n : setattr(self, 'assignment_filter_ids', n.get_collection_of_primitive_values(str)),
             "detectionState": lambda n : setattr(self, 'detection_state', n.get_enum_value(RunState)),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
@@ -111,9 +112,6 @@ class DeviceHealthScriptPolicyState(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .remediation_state import RemediationState
-        from .run_state import RunState
-
         writer.write_collection_of_primitive_values("assignmentFilterIds", self.assignment_filter_ids)
         writer.write_enum_value("detectionState", self.detection_state)
         writer.write_str_value("deviceId", self.device_id)

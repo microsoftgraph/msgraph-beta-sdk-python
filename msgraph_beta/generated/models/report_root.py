@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
@@ -26,33 +27,33 @@ from .entity import Entity
 @dataclass
 class ReportRoot(Entity, Parsable):
     # Represents a collection of sign-in activities of application credentials.
-    app_credential_sign_in_activities: Optional[List[AppCredentialSignInActivity]] = None
+    app_credential_sign_in_activities: Optional[list[AppCredentialSignInActivity]] = None
     # Represents a detailed summary of an application sign-in.
-    application_sign_in_detailed_summary: Optional[List[ApplicationSignInDetailedSummary]] = None
+    application_sign_in_detailed_summary: Optional[list[ApplicationSignInDetailedSummary]] = None
     # Container for navigation properties for Microsoft Entra authentication methods resources.
     authentication_methods: Optional[AuthenticationMethodsRoot] = None
     # Details of the usage of self-service password reset and multifactor authentication (MFA) for all registered users.
-    credential_user_registration_details: Optional[List[CredentialUserRegistrationDetails]] = None
+    credential_user_registration_details: Optional[list[CredentialUserRegistrationDetails]] = None
     # The dailyPrintUsage property
-    daily_print_usage: Optional[List[PrintUsage]] = None
+    daily_print_usage: Optional[list[PrintUsage]] = None
     # Retrieve a list of daily print usage summaries, grouped by printer.
-    daily_print_usage_by_printer: Optional[List[PrintUsageByPrinter]] = None
+    daily_print_usage_by_printer: Optional[list[PrintUsageByPrinter]] = None
     # Retrieve a list of daily print usage summaries, grouped by user.
-    daily_print_usage_by_user: Optional[List[PrintUsageByUser]] = None
+    daily_print_usage_by_user: Optional[list[PrintUsageByUser]] = None
     # The dailyPrintUsageSummariesByPrinter property
-    daily_print_usage_summaries_by_printer: Optional[List[PrintUsageByPrinter]] = None
+    daily_print_usage_summaries_by_printer: Optional[list[PrintUsageByPrinter]] = None
     # The dailyPrintUsageSummariesByUser property
-    daily_print_usage_summaries_by_user: Optional[List[PrintUsageByUser]] = None
+    daily_print_usage_summaries_by_user: Optional[list[PrintUsageByUser]] = None
     # Reports for Microsoft Entra Health Monitoring.
     health_monitoring: Optional[HealthMonitoringRoot] = None
     # Retrieve a list of monthly print usage summaries, grouped by printer.
-    monthly_print_usage_by_printer: Optional[List[PrintUsageByPrinter]] = None
+    monthly_print_usage_by_printer: Optional[list[PrintUsageByPrinter]] = None
     # Retrieve a list of monthly print usage summaries, grouped by user.
-    monthly_print_usage_by_user: Optional[List[PrintUsageByUser]] = None
+    monthly_print_usage_by_user: Optional[list[PrintUsageByUser]] = None
     # The monthlyPrintUsageSummariesByPrinter property
-    monthly_print_usage_summaries_by_printer: Optional[List[PrintUsageByPrinter]] = None
+    monthly_print_usage_summaries_by_printer: Optional[list[PrintUsageByPrinter]] = None
     # The monthlyPrintUsageSummariesByUser property
-    monthly_print_usage_summaries_by_user: Optional[List[PrintUsageByUser]] = None
+    monthly_print_usage_summaries_by_user: Optional[list[PrintUsageByUser]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents billing details for a Microsoft direct partner.
@@ -62,11 +63,11 @@ class ReportRoot(Entity, Parsable):
     # Reports that relate to tenant-level authentication activities in Microsoft Entra.
     service_activity: Optional[ServiceActivity] = None
     # Represents a collection of sign-in activities of service principals.
-    service_principal_sign_in_activities: Optional[List[ServicePrincipalSignInActivity]] = None
+    service_principal_sign_in_activities: Optional[list[ServicePrincipalSignInActivity]] = None
     # Reports that relate to tenant-level Microsoft Entra Health SLA attainment.
     sla: Optional[ServiceLevelAgreementRoot] = None
     # Represents the self-service password reset (SSPR) usage for a given tenant.
-    user_credential_usage_details: Optional[List[UserCredentialUsageDetails]] = None
+    user_credential_usage_details: Optional[list[UserCredentialUsageDetails]] = None
     # Represents a collection of user activities on applications in a tenant that is configured for Microsoft Entra External ID for customers.
     user_insights: Optional[UserInsightsRoot] = None
     
@@ -81,10 +82,10 @@ class ReportRoot(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ReportRoot()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
         from .app_credential_sign_in_activity import AppCredentialSignInActivity
@@ -120,7 +121,7 @@ class ReportRoot(Entity, Parsable):
         from .user_credential_usage_details import UserCredentialUsageDetails
         from .user_insights_root import UserInsightsRoot
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appCredentialSignInActivities": lambda n : setattr(self, 'app_credential_sign_in_activities', n.get_collection_of_object_values(AppCredentialSignInActivity)),
             "applicationSignInDetailedSummary": lambda n : setattr(self, 'application_sign_in_detailed_summary', n.get_collection_of_object_values(ApplicationSignInDetailedSummary)),
             "authenticationMethods": lambda n : setattr(self, 'authentication_methods', n.get_object_value(AuthenticationMethodsRoot)),
@@ -156,23 +157,6 @@ class ReportRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
-        from .app_credential_sign_in_activity import AppCredentialSignInActivity
-        from .authentication_methods_root import AuthenticationMethodsRoot
-        from .credential_user_registration_details import CredentialUserRegistrationDetails
-        from .entity import Entity
-        from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
-        from .partners.partners import Partners
-        from .print_usage import PrintUsage
-        from .print_usage_by_printer import PrintUsageByPrinter
-        from .print_usage_by_user import PrintUsageByUser
-        from .security_reports_root import SecurityReportsRoot
-        from .service_activity import ServiceActivity
-        from .service_level_agreement_root import ServiceLevelAgreementRoot
-        from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
-        from .user_credential_usage_details import UserCredentialUsageDetails
-        from .user_insights_root import UserInsightsRoot
-
         writer.write_collection_of_object_values("appCredentialSignInActivities", self.app_credential_sign_in_activities)
         writer.write_collection_of_object_values("applicationSignInDetailedSummary", self.application_sign_in_detailed_summary)
         writer.write_object_value("authenticationMethods", self.authentication_methods)

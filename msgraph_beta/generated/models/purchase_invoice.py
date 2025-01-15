@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -18,7 +19,7 @@ class PurchaseInvoice(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The buyFromAddress property
     buy_from_address: Optional[PostalAddressType] = None
     # The currency property
@@ -56,7 +57,7 @@ class PurchaseInvoice(AdditionalDataHolder, BackedModel, Parsable):
     # The pricesIncludeTax property
     prices_include_tax: Optional[bool] = None
     # The purchaseInvoiceLines property
-    purchase_invoice_lines: Optional[List[PurchaseInvoiceLine]] = None
+    purchase_invoice_lines: Optional[list[PurchaseInvoiceLine]] = None
     # The shipToAddress property
     ship_to_address: Optional[PostalAddressType] = None
     # The shipToContact property
@@ -93,10 +94,10 @@ class PurchaseInvoice(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PurchaseInvoice()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .currency import Currency
         from .postal_address_type import PostalAddressType
@@ -108,7 +109,7 @@ class PurchaseInvoice(AdditionalDataHolder, BackedModel, Parsable):
         from .purchase_invoice_line import PurchaseInvoiceLine
         from .vendor import Vendor
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "buyFromAddress": lambda n : setattr(self, 'buy_from_address', n.get_object_value(PostalAddressType)),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(Currency)),
             "currencyCode": lambda n : setattr(self, 'currency_code', n.get_str_value()),
@@ -151,11 +152,6 @@ class PurchaseInvoice(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .currency import Currency
-        from .postal_address_type import PostalAddressType
-        from .purchase_invoice_line import PurchaseInvoiceLine
-        from .vendor import Vendor
-
         writer.write_object_value("buyFromAddress", self.buy_from_address)
         writer.write_object_value("currency", self.currency)
         writer.write_str_value("currencyCode", self.currency_code)

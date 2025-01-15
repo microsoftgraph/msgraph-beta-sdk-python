@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .delegated_admin_customer import DelegatedAdminCustomer
@@ -16,11 +17,11 @@ class TenantRelationship(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The customer who has a delegated admin relationship with a Microsoft partner.
-    delegated_admin_customers: Optional[List[DelegatedAdminCustomer]] = None
+    delegated_admin_customers: Optional[list[DelegatedAdminCustomer]] = None
     # The details of the delegated administrative privileges that a Microsoft partner has in a customer tenant.
-    delegated_admin_relationships: Optional[List[DelegatedAdminRelationship]] = None
+    delegated_admin_relationships: Optional[list[DelegatedAdminRelationship]] = None
     # The operations available to interact with the multi-tenant management platform.
     managed_tenants: Optional[ManagedTenant] = None
     # Defines an organization with more than one instance of Microsoft Entra ID.
@@ -39,10 +40,10 @@ class TenantRelationship(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TenantRelationship()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .delegated_admin_customer import DelegatedAdminCustomer
         from .delegated_admin_relationship import DelegatedAdminRelationship
@@ -54,7 +55,7 @@ class TenantRelationship(AdditionalDataHolder, BackedModel, Parsable):
         from .managed_tenants.managed_tenant import ManagedTenant
         from .multi_tenant_organization import MultiTenantOrganization
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "delegatedAdminCustomers": lambda n : setattr(self, 'delegated_admin_customers', n.get_collection_of_object_values(DelegatedAdminCustomer)),
             "delegatedAdminRelationships": lambda n : setattr(self, 'delegated_admin_relationships', n.get_collection_of_object_values(DelegatedAdminRelationship)),
             "managedTenants": lambda n : setattr(self, 'managed_tenants', n.get_object_value(ManagedTenant)),
@@ -71,11 +72,6 @@ class TenantRelationship(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .delegated_admin_customer import DelegatedAdminCustomer
-        from .delegated_admin_relationship import DelegatedAdminRelationship
-        from .managed_tenants.managed_tenant import ManagedTenant
-        from .multi_tenant_organization import MultiTenantOrganization
-
         writer.write_collection_of_object_values("delegatedAdminCustomers", self.delegated_admin_customers)
         writer.write_collection_of_object_values("delegatedAdminRelationships", self.delegated_admin_relationships)
         writer.write_object_value("managedTenants", self.managed_tenants)

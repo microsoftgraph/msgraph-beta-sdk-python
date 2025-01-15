@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -19,7 +20,7 @@ class PolicySet(Entity, Parsable):
     A class containing the properties used for PolicySet.
     """
     # Assignments of the PolicySet.
-    assignments: Optional[List[PolicySetAssignment]] = None
+    assignments: Optional[list[PolicySetAssignment]] = None
     # Creation time of the PolicySet.
     created_date_time: Optional[datetime.datetime] = None
     # Description of the PolicySet.
@@ -29,15 +30,15 @@ class PolicySet(Entity, Parsable):
     # The errorCode property
     error_code: Optional[ErrorCode] = None
     # Tags of the guided deployment
-    guided_deployment_tags: Optional[List[str]] = None
+    guided_deployment_tags: Optional[list[str]] = None
     # Items of the PolicySet with maximum count 100.
-    items: Optional[List[PolicySetItem]] = None
+    items: Optional[list[PolicySetItem]] = None
     # Last modified time of the PolicySet.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # RoleScopeTags of the PolicySet
-    role_scope_tags: Optional[List[str]] = None
+    role_scope_tags: Optional[list[str]] = None
     # The enum to specify the status of PolicySet.
     status: Optional[PolicySetStatus] = None
     
@@ -52,10 +53,10 @@ class PolicySet(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PolicySet()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .error_code import ErrorCode
@@ -69,7 +70,7 @@ class PolicySet(Entity, Parsable):
         from .policy_set_item import PolicySetItem
         from .policy_set_status import PolicySetStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(PolicySetAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -94,12 +95,6 @@ class PolicySet(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .error_code import ErrorCode
-        from .policy_set_assignment import PolicySetAssignment
-        from .policy_set_item import PolicySetItem
-        from .policy_set_status import PolicySetStatus
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

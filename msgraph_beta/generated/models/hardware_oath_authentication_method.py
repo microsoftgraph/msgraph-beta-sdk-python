@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_method import AuthenticationMethod
@@ -27,10 +28,10 @@ class HardwareOathAuthenticationMethod(AuthenticationMethod, Parsable):
             raise TypeError("parse_node cannot be null.")
         return HardwareOathAuthenticationMethod()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_method import AuthenticationMethod
         from .hardware_oath_token_authentication_method_device import HardwareOathTokenAuthenticationMethodDevice
@@ -38,7 +39,7 @@ class HardwareOathAuthenticationMethod(AuthenticationMethod, Parsable):
         from .authentication_method import AuthenticationMethod
         from .hardware_oath_token_authentication_method_device import HardwareOathTokenAuthenticationMethodDevice
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "device": lambda n : setattr(self, 'device', n.get_object_value(HardwareOathTokenAuthenticationMethodDevice)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,9 +55,6 @@ class HardwareOathAuthenticationMethod(AuthenticationMethod, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authentication_method import AuthenticationMethod
-        from .hardware_oath_token_authentication_method_device import HardwareOathTokenAuthenticationMethodDevice
-
         writer.write_object_value("device", self.device)
     
 

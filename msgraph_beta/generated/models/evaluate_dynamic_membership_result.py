@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .expression_evaluation_details import ExpressionEvaluationDetails
@@ -13,7 +14,7 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, BackedModel, Parsabl
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # If a group ID is provided, the value is the membership rule for the group. If a group ID isn't provided, the value is the membership rule that was provided as a parameter. For more information, see Dynamic membership rules for groups in Microsoft Entra ID.
     membership_rule: Optional[str] = None
     # Provides a detailed analysis of the membership evaluation result.
@@ -34,16 +35,16 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, BackedModel, Parsabl
             raise TypeError("parse_node cannot be null.")
         return EvaluateDynamicMembershipResult()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .expression_evaluation_details import ExpressionEvaluationDetails
 
         from .expression_evaluation_details import ExpressionEvaluationDetails
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "membershipRule": lambda n : setattr(self, 'membership_rule', n.get_str_value()),
             "membershipRuleEvaluationDetails": lambda n : setattr(self, 'membership_rule_evaluation_details', n.get_object_value(ExpressionEvaluationDetails)),
             "membershipRuleEvaluationResult": lambda n : setattr(self, 'membership_rule_evaluation_result', n.get_bool_value()),
@@ -59,8 +60,6 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .expression_evaluation_details import ExpressionEvaluationDetails
-
         writer.write_str_value("membershipRule", self.membership_rule)
         writer.write_object_value("membershipRuleEvaluationDetails", self.membership_rule_evaluation_details)
         writer.write_bool_value("membershipRuleEvaluationResult", self.membership_rule_evaluation_result)

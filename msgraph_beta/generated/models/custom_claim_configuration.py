@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_claim_attribute_base import CustomClaimAttributeBase
@@ -15,7 +16,7 @@ class CustomClaimConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The attribute on which we source this property.
     attribute: Optional[CustomClaimAttributeBase] = None
     # The condition, if any, associated with this configuration.
@@ -23,7 +24,7 @@ class CustomClaimConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # An ordered list of transformations that are applied in sequence.
-    transformations: Optional[List[CustomClaimTransformation]] = None
+    transformations: Optional[list[CustomClaimTransformation]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CustomClaimConfiguration:
@@ -36,10 +37,10 @@ class CustomClaimConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CustomClaimConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_claim_attribute_base import CustomClaimAttributeBase
         from .custom_claim_condition_base import CustomClaimConditionBase
@@ -49,7 +50,7 @@ class CustomClaimConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_claim_condition_base import CustomClaimConditionBase
         from .custom_claim_transformation import CustomClaimTransformation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "attribute": lambda n : setattr(self, 'attribute', n.get_object_value(CustomClaimAttributeBase)),
             "condition": lambda n : setattr(self, 'condition', n.get_object_value(CustomClaimConditionBase)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -65,10 +66,6 @@ class CustomClaimConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .custom_claim_attribute_base import CustomClaimAttributeBase
-        from .custom_claim_condition_base import CustomClaimConditionBase
-        from .custom_claim_transformation import CustomClaimTransformation
-
         writer.write_object_value("attribute", self.attribute)
         writer.write_object_value("condition", self.condition)
         writer.write_str_value("@odata.type", self.odata_type)

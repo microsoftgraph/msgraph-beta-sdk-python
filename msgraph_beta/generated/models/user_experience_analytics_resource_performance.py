@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .disk_type import DiskType
@@ -70,10 +71,10 @@ class UserExperienceAnalyticsResourcePerformance(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsResourcePerformance()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .disk_type import DiskType
         from .entity import Entity
@@ -85,7 +86,7 @@ class UserExperienceAnalyticsResourcePerformance(Entity, Parsable):
         from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
         from .user_experience_analytics_machine_type import UserExperienceAnalyticsMachineType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "averageSpikeTimeScore": lambda n : setattr(self, 'average_spike_time_score', n.get_int_value()),
             "cpuClockSpeedInMHz": lambda n : setattr(self, 'cpu_clock_speed_in_m_hz', n.get_float_value()),
             "cpuDisplayName": lambda n : setattr(self, 'cpu_display_name', n.get_str_value()),
@@ -120,11 +121,6 @@ class UserExperienceAnalyticsResourcePerformance(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .disk_type import DiskType
-        from .entity import Entity
-        from .user_experience_analytics_health_state import UserExperienceAnalyticsHealthState
-        from .user_experience_analytics_machine_type import UserExperienceAnalyticsMachineType
-
         writer.write_int_value("averageSpikeTimeScore", self.average_spike_time_score)
         writer.write_float_value("cpuClockSpeedInMHz", self.cpu_clock_speed_in_m_hz)
         writer.write_str_value("cpuDisplayName", self.cpu_display_name)

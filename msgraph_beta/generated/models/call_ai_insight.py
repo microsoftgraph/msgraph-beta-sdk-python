@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .action_item import ActionItem
@@ -15,7 +16,7 @@ from .entity import Entity
 @dataclass
 class CallAiInsight(Entity, Parsable):
     # The actionItems property
-    action_items: Optional[List[ActionItem]] = None
+    action_items: Optional[list[ActionItem]] = None
     # The callId property
     call_id: Optional[str] = None
     # The contentCorrelationId property
@@ -25,7 +26,7 @@ class CallAiInsight(Entity, Parsable):
     # The endDateTime property
     end_date_time: Optional[datetime.datetime] = None
     # The meetingNotes property
-    meeting_notes: Optional[List[MeetingNote]] = None
+    meeting_notes: Optional[list[MeetingNote]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The viewpoint property
@@ -42,10 +43,10 @@ class CallAiInsight(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CallAiInsight()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .action_item import ActionItem
         from .call_ai_insight_view_point import CallAiInsightViewPoint
@@ -57,7 +58,7 @@ class CallAiInsight(Entity, Parsable):
         from .entity import Entity
         from .meeting_note import MeetingNote
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionItems": lambda n : setattr(self, 'action_items', n.get_collection_of_object_values(ActionItem)),
             "callId": lambda n : setattr(self, 'call_id', n.get_str_value()),
             "contentCorrelationId": lambda n : setattr(self, 'content_correlation_id', n.get_str_value()),
@@ -79,11 +80,6 @@ class CallAiInsight(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .action_item import ActionItem
-        from .call_ai_insight_view_point import CallAiInsightViewPoint
-        from .entity import Entity
-        from .meeting_note import MeetingNote
-
         writer.write_collection_of_object_values("actionItems", self.action_items)
         writer.write_str_value("callId", self.call_id)
         writer.write_str_value("contentCorrelationId", self.content_correlation_id)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .file_entity_identifier import FileEntityIdentifier
@@ -14,7 +15,7 @@ class BlockFileResponseAction(ResponseAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.blockFileResponseAction"
     # Device groups to which the actions set in the custom detection rule are applied. More information
-    device_group_names: Optional[List[str]] = None
+    device_group_names: Optional[list[str]] = None
     # The identifier property
     identifier: Optional[FileEntityIdentifier] = None
     
@@ -29,10 +30,10 @@ class BlockFileResponseAction(ResponseAction, Parsable):
             raise TypeError("parse_node cannot be null.")
         return BlockFileResponseAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .file_entity_identifier import FileEntityIdentifier
         from .response_action import ResponseAction
@@ -40,7 +41,7 @@ class BlockFileResponseAction(ResponseAction, Parsable):
         from .file_entity_identifier import FileEntityIdentifier
         from .response_action import ResponseAction
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deviceGroupNames": lambda n : setattr(self, 'device_group_names', n.get_collection_of_primitive_values(str)),
             "identifier": lambda n : setattr(self, 'identifier', n.get_collection_of_enum_values(FileEntityIdentifier)),
         }
@@ -57,9 +58,6 @@ class BlockFileResponseAction(ResponseAction, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .file_entity_identifier import FileEntityIdentifier
-        from .response_action import ResponseAction
-
         writer.write_collection_of_primitive_values("deviceGroupNames", self.device_group_names)
         writer.write_enum_value("identifier", self.identifier)
     

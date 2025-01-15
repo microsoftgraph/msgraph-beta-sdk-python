@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
@@ -34,9 +35,9 @@ class AndroidWorkProfileVpnConfiguration(DeviceConfiguration, Parsable):
     # Android Work Profile VPN connection type.
     connection_type: Optional[AndroidWorkProfileVpnConnectionType] = None
     # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-    custom_data: Optional[List[KeyValue]] = None
+    custom_data: Optional[list[KeyValue]] = None
     # Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
-    custom_key_value_data: Optional[List[KeyValuePair]] = None
+    custom_key_value_data: Optional[list[KeyValuePair]] = None
     # Fingerprint is a string that will be used to verify the VPN server can be trusted, which is only applicable when connection type is Check Point Capsule VPN.
     fingerprint: Optional[str] = None
     # Identity certificate for client authentication when authentication method is certificate.
@@ -44,7 +45,7 @@ class AndroidWorkProfileVpnConfiguration(DeviceConfiguration, Parsable):
     # Microsoft Tunnel site ID.
     microsoft_tunnel_site_id: Optional[str] = None
     # List of hosts to exclude using the proxy on connections for. These hosts can use wildcards such as .example.com.
-    proxy_exclusion_list: Optional[List[str]] = None
+    proxy_exclusion_list: Optional[list[str]] = None
     # Proxy server.
     proxy_server: Optional[VpnProxyServer] = None
     # Realm when connection type is set to Pulse Secure.
@@ -52,11 +53,11 @@ class AndroidWorkProfileVpnConfiguration(DeviceConfiguration, Parsable):
     # Role when connection type is set to Pulse Secure.
     role: Optional[str] = None
     # List of VPN Servers on the network. Make sure end users can access these network locations. This collection can contain a maximum of 500 elements.
-    servers: Optional[List[VpnServer]] = None
+    servers: Optional[list[VpnServer]] = None
     # Targeted mobile apps. This collection can contain a maximum of 500 elements.
-    targeted_mobile_apps: Optional[List[AppListItem]] = None
+    targeted_mobile_apps: Optional[list[AppListItem]] = None
     # Targeted App package IDs.
-    targeted_package_ids: Optional[List[str]] = None
+    targeted_package_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AndroidWorkProfileVpnConfiguration:
@@ -69,10 +70,10 @@ class AndroidWorkProfileVpnConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidWorkProfileVpnConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
         from .android_work_profile_vpn_connection_type import AndroidWorkProfileVpnConnectionType
@@ -94,7 +95,7 @@ class AndroidWorkProfileVpnConfiguration(DeviceConfiguration, Parsable):
         from .vpn_proxy_server import VpnProxyServer
         from .vpn_server import VpnServer
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "alwaysOn": lambda n : setattr(self, 'always_on', n.get_bool_value()),
             "alwaysOnLockdown": lambda n : setattr(self, 'always_on_lockdown', n.get_bool_value()),
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(VpnAuthenticationMethod)),
@@ -126,16 +127,6 @@ class AndroidWorkProfileVpnConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
-        from .android_work_profile_vpn_connection_type import AndroidWorkProfileVpnConnectionType
-        from .app_list_item import AppListItem
-        from .device_configuration import DeviceConfiguration
-        from .key_value import KeyValue
-        from .key_value_pair import KeyValuePair
-        from .vpn_authentication_method import VpnAuthenticationMethod
-        from .vpn_proxy_server import VpnProxyServer
-        from .vpn_server import VpnServer
-
         writer.write_bool_value("alwaysOn", self.always_on)
         writer.write_bool_value("alwaysOnLockdown", self.always_on_lockdown)
         writer.write_enum_value("authenticationMethod", self.authentication_method)

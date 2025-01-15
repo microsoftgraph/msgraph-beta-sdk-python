@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_autopilot_policy_compliance_status import DeviceManagementAutopilotPolicyComplianceStatus
@@ -42,10 +43,10 @@ class DeviceManagementAutopilotPolicyStatusDetail(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementAutopilotPolicyStatusDetail()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_autopilot_policy_compliance_status import DeviceManagementAutopilotPolicyComplianceStatus
         from .device_management_autopilot_policy_type import DeviceManagementAutopilotPolicyType
@@ -55,7 +56,7 @@ class DeviceManagementAutopilotPolicyStatusDetail(Entity, Parsable):
         from .device_management_autopilot_policy_type import DeviceManagementAutopilotPolicyType
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "complianceStatus": lambda n : setattr(self, 'compliance_status', n.get_enum_value(DeviceManagementAutopilotPolicyComplianceStatus)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
@@ -76,10 +77,6 @@ class DeviceManagementAutopilotPolicyStatusDetail(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_autopilot_policy_compliance_status import DeviceManagementAutopilotPolicyComplianceStatus
-        from .device_management_autopilot_policy_type import DeviceManagementAutopilotPolicyType
-        from .entity import Entity
-
         writer.write_enum_value("complianceStatus", self.compliance_status)
         writer.write_str_value("displayName", self.display_name)
         writer.write_int_value("errorCode", self.error_code)

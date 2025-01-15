@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .eap_type import EapType
@@ -71,9 +72,9 @@ class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration, Parsable):
     # Specify root certificate for client validation.
     root_certificate_for_client_validation: Optional[Windows81TrustedRootCertificate] = None
     # Specify root certificate for server validation. This collection can contain a maximum of 500 elements.
-    root_certificates_for_server_validation: Optional[List[Windows81TrustedRootCertificate]] = None
+    root_certificates_for_server_validation: Optional[list[Windows81TrustedRootCertificate]] = None
     # Specify trusted server certificate names.
-    trusted_server_certificate_names: Optional[List[str]] = None
+    trusted_server_certificate_names: Optional[list[str]] = None
     # Specifiy whether to change the virtual LAN used by the device based on the user’s credentials. Cannot be used when NetworkSingleSignOnType is set to ​Disabled.
     user_based_virtual_lan: Optional[bool] = None
     
@@ -88,10 +89,10 @@ class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsWifiEnterpriseEAPConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .eap_type import EapType
         from .network_single_sign_on_type import NetworkSingleSignOnType
@@ -111,7 +112,7 @@ class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration, Parsable):
         from .windows_wifi_configuration import WindowsWifiConfiguration
         from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WiFiAuthenticationMethod)),
             "authenticationPeriodInSeconds": lambda n : setattr(self, 'authentication_period_in_seconds', n.get_int_value()),
             "authenticationRetryDelayPeriodInSeconds": lambda n : setattr(self, 'authentication_retry_delay_period_in_seconds', n.get_int_value()),
@@ -153,15 +154,6 @@ class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .eap_type import EapType
-        from .network_single_sign_on_type import NetworkSingleSignOnType
-        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
-        from .wifi_authentication_type import WifiAuthenticationType
-        from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
-        from .windows_certificate_profile_base import WindowsCertificateProfileBase
-        from .windows_wifi_configuration import WindowsWifiConfiguration
-        from .wi_fi_authentication_method import WiFiAuthenticationMethod
-
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_int_value("authenticationPeriodInSeconds", self.authentication_period_in_seconds)
         writer.write_int_value("authenticationRetryDelayPeriodInSeconds", self.authentication_retry_delay_period_in_seconds)

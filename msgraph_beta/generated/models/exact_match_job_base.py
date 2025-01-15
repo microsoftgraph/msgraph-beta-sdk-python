@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .classification_error import ClassificationError
@@ -56,10 +57,10 @@ class ExactMatchJobBase(Entity, Parsable):
             return ExactMatchSessionBase()
         return ExactMatchJobBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .classification_error import ClassificationError
         from .entity import Entity
@@ -73,7 +74,7 @@ class ExactMatchJobBase(Entity, Parsable):
         from .exact_match_session import ExactMatchSession
         from .exact_match_session_base import ExactMatchSessionBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "completionDateTime": lambda n : setattr(self, 'completion_date_time', n.get_datetime_value()),
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(ClassificationError)),
@@ -93,12 +94,6 @@ class ExactMatchJobBase(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .classification_error import ClassificationError
-        from .entity import Entity
-        from .exact_match_lookup_job import ExactMatchLookupJob
-        from .exact_match_session import ExactMatchSession
-        from .exact_match_session_base import ExactMatchSessionBase
-
         writer.write_datetime_value("completionDateTime", self.completion_date_time)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_object_value("error", self.error)

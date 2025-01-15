@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_vpn_connection_type import AppleVpnConnectionType
@@ -27,7 +28,7 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.appleVpnConfiguration"
     # Associated Domains
-    associated_domains: Optional[List[str]] = None
+    associated_domains: Optional[list[str]] = None
     # VPN Authentication Method.
     authentication_method: Optional[VpnAuthenticationMethod] = None
     # Connection name displayed to the user.
@@ -35,9 +36,9 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
     # Apple VPN connection type.
     connection_type: Optional[AppleVpnConnectionType] = None
     # Custom data when connection type is set to Custom VPN. Use this field to enable functionality not supported by Intune, but available in your VPN solution. Contact your VPN vendor to learn how to add these key/value pairs. This collection can contain a maximum of 25 elements.
-    custom_data: Optional[List[KeyValue]] = None
+    custom_data: Optional[list[KeyValue]] = None
     # Custom data when connection type is set to Custom VPN. Use this field to enable functionality not supported by Intune, but available in your VPN solution. Contact your VPN vendor to learn how to add these key/value pairs. This collection can contain a maximum of 25 elements.
-    custom_key_value_data: Optional[List[KeyValuePair]] = None
+    custom_key_value_data: Optional[list[KeyValuePair]] = None
     # Toggle to prevent user from disabling automatic VPN in the Settings app
     disable_on_demand_user_override: Optional[bool] = None
     # Whether to disconnect after on-demand connection idles
@@ -49,13 +50,13 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
     # Send all network traffic through VPN.
     enable_split_tunneling: Optional[bool] = None
     # Domains that are accessed through the public internet instead of through VPN, even when per-app VPN is activated
-    excluded_domains: Optional[List[str]] = None
+    excluded_domains: Optional[list[str]] = None
     # Identifier provided by VPN vendor when connection type is set to Custom VPN. For example: Cisco AnyConnect uses an identifier of the form com.cisco.anyconnect.applevpn.plugin
     identifier: Optional[str] = None
     # Login group or domain when connection type is set to Dell SonicWALL Mobile Connection.
     login_group_or_domain: Optional[str] = None
     # On-Demand Rules. This collection can contain a maximum of 500 elements.
-    on_demand_rules: Optional[List[VpnOnDemandRule]] = None
+    on_demand_rules: Optional[list[VpnOnDemandRule]] = None
     # Opt-In to sharing the device's Id to third-party vpn clients for use during network access control validation.
     opt_in_to_device_id_sharing: Optional[bool] = None
     # Provider type for per-app VPN. Possible values are: notConfigured, appProxy, packetTunnel.
@@ -67,7 +68,7 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
     # Role when connection type is set to Pulse Secure.
     role: Optional[str] = None
     # Safari domains when this VPN per App setting is enabled. In addition to the apps associated with this VPN, Safari domains specified here will also be able to trigger this VPN connection.
-    safari_domains: Optional[List[str]] = None
+    safari_domains: Optional[list[str]] = None
     # VPN Server definition.
     server: Optional[VpnServer] = None
     
@@ -99,10 +100,10 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
             return MacOSVpnConfiguration()
         return AppleVpnConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .apple_vpn_connection_type import AppleVpnConnectionType
         from .device_configuration import DeviceConfiguration
@@ -130,7 +131,7 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
         from .vpn_proxy_server import VpnProxyServer
         from .vpn_server import VpnServer
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "associatedDomains": lambda n : setattr(self, 'associated_domains', n.get_collection_of_primitive_values(str)),
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(VpnAuthenticationMethod)),
             "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
@@ -167,19 +168,6 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .apple_vpn_connection_type import AppleVpnConnectionType
-        from .device_configuration import DeviceConfiguration
-        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
-        from .ios_vpn_configuration import IosVpnConfiguration
-        from .key_value import KeyValue
-        from .key_value_pair import KeyValuePair
-        from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
-        from .vpn_authentication_method import VpnAuthenticationMethod
-        from .vpn_on_demand_rule import VpnOnDemandRule
-        from .vpn_provider_type import VpnProviderType
-        from .vpn_proxy_server import VpnProxyServer
-        from .vpn_server import VpnServer
-
         writer.write_collection_of_primitive_values("associatedDomains", self.associated_domains)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_str_value("connectionName", self.connection_name)

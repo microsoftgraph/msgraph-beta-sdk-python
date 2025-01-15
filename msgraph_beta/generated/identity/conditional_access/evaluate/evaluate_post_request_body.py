@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.conditional_access_context import ConditionalAccessContext
@@ -15,7 +16,7 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The appliedPoliciesOnly property
     applied_policies_only: Optional[bool] = None
     # The conditionalAccessContext property
@@ -36,10 +37,10 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EvaluatePostRequestBody()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ....models.conditional_access_context import ConditionalAccessContext
         from ....models.conditional_access_what_if_conditions import ConditionalAccessWhatIfConditions
@@ -49,7 +50,7 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         from ....models.conditional_access_what_if_conditions import ConditionalAccessWhatIfConditions
         from ....models.conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appliedPoliciesOnly": lambda n : setattr(self, 'applied_policies_only', n.get_bool_value()),
             "conditionalAccessContext": lambda n : setattr(self, 'conditional_access_context', n.get_object_value(ConditionalAccessContext)),
             "conditionalAccessWhatIfConditions": lambda n : setattr(self, 'conditional_access_what_if_conditions', n.get_object_value(ConditionalAccessWhatIfConditions)),
@@ -65,10 +66,6 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from ....models.conditional_access_context import ConditionalAccessContext
-        from ....models.conditional_access_what_if_conditions import ConditionalAccessWhatIfConditions
-        from ....models.conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
-
         writer.write_bool_value("appliedPoliciesOnly", self.applied_policies_only)
         writer.write_object_value("conditionalAccessContext", self.conditional_access_context)
         writer.write_object_value("conditionalAccessWhatIfConditions", self.conditional_access_what_if_conditions)

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .oidc_address_inbound_claims import OidcAddressInboundClaims
@@ -13,7 +14,7 @@ class OidcInboundClaimMappingOverride(AdditionalDataHolder, BackedModel, Parsabl
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # End-user's preferred postal address. The value of the address member is a JSON RFC8259 structure containing some or all of the members defined in the resource type
     address: Optional[OidcAddressInboundClaims] = None
     # End-user's preferred e-mail address. Its value MUST conform to the RFC 5322 addr-spec syntax.
@@ -46,16 +47,16 @@ class OidcInboundClaimMappingOverride(AdditionalDataHolder, BackedModel, Parsabl
             raise TypeError("parse_node cannot be null.")
         return OidcInboundClaimMappingOverride()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .oidc_address_inbound_claims import OidcAddressInboundClaims
 
         from .oidc_address_inbound_claims import OidcAddressInboundClaims
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(OidcAddressInboundClaims)),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "email_verified": lambda n : setattr(self, 'email_verified', n.get_str_value()),
@@ -77,8 +78,6 @@ class OidcInboundClaimMappingOverride(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .oidc_address_inbound_claims import OidcAddressInboundClaims
-
         writer.write_object_value("address", self.address)
         writer.write_str_value("email", self.email)
         writer.write_str_value("email_verified", self.email_verified)

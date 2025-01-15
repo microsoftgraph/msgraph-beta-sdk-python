@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_transform_constant import AuthenticationTransformConstant
@@ -20,7 +21,7 @@ class CryptographySuite(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Authentication Transform Constants. Possible values are: md596, sha196, sha256128, aes128Gcm, aes192Gcm, aes256Gcm.
     authentication_transform_constants: Optional[AuthenticationTransformConstant] = None
     # Cipher Transform Constants. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
@@ -47,10 +48,10 @@ class CryptographySuite(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CryptographySuite()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_transform_constant import AuthenticationTransformConstant
         from .diffie_hellman_group import DiffieHellmanGroup
@@ -64,7 +65,7 @@ class CryptographySuite(AdditionalDataHolder, BackedModel, Parsable):
         from .vpn_encryption_algorithm_type import VpnEncryptionAlgorithmType
         from .vpn_integrity_algorithm_type import VpnIntegrityAlgorithmType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationTransformConstants": lambda n : setattr(self, 'authentication_transform_constants', n.get_enum_value(AuthenticationTransformConstant)),
             "cipherTransformConstants": lambda n : setattr(self, 'cipher_transform_constants', n.get_enum_value(VpnEncryptionAlgorithmType)),
             "dhGroup": lambda n : setattr(self, 'dh_group', n.get_enum_value(DiffieHellmanGroup)),
@@ -83,12 +84,6 @@ class CryptographySuite(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .authentication_transform_constant import AuthenticationTransformConstant
-        from .diffie_hellman_group import DiffieHellmanGroup
-        from .perfect_forward_secrecy_group import PerfectForwardSecrecyGroup
-        from .vpn_encryption_algorithm_type import VpnEncryptionAlgorithmType
-        from .vpn_integrity_algorithm_type import VpnIntegrityAlgorithmType
-
         writer.write_enum_value("authenticationTransformConstants", self.authentication_transform_constants)
         writer.write_enum_value("cipherTransformConstants", self.cipher_transform_constants)
         writer.write_enum_value("dhGroup", self.dh_group)

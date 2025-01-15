@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .teamwork_date_time_configuration import TeamworkDateTimeConfiguration
@@ -15,7 +16,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The date and time configurations for a device.
     date_time_configuration: Optional[TeamworkDateTimeConfiguration] = None
     # The default password for the device. Write-Only.
@@ -54,10 +55,10 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TeamworkSystemConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .teamwork_date_time_configuration import TeamworkDateTimeConfiguration
         from .teamwork_network_configuration import TeamworkNetworkConfiguration
@@ -65,7 +66,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         from .teamwork_date_time_configuration import TeamworkDateTimeConfiguration
         from .teamwork_network_configuration import TeamworkNetworkConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dateTimeConfiguration": lambda n : setattr(self, 'date_time_configuration', n.get_object_value(TeamworkDateTimeConfiguration)),
             "defaultPassword": lambda n : setattr(self, 'default_password', n.get_str_value()),
             "deviceLockTimeout": lambda n : setattr(self, 'device_lock_timeout', n.get_timedelta_value()),
@@ -90,9 +91,6 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .teamwork_date_time_configuration import TeamworkDateTimeConfiguration
-        from .teamwork_network_configuration import TeamworkNetworkConfiguration
-
         writer.write_object_value("dateTimeConfiguration", self.date_time_configuration)
         writer.write_str_value("defaultPassword", self.default_password)
         writer.write_timedelta_value("deviceLockTimeout", self.device_lock_timeout)

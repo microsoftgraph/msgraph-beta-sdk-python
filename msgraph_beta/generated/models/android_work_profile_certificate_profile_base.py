@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_work_profile_pkcs_certificate_profile import AndroidWorkProfilePkcsCertificateProfile
@@ -27,7 +28,7 @@ class AndroidWorkProfileCertificateProfileBase(DeviceConfiguration, Parsable):
     # Value for the Certificate Validity Period.
     certificate_validity_period_value: Optional[int] = None
     # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-    extended_key_usages: Optional[List[ExtendedKeyUsage]] = None
+    extended_key_usages: Optional[list[ExtendedKeyUsage]] = None
     # Certificate renewal threshold percentage. Valid values 1 to 99
     renewal_threshold_percentage: Optional[int] = None
     # Trusted Root Certificate.
@@ -61,10 +62,10 @@ class AndroidWorkProfileCertificateProfileBase(DeviceConfiguration, Parsable):
             return AndroidWorkProfileScepCertificateProfile()
         return AndroidWorkProfileCertificateProfileBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_work_profile_pkcs_certificate_profile import AndroidWorkProfilePkcsCertificateProfile
         from .android_work_profile_scep_certificate_profile import AndroidWorkProfileScepCertificateProfile
@@ -84,7 +85,7 @@ class AndroidWorkProfileCertificateProfileBase(DeviceConfiguration, Parsable):
         from .subject_alternative_name_type import SubjectAlternativeNameType
         from .subject_name_format import SubjectNameFormat
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
@@ -106,15 +107,6 @@ class AndroidWorkProfileCertificateProfileBase(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_work_profile_pkcs_certificate_profile import AndroidWorkProfilePkcsCertificateProfile
-        from .android_work_profile_scep_certificate_profile import AndroidWorkProfileScepCertificateProfile
-        from .android_work_profile_trusted_root_certificate import AndroidWorkProfileTrustedRootCertificate
-        from .certificate_validity_period_scale import CertificateValidityPeriodScale
-        from .device_configuration import DeviceConfiguration
-        from .extended_key_usage import ExtendedKeyUsage
-        from .subject_alternative_name_type import SubjectAlternativeNameType
-        from .subject_name_format import SubjectNameFormat
-
         writer.write_enum_value("certificateValidityPeriodScale", self.certificate_validity_period_scale)
         writer.write_int_value("certificateValidityPeriodValue", self.certificate_validity_period_value)
         writer.write_collection_of_object_values("extendedKeyUsages", self.extended_key_usages)

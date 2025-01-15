@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -18,11 +19,11 @@ class GroupPolicyCategory(Entity, Parsable):
     The category entity stores the category of a group policy definition
     """
     # The children categories
-    children: Optional[List[GroupPolicyCategory]] = None
+    children: Optional[list[GroupPolicyCategory]] = None
     # The id of the definition file the category came from
     definition_file: Optional[GroupPolicyDefinitionFile] = None
     # The immediate GroupPolicyDefinition children of the category
-    definitions: Optional[List[GroupPolicyDefinition]] = None
+    definitions: Optional[list[GroupPolicyDefinition]] = None
     # The string id of the category's display name
     display_name: Optional[str] = None
     # Category Ingestion source
@@ -47,10 +48,10 @@ class GroupPolicyCategory(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GroupPolicyCategory()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .group_policy_definition import GroupPolicyDefinition
@@ -62,7 +63,7 @@ class GroupPolicyCategory(Entity, Parsable):
         from .group_policy_definition_file import GroupPolicyDefinitionFile
         from .ingestion_source import IngestionSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(GroupPolicyCategory)),
             "definitionFile": lambda n : setattr(self, 'definition_file', n.get_object_value(GroupPolicyDefinitionFile)),
             "definitions": lambda n : setattr(self, 'definitions', n.get_collection_of_object_values(GroupPolicyDefinition)),
@@ -85,11 +86,6 @@ class GroupPolicyCategory(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .group_policy_definition import GroupPolicyDefinition
-        from .group_policy_definition_file import GroupPolicyDefinitionFile
-        from .ingestion_source import IngestionSource
-
         writer.write_collection_of_object_values("children", self.children)
         writer.write_object_value("definitionFile", self.definition_file)
         writer.write_collection_of_object_values("definitions", self.definitions)

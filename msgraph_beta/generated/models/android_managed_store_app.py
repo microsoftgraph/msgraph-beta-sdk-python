@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_managed_store_app_track import AndroidManagedStoreAppTrack
@@ -22,7 +23,7 @@ class AndroidManagedStoreApp(MobileApp, Parsable):
     # The Play for Work Store app URL. This property is read-only.
     app_store_url: Optional[str] = None
     # The tracks that are visible to this enterprise. This property is read-only.
-    app_tracks: Optional[List[AndroidManagedStoreAppTrack]] = None
+    app_tracks: Optional[list[AndroidManagedStoreAppTrack]] = None
     # Indicates whether the app is only available to a given enterprise's users. This property is read-only.
     is_private: Optional[bool] = None
     # Indicates whether the app is a preinstalled system app.
@@ -56,10 +57,10 @@ class AndroidManagedStoreApp(MobileApp, Parsable):
             return AndroidManagedStoreWebApp()
         return AndroidManagedStoreApp()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_managed_store_app_track import AndroidManagedStoreAppTrack
         from .android_managed_store_web_app import AndroidManagedStoreWebApp
@@ -69,7 +70,7 @@ class AndroidManagedStoreApp(MobileApp, Parsable):
         from .android_managed_store_web_app import AndroidManagedStoreWebApp
         from .mobile_app import MobileApp
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appIdentifier": lambda n : setattr(self, 'app_identifier', n.get_str_value()),
             "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
             "appTracks": lambda n : setattr(self, 'app_tracks', n.get_collection_of_object_values(AndroidManagedStoreAppTrack)),
@@ -93,10 +94,6 @@ class AndroidManagedStoreApp(MobileApp, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_managed_store_app_track import AndroidManagedStoreAppTrack
-        from .android_managed_store_web_app import AndroidManagedStoreWebApp
-        from .mobile_app import MobileApp
-
         writer.write_str_value("appIdentifier", self.app_identifier)
         writer.write_bool_value("isSystemApp", self.is_system_app)
     

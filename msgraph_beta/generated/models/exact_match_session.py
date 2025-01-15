@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .exact_match_session_base import ExactMatchSessionBase
@@ -16,7 +17,7 @@ class ExactMatchSession(ExactMatchSessionBase, Parsable):
     # The dataUploadURI property
     data_upload_u_r_i: Optional[str] = None
     # The fields property
-    fields: Optional[List[str]] = None
+    fields: Optional[list[str]] = None
     # The fileName property
     file_name: Optional[str] = None
     # The OdataType property
@@ -41,10 +42,10 @@ class ExactMatchSession(ExactMatchSessionBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ExactMatchSession()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .exact_match_session_base import ExactMatchSessionBase
         from .exact_match_upload_agent import ExactMatchUploadAgent
@@ -52,7 +53,7 @@ class ExactMatchSession(ExactMatchSessionBase, Parsable):
         from .exact_match_session_base import ExactMatchSessionBase
         from .exact_match_upload_agent import ExactMatchUploadAgent
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "checksum": lambda n : setattr(self, 'checksum', n.get_str_value()),
             "dataUploadURI": lambda n : setattr(self, 'data_upload_u_r_i', n.get_str_value()),
             "fields": lambda n : setattr(self, 'fields', n.get_collection_of_primitive_values(str)),
@@ -75,9 +76,6 @@ class ExactMatchSession(ExactMatchSessionBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .exact_match_session_base import ExactMatchSessionBase
-        from .exact_match_upload_agent import ExactMatchUploadAgent
-
         writer.write_str_value("checksum", self.checksum)
         writer.write_str_value("dataUploadURI", self.data_upload_u_r_i)
         writer.write_collection_of_primitive_values("fields", self.fields)

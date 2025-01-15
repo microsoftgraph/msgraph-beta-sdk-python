@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -18,7 +19,7 @@ class UserAppInstallStatus(Entity, Parsable):
     # The navigation link to the mobile app.
     app: Optional[MobileApp] = None
     # The install state of the app on devices.
-    device_statuses: Optional[List[MobileAppInstallStatus]] = None
+    device_statuses: Optional[list[MobileAppInstallStatus]] = None
     # Failed Device Count.
     failed_device_count: Optional[int] = None
     # Installed Device Count.
@@ -43,10 +44,10 @@ class UserAppInstallStatus(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UserAppInstallStatus()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .mobile_app import MobileApp
@@ -56,7 +57,7 @@ class UserAppInstallStatus(Entity, Parsable):
         from .mobile_app import MobileApp
         from .mobile_app_install_status import MobileAppInstallStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "app": lambda n : setattr(self, 'app', n.get_object_value(MobileApp)),
             "deviceStatuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(MobileAppInstallStatus)),
             "failedDeviceCount": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
@@ -78,10 +79,6 @@ class UserAppInstallStatus(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .mobile_app import MobileApp
-        from .mobile_app_install_status import MobileAppInstallStatus
-
         writer.write_object_value("app", self.app)
         writer.write_collection_of_object_values("deviceStatuses", self.device_statuses)
         writer.write_int_value("failedDeviceCount", self.failed_device_count)

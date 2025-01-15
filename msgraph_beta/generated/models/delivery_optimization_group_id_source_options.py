@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .delivery_optimization_group_id_options_type import DeliveryOptimizationGroupIdOptionsType
@@ -30,10 +31,10 @@ class DeliveryOptimizationGroupIdSourceOptions(DeliveryOptimizationGroupIdSource
             raise TypeError("parse_node cannot be null.")
         return DeliveryOptimizationGroupIdSourceOptions()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .delivery_optimization_group_id_options_type import DeliveryOptimizationGroupIdOptionsType
         from .delivery_optimization_group_id_source import DeliveryOptimizationGroupIdSource
@@ -41,7 +42,7 @@ class DeliveryOptimizationGroupIdSourceOptions(DeliveryOptimizationGroupIdSource
         from .delivery_optimization_group_id_options_type import DeliveryOptimizationGroupIdOptionsType
         from .delivery_optimization_group_id_source import DeliveryOptimizationGroupIdSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "groupIdSourceOption": lambda n : setattr(self, 'group_id_source_option', n.get_enum_value(DeliveryOptimizationGroupIdOptionsType)),
         }
         super_fields = super().get_field_deserializers()
@@ -57,9 +58,6 @@ class DeliveryOptimizationGroupIdSourceOptions(DeliveryOptimizationGroupIdSource
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .delivery_optimization_group_id_options_type import DeliveryOptimizationGroupIdOptionsType
-        from .delivery_optimization_group_id_source import DeliveryOptimizationGroupIdSource
-
         writer.write_enum_value("groupIdSourceOption", self.group_id_source_option)
     
 

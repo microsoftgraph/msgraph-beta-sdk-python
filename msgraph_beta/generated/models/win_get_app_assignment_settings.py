@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mobile_app_assignment_settings import MobileAppAssignmentSettings
@@ -36,10 +37,10 @@ class WinGetAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WinGetAppAssignmentSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .mobile_app_assignment_settings import MobileAppAssignmentSettings
         from .win_get_app_install_time_settings import WinGetAppInstallTimeSettings
@@ -51,7 +52,7 @@ class WinGetAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
         from .win_get_app_notification import WinGetAppNotification
         from .win_get_app_restart_settings import WinGetAppRestartSettings
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "installTimeSettings": lambda n : setattr(self, 'install_time_settings', n.get_object_value(WinGetAppInstallTimeSettings)),
             "notifications": lambda n : setattr(self, 'notifications', n.get_enum_value(WinGetAppNotification)),
             "restartSettings": lambda n : setattr(self, 'restart_settings', n.get_object_value(WinGetAppRestartSettings)),
@@ -69,11 +70,6 @@ class WinGetAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .mobile_app_assignment_settings import MobileAppAssignmentSettings
-        from .win_get_app_install_time_settings import WinGetAppInstallTimeSettings
-        from .win_get_app_notification import WinGetAppNotification
-        from .win_get_app_restart_settings import WinGetAppRestartSettings
-
         writer.write_object_value("installTimeSettings", self.install_time_settings)
         writer.write_enum_value("notifications", self.notifications)
         writer.write_object_value("restartSettings", self.restart_settings)

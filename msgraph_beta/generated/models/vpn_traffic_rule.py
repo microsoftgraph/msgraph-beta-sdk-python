@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .i_pv4_range import IPv4Range
@@ -20,7 +21,7 @@ class VpnTrafficRule(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # App identifier, if this traffic rule is triggered by an app.
     app_id: Optional[str] = None
     # Indicates the type of app that a VPN traffic rule is associated with.
@@ -28,9 +29,9 @@ class VpnTrafficRule(AdditionalDataHolder, BackedModel, Parsable):
     # Claims associated with this traffic rule.
     claims: Optional[str] = None
     # Local address range. This collection can contain a maximum of 500 elements.
-    local_address_ranges: Optional[List[IPv4Range]] = None
+    local_address_ranges: Optional[list[IPv4Range]] = None
     # Local port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
-    local_port_ranges: Optional[List[NumberRange]] = None
+    local_port_ranges: Optional[list[NumberRange]] = None
     # Name.
     name: Optional[str] = None
     # The OdataType property
@@ -38,9 +39,9 @@ class VpnTrafficRule(AdditionalDataHolder, BackedModel, Parsable):
     # Protocols (0-255). Valid values 0 to 255
     protocols: Optional[int] = None
     # Remote address range. This collection can contain a maximum of 500 elements.
-    remote_address_ranges: Optional[List[IPv4Range]] = None
+    remote_address_ranges: Optional[list[IPv4Range]] = None
     # Remote port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
-    remote_port_ranges: Optional[List[NumberRange]] = None
+    remote_port_ranges: Optional[list[NumberRange]] = None
     # Specifies the routing policy for a VPN traffic rule.
     routing_policy_type: Optional[VpnTrafficRuleRoutingPolicyType] = None
     # Specify whether the rule applies to inbound traffic or outbound traffic.
@@ -57,10 +58,10 @@ class VpnTrafficRule(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return VpnTrafficRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .i_pv4_range import IPv4Range
         from .number_range import NumberRange
@@ -74,7 +75,7 @@ class VpnTrafficRule(AdditionalDataHolder, BackedModel, Parsable):
         from .vpn_traffic_rule_app_type import VpnTrafficRuleAppType
         from .vpn_traffic_rule_routing_policy_type import VpnTrafficRuleRoutingPolicyType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "appType": lambda n : setattr(self, 'app_type', n.get_enum_value(VpnTrafficRuleAppType)),
             "claims": lambda n : setattr(self, 'claims', n.get_str_value()),
@@ -98,12 +99,6 @@ class VpnTrafficRule(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .i_pv4_range import IPv4Range
-        from .number_range import NumberRange
-        from .vpn_traffic_direction import VpnTrafficDirection
-        from .vpn_traffic_rule_app_type import VpnTrafficRuleAppType
-        from .vpn_traffic_rule_routing_policy_type import VpnTrafficRuleRoutingPolicyType
-
         writer.write_str_value("appId", self.app_id)
         writer.write_enum_value("appType", self.app_type)
         writer.write_str_value("claims", self.claims)

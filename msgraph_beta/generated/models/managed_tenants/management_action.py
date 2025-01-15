@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -25,7 +26,7 @@ class ManagementAction(Entity, Parsable):
     # The referenceTemplateVersion property
     reference_template_version: Optional[int] = None
     # The collection of workload actions associated with the management action. Required. Read-only.
-    workload_actions: Optional[List[WorkloadAction]] = None
+    workload_actions: Optional[list[WorkloadAction]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ManagementAction:
@@ -38,10 +39,10 @@ class ManagementAction(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagementAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .management_category import ManagementCategory
@@ -51,7 +52,7 @@ class ManagementAction(Entity, Parsable):
         from .management_category import ManagementCategory
         from .workload_action import WorkloadAction
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(ManagementCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -72,10 +73,6 @@ class ManagementAction(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .management_category import ManagementCategory
-        from .workload_action import WorkloadAction
-
         writer.write_enum_value("category", self.category)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

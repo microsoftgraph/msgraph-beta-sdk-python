@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .educational_activity_detail import EducationalActivityDetail
@@ -37,10 +38,10 @@ class EducationalActivity(ItemFacet, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EducationalActivity()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .educational_activity_detail import EducationalActivityDetail
         from .institution_data import InstitutionData
@@ -50,7 +51,7 @@ class EducationalActivity(ItemFacet, Parsable):
         from .institution_data import InstitutionData
         from .item_facet import ItemFacet
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "completionMonthYear": lambda n : setattr(self, 'completion_month_year', n.get_date_value()),
             "endMonthYear": lambda n : setattr(self, 'end_month_year', n.get_date_value()),
             "institution": lambda n : setattr(self, 'institution', n.get_object_value(InstitutionData)),
@@ -70,10 +71,6 @@ class EducationalActivity(ItemFacet, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .educational_activity_detail import EducationalActivityDetail
-        from .institution_data import InstitutionData
-        from .item_facet import ItemFacet
-
         writer.write_date_value("completionMonthYear", self.completion_month_year)
         writer.write_date_value("endMonthYear", self.end_month_year)
         writer.write_object_value("institution", self.institution)

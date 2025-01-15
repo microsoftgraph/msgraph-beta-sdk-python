@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -14,7 +15,7 @@ from .entity import Entity
 @dataclass
 class OnPremisesAgentGroup(Entity, Parsable):
     # List of onPremisesAgent that are assigned to an onPremisesAgentGroup. Read-only. Nullable.
-    agents: Optional[List[OnPremisesAgent]] = None
+    agents: Optional[list[OnPremisesAgent]] = None
     # Display name of the onPremisesAgentGroup.
     display_name: Optional[str] = None
     # Indicates if the onPremisesAgentGroup is the default agent group. Only a single agent group can be the default onPremisesAgentGroup and is set by the system.
@@ -22,7 +23,7 @@ class OnPremisesAgentGroup(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of publishedResource that are assigned to an onPremisesAgentGroup. Read-only. Nullable.
-    published_resources: Optional[List[PublishedResource]] = None
+    published_resources: Optional[list[PublishedResource]] = None
     # The publishingType property
     publishing_type: Optional[OnPremisesPublishingType] = None
     
@@ -37,10 +38,10 @@ class OnPremisesAgentGroup(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OnPremisesAgentGroup()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .on_premises_agent import OnPremisesAgent
@@ -52,7 +53,7 @@ class OnPremisesAgentGroup(Entity, Parsable):
         from .on_premises_publishing_type import OnPremisesPublishingType
         from .published_resource import PublishedResource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "agents": lambda n : setattr(self, 'agents', n.get_collection_of_object_values(OnPremisesAgent)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
@@ -72,11 +73,6 @@ class OnPremisesAgentGroup(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .on_premises_agent import OnPremisesAgent
-        from .on_premises_publishing_type import OnPremisesPublishingType
-        from .published_resource import PublishedResource
-
         writer.write_collection_of_object_values("agents", self.agents)
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("isDefault", self.is_default)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .policy_base import PolicyBase
@@ -28,16 +29,16 @@ class ExternalIdentitiesPolicy(PolicyBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ExternalIdentitiesPolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .policy_base import PolicyBase
 
         from .policy_base import PolicyBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowDeletedIdentitiesDataRemoval": lambda n : setattr(self, 'allow_deleted_identities_data_removal', n.get_bool_value()),
             "allowExternalIdentitiesToLeave": lambda n : setattr(self, 'allow_external_identities_to_leave', n.get_bool_value()),
         }
@@ -54,8 +55,6 @@ class ExternalIdentitiesPolicy(PolicyBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .policy_base import PolicyBase
-
         writer.write_bool_value("allowDeletedIdentitiesDataRemoval", self.allow_deleted_identities_data_removal)
         writer.write_bool_value("allowExternalIdentitiesToLeave", self.allow_external_identities_to_leave)
     

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -19,7 +20,7 @@ class OutlookTaskFolder(Entity, Parsable):
     # True if the folder is the default task folder.
     is_default_folder: Optional[bool] = None
     # The collection of multi-value extended properties defined for the task folder. Read-only. Nullable.
-    multi_value_extended_properties: Optional[List[MultiValueLegacyExtendedProperty]] = None
+    multi_value_extended_properties: Optional[list[MultiValueLegacyExtendedProperty]] = None
     # The name of the task folder.
     name: Optional[str] = None
     # The OdataType property
@@ -27,9 +28,9 @@ class OutlookTaskFolder(Entity, Parsable):
     # The unique GUID identifier for the task folder's parent group.
     parent_group_key: Optional[UUID] = None
     # The collection of single-value extended properties defined for the task folder. Read-only. Nullable.
-    single_value_extended_properties: Optional[List[SingleValueLegacyExtendedProperty]] = None
+    single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
     # The tasks in this task folder. Read-only. Nullable.
-    tasks: Optional[List[OutlookTask]] = None
+    tasks: Optional[list[OutlookTask]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OutlookTaskFolder:
@@ -42,10 +43,10 @@ class OutlookTaskFolder(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OutlookTaskFolder()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
@@ -57,7 +58,7 @@ class OutlookTaskFolder(Entity, Parsable):
         from .outlook_task import OutlookTask
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "changeKey": lambda n : setattr(self, 'change_key', n.get_str_value()),
             "isDefaultFolder": lambda n : setattr(self, 'is_default_folder', n.get_bool_value()),
             "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(MultiValueLegacyExtendedProperty)),
@@ -79,11 +80,6 @@ class OutlookTaskFolder(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
-        from .outlook_task import OutlookTask
-        from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-
         writer.write_str_value("changeKey", self.change_key)
         writer.write_bool_value("isDefaultFolder", self.is_default_folder)
         writer.write_collection_of_object_values("multiValueExtendedProperties", self.multi_value_extended_properties)

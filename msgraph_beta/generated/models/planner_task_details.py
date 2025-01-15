@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .item_body import ItemBody
@@ -47,10 +48,10 @@ class PlannerTaskDetails(PlannerDelta, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PlannerTaskDetails()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .item_body import ItemBody
         from .planner_base_approval_attachment import PlannerBaseApprovalAttachment
@@ -70,7 +71,7 @@ class PlannerTaskDetails(PlannerDelta, Parsable):
         from .planner_preview_type import PlannerPreviewType
         from .planner_task_completion_requirement_details import PlannerTaskCompletionRequirementDetails
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "approvalAttachment": lambda n : setattr(self, 'approval_attachment', n.get_object_value(PlannerBaseApprovalAttachment)),
             "checklist": lambda n : setattr(self, 'checklist', n.get_object_value(PlannerChecklistItems)),
             "completionRequirements": lambda n : setattr(self, 'completion_requirements', n.get_object_value(PlannerTaskCompletionRequirementDetails)),
@@ -93,15 +94,6 @@ class PlannerTaskDetails(PlannerDelta, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .item_body import ItemBody
-        from .planner_base_approval_attachment import PlannerBaseApprovalAttachment
-        from .planner_checklist_items import PlannerChecklistItems
-        from .planner_delta import PlannerDelta
-        from .planner_external_references import PlannerExternalReferences
-        from .planner_forms_dictionary import PlannerFormsDictionary
-        from .planner_preview_type import PlannerPreviewType
-        from .planner_task_completion_requirement_details import PlannerTaskCompletionRequirementDetails
-
         writer.write_object_value("approvalAttachment", self.approval_attachment)
         writer.write_object_value("checklist", self.checklist)
         writer.write_object_value("completionRequirements", self.completion_requirements)

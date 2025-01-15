@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .education_identity_domain import EducationIdentityDomain
@@ -14,7 +15,7 @@ class EducationIdentityCreationConfiguration(EducationIdentitySynchronizationCon
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationIdentityCreationConfiguration"
     # The userDomains property
-    user_domains: Optional[List[EducationIdentityDomain]] = None
+    user_domains: Optional[list[EducationIdentityDomain]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EducationIdentityCreationConfiguration:
@@ -27,10 +28,10 @@ class EducationIdentityCreationConfiguration(EducationIdentitySynchronizationCon
             raise TypeError("parse_node cannot be null.")
         return EducationIdentityCreationConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .education_identity_domain import EducationIdentityDomain
         from .education_identity_synchronization_configuration import EducationIdentitySynchronizationConfiguration
@@ -38,7 +39,7 @@ class EducationIdentityCreationConfiguration(EducationIdentitySynchronizationCon
         from .education_identity_domain import EducationIdentityDomain
         from .education_identity_synchronization_configuration import EducationIdentitySynchronizationConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "userDomains": lambda n : setattr(self, 'user_domains', n.get_collection_of_object_values(EducationIdentityDomain)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,9 +55,6 @@ class EducationIdentityCreationConfiguration(EducationIdentitySynchronizationCon
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .education_identity_domain import EducationIdentityDomain
-        from .education_identity_synchronization_configuration import EducationIdentitySynchronizationConfiguration
-
         writer.write_collection_of_object_values("userDomains", self.user_domains)
     
 

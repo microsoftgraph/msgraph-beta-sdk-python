@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -12,7 +13,7 @@ from .entity import Entity
 @dataclass
 class PlannerPlanConfigurationLocalization(Entity, Parsable):
     # Localized names for configured buckets in the plan configuration.
-    buckets: Optional[List[PlannerPlanConfigurationBucketLocalization]] = None
+    buckets: Optional[list[PlannerPlanConfigurationBucketLocalization]] = None
     # The language code associated with the localized names in this object.
     language_tag: Optional[str] = None
     # The OdataType property
@@ -31,10 +32,10 @@ class PlannerPlanConfigurationLocalization(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PlannerPlanConfigurationLocalization()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .planner_plan_configuration_bucket_localization import PlannerPlanConfigurationBucketLocalization
@@ -42,7 +43,7 @@ class PlannerPlanConfigurationLocalization(Entity, Parsable):
         from .entity import Entity
         from .planner_plan_configuration_bucket_localization import PlannerPlanConfigurationBucketLocalization
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_object_values(PlannerPlanConfigurationBucketLocalization)),
             "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
             "planTitle": lambda n : setattr(self, 'plan_title', n.get_str_value()),
@@ -60,9 +61,6 @@ class PlannerPlanConfigurationLocalization(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .planner_plan_configuration_bucket_localization import PlannerPlanConfigurationBucketLocalization
-
         writer.write_collection_of_object_values("buckets", self.buckets)
         writer.write_str_value("languageTag", self.language_tag)
         writer.write_str_value("planTitle", self.plan_title)

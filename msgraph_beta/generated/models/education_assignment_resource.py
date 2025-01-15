@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .education_resource import EducationResource
@@ -12,7 +13,7 @@ from .entity import Entity
 @dataclass
 class EducationAssignmentResource(Entity, Parsable):
     # The dependentResources property
-    dependent_resources: Optional[List[EducationAssignmentResource]] = None
+    dependent_resources: Optional[list[EducationAssignmentResource]] = None
     # Indicates whether this resource should be copied to each student submission for modification and submission. Required
     distribute_for_student_work: Optional[bool] = None
     # The OdataType property
@@ -31,10 +32,10 @@ class EducationAssignmentResource(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EducationAssignmentResource()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .education_resource import EducationResource
         from .entity import Entity
@@ -42,7 +43,7 @@ class EducationAssignmentResource(Entity, Parsable):
         from .education_resource import EducationResource
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dependentResources": lambda n : setattr(self, 'dependent_resources', n.get_collection_of_object_values(EducationAssignmentResource)),
             "distributeForStudentWork": lambda n : setattr(self, 'distribute_for_student_work', n.get_bool_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_object_value(EducationResource)),
@@ -60,9 +61,6 @@ class EducationAssignmentResource(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .education_resource import EducationResource
-        from .entity import Entity
-
         writer.write_collection_of_object_values("dependentResources", self.dependent_resources)
         writer.write_bool_value("distributeForStudentWork", self.distribute_for_student_work)
         writer.write_object_value("resource", self.resource)

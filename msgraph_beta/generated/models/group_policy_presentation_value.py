@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -73,10 +74,10 @@ class GroupPolicyPresentationValue(Entity, Parsable):
             return GroupPolicyPresentationValueText()
         return GroupPolicyPresentationValue()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .group_policy_definition_value import GroupPolicyDefinitionValue
@@ -98,7 +99,7 @@ class GroupPolicyPresentationValue(Entity, Parsable):
         from .group_policy_presentation_value_multi_text import GroupPolicyPresentationValueMultiText
         from .group_policy_presentation_value_text import GroupPolicyPresentationValueText
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "definitionValue": lambda n : setattr(self, 'definition_value', n.get_object_value(GroupPolicyDefinitionValue)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -117,16 +118,6 @@ class GroupPolicyPresentationValue(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .group_policy_definition_value import GroupPolicyDefinitionValue
-        from .group_policy_presentation import GroupPolicyPresentation
-        from .group_policy_presentation_value_boolean import GroupPolicyPresentationValueBoolean
-        from .group_policy_presentation_value_decimal import GroupPolicyPresentationValueDecimal
-        from .group_policy_presentation_value_list import GroupPolicyPresentationValueList
-        from .group_policy_presentation_value_long_decimal import GroupPolicyPresentationValueLongDecimal
-        from .group_policy_presentation_value_multi_text import GroupPolicyPresentationValueMultiText
-        from .group_policy_presentation_value_text import GroupPolicyPresentationValueText
-
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("definitionValue", self.definition_value)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .excluded_apps import ExcludedApps
@@ -28,7 +29,7 @@ class OfficeSuiteApp(MobileApp, Parsable):
     # The Enum to specify the level of display for the Installation Progress Setup UI on the Device.
     install_progress_display_level: Optional[OfficeSuiteInstallProgressDisplayLevel] = None
     # The property to represent the locales which are installed when the apps from Office365 is installed. It uses standard RFC 6033. Ref: https://technet.microsoft.com/library/cc179219(v=office.16).aspx
-    locales_to_install: Optional[List[str]] = None
+    locales_to_install: Optional[list[str]] = None
     # The property to represent the XML configuration file that can be specified for Office ProPlus Apps. Takes precedence over all other properties. When present, the XML configuration file will be used to create the app.
     office_configuration_xml: Optional[bytes] = None
     # Contains properties for Windows architecture.
@@ -36,7 +37,7 @@ class OfficeSuiteApp(MobileApp, Parsable):
     # Describes the OfficeSuiteApp file format types that can be selected.
     office_suite_app_default_file_format: Optional[OfficeSuiteDefaultFileFormatType] = None
     # The Product Ids that represent the Office365 Suite SKU.
-    product_ids: Optional[List[OfficeProductId]] = None
+    product_ids: Optional[list[OfficeProductId]] = None
     # The property to determine whether to uninstall existing Office MSI if an Office365 app suite is deployed to the device or not.
     should_uninstall_older_versions_of_office: Optional[bool] = None
     # The property to represent the specific target version for the Office365 app suite that should be remained deployed on the devices.
@@ -59,10 +60,10 @@ class OfficeSuiteApp(MobileApp, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OfficeSuiteApp()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .excluded_apps import ExcludedApps
         from .mobile_app import MobileApp
@@ -80,7 +81,7 @@ class OfficeSuiteApp(MobileApp, Parsable):
         from .office_update_channel import OfficeUpdateChannel
         from .windows_architecture import WindowsArchitecture
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "autoAcceptEula": lambda n : setattr(self, 'auto_accept_eula', n.get_bool_value()),
             "excludedApps": lambda n : setattr(self, 'excluded_apps', n.get_object_value(ExcludedApps)),
             "installProgressDisplayLevel": lambda n : setattr(self, 'install_progress_display_level', n.get_enum_value(OfficeSuiteInstallProgressDisplayLevel)),
@@ -108,14 +109,6 @@ class OfficeSuiteApp(MobileApp, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .excluded_apps import ExcludedApps
-        from .mobile_app import MobileApp
-        from .office_product_id import OfficeProductId
-        from .office_suite_default_file_format_type import OfficeSuiteDefaultFileFormatType
-        from .office_suite_install_progress_display_level import OfficeSuiteInstallProgressDisplayLevel
-        from .office_update_channel import OfficeUpdateChannel
-        from .windows_architecture import WindowsArchitecture
-
         writer.write_bool_value("autoAcceptEula", self.auto_accept_eula)
         writer.write_object_value("excludedApps", self.excluded_apps)
         writer.write_enum_value("installProgressDisplayLevel", self.install_progress_display_level)

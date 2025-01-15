@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .approval import Approval
@@ -16,11 +17,11 @@ class PermissionsManagement(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents a change event of the scheduledPermissionsRequest entity.
-    permissions_request_changes: Optional[List[PermissionsRequestChange]] = None
+    permissions_request_changes: Optional[list[PermissionsRequestChange]] = None
     # The scheduledPermissionsApprovals property
-    scheduled_permissions_approvals: Optional[List[Approval]] = None
+    scheduled_permissions_approvals: Optional[list[Approval]] = None
     # Represents a permissions request that Permissions Management uses to manage permissions for an identity on resources in the authorization system. This request can be granted, rejected or canceled by identities in Permissions Management.
-    scheduled_permissions_requests: Optional[List[ScheduledPermissionsRequest]] = None
+    scheduled_permissions_requests: Optional[list[ScheduledPermissionsRequest]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PermissionsManagement:
@@ -33,10 +34,10 @@ class PermissionsManagement(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PermissionsManagement()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .approval import Approval
         from .entity import Entity
@@ -48,7 +49,7 @@ class PermissionsManagement(Entity, Parsable):
         from .permissions_request_change import PermissionsRequestChange
         from .scheduled_permissions_request import ScheduledPermissionsRequest
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "permissionsRequestChanges": lambda n : setattr(self, 'permissions_request_changes', n.get_collection_of_object_values(PermissionsRequestChange)),
             "scheduledPermissionsApprovals": lambda n : setattr(self, 'scheduled_permissions_approvals', n.get_collection_of_object_values(Approval)),
             "scheduledPermissionsRequests": lambda n : setattr(self, 'scheduled_permissions_requests', n.get_collection_of_object_values(ScheduledPermissionsRequest)),
@@ -66,11 +67,6 @@ class PermissionsManagement(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .approval import Approval
-        from .entity import Entity
-        from .permissions_request_change import PermissionsRequestChange
-        from .scheduled_permissions_request import ScheduledPermissionsRequest
-
         writer.write_collection_of_object_values("permissionsRequestChanges", self.permissions_request_changes)
         writer.write_collection_of_object_values("scheduledPermissionsApprovals", self.scheduled_permissions_approvals)
         writer.write_collection_of_object_values("scheduledPermissionsRequests", self.scheduled_permissions_requests)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_certification_authority_leaf_certificate_status import CloudCertificationAuthorityLeafCertificateStatus
@@ -28,13 +29,13 @@ class CloudCertificationAuthorityLeafCertificate(Entity, Parsable):
     # The platform of the device for which the certificate was created. Possible values are: Android, AndroidForWork, iOS, MacOS, WindowsPhone81, Windows81AndLater, Windows10AndLater, AndroidWorkProfile, Unknown, AndroidAOSP, AndroidMobileApplicationManagement, iOSMobileApplicationManagement. Default value: Unknown. Read-only. Supports $select.
     device_platform: Optional[str] = None
     # Certificate extensions that further define the purpose of the public key contained in a certificate. Data is formatted as a comma-separated list of object identifiers (OID). For example a possible value is '1.3.6.1.5.5.7.3.2'. Read-only. Nullable.
-    extended_key_usages: Optional[List[str]] = None
+    extended_key_usages: Optional[list[str]] = None
     # The globally unique identifier of the certification authority that issued the leaf certificate. Read-only.
     issuer_id: Optional[str] = None
     # The name of the certification authority that issued the leaf certificate. Read-only.
     issuer_name: Optional[str] = None
     # Certificate extensions that define the purpose of the public key contained in a certificate. For example possible values are 'Key Encipherment' and 'Digital Signature'. Read-only. Nullable.
-    key_usages: Optional[List[str]] = None
+    key_usages: Optional[list[str]] = None
     # The Online Certificate Status Protocol (OCSP) responder URI that can be used to determine certificate status. Read-only.
     ocsp_responder_uri: Optional[str] = None
     # The OdataType property
@@ -67,10 +68,10 @@ class CloudCertificationAuthorityLeafCertificate(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CloudCertificationAuthorityLeafCertificate()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_certification_authority_leaf_certificate_status import CloudCertificationAuthorityLeafCertificateStatus
         from .entity import Entity
@@ -78,7 +79,7 @@ class CloudCertificationAuthorityLeafCertificate(Entity, Parsable):
         from .cloud_certification_authority_leaf_certificate_status import CloudCertificationAuthorityLeafCertificateStatus
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "certificateStatus": lambda n : setattr(self, 'certificate_status', n.get_enum_value(CloudCertificationAuthorityLeafCertificateStatus)),
             "certificationAuthorityIssuerUri": lambda n : setattr(self, 'certification_authority_issuer_uri', n.get_str_value()),
             "crlDistributionPointUrl": lambda n : setattr(self, 'crl_distribution_point_url', n.get_str_value()),
@@ -112,9 +113,6 @@ class CloudCertificationAuthorityLeafCertificate(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .cloud_certification_authority_leaf_certificate_status import CloudCertificationAuthorityLeafCertificateStatus
-        from .entity import Entity
-
         writer.write_enum_value("certificateStatus", self.certificate_status)
         writer.write_str_value("certificationAuthorityIssuerUri", self.certification_authority_issuer_uri)
         writer.write_str_value("crlDistributionPointUrl", self.crl_distribution_point_url)

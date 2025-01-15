@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -17,7 +18,7 @@ class WindowsQualityUpdateProfile(Entity, Parsable):
     Windows Quality Update Profile
     """
     # The list of group assignments of the profile.
-    assignments: Optional[List[WindowsQualityUpdateProfileAssignment]] = None
+    assignments: Optional[list[WindowsQualityUpdateProfileAssignment]] = None
     # The date time that the profile was created.
     created_date_time: Optional[datetime.datetime] = None
     # Friendly display name of the quality update profile deployable content
@@ -35,7 +36,7 @@ class WindowsQualityUpdateProfile(Entity, Parsable):
     # Friendly release date to display for a Quality Update release
     release_date_display_name: Optional[str] = None
     # List of Scope Tags for this Quality Update entity.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WindowsQualityUpdateProfile:
@@ -48,10 +49,10 @@ class WindowsQualityUpdateProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsQualityUpdateProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .expedited_windows_quality_update_settings import ExpeditedWindowsQualityUpdateSettings
@@ -61,7 +62,7 @@ class WindowsQualityUpdateProfile(Entity, Parsable):
         from .expedited_windows_quality_update_settings import ExpeditedWindowsQualityUpdateSettings
         from .windows_quality_update_profile_assignment import WindowsQualityUpdateProfileAssignment
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(WindowsQualityUpdateProfileAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deployableContentDisplayName": lambda n : setattr(self, 'deployable_content_display_name', n.get_str_value()),
@@ -85,10 +86,6 @@ class WindowsQualityUpdateProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .expedited_windows_quality_update_settings import ExpeditedWindowsQualityUpdateSettings
-        from .windows_quality_update_profile_assignment import WindowsQualityUpdateProfileAssignment
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("deployableContentDisplayName", self.deployable_content_display_name)

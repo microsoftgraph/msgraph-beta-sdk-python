@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -17,7 +18,7 @@ from ..entity import Entity
 @dataclass
 class Alert(Entity, Parsable):
     # The actions property
-    actions: Optional[List[AlertAction]] = None
+    actions: Optional[list[AlertAction]] = None
     # The alertType property
     alert_type: Optional[AlertType] = None
     # The creationDateTime property
@@ -33,7 +34,7 @@ class Alert(Entity, Parsable):
     # The policy property
     policy: Optional[FilteringPolicy] = None
     # The relatedResources property
-    related_resources: Optional[List[RelatedResource]] = None
+    related_resources: Optional[list[RelatedResource]] = None
     # The severity property
     severity: Optional[AlertSeverity] = None
     # The vendorName property
@@ -50,10 +51,10 @@ class Alert(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Alert()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .alert_action import AlertAction
@@ -69,7 +70,7 @@ class Alert(Entity, Parsable):
         from .filtering_policy import FilteringPolicy
         from .related_resource import RelatedResource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(AlertAction)),
             "alertType": lambda n : setattr(self, 'alert_type', n.get_enum_value(AlertType)),
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
@@ -94,13 +95,6 @@ class Alert(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .alert_action import AlertAction
-        from .alert_severity import AlertSeverity
-        from .alert_type import AlertType
-        from .filtering_policy import FilteringPolicy
-        from .related_resource import RelatedResource
-
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_enum_value("alertType", self.alert_type)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)

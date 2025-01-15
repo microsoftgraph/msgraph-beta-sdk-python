@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .classification_error import ClassificationError
@@ -62,10 +63,10 @@ class JobResponseBase(Entity, Parsable):
             return EvaluateLabelJobResponse()
         return JobResponseBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .classification_error import ClassificationError
         from .classification_job_response import ClassificationJobResponse
@@ -79,7 +80,7 @@ class JobResponseBase(Entity, Parsable):
         from .entity import Entity
         from .evaluate_label_job_response import EvaluateLabelJobResponse
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(ClassificationError)),
@@ -102,12 +103,6 @@ class JobResponseBase(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .classification_error import ClassificationError
-        from .classification_job_response import ClassificationJobResponse
-        from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
-        from .entity import Entity
-        from .evaluate_label_job_response import EvaluateLabelJobResponse
-
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_object_value("error", self.error)

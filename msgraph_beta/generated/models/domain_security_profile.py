@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .domain_registrant import DomainRegistrant
@@ -15,7 +16,7 @@ from .entity import Entity
 @dataclass
 class DomainSecurityProfile(Entity, Parsable):
     # The activityGroupNames property
-    activity_group_names: Optional[List[str]] = None
+    activity_group_names: Optional[list[str]] = None
     # The azureSubscriptionId property
     azure_subscription_id: Optional[str] = None
     # The azureTenantId property
@@ -25,7 +26,7 @@ class DomainSecurityProfile(Entity, Parsable):
     # The countInOrg property
     count_in_org: Optional[int] = None
     # The domainCategories property
-    domain_categories: Optional[List[ReputationCategory]] = None
+    domain_categories: Optional[list[ReputationCategory]] = None
     # The domainRegisteredDateTime property
     domain_registered_date_time: Optional[datetime.datetime] = None
     # The firstSeenDateTime property
@@ -41,7 +42,7 @@ class DomainSecurityProfile(Entity, Parsable):
     # The riskScore property
     risk_score: Optional[str] = None
     # The tags property
-    tags: Optional[List[str]] = None
+    tags: Optional[list[str]] = None
     # The vendorInformation property
     vendor_information: Optional[SecurityVendorInformation] = None
     
@@ -56,10 +57,10 @@ class DomainSecurityProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DomainSecurityProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .domain_registrant import DomainRegistrant
         from .entity import Entity
@@ -71,7 +72,7 @@ class DomainSecurityProfile(Entity, Parsable):
         from .reputation_category import ReputationCategory
         from .security_vendor_information import SecurityVendorInformation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
             "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
             "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
@@ -100,11 +101,6 @@ class DomainSecurityProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .domain_registrant import DomainRegistrant
-        from .entity import Entity
-        from .reputation_category import ReputationCategory
-        from .security_vendor_information import SecurityVendorInformation
-
         writer.write_collection_of_primitive_values("activityGroupNames", self.activity_group_names)
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)
         writer.write_str_value("azureTenantId", self.azure_tenant_id)

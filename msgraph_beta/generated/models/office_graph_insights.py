@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -17,11 +18,11 @@ class OfficeGraphInsights(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Access this property from the derived type itemInsights.
-    shared: Optional[List[SharedInsight]] = None
+    shared: Optional[list[SharedInsight]] = None
     # Access this property from the derived type itemInsights.
-    trending: Optional[List[Trending]] = None
+    trending: Optional[list[Trending]] = None
     # Access this property from the derived type itemInsights.
-    used: Optional[List[UsedInsight]] = None
+    used: Optional[list[UsedInsight]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OfficeGraphInsights:
@@ -43,10 +44,10 @@ class OfficeGraphInsights(Entity, Parsable):
             return ItemInsights()
         return OfficeGraphInsights()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .item_insights import ItemInsights
@@ -60,7 +61,7 @@ class OfficeGraphInsights(Entity, Parsable):
         from .trending import Trending
         from .used_insight import UsedInsight
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "shared": lambda n : setattr(self, 'shared', n.get_collection_of_object_values(SharedInsight)),
             "trending": lambda n : setattr(self, 'trending', n.get_collection_of_object_values(Trending)),
             "used": lambda n : setattr(self, 'used', n.get_collection_of_object_values(UsedInsight)),
@@ -78,12 +79,6 @@ class OfficeGraphInsights(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .item_insights import ItemInsights
-        from .shared_insight import SharedInsight
-        from .trending import Trending
-        from .used_insight import UsedInsight
-
         writer.write_collection_of_object_values("shared", self.shared)
         writer.write_collection_of_object_values("trending", self.trending)
         writer.write_collection_of_object_values("used", self.used)

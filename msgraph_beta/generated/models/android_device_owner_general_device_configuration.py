@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_device_owner_app_auto_update_policy_type import AndroidDeviceOwnerAppAutoUpdatePolicyType
@@ -47,7 +48,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     # Indicates whether or not adding or removing accounts is disabled.
     accounts_block_modification: Optional[bool] = None
     # Specifies the list of managed apps with app details and its associated delegated scope(s). This collection can contain a maximum of 500 elements.
-    android_device_owner_delegated_scope_app_settings: Optional[List[AndroidDeviceOwnerDelegatedScopeAppSetting]] = None
+    android_device_owner_delegated_scope_app_settings: Optional[list[AndroidDeviceOwnerDelegatedScopeAppSetting]] = None
     # Indicates whether or not the user is allowed to enable to unknown sources setting.
     apps_allow_install_from_unknown_sources: Optional[bool] = None
     # Indicates the value of the app auto update policy. Possible values are: notConfigured, userChoice, never, wiFiOnly, always.
@@ -57,7 +58,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     # Whether or not to recommend all apps skip any first-time-use hints they may have added.
     apps_recommend_skipping_first_use_hints: Optional[bool] = None
     # A list of managed apps that will have their data cleared during a global sign-out in AAD shared device mode. This collection can contain a maximum of 500 elements.
-    azure_ad_shared_device_data_clear_apps: Optional[List[AppListItem]] = None
+    azure_ad_shared_device_data_clear_apps: Optional[list[AppListItem]] = None
     # Indicates whether or not to block a user from configuring bluetooth.
     bluetooth_block_configuration: Optional[bool] = None
     # Indicates whether or not to block a user from sharing contacts via bluetooth.
@@ -89,7 +90,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     # Indicates whether or not the factory reset option in settings is disabled.
     factory_reset_blocked: Optional[bool] = None
     # List of Google account emails that will be required to authenticate after a device is factory reset before it can be set up.
-    factory_reset_device_administrator_emails: Optional[List[str]] = None
+    factory_reset_device_administrator_emails: Optional[list[str]] = None
     # Proxy is set up directly with host, port and excluded hosts.
     global_proxy: Optional[AndroidDeviceOwnerGlobalProxy] = None
     # Indicates whether or not google accounts will be blocked.
@@ -107,9 +108,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     # Whether or not to enable app ordering in Kiosk Mode.
     kiosk_mode_app_order_enabled: Optional[bool] = None
     # The ordering of items on Kiosk Mode Managed Home Screen. This collection can contain a maximum of 500 elements.
-    kiosk_mode_app_positions: Optional[List[AndroidDeviceOwnerKioskModeAppPositionItem]] = None
+    kiosk_mode_app_positions: Optional[list[AndroidDeviceOwnerKioskModeAppPositionItem]] = None
     # A list of managed apps that will be shown when the device is in Kiosk Mode. This collection can contain a maximum of 500 elements.
-    kiosk_mode_apps: Optional[List[AppListItem]] = None
+    kiosk_mode_apps: Optional[list[AppListItem]] = None
     # Whether or not to alphabetize applications within a folder in Kiosk Mode.
     kiosk_mode_apps_in_folder_ordered_by_name: Optional[bool] = None
     # Whether or not to allow a user to configure Bluetooth settings in Kiosk Mode.
@@ -131,7 +132,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     # Whether or not to lock home screen to the end user in Kiosk Mode.
     kiosk_mode_lock_home_screen: Optional[bool] = None
     # A list of managed folders for a device in Kiosk Mode. This collection can contain a maximum of 500 elements.
-    kiosk_mode_managed_folders: Optional[List[AndroidDeviceOwnerKioskModeManagedFolder]] = None
+    kiosk_mode_managed_folders: Optional[list[AndroidDeviceOwnerKioskModeManagedFolder]] = None
     # Whether or not to automatically sign-out of MHS and Shared device mode applications after inactive for Managed Home Screen.
     kiosk_mode_managed_home_screen_auto_signout: Optional[bool] = None
     # Number of seconds to give user notice before automatically signing them out for Managed Home Screen. Valid values 0 to 9999999
@@ -181,7 +182,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     # Whether or not to allow a user to configure Wi-Fi settings in Kiosk Mode.
     kiosk_mode_wi_fi_configuration_enabled: Optional[bool] = None
     # The restricted set of WIFI SSIDs available for the user to configure in Kiosk Mode. This collection can contain a maximum of 500 elements.
-    kiosk_mode_wifi_allowed_ssids: Optional[List[str]] = None
+    kiosk_mode_wifi_allowed_ssids: Optional[list[str]] = None
     # Indicates whether or not LocateDevice for devices with lost mode (COBO, COPE) is enabled.
     locate_device_lost_mode_enabled: Optional[bool] = None
     # Indicates whether or not LocateDevice for userless (COSU) devices is disabled.
@@ -213,7 +214,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     # Indicates whether or not the keyguard is disabled.
     password_block_keyguard: Optional[bool] = None
     # List of device keyguard features to block. This collection can contain a maximum of 11 elements.
-    password_block_keyguard_features: Optional[List[AndroidKeyguardFeature]] = None
+    password_block_keyguard_features: Optional[list[AndroidKeyguardFeature]] = None
     # Indicates the amount of time that a password can be set for before it expires and a new password will be required. Valid values 1 to 365
     password_expiration_days: Optional[int] = None
     # Indicates the minimum length of the password required on the device. Valid values 4 to 16
@@ -245,7 +246,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     # Indicates whether to disable the use of the camera on the personal profile.
     personal_profile_camera_blocked: Optional[bool] = None
     # Policy applied to applications in the personal profile. This collection can contain a maximum of 500 elements.
-    personal_profile_personal_applications: Optional[List[AppListItem]] = None
+    personal_profile_personal_applications: Optional[list[AppListItem]] = None
     # Used together with PersonalProfilePersonalApplications to control how apps in the personal profile are allowed or blocked. Possible values are: notConfigured, blockedApps, allowedApps.
     personal_profile_play_store_mode: Optional[PersonalProfilePersonalPlayStoreMode] = None
     # Indicates whether to disable the capability to take screenshots on the personal profile.
@@ -267,7 +268,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     # Indicates whether or the status bar is disabled, including notifications, quick settings and other screen overlays.
     status_bar_blocked: Optional[bool] = None
     # List of modes in which the device's display will stay powered-on. This collection can contain a maximum of 4 elements.
-    stay_on_modes: Optional[List[AndroidDeviceOwnerBatteryPluggedMode]] = None
+    stay_on_modes: Optional[list[AndroidDeviceOwnerBatteryPluggedMode]] = None
     # Indicates whether or not to allow USB mass storage.
     storage_allow_usb: Optional[bool] = None
     # Indicates whether or not to block external media.
@@ -275,7 +276,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     # Indicates whether or not to block USB file transfer.
     storage_block_usb_file_transfer: Optional[bool] = None
     # Indicates the annually repeating time periods during which system updates are postponed. This collection can contain a maximum of 500 elements.
-    system_update_freeze_periods: Optional[List[AndroidDeviceOwnerSystemUpdateFreezePeriod]] = None
+    system_update_freeze_periods: Optional[list[AndroidDeviceOwnerSystemUpdateFreezePeriod]] = None
     # The type of system update configuration. Possible values are: deviceDefault, postpone, windowed, automatic.
     system_update_install_type: Optional[AndroidDeviceOwnerSystemUpdateInstallType] = None
     # Indicates the number of minutes after midnight that the system update window ends. Valid values 0 to 1440
@@ -334,10 +335,10 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
             raise TypeError("parse_node cannot be null.")
         return AndroidDeviceOwnerGeneralDeviceConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_device_owner_app_auto_update_policy_type import AndroidDeviceOwnerAppAutoUpdatePolicyType
         from .android_device_owner_battery_plugged_mode import AndroidDeviceOwnerBatteryPluggedMode
@@ -401,7 +402,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
         from .microsoft_launcher_search_bar_placement import MicrosoftLauncherSearchBarPlacement
         from .personal_profile_personal_play_store_mode import PersonalProfilePersonalPlayStoreMode
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accountsBlockModification": lambda n : setattr(self, 'accounts_block_modification', n.get_bool_value()),
             "androidDeviceOwnerDelegatedScopeAppSettings": lambda n : setattr(self, 'android_device_owner_delegated_scope_app_settings', n.get_collection_of_object_values(AndroidDeviceOwnerDelegatedScopeAppSetting)),
             "appsAllowInstallFromUnknownSources": lambda n : setattr(self, 'apps_allow_install_from_unknown_sources', n.get_bool_value()),
@@ -555,37 +556,6 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_device_owner_app_auto_update_policy_type import AndroidDeviceOwnerAppAutoUpdatePolicyType
-        from .android_device_owner_battery_plugged_mode import AndroidDeviceOwnerBatteryPluggedMode
-        from .android_device_owner_cross_profile_data_sharing import AndroidDeviceOwnerCrossProfileDataSharing
-        from .android_device_owner_default_app_permission_policy_type import AndroidDeviceOwnerDefaultAppPermissionPolicyType
-        from .android_device_owner_delegated_scope_app_setting import AndroidDeviceOwnerDelegatedScopeAppSetting
-        from .android_device_owner_enrollment_profile_type import AndroidDeviceOwnerEnrollmentProfileType
-        from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
-        from .android_device_owner_kiosk_customization_status_bar import AndroidDeviceOwnerKioskCustomizationStatusBar
-        from .android_device_owner_kiosk_customization_system_navigation import AndroidDeviceOwnerKioskCustomizationSystemNavigation
-        from .android_device_owner_kiosk_mode_app_position_item import AndroidDeviceOwnerKioskModeAppPositionItem
-        from .android_device_owner_kiosk_mode_folder_icon import AndroidDeviceOwnerKioskModeFolderIcon
-        from .android_device_owner_kiosk_mode_icon_size import AndroidDeviceOwnerKioskModeIconSize
-        from .android_device_owner_kiosk_mode_managed_folder import AndroidDeviceOwnerKioskModeManagedFolder
-        from .android_device_owner_kiosk_mode_screen_orientation import AndroidDeviceOwnerKioskModeScreenOrientation
-        from .android_device_owner_location_mode import AndroidDeviceOwnerLocationMode
-        from .android_device_owner_play_store_mode import AndroidDeviceOwnerPlayStoreMode
-        from .android_device_owner_required_password_type import AndroidDeviceOwnerRequiredPasswordType
-        from .android_device_owner_required_password_unlock import AndroidDeviceOwnerRequiredPasswordUnlock
-        from .android_device_owner_system_update_freeze_period import AndroidDeviceOwnerSystemUpdateFreezePeriod
-        from .android_device_owner_system_update_install_type import AndroidDeviceOwnerSystemUpdateInstallType
-        from .android_device_owner_user_facing_message import AndroidDeviceOwnerUserFacingMessage
-        from .android_device_owner_virtual_home_button_type import AndroidDeviceOwnerVirtualHomeButtonType
-        from .android_keyguard_feature import AndroidKeyguardFeature
-        from .app_list_item import AppListItem
-        from .device_configuration import DeviceConfiguration
-        from .kiosk_mode_managed_home_screen_pin_complexity import KioskModeManagedHomeScreenPinComplexity
-        from .kiosk_mode_type import KioskModeType
-        from .microsoft_launcher_dock_presence import MicrosoftLauncherDockPresence
-        from .microsoft_launcher_search_bar_placement import MicrosoftLauncherSearchBarPlacement
-        from .personal_profile_personal_play_store_mode import PersonalProfilePersonalPlayStoreMode
-
         writer.write_bool_value("accountsBlockModification", self.accounts_block_modification)
         writer.write_collection_of_object_values("androidDeviceOwnerDelegatedScopeAppSettings", self.android_device_owner_delegated_scope_app_settings)
         writer.write_bool_value("appsAllowInstallFromUnknownSources", self.apps_allow_install_from_unknown_sources)

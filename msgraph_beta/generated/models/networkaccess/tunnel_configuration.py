@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .tunnel_configuration_i_k_ev2_custom import TunnelConfigurationIKEv2Custom
@@ -14,7 +15,7 @@ class TunnelConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
     # A key to establish secure connection between the link and VPN tunnel on the edge.
@@ -46,10 +47,10 @@ class TunnelConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             return TunnelConfigurationIKEv2Default()
         return TunnelConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .tunnel_configuration_i_k_ev2_custom import TunnelConfigurationIKEv2Custom
         from .tunnel_configuration_i_k_ev2_default import TunnelConfigurationIKEv2Default
@@ -57,7 +58,7 @@ class TunnelConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         from .tunnel_configuration_i_k_ev2_custom import TunnelConfigurationIKEv2Custom
         from .tunnel_configuration_i_k_ev2_default import TunnelConfigurationIKEv2Default
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "preSharedKey": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
             "zoneRedundancyPreSharedKey": lambda n : setattr(self, 'zone_redundancy_pre_shared_key', n.get_str_value()),
@@ -72,9 +73,6 @@ class TunnelConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .tunnel_configuration_i_k_ev2_custom import TunnelConfigurationIKEv2Custom
-        from .tunnel_configuration_i_k_ev2_default import TunnelConfigurationIKEv2Default
-
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("preSharedKey", self.pre_shared_key)
         writer.write_str_value("zoneRedundancyPreSharedKey", self.zone_redundancy_pre_shared_key)

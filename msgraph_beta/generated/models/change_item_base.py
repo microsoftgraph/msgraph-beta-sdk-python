@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .announcement import Announcement
@@ -17,15 +18,15 @@ class ChangeItemBase(Entity, Parsable):
     # Description of the new feature or change announcement. Supports $filter (eq, ne, in, startswith) and $orderby.
     description: Optional[str] = None
     # Link to the feature or change documentation. Supports $filter (any with eq).
-    documentation_urls: Optional[List[str]] = None
+    documentation_urls: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # A short description of the feature or change. Supports $filter (eq, ne, in, startswith) and $orderby.
     short_description: Optional[str] = None
     # Microsoft Entra-specific tags. Example values: Top announcement - entraroadmaphighlightproductnews, New release highlight - entraroadmaphighlightnewfeature. Supports $filter (any with eq).
-    system_tags: Optional[List[str]] = None
+    system_tags: Optional[list[str]] = None
     # Identity and Access Management (IAM) related tags. Example values: External Identities, Reliability and Resilience. Supports $filter (any with eq).
-    tags: Optional[List[str]] = None
+    tags: Optional[list[str]] = None
     # Title of the feature or change. Supports $filter (eq, ne, in, startswith) and $orderby.
     title: Optional[str] = None
     
@@ -53,10 +54,10 @@ class ChangeItemBase(Entity, Parsable):
             return Roadmap()
         return ChangeItemBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .announcement import Announcement
         from .entity import Entity
@@ -66,7 +67,7 @@ class ChangeItemBase(Entity, Parsable):
         from .entity import Entity
         from .roadmap import Roadmap
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "changeItemService": lambda n : setattr(self, 'change_item_service', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "documentationUrls": lambda n : setattr(self, 'documentation_urls', n.get_collection_of_primitive_values(str)),
@@ -88,10 +89,6 @@ class ChangeItemBase(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .announcement import Announcement
-        from .entity import Entity
-        from .roadmap import Roadmap
-
         writer.write_str_value("changeItemService", self.change_item_service)
         writer.write_str_value("description", self.description)
         writer.write_collection_of_primitive_values("documentationUrls", self.documentation_urls)

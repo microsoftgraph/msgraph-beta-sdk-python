@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .planner_recurrence_schedule import PlannerRecurrenceSchedule
@@ -14,7 +15,7 @@ class PlannerTaskRecurrence(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The taskId of the next task in this series. This value is assigned at the time the next task in the series is created, and is null prior to that time.
     next_in_series_task_id: Optional[str] = None
     # The 1-based index of this task within the recurrence series. The first task in a series has the value 1, the next task in the series has the value 2, and so on.
@@ -41,16 +42,16 @@ class PlannerTaskRecurrence(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PlannerTaskRecurrence()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .planner_recurrence_schedule import PlannerRecurrenceSchedule
 
         from .planner_recurrence_schedule import PlannerRecurrenceSchedule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "nextInSeriesTaskId": lambda n : setattr(self, 'next_in_series_task_id', n.get_str_value()),
             "occurrenceId": lambda n : setattr(self, 'occurrence_id', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -69,8 +70,6 @@ class PlannerTaskRecurrence(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .planner_recurrence_schedule import PlannerRecurrenceSchedule
-
         writer.write_str_value("nextInSeriesTaskId", self.next_in_series_task_id)
         writer.write_int_value("occurrenceId", self.occurrence_id)
         writer.write_str_value("@odata.type", self.odata_type)

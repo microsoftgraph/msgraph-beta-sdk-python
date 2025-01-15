@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_deployment_channel import AppleDeploymentChannel
@@ -29,11 +30,11 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase, Parsable):
     # Target store certificate. Possible values are: user, machine.
     certificate_store: Optional[CertificateStore] = None
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
-    custom_subject_alternative_names: Optional[List[CustomSubjectAlternativeName]] = None
+    custom_subject_alternative_names: Optional[list[CustomSubjectAlternativeName]] = None
     # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
     deployment_channel: Optional[AppleDeploymentChannel] = None
     # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-    extended_key_usages: Optional[List[ExtendedKeyUsage]] = None
+    extended_key_usages: Optional[list[ExtendedKeyUsage]] = None
     # SCEP Hash Algorithm. Possible values are: sha1, sha2.
     hash_algorithm: Optional[HashAlgorithms] = None
     # Key Size Options.
@@ -41,11 +42,11 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase, Parsable):
     # Key Usage Options.
     key_usage: Optional[KeyUsages] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-    managed_device_certificate_states: Optional[List[ManagedDeviceCertificateState]] = None
+    managed_device_certificate_states: Optional[list[ManagedDeviceCertificateState]] = None
     # Trusted Root Certificate.
     root_certificate: Optional[MacOSTrustedRootCertificate] = None
     # SCEP Server Url(s).
-    scep_server_urls: Optional[List[str]] = None
+    scep_server_urls: Optional[list[str]] = None
     # Custom String that defines the AAD Attribute.
     subject_alternative_name_format_string: Optional[str] = None
     # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
@@ -62,10 +63,10 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSScepCertificateProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .apple_deployment_channel import AppleDeploymentChannel
         from .certificate_store import CertificateStore
@@ -89,7 +90,7 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase, Parsable):
         from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowAllAppsAccess": lambda n : setattr(self, 'allow_all_apps_access', n.get_bool_value()),
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(CertificateStore)),
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(CustomSubjectAlternativeName)),
@@ -117,17 +118,6 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .apple_deployment_channel import AppleDeploymentChannel
-        from .certificate_store import CertificateStore
-        from .custom_subject_alternative_name import CustomSubjectAlternativeName
-        from .extended_key_usage import ExtendedKeyUsage
-        from .hash_algorithms import HashAlgorithms
-        from .key_size import KeySize
-        from .key_usages import KeyUsages
-        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
-        from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
-        from .managed_device_certificate_state import ManagedDeviceCertificateState
-
         writer.write_bool_value("allowAllAppsAccess", self.allow_all_apps_access)
         writer.write_enum_value("certificateStore", self.certificate_store)
         writer.write_collection_of_object_values("customSubjectAlternativeNames", self.custom_subject_alternative_names)

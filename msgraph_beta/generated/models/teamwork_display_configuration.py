@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .teamwork_configured_peripheral import TeamworkConfiguredPeripheral
@@ -14,9 +15,9 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The list of configured displays. Applicable only for Microsoft Teams Rooms devices.
-    configured_displays: Optional[List[TeamworkConfiguredPeripheral]] = None
+    configured_displays: Optional[list[TeamworkConfiguredPeripheral]] = None
     # Total number of connected displays, including the inbuilt display. Applicable only for Teams Rooms devices.
     display_count: Optional[int] = None
     # Configuration for the inbuilt display. Not applicable for Teams Rooms devices.
@@ -39,10 +40,10 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TeamworkDisplayConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .teamwork_configured_peripheral import TeamworkConfiguredPeripheral
         from .teamwork_display_screen_configuration import TeamworkDisplayScreenConfiguration
@@ -50,7 +51,7 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         from .teamwork_configured_peripheral import TeamworkConfiguredPeripheral
         from .teamwork_display_screen_configuration import TeamworkDisplayScreenConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "configuredDisplays": lambda n : setattr(self, 'configured_displays', n.get_collection_of_object_values(TeamworkConfiguredPeripheral)),
             "displayCount": lambda n : setattr(self, 'display_count', n.get_int_value()),
             "inBuiltDisplayScreenConfiguration": lambda n : setattr(self, 'in_built_display_screen_configuration', n.get_object_value(TeamworkDisplayScreenConfiguration)),
@@ -68,9 +69,6 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .teamwork_configured_peripheral import TeamworkConfiguredPeripheral
-        from .teamwork_display_screen_configuration import TeamworkDisplayScreenConfiguration
-
         writer.write_collection_of_object_values("configuredDisplays", self.configured_displays)
         writer.write_int_value("displayCount", self.display_count)
         writer.write_object_value("inBuiltDisplayScreenConfiguration", self.in_built_display_screen_configuration)

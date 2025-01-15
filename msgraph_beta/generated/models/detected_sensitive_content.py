@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .classification_attribute import ClassificationAttribute
@@ -17,11 +18,11 @@ from .detected_sensitive_content_base import DetectedSensitiveContentBase
 @dataclass
 class DetectedSensitiveContent(DetectedSensitiveContentBase, Parsable):
     # The classificationAttributes property
-    classification_attributes: Optional[List[ClassificationAttribute]] = None
+    classification_attributes: Optional[list[ClassificationAttribute]] = None
     # The classificationMethod property
     classification_method: Optional[ClassificationMethod] = None
     # The matches property
-    matches: Optional[List[SensitiveContentLocation]] = None
+    matches: Optional[list[SensitiveContentLocation]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The scope property
@@ -49,10 +50,10 @@ class DetectedSensitiveContent(DetectedSensitiveContentBase, Parsable):
             return MachineLearningDetectedSensitiveContent()
         return DetectedSensitiveContent()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .classification_attribute import ClassificationAttribute
         from .classification_method import ClassificationMethod
@@ -70,7 +71,7 @@ class DetectedSensitiveContent(DetectedSensitiveContentBase, Parsable):
         from .sensitive_type_scope import SensitiveTypeScope
         from .sensitive_type_source import SensitiveTypeSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "classificationAttributes": lambda n : setattr(self, 'classification_attributes', n.get_collection_of_object_values(ClassificationAttribute)),
             "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(ClassificationMethod)),
             "matches": lambda n : setattr(self, 'matches', n.get_collection_of_object_values(SensitiveContentLocation)),
@@ -90,14 +91,6 @@ class DetectedSensitiveContent(DetectedSensitiveContentBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .classification_attribute import ClassificationAttribute
-        from .classification_method import ClassificationMethod
-        from .detected_sensitive_content_base import DetectedSensitiveContentBase
-        from .machine_learning_detected_sensitive_content import MachineLearningDetectedSensitiveContent
-        from .sensitive_content_location import SensitiveContentLocation
-        from .sensitive_type_scope import SensitiveTypeScope
-        from .sensitive_type_source import SensitiveTypeSource
-
         writer.write_collection_of_object_values("classificationAttributes", self.classification_attributes)
         writer.write_enum_value("classificationMethod", self.classification_method)
         writer.write_collection_of_object_values("matches", self.matches)

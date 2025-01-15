@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -14,7 +15,7 @@ class ManagementActionTenantDeploymentStatus(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The collection of deployment status for each instance of a management action. Optional.
-    statuses: Optional[List[ManagementActionDeploymentStatus]] = None
+    statuses: Optional[list[ManagementActionDeploymentStatus]] = None
     # The identifier for the tenant group that is associated with the management action. Required. Read-only.
     tenant_group_id: Optional[str] = None
     # The Microsoft Entra tenant identifier for the managed tenant. Required. Read-only.
@@ -31,10 +32,10 @@ class ManagementActionTenantDeploymentStatus(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagementActionTenantDeploymentStatus()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .management_action_deployment_status import ManagementActionDeploymentStatus
@@ -42,7 +43,7 @@ class ManagementActionTenantDeploymentStatus(Entity, Parsable):
         from ..entity import Entity
         from .management_action_deployment_status import ManagementActionDeploymentStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "statuses": lambda n : setattr(self, 'statuses', n.get_collection_of_object_values(ManagementActionDeploymentStatus)),
             "tenantGroupId": lambda n : setattr(self, 'tenant_group_id', n.get_str_value()),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
@@ -60,9 +61,6 @@ class ManagementActionTenantDeploymentStatus(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .management_action_deployment_status import ManagementActionDeploymentStatus
-
         writer.write_collection_of_object_values("statuses", self.statuses)
         writer.write_str_value("tenantGroupId", self.tenant_group_id)
         writer.write_str_value("tenantId", self.tenant_id)

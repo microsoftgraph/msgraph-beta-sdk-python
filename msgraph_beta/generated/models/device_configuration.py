@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_certificate_profile_base import AndroidCertificateProfileBase
@@ -162,7 +163,7 @@ class DeviceConfiguration(Entity, Parsable):
     Device Configuration.
     """
     # The list of assignments for the device configuration profile.
-    assignments: Optional[List[DeviceConfigurationAssignment]] = None
+    assignments: Optional[list[DeviceConfigurationAssignment]] = None
     # DateTime the object was created.
     created_date_time: Optional[datetime.datetime] = None
     # Admin provided description of the Device Configuration.
@@ -174,27 +175,27 @@ class DeviceConfiguration(Entity, Parsable):
     # The OS version applicability rule for this Policy.
     device_management_applicability_rule_os_version: Optional[DeviceManagementApplicabilityRuleOsVersion] = None
     # Device Configuration Setting State Device Summary
-    device_setting_state_summaries: Optional[List[SettingStateDeviceSummary]] = None
+    device_setting_state_summaries: Optional[list[SettingStateDeviceSummary]] = None
     # Device Configuration devices status overview
     device_status_overview: Optional[DeviceConfigurationDeviceOverview] = None
     # Device configuration installation status by device.
-    device_statuses: Optional[List[DeviceConfigurationDeviceStatus]] = None
+    device_statuses: Optional[list[DeviceConfigurationDeviceStatus]] = None
     # Admin provided name of the device configuration.
     display_name: Optional[str] = None
     # The list of group assignments for the device configuration profile.
-    group_assignments: Optional[List[DeviceConfigurationGroupAssignment]] = None
+    group_assignments: Optional[list[DeviceConfigurationGroupAssignment]] = None
     # DateTime the object was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # List of Scope Tags for this Entity instance.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # Indicates whether or not the underlying Device Configuration supports the assignment of scope tags. Assigning to the ScopeTags property is not allowed when this value is false and entities will not be visible to scoped users. This occurs for Legacy policies created in Silverlight and can be resolved by deleting and recreating the policy in the Azure Portal. This property is read-only.
     supports_scope_tags: Optional[bool] = None
     # Device Configuration users status overview
     user_status_overview: Optional[DeviceConfigurationUserOverview] = None
     # Device configuration installation status by user.
-    user_statuses: Optional[List[DeviceConfigurationUserStatus]] = None
+    user_statuses: Optional[list[DeviceConfigurationUserStatus]] = None
     # Version of the device configuration.
     version: Optional[int] = None
     
@@ -762,10 +763,10 @@ class DeviceConfiguration(Entity, Parsable):
             return WindowsWiredNetworkConfiguration()
         return DeviceConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_custom_configuration import AndroidCustomConfiguration
@@ -1065,7 +1066,7 @@ class DeviceConfiguration(Entity, Parsable):
         from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
         from .windows_wired_network_configuration import WindowsWiredNetworkConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(DeviceConfigurationAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -1097,155 +1098,6 @@ class DeviceConfiguration(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_certificate_profile_base import AndroidCertificateProfileBase
-        from .android_custom_configuration import AndroidCustomConfiguration
-        from .android_device_owner_certificate_profile_base import AndroidDeviceOwnerCertificateProfileBase
-        from .android_device_owner_derived_credential_authentication_configuration import AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration
-        from .android_device_owner_enterprise_wi_fi_configuration import AndroidDeviceOwnerEnterpriseWiFiConfiguration
-        from .android_device_owner_general_device_configuration import AndroidDeviceOwnerGeneralDeviceConfiguration
-        from .android_device_owner_imported_p_f_x_certificate_profile import AndroidDeviceOwnerImportedPFXCertificateProfile
-        from .android_device_owner_pkcs_certificate_profile import AndroidDeviceOwnerPkcsCertificateProfile
-        from .android_device_owner_scep_certificate_profile import AndroidDeviceOwnerScepCertificateProfile
-        from .android_device_owner_trusted_root_certificate import AndroidDeviceOwnerTrustedRootCertificate
-        from .android_device_owner_vpn_configuration import AndroidDeviceOwnerVpnConfiguration
-        from .android_device_owner_wi_fi_configuration import AndroidDeviceOwnerWiFiConfiguration
-        from .android_eas_email_profile_configuration import AndroidEasEmailProfileConfiguration
-        from .android_enterprise_wi_fi_configuration import AndroidEnterpriseWiFiConfiguration
-        from .android_for_work_certificate_profile_base import AndroidForWorkCertificateProfileBase
-        from .android_for_work_custom_configuration import AndroidForWorkCustomConfiguration
-        from .android_for_work_eas_email_profile_base import AndroidForWorkEasEmailProfileBase
-        from .android_for_work_enterprise_wi_fi_configuration import AndroidForWorkEnterpriseWiFiConfiguration
-        from .android_for_work_general_device_configuration import AndroidForWorkGeneralDeviceConfiguration
-        from .android_for_work_gmail_eas_configuration import AndroidForWorkGmailEasConfiguration
-        from .android_for_work_imported_p_f_x_certificate_profile import AndroidForWorkImportedPFXCertificateProfile
-        from .android_for_work_nine_work_eas_configuration import AndroidForWorkNineWorkEasConfiguration
-        from .android_for_work_pkcs_certificate_profile import AndroidForWorkPkcsCertificateProfile
-        from .android_for_work_scep_certificate_profile import AndroidForWorkScepCertificateProfile
-        from .android_for_work_trusted_root_certificate import AndroidForWorkTrustedRootCertificate
-        from .android_for_work_vpn_configuration import AndroidForWorkVpnConfiguration
-        from .android_for_work_wi_fi_configuration import AndroidForWorkWiFiConfiguration
-        from .android_general_device_configuration import AndroidGeneralDeviceConfiguration
-        from .android_imported_p_f_x_certificate_profile import AndroidImportedPFXCertificateProfile
-        from .android_oma_cp_configuration import AndroidOmaCpConfiguration
-        from .android_pkcs_certificate_profile import AndroidPkcsCertificateProfile
-        from .android_scep_certificate_profile import AndroidScepCertificateProfile
-        from .android_trusted_root_certificate import AndroidTrustedRootCertificate
-        from .android_vpn_configuration import AndroidVpnConfiguration
-        from .android_wi_fi_configuration import AndroidWiFiConfiguration
-        from .android_work_profile_certificate_profile_base import AndroidWorkProfileCertificateProfileBase
-        from .android_work_profile_custom_configuration import AndroidWorkProfileCustomConfiguration
-        from .android_work_profile_eas_email_profile_base import AndroidWorkProfileEasEmailProfileBase
-        from .android_work_profile_enterprise_wi_fi_configuration import AndroidWorkProfileEnterpriseWiFiConfiguration
-        from .android_work_profile_general_device_configuration import AndroidWorkProfileGeneralDeviceConfiguration
-        from .android_work_profile_gmail_eas_configuration import AndroidWorkProfileGmailEasConfiguration
-        from .android_work_profile_nine_work_eas_configuration import AndroidWorkProfileNineWorkEasConfiguration
-        from .android_work_profile_pkcs_certificate_profile import AndroidWorkProfilePkcsCertificateProfile
-        from .android_work_profile_scep_certificate_profile import AndroidWorkProfileScepCertificateProfile
-        from .android_work_profile_trusted_root_certificate import AndroidWorkProfileTrustedRootCertificate
-        from .android_work_profile_vpn_configuration import AndroidWorkProfileVpnConfiguration
-        from .android_work_profile_wi_fi_configuration import AndroidWorkProfileWiFiConfiguration
-        from .aosp_device_owner_certificate_profile_base import AospDeviceOwnerCertificateProfileBase
-        from .aosp_device_owner_device_configuration import AospDeviceOwnerDeviceConfiguration
-        from .aosp_device_owner_enterprise_wi_fi_configuration import AospDeviceOwnerEnterpriseWiFiConfiguration
-        from .aosp_device_owner_pkcs_certificate_profile import AospDeviceOwnerPkcsCertificateProfile
-        from .aosp_device_owner_scep_certificate_profile import AospDeviceOwnerScepCertificateProfile
-        from .aosp_device_owner_trusted_root_certificate import AospDeviceOwnerTrustedRootCertificate
-        from .aosp_device_owner_wi_fi_configuration import AospDeviceOwnerWiFiConfiguration
-        from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
-        from .apple_expedited_checkin_configuration_base import AppleExpeditedCheckinConfigurationBase
-        from .apple_vpn_configuration import AppleVpnConfiguration
-        from .device_configuration_assignment import DeviceConfigurationAssignment
-        from .device_configuration_device_overview import DeviceConfigurationDeviceOverview
-        from .device_configuration_device_status import DeviceConfigurationDeviceStatus
-        from .device_configuration_group_assignment import DeviceConfigurationGroupAssignment
-        from .device_configuration_user_overview import DeviceConfigurationUserOverview
-        from .device_configuration_user_status import DeviceConfigurationUserStatus
-        from .device_management_applicability_rule_device_mode import DeviceManagementApplicabilityRuleDeviceMode
-        from .device_management_applicability_rule_os_edition import DeviceManagementApplicabilityRuleOsEdition
-        from .device_management_applicability_rule_os_version import DeviceManagementApplicabilityRuleOsVersion
-        from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
-        from .edition_upgrade_configuration import EditionUpgradeConfiguration
-        from .entity import Entity
-        from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
-        from .ios_certificate_profile import IosCertificateProfile
-        from .ios_certificate_profile_base import IosCertificateProfileBase
-        from .ios_custom_configuration import IosCustomConfiguration
-        from .ios_derived_credential_authentication_configuration import IosDerivedCredentialAuthenticationConfiguration
-        from .ios_device_features_configuration import IosDeviceFeaturesConfiguration
-        from .ios_eas_email_profile_configuration import IosEasEmailProfileConfiguration
-        from .ios_education_device_configuration import IosEducationDeviceConfiguration
-        from .ios_edu_device_configuration import IosEduDeviceConfiguration
-        from .ios_enterprise_wi_fi_configuration import IosEnterpriseWiFiConfiguration
-        from .ios_expedited_checkin_configuration import IosExpeditedCheckinConfiguration
-        from .ios_general_device_configuration import IosGeneralDeviceConfiguration
-        from .ios_imported_p_f_x_certificate_profile import IosImportedPFXCertificateProfile
-        from .ios_pkcs_certificate_profile import IosPkcsCertificateProfile
-        from .ios_scep_certificate_profile import IosScepCertificateProfile
-        from .ios_trusted_root_certificate import IosTrustedRootCertificate
-        from .ios_update_configuration import IosUpdateConfiguration
-        from .ios_vpn_configuration import IosVpnConfiguration
-        from .ios_wi_fi_configuration import IosWiFiConfiguration
-        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
-        from .mac_o_s_custom_app_configuration import MacOSCustomAppConfiguration
-        from .mac_o_s_custom_configuration import MacOSCustomConfiguration
-        from .mac_o_s_device_features_configuration import MacOSDeviceFeaturesConfiguration
-        from .mac_o_s_endpoint_protection_configuration import MacOSEndpointProtectionConfiguration
-        from .mac_o_s_enterprise_wi_fi_configuration import MacOSEnterpriseWiFiConfiguration
-        from .mac_o_s_extensions_configuration import MacOSExtensionsConfiguration
-        from .mac_o_s_general_device_configuration import MacOSGeneralDeviceConfiguration
-        from .mac_o_s_imported_p_f_x_certificate_profile import MacOSImportedPFXCertificateProfile
-        from .mac_o_s_pkcs_certificate_profile import MacOSPkcsCertificateProfile
-        from .mac_o_s_scep_certificate_profile import MacOSScepCertificateProfile
-        from .mac_o_s_software_update_configuration import MacOSSoftwareUpdateConfiguration
-        from .mac_o_s_trusted_root_certificate import MacOSTrustedRootCertificate
-        from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
-        from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
-        from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
-        from .setting_state_device_summary import SettingStateDeviceSummary
-        from .shared_p_c_configuration import SharedPCConfiguration
-        from .unsupported_device_configuration import UnsupportedDeviceConfiguration
-        from .vpn_configuration import VpnConfiguration
-        from .windows10_certificate_profile_base import Windows10CertificateProfileBase
-        from .windows10_custom_configuration import Windows10CustomConfiguration
-        from .windows10_device_firmware_configuration_interface import Windows10DeviceFirmwareConfigurationInterface
-        from .windows10_eas_email_profile_configuration import Windows10EasEmailProfileConfiguration
-        from .windows10_endpoint_protection_configuration import Windows10EndpointProtectionConfiguration
-        from .windows10_enterprise_modern_app_management_configuration import Windows10EnterpriseModernAppManagementConfiguration
-        from .windows10_general_configuration import Windows10GeneralConfiguration
-        from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
-        from .windows10_network_boundary_configuration import Windows10NetworkBoundaryConfiguration
-        from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
-        from .windows10_p_f_x_import_certificate_profile import Windows10PFXImportCertificateProfile
-        from .windows10_secure_assessment_configuration import Windows10SecureAssessmentConfiguration
-        from .windows10_team_general_configuration import Windows10TeamGeneralConfiguration
-        from .windows10_vpn_configuration import Windows10VpnConfiguration
-        from .windows81_certificate_profile_base import Windows81CertificateProfileBase
-        from .windows81_general_configuration import Windows81GeneralConfiguration
-        from .windows81_s_c_e_p_certificate_profile import Windows81SCEPCertificateProfile
-        from .windows81_trusted_root_certificate import Windows81TrustedRootCertificate
-        from .windows81_vpn_configuration import Windows81VpnConfiguration
-        from .windows81_wifi_import_configuration import Windows81WifiImportConfiguration
-        from .windows_certificate_profile_base import WindowsCertificateProfileBase
-        from .windows_defender_advanced_threat_protection_configuration import WindowsDefenderAdvancedThreatProtectionConfiguration
-        from .windows_delivery_optimization_configuration import WindowsDeliveryOptimizationConfiguration
-        from .windows_domain_join_configuration import WindowsDomainJoinConfiguration
-        from .windows_health_monitoring_configuration import WindowsHealthMonitoringConfiguration
-        from .windows_identity_protection_configuration import WindowsIdentityProtectionConfiguration
-        from .windows_kiosk_configuration import WindowsKioskConfiguration
-        from .windows_phone81_certificate_profile_base import WindowsPhone81CertificateProfileBase
-        from .windows_phone81_custom_configuration import WindowsPhone81CustomConfiguration
-        from .windows_phone81_general_configuration import WindowsPhone81GeneralConfiguration
-        from .windows_phone81_imported_p_f_x_certificate_profile import WindowsPhone81ImportedPFXCertificateProfile
-        from .windows_phone81_s_c_e_p_certificate_profile import WindowsPhone81SCEPCertificateProfile
-        from .windows_phone81_trusted_root_certificate import WindowsPhone81TrustedRootCertificate
-        from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
-        from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
-        from .windows_update_for_business_configuration import WindowsUpdateForBusinessConfiguration
-        from .windows_vpn_configuration import WindowsVpnConfiguration
-        from .windows_wifi_configuration import WindowsWifiConfiguration
-        from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
-        from .windows_wired_network_configuration import WindowsWiredNetworkConfiguration
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

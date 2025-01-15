@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .destination_type import DestinationType
@@ -40,7 +41,7 @@ class RestoreArtifactsBulkRequestBase(Entity, Parsable):
     # The start and end date and time of the protection period.
     protection_time_period: Optional[TimePeriod] = None
     # Indicates which protection units to restore. This property isn't implemented yet. Future value; don't use.
-    protection_unit_ids: Optional[List[str]] = None
+    protection_unit_ids: Optional[list[str]] = None
     # Indicates which restore point to return. The possible values are: oldest, latest, unknownFutureValue.
     restore_point_preference: Optional[RestorePointPreference] = None
     # Determines the status of the long-running operation. The possible values area: unknown, active, completed, completedWithErrors, unknownFutureValue.
@@ -76,10 +77,10 @@ class RestoreArtifactsBulkRequestBase(Entity, Parsable):
             return SiteRestoreArtifactsBulkAdditionRequest()
         return RestoreArtifactsBulkRequestBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .destination_type import DestinationType
         from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
@@ -105,7 +106,7 @@ class RestoreArtifactsBulkRequestBase(Entity, Parsable):
         from .site_restore_artifacts_bulk_addition_request import SiteRestoreArtifactsBulkAdditionRequest
         from .time_period import TimePeriod
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "destinationType": lambda n : setattr(self, 'destination_type', n.get_enum_value(DestinationType)),
@@ -132,18 +133,6 @@ class RestoreArtifactsBulkRequestBase(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .destination_type import DestinationType
-        from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
-        from .entity import Entity
-        from .identity_set import IdentitySet
-        from .mailbox_restore_artifacts_bulk_addition_request import MailboxRestoreArtifactsBulkAdditionRequest
-        from .public_error import PublicError
-        from .restore_artifacts_bulk_request_status import RestoreArtifactsBulkRequestStatus
-        from .restore_point_preference import RestorePointPreference
-        from .restore_point_tags import RestorePointTags
-        from .site_restore_artifacts_bulk_addition_request import SiteRestoreArtifactsBulkAdditionRequest
-        from .time_period import TimePeriod
-
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_enum_value("destinationType", self.destination_type)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -46,10 +47,10 @@ class ScheduledPermissionsRequest(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ScheduledPermissionsRequest()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .permissions_definition import PermissionsDefinition
@@ -65,7 +66,7 @@ class ScheduledPermissionsRequest(Entity, Parsable):
         from .ticket_info import TicketInfo
         from .unified_role_schedule_request_actions import UnifiedRoleScheduleRequestActions
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(UnifiedRoleScheduleRequestActions)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
@@ -88,13 +89,6 @@ class ScheduledPermissionsRequest(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .permissions_definition import PermissionsDefinition
-        from .request_schedule import RequestSchedule
-        from .status_detail import StatusDetail
-        from .ticket_info import TicketInfo
-        from .unified_role_schedule_request_actions import UnifiedRoleScheduleRequestActions
-
         writer.write_enum_value("action", self.action)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("justification", self.justification)

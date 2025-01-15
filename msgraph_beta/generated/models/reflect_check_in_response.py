@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -47,10 +48,10 @@ class ReflectCheckInResponse(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ReflectCheckInResponse()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .response_emotion_type import ResponseEmotionType
@@ -60,7 +61,7 @@ class ReflectCheckInResponse(Entity, Parsable):
         from .response_emotion_type import ResponseEmotionType
         from .response_feedback_type import ResponseFeedbackType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "checkInId": lambda n : setattr(self, 'check_in_id', n.get_str_value()),
             "checkInTitle": lambda n : setattr(self, 'check_in_title', n.get_str_value()),
             "classId": lambda n : setattr(self, 'class_id', n.get_str_value()),
@@ -85,10 +86,6 @@ class ReflectCheckInResponse(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .response_emotion_type import ResponseEmotionType
-        from .response_feedback_type import ResponseFeedbackType
-
         writer.write_str_value("checkInId", self.check_in_id)
         writer.write_str_value("checkInTitle", self.check_in_title)
         writer.write_str_value("classId", self.class_id)

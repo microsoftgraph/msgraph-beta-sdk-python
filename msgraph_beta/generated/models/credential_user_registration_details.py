@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -12,7 +13,7 @@ from .entity import Entity
 @dataclass
 class CredentialUserRegistrationDetails(Entity, Parsable):
     # Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
-    auth_methods: Optional[List[RegistrationAuthMethod]] = None
+    auth_methods: Optional[list[RegistrationAuthMethod]] = None
     # Indicates whether the user is ready to perform self-service password reset or MFA.
     is_capable: Optional[bool] = None
     # Indicates whether the user enabled to perform self-service password reset.
@@ -39,10 +40,10 @@ class CredentialUserRegistrationDetails(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CredentialUserRegistrationDetails()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .registration_auth_method import RegistrationAuthMethod
@@ -50,7 +51,7 @@ class CredentialUserRegistrationDetails(Entity, Parsable):
         from .entity import Entity
         from .registration_auth_method import RegistrationAuthMethod
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authMethods": lambda n : setattr(self, 'auth_methods', n.get_collection_of_enum_values(RegistrationAuthMethod)),
             "isCapable": lambda n : setattr(self, 'is_capable', n.get_bool_value()),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
@@ -72,9 +73,6 @@ class CredentialUserRegistrationDetails(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .registration_auth_method import RegistrationAuthMethod
-
         writer.write_collection_of_enum_values("authMethods", self.auth_methods)
         writer.write_bool_value("isCapable", self.is_capable)
         writer.write_bool_value("isEnabled", self.is_enabled)

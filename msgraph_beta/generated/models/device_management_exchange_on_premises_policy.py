@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_exchange_access_level import DeviceManagementExchangeAccessLevel
@@ -18,13 +19,13 @@ class DeviceManagementExchangeOnPremisesPolicy(Entity, Parsable):
     Singleton entity which represents the Exchange OnPremises policy configured for a tenant.
     """
     # The list of device access rules in Exchange. The access rules apply globally to the entire Exchange organization
-    access_rules: Optional[List[DeviceManagementExchangeAccessRule]] = None
+    access_rules: Optional[list[DeviceManagementExchangeAccessRule]] = None
     # The Exchange on premises conditional access settings. On premises conditional access will require devices to be both enrolled and compliant for mail access
     conditional_access_settings: Optional[OnPremisesConditionalAccessSettings] = None
     # Access Level in Exchange.
     default_access_level: Optional[DeviceManagementExchangeAccessLevel] = None
     # The list of device classes known to Exchange
-    known_device_classes: Optional[List[DeviceManagementExchangeDeviceClass]] = None
+    known_device_classes: Optional[list[DeviceManagementExchangeDeviceClass]] = None
     # Notification text that will be sent to users quarantined by this policy. This is UTF8 encoded byte array HTML.
     notification_content: Optional[bytes] = None
     # The OdataType property
@@ -41,10 +42,10 @@ class DeviceManagementExchangeOnPremisesPolicy(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementExchangeOnPremisesPolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_exchange_access_level import DeviceManagementExchangeAccessLevel
         from .device_management_exchange_access_rule import DeviceManagementExchangeAccessRule
@@ -58,7 +59,7 @@ class DeviceManagementExchangeOnPremisesPolicy(Entity, Parsable):
         from .entity import Entity
         from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessRules": lambda n : setattr(self, 'access_rules', n.get_collection_of_object_values(DeviceManagementExchangeAccessRule)),
             "conditionalAccessSettings": lambda n : setattr(self, 'conditional_access_settings', n.get_object_value(OnPremisesConditionalAccessSettings)),
             "defaultAccessLevel": lambda n : setattr(self, 'default_access_level', n.get_enum_value(DeviceManagementExchangeAccessLevel)),
@@ -78,12 +79,6 @@ class DeviceManagementExchangeOnPremisesPolicy(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_exchange_access_level import DeviceManagementExchangeAccessLevel
-        from .device_management_exchange_access_rule import DeviceManagementExchangeAccessRule
-        from .device_management_exchange_device_class import DeviceManagementExchangeDeviceClass
-        from .entity import Entity
-        from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
-
         writer.write_collection_of_object_values("accessRules", self.access_rules)
         writer.write_object_value("conditionalAccessSettings", self.conditional_access_settings)
         writer.write_enum_value("defaultAccessLevel", self.default_access_level)

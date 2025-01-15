@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .case_operation import CaseOperation
@@ -22,7 +23,7 @@ class EdiscoveryExportOperation(CaseOperation, Parsable):
     # The description provided for the export.
     description: Optional[str] = None
     # Contains the properties for an export file metadata, including downloadUrl, fileName, and size. If you export to an Azure storage location, this property returns empty.
-    export_file_metadata: Optional[List[ExportFileMetadata]] = None
+    export_file_metadata: Optional[list[ExportFileMetadata]] = None
     # The options provided for the export. For more information, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags. The fileInfo member is deprecated and will stop returning data on April 30, 2023. Going forward, the summary and load file are always included.
     export_options: Optional[ExportOptions] = None
     # The options provided that specify the structure of the export. For more information, see reviewSet: export. Possible values are: none, directory, pst.
@@ -49,10 +50,10 @@ class EdiscoveryExportOperation(CaseOperation, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EdiscoveryExportOperation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .case_operation import CaseOperation
         from .ediscovery_review_set import EdiscoveryReviewSet
@@ -68,7 +69,7 @@ class EdiscoveryExportOperation(CaseOperation, Parsable):
         from .export_file_structure import ExportFileStructure
         from .export_options import ExportOptions
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "azureBlobContainer": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
             "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -93,13 +94,6 @@ class EdiscoveryExportOperation(CaseOperation, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .case_operation import CaseOperation
-        from .ediscovery_review_set import EdiscoveryReviewSet
-        from .ediscovery_review_set_query import EdiscoveryReviewSetQuery
-        from .export_file_metadata import ExportFileMetadata
-        from .export_file_structure import ExportFileStructure
-        from .export_options import ExportOptions
-
         writer.write_str_value("azureBlobContainer", self.azure_blob_container)
         writer.write_str_value("azureBlobToken", self.azure_blob_token)
         writer.write_str_value("description", self.description)

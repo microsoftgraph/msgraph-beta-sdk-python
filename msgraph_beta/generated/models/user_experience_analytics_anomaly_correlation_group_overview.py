@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -26,7 +27,7 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity, Parsable):
     # Indicates the total number of devices in a correlation group. Valid values -2147483648 to 2147483647
     correlation_group_device_count: Optional[int] = None
     # Describes the features of a device that are shared between all devices in a correlation group.
-    correlation_group_features: Optional[List[UserExperienceAnalyticsAnomalyCorrelationGroupFeature]] = None
+    correlation_group_features: Optional[list[UserExperienceAnalyticsAnomalyCorrelationGroupFeature]] = None
     # The unique identifier for the correlation group which will uniquely identify one of the correlation group within an anomaly. The correlation Id can be mapped to the correlation group name by concatinating the correlation group features. Example of correlation group name which is the indicative of concatenated features names are  for names, Contoso manufacture 4.4.1 and Windows 11.22621.1485.
     correlation_group_id: Optional[str] = None
     # Indicates the level of prevalence of the correlation group features in the anomaly. Possible values are: high, medium or low
@@ -49,10 +50,10 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsAnomalyCorrelationGroupOverview()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .user_experience_analytics_anomaly_correlation_group_feature import UserExperienceAnalyticsAnomalyCorrelationGroupFeature
@@ -62,7 +63,7 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity, Parsable):
         from .user_experience_analytics_anomaly_correlation_group_feature import UserExperienceAnalyticsAnomalyCorrelationGroupFeature
         from .user_experience_analytics_anomaly_correlation_group_prevalence import UserExperienceAnalyticsAnomalyCorrelationGroupPrevalence
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "anomalyCorrelationGroupCount": lambda n : setattr(self, 'anomaly_correlation_group_count', n.get_int_value()),
             "anomalyId": lambda n : setattr(self, 'anomaly_id', n.get_str_value()),
             "correlationGroupAnomalousDeviceCount": lambda n : setattr(self, 'correlation_group_anomalous_device_count', n.get_int_value()),
@@ -87,10 +88,6 @@ class UserExperienceAnalyticsAnomalyCorrelationGroupOverview(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .user_experience_analytics_anomaly_correlation_group_feature import UserExperienceAnalyticsAnomalyCorrelationGroupFeature
-        from .user_experience_analytics_anomaly_correlation_group_prevalence import UserExperienceAnalyticsAnomalyCorrelationGroupPrevalence
-
         writer.write_int_value("anomalyCorrelationGroupCount", self.anomaly_correlation_group_count)
         writer.write_str_value("anomalyId", self.anomaly_id)
         writer.write_int_value("correlationGroupAnomalousDeviceCount", self.correlation_group_anomalous_device_count)

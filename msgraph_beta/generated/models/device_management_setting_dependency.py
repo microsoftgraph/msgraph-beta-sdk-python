@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_constraint import DeviceManagementConstraint
@@ -16,9 +17,9 @@ class DeviceManagementSettingDependency(AdditionalDataHolder, BackedModel, Parsa
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Collection of constraints for the dependency setting value
-    constraints: Optional[List[DeviceManagementConstraint]] = None
+    constraints: Optional[list[DeviceManagementConstraint]] = None
     # The setting definition ID of the setting depended on
     definition_id: Optional[str] = None
     # The OdataType property
@@ -35,16 +36,16 @@ class DeviceManagementSettingDependency(AdditionalDataHolder, BackedModel, Parsa
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementSettingDependency()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_constraint import DeviceManagementConstraint
 
         from .device_management_constraint import DeviceManagementConstraint
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "constraints": lambda n : setattr(self, 'constraints', n.get_collection_of_object_values(DeviceManagementConstraint)),
             "definitionId": lambda n : setattr(self, 'definition_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -59,8 +60,6 @@ class DeviceManagementSettingDependency(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .device_management_constraint import DeviceManagementConstraint
-
         writer.write_collection_of_object_values("constraints", self.constraints)
         writer.write_str_value("definitionId", self.definition_id)
         writer.write_str_value("@odata.type", self.odata_type)

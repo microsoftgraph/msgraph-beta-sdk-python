@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .enrollment_state import EnrollmentState
@@ -79,10 +80,10 @@ class DeviceManagementAutopilotEvent(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementAutopilotEvent()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .enrollment_state import EnrollmentState
         from .entity import Entity
@@ -94,7 +95,7 @@ class DeviceManagementAutopilotEvent(Entity, Parsable):
         from .windows_autopilot_deployment_state import WindowsAutopilotDeploymentState
         from .windows_autopilot_enrollment_type import WindowsAutopilotEnrollmentType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accountSetupDuration": lambda n : setattr(self, 'account_setup_duration', n.get_timedelta_value()),
             "accountSetupStatus": lambda n : setattr(self, 'account_setup_status', n.get_enum_value(WindowsAutopilotDeploymentState)),
             "deploymentDuration": lambda n : setattr(self, 'deployment_duration', n.get_timedelta_value()),
@@ -133,11 +134,6 @@ class DeviceManagementAutopilotEvent(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .enrollment_state import EnrollmentState
-        from .entity import Entity
-        from .windows_autopilot_deployment_state import WindowsAutopilotDeploymentState
-        from .windows_autopilot_enrollment_type import WindowsAutopilotEnrollmentType
-
         writer.write_timedelta_value("accountSetupDuration", self.account_setup_duration)
         writer.write_enum_value("accountSetupStatus", self.account_setup_status)
         writer.write_timedelta_value("deploymentDuration", self.deployment_duration)

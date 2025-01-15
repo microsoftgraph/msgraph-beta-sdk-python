@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .action_source import ActionSource
@@ -16,9 +17,9 @@ class RecommendLabelAction(InformationProtectionAction, Parsable):
     # The actionSource property
     action_source: Optional[ActionSource] = None
     # Actions to take if the label is accepted by the user.
-    actions: Optional[List[InformationProtectionAction]] = None
+    actions: Optional[list[InformationProtectionAction]] = None
     # The sensitive information type GUIDs that caused the recommendation to be given.
-    responsible_sensitive_type_ids: Optional[List[str]] = None
+    responsible_sensitive_type_ids: Optional[list[str]] = None
     # The sensitivityLabelId property
     sensitivity_label_id: Optional[str] = None
     
@@ -33,10 +34,10 @@ class RecommendLabelAction(InformationProtectionAction, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RecommendLabelAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .action_source import ActionSource
         from .information_protection_action import InformationProtectionAction
@@ -44,7 +45,7 @@ class RecommendLabelAction(InformationProtectionAction, Parsable):
         from .action_source import ActionSource
         from .information_protection_action import InformationProtectionAction
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionSource": lambda n : setattr(self, 'action_source', n.get_enum_value(ActionSource)),
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(InformationProtectionAction)),
             "responsibleSensitiveTypeIds": lambda n : setattr(self, 'responsible_sensitive_type_ids', n.get_collection_of_primitive_values(str)),
@@ -63,9 +64,6 @@ class RecommendLabelAction(InformationProtectionAction, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .action_source import ActionSource
-        from .information_protection_action import InformationProtectionAction
-
         writer.write_enum_value("actionSource", self.action_source)
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_collection_of_primitive_values("responsibleSensitiveTypeIds", self.responsible_sensitive_type_ids)

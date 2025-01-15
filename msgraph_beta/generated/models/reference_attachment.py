@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .attachment import Attachment
@@ -14,7 +15,7 @@ from .attachment import Attachment
 class ReferenceAttachment(Attachment, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.referenceAttachment"
-    # Specifies whether the attachment is a link to a folder. Must set this to true if sourceUrl is a link to a folder. Optional.
+    # Specifies whether the attachment is a link to a folder. You must set this property to true if sourceUrl is a link to a folder. Optional.
     is_folder: Optional[bool] = None
     # Specifies the permissions granted for the attachment by the type of provider in providerType. Possible values are: other, view, edit, anonymousView, anonymousEdit, organizationView, organizationEdit. Optional.
     permission: Optional[ReferenceAttachmentPermission] = None
@@ -22,7 +23,7 @@ class ReferenceAttachment(Attachment, Parsable):
     preview_url: Optional[str] = None
     # The type of provider that supports an attachment of this contentType. Possible values are: other, oneDriveBusiness, oneDriveConsumer, dropbox. Optional.
     provider_type: Optional[ReferenceAttachmentProvider] = None
-    # URL to get the attachment content. If this is a URL to a folder, then for the folder to be displayed correctly in Outlook or Outlook on the web, set isFolder to true. Required.
+    # URL to get the attachment content. If this value is a URL to a folder, then for the folder to be displayed correctly in Outlook or Outlook on the web, set isFolder to true. Required.
     source_url: Optional[str] = None
     # Applies to only a reference attachment of an image - URL to get a thumbnail image. Use thumbnailUrl and previewUrl only when sourceUrl identifies an image file. Optional.
     thumbnail_url: Optional[str] = None
@@ -38,10 +39,10 @@ class ReferenceAttachment(Attachment, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ReferenceAttachment()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .attachment import Attachment
         from .reference_attachment_permission import ReferenceAttachmentPermission
@@ -51,7 +52,7 @@ class ReferenceAttachment(Attachment, Parsable):
         from .reference_attachment_permission import ReferenceAttachmentPermission
         from .reference_attachment_provider import ReferenceAttachmentProvider
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "isFolder": lambda n : setattr(self, 'is_folder', n.get_bool_value()),
             "permission": lambda n : setattr(self, 'permission', n.get_enum_value(ReferenceAttachmentPermission)),
             "previewUrl": lambda n : setattr(self, 'preview_url', n.get_str_value()),
@@ -72,10 +73,6 @@ class ReferenceAttachment(Attachment, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .attachment import Attachment
-        from .reference_attachment_permission import ReferenceAttachmentPermission
-        from .reference_attachment_provider import ReferenceAttachmentProvider
-
         writer.write_bool_value("isFolder", self.is_folder)
         writer.write_enum_value("permission", self.permission)
         writer.write_str_value("previewUrl", self.preview_url)

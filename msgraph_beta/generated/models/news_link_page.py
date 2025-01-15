@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .base_site_page import BaseSitePage
@@ -31,10 +32,10 @@ class NewsLinkPage(BaseSitePage, Parsable):
             raise TypeError("parse_node cannot be null.")
         return NewsLinkPage()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .base_site_page import BaseSitePage
         from .sharepoint_ids import SharepointIds
@@ -42,7 +43,7 @@ class NewsLinkPage(BaseSitePage, Parsable):
         from .base_site_page import BaseSitePage
         from .sharepoint_ids import SharepointIds
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "bannerImageWebUrl": lambda n : setattr(self, 'banner_image_web_url', n.get_str_value()),
             "newsSharepointIds": lambda n : setattr(self, 'news_sharepoint_ids', n.get_object_value(SharepointIds)),
             "newsWebUrl": lambda n : setattr(self, 'news_web_url', n.get_str_value()),
@@ -60,9 +61,6 @@ class NewsLinkPage(BaseSitePage, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .base_site_page import BaseSitePage
-        from .sharepoint_ids import SharepointIds
-
         writer.write_str_value("bannerImageWebUrl", self.banner_image_web_url)
         writer.write_object_value("newsSharepointIds", self.news_sharepoint_ids)
         writer.write_str_value("newsWebUrl", self.news_web_url)

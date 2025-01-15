@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cryptography_suite import CryptographySuite
@@ -27,7 +28,7 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windows10VpnConfiguration"
     # Associated Apps. This collection can contain a maximum of 10000 elements.
-    associated_apps: Optional[List[Windows10AssociatedApps]] = None
+    associated_apps: Optional[list[Windows10AssociatedApps]] = None
     # Windows 10 VPN connection types.
     authentication_method: Optional[Windows10VpnAuthenticationMethod] = None
     # VPN connection types.
@@ -35,9 +36,9 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration, Parsable):
     # Cryptography Suite security settings for IKEv2 VPN in Windows10 and above
     cryptography_suite: Optional[CryptographySuite] = None
     # DNS rules. This collection can contain a maximum of 1000 elements.
-    dns_rules: Optional[List[VpnDnsRule]] = None
+    dns_rules: Optional[list[VpnDnsRule]] = None
     # Specify DNS suffixes to add to the DNS search list to properly route short names.
-    dns_suffixes: Optional[List[str]] = None
+    dns_suffixes: Optional[list[str]] = None
     # Extensible Authentication Protocol (EAP) XML. (UTF8 encoded byte array)
     eap_xml: Optional[bytes] = None
     # Enable Always On mode.
@@ -65,15 +66,15 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration, Parsable):
     # Remember user credentials.
     remember_user_credentials: Optional[bool] = None
     # Routes (optional for third-party providers). This collection can contain a maximum of 1000 elements.
-    routes: Optional[List[VpnRoute]] = None
+    routes: Optional[list[VpnRoute]] = None
     # Single sign-on Extended Key Usage (EKU).
     single_sign_on_eku: Optional[ExtendedKeyUsage] = None
     # Single sign-on issuer hash.
     single_sign_on_issuer_hash: Optional[str] = None
     # Traffic rules. This collection can contain a maximum of 1000 elements.
-    traffic_rules: Optional[List[VpnTrafficRule]] = None
+    traffic_rules: Optional[list[VpnTrafficRule]] = None
     # Trusted Network Domains
-    trusted_network_domains: Optional[List[str]] = None
+    trusted_network_domains: Optional[list[str]] = None
     # Windows Information Protection (WIP) domain to associate with this connection.
     windows_information_protection_domain: Optional[str] = None
     
@@ -88,10 +89,10 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Windows10VpnConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cryptography_suite import CryptographySuite
         from .extended_key_usage import ExtendedKeyUsage
@@ -119,7 +120,7 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration, Parsable):
         from .windows_certificate_profile_base import WindowsCertificateProfileBase
         from .windows_vpn_configuration import WindowsVpnConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "associatedApps": lambda n : setattr(self, 'associated_apps', n.get_collection_of_object_values(Windows10AssociatedApps)),
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(Windows10VpnAuthenticationMethod)),
             "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(Windows10VpnConnectionType)),
@@ -159,19 +160,6 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .cryptography_suite import CryptographySuite
-        from .extended_key_usage import ExtendedKeyUsage
-        from .vpn_dns_rule import VpnDnsRule
-        from .vpn_route import VpnRoute
-        from .vpn_traffic_rule import VpnTrafficRule
-        from .windows10_associated_apps import Windows10AssociatedApps
-        from .windows10_vpn_authentication_method import Windows10VpnAuthenticationMethod
-        from .windows10_vpn_connection_type import Windows10VpnConnectionType
-        from .windows10_vpn_profile_target import Windows10VpnProfileTarget
-        from .windows10_vpn_proxy_server import Windows10VpnProxyServer
-        from .windows_certificate_profile_base import WindowsCertificateProfileBase
-        from .windows_vpn_configuration import WindowsVpnConfiguration
-
         writer.write_collection_of_object_values("associatedApps", self.associated_apps)
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_enum_value("connectionType", self.connection_type)

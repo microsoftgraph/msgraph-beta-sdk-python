@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .assignment_method import AssignmentMethod
@@ -15,13 +16,13 @@ class LabelingOptions(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The assignmentMethod property
     assignment_method: Optional[AssignmentMethod] = None
     # The downgrade justification object that indicates if downgrade was justified and, if so, the reason.
     downgrade_justification: Optional[DowngradeJustification] = None
     # Extended properties will be parsed and returned in the standard MIP labeled metadata format as part of the label information.
-    extended_properties: Optional[List[KeyValuePair]] = None
+    extended_properties: Optional[list[KeyValuePair]] = None
     # The GUID of the label that should be applied to the information.
     label_id: Optional[str] = None
     # The OdataType property
@@ -38,10 +39,10 @@ class LabelingOptions(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return LabelingOptions()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .assignment_method import AssignmentMethod
         from .downgrade_justification import DowngradeJustification
@@ -51,7 +52,7 @@ class LabelingOptions(AdditionalDataHolder, BackedModel, Parsable):
         from .downgrade_justification import DowngradeJustification
         from .key_value_pair import KeyValuePair
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(AssignmentMethod)),
             "downgradeJustification": lambda n : setattr(self, 'downgrade_justification', n.get_object_value(DowngradeJustification)),
             "extendedProperties": lambda n : setattr(self, 'extended_properties', n.get_collection_of_object_values(KeyValuePair)),
@@ -68,10 +69,6 @@ class LabelingOptions(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .assignment_method import AssignmentMethod
-        from .downgrade_justification import DowngradeJustification
-        from .key_value_pair import KeyValuePair
-
         writer.write_enum_value("assignmentMethod", self.assignment_method)
         writer.write_object_value("downgradeJustification", self.downgrade_justification)
         writer.write_collection_of_object_values("extendedProperties", self.extended_properties)

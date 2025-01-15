@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .label_action_base import LabelActionBase
@@ -37,10 +38,10 @@ class ProtectOnlineMeetingAction(LabelActionBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ProtectOnlineMeetingAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .label_action_base import LabelActionBase
         from .lobby_bypass_settings import LobbyBypassSettings
@@ -52,7 +53,7 @@ class ProtectOnlineMeetingAction(LabelActionBase, Parsable):
         from .online_meeting_forwarders import OnlineMeetingForwarders
         from .online_meeting_presenters import OnlineMeetingPresenters
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedForwarders": lambda n : setattr(self, 'allowed_forwarders', n.get_enum_value(OnlineMeetingForwarders)),
             "allowedPresenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(OnlineMeetingPresenters)),
             "isCopyToClipboardEnabled": lambda n : setattr(self, 'is_copy_to_clipboard_enabled', n.get_bool_value()),
@@ -72,11 +73,6 @@ class ProtectOnlineMeetingAction(LabelActionBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .label_action_base import LabelActionBase
-        from .lobby_bypass_settings import LobbyBypassSettings
-        from .online_meeting_forwarders import OnlineMeetingForwarders
-        from .online_meeting_presenters import OnlineMeetingPresenters
-
         writer.write_enum_value("allowedForwarders", self.allowed_forwarders)
         writer.write_enum_value("allowedPresenters", self.allowed_presenters)
         writer.write_bool_value("isCopyToClipboardEnabled", self.is_copy_to_clipboard_enabled)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .windows81_vpn_proxy_server import Windows81VpnProxyServer
@@ -49,10 +50,10 @@ class Windows81VpnConfiguration(WindowsVpnConfiguration, Parsable):
             return WindowsPhone81VpnConfiguration()
         return Windows81VpnConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .windows81_vpn_proxy_server import Windows81VpnProxyServer
         from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
@@ -64,7 +65,7 @@ class Windows81VpnConfiguration(WindowsVpnConfiguration, Parsable):
         from .windows_vpn_configuration import WindowsVpnConfiguration
         from .windows_vpn_connection_type import WindowsVpnConnectionType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applyOnlyToWindows81": lambda n : setattr(self, 'apply_only_to_windows81', n.get_bool_value()),
             "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(WindowsVpnConnectionType)),
             "enableSplitTunneling": lambda n : setattr(self, 'enable_split_tunneling', n.get_bool_value()),
@@ -84,11 +85,6 @@ class Windows81VpnConfiguration(WindowsVpnConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .windows81_vpn_proxy_server import Windows81VpnProxyServer
-        from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
-        from .windows_vpn_configuration import WindowsVpnConfiguration
-        from .windows_vpn_connection_type import WindowsVpnConnectionType
-
         writer.write_enum_value("connectionType", self.connection_type)
         writer.write_bool_value("enableSplitTunneling", self.enable_split_tunneling)
         writer.write_str_value("loginGroupOrDomain", self.login_group_or_domain)

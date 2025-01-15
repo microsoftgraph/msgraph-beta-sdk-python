@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_claim_base import CustomClaimBase
@@ -29,10 +30,10 @@ class SamlNameIdClaim(CustomClaimBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SamlNameIdClaim()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_claim_base import CustomClaimBase
         from .saml_name_i_d_format import SamlNameIDFormat
@@ -40,7 +41,7 @@ class SamlNameIdClaim(CustomClaimBase, Parsable):
         from .custom_claim_base import CustomClaimBase
         from .saml_name_i_d_format import SamlNameIDFormat
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "nameIdFormat": lambda n : setattr(self, 'name_id_format', n.get_enum_value(SamlNameIDFormat)),
             "serviceProviderNameQualifier": lambda n : setattr(self, 'service_provider_name_qualifier', n.get_str_value()),
         }
@@ -57,9 +58,6 @@ class SamlNameIdClaim(CustomClaimBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .custom_claim_base import CustomClaimBase
-        from .saml_name_i_d_format import SamlNameIDFormat
-
         writer.write_enum_value("nameIdFormat", self.name_id_format)
         writer.write_str_value("serviceProviderNameQualifier", self.service_provider_name_qualifier)
     

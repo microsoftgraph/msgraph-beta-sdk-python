@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_script_device_state import DeviceManagementScriptDeviceState
@@ -15,7 +16,7 @@ class DeviceManagementScriptUserState(Entity, Parsable):
     Contains properties for user run state of the device management script.
     """
     # List of run states for this script across all devices of specific user.
-    device_run_states: Optional[List[DeviceManagementScriptDeviceState]] = None
+    device_run_states: Optional[list[DeviceManagementScriptDeviceState]] = None
     # Error device count for specific user.
     error_device_count: Optional[int] = None
     # The OdataType property
@@ -36,10 +37,10 @@ class DeviceManagementScriptUserState(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementScriptUserState()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_script_device_state import DeviceManagementScriptDeviceState
         from .entity import Entity
@@ -47,7 +48,7 @@ class DeviceManagementScriptUserState(Entity, Parsable):
         from .device_management_script_device_state import DeviceManagementScriptDeviceState
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deviceRunStates": lambda n : setattr(self, 'device_run_states', n.get_collection_of_object_values(DeviceManagementScriptDeviceState)),
             "errorDeviceCount": lambda n : setattr(self, 'error_device_count', n.get_int_value()),
             "successDeviceCount": lambda n : setattr(self, 'success_device_count', n.get_int_value()),
@@ -66,9 +67,6 @@ class DeviceManagementScriptUserState(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_script_device_state import DeviceManagementScriptDeviceState
-        from .entity import Entity
-
         writer.write_collection_of_object_values("deviceRunStates", self.device_run_states)
         writer.write_int_value("errorDeviceCount", self.error_device_count)
         writer.write_int_value("successDeviceCount", self.success_device_count)

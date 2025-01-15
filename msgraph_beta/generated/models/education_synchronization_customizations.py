@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .education_synchronization_customization import EducationSynchronizationCustomization
@@ -37,10 +38,10 @@ class EducationSynchronizationCustomizations(EducationSynchronizationCustomizati
             raise TypeError("parse_node cannot be null.")
         return EducationSynchronizationCustomizations()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .education_synchronization_customization import EducationSynchronizationCustomization
         from .education_synchronization_customizations_base import EducationSynchronizationCustomizationsBase
@@ -48,7 +49,7 @@ class EducationSynchronizationCustomizations(EducationSynchronizationCustomizati
         from .education_synchronization_customization import EducationSynchronizationCustomization
         from .education_synchronization_customizations_base import EducationSynchronizationCustomizationsBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "school": lambda n : setattr(self, 'school', n.get_object_value(EducationSynchronizationCustomization)),
             "section": lambda n : setattr(self, 'section', n.get_object_value(EducationSynchronizationCustomization)),
             "student": lambda n : setattr(self, 'student', n.get_object_value(EducationSynchronizationCustomization)),
@@ -69,9 +70,6 @@ class EducationSynchronizationCustomizations(EducationSynchronizationCustomizati
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .education_synchronization_customization import EducationSynchronizationCustomization
-        from .education_synchronization_customizations_base import EducationSynchronizationCustomizationsBase
-
         writer.write_object_value("school", self.school)
         writer.write_object_value("section", self.section)
         writer.write_object_value("student", self.student)

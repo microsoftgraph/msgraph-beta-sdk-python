@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .driver_update_profile_approval_type import DriverUpdateProfileApprovalType
@@ -21,7 +22,7 @@ class WindowsDriverUpdateProfile(Entity, Parsable):
     # An enum type to represent approval type of a driver update profile.
     approval_type: Optional[DriverUpdateProfileApprovalType] = None
     # The list of group assignments of the profile.
-    assignments: Optional[List[WindowsDriverUpdateProfileAssignment]] = None
+    assignments: Optional[list[WindowsDriverUpdateProfileAssignment]] = None
     # The date time that the profile was created.
     created_date_time: Optional[datetime.datetime] = None
     # Deployment deferral settings in days, only applicable when ApprovalType is set to automatic approval.
@@ -33,7 +34,7 @@ class WindowsDriverUpdateProfile(Entity, Parsable):
     # The display name for the profile.
     display_name: Optional[str] = None
     # Driver inventories for this profile.
-    driver_inventories: Optional[List[WindowsDriverUpdateInventory]] = None
+    driver_inventories: Optional[list[WindowsDriverUpdateInventory]] = None
     # Driver inventory sync status for this profile.
     inventory_sync_status: Optional[WindowsDriverUpdateProfileInventorySyncStatus] = None
     # The date time that the profile was last modified.
@@ -43,7 +44,7 @@ class WindowsDriverUpdateProfile(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of Scope Tags for this Driver Update entity.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WindowsDriverUpdateProfile:
@@ -56,10 +57,10 @@ class WindowsDriverUpdateProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsDriverUpdateProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .driver_update_profile_approval_type import DriverUpdateProfileApprovalType
         from .entity import Entity
@@ -73,7 +74,7 @@ class WindowsDriverUpdateProfile(Entity, Parsable):
         from .windows_driver_update_profile_assignment import WindowsDriverUpdateProfileAssignment
         from .windows_driver_update_profile_inventory_sync_status import WindowsDriverUpdateProfileInventorySyncStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "approvalType": lambda n : setattr(self, 'approval_type', n.get_enum_value(DriverUpdateProfileApprovalType)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(WindowsDriverUpdateProfileAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -100,12 +101,6 @@ class WindowsDriverUpdateProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .driver_update_profile_approval_type import DriverUpdateProfileApprovalType
-        from .entity import Entity
-        from .windows_driver_update_inventory import WindowsDriverUpdateInventory
-        from .windows_driver_update_profile_assignment import WindowsDriverUpdateProfileAssignment
-        from .windows_driver_update_profile_inventory_sync_status import WindowsDriverUpdateProfileInventorySyncStatus
-
         writer.write_enum_value("approvalType", self.approval_type)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

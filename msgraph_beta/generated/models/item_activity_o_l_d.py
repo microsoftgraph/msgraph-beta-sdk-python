@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .drive_item import DriveItem
@@ -39,10 +40,10 @@ class ItemActivityOLD(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ItemActivityOLD()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .drive_item import DriveItem
         from .entity import Entity
@@ -58,7 +59,7 @@ class ItemActivityOLD(Entity, Parsable):
         from .item_activity_time_set import ItemActivityTimeSet
         from .list_item import ListItem
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_object_value(ItemActionSet)),
             "actor": lambda n : setattr(self, 'actor', n.get_object_value(IdentitySet)),
             "driveItem": lambda n : setattr(self, 'drive_item', n.get_object_value(DriveItem)),
@@ -78,13 +79,6 @@ class ItemActivityOLD(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .drive_item import DriveItem
-        from .entity import Entity
-        from .identity_set import IdentitySet
-        from .item_action_set import ItemActionSet
-        from .item_activity_time_set import ItemActivityTimeSet
-        from .list_item import ListItem
-
         writer.write_object_value("action", self.action)
         writer.write_object_value("actor", self.actor)
         writer.write_object_value("driveItem", self.drive_item)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -16,7 +17,7 @@ class SourceSystemDefinition(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # A collection of user matching settings by roleGroup.
-    user_matching_settings: Optional[List[UserMatchingSetting]] = None
+    user_matching_settings: Optional[list[UserMatchingSetting]] = None
     # The name of the vendor who supplies the source system. Maximum supported length is 100 characters.
     vendor: Optional[str] = None
     
@@ -31,10 +32,10 @@ class SourceSystemDefinition(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SourceSystemDefinition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .user_matching_setting import UserMatchingSetting
@@ -42,7 +43,7 @@ class SourceSystemDefinition(Entity, Parsable):
         from ..entity import Entity
         from .user_matching_setting import UserMatchingSetting
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "userMatchingSettings": lambda n : setattr(self, 'user_matching_settings', n.get_collection_of_object_values(UserMatchingSetting)),
             "vendor": lambda n : setattr(self, 'vendor', n.get_str_value()),
@@ -60,9 +61,6 @@ class SourceSystemDefinition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .user_matching_setting import UserMatchingSetting
-
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("userMatchingSettings", self.user_matching_settings)
         writer.write_str_value("vendor", self.vendor)

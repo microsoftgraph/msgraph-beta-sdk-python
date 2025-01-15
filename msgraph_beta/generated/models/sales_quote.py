@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -20,7 +21,7 @@ class SalesQuote(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The acceptedDate property
     accepted_date: Optional[datetime.date] = None
     # The billToCustomerId property
@@ -70,7 +71,7 @@ class SalesQuote(AdditionalDataHolder, BackedModel, Parsable):
     # The phoneNumber property
     phone_number: Optional[str] = None
     # The salesQuoteLines property
-    sales_quote_lines: Optional[List[SalesQuoteLine]] = None
+    sales_quote_lines: Optional[list[SalesQuoteLine]] = None
     # The salesperson property
     salesperson: Optional[str] = None
     # The sellingPostalAddress property
@@ -109,10 +110,10 @@ class SalesQuote(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SalesQuote()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .currency import Currency
         from .customer import Customer
@@ -128,7 +129,7 @@ class SalesQuote(AdditionalDataHolder, BackedModel, Parsable):
         from .sales_quote_line import SalesQuoteLine
         from .shipment_method import ShipmentMethod
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "acceptedDate": lambda n : setattr(self, 'accepted_date', n.get_date_value()),
             "billToCustomerId": lambda n : setattr(self, 'bill_to_customer_id', n.get_uuid_value()),
             "billToCustomerNumber": lambda n : setattr(self, 'bill_to_customer_number', n.get_str_value()),
@@ -178,13 +179,6 @@ class SalesQuote(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .currency import Currency
-        from .customer import Customer
-        from .payment_term import PaymentTerm
-        from .postal_address_type import PostalAddressType
-        from .sales_quote_line import SalesQuoteLine
-        from .shipment_method import ShipmentMethod
-
         writer.write_date_value("acceptedDate", self.accepted_date)
         writer.write_uuid_value("billToCustomerId", self.bill_to_customer_id)
         writer.write_str_value("billToCustomerNumber", self.bill_to_customer_number)

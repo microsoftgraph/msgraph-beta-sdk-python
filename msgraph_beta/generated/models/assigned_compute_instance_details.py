@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authorization_system_resource import AuthorizationSystemResource
@@ -12,7 +13,7 @@ from .entity import Entity
 @dataclass
 class AssignedComputeInstanceDetails(Entity, Parsable):
     # Represents a set of S3 buckets accessed by this EC2 instance.
-    accessed_storage_buckets: Optional[List[AuthorizationSystemResource]] = None
+    accessed_storage_buckets: Optional[list[AuthorizationSystemResource]] = None
     # assigned EC2 instance.
     assigned_compute_instance: Optional[AuthorizationSystemResource] = None
     # The OdataType property
@@ -29,10 +30,10 @@ class AssignedComputeInstanceDetails(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AssignedComputeInstanceDetails()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authorization_system_resource import AuthorizationSystemResource
         from .entity import Entity
@@ -40,7 +41,7 @@ class AssignedComputeInstanceDetails(Entity, Parsable):
         from .authorization_system_resource import AuthorizationSystemResource
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessedStorageBuckets": lambda n : setattr(self, 'accessed_storage_buckets', n.get_collection_of_object_values(AuthorizationSystemResource)),
             "assignedComputeInstance": lambda n : setattr(self, 'assigned_compute_instance', n.get_object_value(AuthorizationSystemResource)),
         }
@@ -57,9 +58,6 @@ class AssignedComputeInstanceDetails(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authorization_system_resource import AuthorizationSystemResource
-        from .entity import Entity
-
         writer.write_collection_of_object_values("accessedStorageBuckets", self.accessed_storage_buckets)
         writer.write_object_value("assignedComputeInstance", self.assigned_compute_instance)
     

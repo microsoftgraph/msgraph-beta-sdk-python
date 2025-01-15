@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .item_facet import ItemFacet
@@ -33,10 +34,10 @@ class UserAccountInformation(ItemFacet, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UserAccountInformation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .item_facet import ItemFacet
         from .locale_info import LocaleInfo
@@ -44,7 +45,7 @@ class UserAccountInformation(ItemFacet, Parsable):
         from .item_facet import ItemFacet
         from .locale_info import LocaleInfo
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "ageGroup": lambda n : setattr(self, 'age_group', n.get_str_value()),
             "countryCode": lambda n : setattr(self, 'country_code', n.get_str_value()),
             "preferredLanguageTag": lambda n : setattr(self, 'preferred_language_tag', n.get_object_value(LocaleInfo)),
@@ -63,9 +64,6 @@ class UserAccountInformation(ItemFacet, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .item_facet import ItemFacet
-        from .locale_info import LocaleInfo
-
         writer.write_str_value("ageGroup", self.age_group)
         writer.write_str_value("countryCode", self.country_code)
         writer.write_object_value("preferredLanguageTag", self.preferred_language_tag)

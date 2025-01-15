@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .kerberos_sign_on_mapping_attribute_type import KerberosSignOnMappingAttributeType
@@ -13,7 +14,7 @@ class KerberosSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The Internal Application SPN of the application server. This SPN needs to be in the list of services to which the connector can present delegated credentials.
     kerberos_service_principal_name: Optional[str] = None
     # The Delegated Login Identity for the connector to use on behalf of your users. For more information, see Working with different on-premises and cloud identities . Possible values are: userPrincipalName, onPremisesUserPrincipalName, userPrincipalUsername, onPremisesUserPrincipalUsername, onPremisesSAMAccountName.
@@ -32,16 +33,16 @@ class KerberosSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return KerberosSignOnSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .kerberos_sign_on_mapping_attribute_type import KerberosSignOnMappingAttributeType
 
         from .kerberos_sign_on_mapping_attribute_type import KerberosSignOnMappingAttributeType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "kerberosServicePrincipalName": lambda n : setattr(self, 'kerberos_service_principal_name', n.get_str_value()),
             "kerberosSignOnMappingAttributeType": lambda n : setattr(self, 'kerberos_sign_on_mapping_attribute_type', n.get_enum_value(KerberosSignOnMappingAttributeType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -56,8 +57,6 @@ class KerberosSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .kerberos_sign_on_mapping_attribute_type import KerberosSignOnMappingAttributeType
-
         writer.write_str_value("kerberosServicePrincipalName", self.kerberos_service_principal_name)
         writer.write_enum_value("kerberosSignOnMappingAttributeType", self.kerberos_sign_on_mapping_attribute_type)
         writer.write_str_value("@odata.type", self.odata_type)

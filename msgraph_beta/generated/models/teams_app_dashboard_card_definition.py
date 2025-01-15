@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -39,10 +40,10 @@ class TeamsAppDashboardCardDefinition(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TeamsAppDashboardCardDefinition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .teams_app_dashboard_card_content_source import TeamsAppDashboardCardContentSource
@@ -54,7 +55,7 @@ class TeamsAppDashboardCardDefinition(Entity, Parsable):
         from .teams_app_dashboard_card_icon import TeamsAppDashboardCardIcon
         from .teams_app_dashboard_card_size import TeamsAppDashboardCardSize
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "contentSource": lambda n : setattr(self, 'content_source', n.get_object_value(TeamsAppDashboardCardContentSource)),
             "defaultSize": lambda n : setattr(self, 'default_size', n.get_enum_value(TeamsAppDashboardCardSize)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -75,11 +76,6 @@ class TeamsAppDashboardCardDefinition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .teams_app_dashboard_card_content_source import TeamsAppDashboardCardContentSource
-        from .teams_app_dashboard_card_icon import TeamsAppDashboardCardIcon
-        from .teams_app_dashboard_card_size import TeamsAppDashboardCardSize
-
         writer.write_object_value("contentSource", self.content_source)
         writer.write_enum_value("defaultSize", self.default_size)
         writer.write_str_value("description", self.description)

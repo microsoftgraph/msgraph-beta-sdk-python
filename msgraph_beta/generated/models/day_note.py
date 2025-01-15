@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .change_tracked_entity import ChangeTrackedEntity
@@ -32,10 +33,10 @@ class DayNote(ChangeTrackedEntity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DayNote()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .change_tracked_entity import ChangeTrackedEntity
         from .item_body import ItemBody
@@ -43,7 +44,7 @@ class DayNote(ChangeTrackedEntity, Parsable):
         from .change_tracked_entity import ChangeTrackedEntity
         from .item_body import ItemBody
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dayNoteDate": lambda n : setattr(self, 'day_note_date', n.get_date_value()),
             "draftDayNote": lambda n : setattr(self, 'draft_day_note', n.get_object_value(ItemBody)),
             "sharedDayNote": lambda n : setattr(self, 'shared_day_note', n.get_object_value(ItemBody)),
@@ -61,9 +62,6 @@ class DayNote(ChangeTrackedEntity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .change_tracked_entity import ChangeTrackedEntity
-        from .item_body import ItemBody
-
         writer.write_date_value("dayNoteDate", self.day_note_date)
         writer.write_object_value("draftDayNote", self.draft_day_note)
         writer.write_object_value("sharedDayNote", self.shared_day_note)

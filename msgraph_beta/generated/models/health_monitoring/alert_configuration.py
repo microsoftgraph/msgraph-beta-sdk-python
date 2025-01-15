@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -12,7 +13,7 @@ from ..entity import Entity
 @dataclass
 class AlertConfiguration(Entity, Parsable):
     # Defines the recipients of email notifications for an alert type. Currently, only one email notification configuration is supported for an alert configuration, meaning only one group can receive notifications for an alert type.
-    email_notification_configurations: Optional[List[EmailNotificationConfiguration]] = None
+    email_notification_configurations: Optional[list[EmailNotificationConfiguration]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -27,10 +28,10 @@ class AlertConfiguration(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AlertConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .email_notification_configuration import EmailNotificationConfiguration
@@ -38,7 +39,7 @@ class AlertConfiguration(Entity, Parsable):
         from ..entity import Entity
         from .email_notification_configuration import EmailNotificationConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "emailNotificationConfigurations": lambda n : setattr(self, 'email_notification_configurations', n.get_collection_of_object_values(EmailNotificationConfiguration)),
         }
         super_fields = super().get_field_deserializers()
@@ -54,9 +55,6 @@ class AlertConfiguration(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .email_notification_configuration import EmailNotificationConfiguration
-
         writer.write_collection_of_object_values("emailNotificationConfigurations", self.email_notification_configurations)
     
 

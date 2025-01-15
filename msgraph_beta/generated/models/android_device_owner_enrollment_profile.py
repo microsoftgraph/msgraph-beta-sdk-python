@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_device_owner_enrollment_mode import AndroidDeviceOwnerEnrollmentMode
@@ -47,7 +48,7 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity, Parsable):
     # String used to generate a QR code for the token.
     qr_code_image: Optional[MimeContent] = None
     # List of Scope Tags for this Entity instance.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # Date time the most recently created token was created.
     token_creation_date_time: Optional[datetime.datetime] = None
     # Date time the most recently created token will expire.
@@ -74,10 +75,10 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidDeviceOwnerEnrollmentProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_device_owner_enrollment_mode import AndroidDeviceOwnerEnrollmentMode
         from .android_device_owner_enrollment_token_type import AndroidDeviceOwnerEnrollmentTokenType
@@ -91,7 +92,7 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity, Parsable):
         from .entity import Entity
         from .mime_content import MimeContent
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accountId": lambda n : setattr(self, 'account_id', n.get_str_value()),
             "configureWifi": lambda n : setattr(self, 'configure_wifi', n.get_bool_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -127,12 +128,6 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_device_owner_enrollment_mode import AndroidDeviceOwnerEnrollmentMode
-        from .android_device_owner_enrollment_token_type import AndroidDeviceOwnerEnrollmentTokenType
-        from .aosp_wifi_security_type import AospWifiSecurityType
-        from .entity import Entity
-        from .mime_content import MimeContent
-
         writer.write_str_value("accountId", self.account_id)
         writer.write_bool_value("configureWifi", self.configure_wifi)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

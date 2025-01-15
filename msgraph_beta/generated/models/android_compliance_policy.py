@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_required_password_complexity import AndroidRequiredPasswordComplexity
@@ -50,7 +51,7 @@ class AndroidCompliancePolicy(DeviceCompliancePolicy, Parsable):
     # The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
     required_password_complexity: Optional[AndroidRequiredPasswordComplexity] = None
     # Require the device to not have the specified apps installed. This collection can contain a maximum of 100 elements.
-    restricted_apps: Optional[List[AppListItem]] = None
+    restricted_apps: Optional[list[AppListItem]] = None
     # Block device administrator managed devices.
     security_block_device_administrator_managed_devices: Optional[bool] = None
     # Devices must not be jailbroken or rooted.
@@ -85,10 +86,10 @@ class AndroidCompliancePolicy(DeviceCompliancePolicy, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidCompliancePolicy()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_required_password_complexity import AndroidRequiredPasswordComplexity
         from .android_required_password_type import AndroidRequiredPasswordType
@@ -102,7 +103,7 @@ class AndroidCompliancePolicy(DeviceCompliancePolicy, Parsable):
         from .device_compliance_policy import DeviceCompliancePolicy
         from .device_threat_protection_level import DeviceThreatProtectionLevel
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "advancedThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(DeviceThreatProtectionLevel)),
             "conditionStatementId": lambda n : setattr(self, 'condition_statement_id', n.get_str_value()),
             "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
@@ -144,12 +145,6 @@ class AndroidCompliancePolicy(DeviceCompliancePolicy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_required_password_complexity import AndroidRequiredPasswordComplexity
-        from .android_required_password_type import AndroidRequiredPasswordType
-        from .app_list_item import AppListItem
-        from .device_compliance_policy import DeviceCompliancePolicy
-        from .device_threat_protection_level import DeviceThreatProtectionLevel
-
         writer.write_enum_value("advancedThreatProtectionRequiredSecurityLevel", self.advanced_threat_protection_required_security_level)
         writer.write_str_value("conditionStatementId", self.condition_statement_id)
         writer.write_bool_value("deviceThreatProtectionEnabled", self.device_threat_protection_enabled)

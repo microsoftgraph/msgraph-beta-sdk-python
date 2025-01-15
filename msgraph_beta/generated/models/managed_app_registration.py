@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_managed_app_registration import AndroidManagedAppRegistration
@@ -27,7 +28,7 @@ class ManagedAppRegistration(Entity, Parsable):
     # App version
     application_version: Optional[str] = None
     # Zero or more policys already applied on the registered app when it last synchronized with managment service.
-    applied_policies: Optional[List[ManagedAppPolicy]] = None
+    applied_policies: Optional[list[ManagedAppPolicy]] = None
     # The Azure Active Directory Device identifier of the host device. Value could be empty even when the host device is Azure Active Directory registered.
     azure_a_d_device_id: Optional[str] = None
     # Date and time of creation
@@ -43,13 +44,13 @@ class ManagedAppRegistration(Entity, Parsable):
     # Host device type
     device_type: Optional[str] = None
     # Zero or more reasons an app registration is flagged. E.g. app running on rooted device
-    flagged_reasons: Optional[List[ManagedAppFlaggedReason]] = None
+    flagged_reasons: Optional[list[ManagedAppFlaggedReason]] = None
     # Zero or more policies admin intended for the app as of now.
-    intended_policies: Optional[List[ManagedAppPolicy]] = None
+    intended_policies: Optional[list[ManagedAppPolicy]] = None
     # Date and time of last the app synced with management service.
     last_sync_date_time: Optional[datetime.datetime] = None
     # Zero or more log collection requests triggered for the app.
-    managed_app_log_collection_requests: Optional[List[ManagedAppLogCollectionRequest]] = None
+    managed_app_log_collection_requests: Optional[list[ManagedAppLogCollectionRequest]] = None
     # The Managed Device identifier of the host device. Value could be empty even when the host device is managed.
     managed_device_id: Optional[str] = None
     # App management SDK version
@@ -57,7 +58,7 @@ class ManagedAppRegistration(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Zero or more long running operations triggered on the app registration.
-    operations: Optional[List[ManagedAppOperation]] = None
+    operations: Optional[list[ManagedAppOperation]] = None
     # Operating System version
     platform_version: Optional[str] = None
     # The user Id to who this app registration belongs.
@@ -93,10 +94,10 @@ class ManagedAppRegistration(Entity, Parsable):
             return WindowsManagedAppRegistration()
         return ManagedAppRegistration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_managed_app_registration import AndroidManagedAppRegistration
         from .entity import Entity
@@ -118,7 +119,7 @@ class ManagedAppRegistration(Entity, Parsable):
         from .mobile_app_identifier import MobileAppIdentifier
         from .windows_managed_app_registration import WindowsManagedAppRegistration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appIdentifier": lambda n : setattr(self, 'app_identifier', n.get_object_value(MobileAppIdentifier)),
             "applicationVersion": lambda n : setattr(self, 'application_version', n.get_str_value()),
             "appliedPolicies": lambda n : setattr(self, 'applied_policies', n.get_collection_of_object_values(ManagedAppPolicy)),
@@ -153,16 +154,6 @@ class ManagedAppRegistration(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_managed_app_registration import AndroidManagedAppRegistration
-        from .entity import Entity
-        from .ios_managed_app_registration import IosManagedAppRegistration
-        from .managed_app_flagged_reason import ManagedAppFlaggedReason
-        from .managed_app_log_collection_request import ManagedAppLogCollectionRequest
-        from .managed_app_operation import ManagedAppOperation
-        from .managed_app_policy import ManagedAppPolicy
-        from .mobile_app_identifier import MobileAppIdentifier
-        from .windows_managed_app_registration import WindowsManagedAppRegistration
-
         writer.write_object_value("appIdentifier", self.app_identifier)
         writer.write_str_value("applicationVersion", self.application_version)
         writer.write_collection_of_object_values("appliedPolicies", self.applied_policies)

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .connectivity_configuration_link import ConnectivityConfigurationLink
@@ -13,13 +14,13 @@ class BranchConnectivityConfiguration(AdditionalDataHolder, BackedModel, Parsabl
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Unique identifier or a specific reference assigned to a branchSite. Key.
     branch_id: Optional[str] = None
     # Display name assigned to a branchSite.
     branch_name: Optional[str] = None
     # List of connectivity configurations for deviceLink objects.
-    links: Optional[List[ConnectivityConfigurationLink]] = None
+    links: Optional[list[ConnectivityConfigurationLink]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -34,16 +35,16 @@ class BranchConnectivityConfiguration(AdditionalDataHolder, BackedModel, Parsabl
             raise TypeError("parse_node cannot be null.")
         return BranchConnectivityConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .connectivity_configuration_link import ConnectivityConfigurationLink
 
         from .connectivity_configuration_link import ConnectivityConfigurationLink
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "branchId": lambda n : setattr(self, 'branch_id', n.get_str_value()),
             "branchName": lambda n : setattr(self, 'branch_name', n.get_str_value()),
             "links": lambda n : setattr(self, 'links', n.get_collection_of_object_values(ConnectivityConfigurationLink)),
@@ -59,8 +60,6 @@ class BranchConnectivityConfiguration(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .connectivity_configuration_link import ConnectivityConfigurationLink
-
         writer.write_str_value("branchId", self.branch_id)
         writer.write_str_value("branchName", self.branch_name)
         writer.write_collection_of_object_values("links", self.links)

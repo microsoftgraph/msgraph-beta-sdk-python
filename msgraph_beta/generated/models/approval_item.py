@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .approval_identity_set import ApprovalIdentitySet
@@ -24,7 +25,7 @@ class ApprovalItem(Entity, Parsable):
     # The workflow type of the approval item. The possible values are: basic, basicAwaitAll, custom, customAwaitAll. Required.
     approval_type: Optional[ApprovalItemType] = None
     # The identity of the principals to whom the approval item was initially assigned. Required.
-    approvers: Optional[List[ApprovalIdentitySet]] = None
+    approvers: Optional[list[ApprovalIdentitySet]] = None
     # Approval request completion date and time. Read-only.
     completed_date_time: Optional[datetime.datetime] = None
     # Creation date and time of the approval request. Read-only.
@@ -38,11 +39,11 @@ class ApprovalItem(Entity, Parsable):
     # The identity set of the principal who owns the approval item. Only provide a value for this property when creating an approval item on behalf of the principal. If the owner field isn't provided, the user information from the user context is used.
     owner: Optional[ApprovalIdentitySet] = None
     # A collection of requests created for each approver on the approval item.
-    requests: Optional[List[ApprovalItemRequest]] = None
+    requests: Optional[list[ApprovalItemRequest]] = None
     # Approval response prompts. Only provide a value for this property when creating a custom approval item. For custom approval items, supply two response prompt strings. The default response prompts are 'Approve' and 'Reject'.
-    response_prompts: Optional[List[str]] = None
+    response_prompts: Optional[list[str]] = None
     # A collection of responses created for the approval item.
-    responses: Optional[List[ApprovalItemResponse]] = None
+    responses: Optional[list[ApprovalItemResponse]] = None
     # The result field is only populated once the approval item is in its final state. The result of the approval item is based on the approvalType. For basic approval items, the result is either 'Approved' or 'Rejected'. For custom approval items, the result could either be a single response or multiple responses separated by a semi-colon. Read-only.
     result: Optional[str] = None
     # The approval item state. The possible values are: canceled, created, pending, completed. Read-only.
@@ -61,10 +62,10 @@ class ApprovalItem(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ApprovalItem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .approval_identity_set import ApprovalIdentitySet
         from .approval_item_request import ApprovalItemRequest
@@ -82,7 +83,7 @@ class ApprovalItem(Entity, Parsable):
         from .approval_item_view_point import ApprovalItemViewPoint
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowCancel": lambda n : setattr(self, 'allow_cancel', n.get_bool_value()),
             "allowEmailNotification": lambda n : setattr(self, 'allow_email_notification', n.get_bool_value()),
             "approvalType": lambda n : setattr(self, 'approval_type', n.get_enum_value(ApprovalItemType)),
@@ -112,14 +113,6 @@ class ApprovalItem(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .approval_identity_set import ApprovalIdentitySet
-        from .approval_item_request import ApprovalItemRequest
-        from .approval_item_response import ApprovalItemResponse
-        from .approval_item_state import ApprovalItemState
-        from .approval_item_type import ApprovalItemType
-        from .approval_item_view_point import ApprovalItemViewPoint
-        from .entity import Entity
-
         writer.write_bool_value("allowEmailNotification", self.allow_email_notification)
         writer.write_enum_value("approvalType", self.approval_type)
         writer.write_collection_of_object_values("approvers", self.approvers)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .exact_match_job_base import ExactMatchJobBase
@@ -51,10 +52,10 @@ class ExactMatchSessionBase(ExactMatchJobBase, Parsable):
             return ExactMatchSession()
         return ExactMatchSessionBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .exact_match_job_base import ExactMatchJobBase
         from .exact_match_session import ExactMatchSession
@@ -62,7 +63,7 @@ class ExactMatchSessionBase(ExactMatchJobBase, Parsable):
         from .exact_match_job_base import ExactMatchJobBase
         from .exact_match_session import ExactMatchSession
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dataStoreId": lambda n : setattr(self, 'data_store_id', n.get_str_value()),
             "processingCompletionDateTime": lambda n : setattr(self, 'processing_completion_date_time', n.get_datetime_value()),
             "remainingBlockCount": lambda n : setattr(self, 'remaining_block_count', n.get_int_value()),
@@ -85,9 +86,6 @@ class ExactMatchSessionBase(ExactMatchJobBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .exact_match_job_base import ExactMatchJobBase
-        from .exact_match_session import ExactMatchSession
-
         writer.write_str_value("dataStoreId", self.data_store_id)
         writer.write_datetime_value("processingCompletionDateTime", self.processing_completion_date_time)
         writer.write_int_value("remainingBlockCount", self.remaining_block_count)

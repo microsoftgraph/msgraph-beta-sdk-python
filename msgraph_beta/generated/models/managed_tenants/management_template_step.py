@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..action_url import ActionUrl
@@ -28,7 +29,7 @@ class ManagementTemplateStep(Entity, Parsable):
     # The displayName property
     display_name: Optional[str] = None
     # The informationLinks property
-    information_links: Optional[List[ActionUrl]] = None
+    information_links: Optional[list[ActionUrl]] = None
     # The lastActionByUserId property
     last_action_by_user_id: Optional[str] = None
     # The lastActionDateTime property
@@ -44,7 +45,7 @@ class ManagementTemplateStep(Entity, Parsable):
     # The userImpact property
     user_impact: Optional[str] = None
     # The versions property
-    versions: Optional[List[ManagementTemplateStepVersion]] = None
+    versions: Optional[list[ManagementTemplateStepVersion]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ManagementTemplateStep:
@@ -57,10 +58,10 @@ class ManagementTemplateStep(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagementTemplateStep()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..action_url import ActionUrl
         from ..entity import Entity
@@ -74,7 +75,7 @@ class ManagementTemplateStep(Entity, Parsable):
         from .management_template import ManagementTemplate
         from .management_template_step_version import ManagementTemplateStepVersion
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "acceptedVersion": lambda n : setattr(self, 'accepted_version', n.get_object_value(ManagementTemplateStepVersion)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(ManagementCategory)),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
@@ -103,12 +104,6 @@ class ManagementTemplateStep(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..action_url import ActionUrl
-        from ..entity import Entity
-        from .management_category import ManagementCategory
-        from .management_template import ManagementTemplate
-        from .management_template_step_version import ManagementTemplateStepVersion
-
         writer.write_object_value("acceptedVersion", self.accepted_version)
         writer.write_enum_value("category", self.category)
         writer.write_str_value("createdByUserId", self.created_by_user_id)

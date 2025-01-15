@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .enrichment_state import EnrichmentState
@@ -15,9 +16,9 @@ class Enrichment(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # A collection of resource impact summaries that gives a high level view of the kind of resources that were impacted and to what degree.
-    impacts: Optional[List[ResourceImpactSummary]] = None
+    impacts: Optional[list[ResourceImpactSummary]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The state property
@@ -36,10 +37,10 @@ class Enrichment(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Enrichment()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .enrichment_state import EnrichmentState
         from .resource_impact_summary import ResourceImpactSummary
@@ -49,7 +50,7 @@ class Enrichment(AdditionalDataHolder, BackedModel, Parsable):
         from .resource_impact_summary import ResourceImpactSummary
         from .supporting_data import SupportingData
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "impacts": lambda n : setattr(self, 'impacts', n.get_collection_of_object_values(ResourceImpactSummary)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(EnrichmentState)),
@@ -65,10 +66,6 @@ class Enrichment(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .enrichment_state import EnrichmentState
-        from .resource_impact_summary import ResourceImpactSummary
-        from .supporting_data import SupportingData
-
         writer.write_collection_of_object_values("impacts", self.impacts)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("state", self.state)

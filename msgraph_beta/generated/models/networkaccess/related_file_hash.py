@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .algorithm import Algorithm
@@ -29,10 +30,10 @@ class RelatedFileHash(RelatedResource, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RelatedFileHash()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .algorithm import Algorithm
         from .related_resource import RelatedResource
@@ -40,7 +41,7 @@ class RelatedFileHash(RelatedResource, Parsable):
         from .algorithm import Algorithm
         from .related_resource import RelatedResource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "algorithm": lambda n : setattr(self, 'algorithm', n.get_enum_value(Algorithm)),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
         }
@@ -57,9 +58,6 @@ class RelatedFileHash(RelatedResource, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .algorithm import Algorithm
-        from .related_resource import RelatedResource
-
         writer.write_enum_value("algorithm", self.algorithm)
         writer.write_str_value("value", self.value)
     

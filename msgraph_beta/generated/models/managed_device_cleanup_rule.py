@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_cleanup_rule_platform_type import DeviceCleanupRulePlatformType
@@ -39,10 +40,10 @@ class ManagedDeviceCleanupRule(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagedDeviceCleanupRule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_cleanup_rule_platform_type import DeviceCleanupRulePlatformType
         from .entity import Entity
@@ -50,7 +51,7 @@ class ManagedDeviceCleanupRule(Entity, Parsable):
         from .device_cleanup_rule_platform_type import DeviceCleanupRulePlatformType
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "deviceCleanupRulePlatformType": lambda n : setattr(self, 'device_cleanup_rule_platform_type', n.get_enum_value(DeviceCleanupRulePlatformType)),
             "deviceInactivityBeforeRetirementInDays": lambda n : setattr(self, 'device_inactivity_before_retirement_in_days', n.get_int_value()),
@@ -70,9 +71,6 @@ class ManagedDeviceCleanupRule(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_cleanup_rule_platform_type import DeviceCleanupRulePlatformType
-        from .entity import Entity
-
         writer.write_str_value("description", self.description)
         writer.write_enum_value("deviceCleanupRulePlatformType", self.device_cleanup_rule_platform_type)
         writer.write_int_value("deviceInactivityBeforeRetirementInDays", self.device_inactivity_before_retirement_in_days)

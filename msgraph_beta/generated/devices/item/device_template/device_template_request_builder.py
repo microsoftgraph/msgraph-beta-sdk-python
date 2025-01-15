@@ -1,4 +1,5 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.base_request_builder import BaseRequestBuilder
 from kiota_abstractions.base_request_configuration import RequestConfiguration
@@ -9,7 +10,7 @@ from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
@@ -22,7 +23,7 @@ class DeviceTemplateRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the deviceTemplate property of the microsoft.graph.device entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, Dict[str, Any]]) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
         Instantiates a new DeviceTemplateRequestBuilder and sets the default values.
         param path_parameters: The raw url or the url-template parameters for the request.
@@ -47,7 +48,7 @@ class DeviceTemplateRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeviceTemplateRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceTemplateCollectionResponse]:
         """
-        Get deviceTemplate from devices
+        Device template used to instantiate this device. Nullable. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceTemplateCollectionResponse]
         """
@@ -56,7 +57,7 @@ class DeviceTemplateRequestBuilder(BaseRequestBuilder):
         )
         from ....models.o_data_errors.o_data_error import ODataError
 
-        error_mapping: Dict[str, type[ParsableFactory]] = {
+        error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
@@ -67,7 +68,7 @@ class DeviceTemplateRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeviceTemplateRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get deviceTemplate from devices
+        Device template used to instantiate this device. Nullable. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -98,7 +99,7 @@ class DeviceTemplateRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeviceTemplateRequestBuilderGetQueryParameters():
         """
-        Get deviceTemplate from devices
+        Device template used to instantiate this device. Nullable. Read-only.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -130,19 +131,19 @@ class DeviceTemplateRequestBuilder(BaseRequestBuilder):
         count: Optional[bool] = None
 
         # Expand related entities
-        expand: Optional[List[str]] = None
+        expand: Optional[list[str]] = None
 
         # Filter items by property values
         filter: Optional[str] = None
 
         # Order items by property values
-        orderby: Optional[List[str]] = None
+        orderby: Optional[list[str]] = None
 
         # Search items by search phrases
         search: Optional[str] = None
 
         # Select properties to be returned
-        select: Optional[List[str]] = None
+        select: Optional[list[str]] = None
 
         # Skip the first n items
         skip: Optional[int] = None

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mobile_app_troubleshooting_history_item import MobileAppTroubleshootingHistoryItem
@@ -34,10 +35,10 @@ class MobileAppTroubleshootingAppTargetHistory(MobileAppTroubleshootingHistoryIt
             raise TypeError("parse_node cannot be null.")
         return MobileAppTroubleshootingAppTargetHistory()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .mobile_app_troubleshooting_history_item import MobileAppTroubleshootingHistoryItem
         from .run_state import RunState
@@ -45,7 +46,7 @@ class MobileAppTroubleshootingAppTargetHistory(MobileAppTroubleshootingHistoryIt
         from .mobile_app_troubleshooting_history_item import MobileAppTroubleshootingHistoryItem
         from .run_state import RunState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
             "runState": lambda n : setattr(self, 'run_state', n.get_enum_value(RunState)),
             "securityGroupId": lambda n : setattr(self, 'security_group_id', n.get_str_value()),
@@ -63,9 +64,6 @@ class MobileAppTroubleshootingAppTargetHistory(MobileAppTroubleshootingHistoryIt
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .mobile_app_troubleshooting_history_item import MobileAppTroubleshootingHistoryItem
-        from .run_state import RunState
-
         writer.write_str_value("errorCode", self.error_code)
         writer.write_enum_value("runState", self.run_state)
         writer.write_str_value("securityGroupId", self.security_group_id)

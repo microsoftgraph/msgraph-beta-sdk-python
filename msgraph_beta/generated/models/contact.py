@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .extension import Extension
@@ -27,7 +28,7 @@ class Contact(OutlookItem, Parsable):
     # The contact's birthday. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     birthday: Optional[datetime.datetime] = None
     # The names of the contact's children.
-    children: Optional[List[str]] = None
+    children: Optional[list[str]] = None
     # The name of the contact's company.
     company_name: Optional[str] = None
     # The contact's department.
@@ -35,9 +36,9 @@ class Contact(OutlookItem, Parsable):
     # The contact's display name. You can specify the display name in a create or update operation. Later updates to other properties might cause an automatically generated value to overwrite the displayName value you specified. To preserve a pre-existing value, always include it as displayName in an update operation.
     display_name: Optional[str] = None
     # The contact's email addresses.
-    email_addresses: Optional[List[TypedEmailAddress]] = None
+    email_addresses: Optional[list[TypedEmailAddress]] = None
     # The collection of open extensions defined for the contact. Nullable.
-    extensions: Optional[List[Extension]] = None
+    extensions: Optional[list[Extension]] = None
     # The name the contact is filed under.
     file_as: Optional[str] = None
     # The flag value that indicates the status, start date, due date, or completion date for the contact.
@@ -49,7 +50,7 @@ class Contact(OutlookItem, Parsable):
     # The contact's given name.
     given_name: Optional[str] = None
     # The contact's instant messaging (IM) addresses.
-    im_addresses: Optional[List[str]] = None
+    im_addresses: Optional[list[str]] = None
     # The contact's initials.
     initials: Optional[str] = None
     # The isFavorite property
@@ -61,7 +62,7 @@ class Contact(OutlookItem, Parsable):
     # The contact's middle name.
     middle_name: Optional[str] = None
     # The collection of multi-value extended properties defined for the contact. Read-only. Nullable.
-    multi_value_extended_properties: Optional[List[MultiValueLegacyExtendedProperty]] = None
+    multi_value_extended_properties: Optional[list[MultiValueLegacyExtendedProperty]] = None
     # The contact's nickname.
     nick_name: Optional[str] = None
     # The location of the contact's office.
@@ -71,15 +72,15 @@ class Contact(OutlookItem, Parsable):
     # The user's notes about the contact.
     personal_notes: Optional[str] = None
     # Phone numbers associated with the contact, for example, home phone, mobile phone, and business phone.
-    phones: Optional[List[Phone]] = None
+    phones: Optional[list[Phone]] = None
     # Optional contact picture. You can get or set a photo for a contact.
     photo: Optional[ProfilePhoto] = None
     # Addresses associated with the contact, for example, home address and business address.
-    postal_addresses: Optional[List[PhysicalAddress]] = None
+    postal_addresses: Optional[list[PhysicalAddress]] = None
     # The contact's profession.
     profession: Optional[str] = None
     # The collection of single-value extended properties defined for the contact. Read-only. Nullable.
-    single_value_extended_properties: Optional[List[SingleValueLegacyExtendedProperty]] = None
+    single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
     # The name of the contact's spouse/partner.
     spouse_name: Optional[str] = None
     # The contact's surname.
@@ -87,7 +88,7 @@ class Contact(OutlookItem, Parsable):
     # The contact's title.
     title: Optional[str] = None
     # Web sites associated with the contact.
-    websites: Optional[List[Website]] = None
+    websites: Optional[list[Website]] = None
     # The contact's wedding anniversary.
     wedding_anniversary: Optional[datetime.date] = None
     # The phonetic Japanese company name of the contact.
@@ -108,10 +109,10 @@ class Contact(OutlookItem, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Contact()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .extension import Extension
         from .followup_flag import FollowupFlag
@@ -135,7 +136,7 @@ class Contact(OutlookItem, Parsable):
         from .typed_email_address import TypedEmailAddress
         from .website import Website
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assistantName": lambda n : setattr(self, 'assistant_name', n.get_str_value()),
             "birthday": lambda n : setattr(self, 'birthday', n.get_datetime_value()),
             "children": lambda n : setattr(self, 'children', n.get_collection_of_primitive_values(str)),
@@ -187,17 +188,6 @@ class Contact(OutlookItem, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .extension import Extension
-        from .followup_flag import FollowupFlag
-        from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
-        from .outlook_item import OutlookItem
-        from .phone import Phone
-        from .physical_address import PhysicalAddress
-        from .profile_photo import ProfilePhoto
-        from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-        from .typed_email_address import TypedEmailAddress
-        from .website import Website
-
         writer.write_str_value("assistantName", self.assistant_name)
         writer.write_datetime_value("birthday", self.birthday)
         writer.write_collection_of_primitive_values("children", self.children)

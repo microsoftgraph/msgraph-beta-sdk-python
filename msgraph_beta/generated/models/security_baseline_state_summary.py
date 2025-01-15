@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -49,10 +50,10 @@ class SecurityBaselineStateSummary(Entity, Parsable):
             return SecurityBaselineCategoryStateSummary()
         return SecurityBaselineStateSummary()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .security_baseline_category_state_summary import SecurityBaselineCategoryStateSummary
@@ -60,7 +61,7 @@ class SecurityBaselineStateSummary(Entity, Parsable):
         from .entity import Entity
         from .security_baseline_category_state_summary import SecurityBaselineCategoryStateSummary
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "conflictCount": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
             "errorCount": lambda n : setattr(self, 'error_count', n.get_int_value()),
             "notApplicableCount": lambda n : setattr(self, 'not_applicable_count', n.get_int_value()),
@@ -81,9 +82,6 @@ class SecurityBaselineStateSummary(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .security_baseline_category_state_summary import SecurityBaselineCategoryStateSummary
-
         writer.write_int_value("conflictCount", self.conflict_count)
         writer.write_int_value("errorCount", self.error_count)
         writer.write_int_value("notApplicableCount", self.not_applicable_count)

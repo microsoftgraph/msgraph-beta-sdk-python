@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -15,15 +16,15 @@ from .entity import Entity
 @dataclass
 class OutlookUser(Entity, Parsable):
     # A list of categories defined for the user.
-    master_categories: Optional[List[OutlookCategory]] = None
+    master_categories: Optional[list[OutlookCategory]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The user's Outlook task folders. Read-only. Nullable.
-    task_folders: Optional[List[OutlookTaskFolder]] = None
+    task_folders: Optional[list[OutlookTaskFolder]] = None
     # The user's Outlook task groups. Read-only. Nullable.
-    task_groups: Optional[List[OutlookTaskGroup]] = None
+    task_groups: Optional[list[OutlookTaskGroup]] = None
     # The user's Outlook tasks. Read-only. Nullable.
-    tasks: Optional[List[OutlookTask]] = None
+    tasks: Optional[list[OutlookTask]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OutlookUser:
@@ -36,10 +37,10 @@ class OutlookUser(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OutlookUser()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .outlook_category import OutlookCategory
@@ -53,7 +54,7 @@ class OutlookUser(Entity, Parsable):
         from .outlook_task_folder import OutlookTaskFolder
         from .outlook_task_group import OutlookTaskGroup
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "masterCategories": lambda n : setattr(self, 'master_categories', n.get_collection_of_object_values(OutlookCategory)),
             "taskFolders": lambda n : setattr(self, 'task_folders', n.get_collection_of_object_values(OutlookTaskFolder)),
             "taskGroups": lambda n : setattr(self, 'task_groups', n.get_collection_of_object_values(OutlookTaskGroup)),
@@ -72,12 +73,6 @@ class OutlookUser(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .outlook_category import OutlookCategory
-        from .outlook_task import OutlookTask
-        from .outlook_task_folder import OutlookTaskFolder
-        from .outlook_task_group import OutlookTaskGroup
-
         writer.write_collection_of_object_values("masterCategories", self.master_categories)
         writer.write_collection_of_object_values("taskFolders", self.task_folders)
         writer.write_collection_of_object_values("taskGroups", self.task_groups)

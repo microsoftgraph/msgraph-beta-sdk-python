@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .data_source import DataSource
@@ -29,10 +30,10 @@ class NoncustodialDataSource(DataSourceContainer, Parsable):
             raise TypeError("parse_node cannot be null.")
         return NoncustodialDataSource()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .data_source import DataSource
         from .data_source_container import DataSourceContainer
@@ -40,7 +41,7 @@ class NoncustodialDataSource(DataSourceContainer, Parsable):
         from .data_source import DataSource
         from .data_source_container import DataSourceContainer
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applyHoldToSource": lambda n : setattr(self, 'apply_hold_to_source', n.get_bool_value()),
             "dataSource": lambda n : setattr(self, 'data_source', n.get_object_value(DataSource)),
         }
@@ -57,9 +58,6 @@ class NoncustodialDataSource(DataSourceContainer, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .data_source import DataSource
-        from .data_source_container import DataSourceContainer
-
         writer.write_bool_value("applyHoldToSource", self.apply_hold_to_source)
         writer.write_object_value("dataSource", self.data_source)
     

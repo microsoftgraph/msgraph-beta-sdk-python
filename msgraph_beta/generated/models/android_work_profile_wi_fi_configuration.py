@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_wi_fi_security_type import AndroidWiFiSecurityType
@@ -57,10 +58,10 @@ class AndroidWorkProfileWiFiConfiguration(DeviceConfiguration, Parsable):
             return AndroidWorkProfileEnterpriseWiFiConfiguration()
         return AndroidWorkProfileWiFiConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_wi_fi_security_type import AndroidWiFiSecurityType
         from .android_work_profile_enterprise_wi_fi_configuration import AndroidWorkProfileEnterpriseWiFiConfiguration
@@ -72,7 +73,7 @@ class AndroidWorkProfileWiFiConfiguration(DeviceConfiguration, Parsable):
         from .device_configuration import DeviceConfiguration
         from .wi_fi_proxy_setting import WiFiProxySetting
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
             "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
             "networkName": lambda n : setattr(self, 'network_name', n.get_str_value()),
@@ -96,11 +97,6 @@ class AndroidWorkProfileWiFiConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_wi_fi_security_type import AndroidWiFiSecurityType
-        from .android_work_profile_enterprise_wi_fi_configuration import AndroidWorkProfileEnterpriseWiFiConfiguration
-        from .device_configuration import DeviceConfiguration
-        from .wi_fi_proxy_setting import WiFiProxySetting
-
         writer.write_bool_value("connectAutomatically", self.connect_automatically)
         writer.write_bool_value("connectWhenNetworkNameIsHidden", self.connect_when_network_name_is_hidden)
         writer.write_str_value("networkName", self.network_name)

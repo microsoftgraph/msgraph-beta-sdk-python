@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_health import DeviceHealth
@@ -43,10 +44,10 @@ class PrintConnector(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PrintConnector()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_health import DeviceHealth
         from .entity import Entity
@@ -56,7 +57,7 @@ class PrintConnector(Entity, Parsable):
         from .entity import Entity
         from .printer_location import PrinterLocation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appVersion": lambda n : setattr(self, 'app_version', n.get_str_value()),
             "deviceHealth": lambda n : setattr(self, 'device_health', n.get_object_value(DeviceHealth)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -79,10 +80,6 @@ class PrintConnector(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_health import DeviceHealth
-        from .entity import Entity
-        from .printer_location import PrinterLocation
-
         writer.write_str_value("appVersion", self.app_version)
         writer.write_object_value("deviceHealth", self.device_health)
         writer.write_str_value("displayName", self.display_name)

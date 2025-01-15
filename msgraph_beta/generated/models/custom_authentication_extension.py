@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_callout_extension import CustomCalloutExtension
@@ -17,7 +18,7 @@ from .custom_callout_extension import CustomCalloutExtension
 class CustomAuthenticationExtension(CustomCalloutExtension, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customAuthenticationExtension"
-    # The behaviorOnError property
+    # The behaviour on error for the custom authentication extension.
     behavior_on_error: Optional[CustomExtensionBehaviorOnError] = None
     
     @staticmethod
@@ -52,10 +53,10 @@ class CustomAuthenticationExtension(CustomCalloutExtension, Parsable):
             return OnTokenIssuanceStartCustomExtension()
         return CustomAuthenticationExtension()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_callout_extension import CustomCalloutExtension
         from .custom_extension_behavior_on_error import CustomExtensionBehaviorOnError
@@ -71,7 +72,7 @@ class CustomAuthenticationExtension(CustomCalloutExtension, Parsable):
         from .on_otp_send_custom_extension import OnOtpSendCustomExtension
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "behaviorOnError": lambda n : setattr(self, 'behavior_on_error', n.get_object_value(CustomExtensionBehaviorOnError)),
         }
         super_fields = super().get_field_deserializers()
@@ -87,13 +88,6 @@ class CustomAuthenticationExtension(CustomCalloutExtension, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .custom_callout_extension import CustomCalloutExtension
-        from .custom_extension_behavior_on_error import CustomExtensionBehaviorOnError
-        from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
-        from .on_attribute_collection_submit_custom_extension import OnAttributeCollectionSubmitCustomExtension
-        from .on_otp_send_custom_extension import OnOtpSendCustomExtension
-        from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
-
         writer.write_object_value("behaviorOnError", self.behavior_on_error)
     
 

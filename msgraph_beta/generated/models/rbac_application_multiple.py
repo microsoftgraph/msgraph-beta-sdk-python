@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -16,11 +17,11 @@ class RbacApplicationMultiple(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The resourceNamespaces property
-    resource_namespaces: Optional[List[UnifiedRbacResourceNamespace]] = None
+    resource_namespaces: Optional[list[UnifiedRbacResourceNamespace]] = None
     # The roleAssignments property
-    role_assignments: Optional[List[UnifiedRoleAssignmentMultiple]] = None
+    role_assignments: Optional[list[UnifiedRoleAssignmentMultiple]] = None
     # The roleDefinitions property
-    role_definitions: Optional[List[UnifiedRoleDefinition]] = None
+    role_definitions: Optional[list[UnifiedRoleDefinition]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RbacApplicationMultiple:
@@ -33,10 +34,10 @@ class RbacApplicationMultiple(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RbacApplicationMultiple()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
@@ -48,7 +49,7 @@ class RbacApplicationMultiple(Entity, Parsable):
         from .unified_role_assignment_multiple import UnifiedRoleAssignmentMultiple
         from .unified_role_definition import UnifiedRoleDefinition
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "resourceNamespaces": lambda n : setattr(self, 'resource_namespaces', n.get_collection_of_object_values(UnifiedRbacResourceNamespace)),
             "roleAssignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(UnifiedRoleAssignmentMultiple)),
             "roleDefinitions": lambda n : setattr(self, 'role_definitions', n.get_collection_of_object_values(UnifiedRoleDefinition)),
@@ -66,11 +67,6 @@ class RbacApplicationMultiple(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
-        from .unified_role_assignment_multiple import UnifiedRoleAssignmentMultiple
-        from .unified_role_definition import UnifiedRoleDefinition
-
         writer.write_collection_of_object_values("resourceNamespaces", self.resource_namespaces)
         writer.write_collection_of_object_values("roleAssignments", self.role_assignments)
         writer.write_collection_of_object_values("roleDefinitions", self.role_definitions)

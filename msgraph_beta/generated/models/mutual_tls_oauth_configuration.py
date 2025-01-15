@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .tls_client_registration_metadata import TlsClientRegistrationMetadata
@@ -13,7 +14,7 @@ from .trusted_certificate_authority_base import TrustedCertificateAuthorityBase
 class MutualTlsOauthConfiguration(TrustedCertificateAuthorityBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.mutualTlsOauthConfiguration"
-    # The displayName property
+    # Friendly name. Supports $filter (eq, in).
     display_name: Optional[str] = None
     # The tlsClientAuthParameter property
     tls_client_auth_parameter: Optional[TlsClientRegistrationMetadata] = None
@@ -29,10 +30,10 @@ class MutualTlsOauthConfiguration(TrustedCertificateAuthorityBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MutualTlsOauthConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .tls_client_registration_metadata import TlsClientRegistrationMetadata
         from .trusted_certificate_authority_base import TrustedCertificateAuthorityBase
@@ -40,7 +41,7 @@ class MutualTlsOauthConfiguration(TrustedCertificateAuthorityBase, Parsable):
         from .tls_client_registration_metadata import TlsClientRegistrationMetadata
         from .trusted_certificate_authority_base import TrustedCertificateAuthorityBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "tlsClientAuthParameter": lambda n : setattr(self, 'tls_client_auth_parameter', n.get_enum_value(TlsClientRegistrationMetadata)),
         }
@@ -57,9 +58,6 @@ class MutualTlsOauthConfiguration(TrustedCertificateAuthorityBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .tls_client_registration_metadata import TlsClientRegistrationMetadata
-        from .trusted_certificate_authority_base import TrustedCertificateAuthorityBase
-
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("tlsClientAuthParameter", self.tls_client_auth_parameter)
     

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .label import Label
@@ -15,9 +16,9 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # A set of aliases or friendly names for the property. Maximum 32 characters. Only alphanumeric characters allowed. For example, each string might not contain control characters, whitespace, or any of the following: :, ;, ,, (, ), [, ], {, }, %, $, +, !, *, =, &, ?, @, #, /, ~, ', ', <, >, `, ^. Optional.
-    aliases: Optional[List[str]] = None
+    aliases: Optional[list[str]] = None
     # Specifies if the property will be matched exactly for queries. Exact matching can only be set to true for non-searchable properties of type string or stringCollection. Optional.
     is_exact_match_required: Optional[bool] = None
     # Specifies if the property is queryable. Queryable properties can be used in Keyword Query Language (KQL) queries. Optional.
@@ -29,7 +30,7 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
     # Specifies if the property is searchable. Only properties of type string or stringCollection can be searchable. Non-searchable properties aren't added to the search index. Optional.
     is_searchable: Optional[bool] = None
     # Specifies one or more well-known tags added against a property. Labels help Microsoft Search understand the semantics of the data in the connection. Adding appropriate labels would result in an enhanced search experience (for example, better relevance). Optional.The possible values are: title, url, createdBy, lastModifiedBy, authors, createdDateTime, lastModifiedDateTime, fileName, fileExtension, unknownFutureValue, containerName, containerUrl, iconUrl. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: containerName, containerUrl, iconUrl.
-    labels: Optional[List[Label]] = None
+    labels: Optional[list[Label]] = None
     # The name of the property. Maximum 32 characters. Only alphanumeric characters allowed. For example, the property name may not contain control characters, whitespace, or any of the following: :, ;, ,, (, ), [, ], {, }, %, $, +, !, *, =, &, ?, @, #, /, ~, ', ', <, >, `, ^.  Required.
     name: Optional[str] = None
     # The OdataType property
@@ -50,10 +51,10 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Property_()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .label import Label
         from .property_type import PropertyType
@@ -63,7 +64,7 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
         from .property_type import PropertyType
         from .ranking_hint import RankingHint
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "aliases": lambda n : setattr(self, 'aliases', n.get_collection_of_primitive_values(str)),
             "isExactMatchRequired": lambda n : setattr(self, 'is_exact_match_required', n.get_bool_value()),
             "isQueryable": lambda n : setattr(self, 'is_queryable', n.get_bool_value()),
@@ -86,10 +87,6 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .label import Label
-        from .property_type import PropertyType
-        from .ranking_hint import RankingHint
-
         writer.write_collection_of_primitive_values("aliases", self.aliases)
         writer.write_bool_value("isExactMatchRequired", self.is_exact_match_required)
         writer.write_bool_value("isQueryable", self.is_queryable)

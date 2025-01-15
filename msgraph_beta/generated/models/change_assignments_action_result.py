@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_action_result import DeviceActionResult
@@ -15,7 +16,7 @@ class ChangeAssignmentsActionResult(DeviceActionResult, Parsable):
     ChangeAssignmentsActionResult represents the result of executing the changeAssignments action on tracking the live reporting data for applications or configuration regarding their removal or restoration process
     """
     # Indicates the list of applications or configuration to report live results during their changeAssignments action execution process. The result for each individual application or configuration can contain whether it's being removed or restored, what's the current status with potential message or error code, and when any changes happen on it. Read-Only. This collection can contain a maximum of 30 elements.
-    device_assignment_items: Optional[List[DeviceAssignmentItem]] = None
+    device_assignment_items: Optional[list[DeviceAssignmentItem]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -30,10 +31,10 @@ class ChangeAssignmentsActionResult(DeviceActionResult, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ChangeAssignmentsActionResult()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_action_result import DeviceActionResult
         from .device_assignment_item import DeviceAssignmentItem
@@ -41,7 +42,7 @@ class ChangeAssignmentsActionResult(DeviceActionResult, Parsable):
         from .device_action_result import DeviceActionResult
         from .device_assignment_item import DeviceAssignmentItem
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deviceAssignmentItems": lambda n : setattr(self, 'device_assignment_items', n.get_collection_of_object_values(DeviceAssignmentItem)),
         }
         super_fields = super().get_field_deserializers()
@@ -57,9 +58,6 @@ class ChangeAssignmentsActionResult(DeviceActionResult, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_action_result import DeviceActionResult
-        from .device_assignment_item import DeviceAssignmentItem
-
         writer.write_collection_of_object_values("deviceAssignmentItems", self.device_assignment_items)
     
 

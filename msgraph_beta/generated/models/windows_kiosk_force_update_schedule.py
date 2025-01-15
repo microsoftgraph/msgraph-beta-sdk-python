@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .day_of_week import DayOfWeek
@@ -18,7 +19,7 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, BackedModel, Parsabl
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Day of month. Valid values 1 to 31
     dayof_month: Optional[int] = None
     # The dayofWeek property
@@ -43,10 +44,10 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, BackedModel, Parsabl
             raise TypeError("parse_node cannot be null.")
         return WindowsKioskForceUpdateSchedule()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .day_of_week import DayOfWeek
         from .windows10_apps_update_recurrence import Windows10AppsUpdateRecurrence
@@ -54,7 +55,7 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, BackedModel, Parsabl
         from .day_of_week import DayOfWeek
         from .windows10_apps_update_recurrence import Windows10AppsUpdateRecurrence
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dayofMonth": lambda n : setattr(self, 'dayof_month', n.get_int_value()),
             "dayofWeek": lambda n : setattr(self, 'dayof_week', n.get_enum_value(DayOfWeek)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -72,9 +73,6 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .day_of_week import DayOfWeek
-        from .windows10_apps_update_recurrence import Windows10AppsUpdateRecurrence
-
         writer.write_int_value("dayofMonth", self.dayof_month)
         writer.write_enum_value("dayofWeek", self.dayof_week)
         writer.write_str_value("@odata.type", self.odata_type)

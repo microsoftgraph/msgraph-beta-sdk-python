@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .case_operation import CaseOperation
@@ -43,10 +44,10 @@ class CaseExportOperation(CaseOperation, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CaseExportOperation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .case_operation import CaseOperation
         from .export_file_structure import ExportFileStructure
@@ -58,7 +59,7 @@ class CaseExportOperation(CaseOperation, Parsable):
         from .export_options import ExportOptions
         from .review_set import ReviewSet
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "azureBlobContainer": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
             "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -81,11 +82,6 @@ class CaseExportOperation(CaseOperation, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .case_operation import CaseOperation
-        from .export_file_structure import ExportFileStructure
-        from .export_options import ExportOptions
-        from .review_set import ReviewSet
-
         writer.write_str_value("azureBlobContainer", self.azure_blob_container)
         writer.write_str_value("azureBlobToken", self.azure_blob_token)
         writer.write_str_value("description", self.description)

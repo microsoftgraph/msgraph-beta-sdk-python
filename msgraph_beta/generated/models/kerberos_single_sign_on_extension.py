@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .single_sign_on_extension import SingleSignOnExtension
@@ -24,11 +25,11 @@ class KerberosSingleSignOnExtension(SingleSignOnExtension, Parsable):
     # Gets or sets the Generic Security Services name of the Kerberos cache to use for this profile.
     cache_name: Optional[str] = None
     # Gets or sets a list of app Bundle IDs allowed to access the Kerberos Ticket Granting Ticket.
-    credential_bundle_id_access_control_list: Optional[List[str]] = None
+    credential_bundle_id_access_control_list: Optional[list[str]] = None
     # Gets or sets a list of realms for custom domain-realm mapping. Realms are case sensitive.
-    domain_realms: Optional[List[str]] = None
+    domain_realms: Optional[list[str]] = None
     # Gets or sets a list of hosts or domain names for which the app extension performs SSO.
-    domains: Optional[List[str]] = None
+    domains: Optional[list[str]] = None
     # When true, this profile's realm will be selected as the default. Necessary if multiple Kerberos-type profiles are configured.
     is_default_realm: Optional[bool] = None
     # Enables or disables password changes.
@@ -69,16 +70,16 @@ class KerberosSingleSignOnExtension(SingleSignOnExtension, Parsable):
             raise TypeError("parse_node cannot be null.")
         return KerberosSingleSignOnExtension()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .single_sign_on_extension import SingleSignOnExtension
 
         from .single_sign_on_extension import SingleSignOnExtension
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activeDirectorySiteCode": lambda n : setattr(self, 'active_directory_site_code', n.get_str_value()),
             "blockActiveDirectorySiteAutoDiscovery": lambda n : setattr(self, 'block_active_directory_site_auto_discovery', n.get_bool_value()),
             "blockAutomaticLogin": lambda n : setattr(self, 'block_automatic_login', n.get_bool_value()),
@@ -114,8 +115,6 @@ class KerberosSingleSignOnExtension(SingleSignOnExtension, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .single_sign_on_extension import SingleSignOnExtension
-
         writer.write_str_value("activeDirectorySiteCode", self.active_directory_site_code)
         writer.write_bool_value("blockActiveDirectorySiteAutoDiscovery", self.block_active_directory_site_auto_discovery)
         writer.write_bool_value("blockAutomaticLogin", self.block_automatic_login)

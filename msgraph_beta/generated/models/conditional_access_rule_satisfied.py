@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .conditional_access_conditions import ConditionalAccessConditions
@@ -14,7 +15,7 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, BackedModel, Parsable
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Refers to the conditional access policy conditions that are satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client, ipAddressSeenByAzureAD, ipAddressSeenByResourceProvider, unknownFutureValue, servicePrincipals, servicePrincipalRisk, authenticationFlows, insiderRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals, servicePrincipalRisk, authenticationFlows, insiderRisk. conditionalAccessConditions is a multi-valued enumeration and the property can contain multiple values in a comma-separated list.
     conditional_access_condition: Optional[ConditionalAccessConditions] = None
     # The OdataType property
@@ -33,10 +34,10 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, BackedModel, Parsable
             raise TypeError("parse_node cannot be null.")
         return ConditionalAccessRuleSatisfied()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .conditional_access_conditions import ConditionalAccessConditions
         from .conditional_access_rule import ConditionalAccessRule
@@ -44,7 +45,7 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, BackedModel, Parsable
         from .conditional_access_conditions import ConditionalAccessConditions
         from .conditional_access_rule import ConditionalAccessRule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "conditionalAccessCondition": lambda n : setattr(self, 'conditional_access_condition', n.get_collection_of_enum_values(ConditionalAccessConditions)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ruleSatisfied": lambda n : setattr(self, 'rule_satisfied', n.get_enum_value(ConditionalAccessRule)),
@@ -59,9 +60,6 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .conditional_access_conditions import ConditionalAccessConditions
-        from .conditional_access_rule import ConditionalAccessRule
-
         writer.write_enum_value("conditionalAccessCondition", self.conditional_access_condition)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("ruleSatisfied", self.rule_satisfied)

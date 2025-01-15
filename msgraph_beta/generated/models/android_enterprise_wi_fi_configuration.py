@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_certificate_profile_base import AndroidCertificateProfileBase
@@ -40,7 +41,7 @@ class AndroidEnterpriseWiFiConfiguration(AndroidWiFiConfiguration, Parsable):
     # Trusted Root Certificate for Server Validation when EAP Type is configured to EAP-TLS, EAP-TTLS or PEAP. This is the certificate presented by the Wi-Fi endpoint when the device attempts to connect to Wi-Fi endpoint. The device (or user) must accept this certificate to continue the connection attempt.
     root_certificate_for_server_validation: Optional[AndroidTrustedRootCertificate] = None
     # Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users' devices when they connect to this Wi-Fi network.
-    trusted_server_certificate_names: Optional[List[str]] = None
+    trusted_server_certificate_names: Optional[list[str]] = None
     # Username format string used to build the username to connect to wifi
     username_format_string: Optional[str] = None
     
@@ -55,10 +56,10 @@ class AndroidEnterpriseWiFiConfiguration(AndroidWiFiConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidEnterpriseWiFiConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_eap_type import AndroidEapType
@@ -76,7 +77,7 @@ class AndroidEnterpriseWiFiConfiguration(AndroidWiFiConfiguration, Parsable):
         from .non_eap_authentication_method_for_peap import NonEapAuthenticationMethodForPeap
         from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WiFiAuthenticationMethod)),
             "eapType": lambda n : setattr(self, 'eap_type', n.get_enum_value(AndroidEapType)),
             "identityCertificateForClientAuthentication": lambda n : setattr(self, 'identity_certificate_for_client_authentication', n.get_object_value(AndroidCertificateProfileBase)),
@@ -102,14 +103,6 @@ class AndroidEnterpriseWiFiConfiguration(AndroidWiFiConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_certificate_profile_base import AndroidCertificateProfileBase
-        from .android_eap_type import AndroidEapType
-        from .android_trusted_root_certificate import AndroidTrustedRootCertificate
-        from .android_wi_fi_configuration import AndroidWiFiConfiguration
-        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
-        from .non_eap_authentication_method_for_peap import NonEapAuthenticationMethodForPeap
-        from .wi_fi_authentication_method import WiFiAuthenticationMethod
-
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_enum_value("eapType", self.eap_type)
         writer.write_object_value("identityCertificateForClientAuthentication", self.identity_certificate_for_client_authentication)

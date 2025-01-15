@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_configuration import DeviceConfiguration
@@ -35,10 +36,10 @@ class WindowsHealthMonitoringConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsHealthMonitoringConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_configuration import DeviceConfiguration
         from .enablement import Enablement
@@ -48,7 +49,7 @@ class WindowsHealthMonitoringConfiguration(DeviceConfiguration, Parsable):
         from .enablement import Enablement
         from .windows_health_monitoring_scope import WindowsHealthMonitoringScope
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowDeviceHealthMonitoring": lambda n : setattr(self, 'allow_device_health_monitoring', n.get_enum_value(Enablement)),
             "configDeviceHealthMonitoringCustomScope": lambda n : setattr(self, 'config_device_health_monitoring_custom_scope', n.get_str_value()),
             "configDeviceHealthMonitoringScope": lambda n : setattr(self, 'config_device_health_monitoring_scope', n.get_collection_of_enum_values(WindowsHealthMonitoringScope)),
@@ -66,10 +67,6 @@ class WindowsHealthMonitoringConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_configuration import DeviceConfiguration
-        from .enablement import Enablement
-        from .windows_health_monitoring_scope import WindowsHealthMonitoringScope
-
         writer.write_enum_value("allowDeviceHealthMonitoring", self.allow_device_health_monitoring)
         writer.write_str_value("configDeviceHealthMonitoringCustomScope", self.config_device_health_monitoring_custom_scope)
         writer.write_enum_value("configDeviceHealthMonitoringScope", self.config_device_health_monitoring_scope)

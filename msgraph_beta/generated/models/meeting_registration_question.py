@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .answer_input_type import AnswerInputType
@@ -14,7 +15,7 @@ class MeetingRegistrationQuestion(Entity, Parsable):
     # Answer input type of the custom registration question.
     answer_input_type: Optional[AnswerInputType] = None
     # Answer options when answerInputType is radioButton.
-    answer_options: Optional[List[str]] = None
+    answer_options: Optional[list[str]] = None
     # Display name of the custom registration question.
     display_name: Optional[str] = None
     # Indicates whether the question is required. Default value is false.
@@ -33,10 +34,10 @@ class MeetingRegistrationQuestion(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MeetingRegistrationQuestion()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .answer_input_type import AnswerInputType
         from .entity import Entity
@@ -44,7 +45,7 @@ class MeetingRegistrationQuestion(Entity, Parsable):
         from .answer_input_type import AnswerInputType
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "answerInputType": lambda n : setattr(self, 'answer_input_type', n.get_enum_value(AnswerInputType)),
             "answerOptions": lambda n : setattr(self, 'answer_options', n.get_collection_of_primitive_values(str)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -63,9 +64,6 @@ class MeetingRegistrationQuestion(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .answer_input_type import AnswerInputType
-        from .entity import Entity
-
         writer.write_enum_value("answerInputType", self.answer_input_type)
         writer.write_collection_of_primitive_values("answerOptions", self.answer_options)
         writer.write_str_value("displayName", self.display_name)

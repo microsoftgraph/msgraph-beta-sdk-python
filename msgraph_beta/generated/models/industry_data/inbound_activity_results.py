@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .industry_data_activity_statistics import IndustryDataActivityStatistics
@@ -19,7 +20,7 @@ class InboundActivityResults(IndustryDataActivityStatistics, Parsable):
     # Counts of active and inactive groups processed by the inbound flow.
     groups: Optional[IndustryDataRunEntityCountMetric] = None
     # Number of people matched to a Microsoft Entra user, by role.
-    matched_people_by_role: Optional[List[IndustryDataRunRoleCountMetric]] = None
+    matched_people_by_role: Optional[list[IndustryDataRunRoleCountMetric]] = None
     # Counts of active and inactive memberships processed by the inbound flow.
     memberships: Optional[IndustryDataRunEntityCountMetric] = None
     # Counts of active and inactive organizations processed by the inbound flow.
@@ -27,7 +28,7 @@ class InboundActivityResults(IndustryDataActivityStatistics, Parsable):
     # Counts of active and inactive people processed by the inbound flow.
     people: Optional[IndustryDataRunEntityCountMetric] = None
     # Number of people not matched to a Microsoft Entra user, by role.
-    unmatched_people_by_role: Optional[List[IndustryDataRunRoleCountMetric]] = None
+    unmatched_people_by_role: Optional[list[IndustryDataRunRoleCountMetric]] = None
     # Number of warnings encountered while processing the inbound flow.
     warnings: Optional[int] = None
     
@@ -42,10 +43,10 @@ class InboundActivityResults(IndustryDataActivityStatistics, Parsable):
             raise TypeError("parse_node cannot be null.")
         return InboundActivityResults()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .industry_data_activity_statistics import IndustryDataActivityStatistics
         from .industry_data_run_entity_count_metric import IndustryDataRunEntityCountMetric
@@ -55,7 +56,7 @@ class InboundActivityResults(IndustryDataActivityStatistics, Parsable):
         from .industry_data_run_entity_count_metric import IndustryDataRunEntityCountMetric
         from .industry_data_run_role_count_metric import IndustryDataRunRoleCountMetric
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "errors": lambda n : setattr(self, 'errors', n.get_int_value()),
             "groups": lambda n : setattr(self, 'groups', n.get_object_value(IndustryDataRunEntityCountMetric)),
             "matchedPeopleByRole": lambda n : setattr(self, 'matched_people_by_role', n.get_collection_of_object_values(IndustryDataRunRoleCountMetric)),
@@ -78,9 +79,5 @@ class InboundActivityResults(IndustryDataActivityStatistics, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .industry_data_activity_statistics import IndustryDataActivityStatistics
-        from .industry_data_run_entity_count_metric import IndustryDataRunEntityCountMetric
-        from .industry_data_run_role_count_metric import IndustryDataRunRoleCountMetric
-
     
 

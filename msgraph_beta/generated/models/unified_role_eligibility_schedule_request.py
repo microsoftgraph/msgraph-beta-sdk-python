@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .app_scope import AppScope
@@ -60,10 +61,10 @@ class UnifiedRoleEligibilityScheduleRequest(Request, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UnifiedRoleEligibilityScheduleRequest()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .app_scope import AppScope
         from .directory_object import DirectoryObject
@@ -81,7 +82,7 @@ class UnifiedRoleEligibilityScheduleRequest(Request, Parsable):
         from .unified_role_definition import UnifiedRoleDefinition
         from .unified_role_eligibility_schedule import UnifiedRoleEligibilitySchedule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_str_value()),
             "appScope": lambda n : setattr(self, 'app_scope', n.get_object_value(AppScope)),
             "appScopeId": lambda n : setattr(self, 'app_scope_id', n.get_str_value()),
@@ -111,14 +112,6 @@ class UnifiedRoleEligibilityScheduleRequest(Request, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .app_scope import AppScope
-        from .directory_object import DirectoryObject
-        from .request import Request
-        from .request_schedule import RequestSchedule
-        from .ticket_info import TicketInfo
-        from .unified_role_definition import UnifiedRoleDefinition
-        from .unified_role_eligibility_schedule import UnifiedRoleEligibilitySchedule
-
         writer.write_str_value("action", self.action)
         writer.write_object_value("appScope", self.app_scope)
         writer.write_str_value("appScopeId", self.app_scope_id)

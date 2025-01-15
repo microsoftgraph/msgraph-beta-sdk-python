@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .certificate_authority_as_entity import CertificateAuthorityAsEntity
@@ -15,7 +16,7 @@ class TrustedCertificateAuthorityAsEntityBase(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.trustedCertificateAuthorityAsEntityBase"
     # Collection of trusted certificate authorities.
-    trusted_certificate_authorities: Optional[List[CertificateAuthorityAsEntity]] = None
+    trusted_certificate_authorities: Optional[list[CertificateAuthorityAsEntity]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TrustedCertificateAuthorityAsEntityBase:
@@ -37,10 +38,10 @@ class TrustedCertificateAuthorityAsEntityBase(DirectoryObject, Parsable):
             return CertificateBasedApplicationConfiguration()
         return TrustedCertificateAuthorityAsEntityBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .certificate_authority_as_entity import CertificateAuthorityAsEntity
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
@@ -50,7 +51,7 @@ class TrustedCertificateAuthorityAsEntityBase(DirectoryObject, Parsable):
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
         from .directory_object import DirectoryObject
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "trustedCertificateAuthorities": lambda n : setattr(self, 'trusted_certificate_authorities', n.get_collection_of_object_values(CertificateAuthorityAsEntity)),
         }
         super_fields = super().get_field_deserializers()
@@ -66,10 +67,6 @@ class TrustedCertificateAuthorityAsEntityBase(DirectoryObject, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .certificate_authority_as_entity import CertificateAuthorityAsEntity
-        from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
-        from .directory_object import DirectoryObject
-
         writer.write_collection_of_object_values("trustedCertificateAuthorities", self.trusted_certificate_authorities)
     
 

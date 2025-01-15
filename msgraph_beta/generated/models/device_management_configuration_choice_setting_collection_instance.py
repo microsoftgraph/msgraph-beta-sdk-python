@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_configuration_choice_setting_value import DeviceManagementConfigurationChoiceSettingValue
@@ -17,7 +18,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstance(DeviceManagem
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstance"
     # Choice setting collection value
-    choice_setting_collection_value: Optional[List[DeviceManagementConfigurationChoiceSettingValue]] = None
+    choice_setting_collection_value: Optional[list[DeviceManagementConfigurationChoiceSettingValue]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationChoiceSettingCollectionInstance:
@@ -30,10 +31,10 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstance(DeviceManagem
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementConfigurationChoiceSettingCollectionInstance()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_configuration_choice_setting_value import DeviceManagementConfigurationChoiceSettingValue
         from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
@@ -41,7 +42,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstance(DeviceManagem
         from .device_management_configuration_choice_setting_value import DeviceManagementConfigurationChoiceSettingValue
         from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "choiceSettingCollectionValue": lambda n : setattr(self, 'choice_setting_collection_value', n.get_collection_of_object_values(DeviceManagementConfigurationChoiceSettingValue)),
         }
         super_fields = super().get_field_deserializers()
@@ -57,9 +58,6 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstance(DeviceManagem
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_configuration_choice_setting_value import DeviceManagementConfigurationChoiceSettingValue
-        from .device_management_configuration_setting_instance import DeviceManagementConfigurationSettingInstance
-
         writer.write_collection_of_object_values("choiceSettingCollectionValue", self.choice_setting_collection_value)
     
 

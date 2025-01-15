@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -14,7 +15,7 @@ class AuthenticationMethodDevice(Entity, Parsable):
     # Optional name given to the hardware OATH device.
     display_name: Optional[str] = None
     # Exposes the hardware OATH method in the directory.
-    hardware_oath_devices: Optional[List[HardwareOathTokenAuthenticationMethodDevice]] = None
+    hardware_oath_devices: Optional[list[HardwareOathTokenAuthenticationMethodDevice]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -38,10 +39,10 @@ class AuthenticationMethodDevice(Entity, Parsable):
             return HardwareOathTokenAuthenticationMethodDevice()
         return AuthenticationMethodDevice()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .hardware_oath_token_authentication_method_device import HardwareOathTokenAuthenticationMethodDevice
@@ -49,7 +50,7 @@ class AuthenticationMethodDevice(Entity, Parsable):
         from .entity import Entity
         from .hardware_oath_token_authentication_method_device import HardwareOathTokenAuthenticationMethodDevice
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "hardwareOathDevices": lambda n : setattr(self, 'hardware_oath_devices', n.get_collection_of_object_values(HardwareOathTokenAuthenticationMethodDevice)),
         }
@@ -66,9 +67,6 @@ class AuthenticationMethodDevice(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .hardware_oath_token_authentication_method_device import HardwareOathTokenAuthenticationMethodDevice
-
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("hardwareOathDevices", self.hardware_oath_devices)
     

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_deployment_channel import AppleDeploymentChannel
@@ -23,7 +24,7 @@ class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase, Parsable):
     # PFX Import Options.
     intended_purpose: Optional[IntendedPurpose] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-    managed_device_certificate_states: Optional[List[ManagedDeviceCertificateState]] = None
+    managed_device_certificate_states: Optional[list[ManagedDeviceCertificateState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MacOSImportedPFXCertificateProfile:
@@ -36,10 +37,10 @@ class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSImportedPFXCertificateProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .apple_deployment_channel import AppleDeploymentChannel
         from .intended_purpose import IntendedPurpose
@@ -51,7 +52,7 @@ class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase, Parsable):
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deploymentChannel": lambda n : setattr(self, 'deployment_channel', n.get_enum_value(AppleDeploymentChannel)),
             "intendedPurpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(IntendedPurpose)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(ManagedDeviceCertificateState)),
@@ -69,11 +70,6 @@ class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .apple_deployment_channel import AppleDeploymentChannel
-        from .intended_purpose import IntendedPurpose
-        from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
-        from .managed_device_certificate_state import ManagedDeviceCertificateState
-
         writer.write_enum_value("deploymentChannel", self.deployment_channel)
         writer.write_enum_value("intendedPurpose", self.intended_purpose)
         writer.write_collection_of_object_values("managedDeviceCertificateStates", self.managed_device_certificate_states)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .azure_role_definition_type import AzureRoleDefinitionType
@@ -12,7 +13,7 @@ from .entity import Entity
 @dataclass
 class AzureRoleDefinition(Entity, Parsable):
     # Scopes at which the Azure role can be assigned. For more information about common patterns, see Understand Azure role definitions: AssignableScopes. Supports $filter (eq).
-    assignable_scopes: Optional[List[str]] = None
+    assignable_scopes: Optional[list[str]] = None
     # The azureRoleDefinitionType property
     azure_role_definition_type: Optional[AzureRoleDefinitionType] = None
     # Name of the Azure role. Supports $filter (eq, contains).
@@ -33,10 +34,10 @@ class AzureRoleDefinition(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AzureRoleDefinition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .azure_role_definition_type import AzureRoleDefinitionType
         from .entity import Entity
@@ -44,7 +45,7 @@ class AzureRoleDefinition(Entity, Parsable):
         from .azure_role_definition_type import AzureRoleDefinitionType
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignableScopes": lambda n : setattr(self, 'assignable_scopes', n.get_collection_of_primitive_values(str)),
             "azureRoleDefinitionType": lambda n : setattr(self, 'azure_role_definition_type', n.get_enum_value(AzureRoleDefinitionType)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -63,9 +64,6 @@ class AzureRoleDefinition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .azure_role_definition_type import AzureRoleDefinitionType
-        from .entity import Entity
-
         writer.write_collection_of_primitive_values("assignableScopes", self.assignable_scopes)
         writer.write_enum_value("azureRoleDefinitionType", self.azure_role_definition_type)
         writer.write_str_value("displayName", self.display_name)

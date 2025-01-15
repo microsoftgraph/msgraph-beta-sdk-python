@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aws_condition import AwsCondition
@@ -14,21 +15,21 @@ class AwsStatement(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The AWS actions.
-    actions: Optional[List[str]] = None
+    actions: Optional[list[str]] = None
     # The AWS conditions associated with the statement.
     condition: Optional[AwsCondition] = None
     # The effect property
     effect: Optional[AwsStatementEffect] = None
     # AWS Not Actions
-    not_actions: Optional[List[str]] = None
+    not_actions: Optional[list[str]] = None
     # AWS Not Resources
-    not_resources: Optional[List[str]] = None
+    not_resources: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The AWS resources associated with the statement.
-    resources: Optional[List[str]] = None
+    resources: Optional[list[str]] = None
     # The ID of the AWS statement.
     statement_id: Optional[str] = None
     
@@ -43,10 +44,10 @@ class AwsStatement(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AwsStatement()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aws_condition import AwsCondition
         from .aws_statement_effect import AwsStatementEffect
@@ -54,7 +55,7 @@ class AwsStatement(AdditionalDataHolder, BackedModel, Parsable):
         from .aws_condition import AwsCondition
         from .aws_statement_effect import AwsStatementEffect
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_primitive_values(str)),
             "condition": lambda n : setattr(self, 'condition', n.get_object_value(AwsCondition)),
             "effect": lambda n : setattr(self, 'effect', n.get_enum_value(AwsStatementEffect)),
@@ -74,9 +75,6 @@ class AwsStatement(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .aws_condition import AwsCondition
-        from .aws_statement_effect import AwsStatementEffect
-
         writer.write_collection_of_primitive_values("actions", self.actions)
         writer.write_object_value("condition", self.condition)
         writer.write_enum_value("effect", self.effect)

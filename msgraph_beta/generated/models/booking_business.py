@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .booking_appointment import BookingAppointment
@@ -28,21 +29,21 @@ class BookingBusiness(BookingNamedEntity, Parsable):
     # The street address of the business. The address property, together with phone and webSiteUrl, appear in the footer of a business scheduling page.
     address: Optional[PhysicalAddress] = None
     # All the appointments of this business. Read-only. Nullable.
-    appointments: Optional[List[BookingAppointment]] = None
+    appointments: Optional[list[BookingAppointment]] = None
     # Settings for the published booking page.
     booking_page_settings: Optional[BookingPageSettings] = None
     # The hours of operation for the business.
-    business_hours: Optional[List[BookingWorkHours]] = None
+    business_hours: Optional[list[BookingWorkHours]] = None
     # The type of business.
     business_type: Optional[str] = None
     # The set of appointments of this business in a specified date range. Read-only. Nullable.
-    calendar_view: Optional[List[BookingAppointment]] = None
+    calendar_view: Optional[list[BookingAppointment]] = None
     # The date, time and timezone when the booking business was created.
     created_date_time: Optional[datetime.datetime] = None
     # All custom questions of this business.
-    custom_questions: Optional[List[BookingCustomQuestion]] = None
+    custom_questions: Optional[list[BookingCustomQuestion]] = None
     # All the customers of this business. Read-only. Nullable.
-    customers: Optional[List[BookingCustomer]] = None
+    customers: Optional[list[BookingCustomer]] = None
     # The code for the currency that the business operates in on Microsoft Bookings.
     default_currency_iso: Optional[str] = None
     # The email address for the business.
@@ -60,9 +61,9 @@ class BookingBusiness(BookingNamedEntity, Parsable):
     # Specifies how bookings can be created for this business.
     scheduling_policy: Optional[BookingSchedulingPolicy] = None
     # All the services offered by this business. Read-only. Nullable.
-    services: Optional[List[BookingService]] = None
+    services: Optional[list[BookingService]] = None
     # All the staff members that provide services in this business. Read-only. Nullable.
-    staff_members: Optional[List[BookingStaffMember]] = None
+    staff_members: Optional[list[BookingStaffMember]] = None
     # The URL of the business web site. The webSiteUrl property, together with address, phone, appear in the footer of a business scheduling page.
     web_site_url: Optional[str] = None
     
@@ -77,10 +78,10 @@ class BookingBusiness(BookingNamedEntity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return BookingBusiness()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .booking_appointment import BookingAppointment
         from .booking_customer import BookingCustomer
@@ -104,7 +105,7 @@ class BookingBusiness(BookingNamedEntity, Parsable):
         from .booking_work_hours import BookingWorkHours
         from .physical_address import PhysicalAddress
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(PhysicalAddress)),
             "appointments": lambda n : setattr(self, 'appointments', n.get_collection_of_object_values(BookingAppointment)),
             "bookingPageSettings": lambda n : setattr(self, 'booking_page_settings', n.get_object_value(BookingPageSettings)),
@@ -139,17 +140,6 @@ class BookingBusiness(BookingNamedEntity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .booking_appointment import BookingAppointment
-        from .booking_customer import BookingCustomer
-        from .booking_custom_question import BookingCustomQuestion
-        from .booking_named_entity import BookingNamedEntity
-        from .booking_page_settings import BookingPageSettings
-        from .booking_scheduling_policy import BookingSchedulingPolicy
-        from .booking_service import BookingService
-        from .booking_staff_member import BookingStaffMember
-        from .booking_work_hours import BookingWorkHours
-        from .physical_address import PhysicalAddress
-
         writer.write_object_value("address", self.address)
         writer.write_collection_of_object_values("appointments", self.appointments)
         writer.write_object_value("bookingPageSettings", self.booking_page_settings)

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mac_o_s_system_extension_type import MacOSSystemExtensionType
@@ -16,7 +17,7 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, BackedModel, Parsabl
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Flag enum representing the allowed macOS system extension types.
     allowed_types: Optional[MacOSSystemExtensionType] = None
     # The OdataType property
@@ -35,16 +36,16 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, BackedModel, Parsabl
             raise TypeError("parse_node cannot be null.")
         return MacOSSystemExtensionTypeMapping()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .mac_o_s_system_extension_type import MacOSSystemExtensionType
 
         from .mac_o_s_system_extension_type import MacOSSystemExtensionType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowedTypes": lambda n : setattr(self, 'allowed_types', n.get_collection_of_enum_values(MacOSSystemExtensionType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "teamIdentifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),
@@ -59,8 +60,6 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .mac_o_s_system_extension_type import MacOSSystemExtensionType
-
         writer.write_enum_value("allowedTypes", self.allowed_types)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("teamIdentifier", self.team_identifier)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .information_protection_action import InformationProtectionAction
@@ -13,7 +14,7 @@ class RemoveContentFooterAction(InformationProtectionAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.removeContentFooterAction"
     # The name of the UI element of the footer to be removed.
-    ui_element_names: Optional[List[str]] = None
+    ui_element_names: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RemoveContentFooterAction:
@@ -26,16 +27,16 @@ class RemoveContentFooterAction(InformationProtectionAction, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RemoveContentFooterAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .information_protection_action import InformationProtectionAction
 
         from .information_protection_action import InformationProtectionAction
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "uiElementNames": lambda n : setattr(self, 'ui_element_names', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
@@ -51,8 +52,6 @@ class RemoveContentFooterAction(InformationProtectionAction, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .information_protection_action import InformationProtectionAction
-
         writer.write_collection_of_primitive_values("uiElementNames", self.ui_element_names)
     
 

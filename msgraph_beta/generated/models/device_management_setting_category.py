@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_intent_setting_category import DeviceManagementIntentSettingCategory
@@ -23,7 +24,7 @@ class DeviceManagementSettingCategory(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The setting definitions this category contains
-    setting_definitions: Optional[List[DeviceManagementSettingDefinition]] = None
+    setting_definitions: Optional[list[DeviceManagementSettingDefinition]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementSettingCategory:
@@ -49,10 +50,10 @@ class DeviceManagementSettingCategory(Entity, Parsable):
             return DeviceManagementTemplateSettingCategory()
         return DeviceManagementSettingCategory()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_intent_setting_category import DeviceManagementIntentSettingCategory
         from .device_management_setting_definition import DeviceManagementSettingDefinition
@@ -64,7 +65,7 @@ class DeviceManagementSettingCategory(Entity, Parsable):
         from .device_management_template_setting_category import DeviceManagementTemplateSettingCategory
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "hasRequiredSetting": lambda n : setattr(self, 'has_required_setting', n.get_bool_value()),
             "settingDefinitions": lambda n : setattr(self, 'setting_definitions', n.get_collection_of_object_values(DeviceManagementSettingDefinition)),
@@ -82,11 +83,6 @@ class DeviceManagementSettingCategory(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_intent_setting_category import DeviceManagementIntentSettingCategory
-        from .device_management_setting_definition import DeviceManagementSettingDefinition
-        from .device_management_template_setting_category import DeviceManagementTemplateSettingCategory
-        from .entity import Entity
-
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("hasRequiredSetting", self.has_required_setting)
         writer.write_collection_of_object_values("settingDefinitions", self.setting_definitions)

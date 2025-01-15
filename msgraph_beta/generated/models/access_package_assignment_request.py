@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package import AccessPackage
@@ -25,19 +26,19 @@ class AccessPackageAssignmentRequest(Entity, Parsable):
     # For a requestType of UserAdd or AdminAdd, an access package assignment requested to be created. For a requestType of UserRemove, AdminRemove, or SystemRemove, this property has the id property of an existing assignment to be removed. Supports $expand.
     access_package_assignment: Optional[AccessPackageAssignment] = None
     # Answers provided by the requestor to accessPackageQuestions asked of them at the time of request.
-    answers: Optional[List[AccessPackageAnswer]] = None
+    answers: Optional[list[AccessPackageAnswer]] = None
     # The date of the end of processing, either successful or failure, of a request. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     completed_date: Optional[datetime.datetime] = None
     # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     created_date_time: Optional[datetime.datetime] = None
     # Information about all the custom extension calls that were made during the access package assignment request workflow.
-    custom_extension_callout_instances: Optional[List[CustomExtensionCalloutInstance]] = None
+    custom_extension_callout_instances: Optional[list[CustomExtensionCalloutInstance]] = None
     # A collection of custom workflow extension instances being run on an assignment request. Read-only.
-    custom_extension_handler_instances: Optional[List[CustomExtensionHandlerInstance]] = None
+    custom_extension_handler_instances: Optional[list[CustomExtensionHandlerInstance]] = None
     # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     expiration_date_time: Optional[datetime.datetime] = None
     # The history property
-    history: Optional[List[RequestActivity]] = None
+    history: Optional[list[RequestActivity]] = None
     # True if the request isn't to be processed for assignment.
     is_validation_only: Optional[bool] = None
     # The requestor's supplied justification.
@@ -55,7 +56,7 @@ class AccessPackageAssignmentRequest(Entity, Parsable):
     # The range of dates that access is to be assigned to the requestor. Read-only.
     schedule: Optional[RequestSchedule] = None
     # The details of the verifiable credential that the requestor presented, such as the issuer and claims. Read-only.
-    verified_credentials_data: Optional[List[VerifiedCredentialData]] = None
+    verified_credentials_data: Optional[list[VerifiedCredentialData]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AccessPackageAssignmentRequest:
@@ -68,10 +69,10 @@ class AccessPackageAssignmentRequest(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AccessPackageAssignmentRequest()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package import AccessPackage
         from .access_package_answer import AccessPackageAnswer
@@ -95,7 +96,7 @@ class AccessPackageAssignmentRequest(Entity, Parsable):
         from .request_schedule import RequestSchedule
         from .verified_credential_data import VerifiedCredentialData
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessPackage": lambda n : setattr(self, 'access_package', n.get_object_value(AccessPackage)),
             "accessPackageAssignment": lambda n : setattr(self, 'access_package_assignment', n.get_object_value(AccessPackageAssignment)),
             "answers": lambda n : setattr(self, 'answers', n.get_collection_of_object_values(AccessPackageAnswer)),
@@ -127,17 +128,6 @@ class AccessPackageAssignmentRequest(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .access_package import AccessPackage
-        from .access_package_answer import AccessPackageAnswer
-        from .access_package_assignment import AccessPackageAssignment
-        from .access_package_subject import AccessPackageSubject
-        from .custom_extension_callout_instance import CustomExtensionCalloutInstance
-        from .custom_extension_handler_instance import CustomExtensionHandlerInstance
-        from .entity import Entity
-        from .request_activity import RequestActivity
-        from .request_schedule import RequestSchedule
-        from .verified_credential_data import VerifiedCredentialData
-
         writer.write_object_value("accessPackage", self.access_package)
         writer.write_object_value("accessPackageAssignment", self.access_package_assignment)
         writer.write_collection_of_object_values("answers", self.answers)

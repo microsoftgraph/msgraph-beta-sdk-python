@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .content_format import ContentFormat
@@ -15,13 +16,13 @@ class ContentInfo(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The format property
     format: Optional[ContentFormat] = None
     # Identifier used for Azure Information Protection Analytics.
     identifier: Optional[str] = None
     # Existing Microsoft Purview Information Protection metadata is passed as key/value pairs, where the key is the MSIPLabelGUID_PropName.
-    metadata: Optional[List[KeyValuePair]] = None
+    metadata: Optional[list[KeyValuePair]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The state property
@@ -38,10 +39,10 @@ class ContentInfo(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ContentInfo()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .content_format import ContentFormat
         from .content_state import ContentState
@@ -51,7 +52,7 @@ class ContentInfo(AdditionalDataHolder, BackedModel, Parsable):
         from .content_state import ContentState
         from .key_value_pair import KeyValuePair
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "format": lambda n : setattr(self, 'format', n.get_enum_value(ContentFormat)),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
             "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(KeyValuePair)),
@@ -68,10 +69,6 @@ class ContentInfo(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .content_format import ContentFormat
-        from .content_state import ContentState
-        from .key_value_pair import KeyValuePair
-
         writer.write_enum_value("format", self.format)
         writer.write_str_value("identifier", self.identifier)
         writer.write_collection_of_object_values("metadata", self.metadata)

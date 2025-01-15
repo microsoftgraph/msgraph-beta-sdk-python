@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .membership_rule_processing_status_details import MembershipRuleProcessingStatusDetails
@@ -14,7 +15,7 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, BackedModel, Parsable
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Detailed error message if dynamic group processing ran into an error.  Optional. Read-only.
     error_message: Optional[str] = None
     # Most recent date and time when membership of a dynamic group was updated.  Optional. Read-only.
@@ -35,16 +36,16 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, BackedModel, Parsable
             raise TypeError("parse_node cannot be null.")
         return MembershipRuleProcessingStatus()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .membership_rule_processing_status_details import MembershipRuleProcessingStatusDetails
 
         from .membership_rule_processing_status_details import MembershipRuleProcessingStatusDetails
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
             "lastMembershipUpdated": lambda n : setattr(self, 'last_membership_updated', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -60,8 +61,6 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, BackedModel, Parsable
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .membership_rule_processing_status_details import MembershipRuleProcessingStatusDetails
-
         writer.write_str_value("errorMessage", self.error_message)
         writer.write_datetime_value("lastMembershipUpdated", self.last_membership_updated)
         writer.write_str_value("@odata.type", self.odata_type)

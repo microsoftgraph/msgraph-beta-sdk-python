@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .application_mode import ApplicationMode
@@ -20,7 +21,7 @@ class SensitivityLabel(Entity, Parsable):
     # The applicationMode property
     application_mode: Optional[ApplicationMode] = None
     # The assignedPolicies property
-    assigned_policies: Optional[List[LabelPolicy]] = None
+    assigned_policies: Optional[list[LabelPolicy]] = None
     # The autoLabeling property
     auto_labeling: Optional[AutoLabeling] = None
     # The description property
@@ -32,7 +33,7 @@ class SensitivityLabel(Entity, Parsable):
     # The isEndpointProtectionEnabled property
     is_endpoint_protection_enabled: Optional[bool] = None
     # The labelActions property
-    label_actions: Optional[List[LabelActionBase]] = None
+    label_actions: Optional[list[LabelActionBase]] = None
     # The name property
     name: Optional[str] = None
     # The OdataType property
@@ -40,7 +41,7 @@ class SensitivityLabel(Entity, Parsable):
     # The priority property
     priority: Optional[int] = None
     # The sublabels property
-    sublabels: Optional[List[SensitivityLabel]] = None
+    sublabels: Optional[list[SensitivityLabel]] = None
     # The toolTip property
     tool_tip: Optional[str] = None
     
@@ -55,10 +56,10 @@ class SensitivityLabel(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SensitivityLabel()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .application_mode import ApplicationMode
         from .auto_labeling import AutoLabeling
@@ -74,7 +75,7 @@ class SensitivityLabel(Entity, Parsable):
         from .label_policy import LabelPolicy
         from .sensitivity_label_target import SensitivityLabelTarget
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_collection_of_enum_values(SensitivityLabelTarget)),
             "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(ApplicationMode)),
             "assignedPolicies": lambda n : setattr(self, 'assigned_policies', n.get_collection_of_object_values(LabelPolicy)),
@@ -102,13 +103,6 @@ class SensitivityLabel(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .application_mode import ApplicationMode
-        from .auto_labeling import AutoLabeling
-        from .entity import Entity
-        from .label_action_base import LabelActionBase
-        from .label_policy import LabelPolicy
-        from .sensitivity_label_target import SensitivityLabelTarget
-
         writer.write_enum_value("applicableTo", self.applicable_to)
         writer.write_enum_value("applicationMode", self.application_mode)
         writer.write_collection_of_object_values("assignedPolicies", self.assigned_policies)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_context_class_reference import AuthenticationContextClassReference
@@ -44,10 +45,10 @@ class UnifiedRbacResourceAction(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UnifiedRbacResourceAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_context_class_reference import AuthenticationContextClassReference
         from .entity import Entity
@@ -57,7 +58,7 @@ class UnifiedRbacResourceAction(Entity, Parsable):
         from .entity import Entity
         from .unified_rbac_resource_scope import UnifiedRbacResourceScope
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionVerb": lambda n : setattr(self, 'action_verb', n.get_str_value()),
             "authenticationContext": lambda n : setattr(self, 'authentication_context', n.get_object_value(AuthenticationContextClassReference)),
             "authenticationContextId": lambda n : setattr(self, 'authentication_context_id', n.get_str_value()),
@@ -81,10 +82,6 @@ class UnifiedRbacResourceAction(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authentication_context_class_reference import AuthenticationContextClassReference
-        from .entity import Entity
-        from .unified_rbac_resource_scope import UnifiedRbacResourceScope
-
         writer.write_str_value("actionVerb", self.action_verb)
         writer.write_object_value("authenticationContext", self.authentication_context)
         writer.write_str_value("authenticationContextId", self.authentication_context_id)

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .enablement import Enablement
@@ -18,13 +19,13 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, BackedModel, Parsable)
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Possible values of a property
     accessibility: Optional[Enablement] = None
     # Possible values of a property
     address_book: Optional[Enablement] = None
     # Allow or deny the app or process to send a restricted Apple event to another app or process. You will need to know the identifier, identifier type, and code requirement of the receiving app or process. This collection can contain a maximum of 500 elements.
-    apple_events_allowed_receivers: Optional[List[MacOSAppleEventReceiver]] = None
+    apple_events_allowed_receivers: Optional[list[MacOSAppleEventReceiver]] = None
     # Block access to camera app.
     block_camera: Optional[bool] = None
     # Block the app or process from listening to events from input devices such as mouse, keyboard, and trackpad.Requires macOS 10.15 or later.
@@ -85,10 +86,10 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, BackedModel, Parsable)
             raise TypeError("parse_node cannot be null.")
         return MacOSPrivacyAccessControlItem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .enablement import Enablement
         from .mac_o_s_apple_event_receiver import MacOSAppleEventReceiver
@@ -98,7 +99,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, BackedModel, Parsable)
         from .mac_o_s_apple_event_receiver import MacOSAppleEventReceiver
         from .mac_o_s_process_identifier_type import MacOSProcessIdentifierType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accessibility": lambda n : setattr(self, 'accessibility', n.get_enum_value(Enablement)),
             "addressBook": lambda n : setattr(self, 'address_book', n.get_enum_value(Enablement)),
             "appleEventsAllowedReceivers": lambda n : setattr(self, 'apple_events_allowed_receivers', n.get_collection_of_object_values(MacOSAppleEventReceiver)),
@@ -137,10 +138,6 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .enablement import Enablement
-        from .mac_o_s_apple_event_receiver import MacOSAppleEventReceiver
-        from .mac_o_s_process_identifier_type import MacOSProcessIdentifierType
-
         writer.write_enum_value("accessibility", self.accessibility)
         writer.write_enum_value("addressBook", self.address_book)
         writer.write_collection_of_object_values("appleEventsAllowedReceivers", self.apple_events_allowed_receivers)

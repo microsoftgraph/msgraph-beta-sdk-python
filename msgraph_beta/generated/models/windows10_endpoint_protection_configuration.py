@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .application_guard_block_clipboard_sharing_type import ApplicationGuardBlockClipboardSharingType
@@ -80,7 +81,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
     # Block enterprise sites to load non-enterprise content, such as third party plug-ins
     application_guard_block_non_enterprise_content: Optional[bool] = None
     # Allows certain device level Root Certificates to be shared with the Microsoft Defender Application Guard container.
-    application_guard_certificate_thumbprints: Optional[List[str]] = None
+    application_guard_certificate_thumbprints: Optional[list[str]] = None
     # Enable Windows Defender Application Guard
     application_guard_enabled: Optional[bool] = None
     # Possible values for ApplicationGuardEnabledOptions
@@ -104,7 +105,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
     # BitLocker System Drive Policy.
     bit_locker_system_drive_policy: Optional[BitLockerSystemDrivePolicy] = None
     # List of folder paths to be added to the list of protected folders
-    defender_additional_guarded_folders: Optional[List[str]] = None
+    defender_additional_guarded_folders: Optional[list[str]] = None
     # Possible values of Defender PUA Protection
     defender_adobe_reader_launch_child_process: Optional[DefenderProtectionType] = None
     # Possible values of Defender PUA Protection
@@ -132,7 +133,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
     # Allows or disallows Windows Defender Script Scanning functionality.
     defender_allow_scan_scripts_loaded_in_internet_explorer: Optional[bool] = None
     # List of exe files and folders to be excluded from attack surface reduction rules
-    defender_attack_surface_reduction_excluded_paths: Optional[List[str]] = None
+    defender_attack_surface_reduction_excluded_paths: Optional[list[str]] = None
     # Allows or disallows user access to the Windows Defender UI. If disallowed, all Windows Defender notifications will also be suppressed.
     defender_block_end_user_access: Optional[bool] = None
     # Possible values of Defender Attack Surface Reduction Rules
@@ -186,13 +187,13 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
     # Name of the file from which DefenderExploitProtectionXml was obtained.
     defender_exploit_protection_xml_file_name: Optional[str] = None
     # File extensions to exclude from scans and real time protection.
-    defender_file_extensions_to_exclude: Optional[List[str]] = None
+    defender_file_extensions_to_exclude: Optional[list[str]] = None
     # Files and folder to exclude from scans and real time protection.
-    defender_files_and_folders_to_exclude: Optional[List[str]] = None
+    defender_files_and_folders_to_exclude: Optional[list[str]] = None
     # Possible values of Folder Protection
     defender_guard_my_folders_type: Optional[FolderProtectionType] = None
     # List of paths to exe that are allowed to access protected folders
-    defender_guarded_folders_allowed_app_paths: Optional[List[str]] = None
+    defender_guarded_folders_allowed_app_paths: Optional[list[str]] = None
     # Possible values of Defender PUA Protection
     defender_network_protection_type: Optional[DefenderProtectionType] = None
     # Possible values of Defender PUA Protection
@@ -222,7 +223,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
     # Possible values of Defender Attack Surface Reduction Rules
     defender_process_creation_type: Optional[DefenderAttackSurfaceType] = None
     # Processes to exclude from scans and real time protection.
-    defender_processes_to_exclude: Optional[List[str]] = None
+    defender_processes_to_exclude: Optional[list[str]] = None
     # Controls which sets of files should be monitored. Possible values are: monitorAllFiles, monitorIncomingFilesOnly, monitorOutgoingFilesOnly.
     defender_scan_direction: Optional[DefenderRealtimeScanDirection] = None
     # Represents the average CPU load factor for the Windows Defender scan (in percent). The default value is 50. Valid values 0 to 100
@@ -336,7 +337,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
     # Configures the firewall profile settings for public networks
     firewall_profile_public: Optional[WindowsFirewallNetworkProfile] = None
     # Configures the firewall rule settings. This collection can contain a maximum of 150 elements.
-    firewall_rules: Optional[List[WindowsFirewallRule]] = None
+    firewall_rules: Optional[list[WindowsFirewallRule]] = None
     # Possible values for LanManagerAuthenticationLevel
     lan_manager_authentication_level: Optional[LanManagerAuthenticationLevel] = None
     # If enabled,the SMB client will allow insecure guest logons. If not configured, the SMB client will reject insecure guest logons.
@@ -519,10 +520,10 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Windows10EndpointProtectionConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .application_guard_block_clipboard_sharing_type import ApplicationGuardBlockClipboardSharingType
         from .application_guard_block_file_transfer_type import ApplicationGuardBlockFileTransferType
@@ -606,7 +607,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
         from .windows_firewall_network_profile import WindowsFirewallNetworkProfile
         from .windows_firewall_rule import WindowsFirewallRule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appLockerApplicationControl": lambda n : setattr(self, 'app_locker_application_control', n.get_enum_value(AppLockerApplicationControlType)),
             "applicationGuardAllowCameraMicrophoneRedirection": lambda n : setattr(self, 'application_guard_allow_camera_microphone_redirection', n.get_bool_value()),
             "applicationGuardAllowFileSaveOnHost": lambda n : setattr(self, 'application_guard_allow_file_save_on_host', n.get_bool_value()),
@@ -847,47 +848,6 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .application_guard_block_clipboard_sharing_type import ApplicationGuardBlockClipboardSharingType
-        from .application_guard_block_file_transfer_type import ApplicationGuardBlockFileTransferType
-        from .application_guard_enabled_options import ApplicationGuardEnabledOptions
-        from .app_locker_application_control_type import AppLockerApplicationControlType
-        from .bit_locker_fixed_drive_policy import BitLockerFixedDrivePolicy
-        from .bit_locker_recovery_password_rotation_type import BitLockerRecoveryPasswordRotationType
-        from .bit_locker_removable_drive_policy import BitLockerRemovableDrivePolicy
-        from .bit_locker_system_drive_policy import BitLockerSystemDrivePolicy
-        from .defender_attack_surface_type import DefenderAttackSurfaceType
-        from .defender_cloud_block_level_type import DefenderCloudBlockLevelType
-        from .defender_detected_malware_actions import DefenderDetectedMalwareActions
-        from .defender_protection_type import DefenderProtectionType
-        from .defender_realtime_scan_direction import DefenderRealtimeScanDirection
-        from .defender_scan_type import DefenderScanType
-        from .defender_security_center_i_t_contact_display_type import DefenderSecurityCenterITContactDisplayType
-        from .defender_security_center_notifications_from_app_type import DefenderSecurityCenterNotificationsFromAppType
-        from .defender_submit_samples_consent_type import DefenderSubmitSamplesConsentType
-        from .device_configuration import DeviceConfiguration
-        from .device_guard_local_system_authority_credential_guard_type import DeviceGuardLocalSystemAuthorityCredentialGuardType
-        from .device_management_user_rights_setting import DeviceManagementUserRightsSetting
-        from .dma_guard_device_enumeration_policy_type import DmaGuardDeviceEnumerationPolicyType
-        from .enablement import Enablement
-        from .firewall_certificate_revocation_list_check_method_type import FirewallCertificateRevocationListCheckMethodType
-        from .firewall_packet_queueing_method_type import FirewallPacketQueueingMethodType
-        from .firewall_pre_shared_key_encoding_method_type import FirewallPreSharedKeyEncodingMethodType
-        from .folder_protection_type import FolderProtectionType
-        from .lan_manager_authentication_level import LanManagerAuthenticationLevel
-        from .local_security_options_administrator_elevation_prompt_behavior_type import LocalSecurityOptionsAdministratorElevationPromptBehaviorType
-        from .local_security_options_format_and_eject_of_removable_media_allowed_user_type import LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType
-        from .local_security_options_information_displayed_on_lock_screen_type import LocalSecurityOptionsInformationDisplayedOnLockScreenType
-        from .local_security_options_information_shown_on_lock_screen_type import LocalSecurityOptionsInformationShownOnLockScreenType
-        from .local_security_options_minimum_session_security import LocalSecurityOptionsMinimumSessionSecurity
-        from .local_security_options_smart_card_removal_behavior_type import LocalSecurityOptionsSmartCardRemovalBehaviorType
-        from .local_security_options_standard_user_elevation_prompt_behavior_type import LocalSecurityOptionsStandardUserElevationPromptBehaviorType
-        from .secure_boot_with_d_m_a_type import SecureBootWithDMAType
-        from .service_start_type import ServiceStartType
-        from .weekly_schedule import WeeklySchedule
-        from .windows_defender_tamper_protection_options import WindowsDefenderTamperProtectionOptions
-        from .windows_firewall_network_profile import WindowsFirewallNetworkProfile
-        from .windows_firewall_rule import WindowsFirewallRule
-
         writer.write_enum_value("appLockerApplicationControl", self.app_locker_application_control)
         writer.write_bool_value("applicationGuardAllowCameraMicrophoneRedirection", self.application_guard_allow_camera_microphone_redirection)
         writer.write_bool_value("applicationGuardAllowFileSaveOnHost", self.application_guard_allow_file_save_on_host)

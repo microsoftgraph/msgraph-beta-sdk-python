@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .attachment import Attachment
@@ -18,19 +19,19 @@ class Note(OutlookItem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.note"
     # The attachments property
-    attachments: Optional[List[Attachment]] = None
+    attachments: Optional[list[Attachment]] = None
     # The body property
     body: Optional[ItemBody] = None
     # The extensions property
-    extensions: Optional[List[Extension]] = None
+    extensions: Optional[list[Extension]] = None
     # The hasAttachments property
     has_attachments: Optional[bool] = None
     # The isDeleted property
     is_deleted: Optional[bool] = None
     # The multiValueExtendedProperties property
-    multi_value_extended_properties: Optional[List[MultiValueLegacyExtendedProperty]] = None
+    multi_value_extended_properties: Optional[list[MultiValueLegacyExtendedProperty]] = None
     # The singleValueExtendedProperties property
-    single_value_extended_properties: Optional[List[SingleValueLegacyExtendedProperty]] = None
+    single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
     # The subject property
     subject: Optional[str] = None
     
@@ -45,10 +46,10 @@ class Note(OutlookItem, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Note()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .attachment import Attachment
         from .extension import Extension
@@ -64,7 +65,7 @@ class Note(OutlookItem, Parsable):
         from .outlook_item import OutlookItem
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(Attachment)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(ItemBody)),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(Extension)),
@@ -87,13 +88,6 @@ class Note(OutlookItem, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .attachment import Attachment
-        from .extension import Extension
-        from .item_body import ItemBody
-        from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
-        from .outlook_item import OutlookItem
-        from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-
         writer.write_collection_of_object_values("attachments", self.attachments)
         writer.write_object_value("body", self.body)
         writer.write_collection_of_object_values("extensions", self.extensions)

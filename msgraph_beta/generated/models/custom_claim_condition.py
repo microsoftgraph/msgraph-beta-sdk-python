@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .claim_condition_user_type import ClaimConditionUserType
@@ -14,7 +15,7 @@ class CustomClaimCondition(CustomClaimConditionBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customClaimCondition"
     # A list of groups (GUIDs) to which the user/application must be a member for this condition to be applied.
-    member_of: Optional[List[str]] = None
+    member_of: Optional[list[str]] = None
     # The type of user this condition applies to. The possible values are: any, members, allGuests, aadGuests, externalGuests, unknownFutureValue.
     user_type: Optional[ClaimConditionUserType] = None
     
@@ -29,10 +30,10 @@ class CustomClaimCondition(CustomClaimConditionBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CustomClaimCondition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .claim_condition_user_type import ClaimConditionUserType
         from .custom_claim_condition_base import CustomClaimConditionBase
@@ -40,7 +41,7 @@ class CustomClaimCondition(CustomClaimConditionBase, Parsable):
         from .claim_condition_user_type import ClaimConditionUserType
         from .custom_claim_condition_base import CustomClaimConditionBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "memberOf": lambda n : setattr(self, 'member_of', n.get_collection_of_primitive_values(str)),
             "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(ClaimConditionUserType)),
         }
@@ -57,9 +58,6 @@ class CustomClaimCondition(CustomClaimConditionBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .claim_condition_user_type import ClaimConditionUserType
-        from .custom_claim_condition_base import CustomClaimConditionBase
-
         writer.write_collection_of_primitive_values("memberOf", self.member_of)
         writer.write_enum_value("userType", self.user_type)
     

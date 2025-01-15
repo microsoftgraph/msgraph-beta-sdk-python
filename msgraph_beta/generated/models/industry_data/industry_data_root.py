@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -20,25 +21,25 @@ from ..entity import Entity
 @dataclass
 class IndustryDataRoot(Entity, Parsable):
     # Set of connectors for importing data from source systems.
-    data_connectors: Optional[List[IndustryDataConnector]] = None
+    data_connectors: Optional[list[IndustryDataConnector]] = None
     # Set of data import flow activities to bring data into the canonical store via a connector.
-    inbound_flows: Optional[List[InboundFlow]] = None
+    inbound_flows: Optional[list[InboundFlow]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Set of ephemeral operations that the system runs currently. Read-only.
-    operations: Optional[List[LongRunningOperation]] = None
+    operations: Optional[list[LongRunningOperation]] = None
     # The outboundProvisioningFlowSets property
-    outbound_provisioning_flow_sets: Optional[List[OutboundProvisioningFlowSet]] = None
+    outbound_provisioning_flow_sets: Optional[list[OutboundProvisioningFlowSet]] = None
     # Set of user modifiable system picker types.
-    reference_definitions: Optional[List[ReferenceDefinition]] = None
+    reference_definitions: Optional[list[ReferenceDefinition]] = None
     # Set of groups of individual roles that makes role-based admin simpler.
-    role_groups: Optional[List[RoleGroup]] = None
+    role_groups: Optional[list[RoleGroup]] = None
     # Set of ephemeral runs which present the point-in-time that diagnostic state of activities performed by the system. Read-only.
-    runs: Optional[List[IndustryDataRun]] = None
+    runs: Optional[list[IndustryDataRun]] = None
     # Set of source definitions that represents real-world external systems.
-    source_systems: Optional[List[SourceSystemDefinition]] = None
+    source_systems: Optional[list[SourceSystemDefinition]] = None
     # Set of years represented in the system.
-    years: Optional[List[YearTimePeriodDefinition]] = None
+    years: Optional[list[YearTimePeriodDefinition]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> IndustryDataRoot:
@@ -51,10 +52,10 @@ class IndustryDataRoot(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IndustryDataRoot()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from ..long_running_operation import LongRunningOperation
@@ -78,7 +79,7 @@ class IndustryDataRoot(Entity, Parsable):
         from .source_system_definition import SourceSystemDefinition
         from .year_time_period_definition import YearTimePeriodDefinition
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dataConnectors": lambda n : setattr(self, 'data_connectors', n.get_collection_of_object_values(IndustryDataConnector)),
             "inboundFlows": lambda n : setattr(self, 'inbound_flows', n.get_collection_of_object_values(InboundFlow)),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(LongRunningOperation)),
@@ -102,17 +103,6 @@ class IndustryDataRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from ..long_running_operation import LongRunningOperation
-        from .inbound_flow import InboundFlow
-        from .industry_data_connector import IndustryDataConnector
-        from .industry_data_run import IndustryDataRun
-        from .outbound_provisioning_flow_set import OutboundProvisioningFlowSet
-        from .reference_definition import ReferenceDefinition
-        from .role_group import RoleGroup
-        from .source_system_definition import SourceSystemDefinition
-        from .year_time_period_definition import YearTimePeriodDefinition
-
         writer.write_collection_of_object_values("dataConnectors", self.data_connectors)
         writer.write_collection_of_object_values("inboundFlows", self.inbound_flows)
         writer.write_collection_of_object_values("operations", self.operations)

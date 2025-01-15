@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .company_portal_blocked_action import CompanyPortalBlockedAction
@@ -19,9 +20,9 @@ class IntuneBrand(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Collection of blocked actions on the company portal as per platform and device ownership types.
-    company_portal_blocked_actions: Optional[List[CompanyPortalBlockedAction]] = None
+    company_portal_blocked_actions: Optional[list[CompanyPortalBlockedAction]] = None
     # Email address of the person/organization responsible for IT support.
     contact_i_t_email_address: Optional[str] = None
     # Name of the person/organization responsible for IT support.
@@ -63,7 +64,7 @@ class IntuneBrand(AdditionalDataHolder, BackedModel, Parsable):
     # URL to the company/organization’s privacy policy.
     privacy_url: Optional[str] = None
     # List of scope tags assigned to the default branding profile
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # Boolean that indicates if a push notification is sent to users when their device ownership type changes from personal to corporate
     send_device_ownership_change_push_notification: Optional[bool] = None
     # Boolean that indicates if AzureAD Enterprise Apps will be shown in Company Portal
@@ -92,10 +93,10 @@ class IntuneBrand(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IntuneBrand()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .company_portal_blocked_action import CompanyPortalBlockedAction
         from .enrollment_availability_options import EnrollmentAvailabilityOptions
@@ -107,7 +108,7 @@ class IntuneBrand(AdditionalDataHolder, BackedModel, Parsable):
         from .mime_content import MimeContent
         from .rgb_color import RgbColor
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "companyPortalBlockedActions": lambda n : setattr(self, 'company_portal_blocked_actions', n.get_collection_of_object_values(CompanyPortalBlockedAction)),
             "contactITEmailAddress": lambda n : setattr(self, 'contact_i_t_email_address', n.get_str_value()),
             "contactITName": lambda n : setattr(self, 'contact_i_t_name', n.get_str_value()),
@@ -149,11 +150,6 @@ class IntuneBrand(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .company_portal_blocked_action import CompanyPortalBlockedAction
-        from .enrollment_availability_options import EnrollmentAvailabilityOptions
-        from .mime_content import MimeContent
-        from .rgb_color import RgbColor
-
         writer.write_collection_of_object_values("companyPortalBlockedActions", self.company_portal_blocked_actions)
         writer.write_str_value("contactITEmailAddress", self.contact_i_t_email_address)
         writer.write_str_value("contactITName", self.contact_i_t_name)

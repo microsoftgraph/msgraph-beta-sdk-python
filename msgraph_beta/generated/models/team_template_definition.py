@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -17,7 +18,7 @@ class TeamTemplateDefinition(Entity, Parsable):
     # Describes the audience the team template is available to. The possible values are: organization, user, public, unknownFutureValue.
     audience: Optional[TeamTemplateAudience] = None
     # The assigned categories for the team template.
-    categories: Optional[List[str]] = None
+    categories: Optional[list[str]] = None
     # A brief description of the team template as it will appear to the users in Microsoft Teams.
     description: Optional[str] = None
     # The user defined name of the team template.
@@ -52,10 +53,10 @@ class TeamTemplateDefinition(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TeamTemplateDefinition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .identity_set import IdentitySet
@@ -67,7 +68,7 @@ class TeamTemplateDefinition(Entity, Parsable):
         from .team import Team
         from .team_template_audience import TeamTemplateAudience
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "audience": lambda n : setattr(self, 'audience', n.get_enum_value(TeamTemplateAudience)),
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -94,11 +95,6 @@ class TeamTemplateDefinition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .identity_set import IdentitySet
-        from .team import Team
-        from .team_template_audience import TeamTemplateAudience
-
         writer.write_enum_value("audience", self.audience)
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_str_value("description", self.description)

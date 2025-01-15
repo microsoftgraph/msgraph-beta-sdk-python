@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .planner_category_descriptions import PlannerCategoryDescriptions
@@ -33,10 +34,10 @@ class PlannerPlanDetails(PlannerDelta, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PlannerPlanDetails()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .planner_category_descriptions import PlannerCategoryDescriptions
         from .planner_delta import PlannerDelta
@@ -48,7 +49,7 @@ class PlannerPlanDetails(PlannerDelta, Parsable):
         from .planner_plan_context_details_collection import PlannerPlanContextDetailsCollection
         from .planner_user_ids import PlannerUserIds
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "categoryDescriptions": lambda n : setattr(self, 'category_descriptions', n.get_object_value(PlannerCategoryDescriptions)),
             "contextDetails": lambda n : setattr(self, 'context_details', n.get_object_value(PlannerPlanContextDetailsCollection)),
             "sharedWith": lambda n : setattr(self, 'shared_with', n.get_object_value(PlannerUserIds)),
@@ -66,11 +67,6 @@ class PlannerPlanDetails(PlannerDelta, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .planner_category_descriptions import PlannerCategoryDescriptions
-        from .planner_delta import PlannerDelta
-        from .planner_plan_context_details_collection import PlannerPlanContextDetailsCollection
-        from .planner_user_ids import PlannerUserIds
-
         writer.write_object_value("categoryDescriptions", self.category_descriptions)
         writer.write_object_value("contextDetails", self.context_details)
         writer.write_object_value("sharedWith", self.shared_with)

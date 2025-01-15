@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -29,7 +30,7 @@ class TenantTag(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The collection of managed tenants associated with the tenant tag. Optional.
-    tenants: Optional[List[TenantInfo]] = None
+    tenants: Optional[list[TenantInfo]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TenantTag:
@@ -42,10 +43,10 @@ class TenantTag(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TenantTag()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .tenant_info import TenantInfo
@@ -53,7 +54,7 @@ class TenantTag(Entity, Parsable):
         from ..entity import Entity
         from .tenant_info import TenantInfo
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deletedDateTime": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
@@ -76,9 +77,6 @@ class TenantTag(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .tenant_info import TenantInfo
-
         writer.write_str_value("createdByUserId", self.created_by_user_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("deletedDateTime", self.deleted_date_time)

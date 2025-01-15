@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .assignment_filter_evaluation_status_details import AssignmentFilterEvaluationStatusDetails
@@ -58,7 +59,7 @@ class ManagedDevice(Entity, Parsable):
     # Android security patch level. This property is read-only.
     android_security_patch_level: Optional[str] = None
     # Managed device mobile app configuration states for this device.
-    assignment_filter_evaluation_status_details: Optional[List[AssignmentFilterEvaluationStatusDetails]] = None
+    assignment_filter_evaluation_status_details: Optional[list[AssignmentFilterEvaluationStatusDetails]] = None
     # Reports if the managed device is enrolled via auto-pilot. This property is read-only.
     autopilot_enrolled: Optional[bool] = None
     # The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
@@ -72,9 +73,9 @@ class ManagedDevice(Entity, Parsable):
     # Chassis type.
     chassis_type: Optional[ChassisType] = None
     # List of properties of the ChromeOS Device. Default is an empty list. To retrieve actual values GET call needs to be made, with device id and included in select parameter.
-    chrome_o_s_device_info: Optional[List[ChromeOSDeviceProperty]] = None
+    chrome_o_s_device_info: Optional[list[ChromeOSDeviceProperty]] = None
     # The cloudPcRemoteActionResults property
-    cloud_pc_remote_action_results: Optional[List[CloudPcRemoteActionResult]] = None
+    cloud_pc_remote_action_results: Optional[list[CloudPcRemoteActionResult]] = None
     # The DateTime when device compliance grace period expires. This property is read-only.
     compliance_grace_period_expiration_date_time: Optional[datetime.datetime] = None
     # Compliance state.
@@ -86,17 +87,17 @@ class ManagedDevice(Entity, Parsable):
     # Configuration manager client information, valid only for devices managed, duel-managed or tri-managed by ConfigMgr Agent
     configuration_manager_client_information: Optional[ConfigurationManagerClientInformation] = None
     # All applications currently installed on the device
-    detected_apps: Optional[List[DetectedApp]] = None
+    detected_apps: Optional[list[DetectedApp]] = None
     # List of ComplexType deviceActionResult objects. This property is read-only.
-    device_action_results: Optional[List[DeviceActionResult]] = None
+    device_action_results: Optional[list[DeviceActionResult]] = None
     # Device category
     device_category: Optional[DeviceCategory] = None
     # Device category display name. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
     device_category_display_name: Optional[str] = None
     # Device compliance policy states for this device.
-    device_compliance_policy_states: Optional[List[DeviceCompliancePolicyState]] = None
+    device_compliance_policy_states: Optional[list[DeviceCompliancePolicyState]] = None
     # Device configuration states for this device.
-    device_configuration_states: Optional[List[DeviceConfigurationState]] = None
+    device_configuration_states: Optional[list[DeviceConfigurationState]] = None
     # Possible ways of adding a mobile device to management.
     device_enrollment_type: Optional[DeviceEnrollmentType] = None
     # Indicates whether the device is DFCI managed. When TRUE the device is DFCI managed. When FALSE, the device is not DFCI managed. The default value is FALSE.
@@ -104,7 +105,7 @@ class ManagedDevice(Entity, Parsable):
     # The device health attestation state. This property is read-only.
     device_health_attestation_state: Optional[DeviceHealthAttestationState] = None
     # Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
-    device_health_script_states: Optional[List[DeviceHealthScriptPolicyState]] = None
+    device_health_script_states: Optional[list[DeviceHealthScriptPolicyState]] = None
     # Name of the device. Supports $filter operator 'eq' and 'contains'. This property is read-only.
     device_name: Optional[str] = None
     # Device registration status.
@@ -152,11 +153,11 @@ class ManagedDevice(Entity, Parsable):
     # The date and time that the device last completed a successful sync with Intune. Supports $filter operator 'lt' and 'gt'. This property is read-only.
     last_sync_date_time: Optional[datetime.datetime] = None
     # List of log collection requests
-    log_collection_requests: Optional[List[DeviceLogCollectionResponse]] = None
+    log_collection_requests: Optional[list[DeviceLogCollectionResponse]] = None
     # State of lost mode, indicating if lost mode is enabled or disabled
     lost_mode_state: Optional[LostModeState] = None
     # Managed device mobile app configuration states for this device.
-    managed_device_mobile_app_configuration_states: Optional[List[ManagedDeviceMobileAppConfigurationState]] = None
+    managed_device_mobile_app_configuration_states: Optional[list[ManagedDeviceMobileAppConfigurationState]] = None
     # Automatically generated name to identify a device. Can be overwritten to a user friendly name.
     managed_device_name: Optional[str] = None
     # Owner type of device.
@@ -204,9 +205,9 @@ class ManagedDevice(Entity, Parsable):
     # Indicates the time after when a device will be auto retired because of scheduled action. This property is read-only.
     retire_after_date_time: Optional[datetime.datetime] = None
     # List of Scope Tag IDs for this Device instance.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # Security baseline states for this device.
-    security_baseline_states: Optional[List[SecurityBaselineState]] = None
+    security_baseline_states: Optional[list[SecurityBaselineState]] = None
     # This indicates the security patch level of the operating system. These special updates contain important security fixes. For iOS/MacOS they are in (a) format. For android its in 2017-08-07 format. This property is read-only.
     security_patch_level: Optional[str] = None
     # SerialNumber. This property is read-only.
@@ -230,9 +231,9 @@ class ManagedDevice(Entity, Parsable):
     # Device user principal name. This property is read-only.
     user_principal_name: Optional[str] = None
     # The primary users associated with the managed device.
-    users: Optional[List[User]] = None
+    users: Optional[list[User]] = None
     # Indicates the last logged on users of a device. This property is read-only.
-    users_logged_on: Optional[List[LoggedOnUser]] = None
+    users_logged_on: Optional[list[LoggedOnUser]] = None
     # Wi-Fi MAC. This property is read-only.
     wi_fi_mac_address: Optional[str] = None
     # Count of active malware for this windows device. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
@@ -262,10 +263,10 @@ class ManagedDevice(Entity, Parsable):
             return WindowsManagedDevice()
         return ManagedDevice()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .assignment_filter_evaluation_status_details import AssignmentFilterEvaluationStatusDetails
         from .chassis_type import ChassisType
@@ -345,7 +346,7 @@ class ManagedDevice(Entity, Parsable):
         from .windows_managed_device import WindowsManagedDevice
         from .windows_protection_state import WindowsProtectionState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "aadRegistered": lambda n : setattr(self, 'aad_registered', n.get_bool_value()),
             "activationLockBypassCode": lambda n : setattr(self, 'activation_lock_bypass_code', n.get_str_value()),
             "androidSecurityPatchLevel": lambda n : setattr(self, 'android_security_patch_level', n.get_str_value()),
@@ -454,45 +455,6 @@ class ManagedDevice(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .assignment_filter_evaluation_status_details import AssignmentFilterEvaluationStatusDetails
-        from .chassis_type import ChassisType
-        from .chrome_o_s_device_property import ChromeOSDeviceProperty
-        from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
-        from .compliance_state import ComplianceState
-        from .configuration_manager_client_enabled_features import ConfigurationManagerClientEnabledFeatures
-        from .configuration_manager_client_health_state import ConfigurationManagerClientHealthState
-        from .configuration_manager_client_information import ConfigurationManagerClientInformation
-        from .detected_app import DetectedApp
-        from .device_action_result import DeviceActionResult
-        from .device_category import DeviceCategory
-        from .device_compliance_policy_state import DeviceCompliancePolicyState
-        from .device_configuration_state import DeviceConfigurationState
-        from .device_enrollment_type import DeviceEnrollmentType
-        from .device_health_attestation_state import DeviceHealthAttestationState
-        from .device_health_script_policy_state import DeviceHealthScriptPolicyState
-        from .device_log_collection_response import DeviceLogCollectionResponse
-        from .device_management_exchange_access_state import DeviceManagementExchangeAccessState
-        from .device_management_exchange_access_state_reason import DeviceManagementExchangeAccessStateReason
-        from .device_registration_state import DeviceRegistrationState
-        from .device_type import DeviceType
-        from .entity import Entity
-        from .hardware_information import HardwareInformation
-        from .join_type import JoinType
-        from .logged_on_user import LoggedOnUser
-        from .lost_mode_state import LostModeState
-        from .managed_device_architecture import ManagedDeviceArchitecture
-        from .managed_device_management_features import ManagedDeviceManagementFeatures
-        from .managed_device_mobile_app_configuration_state import ManagedDeviceMobileAppConfigurationState
-        from .managed_device_owner_type import ManagedDeviceOwnerType
-        from .managed_device_partner_reported_health_state import ManagedDevicePartnerReportedHealthState
-        from .management_agent_type import ManagementAgentType
-        from .management_state import ManagementState
-        from .owner_type import OwnerType
-        from .security_baseline_state import SecurityBaselineState
-        from .user import User
-        from .windows_managed_device import WindowsManagedDevice
-        from .windows_protection_state import WindowsProtectionState
-
         writer.write_collection_of_object_values("assignmentFilterEvaluationStatusDetails", self.assignment_filter_evaluation_status_details)
         writer.write_enum_value("chassisType", self.chassis_type)
         writer.write_collection_of_object_values("chromeOSDeviceInfo", self.chrome_o_s_device_info)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
@@ -30,13 +31,13 @@ class IosDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Parsa
     # Gets or sets iOS Web Content Filter settings, supervised mode only
     content_filter_settings: Optional[IosWebContentFilterBase] = None
     # A list of app and folders to appear on the Home Screen Dock. This collection can contain a maximum of 500 elements.
-    home_screen_dock_icons: Optional[List[IosHomeScreenItem]] = None
+    home_screen_dock_icons: Optional[list[IosHomeScreenItem]] = None
     # Gets or sets the number of rows to render when configuring iOS home screen layout settings. If this value is configured, homeScreenGridWidth must be configured as well.
     home_screen_grid_height: Optional[int] = None
     # Gets or sets the number of columns to render when configuring iOS home screen layout settings. If this value is configured, homeScreenGridHeight must be configured as well.
     home_screen_grid_width: Optional[int] = None
     # A list of pages on the Home Screen. This collection can contain a maximum of 500 elements.
-    home_screen_pages: Optional[List[IosHomeScreenPage]] = None
+    home_screen_pages: Optional[list[IosHomeScreenPage]] = None
     # Identity Certificate for the renewal of Kerberos ticket used in single sign-on settings.
     identity_certificate_for_client_authentication: Optional[IosCertificateProfileBase] = None
     # Gets or sets a single sign-on extension profile.
@@ -44,7 +45,7 @@ class IosDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Parsa
     # A footnote displayed on the login window and lock screen. Available in iOS 9.3.1 and later.
     lock_screen_footnote: Optional[str] = None
     # Notification settings for each bundle id. Applicable to devices in supervised mode only (iOS 9.3 and later). This collection can contain a maximum of 500 elements.
-    notification_settings: Optional[List[IosNotificationSettings]] = None
+    notification_settings: Optional[list[IosNotificationSettings]] = None
     # Gets or sets a single sign-on extension profile. Deprecated: use IOSSingleSignOnExtension instead.
     single_sign_on_extension: Optional[SingleSignOnExtension] = None
     # PKINIT Certificate for the authentication with single sign-on extension settings.
@@ -67,10 +68,10 @@ class IosDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Parsa
             raise TypeError("parse_node cannot be null.")
         return IosDeviceFeaturesConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
         from .ios_certificate_profile_base import IosCertificateProfileBase
@@ -96,7 +97,7 @@ class IosDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Parsa
         from .mime_content import MimeContent
         from .single_sign_on_extension import SingleSignOnExtension
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assetTagTemplate": lambda n : setattr(self, 'asset_tag_template', n.get_str_value()),
             "contentFilterSettings": lambda n : setattr(self, 'content_filter_settings', n.get_object_value(IosWebContentFilterBase)),
             "homeScreenDockIcons": lambda n : setattr(self, 'home_screen_dock_icons', n.get_collection_of_object_values(IosHomeScreenItem)),
@@ -126,18 +127,6 @@ class IosDeviceFeaturesConfiguration(AppleDeviceFeaturesConfigurationBase, Parsa
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .apple_device_features_configuration_base import AppleDeviceFeaturesConfigurationBase
-        from .ios_certificate_profile_base import IosCertificateProfileBase
-        from .ios_home_screen_item import IosHomeScreenItem
-        from .ios_home_screen_page import IosHomeScreenPage
-        from .ios_notification_settings import IosNotificationSettings
-        from .ios_single_sign_on_extension import IosSingleSignOnExtension
-        from .ios_single_sign_on_settings import IosSingleSignOnSettings
-        from .ios_wallpaper_display_location import IosWallpaperDisplayLocation
-        from .ios_web_content_filter_base import IosWebContentFilterBase
-        from .mime_content import MimeContent
-        from .single_sign_on_extension import SingleSignOnExtension
-
         writer.write_str_value("assetTagTemplate", self.asset_tag_template)
         writer.write_object_value("contentFilterSettings", self.content_filter_settings)
         writer.write_collection_of_object_values("homeScreenDockIcons", self.home_screen_dock_icons)

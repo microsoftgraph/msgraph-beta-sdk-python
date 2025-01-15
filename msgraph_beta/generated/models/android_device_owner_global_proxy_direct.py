@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
@@ -16,7 +17,7 @@ class AndroidDeviceOwnerGlobalProxyDirect(AndroidDeviceOwnerGlobalProxy, Parsabl
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerGlobalProxyDirect"
     # The excluded hosts
-    excluded_hosts: Optional[List[str]] = None
+    excluded_hosts: Optional[list[str]] = None
     # The host name
     host: Optional[str] = None
     # The port
@@ -33,16 +34,16 @@ class AndroidDeviceOwnerGlobalProxyDirect(AndroidDeviceOwnerGlobalProxy, Parsabl
             raise TypeError("parse_node cannot be null.")
         return AndroidDeviceOwnerGlobalProxyDirect()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
 
         from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "excludedHosts": lambda n : setattr(self, 'excluded_hosts', n.get_collection_of_primitive_values(str)),
             "host": lambda n : setattr(self, 'host', n.get_str_value()),
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
@@ -60,8 +61,6 @@ class AndroidDeviceOwnerGlobalProxyDirect(AndroidDeviceOwnerGlobalProxy, Parsabl
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
-
         writer.write_collection_of_primitive_values("excludedHosts", self.excluded_hosts)
         writer.write_str_value("host", self.host)
         writer.write_int_value("port", self.port)

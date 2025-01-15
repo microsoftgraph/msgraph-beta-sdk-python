@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .section_role_reference_value import SectionRoleReferenceValue
@@ -13,13 +14,13 @@ class EnrollmentMappings(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The enrollmentMappings member for the class group.
-    member_enrollment_mappings: Optional[List[SectionRoleReferenceValue]] = None
+    member_enrollment_mappings: Optional[list[SectionRoleReferenceValue]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The enrollmentMappings owner for the class group.
-    owner_enrollment_mappings: Optional[List[SectionRoleReferenceValue]] = None
+    owner_enrollment_mappings: Optional[list[SectionRoleReferenceValue]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EnrollmentMappings:
@@ -32,16 +33,16 @@ class EnrollmentMappings(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EnrollmentMappings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .section_role_reference_value import SectionRoleReferenceValue
 
         from .section_role_reference_value import SectionRoleReferenceValue
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "memberEnrollmentMappings": lambda n : setattr(self, 'member_enrollment_mappings', n.get_collection_of_object_values(SectionRoleReferenceValue)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ownerEnrollmentMappings": lambda n : setattr(self, 'owner_enrollment_mappings', n.get_collection_of_object_values(SectionRoleReferenceValue)),
@@ -56,8 +57,6 @@ class EnrollmentMappings(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .section_role_reference_value import SectionRoleReferenceValue
-
         writer.write_collection_of_object_values("memberEnrollmentMappings", self.member_enrollment_mappings)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("ownerEnrollmentMappings", self.owner_enrollment_mappings)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .action_summary import ActionSummary
@@ -136,10 +137,10 @@ class IdentityFinding(Finding, Parsable):
             return UnenforcedMfaAwsUserFinding()
         return IdentityFinding()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .action_summary import ActionSummary
         from .authorization_system_identity import AuthorizationSystemIdentity
@@ -191,7 +192,7 @@ class IdentityFinding(Finding, Parsable):
         from .super_user_finding import SuperUserFinding
         from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionSummary": lambda n : setattr(self, 'action_summary', n.get_object_value(ActionSummary)),
             "identity": lambda n : setattr(self, 'identity', n.get_object_value(AuthorizationSystemIdentity)),
             "identityDetails": lambda n : setattr(self, 'identity_details', n.get_object_value(IdentityDetails)),
@@ -210,31 +211,6 @@ class IdentityFinding(Finding, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .action_summary import ActionSummary
-        from .authorization_system_identity import AuthorizationSystemIdentity
-        from .finding import Finding
-        from .identity_details import IdentityDetails
-        from .inactive_aws_resource_finding import InactiveAwsResourceFinding
-        from .inactive_aws_role_finding import InactiveAwsRoleFinding
-        from .inactive_azure_service_principal_finding import InactiveAzureServicePrincipalFinding
-        from .inactive_gcp_service_account_finding import InactiveGcpServiceAccountFinding
-        from .inactive_serverless_function_finding import InactiveServerlessFunctionFinding
-        from .inactive_user_finding import InactiveUserFinding
-        from .overprovisioned_aws_resource_finding import OverprovisionedAwsResourceFinding
-        from .overprovisioned_aws_role_finding import OverprovisionedAwsRoleFinding
-        from .overprovisioned_azure_service_principal_finding import OverprovisionedAzureServicePrincipalFinding
-        from .overprovisioned_gcp_service_account_finding import OverprovisionedGcpServiceAccountFinding
-        from .overprovisioned_serverless_function_finding import OverprovisionedServerlessFunctionFinding
-        from .overprovisioned_user_finding import OverprovisionedUserFinding
-        from .permissions_creep_index import PermissionsCreepIndex
-        from .super_aws_resource_finding import SuperAwsResourceFinding
-        from .super_aws_role_finding import SuperAwsRoleFinding
-        from .super_azure_service_principal_finding import SuperAzureServicePrincipalFinding
-        from .super_gcp_service_account_finding import SuperGcpServiceAccountFinding
-        from .super_serverless_function_finding import SuperServerlessFunctionFinding
-        from .super_user_finding import SuperUserFinding
-        from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
-
         writer.write_object_value("actionSummary", self.action_summary)
         writer.write_object_value("identity", self.identity)
         writer.write_object_value("identityDetails", self.identity_details)

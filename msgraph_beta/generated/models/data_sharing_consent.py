@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -40,16 +41,16 @@ class DataSharingConsent(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DataSharingConsent()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
 
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "grantDateTime": lambda n : setattr(self, 'grant_date_time', n.get_datetime_value()),
             "granted": lambda n : setattr(self, 'granted', n.get_bool_value()),
             "grantedByUpn": lambda n : setattr(self, 'granted_by_upn', n.get_str_value()),
@@ -70,8 +71,6 @@ class DataSharingConsent(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-
         writer.write_datetime_value("grantDateTime", self.grant_date_time)
         writer.write_bool_value("granted", self.granted)
         writer.write_str_value("grantedByUpn", self.granted_by_upn)

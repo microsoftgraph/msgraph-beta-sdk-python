@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_fota_deployment_assignment_target import AndroidFotaDeploymentAssignmentTarget
@@ -17,7 +18,7 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, BackedModel, Parsabl
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The Azure Active Directory (Azure AD) we are deploying firmware updates to (e.g.: d93c8f48-bd42-4514-ba40-bc6b84780930). NOTE: Use this property moving forward because the existing property, target, is deprecated.
     assignment_target: Optional[DeviceAndAppManagementAssignmentTarget] = None
     # The display name of the Azure AD security group used for the assignment.
@@ -40,10 +41,10 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, BackedModel, Parsabl
             raise TypeError("parse_node cannot be null.")
         return AndroidFotaDeploymentAssignment()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_fota_deployment_assignment_target import AndroidFotaDeploymentAssignmentTarget
         from .device_and_app_management_assignment_target import DeviceAndAppManagementAssignmentTarget
@@ -51,7 +52,7 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, BackedModel, Parsabl
         from .android_fota_deployment_assignment_target import AndroidFotaDeploymentAssignmentTarget
         from .device_and_app_management_assignment_target import DeviceAndAppManagementAssignmentTarget
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignmentTarget": lambda n : setattr(self, 'assignment_target', n.get_object_value(DeviceAndAppManagementAssignmentTarget)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
@@ -68,9 +69,6 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, BackedModel, Parsabl
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .android_fota_deployment_assignment_target import AndroidFotaDeploymentAssignmentTarget
-        from .device_and_app_management_assignment_target import DeviceAndAppManagementAssignmentTarget
-
         writer.write_object_value("assignmentTarget", self.assignment_target)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("id", self.id)

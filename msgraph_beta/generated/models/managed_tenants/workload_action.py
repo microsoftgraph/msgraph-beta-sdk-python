@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .setting import Setting
@@ -14,7 +15,7 @@ class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The unique identifier for the workload action. Required. Read-only.
     action_id: Optional[str] = None
     # The category for the workload action. Possible values are: automated, manual, unknownFutureValue. Optional. Read-only.
@@ -24,13 +25,13 @@ class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
     # The display name for the workload action. Optional. Read-only.
     display_name: Optional[str] = None
     # The licenses property
-    licenses: Optional[List[str]] = None
+    licenses: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The service associated with workload action. Optional. Read-only.
     service: Optional[str] = None
     # The collection of settings associated with the workload action. Optional. Read-only.
-    settings: Optional[List[Setting]] = None
+    settings: Optional[list[Setting]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WorkloadAction:
@@ -43,10 +44,10 @@ class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WorkloadAction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .setting import Setting
         from .workload_action_category import WorkloadActionCategory
@@ -54,7 +55,7 @@ class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
         from .setting import Setting
         from .workload_action_category import WorkloadActionCategory
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionId": lambda n : setattr(self, 'action_id', n.get_str_value()),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(WorkloadActionCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -74,9 +75,6 @@ class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .setting import Setting
-        from .workload_action_category import WorkloadActionCategory
-
         writer.write_str_value("actionId", self.action_id)
         writer.write_enum_value("category", self.category)
         writer.write_str_value("description", self.description)

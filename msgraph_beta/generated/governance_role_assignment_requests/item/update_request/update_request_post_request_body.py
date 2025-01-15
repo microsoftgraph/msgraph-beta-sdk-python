@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.governance_schedule import GovernanceSchedule
@@ -13,7 +14,7 @@ class UpdateRequestPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The assignmentState property
     assignment_state: Optional[str] = None
     # The decision property
@@ -34,16 +35,16 @@ class UpdateRequestPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UpdateRequestPostRequestBody()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ....models.governance_schedule import GovernanceSchedule
 
         from ....models.governance_schedule import GovernanceSchedule
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
             "decision": lambda n : setattr(self, 'decision', n.get_str_value()),
             "reason": lambda n : setattr(self, 'reason', n.get_str_value()),
@@ -59,8 +60,6 @@ class UpdateRequestPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from ....models.governance_schedule import GovernanceSchedule
-
         writer.write_str_value("assignmentState", self.assignment_state)
         writer.write_str_value("decision", self.decision)
         writer.write_str_value("reason", self.reason)

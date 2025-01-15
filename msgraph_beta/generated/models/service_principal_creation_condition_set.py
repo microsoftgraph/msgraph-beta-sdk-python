@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -11,11 +12,11 @@ from .entity import Entity
 @dataclass
 class ServicePrincipalCreationConditionSet(Entity, Parsable):
     # The applicationIds property
-    application_ids: Optional[List[str]] = None
+    application_ids: Optional[list[str]] = None
     # The applicationPublisherIds property
-    application_publisher_ids: Optional[List[str]] = None
+    application_publisher_ids: Optional[list[str]] = None
     # The applicationTenantIds property
-    application_tenant_ids: Optional[List[str]] = None
+    application_tenant_ids: Optional[list[str]] = None
     # The applicationsFromVerifiedPublisherOnly property
     applications_from_verified_publisher_only: Optional[bool] = None
     # The certifiedApplicationsOnly property
@@ -34,16 +35,16 @@ class ServicePrincipalCreationConditionSet(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ServicePrincipalCreationConditionSet()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
 
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applicationIds": lambda n : setattr(self, 'application_ids', n.get_collection_of_primitive_values(str)),
             "applicationPublisherIds": lambda n : setattr(self, 'application_publisher_ids', n.get_collection_of_primitive_values(str)),
             "applicationTenantIds": lambda n : setattr(self, 'application_tenant_ids', n.get_collection_of_primitive_values(str)),
@@ -63,8 +64,6 @@ class ServicePrincipalCreationConditionSet(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-
         writer.write_collection_of_primitive_values("applicationIds", self.application_ids)
         writer.write_collection_of_primitive_values("applicationPublisherIds", self.application_publisher_ids)
         writer.write_collection_of_primitive_values("applicationTenantIds", self.application_tenant_ids)

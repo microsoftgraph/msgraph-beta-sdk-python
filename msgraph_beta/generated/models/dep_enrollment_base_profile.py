@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -31,9 +32,9 @@ class DepEnrollmentBaseProfile(EnrollmentProfile, Parsable):
     # Indicates if displaytone setup screen is disabled
     display_tone_setup_disabled: Optional[bool] = None
     # enabledSkipKeys contains all the enabled skip keys as strings
-    enabled_skip_keys: Optional[List[str]] = None
+    enabled_skip_keys: Optional[list[str]] = None
     # EnrollmentTimeAzureAdGroupIds contains list of enrollment time Azure Group Ids to be associated with profile
-    enrollment_time_azure_ad_group_ids: Optional[List[UUID]] = None
+    enrollment_time_azure_ad_group_ids: Optional[list[UUID]] = None
     # Indicates if this is the default profile
     is_default: Optional[bool] = None
     # Indicates if the profile is mandatory
@@ -87,10 +88,10 @@ class DepEnrollmentBaseProfile(EnrollmentProfile, Parsable):
             return DepMacOSEnrollmentProfile()
         return DepEnrollmentBaseProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
         from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
@@ -100,7 +101,7 @@ class DepEnrollmentBaseProfile(EnrollmentProfile, Parsable):
         from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
         from .enrollment_profile import EnrollmentProfile
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appleIdDisabled": lambda n : setattr(self, 'apple_id_disabled', n.get_bool_value()),
             "applePayDisabled": lambda n : setattr(self, 'apple_pay_disabled', n.get_bool_value()),
             "configurationWebUrl": lambda n : setattr(self, 'configuration_web_url', n.get_bool_value()),
@@ -137,10 +138,6 @@ class DepEnrollmentBaseProfile(EnrollmentProfile, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
-        from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
-        from .enrollment_profile import EnrollmentProfile
-
         writer.write_bool_value("appleIdDisabled", self.apple_id_disabled)
         writer.write_bool_value("applePayDisabled", self.apple_pay_disabled)
         writer.write_bool_value("configurationWebUrl", self.configuration_web_url)

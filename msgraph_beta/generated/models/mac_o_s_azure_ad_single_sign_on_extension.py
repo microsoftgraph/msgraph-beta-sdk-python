@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .key_typed_value_pair import KeyTypedValuePair
@@ -17,9 +18,9 @@ class MacOSAzureAdSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOSAzureAdSingleSignOnExtension"
     # An optional list of additional bundle IDs allowed to use the AAD extension for single sign-on.
-    bundle_id_access_control_list: Optional[List[str]] = None
+    bundle_id_access_control_list: Optional[list[str]] = None
     # Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain a maximum of 500 elements.
-    configurations: Optional[List[KeyTypedValuePair]] = None
+    configurations: Optional[list[KeyTypedValuePair]] = None
     # Enables or disables shared device mode.
     enable_shared_device_mode: Optional[bool] = None
     
@@ -34,10 +35,10 @@ class MacOSAzureAdSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSAzureAdSingleSignOnExtension()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .key_typed_value_pair import KeyTypedValuePair
         from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
@@ -45,7 +46,7 @@ class MacOSAzureAdSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
         from .key_typed_value_pair import KeyTypedValuePair
         from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "bundleIdAccessControlList": lambda n : setattr(self, 'bundle_id_access_control_list', n.get_collection_of_primitive_values(str)),
             "configurations": lambda n : setattr(self, 'configurations', n.get_collection_of_object_values(KeyTypedValuePair)),
             "enableSharedDeviceMode": lambda n : setattr(self, 'enable_shared_device_mode', n.get_bool_value()),
@@ -63,9 +64,6 @@ class MacOSAzureAdSingleSignOnExtension(MacOSSingleSignOnExtension, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .key_typed_value_pair import KeyTypedValuePair
-        from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
-
         writer.write_collection_of_primitive_values("bundleIdAccessControlList", self.bundle_id_access_control_list)
         writer.write_collection_of_object_values("configurations", self.configurations)
         writer.write_bool_value("enableSharedDeviceMode", self.enable_shared_device_mode)

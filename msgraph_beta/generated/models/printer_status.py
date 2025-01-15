@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .printer_processing_state import PrinterProcessingState
@@ -15,11 +16,11 @@ class PrinterStatus(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # A human-readable description of the printer's current processing state. Read-only.
     description: Optional[str] = None
     # The list of details describing why the printer is in the current state. Valid values are described in the following table. Read-only.
-    details: Optional[List[PrinterProcessingStateDetail]] = None
+    details: Optional[list[PrinterProcessingStateDetail]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The processingState property
@@ -27,7 +28,7 @@ class PrinterStatus(AdditionalDataHolder, BackedModel, Parsable):
     # The processingStateDescription property
     processing_state_description: Optional[str] = None
     # The processingStateReasons property
-    processing_state_reasons: Optional[List[PrinterProcessingStateReason]] = None
+    processing_state_reasons: Optional[list[PrinterProcessingStateReason]] = None
     # The state property
     state: Optional[PrinterProcessingState] = None
     
@@ -42,10 +43,10 @@ class PrinterStatus(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PrinterStatus()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .printer_processing_state import PrinterProcessingState
         from .printer_processing_state_detail import PrinterProcessingStateDetail
@@ -55,7 +56,7 @@ class PrinterStatus(AdditionalDataHolder, BackedModel, Parsable):
         from .printer_processing_state_detail import PrinterProcessingStateDetail
         from .printer_processing_state_reason import PrinterProcessingStateReason
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "details": lambda n : setattr(self, 'details', n.get_collection_of_enum_values(PrinterProcessingStateDetail)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -74,10 +75,6 @@ class PrinterStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .printer_processing_state import PrinterProcessingState
-        from .printer_processing_state_detail import PrinterProcessingStateDetail
-        from .printer_processing_state_reason import PrinterProcessingStateReason
-
         writer.write_str_value("description", self.description)
         writer.write_collection_of_enum_values("details", self.details)
         writer.write_str_value("@odata.type", self.odata_type)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .credential import Credential
@@ -43,10 +44,10 @@ class OAuthClientCredential(Credential, Parsable):
             return OAuth2ClientCredential()
         return OAuthClientCredential()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .credential import Credential
         from .o_auth1_client_credential import OAuth1ClientCredential
@@ -56,7 +57,7 @@ class OAuthClientCredential(Credential, Parsable):
         from .o_auth1_client_credential import OAuth1ClientCredential
         from .o_auth2_client_credential import OAuth2ClientCredential
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "clientId": lambda n : setattr(self, 'client_id', n.get_str_value()),
             "clientSecret": lambda n : setattr(self, 'client_secret', n.get_str_value()),
         }
@@ -73,10 +74,6 @@ class OAuthClientCredential(Credential, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .credential import Credential
-        from .o_auth1_client_credential import OAuth1ClientCredential
-        from .o_auth2_client_credential import OAuth2ClientCredential
-
         writer.write_str_value("clientId", self.client_id)
         writer.write_str_value("clientSecret", self.client_secret)
     

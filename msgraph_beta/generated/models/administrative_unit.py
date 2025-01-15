@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .directory_object import DirectoryObject
@@ -15,17 +16,17 @@ class AdministrativeUnit(DirectoryObject, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.administrativeUnit"
     # The deletedMembers property
-    deleted_members: Optional[List[DirectoryObject]] = None
+    deleted_members: Optional[list[DirectoryObject]] = None
     # The description property
     description: Optional[str] = None
     # The displayName property
     display_name: Optional[str] = None
     # The collection of open extensions defined for this administrative unit. Nullable.
-    extensions: Optional[List[Extension]] = None
+    extensions: Optional[list[Extension]] = None
     # The isMemberManagementRestricted property
     is_member_management_restricted: Optional[bool] = None
     # Users and groups that are members of this administrative unit. Supports $expand.
-    members: Optional[List[DirectoryObject]] = None
+    members: Optional[list[DirectoryObject]] = None
     # The membershipRule property
     membership_rule: Optional[str] = None
     # The membershipRuleProcessingState property
@@ -33,7 +34,7 @@ class AdministrativeUnit(DirectoryObject, Parsable):
     # The membershipType property
     membership_type: Optional[str] = None
     # Scoped-role members of this administrative unit.
-    scoped_role_members: Optional[List[ScopedRoleMembership]] = None
+    scoped_role_members: Optional[list[ScopedRoleMembership]] = None
     # The visibility property
     visibility: Optional[str] = None
     
@@ -48,10 +49,10 @@ class AdministrativeUnit(DirectoryObject, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AdministrativeUnit()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .directory_object import DirectoryObject
         from .extension import Extension
@@ -61,7 +62,7 @@ class AdministrativeUnit(DirectoryObject, Parsable):
         from .extension import Extension
         from .scoped_role_membership import ScopedRoleMembership
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deletedMembers": lambda n : setattr(self, 'deleted_members', n.get_collection_of_object_values(DirectoryObject)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -87,10 +88,6 @@ class AdministrativeUnit(DirectoryObject, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .directory_object import DirectoryObject
-        from .extension import Extension
-        from .scoped_role_membership import ScopedRoleMembership
-
         writer.write_collection_of_object_values("deletedMembers", self.deleted_members)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.cloud_pc_report_name import CloudPcReportName
@@ -13,19 +14,19 @@ class GetCloudPcRecommendationReportsPostRequestBody(AdditionalDataHolder, Backe
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The filter property
     filter: Optional[str] = None
     # The groupBy property
-    group_by: Optional[List[str]] = None
+    group_by: Optional[list[str]] = None
     # The orderBy property
-    order_by: Optional[List[str]] = None
+    order_by: Optional[list[str]] = None
     # The reportName property
     report_name: Optional[CloudPcReportName] = None
     # The search property
     search: Optional[str] = None
     # The select property
-    select: Optional[List[str]] = None
+    select: Optional[list[str]] = None
     # The skip property
     skip: Optional[int] = None
     # The top property
@@ -42,16 +43,16 @@ class GetCloudPcRecommendationReportsPostRequestBody(AdditionalDataHolder, Backe
             raise TypeError("parse_node cannot be null.")
         return GetCloudPcRecommendationReportsPostRequestBody()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .....models.cloud_pc_report_name import CloudPcReportName
 
         from .....models.cloud_pc_report_name import CloudPcReportName
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
             "groupBy": lambda n : setattr(self, 'group_by', n.get_collection_of_primitive_values(str)),
             "orderBy": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
@@ -71,8 +72,6 @@ class GetCloudPcRecommendationReportsPostRequestBody(AdditionalDataHolder, Backe
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .....models.cloud_pc_report_name import CloudPcReportName
-
         writer.write_str_value("filter", self.filter)
         writer.write_collection_of_primitive_values("groupBy", self.group_by)
         writer.write_collection_of_primitive_values("orderBy", self.order_by)

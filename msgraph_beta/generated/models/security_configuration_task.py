@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_app_management_task import DeviceAppManagementTask
@@ -29,11 +30,11 @@ class SecurityConfigurationTask(DeviceAppManagementTask, Parsable):
     # Information about the mitigation.
     insights: Optional[str] = None
     # The intended settings and their values.
-    intended_settings: Optional[List[KeyValuePair]] = None
+    intended_settings: Optional[list[KeyValuePair]] = None
     # The number of vulnerable devices.
     managed_device_count: Optional[int] = None
     # The vulnerable managed devices.
-    managed_devices: Optional[List[VulnerableManagedDevice]] = None
+    managed_devices: Optional[list[VulnerableManagedDevice]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> SecurityConfigurationTask:
@@ -46,10 +47,10 @@ class SecurityConfigurationTask(DeviceAppManagementTask, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SecurityConfigurationTask()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_app_management_task import DeviceAppManagementTask
         from .endpoint_security_configuration_applicable_platform import EndpointSecurityConfigurationApplicablePlatform
@@ -65,7 +66,7 @@ class SecurityConfigurationTask(DeviceAppManagementTask, Parsable):
         from .key_value_pair import KeyValuePair
         from .vulnerable_managed_device import VulnerableManagedDevice
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applicablePlatform": lambda n : setattr(self, 'applicable_platform', n.get_enum_value(EndpointSecurityConfigurationApplicablePlatform)),
             "endpointSecurityPolicy": lambda n : setattr(self, 'endpoint_security_policy', n.get_enum_value(EndpointSecurityConfigurationType)),
             "endpointSecurityPolicyProfile": lambda n : setattr(self, 'endpoint_security_policy_profile', n.get_enum_value(EndpointSecurityConfigurationProfileType)),
@@ -87,13 +88,6 @@ class SecurityConfigurationTask(DeviceAppManagementTask, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_app_management_task import DeviceAppManagementTask
-        from .endpoint_security_configuration_applicable_platform import EndpointSecurityConfigurationApplicablePlatform
-        from .endpoint_security_configuration_profile_type import EndpointSecurityConfigurationProfileType
-        from .endpoint_security_configuration_type import EndpointSecurityConfigurationType
-        from .key_value_pair import KeyValuePair
-        from .vulnerable_managed_device import VulnerableManagedDevice
-
         writer.write_enum_value("applicablePlatform", self.applicable_platform)
         writer.write_enum_value("endpointSecurityPolicy", self.endpoint_security_policy)
         writer.write_enum_value("endpointSecurityPolicyProfile", self.endpoint_security_policy_profile)

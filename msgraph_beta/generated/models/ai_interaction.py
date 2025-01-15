@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .ai_interaction_attachment import AiInteractionAttachment
@@ -21,11 +22,11 @@ class AiInteraction(Entity, Parsable):
     # The data source for Copilot data. For example, IPM.SkypeTeams.Message.Copilot.Excel or IPM.SkypeTeams.Message.Copilot.Loop.
     app_class: Optional[str] = None
     # The collection of documents attached to the interaction, such as cards and images.
-    attachments: Optional[List[AiInteractionAttachment]] = None
+    attachments: Optional[list[AiInteractionAttachment]] = None
     # The body of the message, including the text of the body and its body type.
     body: Optional[ItemBody] = None
     # The identifer that maps to all contexts associated with an interaction.
-    contexts: Optional[List[AiInteractionContext]] = None
+    contexts: Optional[list[AiInteractionContext]] = None
     # The type of the conversation. For example, appchat or bizchat.
     conversation_type: Optional[str] = None
     # The time when the interaction was created.
@@ -37,11 +38,11 @@ class AiInteraction(Entity, Parsable):
     # The interactionType property
     interaction_type: Optional[AiInteractionType] = None
     # The collection of links that appear in the interaction.
-    links: Optional[List[AiInteractionLink]] = None
+    links: Optional[list[AiInteractionLink]] = None
     # The locale of the sender.
     locale: Optional[str] = None
     # The collection of the entities that were mentioned in the interaction, including users, bots, and so on.
-    mentions: Optional[List[AiInteractionMention]] = None
+    mentions: Optional[list[AiInteractionMention]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The identifier that groups a user prompt with its Copilot response.
@@ -60,10 +61,10 @@ class AiInteraction(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AiInteraction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .ai_interaction_attachment import AiInteractionAttachment
         from .ai_interaction_context import AiInteractionContext
@@ -83,7 +84,7 @@ class AiInteraction(Entity, Parsable):
         from .identity_set import IdentitySet
         from .item_body import ItemBody
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appClass": lambda n : setattr(self, 'app_class', n.get_str_value()),
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(AiInteractionAttachment)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(ItemBody)),
@@ -112,15 +113,6 @@ class AiInteraction(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .ai_interaction_attachment import AiInteractionAttachment
-        from .ai_interaction_context import AiInteractionContext
-        from .ai_interaction_link import AiInteractionLink
-        from .ai_interaction_mention import AiInteractionMention
-        from .ai_interaction_type import AiInteractionType
-        from .entity import Entity
-        from .identity_set import IdentitySet
-        from .item_body import ItemBody
-
         writer.write_str_value("appClass", self.app_class)
         writer.write_collection_of_object_values("attachments", self.attachments)
         writer.write_object_value("body", self.body)

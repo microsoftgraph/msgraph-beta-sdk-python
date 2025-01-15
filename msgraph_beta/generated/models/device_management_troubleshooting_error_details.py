@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_troubleshooting_error_resource import DeviceManagementTroubleshootingErrorResource
@@ -16,7 +17,7 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, BackedMo
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The context property
     context: Optional[str] = None
     # The failure property
@@ -28,7 +29,7 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, BackedMo
     # The detailed description of how to remediate this issue.
     remediation: Optional[str] = None
     # Links to helpful documentation about this failure.
-    resources: Optional[List[DeviceManagementTroubleshootingErrorResource]] = None
+    resources: Optional[list[DeviceManagementTroubleshootingErrorResource]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementTroubleshootingErrorDetails:
@@ -41,16 +42,16 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, BackedMo
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementTroubleshootingErrorDetails()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_troubleshooting_error_resource import DeviceManagementTroubleshootingErrorResource
 
         from .device_management_troubleshooting_error_resource import DeviceManagementTroubleshootingErrorResource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "context": lambda n : setattr(self, 'context', n.get_str_value()),
             "failure": lambda n : setattr(self, 'failure', n.get_str_value()),
             "failureDetails": lambda n : setattr(self, 'failure_details', n.get_str_value()),
@@ -68,8 +69,6 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, BackedMo
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .device_management_troubleshooting_error_resource import DeviceManagementTroubleshootingErrorResource
-
         writer.write_str_value("context", self.context)
         writer.write_str_value("failure", self.failure)
         writer.write_str_value("failureDetails", self.failure_details)

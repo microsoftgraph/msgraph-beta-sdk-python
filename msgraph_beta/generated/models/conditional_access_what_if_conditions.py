@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_flow import AuthenticationFlow
@@ -18,7 +19,7 @@ class ConditionalAccessWhatIfConditions(AdditionalDataHolder, BackedModel, Parsa
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The authenticationFlow property
     authentication_flow: Optional[AuthenticationFlow] = None
     # The clientAppType property
@@ -53,10 +54,10 @@ class ConditionalAccessWhatIfConditions(AdditionalDataHolder, BackedModel, Parsa
             raise TypeError("parse_node cannot be null.")
         return ConditionalAccessWhatIfConditions()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_flow import AuthenticationFlow
         from .conditional_access_client_app import ConditionalAccessClientApp
@@ -72,7 +73,7 @@ class ConditionalAccessWhatIfConditions(AdditionalDataHolder, BackedModel, Parsa
         from .insider_risk_level import InsiderRiskLevel
         from .risk_level import RiskLevel
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationFlow": lambda n : setattr(self, 'authentication_flow', n.get_object_value(AuthenticationFlow)),
             "clientAppType": lambda n : setattr(self, 'client_app_type', n.get_enum_value(ConditionalAccessClientApp)),
             "country": lambda n : setattr(self, 'country', n.get_str_value()),
@@ -95,13 +96,6 @@ class ConditionalAccessWhatIfConditions(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .authentication_flow import AuthenticationFlow
-        from .conditional_access_client_app import ConditionalAccessClientApp
-        from .conditional_access_device_platform import ConditionalAccessDevicePlatform
-        from .device_info import DeviceInfo
-        from .insider_risk_level import InsiderRiskLevel
-        from .risk_level import RiskLevel
-
         writer.write_object_value("authenticationFlow", self.authentication_flow)
         writer.write_enum_value("clientAppType", self.client_app_type)
         writer.write_str_value("country", self.country)

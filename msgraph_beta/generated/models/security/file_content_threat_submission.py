@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .file_threat_submission import FileThreatSubmission
@@ -26,16 +27,16 @@ class FileContentThreatSubmission(FileThreatSubmission, Parsable):
             raise TypeError("parse_node cannot be null.")
         return FileContentThreatSubmission()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .file_threat_submission import FileThreatSubmission
 
         from .file_threat_submission import FileThreatSubmission
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "fileContent": lambda n : setattr(self, 'file_content', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -51,8 +52,6 @@ class FileContentThreatSubmission(FileThreatSubmission, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .file_threat_submission import FileThreatSubmission
-
         writer.write_str_value("fileContent", self.file_content)
     
 

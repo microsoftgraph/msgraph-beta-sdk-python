@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -15,7 +16,7 @@ from .entity import Entity
 @dataclass
 class IpSecurityProfile(Entity, Parsable):
     # The activityGroupNames property
-    activity_group_names: Optional[List[str]] = None
+    activity_group_names: Optional[list[str]] = None
     # The address property
     address: Optional[str] = None
     # The azureSubscriptionId property
@@ -29,9 +30,9 @@ class IpSecurityProfile(Entity, Parsable):
     # The firstSeenDateTime property
     first_seen_date_time: Optional[datetime.datetime] = None
     # The ipCategories property
-    ip_categories: Optional[List[IpCategory]] = None
+    ip_categories: Optional[list[IpCategory]] = None
     # The ipReferenceData property
-    ip_reference_data: Optional[List[IpReferenceData]] = None
+    ip_reference_data: Optional[list[IpReferenceData]] = None
     # The lastSeenDateTime property
     last_seen_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -39,7 +40,7 @@ class IpSecurityProfile(Entity, Parsable):
     # The riskScore property
     risk_score: Optional[str] = None
     # The tags property
-    tags: Optional[List[str]] = None
+    tags: Optional[list[str]] = None
     # The vendorInformation property
     vendor_information: Optional[SecurityVendorInformation] = None
     
@@ -54,10 +55,10 @@ class IpSecurityProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IpSecurityProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .ip_category import IpCategory
@@ -69,7 +70,7 @@ class IpSecurityProfile(Entity, Parsable):
         from .ip_reference_data import IpReferenceData
         from .security_vendor_information import SecurityVendorInformation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
             "address": lambda n : setattr(self, 'address', n.get_str_value()),
             "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
@@ -97,11 +98,6 @@ class IpSecurityProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .ip_category import IpCategory
-        from .ip_reference_data import IpReferenceData
-        from .security_vendor_information import SecurityVendorInformation
-
         writer.write_collection_of_primitive_values("activityGroupNames", self.activity_group_names)
         writer.write_str_value("address", self.address)
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)

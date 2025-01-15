@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .app_install_control_type import AppInstallControlType
@@ -61,7 +62,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
     # This policy setting directs Windows Installer to use elevated permissions when it installs any program on the system.
     app_management_m_s_i_always_install_with_elevated_privileges: Optional[bool] = None
     # List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are to be launched after logon.​
-    app_management_package_family_names_to_launch_after_log_on: Optional[List[str]] = None
+    app_management_package_family_names_to_launch_after_log_on: Optional[list[str]] = None
     # State Management Setting.
     apps_allow_trusted_apps_sideloading: Optional[StateManagementSetting] = None
     # Indicates whether or not to disable the launch of all apps from Windows Store that came pre-installed or were downloaded.
@@ -73,7 +74,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
     # Possible values of a property
     authentication_web_sign_in: Optional[Enablement] = None
     # Specify a list of allowed Bluetooth services and profiles in hex formatted strings.
-    bluetooth_allowed_services: Optional[List[str]] = None
+    bluetooth_allowed_services: Optional[list[str]] = None
     # Whether or not to Block the user from using bluetooth advertising.
     bluetooth_block_advertising: Optional[bool] = None
     # Whether or not to Block the user from using bluetooth discoverable mode.
@@ -127,9 +128,9 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
     # When blocked, catch-up scans for scheduled quick scans will be turned off.
     defender_disable_catchup_quick_scan: Optional[bool] = None
     # File extensions to exclude from scans and real time protection.
-    defender_file_extensions_to_exclude: Optional[List[str]] = None
+    defender_file_extensions_to_exclude: Optional[list[str]] = None
     # Files and folder to exclude from scans and real time protection.
-    defender_files_and_folders_to_exclude: Optional[List[str]] = None
+    defender_files_and_folders_to_exclude: Optional[list[str]] = None
     # Possible values for monitoring file activity.
     defender_monitor_file_activity: Optional[DefenderMonitorFileActivity] = None
     # Gets or sets Defender’s action to take on Potentially Unwanted Application (PUA), which includes software with behaviors of ad-injection, software bundling, persistent solicitation for payment or subscription, etc. Defender alerts user when PUA is being downloaded or attempts to install itself. Added in Windows 10 for desktop. Possible values are: deviceDefault, block, audit.
@@ -137,7 +138,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
     # Possible values of Defender PUA Protection
     defender_potentially_unwanted_app_action_setting: Optional[DefenderProtectionType] = None
     # Processes to exclude from scans and real time protection.
-    defender_processes_to_exclude: Optional[List[str]] = None
+    defender_processes_to_exclude: Optional[list[str]] = None
     # Possible values for prompting user for samples submission.
     defender_prompt_for_sample_submission: Optional[DefenderPromptForSampleSubmission] = None
     # Indicates whether or not to require behavior monitoring.
@@ -187,9 +188,9 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
     # Allow the device to send diagnostic and usage telemetry data, such as Watson.
     diagnostics_data_submission_mode: Optional[DiagnosticDataSubmissionMode] = None
     # List of legacy applications that have GDI DPI Scaling turned off.
-    display_app_list_with_gdi_d_p_i_scaling_turned_off: Optional[List[str]] = None
+    display_app_list_with_gdi_d_p_i_scaling_turned_off: Optional[list[str]] = None
     # List of legacy applications that have GDI DPI Scaling turned on.
-    display_app_list_with_gdi_d_p_i_scaling_turned_on: Optional[List[str]] = None
+    display_app_list_with_gdi_d_p_i_scaling_turned_on: Optional[list[str]] = None
     # Allow users to change Start pages on Edge. Use the EdgeHomepageUrls to specify the Start pages that the user would see by default when they open Edge.
     edge_allow_start_pages_modification: Optional[bool] = None
     # Indicates whether or not to prevent access to about flags on Edge browser.
@@ -259,7 +260,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
     # Enable the Home button configuration.
     edge_home_button_configuration_enabled: Optional[bool] = None
     # The list of URLs for homepages shodwn on MDM-enrolled devices on Edge browser.
-    edge_homepage_urls: Optional[List[str]] = None
+    edge_homepage_urls: Optional[list[str]] = None
     # Specify how the Microsoft Edge settings are restricted based on kiosk mode.
     edge_kiosk_mode_restriction: Optional[EdgeKioskModeRestrictionType] = None
     # Specifies the time in minutes from the last user activity before Microsoft Edge kiosk resets.  Valid values are 0-1440. The default is 5. 0 indicates no reset. Valid values 0 to 1440
@@ -273,7 +274,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
     # Indicates whether or not to Require the user to use the smart screen filter.
     edge_require_smart_screen: Optional[bool] = None
     # Specify the list of package family names of browser extensions that are required and cannot be turned off by the user.
-    edge_required_extension_package_family_names: Optional[List[str]] = None
+    edge_required_extension_package_family_names: Optional[list[str]] = None
     # Allows IT admins to set a default search engine for MDM-Controlled devices. Users can override this and change their default search engine provided the AllowSearchEngineCustomization policy is not set.
     edge_search_engine: Optional[EdgeSearchEngineBase] = None
     # Indicates whether or not to switch the intranet traffic from Edge to Internet Explorer.
@@ -409,9 +410,9 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
     # Name (network host name) of an installed printer.
     printer_default_name: Optional[str] = None
     # Automatically provision printers based on their names (network host names).
-    printer_names: Optional[List[str]] = None
+    printer_names: Optional[list[str]] = None
     # Indicates a list of applications with their access control levels over privacy data categories, and/or the default access levels per category. This collection can contain a maximum of 500 elements.
-    privacy_access_controls: Optional[List[WindowsPrivacyDataAccessControlItem]] = None
+    privacy_access_controls: Optional[list[WindowsPrivacyDataAccessControlItem]] = None
     # State Management Setting.
     privacy_advertising_id: Optional[StateManagementSetting] = None
     # Indicates whether or not to allow the automatic acceptance of the pairing and privacy user consent dialog when launching apps.
@@ -628,10 +629,10 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Windows10GeneralConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .app_install_control_type import AppInstallControlType
         from .browser_sync_setting import BrowserSyncSetting
@@ -705,7 +706,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
         from .windows_start_menu_app_list_visibility_type import WindowsStartMenuAppListVisibilityType
         from .windows_start_menu_mode_type import WindowsStartMenuModeType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accountsBlockAddingNonMicrosoftAccountEmail": lambda n : setattr(self, 'accounts_block_adding_non_microsoft_account_email', n.get_bool_value()),
             "activateAppsWithVoice": lambda n : setattr(self, 'activate_apps_with_voice', n.get_enum_value(Enablement)),
             "antiTheftModeBlocked": lambda n : setattr(self, 'anti_theft_mode_blocked', n.get_bool_value()),
@@ -1003,42 +1004,6 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .app_install_control_type import AppInstallControlType
-        from .browser_sync_setting import BrowserSyncSetting
-        from .configuration_usage import ConfigurationUsage
-        from .defender_cloud_block_level_type import DefenderCloudBlockLevelType
-        from .defender_detected_malware_actions import DefenderDetectedMalwareActions
-        from .defender_monitor_file_activity import DefenderMonitorFileActivity
-        from .defender_potentially_unwanted_app_action import DefenderPotentiallyUnwantedAppAction
-        from .defender_prompt_for_sample_submission import DefenderPromptForSampleSubmission
-        from .defender_protection_type import DefenderProtectionType
-        from .defender_scan_type import DefenderScanType
-        from .defender_submit_samples_consent_type import DefenderSubmitSamplesConsentType
-        from .device_configuration import DeviceConfiguration
-        from .diagnostic_data_submission_mode import DiagnosticDataSubmissionMode
-        from .edge_cookie_policy import EdgeCookiePolicy
-        from .edge_home_button_configuration import EdgeHomeButtonConfiguration
-        from .edge_kiosk_mode_restriction_type import EdgeKioskModeRestrictionType
-        from .edge_open_options import EdgeOpenOptions
-        from .edge_search_engine_base import EdgeSearchEngineBase
-        from .edge_telemetry_mode import EdgeTelemetryMode
-        from .enablement import Enablement
-        from .ink_access_setting import InkAccessSetting
-        from .internet_explorer_message_setting import InternetExplorerMessageSetting
-        from .power_action_type import PowerActionType
-        from .required_password_type import RequiredPasswordType
-        from .safe_search_filter_type import SafeSearchFilterType
-        from .sign_in_assistant_options import SignInAssistantOptions
-        from .state_management_setting import StateManagementSetting
-        from .visibility_setting import VisibilitySetting
-        from .weekly_schedule import WeeklySchedule
-        from .windows10_apps_force_update_schedule import Windows10AppsForceUpdateSchedule
-        from .windows10_network_proxy_server import Windows10NetworkProxyServer
-        from .windows_privacy_data_access_control_item import WindowsPrivacyDataAccessControlItem
-        from .windows_spotlight_enablement_settings import WindowsSpotlightEnablementSettings
-        from .windows_start_menu_app_list_visibility_type import WindowsStartMenuAppListVisibilityType
-        from .windows_start_menu_mode_type import WindowsStartMenuModeType
-
         writer.write_bool_value("accountsBlockAddingNonMicrosoftAccountEmail", self.accounts_block_adding_non_microsoft_account_email)
         writer.write_enum_value("activateAppsWithVoice", self.activate_apps_with_voice)
         writer.write_bool_value("antiTheftModeBlocked", self.anti_theft_mode_blocked)

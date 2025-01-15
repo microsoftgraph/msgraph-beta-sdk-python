@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .operation_approval_request_status import OperationApprovalRequestStatus
@@ -17,7 +18,7 @@ class OperationApprovalRequestEntityStatus(AdditionalDataHolder, BackedModel, Pa
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The status of the Entity connected to the OperationApprovalRequest in regard to changes, whether further requests are allowed or if the Entity is locked. When true, a lock is present on the Entity and no approval requests can be currently made for it. When false, the Entity is not locked and approval requests are allowed. Default value is false. Read-only. This property is read-only.
     entity_locked: Optional[bool] = None
     # The OdataType property
@@ -40,16 +41,16 @@ class OperationApprovalRequestEntityStatus(AdditionalDataHolder, BackedModel, Pa
             raise TypeError("parse_node cannot be null.")
         return OperationApprovalRequestEntityStatus()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .operation_approval_request_status import OperationApprovalRequestStatus
 
         from .operation_approval_request_status import OperationApprovalRequestStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "entityLocked": lambda n : setattr(self, 'entity_locked', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "requestExpirationDateTime": lambda n : setattr(self, 'request_expiration_date_time', n.get_datetime_value()),
@@ -66,8 +67,6 @@ class OperationApprovalRequestEntityStatus(AdditionalDataHolder, BackedModel, Pa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .operation_approval_request_status import OperationApprovalRequestStatus
-
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("requestStatus", self.request_status)
         writer.write_additional_data_value(self.additional_data)

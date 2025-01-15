@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -30,7 +31,7 @@ class GroupPolicyDefinitionValue(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The associated group policy presentation values with the definition value.
-    presentation_values: Optional[List[GroupPolicyPresentationValue]] = None
+    presentation_values: Optional[list[GroupPolicyPresentationValue]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GroupPolicyDefinitionValue:
@@ -43,10 +44,10 @@ class GroupPolicyDefinitionValue(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return GroupPolicyDefinitionValue()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .group_policy_configuration_type import GroupPolicyConfigurationType
@@ -58,7 +59,7 @@ class GroupPolicyDefinitionValue(Entity, Parsable):
         from .group_policy_definition import GroupPolicyDefinition
         from .group_policy_presentation_value import GroupPolicyPresentationValue
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "configurationType": lambda n : setattr(self, 'configuration_type', n.get_enum_value(GroupPolicyConfigurationType)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "definition": lambda n : setattr(self, 'definition', n.get_object_value(GroupPolicyDefinition)),
@@ -79,11 +80,6 @@ class GroupPolicyDefinitionValue(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .group_policy_configuration_type import GroupPolicyConfigurationType
-        from .group_policy_definition import GroupPolicyDefinition
-        from .group_policy_presentation_value import GroupPolicyPresentationValue
-
         writer.write_enum_value("configurationType", self.configuration_type)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("definition", self.definition)

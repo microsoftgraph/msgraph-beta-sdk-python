@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .add_footer import AddFooter
@@ -50,10 +51,10 @@ class MarkContent(LabelActionBase, Parsable):
             return AddWatermark()
         return MarkContent()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .add_footer import AddFooter
         from .add_header import AddHeader
@@ -65,7 +66,7 @@ class MarkContent(LabelActionBase, Parsable):
         from .add_watermark import AddWatermark
         from .label_action_base import LabelActionBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "fontColor": lambda n : setattr(self, 'font_color', n.get_str_value()),
             "fontSize": lambda n : setattr(self, 'font_size', n.get_int_value()),
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
@@ -83,11 +84,6 @@ class MarkContent(LabelActionBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .add_footer import AddFooter
-        from .add_header import AddHeader
-        from .add_watermark import AddWatermark
-        from .label_action_base import LabelActionBase
-
         writer.write_str_value("fontColor", self.font_color)
         writer.write_int_value("fontSize", self.font_size)
         writer.write_str_value("text", self.text)

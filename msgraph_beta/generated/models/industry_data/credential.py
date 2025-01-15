@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .o_auth1_client_credential import OAuth1ClientCredential
@@ -16,7 +17,7 @@ class Credential(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The name of the credential.
     display_name: Optional[str] = None
     # Indicates whether the credential provided is valid based on the last data connector validate operation.
@@ -54,10 +55,10 @@ class Credential(AdditionalDataHolder, BackedModel, Parsable):
             return OAuthClientCredential()
         return Credential()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .o_auth1_client_credential import OAuth1ClientCredential
         from .o_auth2_client_credential import OAuth2ClientCredential
@@ -67,7 +68,7 @@ class Credential(AdditionalDataHolder, BackedModel, Parsable):
         from .o_auth2_client_credential import OAuth2ClientCredential
         from .o_auth_client_credential import OAuthClientCredential
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "isValid": lambda n : setattr(self, 'is_valid', n.get_bool_value()),
             "lastValidDateTime": lambda n : setattr(self, 'last_valid_date_time', n.get_datetime_value()),
@@ -83,10 +84,6 @@ class Credential(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .o_auth1_client_credential import OAuth1ClientCredential
-        from .o_auth2_client_credential import OAuth2ClientCredential
-        from .o_auth_client_credential import OAuthClientCredential
-
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .dh_group import DhGroup
@@ -44,10 +45,10 @@ class TunnelConfigurationIKEv2Custom(TunnelConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TunnelConfigurationIKEv2Custom()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .dh_group import DhGroup
         from .ike_encryption import IkeEncryption
@@ -65,7 +66,7 @@ class TunnelConfigurationIKEv2Custom(TunnelConfiguration, Parsable):
         from .pfs_group import PfsGroup
         from .tunnel_configuration import TunnelConfiguration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dhGroup": lambda n : setattr(self, 'dh_group', n.get_enum_value(DhGroup)),
             "ikeEncryption": lambda n : setattr(self, 'ike_encryption', n.get_enum_value(IkeEncryption)),
             "ikeIntegrity": lambda n : setattr(self, 'ike_integrity', n.get_enum_value(IkeIntegrity)),
@@ -87,14 +88,6 @@ class TunnelConfigurationIKEv2Custom(TunnelConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .dh_group import DhGroup
-        from .ike_encryption import IkeEncryption
-        from .ike_integrity import IkeIntegrity
-        from .ip_sec_encryption import IpSecEncryption
-        from .ip_sec_integrity import IpSecIntegrity
-        from .pfs_group import PfsGroup
-        from .tunnel_configuration import TunnelConfiguration
-
         writer.write_enum_value("dhGroup", self.dh_group)
         writer.write_enum_value("ikeEncryption", self.ike_encryption)
         writer.write_enum_value("ikeIntegrity", self.ike_integrity)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .account_target_content import AccountTargetContent
@@ -55,10 +56,10 @@ class TrainingCampaign(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TrainingCampaign()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .account_target_content import AccountTargetContent
         from .campaign_schedule import CampaignSchedule
@@ -76,7 +77,7 @@ class TrainingCampaign(Entity, Parsable):
         from .training_campaign_report import TrainingCampaignReport
         from .training_setting import TrainingSetting
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "campaignSchedule": lambda n : setattr(self, 'campaign_schedule', n.get_object_value(CampaignSchedule)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(EmailIdentity)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -103,14 +104,6 @@ class TrainingCampaign(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .account_target_content import AccountTargetContent
-        from .campaign_schedule import CampaignSchedule
-        from .email_identity import EmailIdentity
-        from .end_user_notification_setting import EndUserNotificationSetting
-        from .entity import Entity
-        from .training_campaign_report import TrainingCampaignReport
-        from .training_setting import TrainingSetting
-
         writer.write_object_value("campaignSchedule", self.campaign_schedule)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

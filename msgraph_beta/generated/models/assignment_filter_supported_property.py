@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .assignment_filter_operator import AssignmentFilterOperator
@@ -16,7 +17,7 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, BackedModel, Parsa
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The data type of the property.
     data_type: Optional[str] = None
     # Indicates whether the property is a collection type or not.
@@ -28,9 +29,9 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, BackedModel, Parsa
     # Regex string to do validation on the property value.
     property_regex_constraint: Optional[str] = None
     # List of all supported operators on this property.
-    supported_operators: Optional[List[AssignmentFilterOperator]] = None
+    supported_operators: Optional[list[AssignmentFilterOperator]] = None
     # List of all supported values for this property, empty if everything is supported.
-    supported_values: Optional[List[str]] = None
+    supported_values: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AssignmentFilterSupportedProperty:
@@ -43,16 +44,16 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, BackedModel, Parsa
             raise TypeError("parse_node cannot be null.")
         return AssignmentFilterSupportedProperty()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .assignment_filter_operator import AssignmentFilterOperator
 
         from .assignment_filter_operator import AssignmentFilterOperator
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dataType": lambda n : setattr(self, 'data_type', n.get_str_value()),
             "isCollection": lambda n : setattr(self, 'is_collection', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
@@ -71,8 +72,6 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, BackedModel, Parsa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .assignment_filter_operator import AssignmentFilterOperator
-
         writer.write_str_value("dataType", self.data_type)
         writer.write_bool_value("isCollection", self.is_collection)
         writer.write_str_value("name", self.name)

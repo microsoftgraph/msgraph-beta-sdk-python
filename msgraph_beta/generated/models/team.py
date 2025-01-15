@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .channel import Channel
@@ -32,9 +33,9 @@ from .entity import Entity
 @dataclass
 class Team(Entity, Parsable):
     # List of channels either hosted in or shared with the team (incoming channels).
-    all_channels: Optional[List[Channel]] = None
+    all_channels: Optional[list[Channel]] = None
     # The collection of channels and messages associated with the team.
-    channels: Optional[List[Channel]] = None
+    channels: Optional[list[Channel]] = None
     # An optional label. Typically describes the data or business sensitivity of the team. Must match one of a pre-configured set in the tenant's directory.
     classification: Optional[str] = None
     # Timestamp at which the team was created.
@@ -54,9 +55,9 @@ class Team(Entity, Parsable):
     # Settings to configure whether guests can create, update, or delete channels in the team.
     guest_settings: Optional[TeamGuestSettings] = None
     # List of channels shared with the team.
-    incoming_channels: Optional[List[Channel]] = None
+    incoming_channels: Optional[list[Channel]] = None
     # The apps installed in this team.
-    installed_apps: Optional[List[TeamsAppInstallation]] = None
+    installed_apps: Optional[list[TeamsAppInstallation]] = None
     # A unique ID for the team used in a few places such as the audit log/Office 365 Management Activity API.
     internal_id: Optional[str] = None
     # Whether this team is in read-only mode.
@@ -66,17 +67,17 @@ class Team(Entity, Parsable):
     # Settings to configure whether members can perform certain actions, for example, create channels and add bots, in the team.
     member_settings: Optional[TeamMemberSettings] = None
     # Members and owners of the team.
-    members: Optional[List[ConversationMember]] = None
+    members: Optional[list[ConversationMember]] = None
     # Settings to configure messaging and mentions in the team.
     messaging_settings: Optional[TeamMessagingSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The async operations that ran or are running on this team.
-    operations: Optional[List[TeamsAsyncOperation]] = None
+    operations: Optional[list[TeamsAsyncOperation]] = None
     # The list of this team's owners. Currently, when creating a team using application permissions, exactly one owner must be specified. When using user-delegated permissions, no owner can be specified (the current user is the owner). The owner must be specified as an object ID (GUID), not a UPN.
-    owners: Optional[List[User]] = None
+    owners: Optional[list[User]] = None
     # A collection of permissions granted to apps to access the team.
-    permission_grants: Optional[List[ResourceSpecificPermissionGrant]] = None
+    permission_grants: Optional[list[ResourceSpecificPermissionGrant]] = None
     # The team photo.
     photo: Optional[ProfilePhoto] = None
     # The general channel for the team.
@@ -88,7 +89,7 @@ class Team(Entity, Parsable):
     # Contains summary information about the team, including the number of owners, members, and guests.
     summary: Optional[TeamSummary] = None
     # The tags associated with the team.
-    tags: Optional[List[TeamworkTag]] = None
+    tags: Optional[list[TeamworkTag]] = None
     # The template this team was created from. See available templates.
     template: Optional[TeamsTemplate] = None
     # Generic representation of a team template definition for a team with a specific structure and configuration.
@@ -111,10 +112,10 @@ class Team(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Team()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .channel import Channel
         from .conversation_member import ConversationMember
@@ -160,7 +161,7 @@ class Team(Entity, Parsable):
         from .team_visibility_type import TeamVisibilityType
         from .user import User
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allChannels": lambda n : setattr(self, 'all_channels', n.get_collection_of_object_values(Channel)),
             "channels": lambda n : setattr(self, 'channels', n.get_collection_of_object_values(Channel)),
             "classification": lambda n : setattr(self, 'classification', n.get_str_value()),
@@ -208,28 +209,6 @@ class Team(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .channel import Channel
-        from .conversation_member import ConversationMember
-        from .entity import Entity
-        from .group import Group
-        from .profile_photo import ProfilePhoto
-        from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
-        from .schedule import Schedule
-        from .teams_app_installation import TeamsAppInstallation
-        from .teams_async_operation import TeamsAsyncOperation
-        from .teams_template import TeamsTemplate
-        from .teamwork_tag import TeamworkTag
-        from .team_discovery_settings import TeamDiscoverySettings
-        from .team_fun_settings import TeamFunSettings
-        from .team_guest_settings import TeamGuestSettings
-        from .team_member_settings import TeamMemberSettings
-        from .team_messaging_settings import TeamMessagingSettings
-        from .team_specialization import TeamSpecialization
-        from .team_summary import TeamSummary
-        from .team_template_definition import TeamTemplateDefinition
-        from .team_visibility_type import TeamVisibilityType
-        from .user import User
-
         writer.write_collection_of_object_values("allChannels", self.all_channels)
         writer.write_collection_of_object_values("channels", self.channels)
         writer.write_str_value("classification", self.classification)

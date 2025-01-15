@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mac_o_s_process_identifier_type import MacOSProcessIdentifierType
@@ -16,7 +17,7 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Allow or block this app from receiving Apple events.
     allowed: Optional[bool] = None
     # Code requirement for the app or binary that receives the Apple Event.
@@ -39,16 +40,16 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSAppleEventReceiver()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .mac_o_s_process_identifier_type import MacOSProcessIdentifierType
 
         from .mac_o_s_process_identifier_type import MacOSProcessIdentifierType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowed": lambda n : setattr(self, 'allowed', n.get_bool_value()),
             "codeRequirement": lambda n : setattr(self, 'code_requirement', n.get_str_value()),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
@@ -65,8 +66,6 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .mac_o_s_process_identifier_type import MacOSProcessIdentifierType
-
         writer.write_bool_value("allowed", self.allowed)
         writer.write_str_value("codeRequirement", self.code_requirement)
         writer.write_str_value("identifier", self.identifier)

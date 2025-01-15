@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .application_permissions_required import ApplicationPermissionsRequired
@@ -44,7 +45,7 @@ class CloudAppSecurityProfile(Entity, Parsable):
     # The riskScore property
     risk_score: Optional[str] = None
     # The tags property
-    tags: Optional[List[str]] = None
+    tags: Optional[list[str]] = None
     # The type property
     type: Optional[str] = None
     # The vendorInformation property
@@ -61,10 +62,10 @@ class CloudAppSecurityProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return CloudAppSecurityProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .application_permissions_required import ApplicationPermissionsRequired
         from .entity import Entity
@@ -74,7 +75,7 @@ class CloudAppSecurityProfile(Entity, Parsable):
         from .entity import Entity
         from .security_vendor_information import SecurityVendorInformation
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
             "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -106,10 +107,6 @@ class CloudAppSecurityProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .application_permissions_required import ApplicationPermissionsRequired
-        from .entity import Entity
-        from .security_vendor_information import SecurityVendorInformation
-
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)
         writer.write_str_value("azureTenantId", self.azure_tenant_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

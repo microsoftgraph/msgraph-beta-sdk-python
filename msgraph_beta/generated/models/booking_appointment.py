@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .booking_customer_information_base import BookingCustomerInformationBase
@@ -43,7 +44,7 @@ class BookingAppointment(Entity, Parsable):
     # The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
     customer_time_zone: Optional[str] = None
     # A collection of the customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
-    customers: Optional[List[BookingCustomerInformationBase]] = None
+    customers: Optional[list[BookingCustomerInformationBase]] = None
     # The length of the appointment, denoted in ISO8601 format.
     duration: Optional[datetime.timedelta] = None
     # The end property
@@ -85,7 +86,7 @@ class BookingAppointment(Entity, Parsable):
     # Represents the type of pricing of a booking service.
     price_type: Optional[BookingPriceType] = None
     # The collection of customer reminders sent for this appointment. The value of this property is available only when reading this bookingAppointment by its ID.
-    reminders: Optional[List[BookingReminder]] = None
+    reminders: Optional[list[BookingReminder]] = None
     # Another tracking ID for the appointment, if the appointment was created directly by the customer on the scheduling page, as opposed to by a staff member on behalf of customer.
     self_service_appointment_id: Optional[str] = None
     # The ID of the bookingService associated with this appointment.
@@ -99,7 +100,7 @@ class BookingAppointment(Entity, Parsable):
     # True indicates SMS notifications will be sent to the customers for the appointment. Default value is false.
     sms_notifications_enabled: Optional[bool] = None
     # The ID of each bookingStaffMember who is scheduled in this appointment.
-    staff_member_ids: Optional[List[str]] = None
+    staff_member_ids: Optional[list[str]] = None
     # The start property
     start: Optional[DateTimeTimeZone] = None
     
@@ -114,10 +115,10 @@ class BookingAppointment(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return BookingAppointment()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .booking_customer_information_base import BookingCustomerInformationBase
         from .booking_invoice_status import BookingInvoiceStatus
@@ -135,7 +136,7 @@ class BookingAppointment(Entity, Parsable):
         from .entity import Entity
         from .location import Location
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_str_value()),
             "anonymousJoinWebUrl": lambda n : setattr(self, 'anonymous_join_web_url', n.get_str_value()),
             "appointmentLabel": lambda n : setattr(self, 'appointment_label', n.get_str_value()),
@@ -190,14 +191,6 @@ class BookingAppointment(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .booking_customer_information_base import BookingCustomerInformationBase
-        from .booking_invoice_status import BookingInvoiceStatus
-        from .booking_price_type import BookingPriceType
-        from .booking_reminder import BookingReminder
-        from .date_time_time_zone import DateTimeTimeZone
-        from .entity import Entity
-        from .location import Location
-
         writer.write_str_value("additionalInformation", self.additional_information)
         writer.write_str_value("anonymousJoinWebUrl", self.anonymous_join_web_url)
         writer.write_str_value("appointmentLabel", self.appointment_label)

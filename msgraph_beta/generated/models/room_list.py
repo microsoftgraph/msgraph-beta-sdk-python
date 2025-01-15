@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .place import Place
@@ -17,9 +18,9 @@ class RoomList(Place, Parsable):
     # The email address of the room list.
     email_address: Optional[str] = None
     # The rooms property
-    rooms: Optional[List[Room]] = None
+    rooms: Optional[list[Room]] = None
     # The workspaces property
-    workspaces: Optional[List[Workspace]] = None
+    workspaces: Optional[list[Workspace]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RoomList:
@@ -32,10 +33,10 @@ class RoomList(Place, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RoomList()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .place import Place
         from .room import Room
@@ -45,7 +46,7 @@ class RoomList(Place, Parsable):
         from .room import Room
         from .workspace import Workspace
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "emailAddress": lambda n : setattr(self, 'email_address', n.get_str_value()),
             "rooms": lambda n : setattr(self, 'rooms', n.get_collection_of_object_values(Room)),
             "workspaces": lambda n : setattr(self, 'workspaces', n.get_collection_of_object_values(Workspace)),
@@ -63,10 +64,6 @@ class RoomList(Place, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .place import Place
-        from .room import Room
-        from .workspace import Workspace
-
         writer.write_str_value("emailAddress", self.email_address)
         writer.write_collection_of_object_values("rooms", self.rooms)
         writer.write_collection_of_object_values("workspaces", self.workspaces)

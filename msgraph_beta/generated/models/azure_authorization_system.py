@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authorization_system import AuthorizationSystem
@@ -18,15 +19,15 @@ class AzureAuthorizationSystem(AuthorizationSystem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureAuthorizationSystem"
     # List of actions for service in authorization system.
-    actions: Optional[List[AzureAuthorizationSystemTypeAction]] = None
+    actions: Optional[list[AzureAuthorizationSystemTypeAction]] = None
     # Identities in the authorization system.
     associated_identities: Optional[AzureAssociatedIdentities] = None
     # Resources associated with the authorization system type.
-    resources: Optional[List[AzureAuthorizationSystemResource]] = None
+    resources: Optional[list[AzureAuthorizationSystemResource]] = None
     # Roles associated with the authorization system type.
-    role_definitions: Optional[List[AzureRoleDefinition]] = None
+    role_definitions: Optional[list[AzureRoleDefinition]] = None
     # Services associated with the authorization system type.
-    services: Optional[List[AuthorizationSystemTypeService]] = None
+    services: Optional[list[AuthorizationSystemTypeService]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AzureAuthorizationSystem:
@@ -39,10 +40,10 @@ class AzureAuthorizationSystem(AuthorizationSystem, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AzureAuthorizationSystem()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authorization_system import AuthorizationSystem
         from .authorization_system_type_service import AuthorizationSystemTypeService
@@ -58,7 +59,7 @@ class AzureAuthorizationSystem(AuthorizationSystem, Parsable):
         from .azure_authorization_system_type_action import AzureAuthorizationSystemTypeAction
         from .azure_role_definition import AzureRoleDefinition
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(AzureAuthorizationSystemTypeAction)),
             "associatedIdentities": lambda n : setattr(self, 'associated_identities', n.get_object_value(AzureAssociatedIdentities)),
             "resources": lambda n : setattr(self, 'resources', n.get_collection_of_object_values(AzureAuthorizationSystemResource)),
@@ -78,13 +79,6 @@ class AzureAuthorizationSystem(AuthorizationSystem, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .authorization_system import AuthorizationSystem
-        from .authorization_system_type_service import AuthorizationSystemTypeService
-        from .azure_associated_identities import AzureAssociatedIdentities
-        from .azure_authorization_system_resource import AzureAuthorizationSystemResource
-        from .azure_authorization_system_type_action import AzureAuthorizationSystemTypeAction
-        from .azure_role_definition import AzureRoleDefinition
-
         writer.write_collection_of_object_values("actions", self.actions)
         writer.write_object_value("associatedIdentities", self.associated_identities)
         writer.write_collection_of_object_values("resources", self.resources)

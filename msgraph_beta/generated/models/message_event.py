@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -32,10 +33,10 @@ class MessageEvent(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MessageEvent()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .message_event_type import MessageEventType
@@ -43,7 +44,7 @@ class MessageEvent(Entity, Parsable):
         from .entity import Entity
         from .message_event_type import MessageEventType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dateTime": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "eventType": lambda n : setattr(self, 'event_type', n.get_enum_value(MessageEventType)),
@@ -61,9 +62,6 @@ class MessageEvent(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .message_event_type import MessageEventType
-
         writer.write_datetime_value("dateTime", self.date_time)
         writer.write_str_value("description", self.description)
         writer.write_enum_value("eventType", self.event_type)

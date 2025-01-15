@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -14,7 +15,7 @@ from .entity import Entity
 @dataclass
 class UserSecurityProfile(Entity, Parsable):
     # The accounts property
-    accounts: Optional[List[UserAccount]] = None
+    accounts: Optional[list[UserAccount]] = None
     # The azureSubscriptionId property
     azure_subscription_id: Optional[str] = None
     # The azureTenantId property
@@ -30,7 +31,7 @@ class UserSecurityProfile(Entity, Parsable):
     # The riskScore property
     risk_score: Optional[str] = None
     # The tags property
-    tags: Optional[List[str]] = None
+    tags: Optional[list[str]] = None
     # The userPrincipalName property
     user_principal_name: Optional[str] = None
     # The vendorInformation property
@@ -47,10 +48,10 @@ class UserSecurityProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return UserSecurityProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .security_vendor_information import SecurityVendorInformation
@@ -60,7 +61,7 @@ class UserSecurityProfile(Entity, Parsable):
         from .security_vendor_information import SecurityVendorInformation
         from .user_account import UserAccount
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accounts": lambda n : setattr(self, 'accounts', n.get_collection_of_object_values(UserAccount)),
             "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
             "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
@@ -85,10 +86,6 @@ class UserSecurityProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .security_vendor_information import SecurityVendorInformation
-        from .user_account import UserAccount
-
         writer.write_collection_of_object_values("accounts", self.accounts)
         writer.write_str_value("azureSubscriptionId", self.azure_subscription_id)
         writer.write_str_value("azureTenantId", self.azure_tenant_id)

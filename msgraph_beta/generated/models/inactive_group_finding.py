@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .action_summary import ActionSummary
@@ -33,10 +34,10 @@ class InactiveGroupFinding(Finding, Parsable):
             raise TypeError("parse_node cannot be null.")
         return InactiveGroupFinding()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .action_summary import ActionSummary
         from .authorization_system_identity import AuthorizationSystemIdentity
@@ -48,7 +49,7 @@ class InactiveGroupFinding(Finding, Parsable):
         from .finding import Finding
         from .permissions_creep_index import PermissionsCreepIndex
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "actionSummary": lambda n : setattr(self, 'action_summary', n.get_object_value(ActionSummary)),
             "group": lambda n : setattr(self, 'group', n.get_object_value(AuthorizationSystemIdentity)),
             "permissionsCreepIndex": lambda n : setattr(self, 'permissions_creep_index', n.get_object_value(PermissionsCreepIndex)),
@@ -66,11 +67,6 @@ class InactiveGroupFinding(Finding, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .action_summary import ActionSummary
-        from .authorization_system_identity import AuthorizationSystemIdentity
-        from .finding import Finding
-        from .permissions_creep_index import PermissionsCreepIndex
-
         writer.write_object_value("actionSummary", self.action_summary)
         writer.write_object_value("group", self.group)
         writer.write_object_value("permissionsCreepIndex", self.permissions_creep_index)

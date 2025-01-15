@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .pre_approved_permissions import PreApprovedPermissions
@@ -13,7 +14,7 @@ class EnumeratedPreApprovedPermissions(PreApprovedPermissions, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.enumeratedPreApprovedPermissions"
     # The list of id values for the specific resource-specific application permissions to match with. See the resourceSpecificApplicationPermissions property of the servicePrincipal object for the list of permissions.
-    permission_ids: Optional[List[str]] = None
+    permission_ids: Optional[list[str]] = None
     # The appId of the resource application (the API). Required.
     resource_application_id: Optional[str] = None
     
@@ -28,16 +29,16 @@ class EnumeratedPreApprovedPermissions(PreApprovedPermissions, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EnumeratedPreApprovedPermissions()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .pre_approved_permissions import PreApprovedPermissions
 
         from .pre_approved_permissions import PreApprovedPermissions
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "permissionIds": lambda n : setattr(self, 'permission_ids', n.get_collection_of_primitive_values(str)),
             "resourceApplicationId": lambda n : setattr(self, 'resource_application_id', n.get_str_value()),
         }
@@ -54,8 +55,6 @@ class EnumeratedPreApprovedPermissions(PreApprovedPermissions, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .pre_approved_permissions import PreApprovedPermissions
-
         writer.write_collection_of_primitive_values("permissionIds", self.permission_ids)
         writer.write_str_value("resourceApplicationId", self.resource_application_id)
     

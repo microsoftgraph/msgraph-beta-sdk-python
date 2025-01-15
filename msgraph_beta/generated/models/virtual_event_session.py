@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .date_time_time_zone import DateTimeTimeZone
@@ -18,9 +19,9 @@ class VirtualEventSession(OnlineMeetingBase, Parsable):
     # The virtual event session end time.
     end_date_time: Optional[DateTimeTimeZone] = None
     # The presenters property
-    presenters: Optional[List[VirtualEventPresenter]] = None
+    presenters: Optional[list[VirtualEventPresenter]] = None
     # The registrations property
-    registrations: Optional[List[VirtualEventRegistration]] = None
+    registrations: Optional[list[VirtualEventRegistration]] = None
     # The virtual event session start time.
     start_date_time: Optional[DateTimeTimeZone] = None
     
@@ -35,10 +36,10 @@ class VirtualEventSession(OnlineMeetingBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return VirtualEventSession()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .date_time_time_zone import DateTimeTimeZone
         from .online_meeting_base import OnlineMeetingBase
@@ -50,7 +51,7 @@ class VirtualEventSession(OnlineMeetingBase, Parsable):
         from .virtual_event_presenter import VirtualEventPresenter
         from .virtual_event_registration import VirtualEventRegistration
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_object_value(DateTimeTimeZone)),
             "presenters": lambda n : setattr(self, 'presenters', n.get_collection_of_object_values(VirtualEventPresenter)),
             "registrations": lambda n : setattr(self, 'registrations', n.get_collection_of_object_values(VirtualEventRegistration)),
@@ -69,11 +70,6 @@ class VirtualEventSession(OnlineMeetingBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .date_time_time_zone import DateTimeTimeZone
-        from .online_meeting_base import OnlineMeetingBase
-        from .virtual_event_presenter import VirtualEventPresenter
-        from .virtual_event_registration import VirtualEventRegistration
-
         writer.write_object_value("endDateTime", self.end_date_time)
         writer.write_collection_of_object_values("presenters", self.presenters)
         writer.write_collection_of_object_values("registrations", self.registrations)

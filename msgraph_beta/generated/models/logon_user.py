@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .logon_type import LogonType
@@ -15,7 +16,7 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Domain of user account used to logon.
     account_domain: Optional[str] = None
     # Account name of user account used to logon.
@@ -29,7 +30,7 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
     # User logon ID.
     logon_id: Optional[str] = None
     # Collection of the logon types observed for the logged on user from when first to last seen. Possible values are: unknown, interactive, remoteInteractive, network, batch, service.
-    logon_types: Optional[List[LogonType]] = None
+    logon_types: Optional[list[LogonType]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -44,10 +45,10 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return LogonUser()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .logon_type import LogonType
         from .user_account_security_type import UserAccountSecurityType
@@ -55,7 +56,7 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
         from .logon_type import LogonType
         from .user_account_security_type import UserAccountSecurityType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accountDomain": lambda n : setattr(self, 'account_domain', n.get_str_value()),
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
             "accountType": lambda n : setattr(self, 'account_type', n.get_enum_value(UserAccountSecurityType)),
@@ -75,9 +76,6 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .logon_type import LogonType
-        from .user_account_security_type import UserAccountSecurityType
-
         writer.write_str_value("accountDomain", self.account_domain)
         writer.write_str_value("accountName", self.account_name)
         writer.write_enum_value("accountType", self.account_type)

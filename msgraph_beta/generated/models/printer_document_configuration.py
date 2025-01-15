@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .integer_range import IntegerRange
@@ -23,7 +24,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The collate property
     collate: Optional[bool] = None
     # The colorMode property
@@ -39,7 +40,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # The feedOrientation property
     feed_orientation: Optional[PrinterFeedOrientation] = None
     # The finishings property
-    finishings: Optional[List[PrintFinishing]] = None
+    finishings: Optional[list[PrintFinishing]] = None
     # The fitPdfToPage property
     fit_pdf_to_page: Optional[bool] = None
     # The inputBin property
@@ -59,7 +60,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # The outputBin property
     output_bin: Optional[str] = None
     # The pageRanges property
-    page_ranges: Optional[List[IntegerRange]] = None
+    page_ranges: Optional[list[IntegerRange]] = None
     # The pagesPerSheet property
     pages_per_sheet: Optional[int] = None
     # The quality property
@@ -78,10 +79,10 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PrinterDocumentConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .integer_range import IntegerRange
         from .printer_feed_direction import PrinterFeedDirection
@@ -107,7 +108,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         from .print_quality import PrintQuality
         from .print_scaling import PrintScaling
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "collate": lambda n : setattr(self, 'collate', n.get_bool_value()),
             "colorMode": lambda n : setattr(self, 'color_mode', n.get_enum_value(PrintColorMode)),
             "copies": lambda n : setattr(self, 'copies', n.get_int_value()),
@@ -140,18 +141,6 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .integer_range import IntegerRange
-        from .printer_feed_direction import PrinterFeedDirection
-        from .printer_feed_orientation import PrinterFeedOrientation
-        from .print_color_mode import PrintColorMode
-        from .print_duplex_mode import PrintDuplexMode
-        from .print_finishing import PrintFinishing
-        from .print_margin import PrintMargin
-        from .print_multipage_layout import PrintMultipageLayout
-        from .print_orientation import PrintOrientation
-        from .print_quality import PrintQuality
-        from .print_scaling import PrintScaling
-
         writer.write_bool_value("collate", self.collate)
         writer.write_enum_value("colorMode", self.color_mode)
         writer.write_int_value("copies", self.copies)

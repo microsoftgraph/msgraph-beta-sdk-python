@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_and_app_management_role_assignment import DeviceAndAppManagementRoleAssignment
@@ -23,11 +24,11 @@ class RoleAssignment(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # List of ids of role scope member security groups.  These are IDs from Azure Active Directory.
-    resource_scopes: Optional[List[str]] = None
+    resource_scopes: Optional[list[str]] = None
     # Role definition this assignment is part of.
     role_definition: Optional[RoleDefinition] = None
     # List of ids of role scope member security groups.  These are IDs from Azure Active Directory.
-    scope_members: Optional[List[str]] = None
+    scope_members: Optional[list[str]] = None
     # Specifies the type of scope for a Role Assignment.
     scope_type: Optional[RoleAssignmentScopeType] = None
     
@@ -51,10 +52,10 @@ class RoleAssignment(Entity, Parsable):
             return DeviceAndAppManagementRoleAssignment()
         return RoleAssignment()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_and_app_management_role_assignment import DeviceAndAppManagementRoleAssignment
         from .entity import Entity
@@ -66,7 +67,7 @@ class RoleAssignment(Entity, Parsable):
         from .role_assignment_scope_type import RoleAssignmentScopeType
         from .role_definition import RoleDefinition
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "resourceScopes": lambda n : setattr(self, 'resource_scopes', n.get_collection_of_primitive_values(str)),
@@ -87,11 +88,6 @@ class RoleAssignment(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_and_app_management_role_assignment import DeviceAndAppManagementRoleAssignment
-        from .entity import Entity
-        from .role_assignment_scope_type import RoleAssignmentScopeType
-        from .role_definition import RoleDefinition
-
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_primitive_values("resourceScopes", self.resource_scopes)

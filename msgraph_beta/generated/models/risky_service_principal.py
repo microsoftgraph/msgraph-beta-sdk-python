@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -22,7 +23,7 @@ class RiskyServicePrincipal(Entity, Parsable):
     # The display name for the service principal.
     display_name: Optional[str] = None
     # Represents the risk history of Microsoft Entra service principals.
-    history: Optional[List[RiskyServicePrincipalHistoryItem]] = None
+    history: Optional[list[RiskyServicePrincipalHistoryItem]] = None
     # The isEnabled property
     is_enabled: Optional[bool] = None
     # Indicates whether Microsoft Entra ID Protection is currently processing the service principal's risky state.
@@ -60,10 +61,10 @@ class RiskyServicePrincipal(Entity, Parsable):
             return RiskyServicePrincipalHistoryItem()
         return RiskyServicePrincipal()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
@@ -77,7 +78,7 @@ class RiskyServicePrincipal(Entity, Parsable):
         from .risk_level import RiskLevel
         from .risk_state import RiskState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "accountEnabled": lambda n : setattr(self, 'account_enabled', n.get_bool_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -103,12 +104,6 @@ class RiskyServicePrincipal(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
-        from .risk_detail import RiskDetail
-        from .risk_level import RiskLevel
-        from .risk_state import RiskState
-
         writer.write_bool_value("accountEnabled", self.account_enabled)
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("displayName", self.display_name)

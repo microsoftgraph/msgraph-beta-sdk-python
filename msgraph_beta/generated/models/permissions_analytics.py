@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -13,11 +14,11 @@ from .entity import Entity
 @dataclass
 class PermissionsAnalytics(Entity, Parsable):
     # The output of the permissions usage data analysis performed by Permissions Management to assess risk with identities and resources.
-    findings: Optional[List[Finding]] = None
+    findings: Optional[list[Finding]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents the Permissions Creep Index (PCI) for the authorization system. PCI distribution chart shows the classification of human and nonhuman identities based on the PCI score in three buckets (low, medium, high).
-    permissions_creep_index_distributions: Optional[List[PermissionsCreepIndexDistribution]] = None
+    permissions_creep_index_distributions: Optional[list[PermissionsCreepIndexDistribution]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PermissionsAnalytics:
@@ -30,10 +31,10 @@ class PermissionsAnalytics(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PermissionsAnalytics()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .finding import Finding
@@ -43,7 +44,7 @@ class PermissionsAnalytics(Entity, Parsable):
         from .finding import Finding
         from .permissions_creep_index_distribution import PermissionsCreepIndexDistribution
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "findings": lambda n : setattr(self, 'findings', n.get_collection_of_object_values(Finding)),
             "permissionsCreepIndexDistributions": lambda n : setattr(self, 'permissions_creep_index_distributions', n.get_collection_of_object_values(PermissionsCreepIndexDistribution)),
         }
@@ -60,10 +61,6 @@ class PermissionsAnalytics(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .finding import Finding
-        from .permissions_creep_index_distribution import PermissionsCreepIndexDistribution
-
         writer.write_collection_of_object_values("findings", self.findings)
         writer.write_collection_of_object_values("permissionsCreepIndexDistributions", self.permissions_creep_index_distributions)
     

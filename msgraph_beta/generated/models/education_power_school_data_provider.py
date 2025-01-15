@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .education_synchronization_customizations import EducationSynchronizationCustomizations
@@ -26,7 +27,7 @@ class EducationPowerSchoolDataProvider(EducationSynchronizationDataProvider, Par
     # The school year to sync.
     school_year: Optional[str] = None
     # The list of schools to sync.
-    schools_ids: Optional[List[str]] = None
+    schools_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EducationPowerSchoolDataProvider:
@@ -39,10 +40,10 @@ class EducationPowerSchoolDataProvider(EducationSynchronizationDataProvider, Par
             raise TypeError("parse_node cannot be null.")
         return EducationPowerSchoolDataProvider()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .education_synchronization_customizations import EducationSynchronizationCustomizations
         from .education_synchronization_data_provider import EducationSynchronizationDataProvider
@@ -50,7 +51,7 @@ class EducationPowerSchoolDataProvider(EducationSynchronizationDataProvider, Par
         from .education_synchronization_customizations import EducationSynchronizationCustomizations
         from .education_synchronization_data_provider import EducationSynchronizationDataProvider
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowTeachersInMultipleSchools": lambda n : setattr(self, 'allow_teachers_in_multiple_schools', n.get_bool_value()),
             "clientId": lambda n : setattr(self, 'client_id', n.get_str_value()),
             "clientSecret": lambda n : setattr(self, 'client_secret', n.get_str_value()),
@@ -72,9 +73,6 @@ class EducationPowerSchoolDataProvider(EducationSynchronizationDataProvider, Par
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .education_synchronization_customizations import EducationSynchronizationCustomizations
-        from .education_synchronization_data_provider import EducationSynchronizationDataProvider
-
         writer.write_bool_value("allowTeachersInMultipleSchools", self.allow_teachers_in_multiple_schools)
         writer.write_str_value("clientId", self.client_id)
         writer.write_str_value("clientSecret", self.client_secret)

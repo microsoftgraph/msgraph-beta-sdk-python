@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .attachment import Attachment
@@ -24,7 +25,7 @@ class OutlookTask(OutlookItem, Parsable):
     # The name of the person who has been assigned the task in Outlook. Read-only.
     assigned_to: Optional[str] = None
     # The collection of fileAttachment, itemAttachment, and referenceAttachment attachments for the task. Read-only. Nullable.
-    attachments: Optional[List[Attachment]] = None
+    attachments: Optional[list[Attachment]] = None
     # The task body that typically contains information about the task. Only the HTML type is supported.
     body: Optional[ItemBody] = None
     # The date in the specified time zone that the task was finished.
@@ -38,7 +39,7 @@ class OutlookTask(OutlookItem, Parsable):
     # Set to true if an alert is set to remind the user of the task.
     is_reminder_on: Optional[bool] = None
     # The collection of multi-value extended properties defined for the task. Read-only. Nullable.
-    multi_value_extended_properties: Optional[List[MultiValueLegacyExtendedProperty]] = None
+    multi_value_extended_properties: Optional[list[MultiValueLegacyExtendedProperty]] = None
     # The name of the person who created the task.
     owner: Optional[str] = None
     # The unique identifier for the task's parent folder.
@@ -50,7 +51,7 @@ class OutlookTask(OutlookItem, Parsable):
     # Indicates the level of privacy for the task. Possible values are: normal, personal, private, confidential.
     sensitivity: Optional[Sensitivity] = None
     # The collection of single-value extended properties defined for the task. Read-only. Nullable.
-    single_value_extended_properties: Optional[List[SingleValueLegacyExtendedProperty]] = None
+    single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
     # The date in the specified time zone when the task is to begin.
     start_date_time: Optional[DateTimeTimeZone] = None
     # Indicates the state or progress of the task. Possible values are: notStarted, inProgress, completed, waitingOnOthers, deferred.
@@ -69,10 +70,10 @@ class OutlookTask(OutlookItem, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OutlookTask()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .attachment import Attachment
         from .date_time_time_zone import DateTimeTimeZone
@@ -96,7 +97,7 @@ class OutlookTask(OutlookItem, Parsable):
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
         from .task_status import TaskStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(Attachment)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(ItemBody)),
@@ -129,17 +130,6 @@ class OutlookTask(OutlookItem, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .attachment import Attachment
-        from .date_time_time_zone import DateTimeTimeZone
-        from .importance import Importance
-        from .item_body import ItemBody
-        from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
-        from .outlook_item import OutlookItem
-        from .patterned_recurrence import PatternedRecurrence
-        from .sensitivity import Sensitivity
-        from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
-        from .task_status import TaskStatus
-
         writer.write_str_value("assignedTo", self.assigned_to)
         writer.write_collection_of_object_values("attachments", self.attachments)
         writer.write_object_value("body", self.body)

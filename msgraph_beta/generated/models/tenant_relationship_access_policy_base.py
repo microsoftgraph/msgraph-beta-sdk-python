@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cross_tenant_access_policy import CrossTenantAccessPolicy
@@ -14,7 +15,7 @@ class TenantRelationshipAccessPolicyBase(PolicyBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.tenantRelationshipAccessPolicyBase"
     # The raw JSON definition of the cross-tenant access policy. Deprecated. Do not use.
-    definition: Optional[List[str]] = None
+    definition: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TenantRelationshipAccessPolicyBase:
@@ -36,10 +37,10 @@ class TenantRelationshipAccessPolicyBase(PolicyBase, Parsable):
             return CrossTenantAccessPolicy()
         return TenantRelationshipAccessPolicyBase()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .policy_base import PolicyBase
@@ -47,7 +48,7 @@ class TenantRelationshipAccessPolicyBase(PolicyBase, Parsable):
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .policy_base import PolicyBase
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "definition": lambda n : setattr(self, 'definition', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
@@ -63,9 +64,6 @@ class TenantRelationshipAccessPolicyBase(PolicyBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .cross_tenant_access_policy import CrossTenantAccessPolicy
-        from .policy_base import PolicyBase
-
         writer.write_collection_of_primitive_values("definition", self.definition)
     
 

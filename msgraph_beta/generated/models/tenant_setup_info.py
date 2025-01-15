@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -19,7 +20,7 @@ class TenantSetupInfo(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The relevantRolesSettings property
-    relevant_roles_settings: Optional[List[str]] = None
+    relevant_roles_settings: Optional[list[str]] = None
     # The setupStatus property
     setup_status: Optional[SetupStatus] = None
     # The skipSetup property
@@ -38,10 +39,10 @@ class TenantSetupInfo(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TenantSetupInfo()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .privileged_role_settings import PrivilegedRoleSettings
@@ -51,7 +52,7 @@ class TenantSetupInfo(Entity, Parsable):
         from .privileged_role_settings import PrivilegedRoleSettings
         from .setup_status import SetupStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "defaultRolesSettings": lambda n : setattr(self, 'default_roles_settings', n.get_object_value(PrivilegedRoleSettings)),
             "firstTimeSetup": lambda n : setattr(self, 'first_time_setup', n.get_bool_value()),
             "relevantRolesSettings": lambda n : setattr(self, 'relevant_roles_settings', n.get_collection_of_primitive_values(str)),
@@ -72,10 +73,6 @@ class TenantSetupInfo(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .privileged_role_settings import PrivilegedRoleSettings
-        from .setup_status import SetupStatus
-
         writer.write_object_value("defaultRolesSettings", self.default_roles_settings)
         writer.write_bool_value("firstTimeSetup", self.first_time_setup)
         writer.write_collection_of_primitive_values("relevantRolesSettings", self.relevant_roles_settings)

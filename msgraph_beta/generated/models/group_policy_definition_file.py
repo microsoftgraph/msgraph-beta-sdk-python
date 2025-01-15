@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -18,7 +19,7 @@ class GroupPolicyDefinitionFile(Entity, Parsable):
     The entity represents an ADMX (Administrative Template) XML file. The ADMX file contains a collection of group policy definitions and their locations by category path. The group policy definition file also contains the languages supported as determined by the language dependent ADML (Administrative Template) language files.
     """
     # The group policy definitions associated with the file.
-    definitions: Optional[List[GroupPolicyDefinition]] = None
+    definitions: Optional[list[GroupPolicyDefinition]] = None
     # The localized description of the policy settings in the ADMX file. The default value is empty.
     description: Optional[str] = None
     # The localized friendly name of the ADMX file.
@@ -26,7 +27,7 @@ class GroupPolicyDefinitionFile(Entity, Parsable):
     # The file name of the ADMX file without the path. For example: edge.admx
     file_name: Optional[str] = None
     # The supported language codes for the ADMX file.
-    language_codes: Optional[List[str]] = None
+    language_codes: Optional[list[str]] = None
     # The date and time the entity was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -60,10 +61,10 @@ class GroupPolicyDefinitionFile(Entity, Parsable):
             return GroupPolicyUploadedDefinitionFile()
         return GroupPolicyDefinitionFile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .group_policy_definition import GroupPolicyDefinition
@@ -75,7 +76,7 @@ class GroupPolicyDefinitionFile(Entity, Parsable):
         from .group_policy_type import GroupPolicyType
         from .group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "definitions": lambda n : setattr(self, 'definitions', n.get_collection_of_object_values(GroupPolicyDefinition)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -100,11 +101,6 @@ class GroupPolicyDefinitionFile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .group_policy_definition import GroupPolicyDefinition
-        from .group_policy_type import GroupPolicyType
-        from .group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
-
         writer.write_collection_of_object_values("definitions", self.definitions)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

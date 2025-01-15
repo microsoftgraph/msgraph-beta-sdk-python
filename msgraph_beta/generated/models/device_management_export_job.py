@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_export_job_localization_type import DeviceManagementExportJobLocalizationType
@@ -34,7 +35,7 @@ class DeviceManagementExportJob(Entity, Parsable):
     # Configures a search term to filter the data. The maximum length allowed for this property is 100 characters.
     search: Optional[str] = None
     # Columns selected from the report. The maximum number of allowed columns names is 256. The maximum length allowed for each column name in this property is 1000 characters.
-    select: Optional[List[str]] = None
+    select: Optional[list[str]] = None
     # A snapshot is an identifiable subset of the dataset represented by the ReportName. A sessionId or CachedReportConfiguration id can be used here. If a sessionId is specified, Filter, Select, and OrderBy are applied to the data represented by the sessionId. Filter, Select, and OrderBy cannot be specified together with a CachedReportConfiguration id. The maximum length allowed for this property is 128 characters.
     snapshot_id: Optional[str] = None
     # Possible statuses associated with a generated report.
@@ -53,10 +54,10 @@ class DeviceManagementExportJob(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementExportJob()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_export_job_localization_type import DeviceManagementExportJobLocalizationType
         from .device_management_report_file_format import DeviceManagementReportFileFormat
@@ -68,7 +69,7 @@ class DeviceManagementExportJob(Entity, Parsable):
         from .device_management_report_status import DeviceManagementReportStatus
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
             "format": lambda n : setattr(self, 'format', n.get_enum_value(DeviceManagementReportFileFormat)),
@@ -94,11 +95,6 @@ class DeviceManagementExportJob(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_export_job_localization_type import DeviceManagementExportJobLocalizationType
-        from .device_management_report_file_format import DeviceManagementReportFileFormat
-        from .device_management_report_status import DeviceManagementReportStatus
-        from .entity import Entity
-
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("filter", self.filter)
         writer.write_enum_value("format", self.format)

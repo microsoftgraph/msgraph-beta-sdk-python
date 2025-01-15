@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_security_attribute_comparison_operator import CustomSecurityAttributeComparisonOperator
@@ -37,10 +38,10 @@ class CustomSecurityAttributeExemption(Entity, Parsable):
             return CustomSecurityAttributeStringValueExemption()
         return CustomSecurityAttributeExemption()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_security_attribute_comparison_operator import CustomSecurityAttributeComparisonOperator
         from .custom_security_attribute_string_value_exemption import CustomSecurityAttributeStringValueExemption
@@ -50,7 +51,7 @@ class CustomSecurityAttributeExemption(Entity, Parsable):
         from .custom_security_attribute_string_value_exemption import CustomSecurityAttributeStringValueExemption
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "operator": lambda n : setattr(self, 'operator', n.get_enum_value(CustomSecurityAttributeComparisonOperator)),
         }
         super_fields = super().get_field_deserializers()
@@ -66,10 +67,6 @@ class CustomSecurityAttributeExemption(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .custom_security_attribute_comparison_operator import CustomSecurityAttributeComparisonOperator
-        from .custom_security_attribute_string_value_exemption import CustomSecurityAttributeStringValueExemption
-        from .entity import Entity
-
         writer.write_enum_value("operator", self.operator)
     
 

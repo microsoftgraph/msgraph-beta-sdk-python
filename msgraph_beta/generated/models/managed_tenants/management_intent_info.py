@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .management_template_detailed_info import ManagementTemplateDetailedInfo
@@ -13,13 +14,13 @@ class ManagementIntentInfo(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The display name for the management intent. Optional. Read-only.
     management_intent_display_name: Optional[str] = None
     # The identifier for the management intent. Required. Read-only.
     management_intent_id: Optional[str] = None
     # The collection of management template information associated with the management intent. Optional. Read-only.
-    management_templates: Optional[List[ManagementTemplateDetailedInfo]] = None
+    management_templates: Optional[list[ManagementTemplateDetailedInfo]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -34,16 +35,16 @@ class ManagementIntentInfo(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ManagementIntentInfo()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .management_template_detailed_info import ManagementTemplateDetailedInfo
 
         from .management_template_detailed_info import ManagementTemplateDetailedInfo
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "managementIntentDisplayName": lambda n : setattr(self, 'management_intent_display_name', n.get_str_value()),
             "managementIntentId": lambda n : setattr(self, 'management_intent_id', n.get_str_value()),
             "managementTemplates": lambda n : setattr(self, 'management_templates', n.get_collection_of_object_values(ManagementTemplateDetailedInfo)),
@@ -59,8 +60,6 @@ class ManagementIntentInfo(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .management_template_detailed_info import ManagementTemplateDetailedInfo
-
         writer.write_str_value("managementIntentDisplayName", self.management_intent_display_name)
         writer.write_str_value("managementIntentId", self.management_intent_id)
         writer.write_collection_of_object_values("managementTemplates", self.management_templates)

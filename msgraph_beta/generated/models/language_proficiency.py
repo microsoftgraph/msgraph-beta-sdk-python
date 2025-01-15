@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .item_facet import ItemFacet
@@ -39,10 +40,10 @@ class LanguageProficiency(ItemFacet, Parsable):
             raise TypeError("parse_node cannot be null.")
         return LanguageProficiency()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .item_facet import ItemFacet
         from .language_proficiency_level import LanguageProficiencyLevel
@@ -50,7 +51,7 @@ class LanguageProficiency(ItemFacet, Parsable):
         from .item_facet import ItemFacet
         from .language_proficiency_level import LanguageProficiencyLevel
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "proficiency": lambda n : setattr(self, 'proficiency', n.get_enum_value(LanguageProficiencyLevel)),
             "reading": lambda n : setattr(self, 'reading', n.get_enum_value(LanguageProficiencyLevel)),
@@ -72,9 +73,6 @@ class LanguageProficiency(ItemFacet, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .item_facet import ItemFacet
-        from .language_proficiency_level import LanguageProficiencyLevel
-
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("proficiency", self.proficiency)
         writer.write_enum_value("reading", self.reading)

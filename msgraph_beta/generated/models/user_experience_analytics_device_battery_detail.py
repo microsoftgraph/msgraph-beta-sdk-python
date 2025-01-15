@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 @dataclass
 class UserExperienceAnalyticsDeviceBatteryDetail(AdditionalDataHolder, BackedModel, Parsable):
@@ -13,7 +14,7 @@ class UserExperienceAnalyticsDeviceBatteryDetail(AdditionalDataHolder, BackedMod
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Uniquely identifies the batteries in a single device.
     battery_id: Optional[str] = None
     # Number of times the battery has been discharged an amount that equals 100% of its capacity, but not necessarily by discharging it from 100% to 0%. Valid values 0 to 2147483647
@@ -34,12 +35,12 @@ class UserExperienceAnalyticsDeviceBatteryDetail(AdditionalDataHolder, BackedMod
             raise TypeError("parse_node cannot be null.")
         return UserExperienceAnalyticsDeviceBatteryDetail()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "batteryId": lambda n : setattr(self, 'battery_id', n.get_str_value()),
             "fullBatteryDrainCount": lambda n : setattr(self, 'full_battery_drain_count', n.get_int_value()),
             "maxCapacityPercentage": lambda n : setattr(self, 'max_capacity_percentage', n.get_int_value()),

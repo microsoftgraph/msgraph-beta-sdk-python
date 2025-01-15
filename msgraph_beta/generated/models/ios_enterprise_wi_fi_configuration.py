@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
@@ -39,9 +40,9 @@ class IosEnterpriseWiFiConfiguration(IosWiFiConfiguration, Parsable):
     # Password format string used to build the password to connect to wifi
     password_format_string: Optional[str] = None
     # Trusted Root Certificates for Server Validation when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. If you provide this value you do not need to provide trustedServerCertificateNames, and vice versa. This collection can contain a maximum of 500 elements.
-    root_certificates_for_server_validation: Optional[List[IosTrustedRootCertificate]] = None
+    root_certificates_for_server_validation: Optional[list[IosTrustedRootCertificate]] = None
     # Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users' devices when they connect to this Wi-Fi network.
-    trusted_server_certificate_names: Optional[List[str]] = None
+    trusted_server_certificate_names: Optional[list[str]] = None
     # Username format string used to build the username to connect to wifi
     username_format_string: Optional[str] = None
     
@@ -56,10 +57,10 @@ class IosEnterpriseWiFiConfiguration(IosWiFiConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IosEnterpriseWiFiConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
         from .eap_fast_configuration import EapFastConfiguration
@@ -79,7 +80,7 @@ class IosEnterpriseWiFiConfiguration(IosWiFiConfiguration, Parsable):
         from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
         from .wi_fi_authentication_method import WiFiAuthenticationMethod
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(WiFiAuthenticationMethod)),
             "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(DeviceManagementDerivedCredentialSettings)),
             "eapFastConfiguration": lambda n : setattr(self, 'eap_fast_configuration', n.get_enum_value(EapFastConfiguration)),
@@ -105,15 +106,6 @@ class IosEnterpriseWiFiConfiguration(IosWiFiConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_derived_credential_settings import DeviceManagementDerivedCredentialSettings
-        from .eap_fast_configuration import EapFastConfiguration
-        from .eap_type import EapType
-        from .ios_certificate_profile_base import IosCertificateProfileBase
-        from .ios_trusted_root_certificate import IosTrustedRootCertificate
-        from .ios_wi_fi_configuration import IosWiFiConfiguration
-        from .non_eap_authentication_method_for_eap_ttls_type import NonEapAuthenticationMethodForEapTtlsType
-        from .wi_fi_authentication_method import WiFiAuthenticationMethod
-
         writer.write_enum_value("authenticationMethod", self.authentication_method)
         writer.write_object_value("derivedCredentialSettings", self.derived_credential_settings)
         writer.write_enum_value("eapFastConfiguration", self.eap_fast_configuration)

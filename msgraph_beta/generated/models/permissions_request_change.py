@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -37,10 +38,10 @@ class PermissionsRequestChange(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PermissionsRequestChange()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .permissions_request_occurrence_status import PermissionsRequestOccurrenceStatus
@@ -50,7 +51,7 @@ class PermissionsRequestChange(Entity, Parsable):
         from .permissions_request_occurrence_status import PermissionsRequestOccurrenceStatus
         from .status_detail import StatusDetail
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "activeOccurrenceStatus": lambda n : setattr(self, 'active_occurrence_status', n.get_enum_value(PermissionsRequestOccurrenceStatus)),
             "modificationDateTime": lambda n : setattr(self, 'modification_date_time', n.get_datetime_value()),
             "permissionsRequestId": lambda n : setattr(self, 'permissions_request_id', n.get_str_value()),
@@ -70,10 +71,6 @@ class PermissionsRequestChange(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .permissions_request_occurrence_status import PermissionsRequestOccurrenceStatus
-        from .status_detail import StatusDetail
-
         writer.write_enum_value("activeOccurrenceStatus", self.active_occurrence_status)
         writer.write_datetime_value("modificationDateTime", self.modification_date_time)
         writer.write_str_value("permissionsRequestId", self.permissions_request_id)

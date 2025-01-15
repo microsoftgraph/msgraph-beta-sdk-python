@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .education_identity_synchronization_configuration import EducationIdentitySynchronizationConfiguration
@@ -22,7 +23,7 @@ class EducationSynchronizationProfile(Entity, Parsable):
     # Name of the configuration profile for syncing identities.
     display_name: Optional[str] = None
     # All errors associated with this synchronization profile.
-    errors: Optional[List[EducationSynchronizationError]] = None
+    errors: Optional[list[EducationSynchronizationError]] = None
     # The date the profile should be considered expired and cease syncing. Provide the date in YYYY-MM-DD format, following ISO 8601. Maximum value is 18 months from profile creation.  (optional)
     expiration_date: Optional[datetime.date] = None
     # Determines if School Data Sync should automatically replace unsupported special characters while syncing from source.
@@ -30,7 +31,7 @@ class EducationSynchronizationProfile(Entity, Parsable):
     # The identitySynchronizationConfiguration property
     identity_synchronization_configuration: Optional[EducationIdentitySynchronizationConfiguration] = None
     # License setup configuration.
-    licenses_to_assign: Optional[List[EducationSynchronizationLicenseAssignment]] = None
+    licenses_to_assign: Optional[list[EducationSynchronizationLicenseAssignment]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The synchronization status.
@@ -49,10 +50,10 @@ class EducationSynchronizationProfile(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EducationSynchronizationProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .education_identity_synchronization_configuration import EducationIdentitySynchronizationConfiguration
         from .education_synchronization_data_provider import EducationSynchronizationDataProvider
@@ -70,7 +71,7 @@ class EducationSynchronizationProfile(Entity, Parsable):
         from .education_synchronization_profile_status import EducationSynchronizationProfileStatus
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "dataProvider": lambda n : setattr(self, 'data_provider', n.get_object_value(EducationSynchronizationDataProvider)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_object_values(EducationSynchronizationError)),
@@ -94,14 +95,6 @@ class EducationSynchronizationProfile(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .education_identity_synchronization_configuration import EducationIdentitySynchronizationConfiguration
-        from .education_synchronization_data_provider import EducationSynchronizationDataProvider
-        from .education_synchronization_error import EducationSynchronizationError
-        from .education_synchronization_license_assignment import EducationSynchronizationLicenseAssignment
-        from .education_synchronization_profile_state import EducationSynchronizationProfileState
-        from .education_synchronization_profile_status import EducationSynchronizationProfileStatus
-        from .entity import Entity
-
         writer.write_object_value("dataProvider", self.data_provider)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("errors", self.errors)

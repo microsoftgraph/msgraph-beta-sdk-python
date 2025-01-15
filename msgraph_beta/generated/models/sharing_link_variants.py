@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .sharing_operation_status import SharingOperationStatus
@@ -14,7 +15,7 @@ class SharingLinkVariants(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Indicates the most permissive role with which an address bar link can be created. The possible values are: none, view, edit, manageList, review, restrictedView, submitOnly, unknownFutureValue.
     address_bar_link_permission: Optional[SharingRole] = None
     # Indicates whether a link can be embedded.
@@ -37,10 +38,10 @@ class SharingLinkVariants(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SharingLinkVariants()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .sharing_operation_status import SharingOperationStatus
         from .sharing_role import SharingRole
@@ -48,7 +49,7 @@ class SharingLinkVariants(AdditionalDataHolder, BackedModel, Parsable):
         from .sharing_operation_status import SharingOperationStatus
         from .sharing_role import SharingRole
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "addressBarLinkPermission": lambda n : setattr(self, 'address_bar_link_permission', n.get_enum_value(SharingRole)),
             "allowEmbed": lambda n : setattr(self, 'allow_embed', n.get_object_value(SharingOperationStatus)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -65,9 +66,6 @@ class SharingLinkVariants(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .sharing_operation_status import SharingOperationStatus
-        from .sharing_role import SharingRole
-
         writer.write_enum_value("addressBarLinkPermission", self.address_bar_link_permission)
         writer.write_object_value("allowEmbed", self.allow_embed)
         writer.write_str_value("@odata.type", self.odata_type)

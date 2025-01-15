@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -14,7 +15,7 @@ from .entity import Entity
 @dataclass
 class RegionalAndLanguageSettings(Entity, Parsable):
     # Prioritized list of languages the user reads and authors in.Returned by default. Not nullable.
-    authoring_languages: Optional[List[LocaleInfo]] = None
+    authoring_languages: Optional[list[LocaleInfo]] = None
     # The  user's preferred user interface language (menus, buttons, ribbons, warning messages) for Microsoft web applications.Returned by default. Not nullable.
     default_display_language: Optional[LocaleInfo] = None
     # The locale that drives the default date, time, and calendar formatting.Returned by default.
@@ -41,10 +42,10 @@ class RegionalAndLanguageSettings(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RegionalAndLanguageSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .locale_info import LocaleInfo
@@ -56,7 +57,7 @@ class RegionalAndLanguageSettings(Entity, Parsable):
         from .regional_format_overrides import RegionalFormatOverrides
         from .translation_preferences import TranslationPreferences
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "authoringLanguages": lambda n : setattr(self, 'authoring_languages', n.get_collection_of_object_values(LocaleInfo)),
             "defaultDisplayLanguage": lambda n : setattr(self, 'default_display_language', n.get_object_value(LocaleInfo)),
             "defaultRegionalFormat": lambda n : setattr(self, 'default_regional_format', n.get_object_value(LocaleInfo)),
@@ -78,11 +79,6 @@ class RegionalAndLanguageSettings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .locale_info import LocaleInfo
-        from .regional_format_overrides import RegionalFormatOverrides
-        from .translation_preferences import TranslationPreferences
-
         writer.write_collection_of_object_values("authoringLanguages", self.authoring_languages)
         writer.write_object_value("defaultDisplayLanguage", self.default_display_language)
         writer.write_object_value("defaultRegionalFormat", self.default_regional_format)

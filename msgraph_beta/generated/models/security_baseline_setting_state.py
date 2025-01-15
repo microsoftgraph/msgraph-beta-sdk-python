@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -17,7 +18,7 @@ class SecurityBaselineSettingState(Entity, Parsable):
     The security baseline compliance state of a setting for a device
     """
     # The policies that contribute to this setting instance
-    contributing_policies: Optional[List[SecurityBaselineContributingPolicy]] = None
+    contributing_policies: Optional[list[SecurityBaselineContributingPolicy]] = None
     # The error code if the setting is in error state
     error_code: Optional[str] = None
     # The OdataType property
@@ -31,7 +32,7 @@ class SecurityBaselineSettingState(Entity, Parsable):
     # The setting name that is being reported
     setting_name: Optional[str] = None
     # The policies that contribute to this setting instance
-    source_policies: Optional[List[SettingSource]] = None
+    source_policies: Optional[list[SettingSource]] = None
     # Security Baseline Compliance State
     state: Optional[SecurityBaselineComplianceState] = None
     
@@ -46,10 +47,10 @@ class SecurityBaselineSettingState(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SecurityBaselineSettingState()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .security_baseline_compliance_state import SecurityBaselineComplianceState
@@ -61,7 +62,7 @@ class SecurityBaselineSettingState(Entity, Parsable):
         from .security_baseline_contributing_policy import SecurityBaselineContributingPolicy
         from .setting_source import SettingSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "contributingPolicies": lambda n : setattr(self, 'contributing_policies', n.get_collection_of_object_values(SecurityBaselineContributingPolicy)),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
             "settingCategoryId": lambda n : setattr(self, 'setting_category_id', n.get_str_value()),
@@ -84,11 +85,6 @@ class SecurityBaselineSettingState(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .security_baseline_compliance_state import SecurityBaselineComplianceState
-        from .security_baseline_contributing_policy import SecurityBaselineContributingPolicy
-        from .setting_source import SettingSource
-
         writer.write_collection_of_object_values("contributingPolicies", self.contributing_policies)
         writer.write_str_value("errorCode", self.error_code)
         writer.write_str_value("settingCategoryId", self.setting_category_id)

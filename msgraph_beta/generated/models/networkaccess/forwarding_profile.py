@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..service_principal import ServicePrincipal
@@ -16,7 +17,7 @@ class ForwardingProfile(Profile, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingProfile"
     # Specifies the users, groups, devices, and remote networks whose traffic is associated with the given traffic forwarding profile.
-    associations: Optional[List[Association]] = None
+    associations: Optional[list[Association]] = None
     # Profile priority.
     priority: Optional[int] = None
     # The servicePrincipal property
@@ -35,10 +36,10 @@ class ForwardingProfile(Profile, Parsable):
             raise TypeError("parse_node cannot be null.")
         return ForwardingProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..service_principal import ServicePrincipal
         from .association import Association
@@ -50,7 +51,7 @@ class ForwardingProfile(Profile, Parsable):
         from .profile import Profile
         from .traffic_forwarding_type import TrafficForwardingType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "associations": lambda n : setattr(self, 'associations', n.get_collection_of_object_values(Association)),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
             "servicePrincipal": lambda n : setattr(self, 'service_principal', n.get_object_value(ServicePrincipal)),
@@ -69,11 +70,6 @@ class ForwardingProfile(Profile, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..service_principal import ServicePrincipal
-        from .association import Association
-        from .profile import Profile
-        from .traffic_forwarding_type import TrafficForwardingType
-
         writer.write_collection_of_object_values("associations", self.associations)
         writer.write_int_value("priority", self.priority)
         writer.write_object_value("servicePrincipal", self.service_principal)

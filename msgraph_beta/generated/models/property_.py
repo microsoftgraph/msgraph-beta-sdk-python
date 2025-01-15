@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .label import Label
@@ -14,9 +15,9 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The aliases property
-    aliases: Optional[List[str]] = None
+    aliases: Optional[list[str]] = None
     # The isQueryable property
     is_queryable: Optional[bool] = None
     # The isRefinable property
@@ -26,7 +27,7 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
     # The isSearchable property
     is_searchable: Optional[bool] = None
     # The labels property
-    labels: Optional[List[Label]] = None
+    labels: Optional[list[Label]] = None
     # The name property
     name: Optional[str] = None
     # The OdataType property
@@ -45,10 +46,10 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Property_()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .label import Label
         from .property_type import PropertyType
@@ -56,7 +57,7 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
         from .label import Label
         from .property_type import PropertyType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "aliases": lambda n : setattr(self, 'aliases', n.get_collection_of_primitive_values(str)),
             "isQueryable": lambda n : setattr(self, 'is_queryable', n.get_bool_value()),
             "isRefinable": lambda n : setattr(self, 'is_refinable', n.get_bool_value()),
@@ -77,9 +78,6 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .label import Label
-        from .property_type import PropertyType
-
         writer.write_collection_of_primitive_values("aliases", self.aliases)
         writer.write_bool_value("isQueryable", self.is_queryable)
         writer.write_bool_value("isRefinable", self.is_refinable)

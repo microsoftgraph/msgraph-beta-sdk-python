@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .dep_enrollment_base_profile import DepEnrollmentBaseProfile
@@ -42,7 +43,7 @@ class DepIOSEnrollmentProfile(DepEnrollmentBaseProfile, Parsable):
     # The iTunesPairingMode property
     i_tunes_pairing_mode: Optional[ITunesPairingMode] = None
     # Management certificates for Apple Configurator
-    management_certificates: Optional[List[ManagementCertificateWithThumbprint]] = None
+    management_certificates: Optional[list[ManagementCertificateWithThumbprint]] = None
     # Indicates if onboarding setup screen is disabled
     on_boarding_screen_disabled: Optional[bool] = None
     # Indicates if Passcode setup pane is disabled
@@ -87,10 +88,10 @@ class DepIOSEnrollmentProfile(DepEnrollmentBaseProfile, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DepIOSEnrollmentProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .dep_enrollment_base_profile import DepEnrollmentBaseProfile
         from .i_tunes_pairing_mode import ITunesPairingMode
@@ -100,7 +101,7 @@ class DepIOSEnrollmentProfile(DepEnrollmentBaseProfile, Parsable):
         from .i_tunes_pairing_mode import ITunesPairingMode
         from .management_certificate_with_thumbprint import ManagementCertificateWithThumbprint
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appearanceScreenDisabled": lambda n : setattr(self, 'appearance_screen_disabled', n.get_bool_value()),
             "awaitDeviceConfiguredConfirmation": lambda n : setattr(self, 'await_device_configured_confirmation', n.get_bool_value()),
             "carrierActivationUrl": lambda n : setattr(self, 'carrier_activation_url', n.get_str_value()),
@@ -144,10 +145,6 @@ class DepIOSEnrollmentProfile(DepEnrollmentBaseProfile, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .dep_enrollment_base_profile import DepEnrollmentBaseProfile
-        from .i_tunes_pairing_mode import ITunesPairingMode
-        from .management_certificate_with_thumbprint import ManagementCertificateWithThumbprint
-
         writer.write_bool_value("appearanceScreenDisabled", self.appearance_screen_disabled)
         writer.write_bool_value("awaitDeviceConfiguredConfirmation", self.await_device_configured_confirmation)
         writer.write_str_value("carrierActivationUrl", self.carrier_activation_url)

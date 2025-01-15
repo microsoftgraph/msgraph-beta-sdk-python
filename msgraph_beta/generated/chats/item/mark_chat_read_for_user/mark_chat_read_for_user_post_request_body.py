@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.teamwork_user_identity import TeamworkUserIdentity
@@ -13,7 +14,7 @@ class MarkChatReadForUserPostRequestBody(AdditionalDataHolder, BackedModel, Pars
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The tenantId property
     tenant_id: Optional[str] = None
     # The user property
@@ -30,16 +31,16 @@ class MarkChatReadForUserPostRequestBody(AdditionalDataHolder, BackedModel, Pars
             raise TypeError("parse_node cannot be null.")
         return MarkChatReadForUserPostRequestBody()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ....models.teamwork_user_identity import TeamworkUserIdentity
 
         from ....models.teamwork_user_identity import TeamworkUserIdentity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "user": lambda n : setattr(self, 'user', n.get_object_value(TeamworkUserIdentity)),
         }
@@ -53,8 +54,6 @@ class MarkChatReadForUserPostRequestBody(AdditionalDataHolder, BackedModel, Pars
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from ....models.teamwork_user_identity import TeamworkUserIdentity
-
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_object_value("user", self.user)
         writer.write_additional_data_value(self.additional_data)

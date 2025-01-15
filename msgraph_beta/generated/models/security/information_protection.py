@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -17,7 +18,7 @@ class InformationProtection(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Read the Microsoft Purview Information Protection labels for the user or organization.
-    sensitivity_labels: Optional[List[SensitivityLabel]] = None
+    sensitivity_labels: Optional[list[SensitivityLabel]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> InformationProtection:
@@ -30,10 +31,10 @@ class InformationProtection(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return InformationProtection()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
         from .information_protection_policy_setting import InformationProtectionPolicySetting
@@ -43,7 +44,7 @@ class InformationProtection(Entity, Parsable):
         from .information_protection_policy_setting import InformationProtectionPolicySetting
         from .sensitivity_label import SensitivityLabel
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "labelPolicySettings": lambda n : setattr(self, 'label_policy_settings', n.get_object_value(InformationProtectionPolicySetting)),
             "sensitivityLabels": lambda n : setattr(self, 'sensitivity_labels', n.get_collection_of_object_values(SensitivityLabel)),
         }
@@ -60,10 +61,6 @@ class InformationProtection(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-        from .information_protection_policy_setting import InformationProtectionPolicySetting
-        from .sensitivity_label import SensitivityLabel
-
         writer.write_object_value("labelPolicySettings", self.label_policy_settings)
         writer.write_collection_of_object_values("sensitivityLabels", self.sensitivity_labels)
     

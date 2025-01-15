@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .key_value import KeyValue
@@ -13,13 +14,13 @@ class GovernanceRoleAssignmentRequestStatus(AdditionalDataHolder, BackedModel, P
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
     # The status of the role assignment request. The value can be InProgress or Closed.
     status: Optional[str] = None
     # The details of the status of the role assignment request. It represents the evaluation results of different rules.
-    status_details: Optional[List[KeyValue]] = None
+    status_details: Optional[list[KeyValue]] = None
     # The sub status of the role assignment request. The values can be Accepted, PendingEvaluation, Granted, Denied, PendingProvisioning, Provisioned, PendingRevocation, Revoked, Canceled, Failed, PendingApprovalProvisioning, PendingApproval, FailedAsResourceIsLocked, PendingAdminDecision, AdminApproved, AdminDenied, TimedOut, and ProvisioningStarted.
     sub_status: Optional[str] = None
     
@@ -34,16 +35,16 @@ class GovernanceRoleAssignmentRequestStatus(AdditionalDataHolder, BackedModel, P
             raise TypeError("parse_node cannot be null.")
         return GovernanceRoleAssignmentRequestStatus()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .key_value import KeyValue
 
         from .key_value import KeyValue
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "statusDetails": lambda n : setattr(self, 'status_details', n.get_collection_of_object_values(KeyValue)),
@@ -59,8 +60,6 @@ class GovernanceRoleAssignmentRequestStatus(AdditionalDataHolder, BackedModel, P
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .key_value import KeyValue
-
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("status", self.status)
         writer.write_collection_of_object_values("statusDetails", self.status_details)

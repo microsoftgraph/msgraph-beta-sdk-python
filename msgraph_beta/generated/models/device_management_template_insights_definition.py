@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_setting_insights_definition import DeviceManagementSettingInsightsDefinition
@@ -17,7 +18,7 @@ class DeviceManagementTemplateInsightsDefinition(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # Setting insights in a template
-    setting_insights: Optional[List[DeviceManagementSettingInsightsDefinition]] = None
+    setting_insights: Optional[list[DeviceManagementSettingInsightsDefinition]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementTemplateInsightsDefinition:
@@ -30,10 +31,10 @@ class DeviceManagementTemplateInsightsDefinition(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DeviceManagementTemplateInsightsDefinition()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_setting_insights_definition import DeviceManagementSettingInsightsDefinition
         from .entity import Entity
@@ -41,7 +42,7 @@ class DeviceManagementTemplateInsightsDefinition(Entity, Parsable):
         from .device_management_setting_insights_definition import DeviceManagementSettingInsightsDefinition
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "settingInsights": lambda n : setattr(self, 'setting_insights', n.get_collection_of_object_values(DeviceManagementSettingInsightsDefinition)),
         }
         super_fields = super().get_field_deserializers()
@@ -57,9 +58,6 @@ class DeviceManagementTemplateInsightsDefinition(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .device_management_setting_insights_definition import DeviceManagementSettingInsightsDefinition
-        from .entity import Entity
-
         writer.write_collection_of_object_values("settingInsights", self.setting_insights)
     
 

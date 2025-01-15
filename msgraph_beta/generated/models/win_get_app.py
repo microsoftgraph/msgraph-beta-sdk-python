@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .mobile_app import MobileApp
@@ -34,10 +35,10 @@ class WinGetApp(MobileApp, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WinGetApp()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .mobile_app import MobileApp
         from .win_get_app_install_experience import WinGetAppInstallExperience
@@ -45,7 +46,7 @@ class WinGetApp(MobileApp, Parsable):
         from .mobile_app import MobileApp
         from .win_get_app_install_experience import WinGetAppInstallExperience
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "installExperience": lambda n : setattr(self, 'install_experience', n.get_object_value(WinGetAppInstallExperience)),
             "manifestHash": lambda n : setattr(self, 'manifest_hash', n.get_str_value()),
             "packageIdentifier": lambda n : setattr(self, 'package_identifier', n.get_str_value()),
@@ -63,9 +64,6 @@ class WinGetApp(MobileApp, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .mobile_app import MobileApp
-        from .win_get_app_install_experience import WinGetAppInstallExperience
-
         writer.write_object_value("installExperience", self.install_experience)
         writer.write_str_value("manifestHash", self.manifest_hash)
         writer.write_str_value("packageIdentifier", self.package_identifier)

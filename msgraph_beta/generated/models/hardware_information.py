@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_guard_local_system_authority_credential_guard_state import DeviceGuardLocalSystemAuthorityCredentialGuardState
@@ -20,7 +21,7 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The number of charge cycles the device’s current battery has gone through. Valid values 0 to 2147483647
     battery_charge_cycles: Optional[int] = None
     # The device’s current battery’s health percentage. Valid values 0 to 100
@@ -84,7 +85,7 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
     # Serial number.
     serial_number: Optional[str] = None
     # All users on the shared Apple device
-    shared_device_cached_users: Optional[List[SharedAppleDeviceUser]] = None
+    shared_device_cached_users: Optional[list[SharedAppleDeviceUser]] = None
     # SubnetAddress
     subnet_address: Optional[str] = None
     # Subscriber carrier of the device
@@ -102,7 +103,7 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
     # WiFi MAC address of the device
     wifi_mac: Optional[str] = None
     # A list of wired IPv4 addresses. The update frequency (the maximum delay for the change of property value to be synchronized from the device to the cloud storage) of this property is daily. Note this property is currently supported only on devices running on Windows.
-    wired_i_pv4_addresses: Optional[List[str]] = None
+    wired_i_pv4_addresses: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> HardwareInformation:
@@ -115,10 +116,10 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return HardwareInformation()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_guard_local_system_authority_credential_guard_state import DeviceGuardLocalSystemAuthorityCredentialGuardState
         from .device_guard_virtualization_based_security_hardware_requirement_state import DeviceGuardVirtualizationBasedSecurityHardwareRequirementState
@@ -132,7 +133,7 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
         from .device_licensing_status import DeviceLicensingStatus
         from .shared_apple_device_user import SharedAppleDeviceUser
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "batteryChargeCycles": lambda n : setattr(self, 'battery_charge_cycles', n.get_int_value()),
             "batteryHealthPercentage": lambda n : setattr(self, 'battery_health_percentage', n.get_int_value()),
             "batteryLevelPercentage": lambda n : setattr(self, 'battery_level_percentage', n.get_float_value()),
@@ -185,12 +186,6 @@ class HardwareInformation(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .device_guard_local_system_authority_credential_guard_state import DeviceGuardLocalSystemAuthorityCredentialGuardState
-        from .device_guard_virtualization_based_security_hardware_requirement_state import DeviceGuardVirtualizationBasedSecurityHardwareRequirementState
-        from .device_guard_virtualization_based_security_state import DeviceGuardVirtualizationBasedSecurityState
-        from .device_licensing_status import DeviceLicensingStatus
-        from .shared_apple_device_user import SharedAppleDeviceUser
-
         writer.write_int_value("batteryChargeCycles", self.battery_charge_cycles)
         writer.write_int_value("batteryHealthPercentage", self.battery_health_percentage)
         writer.write_float_value("batteryLevelPercentage", self.battery_level_percentage)

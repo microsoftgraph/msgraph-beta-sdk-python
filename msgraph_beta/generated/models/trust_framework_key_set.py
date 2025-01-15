@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -13,9 +14,9 @@ from .entity import Entity
 @dataclass
 class TrustFrameworkKeySet(Entity, Parsable):
     # A collection of the keys.
-    keys: Optional[List[TrustFrameworkKey]] = None
+    keys: Optional[list[TrustFrameworkKey]] = None
     # A collection of the keys.
-    keys_v2: Optional[List[TrustFrameworkKey_v2]] = None
+    keys_v2: Optional[list[TrustFrameworkKey_v2]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -30,10 +31,10 @@ class TrustFrameworkKeySet(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return TrustFrameworkKeySet()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .trust_framework_key import TrustFrameworkKey
@@ -43,7 +44,7 @@ class TrustFrameworkKeySet(Entity, Parsable):
         from .trust_framework_key import TrustFrameworkKey
         from .trust_framework_key_v2 import TrustFrameworkKey_v2
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "keys": lambda n : setattr(self, 'keys', n.get_collection_of_object_values(TrustFrameworkKey)),
             "keys_v2": lambda n : setattr(self, 'keys_v2', n.get_collection_of_object_values(TrustFrameworkKey_v2)),
         }
@@ -60,10 +61,6 @@ class TrustFrameworkKeySet(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .trust_framework_key import TrustFrameworkKey
-        from .trust_framework_key_v2 import TrustFrameworkKey_v2
-
         writer.write_collection_of_object_values("keys", self.keys)
         writer.write_collection_of_object_values("keys_v2", self.keys_v2)
     

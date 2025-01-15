@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .all_devices_assignment_target import AllDevicesAssignmentTarget
@@ -22,7 +23,7 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, 
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The ID of the filter for the target assignment.
     device_and_app_management_assignment_filter_id: Optional[str] = None
     # Represents type of the assignment filter.
@@ -70,10 +71,10 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, 
             return GroupAssignmentTarget()
         return DeviceAndAppManagementAssignmentTarget()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .all_devices_assignment_target import AllDevicesAssignmentTarget
         from .all_licensed_users_assignment_target import AllLicensedUsersAssignmentTarget
@@ -91,7 +92,7 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, 
         from .exclusion_group_assignment_target import ExclusionGroupAssignmentTarget
         from .group_assignment_target import GroupAssignmentTarget
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "deviceAndAppManagementAssignmentFilterId": lambda n : setattr(self, 'device_and_app_management_assignment_filter_id', n.get_str_value()),
             "deviceAndAppManagementAssignmentFilterType": lambda n : setattr(self, 'device_and_app_management_assignment_filter_type', n.get_enum_value(DeviceAndAppManagementAssignmentFilterType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -106,14 +107,6 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, 
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .all_devices_assignment_target import AllDevicesAssignmentTarget
-        from .all_licensed_users_assignment_target import AllLicensedUsersAssignmentTarget
-        from .android_fota_deployment_assignment_target import AndroidFotaDeploymentAssignmentTarget
-        from .configuration_manager_collection_assignment_target import ConfigurationManagerCollectionAssignmentTarget
-        from .device_and_app_management_assignment_filter_type import DeviceAndAppManagementAssignmentFilterType
-        from .exclusion_group_assignment_target import ExclusionGroupAssignmentTarget
-        from .group_assignment_target import GroupAssignmentTarget
-
         writer.write_str_value("deviceAndAppManagementAssignmentFilterId", self.device_and_app_management_assignment_filter_id)
         writer.write_enum_value("deviceAndAppManagementAssignmentFilterType", self.device_and_app_management_assignment_filter_type)
         writer.write_str_value("@odata.type", self.odata_type)

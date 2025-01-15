@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .driver_approval_status import DriverApprovalStatus
@@ -48,10 +49,10 @@ class WindowsDriverUpdateInventory(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsDriverUpdateInventory()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .driver_approval_status import DriverApprovalStatus
         from .driver_category import DriverCategory
@@ -61,7 +62,7 @@ class WindowsDriverUpdateInventory(Entity, Parsable):
         from .driver_category import DriverCategory
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "applicableDeviceCount": lambda n : setattr(self, 'applicable_device_count', n.get_int_value()),
             "approvalStatus": lambda n : setattr(self, 'approval_status', n.get_enum_value(DriverApprovalStatus)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(DriverCategory)),
@@ -85,10 +86,6 @@ class WindowsDriverUpdateInventory(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .driver_approval_status import DriverApprovalStatus
-        from .driver_category import DriverCategory
-        from .entity import Entity
-
         writer.write_int_value("applicableDeviceCount", self.applicable_device_count)
         writer.write_enum_value("approvalStatus", self.approval_status)
         writer.write_enum_value("category", self.category)

@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 @dataclass
 class EducationSynchronizationCustomization(AdditionalDataHolder, BackedModel, Parsable):
@@ -11,7 +12,7 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, BackedModel, P
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Indicates whether the display name of the resource can be overwritten by the sync.
     allow_display_name_update: Optional[bool] = None
     # Indicates whether synchronization of the parent entity is deferred to a later date.
@@ -19,7 +20,7 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, BackedModel, P
     # The OdataType property
     odata_type: Optional[str] = None
     # The collection of property names to sync. If set to null, all properties will be synchronized. Does not apply to Student Enrollments or Teacher Rosters
-    optional_properties_to_sync: Optional[List[str]] = None
+    optional_properties_to_sync: Optional[list[str]] = None
     # The date that the synchronization should start. This value should be set to a future date. If set to null, the resource will be synchronized when the profile setup completes. Only applies to Student Enrollments
     synchronization_start_date: Optional[datetime.datetime] = None
     
@@ -34,12 +35,12 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, BackedModel, P
             raise TypeError("parse_node cannot be null.")
         return EducationSynchronizationCustomization()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allowDisplayNameUpdate": lambda n : setattr(self, 'allow_display_name_update', n.get_bool_value()),
             "isSyncDeferred": lambda n : setattr(self, 'is_sync_deferred', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

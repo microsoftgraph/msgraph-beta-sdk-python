@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -15,7 +16,7 @@ class EmployeeExperienceUser(Entity, Parsable):
     Represents a container that exposes navigation properties for employee experience user resources.
     """
     # The learningCourseActivities property
-    learning_course_activities: Optional[List[LearningCourseActivity]] = None
+    learning_course_activities: Optional[list[LearningCourseActivity]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -30,10 +31,10 @@ class EmployeeExperienceUser(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return EmployeeExperienceUser()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .learning_course_activity import LearningCourseActivity
@@ -41,7 +42,7 @@ class EmployeeExperienceUser(Entity, Parsable):
         from .entity import Entity
         from .learning_course_activity import LearningCourseActivity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "learningCourseActivities": lambda n : setattr(self, 'learning_course_activities', n.get_collection_of_object_values(LearningCourseActivity)),
         }
         super_fields = super().get_field_deserializers()
@@ -57,9 +58,6 @@ class EmployeeExperienceUser(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .learning_course_activity import LearningCourseActivity
-
         writer.write_collection_of_object_values("learningCourseActivities", self.learning_course_activities)
     
 

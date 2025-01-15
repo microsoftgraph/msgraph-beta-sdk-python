@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_extension_overwrite_configuration import CustomExtensionOverwriteConfiguration
@@ -14,7 +15,7 @@ from .on_otp_send_handler import OnOtpSendHandler
 class OnOtpSendCustomExtensionHandler(OnOtpSendHandler, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onOtpSendCustomExtensionHandler"
-    # The configuration property
+    # Configuration regarding properties of the custom extension that are can be overwritten for the onEmailOtpSendListener event listener.
     configuration: Optional[CustomExtensionOverwriteConfiguration] = None
     # The customExtension property
     custom_extension: Optional[OnOtpSendCustomExtension] = None
@@ -30,10 +31,10 @@ class OnOtpSendCustomExtensionHandler(OnOtpSendHandler, Parsable):
             raise TypeError("parse_node cannot be null.")
         return OnOtpSendCustomExtensionHandler()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_extension_overwrite_configuration import CustomExtensionOverwriteConfiguration
         from .on_otp_send_custom_extension import OnOtpSendCustomExtension
@@ -43,7 +44,7 @@ class OnOtpSendCustomExtensionHandler(OnOtpSendHandler, Parsable):
         from .on_otp_send_custom_extension import OnOtpSendCustomExtension
         from .on_otp_send_handler import OnOtpSendHandler
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(CustomExtensionOverwriteConfiguration)),
             "customExtension": lambda n : setattr(self, 'custom_extension', n.get_object_value(OnOtpSendCustomExtension)),
         }
@@ -60,10 +61,6 @@ class OnOtpSendCustomExtensionHandler(OnOtpSendHandler, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .custom_extension_overwrite_configuration import CustomExtensionOverwriteConfiguration
-        from .on_otp_send_custom_extension import OnOtpSendCustomExtension
-        from .on_otp_send_handler import OnOtpSendHandler
-
         writer.write_object_value("configuration", self.configuration)
         writer.write_object_value("customExtension", self.custom_extension)
     

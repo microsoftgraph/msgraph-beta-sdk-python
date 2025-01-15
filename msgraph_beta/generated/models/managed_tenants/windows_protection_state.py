@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
@@ -75,16 +76,16 @@ class WindowsProtectionState(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return WindowsProtectionState()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
 
         from ..entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "antiMalwareVersion": lambda n : setattr(self, 'anti_malware_version', n.get_str_value()),
             "attentionRequired": lambda n : setattr(self, 'attention_required', n.get_bool_value()),
             "deviceDeleted": lambda n : setattr(self, 'device_deleted', n.get_bool_value()),
@@ -124,8 +125,6 @@ class WindowsProtectionState(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from ..entity import Entity
-
         writer.write_str_value("antiMalwareVersion", self.anti_malware_version)
         writer.write_bool_value("attentionRequired", self.attention_required)
         writer.write_bool_value("deviceDeleted", self.device_deleted)

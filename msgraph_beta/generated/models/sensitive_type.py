@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .classification_method import ClassificationMethod
@@ -45,10 +46,10 @@ class SensitiveType(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SensitiveType()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .classification_method import ClassificationMethod
         from .entity import Entity
@@ -60,7 +61,7 @@ class SensitiveType(Entity, Parsable):
         from .sensitive_type_scope import SensitiveTypeScope
         from .sensitive_type_source import SensitiveTypeSource
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(ClassificationMethod)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
@@ -84,11 +85,6 @@ class SensitiveType(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .classification_method import ClassificationMethod
-        from .entity import Entity
-        from .sensitive_type_scope import SensitiveTypeScope
-        from .sensitive_type_source import SensitiveTypeSource
-
         writer.write_enum_value("classificationMethod", self.classification_method)
         writer.write_str_value("description", self.description)
         writer.write_str_value("name", self.name)

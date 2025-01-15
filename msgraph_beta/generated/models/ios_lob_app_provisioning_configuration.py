@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -19,19 +20,19 @@ class IosLobAppProvisioningConfiguration(Entity, Parsable):
     This topic provides descriptions of the declared methods, properties and relationships exposed by the iOS Lob App Provisioning Configuration resource.
     """
     # The associated group assignments for IosLobAppProvisioningConfiguration.
-    assignments: Optional[List[IosLobAppProvisioningConfigurationAssignment]] = None
+    assignments: Optional[list[IosLobAppProvisioningConfigurationAssignment]] = None
     # DateTime the object was created.
     created_date_time: Optional[datetime.datetime] = None
     # Admin provided description of the Device Configuration.
     description: Optional[str] = None
     # The list of device installation states for this mobile app configuration.
-    device_statuses: Optional[List[ManagedDeviceMobileAppConfigurationDeviceStatus]] = None
+    device_statuses: Optional[list[ManagedDeviceMobileAppConfigurationDeviceStatus]] = None
     # Admin provided name of the device configuration.
     display_name: Optional[str] = None
     # Optional profile expiration date and time.
     expiration_date_time: Optional[datetime.datetime] = None
     # The associated group assignments.
-    group_assignments: Optional[List[MobileAppProvisioningConfigGroupAssignment]] = None
+    group_assignments: Optional[list[MobileAppProvisioningConfigGroupAssignment]] = None
     # DateTime the object was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -41,9 +42,9 @@ class IosLobAppProvisioningConfiguration(Entity, Parsable):
     # Payload file name (.mobileprovision
     payload_file_name: Optional[str] = None
     # List of Scope Tags for this iOS LOB app provisioning configuration entity.
-    role_scope_tag_ids: Optional[List[str]] = None
+    role_scope_tag_ids: Optional[list[str]] = None
     # The list of user installation states for this mobile app configuration.
-    user_statuses: Optional[List[ManagedDeviceMobileAppConfigurationUserStatus]] = None
+    user_statuses: Optional[list[ManagedDeviceMobileAppConfigurationUserStatus]] = None
     # Version of the device configuration.
     version: Optional[int] = None
     
@@ -58,10 +59,10 @@ class IosLobAppProvisioningConfiguration(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IosLobAppProvisioningConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .ios_lob_app_provisioning_configuration_assignment import IosLobAppProvisioningConfigurationAssignment
@@ -75,7 +76,7 @@ class IosLobAppProvisioningConfiguration(Entity, Parsable):
         from .managed_device_mobile_app_configuration_user_status import ManagedDeviceMobileAppConfigurationUserStatus
         from .mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(IosLobAppProvisioningConfigurationAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -103,12 +104,6 @@ class IosLobAppProvisioningConfiguration(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .ios_lob_app_provisioning_configuration_assignment import IosLobAppProvisioningConfigurationAssignment
-        from .managed_device_mobile_app_configuration_device_status import ManagedDeviceMobileAppConfigurationDeviceStatus
-        from .managed_device_mobile_app_configuration_user_status import ManagedDeviceMobileAppConfigurationUserStatus
-        from .mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
-
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

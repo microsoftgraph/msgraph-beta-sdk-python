@@ -1,8 +1,9 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .identity_set import IdentitySet
@@ -15,7 +16,7 @@ class RecordingInfo(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # The participant who initiated the recording.
     initiated_by: Optional[ParticipantInfo] = None
     # The identities of recording initiator.
@@ -36,10 +37,10 @@ class RecordingInfo(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return RecordingInfo()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .identity_set import IdentitySet
         from .participant_info import ParticipantInfo
@@ -49,7 +50,7 @@ class RecordingInfo(AdditionalDataHolder, BackedModel, Parsable):
         from .participant_info import ParticipantInfo
         from .recording_status import RecordingStatus
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "initiatedBy": lambda n : setattr(self, 'initiated_by', n.get_object_value(ParticipantInfo)),
             "initiator": lambda n : setattr(self, 'initiator', n.get_object_value(IdentitySet)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -65,10 +66,6 @@ class RecordingInfo(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .identity_set import IdentitySet
-        from .participant_info import ParticipantInfo
-        from .recording_status import RecordingStatus
-
         writer.write_object_value("initiatedBy", self.initiated_by)
         writer.write_object_value("initiator", self.initiator)
         writer.write_str_value("@odata.type", self.odata_type)

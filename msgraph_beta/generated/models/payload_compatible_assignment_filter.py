@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .assignment_filter_payload_type import AssignmentFilterPayloadType
@@ -30,10 +31,10 @@ class PayloadCompatibleAssignmentFilter(DeviceAndAppManagementAssignmentFilter, 
             raise TypeError("parse_node cannot be null.")
         return PayloadCompatibleAssignmentFilter()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .assignment_filter_payload_type import AssignmentFilterPayloadType
         from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
@@ -41,7 +42,7 @@ class PayloadCompatibleAssignmentFilter(DeviceAndAppManagementAssignmentFilter, 
         from .assignment_filter_payload_type import AssignmentFilterPayloadType
         from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "payloadType": lambda n : setattr(self, 'payload_type', n.get_enum_value(AssignmentFilterPayloadType)),
         }
         super_fields = super().get_field_deserializers()
@@ -57,9 +58,6 @@ class PayloadCompatibleAssignmentFilter(DeviceAndAppManagementAssignmentFilter, 
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .assignment_filter_payload_type import AssignmentFilterPayloadType
-        from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
-
         writer.write_enum_value("payloadType", self.payload_type)
     
 

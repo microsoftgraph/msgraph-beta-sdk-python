@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -12,7 +13,7 @@ from .entity import Entity
 @dataclass
 class FederatedIdentityCredential(Entity, Parsable):
     # The audience that can appear in the external token. This field is mandatory and should be set to api://AzureADTokenExchange for Microsoft Entra ID. It says what Microsoft identity platform should accept in the aud claim in the incoming token. This value represents Microsoft Entra ID in your external identity provider and has no fixed value across identity providers - you may need to create a new application registration in your identity provider to serve as the audience of this token. This field can only accept a single value and has a limit of 600 characters. Required.
-    audiences: Optional[List[str]] = None
+    audiences: Optional[list[str]] = None
     # Enables the use of claims matching expressions against specified claims. For the list of supported expression syntax and claims, visit the Flexible FIC reference.
     claims_matching_expression: Optional[FederatedIdentityExpression] = None
     # The un-validated, user-provided description of the federated identity credential. It has a limit of 600 characters. Optional.
@@ -37,10 +38,10 @@ class FederatedIdentityCredential(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return FederatedIdentityCredential()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .federated_identity_expression import FederatedIdentityExpression
@@ -48,7 +49,7 @@ class FederatedIdentityCredential(Entity, Parsable):
         from .entity import Entity
         from .federated_identity_expression import FederatedIdentityExpression
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "audiences": lambda n : setattr(self, 'audiences', n.get_collection_of_primitive_values(str)),
             "claimsMatchingExpression": lambda n : setattr(self, 'claims_matching_expression', n.get_object_value(FederatedIdentityExpression)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -69,9 +70,6 @@ class FederatedIdentityCredential(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .federated_identity_expression import FederatedIdentityExpression
-
         writer.write_collection_of_primitive_values("audiences", self.audiences)
         writer.write_object_value("claimsMatchingExpression", self.claims_matching_expression)
         writer.write_str_value("description", self.description)

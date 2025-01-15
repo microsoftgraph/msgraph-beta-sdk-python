@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .item_facet import ItemFacet
@@ -13,7 +14,7 @@ class PersonWebsite(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.personWebsite"
     # Contains categories a user has associated with the website (for example, personal, recipes).
-    categories: Optional[List[str]] = None
+    categories: Optional[list[str]] = None
     # Contains a description of the website.
     description: Optional[str] = None
     # Contains a friendly name for the website.
@@ -34,16 +35,16 @@ class PersonWebsite(ItemFacet, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PersonWebsite()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .item_facet import ItemFacet
 
         from .item_facet import ItemFacet
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -63,8 +64,6 @@ class PersonWebsite(ItemFacet, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .item_facet import ItemFacet
-
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)

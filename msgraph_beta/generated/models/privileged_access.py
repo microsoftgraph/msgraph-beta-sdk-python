@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -20,15 +21,15 @@ class PrivilegedAccess(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # A collection of resources for the provider.
-    resources: Optional[List[GovernanceResource]] = None
+    resources: Optional[list[GovernanceResource]] = None
     # A collection of role assignment requests for the provider.
-    role_assignment_requests: Optional[List[GovernanceRoleAssignmentRequest]] = None
+    role_assignment_requests: Optional[list[GovernanceRoleAssignmentRequest]] = None
     # A collection of role assignments for the provider.
-    role_assignments: Optional[List[GovernanceRoleAssignment]] = None
+    role_assignments: Optional[list[GovernanceRoleAssignment]] = None
     # A collection of role definitions for the provider.
-    role_definitions: Optional[List[GovernanceRoleDefinition]] = None
+    role_definitions: Optional[list[GovernanceRoleDefinition]] = None
     # A collection of role settings for the provider.
-    role_settings: Optional[List[GovernanceRoleSetting]] = None
+    role_settings: Optional[list[GovernanceRoleSetting]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PrivilegedAccess:
@@ -41,10 +42,10 @@ class PrivilegedAccess(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return PrivilegedAccess()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .governance_resource import GovernanceResource
@@ -60,7 +61,7 @@ class PrivilegedAccess(Entity, Parsable):
         from .governance_role_definition import GovernanceRoleDefinition
         from .governance_role_setting import GovernanceRoleSetting
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "resources": lambda n : setattr(self, 'resources', n.get_collection_of_object_values(GovernanceResource)),
             "roleAssignmentRequests": lambda n : setattr(self, 'role_assignment_requests', n.get_collection_of_object_values(GovernanceRoleAssignmentRequest)),
@@ -81,13 +82,6 @@ class PrivilegedAccess(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .governance_resource import GovernanceResource
-        from .governance_role_assignment import GovernanceRoleAssignment
-        from .governance_role_assignment_request import GovernanceRoleAssignmentRequest
-        from .governance_role_definition import GovernanceRoleDefinition
-        from .governance_role_setting import GovernanceRoleSetting
-
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("resources", self.resources)
         writer.write_collection_of_object_values("roleAssignmentRequests", self.role_assignment_requests)

@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_update_time_window import CustomUpdateTimeWindow
@@ -26,7 +27,7 @@ class MacOSSoftwareUpdateConfiguration(DeviceConfiguration, Parsable):
     # Update behavior options for macOS software updates.
     critical_update_behavior: Optional[MacOSSoftwareUpdateBehavior] = None
     # Custom Time windows when updates will be allowed or blocked. This collection can contain a maximum of 20 elements.
-    custom_update_time_windows: Optional[List[CustomUpdateTimeWindow]] = None
+    custom_update_time_windows: Optional[list[CustomUpdateTimeWindow]] = None
     # Update behavior options for macOS software updates.
     firmware_update_behavior: Optional[MacOSSoftwareUpdateBehavior] = None
     # The maximum number of times the system allows the user to postpone an update before it’s installed. Supported values: 0 - 366. Valid values 0 to 365
@@ -49,10 +50,10 @@ class MacOSSoftwareUpdateConfiguration(DeviceConfiguration, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MacOSSoftwareUpdateConfiguration()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_update_time_window import CustomUpdateTimeWindow
         from .device_configuration import DeviceConfiguration
@@ -66,7 +67,7 @@ class MacOSSoftwareUpdateConfiguration(DeviceConfiguration, Parsable):
         from .mac_o_s_software_update_behavior import MacOSSoftwareUpdateBehavior
         from .mac_o_s_software_update_schedule_type import MacOSSoftwareUpdateScheduleType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "allOtherUpdateBehavior": lambda n : setattr(self, 'all_other_update_behavior', n.get_enum_value(MacOSSoftwareUpdateBehavior)),
             "configDataUpdateBehavior": lambda n : setattr(self, 'config_data_update_behavior', n.get_enum_value(MacOSSoftwareUpdateBehavior)),
             "criticalUpdateBehavior": lambda n : setattr(self, 'critical_update_behavior', n.get_enum_value(MacOSSoftwareUpdateBehavior)),
@@ -90,12 +91,6 @@ class MacOSSoftwareUpdateConfiguration(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .custom_update_time_window import CustomUpdateTimeWindow
-        from .device_configuration import DeviceConfiguration
-        from .mac_o_s_priority import MacOSPriority
-        from .mac_o_s_software_update_behavior import MacOSSoftwareUpdateBehavior
-        from .mac_o_s_software_update_schedule_type import MacOSSoftwareUpdateScheduleType
-
         writer.write_enum_value("allOtherUpdateBehavior", self.all_other_update_behavior)
         writer.write_enum_value("configDataUpdateBehavior", self.config_data_update_behavior)
         writer.write_enum_value("criticalUpdateBehavior", self.critical_update_behavior)

@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_enrollment_company_code import AndroidEnrollmentCompanyCode
@@ -23,7 +24,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity, Parsable):
     # Bind status of the tenant with the Google EMM API
     bind_status: Optional[AndroidManagedStoreAccountBindStatus] = None
     # Company codes for AndroidManagedStoreAccountEnterpriseSettings
-    company_codes: Optional[List[AndroidEnrollmentCompanyCode]] = None
+    company_codes: Optional[list[AndroidEnrollmentCompanyCode]] = None
     # Indicates if this account is flighting for Android Device Owner Management with CloudDPC.
     device_owner_management_enabled: Optional[bool] = None
     # Android for Work device management targeting type for the account
@@ -35,7 +36,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity, Parsable):
     # Last modification time for Android enterprise settings
     last_modified_date_time: Optional[datetime.datetime] = None
     # Initial scope tags for MGP apps
-    managed_google_play_initial_scope_tag_ids: Optional[List[str]] = None
+    managed_google_play_initial_scope_tag_ids: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Organization name used when onboarding Android Enterprise
@@ -43,7 +44,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity, Parsable):
     # Owner UPN that created the enterprise
     owner_user_principal_name: Optional[str] = None
     # Specifies which AAD groups can enroll devices in Android for Work device management if enrollmentTarget is set to 'Targeted'
-    target_group_ids: Optional[List[str]] = None
+    target_group_ids: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AndroidManagedStoreAccountEnterpriseSettings:
@@ -56,10 +57,10 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidManagedStoreAccountEnterpriseSettings()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_enrollment_company_code import AndroidEnrollmentCompanyCode
         from .android_managed_store_account_app_sync_status import AndroidManagedStoreAccountAppSyncStatus
@@ -73,7 +74,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity, Parsable):
         from .android_managed_store_account_enrollment_target import AndroidManagedStoreAccountEnrollmentTarget
         from .entity import Entity
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "androidDeviceOwnerFullyManagedEnrollmentEnabled": lambda n : setattr(self, 'android_device_owner_fully_managed_enrollment_enabled', n.get_bool_value()),
             "bindStatus": lambda n : setattr(self, 'bind_status', n.get_enum_value(AndroidManagedStoreAccountBindStatus)),
             "companyCodes": lambda n : setattr(self, 'company_codes', n.get_collection_of_object_values(AndroidEnrollmentCompanyCode)),
@@ -100,12 +101,6 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_enrollment_company_code import AndroidEnrollmentCompanyCode
-        from .android_managed_store_account_app_sync_status import AndroidManagedStoreAccountAppSyncStatus
-        from .android_managed_store_account_bind_status import AndroidManagedStoreAccountBindStatus
-        from .android_managed_store_account_enrollment_target import AndroidManagedStoreAccountEnrollmentTarget
-        from .entity import Entity
-
         writer.write_bool_value("androidDeviceOwnerFullyManagedEnrollmentEnabled", self.android_device_owner_fully_managed_enrollment_enabled)
         writer.write_enum_value("bindStatus", self.bind_status)
         writer.write_collection_of_object_values("companyCodes", self.company_codes)

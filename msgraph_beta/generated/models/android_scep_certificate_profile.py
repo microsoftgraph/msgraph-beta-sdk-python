@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_certificate_profile_base import AndroidCertificateProfileBase
@@ -26,9 +27,9 @@ class AndroidScepCertificateProfile(AndroidCertificateProfileBase, Parsable):
     # Key Usage Options.
     key_usage: Optional[KeyUsages] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-    managed_device_certificate_states: Optional[List[ManagedDeviceCertificateState]] = None
+    managed_device_certificate_states: Optional[list[ManagedDeviceCertificateState]] = None
     # SCEP Server Url(s)
-    scep_server_urls: Optional[List[str]] = None
+    scep_server_urls: Optional[list[str]] = None
     # Custom String that defines the AAD Attribute.
     subject_alternative_name_format_string: Optional[str] = None
     # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
@@ -45,10 +46,10 @@ class AndroidScepCertificateProfile(AndroidCertificateProfileBase, Parsable):
             raise TypeError("parse_node cannot be null.")
         return AndroidScepCertificateProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .hash_algorithms import HashAlgorithms
@@ -62,7 +63,7 @@ class AndroidScepCertificateProfile(AndroidCertificateProfileBase, Parsable):
         from .key_usages import KeyUsages
         from .managed_device_certificate_state import ManagedDeviceCertificateState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_collection_of_enum_values(HashAlgorithms)),
             "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(KeySize)),
             "keyUsage": lambda n : setattr(self, 'key_usage', n.get_collection_of_enum_values(KeyUsages)),
@@ -84,12 +85,6 @@ class AndroidScepCertificateProfile(AndroidCertificateProfileBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .android_certificate_profile_base import AndroidCertificateProfileBase
-        from .hash_algorithms import HashAlgorithms
-        from .key_size import KeySize
-        from .key_usages import KeyUsages
-        from .managed_device_certificate_state import ManagedDeviceCertificateState
-
         writer.write_enum_value("hashAlgorithm", self.hash_algorithm)
         writer.write_enum_value("keySize", self.key_size)
         writer.write_enum_value("keyUsage", self.key_usage)

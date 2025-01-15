@@ -1,9 +1,10 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
@@ -15,7 +16,7 @@ class IdentifierUriRestriction(AdditionalDataHolder, BackedModel, Parsable):
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: Dict[str, Any] = field(default_factory=dict)
+    additional_data: dict[str, Any] = field(default_factory=dict)
     # Collection of custom security attribute exemptions. If an actor user or service principal has the custom security attribute, they're exempted from the restriction.
     exclude_actors: Optional[AppManagementPolicyActorExemptions] = None
     # If true, the restriction isn't enforced for applications that are configured to receive V2 tokens in Microsoft Entra ID; else, the restriction isn't enforced for those applications.
@@ -40,10 +41,10 @@ class IdentifierUriRestriction(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("parse_node cannot be null.")
         return IdentifierUriRestriction()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
         from .app_management_restriction_state import AppManagementRestrictionState
@@ -51,7 +52,7 @@ class IdentifierUriRestriction(AdditionalDataHolder, BackedModel, Parsable):
         from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
         from .app_management_restriction_state import AppManagementRestrictionState
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "excludeActors": lambda n : setattr(self, 'exclude_actors', n.get_object_value(AppManagementPolicyActorExemptions)),
             "excludeAppsReceivingV2Tokens": lambda n : setattr(self, 'exclude_apps_receiving_v2_tokens', n.get_bool_value()),
             "excludeSaml": lambda n : setattr(self, 'exclude_saml', n.get_bool_value()),
@@ -69,9 +70,6 @@ class IdentifierUriRestriction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
-        from .app_management_restriction_state import AppManagementRestrictionState
-
         writer.write_object_value("excludeActors", self.exclude_actors)
         writer.write_bool_value("excludeAppsReceivingV2Tokens", self.exclude_apps_receiving_v2_tokens)
         writer.write_bool_value("excludeSaml", self.exclude_saml)

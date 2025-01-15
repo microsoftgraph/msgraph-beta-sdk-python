@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .microsoft_store_for_business_license_type import MicrosoftStoreForBusinessLicenseType
@@ -19,7 +20,7 @@ class MicrosoftStoreForBusinessApp(MobileApp, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.microsoftStoreForBusinessApp"
     # The collection of contained apps in a mobileApp acting as a package.
-    contained_apps: Optional[List[MobileContainedApp]] = None
+    contained_apps: Optional[list[MobileContainedApp]] = None
     # The licenseType property
     license_type: Optional[MicrosoftStoreForBusinessLicenseType] = None
     # The supported License Type.
@@ -44,10 +45,10 @@ class MicrosoftStoreForBusinessApp(MobileApp, Parsable):
             raise TypeError("parse_node cannot be null.")
         return MicrosoftStoreForBusinessApp()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .microsoft_store_for_business_license_type import MicrosoftStoreForBusinessLicenseType
         from .mobile_app import MobileApp
@@ -59,7 +60,7 @@ class MicrosoftStoreForBusinessApp(MobileApp, Parsable):
         from .mobile_contained_app import MobileContainedApp
         from .vpp_licensing_type import VppLicensingType
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "containedApps": lambda n : setattr(self, 'contained_apps', n.get_collection_of_object_values(MobileContainedApp)),
             "licenseType": lambda n : setattr(self, 'license_type', n.get_enum_value(MicrosoftStoreForBusinessLicenseType)),
             "licensingType": lambda n : setattr(self, 'licensing_type', n.get_object_value(VppLicensingType)),
@@ -81,11 +82,6 @@ class MicrosoftStoreForBusinessApp(MobileApp, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .microsoft_store_for_business_license_type import MicrosoftStoreForBusinessLicenseType
-        from .mobile_app import MobileApp
-        from .mobile_contained_app import MobileContainedApp
-        from .vpp_licensing_type import VppLicensingType
-
         writer.write_collection_of_object_values("containedApps", self.contained_apps)
         writer.write_enum_value("licenseType", self.license_type)
         writer.write_object_value("licensingType", self.licensing_type)

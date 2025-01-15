@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .enrollment_profile import EnrollmentProfile
@@ -40,7 +41,7 @@ class DepEnrollmentProfile(EnrollmentProfile, Parsable):
     # Indicates if Mac OS registration is disabled
     mac_o_s_registration_disabled: Optional[bool] = None
     # Management certificates for Apple Configurator
-    management_certificates: Optional[List[ManagementCertificateWithThumbprint]] = None
+    management_certificates: Optional[list[ManagementCertificateWithThumbprint]] = None
     # Indicates if Passcode setup pane is disabled
     pass_code_disabled: Optional[bool] = None
     # Indicates if the profile removal option is disabled
@@ -77,10 +78,10 @@ class DepEnrollmentProfile(EnrollmentProfile, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DepEnrollmentProfile()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .enrollment_profile import EnrollmentProfile
         from .i_tunes_pairing_mode import ITunesPairingMode
@@ -90,7 +91,7 @@ class DepEnrollmentProfile(EnrollmentProfile, Parsable):
         from .i_tunes_pairing_mode import ITunesPairingMode
         from .management_certificate_with_thumbprint import ManagementCertificateWithThumbprint
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appleIdDisabled": lambda n : setattr(self, 'apple_id_disabled', n.get_bool_value()),
             "applePayDisabled": lambda n : setattr(self, 'apple_pay_disabled', n.get_bool_value()),
             "awaitDeviceConfiguredConfirmation": lambda n : setattr(self, 'await_device_configured_confirmation', n.get_bool_value()),
@@ -129,10 +130,6 @@ class DepEnrollmentProfile(EnrollmentProfile, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .enrollment_profile import EnrollmentProfile
-        from .i_tunes_pairing_mode import ITunesPairingMode
-        from .management_certificate_with_thumbprint import ManagementCertificateWithThumbprint
-
         writer.write_bool_value("appleIdDisabled", self.apple_id_disabled)
         writer.write_bool_value("applePayDisabled", self.apple_pay_disabled)
         writer.write_bool_value("awaitDeviceConfiguredConfirmation", self.await_device_configured_confirmation)

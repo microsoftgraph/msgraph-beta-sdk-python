@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .content_properties import ContentProperties
@@ -29,10 +30,10 @@ class DlpEvaluationWindowsDevicesInput(DlpEvaluationInput, Parsable):
             raise TypeError("parse_node cannot be null.")
         return DlpEvaluationWindowsDevicesInput()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .content_properties import ContentProperties
         from .dlp_evaluation_input import DlpEvaluationInput
@@ -40,7 +41,7 @@ class DlpEvaluationWindowsDevicesInput(DlpEvaluationInput, Parsable):
         from .content_properties import ContentProperties
         from .dlp_evaluation_input import DlpEvaluationInput
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "contentProperties": lambda n : setattr(self, 'content_properties', n.get_object_value(ContentProperties)),
             "sharedBy": lambda n : setattr(self, 'shared_by', n.get_str_value()),
         }
@@ -57,9 +58,6 @@ class DlpEvaluationWindowsDevicesInput(DlpEvaluationInput, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .content_properties import ContentProperties
-        from .dlp_evaluation_input import DlpEvaluationInput
-
         writer.write_object_value("contentProperties", self.content_properties)
         writer.write_str_value("sharedBy", self.shared_by)
     

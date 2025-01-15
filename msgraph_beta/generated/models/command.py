@@ -1,7 +1,8 @@
 from __future__ import annotations
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
@@ -44,10 +45,10 @@ class Command(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return Command()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
         from .payload_request import PayloadRequest
@@ -57,7 +58,7 @@ class Command(Entity, Parsable):
         from .payload_request import PayloadRequest
         from .payload_response import PayloadResponse
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "appServiceName": lambda n : setattr(self, 'app_service_name', n.get_str_value()),
             "error": lambda n : setattr(self, 'error', n.get_str_value()),
             "packageFamilyName": lambda n : setattr(self, 'package_family_name', n.get_str_value()),
@@ -81,10 +82,6 @@ class Command(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .entity import Entity
-        from .payload_request import PayloadRequest
-        from .payload_response import PayloadResponse
-
         writer.write_str_value("appServiceName", self.app_service_name)
         writer.write_str_value("error", self.error)
         writer.write_str_value("packageFamilyName", self.package_family_name)

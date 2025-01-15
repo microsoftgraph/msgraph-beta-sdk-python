@@ -1,8 +1,9 @@
 from __future__ import annotations
 import datetime
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -84,10 +85,10 @@ class SalesOrderLine(Entity, Parsable):
             raise TypeError("parse_node cannot be null.")
         return SalesOrderLine()
     
-    def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
-        Returns: Dict[str, Callable[[ParseNode], None]]
+        Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .account import Account
         from .entity import Entity
@@ -97,7 +98,7 @@ class SalesOrderLine(Entity, Parsable):
         from .entity import Entity
         from .item import Item
 
-        fields: Dict[str, Callable[[Any], None]] = {
+        fields: dict[str, Callable[[Any], None]] = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(Account)),
             "accountId": lambda n : setattr(self, 'account_id', n.get_uuid_value()),
             "amountExcludingTax": lambda n : setattr(self, 'amount_excluding_tax', n.get_float_value()),
@@ -140,10 +141,6 @@ class SalesOrderLine(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        from .account import Account
-        from .entity import Entity
-        from .item import Item
-
         writer.write_object_value("account", self.account)
         writer.write_uuid_value("accountId", self.account_id)
         writer.write_float_value("amountExcludingTax", self.amount_excluding_tax)
