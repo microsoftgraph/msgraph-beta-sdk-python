@@ -17,7 +17,7 @@ class EducationIdentityDomain(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The appliesTo property
     applies_to: Optional[EducationUserRole] = None
-    # Represents the domain for the user account.
+    # The name property
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

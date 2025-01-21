@@ -16,7 +16,7 @@ class TimeCardEvent(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Indicates whether the entry was recorded at the approved location.
+    # Indicates whether this action happens at an approved location. This property will be removed by November 20, 2027. Use isAtApprovedLocation instead. atApprovedLocation and isAtApprovedLocation always have the same value, so setting one automatically sets the value for the other. If both are included in the request with different values, the value for isAtApprovedLocation takes precedence.
     at_approved_location: Optional[bool] = None
     # The time the entry is recorded.
     date_time: Optional[datetime.datetime] = None

@@ -32,10 +32,9 @@ class StartRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[StartPostResponse]:
         """
-        Verify the files uploaded to a specific school data synchronization profile in the tenant. If the verification is successful, synchronization starts on the profile. Otherwise, the response contains errors and warnings. If the response contains errors, the synchronization won't start. If the response contains only warnings, synchronization starts.
+        Invoke action start
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[StartPostResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-start?view=graph-rest-beta
         """
         warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
         request_info = self.to_post_request_information(
@@ -54,7 +53,7 @@ class StartRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Verify the files uploaded to a specific school data synchronization profile in the tenant. If the verification is successful, synchronization starts on the profile. Otherwise, the response contains errors and warnings. If the response contains errors, the synchronization won't start. If the response contains only warnings, synchronization starts.
+        Invoke action start
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

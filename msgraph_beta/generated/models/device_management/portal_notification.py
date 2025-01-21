@@ -25,7 +25,7 @@ class PortalNotification(AdditionalDataHolder, BackedModel, Parsable):
     alert_rule_id: Optional[str] = None
     # The associated alert rule name.
     alert_rule_name: Optional[str] = None
-    # The associated alert rule template. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue, cloudPcInGracePeriodScenario. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: cloudPcInGracePeriodScenario.
+    # The associated alert rule template. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue, cloudPcInGracePeriodScenario. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: cloudPcInGracePeriodScenario.
     alert_rule_template: Optional[AlertRuleTemplate] = None
     # The unique identifier for the portal notification.
     id: Optional[str] = None

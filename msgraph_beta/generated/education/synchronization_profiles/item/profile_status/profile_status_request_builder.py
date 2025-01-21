@@ -51,10 +51,9 @@ class ProfileStatusRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ProfileStatusRequestBuilderGetQueryParameters]] = None) -> Optional[EducationSynchronizationProfileStatus]:
         """
-        Get the status of a specific school data synchronization profile in the tenant. The response will indicate the status of the sync.
+        Get profileStatus from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSynchronizationProfileStatus]
-        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofilestatus-get?view=graph-rest-beta
         """
         warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -109,7 +108,7 @@ class ProfileStatusRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ProfileStatusRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get the status of a specific school data synchronization profile in the tenant. The response will indicate the status of the sync.
+        Get profileStatus from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -156,7 +155,7 @@ class ProfileStatusRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProfileStatusRequestBuilderGetQueryParameters():
         """
-        Get the status of a specific school data synchronization profile in the tenant. The response will indicate the status of the sync.
+        Get profileStatus from education
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

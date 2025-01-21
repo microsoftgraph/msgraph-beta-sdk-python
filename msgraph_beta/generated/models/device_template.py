@@ -28,7 +28,7 @@ class DeviceTemplate(DirectoryObject, Parsable):
     mutual_tls_oauth_configuration_tenant_id: Optional[str] = None
     # Operating system type. Supports $filter (eq, in).
     operating_system: Optional[str] = None
-    # Collection of directory objects that can manage the device template and the related deviceInstances. Owners can be represented as service principals, users, or applications. An owner has full privileges over the device template and doesn't require other administrator roles to create, update, or delete devices from this template, as well as to add or remove template owners.  Supports $expand.
+    # Collection of directory objects that can manage the device template and the related deviceInstances. Owners can be represented as service principals, users, or applications. An owner has full privileges over the device template and doesn't require other administrator roles to create, update, or delete devices from this template, as well as to add or remove template owners. There can be a maximum of 100 owners on a device template.  Supports $expand.
     owners: Optional[list[DirectoryObject]] = None
     
     @staticmethod

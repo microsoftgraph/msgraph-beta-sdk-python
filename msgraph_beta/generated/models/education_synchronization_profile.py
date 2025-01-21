@@ -20,23 +20,23 @@ from .entity import Entity
 class EducationSynchronizationProfile(Entity, Parsable):
     # The dataProvider property
     data_provider: Optional[EducationSynchronizationDataProvider] = None
-    # Name of the configuration profile for syncing identities.
+    # The displayName property
     display_name: Optional[str] = None
-    # All errors associated with this synchronization profile.
+    # The errors property
     errors: Optional[list[EducationSynchronizationError]] = None
-    # The date the profile should be considered expired and cease syncing. Provide the date in YYYY-MM-DD format, following ISO 8601. Maximum value is 18 months from profile creation.  (optional)
+    # The expirationDate property
     expiration_date: Optional[datetime.date] = None
-    # Determines if School Data Sync should automatically replace unsupported special characters while syncing from source.
+    # The handleSpecialCharacterConstraint property
     handle_special_character_constraint: Optional[bool] = None
     # The identitySynchronizationConfiguration property
     identity_synchronization_configuration: Optional[EducationIdentitySynchronizationConfiguration] = None
-    # License setup configuration.
+    # The licensesToAssign property
     licenses_to_assign: Optional[list[EducationSynchronizationLicenseAssignment]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The synchronization status.
+    # The profileStatus property
     profile_status: Optional[EducationSynchronizationProfileStatus] = None
-    # The state of the profile. Possible values are: provisioning, provisioned, provisioningFailed, deleting, deletionFailed.
+    # The state property
     state: Optional[EducationSynchronizationProfileState] = None
     
     @staticmethod

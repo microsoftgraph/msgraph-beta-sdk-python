@@ -6,8 +6,8 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .updatable_asset import UpdatableAsset
-    from .updatable_asset_enrollment import UpdatableAssetEnrollment
     from .updatable_asset_error import UpdatableAssetError
+    from .update_management_enrollment import UpdateManagementEnrollment
 
 from .updatable_asset import UpdatableAsset
 
@@ -15,8 +15,8 @@ from .updatable_asset import UpdatableAsset
 class AzureADDevice(UpdatableAsset, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.azureADDevice"
-    # Specifies areas in which the device is enrolled. Read-only. Returned by default.
-    enrollments: Optional[list[UpdatableAssetEnrollment]] = None
+    # The enrollment property
+    enrollment: Optional[UpdateManagementEnrollment] = None
     # Specifies any errors that prevent the device from being enrolled in update management or receving deployed content. Read-only. Returned by default.
     errors: Optional[list[UpdatableAssetError]] = None
     
@@ -37,15 +37,15 @@ class AzureADDevice(UpdatableAsset, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .updatable_asset import UpdatableAsset
-        from .updatable_asset_enrollment import UpdatableAssetEnrollment
         from .updatable_asset_error import UpdatableAssetError
+        from .update_management_enrollment import UpdateManagementEnrollment
 
         from .updatable_asset import UpdatableAsset
-        from .updatable_asset_enrollment import UpdatableAssetEnrollment
         from .updatable_asset_error import UpdatableAssetError
+        from .update_management_enrollment import UpdateManagementEnrollment
 
         fields: dict[str, Callable[[Any], None]] = {
-            "enrollments": lambda n : setattr(self, 'enrollments', n.get_collection_of_object_values(UpdatableAssetEnrollment)),
+            "enrollment": lambda n : setattr(self, 'enrollment', n.get_object_value(UpdateManagementEnrollment)),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_object_values(UpdatableAssetError)),
         }
         super_fields = super().get_field_deserializers()
@@ -61,7 +61,7 @@ class AzureADDevice(UpdatableAsset, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("enrollments", self.enrollments)
+        writer.write_object_value("enrollment", self.enrollment)
         writer.write_collection_of_object_values("errors", self.errors)
     
 

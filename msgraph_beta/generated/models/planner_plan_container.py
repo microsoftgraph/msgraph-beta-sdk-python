@@ -20,7 +20,7 @@ class PlannerPlanContainer(AdditionalDataHolder, BackedModel, Parsable):
     container_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The type of the resource that contains the plan. For supported types, see the previous table. Possible values are: group, unknownFutureValue, roster, project, driveItem, user, and teamsChannel . You must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: roster, project, driveItem,user, and,teamsChannel. Optional.
+    # The type of the resource that contains the plan. For supported types, see the previous table. Possible values are: group, unknownFutureValue, roster, project, driveItem, user, and teamsChannel. Use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: roster, project, driveItem, and user. Optional.
     type: Optional[PlannerContainerType] = None
     # The full canonical URL of the container. Optional.
     url: Optional[str] = None

@@ -16,9 +16,9 @@ class EducationSynchronizationConnectionSettings(AdditionalDataHolder, BackedMod
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Client ID used to connect to the provider.
+    # The clientId property
     client_id: Optional[str] = None
-    # Client secret to authenticate the connection to the provider.
+    # The clientSecret property
     client_secret: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

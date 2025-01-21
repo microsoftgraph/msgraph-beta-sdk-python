@@ -50,10 +50,9 @@ class ErrorsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ErrorsRequestBuilderGetQueryParameters]] = None) -> Optional[EducationSynchronizationErrorCollectionResponse]:
         """
-        Get the errors generated during validation and/or during a sync of a specific school data synchronization profile in the tenant.
+        Get errors from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSynchronizationErrorCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationerrors-get?view=graph-rest-beta
         """
         warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -96,7 +95,7 @@ class ErrorsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ErrorsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get the errors generated during validation and/or during a sync of a specific school data synchronization profile in the tenant.
+        Get errors from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +144,7 @@ class ErrorsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ErrorsRequestBuilderGetQueryParameters():
         """
-        Get the errors generated during validation and/or during a sync of a specific school data synchronization profile in the tenant.
+        Get errors from education
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

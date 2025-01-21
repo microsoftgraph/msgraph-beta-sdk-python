@@ -1467,6 +1467,7 @@ if TYPE_CHECKING:
     from .security.disposition_review_stage import DispositionReviewStage
     from .security.ediscovery_add_to_review_set_operation import EdiscoveryAddToReviewSetOperation
     from .security.ediscovery_case import EdiscoveryCase
+    from .security.ediscovery_case_member import EdiscoveryCaseMember
     from .security.ediscovery_case_settings import EdiscoveryCaseSettings
     from .security.ediscovery_custodian import EdiscoveryCustodian
     from .security.ediscovery_estimate_operation import EdiscoveryEstimateOperation
@@ -1655,6 +1656,7 @@ if TYPE_CHECKING:
     from .tax_group import TaxGroup
     from .team import Team
     from .teams_administration.teams_admin_root import TeamsAdminRoot
+    from .teams_administration.teams_policy_assignment import TeamsPolicyAssignment
     from .teams_app import TeamsApp
     from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
     from .teams_app_definition import TeamsAppDefinition
@@ -7966,6 +7968,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.ediscovery_case import EdiscoveryCase
 
             return EdiscoveryCase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ediscoveryCaseMember".casefold():
+            from .security.ediscovery_case_member import EdiscoveryCaseMember
+
+            return EdiscoveryCaseMember()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ediscoveryCaseSettings".casefold():
             from .security.ediscovery_case_settings import EdiscoveryCaseSettings
 
@@ -8730,6 +8736,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .teams_administration.teams_admin_root import TeamsAdminRoot
 
             return TeamsAdminRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAdministration.teamsPolicyAssignment".casefold():
+            from .teams_administration.teams_policy_assignment import TeamsPolicyAssignment
+
+            return TeamsPolicyAssignment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsApp".casefold():
             from .teams_app import TeamsApp
 
@@ -11750,6 +11760,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.disposition_review_stage import DispositionReviewStage
         from .security.ediscovery_add_to_review_set_operation import EdiscoveryAddToReviewSetOperation
         from .security.ediscovery_case import EdiscoveryCase
+        from .security.ediscovery_case_member import EdiscoveryCaseMember
         from .security.ediscovery_case_settings import EdiscoveryCaseSettings
         from .security.ediscovery_custodian import EdiscoveryCustodian
         from .security.ediscovery_estimate_operation import EdiscoveryEstimateOperation
@@ -11938,6 +11949,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .tax_group import TaxGroup
         from .team import Team
         from .teams_administration.teams_admin_root import TeamsAdminRoot
+        from .teams_administration.teams_policy_assignment import TeamsPolicyAssignment
         from .teams_app import TeamsApp
         from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
         from .teams_app_definition import TeamsAppDefinition
@@ -13788,6 +13800,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.disposition_review_stage import DispositionReviewStage
         from .security.ediscovery_add_to_review_set_operation import EdiscoveryAddToReviewSetOperation
         from .security.ediscovery_case import EdiscoveryCase
+        from .security.ediscovery_case_member import EdiscoveryCaseMember
         from .security.ediscovery_case_settings import EdiscoveryCaseSettings
         from .security.ediscovery_custodian import EdiscoveryCustodian
         from .security.ediscovery_estimate_operation import EdiscoveryEstimateOperation
@@ -13976,6 +13989,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .tax_group import TaxGroup
         from .team import Team
         from .teams_administration.teams_admin_root import TeamsAdminRoot
+        from .teams_administration.teams_policy_assignment import TeamsPolicyAssignment
         from .teams_app import TeamsApp
         from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
         from .teams_app_definition import TeamsAppDefinition

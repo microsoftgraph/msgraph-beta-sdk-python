@@ -17,15 +17,15 @@ class EducationOneRosterApiDataProvider(EducationSynchronizationDataProvider, Pa
     odata_type: Optional[str] = "#microsoft.graph.educationOneRosterApiDataProvider"
     # The connectionSettings property
     connection_settings: Optional[EducationSynchronizationConnectionSettings] = None
-    # The connection URL to the OneRoster instance.
+    # The connectionUrl property
     connection_url: Optional[str] = None
-    # Optional customization to be applied to the synchronization profile.
+    # The customizations property
     customizations: Optional[EducationSynchronizationCustomizations] = None
-    # The OneRoster Service Provider name as defined by the OneRoster specification.
+    # The providerName property
     provider_name: Optional[str] = None
-    # The list of School/Org sourcedId to sync.
+    # The schoolsIds property
     schools_ids: Optional[list[str]] = None
-    # The list of academic sessions to sync.
+    # The termIds property
     term_ids: Optional[list[str]] = None
     
     @staticmethod

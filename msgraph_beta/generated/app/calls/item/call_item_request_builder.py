@@ -32,6 +32,10 @@ if TYPE_CHECKING:
     from .redirect.redirect_request_builder import RedirectRequestBuilder
     from .reject.reject_request_builder import RejectRequestBuilder
     from .send_dtmf_tones.send_dtmf_tones_request_builder import SendDtmfTonesRequestBuilder
+    from .start_recording.start_recording_request_builder import StartRecordingRequestBuilder
+    from .start_transcription.start_transcription_request_builder import StartTranscriptionRequestBuilder
+    from .stop_recording.stop_recording_request_builder import StopRecordingRequestBuilder
+    from .stop_transcription.stop_transcription_request_builder import StopTranscriptionRequestBuilder
     from .subscribe_to_tone.subscribe_to_tone_request_builder import SubscribeToToneRequestBuilder
     from .transfer.transfer_request_builder import TransferRequestBuilder
     from .unmute.unmute_request_builder import UnmuteRequestBuilder
@@ -301,6 +305,42 @@ class CallItemRequestBuilder(BaseRequestBuilder):
         from .send_dtmf_tones.send_dtmf_tones_request_builder import SendDtmfTonesRequestBuilder
 
         return SendDtmfTonesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def start_recording(self) -> StartRecordingRequestBuilder:
+        """
+        Provides operations to call the startRecording method.
+        """
+        from .start_recording.start_recording_request_builder import StartRecordingRequestBuilder
+
+        return StartRecordingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def start_transcription(self) -> StartTranscriptionRequestBuilder:
+        """
+        Provides operations to call the startTranscription method.
+        """
+        from .start_transcription.start_transcription_request_builder import StartTranscriptionRequestBuilder
+
+        return StartTranscriptionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def stop_recording(self) -> StopRecordingRequestBuilder:
+        """
+        Provides operations to call the stopRecording method.
+        """
+        from .stop_recording.stop_recording_request_builder import StopRecordingRequestBuilder
+
+        return StopRecordingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def stop_transcription(self) -> StopTranscriptionRequestBuilder:
+        """
+        Provides operations to call the stopTranscription method.
+        """
+        from .stop_transcription.stop_transcription_request_builder import StopTranscriptionRequestBuilder
+
+        return StopTranscriptionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def subscribe_to_tone(self) -> SubscribeToToneRequestBuilder:

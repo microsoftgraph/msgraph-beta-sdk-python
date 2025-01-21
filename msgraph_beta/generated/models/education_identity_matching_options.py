@@ -19,11 +19,11 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, BackedModel, Parsab
     applies_to: Optional[EducationUserRole] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The name of the source property, which should be a field name in the source data. This property is case-sensitive.
+    # The sourcePropertyName property
     source_property_name: Optional[str] = None
-    # The domain to suffix with the source property to match on the target. If provided as null, the source property will be used to match with the target property.
+    # The targetDomain property
     target_domain: Optional[str] = None
-    # The name of the target property, which should be a valid property in Microsoft Entra ID. This property is case-sensitive.
+    # The targetPropertyName property
     target_property_name: Optional[str] = None
     
     @staticmethod

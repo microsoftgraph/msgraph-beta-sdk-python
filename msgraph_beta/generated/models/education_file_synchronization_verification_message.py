@@ -12,13 +12,13 @@ class EducationFileSynchronizationVerificationMessage(AdditionalDataHolder, Back
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Detailed information about the message type.
+    # The description property
     description: Optional[str] = None
-    # Source file that contains the error.
+    # The fileName property
     file_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Type of the message. Possible values are: error, warning, information.
+    # The type property
     type: Optional[str] = None
     
     @staticmethod

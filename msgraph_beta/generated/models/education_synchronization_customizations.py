@@ -14,17 +14,17 @@ from .education_synchronization_customizations_base import EducationSynchronizat
 class EducationSynchronizationCustomizations(EducationSynchronizationCustomizationsBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationSynchronizationCustomizations"
-    # Customizations for School entities.
+    # The school property
     school: Optional[EducationSynchronizationCustomization] = None
-    # Customizations for Section entities.
+    # The section property
     section: Optional[EducationSynchronizationCustomization] = None
-    # Customizations for Student entities.
+    # The student property
     student: Optional[EducationSynchronizationCustomization] = None
-    # Customizations for Student Enrollments.
+    # The studentEnrollment property
     student_enrollment: Optional[EducationSynchronizationCustomization] = None
-    # Customizations for Teacher entities.
+    # The teacher property
     teacher: Optional[EducationSynchronizationCustomization] = None
-    # Customizations for Teacher Rosters.
+    # The teacherRoster property
     teacher_roster: Optional[EducationSynchronizationCustomization] = None
     
     @staticmethod
