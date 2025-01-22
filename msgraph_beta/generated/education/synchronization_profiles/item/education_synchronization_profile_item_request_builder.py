@@ -39,10 +39,9 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a school data synchronization profile in the tenant based on the identifier.
+        Delete navigation property synchronizationProfiles for education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-delete?view=graph-rest-beta
         """
         warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
         request_info = self.to_delete_request_information(
@@ -59,10 +58,9 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[EducationSynchronizationProfileItemRequestBuilderGetQueryParameters]] = None) -> Optional[EducationSynchronizationProfile]:
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier.
+        Get synchronizationProfiles from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSynchronizationProfile]
-        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-get?view=graph-rest-beta
         """
         warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -105,7 +103,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a school data synchronization profile in the tenant based on the identifier.
+        Delete navigation property synchronizationProfiles for education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,7 +115,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[EducationSynchronizationProfileItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier.
+        Get synchronizationProfiles from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -227,7 +225,7 @@ class EducationSynchronizationProfileItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EducationSynchronizationProfileItemRequestBuilderGetQueryParameters():
         """
-        Retrieve a school data synchronization profile in the tenant based on the identifier.
+        Get synchronizationProfiles from education
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

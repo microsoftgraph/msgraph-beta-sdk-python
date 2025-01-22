@@ -14,7 +14,7 @@ from .education_synchronization_data_provider import EducationSynchronizationDat
 class EducationCsvDataProvider(EducationSynchronizationDataProvider, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationCsvDataProvider"
-    # Optional customizations to be applied to the synchronization profile.
+    # The customizations property
     customizations: Optional[EducationSynchronizationCustomizations] = None
     
     @staticmethod

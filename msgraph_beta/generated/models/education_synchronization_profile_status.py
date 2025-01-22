@@ -13,17 +13,17 @@ from .entity import Entity
 
 @dataclass
 class EducationSynchronizationProfileStatus(Entity, Parsable):
-    # Number of errors during synchronization.
+    # The errorCount property
     error_count: Optional[int] = None
-    # Date and time when most recent changes were observed in the profile.
+    # The lastActivityDateTime property
     last_activity_date_time: Optional[datetime.datetime] = None
-    # Date and time of the most recent successful synchronization.
+    # The lastSynchronizationDateTime property
     last_synchronization_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The status of a sync. The possible values are: paused, inProgress, success, error, validationError, quarantined, unknownFutureValue, extracting, validating. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: extracting, validating.
+    # The status property
     status: Optional[EducationSynchronizationStatus] = None
-    # Status message for the synchronization stage of the current profile.
+    # The statusMessage property
     status_message: Optional[str] = None
     
     @staticmethod

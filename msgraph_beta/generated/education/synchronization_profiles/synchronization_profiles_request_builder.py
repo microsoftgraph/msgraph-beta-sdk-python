@@ -50,10 +50,9 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SynchronizationProfilesRequestBuilderGetQueryParameters]] = None) -> Optional[EducationSynchronizationProfileCollectionResponse]:
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Get synchronizationProfiles from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSynchronizationProfileCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/educationsynchronizationprofile-list?view=graph-rest-beta
         """
         warn("The Education Sync Profile API is deprecated and will stop returning data on December 31, 2024. Please transition to the new IndustryData API. as of 2024-06/Deprecated:SynchronizationProfiles", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -96,7 +95,7 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SynchronizationProfilesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Get synchronizationProfiles from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +144,7 @@ class SynchronizationProfilesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SynchronizationProfilesRequestBuilderGetQueryParameters():
         """
-        Retrieve the collection of school data synchronization profiles in the tenant.
+        Get synchronizationProfiles from education
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

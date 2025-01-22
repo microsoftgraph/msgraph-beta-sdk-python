@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .....models.site import Site
     from .analytics.analytics_request_builder import AnalyticsRequestBuilder
+    from .archive.archive_request_builder import ArchiveRequestBuilder
     from .columns.columns_request_builder import ColumnsRequestBuilder
     from .content_models.content_models_request_builder import ContentModelsRequestBuilder
     from .content_types.content_types_request_builder import ContentTypesRequestBuilder
@@ -40,6 +41,7 @@ if TYPE_CHECKING:
     from .recycle_bin.recycle_bin_request_builder import RecycleBinRequestBuilder
     from .sites.sites_request_builder import SitesRequestBuilder
     from .term_store.term_store_request_builder import TermStoreRequestBuilder
+    from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
 
 class SiteItemRequestBuilder(BaseRequestBuilder):
     """
@@ -183,6 +185,15 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         from .analytics.analytics_request_builder import AnalyticsRequestBuilder
 
         return AnalyticsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def archive(self) -> ArchiveRequestBuilder:
+        """
+        Provides operations to call the archive method.
+        """
+        from .archive.archive_request_builder import ArchiveRequestBuilder
+
+        return ArchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def columns(self) -> ColumnsRequestBuilder:
@@ -363,6 +374,15 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         from .term_store.term_store_request_builder import TermStoreRequestBuilder
 
         return TermStoreRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def unarchive(self) -> UnarchiveRequestBuilder:
+        """
+        Provides operations to call the unarchive method.
+        """
+        from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
+
+        return UnarchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SiteItemRequestBuilderGetQueryParameters():

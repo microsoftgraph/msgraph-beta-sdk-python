@@ -14,19 +14,19 @@ from .education_synchronization_data_provider import EducationSynchronizationDat
 class EducationPowerSchoolDataProvider(EducationSynchronizationDataProvider, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationPowerSchoolDataProvider"
-    # Indicates whether the source has multiple identifiers for a single student or teacher.
+    # The allowTeachersInMultipleSchools property
     allow_teachers_in_multiple_schools: Optional[bool] = None
-    # The client ID used to connect to PowerSchool.
+    # The clientId property
     client_id: Optional[str] = None
-    # The client secret to authenticate the connection to the PowerSchool instance.
+    # The clientSecret property
     client_secret: Optional[str] = None
-    # The connection URL to the PowerSchool instance.
+    # The connectionUrl property
     connection_url: Optional[str] = None
-    # Optional customization to be applied to the synchronization profile.
+    # The customizations property
     customizations: Optional[EducationSynchronizationCustomizations] = None
-    # The school year to sync.
+    # The schoolYear property
     school_year: Optional[str] = None
-    # The list of schools to sync.
+    # The schoolsIds property
     schools_ids: Optional[list[str]] = None
     
     @staticmethod

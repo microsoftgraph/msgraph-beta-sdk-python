@@ -14,7 +14,7 @@ from .education_identity_synchronization_configuration import EducationIdentityS
 class EducationIdentityMatchingConfiguration(EducationIdentitySynchronizationConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationIdentityMatchingConfiguration"
-    # Mapping between the user account and the options to use to uniquely identify the user to update.
+    # The matchingOptions property
     matching_options: Optional[list[EducationIdentityMatchingOptions]] = None
     
     @staticmethod

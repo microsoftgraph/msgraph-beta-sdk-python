@@ -29,7 +29,7 @@ class X509CertificateRule(AdditionalDataHolder, BackedModel, Parsable):
     x509_certificate_authentication_mode: Optional[X509CertificateAuthenticationMode] = None
     # The possible values are: low, high, unknownFutureValue.
     x509_certificate_required_affinity_level: Optional[X509CertificateAffinityLevel] = None
-    # The type of the X.509 certificate mode configuration rule. The possible values are: issuerSubject, policyOID, unknownFutureValue, issuerSubjectAndPolicyOID. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: issuerSubjectAndPolicyOID. Required.
+    # The type of the X.509 certificate mode configuration rule. The possible values are: issuerSubject, policyOID, unknownFutureValue, issuerSubjectAndPolicyOID. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: issuerSubjectAndPolicyOID. Required.
     x509_certificate_rule_type: Optional[X509CertificateRuleType] = None
     
     @staticmethod

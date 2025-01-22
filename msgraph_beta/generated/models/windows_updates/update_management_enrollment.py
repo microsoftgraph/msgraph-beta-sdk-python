@@ -1,21 +1,28 @@
 from __future__ import annotations
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .updatable_asset_enrollment import UpdatableAssetEnrollment
-    from .update_category import UpdateCategory
-
-from .updatable_asset_enrollment import UpdatableAssetEnrollment
+    from .update_category_enrollment_information import UpdateCategoryEnrollmentInformation
 
 @dataclass
-class UpdateManagementEnrollment(UpdatableAssetEnrollment, Parsable):
+class UpdateManagementEnrollment(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: dict[str, Any] = field(default_factory=dict)
+    # The driver property
+    driver: Optional[UpdateCategoryEnrollmentInformation] = None
+    # The feature property
+    feature: Optional[UpdateCategoryEnrollmentInformation] = None
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.updateManagementEnrollment"
-    # The updateCategory property
-    update_category: Optional[UpdateCategory] = None
+    odata_type: Optional[str] = None
+    # The quality property
+    quality: Optional[UpdateCategoryEnrollmentInformation] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> UpdateManagementEnrollment:
@@ -33,17 +40,16 @@ class UpdateManagementEnrollment(UpdatableAssetEnrollment, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .updatable_asset_enrollment import UpdatableAssetEnrollment
-        from .update_category import UpdateCategory
+        from .update_category_enrollment_information import UpdateCategoryEnrollmentInformation
 
-        from .updatable_asset_enrollment import UpdatableAssetEnrollment
-        from .update_category import UpdateCategory
+        from .update_category_enrollment_information import UpdateCategoryEnrollmentInformation
 
         fields: dict[str, Callable[[Any], None]] = {
-            "updateCategory": lambda n : setattr(self, 'update_category', n.get_enum_value(UpdateCategory)),
+            "driver": lambda n : setattr(self, 'driver', n.get_object_value(UpdateCategoryEnrollmentInformation)),
+            "feature": lambda n : setattr(self, 'feature', n.get_object_value(UpdateCategoryEnrollmentInformation)),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "quality": lambda n : setattr(self, 'quality', n.get_object_value(UpdateCategoryEnrollmentInformation)),
         }
-        super_fields = super().get_field_deserializers()
-        fields.update(super_fields)
         return fields
     
     def serialize(self,writer: SerializationWriter) -> None:
@@ -54,7 +60,10 @@ class UpdateManagementEnrollment(UpdatableAssetEnrollment, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        super().serialize(writer)
-        writer.write_enum_value("updateCategory", self.update_category)
+        writer.write_object_value("driver", self.driver)
+        writer.write_object_value("feature", self.feature)
+        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_object_value("quality", self.quality)
+        writer.write_additional_data_value(self.additional_data)
     
 

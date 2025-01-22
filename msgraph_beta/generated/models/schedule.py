@@ -26,7 +26,7 @@ from .entity import Entity
 
 @dataclass
 class Schedule(Entity, Parsable):
-    # Indicates whether copied shifts should include the activities.
+    # Indicates whether copied shifts should include the activities. This property will be removed by November 20, 2027. Use isActivitiesIncludedWhenCopyingShiftsEnabled instead. activitiesIncludedWhenCopyingShiftsEnabled and isActivitiesIncludedWhenCopyingShiftsEnabled always have the same value, so setting one automatically sets the value for the other. If both are included in the request with different values, the value for isActivitiesIncludedWhenCopyingShiftsEnabled takes precedence.
     activities_included_when_copying_shifts_enabled: Optional[bool] = None
     # The day notes in the schedule.
     day_notes: Optional[list[DayNote]] = None

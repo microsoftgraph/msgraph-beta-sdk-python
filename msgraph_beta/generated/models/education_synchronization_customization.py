@@ -13,15 +13,15 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, BackedModel, P
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Indicates whether the display name of the resource can be overwritten by the sync.
+    # The allowDisplayNameUpdate property
     allow_display_name_update: Optional[bool] = None
-    # Indicates whether synchronization of the parent entity is deferred to a later date.
+    # The isSyncDeferred property
     is_sync_deferred: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The collection of property names to sync. If set to null, all properties will be synchronized. Does not apply to Student Enrollments or Teacher Rosters
+    # The optionalPropertiesToSync property
     optional_properties_to_sync: Optional[list[str]] = None
-    # The date that the synchronization should start. This value should be set to a future date. If set to null, the resource will be synchronized when the profile setup completes. Only applies to Student Enrollments
+    # The synchronizationStartDate property
     synchronization_start_date: Optional[datetime.datetime] = None
     
     @staticmethod

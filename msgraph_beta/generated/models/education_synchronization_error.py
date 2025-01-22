@@ -12,19 +12,19 @@ from .entity import Entity
 
 @dataclass
 class EducationSynchronizationError(Entity, Parsable):
-    # Represents the sync entity (school, section, student, teacher).
+    # The entryType property
     entry_type: Optional[str] = None
-    # Represents the error code for this error.
+    # The errorCode property
     error_code: Optional[str] = None
-    # Contains a description of the error.
+    # The errorMessage property
     error_message: Optional[str] = None
-    # The unique identifier for the entry.
+    # The joiningValue property
     joining_value: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The time of occurrence of this error.
+    # The recordedDateTime property
     recorded_date_time: Optional[datetime.datetime] = None
-    # The identifier of this error entry.
+    # The reportableIdentifier property
     reportable_identifier: Optional[str] = None
     
     @staticmethod

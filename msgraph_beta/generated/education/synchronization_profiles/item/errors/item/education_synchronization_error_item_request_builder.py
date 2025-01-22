@@ -51,7 +51,7 @@ class EducationSynchronizationErrorItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[EducationSynchronizationErrorItemRequestBuilderGetQueryParameters]] = None) -> Optional[EducationSynchronizationError]:
         """
-        All errors associated with this synchronization profile.
+        Get errors from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSynchronizationError]
         """
@@ -108,7 +108,7 @@ class EducationSynchronizationErrorItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[EducationSynchronizationErrorItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        All errors associated with this synchronization profile.
+        Get errors from education
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -155,7 +155,7 @@ class EducationSynchronizationErrorItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EducationSynchronizationErrorItemRequestBuilderGetQueryParameters():
         """
-        All errors associated with this synchronization profile.
+        Get errors from education
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
