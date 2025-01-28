@@ -1,6 +1,6 @@
 from enum import Enum
 
-class WindowsQualityUpdateClassification(str, Enum):
+class WindowsQualityUpdateCategory(str, Enum):
     # All update type
     All = "all",
     # Security only update type

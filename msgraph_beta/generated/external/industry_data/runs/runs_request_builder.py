@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .count.count_request_builder import CountRequestBuilder
     from .item.industry_data_run_item_request_builder import IndustryDataRunItemRequestBuilder
     from .microsoft_graph_industry_data_get_statistics.microsoft_graph_industry_data_get_statistics_request_builder import MicrosoftGraphIndustryDataGetStatisticsRequestBuilder
+    from .microsoft_graph_industry_data_start.microsoft_graph_industry_data_start_request_builder import MicrosoftGraphIndustryDataStartRequestBuilder
 
 class RunsRequestBuilder(BaseRequestBuilder):
     """
@@ -106,6 +107,15 @@ class RunsRequestBuilder(BaseRequestBuilder):
         from .microsoft_graph_industry_data_get_statistics.microsoft_graph_industry_data_get_statistics_request_builder import MicrosoftGraphIndustryDataGetStatisticsRequestBuilder
 
         return MicrosoftGraphIndustryDataGetStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_industry_data_start(self) -> MicrosoftGraphIndustryDataStartRequestBuilder:
+        """
+        Provides operations to call the start method.
+        """
+        from .microsoft_graph_industry_data_start.microsoft_graph_industry_data_start_request_builder import MicrosoftGraphIndustryDataStartRequestBuilder
+
+        return MicrosoftGraphIndustryDataStartRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RunsRequestBuilderGetQueryParameters():

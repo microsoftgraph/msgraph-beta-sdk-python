@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .administrative_unit import AdministrativeUnit
     from .application import Application
     from .app_management_policy import AppManagementPolicy
+    from .app_role_assignment import AppRoleAssignment
     from .authorization_policy import AuthorizationPolicy
     from .certificate_authority_detail import CertificateAuthorityDetail
     from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
@@ -92,6 +93,10 @@ class DirectoryObject(Entity, Parsable):
             from .app_management_policy import AppManagementPolicy
 
             return AppManagementPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appRoleAssignment".casefold():
+            from .app_role_assignment import AppRoleAssignment
+
+            return AppRoleAssignment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.authorizationPolicy".casefold():
             from .authorization_policy import AuthorizationPolicy
 
@@ -267,6 +272,7 @@ class DirectoryObject(Entity, Parsable):
         from .administrative_unit import AdministrativeUnit
         from .application import Application
         from .app_management_policy import AppManagementPolicy
+        from .app_role_assignment import AppRoleAssignment
         from .authorization_policy import AuthorizationPolicy
         from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
@@ -314,6 +320,7 @@ class DirectoryObject(Entity, Parsable):
         from .administrative_unit import AdministrativeUnit
         from .application import Application
         from .app_management_policy import AppManagementPolicy
+        from .app_role_assignment import AppRoleAssignment
         from .authorization_policy import AuthorizationPolicy
         from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration

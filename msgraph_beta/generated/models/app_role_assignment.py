@@ -7,18 +7,18 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
-    from .entity import Entity
+    from .directory_object import DirectoryObject
 
-from .entity import Entity
+from .directory_object import DirectoryObject
 
 @dataclass
-class AppRoleAssignment(Entity, Parsable):
+class AppRoleAssignment(DirectoryObject, Parsable):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.appRoleAssignment"
     # The identifier (id) for the app role that is assigned to the principal. This app role must be exposed in the appRoles property on the resource application's service principal (resourceId). If the resource application hasn't declared any app roles, a default app role ID of 00000000-0000-0000-0000-000000000000 can be specified to signal that the principal is assigned to the resource app without any specific app roles. Required on create.
     app_role_id: Optional[UUID] = None
     # The time when the app role assignment was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     creation_timestamp: Optional[datetime.datetime] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     # The display name of the user, group, or service principal that was granted the app role assignment. Maximum length is 256 characters. Read-only. Supports $filter (eq and startswith).
     principal_display_name: Optional[str] = None
     # The unique identifier (id) for the user, security group, or service principal being granted the app role. Security groups with dynamic memberships are supported. Required on create.
@@ -46,9 +46,9 @@ class AppRoleAssignment(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .entity import Entity
+        from .directory_object import DirectoryObject
 
-        from .entity import Entity
+        from .directory_object import DirectoryObject
 
         fields: dict[str, Callable[[Any], None]] = {
             "appRoleId": lambda n : setattr(self, 'app_role_id', n.get_uuid_value()),

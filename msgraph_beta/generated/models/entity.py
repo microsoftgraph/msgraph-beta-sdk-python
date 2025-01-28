@@ -428,6 +428,8 @@ if TYPE_CHECKING:
     from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
     from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
     from .dep_onboarding_setting import DepOnboardingSetting
+    from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+    from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
     from .detected_app import DetectedApp
     from .device import Device
     from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
@@ -3768,6 +3770,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .dep_onboarding_setting import DepOnboardingSetting
 
             return DepOnboardingSetting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depTvOSEnrollmentProfile".casefold():
+            from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+
+            return DepTvOSEnrollmentProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depVisionOSEnrollmentProfile".casefold():
+            from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
+
+            return DepVisionOSEnrollmentProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.detectedApp".casefold():
             from .detected_app import DetectedApp
 
@@ -10721,6 +10731,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
         from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
         from .dep_onboarding_setting import DepOnboardingSetting
+        from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+        from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
         from .detected_app import DetectedApp
         from .device import Device
         from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
@@ -12761,6 +12773,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
         from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
         from .dep_onboarding_setting import DepOnboardingSetting
+        from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+        from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
         from .detected_app import DetectedApp
         from .device import Device
         from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter

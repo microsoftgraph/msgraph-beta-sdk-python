@@ -5,6 +5,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .....models.cloud_pc_disaster_recovery_report_name import CloudPcDisasterRecoveryReportName
+
 @dataclass
 class RetrieveCrossRegionDisasterRecoveryReportPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -18,6 +21,8 @@ class RetrieveCrossRegionDisasterRecoveryReportPostRequestBody(AdditionalDataHol
     group_by: Optional[list[str]] = None
     # The orderBy property
     order_by: Optional[list[str]] = None
+    # The reportName property
+    report_name: Optional[CloudPcDisasterRecoveryReportName] = None
     # The search property
     search: Optional[str] = None
     # The select property
@@ -43,10 +48,15 @@ class RetrieveCrossRegionDisasterRecoveryReportPostRequestBody(AdditionalDataHol
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .....models.cloud_pc_disaster_recovery_report_name import CloudPcDisasterRecoveryReportName
+
+        from .....models.cloud_pc_disaster_recovery_report_name import CloudPcDisasterRecoveryReportName
+
         fields: dict[str, Callable[[Any], None]] = {
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
             "groupBy": lambda n : setattr(self, 'group_by', n.get_collection_of_primitive_values(str)),
             "orderBy": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
+            "reportName": lambda n : setattr(self, 'report_name', n.get_enum_value(CloudPcDisasterRecoveryReportName)),
             "search": lambda n : setattr(self, 'search', n.get_str_value()),
             "select": lambda n : setattr(self, 'select', n.get_collection_of_primitive_values(str)),
             "skip": lambda n : setattr(self, 'skip', n.get_int_value()),
@@ -65,6 +75,7 @@ class RetrieveCrossRegionDisasterRecoveryReportPostRequestBody(AdditionalDataHol
         writer.write_str_value("filter", self.filter)
         writer.write_collection_of_primitive_values("groupBy", self.group_by)
         writer.write_collection_of_primitive_values("orderBy", self.order_by)
+        writer.write_enum_value("reportName", self.report_name)
         writer.write_str_value("search", self.search)
         writer.write_collection_of_primitive_values("select", self.select)
         writer.write_int_value("skip", self.skip)

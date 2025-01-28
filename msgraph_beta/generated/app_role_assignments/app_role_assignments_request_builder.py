@@ -18,7 +18,11 @@ if TYPE_CHECKING:
     from ..models.app_role_assignment_collection_response import AppRoleAssignmentCollectionResponse
     from ..models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
+    from .delta.delta_request_builder import DeltaRequestBuilder
+    from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
+    from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
     from .item.app_role_assignment_item_request_builder import AppRoleAssignmentItemRequestBuilder
+    from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
 
 class AppRoleAssignmentsRequestBuilder(BaseRequestBuilder):
     """
@@ -134,6 +138,42 @@ class AppRoleAssignmentsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def delta(self) -> DeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        from .delta.delta_request_builder import DeltaRequestBuilder
+
+        return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_by_ids(self) -> GetByIdsRequestBuilder:
+        """
+        Provides operations to call the getByIds method.
+        """
+        from .get_by_ids.get_by_ids_request_builder import GetByIdsRequestBuilder
+
+        return GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_user_owned_objects(self) -> GetUserOwnedObjectsRequestBuilder:
+        """
+        Provides operations to call the getUserOwnedObjects method.
+        """
+        from .get_user_owned_objects.get_user_owned_objects_request_builder import GetUserOwnedObjectsRequestBuilder
+
+        return GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def validate_properties(self) -> ValidatePropertiesRequestBuilder:
+        """
+        Provides operations to call the validateProperties method.
+        """
+        from .validate_properties.validate_properties_request_builder import ValidatePropertiesRequestBuilder
+
+        return ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AppRoleAssignmentsRequestBuilderGetQueryParameters():

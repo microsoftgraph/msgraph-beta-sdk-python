@@ -35,7 +35,7 @@ class ImportedDeviceIdentity(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The platform property
+    # Supported platform types for policies.
     platform: Optional[Platform] = None
     
     @staticmethod
