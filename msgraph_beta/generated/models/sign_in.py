@@ -47,6 +47,8 @@ class SignIn(Entity, Parsable):
     app_display_name: Optional[str] = None
     # The application identifier in Microsoft Entra ID.  Supports $filter (eq).
     app_id: Optional[str] = None
+    # The identifier of the tenant that owns the client application.  Supports $filter (eq).
+    app_owner_tenant_id: Optional[str] = None
     # Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the app token was bound to the device.
     app_token_protection_status: Optional[TokenProtectionStatus] = None
     # A list of conditional access policies that the corresponding sign-in activity triggers. Apps need more Conditional Access-related privileges to read the details of this property. For more information, see Permissions for viewing applied conditional access (CA) policies in sign-ins.
@@ -135,6 +137,8 @@ class SignIn(Entity, Parsable):
     resource_display_name: Optional[str] = None
     # The identifier of the resource that the user signed in to.  Supports $filter (eq).
     resource_id: Optional[str] = None
+    # The identifier of the owner of the resource.  Supports $filter (eq).
+    resource_owner_tenant_id: Optional[str] = None
     # The identifier of the service principal representing the target resource in the sign-in event.
     resource_service_principal_id: Optional[str] = None
     # The tenant identifier of the resource referenced in the sign in.
@@ -161,7 +165,7 @@ class SignIn(Entity, Parsable):
     session_id: Optional[str] = None
     # Any conditional access session management policies that were applied during the sign-in event.
     session_lifetime_policies: Optional[list[SessionLifetimePolicy]] = None
-    # Indicates the category of sign in that the event represents. For user sign ins, the category can be interactiveUser or nonInteractiveUser and corresponds to the value for the isInteractive property on the signin resource. For managed identity sign ins, the category is managedIdentity. For service principal sign-ins, the category is servicePrincipal. Possible values are: interactiveUser, nonInteractiveUser, servicePrincipal, managedIdentity, unknownFutureValue.  Supports $filter (eq, ne).
+    # Indicates the category of sign in that the event represents. For user sign ins, the category can be interactiveUser or nonInteractiveUser and corresponds to the value for the isInteractive property on the signin resource. For managed identity sign ins, the category is managedIdentity. For service principal sign-ins, the category is servicePrincipal. Possible values are: interactiveUser, nonInteractiveUser, servicePrincipal, managedIdentity, unknownFutureValue.  Supports $filter (eq, ne). NOTE: Only interactive sign-ins are returned unless you set an explicit filter. For example, the filter for getting non-interactive sign-ins is https://graph.microsoft.com/beta/auditLogs/signIns?&$filter=signInEventTypes/any(t: t eq 'nonInteractiveUser').
     sign_in_event_types: Optional[list[str]] = None
     # The identification that the user provided to sign in. It can be the userPrincipalName, but is also populated when a user signs in using other identifiers.
     sign_in_identifier: Optional[str] = None
@@ -275,6 +279,7 @@ class SignIn(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
+            "appOwnerTenantId": lambda n : setattr(self, 'app_owner_tenant_id', n.get_str_value()),
             "appTokenProtectionStatus": lambda n : setattr(self, 'app_token_protection_status', n.get_enum_value(TokenProtectionStatus)),
             "appliedConditionalAccessPolicies": lambda n : setattr(self, 'applied_conditional_access_policies', n.get_collection_of_object_values(AppliedConditionalAccessPolicy)),
             "appliedEventListeners": lambda n : setattr(self, 'applied_event_listeners', n.get_collection_of_object_values(AppliedAuthenticationEventListener)),
@@ -318,6 +323,7 @@ class SignIn(Entity, Parsable):
             "processingTimeInMilliseconds": lambda n : setattr(self, 'processing_time_in_milliseconds', n.get_int_value()),
             "resourceDisplayName": lambda n : setattr(self, 'resource_display_name', n.get_str_value()),
             "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
+            "resourceOwnerTenantId": lambda n : setattr(self, 'resource_owner_tenant_id', n.get_str_value()),
             "resourceServicePrincipalId": lambda n : setattr(self, 'resource_service_principal_id', n.get_str_value()),
             "resourceTenantId": lambda n : setattr(self, 'resource_tenant_id', n.get_str_value()),
             "riskDetail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(RiskDetail)),
@@ -361,6 +367,7 @@ class SignIn(Entity, Parsable):
         super().serialize(writer)
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appId", self.app_id)
+        writer.write_str_value("appOwnerTenantId", self.app_owner_tenant_id)
         writer.write_enum_value("appTokenProtectionStatus", self.app_token_protection_status)
         writer.write_collection_of_object_values("appliedConditionalAccessPolicies", self.applied_conditional_access_policies)
         writer.write_collection_of_object_values("appliedEventListeners", self.applied_event_listeners)
@@ -404,6 +411,7 @@ class SignIn(Entity, Parsable):
         writer.write_int_value("processingTimeInMilliseconds", self.processing_time_in_milliseconds)
         writer.write_str_value("resourceDisplayName", self.resource_display_name)
         writer.write_str_value("resourceId", self.resource_id)
+        writer.write_str_value("resourceOwnerTenantId", self.resource_owner_tenant_id)
         writer.write_str_value("resourceServicePrincipalId", self.resource_service_principal_id)
         writer.write_str_value("resourceTenantId", self.resource_tenant_id)
         writer.write_enum_value("riskDetail", self.risk_detail)

@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .dynamics.dynamics_request_builder import DynamicsRequestBuilder
     from .edge.edge_request_builder import EdgeRequestBuilder
     from .entra.entra_request_builder import EntraRequestBuilder
+    from .exchange.exchange_request_builder import ExchangeRequestBuilder
     from .forms.forms_request_builder import FormsRequestBuilder
     from .microsoft365_apps.microsoft365_apps_request_builder import Microsoft365AppsRequestBuilder
     from .people.people_request_builder import PeopleRequestBuilder
@@ -156,6 +157,15 @@ class AdminRequestBuilder(BaseRequestBuilder):
         from .entra.entra_request_builder import EntraRequestBuilder
 
         return EntraRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def exchange(self) -> ExchangeRequestBuilder:
+        """
+        Provides operations to manage the exchange property of the microsoft.graph.admin entity.
+        """
+        from .exchange.exchange_request_builder import ExchangeRequestBuilder
+
+        return ExchangeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def forms(self) -> FormsRequestBuilder:

@@ -35,7 +35,7 @@ class ImportedAppleDeviceIdentity(Entity, Parsable):
     last_contacted_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The platform property
+    # Supported platform types for policies.
     platform: Optional[Platform] = None
     # The time enrollment profile was assigned to the device
     requested_enrollment_profile_assignment_date_time: Optional[datetime.datetime] = None

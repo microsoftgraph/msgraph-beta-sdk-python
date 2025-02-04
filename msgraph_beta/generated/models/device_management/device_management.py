@@ -191,7 +191,7 @@ from ..entity import Entity
 @dataclass
 class DeviceManagement(Entity, Parsable):
     """
-    Singleton entity that acts as a container for all device management functionality.
+    Singleton that acts as container for a collection of Resource Access entities.
     """
     # The date & time when tenant data moved between scaleunits.
     account_move_completion_date_time: Optional[datetime.datetime] = None

@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.directory_object import DirectoryObject
     from .....models.o_data_errors.o_data_error import ODataError
+    from .graph_app_role_assignment.graph_app_role_assignment_request_builder import GraphAppRoleAssignmentRequestBuilder
     from .graph_device.graph_device_request_builder import GraphDeviceRequestBuilder
     from .graph_endpoint.graph_endpoint_request_builder import GraphEndpointRequestBuilder
 
@@ -72,6 +73,15 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DirectoryObjectItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def graph_app_role_assignment(self) -> GraphAppRoleAssignmentRequestBuilder:
+        """
+        Casts the previous resource to appRoleAssignment.
+        """
+        from .graph_app_role_assignment.graph_app_role_assignment_request_builder import GraphAppRoleAssignmentRequestBuilder
+
+        return GraphAppRoleAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def graph_device(self) -> GraphDeviceRequestBuilder:

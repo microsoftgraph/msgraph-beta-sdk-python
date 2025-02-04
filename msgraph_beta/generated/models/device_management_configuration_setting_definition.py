@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .device_management_configuration_setting_group_collection_definition import DeviceManagementConfigurationSettingGroupCollectionDefinition
     from .device_management_configuration_setting_group_definition import DeviceManagementConfigurationSettingGroupDefinition
     from .device_management_configuration_setting_occurrence import DeviceManagementConfigurationSettingOccurrence
+    from .device_management_configuration_setting_risk_level import DeviceManagementConfigurationSettingRiskLevel
     from .device_management_configuration_setting_usage import DeviceManagementConfigurationSettingUsage
     from .device_management_configuration_setting_visibility import DeviceManagementConfigurationSettingVisibility
     from .device_management_configuration_simple_setting_collection_definition import DeviceManagementConfigurationSimpleSettingCollectionDefinition
@@ -53,6 +54,8 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
     offset_uri: Optional[str] = None
     # List of referred setting information.
     referred_setting_information_list: Optional[list[DeviceManagementConfigurationReferredSettingInformation]] = None
+    # Setting RiskLevel
+    risk_level: Optional[DeviceManagementConfigurationSettingRiskLevel] = None
     # Root setting definition id if the setting is a child setting.
     root_definition_id: Optional[str] = None
     # Supported setting types
@@ -123,6 +126,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
         from .device_management_configuration_setting_group_collection_definition import DeviceManagementConfigurationSettingGroupCollectionDefinition
         from .device_management_configuration_setting_group_definition import DeviceManagementConfigurationSettingGroupDefinition
         from .device_management_configuration_setting_occurrence import DeviceManagementConfigurationSettingOccurrence
+        from .device_management_configuration_setting_risk_level import DeviceManagementConfigurationSettingRiskLevel
         from .device_management_configuration_setting_usage import DeviceManagementConfigurationSettingUsage
         from .device_management_configuration_setting_visibility import DeviceManagementConfigurationSettingVisibility
         from .device_management_configuration_simple_setting_collection_definition import DeviceManagementConfigurationSimpleSettingCollectionDefinition
@@ -139,6 +143,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
         from .device_management_configuration_setting_group_collection_definition import DeviceManagementConfigurationSettingGroupCollectionDefinition
         from .device_management_configuration_setting_group_definition import DeviceManagementConfigurationSettingGroupDefinition
         from .device_management_configuration_setting_occurrence import DeviceManagementConfigurationSettingOccurrence
+        from .device_management_configuration_setting_risk_level import DeviceManagementConfigurationSettingRiskLevel
         from .device_management_configuration_setting_usage import DeviceManagementConfigurationSettingUsage
         from .device_management_configuration_setting_visibility import DeviceManagementConfigurationSettingVisibility
         from .device_management_configuration_simple_setting_collection_definition import DeviceManagementConfigurationSimpleSettingCollectionDefinition
@@ -159,6 +164,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
             "occurrence": lambda n : setattr(self, 'occurrence', n.get_object_value(DeviceManagementConfigurationSettingOccurrence)),
             "offsetUri": lambda n : setattr(self, 'offset_uri', n.get_str_value()),
             "referredSettingInformationList": lambda n : setattr(self, 'referred_setting_information_list', n.get_collection_of_object_values(DeviceManagementConfigurationReferredSettingInformation)),
+            "riskLevel": lambda n : setattr(self, 'risk_level', n.get_collection_of_enum_values(DeviceManagementConfigurationSettingRiskLevel)),
             "rootDefinitionId": lambda n : setattr(self, 'root_definition_id', n.get_str_value()),
             "settingUsage": lambda n : setattr(self, 'setting_usage', n.get_collection_of_enum_values(DeviceManagementConfigurationSettingUsage)),
             "uxBehavior": lambda n : setattr(self, 'ux_behavior', n.get_enum_value(DeviceManagementConfigurationControlType)),
@@ -191,6 +197,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
         writer.write_object_value("occurrence", self.occurrence)
         writer.write_str_value("offsetUri", self.offset_uri)
         writer.write_collection_of_object_values("referredSettingInformationList", self.referred_setting_information_list)
+        writer.write_enum_value("riskLevel", self.risk_level)
         writer.write_str_value("rootDefinitionId", self.root_definition_id)
         writer.write_enum_value("settingUsage", self.setting_usage)
         writer.write_enum_value("uxBehavior", self.ux_behavior)

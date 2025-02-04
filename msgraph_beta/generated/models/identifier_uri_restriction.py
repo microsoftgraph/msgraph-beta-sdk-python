@@ -23,6 +23,8 @@ class IdentifierUriRestriction(AdditionalDataHolder, BackedModel, Parsable):
     exclude_apps_receiving_v2_tokens: Optional[bool] = None
     # If true, the restriction isn't enforced for SAML applications in Microsoft Entra ID; else, the restriction is enforced for those applications.
     exclude_saml: Optional[bool] = None
+    # If true, Microsoft sets the identifierUriRestriction state. If false, the tenant modifies the identifierUriRestriction state. Read-only.
+    is_state_set_by_microsoft: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Specifies the date from which the policy restriction applies to newly created applications. For existing applications, the enforcement date can be retroactively applied.
@@ -56,6 +58,7 @@ class IdentifierUriRestriction(AdditionalDataHolder, BackedModel, Parsable):
             "excludeActors": lambda n : setattr(self, 'exclude_actors', n.get_object_value(AppManagementPolicyActorExemptions)),
             "excludeAppsReceivingV2Tokens": lambda n : setattr(self, 'exclude_apps_receiving_v2_tokens', n.get_bool_value()),
             "excludeSaml": lambda n : setattr(self, 'exclude_saml', n.get_bool_value()),
+            "isStateSetByMicrosoft": lambda n : setattr(self, 'is_state_set_by_microsoft', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "restrictForAppsCreatedAfterDateTime": lambda n : setattr(self, 'restrict_for_apps_created_after_date_time', n.get_datetime_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(AppManagementRestrictionState)),

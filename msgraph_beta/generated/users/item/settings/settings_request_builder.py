@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.user_settings import UserSettings
     from .contact_merge_suggestions.contact_merge_suggestions_request_builder import ContactMergeSuggestionsRequestBuilder
+    from .exchange.exchange_request_builder import ExchangeRequestBuilder
     from .item_insights.item_insights_request_builder import ItemInsightsRequestBuilder
     from .regional_and_language_settings.regional_and_language_settings_request_builder import RegionalAndLanguageSettingsRequestBuilder
     from .shift_preferences.shift_preferences_request_builder import ShiftPreferencesRequestBuilder
@@ -152,6 +153,15 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         from .contact_merge_suggestions.contact_merge_suggestions_request_builder import ContactMergeSuggestionsRequestBuilder
 
         return ContactMergeSuggestionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def exchange(self) -> ExchangeRequestBuilder:
+        """
+        Provides operations to manage the exchange property of the microsoft.graph.userSettings entity.
+        """
+        from .exchange.exchange_request_builder import ExchangeRequestBuilder
+
+        return ExchangeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def item_insights(self) -> ItemInsightsRequestBuilder:

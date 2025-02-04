@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .graph_application.graph_application_request_builder import GraphApplicationRequestBuilder
+    from .graph_app_role_assignment.graph_app_role_assignment_request_builder import GraphAppRoleAssignmentRequestBuilder
     from .graph_endpoint.graph_endpoint_request_builder import GraphEndpointRequestBuilder
     from .graph_group.graph_group_request_builder import GraphGroupRequestBuilder
     from .graph_service_principal.graph_service_principal_request_builder import GraphServicePrincipalRequestBuilder
@@ -100,6 +101,15 @@ class OwnedObjectsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_app_role_assignment(self) -> GraphAppRoleAssignmentRequestBuilder:
+        """
+        Casts the previous resource to appRoleAssignment.
+        """
+        from .graph_app_role_assignment.graph_app_role_assignment_request_builder import GraphAppRoleAssignmentRequestBuilder
+
+        return GraphAppRoleAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def graph_application(self) -> GraphApplicationRequestBuilder:
