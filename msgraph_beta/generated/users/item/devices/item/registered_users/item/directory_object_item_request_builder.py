@@ -6,6 +6,7 @@ from kiota_abstractions.request_adapter import RequestAdapter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .graph_app_role_assignment.graph_app_role_assignment_request_builder import GraphAppRoleAssignmentRequestBuilder
     from .graph_endpoint.graph_endpoint_request_builder import GraphEndpointRequestBuilder
     from .graph_service_principal.graph_service_principal_request_builder import GraphServicePrincipalRequestBuilder
     from .graph_user.graph_user_request_builder import GraphUserRequestBuilder
@@ -23,6 +24,15 @@ class DirectoryObjectItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/devices/{device%2Did}/registeredUsers/{directoryObject%2Did}", path_parameters)
+    
+    @property
+    def graph_app_role_assignment(self) -> GraphAppRoleAssignmentRequestBuilder:
+        """
+        Casts the previous resource to appRoleAssignment.
+        """
+        from .graph_app_role_assignment.graph_app_role_assignment_request_builder import GraphAppRoleAssignmentRequestBuilder
+
+        return GraphAppRoleAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def graph_endpoint(self) -> GraphEndpointRequestBuilder:

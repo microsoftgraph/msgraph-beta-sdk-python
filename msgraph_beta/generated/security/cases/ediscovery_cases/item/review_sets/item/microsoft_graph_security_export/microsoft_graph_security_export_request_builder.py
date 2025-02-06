@@ -32,7 +32,7 @@ class MicrosoftGraphSecurityExportRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ExportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Initiate an export from a reviewSet.  For details, see Export documents from a review set in eDiscovery (Premium).
+        Initiate an export from a reviewSet. For more information, see Export documents from a review set in eDiscovery (Premium).
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -54,7 +54,7 @@ class MicrosoftGraphSecurityExportRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ExportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Initiate an export from a reviewSet.  For details, see Export documents from a review set in eDiscovery (Premium).
+        Initiate an export from a reviewSet. For more information, see Export documents from a review set in eDiscovery (Premium).
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

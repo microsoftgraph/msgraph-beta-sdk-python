@@ -9,6 +9,8 @@ if TYPE_CHECKING:
     from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
     from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
     from .dep_token_type import DepTokenType
+    from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+    from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
     from .enrollment_profile import EnrollmentProfile
     from .entity import Entity
     from .imported_apple_device_identity import ImportedAppleDeviceIdentity
@@ -28,6 +30,10 @@ class DepOnboardingSetting(Entity, Parsable):
     default_ios_enrollment_profile: Optional[DepIOSEnrollmentProfile] = None
     # Default MacOs Enrollment Profile
     default_mac_os_enrollment_profile: Optional[DepMacOSEnrollmentProfile] = None
+    # Default TvOS Enrollment Profile
+    default_tv_o_s_enrollment_profile: Optional[DepTvOSEnrollmentProfile] = None
+    # Default VisionOS Enrollment Profile
+    default_vision_o_s_enrollment_profile: Optional[DepVisionOSEnrollmentProfile] = None
     # The enrollment profiles.
     enrollment_profiles: Optional[list[EnrollmentProfile]] = None
     # The imported Apple device identities.
@@ -74,6 +80,8 @@ class DepOnboardingSetting(Entity, Parsable):
         from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
         from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
         from .dep_token_type import DepTokenType
+        from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+        from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
         from .enrollment_profile import EnrollmentProfile
         from .entity import Entity
         from .imported_apple_device_identity import ImportedAppleDeviceIdentity
@@ -81,6 +89,8 @@ class DepOnboardingSetting(Entity, Parsable):
         from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
         from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
         from .dep_token_type import DepTokenType
+        from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+        from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
         from .enrollment_profile import EnrollmentProfile
         from .entity import Entity
         from .imported_apple_device_identity import ImportedAppleDeviceIdentity
@@ -90,6 +100,8 @@ class DepOnboardingSetting(Entity, Parsable):
             "dataSharingConsentGranted": lambda n : setattr(self, 'data_sharing_consent_granted', n.get_bool_value()),
             "defaultIosEnrollmentProfile": lambda n : setattr(self, 'default_ios_enrollment_profile', n.get_object_value(DepIOSEnrollmentProfile)),
             "defaultMacOsEnrollmentProfile": lambda n : setattr(self, 'default_mac_os_enrollment_profile', n.get_object_value(DepMacOSEnrollmentProfile)),
+            "defaultTvOSEnrollmentProfile": lambda n : setattr(self, 'default_tv_o_s_enrollment_profile', n.get_object_value(DepTvOSEnrollmentProfile)),
+            "defaultVisionOSEnrollmentProfile": lambda n : setattr(self, 'default_vision_o_s_enrollment_profile', n.get_object_value(DepVisionOSEnrollmentProfile)),
             "enrollmentProfiles": lambda n : setattr(self, 'enrollment_profiles', n.get_collection_of_object_values(EnrollmentProfile)),
             "importedAppleDeviceIdentities": lambda n : setattr(self, 'imported_apple_device_identities', n.get_collection_of_object_values(ImportedAppleDeviceIdentity)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -120,6 +132,8 @@ class DepOnboardingSetting(Entity, Parsable):
         writer.write_bool_value("dataSharingConsentGranted", self.data_sharing_consent_granted)
         writer.write_object_value("defaultIosEnrollmentProfile", self.default_ios_enrollment_profile)
         writer.write_object_value("defaultMacOsEnrollmentProfile", self.default_mac_os_enrollment_profile)
+        writer.write_object_value("defaultTvOSEnrollmentProfile", self.default_tv_o_s_enrollment_profile)
+        writer.write_object_value("defaultVisionOSEnrollmentProfile", self.default_vision_o_s_enrollment_profile)
         writer.write_collection_of_object_values("enrollmentProfiles", self.enrollment_profiles)
         writer.write_collection_of_object_values("importedAppleDeviceIdentities", self.imported_apple_device_identities)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)

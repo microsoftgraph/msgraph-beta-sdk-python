@@ -16,7 +16,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, BackedModel, Pars
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The type of authentication event that triggered the custom authentication extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
+    # The type of authentication event that triggered the custom authentication extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue, attributeCollectionStart, attributeCollectionSubmit, emailOtpSend. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: attributeCollectionStart, attributeCollectionSubmit, emailOtpSend.
     event_type: Optional[AuthenticationEventType] = None
     # ID of the authentication event listener that was executed.
     executed_listener_id: Optional[str] = None

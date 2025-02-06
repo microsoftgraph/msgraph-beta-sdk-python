@@ -17,6 +17,8 @@ class CrossTenantIdentitySyncPolicyPartner(AdditionalDataHolder, BackedModel, Pa
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Display name for the cross-tenant user synchronization policy. Use the name of the partner Microsoft Entra tenant to easily identify the policy. Optional.
     display_name: Optional[str] = None
+    # The externalCloudAuthorizedApplicationId property
+    external_cloud_authorized_application_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Tenant identifier for the partner Microsoft Entra organization. Read-only.
@@ -46,6 +48,7 @@ class CrossTenantIdentitySyncPolicyPartner(AdditionalDataHolder, BackedModel, Pa
 
         fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "externalCloudAuthorizedApplicationId": lambda n : setattr(self, 'external_cloud_authorized_application_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "userSyncInbound": lambda n : setattr(self, 'user_sync_inbound', n.get_object_value(CrossTenantUserSyncInbound)),
@@ -61,6 +64,7 @@ class CrossTenantIdentitySyncPolicyPartner(AdditionalDataHolder, BackedModel, Pa
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("displayName", self.display_name)
+        writer.write_str_value("externalCloudAuthorizedApplicationId", self.external_cloud_authorized_application_id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_object_value("userSyncInbound", self.user_sync_inbound)

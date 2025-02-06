@@ -50,7 +50,7 @@ class MessagesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MessagesRequestBuilderGetQueryParameters]] = None) -> Optional[ChatMessageCollectionResponse]:
         """
-        A collection of all the messages in the channel. A navigation property. Nullable.
+        A collection of all the messages in the channel. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChatMessageCollectionResponse]
         """
@@ -93,7 +93,7 @@ class MessagesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MessagesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        A collection of all the messages in the channel. A navigation property. Nullable.
+        A collection of all the messages in the channel. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class MessagesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MessagesRequestBuilderGetQueryParameters():
         """
-        A collection of all the messages in the channel. A navigation property. Nullable.
+        A collection of all the messages in the channel. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

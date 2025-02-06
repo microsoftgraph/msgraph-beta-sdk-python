@@ -17,7 +17,7 @@ from .case_operation import CaseOperation
 
 @dataclass
 class EdiscoverySearchExportOperation(CaseOperation, Parsable):
-    # The additional items to include in the export. The possible values are: none, teamsAndYammerConversations, cloudAttachments, allDocumentVersions, subfolderContents, listAttachments, unknownFutureValue.
+    # The additional items to include in the export. The possible values are: none, teamsAndYammerConversations, cloudAttachments, allDocumentVersions, subfolderContents, listAttachments, unknownFutureValue, htmlTranscripts, advancedIndexing, allItemsInFolder, includeFolderAndPath, condensePaths, friendlyName, splitSource, optimizedPartitionSize, includeReport. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: htmlTranscripts, advancedIndexing, allItemsInFolder, includeFolderAndPath, condensePaths, friendlyName, splitSource, optimizedPartitionSize, includeReport.
     additional_options: Optional[AdditionalOptions] = None
     # The description of the export by the user.
     description: Optional[str] = None

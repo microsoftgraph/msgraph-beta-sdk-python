@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .contact_merge_suggestions import ContactMergeSuggestions
     from .entity import Entity
+    from .exchange_settings import ExchangeSettings
     from .regional_and_language_settings import RegionalAndLanguageSettings
     from .shift_preferences import ShiftPreferences
     from .user_insights_settings import UserInsightsSettings
@@ -23,6 +24,8 @@ class UserSettings(Entity, Parsable):
     contribution_to_content_discovery_as_organization_disabled: Optional[bool] = None
     # When set to true, documents in the user's Office Delve are disabled. Users can control this setting in Office Delve.
     contribution_to_content_discovery_disabled: Optional[bool] = None
+    # The Exchange settings for mailbox discovery.
+    exchange: Optional[ExchangeSettings] = None
     # The user's settings for the visibility of meeting hour insights, and insights derived between a user and other items in Microsoft 365, such as documents or sites. Get userInsightsSettings through this navigation property.
     item_insights: Optional[UserInsightsSettings] = None
     # The OdataType property
@@ -54,6 +57,7 @@ class UserSettings(Entity, Parsable):
         """
         from .contact_merge_suggestions import ContactMergeSuggestions
         from .entity import Entity
+        from .exchange_settings import ExchangeSettings
         from .regional_and_language_settings import RegionalAndLanguageSettings
         from .shift_preferences import ShiftPreferences
         from .user_insights_settings import UserInsightsSettings
@@ -62,6 +66,7 @@ class UserSettings(Entity, Parsable):
 
         from .contact_merge_suggestions import ContactMergeSuggestions
         from .entity import Entity
+        from .exchange_settings import ExchangeSettings
         from .regional_and_language_settings import RegionalAndLanguageSettings
         from .shift_preferences import ShiftPreferences
         from .user_insights_settings import UserInsightsSettings
@@ -72,6 +77,7 @@ class UserSettings(Entity, Parsable):
             "contactMergeSuggestions": lambda n : setattr(self, 'contact_merge_suggestions', n.get_object_value(ContactMergeSuggestions)),
             "contributionToContentDiscoveryAsOrganizationDisabled": lambda n : setattr(self, 'contribution_to_content_discovery_as_organization_disabled', n.get_bool_value()),
             "contributionToContentDiscoveryDisabled": lambda n : setattr(self, 'contribution_to_content_discovery_disabled', n.get_bool_value()),
+            "exchange": lambda n : setattr(self, 'exchange', n.get_object_value(ExchangeSettings)),
             "itemInsights": lambda n : setattr(self, 'item_insights', n.get_object_value(UserInsightsSettings)),
             "regionalAndLanguageSettings": lambda n : setattr(self, 'regional_and_language_settings', n.get_object_value(RegionalAndLanguageSettings)),
             "shiftPreferences": lambda n : setattr(self, 'shift_preferences', n.get_object_value(ShiftPreferences)),
@@ -94,6 +100,7 @@ class UserSettings(Entity, Parsable):
         writer.write_object_value("contactMergeSuggestions", self.contact_merge_suggestions)
         writer.write_bool_value("contributionToContentDiscoveryAsOrganizationDisabled", self.contribution_to_content_discovery_as_organization_disabled)
         writer.write_bool_value("contributionToContentDiscoveryDisabled", self.contribution_to_content_discovery_disabled)
+        writer.write_object_value("exchange", self.exchange)
         writer.write_object_value("itemInsights", self.item_insights)
         writer.write_object_value("regionalAndLanguageSettings", self.regional_and_language_settings)
         writer.write_object_value("shiftPreferences", self.shift_preferences)

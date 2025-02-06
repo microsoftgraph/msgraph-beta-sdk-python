@@ -20,6 +20,8 @@ class TimeCardEvent(AdditionalDataHolder, BackedModel, Parsable):
     at_approved_location: Optional[bool] = None
     # The time the entry is recorded.
     date_time: Optional[datetime.datetime] = None
+    # Indicates whether this action happens at an approved location.
+    is_at_approved_location: Optional[bool] = None
     # Notes about the timeCardEvent.
     notes: Optional[ItemBody] = None
     # The OdataType property
@@ -48,6 +50,7 @@ class TimeCardEvent(AdditionalDataHolder, BackedModel, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "atApprovedLocation": lambda n : setattr(self, 'at_approved_location', n.get_bool_value()),
             "dateTime": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
+            "isAtApprovedLocation": lambda n : setattr(self, 'is_at_approved_location', n.get_bool_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(ItemBody)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -63,6 +66,7 @@ class TimeCardEvent(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("atApprovedLocation", self.at_approved_location)
         writer.write_datetime_value("dateTime", self.date_time)
+        writer.write_bool_value("isAtApprovedLocation", self.is_at_approved_location)
         writer.write_object_value("notes", self.notes)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

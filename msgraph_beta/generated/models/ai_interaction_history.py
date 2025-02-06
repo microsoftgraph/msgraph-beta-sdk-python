@@ -12,7 +12,7 @@ from .entity import Entity
 
 @dataclass
 class AiInteractionHistory(Entity, Parsable):
-    # The list of AI interactions.
+    # The interactions property
     interactions: Optional[list[AiInteraction]] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -1,16 +1,22 @@
 from enum import Enum
 
 class Platform(str, Enum):
-    # Unknown device platform
+    # Default.Indicates the managed device is not known and is associated with 'Unknown' device platform.
     Unknown = "unknown",
-    # IOS device platform
+    # Indicates the managed device is Apple device that runs on iOS operation system.
     Ios = "ios",
-    # Android device platform
+    # Indicates the managed device is a Android device that runs on Android operation system. 
     Android = "android",
-    # Windows device platform
+    # Indicates the managed device is a Windows device that runs on Windows operation system.
     Windows = "windows",
-    # WindowsMobile device platform
+    # Indicates the managed device is a Windows-based mobile device that runs on Windows Mobile operation system.
     WindowsMobile = "windowsMobile",
-    # Mac device platform
+    # Indicates the managed device is Apple device that runs on MacOS operation system.
     MacOS = "macOS",
+    # Indicates the managed device is Apple device that runs on VisionOS operation system.
+    VisionOS = "visionOS",
+    # Indicates the managed device is Apple device that runs on tvOS operation system.
+    TvOS = "tvOS",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

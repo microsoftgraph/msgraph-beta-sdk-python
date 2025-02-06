@@ -5,7 +5,9 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .windows_quality_update_classification import WindowsQualityUpdateClassification
+    from .windows_quality_update_cadence import WindowsQualityUpdateCadence
+    from .windows_quality_update_catalog_product_revision import WindowsQualityUpdateCatalogProductRevision
+    from .windows_quality_update_category import WindowsQualityUpdateCategory
     from .windows_update_catalog_item import WindowsUpdateCatalogItem
 
 from .windows_update_catalog_item import WindowsUpdateCatalogItem
@@ -17,12 +19,16 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsQualityUpdateCatalogItem"
-    # Windows quality update classification
-    classification: Optional[WindowsQualityUpdateClassification] = None
+    # Windows quality update category
+    classification: Optional[WindowsQualityUpdateCategory] = None
     # Flag indicating if update qualifies for expedite
     is_expeditable: Optional[bool] = None
     # Knowledge base article id
     kb_article_id: Optional[str] = None
+    # The operating system product revisions that are released as part of this quality update. Read-only.
+    product_revisions: Optional[list[WindowsQualityUpdateCatalogProductRevision]] = None
+    # The publishing cadence of the quality update. Possible values are: monthly, outOfBand. This property cannot be modified and is automatically populated when the catalog is created.
+    quality_update_cadence: Optional[WindowsQualityUpdateCadence] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WindowsQualityUpdateCatalogItem:
@@ -40,16 +46,22 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .windows_quality_update_classification import WindowsQualityUpdateClassification
+        from .windows_quality_update_cadence import WindowsQualityUpdateCadence
+        from .windows_quality_update_catalog_product_revision import WindowsQualityUpdateCatalogProductRevision
+        from .windows_quality_update_category import WindowsQualityUpdateCategory
         from .windows_update_catalog_item import WindowsUpdateCatalogItem
 
-        from .windows_quality_update_classification import WindowsQualityUpdateClassification
+        from .windows_quality_update_cadence import WindowsQualityUpdateCadence
+        from .windows_quality_update_catalog_product_revision import WindowsQualityUpdateCatalogProductRevision
+        from .windows_quality_update_category import WindowsQualityUpdateCategory
         from .windows_update_catalog_item import WindowsUpdateCatalogItem
 
         fields: dict[str, Callable[[Any], None]] = {
-            "classification": lambda n : setattr(self, 'classification', n.get_enum_value(WindowsQualityUpdateClassification)),
+            "classification": lambda n : setattr(self, 'classification', n.get_enum_value(WindowsQualityUpdateCategory)),
             "isExpeditable": lambda n : setattr(self, 'is_expeditable', n.get_bool_value()),
             "kbArticleId": lambda n : setattr(self, 'kb_article_id', n.get_str_value()),
+            "productRevisions": lambda n : setattr(self, 'product_revisions', n.get_collection_of_object_values(WindowsQualityUpdateCatalogProductRevision)),
+            "qualityUpdateCadence": lambda n : setattr(self, 'quality_update_cadence', n.get_enum_value(WindowsQualityUpdateCadence)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -67,5 +79,7 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem, Parsable):
         writer.write_enum_value("classification", self.classification)
         writer.write_bool_value("isExpeditable", self.is_expeditable)
         writer.write_str_value("kbArticleId", self.kb_article_id)
+        writer.write_collection_of_object_values("productRevisions", self.product_revisions)
+        writer.write_enum_value("qualityUpdateCadence", self.quality_update_cadence)
     
 

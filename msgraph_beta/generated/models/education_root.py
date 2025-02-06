@@ -8,7 +8,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .education_class import EducationClass
     from .education_school import EducationSchool
-    from .education_synchronization_profile import EducationSynchronizationProfile
     from .education_user import EducationUser
     from .reports_root import ReportsRoot
 
@@ -29,8 +28,6 @@ class EducationRoot(AdditionalDataHolder, BackedModel, Parsable):
     reports: Optional[ReportsRoot] = None
     # The schools property
     schools: Optional[list[EducationSchool]] = None
-    # The synchronizationProfiles property
-    synchronization_profiles: Optional[list[EducationSynchronizationProfile]] = None
     # The users property
     users: Optional[list[EducationUser]] = None
     
@@ -52,13 +49,11 @@ class EducationRoot(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .education_class import EducationClass
         from .education_school import EducationSchool
-        from .education_synchronization_profile import EducationSynchronizationProfile
         from .education_user import EducationUser
         from .reports_root import ReportsRoot
 
         from .education_class import EducationClass
         from .education_school import EducationSchool
-        from .education_synchronization_profile import EducationSynchronizationProfile
         from .education_user import EducationUser
         from .reports_root import ReportsRoot
 
@@ -68,7 +63,6 @@ class EducationRoot(AdditionalDataHolder, BackedModel, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reports": lambda n : setattr(self, 'reports', n.get_object_value(ReportsRoot)),
             "schools": lambda n : setattr(self, 'schools', n.get_collection_of_object_values(EducationSchool)),
-            "synchronizationProfiles": lambda n : setattr(self, 'synchronization_profiles', n.get_collection_of_object_values(EducationSynchronizationProfile)),
             "users": lambda n : setattr(self, 'users', n.get_collection_of_object_values(EducationUser)),
         }
         return fields
@@ -86,7 +80,6 @@ class EducationRoot(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("reports", self.reports)
         writer.write_collection_of_object_values("schools", self.schools)
-        writer.write_collection_of_object_values("synchronizationProfiles", self.synchronization_profiles)
         writer.write_collection_of_object_values("users", self.users)
         writer.write_additional_data_value(self.additional_data)
     

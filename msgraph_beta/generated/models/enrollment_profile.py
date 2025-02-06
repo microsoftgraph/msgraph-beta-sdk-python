@@ -9,6 +9,8 @@ if TYPE_CHECKING:
     from .dep_enrollment_profile import DepEnrollmentProfile
     from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
     from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
+    from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+    from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
     from .entity import Entity
 
 from .entity import Entity
@@ -63,6 +65,14 @@ class EnrollmentProfile(Entity, Parsable):
             from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
 
             return DepMacOSEnrollmentProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depTvOSEnrollmentProfile".casefold():
+            from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+
+            return DepTvOSEnrollmentProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depVisionOSEnrollmentProfile".casefold():
+            from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
+
+            return DepVisionOSEnrollmentProfile()
         return EnrollmentProfile()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -74,12 +84,16 @@ class EnrollmentProfile(Entity, Parsable):
         from .dep_enrollment_profile import DepEnrollmentProfile
         from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
         from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
+        from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+        from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
         from .entity import Entity
 
         from .dep_enrollment_base_profile import DepEnrollmentBaseProfile
         from .dep_enrollment_profile import DepEnrollmentProfile
         from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
         from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
+        from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+        from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {

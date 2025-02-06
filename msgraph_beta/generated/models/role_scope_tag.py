@@ -25,6 +25,8 @@ class RoleScopeTag(Entity, Parsable):
     is_built_in: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Permissions associated with the Role Scope Tag. This property is read-only.
+    permissions: Optional[list[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RoleScopeTag:
@@ -53,6 +55,7 @@ class RoleScopeTag(Entity, Parsable):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "isBuiltIn": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
+            "permissions": lambda n : setattr(self, 'permissions', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

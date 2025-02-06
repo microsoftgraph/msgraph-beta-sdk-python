@@ -32,6 +32,8 @@ class Schedule(Entity, Parsable):
     day_notes: Optional[list[DayNote]] = None
     # Indicates whether the schedule is enabled for the team. Required.
     enabled: Optional[bool] = None
+    # Indicates whether copied shifts include activities from the original shift.
+    is_activities_included_when_copying_shifts_enabled: Optional[bool] = None
     # Indicates whether approval is required by a manager of this schedule for cross location shift requests.
     is_cross_location_shift_request_approval_required: Optional[bool] = None
     # Indicates whether the cross-location marketplace feature is enabled for this schedule.
@@ -137,6 +139,7 @@ class Schedule(Entity, Parsable):
             "activitiesIncludedWhenCopyingShiftsEnabled": lambda n : setattr(self, 'activities_included_when_copying_shifts_enabled', n.get_bool_value()),
             "dayNotes": lambda n : setattr(self, 'day_notes', n.get_collection_of_object_values(DayNote)),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
+            "isActivitiesIncludedWhenCopyingShiftsEnabled": lambda n : setattr(self, 'is_activities_included_when_copying_shifts_enabled', n.get_bool_value()),
             "isCrossLocationShiftRequestApprovalRequired": lambda n : setattr(self, 'is_cross_location_shift_request_approval_required', n.get_bool_value()),
             "isCrossLocationShiftsEnabled": lambda n : setattr(self, 'is_cross_location_shifts_enabled', n.get_bool_value()),
             "offerShiftRequests": lambda n : setattr(self, 'offer_shift_requests', n.get_collection_of_object_values(OfferShiftRequest)),
@@ -178,6 +181,7 @@ class Schedule(Entity, Parsable):
         writer.write_bool_value("activitiesIncludedWhenCopyingShiftsEnabled", self.activities_included_when_copying_shifts_enabled)
         writer.write_collection_of_object_values("dayNotes", self.day_notes)
         writer.write_bool_value("enabled", self.enabled)
+        writer.write_bool_value("isActivitiesIncludedWhenCopyingShiftsEnabled", self.is_activities_included_when_copying_shifts_enabled)
         writer.write_bool_value("isCrossLocationShiftRequestApprovalRequired", self.is_cross_location_shift_request_approval_required)
         writer.write_bool_value("isCrossLocationShiftsEnabled", self.is_cross_location_shifts_enabled)
         writer.write_collection_of_object_values("offerShiftRequests", self.offer_shift_requests)

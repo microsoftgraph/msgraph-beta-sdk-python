@@ -16,21 +16,21 @@ from .case_operation import CaseOperation
 
 @dataclass
 class EdiscoveryExportOperation(CaseOperation, Parsable):
-    # The name of the Azure storage location where the export is stored. This only applies to exports stored in your own Azure storage location. The azureBlobContainer property is deprecated and will stop returning data on April 30th, 2023.
+    # The name of the Azure storage location where the export is stored. This name only applies to exports stored in your own Azure storage location. The azureBlobContainer property is deprecated and stopped returning data on April 30, 2023.
     azure_blob_container: Optional[str] = None
-    # The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location. The azureBlobToken property is deprecated and will stop returning data on April 30, 2023.
+    # The SAS token for the Azure storage location. This token only applies to exports stored in your own Azure storage location. The azureBlobToken property is deprecated and stopped returning data on April 30, 2023.
     azure_blob_token: Optional[str] = None
     # The description provided for the export.
     description: Optional[str] = None
     # Contains the properties for an export file metadata, including downloadUrl, fileName, and size. If you export to an Azure storage location, this property returns empty.
     export_file_metadata: Optional[list[ExportFileMetadata]] = None
-    # The options provided for the export. For more information, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags. The fileInfo member is deprecated and will stop returning data on April 30, 2023. Going forward, the summary and load file are always included.
+    # The options provided for the export. For more information, see reviewSet: export. The fileInfo member is deprecated and stopped returning data on April 30, 2023. Going forward, the summary and load files are always included. Possible values are: originalFiles, text, pdfReplacement, tags, unknownFutureValue, splitSource, includeFolderAndPath, friendlyName, condensePaths, optimizedPartitionSize. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: splitSource, includeFolderAndPath, friendlyName, condensePaths, optimizedPartitionSize.
     export_options: Optional[ExportOptions] = None
-    # The options provided that specify the structure of the export. For more information, see reviewSet: export. Possible values are: none, directory, pst.
+    # The options that specify the structure of the export. For more information, see reviewSet: export. Possible values are: none, directory, pst, unknownFutureValue, msg. Use the Prefer: include-unknown-enum-members request header to get the following value from this evolvable enum: msg.
     export_structure: Optional[ExportFileStructure] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The output folder ID. The outputFolderId property is deprecated and will stop returning data on April 30, 2023.
+    # The output folder ID. The outputFolderId property is deprecated and stopped returning data on April 30, 2023.
     output_folder_id: Optional[str] = None
     # The name provided for the export.
     output_name: Optional[str] = None
