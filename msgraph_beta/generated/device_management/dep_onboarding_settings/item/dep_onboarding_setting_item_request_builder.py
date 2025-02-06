@@ -18,6 +18,8 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .default_ios_enrollment_profile.default_ios_enrollment_profile_request_builder import DefaultIosEnrollmentProfileRequestBuilder
     from .default_mac_os_enrollment_profile.default_mac_os_enrollment_profile_request_builder import DefaultMacOsEnrollmentProfileRequestBuilder
+    from .default_tv_o_s_enrollment_profile.default_tv_o_s_enrollment_profile_request_builder import DefaultTvOSEnrollmentProfileRequestBuilder
+    from .default_vision_o_s_enrollment_profile.default_vision_o_s_enrollment_profile_request_builder import DefaultVisionOSEnrollmentProfileRequestBuilder
     from .enrollment_profiles.enrollment_profiles_request_builder import EnrollmentProfilesRequestBuilder
     from .generate_encryption_public_key.generate_encryption_public_key_request_builder import GenerateEncryptionPublicKeyRequestBuilder
     from .get_encryption_public_key.get_encryption_public_key_request_builder import GetEncryptionPublicKeyRequestBuilder
@@ -165,6 +167,24 @@ class DepOnboardingSettingItemRequestBuilder(BaseRequestBuilder):
         from .default_mac_os_enrollment_profile.default_mac_os_enrollment_profile_request_builder import DefaultMacOsEnrollmentProfileRequestBuilder
 
         return DefaultMacOsEnrollmentProfileRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def default_tv_o_s_enrollment_profile(self) -> DefaultTvOSEnrollmentProfileRequestBuilder:
+        """
+        Provides operations to manage the defaultTvOSEnrollmentProfile property of the microsoft.graph.depOnboardingSetting entity.
+        """
+        from .default_tv_o_s_enrollment_profile.default_tv_o_s_enrollment_profile_request_builder import DefaultTvOSEnrollmentProfileRequestBuilder
+
+        return DefaultTvOSEnrollmentProfileRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def default_vision_o_s_enrollment_profile(self) -> DefaultVisionOSEnrollmentProfileRequestBuilder:
+        """
+        Provides operations to manage the defaultVisionOSEnrollmentProfile property of the microsoft.graph.depOnboardingSetting entity.
+        """
+        from .default_vision_o_s_enrollment_profile.default_vision_o_s_enrollment_profile_request_builder import DefaultVisionOSEnrollmentProfileRequestBuilder
+
+        return DefaultVisionOSEnrollmentProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def enrollment_profiles(self) -> EnrollmentProfilesRequestBuilder:

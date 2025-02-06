@@ -428,6 +428,8 @@ if TYPE_CHECKING:
     from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
     from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
     from .dep_onboarding_setting import DepOnboardingSetting
+    from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+    from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
     from .detected_app import DetectedApp
     from .device import Device
     from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
@@ -629,9 +631,6 @@ if TYPE_CHECKING:
     from .education_school import EducationSchool
     from .education_submission import EducationSubmission
     from .education_submission_resource import EducationSubmissionResource
-    from .education_synchronization_error import EducationSynchronizationError
-    from .education_synchronization_profile import EducationSynchronizationProfile
-    from .education_synchronization_profile_status import EducationSynchronizationProfileStatus
     from .education_user import EducationUser
     from .email_activity_statistics import EmailActivityStatistics
     from .email_authentication_method import EmailAuthenticationMethod
@@ -670,8 +669,10 @@ if TYPE_CHECKING:
     from .exact_match_session import ExactMatchSession
     from .exact_match_session_base import ExactMatchSessionBase
     from .exact_match_upload_agent import ExactMatchUploadAgent
+    from .exchange_admin import ExchangeAdmin
     from .exchange_protection_policy import ExchangeProtectionPolicy
     from .exchange_restore_session import ExchangeRestoreSession
+    from .exchange_settings import ExchangeSettings
     from .extension import Extension
     from .extension_property import ExtensionProperty
     from .external import External
@@ -962,6 +963,9 @@ if TYPE_CHECKING:
     from .mac_o_s_web_clip import MacOSWebClip
     from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
     from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
+    from .mailbox import Mailbox
+    from .mailbox_folder import MailboxFolder
+    from .mailbox_item import MailboxItem
     from .mailbox_protection_rule import MailboxProtectionRule
     from .mailbox_protection_unit import MailboxProtectionUnit
     from .mailbox_protection_units_bulk_addition_job import MailboxProtectionUnitsBulkAdditionJob
@@ -3768,6 +3772,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .dep_onboarding_setting import DepOnboardingSetting
 
             return DepOnboardingSetting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depTvOSEnrollmentProfile".casefold():
+            from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+
+            return DepTvOSEnrollmentProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depVisionOSEnrollmentProfile".casefold():
+            from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
+
+            return DepVisionOSEnrollmentProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.detectedApp".casefold():
             from .detected_app import DetectedApp
 
@@ -4585,18 +4597,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .education_submission_resource import EducationSubmissionResource
 
             return EducationSubmissionResource()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.educationSynchronizationError".casefold():
-            from .education_synchronization_error import EducationSynchronizationError
-
-            return EducationSynchronizationError()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.educationSynchronizationProfile".casefold():
-            from .education_synchronization_profile import EducationSynchronizationProfile
-
-            return EducationSynchronizationProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.educationSynchronizationProfileStatus".casefold():
-            from .education_synchronization_profile_status import EducationSynchronizationProfileStatus
-
-            return EducationSynchronizationProfileStatus()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.educationUser".casefold():
             from .education_user import EducationUser
 
@@ -4749,6 +4749,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .exact_match_upload_agent import ExactMatchUploadAgent
 
             return ExactMatchUploadAgent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exchangeAdmin".casefold():
+            from .exchange_admin import ExchangeAdmin
+
+            return ExchangeAdmin()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.exchangeProtectionPolicy".casefold():
             from .exchange_protection_policy import ExchangeProtectionPolicy
 
@@ -4757,6 +4761,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .exchange_restore_session import ExchangeRestoreSession
 
             return ExchangeRestoreSession()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exchangeSettings".casefold():
+            from .exchange_settings import ExchangeSettings
+
+            return ExchangeSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.extension".casefold():
             from .extension import Extension
 
@@ -5930,6 +5938,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mail_assessment_request import MailAssessmentRequest
 
             return MailAssessmentRequest()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailbox".casefold():
+            from .mailbox import Mailbox
+
+            return Mailbox()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxFolder".casefold():
+            from .mailbox_folder import MailboxFolder
+
+            return MailboxFolder()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxItem".casefold():
+            from .mailbox_item import MailboxItem
+
+            return MailboxItem()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxProtectionRule".casefold():
             from .mailbox_protection_rule import MailboxProtectionRule
 
@@ -10721,6 +10741,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
         from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
         from .dep_onboarding_setting import DepOnboardingSetting
+        from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+        from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
         from .detected_app import DetectedApp
         from .device import Device
         from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
@@ -10922,9 +10944,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .education_school import EducationSchool
         from .education_submission import EducationSubmission
         from .education_submission_resource import EducationSubmissionResource
-        from .education_synchronization_error import EducationSynchronizationError
-        from .education_synchronization_profile import EducationSynchronizationProfile
-        from .education_synchronization_profile_status import EducationSynchronizationProfileStatus
         from .education_user import EducationUser
         from .email_activity_statistics import EmailActivityStatistics
         from .email_authentication_method import EmailAuthenticationMethod
@@ -10963,8 +10982,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .exact_match_session import ExactMatchSession
         from .exact_match_session_base import ExactMatchSessionBase
         from .exact_match_upload_agent import ExactMatchUploadAgent
+        from .exchange_admin import ExchangeAdmin
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .exchange_restore_session import ExchangeRestoreSession
+        from .exchange_settings import ExchangeSettings
         from .extension import Extension
         from .extension_property import ExtensionProperty
         from .external import External
@@ -11255,6 +11276,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mac_o_s_web_clip import MacOSWebClip
         from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
         from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
+        from .mailbox import Mailbox
+        from .mailbox_folder import MailboxFolder
+        from .mailbox_item import MailboxItem
         from .mailbox_protection_rule import MailboxProtectionRule
         from .mailbox_protection_unit import MailboxProtectionUnit
         from .mailbox_protection_units_bulk_addition_job import MailboxProtectionUnitsBulkAdditionJob
@@ -12761,6 +12785,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
         from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
         from .dep_onboarding_setting import DepOnboardingSetting
+        from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
+        from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
         from .detected_app import DetectedApp
         from .device import Device
         from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
@@ -12962,9 +12988,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .education_school import EducationSchool
         from .education_submission import EducationSubmission
         from .education_submission_resource import EducationSubmissionResource
-        from .education_synchronization_error import EducationSynchronizationError
-        from .education_synchronization_profile import EducationSynchronizationProfile
-        from .education_synchronization_profile_status import EducationSynchronizationProfileStatus
         from .education_user import EducationUser
         from .email_activity_statistics import EmailActivityStatistics
         from .email_authentication_method import EmailAuthenticationMethod
@@ -13003,8 +13026,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .exact_match_session import ExactMatchSession
         from .exact_match_session_base import ExactMatchSessionBase
         from .exact_match_upload_agent import ExactMatchUploadAgent
+        from .exchange_admin import ExchangeAdmin
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .exchange_restore_session import ExchangeRestoreSession
+        from .exchange_settings import ExchangeSettings
         from .extension import Extension
         from .extension_property import ExtensionProperty
         from .external import External
@@ -13295,6 +13320,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mac_o_s_web_clip import MacOSWebClip
         from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
         from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
+        from .mailbox import Mailbox
+        from .mailbox_folder import MailboxFolder
+        from .mailbox_item import MailboxItem
         from .mailbox_protection_rule import MailboxProtectionRule
         from .mailbox_protection_unit import MailboxProtectionUnit
         from .mailbox_protection_units_bulk_addition_job import MailboxProtectionUnitsBulkAdditionJob

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .event_message import EventMessage
     from .event_message_request import EventMessageRequest
     from .event_message_response import EventMessageResponse
+    from .mailbox_item import MailboxItem
     from .message import Message
     from .note import Note
     from .outlook_task import OutlookTask
@@ -71,6 +72,10 @@ class OutlookItem(Entity, Parsable):
             from .event_message_response import EventMessageResponse
 
             return EventMessageResponse()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxItem".casefold():
+            from .mailbox_item import MailboxItem
+
+            return MailboxItem()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.message".casefold():
             from .message import Message
 
@@ -101,6 +106,7 @@ class OutlookItem(Entity, Parsable):
         from .event_message import EventMessage
         from .event_message_request import EventMessageRequest
         from .event_message_response import EventMessageResponse
+        from .mailbox_item import MailboxItem
         from .message import Message
         from .note import Note
         from .outlook_task import OutlookTask
@@ -113,6 +119,7 @@ class OutlookItem(Entity, Parsable):
         from .event_message import EventMessage
         from .event_message_request import EventMessageRequest
         from .event_message_response import EventMessageResponse
+        from .mailbox_item import MailboxItem
         from .message import Message
         from .note import Note
         from .outlook_task import OutlookTask

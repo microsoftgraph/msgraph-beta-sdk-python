@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_disaster_recovery_capability_type import CloudPcDisasterRecoveryCapabilityType
+    from .cloud_pc_disaster_recovery_license_type import CloudPcDisasterRecoveryLicenseType
 
 @dataclass
 class CloudPcDisasterRecoveryCapability(AdditionalDataHolder, BackedModel, Parsable):
@@ -17,6 +18,8 @@ class CloudPcDisasterRecoveryCapability(AdditionalDataHolder, BackedModel, Parsa
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The disaster recovery action that can be performed for the Cloud PC. The possible values are: none, failover, failback, unknownFutureValue.
     capability_type: Optional[CloudPcDisasterRecoveryCapabilityType] = None
+    # The licenseType property
+    license_type: Optional[CloudPcDisasterRecoveryLicenseType] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The primary and mainly used region where the Cloud PC is located.
@@ -41,11 +44,14 @@ class CloudPcDisasterRecoveryCapability(AdditionalDataHolder, BackedModel, Parsa
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_disaster_recovery_capability_type import CloudPcDisasterRecoveryCapabilityType
+        from .cloud_pc_disaster_recovery_license_type import CloudPcDisasterRecoveryLicenseType
 
         from .cloud_pc_disaster_recovery_capability_type import CloudPcDisasterRecoveryCapabilityType
+        from .cloud_pc_disaster_recovery_license_type import CloudPcDisasterRecoveryLicenseType
 
         fields: dict[str, Callable[[Any], None]] = {
             "capabilityType": lambda n : setattr(self, 'capability_type', n.get_enum_value(CloudPcDisasterRecoveryCapabilityType)),
+            "licenseType": lambda n : setattr(self, 'license_type', n.get_enum_value(CloudPcDisasterRecoveryLicenseType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "primaryRegion": lambda n : setattr(self, 'primary_region', n.get_str_value()),
             "secondaryRegion": lambda n : setattr(self, 'secondary_region', n.get_str_value()),
@@ -61,6 +67,7 @@ class CloudPcDisasterRecoveryCapability(AdditionalDataHolder, BackedModel, Parsa
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("capabilityType", self.capability_type)
+        writer.write_enum_value("licenseType", self.license_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("primaryRegion", self.primary_region)
         writer.write_str_value("secondaryRegion", self.secondary_region)

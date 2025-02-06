@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .administrative_unit import AdministrativeUnit
     from .application import Application
     from .app_management_policy import AppManagementPolicy
+    from .app_role_assignment import AppRoleAssignment
     from .authorization_policy import AuthorizationPolicy
     from .certificate_authority_detail import CertificateAuthorityDetail
     from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
@@ -33,6 +34,7 @@ if TYPE_CHECKING:
     from .group import Group
     from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
     from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
+    from .mailbox import Mailbox
     from .multi_tenant_organization_member import MultiTenantOrganizationMember
     from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
     from .organization import Organization
@@ -92,6 +94,10 @@ class DirectoryObject(Entity, Parsable):
             from .app_management_policy import AppManagementPolicy
 
             return AppManagementPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appRoleAssignment".casefold():
+            from .app_role_assignment import AppRoleAssignment
+
+            return AppRoleAssignment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.authorizationPolicy".casefold():
             from .authorization_policy import AuthorizationPolicy
 
@@ -180,6 +186,10 @@ class DirectoryObject(Entity, Parsable):
             from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
 
             return IdentitySecurityDefaultsEnforcementPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailbox".casefold():
+            from .mailbox import Mailbox
+
+            return Mailbox()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.multiTenantOrganizationMember".casefold():
             from .multi_tenant_organization_member import MultiTenantOrganizationMember
 
@@ -267,6 +277,7 @@ class DirectoryObject(Entity, Parsable):
         from .administrative_unit import AdministrativeUnit
         from .application import Application
         from .app_management_policy import AppManagementPolicy
+        from .app_role_assignment import AppRoleAssignment
         from .authorization_policy import AuthorizationPolicy
         from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
@@ -290,6 +301,7 @@ class DirectoryObject(Entity, Parsable):
         from .group import Group
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
+        from .mailbox import Mailbox
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
         from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
         from .organization import Organization
@@ -314,6 +326,7 @@ class DirectoryObject(Entity, Parsable):
         from .administrative_unit import AdministrativeUnit
         from .application import Application
         from .app_management_policy import AppManagementPolicy
+        from .app_role_assignment import AppRoleAssignment
         from .authorization_policy import AuthorizationPolicy
         from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
@@ -337,6 +350,7 @@ class DirectoryObject(Entity, Parsable):
         from .group import Group
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
+        from .mailbox import Mailbox
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
         from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
         from .organization import Organization

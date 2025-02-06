@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .cloud_pc_operating_system import CloudPcOperatingSystem
     from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
     from .cloud_pc_power_state import CloudPcPowerState
+    from .cloud_pc_product_type import CloudPcProductType
     from .cloud_pc_provisioning_type import CloudPcProvisioningType
     from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
     from .cloud_pc_service_plan_type import CloudPcServicePlanType
@@ -73,6 +74,8 @@ class CloudPC(Entity, Parsable):
     partner_agent_install_results: Optional[list[CloudPcPartnerAgentInstallResult]] = None
     # The power state of a Cloud PC. The possible values are: running, poweredOff, unknown. This property only supports shift work Cloud PCs.
     power_state: Optional[CloudPcPowerState] = None
+    # The product type of the Cloud PC. The possible values are: enterprise, frontline, devBox, powerAutomate, business, unknownFutureValue. For the available service plans and pricing for enterprise, frontline, and business, see Windows 365 for business. For pricing information for devBox, see Microsoft Dev Box pricing. For the available plans and pricing for powerAutomate, see Power Automate pricing. The default value is enterprise. Supports $filter and $select. For more information, see Example 4: List Cloud PCs filtered by product type. Read-only.
+    product_type: Optional[CloudPcProductType] = None
     # The provisioning policy ID of the Cloud PC.
     provisioning_policy_id: Optional[str] = None
     # The provisioning policy that is applied during the provisioning of Cloud PCs.
@@ -123,6 +126,7 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_operating_system import CloudPcOperatingSystem
         from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
         from .cloud_pc_power_state import CloudPcPowerState
+        from .cloud_pc_product_type import CloudPcProductType
         from .cloud_pc_provisioning_type import CloudPcProvisioningType
         from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
         from .cloud_pc_service_plan_type import CloudPcServicePlanType
@@ -142,6 +146,7 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_operating_system import CloudPcOperatingSystem
         from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
         from .cloud_pc_power_state import CloudPcPowerState
+        from .cloud_pc_product_type import CloudPcProductType
         from .cloud_pc_provisioning_type import CloudPcProvisioningType
         from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
         from .cloud_pc_service_plan_type import CloudPcServicePlanType
@@ -174,6 +179,7 @@ class CloudPC(Entity, Parsable):
             "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(CloudPcOperatingSystem)),
             "partnerAgentInstallResults": lambda n : setattr(self, 'partner_agent_install_results', n.get_collection_of_object_values(CloudPcPartnerAgentInstallResult)),
             "powerState": lambda n : setattr(self, 'power_state', n.get_enum_value(CloudPcPowerState)),
+            "productType": lambda n : setattr(self, 'product_type', n.get_enum_value(CloudPcProductType)),
             "provisioningPolicyId": lambda n : setattr(self, 'provisioning_policy_id', n.get_str_value()),
             "provisioningPolicyName": lambda n : setattr(self, 'provisioning_policy_name', n.get_str_value()),
             "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
@@ -221,6 +227,7 @@ class CloudPC(Entity, Parsable):
         writer.write_enum_value("osVersion", self.os_version)
         writer.write_collection_of_object_values("partnerAgentInstallResults", self.partner_agent_install_results)
         writer.write_enum_value("powerState", self.power_state)
+        writer.write_enum_value("productType", self.product_type)
         writer.write_str_value("provisioningPolicyId", self.provisioning_policy_id)
         writer.write_str_value("provisioningPolicyName", self.provisioning_policy_name)
         writer.write_enum_value("provisioningType", self.provisioning_type)

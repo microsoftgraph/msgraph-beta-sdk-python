@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .admin_windows import AdminWindows
     from .edge import Edge
     from .entra import Entra
+    from .exchange_admin import ExchangeAdmin
     from .people_admin_settings import PeopleAdminSettings
     from .service_announcement import ServiceAnnouncement
     from .sharepoint import Sharepoint
@@ -34,6 +35,8 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
     edge: Optional[Edge] = None
     # A container for Microsoft Entra resources. Read-only.
     entra: Optional[Entra] = None
+    # A container for the Exchange admin functionality. Read-only.
+    exchange: Optional[ExchangeAdmin] = None
     # The forms property
     forms: Optional[AdminForms] = None
     # A container for the Microsoft 365 apps admin functionality.
@@ -78,6 +81,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_windows import AdminWindows
         from .edge import Edge
         from .entra import Entra
+        from .exchange_admin import ExchangeAdmin
         from .people_admin_settings import PeopleAdminSettings
         from .service_announcement import ServiceAnnouncement
         from .sharepoint import Sharepoint
@@ -91,6 +95,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_windows import AdminWindows
         from .edge import Edge
         from .entra import Entra
+        from .exchange_admin import ExchangeAdmin
         from .people_admin_settings import PeopleAdminSettings
         from .service_announcement import ServiceAnnouncement
         from .sharepoint import Sharepoint
@@ -100,6 +105,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
             "dynamics": lambda n : setattr(self, 'dynamics', n.get_object_value(AdminDynamics)),
             "edge": lambda n : setattr(self, 'edge', n.get_object_value(Edge)),
             "entra": lambda n : setattr(self, 'entra', n.get_object_value(Entra)),
+            "exchange": lambda n : setattr(self, 'exchange', n.get_object_value(ExchangeAdmin)),
             "forms": lambda n : setattr(self, 'forms', n.get_object_value(AdminForms)),
             "microsoft365Apps": lambda n : setattr(self, 'microsoft365_apps', n.get_object_value(AdminMicrosoft365Apps)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -124,6 +130,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("dynamics", self.dynamics)
         writer.write_object_value("edge", self.edge)
         writer.write_object_value("entra", self.entra)
+        writer.write_object_value("exchange", self.exchange)
         writer.write_object_value("forms", self.forms)
         writer.write_object_value("microsoft365Apps", self.microsoft365_apps)
         writer.write_str_value("@odata.type", self.odata_type)

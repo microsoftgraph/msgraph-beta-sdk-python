@@ -17,6 +17,8 @@ class ClockInPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The atApprovedLocation property
     at_approved_location: Optional[bool] = None
+    # The isAtApprovedLocation property
+    is_at_approved_location: Optional[bool] = None
     # The notes property
     notes: Optional[ItemBody] = None
     # The onBehalfOfUserId property
@@ -44,6 +46,7 @@ class ClockInPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "atApprovedLocation": lambda n : setattr(self, 'at_approved_location', n.get_bool_value()),
+            "isAtApprovedLocation": lambda n : setattr(self, 'is_at_approved_location', n.get_bool_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(ItemBody)),
             "onBehalfOfUserId": lambda n : setattr(self, 'on_behalf_of_user_id', n.get_str_value()),
         }
@@ -58,6 +61,7 @@ class ClockInPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("atApprovedLocation", self.at_approved_location)
+        writer.write_bool_value("isAtApprovedLocation", self.is_at_approved_location)
         writer.write_object_value("notes", self.notes)
         writer.write_str_value("onBehalfOfUserId", self.on_behalf_of_user_id)
         writer.write_additional_data_value(self.additional_data)

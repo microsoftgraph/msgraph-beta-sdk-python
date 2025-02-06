@@ -8,7 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 @dataclass
 class ExtendedKeyUsage(AdditionalDataHolder, BackedModel, Parsable):
     """
-    Complex type that represents the extended key usage of a certificate. This is shared complex type.
+    The Custom Extended Key Usage definition
     """
     # Stores model information.
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)

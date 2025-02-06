@@ -43,7 +43,7 @@ class Channel(Entity, Parsable):
     members: Optional[list[ConversationMember]] = None
     # The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. Use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.
     membership_type: Optional[ChannelMembershipType] = None
-    # A collection of all the messages in the channel. A navigation property. Nullable.
+    # A collection of all the messages in the channel. Nullable.
     messages: Optional[list[ChatMessage]] = None
     # Settings to configure channel moderation to control who can start new posts and reply to posts in that channel.
     moderation_settings: Optional[ChannelModerationSettings] = None
@@ -53,7 +53,7 @@ class Channel(Entity, Parsable):
     shared_with_teams: Optional[list[SharedWithChannelTeamInfo]] = None
     # Contains summary information about the channel, including number of guests, members, owners, and an indicator for members from other tenants. The summary property is only returned if it appears in the $select clause of the Get channel method.
     summary: Optional[ChannelSummary] = None
-    # A collection of all the tabs in the channel. A navigation property.
+    # A collection of all the tabs in the channel.
     tabs: Optional[list[TeamsTab]] = None
     # The ID of the Microsoft Entra tenant.
     tenant_id: Optional[str] = None

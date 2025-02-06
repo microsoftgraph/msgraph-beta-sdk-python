@@ -20,7 +20,6 @@ if TYPE_CHECKING:
     from .me.me_request_builder import MeRequestBuilder
     from .reports.reports_request_builder import ReportsRequestBuilder
     from .schools.schools_request_builder import SchoolsRequestBuilder
-    from .synchronization_profiles.synchronization_profiles_request_builder import SynchronizationProfilesRequestBuilder
     from .users.users_request_builder import UsersRequestBuilder
 
 class EducationRequestBuilder(BaseRequestBuilder):
@@ -150,15 +149,6 @@ class EducationRequestBuilder(BaseRequestBuilder):
         from .schools.schools_request_builder import SchoolsRequestBuilder
 
         return SchoolsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def synchronization_profiles(self) -> SynchronizationProfilesRequestBuilder:
-        """
-        Provides operations to manage the synchronizationProfiles property of the microsoft.graph.educationRoot entity.
-        """
-        from .synchronization_profiles.synchronization_profiles_request_builder import SynchronizationProfilesRequestBuilder
-
-        return SynchronizationProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def users(self) -> UsersRequestBuilder:

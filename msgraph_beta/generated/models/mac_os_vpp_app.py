@@ -41,6 +41,8 @@ class MacOsVppApp(MobileApp, Parsable):
     vpp_token_account_type: Optional[VppTokenAccountType] = None
     # The Apple Id associated with the given Apple Volume Purchase Program Token.
     vpp_token_apple_id: Optional[str] = None
+    # Display name of the VPP token associated with this app.
+    vpp_token_display_name: Optional[str] = None
     # Identifier of the VPP token associated with this app.
     vpp_token_id: Optional[str] = None
     # The organization associated with the Apple Volume Purchase Program Token
@@ -85,6 +87,7 @@ class MacOsVppApp(MobileApp, Parsable):
             "usedLicenseCount": lambda n : setattr(self, 'used_license_count', n.get_int_value()),
             "vppTokenAccountType": lambda n : setattr(self, 'vpp_token_account_type', n.get_enum_value(VppTokenAccountType)),
             "vppTokenAppleId": lambda n : setattr(self, 'vpp_token_apple_id', n.get_str_value()),
+            "vppTokenDisplayName": lambda n : setattr(self, 'vpp_token_display_name', n.get_str_value()),
             "vppTokenId": lambda n : setattr(self, 'vpp_token_id', n.get_str_value()),
             "vppTokenOrganizationName": lambda n : setattr(self, 'vpp_token_organization_name', n.get_str_value()),
         }
@@ -111,6 +114,7 @@ class MacOsVppApp(MobileApp, Parsable):
         writer.write_int_value("usedLicenseCount", self.used_license_count)
         writer.write_enum_value("vppTokenAccountType", self.vpp_token_account_type)
         writer.write_str_value("vppTokenAppleId", self.vpp_token_apple_id)
+        writer.write_str_value("vppTokenDisplayName", self.vpp_token_display_name)
         writer.write_str_value("vppTokenId", self.vpp_token_id)
         writer.write_str_value("vppTokenOrganizationName", self.vpp_token_organization_name)
     

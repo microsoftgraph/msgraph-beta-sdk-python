@@ -13,7 +13,7 @@ from .device_enrollment_configuration import DeviceEnrollmentConfiguration
 @dataclass
 class DeviceEnrollmentPlatformRestrictionsConfiguration(DeviceEnrollmentConfiguration, Parsable):
     """
-    Device Enrollment Configuration that restricts the types of devices a user can enroll
+    Default Device Enrollment Platform Restrictions Configuration that restricts the types of devices a user can enroll
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.deviceEnrollmentPlatformRestrictionsConfiguration"
@@ -27,6 +27,10 @@ class DeviceEnrollmentPlatformRestrictionsConfiguration(DeviceEnrollmentConfigur
     mac_o_s_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
     # Mac restrictions based on platform, platform operating system version, and device ownership
     mac_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
+    # Indicates restrictions for TvOS platform.
+    tvos_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
+    # Indicates restrictions for VisionOS platform.
+    vision_o_s_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
     # Windows Home Sku restrictions based on platform, platform operating system version, and device ownership
     windows_home_sku_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
     # Windows mobile restrictions based on platform, platform operating system version, and device ownership
@@ -62,6 +66,8 @@ class DeviceEnrollmentPlatformRestrictionsConfiguration(DeviceEnrollmentConfigur
             "iosRestriction": lambda n : setattr(self, 'ios_restriction', n.get_object_value(DeviceEnrollmentPlatformRestriction)),
             "macOSRestriction": lambda n : setattr(self, 'mac_o_s_restriction', n.get_object_value(DeviceEnrollmentPlatformRestriction)),
             "macRestriction": lambda n : setattr(self, 'mac_restriction', n.get_object_value(DeviceEnrollmentPlatformRestriction)),
+            "tvosRestriction": lambda n : setattr(self, 'tvos_restriction', n.get_object_value(DeviceEnrollmentPlatformRestriction)),
+            "visionOSRestriction": lambda n : setattr(self, 'vision_o_s_restriction', n.get_object_value(DeviceEnrollmentPlatformRestriction)),
             "windowsHomeSkuRestriction": lambda n : setattr(self, 'windows_home_sku_restriction', n.get_object_value(DeviceEnrollmentPlatformRestriction)),
             "windowsMobileRestriction": lambda n : setattr(self, 'windows_mobile_restriction', n.get_object_value(DeviceEnrollmentPlatformRestriction)),
             "windowsRestriction": lambda n : setattr(self, 'windows_restriction', n.get_object_value(DeviceEnrollmentPlatformRestriction)),
@@ -84,6 +90,8 @@ class DeviceEnrollmentPlatformRestrictionsConfiguration(DeviceEnrollmentConfigur
         writer.write_object_value("iosRestriction", self.ios_restriction)
         writer.write_object_value("macOSRestriction", self.mac_o_s_restriction)
         writer.write_object_value("macRestriction", self.mac_restriction)
+        writer.write_object_value("tvosRestriction", self.tvos_restriction)
+        writer.write_object_value("visionOSRestriction", self.vision_o_s_restriction)
         writer.write_object_value("windowsHomeSkuRestriction", self.windows_home_sku_restriction)
         writer.write_object_value("windowsMobileRestriction", self.windows_mobile_restriction)
         writer.write_object_value("windowsRestriction", self.windows_restriction)
