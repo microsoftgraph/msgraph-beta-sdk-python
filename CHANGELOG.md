@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.20.0](https://github.com/microsoftgraph/msgraph-beta-sdk-python/compare/v1.19.0...v1.20.0) (2025-02-07)
+
+
+### Features
+
+* Support Python 3.13 ([#742](https://github.com/microsoftgraph/msgraph-beta-sdk-python/issues/742)) ([4532b9c](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/4532b9cc41df4b29e2106d3d115b744314115b2a)), closes [#577](https://github.com/microsoftgraph/msgraph-beta-sdk-python/issues/577)
+
+
+### Bug Fixes
+
+* bump kiota and graph core versions ([b1c29c3](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/b1c29c38b38b16e32b91b6269831c8d5f77562a5))
+
 ## [1.19.0](https://github.com/microsoftgraph/msgraph-beta-sdk-python/compare/v1.18.0...v1.19.0) (2025-02-06)
 
 
