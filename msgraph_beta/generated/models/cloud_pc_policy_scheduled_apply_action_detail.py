@@ -1,22 +1,21 @@
 from __future__ import annotations
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
-@dataclass
-class CloudPcPolicyScheduledApplyActionDetail(AdditionalDataHolder, BackedModel, Parsable):
-    # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+if TYPE_CHECKING:
+    from .entity import Entity
 
-    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: dict[str, Any] = field(default_factory=dict)
-    # The cronScheduleExpression property
+from .entity import Entity
+
+@dataclass
+class CloudPcPolicyScheduledApplyActionDetail(Entity, Parsable):
+    # An expression that specifies the cron schedule. (For example, '0 0 0 20  ' means schedules a job to run at midnight on the 20th of every month) Administrators can set a cron expression to define the scheduling rules for automatic regular application. When auto-provision is disabled, cronScheduleExpression is set to null, stopping the automatic task scheduling. Read-Only.
     cron_schedule_expression: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The reservePercentage property
+    # The percentage of Cloud PCs to keep available. Administrators can set this property to a value from 0 to 99. Cloud PCs are reprovisioned only when there are no active and connected Cloud PC users. Frontline shared only.
     reserve_percentage: Optional[int] = None
     
     @staticmethod
@@ -35,11 +34,16 @@ class CloudPcPolicyScheduledApplyActionDetail(AdditionalDataHolder, BackedModel,
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .entity import Entity
+
+        from .entity import Entity
+
         fields: dict[str, Callable[[Any], None]] = {
             "cronScheduleExpression": lambda n : setattr(self, 'cron_schedule_expression', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reservePercentage": lambda n : setattr(self, 'reserve_percentage', n.get_int_value()),
         }
+        super_fields = super().get_field_deserializers()
+        fields.update(super_fields)
         return fields
     
     def serialize(self,writer: SerializationWriter) -> None:
@@ -50,9 +54,8 @@ class CloudPcPolicyScheduledApplyActionDetail(AdditionalDataHolder, BackedModel,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        super().serialize(writer)
         writer.write_str_value("cronScheduleExpression", self.cron_schedule_expression)
-        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("reservePercentage", self.reserve_percentage)
-        writer.write_additional_data_value(self.additional_data)
     
 

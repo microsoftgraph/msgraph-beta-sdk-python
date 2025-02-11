@@ -112,7 +112,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
     oauth2_permission_grants: Optional[list[OAuth2PermissionGrant]] = None
     # Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
     owned_objects: Optional[list[DirectoryObject]] = None
-    # Directory objects that are owners of this servicePrincipal. The owners are a set of nonadmin users or servicePrincipals who are allowed to modify this object. Read-only. Nullable.  Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
+    # Directory objects that are owners of this servicePrincipal. The owners are a set of nonadmin users or servicePrincipals who are allowed to modify this object. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
     owners: Optional[list[DirectoryObject]] = None
     # The collection of password credentials associated with the service principal. Not nullable.
     password_credentials: Optional[list[PasswordCredential]] = None

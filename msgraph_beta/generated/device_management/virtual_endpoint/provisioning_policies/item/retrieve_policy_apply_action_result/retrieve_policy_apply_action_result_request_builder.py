@@ -32,9 +32,10 @@ class RetrievePolicyApplyActionResultRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcPolicyApplyActionResult]:
         """
-        Invoke function retrievePolicyApplyActionResult
+        Get the result of the latest apply operation of a provision policy. Frontline shared only. Administrators only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcPolicyApplyActionResult]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcprovisioningpolicy-retrievepolicyapplyactionresult?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -52,7 +53,7 @@ class RetrievePolicyApplyActionResultRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function retrievePolicyApplyActionResult
+        Get the result of the latest apply operation of a provision policy. Frontline shared only. Administrators only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
