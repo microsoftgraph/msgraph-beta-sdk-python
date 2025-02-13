@@ -1668,6 +1668,7 @@ if TYPE_CHECKING:
     from .teams_app_installation import TeamsAppInstallation
     from .teams_app_settings import TeamsAppSettings
     from .teams_async_operation import TeamsAsyncOperation
+    from .teams_channel_planner import TeamsChannelPlanner
     from .teams_tab import TeamsTab
     from .teams_template import TeamsTemplate
     from .teamwork import Teamwork
@@ -8788,6 +8789,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .teams_async_operation import TeamsAsyncOperation
 
             return TeamsAsyncOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsChannelPlanner".casefold():
+            from .teams_channel_planner import TeamsChannelPlanner
+
+            return TeamsChannelPlanner()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsTab".casefold():
             from .teams_tab import TeamsTab
 
@@ -11981,6 +11986,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_app_installation import TeamsAppInstallation
         from .teams_app_settings import TeamsAppSettings
         from .teams_async_operation import TeamsAsyncOperation
+        from .teams_channel_planner import TeamsChannelPlanner
         from .teams_tab import TeamsTab
         from .teams_template import TeamsTemplate
         from .teamwork import Teamwork
@@ -14025,6 +14031,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_app_installation import TeamsAppInstallation
         from .teams_app_settings import TeamsAppSettings
         from .teams_async_operation import TeamsAsyncOperation
+        from .teams_channel_planner import TeamsChannelPlanner
         from .teams_tab import TeamsTab
         from .teams_template import TeamsTemplate
         from .teamwork import Teamwork

@@ -23,6 +23,7 @@ if TYPE_CHECKING:
     from .files_folder.files_folder_request_builder import FilesFolderRequestBuilder
     from .members.members_request_builder import MembersRequestBuilder
     from .messages.messages_request_builder import MessagesRequestBuilder
+    from .planner.planner_request_builder import PlannerRequestBuilder
     from .provision_email.provision_email_request_builder import ProvisionEmailRequestBuilder
     from .remove_email.remove_email_request_builder import RemoveEmailRequestBuilder
     from .shared_with_teams.shared_with_teams_request_builder import SharedWithTeamsRequestBuilder
@@ -212,6 +213,15 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
         from .messages.messages_request_builder import MessagesRequestBuilder
 
         return MessagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def planner(self) -> PlannerRequestBuilder:
+        """
+        Provides operations to manage the planner property of the microsoft.graph.channel entity.
+        """
+        from .planner.planner_request_builder import PlannerRequestBuilder
+
+        return PlannerRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def provision_email(self) -> ProvisionEmailRequestBuilder:

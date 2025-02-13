@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .drive_item import DriveItem
     from .entity import Entity
     from .shared_with_channel_team_info import SharedWithChannelTeamInfo
+    from .teams_channel_planner import TeamsChannelPlanner
     from .teams_tab import TeamsTab
 
 from .entity import Entity
@@ -49,6 +50,8 @@ class Channel(Entity, Parsable):
     moderation_settings: Optional[ChannelModerationSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Selective Planner services available to this channel. Currently, only shared channels are supported. Read-only. Nullable.
+    planner: Optional[TeamsChannelPlanner] = None
     # A collection of teams with which a channel is shared.
     shared_with_teams: Optional[list[SharedWithChannelTeamInfo]] = None
     # Contains summary information about the channel, including number of guests, members, owners, and an indicator for members from other tenants. The summary property is only returned if it appears in the $select clause of the Get channel method.
@@ -85,6 +88,7 @@ class Channel(Entity, Parsable):
         from .drive_item import DriveItem
         from .entity import Entity
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
+        from .teams_channel_planner import TeamsChannelPlanner
         from .teams_tab import TeamsTab
 
         from .channel_layout_type import ChannelLayoutType
@@ -96,6 +100,7 @@ class Channel(Entity, Parsable):
         from .drive_item import DriveItem
         from .entity import Entity
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
+        from .teams_channel_planner import TeamsChannelPlanner
         from .teams_tab import TeamsTab
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -112,6 +117,7 @@ class Channel(Entity, Parsable):
             "membershipType": lambda n : setattr(self, 'membership_type', n.get_enum_value(ChannelMembershipType)),
             "messages": lambda n : setattr(self, 'messages', n.get_collection_of_object_values(ChatMessage)),
             "moderationSettings": lambda n : setattr(self, 'moderation_settings', n.get_object_value(ChannelModerationSettings)),
+            "planner": lambda n : setattr(self, 'planner', n.get_object_value(TeamsChannelPlanner)),
             "sharedWithTeams": lambda n : setattr(self, 'shared_with_teams', n.get_collection_of_object_values(SharedWithChannelTeamInfo)),
             "summary": lambda n : setattr(self, 'summary', n.get_object_value(ChannelSummary)),
             "tabs": lambda n : setattr(self, 'tabs', n.get_collection_of_object_values(TeamsTab)),
@@ -144,6 +150,7 @@ class Channel(Entity, Parsable):
         writer.write_enum_value("membershipType", self.membership_type)
         writer.write_collection_of_object_values("messages", self.messages)
         writer.write_object_value("moderationSettings", self.moderation_settings)
+        writer.write_object_value("planner", self.planner)
         writer.write_collection_of_object_values("sharedWithTeams", self.shared_with_teams)
         writer.write_object_value("summary", self.summary)
         writer.write_collection_of_object_values("tabs", self.tabs)
