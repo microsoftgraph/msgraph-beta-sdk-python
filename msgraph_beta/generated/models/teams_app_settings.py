@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .custom_app_settings import CustomAppSettings
     from .entity import Entity
 
 from .entity import Entity
@@ -13,6 +14,8 @@ from .entity import Entity
 class TeamsAppSettings(Entity, Parsable):
     # Indicates whether users are allowed to request access to the unavailable Teams apps.
     allow_user_requests_for_app_access: Optional[bool] = None
+    # The customAppSettings property
+    custom_app_settings: Optional[CustomAppSettings] = None
     # Indicates whether resource-specific consent for chats/meetings has been enabled for the tenant. True indicates that Teams apps that are allowed in the tenant and require resource-specific permissions can be installed inside chats and meetings. False blocks the installation of any Teams app that requires resource-specific permissions in a chat or a meeting.
     is_chat_resource_specific_consent_enabled: Optional[bool] = None
     # Indicates whether resource-specific consent for personal scope in Teams apps has been enabled for the tenant. True indicates that Teams apps that are allowed in the tenant and require resource-specific permissions can be installed in the personal scope. False blocks the installation of any Teams app that requires resource-specific permissions in the personal scope.
@@ -36,12 +39,15 @@ class TeamsAppSettings(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .custom_app_settings import CustomAppSettings
         from .entity import Entity
 
+        from .custom_app_settings import CustomAppSettings
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
             "allowUserRequestsForAppAccess": lambda n : setattr(self, 'allow_user_requests_for_app_access', n.get_bool_value()),
+            "customAppSettings": lambda n : setattr(self, 'custom_app_settings', n.get_object_value(CustomAppSettings)),
             "isChatResourceSpecificConsentEnabled": lambda n : setattr(self, 'is_chat_resource_specific_consent_enabled', n.get_bool_value()),
             "isUserPersonalScopeResourceSpecificConsentEnabled": lambda n : setattr(self, 'is_user_personal_scope_resource_specific_consent_enabled', n.get_bool_value()),
         }
@@ -59,6 +65,7 @@ class TeamsAppSettings(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("allowUserRequestsForAppAccess", self.allow_user_requests_for_app_access)
+        writer.write_object_value("customAppSettings", self.custom_app_settings)
         writer.write_bool_value("isChatResourceSpecificConsentEnabled", self.is_chat_resource_specific_consent_enabled)
         writer.write_bool_value("isUserPersonalScopeResourceSpecificConsentEnabled", self.is_user_personal_scope_resource_specific_consent_enabled)
     

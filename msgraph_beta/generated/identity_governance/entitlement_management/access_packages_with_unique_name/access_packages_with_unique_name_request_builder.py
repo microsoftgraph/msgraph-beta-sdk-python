@@ -56,10 +56,10 @@ class AccessPackagesWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AccessPackagesWithUniqueNameRequestBuilderGetQueryParameters]] = None) -> Optional[AccessPackage]:
         """
-        Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
+        Retrieve the properties and relationships of an accessPackage object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackage]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackage-list-accesspackageresourcerolescopes?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/accesspackage-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -112,7 +112,7 @@ class AccessPackagesWithUniqueNameRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AccessPackagesWithUniqueNameRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
+        Retrieve the properties and relationships of an accessPackage object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -174,7 +174,7 @@ class AccessPackagesWithUniqueNameRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackagesWithUniqueNameRequestBuilderGetQueryParameters():
         """
-        Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
+        Retrieve the properties and relationships of an accessPackage object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -32,10 +32,11 @@ class SchedulePolicyApplyTaskRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: SchedulePolicyApplyTaskPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action schedulePolicyApplyTask
+        Set a scheduled auto-reprovision task to do automatic regular apply. Frontline shared only. Administrators only.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcprovisioningpolicy-schedulepolicyapplytask?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -53,7 +54,7 @@ class SchedulePolicyApplyTaskRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: SchedulePolicyApplyTaskPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action schedulePolicyApplyTask
+        Set a scheduled auto-reprovision task to do automatic regular apply. Frontline shared only. Administrators only.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

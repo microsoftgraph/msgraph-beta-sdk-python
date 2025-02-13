@@ -7,4 +7,9 @@ class ExportOptions(str, Enum):
     FileInfo = "fileInfo",
     Tags = "tags",
     UnknownFutureValue = "unknownFutureValue",
+    SplitSource = "splitSource",
+    IncludeFolderAndPath = "includeFolderAndPath",
+    FriendlyName = "friendlyName",
+    CondensePaths = "condensePaths",
+    OptimizedPartitionSize = "optimizedPartitionSize",
 
