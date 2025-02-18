@@ -1188,6 +1188,7 @@ if TYPE_CHECKING:
     from .on_email_otp_send_listener import OnEmailOtpSendListener
     from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
     from .on_otp_send_custom_extension import OnOtpSendCustomExtension
+    from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
     from .on_premises_agent import OnPremisesAgent
     from .on_premises_agent_group import OnPremisesAgentGroup
     from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
@@ -6848,6 +6849,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .on_otp_send_custom_extension import OnOtpSendCustomExtension
 
             return OnOtpSendCustomExtension()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPhoneMethodLoadStartListener".casefold():
+            from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
+
+            return OnPhoneMethodLoadStartListener()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPremisesAgent".casefold():
             from .on_premises_agent import OnPremisesAgent
 
@@ -11506,6 +11511,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_email_otp_send_listener import OnEmailOtpSendListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
         from .on_otp_send_custom_extension import OnOtpSendCustomExtension
+        from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
         from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
@@ -13551,6 +13557,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_email_otp_send_listener import OnEmailOtpSendListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
         from .on_otp_send_custom_extension import OnOtpSendCustomExtension
+        from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
         from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings

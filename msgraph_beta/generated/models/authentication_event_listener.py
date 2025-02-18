@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
     from .on_email_otp_send_listener import OnEmailOtpSendListener
     from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
+    from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
     from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
     from .on_user_create_start_listener import OnUserCreateStartListener
 
@@ -67,6 +68,10 @@ class AuthenticationEventListener(Entity, Parsable):
             from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
 
             return OnInteractiveAuthFlowStartListener()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPhoneMethodLoadStartListener".casefold():
+            from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
+
+            return OnPhoneMethodLoadStartListener()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onTokenIssuanceStartListener".casefold():
             from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
 
@@ -90,6 +95,7 @@ class AuthenticationEventListener(Entity, Parsable):
         from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
         from .on_email_otp_send_listener import OnEmailOtpSendListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
+        from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
 
@@ -101,6 +107,7 @@ class AuthenticationEventListener(Entity, Parsable):
         from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
         from .on_email_otp_send_listener import OnEmailOtpSendListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
+        from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
 
