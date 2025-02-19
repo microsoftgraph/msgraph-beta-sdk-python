@@ -70,11 +70,11 @@ class HardwareOathDevicesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: HardwareOathTokenAuthenticationMethodDevice, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[HardwareOathTokenAuthenticationMethodDevice]:
         """
-        Create a new hardwareOathTokenAuthenticationMethodDevice object. Supports bulk creation.
+        Create a new hardwareOathTokenAuthenticationMethodDevice object. You can optionally create and assign to a user in the same request; Or assign to a user via the assign API.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareOathTokenAuthenticationMethodDevice]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationmethoddevice-update?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationmethoddevice-post-hardwareoathdevices?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -105,7 +105,7 @@ class HardwareOathDevicesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: HardwareOathTokenAuthenticationMethodDevice, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new hardwareOathTokenAuthenticationMethodDevice object. Supports bulk creation.
+        Create a new hardwareOathTokenAuthenticationMethodDevice object. You can optionally create and assign to a user in the same request; Or assign to a user via the assign API.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
