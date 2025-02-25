@@ -9,6 +9,6 @@ class DeviceScopeStatus(str, Enum):
     InsufficientData = "insufficientData",
     # Device scope is enabled and finished recalculating the report metric. Device scope is now ready to be used.
     Completed = "completed",
-    # Placeholder value for future expansion.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

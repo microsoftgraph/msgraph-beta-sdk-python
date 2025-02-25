@@ -4,4 +4,5 @@ class CloudPCInaccessibleReportName(str, Enum):
     InaccessibleCloudPcReports = "inaccessibleCloudPcReports",
     InaccessibleCloudPcTrendReport = "inaccessibleCloudPcTrendReport",
     UnknownFutureValue = "unknownFutureValue",
+    RegionalInaccessibleCloudPcTrendReport = "regionalInaccessibleCloudPcTrendReport",
 

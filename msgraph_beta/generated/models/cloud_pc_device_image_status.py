@@ -5,4 +5,5 @@ class CloudPcDeviceImageStatus(str, Enum):
     Ready = "ready",
     Failed = "failed",
     UnknownFutureValue = "unknownFutureValue",
+    Warning = "warning",
 

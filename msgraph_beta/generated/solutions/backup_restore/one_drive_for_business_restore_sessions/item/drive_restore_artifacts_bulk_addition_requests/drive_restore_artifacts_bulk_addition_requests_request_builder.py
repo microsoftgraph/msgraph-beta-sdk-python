@@ -70,7 +70,7 @@ class DriveRestoreArtifactsBulkAdditionRequestsRequestBuilder(BaseRequestBuilder
     
     async def post(self,body: DriveRestoreArtifactsBulkAdditionRequest, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DriveRestoreArtifactsBulkAdditionRequest]:
         """
-        Create a driveRestoreArtifactsBulkAdditionRequest object associated with a oneDriveForBusinessRestoreSession. The initial status upon creation of the restore session is active. When all the drives are added to the corresponding OneDrive restore session and the restore session is activated, the status becomes completed. If any failures are encountered during resource resolution, the status of the restore session becomes completedWithErrors.
+        Create a driveRestoreArtifactsBulkAdditionRequest object associated with a oneDriveForBusinessRestoreSession. The following steps describe how to create and manage a oneDriveForBusinessRestoreSession with bulk artifact additions.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveRestoreArtifactsBulkAdditionRequest]
@@ -105,7 +105,7 @@ class DriveRestoreArtifactsBulkAdditionRequestsRequestBuilder(BaseRequestBuilder
     
     def to_post_request_information(self,body: DriveRestoreArtifactsBulkAdditionRequest, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a driveRestoreArtifactsBulkAdditionRequest object associated with a oneDriveForBusinessRestoreSession. The initial status upon creation of the restore session is active. When all the drives are added to the corresponding OneDrive restore session and the restore session is activated, the status becomes completed. If any failures are encountered during resource resolution, the status of the restore session becomes completedWithErrors.
+        Create a driveRestoreArtifactsBulkAdditionRequest object associated with a oneDriveForBusinessRestoreSession. The following steps describe how to create and manage a oneDriveForBusinessRestoreSession with bulk artifact additions.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

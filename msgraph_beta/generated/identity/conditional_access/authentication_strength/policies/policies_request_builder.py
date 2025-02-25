@@ -54,7 +54,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         param authentication_method_modes: Usage: authenticationMethodModes={authenticationMethodModes}
         Returns: FindByMethodModeWithAuthenticationMethodModesRequestBuilder
         """
-        warn("The findByMethodMode function is deprecated. Please use OData filter query instead. as of 2023-02/FindByMethodModeRemove", DeprecationWarning)
+        warn("The findByMethodMode function is deprecated. Please use OData filter query instead. as of 2023-02/FindByMethodModeRemove on 2023-02-01 and will be removed 2023-03-31", DeprecationWarning)
         if authentication_method_modes is None:
             raise TypeError("authentication_method_modes cannot be null.")
         from .find_by_method_mode_with_authentication_method_modes.find_by_method_mode_with_authentication_method_modes_request_builder import FindByMethodModeWithAuthenticationMethodModesRequestBuilder

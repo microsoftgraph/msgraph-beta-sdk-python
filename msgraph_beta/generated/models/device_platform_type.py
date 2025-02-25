@@ -25,7 +25,7 @@ class DevicePlatformType(str, Enum):
     AndroidMobileApplicationManagement = "androidMobileApplicationManagement",
     # Indicates Mobile Application Management (MAM) for iOS devices
     IOSMobileApplicationManagement = "iOSMobileApplicationManagement",
-    # Evolvable enumeration sentinel value. Do not use
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
     # Indicates Mobile Application Management (MAM) for Windows devices.
     WindowsMobileApplicationManagement = "windowsMobileApplicationManagement",

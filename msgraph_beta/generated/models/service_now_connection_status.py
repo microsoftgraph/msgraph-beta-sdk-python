@@ -5,6 +5,6 @@ class ServiceNowConnectionStatus(str, Enum):
     Disabled = "disabled",
     # Tenant has enabled the connection
     Enabled = "enabled",
-    # Future authentication method to be added here.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

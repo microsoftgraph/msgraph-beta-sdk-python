@@ -14,7 +14,6 @@ if TYPE_CHECKING:
     from .authentication_detail import AuthenticationDetail
     from .authentication_requirement_policy import AuthenticationRequirementPolicy
     from .client_credential_type import ClientCredentialType
-    from .conditional_access_audience import ConditionalAccessAudience
     from .conditional_access_status import ConditionalAccessStatus
     from .device_detail import DeviceDetail
     from .entity import Entity
@@ -82,7 +81,7 @@ class SignIn(Entity, Parsable):
     # Describes the credential type that a user client or service principal provided to Microsoft Entra ID to authenticate itself. You can review this property to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
     client_credential_type: Optional[ClientCredentialType] = None
     # A list that indicates the audience that Conditional Access evaluated during a sign-in event.  Supports $filter (eq).
-    conditional_access_audiences: Optional[list[ConditionalAccessAudience]] = None
+    conditional_access_audiences: Optional[list[str]] = None
     # The status of the conditional access policy triggered. Possible values: success, failure, notApplied, or unknownFutureValue.  Supports $filter (eq).
     conditional_access_status: Optional[ConditionalAccessStatus] = None
     # The identifier the client sends when sign-in is initiated. This property is used for troubleshooting the corresponding sign-in activity when calling for support.  Supports $filter (eq).
@@ -218,7 +217,6 @@ class SignIn(Entity, Parsable):
         from .authentication_detail import AuthenticationDetail
         from .authentication_requirement_policy import AuthenticationRequirementPolicy
         from .client_credential_type import ClientCredentialType
-        from .conditional_access_audience import ConditionalAccessAudience
         from .conditional_access_status import ConditionalAccessStatus
         from .device_detail import DeviceDetail
         from .entity import Entity
@@ -251,7 +249,6 @@ class SignIn(Entity, Parsable):
         from .authentication_detail import AuthenticationDetail
         from .authentication_requirement_policy import AuthenticationRequirementPolicy
         from .client_credential_type import ClientCredentialType
-        from .conditional_access_audience import ConditionalAccessAudience
         from .conditional_access_status import ConditionalAccessStatus
         from .device_detail import DeviceDetail
         from .entity import Entity
@@ -296,7 +293,7 @@ class SignIn(Entity, Parsable):
             "azureResourceId": lambda n : setattr(self, 'azure_resource_id', n.get_str_value()),
             "clientAppUsed": lambda n : setattr(self, 'client_app_used', n.get_str_value()),
             "clientCredentialType": lambda n : setattr(self, 'client_credential_type', n.get_enum_value(ClientCredentialType)),
-            "conditionalAccessAudiences": lambda n : setattr(self, 'conditional_access_audiences', n.get_collection_of_object_values(ConditionalAccessAudience)),
+            "conditionalAccessAudiences": lambda n : setattr(self, 'conditional_access_audiences', n.get_collection_of_primitive_values(str)),
             "conditionalAccessStatus": lambda n : setattr(self, 'conditional_access_status', n.get_enum_value(ConditionalAccessStatus)),
             "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -384,7 +381,7 @@ class SignIn(Entity, Parsable):
         writer.write_str_value("azureResourceId", self.azure_resource_id)
         writer.write_str_value("clientAppUsed", self.client_app_used)
         writer.write_enum_value("clientCredentialType", self.client_credential_type)
-        writer.write_collection_of_object_values("conditionalAccessAudiences", self.conditional_access_audiences)
+        writer.write_collection_of_primitive_values("conditionalAccessAudiences", self.conditional_access_audiences)
         writer.write_enum_value("conditionalAccessStatus", self.conditional_access_status)
         writer.write_str_value("correlationId", self.correlation_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

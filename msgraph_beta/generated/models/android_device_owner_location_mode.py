@@ -5,6 +5,6 @@ class AndroidDeviceOwnerLocationMode(str, Enum):
     NotConfigured = "notConfigured",
     # Location setting is disabled on the device
     Disabled = "disabled",
-    # Evolvable enumeration sentinel value. Do not use
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

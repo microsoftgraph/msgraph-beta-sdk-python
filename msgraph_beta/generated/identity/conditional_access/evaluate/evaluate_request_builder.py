@@ -38,7 +38,7 @@ class EvaluateRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EvaluatePostResponse]
         """
-        warn("Private preview for conditional access what If API as of 2024-07/PrivatePreview:WhatIfEvaluation", DeprecationWarning)
+        warn("Private preview for conditional access what If API as of 2024-07/PrivatePreview:WhatIfEvaluation on 2024-07-25 and will be removed 2025-02-01", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -62,7 +62,7 @@ class EvaluateRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("Private preview for conditional access what If API as of 2024-07/PrivatePreview:WhatIfEvaluation", DeprecationWarning)
+        warn("Private preview for conditional access what If API as of 2024-07/PrivatePreview:WhatIfEvaluation on 2024-07-25 and will be removed 2025-02-01", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -77,7 +77,7 @@ class EvaluateRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: EvaluateRequestBuilder
         """
-        warn("Private preview for conditional access what If API as of 2024-07/PrivatePreview:WhatIfEvaluation", DeprecationWarning)
+        warn("Private preview for conditional access what If API as of 2024-07/PrivatePreview:WhatIfEvaluation on 2024-07-25 and will be removed 2025-02-01", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return EvaluateRequestBuilder(self.request_adapter, raw_url)

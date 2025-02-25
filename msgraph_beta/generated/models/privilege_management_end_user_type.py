@@ -9,6 +9,6 @@ class PrivilegeManagementEndUserType(str, Enum):
     Hybrid = "hybrid",
     # The user who performed the elevation logged in using a Windows local account.
     Local = "local",
-    # Evolvable emuneration sentinel value. Do not use.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

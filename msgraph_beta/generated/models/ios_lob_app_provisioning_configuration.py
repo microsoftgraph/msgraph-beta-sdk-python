@@ -17,7 +17,7 @@ from .entity import Entity
 @dataclass
 class IosLobAppProvisioningConfiguration(Entity, Parsable):
     """
-    This topic provides descriptions of the declared methods, properties and relationships exposed by the iOS Lob App Provisioning Configuration resource.
+    This topic provides descriptions of the declared methods, properties and relationships exposed by the iOS LOB App Provisioning Configuration resource.
     """
     # The associated group assignments for IosLobAppProvisioningConfiguration.
     assignments: Optional[list[IosLobAppProvisioningConfigurationAssignment]] = None

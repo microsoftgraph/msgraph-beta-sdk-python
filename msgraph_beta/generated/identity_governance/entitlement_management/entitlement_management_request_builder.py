@@ -54,7 +54,7 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         param unique_name: Alternate key of accessPackageCatalog
         Returns: AccessPackageCatalogsWithUniqueNameRequestBuilder
         """
-        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         if unique_name is None:
             raise TypeError("unique_name cannot be null.")
         from .access_package_catalogs_with_unique_name.access_package_catalogs_with_unique_name_request_builder import AccessPackageCatalogsWithUniqueNameRequestBuilder

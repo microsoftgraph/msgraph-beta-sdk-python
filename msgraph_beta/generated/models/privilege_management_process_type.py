@@ -7,6 +7,6 @@ class PrivilegeManagementProcessType(str, Enum):
     Parent = "parent",
     # The elevated process is a child process
     Child = "child",
-    # Evolvable emuneration sentinel value. Do not use
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

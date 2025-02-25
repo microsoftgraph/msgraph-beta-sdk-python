@@ -7,6 +7,6 @@ class WinGetAppNotification(str, Enum):
     ShowReboot = "showReboot",
     # Hide all notifications.
     HideAll = "hideAll",
-    # Unknown future value, reserved for future usage as expandable enum.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

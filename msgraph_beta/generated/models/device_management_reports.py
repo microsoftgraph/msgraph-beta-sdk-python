@@ -13,9 +13,6 @@ from .entity import Entity
 
 @dataclass
 class DeviceManagementReports(Entity, Parsable):
-    """
-    Singleton entity that acts as a container for all reports functionality.
-    """
     # Entity representing the configuration of a cached report.
     cached_report_configurations: Optional[list[DeviceManagementCachedReportConfiguration]] = None
     # Entity representing a job to export a report.

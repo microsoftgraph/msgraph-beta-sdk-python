@@ -31,6 +31,6 @@ class DeviceLicensingStatus(str, Enum):
     DeviceLicenseRemoveSucceed = "deviceLicenseRemoveSucceed",
     # This status is set when the device license removing fails.
     DeviceLicenseRemoveFailed = "deviceLicenseRemoveFailed",
-    # This is put here as a place holder for future extension.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

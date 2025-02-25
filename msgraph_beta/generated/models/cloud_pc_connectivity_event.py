@@ -17,6 +17,8 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The unique identifier (GUID) that represents the activity associated with this event. When the event type is userConnection, this value is the activity identifier for this event. For any other event types, this value is 00000000-0000-0000-0000-000000000000.
+    activity_id: Optional[str] = None
     # Indicates the date and time when this event was created. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
     event_date_time: Optional[datetime.datetime] = None
     # Name of the event.
@@ -53,6 +55,7 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_connectivity_event_type import CloudPcConnectivityEventType
 
         fields: dict[str, Callable[[Any], None]] = {
+            "activityId": lambda n : setattr(self, 'activity_id', n.get_str_value()),
             "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
             "eventName": lambda n : setattr(self, 'event_name', n.get_str_value()),
             "eventResult": lambda n : setattr(self, 'event_result', n.get_enum_value(CloudPcConnectivityEventResult)),
@@ -70,6 +73,7 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_str_value("activityId", self.activity_id)
         writer.write_datetime_value("eventDateTime", self.event_date_time)
         writer.write_str_value("eventName", self.event_name)
         writer.write_enum_value("eventResult", self.event_result)

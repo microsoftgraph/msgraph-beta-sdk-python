@@ -15,6 +15,6 @@ class MicrosoftTunnelServerHealthStatus(str, Enum):
     UpgradeInProgress = "upgradeInProgress",
     # Indicates the failure of the upgrade during the upgrade cycle of when Intune begins upgrading servers, one server at a time
     UpgradeFailed = "upgradeFailed",
-    # Evolvable enumeration sentinel value. Do not use enums.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

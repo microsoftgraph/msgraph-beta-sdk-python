@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .file_storage_container_viewpoint import FileStorageContainerViewpoint
     from .permission import Permission
     from .recycle_bin import RecycleBin
+    from .site_archival_details import SiteArchivalDetails
     from .site_lock_state import SiteLockState
     from .user_identity import UserIdentity
 
@@ -25,6 +26,8 @@ from .entity import Entity
 
 @dataclass
 class FileStorageContainer(Entity, Parsable):
+    # The archivalDetails property
+    archival_details: Optional[SiteArchivalDetails] = None
     # Sensitivity label assigned to the fileStorageContainer. Read-write.
     assigned_sensitivity_label: Optional[AssignedLabel] = None
     # The set of custom structured metadata supported by the fileStorageContainer. Read-write.
@@ -95,6 +98,7 @@ class FileStorageContainer(Entity, Parsable):
         from .file_storage_container_viewpoint import FileStorageContainerViewpoint
         from .permission import Permission
         from .recycle_bin import RecycleBin
+        from .site_archival_details import SiteArchivalDetails
         from .site_lock_state import SiteLockState
         from .user_identity import UserIdentity
 
@@ -109,10 +113,12 @@ class FileStorageContainer(Entity, Parsable):
         from .file_storage_container_viewpoint import FileStorageContainerViewpoint
         from .permission import Permission
         from .recycle_bin import RecycleBin
+        from .site_archival_details import SiteArchivalDetails
         from .site_lock_state import SiteLockState
         from .user_identity import UserIdentity
 
         fields: dict[str, Callable[[Any], None]] = {
+            "archivalDetails": lambda n : setattr(self, 'archival_details', n.get_object_value(SiteArchivalDetails)),
             "assignedSensitivityLabel": lambda n : setattr(self, 'assigned_sensitivity_label', n.get_object_value(AssignedLabel)),
             "columns": lambda n : setattr(self, 'columns', n.get_collection_of_object_values(ColumnDefinition)),
             "containerTypeId": lambda n : setattr(self, 'container_type_id', n.get_uuid_value()),
@@ -147,6 +153,7 @@ class FileStorageContainer(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("archivalDetails", self.archival_details)
         writer.write_object_value("assignedSensitivityLabel", self.assigned_sensitivity_label)
         writer.write_collection_of_object_values("columns", self.columns)
         writer.write_uuid_value("containerTypeId", self.container_type_id)

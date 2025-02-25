@@ -13,6 +13,6 @@ class WindowsAutopilotProfileAssignmentDetailedStatus(str, Enum):
     WindowsPcProfileNotSupported = "windowsPcProfileNotSupported",
     # Indicates that a surface Hub 2S  AutoPilot Profile is assigned to a device that is not surface Hub 2S.
     SurfaceHub2SProfileNotSupported = "surfaceHub2SProfileNotSupported",
-    # Placeholder for evolvable enum, but this enum is never returned to the caller, so it shouldn't be necessary.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

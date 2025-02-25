@@ -11,6 +11,6 @@ class WiredNetworkAuthenticationType(str, Enum):
     MachineOrUser = "machineOrUser",
     # Guest Authentication
     Guest = "guest",
-    # Sentinel member for cases where the client cannot handle the new enum values.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

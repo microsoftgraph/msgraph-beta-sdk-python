@@ -11,6 +11,6 @@ class chromeOSOnboardingStatus(str, Enum):
     Failed = "failed",
     # Offboarding
     Offboarding = "offboarding",
-    # UnknownFutureValue
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

@@ -5,6 +5,6 @@ class DeviceScopeOperator(str, Enum):
     None_ = "none",
     # Operator for the device configuration query to be used (Equals).
     Equals = "equals",
-    # Placeholder value for future expansion enums such as notEquals, contains, notContains, greaterThan, lessThan.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

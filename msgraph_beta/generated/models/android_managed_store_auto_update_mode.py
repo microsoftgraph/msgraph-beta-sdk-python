@@ -7,6 +7,6 @@ class AndroidManagedStoreAutoUpdateMode(str, Enum):
     Postponed = "postponed",
     # The app is updated as soon as possible by the developer. If device is online, it will be updated within minutes.
     Priority = "priority",
-    # Unknown future mode (reserved, not used right now).
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

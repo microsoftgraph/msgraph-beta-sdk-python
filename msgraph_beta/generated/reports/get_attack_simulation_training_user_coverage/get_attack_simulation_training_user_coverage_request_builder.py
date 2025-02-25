@@ -37,7 +37,7 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
         Returns: Optional[GetAttackSimulationTrainingUserCoverageGetResponse]
         Find more info here: https://learn.microsoft.com/graph/api/reportroot-getattacksimulationtrainingusercoverage?view=graph-rest-beta
         """
-        warn("This report function api is deprecated and will stop returning data on August 20, 2022. Api is now moved to /reports/security. Please use the new API. as of 2022-05/Tasks_And_Plans", DeprecationWarning)
+        warn("This report function api is deprecated and will stop returning data on August 20, 2022. Api is now moved to /reports/security. Please use the new API. as of 2022-05/Tasks_And_Plans on 2022-05-24 and will be removed 2022-08-20", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -58,7 +58,7 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("This report function api is deprecated and will stop returning data on August 20, 2022. Api is now moved to /reports/security. Please use the new API. as of 2022-05/Tasks_And_Plans", DeprecationWarning)
+        warn("This report function api is deprecated and will stop returning data on August 20, 2022. Api is now moved to /reports/security. Please use the new API. as of 2022-05/Tasks_And_Plans on 2022-05-24 and will be removed 2022-08-20", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -70,7 +70,7 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: GetAttackSimulationTrainingUserCoverageRequestBuilder
         """
-        warn("This report function api is deprecated and will stop returning data on August 20, 2022. Api is now moved to /reports/security. Please use the new API. as of 2022-05/Tasks_And_Plans", DeprecationWarning)
+        warn("This report function api is deprecated and will stop returning data on August 20, 2022. Api is now moved to /reports/security. Please use the new API. as of 2022-05/Tasks_And_Plans on 2022-05-24 and will be removed 2022-08-20", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return GetAttackSimulationTrainingUserCoverageRequestBuilder(self.request_adapter, raw_url)

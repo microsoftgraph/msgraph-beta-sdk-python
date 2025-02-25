@@ -7,6 +7,6 @@ class AndroidWorkProfileAccountUse(str, Enum):
     BlockAll = "blockAll",
     # Allow addition of all accounts (including Google accounts) in Android Work Profile.
     AllowAll = "allowAll",
-    # Unknown future value for evolvable enum patterns.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

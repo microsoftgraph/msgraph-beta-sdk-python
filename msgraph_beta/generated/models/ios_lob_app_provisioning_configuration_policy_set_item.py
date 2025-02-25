@@ -12,7 +12,7 @@ from .policy_set_item import PolicySetItem
 @dataclass
 class IosLobAppProvisioningConfigurationPolicySetItem(PolicySetItem, Parsable):
     """
-    A class containing the properties used for iOS lob app provisioning configuration PolicySetItem.
+    A class containing the properties used for iOS LOB app provisioning configuration PolicySetItem.
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.iosLobAppProvisioningConfigurationPolicySetItem"

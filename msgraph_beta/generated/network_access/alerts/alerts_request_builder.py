@@ -78,7 +78,7 @@ class AlertsRequestBuilder(BaseRequestBuilder):
         param start_date_time: Usage: startDateTime={startDateTime}
         Returns: MicrosoftGraphNetworkaccessGetAlertFrequenciesWithStartDateTimeWithEndDateTimeRequestBuilder
         """
-        warn(" as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
+        warn(" as of 2022-06/PrivatePreview:NetworkAccess on 2024-09-09 and will be removed 2024-11-01", DeprecationWarning)
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
@@ -94,7 +94,7 @@ class AlertsRequestBuilder(BaseRequestBuilder):
         param start_date_time: Usage: startDateTime={startDateTime}
         Returns: MicrosoftGraphNetworkaccessGetAlertSeveritySummariesWithStartDateTimeWithEndDateTimeRequestBuilder
         """
-        warn(" as of 2022-06/PrivatePreview:NetworkAccess", DeprecationWarning)
+        warn(" as of 2022-06/PrivatePreview:NetworkAccess on 2024-09-09 and will be removed 2024-11-01", DeprecationWarning)
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:

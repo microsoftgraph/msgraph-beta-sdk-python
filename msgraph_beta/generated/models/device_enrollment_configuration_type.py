@@ -23,7 +23,7 @@ class DeviceEnrollmentConfigurationType(str, Enum):
     DeviceComanagementAuthorityConfiguration = "deviceComanagementAuthorityConfiguration",
     # Indicates that configuration is of type single platform restriction which refers to types of devices a user is allowed to enroll.
     SinglePlatformRestriction = "singlePlatformRestriction",
-    # Unknown future value
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
     # Indicates that configuration is of type Enrollment Notification which refers to types of notification a user receives during enrollment.
     EnrollmentNotificationsConfiguration = "enrollmentNotificationsConfiguration",

@@ -13,6 +13,6 @@ class DeviceEventLevel(str, Enum):
     Error = "error",
     # Indicates that the device event level is critical.
     Critical = "critical",
-    # Placeholder value for future expansion.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 
