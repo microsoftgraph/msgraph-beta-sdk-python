@@ -7,6 +7,6 @@ class ZebraFotaConnectorState(str, Enum):
     Connected = "connected",
     # Disconnected state indicates that the account was connected in the past and later disconnected.
     Disconnected = "disconnected",
-    # Unknown future enum value.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

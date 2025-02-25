@@ -17,6 +17,6 @@ class EnrollmentRestrictionPlatformType(str, Enum):
     Mac = "mac",
     # Indicates that the enrollment configuration applies only to Linux devices
     Linux = "linux",
-    # Evolvable enumeration sentinel value. Do not use
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

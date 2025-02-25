@@ -11,4 +11,6 @@ class CloudPcDeviceImageErrorCode(str, Enum):
     PaidSourceImageNotSupport = "paidSourceImageNotSupport",
     SourceImageNotSupportCustomizeVMName = "sourceImageNotSupportCustomizeVMName",
     SourceImageSizeExceedsLimitation = "sourceImageSizeExceedsLimitation",
+    SourceImageWithDataDiskNotSupported = "sourceImageWithDataDiskNotSupported",
+    SourceImageWithDiskEncryptionSetNotSupported = "sourceImageWithDiskEncryptionSetNotSupported",
 

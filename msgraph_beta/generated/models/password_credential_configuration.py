@@ -23,7 +23,7 @@ class PasswordCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsabl
     odata_type: Optional[str] = None
     # Specifies the date from which the policy restriction applies to newly created applications. For existing applications, the enforcement date can be retroactively applied.
     restrict_for_apps_created_after_date_time: Optional[datetime.datetime] = None
-    # A unique identifier key for passwordCredentialConfiguration. This value also represents the type of restriction being applied. The possible values are: passwordAddition, passwordLifetime, symmetricKeyAddition, symmetricKeyLifetime, customPasswordAddition, and unknownFutureValue. Each value of restrictionType can be used only once per policy.
+    # The restrictionType property
     restriction_type: Optional[AppCredentialRestrictionType] = None
     # Indicates whether the restriction is evaluated. The possible values are: enabled, disabled, unknownFutureValue. If enabled, the restriction is evaluated. If disabled, the restriction isn't evaluated or enforced.
     state: Optional[AppManagementRestrictionState] = None

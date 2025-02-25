@@ -41,6 +41,6 @@ class DeviceEnrollmentType(str, Enum):
     AndroidAOSPUserlessDeviceEnrollment = "androidAOSPUserlessDeviceEnrollment",
     # Indicates the device is enrolled via Apple Account Driven User Enrollment, a form of enrollment where the user enrolls via iOS Settings without using the iOS Company Portal. It results in an enrollment with a new partition for managed apps and data and which supports a limited set of management capabilities.
     AppleAccountDrivenUserEnrollment = "appleAccountDrivenUserEnrollment",
-    # Evolvable enum member
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

@@ -5,6 +5,6 @@ class VpnTrafficDirection(str, Enum):
     Outbound = "outbound",
     # The rule applies to all inbound traffic.
     Inbound = "inbound",
-    # Evolvable enum member
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

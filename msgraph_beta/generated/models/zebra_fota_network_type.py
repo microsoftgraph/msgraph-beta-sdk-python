@@ -9,6 +9,6 @@ class ZebraFotaNetworkType(str, Enum):
     Cellular = "cellular",
     # The device will install the update when connected both WiFi and Cellular.
     WifiAndCellular = "wifiAndCellular",
-    # Unknown future enum value.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

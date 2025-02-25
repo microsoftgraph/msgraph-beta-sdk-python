@@ -190,9 +190,6 @@ from ..entity import Entity
 
 @dataclass
 class DeviceManagement(Entity, Parsable):
-    """
-    Singleton that acts as container for a collection of Resource Access entities.
-    """
     # The date & time when tenant data moved between scaleunits.
     account_move_completion_date_time: Optional[datetime.datetime] = None
     # Admin consent information.
@@ -409,7 +406,7 @@ class DeviceManagement(Entity, Parsable):
     remote_assistance_partners: Optional[list[RemoteAssistancePartner]] = None
     # The remote assistance settings singleton
     remote_assistance_settings: Optional[RemoteAssistanceSettings] = None
-    # Reports singleton
+    # The reports property
     reports: Optional[DeviceManagementReports] = None
     # Collection of resource access settings associated with account.
     resource_access_profiles: Optional[list[DeviceManagementResourceAccessProfileBase]] = None

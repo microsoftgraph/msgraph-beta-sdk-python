@@ -5,6 +5,6 @@ class DeviceScopeActionStatus(str, Enum):
     Failed = "failed",
     # Indicates the device scope action was successfully triggered.
     Succeeded = "succeeded",
-    # Placeholder value for future expansion.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

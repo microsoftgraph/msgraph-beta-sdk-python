@@ -12,13 +12,13 @@ from ..entity import Entity
 
 @dataclass
 class EdiscoveryCaseMember(Entity, Parsable):
-    # The displayName property
+    # The display name of the eDiscovery case member. Allowed only for case members of type roleGroup.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The recipientType property
+    # Specifies the recipient type of the eDiscovery case member. The possible values are: user, roleGroup, unknownFutureValue.
     recipient_type: Optional[RecipientType] = None
-    # The smtpAddress property
+    # The smtp address of the eDiscovery case member. Allowed only for case members of type user.
     smtp_address: Optional[str] = None
     
     @staticmethod

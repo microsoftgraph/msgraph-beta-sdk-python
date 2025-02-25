@@ -9,6 +9,6 @@ class DeviceAssignmentItemType(str, Enum):
     DeviceManagementConfigurationPolicy = "deviceManagementConfigurationPolicy",
     # Indicates that the device assignment item type for the action is `graph.managedDeviceMobileAppConfiguration`. MobileAppConfiguration associated settings are removed on removal and added back on restoration
     MobileAppConfiguration = "mobileAppConfiguration",
-    # Evolvable enumeration sentinel value. Do not use
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

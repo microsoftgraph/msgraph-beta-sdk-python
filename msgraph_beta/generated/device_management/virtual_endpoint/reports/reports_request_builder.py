@@ -30,6 +30,7 @@ if TYPE_CHECKING:
     from .get_remote_connection_historical_reports.get_remote_connection_historical_reports_request_builder import GetRemoteConnectionHistoricalReportsRequestBuilder
     from .get_total_aggregated_remote_connection_reports.get_total_aggregated_remote_connection_reports_request_builder import GetTotalAggregatedRemoteConnectionReportsRequestBuilder
     from .retrieve_bulk_action_status_report.retrieve_bulk_action_status_report_request_builder import RetrieveBulkActionStatusReportRequestBuilder
+    from .retrieve_cloud_pc_tenant_metrics_report.retrieve_cloud_pc_tenant_metrics_report_request_builder import RetrieveCloudPcTenantMetricsReportRequestBuilder
     from .retrieve_cloud_pc_troubleshoot_reports.retrieve_cloud_pc_troubleshoot_reports_request_builder import RetrieveCloudPcTroubleshootReportsRequestBuilder
     from .retrieve_connection_quality_reports.retrieve_connection_quality_reports_request_builder import RetrieveConnectionQualityReportsRequestBuilder
     from .retrieve_cross_region_disaster_recovery_report.retrieve_cross_region_disaster_recovery_report_request_builder import RetrieveCrossRegionDisasterRecoveryReportRequestBuilder
@@ -287,6 +288,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .retrieve_bulk_action_status_report.retrieve_bulk_action_status_report_request_builder import RetrieveBulkActionStatusReportRequestBuilder
 
         return RetrieveBulkActionStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_cloud_pc_tenant_metrics_report(self) -> RetrieveCloudPcTenantMetricsReportRequestBuilder:
+        """
+        Provides operations to call the retrieveCloudPcTenantMetricsReport method.
+        """
+        from .retrieve_cloud_pc_tenant_metrics_report.retrieve_cloud_pc_tenant_metrics_report_request_builder import RetrieveCloudPcTenantMetricsReportRequestBuilder
+
+        return RetrieveCloudPcTenantMetricsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_cloud_pc_troubleshoot_reports(self) -> RetrieveCloudPcTroubleshootReportsRequestBuilder:

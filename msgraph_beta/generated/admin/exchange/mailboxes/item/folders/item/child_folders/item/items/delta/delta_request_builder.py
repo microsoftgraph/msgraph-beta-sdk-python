@@ -36,7 +36,7 @@ class DeltaRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeltaGetResponse]
         """
-        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport", DeprecationWarning)
+        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -57,7 +57,7 @@ class DeltaRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport", DeprecationWarning)
+        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -69,7 +69,7 @@ class DeltaRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: DeltaRequestBuilder
         """
-        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport", DeprecationWarning)
+        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DeltaRequestBuilder(self.request_adapter, raw_url)

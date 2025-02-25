@@ -11,6 +11,6 @@ class DeviceAssignmentItemStatus(str, Enum):
     Error = "error",
     # Indicates that the application or configuration has been successfully restored on the managed device
     Succeeded = "succeeded",
-    # Evolvable enumeration sentinel value. Do not use
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

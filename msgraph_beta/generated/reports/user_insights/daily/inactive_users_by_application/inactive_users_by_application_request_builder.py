@@ -38,7 +38,7 @@ class InactiveUsersByApplicationRequestBuilder(BaseRequestBuilder):
         param daily_inactive_users_by_application_metric_id: The unique identifier of dailyInactiveUsersByApplicationMetric
         Returns: DailyInactiveUsersByApplicationMetricItemRequestBuilder
         """
-        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
+        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs on 2024-02-02 and will be removed 2024-02-16", DeprecationWarning)
         if daily_inactive_users_by_application_metric_id is None:
             raise TypeError("daily_inactive_users_by_application_metric_id cannot be null.")
         from .item.daily_inactive_users_by_application_metric_item_request_builder import DailyInactiveUsersByApplicationMetricItemRequestBuilder
@@ -53,7 +53,7 @@ class InactiveUsersByApplicationRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DailyInactiveUsersByApplicationMetricCollectionResponse]
         """
-        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
+        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs on 2024-02-02 and will be removed 2024-02-16", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -74,7 +74,7 @@ class InactiveUsersByApplicationRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
+        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs on 2024-02-02 and will be removed 2024-02-16", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -86,7 +86,7 @@ class InactiveUsersByApplicationRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: InactiveUsersByApplicationRequestBuilder
         """
-        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs", DeprecationWarning)
+        warn("The Inactive Users By Application Metric is deprecated and will stop returning data on February 16, 2024. Please use the existing Inactive Users API. as of 2024-02/Remove_Breakdown_APIs on 2024-02-02 and will be removed 2024-02-16", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return InactiveUsersByApplicationRequestBuilder(self.request_adapter, raw_url)

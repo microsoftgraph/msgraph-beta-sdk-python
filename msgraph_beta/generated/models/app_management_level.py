@@ -15,6 +15,6 @@ class AppManagementLevel(str, Enum):
     AndroidOpenSourceProjectUserAssociated = "androidOpenSourceProjectUserAssociated",
     # Android Open Source Project (AOSP) userless devices
     AndroidOpenSourceProjectUserless = "androidOpenSourceProjectUserless",
-    # Place holder for evolvable enum
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

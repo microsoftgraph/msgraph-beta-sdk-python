@@ -7,6 +7,6 @@ class WiredNetworkAuthenticationMethod(str, Enum):
     UsernameAndPassword = "usernameAndPassword",
     # Use Derived Credential for authentication.
     DerivedCredential = "derivedCredential",
-    # Sentinel member for cases where the client cannot handle the new enum values.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

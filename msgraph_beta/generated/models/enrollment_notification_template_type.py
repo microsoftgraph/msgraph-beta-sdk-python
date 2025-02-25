@@ -5,6 +5,6 @@ class EnrollmentNotificationTemplateType(str, Enum):
     Email = "email",
     # Push Notification
     Push = "push",
-    # Unknown Type
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

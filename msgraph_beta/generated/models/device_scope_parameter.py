@@ -5,6 +5,6 @@ class DeviceScopeParameter(str, Enum):
     None_ = "none",
     # use Scope Tag as parameter for the device scope configuration.
     ScopeTag = "scopeTag",
-    # Placeholder value for future expansion.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

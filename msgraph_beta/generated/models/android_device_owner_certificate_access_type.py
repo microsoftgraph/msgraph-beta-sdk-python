@@ -5,6 +5,6 @@ class AndroidDeviceOwnerCertificateAccessType(str, Enum):
     UserApproval = "userApproval",
     # Pre-grant certificate access for specific apps (require user approval for other apps).
     SpecificApps = "specificApps",
-    # Unknown future value for evolvable enum patterns.
+    # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 
