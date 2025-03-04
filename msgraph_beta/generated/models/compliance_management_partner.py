@@ -29,6 +29,10 @@ class ComplianceManagementPartner(Entity, Parsable):
     ios_onboarded: Optional[bool] = None
     # Timestamp of last heartbeat after admin onboarded to the compliance management partner
     last_heartbeat_date_time: Optional[datetime.datetime] = None
+    # User groups which enroll Linux devices through partner.
+    linux_enrollment_assignments: Optional[list[ComplianceManagementPartnerAssignment]] = None
+    # Partner onboarded for Linux devices.
+    linux_onboarded: Optional[bool] = None
     # User groups which enroll Mac devices through partner.
     mac_os_enrollment_assignments: Optional[list[ComplianceManagementPartnerAssignment]] = None
     # Partner onboarded for Mac devices.
@@ -69,6 +73,8 @@ class ComplianceManagementPartner(Entity, Parsable):
             "iosEnrollmentAssignments": lambda n : setattr(self, 'ios_enrollment_assignments', n.get_collection_of_object_values(ComplianceManagementPartnerAssignment)),
             "iosOnboarded": lambda n : setattr(self, 'ios_onboarded', n.get_bool_value()),
             "lastHeartbeatDateTime": lambda n : setattr(self, 'last_heartbeat_date_time', n.get_datetime_value()),
+            "linuxEnrollmentAssignments": lambda n : setattr(self, 'linux_enrollment_assignments', n.get_collection_of_object_values(ComplianceManagementPartnerAssignment)),
+            "linuxOnboarded": lambda n : setattr(self, 'linux_onboarded', n.get_bool_value()),
             "macOsEnrollmentAssignments": lambda n : setattr(self, 'mac_os_enrollment_assignments', n.get_collection_of_object_values(ComplianceManagementPartnerAssignment)),
             "macOsOnboarded": lambda n : setattr(self, 'mac_os_onboarded', n.get_bool_value()),
             "partnerState": lambda n : setattr(self, 'partner_state', n.get_enum_value(DeviceManagementPartnerTenantState)),
@@ -92,6 +98,8 @@ class ComplianceManagementPartner(Entity, Parsable):
         writer.write_collection_of_object_values("iosEnrollmentAssignments", self.ios_enrollment_assignments)
         writer.write_bool_value("iosOnboarded", self.ios_onboarded)
         writer.write_datetime_value("lastHeartbeatDateTime", self.last_heartbeat_date_time)
+        writer.write_collection_of_object_values("linuxEnrollmentAssignments", self.linux_enrollment_assignments)
+        writer.write_bool_value("linuxOnboarded", self.linux_onboarded)
         writer.write_collection_of_object_values("macOsEnrollmentAssignments", self.mac_os_enrollment_assignments)
         writer.write_bool_value("macOsOnboarded", self.mac_os_onboarded)
         writer.write_enum_value("partnerState", self.partner_state)

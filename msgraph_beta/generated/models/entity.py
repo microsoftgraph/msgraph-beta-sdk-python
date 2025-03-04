@@ -1113,6 +1113,7 @@ if TYPE_CHECKING:
     from .mute_participant_operation import MuteParticipantOperation
     from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
     from .named_location import NamedLocation
+    from .name_pronunciation_settings import NamePronunciationSettings
     from .ndes_connector import NdesConnector
     from .networkaccess.alert import Alert
     from .networkaccess.branch_site import BranchSite
@@ -6540,6 +6541,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .named_location import NamedLocation
 
             return NamedLocation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.namePronunciationSettings".casefold():
+            from .name_pronunciation_settings import NamePronunciationSettings
+
+            return NamePronunciationSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.ndesConnector".casefold():
             from .ndes_connector import NdesConnector
 
@@ -11436,6 +11441,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mute_participant_operation import MuteParticipantOperation
         from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
         from .named_location import NamedLocation
+        from .name_pronunciation_settings import NamePronunciationSettings
         from .ndes_connector import NdesConnector
         from .networkaccess.alert import Alert
         from .networkaccess.branch_site import BranchSite
@@ -13482,6 +13488,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mute_participant_operation import MuteParticipantOperation
         from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
         from .named_location import NamedLocation
+        from .name_pronunciation_settings import NamePronunciationSettings
         from .ndes_connector import NdesConnector
         from .networkaccess.alert import Alert
         from .networkaccess.branch_site import BranchSite
