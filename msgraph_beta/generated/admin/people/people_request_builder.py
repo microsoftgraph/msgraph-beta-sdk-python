@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.people_admin_settings import PeopleAdminSettings
     from .item_insights.item_insights_request_builder import ItemInsightsRequestBuilder
+    from .name_pronunciation.name_pronunciation_request_builder import NamePronunciationRequestBuilder
     from .profile_card_properties.profile_card_properties_request_builder import ProfileCardPropertiesRequestBuilder
     from .pronouns.pronouns_request_builder import PronounsRequestBuilder
 
@@ -150,6 +151,15 @@ class PeopleRequestBuilder(BaseRequestBuilder):
         from .item_insights.item_insights_request_builder import ItemInsightsRequestBuilder
 
         return ItemInsightsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def name_pronunciation(self) -> NamePronunciationRequestBuilder:
+        """
+        Provides operations to manage the namePronunciation property of the microsoft.graph.peopleAdminSettings entity.
+        """
+        from .name_pronunciation.name_pronunciation_request_builder import NamePronunciationRequestBuilder
+
+        return NamePronunciationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def profile_card_properties(self) -> ProfileCardPropertiesRequestBuilder:

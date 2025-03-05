@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .insights_settings import InsightsSettings
+    from .name_pronunciation_settings import NamePronunciationSettings
     from .profile_card_property import ProfileCardProperty
     from .pronouns_settings import PronounsSettings
 
@@ -16,6 +17,8 @@ from .entity import Entity
 class PeopleAdminSettings(Entity, Parsable):
     # Administrator settings that manage the support for item insights in an organization.
     item_insights: Optional[InsightsSettings] = None
+    # Administrator settings that manage the support of name pronunciation in an organization.
+    name_pronunciation: Optional[NamePronunciationSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # A collection of the properties an administrator defined as visible on the Microsoft 365 profile card.
@@ -41,16 +44,19 @@ class PeopleAdminSettings(Entity, Parsable):
         """
         from .entity import Entity
         from .insights_settings import InsightsSettings
+        from .name_pronunciation_settings import NamePronunciationSettings
         from .profile_card_property import ProfileCardProperty
         from .pronouns_settings import PronounsSettings
 
         from .entity import Entity
         from .insights_settings import InsightsSettings
+        from .name_pronunciation_settings import NamePronunciationSettings
         from .profile_card_property import ProfileCardProperty
         from .pronouns_settings import PronounsSettings
 
         fields: dict[str, Callable[[Any], None]] = {
             "itemInsights": lambda n : setattr(self, 'item_insights', n.get_object_value(InsightsSettings)),
+            "namePronunciation": lambda n : setattr(self, 'name_pronunciation', n.get_object_value(NamePronunciationSettings)),
             "profileCardProperties": lambda n : setattr(self, 'profile_card_properties', n.get_collection_of_object_values(ProfileCardProperty)),
             "pronouns": lambda n : setattr(self, 'pronouns', n.get_object_value(PronounsSettings)),
         }
@@ -68,6 +74,7 @@ class PeopleAdminSettings(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("itemInsights", self.item_insights)
+        writer.write_object_value("namePronunciation", self.name_pronunciation)
         writer.write_collection_of_object_values("profileCardProperties", self.profile_card_properties)
         writer.write_object_value("pronouns", self.pronouns)
     

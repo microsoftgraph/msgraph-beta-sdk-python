@@ -24,6 +24,8 @@ class VirtualEventSession(OnlineMeetingBase, Parsable):
     registrations: Optional[list[VirtualEventRegistration]] = None
     # The virtual event session start time.
     start_date_time: Optional[DateTimeTimeZone] = None
+    # The videoOnDemandWebUrl property
+    video_on_demand_web_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> VirtualEventSession:
@@ -56,6 +58,7 @@ class VirtualEventSession(OnlineMeetingBase, Parsable):
             "presenters": lambda n : setattr(self, 'presenters', n.get_collection_of_object_values(VirtualEventPresenter)),
             "registrations": lambda n : setattr(self, 'registrations', n.get_collection_of_object_values(VirtualEventRegistration)),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_object_value(DateTimeTimeZone)),
+            "videoOnDemandWebUrl": lambda n : setattr(self, 'video_on_demand_web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -74,5 +77,6 @@ class VirtualEventSession(OnlineMeetingBase, Parsable):
         writer.write_collection_of_object_values("presenters", self.presenters)
         writer.write_collection_of_object_values("registrations", self.registrations)
         writer.write_object_value("startDateTime", self.start_date_time)
+        writer.write_str_value("videoOnDemandWebUrl", self.video_on_demand_web_url)
     
 
