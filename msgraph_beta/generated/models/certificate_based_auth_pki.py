@@ -17,7 +17,7 @@ class CertificateBasedAuthPki(DirectoryObject, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.certificateBasedAuthPki"
     # The collection of certificate authorities contained in this public key infrastructure resource.
     certificate_authorities: Optional[list[CertificateAuthorityDetail]] = None
-    # The name of the object.
+    # The name of the object. Maximum length is 256 characters.
     display_name: Optional[str] = None
     # The date and time when the object was created or last modified.
     last_modified_date_time: Optional[datetime.datetime] = None

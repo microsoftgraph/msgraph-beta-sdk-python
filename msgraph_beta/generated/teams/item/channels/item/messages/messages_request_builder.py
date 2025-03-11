@@ -19,7 +19,9 @@ if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .delta.delta_request_builder import DeltaRequestBuilder
+    from .forward_to_chat.forward_to_chat_request_builder import ForwardToChatRequestBuilder
     from .item.chat_message_item_request_builder import ChatMessageItemRequestBuilder
+    from .reply_with_quote.reply_with_quote_request_builder import ReplyWithQuoteRequestBuilder
 
 class MessagesRequestBuilder(BaseRequestBuilder):
     """
@@ -71,11 +73,11 @@ class MessagesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ChatMessage, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ChatMessage]:
         """
-        Send a new chatMessage in the specified channel.
+        Send a new chatMessage in the specified channel or a chat.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChatMessage]
-        Find more info here: https://learn.microsoft.com/graph/api/channel-post-messages?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/chatmessage-post?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -106,7 +108,7 @@ class MessagesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ChatMessage, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Send a new chatMessage in the specified channel.
+        Send a new chatMessage in the specified channel or a chat.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -146,6 +148,24 @@ class MessagesRequestBuilder(BaseRequestBuilder):
         from .delta.delta_request_builder import DeltaRequestBuilder
 
         return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def forward_to_chat(self) -> ForwardToChatRequestBuilder:
+        """
+        Provides operations to call the forwardToChat method.
+        """
+        from .forward_to_chat.forward_to_chat_request_builder import ForwardToChatRequestBuilder
+
+        return ForwardToChatRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def reply_with_quote(self) -> ReplyWithQuoteRequestBuilder:
+        """
+        Provides operations to call the replyWithQuote method.
+        """
+        from .reply_with_quote.reply_with_quote_request_builder import ReplyWithQuoteRequestBuilder
+
+        return ReplyWithQuoteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class MessagesRequestBuilderGetQueryParameters():

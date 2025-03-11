@@ -19,7 +19,9 @@ if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .delta.delta_request_builder import DeltaRequestBuilder
+    from .forward_to_chat.forward_to_chat_request_builder import ForwardToChatRequestBuilder
     from .item.chat_message_item_request_builder import ChatMessageItemRequestBuilder
+    from .reply_with_quote.reply_with_quote_request_builder import ReplyWithQuoteRequestBuilder
 
 class RepliesRequestBuilder(BaseRequestBuilder):
     """
@@ -144,6 +146,24 @@ class RepliesRequestBuilder(BaseRequestBuilder):
         from .delta.delta_request_builder import DeltaRequestBuilder
 
         return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def forward_to_chat(self) -> ForwardToChatRequestBuilder:
+        """
+        Provides operations to call the forwardToChat method.
+        """
+        from .forward_to_chat.forward_to_chat_request_builder import ForwardToChatRequestBuilder
+
+        return ForwardToChatRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def reply_with_quote(self) -> ReplyWithQuoteRequestBuilder:
+        """
+        Provides operations to call the replyWithQuote method.
+        """
+        from .reply_with_quote.reply_with_quote_request_builder import ReplyWithQuoteRequestBuilder
+
+        return ReplyWithQuoteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RepliesRequestBuilderGetQueryParameters():
