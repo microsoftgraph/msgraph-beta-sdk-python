@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aad_user_conversation_member_result import AadUserConversationMemberResult
+    from .forward_to_chat_result import ForwardToChatResult
     from .public_error import PublicError
 
 @dataclass
@@ -39,6 +40,10 @@ class ActionResultPart(AdditionalDataHolder, BackedModel, Parsable):
             from .aad_user_conversation_member_result import AadUserConversationMemberResult
 
             return AadUserConversationMemberResult()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.forwardToChatResult".casefold():
+            from .forward_to_chat_result import ForwardToChatResult
+
+            return ForwardToChatResult()
         return ActionResultPart()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -47,9 +52,11 @@ class ActionResultPart(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aad_user_conversation_member_result import AadUserConversationMemberResult
+        from .forward_to_chat_result import ForwardToChatResult
         from .public_error import PublicError
 
         from .aad_user_conversation_member_result import AadUserConversationMemberResult
+        from .forward_to_chat_result import ForwardToChatResult
         from .public_error import PublicError
 
         fields: dict[str, Callable[[Any], None]] = {
