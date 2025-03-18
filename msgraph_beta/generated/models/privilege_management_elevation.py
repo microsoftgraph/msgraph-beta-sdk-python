@@ -18,29 +18,29 @@ class PrivilegeManagementElevation(Entity, Parsable):
     """
     The endpoint privilege management elevation result entity representing a single elevation action on a client device.
     """
-    # The certificate payload of the application. This is computed by hashing the certificate information on the client. Example: `32c220482c68413fbf8290e3b1e49b0a85901cfcd62ab0738760568a2a6e8a50`
+    # The certificate payload of the application. This is computed by hashing the certificate information on the client. Example: 32c220482c68413fbf8290e3b1e49b0a85901cfcd62ab0738760568a2a6e8a50
     certificate_payload: Optional[str] = None
-    # The company name of the application. This value is set by the creator of the application. Example: `Microsoft Corporation`
+    # The company name of the application. This value is set by the creator of the application. Example: Microsoft Corporation
     company_name: Optional[str] = None
-    # The Intune deviceId. Unique identifier for the managed device. Example: `92ce5047-9553-4731-817f-9b401a999a1b`
+    # The Intune deviceId. Unique identifier for the managed device. Example: 92ce5047-9553-4731-817f-9b401a999a1b
     device_id: Optional[str] = None
-    # The name associated with the device in the intune database. Example: `JOHNDOE-LAPTOP`.
+    # The name associated with the device in the intune database. Example: JOHNDOE-LAPTOP.
     device_name: Optional[str] = None
     # Indicates the type of elevation occured
     elevation_type: Optional[PrivilegeManagementElevationType] = None
-    # The date and time when the application was elevated. Example:`2014-01-01T00:00:00Z`
+    # The date and time when the application was elevated. Example:2014-01-01T00:00:00Z
     event_date_time: Optional[datetime.datetime] = None
-    # The file description of the application. This value is set by the creator of the application. Example: `Editor of multiple coding languages.`
+    # The file description of the application. This value is set by the creator of the application. Example: Editor of multiple coding languages.
     file_description: Optional[str] = None
-    # The full file path of the application including the filename and file extension. Example: `C:/Program Files/vscode.exe`
+    # The full file path of the application including the filename and file extension. Example: C:/Program Files/vscode.exe
     file_path: Optional[str] = None
-    # The version of the application. This value is set by the creator of the application. Example: `6.2211.1035.1000`
+    # The version of the application. This value is set by the creator of the application. Example: 6.2211.1035.1000
     file_version: Optional[str] = None
-    # The sha256 hash of the application. Example: `32c220482c68413fbf8290e3b1e49b0a85901cfcd62ab0738760568a2a6e8a57`
+    # The sha256 hash of the application. Example: 32c220482c68413fbf8290e3b1e49b0a85901cfcd62ab0738760568a2a6e8a57
     hash: Optional[str] = None
-    # The internal name of the application. This value is set by the creator of the application. Example: `VS code`
+    # The internal name of the application. This value is set by the creator of the application. Example: VS code
     internal_name: Optional[str] = None
-    # The justification to elevate the application. This is an input by the user when the privilegeManagementElevationType is of type userConfirmedElevation or support approved elevation. This will be null in all other scenarios. The length is capped at 256 char, enforced on the client side. Example: `To install debug tool.`.
+    # The justification to elevate the application. This is an input by the user when the privilegeManagementElevationType is of type userConfirmedElevation or support approved elevation. This will be null in all other scenarios. The length is capped at 256 char, enforced on the client side. Example: To install debug tool..
     justification: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -52,15 +52,15 @@ class PrivilegeManagementElevation(Entity, Parsable):
     policy_name: Optional[str] = None
     # Indicates the type of elevated process
     process_type: Optional[PrivilegeManagementProcessType] = None
-    # The product name of the application. This value is set by the creator of the application. Example: `Visual Studio`
+    # The product name of the application. This value is set by the creator of the application. Example: Visual Studio
     product_name: Optional[str] = None
-    # The result of the elevation action with 0 being success, and everything else being exit code if the elevation was unsuccessful. The value will always be 0 on all unmanaged elevation. Example: `0`. Valid values 0 to 2147483647
+    # The result of the elevation action with 0 being success, and everything else being exit code if the elevation was unsuccessful. The value will always be 0 on all unmanaged elevation. Example: 0. Valid values 0 to 2147483647
     result: Optional[int] = None
     # Unique identifier of the rule configured to run the application with elevated access
     rule_id: Optional[str] = None
     # To identify if the elevation is initiated by system or user interaction
     system_initiated_elevation: Optional[bool] = None
-    # The User Principal Name of the user who performed the elevation. Example: `john@domain.com`
+    # The User Principal Name of the user who performed the elevation. Example: john@domain.com
     upn: Optional[str] = None
     # The type of user account on Windows that was used to performed the elevation.
     user_type: Optional[PrivilegeManagementEndUserType] = None

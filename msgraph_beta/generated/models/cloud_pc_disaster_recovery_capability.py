@@ -18,7 +18,7 @@ class CloudPcDisasterRecoveryCapability(AdditionalDataHolder, BackedModel, Parsa
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The disaster recovery action that can be performed for the Cloud PC. The possible values are: none, failover, failback, unknownFutureValue.
     capability_type: Optional[CloudPcDisasterRecoveryCapabilityType] = None
-    # The licenseType property
+    # The disaster recovery license type that provides the capability.
     license_type: Optional[CloudPcDisasterRecoveryLicenseType] = None
     # The OdataType property
     odata_type: Optional[str] = None

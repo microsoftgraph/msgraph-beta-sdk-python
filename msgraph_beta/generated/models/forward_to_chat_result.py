@@ -13,9 +13,9 @@ from .action_result_part import ActionResultPart
 class ForwardToChatResult(ActionResultPart, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.forwardToChatResult"
-    # The forwardedMessageId property
+    # The chatMessage ID generated after a message is successfully forwarded to the target chat ID.
     forwarded_message_id: Optional[str] = None
-    # The targetChatId property
+    # The target chat ID where the message was forwarded.
     target_chat_id: Optional[str] = None
     
     @staticmethod

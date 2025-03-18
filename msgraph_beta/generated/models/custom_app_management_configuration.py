@@ -14,7 +14,7 @@ from .app_management_configuration import AppManagementConfiguration
 class CustomAppManagementConfiguration(AppManagementConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.customAppManagementConfiguration"
-    # Restrictions applicable only to application objects that the policy applies to.
+    # Restrictions that are applicable only to application objects to which the policy is attached.
     application_restrictions: Optional[CustomAppManagementApplicationConfiguration] = None
     
     @staticmethod
