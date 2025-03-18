@@ -25,41 +25,41 @@ class Win32LobApp(MobileLobApp, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.win32LobApp"
-    # When TRUE, indicates that uninstall is supported from the company portal for the Windows app (Win32) with an Available assignment. When FALSE, indicates that uninstall is not supported for the Windows app (Win32) with an Available assignment. Default value is FALSE.
+    # Indicates whether the uninstall is supported from the company portal for the Win32 app with an available assignment. When TRUE, indicates that uninstall is supported from the company portal for the Windows app (Win32) with an available assignment. When FALSE, indicates that uninstall is not supported for the Windows app (Win32) with an Available assignment. Default value is FALSE.
     allow_available_uninstall: Optional[bool] = None
     # Contains properties for Windows architecture.
     applicable_architectures: Optional[WindowsArchitecture] = None
-    # The detection rules to detect Win32 Line of Business (LoB) app.
+    # Indicates the detection rules to detect Win32 Line of Business (LoB) app. Possible values are Win32LobAppPowerShellScriptDetection, Win32LobAppRegistryDetection, Win32LobAppFileSystemDetection, Win32LobAppProductCodeDetection.
     detection_rules: Optional[list[Win32LobAppDetection]] = None
-    # The version displayed in the UX for this app.
+    # Indicates the version displayed in the UX for this app. Used to set the version of the app. Example: 1.0.3.215.
     display_version: Optional[str] = None
-    # The command line to install this app
+    # Indicates the command line to install this app. Used to install the Win32 app. Example: msiexec /i 'Orca.Msi' /qn.
     install_command_line: Optional[str] = None
-    # The install experience for this app.
+    # Indicates the install experience for this app.
     install_experience: Optional[Win32LobAppInstallExperience] = None
-    # The value for the minimum CPU speed which is required to install this app.
+    # Indicates the value for the minimum CPU speed which is required to install this app. Allowed range from 0 to clock speed from WMI helper.
     minimum_cpu_speed_in_m_hz: Optional[int] = None
-    # The value for the minimum free disk space which is required to install this app.
+    # Indicates the value for the minimum free disk space which is required to install this app. Allowed range from 0 to driver's maximum available free space.
     minimum_free_disk_space_in_m_b: Optional[int] = None
-    # The value for the minimum physical memory which is required to install this app.
+    # Indicates the value for the minimum physical memory which is required to install this app. Allowed range from 0 to total physical memory from WMI helper.
     minimum_memory_in_m_b: Optional[int] = None
-    # The value for the minimum number of processors which is required to install this app.
+    # Indicates the value for the minimum number of processors which is required to install this app. Minimum value is 0.
     minimum_number_of_processors: Optional[int] = None
-    # The value for the minimum applicable operating system.
+    # Indicates the value for the minimum applicable operating system.
     minimum_supported_operating_system: Optional[WindowsMinimumOperatingSystem] = None
-    # The value for the minimum supported windows release.
+    # Indicates the value for the minimum supported windows release. Example: Windows11_23H2.
     minimum_supported_windows_release: Optional[str] = None
-    # The MSI details if this Win32 app is an MSI app.
+    # Indicates the MSI details if this Win32 app is an MSI app.
     msi_information: Optional[Win32LobAppMsiInformation] = None
-    # The requirement rules to detect Win32 Line of Business (LoB) app.
+    # Indicates the requirement rules to detect Win32 Line of Business (LoB) app. Possible values are: Win32LobAppFileSystemRequirement, Win32LobAppPowerShellScriptRequirement, Win32LobAppRegistryRequirement.
     requirement_rules: Optional[list[Win32LobAppRequirement]] = None
-    # The return codes for post installation behavior.
+    # Indicates the return codes for post installation behavior.
     return_codes: Optional[list[Win32LobAppReturnCode]] = None
-    # The detection and requirement rules for this app.
+    # Indicates the detection and requirement rules for this app. Possible values are: Win32LobAppFileSystemRule, Win32LobAppPowerShellScriptRule, Win32LobAppProductCodeRule, Win32LobAppRegistryRule.
     rules: Optional[list[Win32LobAppRule]] = None
-    # The relative path of the setup file in the encrypted Win32LobApp package.
+    # Indicates the relative path of the setup file in the encrypted Win32LobApp package. Example: Intel-SA-00075 Detection and Mitigation Tool.msi.
     setup_file_path: Optional[str] = None
-    # The command line to uninstall this app
+    # Indicates the command line to uninstall this app. Used to uninstall the app. Example: msiexec /x '{85F4CBCB-9BBC-4B50-A7D8-E1106771498D}' /qn.
     uninstall_command_line: Optional[str] = None
     
     @staticmethod

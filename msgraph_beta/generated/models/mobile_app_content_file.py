@@ -34,13 +34,13 @@ class MobileAppContentFile(Entity, Parsable):
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The size of the file prior to encryption. To be deprecated, please use sizeInBytes property instead.
+    # Indicates the original size of the file, in bytes.
     size: Optional[int] = None
-    # The size of the file after encryption. To be deprecated, please use sizeEncryptedInBytes property instead.
+    # Indicates the size of the file after encryption, in bytes.
     size_encrypted: Optional[int] = None
-    # Indicates the size of the file after encryption, in bytes. Valid values 0 to 9.22337203685478E+18
+    # Indicates the size of the file after encryption, in bytes. To be deprecated in February 2025, please use SizeEncrypted property instead. Valid values 0 to 9.22337203685478E+18
     size_encrypted_in_bytes: Optional[int] = None
-    # Indicates the original size of the file, in bytes. Valid values 0 to 9.22337203685478E+18
+    # Indicates the original size of the file, in bytes. To be deprecated in February 2025, please use Size property instead. Valid values 0 to 9.22337203685478E+18
     size_in_bytes: Optional[int] = None
     # Contains properties for upload request states.
     upload_state: Optional[MobileAppContentFileUploadState] = None

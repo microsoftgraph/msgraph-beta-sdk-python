@@ -21,9 +21,9 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.windowsQualityUpdateCatalogItem"
     # Windows quality update category
     classification: Optional[WindowsQualityUpdateCategory] = None
-    # Flag indicating if update qualifies for expedite
+    # When TRUE, indicates that the quality updates qualify for expedition. When FALSE, indicates the quality updates do not quality for expedition. Default value is FALSE. Read-only
     is_expeditable: Optional[bool] = None
-    # Knowledge base article id
+    # Identifies the knowledge base article associated with the Windows quality update catalog item. Read-only
     kb_article_id: Optional[str] = None
     # The operating system product revisions that are released as part of this quality update. Read-only.
     product_revisions: Optional[list[WindowsQualityUpdateCatalogProductRevision]] = None

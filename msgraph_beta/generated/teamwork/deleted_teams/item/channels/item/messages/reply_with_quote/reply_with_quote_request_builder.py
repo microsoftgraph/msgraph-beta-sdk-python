@@ -33,10 +33,11 @@ class ReplyWithQuoteRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ReplyWithQuotePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ChatMessage]:
         """
-        Invoke action replyWithQuote
+        Reply with quote to a single chat message or multiple chat messages in a chat.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChatMessage]
+        Find more info here: https://learn.microsoft.com/graph/api/chatmessage-replywithquote?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -56,7 +57,7 @@ class ReplyWithQuoteRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ReplyWithQuotePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action replyWithQuote
+        Reply with quote to a single chat message or multiple chat messages in a chat.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

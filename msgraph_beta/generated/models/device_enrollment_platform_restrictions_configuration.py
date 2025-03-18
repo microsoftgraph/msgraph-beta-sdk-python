@@ -17,25 +17,25 @@ class DeviceEnrollmentPlatformRestrictionsConfiguration(DeviceEnrollmentConfigur
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.deviceEnrollmentPlatformRestrictionsConfiguration"
-    # Android for work restrictions based on platform, platform operating system version, and device ownership
+    # Indicates restrictions for Android For Work platform.
     android_for_work_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
-    # Android restrictions based on platform, platform operating system version, and device ownership
+    # Indicates restrictions for Android platform.
     android_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
-    # Ios restrictions based on platform, platform operating system version, and device ownership
+    # Indicates restrictions for IOS platform.
     ios_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
-    # Mac restrictions based on platform, platform operating system version, and device ownership
+    # Indicates restrictions for MacOS platform.
     mac_o_s_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
-    # Mac restrictions based on platform, platform operating system version, and device ownership
+    # Indicates restrictions for Mac platform.
     mac_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
     # Indicates restrictions for TvOS platform.
     tvos_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
     # Indicates restrictions for VisionOS platform.
     vision_o_s_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
-    # Windows Home Sku restrictions based on platform, platform operating system version, and device ownership
+    # Indicates restrictions for Windows HomeSku platform.
     windows_home_sku_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
-    # Windows mobile restrictions based on platform, platform operating system version, and device ownership
+    # Indicates restrictions for Windows Mobile platform.
     windows_mobile_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
-    # Windows restrictions based on platform, platform operating system version, and device ownership
+    # Indicates restrictions for Windows platform.
     windows_restriction: Optional[DeviceEnrollmentPlatformRestriction] = None
     
     @staticmethod
