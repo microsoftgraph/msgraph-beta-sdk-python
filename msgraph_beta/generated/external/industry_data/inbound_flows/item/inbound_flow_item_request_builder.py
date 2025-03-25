@@ -74,11 +74,11 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: InboundFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[InboundFlow]:
         """
-        Update the properties of an inboundFileFlow object.
+        Update the properties of an inboundApiFlow object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InboundFlow]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundfileflow-update?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-inboundapiflow-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -120,7 +120,7 @@ class InboundFlowItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: InboundFlow, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of an inboundFileFlow object.
+        Update the properties of an inboundApiFlow object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
