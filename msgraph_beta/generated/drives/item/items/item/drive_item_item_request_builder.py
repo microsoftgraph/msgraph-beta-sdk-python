@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     from .delta.delta_request_builder import DeltaRequestBuilder
     from .delta_with_token.delta_with_token_request_builder import DeltaWithTokenRequestBuilder
     from .discard_checkout.discard_checkout_request_builder import DiscardCheckoutRequestBuilder
+    from .extensions.extensions_request_builder import ExtensionsRequestBuilder
     from .extract_sensitivity_labels.extract_sensitivity_labels_request_builder import ExtractSensitivityLabelsRequestBuilder
     from .follow.follow_request_builder import FollowRequestBuilder
     from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder import GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
@@ -338,6 +339,15 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
         from .discard_checkout.discard_checkout_request_builder import DiscardCheckoutRequestBuilder
 
         return DiscardCheckoutRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def extensions(self) -> ExtensionsRequestBuilder:
+        """
+        Provides operations to manage the extensions property of the microsoft.graph.driveItem entity.
+        """
+        from .extensions.extensions_request_builder import ExtensionsRequestBuilder
+
+        return ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def extract_sensitivity_labels(self) -> ExtractSensitivityLabelsRequestBuilder:

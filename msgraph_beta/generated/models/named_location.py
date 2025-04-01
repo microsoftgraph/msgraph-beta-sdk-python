@@ -10,6 +10,8 @@ if TYPE_CHECKING:
     from .country_named_location import CountryNamedLocation
     from .entity import Entity
     from .ip_named_location import IpNamedLocation
+    from .private_link_named_location import PrivateLinkNamedLocation
+    from .service_tag_named_location import ServiceTagNamedLocation
 
 from .entity import Entity
 
@@ -50,6 +52,14 @@ class NamedLocation(Entity, Parsable):
             from .ip_named_location import IpNamedLocation
 
             return IpNamedLocation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privateLinkNamedLocation".casefold():
+            from .private_link_named_location import PrivateLinkNamedLocation
+
+            return PrivateLinkNamedLocation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceTagNamedLocation".casefold():
+            from .service_tag_named_location import ServiceTagNamedLocation
+
+            return ServiceTagNamedLocation()
         return NamedLocation()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -61,11 +71,15 @@ class NamedLocation(Entity, Parsable):
         from .country_named_location import CountryNamedLocation
         from .entity import Entity
         from .ip_named_location import IpNamedLocation
+        from .private_link_named_location import PrivateLinkNamedLocation
+        from .service_tag_named_location import ServiceTagNamedLocation
 
         from .compliant_network_named_location import CompliantNetworkNamedLocation
         from .country_named_location import CountryNamedLocation
         from .entity import Entity
         from .ip_named_location import IpNamedLocation
+        from .private_link_named_location import PrivateLinkNamedLocation
+        from .service_tag_named_location import ServiceTagNamedLocation
 
         fields: dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

@@ -12,17 +12,17 @@ class DelegateAllowedActions(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The joinActiveCalls property
+    # Indicates whether the delegator or delegate allows participation in active calls.
     join_active_calls: Optional[bool] = None
-    # The makeCalls property
+    # Indicates whether the delegator or delegate allows calls to be made on their behalf.
     make_calls: Optional[bool] = None
-    # The manageCallAndDelegateSettings property
+    # Indicates whether the delegator or delegate allows the management of call and delegation settings.
     manage_call_and_delegate_settings: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The pickUpHeldCalls property
+    # Indicates whether the delegator or delegate allows held calls to be picked up.
     pick_up_held_calls: Optional[bool] = None
-    # The receiveCalls property
+    # Indicates whether the delegator or delegate allows calls to be received on their behalf.
     receive_calls: Optional[bool] = None
     
     @staticmethod

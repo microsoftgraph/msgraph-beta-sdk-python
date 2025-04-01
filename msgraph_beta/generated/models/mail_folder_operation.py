@@ -15,9 +15,9 @@ from .entity import Entity
 class MailFolderOperation(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
-    # The resourceLocation property
+    # The location of the long-running operation.
     resource_location: Optional[str] = None
-    # The status property
+    # The status of the long-running operation. The possible values are: notStarted, running, succeeded, failed, unknownFutureValue.
     status: Optional[MailFolderOperationStatus] = None
     
     @staticmethod

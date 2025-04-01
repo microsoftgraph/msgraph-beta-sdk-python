@@ -1212,6 +1212,7 @@ if TYPE_CHECKING:
     from .organizational_branding import OrganizationalBranding
     from .organizational_branding_localization import OrganizationalBrandingLocalization
     from .organizational_branding_properties import OrganizationalBrandingProperties
+    from .organizational_unit import OrganizationalUnit
     from .organization_settings import OrganizationSettings
     from .org_contact import OrgContact
     from .outlook_category import OutlookCategory
@@ -1329,6 +1330,7 @@ if TYPE_CHECKING:
     from .print_usage import PrintUsage
     from .print_usage_by_printer import PrintUsageByPrinter
     from .print_usage_by_user import PrintUsageByUser
+    from .private_link_named_location import PrivateLinkNamedLocation
     from .privileged_access import PrivilegedAccess
     from .privileged_access_group import PrivilegedAccessGroup
     from .privileged_access_group_assignment_schedule import PrivilegedAccessGroupAssignmentSchedule
@@ -1587,6 +1589,7 @@ if TYPE_CHECKING:
     from .service_principal_risk_detection import ServicePrincipalRiskDetection
     from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
     from .service_storage_quota_breakdown import ServiceStorageQuotaBreakdown
+    from .service_tag_named_location import ServiceTagNamedLocation
     from .service_update_message import ServiceUpdateMessage
     from .setting_state_device_summary import SettingStateDeviceSummary
     from .shared_drive_item import SharedDriveItem
@@ -6947,6 +6950,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .organizational_branding_properties import OrganizationalBrandingProperties
 
             return OrganizationalBrandingProperties()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.organizationalUnit".casefold():
+            from .organizational_unit import OrganizationalUnit
+
+            return OrganizationalUnit()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.organizationSettings".casefold():
             from .organization_settings import OrganizationSettings
 
@@ -7414,6 +7421,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .print_usage_by_user import PrintUsageByUser
 
             return PrintUsageByUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privateLinkNamedLocation".casefold():
+            from .private_link_named_location import PrivateLinkNamedLocation
+
+            return PrivateLinkNamedLocation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegedAccess".casefold():
             from .privileged_access import PrivilegedAccess
 
@@ -8463,6 +8474,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .service_storage_quota_breakdown import ServiceStorageQuotaBreakdown
 
             return ServiceStorageQuotaBreakdown()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceTagNamedLocation".casefold():
+            from .service_tag_named_location import ServiceTagNamedLocation
+
+            return ServiceTagNamedLocation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceUpdateMessage".casefold():
             from .service_update_message import ServiceUpdateMessage
 
@@ -11540,6 +11555,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
+        from .organizational_unit import OrganizationalUnit
         from .organization_settings import OrganizationSettings
         from .org_contact import OrgContact
         from .outlook_category import OutlookCategory
@@ -11657,6 +11673,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
         from .print_usage_by_user import PrintUsageByUser
+        from .private_link_named_location import PrivateLinkNamedLocation
         from .privileged_access import PrivilegedAccess
         from .privileged_access_group import PrivilegedAccessGroup
         from .privileged_access_group_assignment_schedule import PrivilegedAccessGroupAssignmentSchedule
@@ -11915,6 +11932,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .service_principal_risk_detection import ServicePrincipalRiskDetection
         from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
         from .service_storage_quota_breakdown import ServiceStorageQuotaBreakdown
+        from .service_tag_named_location import ServiceTagNamedLocation
         from .service_update_message import ServiceUpdateMessage
         from .setting_state_device_summary import SettingStateDeviceSummary
         from .shared_drive_item import SharedDriveItem
@@ -13587,6 +13605,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
+        from .organizational_unit import OrganizationalUnit
         from .organization_settings import OrganizationSettings
         from .org_contact import OrgContact
         from .outlook_category import OutlookCategory
@@ -13704,6 +13723,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
         from .print_usage_by_user import PrintUsageByUser
+        from .private_link_named_location import PrivateLinkNamedLocation
         from .privileged_access import PrivilegedAccess
         from .privileged_access_group import PrivilegedAccessGroup
         from .privileged_access_group_assignment_schedule import PrivilegedAccessGroupAssignmentSchedule
@@ -13962,6 +13982,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .service_principal_risk_detection import ServicePrincipalRiskDetection
         from .service_principal_sign_in_activity import ServicePrincipalSignInActivity
         from .service_storage_quota_breakdown import ServiceStorageQuotaBreakdown
+        from .service_tag_named_location import ServiceTagNamedLocation
         from .service_update_message import ServiceUpdateMessage
         from .setting_state_device_summary import SettingStateDeviceSummary
         from .shared_drive_item import SharedDriveItem
