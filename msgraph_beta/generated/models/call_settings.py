@@ -12,9 +12,9 @@ from .entity import Entity
 
 @dataclass
 class CallSettings(Entity, Parsable):
-    # The delegates property
+    # Represents the delegate settings.
     delegates: Optional[list[DelegationSettings]] = None
-    # The delegators property
+    # Represents the delegator settings.
     delegators: Optional[list[DelegationSettings]] = None
     # The OdataType property
     odata_type: Optional[str] = None

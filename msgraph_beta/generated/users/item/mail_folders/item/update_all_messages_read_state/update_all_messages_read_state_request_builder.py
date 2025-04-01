@@ -32,10 +32,11 @@ class UpdateAllMessagesReadStateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: UpdateAllMessagesReadStatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action updateAllMessagesReadState
+        Update the read state of all messages in a mailFolder object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/mailfolder-updateallmessagesreadstate?view=graph-rest-beta
         """
         warn(" as of 2024-04/PrivatePreview:updateAllMessagesReadStateAPI on 2024-04-29 and will be removed 2024-06-30", DeprecationWarning)
         if body is None:
@@ -54,7 +55,7 @@ class UpdateAllMessagesReadStateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: UpdateAllMessagesReadStatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action updateAllMessagesReadState
+        Update the read state of all messages in a mailFolder object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

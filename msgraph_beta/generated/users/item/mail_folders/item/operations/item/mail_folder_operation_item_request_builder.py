@@ -32,7 +32,7 @@ class MailFolderOperationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MailFolderOperationItemRequestBuilderGetQueryParameters]] = None) -> Optional[MailFolderOperation]:
         """
-        Get operations from users
+        The collection of long-running operations in the mailFolder.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailFolderOperation]
         """
@@ -53,7 +53,7 @@ class MailFolderOperationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MailFolderOperationItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get operations from users
+        The collection of long-running operations in the mailFolder.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +77,7 @@ class MailFolderOperationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MailFolderOperationItemRequestBuilderGetQueryParameters():
         """
-        Get operations from users
+        The collection of long-running operations in the mailFolder.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

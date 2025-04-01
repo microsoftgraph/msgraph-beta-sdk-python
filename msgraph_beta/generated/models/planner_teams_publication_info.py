@@ -18,6 +18,8 @@ class PlannerTeamsPublicationInfo(PlannerTaskCreation, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The identifier of the publication. Read-only.
     publication_id: Optional[str] = None
+    # The name of the published task list. Read-only.
+    publication_name: Optional[str] = None
     # The identifier of the plannerPlan this task was originally placed in. Read-only.
     published_to_plan_id: Optional[str] = None
     # The identifier of the team that initiated the publication process. Read-only.
@@ -49,6 +51,7 @@ class PlannerTeamsPublicationInfo(PlannerTaskCreation, Parsable):
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "publicationId": lambda n : setattr(self, 'publication_id', n.get_str_value()),
+            "publicationName": lambda n : setattr(self, 'publication_name', n.get_str_value()),
             "publishedToPlanId": lambda n : setattr(self, 'published_to_plan_id', n.get_str_value()),
             "publishingTeamId": lambda n : setattr(self, 'publishing_team_id', n.get_str_value()),
             "publishingTeamName": lambda n : setattr(self, 'publishing_team_name', n.get_str_value()),
@@ -69,6 +72,7 @@ class PlannerTeamsPublicationInfo(PlannerTaskCreation, Parsable):
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("publicationId", self.publication_id)
+        writer.write_str_value("publicationName", self.publication_name)
         writer.write_str_value("publishedToPlanId", self.published_to_plan_id)
         writer.write_str_value("publishingTeamId", self.publishing_team_id)
         writer.write_str_value("publishingTeamName", self.publishing_team_name)

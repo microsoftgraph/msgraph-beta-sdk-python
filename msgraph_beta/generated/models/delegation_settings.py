@@ -13,11 +13,11 @@ from .entity import Entity
 
 @dataclass
 class DelegationSettings(Entity, Parsable):
-    # The allowedActions property
+    # The allowed actions for the delegator or delegate.
     allowed_actions: Optional[DelegateAllowedActions] = None
-    # The createdDateTime property
+    # Date and time when the delegator or delegate entry was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The isActive property
+    # Indicates whether the delegator or delegate relationship is currently active.
     is_active: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

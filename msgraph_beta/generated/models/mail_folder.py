@@ -34,7 +34,7 @@ class MailFolder(Entity, Parsable):
     multi_value_extended_properties: Optional[list[MultiValueLegacyExtendedProperty]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The operations property
+    # The collection of long-running operations in the mailFolder.
     operations: Optional[list[MailFolderOperation]] = None
     # The unique identifier for the mailFolder's parent mailFolder.
     parent_folder_id: Optional[str] = None

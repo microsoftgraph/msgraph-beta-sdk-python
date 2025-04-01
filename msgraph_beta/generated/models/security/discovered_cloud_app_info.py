@@ -29,8 +29,8 @@ class DiscoveredCloudAppInfo(Entity, Parsable):
     data_center: Optional[str] = None
     # The dataRetentionPolicy property
     data_retention_policy: Optional[AppInfoDataRetentionPolicy] = None
-    # The dataTypes property
-    data_types: Optional[AppInfoUploadedDataTypes] = None
+    # Indicates the data types that an end user can upload to the app. The possible values are: documents, mediaFiles, codingFiles, creditCards, databaseFiles, none, unknown, unknownFutureValue.
+    data_types: Optional[list[AppInfoUploadedDataTypes]] = None
     # Indicates the date when the app domain was registered.
     domain_registration_date_time: Optional[datetime.datetime] = None
     # The encryptionProtocol property
@@ -182,7 +182,7 @@ class DiscoveredCloudAppInfo(Entity, Parsable):
     # Indicates the last date of the data breach for the company.
     latest_breach_date_time: Optional[datetime.datetime] = None
     # Indicates the URL that users can use to sign into the app.
-    logon_urls: Optional[str] = None
+    logon_urls: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The pciDssVersion property
@@ -233,7 +233,7 @@ class DiscoveredCloudAppInfo(Entity, Parsable):
             "dataAtRestEncryptionMethod": lambda n : setattr(self, 'data_at_rest_encryption_method', n.get_enum_value(AppInfoDataAtRestEncryptionMethod)),
             "dataCenter": lambda n : setattr(self, 'data_center', n.get_str_value()),
             "dataRetentionPolicy": lambda n : setattr(self, 'data_retention_policy', n.get_enum_value(AppInfoDataRetentionPolicy)),
-            "dataTypes": lambda n : setattr(self, 'data_types', n.get_enum_value(AppInfoUploadedDataTypes)),
+            "dataTypes": lambda n : setattr(self, 'data_types', n.get_collection_of_enum_values(AppInfoUploadedDataTypes)),
             "domainRegistrationDateTime": lambda n : setattr(self, 'domain_registration_date_time', n.get_datetime_value()),
             "encryptionProtocol": lambda n : setattr(self, 'encryption_protocol', n.get_enum_value(AppInfoEncryptionProtocol)),
             "fedRampLevel": lambda n : setattr(self, 'fed_ramp_level', n.get_enum_value(AppInfoFedRampLevel)),
@@ -309,7 +309,7 @@ class DiscoveredCloudAppInfo(Entity, Parsable):
             "isUserRolesSupport": lambda n : setattr(self, 'is_user_roles_support', n.get_enum_value(CloudAppInfoState)),
             "isValidCertificateName": lambda n : setattr(self, 'is_valid_certificate_name', n.get_enum_value(CloudAppInfoState)),
             "latestBreachDateTime": lambda n : setattr(self, 'latest_breach_date_time', n.get_datetime_value()),
-            "logonUrls": lambda n : setattr(self, 'logon_urls', n.get_str_value()),
+            "logonUrls": lambda n : setattr(self, 'logon_urls', n.get_collection_of_primitive_values(str)),
             "pciDssVersion": lambda n : setattr(self, 'pci_dss_version', n.get_enum_value(AppInfoPciDssVersion)),
             "vendor": lambda n : setattr(self, 'vendor', n.get_str_value()),
         }
@@ -330,7 +330,7 @@ class DiscoveredCloudAppInfo(Entity, Parsable):
         writer.write_enum_value("dataAtRestEncryptionMethod", self.data_at_rest_encryption_method)
         writer.write_str_value("dataCenter", self.data_center)
         writer.write_enum_value("dataRetentionPolicy", self.data_retention_policy)
-        writer.write_enum_value("dataTypes", self.data_types)
+        writer.write_collection_of_enum_values("dataTypes", self.data_types)
         writer.write_datetime_value("domainRegistrationDateTime", self.domain_registration_date_time)
         writer.write_enum_value("encryptionProtocol", self.encryption_protocol)
         writer.write_enum_value("fedRampLevel", self.fed_ramp_level)
@@ -406,7 +406,7 @@ class DiscoveredCloudAppInfo(Entity, Parsable):
         writer.write_enum_value("isUserRolesSupport", self.is_user_roles_support)
         writer.write_enum_value("isValidCertificateName", self.is_valid_certificate_name)
         writer.write_datetime_value("latestBreachDateTime", self.latest_breach_date_time)
-        writer.write_str_value("logonUrls", self.logon_urls)
+        writer.write_collection_of_primitive_values("logonUrls", self.logon_urls)
         writer.write_enum_value("pciDssVersion", self.pci_dss_version)
         writer.write_str_value("vendor", self.vendor)
     

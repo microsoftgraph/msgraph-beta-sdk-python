@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from .drive_item_source import DriveItemSource
     from .drive_item_version import DriveItemVersion
     from .drive_item_viewpoint import DriveItemViewpoint
+    from .extension import Extension
     from .file import File
     from .file_system_info import FileSystemInfo
     from .folder import Folder
@@ -63,6 +64,8 @@ class DriveItem(BaseItem, Parsable):
     content_stream: Optional[bytes] = None
     # Information about the deleted state of the item. Read-only.
     deleted: Optional[Deleted] = None
+    # The extensions property
+    extensions: Optional[list[Extension]] = None
     # File metadata, if the item is a file. Read-only.
     file: Optional[File] = None
     # File system information on client. Read-write.
@@ -145,6 +148,7 @@ class DriveItem(BaseItem, Parsable):
         from .drive_item_source import DriveItemSource
         from .drive_item_version import DriveItemVersion
         from .drive_item_viewpoint import DriveItemViewpoint
+        from .extension import Extension
         from .file import File
         from .file_system_info import FileSystemInfo
         from .folder import Folder
@@ -179,6 +183,7 @@ class DriveItem(BaseItem, Parsable):
         from .drive_item_source import DriveItemSource
         from .drive_item_version import DriveItemVersion
         from .drive_item_viewpoint import DriveItemViewpoint
+        from .extension import Extension
         from .file import File
         from .file_system_info import FileSystemInfo
         from .folder import Folder
@@ -216,6 +221,7 @@ class DriveItem(BaseItem, Parsable):
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
             "contentStream": lambda n : setattr(self, 'content_stream', n.get_bytes_value()),
             "deleted": lambda n : setattr(self, 'deleted', n.get_object_value(Deleted)),
+            "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(Extension)),
             "file": lambda n : setattr(self, 'file', n.get_object_value(File)),
             "fileSystemInfo": lambda n : setattr(self, 'file_system_info', n.get_object_value(FileSystemInfo)),
             "folder": lambda n : setattr(self, 'folder', n.get_object_value(Folder)),
@@ -268,6 +274,7 @@ class DriveItem(BaseItem, Parsable):
         writer.write_bytes_value("content", self.content)
         writer.write_bytes_value("contentStream", self.content_stream)
         writer.write_object_value("deleted", self.deleted)
+        writer.write_collection_of_object_values("extensions", self.extensions)
         writer.write_object_value("file", self.file)
         writer.write_object_value("fileSystemInfo", self.file_system_info)
         writer.write_object_value("folder", self.folder)
