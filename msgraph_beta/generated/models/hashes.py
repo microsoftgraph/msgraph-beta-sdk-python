@@ -16,11 +16,11 @@ class Hashes(AdditionalDataHolder, BackedModel, Parsable):
     crc32_hash: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # A proprietary hash of the file that can be used to determine if the contents of the file have changed (if available). Read-only.
+    # A proprietary hash of the file that can be used to determine if the contents of the file change (if available). Read-only.
     quick_xor_hash: Optional[str] = None
     # SHA1 hash for the contents of the file (if available). Read-only.
     sha1_hash: Optional[str] = None
-    # SHA256 hash for the contents of the file (if available). Read-only.
+    # This property isn't supported. Don't use.
     sha256_hash: Optional[str] = None
     
     @staticmethod

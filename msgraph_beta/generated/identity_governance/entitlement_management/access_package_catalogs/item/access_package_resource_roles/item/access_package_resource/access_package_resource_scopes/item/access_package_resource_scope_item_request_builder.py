@@ -104,7 +104,6 @@ class AccessPackageResourceScopeItemRequestBuilder(BaseRequestBuilder):
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AccessPackageResourceScopeItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:

@@ -57,7 +57,6 @@ class ReprocessRequestBuilder(BaseRequestBuilder):
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: str) -> ReprocessRequestBuilder:

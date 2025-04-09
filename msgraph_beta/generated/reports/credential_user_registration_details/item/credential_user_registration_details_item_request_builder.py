@@ -103,7 +103,6 @@ class CredentialUserRegistrationDetailsItemRequestBuilder(BaseRequestBuilder):
         warn("The Reporting credentialUserRegistrationDetails API is deprecated and will stop returning data on June 30, 2024. Please use the new userRegistrationDetails API. as of 2023-06/credentialUserRegistrationDetails on 2023-06-21 and will be removed 2024-06-30", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CredentialUserRegistrationDetailsItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:

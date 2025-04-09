@@ -64,7 +64,7 @@ class DriveItem(BaseItem, Parsable):
     content_stream: Optional[bytes] = None
     # Information about the deleted state of the item. Read-only.
     deleted: Optional[Deleted] = None
-    # The extensions property
+    # The collection of open extensions defined for this item. Nullable.
     extensions: Optional[list[Extension]] = None
     # File metadata, if the item is a file. Read-only.
     file: Optional[File] = None

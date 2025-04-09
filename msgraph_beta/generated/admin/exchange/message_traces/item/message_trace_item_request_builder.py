@@ -104,7 +104,6 @@ class MessageTraceItemRequestBuilder(BaseRequestBuilder):
         warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MessageTraceItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:

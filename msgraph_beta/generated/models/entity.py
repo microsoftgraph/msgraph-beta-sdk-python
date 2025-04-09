@@ -381,6 +381,8 @@ if TYPE_CHECKING:
     from .copilot_admin import CopilotAdmin
     from .copilot_admin_limited_mode import CopilotAdminLimitedMode
     from .copilot_admin_setting import CopilotAdminSetting
+    from .copilot_people_admin_setting import CopilotPeopleAdminSetting
+    from .copilot_setting import CopilotSetting
     from .cors_configuration_v2 import CorsConfiguration_v2
     from .country_named_location import CountryNamedLocation
     from .credential_usage_summary import CredentialUsageSummary
@@ -1600,6 +1602,8 @@ if TYPE_CHECKING:
     from .shared_with_channel_team_info import SharedWithChannelTeamInfo
     from .sharepoint import Sharepoint
     from .sharepoint_settings import SharepointSettings
+    from .share_point_group import SharePointGroup
+    from .share_point_group_member import SharePointGroupMember
     from .share_point_protection_policy import SharePointProtectionPolicy
     from .share_point_restore_session import SharePointRestoreSession
     from .shift import Shift
@@ -3590,6 +3594,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .copilot_admin_setting import CopilotAdminSetting
 
             return CopilotAdminSetting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotPeopleAdminSetting".casefold():
+            from .copilot_people_admin_setting import CopilotPeopleAdminSetting
+
+            return CopilotPeopleAdminSetting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotSetting".casefold():
+            from .copilot_setting import CopilotSetting
+
+            return CopilotSetting()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.corsConfiguration_v2".casefold():
             from .cors_configuration_v2 import CorsConfiguration_v2
 
@@ -8514,6 +8526,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .sharepoint import Sharepoint
 
             return Sharepoint()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointGroup".casefold():
+            from .share_point_group import SharePointGroup
+
+            return SharePointGroup()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointGroupMember".casefold():
+            from .share_point_group_member import SharePointGroupMember
+
+            return SharePointGroupMember()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointProtectionPolicy".casefold():
             from .share_point_protection_policy import SharePointProtectionPolicy
 
@@ -10724,6 +10744,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_admin import CopilotAdmin
         from .copilot_admin_limited_mode import CopilotAdminLimitedMode
         from .copilot_admin_setting import CopilotAdminSetting
+        from .copilot_people_admin_setting import CopilotPeopleAdminSetting
+        from .copilot_setting import CopilotSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .country_named_location import CountryNamedLocation
         from .credential_usage_summary import CredentialUsageSummary
@@ -11943,6 +11965,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
         from .sharepoint import Sharepoint
         from .sharepoint_settings import SharepointSettings
+        from .share_point_group import SharePointGroup
+        from .share_point_group_member import SharePointGroupMember
         from .share_point_protection_policy import SharePointProtectionPolicy
         from .share_point_restore_session import SharePointRestoreSession
         from .shift import Shift
@@ -12774,6 +12798,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_admin import CopilotAdmin
         from .copilot_admin_limited_mode import CopilotAdminLimitedMode
         from .copilot_admin_setting import CopilotAdminSetting
+        from .copilot_people_admin_setting import CopilotPeopleAdminSetting
+        from .copilot_setting import CopilotSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .country_named_location import CountryNamedLocation
         from .credential_usage_summary import CredentialUsageSummary
@@ -13993,6 +14019,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
         from .sharepoint import Sharepoint
         from .sharepoint_settings import SharepointSettings
+        from .share_point_group import SharePointGroup
+        from .share_point_group_member import SharePointGroupMember
         from .share_point_protection_policy import SharePointProtectionPolicy
         from .share_point_restore_session import SharePointRestoreSession
         from .shift import Shift

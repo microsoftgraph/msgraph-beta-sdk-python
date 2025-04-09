@@ -58,7 +58,6 @@ class MicrosoftGraphEdiscoveryResetToDefaultRequestBuilder(BaseRequestBuilder):
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace on 2022-12-05 and will be removed 2023-02-01", DeprecationWarning)
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: str) -> MicrosoftGraphEdiscoveryResetToDefaultRequestBuilder:
