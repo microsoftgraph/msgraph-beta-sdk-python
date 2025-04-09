@@ -48,7 +48,6 @@ if TYPE_CHECKING:
     from .get_devices_without_compliance_policy_report.get_devices_without_compliance_policy_report_request_builder import GetDevicesWithoutCompliancePolicyReportRequestBuilder
     from .get_device_configuration_policy_settings_summary_report.get_device_configuration_policy_settings_summary_report_request_builder import GetDeviceConfigurationPolicySettingsSummaryReportRequestBuilder
     from .get_device_configuration_policy_status_summary.get_device_configuration_policy_status_summary_request_builder import GetDeviceConfigurationPolicyStatusSummaryRequestBuilder
-    from .get_device_install_status_report.get_device_install_status_report_request_builder import GetDeviceInstallStatusReportRequestBuilder
     from .get_device_management_intent_per_setting_contributing_profiles.get_device_management_intent_per_setting_contributing_profiles_request_builder import GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder
     from .get_device_management_intent_settings_report.get_device_management_intent_settings_report_request_builder import GetDeviceManagementIntentSettingsReportRequestBuilder
     from .get_device_non_compliance_report.get_device_non_compliance_report_request_builder import GetDeviceNonComplianceReportRequestBuilder
@@ -176,7 +175,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         """
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ReportsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
@@ -475,15 +473,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_device_configuration_policy_status_summary.get_device_configuration_policy_status_summary_request_builder import GetDeviceConfigurationPolicyStatusSummaryRequestBuilder
 
         return GetDeviceConfigurationPolicyStatusSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_device_install_status_report(self) -> GetDeviceInstallStatusReportRequestBuilder:
-        """
-        Provides operations to call the getDeviceInstallStatusReport method.
-        """
-        from .get_device_install_status_report.get_device_install_status_report_request_builder import GetDeviceInstallStatusReportRequestBuilder
-
-        return GetDeviceInstallStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_device_management_intent_per_setting_contributing_profiles(self) -> GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder:

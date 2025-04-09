@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .file_storage_container_viewpoint import FileStorageContainerViewpoint
     from .permission import Permission
     from .recycle_bin import RecycleBin
+    from .share_point_group import SharePointGroup
     from .site_archival_details import SiteArchivalDetails
     from .site_lock_state import SiteLockState
     from .user_identity import UserIdentity
@@ -64,6 +65,8 @@ class FileStorageContainer(Entity, Parsable):
     recycle_bin: Optional[RecycleBin] = None
     # The settings property
     settings: Optional[FileStorageContainerSettings] = None
+    # The collection of sharePointGroup objects local to the container. Read-write.
+    share_point_groups: Optional[list[SharePointGroup]] = None
     # Status of the fileStorageContainer. Containers are created as inactive and require activation. Inactive containers are subjected to automatic deletion in 24 hours. The possible values are: inactive, active. Read-only.
     status: Optional[FileStorageContainerStatus] = None
     # Storage used in the fileStorageContainer, in bytes. Read-only.
@@ -98,6 +101,7 @@ class FileStorageContainer(Entity, Parsable):
         from .file_storage_container_viewpoint import FileStorageContainerViewpoint
         from .permission import Permission
         from .recycle_bin import RecycleBin
+        from .share_point_group import SharePointGroup
         from .site_archival_details import SiteArchivalDetails
         from .site_lock_state import SiteLockState
         from .user_identity import UserIdentity
@@ -113,6 +117,7 @@ class FileStorageContainer(Entity, Parsable):
         from .file_storage_container_viewpoint import FileStorageContainerViewpoint
         from .permission import Permission
         from .recycle_bin import RecycleBin
+        from .share_point_group import SharePointGroup
         from .site_archival_details import SiteArchivalDetails
         from .site_lock_state import SiteLockState
         from .user_identity import UserIdentity
@@ -136,6 +141,7 @@ class FileStorageContainer(Entity, Parsable):
             "permissions": lambda n : setattr(self, 'permissions', n.get_collection_of_object_values(Permission)),
             "recycleBin": lambda n : setattr(self, 'recycle_bin', n.get_object_value(RecycleBin)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(FileStorageContainerSettings)),
+            "sharePointGroups": lambda n : setattr(self, 'share_point_groups', n.get_collection_of_object_values(SharePointGroup)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(FileStorageContainerStatus)),
             "storageUsedInBytes": lambda n : setattr(self, 'storage_used_in_bytes', n.get_int_value()),
             "viewpoint": lambda n : setattr(self, 'viewpoint', n.get_object_value(FileStorageContainerViewpoint)),
@@ -171,6 +177,7 @@ class FileStorageContainer(Entity, Parsable):
         writer.write_collection_of_object_values("permissions", self.permissions)
         writer.write_object_value("recycleBin", self.recycle_bin)
         writer.write_object_value("settings", self.settings)
+        writer.write_collection_of_object_values("sharePointGroups", self.share_point_groups)
         writer.write_enum_value("status", self.status)
         writer.write_int_value("storageUsedInBytes", self.storage_used_in_bytes)
         writer.write_object_value("viewpoint", self.viewpoint)

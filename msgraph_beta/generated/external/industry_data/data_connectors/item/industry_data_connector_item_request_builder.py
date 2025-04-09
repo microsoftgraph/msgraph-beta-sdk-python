@@ -74,11 +74,11 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: IndustryDataConnector, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[IndustryDataConnector]:
         """
-        Update the properties of an azureDataLakeConnector object.
+        Update the properties of a oneRosterApiDataConnector object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IndustryDataConnector]
-        Find more info here: https://learn.microsoft.com/graph/api/industrydata-azuredatalakeconnector-update?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/industrydata-onerosterapidataconnector-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -104,7 +104,6 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
         """
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[IndustryDataConnectorItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
@@ -120,7 +119,7 @@ class IndustryDataConnectorItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: IndustryDataConnector, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of an azureDataLakeConnector object.
+        Update the properties of a oneRosterApiDataConnector object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

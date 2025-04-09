@@ -50,10 +50,10 @@ class FederatedTokenValidationPolicyRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[FederatedTokenValidationPolicyRequestBuilderGetQueryParameters]] = None) -> Optional[FederatedTokenValidationPolicy]:
         """
-        Read the properties and relationships of a federatedTokenValidationPolicy object.
+        Get a list of the federatedTokenValidationPolicy objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FederatedTokenValidationPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/federatedtokenvalidationpolicy-get?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/policyroot-list-federatedtokenvalidationpolicy?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -101,12 +101,11 @@ class FederatedTokenValidationPolicyRequestBuilder(BaseRequestBuilder):
         """
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[FederatedTokenValidationPolicyRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a federatedTokenValidationPolicy object.
+        Get a list of the federatedTokenValidationPolicy objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -150,7 +149,7 @@ class FederatedTokenValidationPolicyRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FederatedTokenValidationPolicyRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a federatedTokenValidationPolicy object.
+        Get a list of the federatedTokenValidationPolicy objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

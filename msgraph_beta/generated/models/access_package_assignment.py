@@ -49,7 +49,7 @@ class AccessPackageAssignment(Entity, Parsable):
     schedule: Optional[RequestSchedule] = None
     # The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
     target: Optional[AccessPackageSubject] = None
-    # The ID of the subject with the assignment. Read-only.
+    # This property should not be used as a dependency, as it may change without notice. Instead, expand the target relationship and use the objectId property. Read-only.
     target_id: Optional[str] = None
     
     @staticmethod

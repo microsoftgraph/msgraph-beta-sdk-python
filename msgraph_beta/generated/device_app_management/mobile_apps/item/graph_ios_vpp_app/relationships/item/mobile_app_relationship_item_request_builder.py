@@ -50,7 +50,7 @@ class MobileAppRelationshipItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MobileAppRelationshipItemRequestBuilderGetQueryParameters]] = None) -> Optional[MobileAppRelationship]:
         """
-        List of relationships for this mobile app.
+        The set of direct relationships for this app.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MobileAppRelationship]
         """
@@ -99,12 +99,11 @@ class MobileAppRelationshipItemRequestBuilder(BaseRequestBuilder):
         """
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MobileAppRelationshipItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        List of relationships for this mobile app.
+        The set of direct relationships for this app.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +147,7 @@ class MobileAppRelationshipItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MobileAppRelationshipItemRequestBuilderGetQueryParameters():
         """
-        List of relationships for this mobile app.
+        The set of direct relationships for this app.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

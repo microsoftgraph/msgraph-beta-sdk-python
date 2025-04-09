@@ -76,7 +76,7 @@ class ContentStreamRequestBuilder(BaseRequestBuilder):
         """
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/octet-stream, application/json")
+        request_info.headers.try_add("Accept", "application/octet-stream")
         return request_info
     
     def to_put_request_information(self,body: bytes, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
@@ -90,7 +90,6 @@ class ContentStreamRequestBuilder(BaseRequestBuilder):
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PUT, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         request_info.set_stream_content(body, "application/octet-stream")
         return request_info
     

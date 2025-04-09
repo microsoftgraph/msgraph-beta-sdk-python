@@ -38,10 +38,6 @@ class MobileAppContentFile(Entity, Parsable):
     size: Optional[int] = None
     # Indicates the size of the file after encryption, in bytes.
     size_encrypted: Optional[int] = None
-    # Indicates the size of the file after encryption, in bytes. To be deprecated in February 2025, please use SizeEncrypted property instead. Valid values 0 to 9.22337203685478E+18
-    size_encrypted_in_bytes: Optional[int] = None
-    # Indicates the original size of the file, in bytes. To be deprecated in February 2025, please use Size property instead. Valid values 0 to 9.22337203685478E+18
-    size_in_bytes: Optional[int] = None
     # Contains properties for upload request states.
     upload_state: Optional[MobileAppContentFileUploadState] = None
     
@@ -78,8 +74,6 @@ class MobileAppContentFile(Entity, Parsable):
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "size": lambda n : setattr(self, 'size', n.get_int_value()),
             "sizeEncrypted": lambda n : setattr(self, 'size_encrypted', n.get_int_value()),
-            "sizeEncryptedInBytes": lambda n : setattr(self, 'size_encrypted_in_bytes', n.get_int_value()),
-            "sizeInBytes": lambda n : setattr(self, 'size_in_bytes', n.get_int_value()),
             "uploadState": lambda n : setattr(self, 'upload_state', n.get_enum_value(MobileAppContentFileUploadState)),
         }
         super_fields = super().get_field_deserializers()
@@ -101,8 +95,6 @@ class MobileAppContentFile(Entity, Parsable):
         writer.write_str_value("name", self.name)
         writer.write_int_value("size", self.size)
         writer.write_int_value("sizeEncrypted", self.size_encrypted)
-        writer.write_int_value("sizeEncryptedInBytes", self.size_encrypted_in_bytes)
-        writer.write_int_value("sizeInBytes", self.size_in_bytes)
         writer.write_enum_value("uploadState", self.upload_state)
     
 

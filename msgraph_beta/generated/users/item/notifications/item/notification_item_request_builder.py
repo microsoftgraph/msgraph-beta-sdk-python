@@ -103,7 +103,6 @@ class NotificationItemRequestBuilder(BaseRequestBuilder):
         warn("The Graph Notification API is deprecated and will stop returning data on March 20, 2023. as of 2023-03/Notification_Deprecation on 2023-03-09 and will be removed 2023-03-20", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[NotificationItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
