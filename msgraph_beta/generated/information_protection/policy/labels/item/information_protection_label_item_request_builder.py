@@ -103,7 +103,6 @@ class InformationProtectionLabelItemRequestBuilder(BaseRequestBuilder):
         warn("This API will no longer be accessible, please see microsoft.graph.security.informationProtection APIs. as of 2021-02/Beta_SensitivityLabels on 2021-02-15 and will be removed 2022-08-15", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
-        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[InformationProtectionLabelItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:

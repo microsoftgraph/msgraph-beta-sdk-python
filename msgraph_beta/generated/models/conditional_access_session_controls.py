@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .application_enforced_restrictions_session_control import ApplicationEnforcedRestrictionsSessionControl
     from .cloud_app_security_session_control import CloudAppSecuritySessionControl
     from .continuous_access_evaluation_session_control import ContinuousAccessEvaluationSessionControl
+    from .global_secure_access_filtering_profile_session_control import GlobalSecureAccessFilteringProfileSessionControl
     from .persistent_browser_session_control import PersistentBrowserSessionControl
     from .secure_sign_in_session_control import SecureSignInSessionControl
     from .sign_in_frequency_session_control import SignInFrequencySessionControl
@@ -28,6 +29,8 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, BackedModel, Parsab
     continuous_access_evaluation: Optional[ContinuousAccessEvaluationSessionControl] = None
     # Session control that determines whether it's acceptable for Microsoft Entra ID to extend existing sessions based on information collected prior to an outage or not.
     disable_resilience_defaults: Optional[bool] = None
+    # Session control to link to Global Secure Access security profiles or filtering profiles.
+    global_secure_access_filtering_profile: Optional[GlobalSecureAccessFilteringProfileSessionControl] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Session control to define whether to persist cookies or not. All apps should be selected for this session control to work correctly.
@@ -56,6 +59,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, BackedModel, Parsab
         from .application_enforced_restrictions_session_control import ApplicationEnforcedRestrictionsSessionControl
         from .cloud_app_security_session_control import CloudAppSecuritySessionControl
         from .continuous_access_evaluation_session_control import ContinuousAccessEvaluationSessionControl
+        from .global_secure_access_filtering_profile_session_control import GlobalSecureAccessFilteringProfileSessionControl
         from .persistent_browser_session_control import PersistentBrowserSessionControl
         from .secure_sign_in_session_control import SecureSignInSessionControl
         from .sign_in_frequency_session_control import SignInFrequencySessionControl
@@ -63,6 +67,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, BackedModel, Parsab
         from .application_enforced_restrictions_session_control import ApplicationEnforcedRestrictionsSessionControl
         from .cloud_app_security_session_control import CloudAppSecuritySessionControl
         from .continuous_access_evaluation_session_control import ContinuousAccessEvaluationSessionControl
+        from .global_secure_access_filtering_profile_session_control import GlobalSecureAccessFilteringProfileSessionControl
         from .persistent_browser_session_control import PersistentBrowserSessionControl
         from .secure_sign_in_session_control import SecureSignInSessionControl
         from .sign_in_frequency_session_control import SignInFrequencySessionControl
@@ -72,6 +77,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, BackedModel, Parsab
             "cloudAppSecurity": lambda n : setattr(self, 'cloud_app_security', n.get_object_value(CloudAppSecuritySessionControl)),
             "continuousAccessEvaluation": lambda n : setattr(self, 'continuous_access_evaluation', n.get_object_value(ContinuousAccessEvaluationSessionControl)),
             "disableResilienceDefaults": lambda n : setattr(self, 'disable_resilience_defaults', n.get_bool_value()),
+            "globalSecureAccessFilteringProfile": lambda n : setattr(self, 'global_secure_access_filtering_profile', n.get_object_value(GlobalSecureAccessFilteringProfileSessionControl)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "persistentBrowser": lambda n : setattr(self, 'persistent_browser', n.get_object_value(PersistentBrowserSessionControl)),
             "secureSignInSession": lambda n : setattr(self, 'secure_sign_in_session', n.get_object_value(SecureSignInSessionControl)),
@@ -91,6 +97,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, BackedModel, Parsab
         writer.write_object_value("cloudAppSecurity", self.cloud_app_security)
         writer.write_object_value("continuousAccessEvaluation", self.continuous_access_evaluation)
         writer.write_bool_value("disableResilienceDefaults", self.disable_resilience_defaults)
+        writer.write_object_value("globalSecureAccessFilteringProfile", self.global_secure_access_filtering_profile)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("persistentBrowser", self.persistent_browser)
         writer.write_object_value("secureSignInSession", self.secure_sign_in_session)

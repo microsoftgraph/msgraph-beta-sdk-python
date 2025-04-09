@@ -27,6 +27,8 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity, Parsable):
     created_date_time: Optional[datetime.datetime] = None
     # Description for the enrollment profile.
     description: Optional[str] = None
+    # Indicates the device name template used for the enrolled Android devices. The maximum length allowed for this property is 63 characters. The template expression contains normal text and tokens, including the serial number of the device, user name, device type, upn prefix, or a randomly generated number. Supported Tokens for device name templates are: (for device naming template expression): {{SERIAL}}, {{SERIALLAST4DIGITS}}, {{ENROLLMENTDATETIME}}, {{USERNAME}}, {{DEVICETYPE}}, {{UPNPREFIX}}, {{rand:x}}. Supports: $select, $top, $skip. $Search, $orderBy and $filter are not supported.
+    device_name_template: Optional[str] = None
     # Display name for the enrollment profile.
     display_name: Optional[str] = None
     # Total number of Android devices that have enrolled using this enrollment profile.
@@ -97,6 +99,7 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity, Parsable):
             "configureWifi": lambda n : setattr(self, 'configure_wifi', n.get_bool_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
+            "deviceNameTemplate": lambda n : setattr(self, 'device_name_template', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "enrolledDeviceCount": lambda n : setattr(self, 'enrolled_device_count', n.get_int_value()),
             "enrollmentMode": lambda n : setattr(self, 'enrollment_mode', n.get_enum_value(AndroidDeviceOwnerEnrollmentMode)),
@@ -132,6 +135,7 @@ class AndroidDeviceOwnerEnrollmentProfile(Entity, Parsable):
         writer.write_bool_value("configureWifi", self.configure_wifi)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)
+        writer.write_str_value("deviceNameTemplate", self.device_name_template)
         writer.write_str_value("displayName", self.display_name)
         writer.write_int_value("enrolledDeviceCount", self.enrolled_device_count)
         writer.write_enum_value("enrollmentMode", self.enrollment_mode)

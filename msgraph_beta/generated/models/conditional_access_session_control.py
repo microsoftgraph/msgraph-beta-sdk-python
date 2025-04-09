@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .application_enforced_restrictions_session_control import ApplicationEnforcedRestrictionsSessionControl
     from .cloud_app_security_session_control import CloudAppSecuritySessionControl
+    from .global_secure_access_filtering_profile_session_control import GlobalSecureAccessFilteringProfileSessionControl
     from .persistent_browser_session_control import PersistentBrowserSessionControl
     from .secure_sign_in_session_control import SecureSignInSessionControl
     from .sign_in_frequency_session_control import SignInFrequencySessionControl
@@ -46,6 +47,10 @@ class ConditionalAccessSessionControl(AdditionalDataHolder, BackedModel, Parsabl
             from .cloud_app_security_session_control import CloudAppSecuritySessionControl
 
             return CloudAppSecuritySessionControl()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.globalSecureAccessFilteringProfileSessionControl".casefold():
+            from .global_secure_access_filtering_profile_session_control import GlobalSecureAccessFilteringProfileSessionControl
+
+            return GlobalSecureAccessFilteringProfileSessionControl()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.persistentBrowserSessionControl".casefold():
             from .persistent_browser_session_control import PersistentBrowserSessionControl
 
@@ -67,12 +72,14 @@ class ConditionalAccessSessionControl(AdditionalDataHolder, BackedModel, Parsabl
         """
         from .application_enforced_restrictions_session_control import ApplicationEnforcedRestrictionsSessionControl
         from .cloud_app_security_session_control import CloudAppSecuritySessionControl
+        from .global_secure_access_filtering_profile_session_control import GlobalSecureAccessFilteringProfileSessionControl
         from .persistent_browser_session_control import PersistentBrowserSessionControl
         from .secure_sign_in_session_control import SecureSignInSessionControl
         from .sign_in_frequency_session_control import SignInFrequencySessionControl
 
         from .application_enforced_restrictions_session_control import ApplicationEnforcedRestrictionsSessionControl
         from .cloud_app_security_session_control import CloudAppSecuritySessionControl
+        from .global_secure_access_filtering_profile_session_control import GlobalSecureAccessFilteringProfileSessionControl
         from .persistent_browser_session_control import PersistentBrowserSessionControl
         from .secure_sign_in_session_control import SecureSignInSessionControl
         from .sign_in_frequency_session_control import SignInFrequencySessionControl

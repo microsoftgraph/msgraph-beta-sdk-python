@@ -49,7 +49,7 @@ class ExtensionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ExtensionsRequestBuilderGetQueryParameters]] = None) -> Optional[ExtensionCollectionResponse]:
         """
-        Get extensions from drives
+        The collection of open extensions defined for this item. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExtensionCollectionResponse]
         """
@@ -92,7 +92,7 @@ class ExtensionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ExtensionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get extensions from drives
+        The collection of open extensions defined for this item. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class ExtensionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExtensionsRequestBuilderGetQueryParameters():
         """
-        Get extensions from drives
+        The collection of open extensions defined for this item. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
