@@ -38,9 +38,10 @@ class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartD
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilderGetQueryParameters]] = None) -> Optional[GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdGetResponse]:
         """
-        Invoke function getDiscoveredApplicationSegmentReport
+        Returns a collection of discoveredApplicationSegmentReport based on aggregated traffic logs for a given period.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-reports-getdiscoveredapplicationsegmentreport?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -58,7 +59,7 @@ class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartD
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getDiscoveredApplicationSegmentReport
+        Returns a collection of discoveredApplicationSegmentReport based on aggregated traffic logs for a given period.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -80,7 +81,7 @@ class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartD
     @dataclass
     class MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilderGetQueryParameters():
         """
-        Invoke function getDiscoveredApplicationSegmentReport
+        Returns a collection of discoveredApplicationSegmentReport based on aggregated traffic logs for a given period.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

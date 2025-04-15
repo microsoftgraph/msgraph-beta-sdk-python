@@ -12,65 +12,65 @@ class DeviceInfo(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The deviceId property
+    # Unique identifier set by Azure Device Registration Service at the time of registration.
     device_id: Optional[str] = None
-    # The displayName property
+    # The display name for the device.
     display_name: Optional[str] = None
-    # The enrollmentProfileName property
+    # Enrollment profile applied to the device.
     enrollment_profile_name: Optional[str] = None
-    # The extensionAttribute1 property
+    # Extension attribute.
     extension_attribute1: Optional[str] = None
-    # The extensionAttribute10 property
+    # Extension attribute.
     extension_attribute10: Optional[str] = None
-    # The extensionAttribute11 property
+    # Extension attribute.
     extension_attribute11: Optional[str] = None
-    # The extensionAttribute12 property
+    # Extension attribute.
     extension_attribute12: Optional[str] = None
-    # The extensionAttribute13 property
+    # Extension attribute.
     extension_attribute13: Optional[str] = None
-    # The extensionAttribute14 property
+    # Extension attribute.
     extension_attribute14: Optional[str] = None
-    # The extensionAttribute15 property
+    # Extension attribute.
     extension_attribute15: Optional[str] = None
-    # The extensionAttribute2 property
+    # Extension attribute.
     extension_attribute2: Optional[str] = None
-    # The extensionAttribute3 property
+    # Extension attribute.
     extension_attribute3: Optional[str] = None
-    # The extensionAttribute4 property
+    # Extension attribute.
     extension_attribute4: Optional[str] = None
-    # The extensionAttribute5 property
+    # Extension attribute.
     extension_attribute5: Optional[str] = None
-    # The extensionAttribute6 property
+    # Extension attribute.
     extension_attribute6: Optional[str] = None
-    # The extensionAttribute7 property
+    # Extension attribute.
     extension_attribute7: Optional[str] = None
-    # The extensionAttribute8 property
+    # Extension attribute.
     extension_attribute8: Optional[str] = None
-    # The extensionAttribute9 property
+    # Extension attribute.
     extension_attribute9: Optional[str] = None
-    # The isCompliant property
+    # Indicates the device compliance status with Mobile Management Device (MDM) policies.
     is_compliant: Optional[bool] = None
-    # The manufacturer property
+    # Manufacturer of the device.
     manufacturer: Optional[str] = None
-    # The mdmAppId property
+    # Application identifier used to register device into MDM.
     mdm_app_id: Optional[str] = None
-    # The model property
+    # Model of the device.
     model: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The operatingSystem property
+    # The type of operating system on the device.
     operating_system: Optional[str] = None
-    # The operatingSystemVersion property
+    # The version of the operating system on the device.
     operating_system_version: Optional[str] = None
-    # The ownership property
+    # Ownership of the device. This property is set by Intune.
     ownership: Optional[str] = None
-    # The physicalIds property
+    # A collection of physical identifiers for the device.
     physical_ids: Optional[list[str]] = None
-    # The profileType property
+    # The profile type of the device.
     profile_type: Optional[str] = None
-    # The systemLabels property
+    # List of labels applied to the device by the system.
     system_labels: Optional[list[str]] = None
-    # The trustType property
+    # Type of trust for the joined device.
     trust_type: Optional[str] = None
     
     @staticmethod

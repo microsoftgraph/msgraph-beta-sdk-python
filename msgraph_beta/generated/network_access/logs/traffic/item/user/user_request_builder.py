@@ -34,7 +34,7 @@ class UserRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UserRequestBuilderGetQueryParameters]] = None) -> Optional[User]:
         """
-        Get user from networkAccess
+        Represents the user associated with the network traffic, providing details about the individual or account initiating the transaction.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[User]
         """
@@ -54,7 +54,7 @@ class UserRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UserRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get user from networkAccess
+        Represents the user associated with the network traffic, providing details about the individual or account initiating the transaction.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -94,7 +94,7 @@ class UserRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserRequestBuilderGetQueryParameters():
         """
-        Get user from networkAccess
+        Represents the user associated with the network traffic, providing details about the individual or account initiating the transaction.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

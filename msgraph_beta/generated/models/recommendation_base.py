@@ -37,7 +37,7 @@ class RecommendationBase(Entity, Parsable):
     feature_areas: Optional[list[RecommendationFeatureAreas]] = None
     # The future date and time when a recommendation should be completed.
     impact_start_date_time: Optional[datetime.datetime] = None
-    # Indicates the scope of impact of a recommendation. Tenant level indicates that the recommendation impacts the whole tenant. Other possible values include users, applications.
+    # Indicates the scope of impact of a recommendation. tenantLevel indicates that the recommendation impacts the whole tenant. Other possible values include users, apps.
     impact_type: Optional[str] = None
     # The list of directory objects associated with the recommendation.
     impacted_resources: Optional[list[ImpactedResource]] = None

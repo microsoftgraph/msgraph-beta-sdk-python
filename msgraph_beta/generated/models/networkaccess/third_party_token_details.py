@@ -13,15 +13,15 @@ class ThirdPartyTokenDetails(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The expirationDateTime property
+    # Time the token will expire.
     expiration_date_time: Optional[datetime.datetime] = None
-    # The issuedAtDateTime property
+    # Time the token was issued at.
     issued_at_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The uniqueTokenIdentifier property
+    # Unique token identifier.
     unique_token_identifier: Optional[str] = None
-    # The validFromDateTime property
+    # Time the token is valid from.
     valid_from_date_time: Optional[datetime.datetime] = None
     
     @staticmethod

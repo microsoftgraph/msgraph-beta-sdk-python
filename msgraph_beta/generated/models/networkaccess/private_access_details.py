@@ -17,23 +17,23 @@ class PrivateAccessDetails(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The accessType property
+    # Type of accessed application. Access type options: QuickAccess, PrivateAccess.
     access_type: Optional[AccessType] = None
-    # The appSegmentId property
+    # The unique identifier for Application segment ID from Azure AD.
     app_segment_id: Optional[str] = None
-    # The connectionStatus property
+    # Status of a connection. Status options: Open, Active, Closed.
     connection_status: Optional[ConnectionStatus] = None
-    # The connectorId property
+    # Private access connector ID.
     connector_id: Optional[str] = None
-    # The connectorIp property
+    # Private access connector IP address.
     connector_ip: Optional[str] = None
-    # The connectorName property
+    # Private access connector name.
     connector_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The processingRegion property
+    # Region where the request was processed by the backend service.
     processing_region: Optional[str] = None
-    # The thirdPartyTokenDetails property
+    # Details about third-party tokens used in the transaction.
     third_party_token_details: Optional[ThirdPartyTokenDetails] = None
     
     @staticmethod
