@@ -27,17 +27,17 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Indicates what action to take based on filtering policies. The possible values are: block, allow.
+    # Indicates the action taken based on filtering policies. The possible values are: block, allow, unknownFutureValue, bypass, alert. Use the Prefer: include-unknown-enum-members request header to get the following values from this {evolvable enum}(/graph/best-practices-concept#handling-future-members-in-evolvable-enumerations): bypass , alert.
     action: Optional[FilteringPolicyAction] = None
-    # Represents the version of the Global Secure Access client agent software. Supports $filter (eq) and $orderby.
+    # Represents the version of the Global Secure Access (GSA) client agent software. Supports $filter (eq) and $orderby.
     agent_version: Optional[str] = None
-    # The applicationSnapshot property
+    # Destination Application ID accessed in Azure AD during the transaction. Supports $filter (eq) and $orderby.
     application_snapshot: Optional[ApplicationSnapshot] = None
     # Represents a unique identifier assigned to a connection. Supports $filter (eq) and $orderby.
     connection_id: Optional[str] = None
     # Represents the date and time when a network access traffic log entry was created. Supports $filter (eq) and $orderby.
     created_date_time: Optional[datetime.datetime] = None
-    # The description property
+    # Informational error message. For example: 'Threat intelligence detected a transaction and triggered an alert.' or 'The Global Secure Access (GSA) policy blocked the destination and triggered an alert.' Supports $filter (eq) and $orderby.
     description: Optional[str] = None
     # Represents the Fully Qualified Domain Name (FQDN) of the destination host or server in a network communication. Supports $filter (eq) and $orderby.
     destination_f_q_d_n: Optional[str] = None
@@ -45,11 +45,11 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     destination_ip: Optional[str] = None
     # Represents the network port number on the destination host or server in a network communication. Supports $filter (eq) and $orderby.
     destination_port: Optional[int] = None
-    # The destinationUrl property
+    # Represents the URL of the destination in a network communication. Supports $filter (eq) and $orderby.
     destination_url: Optional[str] = None
-    # The destinationWebCategory property
+    # The destination FQDN's Web Category (e.g., Gambling). Supports $filter (eq) and $orderby.
     destination_web_category: Optional[WebCategory] = None
-    # The device property
+    # Represents the device associated with the network traffic, providing details about the hardware or virtual machine involved in the transaction.
     device: Optional[Device] = None
     # Represents the category classification of a device within a network infrastructure. The possible values are: client, branch, unknownFutureValue. Supports $filter (eq) and $orderby.
     device_category: Optional[DeviceCategory] = None
@@ -59,41 +59,41 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     device_operating_system: Optional[str] = None
     # Represents the version or release number of the operating system installed on a device within a network infrastructure. Supports $filter (eq) and $orderby.
     device_operating_system_version: Optional[str] = None
-    # The filteringProfileId property
+    # The ID of the Filtering Profile associated with the action performed on traffic. Supports $filter (eq) and $orderby.
     filtering_profile_id: Optional[str] = None
-    # The filteringProfileName property
+    # The name of the Filtering Profile associated with the action performed on traffic. Supports $filter (eq) and $orderby.
     filtering_profile_name: Optional[str] = None
     # Represents the headers included in a network request or response. Supports $filter (eq) and $orderby.
     headers: Optional[Headers] = None
-    # The httpMethod property
+    # The HTTP method inspected in the intercepted HTTP traffic. Supports $filter (eq) and $orderby.
     http_method: Optional[HttpMethod] = None
-    # The initiatingProcessName property
+    # The process initiating the traffic transaction. Supports $filter (eq) and $orderby.
     initiating_process_name: Optional[str] = None
-    # Represents the networking protocol used for communication.The possible values are: ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII, unknownFutureValue. Supports $filter (eq) and $orderby.
+    # Represents the networking protocol used for communication. The possible values are: ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII, unknownFutureValue. Supports $filter (eq) and $orderby.
     network_protocol: Optional[NetworkingProtocol] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The operationStatus property
+    # Indication if traffic was successfully processed. The possible values are: success, failure, unknownFutureValue. Supports $filter (eq) and $orderby.
     operation_status: Optional[NetworkTrafficOperationStatus] = None
     # Represents a unique identifier assigned to a policy. Supports $filter (eq) and $orderby.
     policy_id: Optional[str] = None
-    # The policyName property
+    # The name of the filtering policy associated with the action performed on traffic. Supports $filter (eq) and $orderby.
     policy_name: Optional[str] = None
     # Represents a unique identifier assigned to a policy rule. Supports $filter (eq) and $orderby.
     policy_rule_id: Optional[str] = None
-    # The policyRuleName property
+    # The name of the rule associated with the action performed on traffic. Supports $filter (eq) and $orderby.
     policy_rule_name: Optional[str] = None
-    # The popProcessingRegion property
+    # The Point-of-Presence processing region of the traffic. Supports $filter (eq) and $orderby.
     pop_processing_region: Optional[str] = None
-    # The privateAccessDetails property
+    # Details about private access traffic. Supports $filter (eq) and $orderby.
     private_access_details: Optional[PrivateAccessDetails] = None
     # Represents the total number of bytes received in a network communication or data transfer. Supports $filter (eq) and $orderby.
     received_bytes: Optional[int] = None
-    # The remoteNetworkId property
+    # The ID from which traffic was sent or received, providing visibility into the origin of the traffic. Supports $filter (eq) and $orderby.
     remote_network_id: Optional[str] = None
-    # The resourceTenantId property
+    # Tenant ID that owns the resource. Supports $filter (eq) and $orderby.
     resource_tenant_id: Optional[str] = None
-    # The responseCode property
+    # The HTTP response code inspected in the intercepted HTTP traffic. Supports $filter (eq) and $orderby.
     response_code: Optional[int] = None
     # Represents the total number of bytes sent in a network communication or data transfer. Supports $filter (eq) and $orderby.
     sent_bytes: Optional[int] = None
@@ -105,21 +105,21 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     source_port: Optional[int] = None
     # Represents a unique identifier assigned to a tenant within a network infrastructure. Supports $filter (eq) and $orderby.
     tenant_id: Optional[str] = None
-    # The threatType property
+    # The type of threat detected in the traffic. Supports $filter (eq) and $orderby.
     threat_type: Optional[str] = None
     # The trafficType property
     traffic_type: Optional[TrafficType] = None
     # Represents a unique identifier assigned to a specific transaction or operation. Key. Supports $filter (eq) and $orderby.
     transaction_id: Optional[str] = None
-    # Represents the transport protocol used for communication.The possible values are: ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII, unknownFutureValue. Supports $filter (eq) and $orderby.
+    # Represents the transport protocol used for communication. The possible values are: ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII, unknownFutureValue. Supports $filter (eq) and $orderby.
     transport_protocol: Optional[NetworkingProtocol] = None
-    # The user property
+    # Represents the user associated with the network traffic, providing details about the individual or account initiating the transaction.
     user: Optional[User] = None
     # Represents a unique identifier assigned to a user. Supports $filter (eq) and $orderby.
     user_id: Optional[str] = None
     # Represents the user principal name (UPN) associated with a user. Supports $filter (eq) and $orderby.
     user_principal_name: Optional[str] = None
-    # The vendorNames property
+    # The name of the vendors who detected the threat. Supports $filter (eq) and $orderby.
     vendor_names: Optional[list[str]] = None
     
     @staticmethod

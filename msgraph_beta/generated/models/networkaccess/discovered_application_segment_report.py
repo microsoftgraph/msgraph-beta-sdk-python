@@ -17,33 +17,33 @@ class DiscoveredApplicationSegmentReport(AdditionalDataHolder, BackedModel, Pars
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The accessType property
+    # The type of access used to connect to this application segment. The possible values are: quickAccess, privateAccess, unknownFutureValue, appAccess. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: appAccess.
     access_type: Optional[AccessType] = None
-    # The deviceCount property
+    # The number of unique devices that have accessed this application segment.
     device_count: Optional[int] = None
-    # The discoveredApplicationSegmentId property
+    # The unique identifier for this discovered application segment.
     discovered_application_segment_id: Optional[str] = None
-    # The firstAccessDateTime property
+    # The date and time when this application segment was first accessed.
     first_access_date_time: Optional[datetime.datetime] = None
-    # The fqdn property
+    # The fully qualified domain name associated with this application segment.
     fqdn: Optional[str] = None
-    # The ip property
+    # The IP address associated with this application segment.
     ip: Optional[str] = None
-    # The lastAccessDateTime property
+    # The date and time when this application segment was last accessed.
     last_access_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The port property
+    # The port number used to access this application segment.
     port: Optional[int] = None
-    # The totalBytesReceived property
+    # The total number of bytes received from this application segment.
     total_bytes_received: Optional[int] = None
-    # The totalBytesSent property
+    # The total number of bytes sent to this application segment.
     total_bytes_sent: Optional[int] = None
-    # The transactionCount property
+    # The number of transactions recorded for this application segment.
     transaction_count: Optional[int] = None
     # The transportProtocol property
     transport_protocol: Optional[NetworkingProtocol] = None
-    # The userCount property
+    # The number of unique users who have accessed this application segment.
     user_count: Optional[int] = None
     
     @staticmethod

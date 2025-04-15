@@ -17,7 +17,7 @@ class AuthenticationFlow(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The transferMethod property
+    # Represents the transfer methods in scope for the policy. The possible values are: none, deviceCodeFlow, authenticationTransfer, unknownFutureValue.
     transfer_method: Optional[ConditionalAccessTransferMethods] = None
     
     @staticmethod

@@ -13,17 +13,17 @@ class UsageProfilingPoint(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The internetAccessTrafficCount property
+    # The count of traffic requests directed to general internet destinations.
     internet_access_traffic_count: Optional[int] = None
-    # The microsoft365AccessTrafficCount property
+    # The count of traffic requests directed to Microsoft 365 services.
     microsoft365_access_traffic_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The privateAccessTrafficCount property
+    # The count of traffic requests directed to internal private network destinations.
     private_access_traffic_count: Optional[int] = None
-    # The timeStampDateTime property
+    # The date and time of this data point.
     time_stamp_date_time: Optional[datetime.datetime] = None
-    # The totalTrafficCount property
+    # The total count of all traffic requests across all access types.
     total_traffic_count: Optional[int] = None
     
     @staticmethod

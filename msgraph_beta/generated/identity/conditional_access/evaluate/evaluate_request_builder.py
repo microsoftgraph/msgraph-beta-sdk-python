@@ -33,10 +33,11 @@ class EvaluateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: EvaluatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[EvaluatePostResponse]:
         """
-        Invoke action evaluate
+        Evaluates the applicability of Conditional Access Policies in your tenant based on the provided sign-in properties.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EvaluatePostResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/conditionalaccessroot-evaluate?view=graph-rest-beta
         """
         warn("Private preview for conditional access what If API as of 2024-07/PrivatePreview:WhatIfEvaluation on 2024-07-25 and will be removed 2025-02-01", DeprecationWarning)
         if body is None:
@@ -57,7 +58,7 @@ class EvaluateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: EvaluatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action evaluate
+        Evaluates the applicability of Conditional Access Policies in your tenant based on the provided sign-in properties.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
