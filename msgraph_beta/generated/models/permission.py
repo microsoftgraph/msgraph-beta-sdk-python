@@ -29,7 +29,7 @@ class Permission(Entity, Parsable):
     granted_to_v2: Optional[SharePointIdentitySet] = None
     # Indicates whether the password is set for this permission. This property only appears in the response. Optional. Read-only. For OneDrive Personal only.
     has_password: Optional[bool] = None
-    # Provides a reference to the ancestor of the current permission, if it's inherited from an ancestor. Read-only.
+    # Provides a reference to the ancestor of the current permission, if inherited from an ancestor. Read-only.
     inherited_from: Optional[ItemReference] = None
     # Details of any associated sharing invitation for this permission. Read-only.
     invitation: Optional[SharingInvitation] = None

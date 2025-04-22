@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .fido2_authentication_method_configuration import Fido2AuthenticationMethodConfiguration
     from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
     from .microsoft_authenticator_authentication_method_configuration import MicrosoftAuthenticatorAuthenticationMethodConfiguration
+    from .qr_code_pin_authentication_method_configuration import QrCodePinAuthenticationMethodConfiguration
     from .sms_authentication_method_configuration import SmsAuthenticationMethodConfiguration
     from .software_oath_authentication_method_configuration import SoftwareOathAuthenticationMethodConfiguration
     from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
@@ -64,6 +65,10 @@ class AuthenticationMethodConfiguration(Entity, Parsable):
             from .microsoft_authenticator_authentication_method_configuration import MicrosoftAuthenticatorAuthenticationMethodConfiguration
 
             return MicrosoftAuthenticatorAuthenticationMethodConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.qrCodePinAuthenticationMethodConfiguration".casefold():
+            from .qr_code_pin_authentication_method_configuration import QrCodePinAuthenticationMethodConfiguration
+
+            return QrCodePinAuthenticationMethodConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.smsAuthenticationMethodConfiguration".casefold():
             from .sms_authentication_method_configuration import SmsAuthenticationMethodConfiguration
 
@@ -99,6 +104,7 @@ class AuthenticationMethodConfiguration(Entity, Parsable):
         from .fido2_authentication_method_configuration import Fido2AuthenticationMethodConfiguration
         from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
         from .microsoft_authenticator_authentication_method_configuration import MicrosoftAuthenticatorAuthenticationMethodConfiguration
+        from .qr_code_pin_authentication_method_configuration import QrCodePinAuthenticationMethodConfiguration
         from .sms_authentication_method_configuration import SmsAuthenticationMethodConfiguration
         from .software_oath_authentication_method_configuration import SoftwareOathAuthenticationMethodConfiguration
         from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
@@ -113,6 +119,7 @@ class AuthenticationMethodConfiguration(Entity, Parsable):
         from .fido2_authentication_method_configuration import Fido2AuthenticationMethodConfiguration
         from .hardware_oath_authentication_method_configuration import HardwareOathAuthenticationMethodConfiguration
         from .microsoft_authenticator_authentication_method_configuration import MicrosoftAuthenticatorAuthenticationMethodConfiguration
+        from .qr_code_pin_authentication_method_configuration import QrCodePinAuthenticationMethodConfiguration
         from .sms_authentication_method_configuration import SmsAuthenticationMethodConfiguration
         from .software_oath_authentication_method_configuration import SoftwareOathAuthenticationMethodConfiguration
         from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration

@@ -36,6 +36,8 @@ class CloudPcDeviceImage(Entity, Parsable):
     os_version_number: Optional[str] = None
     # The scopeIds property
     scope_ids: Optional[list[str]] = None
+    # The sizeInGB property
+    size_in_g_b: Optional[int] = None
     # The unique identifier (ID) of the source image resource on Azure. The required ID format is: '/subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}'. Read-only.
     source_image_resource_id: Optional[str] = None
     # The status of the image on the Cloud PC. Possible values are: pending, ready, warning, failed, unknownFutureValue. Read-only.
@@ -83,6 +85,7 @@ class CloudPcDeviceImage(Entity, Parsable):
             "osStatus": lambda n : setattr(self, 'os_status', n.get_enum_value(CloudPcDeviceImageOsStatus)),
             "osVersionNumber": lambda n : setattr(self, 'os_version_number', n.get_str_value()),
             "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
+            "sizeInGB": lambda n : setattr(self, 'size_in_g_b', n.get_int_value()),
             "sourceImageResourceId": lambda n : setattr(self, 'source_image_resource_id', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcDeviceImageStatus)),
             "statusDetails": lambda n : setattr(self, 'status_details', n.get_enum_value(CloudPcDeviceImageStatusDetails)),
@@ -110,6 +113,7 @@ class CloudPcDeviceImage(Entity, Parsable):
         writer.write_enum_value("osStatus", self.os_status)
         writer.write_str_value("osVersionNumber", self.os_version_number)
         writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
+        writer.write_int_value("sizeInGB", self.size_in_g_b)
         writer.write_str_value("sourceImageResourceId", self.source_image_resource_id)
         writer.write_enum_value("status", self.status)
         writer.write_enum_value("statusDetails", self.status_details)

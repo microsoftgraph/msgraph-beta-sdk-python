@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .password_authentication_method import PasswordAuthenticationMethod
     from .phone_authentication_method import PhoneAuthenticationMethod
     from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
+    from .qr_code_pin_authentication_method import QrCodePinAuthenticationMethod
     from .sign_in_preferences import SignInPreferences
     from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
     from .strong_authentication_requirements import StrongAuthenticationRequirements
@@ -46,8 +47,10 @@ class Authentication(Entity, Parsable):
     passwordless_microsoft_authenticator_methods: Optional[list[PasswordlessMicrosoftAuthenticatorAuthenticationMethod]] = None
     # Represents the phone registered to a user for authentication.
     phone_methods: Optional[list[PhoneAuthenticationMethod]] = None
-    # The platformCredentialMethods property
+    # Represents a platform credential instance registered to a user on Mac OS.
     platform_credential_methods: Optional[list[PlatformCredentialAuthenticationMethod]] = None
+    # The qrCodePinMethod property
+    qr_code_pin_method: Optional[QrCodePinAuthenticationMethod] = None
     # The settings and preferences for per-user Microsoft Entra multifactor authentication.
     requirements: Optional[StrongAuthenticationRequirements] = None
     # The settings and preferences for the sign-in experience of a user. Use this property to configure the user's default multifactor authentication (MFA) method.
@@ -86,6 +89,7 @@ class Authentication(Entity, Parsable):
         from .password_authentication_method import PasswordAuthenticationMethod
         from .phone_authentication_method import PhoneAuthenticationMethod
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
+        from .qr_code_pin_authentication_method import QrCodePinAuthenticationMethod
         from .sign_in_preferences import SignInPreferences
         from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
         from .strong_authentication_requirements import StrongAuthenticationRequirements
@@ -103,6 +107,7 @@ class Authentication(Entity, Parsable):
         from .password_authentication_method import PasswordAuthenticationMethod
         from .phone_authentication_method import PhoneAuthenticationMethod
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
+        from .qr_code_pin_authentication_method import QrCodePinAuthenticationMethod
         from .sign_in_preferences import SignInPreferences
         from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
         from .strong_authentication_requirements import StrongAuthenticationRequirements
@@ -120,6 +125,7 @@ class Authentication(Entity, Parsable):
             "passwordlessMicrosoftAuthenticatorMethods": lambda n : setattr(self, 'passwordless_microsoft_authenticator_methods', n.get_collection_of_object_values(PasswordlessMicrosoftAuthenticatorAuthenticationMethod)),
             "phoneMethods": lambda n : setattr(self, 'phone_methods', n.get_collection_of_object_values(PhoneAuthenticationMethod)),
             "platformCredentialMethods": lambda n : setattr(self, 'platform_credential_methods', n.get_collection_of_object_values(PlatformCredentialAuthenticationMethod)),
+            "qrCodePinMethod": lambda n : setattr(self, 'qr_code_pin_method', n.get_object_value(QrCodePinAuthenticationMethod)),
             "requirements": lambda n : setattr(self, 'requirements', n.get_object_value(StrongAuthenticationRequirements)),
             "signInPreferences": lambda n : setattr(self, 'sign_in_preferences', n.get_object_value(SignInPreferences)),
             "softwareOathMethods": lambda n : setattr(self, 'software_oath_methods', n.get_collection_of_object_values(SoftwareOathAuthenticationMethod)),
@@ -149,6 +155,7 @@ class Authentication(Entity, Parsable):
         writer.write_collection_of_object_values("passwordlessMicrosoftAuthenticatorMethods", self.passwordless_microsoft_authenticator_methods)
         writer.write_collection_of_object_values("phoneMethods", self.phone_methods)
         writer.write_collection_of_object_values("platformCredentialMethods", self.platform_credential_methods)
+        writer.write_object_value("qrCodePinMethod", self.qr_code_pin_method)
         writer.write_object_value("requirements", self.requirements)
         writer.write_object_value("signInPreferences", self.sign_in_preferences)
         writer.write_collection_of_object_values("softwareOathMethods", self.software_oath_methods)

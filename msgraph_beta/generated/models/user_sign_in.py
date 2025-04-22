@@ -6,31 +6,31 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .conditional_access_guest_or_external_user_types import ConditionalAccessGuestOrExternalUserTypes
-    from .conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
+    from .sign_in_identity import SignInIdentity
 
-from .conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
+from .sign_in_identity import SignInIdentity
 
 @dataclass
-class UserSubject(ConditionalAccessWhatIfSubject, Parsable):
+class UserSignIn(SignInIdentity, Parsable):
     # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.userSubject"
-    # The externalTenantId property
+    odata_type: Optional[str] = "#microsoft.graph.userSignIn"
+    # TenantId of the guest user as applies to Microsoft Entra B2B scenarios.
     external_tenant_id: Optional[str] = None
     # The externalUserType property
     external_user_type: Optional[ConditionalAccessGuestOrExternalUserTypes] = None
-    # The userId property
+    # Object ID of the user.
     user_id: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: ParseNode) -> UserSubject:
+    def create_from_discriminator_value(parse_node: ParseNode) -> UserSignIn:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
-        Returns: UserSubject
+        Returns: UserSignIn
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
-        return UserSubject()
+        return UserSignIn()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """
@@ -38,10 +38,10 @@ class UserSubject(ConditionalAccessWhatIfSubject, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .conditional_access_guest_or_external_user_types import ConditionalAccessGuestOrExternalUserTypes
-        from .conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
+        from .sign_in_identity import SignInIdentity
 
         from .conditional_access_guest_or_external_user_types import ConditionalAccessGuestOrExternalUserTypes
-        from .conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
+        from .sign_in_identity import SignInIdentity
 
         fields: dict[str, Callable[[Any], None]] = {
             "externalTenantId": lambda n : setattr(self, 'external_tenant_id', n.get_str_value()),

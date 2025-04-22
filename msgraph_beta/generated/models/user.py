@@ -77,6 +77,7 @@ if TYPE_CHECKING:
     from .usage_right import UsageRight
     from .user_activity import UserActivity
     from .user_analytics import UserAnalytics
+    from .user_cloud_communication import UserCloudCommunication
     from .user_print import UserPrint
     from .user_settings import UserSettings
     from .user_solution_root import UserSolutionRoot
@@ -142,6 +143,8 @@ class User(DirectoryObject, Parsable):
     cloud_p_cs: Optional[list[CloudPC]] = None
     # Microsoft realtime communication information related to the user.  Supports $filter (eq, ne,not).
     cloud_realtime_communication_info: Optional[CloudRealtimeCommunicationInfo] = None
+    # The user's communications settings on Teams.
+    communications: Optional[UserCloudCommunication] = None
     # The name of the company the user is associated with. This property can be useful for describing the company that an external user comes from. The maximum length is 64 characters.Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     company_name: Optional[str] = None
     # Sets whether consent has been obtained for minors. Allowed values: null, Granted, Denied and NotRequired. Refer to the legal age group property definitions for further information. Supports $filter (eq, ne, not, and in).
@@ -492,6 +495,7 @@ class User(DirectoryObject, Parsable):
         from .usage_right import UsageRight
         from .user_activity import UserActivity
         from .user_analytics import UserAnalytics
+        from .user_cloud_communication import UserCloudCommunication
         from .user_print import UserPrint
         from .user_settings import UserSettings
         from .user_solution_root import UserSolutionRoot
@@ -570,6 +574,7 @@ class User(DirectoryObject, Parsable):
         from .usage_right import UsageRight
         from .user_activity import UserActivity
         from .user_analytics import UserAnalytics
+        from .user_cloud_communication import UserCloudCommunication
         from .user_print import UserPrint
         from .user_settings import UserSettings
         from .user_solution_root import UserSolutionRoot
@@ -604,6 +609,7 @@ class User(DirectoryObject, Parsable):
             "cloudLicensing": lambda n : setattr(self, 'cloud_licensing', n.get_object_value(UserCloudLicensing)),
             "cloudPCs": lambda n : setattr(self, 'cloud_p_cs', n.get_collection_of_object_values(CloudPC)),
             "cloudRealtimeCommunicationInfo": lambda n : setattr(self, 'cloud_realtime_communication_info', n.get_object_value(CloudRealtimeCommunicationInfo)),
+            "communications": lambda n : setattr(self, 'communications', n.get_object_value(UserCloudCommunication)),
             "companyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
             "consentProvidedForMinor": lambda n : setattr(self, 'consent_provided_for_minor', n.get_str_value()),
             "contactFolders": lambda n : setattr(self, 'contact_folders', n.get_collection_of_object_values(ContactFolder)),
@@ -775,6 +781,7 @@ class User(DirectoryObject, Parsable):
         writer.write_object_value("cloudLicensing", self.cloud_licensing)
         writer.write_collection_of_object_values("cloudPCs", self.cloud_p_cs)
         writer.write_object_value("cloudRealtimeCommunicationInfo", self.cloud_realtime_communication_info)
+        writer.write_object_value("communications", self.communications)
         writer.write_str_value("companyName", self.company_name)
         writer.write_str_value("consentProvidedForMinor", self.consent_provided_for_minor)
         writer.write_collection_of_object_values("contactFolders", self.contact_folders)
