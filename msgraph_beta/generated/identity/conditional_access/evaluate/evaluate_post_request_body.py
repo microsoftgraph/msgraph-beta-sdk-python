@@ -6,9 +6,9 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from ....models.conditional_access_context import ConditionalAccessContext
-    from ....models.conditional_access_what_if_conditions import ConditionalAccessWhatIfConditions
-    from ....models.conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
+    from ....models.sign_in_conditions import SignInConditions
+    from ....models.sign_in_context import SignInContext
+    from ....models.sign_in_identity import SignInIdentity
 
 @dataclass
 class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -19,12 +19,12 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The appliedPoliciesOnly property
     applied_policies_only: Optional[bool] = None
-    # The conditionalAccessContext property
-    conditional_access_context: Optional[ConditionalAccessContext] = None
-    # The conditionalAccessWhatIfConditions property
-    conditional_access_what_if_conditions: Optional[ConditionalAccessWhatIfConditions] = None
-    # The conditionalAccessWhatIfSubject property
-    conditional_access_what_if_subject: Optional[ConditionalAccessWhatIfSubject] = None
+    # The signInConditions property
+    sign_in_conditions: Optional[SignInConditions] = None
+    # The signInContext property
+    sign_in_context: Optional[SignInContext] = None
+    # The signInIdentity property
+    sign_in_identity: Optional[SignInIdentity] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EvaluatePostRequestBody:
@@ -42,19 +42,19 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from ....models.conditional_access_context import ConditionalAccessContext
-        from ....models.conditional_access_what_if_conditions import ConditionalAccessWhatIfConditions
-        from ....models.conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
+        from ....models.sign_in_conditions import SignInConditions
+        from ....models.sign_in_context import SignInContext
+        from ....models.sign_in_identity import SignInIdentity
 
-        from ....models.conditional_access_context import ConditionalAccessContext
-        from ....models.conditional_access_what_if_conditions import ConditionalAccessWhatIfConditions
-        from ....models.conditional_access_what_if_subject import ConditionalAccessWhatIfSubject
+        from ....models.sign_in_conditions import SignInConditions
+        from ....models.sign_in_context import SignInContext
+        from ....models.sign_in_identity import SignInIdentity
 
         fields: dict[str, Callable[[Any], None]] = {
             "appliedPoliciesOnly": lambda n : setattr(self, 'applied_policies_only', n.get_bool_value()),
-            "conditionalAccessContext": lambda n : setattr(self, 'conditional_access_context', n.get_object_value(ConditionalAccessContext)),
-            "conditionalAccessWhatIfConditions": lambda n : setattr(self, 'conditional_access_what_if_conditions', n.get_object_value(ConditionalAccessWhatIfConditions)),
-            "conditionalAccessWhatIfSubject": lambda n : setattr(self, 'conditional_access_what_if_subject', n.get_object_value(ConditionalAccessWhatIfSubject)),
+            "signInConditions": lambda n : setattr(self, 'sign_in_conditions', n.get_object_value(SignInConditions)),
+            "signInContext": lambda n : setattr(self, 'sign_in_context', n.get_object_value(SignInContext)),
+            "signInIdentity": lambda n : setattr(self, 'sign_in_identity', n.get_object_value(SignInIdentity)),
         }
         return fields
     
@@ -67,9 +67,9 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("appliedPoliciesOnly", self.applied_policies_only)
-        writer.write_object_value("conditionalAccessContext", self.conditional_access_context)
-        writer.write_object_value("conditionalAccessWhatIfConditions", self.conditional_access_what_if_conditions)
-        writer.write_object_value("conditionalAccessWhatIfSubject", self.conditional_access_what_if_subject)
+        writer.write_object_value("signInConditions", self.sign_in_conditions)
+        writer.write_object_value("signInContext", self.sign_in_context)
+        writer.write_object_value("signInIdentity", self.sign_in_identity)
         writer.write_additional_data_value(self.additional_data)
     
 

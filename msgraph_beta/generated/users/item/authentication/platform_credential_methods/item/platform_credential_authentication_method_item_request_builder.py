@@ -52,7 +52,7 @@ class PlatformCredentialAuthenticationMethodItemRequestBuilder(BaseRequestBuilde
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PlatformCredentialAuthenticationMethodItemRequestBuilderGetQueryParameters]] = None) -> Optional[PlatformCredentialAuthenticationMethod]:
         """
-        Get platformCredentialMethods from users
+        Represents a platform credential instance registered to a user on Mac OS.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlatformCredentialAuthenticationMethod]
         """
@@ -82,7 +82,7 @@ class PlatformCredentialAuthenticationMethodItemRequestBuilder(BaseRequestBuilde
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PlatformCredentialAuthenticationMethodItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get platformCredentialMethods from users
+        Represents a platform credential instance registered to a user on Mac OS.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +120,7 @@ class PlatformCredentialAuthenticationMethodItemRequestBuilder(BaseRequestBuilde
     @dataclass
     class PlatformCredentialAuthenticationMethodItemRequestBuilderGetQueryParameters():
         """
-        Get platformCredentialMethods from users
+        Represents a platform credential instance registered to a user on Mac OS.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

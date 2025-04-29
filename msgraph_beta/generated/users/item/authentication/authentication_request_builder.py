@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from .password_methods.password_methods_request_builder import PasswordMethodsRequestBuilder
     from .phone_methods.phone_methods_request_builder import PhoneMethodsRequestBuilder
     from .platform_credential_methods.platform_credential_methods_request_builder import PlatformCredentialMethodsRequestBuilder
+    from .qr_code_pin_method.qr_code_pin_method_request_builder import QrCodePinMethodRequestBuilder
     from .requirements.requirements_request_builder import RequirementsRequestBuilder
     from .sign_in_preferences.sign_in_preferences_request_builder import SignInPreferencesRequestBuilder
     from .software_oath_methods.software_oath_methods_request_builder import SoftwareOathMethodsRequestBuilder
@@ -241,6 +242,15 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         from .platform_credential_methods.platform_credential_methods_request_builder import PlatformCredentialMethodsRequestBuilder
 
         return PlatformCredentialMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def qr_code_pin_method(self) -> QrCodePinMethodRequestBuilder:
+        """
+        Provides operations to manage the qrCodePinMethod property of the microsoft.graph.authentication entity.
+        """
+        from .qr_code_pin_method.qr_code_pin_method_request_builder import QrCodePinMethodRequestBuilder
+
+        return QrCodePinMethodRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def requirements(self) -> RequirementsRequestBuilder:

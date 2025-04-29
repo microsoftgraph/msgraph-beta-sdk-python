@@ -12,15 +12,15 @@ from .entity import Entity
 
 @dataclass
 class CloudPcForensicStorageAccount(Entity, Parsable):
-    # The access tier of the storage account. Possible values are hot, cool, premium, cold, and unknownFutureValue. Default value is hot. Read-only.
+    # Indicates the access tier of the storage account. Possible values are hot, cool, premium, cold, and unknownFutureValue. Default value is hot. Read-only.
     access_tier: Optional[CloudPcStorageAccountAccessTier] = None
     # Indicates whether immutability policies are configured for the storage account. When true, the storage account only accepts hot as the snapshot access tier. When false, the storage account accepts all valid access tiers. Read-Only.
     immutable_storage: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The ID of the storage account. Read-only.
+    # Indicates the ID of the storage account. Read-only.
     storage_account_id: Optional[str] = None
-    # The name of the storage account. Read-only.
+    # Indicates the name of the storage account. Read-only.
     storage_account_name: Optional[str] = None
     
     @staticmethod

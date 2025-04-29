@@ -28,6 +28,7 @@ if TYPE_CHECKING:
     from .daily_print_usage_summaries_by_user.daily_print_usage_summaries_by_user_request_builder import DailyPrintUsageSummariesByUserRequestBuilder
     from .device_configuration_device_activity.device_configuration_device_activity_request_builder import DeviceConfigurationDeviceActivityRequestBuilder
     from .device_configuration_user_activity.device_configuration_user_activity_request_builder import DeviceConfigurationUserActivityRequestBuilder
+    from .get_api_usageservice_area_service_area_period_period_app_id_app_id.get_api_usageservice_area_service_area_period_period_app_id_app_id_request_builder import GetApiUsageserviceAreaServiceAreaPeriodPeriodAppIdAppIdRequestBuilder
     from .get_attack_simulation_repeat_offenders.get_attack_simulation_repeat_offenders_request_builder import GetAttackSimulationRepeatOffendersRequestBuilder
     from .get_attack_simulation_simulation_user_coverage.get_attack_simulation_simulation_user_coverage_request_builder import GetAttackSimulationSimulationUserCoverageRequestBuilder
     from .get_attack_simulation_training_user_coverage.get_attack_simulation_training_user_coverage_request_builder import GetAttackSimulationTrainingUserCoverageRequestBuilder
@@ -1794,6 +1795,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .device_configuration_user_activity.device_configuration_user_activity_request_builder import DeviceConfigurationUserActivityRequestBuilder
 
         return DeviceConfigurationUserActivityRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_api_usageservice_area_service_area_period_period_app_id_app_id(self) -> GetApiUsageserviceAreaServiceAreaPeriodPeriodAppIdAppIdRequestBuilder:
+        """
+        Provides operations to call the getApiUsage method.
+        """
+        from .get_api_usageservice_area_service_area_period_period_app_id_app_id.get_api_usageservice_area_service_area_period_period_app_id_app_id_request_builder import GetApiUsageserviceAreaServiceAreaPeriodPeriodAppIdAppIdRequestBuilder
+
+        return GetApiUsageserviceAreaServiceAreaPeriodPeriodAppIdAppIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_attack_simulation_repeat_offenders(self) -> GetAttackSimulationRepeatOffendersRequestBuilder:

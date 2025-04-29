@@ -9,12 +9,14 @@ if TYPE_CHECKING:
     from .cloud_pc_bulk_action_status import CloudPcBulkActionStatus
     from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
     from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
+    from .cloud_pc_bulk_disaster_recovery import CloudPcBulkDisasterRecovery
     from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
     from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
     from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
     from .cloud_pc_bulk_move import CloudPcBulkMove
     from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
     from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
+    from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
     from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
     from .cloud_pc_bulk_resize import CloudPcBulkResize
     from .cloud_pc_bulk_restart import CloudPcBulkRestart
@@ -62,6 +64,10 @@ class CloudPcBulkAction(Entity, Parsable):
             from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
 
             return CloudPcBulkCreateSnapshot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecovery".casefold():
+            from .cloud_pc_bulk_disaster_recovery import CloudPcBulkDisasterRecovery
+
+            return CloudPcBulkDisasterRecovery()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecoveryFailback".casefold():
             from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
 
@@ -86,6 +92,10 @@ class CloudPcBulkAction(Entity, Parsable):
             from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
 
             return CloudPcBulkPowerOn()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkReinstallAgent".casefold():
+            from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
+
+            return CloudPcBulkReinstallAgent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkReprovision".casefold():
             from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
 
@@ -120,12 +130,14 @@ class CloudPcBulkAction(Entity, Parsable):
         from .cloud_pc_bulk_action_status import CloudPcBulkActionStatus
         from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
         from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
+        from .cloud_pc_bulk_disaster_recovery import CloudPcBulkDisasterRecovery
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
         from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
         from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
         from .cloud_pc_bulk_move import CloudPcBulkMove
         from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
         from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
+        from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
         from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
@@ -137,12 +149,14 @@ class CloudPcBulkAction(Entity, Parsable):
         from .cloud_pc_bulk_action_status import CloudPcBulkActionStatus
         from .cloud_pc_bulk_action_summary import CloudPcBulkActionSummary
         from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
+        from .cloud_pc_bulk_disaster_recovery import CloudPcBulkDisasterRecovery
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
         from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
         from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
         from .cloud_pc_bulk_move import CloudPcBulkMove
         from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
         from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
+        from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
         from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart

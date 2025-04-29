@@ -13,9 +13,9 @@ from .entity import Entity
 class CloudPcSubscription(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
-    # The ID of the subscription.
+    # Indicates the ID of the subscription.
     subscription_id: Optional[str] = None
-    # The name of the subscription.
+    # Indicates the name of the subscription.
     subscription_name: Optional[str] = None
     
     @staticmethod

@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .driver_update_filter import DriverUpdateFilter
     from .quality_update_filter import QualityUpdateFilter
+    from .remediation_update_filter import RemediationUpdateFilter
     from .software_update_filter import SoftwareUpdateFilter
     from .windows_update_filter import WindowsUpdateFilter
 
@@ -43,6 +44,10 @@ class ContentFilter(AdditionalDataHolder, BackedModel, Parsable):
             from .quality_update_filter import QualityUpdateFilter
 
             return QualityUpdateFilter()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.remediationUpdateFilter".casefold():
+            from .remediation_update_filter import RemediationUpdateFilter
+
+            return RemediationUpdateFilter()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.softwareUpdateFilter".casefold():
             from .software_update_filter import SoftwareUpdateFilter
 
@@ -60,11 +65,13 @@ class ContentFilter(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .driver_update_filter import DriverUpdateFilter
         from .quality_update_filter import QualityUpdateFilter
+        from .remediation_update_filter import RemediationUpdateFilter
         from .software_update_filter import SoftwareUpdateFilter
         from .windows_update_filter import WindowsUpdateFilter
 
         from .driver_update_filter import DriverUpdateFilter
         from .quality_update_filter import QualityUpdateFilter
+        from .remediation_update_filter import RemediationUpdateFilter
         from .software_update_filter import SoftwareUpdateFilter
         from .windows_update_filter import WindowsUpdateFilter
 

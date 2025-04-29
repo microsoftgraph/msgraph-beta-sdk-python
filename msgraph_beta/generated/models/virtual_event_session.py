@@ -24,7 +24,7 @@ class VirtualEventSession(OnlineMeetingBase, Parsable):
     registrations: Optional[list[VirtualEventRegistration]] = None
     # The virtual event session start time.
     start_date_time: Optional[DateTimeTimeZone] = None
-    # The videoOnDemandWebUrl property
+    # The URL of the video on demand (VOD) for Microsoft Teams events that allows webinar and town hall organizers to quickly publish and share event recordings.
     video_on_demand_web_url: Optional[str] = None
     
     @staticmethod
