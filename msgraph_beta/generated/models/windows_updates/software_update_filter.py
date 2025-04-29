@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .content_filter import ContentFilter
     from .driver_update_filter import DriverUpdateFilter
     from .quality_update_filter import QualityUpdateFilter
+    from .remediation_update_filter import RemediationUpdateFilter
     from .windows_update_filter import WindowsUpdateFilter
 
 from .content_filter import ContentFilter
@@ -39,6 +40,10 @@ class SoftwareUpdateFilter(ContentFilter, Parsable):
             from .quality_update_filter import QualityUpdateFilter
 
             return QualityUpdateFilter()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.remediationUpdateFilter".casefold():
+            from .remediation_update_filter import RemediationUpdateFilter
+
+            return RemediationUpdateFilter()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.windowsUpdateFilter".casefold():
             from .windows_update_filter import WindowsUpdateFilter
 
@@ -53,11 +58,13 @@ class SoftwareUpdateFilter(ContentFilter, Parsable):
         from .content_filter import ContentFilter
         from .driver_update_filter import DriverUpdateFilter
         from .quality_update_filter import QualityUpdateFilter
+        from .remediation_update_filter import RemediationUpdateFilter
         from .windows_update_filter import WindowsUpdateFilter
 
         from .content_filter import ContentFilter
         from .driver_update_filter import DriverUpdateFilter
         from .quality_update_filter import QualityUpdateFilter
+        from .remediation_update_filter import RemediationUpdateFilter
         from .windows_update_filter import WindowsUpdateFilter
 
         fields: dict[str, Callable[[Any], None]] = {

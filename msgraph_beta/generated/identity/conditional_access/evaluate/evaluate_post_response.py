@@ -6,14 +6,14 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
-    from ....models.conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
+    from ....models.what_if_analysis_result import WhatIfAnalysisResult
 
 from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
 class EvaluatePostResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
-    value: Optional[list[ConditionalAccessWhatIfPolicy]] = None
+    value: Optional[list[WhatIfAnalysisResult]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EvaluatePostResponse:
@@ -32,13 +32,13 @@ class EvaluatePostResponse(BaseCollectionPaginationCountResponse, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
-        from ....models.conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
+        from ....models.what_if_analysis_result import WhatIfAnalysisResult
 
         from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
-        from ....models.conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
+        from ....models.what_if_analysis_result import WhatIfAnalysisResult
 
         fields: dict[str, Callable[[Any], None]] = {
-            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(ConditionalAccessWhatIfPolicy)),
+            "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(WhatIfAnalysisResult)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

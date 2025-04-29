@@ -11,9 +11,9 @@ from .device_management_configuration_choice_setting_definition import DeviceMan
 
 @dataclass
 class DeviceManagementConfigurationChoiceSettingCollectionDefinition(DeviceManagementConfigurationChoiceSettingDefinition, Parsable):
-    # Maximum number of choices in the collection
+    # Maximum number of choices in the collection. Valid values 1 to 100
     maximum_count: Optional[int] = None
-    # Minimum number of choices in the collection
+    # Minimum number of choices in the collection. Valid values 1 to 100
     minimum_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
