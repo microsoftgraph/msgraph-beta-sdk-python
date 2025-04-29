@@ -17,6 +17,8 @@ class RetrieveCloudPcTroubleshootReportsPostRequestBody(AdditionalDataHolder, Ba
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The filter property
     filter: Optional[str] = None
+    # The groupBy property
+    group_by: Optional[list[str]] = None
     # The orderBy property
     order_by: Optional[list[str]] = None
     # The reportName property
@@ -52,6 +54,7 @@ class RetrieveCloudPcTroubleshootReportsPostRequestBody(AdditionalDataHolder, Ba
 
         fields: dict[str, Callable[[Any], None]] = {
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
+            "groupBy": lambda n : setattr(self, 'group_by', n.get_collection_of_primitive_values(str)),
             "orderBy": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
             "reportName": lambda n : setattr(self, 'report_name', n.get_enum_value(CloudPCTroubleshootReportType)),
             "search": lambda n : setattr(self, 'search', n.get_str_value()),
@@ -70,6 +73,7 @@ class RetrieveCloudPcTroubleshootReportsPostRequestBody(AdditionalDataHolder, Ba
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("filter", self.filter)
+        writer.write_collection_of_primitive_values("groupBy", self.group_by)
         writer.write_collection_of_primitive_values("orderBy", self.order_by)
         writer.write_enum_value("reportName", self.report_name)
         writer.write_str_value("search", self.search)

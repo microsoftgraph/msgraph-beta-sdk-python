@@ -36,6 +36,7 @@ if TYPE_CHECKING:
     from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
     from .cloud_clipboard.cloud_clipboard_request_builder import CloudClipboardRequestBuilder
     from .cloud_p_cs.cloud_p_cs_request_builder import CloudPCsRequestBuilder
+    from .communications.communications_request_builder import CommunicationsRequestBuilder
     from .contacts.contacts_request_builder import ContactsRequestBuilder
     from .contact_folders.contact_folders_request_builder import ContactFoldersRequestBuilder
     from .convert_external_to_internal_member_user.convert_external_to_internal_member_user_request_builder import ConvertExternalToInternalMemberUserRequestBuilder
@@ -504,6 +505,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .cloud_p_cs.cloud_p_cs_request_builder import CloudPCsRequestBuilder
 
         return CloudPCsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def communications(self) -> CommunicationsRequestBuilder:
+        """
+        Provides operations to manage the communications property of the microsoft.graph.user entity.
+        """
+        from .communications.communications_request_builder import CommunicationsRequestBuilder
+
+        return CommunicationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def contact_folders(self) -> ContactFoldersRequestBuilder:

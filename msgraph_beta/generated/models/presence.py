@@ -21,7 +21,7 @@ class Presence(Entity, Parsable):
     odata_type: Optional[str] = None
     # The out of office settings for a user.
     out_of_office_settings: Optional[OutOfOfficeSettings] = None
-    # The sequenceNumber property
+    # The lexicographically sortable String stamp that represents the version of a presence object.
     sequence_number: Optional[str] = None
     # The presence status message of a user.
     status_message: Optional[PresenceStatusMessage] = None

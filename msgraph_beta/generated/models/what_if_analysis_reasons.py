@@ -1,6 +1,6 @@
 from enum import Enum
 
-class ConditionalAccessWhatIfReasons(str, Enum):
+class WhatIfAnalysisReasons(str, Enum):
     NotSet = "notSet",
     NotEnoughInformation = "notEnoughInformation",
     InvalidCondition = "invalidCondition",

@@ -8,4 +8,5 @@ class PlannerContainerType(str, Enum):
     DriveItem = "driveItem",
     User = "user",
     TeamsChannel = "teamsChannel",
+    PlannerTask = "plannerTask",
 

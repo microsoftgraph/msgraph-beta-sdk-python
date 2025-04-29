@@ -48,7 +48,7 @@ class DeviceInfo(AdditionalDataHolder, BackedModel, Parsable):
     extension_attribute8: Optional[str] = None
     # Extension attribute.
     extension_attribute9: Optional[str] = None
-    # Indicates the device compliance status with Mobile Management Device (MDM) policies.
+    # Indicates the device compliance status with Mobile Management Device (MDM) policies. Default is false.
     is_compliant: Optional[bool] = None
     # Manufacturer of the device.
     manufacturer: Optional[str] = None

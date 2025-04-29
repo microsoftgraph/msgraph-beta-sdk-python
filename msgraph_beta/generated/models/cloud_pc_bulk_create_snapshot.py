@@ -16,7 +16,7 @@ class CloudPcBulkCreateSnapshot(CloudPcBulkAction, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.cloudPcBulkCreateSnapshot"
     # Indicates the access tier of the blob file that the snapshot is copied to. Possible values are hot, cool, cold, archive, and unknownFutureValue. The default value is hot. Read-Only.
     access_tier: Optional[CloudPcBlobAccessTier] = None
-    # The unique identifier for Secure Azure Storage Account, which receives the restore points (snapshots). The value can't be modified after it's created. For example, '/subscriptions/06199b73-30a1-4922-8734-93feca64cdf6/resourceGroups/res2627/providers/Microsoft.Storage/storageAccounts/sto1125'. Read-Only.
+    # Indicates the unique identifier for Secure Azure Storage Account, which receives the restore points (snapshots). The value can't be modified after it's created. For example, '/subscriptions/06199b73-30a1-4922-8734-93feca64cdf6/resourceGroups/res2627/providers/Microsoft.Storage/storageAccounts/sto1125'. Read-Only.
     storage_account_id: Optional[str] = None
     
     @staticmethod

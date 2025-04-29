@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .driver_update_filter import DriverUpdateFilter
     from .quality_update_filter import QualityUpdateFilter
+    from .remediation_update_filter import RemediationUpdateFilter
     from .software_update_filter import SoftwareUpdateFilter
 
 from .software_update_filter import SoftwareUpdateFilter
@@ -38,6 +39,10 @@ class WindowsUpdateFilter(SoftwareUpdateFilter, Parsable):
             from .quality_update_filter import QualityUpdateFilter
 
             return QualityUpdateFilter()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.remediationUpdateFilter".casefold():
+            from .remediation_update_filter import RemediationUpdateFilter
+
+            return RemediationUpdateFilter()
         return WindowsUpdateFilter()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -47,10 +52,12 @@ class WindowsUpdateFilter(SoftwareUpdateFilter, Parsable):
         """
         from .driver_update_filter import DriverUpdateFilter
         from .quality_update_filter import QualityUpdateFilter
+        from .remediation_update_filter import RemediationUpdateFilter
         from .software_update_filter import SoftwareUpdateFilter
 
         from .driver_update_filter import DriverUpdateFilter
         from .quality_update_filter import QualityUpdateFilter
+        from .remediation_update_filter import RemediationUpdateFilter
         from .software_update_filter import SoftwareUpdateFilter
 
         fields: dict[str, Callable[[Any], None]] = {

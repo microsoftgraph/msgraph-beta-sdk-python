@@ -319,12 +319,14 @@ if TYPE_CHECKING:
     from .cloud_pc_audit_event import CloudPcAuditEvent
     from .cloud_pc_bulk_action import CloudPcBulkAction
     from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
+    from .cloud_pc_bulk_disaster_recovery import CloudPcBulkDisasterRecovery
     from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
     from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
     from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
     from .cloud_pc_bulk_move import CloudPcBulkMove
     from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
     from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
+    from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
     from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
     from .cloud_pc_bulk_resize import CloudPcBulkResize
     from .cloud_pc_bulk_restart import CloudPcBulkRestart
@@ -361,7 +363,6 @@ if TYPE_CHECKING:
     from .conditional_access_policy import ConditionalAccessPolicy
     from .conditional_access_root import ConditionalAccessRoot
     from .conditional_access_template import ConditionalAccessTemplate
-    from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
     from .config_manager_collection import ConfigManagerCollection
     from .connected_organization import ConnectedOrganization
     from .connection_operation import ConnectionOperation
@@ -1379,6 +1380,10 @@ if TYPE_CHECKING:
     from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
     from .published_resource import PublishedResource
     from .purchase_invoice_line import PurchaseInvoiceLine
+    from .qr_code import QrCode
+    from .qr_code_pin_authentication_method import QrCodePinAuthenticationMethod
+    from .qr_code_pin_authentication_method_configuration import QrCodePinAuthenticationMethodConfiguration
+    from .qr_pin import QrPin
     from .rbac_application import RbacApplication
     from .rbac_application_multiple import RbacApplicationMultiple
     from .reading_assignment_submission import ReadingAssignmentSubmission
@@ -1780,6 +1785,7 @@ if TYPE_CHECKING:
     from .user_activity import UserActivity
     from .user_analytics import UserAnalytics
     from .user_app_install_status import UserAppInstallStatus
+    from .user_cloud_communication import UserCloudCommunication
     from .user_configuration import UserConfiguration
     from .user_consent_request import UserConsentRequest
     from .user_count_metric import UserCountMetric
@@ -1871,6 +1877,7 @@ if TYPE_CHECKING:
     from .web_app import WebApp
     from .web_application_segment import WebApplicationSegment
     from .web_part import WebPart
+    from .what_if_analysis_result import WhatIfAnalysisResult
     from .win32_catalog_app import Win32CatalogApp
     from .win32_lob_app import Win32LobApp
     from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
@@ -3348,6 +3355,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
 
             return CloudPcBulkCreateSnapshot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecovery".casefold():
+            from .cloud_pc_bulk_disaster_recovery import CloudPcBulkDisasterRecovery
+
+            return CloudPcBulkDisasterRecovery()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecoveryFailback".casefold():
             from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
 
@@ -3372,6 +3383,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
 
             return CloudPcBulkPowerOn()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkReinstallAgent".casefold():
+            from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
+
+            return CloudPcBulkReinstallAgent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkReprovision".casefold():
             from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
 
@@ -3513,10 +3528,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .conditional_access_template import ConditionalAccessTemplate
 
             return ConditionalAccessTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.conditionalAccessWhatIfPolicy".casefold():
-            from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
-
-            return ConditionalAccessWhatIfPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.configManagerCollection".casefold():
             from .config_manager_collection import ConfigManagerCollection
 
@@ -7622,6 +7633,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .purchase_invoice_line import PurchaseInvoiceLine
 
             return PurchaseInvoiceLine()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.qrCode".casefold():
+            from .qr_code import QrCode
+
+            return QrCode()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.qrCodePinAuthenticationMethod".casefold():
+            from .qr_code_pin_authentication_method import QrCodePinAuthenticationMethod
+
+            return QrCodePinAuthenticationMethod()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.qrCodePinAuthenticationMethodConfiguration".casefold():
+            from .qr_code_pin_authentication_method_configuration import QrCodePinAuthenticationMethodConfiguration
+
+            return QrCodePinAuthenticationMethodConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.qrPin".casefold():
+            from .qr_pin import QrPin
+
+            return QrPin()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.rbacApplication".casefold():
             from .rbac_application import RbacApplication
 
@@ -9244,6 +9271,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_app_install_status import UserAppInstallStatus
 
             return UserAppInstallStatus()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userCloudCommunication".casefold():
+            from .user_cloud_communication import UserCloudCommunication
+
+            return UserCloudCommunication()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userConfiguration".casefold():
             from .user_configuration import UserConfiguration
 
@@ -9608,6 +9639,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .web_part import WebPart
 
             return WebPart()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.whatIfAnalysisResult".casefold():
+            from .what_if_analysis_result import WhatIfAnalysisResult
+
+            return WhatIfAnalysisResult()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32CatalogApp".casefold():
             from .win32_catalog_app import Win32CatalogApp
 
@@ -10682,12 +10717,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
+        from .cloud_pc_bulk_disaster_recovery import CloudPcBulkDisasterRecovery
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
         from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
         from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
         from .cloud_pc_bulk_move import CloudPcBulkMove
         from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
         from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
+        from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
         from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
@@ -10724,7 +10761,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
-        from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
         from .config_manager_collection import ConfigManagerCollection
         from .connected_organization import ConnectedOrganization
         from .connection_operation import ConnectionOperation
@@ -11742,6 +11778,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .published_resource import PublishedResource
         from .purchase_invoice_line import PurchaseInvoiceLine
+        from .qr_code import QrCode
+        from .qr_code_pin_authentication_method import QrCodePinAuthenticationMethod
+        from .qr_code_pin_authentication_method_configuration import QrCodePinAuthenticationMethodConfiguration
+        from .qr_pin import QrPin
         from .rbac_application import RbacApplication
         from .rbac_application_multiple import RbacApplicationMultiple
         from .reading_assignment_submission import ReadingAssignmentSubmission
@@ -12143,6 +12183,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_activity import UserActivity
         from .user_analytics import UserAnalytics
         from .user_app_install_status import UserAppInstallStatus
+        from .user_cloud_communication import UserCloudCommunication
         from .user_configuration import UserConfiguration
         from .user_consent_request import UserConsentRequest
         from .user_count_metric import UserCountMetric
@@ -12234,6 +12275,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .web_app import WebApp
         from .web_application_segment import WebApplicationSegment
         from .web_part import WebPart
+        from .what_if_analysis_result import WhatIfAnalysisResult
         from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
         from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
@@ -12736,12 +12778,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
+        from .cloud_pc_bulk_disaster_recovery import CloudPcBulkDisasterRecovery
         from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
         from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
         from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
         from .cloud_pc_bulk_move import CloudPcBulkMove
         from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
         from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
+        from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
         from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
@@ -12778,7 +12822,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .conditional_access_policy import ConditionalAccessPolicy
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
-        from .conditional_access_what_if_policy import ConditionalAccessWhatIfPolicy
         from .config_manager_collection import ConfigManagerCollection
         from .connected_organization import ConnectedOrganization
         from .connection_operation import ConnectionOperation
@@ -13796,6 +13839,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .published_resource import PublishedResource
         from .purchase_invoice_line import PurchaseInvoiceLine
+        from .qr_code import QrCode
+        from .qr_code_pin_authentication_method import QrCodePinAuthenticationMethod
+        from .qr_code_pin_authentication_method_configuration import QrCodePinAuthenticationMethodConfiguration
+        from .qr_pin import QrPin
         from .rbac_application import RbacApplication
         from .rbac_application_multiple import RbacApplicationMultiple
         from .reading_assignment_submission import ReadingAssignmentSubmission
@@ -14197,6 +14244,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_activity import UserActivity
         from .user_analytics import UserAnalytics
         from .user_app_install_status import UserAppInstallStatus
+        from .user_cloud_communication import UserCloudCommunication
         from .user_configuration import UserConfiguration
         from .user_consent_request import UserConsentRequest
         from .user_count_metric import UserCountMetric
@@ -14288,6 +14336,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .web_app import WebApp
         from .web_application_segment import WebApplicationSegment
         from .web_part import WebPart
+        from .what_if_analysis_result import WhatIfAnalysisResult
         from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
         from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage

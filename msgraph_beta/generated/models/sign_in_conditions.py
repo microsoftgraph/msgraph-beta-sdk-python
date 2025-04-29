@@ -14,45 +14,45 @@ if TYPE_CHECKING:
     from .risk_level import RiskLevel
 
 @dataclass
-class ConditionalAccessWhatIfConditions(AdditionalDataHolder, BackedModel, Parsable):
+class SignInConditions(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The authenticationFlow property
+    # Type of authentication flow. The possible value is: deviceCodeFlow or authenticationTransfer. Default value is none.
     authentication_flow: Optional[AuthenticationFlow] = None
-    # The clientAppType property
+    # Client application type. The possible value is: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other, unknownFutureValue. Default value is all.
     client_app_type: Optional[ConditionalAccessClientApp] = None
-    # The country property
+    # Country from where the identity is authenticating.
     country: Optional[str] = None
-    # The deviceInfo property
+    # Information about the device used for the sign-in.
     device_info: Optional[DeviceInfo] = None
-    # The devicePlatform property
+    # Device platform. The possible value is: android, iOS, windows, windowsPhone, macOS, all, unknownFutureValue, linux. Default value is all.
     device_platform: Optional[ConditionalAccessDevicePlatform] = None
-    # The insiderRiskLevel property
+    # Insider risk associated with the authenticating user. The possible value is: none, minor, moderate, elevated, unknownFutureValue. Default value is none.
     insider_risk_level: Optional[InsiderRiskLevel] = None
-    # The ipAddress property
+    # Ip address of the authenticating identity.
     ip_address: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The servicePrincipalRiskLevel property
+    # Risk associated with the service principal. The possible value is: low, medium, high, hidden, none, unknownFutureValue. Default value is none.
     service_principal_risk_level: Optional[RiskLevel] = None
-    # The signInRiskLevel property
+    # Sign-in risk associated with the user. The possible value is: low, medium, high, hidden, none, unknownFutureValue. Default value is none.
     sign_in_risk_level: Optional[RiskLevel] = None
-    # The userRiskLevel property
+    # The authenticating user's risk level. The possible value is: low, medium, high, hidden, none, unknownFutureValue. Default value is none.
     user_risk_level: Optional[RiskLevel] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: ParseNode) -> ConditionalAccessWhatIfConditions:
+    def create_from_discriminator_value(parse_node: ParseNode) -> SignInConditions:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
-        Returns: ConditionalAccessWhatIfConditions
+        Returns: SignInConditions
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
-        return ConditionalAccessWhatIfConditions()
+        return SignInConditions()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """

@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .cloud_pc_management_service import CloudPcManagementService
     from .cloud_pc_region_group import CloudPcRegionGroup
+    from .cloud_pc_supported_region_restriction_detail import CloudPcSupportedRegionRestrictionDetail
     from .cloud_pc_supported_region_status import CloudPcSupportedRegionStatus
     from .entity import Entity
 
@@ -20,6 +21,8 @@ class CloudPcSupportedRegion(Entity, Parsable):
     odata_type: Optional[str] = None
     # The regionGroup property
     region_group: Optional[CloudPcRegionGroup] = None
+    # When the region isn't available, all region restrictions are set to true. These restrictions apply to three properties: cPURestricted, gPURestricted, and nestedVirtualizationRestricted. cPURestricted indicates whether the region is available for CPU, gPURestricted indicates whether the region is available for GPU, and nestedVirtualizationRestricted indicates whether the region is available for nested virtualization. Read-only.
+    region_restriction_detail: Optional[CloudPcSupportedRegionRestrictionDetail] = None
     # The status of the supported region. Possible values are: available, restricted, unavailable, unknownFutureValue. Read-only.
     region_status: Optional[CloudPcSupportedRegionStatus] = None
     # The supportedSolution property
@@ -43,17 +46,20 @@ class CloudPcSupportedRegion(Entity, Parsable):
         """
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_region_group import CloudPcRegionGroup
+        from .cloud_pc_supported_region_restriction_detail import CloudPcSupportedRegionRestrictionDetail
         from .cloud_pc_supported_region_status import CloudPcSupportedRegionStatus
         from .entity import Entity
 
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_region_group import CloudPcRegionGroup
+        from .cloud_pc_supported_region_restriction_detail import CloudPcSupportedRegionRestrictionDetail
         from .cloud_pc_supported_region_status import CloudPcSupportedRegionStatus
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "regionGroup": lambda n : setattr(self, 'region_group', n.get_enum_value(CloudPcRegionGroup)),
+            "regionRestrictionDetail": lambda n : setattr(self, 'region_restriction_detail', n.get_object_value(CloudPcSupportedRegionRestrictionDetail)),
             "regionStatus": lambda n : setattr(self, 'region_status', n.get_enum_value(CloudPcSupportedRegionStatus)),
             "supportedSolution": lambda n : setattr(self, 'supported_solution', n.get_collection_of_enum_values(CloudPcManagementService)),
         }
@@ -72,6 +78,7 @@ class CloudPcSupportedRegion(Entity, Parsable):
         super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("regionGroup", self.region_group)
+        writer.write_object_value("regionRestrictionDetail", self.region_restriction_detail)
         writer.write_enum_value("regionStatus", self.region_status)
         writer.write_enum_value("supportedSolution", self.supported_solution)
     
