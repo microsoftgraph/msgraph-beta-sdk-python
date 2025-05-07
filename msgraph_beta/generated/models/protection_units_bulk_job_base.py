@@ -32,7 +32,7 @@ class ProtectionUnitsBulkJobBase(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The status of the job. The possible values are: unknown, active, completed, completedWithErrors, and unknownFutureValue.
+    # The status property
     status: Optional[ProtectionUnitsBulkJobStatus] = None
     
     @staticmethod

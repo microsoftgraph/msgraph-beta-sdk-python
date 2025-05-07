@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .classifcation_error_base import ClassifcationErrorBase
+    from .processing_error import ProcessingError
 
 from .classifcation_error_base import ClassifcationErrorBase
 
@@ -25,6 +26,15 @@ class ClassificationError(ClassifcationErrorBase, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.processingError".casefold():
+            from .processing_error import ProcessingError
+
+            return ProcessingError()
         return ClassificationError()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -33,8 +43,10 @@ class ClassificationError(ClassifcationErrorBase, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .classifcation_error_base import ClassifcationErrorBase
+        from .processing_error import ProcessingError
 
         from .classifcation_error_base import ClassifcationErrorBase
+        from .processing_error import ProcessingError
 
         fields: dict[str, Callable[[Any], None]] = {
             "details": lambda n : setattr(self, 'details', n.get_collection_of_object_values(ClassifcationErrorBase)),

@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .people_admin_settings import PeopleAdminSettings
     from .service_announcement import ServiceAnnouncement
     from .sharepoint import Sharepoint
+    from .teams_administration.teams_admin_root import TeamsAdminRoot
 
 @dataclass
 class Admin(AdditionalDataHolder, BackedModel, Parsable):
@@ -51,6 +52,8 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
     service_announcement: Optional[ServiceAnnouncement] = None
     # The sharepoint property
     sharepoint: Optional[Sharepoint] = None
+    # Represents a collection of user configurations.
+    teams: Optional[TeamsAdminRoot] = None
     # The todo property
     todo: Optional[AdminTodo] = None
     # A container for all Windows administrator functionalities. Read-only.
@@ -85,6 +88,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .people_admin_settings import PeopleAdminSettings
         from .service_announcement import ServiceAnnouncement
         from .sharepoint import Sharepoint
+        from .teams_administration.teams_admin_root import TeamsAdminRoot
 
         from .admin_apps_and_services import AdminAppsAndServices
         from .admin_dynamics import AdminDynamics
@@ -99,6 +103,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .people_admin_settings import PeopleAdminSettings
         from .service_announcement import ServiceAnnouncement
         from .sharepoint import Sharepoint
+        from .teams_administration.teams_admin_root import TeamsAdminRoot
 
         fields: dict[str, Callable[[Any], None]] = {
             "appsAndServices": lambda n : setattr(self, 'apps_and_services', n.get_object_value(AdminAppsAndServices)),
@@ -113,6 +118,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
             "reportSettings": lambda n : setattr(self, 'report_settings', n.get_object_value(AdminReportSettings)),
             "serviceAnnouncement": lambda n : setattr(self, 'service_announcement', n.get_object_value(ServiceAnnouncement)),
             "sharepoint": lambda n : setattr(self, 'sharepoint', n.get_object_value(Sharepoint)),
+            "teams": lambda n : setattr(self, 'teams', n.get_object_value(TeamsAdminRoot)),
             "todo": lambda n : setattr(self, 'todo', n.get_object_value(AdminTodo)),
             "windows": lambda n : setattr(self, 'windows', n.get_object_value(AdminWindows)),
         }
@@ -138,6 +144,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("reportSettings", self.report_settings)
         writer.write_object_value("serviceAnnouncement", self.service_announcement)
         writer.write_object_value("sharepoint", self.sharepoint)
+        writer.write_object_value("teams", self.teams)
         writer.write_object_value("todo", self.todo)
         writer.write_object_value("windows", self.windows)
         writer.write_additional_data_value(self.additional_data)

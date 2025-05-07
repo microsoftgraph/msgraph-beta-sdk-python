@@ -5,12 +5,15 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .enhanced_personalization_setting import EnhancedPersonalizationSetting
     from .entity import Entity
 
 from .entity import Entity
 
 @dataclass
 class CopilotPeopleAdminSetting(Entity, Parsable):
+    # The enhancedPersonalization property
+    enhanced_personalization: Optional[EnhancedPersonalizationSetting] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -30,11 +33,14 @@ class CopilotPeopleAdminSetting(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .enhanced_personalization_setting import EnhancedPersonalizationSetting
         from .entity import Entity
 
+        from .enhanced_personalization_setting import EnhancedPersonalizationSetting
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
+            "enhancedPersonalization": lambda n : setattr(self, 'enhanced_personalization', n.get_object_value(EnhancedPersonalizationSetting)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -49,5 +55,6 @@ class CopilotPeopleAdminSetting(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("enhancedPersonalization", self.enhanced_personalization)
     
 

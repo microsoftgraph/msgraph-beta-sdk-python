@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .app_key_credential_restriction_type import AppKeyCredentialRestrictionType
+    from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
     from .app_management_restriction_state import AppManagementRestrictionState
 
 @dataclass
@@ -19,6 +20,8 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Collection of GUIDs that represent certificateBasedApplicationConfiguration that is allowed as root and intermediate certificate authorities.
     certificate_based_application_configuration_ids: Optional[list[str]] = None
+    # The excludeActors property
+    exclude_actors: Optional[AppManagementPolicyActorExemptions] = None
     # String value that indicates the maximum lifetime for key expiration, defined as an ISO 8601 duration. For example, P4DT12H30M5S represents four days, 12 hours, 30 minutes, and five seconds. This property is required when restrictionType is set to keyLifetime.
     max_lifetime: Optional[datetime.timedelta] = None
     # The OdataType property
@@ -47,13 +50,16 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .app_key_credential_restriction_type import AppKeyCredentialRestrictionType
+        from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
         from .app_management_restriction_state import AppManagementRestrictionState
 
         from .app_key_credential_restriction_type import AppKeyCredentialRestrictionType
+        from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
         from .app_management_restriction_state import AppManagementRestrictionState
 
         fields: dict[str, Callable[[Any], None]] = {
             "certificateBasedApplicationConfigurationIds": lambda n : setattr(self, 'certificate_based_application_configuration_ids', n.get_collection_of_primitive_values(str)),
+            "excludeActors": lambda n : setattr(self, 'exclude_actors', n.get_object_value(AppManagementPolicyActorExemptions)),
             "maxLifetime": lambda n : setattr(self, 'max_lifetime', n.get_timedelta_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "restrictForAppsCreatedAfterDateTime": lambda n : setattr(self, 'restrict_for_apps_created_after_date_time', n.get_datetime_value()),
@@ -71,6 +77,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("certificateBasedApplicationConfigurationIds", self.certificate_based_application_configuration_ids)
+        writer.write_object_value("excludeActors", self.exclude_actors)
         writer.write_timedelta_value("maxLifetime", self.max_lifetime)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_datetime_value("restrictForAppsCreatedAfterDateTime", self.restrict_for_apps_created_after_date_time)

@@ -78,6 +78,7 @@ if TYPE_CHECKING:
     from .user_activity import UserActivity
     from .user_analytics import UserAnalytics
     from .user_cloud_communication import UserCloudCommunication
+    from .user_data_security_and_governance import UserDataSecurityAndGovernance
     from .user_print import UserPrint
     from .user_settings import UserSettings
     from .user_solution_root import UserSolutionRoot
@@ -163,6 +164,8 @@ class User(DirectoryObject, Parsable):
     creation_type: Optional[str] = None
     # An open complex type that holds the value of a custom security attribute that is assigned to a directory object. Nullable. Returned only on $select. Supports $filter (eq, ne, not, startsWith). The filter value is case-sensitive. To read this property, the calling app must be assigned the CustomSecAttributeAssignment.Read.All permission. To write this property, the calling app must be assigned the CustomSecAttributeAssignment.ReadWrite.All permissions. To read or write this property in delegated scenarios, the admin must be assigned the Attribute Assignment Administrator role. Supports $filter (eq, ne, not , ge, le, in).
     custom_security_attributes: Optional[CustomSecurityAttributeValue] = None
+    # The dataSecurityAndGovernance property
+    data_security_and_governance: Optional[UserDataSecurityAndGovernance] = None
     # The name of the department where the user works. Maximum length is 64 characters.Supports $filter (eq, ne, not , ge, le, in, and eq on null values).
     department: Optional[str] = None
     # Get enrollment configurations targeted to the user
@@ -496,6 +499,7 @@ class User(DirectoryObject, Parsable):
         from .user_activity import UserActivity
         from .user_analytics import UserAnalytics
         from .user_cloud_communication import UserCloudCommunication
+        from .user_data_security_and_governance import UserDataSecurityAndGovernance
         from .user_print import UserPrint
         from .user_settings import UserSettings
         from .user_solution_root import UserSolutionRoot
@@ -575,6 +579,7 @@ class User(DirectoryObject, Parsable):
         from .user_activity import UserActivity
         from .user_analytics import UserAnalytics
         from .user_cloud_communication import UserCloudCommunication
+        from .user_data_security_and_governance import UserDataSecurityAndGovernance
         from .user_print import UserPrint
         from .user_settings import UserSettings
         from .user_solution_root import UserSolutionRoot
@@ -619,6 +624,7 @@ class User(DirectoryObject, Parsable):
             "createdObjects": lambda n : setattr(self, 'created_objects', n.get_collection_of_object_values(DirectoryObject)),
             "creationType": lambda n : setattr(self, 'creation_type', n.get_str_value()),
             "customSecurityAttributes": lambda n : setattr(self, 'custom_security_attributes', n.get_object_value(CustomSecurityAttributeValue)),
+            "dataSecurityAndGovernance": lambda n : setattr(self, 'data_security_and_governance', n.get_object_value(UserDataSecurityAndGovernance)),
             "department": lambda n : setattr(self, 'department', n.get_str_value()),
             "deviceEnrollmentConfigurations": lambda n : setattr(self, 'device_enrollment_configurations', n.get_collection_of_object_values(DeviceEnrollmentConfiguration)),
             "deviceEnrollmentLimit": lambda n : setattr(self, 'device_enrollment_limit', n.get_int_value()),
@@ -791,6 +797,7 @@ class User(DirectoryObject, Parsable):
         writer.write_collection_of_object_values("createdObjects", self.created_objects)
         writer.write_str_value("creationType", self.creation_type)
         writer.write_object_value("customSecurityAttributes", self.custom_security_attributes)
+        writer.write_object_value("dataSecurityAndGovernance", self.data_security_and_governance)
         writer.write_str_value("department", self.department)
         writer.write_collection_of_object_values("deviceEnrollmentConfigurations", self.device_enrollment_configurations)
         writer.write_int_value("deviceEnrollmentLimit", self.device_enrollment_limit)

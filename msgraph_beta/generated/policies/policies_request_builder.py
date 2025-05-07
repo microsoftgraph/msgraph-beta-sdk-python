@@ -26,7 +26,6 @@ if TYPE_CHECKING:
     from .authorization_policy.authorization_policy_request_builder import AuthorizationPolicyRequestBuilder
     from .b2c_authentication_methods_policy.b2c_authentication_methods_policy_request_builder import B2cAuthenticationMethodsPolicyRequestBuilder
     from .claims_mapping_policies.claims_mapping_policies_request_builder import ClaimsMappingPoliciesRequestBuilder
-    from .conditional_access_policies.conditional_access_policies_request_builder import ConditionalAccessPoliciesRequestBuilder
     from .cross_tenant_access_policy.cross_tenant_access_policy_request_builder import CrossTenantAccessPolicyRequestBuilder
     from .default_app_management_policy.default_app_management_policy_request_builder import DefaultAppManagementPolicyRequestBuilder
     from .device_registration_policy.device_registration_policy_request_builder import DeviceRegistrationPolicyRequestBuilder
@@ -227,15 +226,6 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         from .claims_mapping_policies.claims_mapping_policies_request_builder import ClaimsMappingPoliciesRequestBuilder
 
         return ClaimsMappingPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def conditional_access_policies(self) -> ConditionalAccessPoliciesRequestBuilder:
-        """
-        Provides operations to manage the conditionalAccessPolicies property of the microsoft.graph.policyRoot entity.
-        """
-        from .conditional_access_policies.conditional_access_policies_request_builder import ConditionalAccessPoliciesRequestBuilder
-
-        return ConditionalAccessPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def cross_tenant_access_policy(self) -> CrossTenantAccessPolicyRequestBuilder:
