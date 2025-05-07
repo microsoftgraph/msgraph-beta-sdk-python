@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .connection import Connection
     from .network_access_traffic import NetworkAccessTraffic
     from .remote_network_health_event import RemoteNetworkHealthEvent
 
@@ -13,6 +14,8 @@ from ..entity import Entity
 
 @dataclass
 class Logs(Entity, Parsable):
+    # The connections property
+    connections: Optional[list[Connection]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # A collection of remote network health events.
@@ -37,14 +40,17 @@ class Logs(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .connection import Connection
         from .network_access_traffic import NetworkAccessTraffic
         from .remote_network_health_event import RemoteNetworkHealthEvent
 
         from ..entity import Entity
+        from .connection import Connection
         from .network_access_traffic import NetworkAccessTraffic
         from .remote_network_health_event import RemoteNetworkHealthEvent
 
         fields: dict[str, Callable[[Any], None]] = {
+            "connections": lambda n : setattr(self, 'connections', n.get_collection_of_object_values(Connection)),
             "remoteNetworks": lambda n : setattr(self, 'remote_networks', n.get_collection_of_object_values(RemoteNetworkHealthEvent)),
             "traffic": lambda n : setattr(self, 'traffic', n.get_collection_of_object_values(NetworkAccessTraffic)),
         }
@@ -61,6 +67,7 @@ class Logs(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("connections", self.connections)
         writer.write_collection_of_object_values("remoteNetworks", self.remote_networks)
         writer.write_collection_of_object_values("traffic", self.traffic)
     

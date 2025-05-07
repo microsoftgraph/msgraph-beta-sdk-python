@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.networkaccess.logs import Logs
     from ...models.o_data_errors.o_data_error import ODataError
+    from .connections.connections_request_builder import ConnectionsRequestBuilder
     from .remote_networks.remote_networks_request_builder import RemoteNetworksRequestBuilder
     from .traffic.traffic_request_builder import TrafficRequestBuilder
 
@@ -138,6 +139,15 @@ class LogsRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return LogsRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def connections(self) -> ConnectionsRequestBuilder:
+        """
+        Provides operations to manage the connections property of the microsoft.graph.networkaccess.logs entity.
+        """
+        from .connections.connections_request_builder import ConnectionsRequestBuilder
+
+        return ConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def remote_networks(self) -> RemoteNetworksRequestBuilder:

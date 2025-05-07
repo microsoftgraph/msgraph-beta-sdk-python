@@ -5,4 +5,5 @@ class Scenario(str, Enum):
     Mfa = "mfa",
     Devices = "devices",
     UnknownFutureValue = "unknownFutureValue",
+    ConditionalAccess = "conditionalAccess",
 

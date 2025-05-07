@@ -24,12 +24,16 @@ class SensitivityLabel(Entity, Parsable):
     assigned_policies: Optional[list[LabelPolicy]] = None
     # The autoLabeling property
     auto_labeling: Optional[AutoLabeling] = None
+    # The color property
+    color: Optional[str] = None
     # The description property
     description: Optional[str] = None
     # The displayName property
     display_name: Optional[str] = None
     # The isDefault property
     is_default: Optional[bool] = None
+    # The isEnabled property
+    is_enabled: Optional[bool] = None
     # The isEndpointProtectionEnabled property
     is_endpoint_protection_enabled: Optional[bool] = None
     # The labelActions property
@@ -80,9 +84,11 @@ class SensitivityLabel(Entity, Parsable):
             "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(ApplicationMode)),
             "assignedPolicies": lambda n : setattr(self, 'assigned_policies', n.get_collection_of_object_values(LabelPolicy)),
             "autoLabeling": lambda n : setattr(self, 'auto_labeling', n.get_object_value(AutoLabeling)),
+            "color": lambda n : setattr(self, 'color', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "isEndpointProtectionEnabled": lambda n : setattr(self, 'is_endpoint_protection_enabled', n.get_bool_value()),
             "labelActions": lambda n : setattr(self, 'label_actions', n.get_collection_of_object_values(LabelActionBase)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
@@ -107,9 +113,11 @@ class SensitivityLabel(Entity, Parsable):
         writer.write_enum_value("applicationMode", self.application_mode)
         writer.write_collection_of_object_values("assignedPolicies", self.assigned_policies)
         writer.write_object_value("autoLabeling", self.auto_labeling)
+        writer.write_str_value("color", self.color)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("isDefault", self.is_default)
+        writer.write_bool_value("isEnabled", self.is_enabled)
         writer.write_bool_value("isEndpointProtectionEnabled", self.is_endpoint_protection_enabled)
         writer.write_collection_of_object_values("labelActions", self.label_actions)
         writer.write_str_value("name", self.name)

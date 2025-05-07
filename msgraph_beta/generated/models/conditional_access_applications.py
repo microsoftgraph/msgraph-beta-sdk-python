@@ -7,6 +7,8 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .conditional_access_filter import ConditionalAccessFilter
+    from .conditional_access_global_secure_access import ConditionalAccessGlobalSecureAccess
+    from .conditional_access_network_access import ConditionalAccessNetworkAccess
 
 @dataclass
 class ConditionalAccessApplications(AdditionalDataHolder, BackedModel, Parsable):
@@ -19,12 +21,16 @@ class ConditionalAccessApplications(AdditionalDataHolder, BackedModel, Parsable)
     application_filter: Optional[ConditionalAccessFilter] = None
     # Can be one of the following:  The list of client IDs (appId) explicitly excluded from the policy. Office365 - For the list of apps included in Office365, see Apps included in Conditional Access Office 365 app suite  MicrosoftAdminPortals - For more information, see Conditional Access Target resources: Microsoft Admin Portals
     exclude_applications: Optional[list[str]] = None
+    # Represents traffic profile for Global Secure Access. This property is deprecated and will stop returning data on June 1, 2025. Use new Global Secure Access applications instead.
+    global_secure_access: Optional[ConditionalAccessGlobalSecureAccess] = None
     # Can be one of the following:  The list of client IDs (appId) the policy applies to, unless explicitly excluded (in excludeApplications)  All  Office365 - For the list of apps included in Office365, see Apps included in Conditional Access Office 365 app suite  MicrosoftAdminPortals - For more information, see Conditional Access Target resources: Microsoft Admin Portals
     include_applications: Optional[list[str]] = None
     # Authentication context class references include. Supported values are c1 through c25.
     include_authentication_context_class_references: Optional[list[str]] = None
     # User actions to include. Supported values are urn:user:registersecurityinfo and urn:user:registerdevice
     include_user_actions: Optional[list[str]] = None
+    # Represents traffic profile for Global Secure Access. This property is deprecated and will stop returning data on June 1, 2025. Use new Global Secure Access applications instead.
+    network_access: Optional[ConditionalAccessNetworkAccess] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -45,15 +51,21 @@ class ConditionalAccessApplications(AdditionalDataHolder, BackedModel, Parsable)
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .conditional_access_filter import ConditionalAccessFilter
+        from .conditional_access_global_secure_access import ConditionalAccessGlobalSecureAccess
+        from .conditional_access_network_access import ConditionalAccessNetworkAccess
 
         from .conditional_access_filter import ConditionalAccessFilter
+        from .conditional_access_global_secure_access import ConditionalAccessGlobalSecureAccess
+        from .conditional_access_network_access import ConditionalAccessNetworkAccess
 
         fields: dict[str, Callable[[Any], None]] = {
             "applicationFilter": lambda n : setattr(self, 'application_filter', n.get_object_value(ConditionalAccessFilter)),
             "excludeApplications": lambda n : setattr(self, 'exclude_applications', n.get_collection_of_primitive_values(str)),
+            "globalSecureAccess": lambda n : setattr(self, 'global_secure_access', n.get_object_value(ConditionalAccessGlobalSecureAccess)),
             "includeApplications": lambda n : setattr(self, 'include_applications', n.get_collection_of_primitive_values(str)),
             "includeAuthenticationContextClassReferences": lambda n : setattr(self, 'include_authentication_context_class_references', n.get_collection_of_primitive_values(str)),
             "includeUserActions": lambda n : setattr(self, 'include_user_actions', n.get_collection_of_primitive_values(str)),
+            "networkAccess": lambda n : setattr(self, 'network_access', n.get_object_value(ConditionalAccessNetworkAccess)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -68,9 +80,11 @@ class ConditionalAccessApplications(AdditionalDataHolder, BackedModel, Parsable)
             raise TypeError("writer cannot be null.")
         writer.write_object_value("applicationFilter", self.application_filter)
         writer.write_collection_of_primitive_values("excludeApplications", self.exclude_applications)
+        writer.write_object_value("globalSecureAccess", self.global_secure_access)
         writer.write_collection_of_primitive_values("includeApplications", self.include_applications)
         writer.write_collection_of_primitive_values("includeAuthenticationContextClassReferences", self.include_authentication_context_class_references)
         writer.write_collection_of_primitive_values("includeUserActions", self.include_user_actions)
+        writer.write_object_value("networkAccess", self.network_access)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

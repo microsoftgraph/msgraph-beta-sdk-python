@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .classification_error import ClassificationError
     from .classification_inner_error import ClassificationInnerError
+    from .processing_error import ProcessingError
 
 @dataclass
 class ClassifcationErrorBase(AdditionalDataHolder, BackedModel, Parsable):
@@ -45,6 +46,10 @@ class ClassifcationErrorBase(AdditionalDataHolder, BackedModel, Parsable):
             from .classification_error import ClassificationError
 
             return ClassificationError()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.processingError".casefold():
+            from .processing_error import ProcessingError
+
+            return ProcessingError()
         return ClassifcationErrorBase()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -54,9 +59,11 @@ class ClassifcationErrorBase(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .classification_error import ClassificationError
         from .classification_inner_error import ClassificationInnerError
+        from .processing_error import ProcessingError
 
         from .classification_error import ClassificationError
         from .classification_inner_error import ClassificationInnerError
+        from .processing_error import ProcessingError
 
         fields: dict[str, Callable[[Any], None]] = {
             "code": lambda n : setattr(self, 'code', n.get_str_value()),

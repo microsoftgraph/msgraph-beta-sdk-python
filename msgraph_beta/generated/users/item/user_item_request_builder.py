@@ -41,6 +41,7 @@ if TYPE_CHECKING:
     from .contact_folders.contact_folders_request_builder import ContactFoldersRequestBuilder
     from .convert_external_to_internal_member_user.convert_external_to_internal_member_user_request_builder import ConvertExternalToInternalMemberUserRequestBuilder
     from .created_objects.created_objects_request_builder import CreatedObjectsRequestBuilder
+    from .data_security_and_governance.data_security_and_governance_request_builder import DataSecurityAndGovernanceRequestBuilder
     from .delete_password_single_sign_on_credentials.delete_password_single_sign_on_credentials_request_builder import DeletePasswordSingleSignOnCredentialsRequestBuilder
     from .devices.devices_request_builder import DevicesRequestBuilder
     from .devices_with_device_id.devices_with_device_id_request_builder import DevicesWithDeviceIdRequestBuilder
@@ -550,6 +551,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .created_objects.created_objects_request_builder import CreatedObjectsRequestBuilder
 
         return CreatedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def data_security_and_governance(self) -> DataSecurityAndGovernanceRequestBuilder:
+        """
+        Provides operations to manage the dataSecurityAndGovernance property of the microsoft.graph.user entity.
+        """
+        from .data_security_and_governance.data_security_and_governance_request_builder import DataSecurityAndGovernanceRequestBuilder
+
+        return DataSecurityAndGovernanceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def delete_password_single_sign_on_credentials(self) -> DeletePasswordSingleSignOnCredentialsRequestBuilder:

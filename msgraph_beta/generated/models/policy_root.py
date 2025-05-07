@@ -15,7 +15,6 @@ if TYPE_CHECKING:
     from .authorization_policy import AuthorizationPolicy
     from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
     from .claims_mapping_policy import ClaimsMappingPolicy
-    from .conditional_access_policy import ConditionalAccessPolicy
     from .cross_tenant_access_policy import CrossTenantAccessPolicy
     from .device_registration_policy import DeviceRegistrationPolicy
     from .directory_role_access_review_policy import DirectoryRoleAccessReviewPolicy
@@ -59,8 +58,6 @@ class PolicyRoot(Entity, Parsable):
     b2c_authentication_methods_policy: Optional[B2cAuthenticationMethodsPolicy] = None
     # The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
     claims_mapping_policies: Optional[list[ClaimsMappingPolicy]] = None
-    # The custom rules that define an access scenario.
-    conditional_access_policies: Optional[list[ConditionalAccessPolicy]] = None
     # The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.
     cross_tenant_access_policy: Optional[CrossTenantAccessPolicy] = None
     # The tenant-wide policy that enforces app management restrictions for all applications and service principals.
@@ -126,7 +123,6 @@ class PolicyRoot(Entity, Parsable):
         from .authorization_policy import AuthorizationPolicy
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .claims_mapping_policy import ClaimsMappingPolicy
-        from .conditional_access_policy import ConditionalAccessPolicy
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .device_registration_policy import DeviceRegistrationPolicy
         from .directory_role_access_review_policy import DirectoryRoleAccessReviewPolicy
@@ -156,7 +152,6 @@ class PolicyRoot(Entity, Parsable):
         from .authorization_policy import AuthorizationPolicy
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .claims_mapping_policy import ClaimsMappingPolicy
-        from .conditional_access_policy import ConditionalAccessPolicy
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .device_registration_policy import DeviceRegistrationPolicy
         from .directory_role_access_review_policy import DirectoryRoleAccessReviewPolicy
@@ -187,7 +182,6 @@ class PolicyRoot(Entity, Parsable):
             "authorizationPolicy": lambda n : setattr(self, 'authorization_policy', n.get_collection_of_object_values(AuthorizationPolicy)),
             "b2cAuthenticationMethodsPolicy": lambda n : setattr(self, 'b2c_authentication_methods_policy', n.get_object_value(B2cAuthenticationMethodsPolicy)),
             "claimsMappingPolicies": lambda n : setattr(self, 'claims_mapping_policies', n.get_collection_of_object_values(ClaimsMappingPolicy)),
-            "conditionalAccessPolicies": lambda n : setattr(self, 'conditional_access_policies', n.get_collection_of_object_values(ConditionalAccessPolicy)),
             "crossTenantAccessPolicy": lambda n : setattr(self, 'cross_tenant_access_policy', n.get_object_value(CrossTenantAccessPolicy)),
             "defaultAppManagementPolicy": lambda n : setattr(self, 'default_app_management_policy', n.get_object_value(TenantAppManagementPolicy)),
             "deviceRegistrationPolicy": lambda n : setattr(self, 'device_registration_policy', n.get_object_value(DeviceRegistrationPolicy)),
@@ -230,7 +224,6 @@ class PolicyRoot(Entity, Parsable):
         writer.write_collection_of_object_values("authorizationPolicy", self.authorization_policy)
         writer.write_object_value("b2cAuthenticationMethodsPolicy", self.b2c_authentication_methods_policy)
         writer.write_collection_of_object_values("claimsMappingPolicies", self.claims_mapping_policies)
-        writer.write_collection_of_object_values("conditionalAccessPolicies", self.conditional_access_policies)
         writer.write_object_value("crossTenantAccessPolicy", self.cross_tenant_access_policy)
         writer.write_object_value("defaultAppManagementPolicy", self.default_app_management_policy)
         writer.write_object_value("deviceRegistrationPolicy", self.device_registration_policy)

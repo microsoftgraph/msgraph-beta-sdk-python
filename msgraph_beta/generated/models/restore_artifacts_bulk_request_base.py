@@ -44,7 +44,7 @@ class RestoreArtifactsBulkRequestBase(Entity, Parsable):
     protection_unit_ids: Optional[list[str]] = None
     # Indicates which restore point to return. The possible values are: oldest, latest, unknownFutureValue.
     restore_point_preference: Optional[RestorePointPreference] = None
-    # Determines the status of the long-running operation. The possible values area: unknown, active, completed, completedWithErrors, unknownFutureValue.
+    # The status property
     status: Optional[RestoreArtifactsBulkRequestStatus] = None
     # The type of the restore point. The possible values are: none, fastRestore, unknownFutureValue.
     tags: Optional[RestorePointTags] = None
