@@ -18,63 +18,63 @@ from ..entity import Entity
 
 @dataclass
 class Connection(Entity, Parsable):
-    # The agentVersion property
+    # The version of the client that initiated the connection.
     agent_version: Optional[str] = None
-    # The applicationSnapshot property
+    # appId (or client ID) of the destination Microsoft Entra application.
     application_snapshot: Optional[ApplicationSnapshot] = None
-    # The createdDateTime property
+    # The time the connection was created.
     created_date_time: Optional[datetime.datetime] = None
-    # The destinationFqdn property
+    # The destination FQDN of the connection.
     destination_fqdn: Optional[str] = None
-    # The destinationIp property
+    # The destination IP of the connection.
     destination_ip: Optional[str] = None
-    # The destinationPort property
+    # The destination port of the connection.
     destination_port: Optional[int] = None
-    # The deviceCategory property
+    # The category of the device. The possible values are: client, branch, unknownFutureValue, remoteNetwork. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: remoteNetwork.
     device_category: Optional[DeviceCategory] = None
-    # The deviceId property
+    # The DeviceID.
     device_id: Optional[str] = None
-    # The deviceOperatingSystem property
+    # The device operating system type.
     device_operating_system: Optional[str] = None
-    # The deviceOperatingSystemVersion property
+    # The device operating system version.
     device_operating_system_version: Optional[str] = None
-    # The endDateTime property
+    # The time the connection was terminated.
     end_date_time: Optional[datetime.datetime] = None
-    # The initiatingProcessName property
+    # The process initiating the traffic connection.
     initiating_process_name: Optional[str] = None
-    # The lastUpdateDateTime property
+    # When the connection was last updated.
     last_update_date_time: Optional[datetime.datetime] = None
-    # The networkProtocol property
+    # The network protocol of the connection. The possible values are: ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII, unknownFutureValue.
     network_protocol: Optional[NetworkingProtocol] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The popProcessingRegion property
+    # The Point-of-Presence processing region of the traffic.
     pop_processing_region: Optional[str] = None
-    # The privateAccessDetails property
+    # Private access details.
     private_access_details: Optional[PrivateAccessDetails] = None
-    # The receivedBytes property
+    # Accumulative bytes received.
     received_bytes: Optional[int] = None
-    # The sentBytes property
+    # Accumulative bytes sent.
     sent_bytes: Optional[int] = None
-    # The sourceIp property
+    # The source IP of the connection.
     source_ip: Optional[str] = None
-    # The sourcePort property
+    # The source port of the connection.
     source_port: Optional[int] = None
-    # The status property
+    # Status of the connection. The possible values are: open, active, closed, unknownFutureValue.
     status: Optional[ConnectionStatus] = None
-    # The tenantId property
+    # The ID of the tenant where the connection was initiated.
     tenant_id: Optional[str] = None
     # The trafficType property
     traffic_type: Optional[TrafficType] = None
-    # The transactionBlockCount property
+    # The number of blocked transactions belonging to the connection.
     transaction_block_count: Optional[int] = None
-    # The transactionCount property
+    # The number of transactions belonging to the connection.
     transaction_count: Optional[int] = None
-    # The transportProtocol property
+    # The transport protocol of the connection. The possible values are: ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII, unknownFutureValue.
     transport_protocol: Optional[NetworkingProtocol] = None
-    # The userId property
+    # The user ID.
     user_id: Optional[str] = None
-    # The userPrincipalName property
+    # The principal name of the user.
     user_principal_name: Optional[str] = None
     
     @staticmethod

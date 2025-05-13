@@ -20,7 +20,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The activityMetadata property
     activity_metadata: Optional[ActivityMetadata] = None
-    # The contentEntries property
+    # A collection of content entries to be processed. Each entry contains the content itself and its metadata. Required.
     content_entries: Optional[list[ProcessContentMetadataBase]] = None
     # The integratedAppMetadata property
     integrated_app_metadata: Optional[IntegratedApplicationMetadata] = None

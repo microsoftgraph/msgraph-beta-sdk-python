@@ -19,9 +19,9 @@ class ProcessContentResponse(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The policyActions property
+    # A collection of policy actions (like DLP actions) triggered by the processed content.
     policy_actions: Optional[list[DlpActionInfo]] = None
-    # The processingErrors property
+    # A collection of errors encountered during the content processing.
     processing_errors: Optional[list[ProcessingError]] = None
     # The protectionScopeState property
     protection_scope_state: Optional[ProtectionScopeState] = None

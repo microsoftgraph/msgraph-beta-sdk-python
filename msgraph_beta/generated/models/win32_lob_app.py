@@ -27,6 +27,8 @@ class Win32LobApp(MobileLobApp, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.win32LobApp"
     # Indicates whether the uninstall is supported from the company portal for the Win32 app with an available assignment. When TRUE, indicates that uninstall is supported from the company portal for the Windows app (Win32) with an available assignment. When FALSE, indicates that uninstall is not supported for the Windows app (Win32) with an Available assignment. Default value is FALSE.
     allow_available_uninstall: Optional[bool] = None
+    # Indicates the Windows architecture(s) this app should be installed on. The app will be treated as not applicable for devices with architectures not matching the selected value. When a non-null value is provided for the allowedArchitectures property, the value of the applicableArchitectures property is set to none. Possible values are: null, x86, x64, arm64. Possible values are: none, x86, x64, arm, neutral, arm64.
+    allowed_architectures: Optional[WindowsArchitecture] = None
     # Contains properties for Windows architecture.
     applicable_architectures: Optional[WindowsArchitecture] = None
     # Indicates the detection rules to detect Win32 Line of Business (LoB) app. Possible values are Win32LobAppPowerShellScriptDetection, Win32LobAppRegistryDetection, Win32LobAppFileSystemDetection, Win32LobAppProductCodeDetection.
@@ -111,6 +113,7 @@ class Win32LobApp(MobileLobApp, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "allowAvailableUninstall": lambda n : setattr(self, 'allow_available_uninstall', n.get_bool_value()),
+            "allowedArchitectures": lambda n : setattr(self, 'allowed_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
             "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
             "detectionRules": lambda n : setattr(self, 'detection_rules', n.get_collection_of_object_values(Win32LobAppDetection)),
             "displayVersion": lambda n : setattr(self, 'display_version', n.get_str_value()),
@@ -143,6 +146,7 @@ class Win32LobApp(MobileLobApp, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("allowAvailableUninstall", self.allow_available_uninstall)
+        writer.write_enum_value("allowedArchitectures", self.allowed_architectures)
         writer.write_enum_value("applicableArchitectures", self.applicable_architectures)
         writer.write_collection_of_object_values("detectionRules", self.detection_rules)
         writer.write_str_value("displayVersion", self.display_version)

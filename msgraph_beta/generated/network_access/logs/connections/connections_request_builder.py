@@ -49,9 +49,10 @@ class ConnectionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ConnectionsRequestBuilderGetQueryParameters]] = None) -> Optional[ConnectionCollectionResponse]:
         """
-        Get connections from networkAccess
+        Get a list of connection objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConnectionCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-logs-list-connections?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +93,7 @@ class ConnectionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ConnectionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get connections from networkAccess
+        Get a list of connection objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class ConnectionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConnectionsRequestBuilderGetQueryParameters():
         """
-        Get connections from networkAccess
+        Get a list of connection objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

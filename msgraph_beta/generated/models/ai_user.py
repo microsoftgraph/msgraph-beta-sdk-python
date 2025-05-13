@@ -17,7 +17,7 @@ class AiUser(Entity, Parsable):
     interaction_history: Optional[AiInteractionHistory] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The onlineMeetings property
+    # Information about an online meeting, including AI insights.
     online_meetings: Optional[list[AiOnlineMeeting]] = None
     
     @staticmethod

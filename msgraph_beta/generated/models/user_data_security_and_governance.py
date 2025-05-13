@@ -15,7 +15,7 @@ from .data_security_and_governance import DataSecurityAndGovernance
 class UserDataSecurityAndGovernance(DataSecurityAndGovernance, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.userDataSecurityAndGovernance"
-    # The activities property
+    # Container for activity logs (content processing and audit) related to this user. ContainsTarget: true.
     activities: Optional[ActivitiesContainer] = None
     # The protectionScopes property
     protection_scopes: Optional[UserProtectionScopeContainer] = None

@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .enrollment_configuration_assignment import EnrollmentConfigurationAssignment
     from .entity import Entity
     from .windows10_enrollment_completion_page_configuration import Windows10EnrollmentCompletionPageConfiguration
+    from .windows_restore_device_enrollment_configuration import WindowsRestoreDeviceEnrollmentConfiguration
 
 from .entity import Entity
 
@@ -87,6 +88,10 @@ class DeviceEnrollmentConfiguration(Entity, Parsable):
             from .windows10_enrollment_completion_page_configuration import Windows10EnrollmentCompletionPageConfiguration
 
             return Windows10EnrollmentCompletionPageConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsRestoreDeviceEnrollmentConfiguration".casefold():
+            from .windows_restore_device_enrollment_configuration import WindowsRestoreDeviceEnrollmentConfiguration
+
+            return WindowsRestoreDeviceEnrollmentConfiguration()
         return DeviceEnrollmentConfiguration()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -104,6 +109,7 @@ class DeviceEnrollmentConfiguration(Entity, Parsable):
         from .enrollment_configuration_assignment import EnrollmentConfigurationAssignment
         from .entity import Entity
         from .windows10_enrollment_completion_page_configuration import Windows10EnrollmentCompletionPageConfiguration
+        from .windows_restore_device_enrollment_configuration import WindowsRestoreDeviceEnrollmentConfiguration
 
         from .device_comanagement_authority_configuration import DeviceComanagementAuthorityConfiguration
         from .device_enrollment_configuration_type import DeviceEnrollmentConfigurationType
@@ -115,6 +121,7 @@ class DeviceEnrollmentConfiguration(Entity, Parsable):
         from .enrollment_configuration_assignment import EnrollmentConfigurationAssignment
         from .entity import Entity
         from .windows10_enrollment_completion_page_configuration import Windows10EnrollmentCompletionPageConfiguration
+        from .windows_restore_device_enrollment_configuration import WindowsRestoreDeviceEnrollmentConfiguration
 
         fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(EnrollmentConfigurationAssignment)),

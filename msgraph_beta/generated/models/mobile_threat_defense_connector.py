@@ -20,6 +20,10 @@ class MobileThreatDefenseConnector(Entity, Parsable):
     allow_partner_to_collect_i_o_s_application_metadata: Optional[bool] = None
     # When TRUE, indicates the Mobile Threat Defense partner may collect metadata about personally installed applications from Intune for iOS devices. When FALSE, indicates the Mobile Threat Defense partner may not collect metadata about personally installed applications from Intune for iOS devices. Default value is FALSE.
     allow_partner_to_collect_i_o_s_personal_application_metadata: Optional[bool] = None
+    # When TRUE, allows the Mobile Threat Defense partner to request a list of installed certificates on iOS/iPadOS devices from Intune to use for threat analysis. This list of installed certificates will be sent from enrolled iOS/iPadOS devices and will include unmanaged certificates (certificates not deployed through Intune). When FALSE, indicates that metadata about installed certificates will not be collected. Default value is FALSE.
+    allow_partner_to_collect_ios_certificate_metadata: Optional[bool] = None
+    # When TRUE, allows the Mobile Threat Defense partner to request a list of installed certificates on personally owned iOS/iPadOS devices from Intune to use for threat analysis. This list of installed certificates will be sent from enrolled personally owned iOS/iPadOS devices and will include unmanaged certificates (certificates not deployed through Intune). When FALSE, no metadata for installed certificates is sent for personally owned iOS/iPadOS devices. Default value is FALSE.
+    allow_partner_to_collect_ios_personal_certificate_metadata: Optional[bool] = None
     # When TRUE, indicates that Intune must receive data from the Mobile Threat Defense partner prior to marking an Android device compliant. When FALSE, indicates that Intune may mark an Android device compliant before receiving data from the Mobile Threat Defense partner.
     android_device_blocked_on_missing_partner_data: Optional[bool] = None
     # When TRUE, indicates that data from the Mobile Threat Defense partner will be used during compliance evaluations for Android devices. When FALSE, indicates that data from the Mobile Threat Defense partner will not be used during compliance evaluations for Android devices. Default value is FALSE.
@@ -80,6 +84,8 @@ class MobileThreatDefenseConnector(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "allowPartnerToCollectIOSApplicationMetadata": lambda n : setattr(self, 'allow_partner_to_collect_i_o_s_application_metadata', n.get_bool_value()),
             "allowPartnerToCollectIOSPersonalApplicationMetadata": lambda n : setattr(self, 'allow_partner_to_collect_i_o_s_personal_application_metadata', n.get_bool_value()),
+            "allowPartnerToCollectIosCertificateMetadata": lambda n : setattr(self, 'allow_partner_to_collect_ios_certificate_metadata', n.get_bool_value()),
+            "allowPartnerToCollectIosPersonalCertificateMetadata": lambda n : setattr(self, 'allow_partner_to_collect_ios_personal_certificate_metadata', n.get_bool_value()),
             "androidDeviceBlockedOnMissingPartnerData": lambda n : setattr(self, 'android_device_blocked_on_missing_partner_data', n.get_bool_value()),
             "androidEnabled": lambda n : setattr(self, 'android_enabled', n.get_bool_value()),
             "androidMobileApplicationManagementEnabled": lambda n : setattr(self, 'android_mobile_application_management_enabled', n.get_bool_value()),
@@ -112,6 +118,8 @@ class MobileThreatDefenseConnector(Entity, Parsable):
         super().serialize(writer)
         writer.write_bool_value("allowPartnerToCollectIOSApplicationMetadata", self.allow_partner_to_collect_i_o_s_application_metadata)
         writer.write_bool_value("allowPartnerToCollectIOSPersonalApplicationMetadata", self.allow_partner_to_collect_i_o_s_personal_application_metadata)
+        writer.write_bool_value("allowPartnerToCollectIosCertificateMetadata", self.allow_partner_to_collect_ios_certificate_metadata)
+        writer.write_bool_value("allowPartnerToCollectIosPersonalCertificateMetadata", self.allow_partner_to_collect_ios_personal_certificate_metadata)
         writer.write_bool_value("androidDeviceBlockedOnMissingPartnerData", self.android_device_blocked_on_missing_partner_data)
         writer.write_bool_value("androidEnabled", self.android_enabled)
         writer.write_bool_value("androidMobileApplicationManagementEnabled", self.android_mobile_application_management_enabled)

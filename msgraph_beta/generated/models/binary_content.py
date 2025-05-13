@@ -13,7 +13,7 @@ from .content_base import ContentBase
 class BinaryContent(ContentBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.binaryContent"
-    # The data property
+    # The binary content, encoded as a Base64 string. Inherited from contentBase.
     data: Optional[bytes] = None
     
     @staticmethod

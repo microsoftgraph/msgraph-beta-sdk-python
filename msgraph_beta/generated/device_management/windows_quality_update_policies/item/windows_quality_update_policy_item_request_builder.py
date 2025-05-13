@@ -18,6 +18,8 @@ if TYPE_CHECKING:
     from ....models.windows_quality_update_policy import WindowsQualityUpdatePolicy
     from .assign.assign_request_builder import AssignRequestBuilder
     from .assignments.assignments_request_builder import AssignmentsRequestBuilder
+    from .bulk_action.bulk_action_request_builder import BulkActionRequestBuilder
+    from .retrieve_windows_quality_update_catalog_item_details_with_ids.retrieve_windows_quality_update_catalog_item_details_with_ids_request_builder import RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRequestBuilder
 
 class WindowsQualityUpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     """
@@ -93,6 +95,18 @@ class WindowsQualityUpdatePolicyItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsQualityUpdatePolicy, error_mapping)
     
+    def retrieve_windows_quality_update_catalog_item_details_with_ids(self,ids: str) -> RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRequestBuilder:
+        """
+        Provides operations to call the retrieveWindowsQualityUpdateCatalogItemDetails method.
+        param ids: Usage: ids={ids}
+        Returns: RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRequestBuilder
+        """
+        if ids is None:
+            raise TypeError("ids cannot be null.")
+        from .retrieve_windows_quality_update_catalog_item_details_with_ids.retrieve_windows_quality_update_catalog_item_details_with_ids_request_builder import RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRequestBuilder
+
+        return RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRequestBuilder(self.request_adapter, self.path_parameters, ids)
+    
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Delete navigation property windowsQualityUpdatePolicies for deviceManagement
@@ -156,6 +170,15 @@ class WindowsQualityUpdatePolicyItemRequestBuilder(BaseRequestBuilder):
         from .assignments.assignments_request_builder import AssignmentsRequestBuilder
 
         return AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def bulk_action(self) -> BulkActionRequestBuilder:
+        """
+        Provides operations to call the bulkAction method.
+        """
+        from .bulk_action.bulk_action_request_builder import BulkActionRequestBuilder
+
+        return BulkActionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class WindowsQualityUpdatePolicyItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

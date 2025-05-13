@@ -1,8 +1,6 @@
 from enum import Enum
 
 class EnrollmentTimeDeviceMembershipTargetValidationErrorCode(str, Enum):
-    # Default. Indicates the status of device membership target is not specified. Do not use.
-    Unknown = "unknown",
     # Indicates device membership target cannot be found.
     SecurityGroupNotFound = "securityGroupNotFound",
     # Indicates device membership target is not a security group.

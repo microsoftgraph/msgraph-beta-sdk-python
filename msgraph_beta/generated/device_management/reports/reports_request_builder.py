@@ -87,6 +87,7 @@ if TYPE_CHECKING:
     from .get_windows_update_alerts_per_policy_per_device_report.get_windows_update_alerts_per_policy_per_device_report_request_builder import GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
     from .get_windows_update_alert_summary_report.get_windows_update_alert_summary_report_request_builder import GetWindowsUpdateAlertSummaryReportRequestBuilder
     from .get_zebra_fota_deployment_report.get_zebra_fota_deployment_report_request_builder import GetZebraFotaDeploymentReportRequestBuilder
+    from .retrieve_android_work_profile_device_migration_statuses.retrieve_android_work_profile_device_migration_statuses_request_builder import RetrieveAndroidWorkProfileDeviceMigrationStatusesRequestBuilder
     from .retrieve_cloud_pki_leaf_certificate_report.retrieve_cloud_pki_leaf_certificate_report_request_builder import RetrieveCloudPkiLeafCertificateReportRequestBuilder
     from .retrieve_cloud_pki_leaf_certificate_summary_report.retrieve_cloud_pki_leaf_certificate_summary_report_request_builder import RetrieveCloudPkiLeafCertificateSummaryReportRequestBuilder
     from .retrieve_device_app_installation_status_report.retrieve_device_app_installation_status_report_request_builder import RetrieveDeviceAppInstallationStatusReportRequestBuilder
@@ -851,6 +852,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_zebra_fota_deployment_report.get_zebra_fota_deployment_report_request_builder import GetZebraFotaDeploymentReportRequestBuilder
 
         return GetZebraFotaDeploymentReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_android_work_profile_device_migration_statuses(self) -> RetrieveAndroidWorkProfileDeviceMigrationStatusesRequestBuilder:
+        """
+        Provides operations to call the retrieveAndroidWorkProfileDeviceMigrationStatuses method.
+        """
+        from .retrieve_android_work_profile_device_migration_statuses.retrieve_android_work_profile_device_migration_statuses_request_builder import RetrieveAndroidWorkProfileDeviceMigrationStatusesRequestBuilder
+
+        return RetrieveAndroidWorkProfileDeviceMigrationStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_cloud_pki_leaf_certificate_report(self) -> RetrieveCloudPkiLeafCertificateReportRequestBuilder:

@@ -20,7 +20,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Collection of GUIDs that represent certificateBasedApplicationConfiguration that is allowed as root and intermediate certificate authorities.
     certificate_based_application_configuration_ids: Optional[list[str]] = None
-    # The excludeActors property
+    # Collection of custom security attribute exemptions. If an actor user or service principal has the custom security attribute defined in this section, they're exempted from the restriction.  This means that calls the user or service principal makes to create or update apps are exempt from this policy enforcement.
     exclude_actors: Optional[AppManagementPolicyActorExemptions] = None
     # String value that indicates the maximum lifetime for key expiration, defined as an ISO 8601 duration. For example, P4DT12H30M5S represents four days, 12 hours, 30 minutes, and five seconds. This property is required when restrictionType is set to keyLifetime.
     max_lifetime: Optional[datetime.timedelta] = None
