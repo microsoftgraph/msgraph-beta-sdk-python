@@ -13,7 +13,7 @@ from .content_base import ContentBase
 class TextContent(ContentBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.textContent"
-    # The data property
+    # The text content data. Inherits properties from contentBase.
     data: Optional[str] = None
     
     @staticmethod

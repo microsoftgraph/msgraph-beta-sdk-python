@@ -17,7 +17,7 @@ class AudienceRestriction(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Collection of custom security attribute exemptions. If an actor user or service principal has the custom security attribute, they're exempted from the restriction.
+    # Collection of custom security attribute exemptions. If an actor user or service principal has the custom security attribute defined in this section, they're exempted from the restriction.  This means that calls the user or service principal makes to create or update apps are exempt from this policy enforcement.
     exclude_actors: Optional[AppManagementPolicyActorExemptions] = None
     # The isStateSetByMicrosoft property
     is_state_set_by_microsoft: Optional[bool] = None

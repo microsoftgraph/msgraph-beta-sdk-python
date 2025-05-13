@@ -14,9 +14,9 @@ from .process_content_metadata_base import ProcessContentMetadataBase
 class ProcessFileMetadata(ProcessContentMetadataBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.processFileMetadata"
-    # The customProperties property
+    # A dictionary containing custom metadata associated with the file, potentially extracted by the calling application.
     custom_properties: Optional[CustomMetadataDictionary] = None
-    # The ownerId property
+    # The unique identifier (for example, Object ID or UPN) of the owner of the file.
     owner_id: Optional[str] = None
     
     @staticmethod

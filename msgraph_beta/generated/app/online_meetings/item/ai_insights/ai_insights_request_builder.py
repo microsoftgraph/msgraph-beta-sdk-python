@@ -49,7 +49,7 @@ class AiInsightsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AiInsightsRequestBuilderGetQueryParameters]] = None) -> Optional[CallAiInsightCollectionResponse]:
         """
-        Get aiInsights from app
+        The AI insights generated for an online meeting. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CallAiInsightCollectionResponse]
         """
@@ -92,7 +92,7 @@ class AiInsightsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AiInsightsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get aiInsights from app
+        The AI insights generated for an online meeting. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class AiInsightsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AiInsightsRequestBuilderGetQueryParameters():
         """
-        Get aiInsights from app
+        The AI insights generated for an online meeting. Read-only.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

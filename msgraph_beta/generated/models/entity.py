@@ -1977,6 +1977,7 @@ if TYPE_CHECKING:
     from .windows_quality_update_policy_assignment import WindowsQualityUpdatePolicyAssignment
     from .windows_quality_update_profile import WindowsQualityUpdateProfile
     from .windows_quality_update_profile_assignment import WindowsQualityUpdateProfileAssignment
+    from .windows_restore_device_enrollment_configuration import WindowsRestoreDeviceEnrollmentConfiguration
     from .windows_setting import WindowsSetting
     from .windows_setting_instance import WindowsSettingInstance
     from .windows_store_app import WindowsStoreApp
@@ -10043,6 +10044,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_quality_update_profile_assignment import WindowsQualityUpdateProfileAssignment
 
             return WindowsQualityUpdateProfileAssignment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsRestoreDeviceEnrollmentConfiguration".casefold():
+            from .windows_restore_device_enrollment_configuration import WindowsRestoreDeviceEnrollmentConfiguration
+
+            return WindowsRestoreDeviceEnrollmentConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsSetting".casefold():
             from .windows_setting import WindowsSetting
 
@@ -12393,6 +12398,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_quality_update_policy_assignment import WindowsQualityUpdatePolicyAssignment
         from .windows_quality_update_profile import WindowsQualityUpdateProfile
         from .windows_quality_update_profile_assignment import WindowsQualityUpdateProfileAssignment
+        from .windows_restore_device_enrollment_configuration import WindowsRestoreDeviceEnrollmentConfiguration
         from .windows_setting import WindowsSetting
         from .windows_setting_instance import WindowsSettingInstance
         from .windows_store_app import WindowsStoreApp
@@ -14458,6 +14464,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_quality_update_policy_assignment import WindowsQualityUpdatePolicyAssignment
         from .windows_quality_update_profile import WindowsQualityUpdateProfile
         from .windows_quality_update_profile_assignment import WindowsQualityUpdateProfileAssignment
+        from .windows_restore_device_enrollment_configuration import WindowsRestoreDeviceEnrollmentConfiguration
         from .windows_setting import WindowsSetting
         from .windows_setting_instance import WindowsSettingInstance
         from .windows_store_app import WindowsStoreApp

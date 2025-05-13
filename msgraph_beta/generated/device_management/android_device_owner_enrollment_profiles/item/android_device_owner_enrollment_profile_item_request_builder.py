@@ -16,8 +16,11 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.android_device_owner_enrollment_profile import AndroidDeviceOwnerEnrollmentProfile
     from ....models.o_data_errors.o_data_error import ODataError
+    from .clear_enrollment_time_device_membership_target.clear_enrollment_time_device_membership_target_request_builder import ClearEnrollmentTimeDeviceMembershipTargetRequestBuilder
     from .create_token.create_token_request_builder import CreateTokenRequestBuilder
+    from .retrieve_enrollment_time_device_membership_target.retrieve_enrollment_time_device_membership_target_request_builder import RetrieveEnrollmentTimeDeviceMembershipTargetRequestBuilder
     from .revoke_token.revoke_token_request_builder import RevokeTokenRequestBuilder
+    from .set_enrollment_time_device_membership_target.set_enrollment_time_device_membership_target_request_builder import SetEnrollmentTimeDeviceMembershipTargetRequestBuilder
 
 class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder(BaseRequestBuilder):
     """
@@ -140,6 +143,15 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder(BaseRequestBuilder):
         return AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def clear_enrollment_time_device_membership_target(self) -> ClearEnrollmentTimeDeviceMembershipTargetRequestBuilder:
+        """
+        Provides operations to call the clearEnrollmentTimeDeviceMembershipTarget method.
+        """
+        from .clear_enrollment_time_device_membership_target.clear_enrollment_time_device_membership_target_request_builder import ClearEnrollmentTimeDeviceMembershipTargetRequestBuilder
+
+        return ClearEnrollmentTimeDeviceMembershipTargetRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def create_token(self) -> CreateTokenRequestBuilder:
         """
         Provides operations to call the createToken method.
@@ -149,6 +161,15 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder(BaseRequestBuilder):
         return CreateTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def retrieve_enrollment_time_device_membership_target(self) -> RetrieveEnrollmentTimeDeviceMembershipTargetRequestBuilder:
+        """
+        Provides operations to call the retrieveEnrollmentTimeDeviceMembershipTarget method.
+        """
+        from .retrieve_enrollment_time_device_membership_target.retrieve_enrollment_time_device_membership_target_request_builder import RetrieveEnrollmentTimeDeviceMembershipTargetRequestBuilder
+
+        return RetrieveEnrollmentTimeDeviceMembershipTargetRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def revoke_token(self) -> RevokeTokenRequestBuilder:
         """
         Provides operations to call the revokeToken method.
@@ -156,6 +177,15 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder(BaseRequestBuilder):
         from .revoke_token.revoke_token_request_builder import RevokeTokenRequestBuilder
 
         return RevokeTokenRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def set_enrollment_time_device_membership_target(self) -> SetEnrollmentTimeDeviceMembershipTargetRequestBuilder:
+        """
+        Provides operations to call the setEnrollmentTimeDeviceMembershipTarget method.
+        """
+        from .set_enrollment_time_device_membership_target.set_enrollment_time_device_membership_target_request_builder import SetEnrollmentTimeDeviceMembershipTargetRequestBuilder
+
+        return SetEnrollmentTimeDeviceMembershipTargetRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

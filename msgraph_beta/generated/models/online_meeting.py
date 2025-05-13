@@ -22,7 +22,7 @@ from .online_meeting_base import OnlineMeetingBase
 class OnlineMeeting(OnlineMeetingBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onlineMeeting"
-    # The aiInsights property
+    # The AI insights generated for an online meeting. Read-only.
     ai_insights: Optional[list[CallAiInsight]] = None
     # The content stream of the alternative recording of a Microsoft Teams live event. Read-only.
     alternative_recording: Optional[bytes] = None

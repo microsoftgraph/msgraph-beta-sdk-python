@@ -32,7 +32,7 @@ class RoleScopeTagItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RoleScopeTagItemRequestBuilderGetQueryParameters]] = None) -> Optional[RoleScopeTag]:
         """
-        The set of Role Scope Tags defined on the Role Assignment.
+        Indicates the set of scope tags for the role assignment. These scope tags will limit the visibility of any Intune resources to those that match any of the scope tags in this collection.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RoleScopeTag]
         """
@@ -52,7 +52,7 @@ class RoleScopeTagItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RoleScopeTagItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The set of Role Scope Tags defined on the Role Assignment.
+        Indicates the set of scope tags for the role assignment. These scope tags will limit the visibility of any Intune resources to those that match any of the scope tags in this collection.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class RoleScopeTagItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RoleScopeTagItemRequestBuilderGetQueryParameters():
         """
-        The set of Role Scope Tags defined on the Role Assignment.
+        Indicates the set of scope tags for the role assignment. These scope tags will limit the visibility of any Intune resources to those that match any of the scope tags in this collection.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

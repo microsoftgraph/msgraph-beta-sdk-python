@@ -13,13 +13,13 @@ class ClassificationInnerError(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The activityId property
+    # The activity ID associated with the request that generated the error.
     activity_id: Optional[str] = None
-    # The clientRequestId property
+    # The client request ID, if provided by the caller.
     client_request_id: Optional[str] = None
-    # The code property
+    # A more specific, potentially internal, error code string.
     code: Optional[str] = None
-    # The errorDateTime property
+    # The date and time the inner error occurred.
     error_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

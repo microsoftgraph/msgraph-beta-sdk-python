@@ -16,9 +16,9 @@ class ContentActivity(Entity, Parsable):
     content_metadata: Optional[ProcessContentRequest] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The scopeIdentifier property
+    # The scope identified from computed protection scopes.
     scope_identifier: Optional[str] = None
-    # The userId property
+    # ID of the user.
     user_id: Optional[str] = None
     
     @staticmethod

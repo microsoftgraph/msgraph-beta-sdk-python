@@ -51,7 +51,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ActivitiesRequestBuilderGetQueryParameters]] = None) -> Optional[ActivitiesContainer]:
         """
-        Get activities from users
+        Container for activity logs (content processing and audit) related to this user. ContainsTarget: true.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ActivitiesContainer]
         """
@@ -104,7 +104,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ActivitiesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get activities from users
+        Container for activity logs (content processing and audit) related to this user. ContainsTarget: true.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +157,7 @@ class ActivitiesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ActivitiesRequestBuilderGetQueryParameters():
         """
-        Get activities from users
+        Container for activity logs (content processing and audit) related to this user. ContainsTarget: true.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -17,15 +17,15 @@ class ClassifcationErrorBase(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The code property
+    # A service-defined error code string.
     code: Optional[str] = None
-    # The innerError property
+    # Contains more specific, potentially internal error details.
     inner_error: Optional[ClassificationInnerError] = None
-    # The message property
+    # A human-readable representation of the error.
     message: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The target property
+    # The target of the error (for example, the specific property or item causing the issue).
     target: Optional[str] = None
     
     @staticmethod

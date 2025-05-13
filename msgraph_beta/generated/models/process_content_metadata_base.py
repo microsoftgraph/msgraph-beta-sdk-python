@@ -18,25 +18,25 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The content property
+    # Represents the actual content, either as text (textContent) or binary data (binaryContent). Optional if metadata alone is sufficient for policy evaluation. Do not use for contentActivities.
     content: Optional[ContentBase] = None
-    # The correlationId property
+    # An GUID identifier used to group multiple related content entries (for example, different parts of the same file upload, messages in a conversation).
     correlation_id: Optional[str] = None
-    # The createdDateTime property
+    # Required. Timestamp indicating when the original content was created (for example, file creation time, message sent time).
     created_date_time: Optional[datetime.datetime] = None
-    # The identifier property
+    # Required. A unique identifier for this specific content entry within the context of the calling application or enforcement plane (for example, message ID, file path/URL).
     identifier: Optional[str] = None
-    # The isTruncated property
+    # Required. Indicates if the provided content has been truncated from its original form (for example, due to size limits).
     is_truncated: Optional[bool] = None
-    # The length property
+    # The length of the original content in bytes.
     length: Optional[int] = None
-    # The modifiedDateTime property
+    # Required. Timestamp indicating when the original content was last modified. For ephemeral content like messages, this might be the same as createdDateTime.
     modified_date_time: Optional[datetime.datetime] = None
-    # The name property
+    # Required. A descriptive name for the content (for example, file name, web page title, 'Chat Message').
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sequenceNumber property
+    # A sequence number indicating the order in which content was generated or should be processed, required when correlationId is used.
     sequence_number: Optional[int] = None
     
     @staticmethod

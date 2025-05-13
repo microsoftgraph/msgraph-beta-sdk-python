@@ -15,11 +15,11 @@ class DeviceAndAppManagementRoleAssignment(RoleAssignment, Parsable):
     """
     The Role Assignment resource. Role assignments tie together a role definition with members and scopes. There can be one or more role assignments per role. This applies to custom and built-in roles.
     """
-    # The list of ids of role member security groups. These are IDs from Azure Active Directory.
+    # Indicates the list of role member security group Entra IDs. For example: {dec942f4-6777-4998-96b4-522e383b08e2}.
     members: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The set of Role Scope Tags defined on the Role Assignment.
+    # Indicates the set of scope tags for the role assignment. These scope tags will limit the visibility of any Intune resources to those that match any of the scope tags in this collection.
     role_scope_tags: Optional[list[RoleScopeTag]] = None
     
     @staticmethod

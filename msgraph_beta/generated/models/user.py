@@ -164,7 +164,7 @@ class User(DirectoryObject, Parsable):
     creation_type: Optional[str] = None
     # An open complex type that holds the value of a custom security attribute that is assigned to a directory object. Nullable. Returned only on $select. Supports $filter (eq, ne, not, startsWith). The filter value is case-sensitive. To read this property, the calling app must be assigned the CustomSecAttributeAssignment.Read.All permission. To write this property, the calling app must be assigned the CustomSecAttributeAssignment.ReadWrite.All permissions. To read or write this property in delegated scenarios, the admin must be assigned the Attribute Assignment Administrator role. Supports $filter (eq, ne, not , ge, le, in).
     custom_security_attributes: Optional[CustomSecurityAttributeValue] = None
-    # The dataSecurityAndGovernance property
+    # The data security and governance settings for the user. Read-only. Nullable.
     data_security_and_governance: Optional[UserDataSecurityAndGovernance] = None
     # The name of the department where the user works. Maximum length is 64 characters.Supports $filter (eq, ne, not , ge, le, in, and eq on null values).
     department: Optional[str] = None

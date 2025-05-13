@@ -12,15 +12,15 @@ from .dlp_action_info import DlpActionInfo
 
 @dataclass
 class NotifyUserAction(DlpActionInfo, Parsable):
-    # The actionLastModifiedDateTime property
+    # Timestamp when the notification action configuration was last modified.
     action_last_modified_date_time: Optional[datetime.datetime] = None
-    # The emailText property
+    # The body text of the email notification sent to users.
     email_text: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The policyTip property
+    # The text of the policy tip displayed to the user within the application (For example, Outlook, Word).
     policy_tip: Optional[str] = None
-    # The recipients property
+    # List of email addresses or user identifiers designated to receive the notification email. Can include sender, owner, manager, etc.
     recipients: Optional[list[str]] = None
     
     @staticmethod
