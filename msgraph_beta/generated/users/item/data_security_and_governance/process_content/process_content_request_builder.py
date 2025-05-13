@@ -33,10 +33,11 @@ class ProcessContentRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ProcessContentPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ProcessContentResponse]:
         """
-        Invoke action processContent
+        Process content against data protection policies in the context of the current user. 
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProcessContentResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/userdatasecurityandgovernance-processcontent?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -56,7 +57,7 @@ class ProcessContentRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ProcessContentPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action processContent
+        Process content against data protection policies in the context of the current user. 
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

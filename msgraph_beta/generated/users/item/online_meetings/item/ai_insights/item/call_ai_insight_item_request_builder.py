@@ -50,7 +50,7 @@ class CallAiInsightItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CallAiInsightItemRequestBuilderGetQueryParameters]] = None) -> Optional[CallAiInsight]:
         """
-        Get aiInsights from users
+        The AI insights generated for an online meeting. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CallAiInsight]
         """
@@ -103,7 +103,7 @@ class CallAiInsightItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CallAiInsightItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get aiInsights from users
+        The AI insights generated for an online meeting. Read-only.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class CallAiInsightItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CallAiInsightItemRequestBuilderGetQueryParameters():
         """
-        Get aiInsights from users
+        The AI insights generated for an online meeting. Read-only.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

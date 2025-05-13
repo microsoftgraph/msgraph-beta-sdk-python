@@ -14,11 +14,11 @@ from .process_content_metadata_base import ProcessContentMetadataBase
 class ProcessConversationMetadata(ProcessContentMetadataBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.processConversationMetadata"
-    # The accessedResources property
+    # List of resources (for example, file URLs, web URLs) accessed during the generation of this message (relevant for bot interactions).
     accessed_resources: Optional[list[str]] = None
-    # The parentMessageId property
+    # Identifier of the parent message in a threaded conversation, if applicable.
     parent_message_id: Optional[str] = None
-    # The plugins property
+    # List of plugins used during the generation of this message (relevant for AI/bot interactions).
     plugins: Optional[list[AiInteractionPlugin]] = None
     
     @staticmethod

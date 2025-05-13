@@ -17,7 +17,7 @@ class ProcessContentResponses(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The requestId property
+    # The unique identifier that matches the requestId provided in the corresponding processContentBatchRequest.
     request_id: Optional[str] = None
     # The results property
     results: Optional[ProcessContentResponse] = None

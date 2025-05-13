@@ -14,7 +14,7 @@ from ..entity import Entity
 
 @dataclass
 class Logs(Entity, Parsable):
-    # The connections property
+    # An aggregated log entry that contains comprehensive information about network traffic events.
     connections: Optional[list[Connection]] = None
     # The OdataType property
     odata_type: Optional[str] = None

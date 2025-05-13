@@ -31,7 +31,7 @@ class AospDeviceOwnerCompliancePolicy(DeviceCompliancePolicy, Parsable):
     password_required: Optional[bool] = None
     # Type of characters in password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
     password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
-    # Devices must not be jailbroken or rooted.
+    # Indicates the device should not be rooted. When TRUE, if the device is detected as rooted it will be reported non-compliant. When FALSE, the device is not reported as non-compliant regardless of device rooted state. Default is FALSE.
     security_block_jailbroken_devices: Optional[bool] = None
     # Require encryption on Android devices.
     storage_require_encryption: Optional[bool] = None

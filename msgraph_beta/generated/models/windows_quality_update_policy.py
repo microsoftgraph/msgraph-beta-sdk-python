@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .windows_quality_update_approval_setting import WindowsQualityUpdateApprovalSetting
     from .windows_quality_update_policy_assignment import WindowsQualityUpdatePolicyAssignment
 
 from .entity import Entity
@@ -16,6 +17,8 @@ class WindowsQualityUpdatePolicy(Entity, Parsable):
     """
     Windows Quality Update Policy
     """
+    # The list of approval settings for this policy. The maximun number of approval settings supported for one policy is 6. The expected number of approval settings for one policy from UX is 4.
+    approval_settings: Optional[list[WindowsQualityUpdateApprovalSetting]] = None
     # List of the groups this profile is assgined to.
     assignments: Optional[list[WindowsQualityUpdatePolicyAssignment]] = None
     # Timestamp of when the profile was created. The value cannot be modified and is automatically populated when the profile is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. Read-only
@@ -50,12 +53,15 @@ class WindowsQualityUpdatePolicy(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .windows_quality_update_approval_setting import WindowsQualityUpdateApprovalSetting
         from .windows_quality_update_policy_assignment import WindowsQualityUpdatePolicyAssignment
 
         from .entity import Entity
+        from .windows_quality_update_approval_setting import WindowsQualityUpdateApprovalSetting
         from .windows_quality_update_policy_assignment import WindowsQualityUpdatePolicyAssignment
 
         fields: dict[str, Callable[[Any], None]] = {
+            "approvalSettings": lambda n : setattr(self, 'approval_settings', n.get_collection_of_object_values(WindowsQualityUpdateApprovalSetting)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(WindowsQualityUpdatePolicyAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -77,6 +83,7 @@ class WindowsQualityUpdatePolicy(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("approvalSettings", self.approval_settings)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

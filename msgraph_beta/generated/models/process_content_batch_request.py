@@ -19,9 +19,9 @@ class ProcessContentBatchRequest(AdditionalDataHolder, BackedModel, Parsable):
     content_to_process: Optional[ProcessContentRequest] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The requestId property
+    # A unique identifier provided by the client to correlate this specific request item within the batch.
     request_id: Optional[str] = None
-    # The userId property
+    # The unique identifier (Object ID or UPN) of the user in whose context the content should be processed.
     user_id: Optional[str] = None
     
     @staticmethod

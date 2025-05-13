@@ -54,7 +54,7 @@ class AndroidCompliancePolicy(DeviceCompliancePolicy, Parsable):
     restricted_apps: Optional[list[AppListItem]] = None
     # Block device administrator managed devices.
     security_block_device_administrator_managed_devices: Optional[bool] = None
-    # Devices must not be jailbroken or rooted.
+    # Indicates the device should not be rooted. When TRUE, if the device is detected as rooted it will be reported non-compliant. When FALSE, the device is not reported as non-compliant regardless of device rooted state. Default is FALSE.
     security_block_jailbroken_devices: Optional[bool] = None
     # Disable USB debugging on Android devices.
     security_disable_usb_debugging: Optional[bool] = None

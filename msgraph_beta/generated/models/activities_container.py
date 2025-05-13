@@ -12,7 +12,7 @@ from .entity import Entity
 
 @dataclass
 class ActivitiesContainer(Entity, Parsable):
-    # The contentActivities property
+    # Collection of activity logs related to content processing.
     content_activities: Optional[list[ContentActivity]] = None
     # The OdataType property
     odata_type: Optional[str] = None

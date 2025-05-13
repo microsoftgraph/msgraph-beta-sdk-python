@@ -49,7 +49,7 @@ class AndroidWorkProfileCompliancePolicy(DeviceCompliancePolicy, Parsable):
     password_sign_in_failure_count_before_factory_reset: Optional[int] = None
     # The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
     required_password_complexity: Optional[AndroidRequiredPasswordComplexity] = None
-    # Devices must not be jailbroken or rooted.
+    # Indicates the device should not be rooted. When TRUE, if the device is detected as rooted it will be reported non-compliant. When FALSE, the device is not reported as non-compliant regardless of device rooted state. Default is FALSE.
     security_block_jailbroken_devices: Optional[bool] = None
     # Disable USB debugging on Android devices.
     security_disable_usb_debugging: Optional[bool] = None

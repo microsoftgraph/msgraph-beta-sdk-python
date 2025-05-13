@@ -17,25 +17,27 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # When TRUE, only Version 10.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 10.0 or later is required to install the app. If 'False', iOS Version 10.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v10_0: Optional[bool] = None
-    # When TRUE, only Version 11.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 11.0 or later is required to install the app. If 'False', iOS Version 11.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v11_0: Optional[bool] = None
-    # When TRUE, only Version 12.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 12.0 or later is required to install the app. If 'False', iOS Version 12.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v12_0: Optional[bool] = None
-    # When TRUE, only Version 13.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 13.0 or later is required to install the app. If 'False', iOS Version 13.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v13_0: Optional[bool] = None
-    # When TRUE, only Version 14.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 14.0 or later is required to install the app. If 'False', iOS Version 14.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v14_0: Optional[bool] = None
-    # When TRUE, only Version 15.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 15.0 or later is required to install the app. If 'False', iOS Version 15.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v15_0: Optional[bool] = None
-    # When TRUE, only Version 16.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 16.0 or later is required to install the app. If 'False', iOS Version 16.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v16_0: Optional[bool] = None
-    # When TRUE, only Version 17.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 17.0 or later is required to install the app. If 'False', iOS Version 17.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v17_0: Optional[bool] = None
-    # When TRUE, only Version 8.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 18.0 or later is required to install the app. If 'False', iOS Version 18.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
+    v18_0: Optional[bool] = None
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 8.0 or later is required to install the app. If 'False', iOS Version 8.0  is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v8_0: Optional[bool] = None
-    # When TRUE, only Version 9.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 9.0 or later is required to install the app. If 'False', iOS Version 9.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v9_0: Optional[bool] = None
     
     @staticmethod
@@ -64,6 +66,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
             "v15_0": lambda n : setattr(self, 'v15_0', n.get_bool_value()),
             "v16_0": lambda n : setattr(self, 'v16_0', n.get_bool_value()),
             "v17_0": lambda n : setattr(self, 'v17_0', n.get_bool_value()),
+            "v18_0": lambda n : setattr(self, 'v18_0', n.get_bool_value()),
             "v8_0": lambda n : setattr(self, 'v8_0', n.get_bool_value()),
             "v9_0": lambda n : setattr(self, 'v9_0', n.get_bool_value()),
         }
@@ -86,6 +89,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("v15_0", self.v15_0)
         writer.write_bool_value("v16_0", self.v16_0)
         writer.write_bool_value("v17_0", self.v17_0)
+        writer.write_bool_value("v18_0", self.v18_0)
         writer.write_bool_value("v8_0", self.v8_0)
         writer.write_bool_value("v9_0", self.v9_0)
         writer.write_additional_data_value(self.additional_data)

@@ -54,7 +54,7 @@ class DataSecurityAndGovernanceRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DataSecurityAndGovernanceRequestBuilderGetQueryParameters]] = None) -> Optional[UserDataSecurityAndGovernance]:
         """
-        Get dataSecurityAndGovernance from users
+        The data security and governance settings for the user. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserDataSecurityAndGovernance]
         """
@@ -107,7 +107,7 @@ class DataSecurityAndGovernanceRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DataSecurityAndGovernanceRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get dataSecurityAndGovernance from users
+        The data security and governance settings for the user. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -187,7 +187,7 @@ class DataSecurityAndGovernanceRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DataSecurityAndGovernanceRequestBuilderGetQueryParameters():
         """
-        Get dataSecurityAndGovernance from users
+        The data security and governance settings for the user. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

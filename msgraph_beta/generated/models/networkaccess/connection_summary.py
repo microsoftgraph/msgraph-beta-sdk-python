@@ -17,7 +17,7 @@ class ConnectionSummary(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The totalCount property
+    # Total number of connections for the specified traffic type.
     total_count: Optional[int] = None
     # The trafficType property
     traffic_type: Optional[TrafficType] = None

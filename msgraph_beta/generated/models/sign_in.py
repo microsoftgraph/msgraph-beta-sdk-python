@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .agentic.agent_sign_in import AgentSignIn
     from .applied_authentication_event_listener import AppliedAuthenticationEventListener
     from .applied_conditional_access_policy import AppliedConditionalAccessPolicy
     from .authentication_app_device_details import AuthenticationAppDeviceDetails
@@ -42,6 +43,8 @@ from .entity import Entity
 
 @dataclass
 class SignIn(Entity, Parsable):
+    # The agent property
+    agent: Optional[AgentSignIn] = None
     # The application name displayed in the Microsoft Entra admin center.  Supports $filter (eq, startsWith).
     app_display_name: Optional[str] = None
     # The application identifier in Microsoft Entra ID.  Supports $filter (eq).
@@ -209,6 +212,7 @@ class SignIn(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .agentic.agent_sign_in import AgentSignIn
         from .applied_authentication_event_listener import AppliedAuthenticationEventListener
         from .applied_conditional_access_policy import AppliedConditionalAccessPolicy
         from .authentication_app_device_details import AuthenticationAppDeviceDetails
@@ -241,6 +245,7 @@ class SignIn(Entity, Parsable):
         from .token_protection_status import TokenProtectionStatus
         from .token_protection_status_details import TokenProtectionStatusDetails
 
+        from .agentic.agent_sign_in import AgentSignIn
         from .applied_authentication_event_listener import AppliedAuthenticationEventListener
         from .applied_conditional_access_policy import AppliedConditionalAccessPolicy
         from .authentication_app_device_details import AuthenticationAppDeviceDetails
@@ -274,6 +279,7 @@ class SignIn(Entity, Parsable):
         from .token_protection_status_details import TokenProtectionStatusDetails
 
         fields: dict[str, Callable[[Any], None]] = {
+            "agent": lambda n : setattr(self, 'agent', n.get_object_value(AgentSignIn)),
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "appOwnerTenantId": lambda n : setattr(self, 'app_owner_tenant_id', n.get_str_value()),
@@ -362,6 +368,7 @@ class SignIn(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("agent", self.agent)
         writer.write_str_value("appDisplayName", self.app_display_name)
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("appOwnerTenantId", self.app_owner_tenant_id)

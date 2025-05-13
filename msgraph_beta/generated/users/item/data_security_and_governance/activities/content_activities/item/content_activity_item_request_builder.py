@@ -50,7 +50,7 @@ class ContentActivityItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ContentActivityItemRequestBuilderGetQueryParameters]] = None) -> Optional[ContentActivity]:
         """
-        Get contentActivities from users
+        Collection of activity logs related to content processing.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContentActivity]
         """
@@ -103,7 +103,7 @@ class ContentActivityItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ContentActivityItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get contentActivities from users
+        Collection of activity logs related to content processing.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class ContentActivityItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContentActivityItemRequestBuilderGetQueryParameters():
         """
-        Get contentActivities from users
+        Collection of activity logs related to content processing.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
