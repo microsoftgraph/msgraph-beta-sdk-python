@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .item_insights.item_insights_request_builder import ItemInsightsRequestBuilder
     from .name_pronunciation.name_pronunciation_request_builder import NamePronunciationRequestBuilder
     from .profile_card_properties.profile_card_properties_request_builder import ProfileCardPropertiesRequestBuilder
+    from .profile_property_settings.profile_property_settings_request_builder import ProfilePropertySettingsRequestBuilder
     from .pronouns.pronouns_request_builder import PronounsRequestBuilder
 
 class PeopleRequestBuilder(BaseRequestBuilder):
@@ -168,6 +169,15 @@ class PeopleRequestBuilder(BaseRequestBuilder):
         from .profile_card_properties.profile_card_properties_request_builder import ProfileCardPropertiesRequestBuilder
 
         return ProfileCardPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def profile_property_settings(self) -> ProfilePropertySettingsRequestBuilder:
+        """
+        Provides operations to manage the profilePropertySettings property of the microsoft.graph.peopleAdminSettings entity.
+        """
+        from .profile_property_settings.profile_property_settings_request_builder import ProfilePropertySettingsRequestBuilder
+
+        return ProfilePropertySettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def pronouns(self) -> PronounsRequestBuilder:

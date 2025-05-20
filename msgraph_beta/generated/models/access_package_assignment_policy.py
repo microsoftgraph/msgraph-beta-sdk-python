@@ -28,7 +28,7 @@ class AccessPackageAssignmentPolicy(Entity, Parsable):
     access_package_catalog: Optional[AccessPackageCatalog] = None
     # Identifier of the access package.
     access_package_id: Optional[str] = None
-    # The accessPackageNotificationSettings property
+    # Represents the settings for email notifications for requests to an access package.
     access_package_notification_settings: Optional[AccessPackageNotificationSettings] = None
     # Who must review, and how often, the assignments to the access package from this policy. This property is null if reviews aren't required.
     access_review_settings: Optional[AssignmentReviewSettings] = None

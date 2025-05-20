@@ -15,23 +15,23 @@ from .education_resource import EducationResource
 class EducationSpeakerProgressResource(EducationResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationSpeakerProgressResource"
-    # The aiFeedbackCriteria property
+    # The feedback types that students should receive from AI feedback. This property should only be provided if isAiFeedbackEnabled is true.
     ai_feedback_criteria: Optional[EducationAiFeedbackCriteria] = None
-    # The isAiFeedbackEnabled property
+    # Indicates whether AI feedback is enabled for the student submissions.
     is_ai_feedback_enabled: Optional[bool] = None
-    # The isVideoRequired property
+    # Indicates whether video is required for the student recording.
     is_video_required: Optional[bool] = None
-    # The maxRecordingAttempts property
+    # The maximum number of recording attempts available to the student. Specify 0 to set unlimited recording attempts.
     max_recording_attempts: Optional[int] = None
-    # The presentationTitle property
+    # The title of the speaker progress resource visible to students.
     presentation_title: Optional[str] = None
-    # The recordingTimeLimitInMinutes property
+    # The time limit is in minutes for the student recording.
     recording_time_limit_in_minutes: Optional[int] = None
-    # The showRehearsalReportToStudentBeforeMediaUpload property
+    # Allows students to view their rehearsal report before the assignment is graded.
     show_rehearsal_report_to_student_before_media_upload: Optional[bool] = None
-    # The speakerCoachSettings property
+    # The feedback types that students should receive from the Speaker Coach.
     speaker_coach_settings: Optional[EducationSpeakerCoachSettings] = None
-    # The spokenLanguageLocale property
+    # The spoken language for the student recording. For example, en-US.
     spoken_language_locale: Optional[str] = None
     
     @staticmethod

@@ -920,6 +920,7 @@ if TYPE_CHECKING:
     from .item_publication import ItemPublication
     from .item_retention_label import ItemRetentionLabel
     from .job_response_base import JobResponseBase
+    from .label_content_right import LabelContentRight
     from .landing_page import LandingPage
     from .landing_page_detail import LandingPageDetail
     from .language_proficiency import LanguageProficiency
@@ -1366,6 +1367,7 @@ if TYPE_CHECKING:
     from .profile import Profile
     from .profile_card_property import ProfileCardProperty
     from .profile_photo import ProfilePhoto
+    from .profile_property_setting import ProfilePropertySetting
     from .profile_source import ProfileSource
     from .program import Program
     from .program_control import ProgramControl
@@ -1782,6 +1784,7 @@ if TYPE_CHECKING:
     from .update_recording_status_operation import UpdateRecordingStatusOperation
     from .url_assessment_request import UrlAssessmentRequest
     from .usage_right import UsageRight
+    from .usage_rights_included import UsageRightsIncluded
     from .used_insight import UsedInsight
     from .user import User
     from .user_account_information import UserAccountInformation
@@ -5783,6 +5786,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .job_response_base import JobResponseBase
 
             return JobResponseBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.labelContentRight".casefold():
+            from .label_content_right import LabelContentRight
+
+            return LabelContentRight()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.landingPage".casefold():
             from .landing_page import LandingPage
 
@@ -7580,6 +7587,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .profile_photo import ProfilePhoto
 
             return ProfilePhoto()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.profilePropertySetting".casefold():
+            from .profile_property_setting import ProfilePropertySetting
+
+            return ProfilePropertySetting()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.profileSource".casefold():
             from .profile_source import ProfileSource
 
@@ -9262,6 +9273,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .usage_right import UsageRight
 
             return UsageRight()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.usageRightsIncluded".casefold():
+            from .usage_rights_included import UsageRightsIncluded
+
+            return UsageRightsIncluded()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.usedInsight".casefold():
             from .used_insight import UsedInsight
 
@@ -11341,6 +11356,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .item_publication import ItemPublication
         from .item_retention_label import ItemRetentionLabel
         from .job_response_base import JobResponseBase
+        from .label_content_right import LabelContentRight
         from .landing_page import LandingPage
         from .landing_page_detail import LandingPageDetail
         from .language_proficiency import LanguageProficiency
@@ -11787,6 +11803,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .profile import Profile
         from .profile_card_property import ProfileCardProperty
         from .profile_photo import ProfilePhoto
+        from .profile_property_setting import ProfilePropertySetting
         from .profile_source import ProfileSource
         from .program import Program
         from .program_control import ProgramControl
@@ -12203,6 +12220,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .update_recording_status_operation import UpdateRecordingStatusOperation
         from .url_assessment_request import UrlAssessmentRequest
         from .usage_right import UsageRight
+        from .usage_rights_included import UsageRightsIncluded
         from .used_insight import UsedInsight
         from .user import User
         from .user_account_information import UserAccountInformation
@@ -13407,6 +13425,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .item_publication import ItemPublication
         from .item_retention_label import ItemRetentionLabel
         from .job_response_base import JobResponseBase
+        from .label_content_right import LabelContentRight
         from .landing_page import LandingPage
         from .landing_page_detail import LandingPageDetail
         from .language_proficiency import LanguageProficiency
@@ -13853,6 +13872,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .profile import Profile
         from .profile_card_property import ProfileCardProperty
         from .profile_photo import ProfilePhoto
+        from .profile_property_setting import ProfilePropertySetting
         from .profile_source import ProfileSource
         from .program import Program
         from .program_control import ProgramControl
@@ -14269,6 +14289,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .update_recording_status_operation import UpdateRecordingStatusOperation
         from .url_assessment_request import UrlAssessmentRequest
         from .usage_right import UsageRight
+        from .usage_rights_included import UsageRightsIncluded
         from .used_insight import UsedInsight
         from .user import User
         from .user_account_information import UserAccountInformation

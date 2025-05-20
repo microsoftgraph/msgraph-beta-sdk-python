@@ -12,7 +12,7 @@ from .classifcation_error_base import ClassifcationErrorBase
 
 @dataclass
 class ClassificationError(ClassifcationErrorBase, Parsable):
-    # A collection of more specific errors that contribute to the overall error.
+    # A collection of more specific errors contributing to the overall error.
     details: Optional[list[ClassifcationErrorBase]] = None
     # The OdataType property
     odata_type: Optional[str] = None
