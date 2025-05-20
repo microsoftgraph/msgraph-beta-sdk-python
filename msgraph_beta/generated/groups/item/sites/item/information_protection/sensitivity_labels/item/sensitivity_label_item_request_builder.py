@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ........models.o_data_errors.o_data_error import ODataError
     from ........models.sensitivity_label import SensitivityLabel
+    from .rights.rights_request_builder import RightsRequestBuilder
     from .sublabels.sublabels_request_builder import SublabelsRequestBuilder
 
 class SensitivityLabelItemRequestBuilder(BaseRequestBuilder):
@@ -137,6 +138,15 @@ class SensitivityLabelItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SensitivityLabelItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def rights(self) -> RightsRequestBuilder:
+        """
+        Provides operations to manage the rights property of the microsoft.graph.sensitivityLabel entity.
+        """
+        from .rights.rights_request_builder import RightsRequestBuilder
+
+        return RightsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sublabels(self) -> SublabelsRequestBuilder:

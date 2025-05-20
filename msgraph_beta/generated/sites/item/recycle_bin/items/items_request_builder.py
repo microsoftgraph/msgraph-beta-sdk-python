@@ -18,7 +18,9 @@ if TYPE_CHECKING:
     from .....models.recycle_bin_item import RecycleBinItem
     from .....models.recycle_bin_item_collection_response import RecycleBinItemCollectionResponse
     from .count.count_request_builder import CountRequestBuilder
+    from .delete.delete_request_builder import DeleteRequestBuilder
     from .item.recycle_bin_item_item_request_builder import RecycleBinItemItemRequestBuilder
+    from .restore.restore_request_builder import RestoreRequestBuilder
 
 class ItemsRequestBuilder(BaseRequestBuilder):
     """
@@ -135,6 +137,24 @@ class ItemsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def delete_path(self) -> DeleteRequestBuilder:
+        """
+        Provides operations to call the delete method.
+        """
+        from .delete.delete_request_builder import DeleteRequestBuilder
+
+        return DeleteRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def restore(self) -> RestoreRequestBuilder:
+        """
+        Provides operations to call the restore method.
+        """
+        from .restore.restore_request_builder import RestoreRequestBuilder
+
+        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ItemsRequestBuilderGetQueryParameters():

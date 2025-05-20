@@ -12,11 +12,11 @@ class EducationAiFeedbackContentSettings(AdditionalDataHolder, BackedModel, Pars
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The isMessageClarityEnabled property
+    # Indicates whether the student should receive feedback on their message clarity from the AI feedback.
     is_message_clarity_enabled: Optional[bool] = None
-    # The isQualityOfInformationEnabled property
+    # Indicates whether the student should receive feedback on their quality of information from the AI feedback.
     is_quality_of_information_enabled: Optional[bool] = None
-    # The isSpeechOrganizationEnabled property
+    # Indicates whether the student should receive feedback on their speech organization from the AI feedback.
     is_speech_organization_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

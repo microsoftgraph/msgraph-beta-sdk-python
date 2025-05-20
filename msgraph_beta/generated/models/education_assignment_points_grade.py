@@ -13,7 +13,7 @@ from .education_assignment_grade import EducationAssignmentGrade
 class EducationAssignmentPointsGrade(EducationAssignmentGrade, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationAssignmentPointsGrade"
-    # Number of points a teacher is giving this submission object.
+    # Number of points a teacher gives to this submission object.
     points: Optional[float] = None
     
     @staticmethod

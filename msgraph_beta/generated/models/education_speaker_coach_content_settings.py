@@ -12,9 +12,9 @@ class EducationSpeakerCoachContentSettings(AdditionalDataHolder, BackedModel, Pa
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The isInclusivenessEnabled property
+    # Indicates whether the student should receive feedback on their inclusiveness from the Speaker Coach.
     is_inclusiveness_enabled: Optional[bool] = None
-    # The isRepetitiveLanguageEnabled property
+    # Indicates whether the student should receive feedback on their repetitive language from the Speaker Coach.
     is_repetitive_language_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

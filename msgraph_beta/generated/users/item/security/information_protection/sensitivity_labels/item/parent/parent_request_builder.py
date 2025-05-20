@@ -50,7 +50,7 @@ class ParentRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ParentRequestBuilderGetQueryParameters]] = None) -> Optional[SensitivityLabel]:
         """
-        The parent label associated with a child label. Null if the label has no parent.
+        Get parent from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SensitivityLabel]
         """
@@ -103,7 +103,7 @@ class ParentRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ParentRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The parent label associated with a child label. Null if the label has no parent.
+        Get parent from users
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class ParentRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ParentRequestBuilderGetQueryParameters():
         """
-        The parent label associated with a child label. Null if the label has no parent.
+        Get parent from users
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

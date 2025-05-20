@@ -12,13 +12,13 @@ class EducationSpeakerCoachDeliverySettings(AdditionalDataHolder, BackedModel, P
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The areFillerWordsEnabled property
+    # Indicates whether the student should receive feedback on their filler words from the Speaker Coach.
     are_filler_words_enabled: Optional[bool] = None
-    # The isPaceEnabled property
+    # Indicates whether the student should receive feedback on their pace from the Speaker Coach.
     is_pace_enabled: Optional[bool] = None
-    # The isPitchEnabled property
+    # Indicates whether the student should receive feedback on their pitch from the Speaker Coach.
     is_pitch_enabled: Optional[bool] = None
-    # The isPronunciationEnabled property
+    # Indicates whether the student should receive feedback on their pronunciation from the Speaker Coach. This is automatically enabled if isAiFeedbackEnabled is set to true on the educationSpeakerProgressResource, or if spokenLanguageLocale is set to a value besides en-US on the educationSpeakerProgressResource.
     is_pronunciation_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

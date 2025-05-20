@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .....models.sensitivity_label import SensitivityLabel
+    from .rights.rights_request_builder import RightsRequestBuilder
     from .sublabels.sublabels_request_builder import SublabelsRequestBuilder
 
 class SensitivityLabelItemRequestBuilder(BaseRequestBuilder):
@@ -51,9 +52,10 @@ class SensitivityLabelItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SensitivityLabelItemRequestBuilderGetQueryParameters]] = None) -> Optional[SensitivityLabel]:
         """
-        Get sensitivityLabels from security
+        Get a sensitivity label available for the entire tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SensitivityLabel]
+        Find more info here: https://learn.microsoft.com/graph/api/sensitivitylabel-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -104,7 +106,7 @@ class SensitivityLabelItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SensitivityLabelItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get sensitivityLabels from security
+        Get a sensitivity label available for the entire tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,6 +141,15 @@ class SensitivityLabelItemRequestBuilder(BaseRequestBuilder):
         return SensitivityLabelItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def rights(self) -> RightsRequestBuilder:
+        """
+        Provides operations to manage the rights property of the microsoft.graph.sensitivityLabel entity.
+        """
+        from .rights.rights_request_builder import RightsRequestBuilder
+
+        return RightsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def sublabels(self) -> SublabelsRequestBuilder:
         """
         Provides operations to manage the sublabels property of the microsoft.graph.sensitivityLabel entity.
@@ -157,7 +168,7 @@ class SensitivityLabelItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SensitivityLabelItemRequestBuilderGetQueryParameters():
         """
-        Get sensitivityLabels from security
+        Get a sensitivity label available for the entire tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

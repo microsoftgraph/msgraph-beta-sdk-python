@@ -12,11 +12,11 @@ class EducationAiFeedbackAudienceEngagementSettings(AdditionalDataHolder, Backed
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The areEngagementStrategiesEnabled property
+    # Indicates whether the student should receive feedback on their engagement strategies from the AI feedback.
     are_engagement_strategies_enabled: Optional[bool] = None
-    # The isCallToActionEnabled property
+    # Indicates whether the student should receive feedback on their call to action from the AI feedback.
     is_call_to_action_enabled: Optional[bool] = None
-    # The isEmotionalAndIntellectualAppealEnabled property
+    # Indicates whether the student should receive feedback on their emotional and intellectual appeal from the AI feedback.
     is_emotional_and_intellectual_appeal_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

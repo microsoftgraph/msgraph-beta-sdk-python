@@ -17,6 +17,8 @@ if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
     from .......models.sensitivity_label import SensitivityLabel
     from .......models.sensitivity_label_collection_response import SensitivityLabelCollectionResponse
+    from .compute_inheritance_with_label_ids_with_locale_with_content_formats.compute_inheritance_with_label_ids_with_locale_with_content_formats_request_builder import ComputeInheritanceWithLabelIdsWithLocaleWithContentFormatsRequestBuilder
+    from .compute_rights_and_inheritance.compute_rights_and_inheritance_request_builder import ComputeRightsAndInheritanceRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .evaluate.evaluate_request_builder import EvaluateRequestBuilder
     from .item.sensitivity_label_item_request_builder import SensitivityLabelItemRequestBuilder
@@ -47,6 +49,24 @@ class SublabelsRequestBuilder(BaseRequestBuilder):
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["sensitivityLabel%2Did1"] = sensitivity_label_id1
         return SensitivityLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def compute_inheritance_with_label_ids_with_locale_with_content_formats(self,content_formats: str, label_ids: str, locale: str) -> ComputeInheritanceWithLabelIdsWithLocaleWithContentFormatsRequestBuilder:
+        """
+        Provides operations to call the computeInheritance method.
+        param content_formats: Usage: contentFormats={contentFormats}
+        param label_ids: Usage: labelIds={labelIds}
+        param locale: Usage: locale='{locale}'
+        Returns: ComputeInheritanceWithLabelIdsWithLocaleWithContentFormatsRequestBuilder
+        """
+        if content_formats is None:
+            raise TypeError("content_formats cannot be null.")
+        if label_ids is None:
+            raise TypeError("label_ids cannot be null.")
+        if locale is None:
+            raise TypeError("locale cannot be null.")
+        from .compute_inheritance_with_label_ids_with_locale_with_content_formats.compute_inheritance_with_label_ids_with_locale_with_content_formats_request_builder import ComputeInheritanceWithLabelIdsWithLocaleWithContentFormatsRequestBuilder
+
+        return ComputeInheritanceWithLabelIdsWithLocaleWithContentFormatsRequestBuilder(self.request_adapter, self.path_parameters, content_formats, label_ids, locale)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SublabelsRequestBuilderGetQueryParameters]] = None) -> Optional[SensitivityLabelCollectionResponse]:
         """
@@ -126,6 +146,15 @@ class SublabelsRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SublabelsRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def compute_rights_and_inheritance(self) -> ComputeRightsAndInheritanceRequestBuilder:
+        """
+        Provides operations to call the computeRightsAndInheritance method.
+        """
+        from .compute_rights_and_inheritance.compute_rights_and_inheritance_request_builder import ComputeRightsAndInheritanceRequestBuilder
+
+        return ComputeRightsAndInheritanceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def count(self) -> CountRequestBuilder:

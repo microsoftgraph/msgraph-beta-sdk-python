@@ -43,7 +43,7 @@ from .entity import Entity
 
 @dataclass
 class SignIn(Entity, Parsable):
-    # The agent property
+    # Represents details about the agentic sign-in. Includes the type of agent as well as parentAppID in some cases
     agent: Optional[AgentSignIn] = None
     # The application name displayed in the Microsoft Entra admin center.  Supports $filter (eq, startsWith).
     app_display_name: Optional[str] = None
