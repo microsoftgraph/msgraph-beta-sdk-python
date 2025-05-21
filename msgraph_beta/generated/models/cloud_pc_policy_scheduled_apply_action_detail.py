@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class CloudPcPolicyScheduledApplyActionDetail(Entity, Parsable):
-    # An expression that specifies the cron schedule. (For example, '0 0 0 20  ' means schedules a job to run at midnight on the 20th of every month) Administrators can set a cron expression to define the scheduling rules for automatic regular application. When auto-provision is disabled, cronScheduleExpression is set to null, stopping the automatic task scheduling. Read-Only.
+    # An expression that specifies the cron schedule. (For example, '0 0 0 20  ' means schedules a job to run at midnight on the 20th of every month) Administrators can set a cron expression to define the scheduling rules for automatic regular application. When auto provision is disabled, cronScheduleExpression is set to null, stopping the automatic task scheduling. Read-Only.
     cron_schedule_expression: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

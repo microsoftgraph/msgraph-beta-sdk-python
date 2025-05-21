@@ -17,11 +17,11 @@ class EducationAiFeedbackSettings(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The audienceEngagementSettings property
+    # The audience engagement related feedback types that students should receive from the AI feedback.
     audience_engagement_settings: Optional[EducationAiFeedbackAudienceEngagementSettings] = None
-    # The contentSettings property
+    # The content related feedback types that students should receive from the AI feedback.
     content_settings: Optional[EducationAiFeedbackContentSettings] = None
-    # The deliverySettings property
+    # The delivery related feedback types that students should receive from the AI feedback.
     delivery_settings: Optional[EducationAiFeedbackDeliverySettings] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -12,11 +12,11 @@ class EducationAiFeedbackDeliverySettings(AdditionalDataHolder, BackedModel, Par
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The areRhetoricalTechniquesEnabled property
+    # Indicates whether the student should receive feedback on their rhetorical techniques from the AI feedback.
     are_rhetorical_techniques_enabled: Optional[bool] = None
-    # The isLanguageUseEnabled property
+    # Indicates whether the student should receive feedback on their language use from the AI feedback.
     is_language_use_enabled: Optional[bool] = None
-    # The isStyleEnabled property
+    # Indicates whether the student should receive feedback on their style from the AI feedback.
     is_style_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
