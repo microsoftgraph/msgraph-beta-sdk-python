@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     from .pending_external_user_profiles.pending_external_user_profiles_request_builder import PendingExternalUserProfilesRequestBuilder
     from .public_key_infrastructure.public_key_infrastructure_request_builder import PublicKeyInfrastructureRequestBuilder
     from .recommendations.recommendations_request_builder import RecommendationsRequestBuilder
+    from .recommendation_configuration.recommendation_configuration_request_builder import RecommendationConfigurationRequestBuilder
     from .shared_email_domains.shared_email_domains_request_builder import SharedEmailDomainsRequestBuilder
     from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
     from .subscriptions_with_commerce_subscription_id.subscriptions_with_commerce_subscription_id_request_builder import SubscriptionsWithCommerceSubscriptionIdRequestBuilder
@@ -298,6 +299,15 @@ class DirectoryRequestBuilder(BaseRequestBuilder):
         from .public_key_infrastructure.public_key_infrastructure_request_builder import PublicKeyInfrastructureRequestBuilder
 
         return PublicKeyInfrastructureRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def recommendation_configuration(self) -> RecommendationConfigurationRequestBuilder:
+        """
+        Provides operations to manage the recommendationConfiguration property of the microsoft.graph.directory entity.
+        """
+        from .recommendation_configuration.recommendation_configuration_request_builder import RecommendationConfigurationRequestBuilder
+
+        return RecommendationConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def recommendations(self) -> RecommendationsRequestBuilder:

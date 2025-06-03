@@ -32,7 +32,7 @@ class AnalyzedEmail(Entity, Parsable):
     authentication_details: Optional[AnalyzedEmailAuthenticationDetail] = None
     # The bulk complaint level of the email. A higher level is more likely to be spam.
     bulk_complaint_level: Optional[str] = None
-    # The clientType property
+    # Shows the type of client that sent the message (for example, REST).
     client_type: Optional[str] = None
     # Provides context of the email.
     contexts: Optional[list[str]] = None
@@ -42,15 +42,15 @@ class AnalyzedEmail(Entity, Parsable):
     directionality: Optional[AntispamDirectionality] = None
     # The distribution list details to which the email was sent.
     distribution_list: Optional[str] = None
-    # The dlpRules property
+    # Data loss prevention rules configured in purview.
     dlp_rules: Optional[list[AnalyzedEmailDlpRuleInfo]] = None
     # The identifier for the group of similar emails clustered based on heuristic analysis of their content.
     email_cluster_id: Optional[str] = None
     # The name of the Exchange transport rules (ETRs) associated with the email.
     exchange_transport_rules: Optional[list[AnalyzedEmailExchangeTransportRuleInfo]] = None
-    # The forwardingDetail property
+    # Email smtp forwarding details.
     forwarding_detail: Optional[str] = None
-    # The inboundConnectorFormattedName property
+    # Custom instructions name that defines organizational mail flow and how the email was routed.
     inbound_connector_formatted_name: Optional[str] = None
     # A public-facing identifier for the email that is sent. The message ID is in the format specified by RFC2822.
     internet_message_id: Optional[str] = None
@@ -74,11 +74,11 @@ class AnalyzedEmail(Entity, Parsable):
     policy: Optional[str] = None
     # The action taken on the email based on the configured policy.
     policy_action: Optional[str] = None
-    # The policyType property
+    # Type of policy configured that defines the delivery action on email.
     policy_type: Optional[str] = None
-    # The primaryOverrideSource property
+    # Shows the organization or user setting that altered the intended delivery location of the message (allowed instead of blocked, or blocked instead of allowed).
     primary_override_source: Optional[str] = None
-    # The recipientDetail property
+    # Details of the recipients.
     recipient_detail: Optional[AnalyzedEmailRecipientDetail] = None
     # Contains the email address of the recipient.
     recipient_email_address: Optional[str] = None
@@ -92,11 +92,11 @@ class AnalyzedEmail(Entity, Parsable):
     spam_confidence_level: Optional[str] = None
     # Subject of the email.
     subject: Optional[str] = None
-    # The threatDetectionDetails property
+    # Information about threats detected in the email.
     threat_detection_details: Optional[list[ThreatDetectionDetail]] = None
     # Indicates the threat types. The possible values are: unknown, spam, malware, phish, none, unknownFutureValue.
     threat_types: Optional[list[ThreatType]] = None
-    # The timelineEvents property
+    # Delivery and post-delivery events that happened to the email.
     timeline_events: Optional[list[TimelineEvent]] = None
     # A collection of the URLs in the email.
     urls: Optional[list[AnalyzedEmailUrl]] = None

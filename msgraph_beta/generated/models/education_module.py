@@ -23,8 +23,10 @@ class EducationModule(Entity, Parsable):
     description: Optional[str] = None
     # Name of the module.
     display_name: Optional[str] = None
-    # Indicates whether the module is pinned or not.
+    # Indicates whether the module is pinned.
     is_pinned: Optional[bool] = None
+    # Specifies the language in which UI notifications for the assignment are displayed. If languageTag isn't provided, the default language is en-US. Optional.
+    language_tag: Optional[str] = None
     # The last user that modified the module.
     last_modified_by: Optional[IdentitySet] = None
     # Date time the module was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z
@@ -70,6 +72,7 @@ class EducationModule(Entity, Parsable):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "isPinned": lambda n : setattr(self, 'is_pinned', n.get_bool_value()),
+            "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "resources": lambda n : setattr(self, 'resources', n.get_collection_of_object_values(EducationModuleResource)),
@@ -92,6 +95,7 @@ class EducationModule(Entity, Parsable):
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("isPinned", self.is_pinned)
+        writer.write_str_value("languageTag", self.language_tag)
         writer.write_collection_of_object_values("resources", self.resources)
     
 

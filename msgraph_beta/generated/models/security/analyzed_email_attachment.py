@@ -18,21 +18,21 @@ class AnalyzedEmailAttachment(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The detonation details of the attachment.
     detonation_details: Optional[DetonationDetails] = None
-    # The fileExtension property
+    # Extension of the file.
     file_extension: Optional[str] = None
     # The name of the attachment in the email.
     file_name: Optional[str] = None
-    # The fileSize property
+    # Size of the file.
     file_size: Optional[int] = None
     # The type of the attachment in the email.
     file_type: Optional[str] = None
-    # The malwareFamily property
+    # The threat name associated with the threat type.
     malware_family: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The SHA256 file hash of the attachment.
     sha256: Optional[str] = None
-    # The tenantAllowBlockListDetailInfo property
+    # Details of entries in tenant allow/block list configured by tenant.
     tenant_allow_block_list_detail_info: Optional[str] = None
     # The threat type associated with the attachment. The possible values are: unknown, spam, malware, phishing, none, unknownFutureValue.
     threat_type: Optional[ThreatType] = None

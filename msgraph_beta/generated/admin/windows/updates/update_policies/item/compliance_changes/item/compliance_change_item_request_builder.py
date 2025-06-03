@@ -52,10 +52,10 @@ class ComplianceChangeItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ComplianceChangeItemRequestBuilderGetQueryParameters]] = None) -> Optional[ComplianceChange]:
         """
-        Read the properties and relationships of a contentApproval object.
+        Read the properties and relationships of a complianceChange object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ComplianceChange]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-contentapproval-get?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-compliancechange-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -107,7 +107,7 @@ class ComplianceChangeItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ComplianceChangeItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a contentApproval object.
+        Read the properties and relationships of a complianceChange object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +160,7 @@ class ComplianceChangeItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ComplianceChangeItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a contentApproval object.
+        Read the properties and relationships of a complianceChange object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

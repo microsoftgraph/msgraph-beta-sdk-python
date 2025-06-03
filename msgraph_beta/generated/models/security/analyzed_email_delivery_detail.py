@@ -18,13 +18,13 @@ class AnalyzedEmailDeliveryDetail(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The delivery action of the email. The possible values are: unknown, deliveredToJunk, delivered, blocked, replaced, unknownFutureValue.
     action: Optional[DeliveryAction] = None
-    # The latestThreats property
+    # Latest known threat on the email.
     latest_threats: Optional[str] = None
     # The delivery location of the email. The possible values are: unknown, inboxfolder, junkFolder, deletedFolder, quarantine, onpremexternal, failed, dropped, others, unknownFutureValue.
     location: Optional[DeliveryLocation] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The originalThreats property
+    # Threats identified at the time of delivery.
     original_threats: Optional[str] = None
     
     @staticmethod

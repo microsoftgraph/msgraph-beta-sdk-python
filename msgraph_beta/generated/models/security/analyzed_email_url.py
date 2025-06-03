@@ -22,7 +22,7 @@ class AnalyzedEmailUrl(AdditionalDataHolder, BackedModel, Parsable):
     detonation_details: Optional[DetonationDetails] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The tenantAllowBlockListDetailInfo property
+    # Details of entries in tenant allow/block list configured by tenant.
     tenant_allow_block_list_detail_info: Optional[str] = None
     # The type of threat associated with the URL. The possible values are: unknown, spam, malware, phishing, none, unknownFutureValue.
     threat_type: Optional[ThreatType] = None

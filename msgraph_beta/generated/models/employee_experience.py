@@ -1,27 +1,25 @@
 from __future__ import annotations
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .community import Community
     from .engagement_async_operation import EngagementAsyncOperation
+    from .engagement_role import EngagementRole
+    from .entity import Entity
     from .goals import Goals
     from .learning_course_activity import LearningCourseActivity
     from .learning_provider import LearningProvider
 
+from .entity import Entity
+
 @dataclass
-class EmployeeExperience(AdditionalDataHolder, BackedModel, Parsable):
+class EmployeeExperience(Entity, Parsable):
     """
     Represents a container that exposes navigation properties for employee experience resources.
     """
-    # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
-
-    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: dict[str, Any] = field(default_factory=dict)
     # A collection of communities in Viva Engage.
     communities: Optional[list[Community]] = None
     # A collection of long-running, asynchronous operations related to Viva Engage.
@@ -34,6 +32,8 @@ class EmployeeExperience(AdditionalDataHolder, BackedModel, Parsable):
     learning_providers: Optional[list[LearningProvider]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # A collection of roles in Viva Engage.
+    roles: Optional[list[EngagementRole]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EmployeeExperience:
@@ -53,12 +53,16 @@ class EmployeeExperience(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .community import Community
         from .engagement_async_operation import EngagementAsyncOperation
+        from .engagement_role import EngagementRole
+        from .entity import Entity
         from .goals import Goals
         from .learning_course_activity import LearningCourseActivity
         from .learning_provider import LearningProvider
 
         from .community import Community
         from .engagement_async_operation import EngagementAsyncOperation
+        from .engagement_role import EngagementRole
+        from .entity import Entity
         from .goals import Goals
         from .learning_course_activity import LearningCourseActivity
         from .learning_provider import LearningProvider
@@ -69,8 +73,10 @@ class EmployeeExperience(AdditionalDataHolder, BackedModel, Parsable):
             "goals": lambda n : setattr(self, 'goals', n.get_object_value(Goals)),
             "learningCourseActivities": lambda n : setattr(self, 'learning_course_activities', n.get_collection_of_object_values(LearningCourseActivity)),
             "learningProviders": lambda n : setattr(self, 'learning_providers', n.get_collection_of_object_values(LearningProvider)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "roles": lambda n : setattr(self, 'roles', n.get_collection_of_object_values(EngagementRole)),
         }
+        super_fields = super().get_field_deserializers()
+        fields.update(super_fields)
         return fields
     
     def serialize(self,writer: SerializationWriter) -> None:
@@ -81,12 +87,12 @@ class EmployeeExperience(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        super().serialize(writer)
         writer.write_collection_of_object_values("communities", self.communities)
         writer.write_collection_of_object_values("engagementAsyncOperations", self.engagement_async_operations)
         writer.write_object_value("goals", self.goals)
         writer.write_collection_of_object_values("learningCourseActivities", self.learning_course_activities)
         writer.write_collection_of_object_values("learningProviders", self.learning_providers)
-        writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_additional_data_value(self.additional_data)
+        writer.write_collection_of_object_values("roles", self.roles)
     
 
