@@ -17,17 +17,17 @@ class TimelineEvent(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The eventDateTime property
+    # The date and time when the event occurred.
     event_date_time: Optional[datetime.datetime] = None
-    # The eventDetails property
+    # Additional details or context about the event.
     event_details: Optional[str] = None
-    # The eventResult property
+    # The outcome or result of the event, such as delivery location or action taken.
     event_result: Optional[str] = None
-    # The eventSource property
+    # The origin or actor that triggered the event. The possible values are: system, admin, user, unknownFutureValue.
     event_source: Optional[EventSource] = None
-    # The eventThreats property
+    # Collection of threats identified or associated with this event.
     event_threats: Optional[list[str]] = None
-    # The eventType property
+    # The type of event that occurred. The possible values are: originalDelivery, systemTimeTravel, dynamicDelivery, userUrlClick, reprocessed, zap, quarantineRelease, air, unknown, unknownFutureValue.
     event_type: Optional[TimelineEventType] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -48,9 +48,10 @@ class SummaryRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SummaryRequestBuilderGetQueryParameters]] = None) -> Optional[InsightSummaryCollectionResponse]:
         """
-        Summary of all usage insights on apps registered in the tenant for a specified period.
+        Get a list of monthly  insightSummary objects on apps registered in your tenant configured for Microsoft Entra External ID for customers.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InsightSummaryCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/monthlyuserinsightmetricsroot-list-summary?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,7 +69,7 @@ class SummaryRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SummaryRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Summary of all usage insights on apps registered in the tenant for a specified period.
+        Get a list of monthly  insightSummary objects on apps registered in your tenant configured for Microsoft Entra External ID for customers.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +100,7 @@ class SummaryRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SummaryRequestBuilderGetQueryParameters():
         """
-        Summary of all usage insights on apps registered in the tenant for a specified period.
+        Get a list of monthly  insightSummary objects on apps registered in your tenant configured for Microsoft Entra External ID for customers.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

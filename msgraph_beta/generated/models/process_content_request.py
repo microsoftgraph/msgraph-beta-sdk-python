@@ -20,13 +20,13 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The activityMetadata property
     activity_metadata: Optional[ActivityMetadata] = None
-    # A collection of content entries to be processed. Each entry contains the content itself and its metadata. Required.
+    # A collection of content entries to be processed. Each entry contains the content itself and its metadata. Use conversation metadata for content like prompts and responses and file metadata for files. Required.
     content_entries: Optional[list[ProcessContentMetadataBase]] = None
     # The integratedAppMetadata property
     integrated_app_metadata: Optional[IntegratedApplicationMetadata] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The protectedAppMetadata property
+    # Metadata about the protected application making the request. Required.
     protected_app_metadata: Optional[ProtectedApplicationMetadata] = None
     
     @staticmethod

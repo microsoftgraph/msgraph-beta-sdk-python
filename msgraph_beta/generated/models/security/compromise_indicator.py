@@ -17,9 +17,9 @@ class CompromiseIndicator(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The value property
+    # Indicator.
     value: Optional[str] = None
-    # The verdict property
+    # .The possible values are: none, malware, phish, siteUnavailable, spam, decryptionFailed, unsupportedUriScheme, unsupportedFileType, undefined, unknownFutureValue.
     verdict: Optional[VerdictCategory] = None
     
     @staticmethod

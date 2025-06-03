@@ -6,20 +6,23 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .profile_source_localization import ProfileSourceLocalization
 
 from .entity import Entity
 
 @dataclass
 class ProfileSource(Entity, Parsable):
-    # The displayName property
+    # Name of the profile source intended to inform users about the profile source name.
     display_name: Optional[str] = None
-    # The kind property
+    # Type of the profile source.
     kind: Optional[str] = None
+    # Alternative localized labels specified by an administrator.
+    localizations: Optional[list[ProfileSourceLocalization]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sourceId property
+    # Profile source identifier used as an alternate key.
     source_id: Optional[str] = None
-    # The webUrl property
+    # Web URL of the profile source that directs users to the page view of profile data.
     web_url: Optional[str] = None
     
     @staticmethod
@@ -39,12 +42,15 @@ class ProfileSource(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .profile_source_localization import ProfileSourceLocalization
 
         from .entity import Entity
+        from .profile_source_localization import ProfileSourceLocalization
 
         fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "kind": lambda n : setattr(self, 'kind', n.get_str_value()),
+            "localizations": lambda n : setattr(self, 'localizations', n.get_collection_of_object_values(ProfileSourceLocalization)),
             "sourceId": lambda n : setattr(self, 'source_id', n.get_str_value()),
             "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
@@ -63,6 +69,7 @@ class ProfileSource(Entity, Parsable):
         super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("kind", self.kind)
+        writer.write_collection_of_object_values("localizations", self.localizations)
         writer.write_str_value("sourceId", self.source_id)
         writer.write_str_value("webUrl", self.web_url)
     

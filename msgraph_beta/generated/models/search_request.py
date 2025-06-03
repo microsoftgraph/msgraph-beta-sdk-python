@@ -28,13 +28,13 @@ class SearchRequest(AdditionalDataHolder, BackedModel, Parsable):
     aggregations: Optional[list[AggregationOption]] = None
     # Contains the ordered collection of fields and limit to collapse results. Optional.
     collapse_properties: Optional[list[CollapseProperty]] = None
-    # Contains the connection to be targeted. Respects the following format : /external/connections/connectionid where connectionid is the ConnectionId defined in the Connectors Administration.  Note: contentSource is only applicable when entityType=externalItem. Optional.
+    # Contains the connection to be targeted. Respects the following format: /external/connections/connectionid where connectionid is the ConnectionId defined in the connectors administration.  Note: contentSource is only applicable when entityType=externalItem. Optional.
     content_sources: Optional[list[str]] = None
     # This triggers hybrid sort for messages: the first 3 messages are the most relevant. This property is only applicable to entityType=message. Optional.
     enable_top_results: Optional[bool] = None
     # One or more types of resources expected in the response. Possible values are: list, site, listItem, message, event, drive, driveItem, person, externalItem, acronym, bookmark, chatMessage. For details about combinations of two or more entity types that are supported in the same search request, see known limitations. Required.
     entity_types: Optional[list[EntityType]] = None
-    # Contains the fields to be returned for each resource object specified in entityTypes, allowing customization of the fields returned by default otherwise, including additional fields such as custom managed properties from SharePoint and OneDrive, or custom fields in externalItem from content that Microsoft Graph connectors bring in. The fields property can be using the semantic labels applied to properties. For example, if a property is label as title, you can retrieve it using the following syntax : label_title.Optional.
+    # Contains the fields to be returned for each resource object specified in entityTypes, allowing customization of the fields returned by default otherwise, including additional fields such as custom managed properties from SharePoint and OneDrive, or custom fields in externalItem from content that Microsoft 365 Copilot connectors bring in. The fields property can be using the semantic labels applied to properties. For example, if a property is labeled as title, you can retrieve it using the following syntax : label_title.Optional.
     fields: Optional[list[str]] = None
     # Specifies the offset for the search results. Offset 0 returns the very first result. Optional.
     from_: Optional[int] = None
@@ -48,7 +48,7 @@ class SearchRequest(AdditionalDataHolder, BackedModel, Parsable):
     region: Optional[str] = None
     # Provides the search result templates options for rendering connectors search results.
     result_template_options: Optional[ResultTemplateOption] = None
-    # Indicates the kind of contents to be searched when a search is performed using application permissions. Optional.
+    # Indicates the kind of content to be searched when a search is performed using application permissions. Optional.
     share_point_one_drive_options: Optional[SharePointOneDriveOptions] = None
     # The size of the page to be retrieved. The maximum value is 500. Optional.
     size: Optional[int] = None
@@ -56,7 +56,7 @@ class SearchRequest(AdditionalDataHolder, BackedModel, Parsable):
     sort_properties: Optional[list[SortProperty]] = None
     # This is now replaced by the fields property.
     stored_fields: Optional[list[str]] = None
-    # Indicates whether to trim away the duplicate SharePoint files from search results. Default value is false. Optional.
+    # Indicates whether to trim away the duplicate SharePoint files from search results. The default value is false. Optional.
     trim_duplicates: Optional[bool] = None
     
     @staticmethod

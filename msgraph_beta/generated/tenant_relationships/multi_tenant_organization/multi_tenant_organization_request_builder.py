@@ -55,11 +55,11 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: MultiTenantOrganization, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MultiTenantOrganization]:
         """
-        Update the properties of a multi-tenant organization.
+        Create a new multi-tenant organization. By default, the creator tenant becomes an owner tenant upon successful creation. Only owner tenants can manage a multi-tenant organization. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantOrganization]
-        Find more info here: https://learn.microsoft.com/graph/api/multitenantorganization-update?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/tenantrelationship-put-multitenantorganization?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -90,7 +90,7 @@ class MultiTenantOrganizationRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: MultiTenantOrganization, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a multi-tenant organization.
+        Create a new multi-tenant organization. By default, the creator tenant becomes an owner tenant upon successful creation. Only owner tenants can manage a multi-tenant organization. To allow for asynchronous processing, you must wait a minimum of 2 hours between creation and joining a multi-tenant organization.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

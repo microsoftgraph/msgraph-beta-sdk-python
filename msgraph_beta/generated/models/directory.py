@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .pending_external_user_profile import PendingExternalUserProfile
     from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
     from .recommendation import Recommendation
+    from .recommendation_configuration import RecommendationConfiguration
     from .shared_email_domain import SharedEmailDomain
     from .template import Template
 
@@ -65,6 +66,8 @@ class Directory(Entity, Parsable):
     pending_external_user_profiles: Optional[list[PendingExternalUserProfile]] = None
     # The collection of public key infrastructure instances for the certificate-based authentication feature for users in a Microsoft Entra tenant.
     public_key_infrastructure: Optional[PublicKeyInfrastructureRoot] = None
+    # The recommendationConfiguration property
+    recommendation_configuration: Optional[RecommendationConfiguration] = None
     # List of recommended improvements to improve tenant posture.
     recommendations: Optional[list[Recommendation]] = None
     # The sharedEmailDomains property
@@ -109,6 +112,7 @@ class Directory(Entity, Parsable):
         from .pending_external_user_profile import PendingExternalUserProfile
         from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .recommendation import Recommendation
+        from .recommendation_configuration import RecommendationConfiguration
         from .shared_email_domain import SharedEmailDomain
         from .template import Template
 
@@ -131,6 +135,7 @@ class Directory(Entity, Parsable):
         from .pending_external_user_profile import PendingExternalUserProfile
         from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .recommendation import Recommendation
+        from .recommendation_configuration import RecommendationConfiguration
         from .shared_email_domain import SharedEmailDomain
         from .template import Template
 
@@ -151,6 +156,7 @@ class Directory(Entity, Parsable):
             "outboundSharedUserProfiles": lambda n : setattr(self, 'outbound_shared_user_profiles', n.get_collection_of_object_values(OutboundSharedUserProfile)),
             "pendingExternalUserProfiles": lambda n : setattr(self, 'pending_external_user_profiles', n.get_collection_of_object_values(PendingExternalUserProfile)),
             "publicKeyInfrastructure": lambda n : setattr(self, 'public_key_infrastructure', n.get_object_value(PublicKeyInfrastructureRoot)),
+            "recommendationConfiguration": lambda n : setattr(self, 'recommendation_configuration', n.get_object_value(RecommendationConfiguration)),
             "recommendations": lambda n : setattr(self, 'recommendations', n.get_collection_of_object_values(Recommendation)),
             "sharedEmailDomains": lambda n : setattr(self, 'shared_email_domains', n.get_collection_of_object_values(SharedEmailDomain)),
             "subscriptions": lambda n : setattr(self, 'subscriptions', n.get_collection_of_object_values(CompanySubscription)),
@@ -185,6 +191,7 @@ class Directory(Entity, Parsable):
         writer.write_collection_of_object_values("outboundSharedUserProfiles", self.outbound_shared_user_profiles)
         writer.write_collection_of_object_values("pendingExternalUserProfiles", self.pending_external_user_profiles)
         writer.write_object_value("publicKeyInfrastructure", self.public_key_infrastructure)
+        writer.write_object_value("recommendationConfiguration", self.recommendation_configuration)
         writer.write_collection_of_object_values("recommendations", self.recommendations)
         writer.write_collection_of_object_values("sharedEmailDomains", self.shared_email_domains)
         writer.write_collection_of_object_values("subscriptions", self.subscriptions)

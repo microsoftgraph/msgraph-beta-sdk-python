@@ -183,7 +183,7 @@ class SignIn(Entity, Parsable):
     token_issuer_type: Optional[TokenIssuerType] = None
     # The tokenProtectionStatusDetails property
     token_protection_status_details: Optional[TokenProtectionStatusDetails] = None
-    # A unique base64 encoded request identifier used to track tokens issued by Microsoft Entra ID as they're redeemed at resource providers.
+    # A unique base64-encoded request identifier used to track tokens issued by Microsoft Entra ID as they're redeemed at resource providers.
     unique_token_identifier: Optional[str] = None
     # The user agent information related to sign-in.  Supports $filter (eq, startsWith).
     user_agent: Optional[str] = None

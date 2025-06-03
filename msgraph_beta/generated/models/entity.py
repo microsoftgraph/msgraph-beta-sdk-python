@@ -134,7 +134,6 @@ if TYPE_CHECKING:
     from .android_work_profile_trusted_root_certificate import AndroidWorkProfileTrustedRootCertificate
     from .android_work_profile_vpn_configuration import AndroidWorkProfileVpnConfiguration
     from .android_work_profile_wi_fi_configuration import AndroidWorkProfileWiFiConfiguration
-    from .announcement import Announcement
     from .anonymous_guest_conversation_member import AnonymousGuestConversationMember
     from .aosp_device_owner_certificate_profile_base import AospDeviceOwnerCertificateProfileBase
     from .aosp_device_owner_compliance_policy import AospDeviceOwnerCompliancePolicy
@@ -300,7 +299,6 @@ if TYPE_CHECKING:
     from .certificate_based_auth_configuration import CertificateBasedAuthConfiguration
     from .certificate_based_auth_pki import CertificateBasedAuthPki
     from .certificate_connector_details import CertificateConnectorDetails
-    from .change_item_base import ChangeItemBase
     from .change_tracked_entity import ChangeTrackedEntity
     from .channel import Channel
     from .chat import Chat
@@ -644,6 +642,7 @@ if TYPE_CHECKING:
     from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
     from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
     from .emergency_call_event import EmergencyCallEvent
+    from .employee_experience import EmployeeExperience
     from .employee_experience_user import EmployeeExperienceUser
     from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
     from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
@@ -653,6 +652,8 @@ if TYPE_CHECKING:
     from .end_user_notification import EndUserNotification
     from .end_user_notification_detail import EndUserNotificationDetail
     from .engagement_async_operation import EngagementAsyncOperation
+    from .engagement_role import EngagementRole
+    from .engagement_role_member import EngagementRoleMember
     from .enhanced_personalization_setting import EnhancedPersonalizationSetting
     from .enrollment_configuration_assignment import EnrollmentConfigurationAssignment
     from .enrollment_profile import EnrollmentProfile
@@ -1392,6 +1393,7 @@ if TYPE_CHECKING:
     from .reading_assignment_submission import ReadingAssignmentSubmission
     from .recommendation import Recommendation
     from .recommendation_base import RecommendationBase
+    from .recommendation_configuration import RecommendationConfiguration
     from .record_operation import RecordOperation
     from .recycle_bin import RecycleBin
     from .recycle_bin_item import RecycleBinItem
@@ -1422,7 +1424,6 @@ if TYPE_CHECKING:
     from .risky_user import RiskyUser
     from .risky_user_history_item import RiskyUserHistoryItem
     from .risk_detection import RiskDetection
-    from .roadmap import Roadmap
     from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
     from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
     from .role_assignment import RoleAssignment
@@ -2616,10 +2617,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .android_work_profile_wi_fi_configuration import AndroidWorkProfileWiFiConfiguration
 
             return AndroidWorkProfileWiFiConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.announcement".casefold():
-            from .announcement import Announcement
-
-            return Announcement()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.anonymousGuestConversationMember".casefold():
             from .anonymous_guest_conversation_member import AnonymousGuestConversationMember
 
@@ -3282,10 +3279,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .certificate_connector_details import CertificateConnectorDetails
 
             return CertificateConnectorDetails()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.changeItemBase".casefold():
-            from .change_item_base import ChangeItemBase
-
-            return ChangeItemBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.changeTrackedEntity".casefold():
             from .change_tracked_entity import ChangeTrackedEntity
 
@@ -4673,6 +4666,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .emergency_call_event import EmergencyCallEvent
 
             return EmergencyCallEvent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.employeeExperience".casefold():
+            from .employee_experience import EmployeeExperience
+
+            return EmployeeExperience()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.employeeExperienceUser".casefold():
             from .employee_experience_user import EmployeeExperienceUser
 
@@ -4709,6 +4706,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .engagement_async_operation import EngagementAsyncOperation
 
             return EngagementAsyncOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementRole".casefold():
+            from .engagement_role import EngagementRole
+
+            return EngagementRole()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementRoleMember".casefold():
+            from .engagement_role_member import EngagementRoleMember
+
+            return EngagementRoleMember()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.enhancedPersonalizationSetting".casefold():
             from .enhanced_personalization_setting import EnhancedPersonalizationSetting
 
@@ -7687,6 +7692,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .recommendation_base import RecommendationBase
 
             return RecommendationBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.recommendationConfiguration".casefold():
+            from .recommendation_configuration import RecommendationConfiguration
+
+            return RecommendationConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.recordOperation".casefold():
             from .record_operation import RecordOperation
 
@@ -7807,10 +7816,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .risky_user_history_item import RiskyUserHistoryItem
 
             return RiskyUserHistoryItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.roadmap".casefold():
-            from .roadmap import Roadmap
-
-            return Roadmap()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.roleAssignment".casefold():
             from .role_assignment import RoleAssignment
 
@@ -10570,7 +10575,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .android_work_profile_trusted_root_certificate import AndroidWorkProfileTrustedRootCertificate
         from .android_work_profile_vpn_configuration import AndroidWorkProfileVpnConfiguration
         from .android_work_profile_wi_fi_configuration import AndroidWorkProfileWiFiConfiguration
-        from .announcement import Announcement
         from .anonymous_guest_conversation_member import AnonymousGuestConversationMember
         from .aosp_device_owner_certificate_profile_base import AospDeviceOwnerCertificateProfileBase
         from .aosp_device_owner_compliance_policy import AospDeviceOwnerCompliancePolicy
@@ -10736,7 +10740,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .certificate_based_auth_configuration import CertificateBasedAuthConfiguration
         from .certificate_based_auth_pki import CertificateBasedAuthPki
         from .certificate_connector_details import CertificateConnectorDetails
-        from .change_item_base import ChangeItemBase
         from .change_tracked_entity import ChangeTrackedEntity
         from .channel import Channel
         from .chat import Chat
@@ -11080,6 +11083,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
         from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
         from .emergency_call_event import EmergencyCallEvent
+        from .employee_experience import EmployeeExperience
         from .employee_experience_user import EmployeeExperienceUser
         from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
         from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
@@ -11089,6 +11093,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .end_user_notification import EndUserNotification
         from .end_user_notification_detail import EndUserNotificationDetail
         from .engagement_async_operation import EngagementAsyncOperation
+        from .engagement_role import EngagementRole
+        from .engagement_role_member import EngagementRoleMember
         from .enhanced_personalization_setting import EnhancedPersonalizationSetting
         from .enrollment_configuration_assignment import EnrollmentConfigurationAssignment
         from .enrollment_profile import EnrollmentProfile
@@ -11828,6 +11834,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .reading_assignment_submission import ReadingAssignmentSubmission
         from .recommendation import Recommendation
         from .recommendation_base import RecommendationBase
+        from .recommendation_configuration import RecommendationConfiguration
         from .record_operation import RecordOperation
         from .recycle_bin import RecycleBin
         from .recycle_bin_item import RecycleBinItem
@@ -11858,7 +11865,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .risky_user import RiskyUser
         from .risky_user_history_item import RiskyUserHistoryItem
         from .risk_detection import RiskDetection
-        from .roadmap import Roadmap
         from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
         from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
         from .role_assignment import RoleAssignment
@@ -12639,7 +12645,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .android_work_profile_trusted_root_certificate import AndroidWorkProfileTrustedRootCertificate
         from .android_work_profile_vpn_configuration import AndroidWorkProfileVpnConfiguration
         from .android_work_profile_wi_fi_configuration import AndroidWorkProfileWiFiConfiguration
-        from .announcement import Announcement
         from .anonymous_guest_conversation_member import AnonymousGuestConversationMember
         from .aosp_device_owner_certificate_profile_base import AospDeviceOwnerCertificateProfileBase
         from .aosp_device_owner_compliance_policy import AospDeviceOwnerCompliancePolicy
@@ -12805,7 +12810,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .certificate_based_auth_configuration import CertificateBasedAuthConfiguration
         from .certificate_based_auth_pki import CertificateBasedAuthPki
         from .certificate_connector_details import CertificateConnectorDetails
-        from .change_item_base import ChangeItemBase
         from .change_tracked_entity import ChangeTrackedEntity
         from .channel import Channel
         from .chat import Chat
@@ -13149,6 +13153,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
         from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
         from .emergency_call_event import EmergencyCallEvent
+        from .employee_experience import EmployeeExperience
         from .employee_experience_user import EmployeeExperienceUser
         from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
         from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
@@ -13158,6 +13163,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .end_user_notification import EndUserNotification
         from .end_user_notification_detail import EndUserNotificationDetail
         from .engagement_async_operation import EngagementAsyncOperation
+        from .engagement_role import EngagementRole
+        from .engagement_role_member import EngagementRoleMember
         from .enhanced_personalization_setting import EnhancedPersonalizationSetting
         from .enrollment_configuration_assignment import EnrollmentConfigurationAssignment
         from .enrollment_profile import EnrollmentProfile
@@ -13897,6 +13904,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .reading_assignment_submission import ReadingAssignmentSubmission
         from .recommendation import Recommendation
         from .recommendation_base import RecommendationBase
+        from .recommendation_configuration import RecommendationConfiguration
         from .record_operation import RecordOperation
         from .recycle_bin import RecycleBin
         from .recycle_bin_item import RecycleBinItem
@@ -13927,7 +13935,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .risky_user import RiskyUser
         from .risky_user_history_item import RiskyUserHistoryItem
         from .risk_detection import RiskDetection
-        from .roadmap import Roadmap
         from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
         from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
         from .role_assignment import RoleAssignment

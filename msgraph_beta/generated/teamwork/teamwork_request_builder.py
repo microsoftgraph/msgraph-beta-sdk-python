@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from ..models.teamwork import Teamwork
     from .deleted_chats.deleted_chats_request_builder import DeletedChatsRequestBuilder
     from .deleted_teams.deleted_teams_request_builder import DeletedTeamsRequestBuilder
+    from .determine_if_interaction_is_allowed.determine_if_interaction_is_allowed_request_builder import DetermineIfInteractionIsAllowedRequestBuilder
     from .devices.devices_request_builder import DevicesRequestBuilder
     from .send_activity_notification_to_recipients.send_activity_notification_to_recipients_request_builder import SendActivityNotificationToRecipientsRequestBuilder
     from .teams_app_settings.teams_app_settings_request_builder import TeamsAppSettingsRequestBuilder
@@ -134,6 +135,15 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
         from .deleted_teams.deleted_teams_request_builder import DeletedTeamsRequestBuilder
 
         return DeletedTeamsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def determine_if_interaction_is_allowed(self) -> DetermineIfInteractionIsAllowedRequestBuilder:
+        """
+        Provides operations to call the determineIfInteractionIsAllowed method.
+        """
+        from .determine_if_interaction_is_allowed.determine_if_interaction_is_allowed_request_builder import DetermineIfInteractionIsAllowedRequestBuilder
+
+        return DetermineIfInteractionIsAllowedRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def devices(self) -> DevicesRequestBuilder:

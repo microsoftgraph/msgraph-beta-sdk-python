@@ -12,9 +12,9 @@ class AnalyzedEmailRecipientDetail(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The ccRecipients property
+    # Recipient address in the cc field.
     cc_recipients: Optional[list[str]] = None
-    # The domainName property
+    # Domain name of the recipient.
     domain_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

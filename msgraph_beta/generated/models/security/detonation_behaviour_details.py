@@ -13,25 +13,25 @@ class DetonationBehaviourDetails(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The actionStatus property
+    # The status of the action performed during detonation (e.g., 'Successful', 'Failed', 'Blocked').
     action_status: Optional[str] = None
-    # The behaviourCapability property
+    # Categorizes the capability or type of behavior observed.
     behaviour_capability: Optional[str] = None
-    # The behaviourGroup property
+    # Groups related behaviors together for classification purposes.
     behaviour_group: Optional[str] = None
-    # The details property
+    # More contextual information about the observed behavior or action.
     details: Optional[str] = None
-    # The eventDateTime property
+    # The date and time when the behavior or action was observed during detonation.
     event_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The operation property
+    # The specific operation or action that was performed.
     operation: Optional[str] = None
-    # The processId property
+    # The unique identifier of the process involved in the behavior.
     process_id: Optional[str] = None
-    # The processName property
+    # The name of the process that performed or was involved in the behavior.
     process_name: Optional[str] = None
-    # The target property
+    # The target of the operation.
     target: Optional[str] = None
     
     @staticmethod

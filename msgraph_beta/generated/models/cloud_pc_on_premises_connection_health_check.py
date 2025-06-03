@@ -27,7 +27,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, BackedModel, 
     display_name: Optional[str] = None
     # The end time of the health check item. Read-only.
     end_date_time: Optional[datetime.datetime] = None
-    # The type of error that occurred during this health check.
+    # The type of error that occurred during this health check. For the list of possible values, see cloudPcOnPremisesConnectionHealthCheckErrorType.
     error_type: Optional[CloudPcOnPremisesConnectionHealthCheckErrorType] = None
     # The OdataType property
     odata_type: Optional[str] = None

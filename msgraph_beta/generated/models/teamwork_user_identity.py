@@ -16,6 +16,8 @@ class TeamworkUserIdentity(Identity, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.teamworkUserIdentity"
     # Type of user. Possible values are: aadUser, onPremiseAadUser, anonymousGuest, federatedUser, personalMicrosoftAccountUser, skypeUser, phoneUser, emailUser and azureCommunicationServicesUser.
     user_identity_type: Optional[TeamworkUserIdentityType] = None
+    # User principal name (UPN) of the user.
+    user_principal_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TeamworkUserIdentity:
@@ -41,6 +43,7 @@ class TeamworkUserIdentity(Identity, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "userIdentityType": lambda n : setattr(self, 'user_identity_type', n.get_enum_value(TeamworkUserIdentityType)),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,5 +59,6 @@ class TeamworkUserIdentity(Identity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("userIdentityType", self.user_identity_type)
+        writer.write_str_value("userPrincipalName", self.user_principal_name)
     
 
