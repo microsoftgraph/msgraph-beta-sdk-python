@@ -13,6 +13,8 @@ from .education_assignment_grade import EducationAssignmentGrade
 class EducationAssignmentPointsGrade(EducationAssignmentGrade, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.educationAssignmentPointsGrade"
+    # The grade letter from the grading scheme that corresponds to the given number of points.
+    grade: Optional[str] = None
     # Number of points a teacher gives to this submission object.
     points: Optional[float] = None
     
@@ -37,6 +39,7 @@ class EducationAssignmentPointsGrade(EducationAssignmentGrade, Parsable):
         from .education_assignment_grade import EducationAssignmentGrade
 
         fields: dict[str, Callable[[Any], None]] = {
+            "grade": lambda n : setattr(self, 'grade', n.get_str_value()),
             "points": lambda n : setattr(self, 'points', n.get_float_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -52,6 +55,7 @@ class EducationAssignmentPointsGrade(EducationAssignmentGrade, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("grade", self.grade)
         writer.write_float_value("points", self.points)
     
 

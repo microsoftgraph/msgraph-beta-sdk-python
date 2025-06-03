@@ -10,7 +10,6 @@ if TYPE_CHECKING:
     from .authentication_event_listener import AuthenticationEventListener
     from .b2c_identity_user_flow import B2cIdentityUserFlow
     from .b2x_identity_user_flow import B2xIdentityUserFlow
-    from .change_item_base import ChangeItemBase
     from .conditional_access_root import ConditionalAccessRoot
     from .continuous_access_evaluation_policy import ContinuousAccessEvaluationPolicy
     from .custom_authentication_extension import CustomAuthenticationExtension
@@ -46,8 +45,6 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
     identity_providers: Optional[list[IdentityProviderBase]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Represents entry point for Microsoft Entra product changes and planned new features.
-    product_changes: Optional[list[ChangeItemBase]] = None
     # Represents entry point for identity userflow attributes.
     user_flow_attributes: Optional[list[IdentityUserFlowAttribute]] = None
     # The userFlows property
@@ -73,7 +70,6 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         from .authentication_event_listener import AuthenticationEventListener
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
-        from .change_item_base import ChangeItemBase
         from .conditional_access_root import ConditionalAccessRoot
         from .continuous_access_evaluation_policy import ContinuousAccessEvaluationPolicy
         from .custom_authentication_extension import CustomAuthenticationExtension
@@ -86,7 +82,6 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         from .authentication_event_listener import AuthenticationEventListener
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
-        from .change_item_base import ChangeItemBase
         from .conditional_access_root import ConditionalAccessRoot
         from .continuous_access_evaluation_policy import ContinuousAccessEvaluationPolicy
         from .custom_authentication_extension import CustomAuthenticationExtension
@@ -106,7 +101,6 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
             "customAuthenticationExtensions": lambda n : setattr(self, 'custom_authentication_extensions', n.get_collection_of_object_values(CustomAuthenticationExtension)),
             "identityProviders": lambda n : setattr(self, 'identity_providers', n.get_collection_of_object_values(IdentityProviderBase)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "productChanges": lambda n : setattr(self, 'product_changes', n.get_collection_of_object_values(ChangeItemBase)),
             "userFlowAttributes": lambda n : setattr(self, 'user_flow_attributes', n.get_collection_of_object_values(IdentityUserFlowAttribute)),
             "userFlows": lambda n : setattr(self, 'user_flows', n.get_collection_of_object_values(IdentityUserFlow)),
         }
@@ -130,7 +124,6 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("customAuthenticationExtensions", self.custom_authentication_extensions)
         writer.write_collection_of_object_values("identityProviders", self.identity_providers)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_collection_of_object_values("productChanges", self.product_changes)
         writer.write_collection_of_object_values("userFlowAttributes", self.user_flow_attributes)
         writer.write_collection_of_object_values("userFlows", self.user_flows)
         writer.write_additional_data_value(self.additional_data)

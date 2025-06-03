@@ -33,7 +33,7 @@ class CopyRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CopyPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DriveItem]:
         """
-        Asynchronously create a copy of a driveItem (including any children) under a new parent item or with a new name. After the request is acknowledged, it enters a queue. The actual copying, including any subitems, occurs at an undetermined time. Progress is reported until the operation is completed by monitoring the progress.
+        Create a copy of a driveItem asynchronously. You can optionally copy exclusively the child items, specify a new parent folder, or provide a new name. Once the request is accepted, the operation is queued and processed asynchronously. Use the monitor URL to track progress until the operation completes.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveItem]
@@ -57,7 +57,7 @@ class CopyRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CopyPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Asynchronously create a copy of a driveItem (including any children) under a new parent item or with a new name. After the request is acknowledged, it enters a queue. The actual copying, including any subitems, occurs at an undetermined time. Progress is reported until the operation is completed by monitoring the progress.
+        Create a copy of a driveItem asynchronously. You can optionally copy exclusively the child items, specify a new parent folder, or provide a new name. Once the request is accepted, the operation is queued and processed asynchronously. Use the monitor URL to track progress until the operation completes.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

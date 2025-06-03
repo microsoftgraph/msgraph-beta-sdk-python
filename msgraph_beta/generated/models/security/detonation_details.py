@@ -21,15 +21,15 @@ class DetonationDetails(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The time of detonation.
     analysis_date_time: Optional[datetime.datetime] = None
-    # The compromiseIndicators property
+    # Represents indicators and its associated verdict that suggests whether an email is compromised.
     compromise_indicators: Optional[list[CompromiseIndicator]] = None
-    # The detonationBehaviourDetails property
+    # Shows the exact events that took place during detonation, and problematic or benign observations that contain URLs, IPs, domains, and files that were found during detonation
     detonation_behaviour_details: Optional[DetonationBehaviourDetails] = None
     # The chain of detonation.
     detonation_chain: Optional[DetonationChain] = None
     # All observables in the detonation tree.
     detonation_observables: Optional[DetonationObservables] = None
-    # The detonationScreenshotUri property
+    # Show any screenshots that were captured during detonation. No screenshots are captured if the URL opens into a link that directly downloads a file. However, you see the downloaded file in the detonation chain.
     detonation_screenshot_uri: Optional[str] = None
     # The verdict of the detonation.
     detonation_verdict: Optional[str] = None

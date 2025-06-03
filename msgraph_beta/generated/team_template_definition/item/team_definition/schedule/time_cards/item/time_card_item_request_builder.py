@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .......models.time_card import TimeCard
     from .clock_out.clock_out_request_builder import ClockOutRequestBuilder
     from .confirm.confirm_request_builder import ConfirmRequestBuilder
+    from .confirm_for_user.confirm_for_user_request_builder import ConfirmForUserRequestBuilder
     from .end_break.end_break_request_builder import EndBreakRequestBuilder
     from .start_break.start_break_request_builder import StartBreakRequestBuilder
 
@@ -158,6 +159,15 @@ class TimeCardItemRequestBuilder(BaseRequestBuilder):
         from .confirm.confirm_request_builder import ConfirmRequestBuilder
 
         return ConfirmRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def confirm_for_user(self) -> ConfirmForUserRequestBuilder:
+        """
+        Provides operations to call the confirmForUser method.
+        """
+        from .confirm_for_user.confirm_for_user_request_builder import ConfirmForUserRequestBuilder
+
+        return ConfirmForUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def end_break(self) -> EndBreakRequestBuilder:

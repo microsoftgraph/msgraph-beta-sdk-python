@@ -12,13 +12,13 @@ class ThreatDetectionDetail(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The confidenceLevel property
+    # Indicates the confidence level in the threat detection.
     confidence_level: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The priorityAccountProtection property
+    # Indicates if the account has priority protection enabled.
     priority_account_protection: Optional[str] = None
-    # The threats property
+    # Lists the detected threats.
     threats: Optional[str] = None
     
     @staticmethod

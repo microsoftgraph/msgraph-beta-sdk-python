@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .learning_course_activities.learning_course_activities_request_builder import LearningCourseActivitiesRequestBuilder
     from .learning_course_activities_with_externalcourse_activity_id.learning_course_activities_with_externalcourse_activity_id_request_builder import LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder
     from .learning_providers.learning_providers_request_builder import LearningProvidersRequestBuilder
+    from .roles.roles_request_builder import RolesRequestBuilder
 
 class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
     """
@@ -71,7 +72,7 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
     async def patch(self,body: EmployeeExperience, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[EmployeeExperience]:
         """
         Update employeeExperience
-        param body: Represents a container that exposes navigation properties for employee experience resources.
+        param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EmployeeExperience]
         """
@@ -105,7 +106,7 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
     def to_patch_request_information(self,body: EmployeeExperience, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update employeeExperience
-        param body: Represents a container that exposes navigation properties for employee experience resources.
+        param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -171,6 +172,15 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
         from .learning_providers.learning_providers_request_builder import LearningProvidersRequestBuilder
 
         return LearningProvidersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def roles(self) -> RolesRequestBuilder:
+        """
+        Provides operations to manage the roles property of the microsoft.graph.employeeExperience entity.
+        """
+        from .roles.roles_request_builder import RolesRequestBuilder
+
+        return RolesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class EmployeeExperienceRequestBuilderGetQueryParameters():

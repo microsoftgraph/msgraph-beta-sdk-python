@@ -17,13 +17,13 @@ class AuditActivityInitiator(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # If the actor initiating the activity is an app, this property indicates all its identification information including appId, displayName, servicePrincipalId, and servicePrincipalName.
+    # If the resource initiating the activity is an app, this property indicates all the app related information like appId and name.
     app: Optional[AppIdentity] = None
     # A set of linkable claims to link together all the authentication artifacts issued from a single interactive root authentication.
     linkable_identifiers: Optional[LinkableIdentifiers] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # If the actor initiating the activity is a user, this property indicates their identification information including their id, displayName, and userPrincipalName.
+    # If the resource initiating the activity is a user, this property Indicates all the user related information like user ID and userPrincipalName.
     user: Optional[AuditUserIdentity] = None
     
     @staticmethod
