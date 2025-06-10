@@ -17,7 +17,6 @@ if TYPE_CHECKING:
     from ....models.cloud_p_c import CloudPC
     from ....models.cloud_p_c_collection_response import CloudPCCollectionResponse
     from ....models.o_data_errors.o_data_error import ODataError
-    from .bulk_resize.bulk_resize_request_builder import BulkResizeRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id.get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id_request_builder import GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder
     from .item.cloud_p_c_item_request_builder import CloudPCItemRequestBuilder
@@ -144,15 +143,6 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CloudPCsRequestBuilder(self.request_adapter, raw_url)
-    
-    @property
-    def bulk_resize(self) -> BulkResizeRequestBuilder:
-        """
-        Provides operations to call the bulkResize method.
-        """
-        from .bulk_resize.bulk_resize_request_builder import BulkResizeRequestBuilder
-
-        return BulkResizeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def count(self) -> CountRequestBuilder:
