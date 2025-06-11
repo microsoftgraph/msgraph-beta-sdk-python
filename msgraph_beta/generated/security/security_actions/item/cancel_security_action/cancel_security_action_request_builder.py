@@ -58,6 +58,7 @@ class CancelSecurityActionRequestBuilder(BaseRequestBuilder):
         warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation on 2024-04-10 and will be removed 2026-04-10", DeprecationWarning)
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def with_url(self,raw_url: str) -> CancelSecurityActionRequestBuilder:

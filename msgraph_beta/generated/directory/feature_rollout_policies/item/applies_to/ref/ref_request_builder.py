@@ -102,6 +102,7 @@ class RefRequestBuilder(BaseRequestBuilder):
         warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies on 2021-03-05 and will be removed 2021-06-30", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, '{+baseurl}/directory/featureRolloutPolicies/{featureRolloutPolicy%2Did}/appliesTo/$ref?@id={%40id}', self.path_parameters)
         request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RefRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
@@ -128,6 +129,7 @@ class RefRequestBuilder(BaseRequestBuilder):
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, '{+baseurl}/directory/featureRolloutPolicies/{featureRolloutPolicy%2Did}/appliesTo/$ref', self.path_parameters)
         request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
