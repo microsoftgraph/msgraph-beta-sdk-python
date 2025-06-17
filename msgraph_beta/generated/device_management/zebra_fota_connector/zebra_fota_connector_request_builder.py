@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .connect.connect_request_builder import ConnectRequestBuilder
     from .disconnect.disconnect_request_builder import DisconnectRequestBuilder
     from .has_active_deployments.has_active_deployments_request_builder import HasActiveDeploymentsRequestBuilder
+    from .retrieve_zebra_fota_device_models.retrieve_zebra_fota_device_models_request_builder import RetrieveZebraFotaDeviceModelsRequestBuilder
 
 class ZebraFotaConnectorRequestBuilder(BaseRequestBuilder):
     """
@@ -103,6 +104,7 @@ class ZebraFotaConnectorRequestBuilder(BaseRequestBuilder):
         """
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ZebraFotaConnectorRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
@@ -176,6 +178,15 @@ class ZebraFotaConnectorRequestBuilder(BaseRequestBuilder):
         from .has_active_deployments.has_active_deployments_request_builder import HasActiveDeploymentsRequestBuilder
 
         return HasActiveDeploymentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_zebra_fota_device_models(self) -> RetrieveZebraFotaDeviceModelsRequestBuilder:
+        """
+        Provides operations to call the retrieveZebraFotaDeviceModels method.
+        """
+        from .retrieve_zebra_fota_device_models.retrieve_zebra_fota_device_models_request_builder import RetrieveZebraFotaDeviceModelsRequestBuilder
+
+        return RetrieveZebraFotaDeviceModelsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ZebraFotaConnectorRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

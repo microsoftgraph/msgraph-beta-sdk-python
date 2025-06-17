@@ -45,4 +45,7 @@ class AppCategory(str, Enum):
     GenerativeAi = "generativeAi",
     Unknown = "unknown",
     UnknownFutureValue = "unknownFutureValue",
+    AiModelProvider = "aiModelProvider",
+    McpServer = "mcpServer",
+    ClientAiApp = "clientAiApp",
 

@@ -19,6 +19,8 @@ class DeviceAndAppManagementRoleAssignment(RoleAssignment, Parsable):
     members: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Indicates the set of role scope tag IDs for the role assignment. These scope tags will limit the visibility of any Intune resources to those that match any of the scope tags in this collection.
+    role_scope_tag_ids: Optional[list[str]] = None
     # Indicates the set of scope tags for the role assignment. These scope tags will limit the visibility of any Intune resources to those that match any of the scope tags in this collection.
     role_scope_tags: Optional[list[RoleScopeTag]] = None
     
@@ -46,6 +48,7 @@ class DeviceAndAppManagementRoleAssignment(RoleAssignment, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "members": lambda n : setattr(self, 'members', n.get_collection_of_primitive_values(str)),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "roleScopeTags": lambda n : setattr(self, 'role_scope_tags', n.get_collection_of_object_values(RoleScopeTag)),
         }
         super_fields = super().get_field_deserializers()
@@ -62,6 +65,7 @@ class DeviceAndAppManagementRoleAssignment(RoleAssignment, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_primitive_values("members", self.members)
+        writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
         writer.write_collection_of_object_values("roleScopeTags", self.role_scope_tags)
     
 

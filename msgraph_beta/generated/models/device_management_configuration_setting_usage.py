@@ -7,6 +7,8 @@ class DeviceManagementConfigurationSettingUsage(str, Enum):
     Configuration = "configuration",
     # Compliance setting type.
     Compliance = "compliance",
+    # Reusable Setting
+    ReusableSetting = "reusableSetting",
     # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
 

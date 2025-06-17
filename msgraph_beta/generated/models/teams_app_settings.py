@@ -14,7 +14,7 @@ from .entity import Entity
 class TeamsAppSettings(Entity, Parsable):
     # Indicates whether users are allowed to request access to the unavailable Teams apps.
     allow_user_requests_for_app_access: Optional[bool] = None
-    # The customAppSettings property
+    # The settings for all custom apps in the tenant.
     custom_app_settings: Optional[CustomAppSettings] = None
     # Indicates whether resource-specific consent for chats/meetings has been enabled for the tenant. True indicates that Teams apps that are allowed in the tenant and require resource-specific permissions can be installed inside chats and meetings. False blocks the installation of any Teams app that requires resource-specific permissions in a chat or a meeting.
     is_chat_resource_specific_consent_enabled: Optional[bool] = None

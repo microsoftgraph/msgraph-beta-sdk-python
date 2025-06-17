@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .android_managed_store_app_assignment_settings import AndroidManagedStoreAppAssignmentSettings
+    from .ios_ddm_lob_app_assignment_settings import IosDdmLobAppAssignmentSettings
     from .ios_lob_app_assignment_settings import IosLobAppAssignmentSettings
     from .ios_store_app_assignment_settings import IosStoreAppAssignmentSettings
     from .ios_vpp_app_assignment_settings import IosVppAppAssignmentSettings
@@ -50,6 +51,10 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
             from .android_managed_store_app_assignment_settings import AndroidManagedStoreAppAssignmentSettings
 
             return AndroidManagedStoreAppAssignmentSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosDdmLobAppAssignmentSettings".casefold():
+            from .ios_ddm_lob_app_assignment_settings import IosDdmLobAppAssignmentSettings
+
+            return IosDdmLobAppAssignmentSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosLobAppAssignmentSettings".casefold():
             from .ios_lob_app_assignment_settings import IosLobAppAssignmentSettings
 
@@ -102,6 +107,7 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .android_managed_store_app_assignment_settings import AndroidManagedStoreAppAssignmentSettings
+        from .ios_ddm_lob_app_assignment_settings import IosDdmLobAppAssignmentSettings
         from .ios_lob_app_assignment_settings import IosLobAppAssignmentSettings
         from .ios_store_app_assignment_settings import IosStoreAppAssignmentSettings
         from .ios_vpp_app_assignment_settings import IosVppAppAssignmentSettings
@@ -115,6 +121,7 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
         from .win_get_app_assignment_settings import WinGetAppAssignmentSettings
 
         from .android_managed_store_app_assignment_settings import AndroidManagedStoreAppAssignmentSettings
+        from .ios_ddm_lob_app_assignment_settings import IosDdmLobAppAssignmentSettings
         from .ios_lob_app_assignment_settings import IosLobAppAssignmentSettings
         from .ios_store_app_assignment_settings import IosStoreAppAssignmentSettings
         from .ios_vpp_app_assignment_settings import IosVppAppAssignmentSettings

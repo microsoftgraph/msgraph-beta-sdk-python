@@ -104,6 +104,7 @@ class ItemInsightsRequestBuilder(BaseRequestBuilder):
         warn("The Organization ItemInsights endpoint will stop returning data on January 1st, 2024. Please use the new Admin People ItemInsights endpoint. as of 2023-10/Beta:ItemInsightsOranizationSettings on 2023-10-17 and will be removed 2024-01-01", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ItemInsightsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:

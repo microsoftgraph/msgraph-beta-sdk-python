@@ -18,9 +18,6 @@ if TYPE_CHECKING:
     from ....models.managed_device_collection_response import ManagedDeviceCollectionResponse
     from ....models.o_data_errors.o_data_error import ODataError
     from .app_diagnostics_with_upn.app_diagnostics_with_upn_request_builder import AppDiagnosticsWithUpnRequestBuilder
-    from .bulk_reprovision_cloud_pc.bulk_reprovision_cloud_pc_request_builder import BulkReprovisionCloudPcRequestBuilder
-    from .bulk_restore_cloud_pc.bulk_restore_cloud_pc_request_builder import BulkRestoreCloudPcRequestBuilder
-    from .bulk_set_cloud_pc_review_status.bulk_set_cloud_pc_review_status_request_builder import BulkSetCloudPcReviewStatusRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .download_app_diagnostics.download_app_diagnostics_request_builder import DownloadAppDiagnosticsRequestBuilder
     from .download_powerlift_app_diagnostic.download_powerlift_app_diagnostic_request_builder import DownloadPowerliftAppDiagnosticRequestBuilder
@@ -158,33 +155,6 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ManagedDevicesRequestBuilder(self.request_adapter, raw_url)
-    
-    @property
-    def bulk_reprovision_cloud_pc(self) -> BulkReprovisionCloudPcRequestBuilder:
-        """
-        Provides operations to call the bulkReprovisionCloudPc method.
-        """
-        from .bulk_reprovision_cloud_pc.bulk_reprovision_cloud_pc_request_builder import BulkReprovisionCloudPcRequestBuilder
-
-        return BulkReprovisionCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def bulk_restore_cloud_pc(self) -> BulkRestoreCloudPcRequestBuilder:
-        """
-        Provides operations to call the bulkRestoreCloudPc method.
-        """
-        from .bulk_restore_cloud_pc.bulk_restore_cloud_pc_request_builder import BulkRestoreCloudPcRequestBuilder
-
-        return BulkRestoreCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def bulk_set_cloud_pc_review_status(self) -> BulkSetCloudPcReviewStatusRequestBuilder:
-        """
-        Provides operations to call the bulkSetCloudPcReviewStatus method.
-        """
-        from .bulk_set_cloud_pc_review_status.bulk_set_cloud_pc_review_status_request_builder import BulkSetCloudPcReviewStatusRequestBuilder
-
-        return BulkSetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def count(self) -> CountRequestBuilder:

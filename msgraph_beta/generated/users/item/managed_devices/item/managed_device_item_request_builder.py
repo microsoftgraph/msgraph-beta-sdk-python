@@ -33,8 +33,6 @@ if TYPE_CHECKING:
     from .disable_lost_mode.disable_lost_mode_request_builder import DisableLostModeRequestBuilder
     from .enable_lost_mode.enable_lost_mode_request_builder import EnableLostModeRequestBuilder
     from .enroll_now_action.enroll_now_action_request_builder import EnrollNowActionRequestBuilder
-    from .get_cloud_pc_remote_action_results.get_cloud_pc_remote_action_results_request_builder import GetCloudPcRemoteActionResultsRequestBuilder
-    from .get_cloud_pc_review_status.get_cloud_pc_review_status_request_builder import GetCloudPcReviewStatusRequestBuilder
     from .get_file_vault_key.get_file_vault_key_request_builder import GetFileVaultKeyRequestBuilder
     from .get_non_compliant_settings.get_non_compliant_settings_request_builder import GetNonCompliantSettingsRequestBuilder
     from .initiate_device_attestation.initiate_device_attestation_request_builder import InitiateDeviceAttestationRequestBuilder
@@ -61,7 +59,6 @@ if TYPE_CHECKING:
     from .rotate_local_admin_password.rotate_local_admin_password_request_builder import RotateLocalAdminPasswordRequestBuilder
     from .security_baseline_states.security_baseline_states_request_builder import SecurityBaselineStatesRequestBuilder
     from .send_custom_notification_to_company_portal.send_custom_notification_to_company_portal_request_builder import SendCustomNotificationToCompanyPortalRequestBuilder
-    from .set_cloud_pc_review_status.set_cloud_pc_review_status_request_builder import SetCloudPcReviewStatusRequestBuilder
     from .set_device_name.set_device_name_request_builder import SetDeviceNameRequestBuilder
     from .shut_down.shut_down_request_builder import ShutDownRequestBuilder
     from .sync_device.sync_device_request_builder import SyncDeviceRequestBuilder
@@ -155,6 +152,7 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         """
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ManagedDeviceItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
@@ -345,24 +343,6 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .enroll_now_action.enroll_now_action_request_builder import EnrollNowActionRequestBuilder
 
         return EnrollNowActionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_cloud_pc_remote_action_results(self) -> GetCloudPcRemoteActionResultsRequestBuilder:
-        """
-        Provides operations to call the getCloudPcRemoteActionResults method.
-        """
-        from .get_cloud_pc_remote_action_results.get_cloud_pc_remote_action_results_request_builder import GetCloudPcRemoteActionResultsRequestBuilder
-
-        return GetCloudPcRemoteActionResultsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_cloud_pc_review_status(self) -> GetCloudPcReviewStatusRequestBuilder:
-        """
-        Provides operations to call the getCloudPcReviewStatus method.
-        """
-        from .get_cloud_pc_review_status.get_cloud_pc_review_status_request_builder import GetCloudPcReviewStatusRequestBuilder
-
-        return GetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_file_vault_key(self) -> GetFileVaultKeyRequestBuilder:
@@ -597,15 +577,6 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .send_custom_notification_to_company_portal.send_custom_notification_to_company_portal_request_builder import SendCustomNotificationToCompanyPortalRequestBuilder
 
         return SendCustomNotificationToCompanyPortalRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def set_cloud_pc_review_status(self) -> SetCloudPcReviewStatusRequestBuilder:
-        """
-        Provides operations to call the setCloudPcReviewStatus method.
-        """
-        from .set_cloud_pc_review_status.set_cloud_pc_review_status_request_builder import SetCloudPcReviewStatusRequestBuilder
-
-        return SetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def set_device_name(self) -> SetDeviceNameRequestBuilder:
