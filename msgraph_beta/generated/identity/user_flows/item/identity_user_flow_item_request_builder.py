@@ -105,6 +105,7 @@ class IdentityUserFlowItemRequestBuilder(BaseRequestBuilder):
         warn("The identity/userflows API is deprecated and will stop returning data on January 2022. Please use the new b2cUserflows or b2xUserflows APIs. as of 2021-05/identityProvider on 2021-05-21 and will be removed 2022-01-15", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[IdentityUserFlowItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:

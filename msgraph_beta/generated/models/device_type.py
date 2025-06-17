@@ -47,6 +47,10 @@ class DeviceType(str, Enum):
     ChromeOS = "chromeOS",
     # Linux device.
     Linux = "linux",
+    # Indicates managed device is running on visionOS operating system.
+    VisionOS = "visionOS",
+    # Indicates managed device is running on tvOS operating system.
+    TvOS = "tvOS",
     # Blackberry.
     Blackberry = "blackberry",
     # Palm.

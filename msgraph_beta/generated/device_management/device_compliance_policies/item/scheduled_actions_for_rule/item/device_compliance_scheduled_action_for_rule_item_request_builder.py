@@ -51,7 +51,7 @@ class DeviceComplianceScheduledActionForRuleItemRequestBuilder(BaseRequestBuilde
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeviceComplianceScheduledActionForRuleItemRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceComplianceScheduledActionForRule]:
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceComplianceScheduledActionForRule]
         """
@@ -100,11 +100,12 @@ class DeviceComplianceScheduledActionForRuleItemRequestBuilder(BaseRequestBuilde
         """
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeviceComplianceScheduledActionForRuleItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -157,7 +158,7 @@ class DeviceComplianceScheduledActionForRuleItemRequestBuilder(BaseRequestBuilde
     @dataclass
     class DeviceComplianceScheduledActionForRuleItemRequestBuilderGetQueryParameters():
         """
-        The list of scheduled action per rule for this compliance policy. This is a required property when creating any individual per-platform compliance policies.
+        The list of scheduled action for this rule
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

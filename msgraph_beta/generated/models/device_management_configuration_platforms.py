@@ -21,4 +21,8 @@ class DeviceManagementConfigurationPlatforms(str, Enum):
     AndroidEnterprise = "androidEnterprise",
     # Indicates that the settings contained in associated configuration applies to the android open source operating system.
     Aosp = "aosp",
+    # Indicates that the settings contained in associated configuration applies to visionOS platform.
+    VisionOS = "visionOS",
+    # Indicates that the settings contained in associated configuration applies to the tvOS platform.
+    TvOS = "tvOS",
 

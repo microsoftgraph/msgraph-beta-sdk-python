@@ -27,4 +27,6 @@ class DeviceEnrollmentConfigurationType(str, Enum):
     UnknownFutureValue = "unknownFutureValue",
     # Indicates that configuration is of type Enrollment Notification which refers to types of notification a user receives during enrollment.
     EnrollmentNotificationsConfiguration = "enrollmentNotificationsConfiguration",
+    # Indicates the configuration is of type Windows Restore which refers to the tenant level Windows Backup and Restore settings a user receives during out-of-box experience (OOBE) Windows enrollment
+    WindowsRestore = "windowsRestore",
 

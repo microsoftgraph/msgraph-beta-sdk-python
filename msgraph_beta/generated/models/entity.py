@@ -164,6 +164,7 @@ if TYPE_CHECKING:
     from .approval_solution import ApprovalSolution
     from .approval_step import ApprovalStep
     from .approval_workflow_provider import ApprovalWorkflowProvider
+    from .approved_client_app import ApprovedClientApp
     from .app_consent_approval_route import AppConsentApprovalRoute
     from .app_consent_request import AppConsentRequest
     from .app_credential_sign_in_activity import AppCredentialSignInActivity
@@ -2761,6 +2762,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .approval_workflow_provider import ApprovalWorkflowProvider
 
             return ApprovalWorkflowProvider()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.approvedClientApp".casefold():
+            from .approved_client_app import ApprovedClientApp
+
+            return ApprovedClientApp()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.appScope".casefold():
             from .app_scope import AppScope
 
@@ -10605,6 +10610,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .approval_solution import ApprovalSolution
         from .approval_step import ApprovalStep
         from .approval_workflow_provider import ApprovalWorkflowProvider
+        from .approved_client_app import ApprovedClientApp
         from .app_consent_approval_route import AppConsentApprovalRoute
         from .app_consent_request import AppConsentRequest
         from .app_credential_sign_in_activity import AppCredentialSignInActivity
@@ -12675,6 +12681,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .approval_solution import ApprovalSolution
         from .approval_step import ApprovalStep
         from .approval_workflow_provider import ApprovalWorkflowProvider
+        from .approved_client_app import ApprovedClientApp
         from .app_consent_approval_route import AppConsentApprovalRoute
         from .app_consent_request import AppConsentRequest
         from .app_credential_sign_in_activity import AppCredentialSignInActivity
