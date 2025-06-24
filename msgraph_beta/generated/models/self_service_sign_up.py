@@ -17,25 +17,25 @@ from .entity import Entity
 
 @dataclass
 class SelfServiceSignUp(Entity, Parsable):
-    # The appDisplayName property
+    # App name displayed in the Microsoft Entra admin center.  Supports $filter (eq, startsWith).
     app_display_name: Optional[str] = None
-    # The appId property
+    # Unique GUID that represents the app ID in the Microsoft Entra ID.  Supports $filter (eq).
     app_id: Optional[str] = None
-    # The appliedEventListeners property
+    # Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, which the corresponding events in the sign-up event triggered.
     applied_event_listeners: Optional[list[AppliedAuthenticationEventListener]] = None
-    # The correlationId property
+    # The request ID sent from the client when the sign-up is initiated. Used to troubleshoot sign-up activity.  Supports $filter (eq).
     correlation_id: Optional[str] = None
-    # The createdDateTime property
+    # Date and time (UTC) the sign-up was initiated. Example: midnight on Jan 1, 2014 is reported as 2014-01-01T00:00:00Z.  Supports $orderby, $filter (eq, le, and ge).
     created_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The signUpIdentity property
+    # Unique identifier for self-service sign-up user. Supports $filter (eq) on the signUpIdentifierType.
     sign_up_identity: Optional[SignUpIdentity] = None
-    # The signUpIdentityProvider property
+    # Describes the type of account for which the user registered. Values include Email OTP, Email Password, Google.
     sign_up_identity_provider: Optional[str] = None
     # The signUpStage property
     sign_up_stage: Optional[SignUpStage] = None
-    # The status property
+    # Sign-up status. Includes the error code and description of the error (if a sign-up failure or interrupt occurs).  Supports $filter (eq) on errorCode property.
     status: Optional[SignUpStatus] = None
     # The userSnapshot property
     user_snapshot: Optional[CiamUserSnapshot] = None

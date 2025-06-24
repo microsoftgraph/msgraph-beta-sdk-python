@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.tenant_protection_scope_container import TenantProtectionScopeContainer
+    from .compute.compute_request_builder import ComputeRequestBuilder
 
 class ProtectionScopesRequestBuilder(BaseRequestBuilder):
     """
@@ -137,6 +138,15 @@ class ProtectionScopesRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ProtectionScopesRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def compute(self) -> ComputeRequestBuilder:
+        """
+        Provides operations to call the compute method.
+        """
+        from .compute.compute_request_builder import ComputeRequestBuilder
+
+        return ComputeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ProtectionScopesRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

@@ -362,6 +362,13 @@ if TYPE_CHECKING:
     from .compliance_management_partner import ComplianceManagementPartner
     from .conditional_access_root import ConditionalAccessRoot
     from .conditional_access_template import ConditionalAccessTemplate
+    from .configuration_application import ConfigurationApplication
+    from .configuration_baseline import ConfigurationBaseline
+    from .configuration_drift import ConfigurationDrift
+    from .configuration_management import ConfigurationManagement
+    from .configuration_monitor import ConfigurationMonitor
+    from .configuration_monitoring_result import ConfigurationMonitoringResult
+    from .configuration_snapshot_job import ConfigurationSnapshotJob
     from .config_manager_collection import ConfigManagerCollection
     from .connected_organization import ConnectedOrganization
     from .connection_operation import ConnectionOperation
@@ -639,6 +646,7 @@ if TYPE_CHECKING:
     from .email_authentication_method import EmailAuthenticationMethod
     from .email_authentication_method_configuration import EmailAuthenticationMethodConfiguration
     from .email_file_assessment_request import EmailFileAssessmentRequest
+    from .email_notifications_setting import EmailNotificationsSetting
     from .embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
     from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
     from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
@@ -3537,6 +3545,34 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .config_manager_collection import ConfigManagerCollection
 
             return ConfigManagerCollection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationApplication".casefold():
+            from .configuration_application import ConfigurationApplication
+
+            return ConfigurationApplication()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationBaseline".casefold():
+            from .configuration_baseline import ConfigurationBaseline
+
+            return ConfigurationBaseline()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationDrift".casefold():
+            from .configuration_drift import ConfigurationDrift
+
+            return ConfigurationDrift()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationManagement".casefold():
+            from .configuration_management import ConfigurationManagement
+
+            return ConfigurationManagement()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationMonitor".casefold():
+            from .configuration_monitor import ConfigurationMonitor
+
+            return ConfigurationMonitor()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationMonitoringResult".casefold():
+            from .configuration_monitoring_result import ConfigurationMonitoringResult
+
+            return ConfigurationMonitoringResult()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationSnapshotJob".casefold():
+            from .configuration_snapshot_job import ConfigurationSnapshotJob
+
+            return ConfigurationSnapshotJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.connectedOrganization".casefold():
             from .connected_organization import ConnectedOrganization
 
@@ -4655,6 +4691,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .email_file_assessment_request import EmailFileAssessmentRequest
 
             return EmailFileAssessmentRequest()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.emailNotificationsSetting".casefold():
+            from .email_notifications_setting import EmailNotificationsSetting
+
+            return EmailNotificationsSetting()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.embeddedSIMActivationCodePool".casefold():
             from .embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
 
@@ -10808,6 +10848,13 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .compliance_management_partner import ComplianceManagementPartner
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
+        from .configuration_application import ConfigurationApplication
+        from .configuration_baseline import ConfigurationBaseline
+        from .configuration_drift import ConfigurationDrift
+        from .configuration_management import ConfigurationManagement
+        from .configuration_monitor import ConfigurationMonitor
+        from .configuration_monitoring_result import ConfigurationMonitoringResult
+        from .configuration_snapshot_job import ConfigurationSnapshotJob
         from .config_manager_collection import ConfigManagerCollection
         from .connected_organization import ConnectedOrganization
         from .connection_operation import ConnectionOperation
@@ -11085,6 +11132,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .email_authentication_method import EmailAuthenticationMethod
         from .email_authentication_method_configuration import EmailAuthenticationMethodConfiguration
         from .email_file_assessment_request import EmailFileAssessmentRequest
+        from .email_notifications_setting import EmailNotificationsSetting
         from .embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
         from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
         from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
@@ -12879,6 +12927,13 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .compliance_management_partner import ComplianceManagementPartner
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
+        from .configuration_application import ConfigurationApplication
+        from .configuration_baseline import ConfigurationBaseline
+        from .configuration_drift import ConfigurationDrift
+        from .configuration_management import ConfigurationManagement
+        from .configuration_monitor import ConfigurationMonitor
+        from .configuration_monitoring_result import ConfigurationMonitoringResult
+        from .configuration_snapshot_job import ConfigurationSnapshotJob
         from .config_manager_collection import ConfigManagerCollection
         from .connected_organization import ConnectedOrganization
         from .connection_operation import ConnectionOperation
@@ -13156,6 +13211,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .email_authentication_method import EmailAuthenticationMethod
         from .email_authentication_method_configuration import EmailAuthenticationMethodConfiguration
         from .email_file_assessment_request import EmailFileAssessmentRequest
+        from .email_notifications_setting import EmailNotificationsSetting
         from .embedded_s_i_m_activation_code_pool import EmbeddedSIMActivationCodePool
         from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
         from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
