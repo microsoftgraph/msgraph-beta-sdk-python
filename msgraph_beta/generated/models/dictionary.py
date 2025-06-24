@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
     from .custom_metadata_dictionary import CustomMetadataDictionary
     from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
+    from .open_complex_dictionary_type import OpenComplexDictionaryType
     from .partner.security.additional_data_dictionary import AdditionalDataDictionary
     from .planner_forms_dictionary import PlannerFormsDictionary
     from .result_template_dictionary import ResultTemplateDictionary
@@ -50,6 +51,10 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
             from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
 
             return FileStorageContainerCustomPropertyDictionary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.openComplexDictionaryType".casefold():
+            from .open_complex_dictionary_type import OpenComplexDictionaryType
+
+            return OpenComplexDictionaryType()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.additionalDataDictionary".casefold():
             from .partner.security.additional_data_dictionary import AdditionalDataDictionary
 
@@ -76,6 +81,7 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
         from .custom_metadata_dictionary import CustomMetadataDictionary
         from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
+        from .open_complex_dictionary_type import OpenComplexDictionaryType
         from .partner.security.additional_data_dictionary import AdditionalDataDictionary
         from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
@@ -84,6 +90,7 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
         from .custom_metadata_dictionary import CustomMetadataDictionary
         from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
+        from .open_complex_dictionary_type import OpenComplexDictionaryType
         from .partner.security.additional_data_dictionary import AdditionalDataDictionary
         from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary

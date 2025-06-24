@@ -28,19 +28,19 @@ from .entity import Entity
 class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
     # The accessTypes property
     access_types: Optional[DeviceManagementConfigurationSettingAccessTypes] = None
-    # Details which device setting is applicable on. Supports: $filters.
+    # Details which device setting is applicable on
     applicability: Optional[DeviceManagementConfigurationSettingApplicability] = None
     # Base CSP Path
     base_uri: Optional[str] = None
-    # Specify category in which the setting is under. Support $filters.
+    # Specifies the area group under which the setting is configured in a specified configuration service provider (CSP)
     category_id: Optional[str] = None
-    # Description of the setting.
+    # Description of the item
     description: Optional[str] = None
-    # Name of the setting. For example: Allow Toast.
+    # Display name of the item
     display_name: Optional[str] = None
-    # Help text of the setting. Give more details of the setting.
+    # Help text of the item
     help_text: Optional[str] = None
-    # List of links more info for the setting can be found at.
+    # List of links more info for the setting can be found at
     info_urls: Optional[list[str]] = None
     # Tokens which to search settings on
     keywords: Optional[list[str]] = None
@@ -56,7 +56,7 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
     referred_setting_information_list: Optional[list[DeviceManagementConfigurationReferredSettingInformation]] = None
     # Setting RiskLevel
     risk_level: Optional[DeviceManagementConfigurationSettingRiskLevel] = None
-    # Root setting definition id if the setting is a child setting.
+    # Root setting definition if the setting is a child setting.
     root_definition_id: Optional[str] = None
     # Supported setting types
     setting_usage: Optional[DeviceManagementConfigurationSettingUsage] = None

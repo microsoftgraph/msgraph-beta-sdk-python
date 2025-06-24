@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ..models.admin import Admin
     from ..models.o_data_errors.o_data_error import ODataError
     from .apps_and_services.apps_and_services_request_builder import AppsAndServicesRequestBuilder
+    from .configuration_management.configuration_management_request_builder import ConfigurationManagementRequestBuilder
     from .dynamics.dynamics_request_builder import DynamicsRequestBuilder
     from .edge.edge_request_builder import EdgeRequestBuilder
     from .entra.entra_request_builder import EntraRequestBuilder
@@ -131,6 +132,15 @@ class AdminRequestBuilder(BaseRequestBuilder):
         from .apps_and_services.apps_and_services_request_builder import AppsAndServicesRequestBuilder
 
         return AppsAndServicesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def configuration_management(self) -> ConfigurationManagementRequestBuilder:
+        """
+        Provides operations to manage the configurationManagement property of the microsoft.graph.admin entity.
+        """
+        from .configuration_management.configuration_management_request_builder import ConfigurationManagementRequestBuilder
+
+        return ConfigurationManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def dynamics(self) -> DynamicsRequestBuilder:

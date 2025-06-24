@@ -12,11 +12,11 @@ class SignUpStatus(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The additionalDetails property
+    # Provides additional details on the sign-up activity.
     additional_details: Optional[str] = None
-    # The errorCode property
+    # Provides the 5-6 digit error code that's generated during a sign-up failure.
     error_code: Optional[int] = None
-    # The failureReason property
+    # Provides the error message or the reason for failure for the corresponding sign-up activity.
     failure_reason: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
