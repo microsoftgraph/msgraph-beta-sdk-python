@@ -17,9 +17,9 @@ class SignUpIdentity(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The signUpIdentifier property
+    # The identification that the user is trying to utilize to sign up.
     sign_up_identifier: Optional[str] = None
-    # The signUpIdentifierType property
+    # The type of sign-up the user initiated. Possible values include:  emailAddress, unknownFutureValue. Supports $filter (eq) on the emailAddress.
     sign_up_identifier_type: Optional[SignUpIdentifierType] = None
     
     @staticmethod

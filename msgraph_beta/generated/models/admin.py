@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .admin_report_settings import AdminReportSettings
     from .admin_todo import AdminTodo
     from .admin_windows import AdminWindows
+    from .configuration_management import ConfigurationManagement
     from .edge import Edge
     from .entra import Entra
     from .exchange_admin import ExchangeAdmin
@@ -30,6 +31,8 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The appsAndServices property
     apps_and_services: Optional[AdminAppsAndServices] = None
+    # The configurationManagement property
+    configuration_management: Optional[ConfigurationManagement] = None
     # The dynamics property
     dynamics: Optional[AdminDynamics] = None
     # A container for Microsoft Edge resources. Read-only.
@@ -82,6 +85,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_report_settings import AdminReportSettings
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
+        from .configuration_management import ConfigurationManagement
         from .edge import Edge
         from .entra import Entra
         from .exchange_admin import ExchangeAdmin
@@ -97,6 +101,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_report_settings import AdminReportSettings
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
+        from .configuration_management import ConfigurationManagement
         from .edge import Edge
         from .entra import Entra
         from .exchange_admin import ExchangeAdmin
@@ -107,6 +112,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "appsAndServices": lambda n : setattr(self, 'apps_and_services', n.get_object_value(AdminAppsAndServices)),
+            "configurationManagement": lambda n : setattr(self, 'configuration_management', n.get_object_value(ConfigurationManagement)),
             "dynamics": lambda n : setattr(self, 'dynamics', n.get_object_value(AdminDynamics)),
             "edge": lambda n : setattr(self, 'edge', n.get_object_value(Edge)),
             "entra": lambda n : setattr(self, 'entra', n.get_object_value(Entra)),
@@ -133,6 +139,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("appsAndServices", self.apps_and_services)
+        writer.write_object_value("configurationManagement", self.configuration_management)
         writer.write_object_value("dynamics", self.dynamics)
         writer.write_object_value("edge", self.edge)
         writer.write_object_value("entra", self.entra)

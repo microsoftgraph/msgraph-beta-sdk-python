@@ -48,10 +48,10 @@ class RiskDetectionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RiskDetectionsRequestBuilderGetQueryParameters]] = None) -> Optional[RiskDetectionCollectionResponse]:
         """
-        Retrieve the properties of a riskDetection object.
+        Retrieve the properties of a collection of riskDetection objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RiskDetectionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/riskdetection-get?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/riskdetection-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +92,7 @@ class RiskDetectionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RiskDetectionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve the properties of a riskDetection object.
+        Retrieve the properties of a collection of riskDetection objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -129,7 +129,7 @@ class RiskDetectionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RiskDetectionsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a riskDetection object.
+        Retrieve the properties of a collection of riskDetection objects.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

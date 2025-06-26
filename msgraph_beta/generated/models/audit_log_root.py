@@ -29,9 +29,9 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Represents an action performed by the Microsoft Entra provisioning service and its associated properties.
     provisioning: Optional[list[ProvisioningObjectSummary]] = None
-    # The signIns property
+    # Represents Microsoft Entra sign-in events. Read-only. Nullable.
     sign_ins: Optional[list[SignIn]] = None
-    # The signUps property
+    # Represents sign up events in Microsoft Entra External ID. Read-only. Nullable.
     sign_ups: Optional[list[SelfServiceSignUp]] = None
     
     @staticmethod
