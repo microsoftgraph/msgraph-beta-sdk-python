@@ -7,13 +7,15 @@ from msgraph_core.middleware.options import GraphTelemetryHandlerOption
 
 from ._version import VERSION
 
+apiVersion=APIVersion.beta
+
 options = {
     UrlReplaceHandlerOption.get_key(): UrlReplaceHandlerOption(
         enabled = True,
         replacement_pairs = {"/users/me-token-to-replace": "/me"}
     ),
     GraphTelemetryHandlerOption.get_key(): GraphTelemetryHandlerOption(
-        api_version=APIVersion.beta,
+        api_version=apiVersion,
         sdk_version=VERSION)
 }
 
@@ -21,5 +23,5 @@ class GraphRequestAdapter(BaseGraphRequestAdapter):
     def __init__(self, auth_provider: AuthenticationProvider,
                 client: Optional[httpx.AsyncClient] = None) -> None:
         if client is None:
-            client = GraphClientFactory.create_with_default_middleware(options=options)
+            client = GraphClientFactory.create_with_default_middleware(api_version=apiVersion, options=options)
         super().__init__(auth_provider, http_client=client)
