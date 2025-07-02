@@ -62,7 +62,7 @@ class Device(DirectoryObject, Parsable):
     is_compliant: Optional[bool] = None
     # true if the device is managed by a Mobile Device Management (MDM) app; otherwise, false. This can only be updated by Intune for any device OS type or by an approved MDM app for Windows OS devices. Supports $filter (eq, ne, not).
     is_managed: Optional[bool] = None
-    # Indicates whether the device is a member of a restricted management administrative unit. The default value is false. Read-only.  To manage a device that's a member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
+    # Indicates whether the device is a member of a restricted management administrative unit. If not set, the default value is null and the default behavior is false. Read-only.  To manage a device that's a member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
     is_management_restricted: Optional[bool] = None
     # true if the device is rooted or jail-broken. This property can only be updated by Intune.
     is_rooted: Optional[bool] = None

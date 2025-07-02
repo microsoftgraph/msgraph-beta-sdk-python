@@ -5,6 +5,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .operating_system_specifications import OperatingSystemSpecifications
+
 @dataclass
 class DeviceMetadata(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -18,6 +21,8 @@ class DeviceMetadata(AdditionalDataHolder, BackedModel, Parsable):
     ip_address: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Details about the operating system platform and version.
+    operating_system_specifications: Optional[OperatingSystemSpecifications] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceMetadata:
@@ -35,10 +40,15 @@ class DeviceMetadata(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .operating_system_specifications import OperatingSystemSpecifications
+
+        from .operating_system_specifications import OperatingSystemSpecifications
+
         fields: dict[str, Callable[[Any], None]] = {
             "deviceType": lambda n : setattr(self, 'device_type', n.get_str_value()),
             "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "operatingSystemSpecifications": lambda n : setattr(self, 'operating_system_specifications', n.get_object_value(OperatingSystemSpecifications)),
         }
         return fields
     
@@ -53,6 +63,7 @@ class DeviceMetadata(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("deviceType", self.device_type)
         writer.write_str_value("ipAddress", self.ip_address)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_object_value("operatingSystemSpecifications", self.operating_system_specifications)
         writer.write_additional_data_value(self.additional_data)
     
 

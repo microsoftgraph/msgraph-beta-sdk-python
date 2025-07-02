@@ -11,4 +11,5 @@ class RegistrationAuthMethod(str, Enum):
     Fido = "fido",
     AppPassword = "appPassword",
     UnknownFutureValue = "unknownFutureValue",
+    ExternalAuthMethod = "externalAuthMethod",
 

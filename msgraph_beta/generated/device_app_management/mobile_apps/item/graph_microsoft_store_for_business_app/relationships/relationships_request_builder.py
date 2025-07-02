@@ -49,7 +49,7 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RelationshipsRequestBuilderGetQueryParameters]] = None) -> Optional[MobileAppRelationshipCollectionResponse]:
         """
-        The set of direct relationships for this app.
+        List of relationships for this mobile app.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MobileAppRelationshipCollectionResponse]
         """
@@ -92,7 +92,7 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RelationshipsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The set of direct relationships for this app.
+        List of relationships for this mobile app.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class RelationshipsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RelationshipsRequestBuilderGetQueryParameters():
         """
-        The set of direct relationships for this app.
+        List of relationships for this mobile app.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -31,6 +31,8 @@ class ProtectionUnitBase(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The time when protection unit offboard was requested.
+    offboard_requested_date_time: Optional[datetime.datetime] = None
     # The unique identifier of the protection policy based on which protection unit was created.
     policy_id: Optional[str] = None
     # The protectionSources property
@@ -95,6 +97,7 @@ class ProtectionUnitBase(Entity, Parsable):
             "error": lambda n : setattr(self, 'error', n.get_object_value(PublicError)),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "offboardRequestedDateTime": lambda n : setattr(self, 'offboard_requested_date_time', n.get_datetime_value()),
             "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
             "protectionSources": lambda n : setattr(self, 'protection_sources', n.get_collection_of_enum_values(ProtectionSource)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(ProtectionUnitStatus)),
@@ -117,6 +120,7 @@ class ProtectionUnitBase(Entity, Parsable):
         writer.write_object_value("error", self.error)
         writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_datetime_value("offboardRequestedDateTime", self.offboard_requested_date_time)
         writer.write_str_value("policyId", self.policy_id)
         writer.write_enum_value("protectionSources", self.protection_sources)
         writer.write_enum_value("status", self.status)

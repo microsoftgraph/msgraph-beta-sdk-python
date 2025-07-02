@@ -20,7 +20,7 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Represents the actual content, either as text (textContent) or binary data (binaryContent). Optional if metadata alone is sufficient for policy evaluation. Do not use for contentActivities.
     content: Optional[ContentBase] = None
-    # An GUID identifier used to group multiple related content entries (for example, different parts of the same file upload, messages in a conversation).
+    # An identifier used to group multiple related content entries (for example, different parts of the same file upload, messages in a conversation).
     correlation_id: Optional[str] = None
     # Required. Timestamp indicating when the original content was created (for example, file creation time, message sent time).
     created_date_time: Optional[datetime.datetime] = None

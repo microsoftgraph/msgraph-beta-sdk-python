@@ -7,7 +7,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .applied_authentication_event_listener import AppliedAuthenticationEventListener
-    from .ciam_user_snapshot import CiamUserSnapshot
     from .entity import Entity
     from .sign_up_identity import SignUpIdentity
     from .sign_up_stage import SignUpStage
@@ -37,8 +36,8 @@ class SelfServiceSignUp(Entity, Parsable):
     sign_up_stage: Optional[SignUpStage] = None
     # Sign-up status. Includes the error code and description of the error (if a sign-up failure or interrupt occurs).  Supports $filter (eq) on errorCode property.
     status: Optional[SignUpStatus] = None
-    # The userSnapshot property
-    user_snapshot: Optional[CiamUserSnapshot] = None
+    # The identifier of the user object created during the sign-up.
+    user_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> SelfServiceSignUp:
@@ -57,14 +56,12 @@ class SelfServiceSignUp(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .applied_authentication_event_listener import AppliedAuthenticationEventListener
-        from .ciam_user_snapshot import CiamUserSnapshot
         from .entity import Entity
         from .sign_up_identity import SignUpIdentity
         from .sign_up_stage import SignUpStage
         from .sign_up_status import SignUpStatus
 
         from .applied_authentication_event_listener import AppliedAuthenticationEventListener
-        from .ciam_user_snapshot import CiamUserSnapshot
         from .entity import Entity
         from .sign_up_identity import SignUpIdentity
         from .sign_up_stage import SignUpStage
@@ -80,7 +77,7 @@ class SelfServiceSignUp(Entity, Parsable):
             "signUpIdentityProvider": lambda n : setattr(self, 'sign_up_identity_provider', n.get_str_value()),
             "signUpStage": lambda n : setattr(self, 'sign_up_stage', n.get_enum_value(SignUpStage)),
             "status": lambda n : setattr(self, 'status', n.get_object_value(SignUpStatus)),
-            "userSnapshot": lambda n : setattr(self, 'user_snapshot', n.get_object_value(CiamUserSnapshot)),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -104,6 +101,6 @@ class SelfServiceSignUp(Entity, Parsable):
         writer.write_str_value("signUpIdentityProvider", self.sign_up_identity_provider)
         writer.write_enum_value("signUpStage", self.sign_up_stage)
         writer.write_object_value("status", self.status)
-        writer.write_object_value("userSnapshot", self.user_snapshot)
+        writer.write_str_value("userId", self.user_id)
     
 

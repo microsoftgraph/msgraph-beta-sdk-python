@@ -16,7 +16,7 @@ class ProcessFileMetadata(ProcessContentMetadataBase, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.processFileMetadata"
     # A dictionary containing custom metadata associated with the file, potentially extracted by the calling application.
     custom_properties: Optional[CustomMetadataDictionary] = None
-    # The unique identifier (for example, Object ID or UPN) of the owner of the file.
+    # The unique identifier (for example, Entra User ID or UPN) of the owner of the file.
     owner_id: Optional[str] = None
     
     @staticmethod

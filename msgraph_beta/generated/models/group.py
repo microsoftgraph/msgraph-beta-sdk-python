@@ -106,7 +106,7 @@ class Group(DirectoryObject, Parsable):
     is_assignable_to_role: Optional[bool] = None
     # Indicates whether the user marked the group as favorite.
     is_favorite: Optional[bool] = None
-    # Indicates whether the group is a member of a restricted management administrative unit. The default value is false. Read-only.  To manage a group member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
+    # Indicates whether the group is a member of a restricted management administrative unit. If not set, the default value is null and the default behavior is false. Read-only.  To manage a group member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
     is_management_restricted: Optional[bool] = None
     # Indicates whether the signed-in user is subscribed to receive email conversations. The default value is true. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
     is_subscribed_by_mail: Optional[bool] = None

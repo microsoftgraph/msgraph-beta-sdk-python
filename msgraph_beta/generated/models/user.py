@@ -232,7 +232,7 @@ class User(DirectoryObject, Parsable):
     invited_by: Optional[DirectoryObject] = None
     # Indicates whether the user is pending an exchange mailbox license assignment.  Read-only.  Supports $filter (eq where true only).
     is_license_reconciliation_needed: Optional[bool] = None
-    # true if the user is a member of a restricted management administrative unit. Default value is false. Read-only.  To manage a user who is a member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
+    # true if the user is a member of a restricted management administrative unit. If not set, the default value is null and the default behavior is false. Read-only.  To manage a user who is a member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
     is_management_restricted: Optional[bool] = None
     # Do not use – reserved for future use.
     is_resource_account: Optional[bool] = None

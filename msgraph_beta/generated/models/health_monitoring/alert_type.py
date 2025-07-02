@@ -7,4 +7,5 @@ class AlertType(str, Enum):
     CompliantDeviceSignInFailure = "compliantDeviceSignInFailure",
     UnknownFutureValue = "unknownFutureValue",
     ConditionalAccessBlockedSignIn = "conditionalAccessBlockedSignIn",
+    SamlSignInFailure = "samlSignInFailure",
 
