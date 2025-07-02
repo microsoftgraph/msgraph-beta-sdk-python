@@ -33,7 +33,7 @@ class ProcessContentRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ProcessContentPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ProcessContentResponse]:
         """
-        Process content against data protection policies in the context of the current user. 
+        Process content against data protection policies in the context of the current, or specified, user.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProcessContentResponse]
@@ -57,7 +57,7 @@ class ProcessContentRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ProcessContentPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Process content against data protection policies in the context of the current user. 
+        Process content against data protection policies in the context of the current, or specified, user.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

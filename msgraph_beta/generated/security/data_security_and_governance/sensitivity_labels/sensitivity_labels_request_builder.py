@@ -70,10 +70,10 @@ class SensitivityLabelsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SensitivityLabelsRequestBuilderGetQueryParameters]] = None) -> Optional[SensitivityLabelCollectionResponse]:
         """
-        List the sensitivity labels available to a specific user.
+        List the sensitivity labels available for the entire tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SensitivityLabelCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/userdatasecurityandgovernance-list-sensitivitylabels?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/tenantdatasecurityandgovernance-list-sensitivitylabels?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -114,7 +114,7 @@ class SensitivityLabelsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SensitivityLabelsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        List the sensitivity labels available to a specific user.
+        List the sensitivity labels available for the entire tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -178,7 +178,7 @@ class SensitivityLabelsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SensitivityLabelsRequestBuilderGetQueryParameters():
         """
-        List the sensitivity labels available to a specific user.
+        List the sensitivity labels available for the entire tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

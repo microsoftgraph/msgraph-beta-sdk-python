@@ -14,7 +14,7 @@ from .integrated_application_metadata import IntegratedApplicationMetadata
 class ProtectedApplicationMetadata(IntegratedApplicationMetadata, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.protectedApplicationMetadata"
-    # The Entra client (application) ID. Required.
+    # The client (application) ID of the Microsoft Entra application. Required.
     application_location: Optional[PolicyLocation] = None
     
     @staticmethod

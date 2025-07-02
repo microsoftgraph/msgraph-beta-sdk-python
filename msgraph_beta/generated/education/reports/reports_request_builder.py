@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from ...models.reports_root import ReportsRoot
     from .reading_assignment_submissions.reading_assignment_submissions_request_builder import ReadingAssignmentSubmissionsRequestBuilder
     from .reflect_check_in_responses.reflect_check_in_responses_request_builder import ReflectCheckInResponsesRequestBuilder
+    from .speaker_assignment_submissions.speaker_assignment_submissions_request_builder import SpeakerAssignmentSubmissionsRequestBuilder
 
 class ReportsRequestBuilder(BaseRequestBuilder):
     """
@@ -157,6 +158,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .reflect_check_in_responses.reflect_check_in_responses_request_builder import ReflectCheckInResponsesRequestBuilder
 
         return ReflectCheckInResponsesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def speaker_assignment_submissions(self) -> SpeakerAssignmentSubmissionsRequestBuilder:
+        """
+        Provides operations to manage the speakerAssignmentSubmissions property of the microsoft.graph.reportsRoot entity.
+        """
+        from .speaker_assignment_submissions.speaker_assignment_submissions_request_builder import SpeakerAssignmentSubmissionsRequestBuilder
+
+        return SpeakerAssignmentSubmissionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ReportsRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

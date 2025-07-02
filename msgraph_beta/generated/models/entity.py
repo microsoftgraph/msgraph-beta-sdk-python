@@ -1227,7 +1227,6 @@ if TYPE_CHECKING:
     from .organizational_branding import OrganizationalBranding
     from .organizational_branding_localization import OrganizationalBrandingLocalization
     from .organizational_branding_properties import OrganizationalBrandingProperties
-    from .organizational_unit import OrganizationalUnit
     from .organization_settings import OrganizationSettings
     from .org_contact import OrgContact
     from .outlook_category import OutlookCategory
@@ -1300,6 +1299,7 @@ if TYPE_CHECKING:
     from .person_responsibility import PersonResponsibility
     from .person_website import PersonWebsite
     from .phone_authentication_method import PhoneAuthenticationMethod
+    from .phone_user_conversation_member import PhoneUserConversationMember
     from .pinned_chat_message_info import PinnedChatMessageInfo
     from .place import Place
     from .planner import Planner
@@ -1647,6 +1647,7 @@ if TYPE_CHECKING:
     from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
     from .software_oath_authentication_method_configuration import SoftwareOathAuthenticationMethodConfiguration
     from .software_update_status_summary import SoftwareUpdateStatusSummary
+    from .speaker_assignment_submission import SpeakerAssignmentSubmission
     from .stale_sign_in_alert_configuration import StaleSignInAlertConfiguration
     from .stale_sign_in_alert_incident import StaleSignInAlertIncident
     from .standard_web_part import StandardWebPart
@@ -7037,10 +7038,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .organizational_branding_properties import OrganizationalBrandingProperties
 
             return OrganizationalBrandingProperties()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.organizationalUnit".casefold():
-            from .organizational_unit import OrganizationalUnit
-
-            return OrganizationalUnit()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.organizationSettings".casefold():
             from .organization_settings import OrganizationSettings
 
@@ -7327,6 +7324,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .phone_authentication_method import PhoneAuthenticationMethod
 
             return PhoneAuthenticationMethod()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.phoneUserConversationMember".casefold():
+            from .phone_user_conversation_member import PhoneUserConversationMember
+
+            return PhoneUserConversationMember()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.pinnedChatMessageInfo".casefold():
             from .pinned_chat_message_info import PinnedChatMessageInfo
 
@@ -8733,6 +8734,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .software_update_status_summary import SoftwareUpdateStatusSummary
 
             return SoftwareUpdateStatusSummary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.speakerAssignmentSubmission".casefold():
+            from .speaker_assignment_submission import SpeakerAssignmentSubmission
+
+            return SpeakerAssignmentSubmission()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.staleSignInAlertConfiguration".casefold():
             from .stale_sign_in_alert_configuration import StaleSignInAlertConfiguration
 
@@ -11713,7 +11718,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
-        from .organizational_unit import OrganizationalUnit
         from .organization_settings import OrganizationSettings
         from .org_contact import OrgContact
         from .outlook_category import OutlookCategory
@@ -11786,6 +11790,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .person_responsibility import PersonResponsibility
         from .person_website import PersonWebsite
         from .phone_authentication_method import PhoneAuthenticationMethod
+        from .phone_user_conversation_member import PhoneUserConversationMember
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .place import Place
         from .planner import Planner
@@ -12133,6 +12138,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
         from .software_oath_authentication_method_configuration import SoftwareOathAuthenticationMethodConfiguration
         from .software_update_status_summary import SoftwareUpdateStatusSummary
+        from .speaker_assignment_submission import SpeakerAssignmentSubmission
         from .stale_sign_in_alert_configuration import StaleSignInAlertConfiguration
         from .stale_sign_in_alert_incident import StaleSignInAlertIncident
         from .standard_web_part import StandardWebPart
@@ -13792,7 +13798,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
-        from .organizational_unit import OrganizationalUnit
         from .organization_settings import OrganizationSettings
         from .org_contact import OrgContact
         from .outlook_category import OutlookCategory
@@ -13865,6 +13870,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .person_responsibility import PersonResponsibility
         from .person_website import PersonWebsite
         from .phone_authentication_method import PhoneAuthenticationMethod
+        from .phone_user_conversation_member import PhoneUserConversationMember
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .place import Place
         from .planner import Planner
@@ -14212,6 +14218,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
         from .software_oath_authentication_method_configuration import SoftwareOathAuthenticationMethodConfiguration
         from .software_update_status_summary import SoftwareUpdateStatusSummary
+        from .speaker_assignment_submission import SpeakerAssignmentSubmission
         from .stale_sign_in_alert_configuration import StaleSignInAlertConfiguration
         from .stale_sign_in_alert_incident import StaleSignInAlertIncident
         from .standard_web_part import StandardWebPart

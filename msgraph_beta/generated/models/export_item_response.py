@@ -17,7 +17,7 @@ class ExportItemResponse(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The version of the item.
     change_key: Optional[str] = None
-    # Data that represents an item in a base64 encoded FastTransfer stream format.
+    # Data that represents an item in a base64 encoded opaque stream.
     data: Optional[bytes] = None
     # An error that occurs during an action.
     error: Optional[MailTipsError] = None

@@ -38,7 +38,6 @@ if TYPE_CHECKING:
     from .multi_tenant_organization_member import MultiTenantOrganizationMember
     from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
     from .organization import Organization
-    from .organizational_unit import OrganizationalUnit
     from .org_contact import OrgContact
     from .pending_external_user_profile import PendingExternalUserProfile
     from .permission_grant_policy import PermissionGrantPolicy
@@ -203,10 +202,6 @@ class DirectoryObject(Entity, Parsable):
             from .organization import Organization
 
             return Organization()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.organizationalUnit".casefold():
-            from .organizational_unit import OrganizationalUnit
-
-            return OrganizationalUnit()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.orgContact".casefold():
             from .org_contact import OrgContact
 
@@ -310,7 +305,6 @@ class DirectoryObject(Entity, Parsable):
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
         from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
         from .organization import Organization
-        from .organizational_unit import OrganizationalUnit
         from .org_contact import OrgContact
         from .pending_external_user_profile import PendingExternalUserProfile
         from .permission_grant_policy import PermissionGrantPolicy
@@ -360,7 +354,6 @@ class DirectoryObject(Entity, Parsable):
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
         from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
         from .organization import Organization
-        from .organizational_unit import OrganizationalUnit
         from .org_contact import OrgContact
         from .pending_external_user_profile import PendingExternalUserProfile
         from .permission_grant_policy import PermissionGrantPolicy

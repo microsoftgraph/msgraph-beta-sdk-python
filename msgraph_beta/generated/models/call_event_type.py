@@ -5,4 +5,8 @@ class CallEventType(str, Enum):
     CallEnded = "callEnded",
     UnknownFutureValue = "unknownFutureValue",
     RosterUpdated = "rosterUpdated",
+    TranscriptionStarted = "transcriptionStarted",
+    TranscriptionStopped = "transcriptionStopped",
+    RecordingStarted = "recordingStarted",
+    RecordingStopped = "recordingStopped",
 

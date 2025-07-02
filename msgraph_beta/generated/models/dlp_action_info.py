@@ -7,7 +7,10 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .block_access_action import BlockAccessAction
+    from .dlp_action import DlpAction
     from .notify_user_action import NotifyUserAction
+    from .restrict_access_action import RestrictAccessAction
+    from .restrict_access_action_base import RestrictAccessActionBase
 
 @dataclass
 class DlpActionInfo(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,6 +19,8 @@ class DlpActionInfo(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The type of DLP action. Possible value is restrictAccessAction.
+    action: Optional[DlpAction] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -41,6 +46,14 @@ class DlpActionInfo(AdditionalDataHolder, BackedModel, Parsable):
             from .notify_user_action import NotifyUserAction
 
             return NotifyUserAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.restrictAccessAction".casefold():
+            from .restrict_access_action import RestrictAccessAction
+
+            return RestrictAccessAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.restrictAccessActionBase".casefold():
+            from .restrict_access_action_base import RestrictAccessActionBase
+
+            return RestrictAccessActionBase()
         return DlpActionInfo()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -49,12 +62,19 @@ class DlpActionInfo(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .block_access_action import BlockAccessAction
+        from .dlp_action import DlpAction
         from .notify_user_action import NotifyUserAction
+        from .restrict_access_action import RestrictAccessAction
+        from .restrict_access_action_base import RestrictAccessActionBase
 
         from .block_access_action import BlockAccessAction
+        from .dlp_action import DlpAction
         from .notify_user_action import NotifyUserAction
+        from .restrict_access_action import RestrictAccessAction
+        from .restrict_access_action_base import RestrictAccessActionBase
 
         fields: dict[str, Callable[[Any], None]] = {
+            "action": lambda n : setattr(self, 'action', n.get_enum_value(DlpAction)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -67,6 +87,7 @@ class DlpActionInfo(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("action", self.action)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

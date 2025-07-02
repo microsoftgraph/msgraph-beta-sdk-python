@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .reading_assignment_submission import ReadingAssignmentSubmission
     from .reflect_check_in_response import ReflectCheckInResponse
+    from .speaker_assignment_submission import SpeakerAssignmentSubmission
 
 from .entity import Entity
 
@@ -19,6 +20,8 @@ class ReportsRoot(Entity, Parsable):
     reading_assignment_submissions: Optional[list[ReadingAssignmentSubmission]] = None
     # The reflectCheckInResponses property
     reflect_check_in_responses: Optional[list[ReflectCheckInResponse]] = None
+    # Details of submitted speaker assignments.
+    speaker_assignment_submissions: Optional[list[SpeakerAssignmentSubmission]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ReportsRoot:
@@ -39,14 +42,17 @@ class ReportsRoot(Entity, Parsable):
         from .entity import Entity
         from .reading_assignment_submission import ReadingAssignmentSubmission
         from .reflect_check_in_response import ReflectCheckInResponse
+        from .speaker_assignment_submission import SpeakerAssignmentSubmission
 
         from .entity import Entity
         from .reading_assignment_submission import ReadingAssignmentSubmission
         from .reflect_check_in_response import ReflectCheckInResponse
+        from .speaker_assignment_submission import SpeakerAssignmentSubmission
 
         fields: dict[str, Callable[[Any], None]] = {
             "readingAssignmentSubmissions": lambda n : setattr(self, 'reading_assignment_submissions', n.get_collection_of_object_values(ReadingAssignmentSubmission)),
             "reflectCheckInResponses": lambda n : setattr(self, 'reflect_check_in_responses', n.get_collection_of_object_values(ReflectCheckInResponse)),
+            "speakerAssignmentSubmissions": lambda n : setattr(self, 'speaker_assignment_submissions', n.get_collection_of_object_values(SpeakerAssignmentSubmission)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,5 +69,6 @@ class ReportsRoot(Entity, Parsable):
         super().serialize(writer)
         writer.write_collection_of_object_values("readingAssignmentSubmissions", self.reading_assignment_submissions)
         writer.write_collection_of_object_values("reflectCheckInResponses", self.reflect_check_in_responses)
+        writer.write_collection_of_object_values("speakerAssignmentSubmissions", self.speaker_assignment_submissions)
     
 

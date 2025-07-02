@@ -6,4 +6,5 @@ class Scenario(str, Enum):
     Devices = "devices",
     UnknownFutureValue = "unknownFutureValue",
     ConditionalAccess = "conditionalAccess",
+    Saml = "saml",
 
