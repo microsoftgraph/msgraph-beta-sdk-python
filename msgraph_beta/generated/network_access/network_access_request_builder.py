@@ -27,6 +27,7 @@ if TYPE_CHECKING:
     from .reports.reports_request_builder import ReportsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
     from .tenant_status.tenant_status_request_builder import TenantStatusRequestBuilder
+    from .threat_intelligence_policies.threat_intelligence_policies_request_builder import ThreatIntelligencePoliciesRequestBuilder
 
 class NetworkAccessRequestBuilder(BaseRequestBuilder):
     """
@@ -218,6 +219,15 @@ class NetworkAccessRequestBuilder(BaseRequestBuilder):
         from .tenant_status.tenant_status_request_builder import TenantStatusRequestBuilder
 
         return TenantStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def threat_intelligence_policies(self) -> ThreatIntelligencePoliciesRequestBuilder:
+        """
+        Provides operations to manage the threatIntelligencePolicies property of the microsoft.graph.networkaccess.networkAccessRoot entity.
+        """
+        from .threat_intelligence_policies.threat_intelligence_policies_request_builder import ThreatIntelligencePoliciesRequestBuilder
+
+        return ThreatIntelligencePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class NetworkAccessRequestBuilderGetQueryParameters():

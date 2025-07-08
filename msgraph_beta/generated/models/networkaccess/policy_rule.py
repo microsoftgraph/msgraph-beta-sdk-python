@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from .internet_access_forwarding_rule import InternetAccessForwardingRule
     from .m365_forwarding_rule import M365ForwardingRule
     from .private_access_forwarding_rule import PrivateAccessForwardingRule
+    from .threat_intelligence_rule import ThreatIntelligenceRule
     from .web_category_filtering_rule import WebCategoryFilteringRule
 
 from ..entity import Entity
@@ -61,6 +62,10 @@ class PolicyRule(Entity, Parsable):
             from .private_access_forwarding_rule import PrivateAccessForwardingRule
 
             return PrivateAccessForwardingRule()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligenceRule".casefold():
+            from .threat_intelligence_rule import ThreatIntelligenceRule
+
+            return ThreatIntelligenceRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategoryFilteringRule".casefold():
             from .web_category_filtering_rule import WebCategoryFilteringRule
 
@@ -79,6 +84,7 @@ class PolicyRule(Entity, Parsable):
         from .internet_access_forwarding_rule import InternetAccessForwardingRule
         from .m365_forwarding_rule import M365ForwardingRule
         from .private_access_forwarding_rule import PrivateAccessForwardingRule
+        from .threat_intelligence_rule import ThreatIntelligenceRule
         from .web_category_filtering_rule import WebCategoryFilteringRule
 
         from ..entity import Entity
@@ -88,6 +94,7 @@ class PolicyRule(Entity, Parsable):
         from .internet_access_forwarding_rule import InternetAccessForwardingRule
         from .m365_forwarding_rule import M365ForwardingRule
         from .private_access_forwarding_rule import PrivateAccessForwardingRule
+        from .threat_intelligence_rule import ThreatIntelligenceRule
         from .web_category_filtering_rule import WebCategoryFilteringRule
 
         fields: dict[str, Callable[[Any], None]] = {

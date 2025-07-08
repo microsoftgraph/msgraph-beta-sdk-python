@@ -651,7 +651,6 @@ if TYPE_CHECKING:
     from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
     from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
     from .emergency_call_event import EmergencyCallEvent
-    from .employee_experience import EmployeeExperience
     from .employee_experience_user import EmployeeExperienceUser
     from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
     from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
@@ -661,6 +660,12 @@ if TYPE_CHECKING:
     from .end_user_notification import EndUserNotification
     from .end_user_notification_detail import EndUserNotificationDetail
     from .engagement_async_operation import EngagementAsyncOperation
+    from .engagement_conversation import EngagementConversation
+    from .engagement_conversation_discussion_message import EngagementConversationDiscussionMessage
+    from .engagement_conversation_message import EngagementConversationMessage
+    from .engagement_conversation_message_reaction import EngagementConversationMessageReaction
+    from .engagement_conversation_question_message import EngagementConversationQuestionMessage
+    from .engagement_conversation_system_message import EngagementConversationSystemMessage
     from .engagement_role import EngagementRole
     from .engagement_role_member import EngagementRoleMember
     from .enhanced_personalization_setting import EnhancedPersonalizationSetting
@@ -1163,6 +1168,9 @@ if TYPE_CHECKING:
     from .networkaccess.reports import Reports
     from .networkaccess.settings import Settings
     from .networkaccess.tenant_status import TenantStatus
+    from .networkaccess.threat_intelligence_policy import ThreatIntelligencePolicy
+    from .networkaccess.threat_intelligence_policy_link import ThreatIntelligencePolicyLink
+    from .networkaccess.threat_intelligence_rule import ThreatIntelligenceRule
     from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
     from .news_link_page import NewsLinkPage
     from .note import Note
@@ -1195,6 +1203,7 @@ if TYPE_CHECKING:
     from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
     from .online_meeting import OnlineMeeting
     from .online_meeting_base import OnlineMeetingBase
+    from .online_meeting_engagement_conversation import OnlineMeetingEngagementConversation
     from .on_attribute_collection_listener import OnAttributeCollectionListener
     from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
     from .on_attribute_collection_start_listener import OnAttributeCollectionStartListener
@@ -4712,10 +4721,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .emergency_call_event import EmergencyCallEvent
 
             return EmergencyCallEvent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.employeeExperience".casefold():
-            from .employee_experience import EmployeeExperience
-
-            return EmployeeExperience()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.employeeExperienceUser".casefold():
             from .employee_experience_user import EmployeeExperienceUser
 
@@ -4752,6 +4757,30 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .engagement_async_operation import EngagementAsyncOperation
 
             return EngagementAsyncOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementConversation".casefold():
+            from .engagement_conversation import EngagementConversation
+
+            return EngagementConversation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementConversationDiscussionMessage".casefold():
+            from .engagement_conversation_discussion_message import EngagementConversationDiscussionMessage
+
+            return EngagementConversationDiscussionMessage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementConversationMessage".casefold():
+            from .engagement_conversation_message import EngagementConversationMessage
+
+            return EngagementConversationMessage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementConversationMessageReaction".casefold():
+            from .engagement_conversation_message_reaction import EngagementConversationMessageReaction
+
+            return EngagementConversationMessageReaction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementConversationQuestionMessage".casefold():
+            from .engagement_conversation_question_message import EngagementConversationQuestionMessage
+
+            return EngagementConversationQuestionMessage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementConversationSystemMessage".casefold():
+            from .engagement_conversation_system_message import EngagementConversationSystemMessage
+
+            return EngagementConversationSystemMessage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementRole".casefold():
             from .engagement_role import EngagementRole
 
@@ -6777,6 +6806,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.tenant_status import TenantStatus
 
             return TenantStatus()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligencePolicy".casefold():
+            from .networkaccess.threat_intelligence_policy import ThreatIntelligencePolicy
+
+            return ThreatIntelligencePolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligencePolicyLink".casefold():
+            from .networkaccess.threat_intelligence_policy_link import ThreatIntelligencePolicyLink
+
+            return ThreatIntelligencePolicyLink()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligenceRule".casefold():
+            from .networkaccess.threat_intelligence_rule import ThreatIntelligenceRule
+
+            return ThreatIntelligenceRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategoryFilteringRule".casefold():
             from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
 
@@ -6941,6 +6982,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .online_meeting_base import OnlineMeetingBase
 
             return OnlineMeetingBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onlineMeetingEngagementConversation".casefold():
+            from .online_meeting_engagement_conversation import OnlineMeetingEngagementConversation
+
+            return OnlineMeetingEngagementConversation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onOtpSendCustomExtension".casefold():
             from .on_otp_send_custom_extension import OnOtpSendCustomExtension
 
@@ -11142,7 +11187,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
         from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
         from .emergency_call_event import EmergencyCallEvent
-        from .employee_experience import EmployeeExperience
         from .employee_experience_user import EmployeeExperienceUser
         from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
         from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
@@ -11152,6 +11196,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .end_user_notification import EndUserNotification
         from .end_user_notification_detail import EndUserNotificationDetail
         from .engagement_async_operation import EngagementAsyncOperation
+        from .engagement_conversation import EngagementConversation
+        from .engagement_conversation_discussion_message import EngagementConversationDiscussionMessage
+        from .engagement_conversation_message import EngagementConversationMessage
+        from .engagement_conversation_message_reaction import EngagementConversationMessageReaction
+        from .engagement_conversation_question_message import EngagementConversationQuestionMessage
+        from .engagement_conversation_system_message import EngagementConversationSystemMessage
         from .engagement_role import EngagementRole
         from .engagement_role_member import EngagementRoleMember
         from .enhanced_personalization_setting import EnhancedPersonalizationSetting
@@ -11654,6 +11704,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
         from .networkaccess.tenant_status import TenantStatus
+        from .networkaccess.threat_intelligence_policy import ThreatIntelligencePolicy
+        from .networkaccess.threat_intelligence_policy_link import ThreatIntelligencePolicyLink
+        from .networkaccess.threat_intelligence_rule import ThreatIntelligenceRule
         from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
         from .news_link_page import NewsLinkPage
         from .note import Note
@@ -11686,6 +11739,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
         from .online_meeting import OnlineMeeting
         from .online_meeting_base import OnlineMeetingBase
+        from .online_meeting_engagement_conversation import OnlineMeetingEngagementConversation
         from .on_attribute_collection_listener import OnAttributeCollectionListener
         from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
         from .on_attribute_collection_start_listener import OnAttributeCollectionStartListener
@@ -13222,7 +13276,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .embedded_s_i_m_activation_code_pool_assignment import EmbeddedSIMActivationCodePoolAssignment
         from .embedded_s_i_m_device_state import EmbeddedSIMDeviceState
         from .emergency_call_event import EmergencyCallEvent
-        from .employee_experience import EmployeeExperience
         from .employee_experience_user import EmployeeExperienceUser
         from .encrypted_aws_storage_bucket_finding import EncryptedAwsStorageBucketFinding
         from .encrypted_azure_storage_account_finding import EncryptedAzureStorageAccountFinding
@@ -13232,6 +13285,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .end_user_notification import EndUserNotification
         from .end_user_notification_detail import EndUserNotificationDetail
         from .engagement_async_operation import EngagementAsyncOperation
+        from .engagement_conversation import EngagementConversation
+        from .engagement_conversation_discussion_message import EngagementConversationDiscussionMessage
+        from .engagement_conversation_message import EngagementConversationMessage
+        from .engagement_conversation_message_reaction import EngagementConversationMessageReaction
+        from .engagement_conversation_question_message import EngagementConversationQuestionMessage
+        from .engagement_conversation_system_message import EngagementConversationSystemMessage
         from .engagement_role import EngagementRole
         from .engagement_role_member import EngagementRoleMember
         from .enhanced_personalization_setting import EnhancedPersonalizationSetting
@@ -13734,6 +13793,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
         from .networkaccess.tenant_status import TenantStatus
+        from .networkaccess.threat_intelligence_policy import ThreatIntelligencePolicy
+        from .networkaccess.threat_intelligence_policy_link import ThreatIntelligencePolicyLink
+        from .networkaccess.threat_intelligence_rule import ThreatIntelligenceRule
         from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
         from .news_link_page import NewsLinkPage
         from .note import Note
@@ -13766,6 +13828,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
         from .online_meeting import OnlineMeeting
         from .online_meeting_base import OnlineMeetingBase
+        from .online_meeting_engagement_conversation import OnlineMeetingEngagementConversation
         from .on_attribute_collection_listener import OnAttributeCollectionListener
         from .on_attribute_collection_start_custom_extension import OnAttributeCollectionStartCustomExtension
         from .on_attribute_collection_start_listener import OnAttributeCollectionStartListener

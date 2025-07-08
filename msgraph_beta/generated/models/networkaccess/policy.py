@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .filtering_policy import FilteringPolicy
     from .forwarding_policy import ForwardingPolicy
     from .policy_rule import PolicyRule
+    from .threat_intelligence_policy import ThreatIntelligencePolicy
 
 from ..entity import Entity
 
@@ -47,6 +48,10 @@ class Policy(Entity, Parsable):
             from .forwarding_policy import ForwardingPolicy
 
             return ForwardingPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligencePolicy".casefold():
+            from .threat_intelligence_policy import ThreatIntelligencePolicy
+
+            return ThreatIntelligencePolicy()
         return Policy()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -58,11 +63,13 @@ class Policy(Entity, Parsable):
         from .filtering_policy import FilteringPolicy
         from .forwarding_policy import ForwardingPolicy
         from .policy_rule import PolicyRule
+        from .threat_intelligence_policy import ThreatIntelligencePolicy
 
         from ..entity import Entity
         from .filtering_policy import FilteringPolicy
         from .forwarding_policy import ForwardingPolicy
         from .policy_rule import PolicyRule
+        from .threat_intelligence_policy import ThreatIntelligencePolicy
 
         fields: dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

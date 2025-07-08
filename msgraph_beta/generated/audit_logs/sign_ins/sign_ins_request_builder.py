@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .confirm_compromised.confirm_compromised_request_builder import ConfirmCompromisedRequestBuilder
     from .confirm_safe.confirm_safe_request_builder import ConfirmSafeRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
+    from .dismiss.dismiss_request_builder import DismissRequestBuilder
     from .item.sign_in_item_request_builder import SignInItemRequestBuilder
 
 class SignInsRequestBuilder(BaseRequestBuilder):
@@ -155,6 +156,15 @@ class SignInsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def dismiss(self) -> DismissRequestBuilder:
+        """
+        Provides operations to call the dismiss method.
+        """
+        from .dismiss.dismiss_request_builder import DismissRequestBuilder
+
+        return DismissRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SignInsRequestBuilderGetQueryParameters():

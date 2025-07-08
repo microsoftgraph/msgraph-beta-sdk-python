@@ -7,4 +7,8 @@ class RecommendationStatus(str, Enum):
     Dismissed = "dismissed",
     Postponed = "postponed",
     UnknownFutureValue = "unknownFutureValue",
+    RiskAccepted = "riskAccepted",
+    ThirdParty = "thirdParty",
+    Planned = "planned",
+    AlternateMitigation = "alternateMitigation",
 
