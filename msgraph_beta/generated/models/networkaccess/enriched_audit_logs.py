@@ -12,13 +12,13 @@ from ..entity import Entity
 
 @dataclass
 class EnrichedAuditLogs(Entity, Parsable):
-    # Exchange Online enriched audit logs settings.
+    # The exchange property
     exchange: Optional[EnrichedAuditLogsSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # SharePoint Online enriched audit logs settings.
+    # The sharepoint property
     sharepoint: Optional[EnrichedAuditLogsSettings] = None
-    # Teams enriched audit logs settings.
+    # The teams property
     teams: Optional[EnrichedAuditLogsSettings] = None
     
     @staticmethod

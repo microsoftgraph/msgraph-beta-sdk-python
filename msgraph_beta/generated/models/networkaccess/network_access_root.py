@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .reports import Reports
     from .settings import Settings
     from .tenant_status import TenantStatus
+    from .threat_intelligence_policy import ThreatIntelligencePolicy
 
 from ..entity import Entity
 
@@ -43,6 +44,8 @@ class NetworkAccessRoot(Entity, Parsable):
     settings: Optional[Settings] = None
     # Represents the status of the Global Secure Access services for the tenant.
     tenant_status: Optional[TenantStatus] = None
+    # The threatIntelligencePolicies property
+    threat_intelligence_policies: Optional[list[ThreatIntelligencePolicy]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> NetworkAccessRoot:
@@ -71,6 +74,7 @@ class NetworkAccessRoot(Entity, Parsable):
         from .reports import Reports
         from .settings import Settings
         from .tenant_status import TenantStatus
+        from .threat_intelligence_policy import ThreatIntelligencePolicy
 
         from ..entity import Entity
         from .alert import Alert
@@ -83,6 +87,7 @@ class NetworkAccessRoot(Entity, Parsable):
         from .reports import Reports
         from .settings import Settings
         from .tenant_status import TenantStatus
+        from .threat_intelligence_policy import ThreatIntelligencePolicy
 
         fields: dict[str, Callable[[Any], None]] = {
             "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(Alert)),
@@ -95,6 +100,7 @@ class NetworkAccessRoot(Entity, Parsable):
             "reports": lambda n : setattr(self, 'reports', n.get_object_value(Reports)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(Settings)),
             "tenantStatus": lambda n : setattr(self, 'tenant_status', n.get_object_value(TenantStatus)),
+            "threatIntelligencePolicies": lambda n : setattr(self, 'threat_intelligence_policies', n.get_collection_of_object_values(ThreatIntelligencePolicy)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -119,5 +125,6 @@ class NetworkAccessRoot(Entity, Parsable):
         writer.write_object_value("reports", self.reports)
         writer.write_object_value("settings", self.settings)
         writer.write_object_value("tenantStatus", self.tenant_status)
+        writer.write_collection_of_object_values("threatIntelligencePolicies", self.threat_intelligence_policies)
     
 

@@ -20,6 +20,9 @@ from .online_meeting_base import OnlineMeetingBase
 
 @dataclass
 class OnlineMeeting(OnlineMeetingBase, Parsable):
+    """
+    Represents a Microsoft online meeting.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onlineMeeting"
     # The AI insights generated for an online meeting. Read-only.

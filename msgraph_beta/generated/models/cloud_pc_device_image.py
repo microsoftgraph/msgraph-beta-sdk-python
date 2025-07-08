@@ -36,7 +36,7 @@ class CloudPcDeviceImage(Entity, Parsable):
     os_version_number: Optional[str] = None
     # The scopeIds property
     scope_ids: Optional[list[str]] = None
-    # The sizeInGB property
+    # The size of the image in GB. For example, 64. Read-only.
     size_in_g_b: Optional[int] = None
     # The unique identifier (ID) of the source image resource on Azure. The required ID format is: '/subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}'. Read-only.
     source_image_resource_id: Optional[str] = None
