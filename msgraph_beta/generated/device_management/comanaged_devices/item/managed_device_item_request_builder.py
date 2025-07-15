@@ -53,6 +53,7 @@ if TYPE_CHECKING:
     from .request_remote_assistance.request_remote_assistance_request_builder import RequestRemoteAssistanceRequestBuilder
     from .reset_passcode.reset_passcode_request_builder import ResetPasscodeRequestBuilder
     from .retire.retire_request_builder import RetireRequestBuilder
+    from .retrieve_mac_o_s_managed_device_local_admin_account_detail.retrieve_mac_o_s_managed_device_local_admin_account_detail_request_builder import RetrieveMacOSManagedDeviceLocalAdminAccountDetailRequestBuilder
     from .revoke_apple_vpp_licenses.revoke_apple_vpp_licenses_request_builder import RevokeAppleVppLicensesRequestBuilder
     from .rotate_bit_locker_keys.rotate_bit_locker_keys_request_builder import RotateBitLockerKeysRequestBuilder
     from .rotate_file_vault_key.rotate_file_vault_key_request_builder import RotateFileVaultKeyRequestBuilder
@@ -523,6 +524,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .retire.retire_request_builder import RetireRequestBuilder
 
         return RetireRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_mac_o_s_managed_device_local_admin_account_detail(self) -> RetrieveMacOSManagedDeviceLocalAdminAccountDetailRequestBuilder:
+        """
+        Provides operations to call the retrieveMacOSManagedDeviceLocalAdminAccountDetail method.
+        """
+        from .retrieve_mac_o_s_managed_device_local_admin_account_detail.retrieve_mac_o_s_managed_device_local_admin_account_detail_request_builder import RetrieveMacOSManagedDeviceLocalAdminAccountDetailRequestBuilder
+
+        return RetrieveMacOSManagedDeviceLocalAdminAccountDetailRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def revoke_apple_vpp_licenses(self) -> RevokeAppleVppLicensesRequestBuilder:

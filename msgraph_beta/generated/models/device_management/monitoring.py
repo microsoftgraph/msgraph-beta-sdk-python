@@ -6,19 +6,11 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
-    from .alert_record import AlertRecord
-    from .alert_rule import AlertRule
 
 from ..entity import Entity
 
 @dataclass
 class Monitoring(Entity, Parsable):
-    # The collection of records of alert events.
-    alert_records: Optional[list[AlertRecord]] = None
-    # The collection of alert rules.
-    alert_rules: Optional[list[AlertRule]] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Monitoring:
@@ -37,16 +29,10 @@ class Monitoring(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
-        from .alert_record import AlertRecord
-        from .alert_rule import AlertRule
 
         from ..entity import Entity
-        from .alert_record import AlertRecord
-        from .alert_rule import AlertRule
 
         fields: dict[str, Callable[[Any], None]] = {
-            "alertRecords": lambda n : setattr(self, 'alert_records', n.get_collection_of_object_values(AlertRecord)),
-            "alertRules": lambda n : setattr(self, 'alert_rules', n.get_collection_of_object_values(AlertRule)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -61,7 +47,5 @@ class Monitoring(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("alertRecords", self.alert_records)
-        writer.write_collection_of_object_values("alertRules", self.alert_rules)
     
 

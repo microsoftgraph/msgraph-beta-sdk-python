@@ -35,7 +35,6 @@ class GetActiveKeyRequestBuilder(BaseRequestBuilder):
         Get the currently active trustFrameworkKey in a trustFrameworkKeySet. Only one key is active in the keyset at a time.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TrustFrameworkKey]
-        Find more info here: https://learn.microsoft.com/graph/api/trustframeworkkeyset-getactivekey?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

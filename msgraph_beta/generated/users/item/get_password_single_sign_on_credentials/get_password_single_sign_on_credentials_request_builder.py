@@ -35,7 +35,6 @@ class GetPasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
         Get the list of password-based single sign-on credentials for a given user. This API returns the encrypted passwords as null or empty strings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetPasswordSingleSignOnCredentialsPostResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/user-getpasswordsinglesignoncredentials?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

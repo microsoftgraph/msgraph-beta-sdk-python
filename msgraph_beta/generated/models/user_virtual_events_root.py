@@ -6,16 +6,11 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .virtual_event_webinar import VirtualEventWebinar
 
 from .entity import Entity
 
 @dataclass
 class UserVirtualEventsRoot(Entity, Parsable):
-    # The OdataType property
-    odata_type: Optional[str] = None
-    # The webinars property
-    webinars: Optional[list[VirtualEventWebinar]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> UserVirtualEventsRoot:
@@ -34,13 +29,10 @@ class UserVirtualEventsRoot(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .virtual_event_webinar import VirtualEventWebinar
 
         from .entity import Entity
-        from .virtual_event_webinar import VirtualEventWebinar
 
         fields: dict[str, Callable[[Any], None]] = {
-            "webinars": lambda n : setattr(self, 'webinars', n.get_collection_of_object_values(VirtualEventWebinar)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,6 +47,5 @@ class UserVirtualEventsRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("webinars", self.webinars)
     
 

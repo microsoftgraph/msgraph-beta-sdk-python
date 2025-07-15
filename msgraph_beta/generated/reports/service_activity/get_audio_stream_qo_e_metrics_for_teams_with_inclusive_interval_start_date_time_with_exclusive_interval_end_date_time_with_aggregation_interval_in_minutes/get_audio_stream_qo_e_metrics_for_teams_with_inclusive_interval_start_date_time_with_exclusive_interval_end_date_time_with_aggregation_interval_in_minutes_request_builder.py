@@ -41,7 +41,6 @@ class GetAudioStreamQoEMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExcl
         Get metrics based on the percentage of audio streams for which quality of experience (QoE) telemetry was received by the Teams service.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAudioStreamQoEMetricsForTeamsWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getaudiostreamqoemetricsforteams?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

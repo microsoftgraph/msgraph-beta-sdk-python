@@ -11,10 +11,6 @@ from ..entity import Entity
 
 @dataclass
 class KnowledgeBaseArticle(Entity, Parsable):
-    # The OdataType property
-    odata_type: Optional[str] = None
-    # The URL of the knowledge base article. Read-only.
-    url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> KnowledgeBaseArticle:
@@ -37,7 +33,6 @@ class KnowledgeBaseArticle(Entity, Parsable):
         from ..entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
-            "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,6 +47,5 @@ class KnowledgeBaseArticle(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_str_value("url", self.url)
     
 

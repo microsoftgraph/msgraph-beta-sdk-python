@@ -35,7 +35,6 @@ class CreateImportSessionRequestBuilder(BaseRequestBuilder):
         Create a session to import an Exchange mailbox item that was exported using the exportItems API.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailboxItemImportSession]
-        Find more info here: https://learn.microsoft.com/graph/api/mailbox-createimportsession?view=graph-rest-beta
         """
         warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         request_info = self.to_post_request_information(

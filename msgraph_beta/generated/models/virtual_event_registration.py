@@ -38,7 +38,7 @@ class VirtualEventRegistration(Entity, Parsable):
     registration_date_time: Optional[datetime.datetime] = None
     # The registrant's answer to the registration questions.
     registration_question_answers: Optional[list[VirtualEventRegistrationQuestionAnswer]] = None
-    # The sessions property
+    # Sessions for a registration.
     sessions: Optional[list[VirtualEventSession]] = None
     # Registration status of the registrant. Read-only.
     status: Optional[VirtualEventAttendeeRegistrationStatus] = None

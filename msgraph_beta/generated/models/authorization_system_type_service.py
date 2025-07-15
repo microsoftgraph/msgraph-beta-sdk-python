@@ -5,17 +5,12 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .authorization_system_type_action import AuthorizationSystemTypeAction
     from .entity import Entity
 
 from .entity import Entity
 
 @dataclass
 class AuthorizationSystemTypeService(Entity, Parsable):
-    # List of actions for the service in an authorization system that is onboarded to Permissions Management.
-    actions: Optional[list[AuthorizationSystemTypeAction]] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AuthorizationSystemTypeService:
@@ -33,14 +28,11 @@ class AuthorizationSystemTypeService(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .authorization_system_type_action import AuthorizationSystemTypeAction
         from .entity import Entity
 
-        from .authorization_system_type_action import AuthorizationSystemTypeAction
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
-            "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(AuthorizationSystemTypeAction)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,6 +47,5 @@ class AuthorizationSystemTypeService(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("actions", self.actions)
     
 

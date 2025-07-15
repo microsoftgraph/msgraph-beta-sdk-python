@@ -34,7 +34,6 @@ class ReuploadRequestBuilder(BaseRequestBuilder):
         Reupload a cloudPcDeviceImage object that failed to upload.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpcdeviceimage-reupload?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

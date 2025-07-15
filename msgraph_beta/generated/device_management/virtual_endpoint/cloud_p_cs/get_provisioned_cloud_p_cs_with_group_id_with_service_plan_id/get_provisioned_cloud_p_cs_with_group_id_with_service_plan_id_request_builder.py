@@ -40,7 +40,6 @@ class GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder(BaseReque
         Get all provisioned Cloud PCs of a specific service plan for users under a Microsoft Entra user group.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetProvisionedCloudPCsWithGroupIdWithServicePlanIdGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-getprovisionedcloudpcs?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

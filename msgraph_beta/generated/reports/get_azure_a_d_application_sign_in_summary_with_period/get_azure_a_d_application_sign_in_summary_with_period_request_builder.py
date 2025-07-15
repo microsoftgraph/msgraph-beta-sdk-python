@@ -38,7 +38,6 @@ class GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder(BaseRequestBuil
         Retrieve applicationSigninSummary objects within either the last seven or 30 days.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAzureADApplicationSignInSummaryWithPeriodGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getazureadapplicationsigninsummary?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

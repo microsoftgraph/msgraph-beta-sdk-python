@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .permission import Permission
     from .recycle_bin import RecycleBin
     from .share_point_group import SharePointGroup
+    from .share_point_migration_job import SharePointMigrationJob
     from .site_archival_details import SiteArchivalDetails
     from .site_lock_state import SiteLockState
     from .user_identity import UserIdentity
@@ -53,6 +54,8 @@ class FileStorageContainer(Entity, Parsable):
     item_major_version_limit: Optional[int] = None
     # Indicates the lock state of the fileStorageContainer. The possible values are unlocked and lockedReadOnly. Read-only.
     lock_state: Optional[SiteLockState] = None
+    # The migrationJobs property
+    migration_jobs: Optional[list[SharePointMigrationJob]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # List of users who own the fileStorageContainer. Read-only.
@@ -102,6 +105,7 @@ class FileStorageContainer(Entity, Parsable):
         from .permission import Permission
         from .recycle_bin import RecycleBin
         from .share_point_group import SharePointGroup
+        from .share_point_migration_job import SharePointMigrationJob
         from .site_archival_details import SiteArchivalDetails
         from .site_lock_state import SiteLockState
         from .user_identity import UserIdentity
@@ -118,6 +122,7 @@ class FileStorageContainer(Entity, Parsable):
         from .permission import Permission
         from .recycle_bin import RecycleBin
         from .share_point_group import SharePointGroup
+        from .share_point_migration_job import SharePointMigrationJob
         from .site_archival_details import SiteArchivalDetails
         from .site_lock_state import SiteLockState
         from .user_identity import UserIdentity
@@ -136,6 +141,7 @@ class FileStorageContainer(Entity, Parsable):
             "isItemVersioningEnabled": lambda n : setattr(self, 'is_item_versioning_enabled', n.get_bool_value()),
             "itemMajorVersionLimit": lambda n : setattr(self, 'item_major_version_limit', n.get_int_value()),
             "lockState": lambda n : setattr(self, 'lock_state', n.get_enum_value(SiteLockState)),
+            "migrationJobs": lambda n : setattr(self, 'migration_jobs', n.get_collection_of_object_values(SharePointMigrationJob)),
             "owners": lambda n : setattr(self, 'owners', n.get_collection_of_object_values(UserIdentity)),
             "ownershipType": lambda n : setattr(self, 'ownership_type', n.get_enum_value(FileStorageContainerOwnershipType)),
             "permissions": lambda n : setattr(self, 'permissions', n.get_collection_of_object_values(Permission)),
@@ -172,6 +178,7 @@ class FileStorageContainer(Entity, Parsable):
         writer.write_bool_value("isItemVersioningEnabled", self.is_item_versioning_enabled)
         writer.write_int_value("itemMajorVersionLimit", self.item_major_version_limit)
         writer.write_enum_value("lockState", self.lock_state)
+        writer.write_collection_of_object_values("migrationJobs", self.migration_jobs)
         writer.write_collection_of_object_values("owners", self.owners)
         writer.write_enum_value("ownershipType", self.ownership_type)
         writer.write_collection_of_object_values("permissions", self.permissions)

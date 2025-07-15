@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .sensitivity_label import SensitivityLabel
+    from .usage_rights import UsageRights
 
 from .entity import Entity
 
@@ -20,6 +21,8 @@ class LabelContentRight(Entity, Parsable):
     label: Optional[SensitivityLabel] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The rights property
+    rights: Optional[UsageRights] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> LabelContentRight:
@@ -39,14 +42,17 @@ class LabelContentRight(Entity, Parsable):
         """
         from .entity import Entity
         from .sensitivity_label import SensitivityLabel
+        from .usage_rights import UsageRights
 
         from .entity import Entity
         from .sensitivity_label import SensitivityLabel
+        from .usage_rights import UsageRights
 
         fields: dict[str, Callable[[Any], None]] = {
             "cid": lambda n : setattr(self, 'cid', n.get_str_value()),
             "format": lambda n : setattr(self, 'format', n.get_str_value()),
             "label": lambda n : setattr(self, 'label', n.get_object_value(SensitivityLabel)),
+            "rights": lambda n : setattr(self, 'rights', n.get_collection_of_enum_values(UsageRights)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,5 +70,6 @@ class LabelContentRight(Entity, Parsable):
         writer.write_str_value("cid", self.cid)
         writer.write_str_value("format", self.format)
         writer.write_object_value("label", self.label)
+        writer.write_enum_value("rights", self.rights)
     
 

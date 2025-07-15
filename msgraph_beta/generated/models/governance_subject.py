@@ -11,16 +11,6 @@ from .entity import Entity
 
 @dataclass
 class GovernanceSubject(Entity, Parsable):
-    # The display name of the subject.
-    display_name: Optional[str] = None
-    # The email address of the user subject. If the subject is in other types, it's empty.
-    email: Optional[str] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
-    # The principal name of the user subject. If the subject is in other types, it's empty.
-    principal_name: Optional[str] = None
-    # The type of the subject. The value can be User, Group, and ServicePrincipal.
-    type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GovernanceSubject:
@@ -43,10 +33,6 @@ class GovernanceSubject(Entity, Parsable):
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
-            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "principalName": lambda n : setattr(self, 'principal_name', n.get_str_value()),
-            "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -61,9 +47,5 @@ class GovernanceSubject(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_str_value("displayName", self.display_name)
-        writer.write_str_value("email", self.email)
-        writer.write_str_value("principalName", self.principal_name)
-        writer.write_str_value("type", self.type)
     
 

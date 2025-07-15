@@ -38,7 +38,6 @@ class GetCredentialUsageSummaryWithPeriodRequestBuilder(BaseRequestBuilder):
         Report the current state of how many users in your organization used the self-service password reset capabilities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetCredentialUsageSummaryWithPeriodGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getcredentialusagesummary?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

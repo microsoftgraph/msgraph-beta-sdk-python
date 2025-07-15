@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .health_issue import HealthIssue
+    from .identity_accounts import IdentityAccounts
     from .sensor import Sensor
 
 from ..entity import Entity
@@ -15,6 +16,8 @@ from ..entity import Entity
 class IdentityContainer(Entity, Parsable):
     # Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified.
     health_issues: Optional[list[HealthIssue]] = None
+    # The identityAccounts property
+    identity_accounts: Optional[list[IdentityAccounts]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents a customer's Microsoft Defender for Identity sensors.
@@ -38,14 +41,17 @@ class IdentityContainer(Entity, Parsable):
         """
         from ..entity import Entity
         from .health_issue import HealthIssue
+        from .identity_accounts import IdentityAccounts
         from .sensor import Sensor
 
         from ..entity import Entity
         from .health_issue import HealthIssue
+        from .identity_accounts import IdentityAccounts
         from .sensor import Sensor
 
         fields: dict[str, Callable[[Any], None]] = {
             "healthIssues": lambda n : setattr(self, 'health_issues', n.get_collection_of_object_values(HealthIssue)),
+            "identityAccounts": lambda n : setattr(self, 'identity_accounts', n.get_collection_of_object_values(IdentityAccounts)),
             "sensors": lambda n : setattr(self, 'sensors', n.get_collection_of_object_values(Sensor)),
         }
         super_fields = super().get_field_deserializers()
@@ -62,6 +68,7 @@ class IdentityContainer(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("healthIssues", self.health_issues)
+        writer.write_collection_of_object_values("identityAccounts", self.identity_accounts)
         writer.write_collection_of_object_values("sensors", self.sensors)
     
 

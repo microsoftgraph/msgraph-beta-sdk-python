@@ -6,9 +6,13 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .device_management_configuration_android_setting_applicability import DeviceManagementConfigurationAndroidSettingApplicability
     from .device_management_configuration_application_setting_applicability import DeviceManagementConfigurationApplicationSettingApplicability
     from .device_management_configuration_device_mode import DeviceManagementConfigurationDeviceMode
+    from .device_management_configuration_edge_setting_applicability import DeviceManagementConfigurationEdgeSettingApplicability
     from .device_management_configuration_exchange_online_setting_applicability import DeviceManagementConfigurationExchangeOnlineSettingApplicability
+    from .device_management_configuration_ios_setting_applicability import DeviceManagementConfigurationIosSettingApplicability
+    from .device_management_configuration_linux_setting_applicability import DeviceManagementConfigurationLinuxSettingApplicability
     from .device_management_configuration_platforms import DeviceManagementConfigurationPlatforms
     from .device_management_configuration_technologies import DeviceManagementConfigurationTechnologies
     from .device_management_configuration_windows_setting_applicability import DeviceManagementConfigurationWindowsSettingApplicability
@@ -45,14 +49,30 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Ba
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationAndroidSettingApplicability".casefold():
+            from .device_management_configuration_android_setting_applicability import DeviceManagementConfigurationAndroidSettingApplicability
+
+            return DeviceManagementConfigurationAndroidSettingApplicability()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationApplicationSettingApplicability".casefold():
             from .device_management_configuration_application_setting_applicability import DeviceManagementConfigurationApplicationSettingApplicability
 
             return DeviceManagementConfigurationApplicationSettingApplicability()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationEdgeSettingApplicability".casefold():
+            from .device_management_configuration_edge_setting_applicability import DeviceManagementConfigurationEdgeSettingApplicability
+
+            return DeviceManagementConfigurationEdgeSettingApplicability()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationExchangeOnlineSettingApplicability".casefold():
             from .device_management_configuration_exchange_online_setting_applicability import DeviceManagementConfigurationExchangeOnlineSettingApplicability
 
             return DeviceManagementConfigurationExchangeOnlineSettingApplicability()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIosSettingApplicability".casefold():
+            from .device_management_configuration_ios_setting_applicability import DeviceManagementConfigurationIosSettingApplicability
+
+            return DeviceManagementConfigurationIosSettingApplicability()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationLinuxSettingApplicability".casefold():
+            from .device_management_configuration_linux_setting_applicability import DeviceManagementConfigurationLinuxSettingApplicability
+
+            return DeviceManagementConfigurationLinuxSettingApplicability()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationWindowsSettingApplicability".casefold():
             from .device_management_configuration_windows_setting_applicability import DeviceManagementConfigurationWindowsSettingApplicability
 
@@ -64,16 +84,24 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Ba
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .device_management_configuration_android_setting_applicability import DeviceManagementConfigurationAndroidSettingApplicability
         from .device_management_configuration_application_setting_applicability import DeviceManagementConfigurationApplicationSettingApplicability
         from .device_management_configuration_device_mode import DeviceManagementConfigurationDeviceMode
+        from .device_management_configuration_edge_setting_applicability import DeviceManagementConfigurationEdgeSettingApplicability
         from .device_management_configuration_exchange_online_setting_applicability import DeviceManagementConfigurationExchangeOnlineSettingApplicability
+        from .device_management_configuration_ios_setting_applicability import DeviceManagementConfigurationIosSettingApplicability
+        from .device_management_configuration_linux_setting_applicability import DeviceManagementConfigurationLinuxSettingApplicability
         from .device_management_configuration_platforms import DeviceManagementConfigurationPlatforms
         from .device_management_configuration_technologies import DeviceManagementConfigurationTechnologies
         from .device_management_configuration_windows_setting_applicability import DeviceManagementConfigurationWindowsSettingApplicability
 
+        from .device_management_configuration_android_setting_applicability import DeviceManagementConfigurationAndroidSettingApplicability
         from .device_management_configuration_application_setting_applicability import DeviceManagementConfigurationApplicationSettingApplicability
         from .device_management_configuration_device_mode import DeviceManagementConfigurationDeviceMode
+        from .device_management_configuration_edge_setting_applicability import DeviceManagementConfigurationEdgeSettingApplicability
         from .device_management_configuration_exchange_online_setting_applicability import DeviceManagementConfigurationExchangeOnlineSettingApplicability
+        from .device_management_configuration_ios_setting_applicability import DeviceManagementConfigurationIosSettingApplicability
+        from .device_management_configuration_linux_setting_applicability import DeviceManagementConfigurationLinuxSettingApplicability
         from .device_management_configuration_platforms import DeviceManagementConfigurationPlatforms
         from .device_management_configuration_technologies import DeviceManagementConfigurationTechnologies
         from .device_management_configuration_windows_setting_applicability import DeviceManagementConfigurationWindowsSettingApplicability

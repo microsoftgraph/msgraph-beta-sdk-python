@@ -22,7 +22,7 @@ class WindowsQualityUpdateCatalogItemPolicyDetail(AdditionalDataHolder, BackedMo
     # Enum to describe policy's approval status for catalogitems 
     approval_status: Optional[WindowsQualityUpdateApprovalStatus] = None
     # Catalog item id for this approval intend
-    catalog_item_id: Optional[UUID] = None
+    catalog_item_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Policy Id for this approval intend
@@ -50,7 +50,7 @@ class WindowsQualityUpdateCatalogItemPolicyDetail(AdditionalDataHolder, BackedMo
 
         fields: dict[str, Callable[[Any], None]] = {
             "approvalStatus": lambda n : setattr(self, 'approval_status', n.get_enum_value(WindowsQualityUpdateApprovalStatus)),
-            "catalogItemId": lambda n : setattr(self, 'catalog_item_id', n.get_uuid_value()),
+            "catalogItemId": lambda n : setattr(self, 'catalog_item_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyId": lambda n : setattr(self, 'policy_id', n.get_uuid_value()),
         }
@@ -65,7 +65,7 @@ class WindowsQualityUpdateCatalogItemPolicyDetail(AdditionalDataHolder, BackedMo
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("approvalStatus", self.approval_status)
-        writer.write_uuid_value("catalogItemId", self.catalog_item_id)
+        writer.write_str_value("catalogItemId", self.catalog_item_id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_uuid_value("policyId", self.policy_id)
         writer.write_additional_data_value(self.additional_data)

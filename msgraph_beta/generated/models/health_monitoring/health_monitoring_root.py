@@ -6,19 +6,11 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
-    from .alert import Alert
-    from .alert_configuration import AlertConfiguration
 
 from ..entity import Entity
 
 @dataclass
 class HealthMonitoringRoot(Entity, Parsable):
-    # The configuration of an alert type, which defines behavior that occurs when an alert is created.
-    alert_configurations: Optional[list[AlertConfiguration]] = None
-    # The collection of health monitoring system detected alerts for anomalous usage patterns found in a Microsoft Entra tenant.
-    alerts: Optional[list[Alert]] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> HealthMonitoringRoot:
@@ -37,16 +29,10 @@ class HealthMonitoringRoot(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
-        from .alert import Alert
-        from .alert_configuration import AlertConfiguration
 
         from ..entity import Entity
-        from .alert import Alert
-        from .alert_configuration import AlertConfiguration
 
         fields: dict[str, Callable[[Any], None]] = {
-            "alertConfigurations": lambda n : setattr(self, 'alert_configurations', n.get_collection_of_object_values(AlertConfiguration)),
-            "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(Alert)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -61,7 +47,5 @@ class HealthMonitoringRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("alertConfigurations", self.alert_configurations)
-        writer.write_collection_of_object_values("alerts", self.alerts)
     
 

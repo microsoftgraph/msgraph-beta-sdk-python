@@ -7,7 +7,6 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .logon_type import LogonType
     from .user_account_security_type import UserAccountSecurityType
 
 @dataclass
@@ -30,7 +29,7 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
     # User logon ID.
     logon_id: Optional[str] = None
     # Collection of the logon types observed for the logged on user from when first to last seen. Possible values are: unknown, interactive, remoteInteractive, network, batch, service.
-    logon_types: Optional[list[LogonType]] = None
+    logon_types: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -50,10 +49,8 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .logon_type import LogonType
         from .user_account_security_type import UserAccountSecurityType
 
-        from .logon_type import LogonType
         from .user_account_security_type import UserAccountSecurityType
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -63,7 +60,7 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
             "firstSeenDateTime": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
             "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
             "logonId": lambda n : setattr(self, 'logon_id', n.get_str_value()),
-            "logonTypes": lambda n : setattr(self, 'logon_types', n.get_collection_of_enum_values(LogonType)),
+            "logonTypes": lambda n : setattr(self, 'logon_types', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -82,7 +79,7 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_datetime_value("firstSeenDateTime", self.first_seen_date_time)
         writer.write_datetime_value("lastSeenDateTime", self.last_seen_date_time)
         writer.write_str_value("logonId", self.logon_id)
-        writer.write_collection_of_enum_values("logonTypes", self.logon_types)
+        writer.write_collection_of_primitive_values("logonTypes", self.logon_types)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

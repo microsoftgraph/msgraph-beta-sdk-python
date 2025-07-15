@@ -40,7 +40,6 @@ class ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(BaseRequestBuil
         Return a list of event reminders in a user calendar within the specified start and end times.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReminderViewWithStartDateTimeWithEndDateTimeGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/user-reminderview?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

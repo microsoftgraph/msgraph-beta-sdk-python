@@ -18,7 +18,6 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from .conditional_access.conditional_access_request_builder import ConditionalAccessRequestBuilder
     from .cross_tenant_access.cross_tenant_access_request_builder import CrossTenantAccessRequestBuilder
-    from .enriched_audit_logs.enriched_audit_logs_request_builder import EnrichedAuditLogsRequestBuilder
     from .forwarding_options.forwarding_options_request_builder import ForwardingOptionsRequestBuilder
 
 class SettingsRequestBuilder(BaseRequestBuilder):
@@ -159,15 +158,6 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         from .cross_tenant_access.cross_tenant_access_request_builder import CrossTenantAccessRequestBuilder
 
         return CrossTenantAccessRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def enriched_audit_logs(self) -> EnrichedAuditLogsRequestBuilder:
-        """
-        Provides operations to manage the enrichedAuditLogs property of the microsoft.graph.networkaccess.settings entity.
-        """
-        from .enriched_audit_logs.enriched_audit_logs_request_builder import EnrichedAuditLogsRequestBuilder
-
-        return EnrichedAuditLogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def forwarding_options(self) -> ForwardingOptionsRequestBuilder:

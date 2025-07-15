@@ -14,12 +14,6 @@ class AospDeviceOwnerTrustedRootCertificate(DeviceConfiguration, Parsable):
     """
     AOSP Device Owner Trusted Root Certificate configuration profile
     """
-    # The OdataType property
-    odata_type: Optional[str] = "#microsoft.graph.aospDeviceOwnerTrustedRootCertificate"
-    # File name to display in UI.
-    cert_file_name: Optional[str] = None
-    # Trusted Root Certificate
-    trusted_root_certificate: Optional[bytes] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AospDeviceOwnerTrustedRootCertificate:
@@ -42,8 +36,6 @@ class AospDeviceOwnerTrustedRootCertificate(DeviceConfiguration, Parsable):
         from .device_configuration import DeviceConfiguration
 
         fields: dict[str, Callable[[Any], None]] = {
-            "certFileName": lambda n : setattr(self, 'cert_file_name', n.get_str_value()),
-            "trustedRootCertificate": lambda n : setattr(self, 'trusted_root_certificate', n.get_bytes_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -58,7 +50,5 @@ class AospDeviceOwnerTrustedRootCertificate(DeviceConfiguration, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_str_value("certFileName", self.cert_file_name)
-        writer.write_bytes_value("trustedRootCertificate", self.trusted_root_certificate)
     
 

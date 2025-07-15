@@ -18,11 +18,11 @@ class ThreatIntelligenceRule(PolicyRule, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.threatIntelligenceRule"
     # The action property
     action: Optional[ThreatIntelligenceAction] = None
-    # The description property
+    # A description of the threat intelligence rule. Supports $filter (eq).
     description: Optional[str] = None
     # The matchingConditions property
     matching_conditions: Optional[ThreatIntelligenceMatchingConditions] = None
-    # The priority property
+    # The priority of the rule which determines the order of rule evaluation. Lower values indicate higher priority. Supports $filter (eq).
     priority: Optional[int] = None
     # The settings property
     settings: Optional[ThreatIntelligenceRuleSettings] = None

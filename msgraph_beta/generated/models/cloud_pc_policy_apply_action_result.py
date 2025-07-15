@@ -1,26 +1,16 @@
 from __future__ import annotations
-import datetime
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .cloud_pc_policy_apply_action_status import CloudPcPolicyApplyActionStatus
     from .entity import Entity
 
 from .entity import Entity
 
 @dataclass
 class CloudPcPolicyApplyActionResult(Entity, Parsable):
-    # The date and time when the operation finished.
-    finish_date_time: Optional[datetime.datetime] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
-    # The date and time when the operation was applied.
-    start_date_time: Optional[datetime.datetime] = None
-    # The status property
-    status: Optional[CloudPcPolicyApplyActionStatus] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcPolicyApplyActionResult:
@@ -38,16 +28,11 @@ class CloudPcPolicyApplyActionResult(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .cloud_pc_policy_apply_action_status import CloudPcPolicyApplyActionStatus
         from .entity import Entity
 
-        from .cloud_pc_policy_apply_action_status import CloudPcPolicyApplyActionStatus
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
-            "finishDateTime": lambda n : setattr(self, 'finish_date_time', n.get_datetime_value()),
-            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
-            "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcPolicyApplyActionStatus)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -62,8 +47,5 @@ class CloudPcPolicyApplyActionResult(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_datetime_value("finishDateTime", self.finish_date_time)
-        writer.write_datetime_value("startDateTime", self.start_date_time)
-        writer.write_enum_value("status", self.status)
     
 

@@ -34,7 +34,6 @@ class StopRequestBuilder(BaseRequestBuilder):
         Stop a specific Cloud PC. Currently, only Windows 365 Frontline Cloud PCs are supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-stop?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

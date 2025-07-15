@@ -12,9 +12,9 @@ class RegionalFormatOverrides(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The calendar to use, e.g., Gregorian Calendar.Returned by default.
+    # The calendar to use; for example, Gregorian Calendar.Returned by default.
     calendar: Optional[str] = None
-    # The first day of the week to use, e.g., Sunday.Returned by default.
+    # The first day of the week to use; for example, Sunday.Returned by default.
     first_day_of_week: Optional[str] = None
     # The long date time format to be used for displaying dates.Returned by default.
     long_date_format: Optional[str] = None

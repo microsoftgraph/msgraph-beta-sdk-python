@@ -8,18 +8,11 @@ if TYPE_CHECKING:
     from .b2c_identity_user_flow import B2cIdentityUserFlow
     from .b2x_identity_user_flow import B2xIdentityUserFlow
     from .entity import Entity
-    from .user_flow_type import UserFlowType
 
 from .entity import Entity
 
 @dataclass
 class IdentityUserFlow(Entity, Parsable):
-    # The OdataType property
-    odata_type: Optional[str] = None
-    # The userFlowType property
-    user_flow_type: Optional[UserFlowType] = None
-    # The userFlowTypeVersion property
-    user_flow_type_version: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> IdentityUserFlow:
@@ -53,16 +46,12 @@ class IdentityUserFlow(Entity, Parsable):
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
         from .entity import Entity
-        from .user_flow_type import UserFlowType
 
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
         from .entity import Entity
-        from .user_flow_type import UserFlowType
 
         fields: dict[str, Callable[[Any], None]] = {
-            "userFlowType": lambda n : setattr(self, 'user_flow_type', n.get_enum_value(UserFlowType)),
-            "userFlowTypeVersion": lambda n : setattr(self, 'user_flow_type_version', n.get_float_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -77,7 +66,5 @@ class IdentityUserFlow(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_enum_value("userFlowType", self.user_flow_type)
-        writer.write_float_value("userFlowTypeVersion", self.user_flow_type_version)
     
 

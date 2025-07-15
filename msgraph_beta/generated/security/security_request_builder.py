@@ -30,6 +30,7 @@ if TYPE_CHECKING:
     from .host_security_profiles.host_security_profiles_request_builder import HostSecurityProfilesRequestBuilder
     from .identities.identities_request_builder import IdentitiesRequestBuilder
     from .incidents.incidents_request_builder import IncidentsRequestBuilder
+    from .incident_tasks.incident_tasks_request_builder import IncidentTasksRequestBuilder
     from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
     from .ip_security_profiles.ip_security_profiles_request_builder import IpSecurityProfilesRequestBuilder
     from .labels.labels_request_builder import LabelsRequestBuilder
@@ -256,6 +257,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .identities.identities_request_builder import IdentitiesRequestBuilder
 
         return IdentitiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def incident_tasks(self) -> IncidentTasksRequestBuilder:
+        """
+        Provides operations to manage the incidentTasks property of the microsoft.graph.security entity.
+        """
+        from .incident_tasks.incident_tasks_request_builder import IncidentTasksRequestBuilder
+
+        return IncidentTasksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def incidents(self) -> IncidentsRequestBuilder:

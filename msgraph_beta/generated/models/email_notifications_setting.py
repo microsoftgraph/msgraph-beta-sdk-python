@@ -6,21 +6,11 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .notification_events_type import NotificationEventsType
-    from .notification_recipients import NotificationRecipients
 
 from .entity import Entity
 
 @dataclass
 class EmailNotificationsSetting(Entity, Parsable):
-    # The additionalEvents property
-    additional_events: Optional[NotificationEventsType] = None
-    # Indicates whether notifications are enabled.
-    is_enabled: Optional[bool] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
-    # The recipients property
-    recipients: Optional[NotificationRecipients] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EmailNotificationsSetting:
@@ -39,17 +29,10 @@ class EmailNotificationsSetting(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .notification_events_type import NotificationEventsType
-        from .notification_recipients import NotificationRecipients
 
         from .entity import Entity
-        from .notification_events_type import NotificationEventsType
-        from .notification_recipients import NotificationRecipients
 
         fields: dict[str, Callable[[Any], None]] = {
-            "additionalEvents": lambda n : setattr(self, 'additional_events', n.get_collection_of_enum_values(NotificationEventsType)),
-            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
-            "recipients": lambda n : setattr(self, 'recipients', n.get_object_value(NotificationRecipients)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,8 +47,5 @@ class EmailNotificationsSetting(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_enum_value("additionalEvents", self.additional_events)
-        writer.write_bool_value("isEnabled", self.is_enabled)
-        writer.write_object_value("recipients", self.recipients)
     
 

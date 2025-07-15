@@ -5,12 +5,15 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .genmoji_ios_managed_app_configuration_state import GenmojiIosManagedAppConfigurationState
     from .key_value_pair import KeyValuePair
     from .managed_app_data_encryption_type import ManagedAppDataEncryptionType
     from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
     from .managed_app_remediation_action import ManagedAppRemediationAction
     from .managed_mobile_app import ManagedMobileApp
+    from .screen_capture_ios_managed_app_configuration_state import ScreenCaptureIosManagedAppConfigurationState
     from .targeted_managed_app_protection import TargetedManagedAppProtection
+    from .writing_tools_ios_managed_app_configuration_state import WritingToolsIosManagedAppConfigurationState
 
 from .targeted_managed_app_protection import TargetedManagedAppProtection
 
@@ -33,7 +36,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
     app_data_encryption_type: Optional[ManagedAppDataEncryptionType] = None
     # List of apps to which the policy is deployed.
     apps: Optional[list[ManagedMobileApp]] = None
-    # A custom browser protocol to open weblink on iOS.
+    # A custom browser protocol to open weblink on iOS. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
     custom_browser_protocol: Optional[str] = None
     # Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
     custom_dialer_app_protocol: Optional[str] = None
@@ -51,6 +54,8 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
     face_id_blocked: Optional[bool] = None
     # Defines if open-in operation is supported from the managed app to the filesharing locations selected. This setting only applies when AllowedOutboundDataTransferDestinations is set to ManagedApps and DisableProtectionOfManagedOutboundOpenInData is set to False.
     filter_open_in_to_only_managed_apps: Optional[bool] = None
+    # Configuration state (blocked or not blocked) for Apple Intelligence Genmoji setting. Possible values are: notBlocked, blocked, unknownFutureValue.
+    genmoji_configuration_state: Optional[GenmojiIosManagedAppConfigurationState] = None
     # A list of custom urls that are allowed to invocate a managed app
     managed_universal_links: Optional[list[str]] = None
     # When a specific app redirection is enforced by protectedMessagingRedirectAppType in an App Protection Policy, this value defines the app url redirect schemes which are allowed to be used.
@@ -63,8 +68,12 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
     minimum_wipe_sdk_version: Optional[str] = None
     # Protect incoming data from unknown source. This setting is only allowed to be True when AllowedInboundDataTransferSources is set to AllApps.
     protect_inbound_data_from_unknown_sources: Optional[bool] = None
+    # Configuration state (blocked or not blocked) for Apple Intelligence screen capture setting. Possible values are: notBlocked, blocked, unknownFutureValue.
+    screen_capture_configuration_state: Optional[ScreenCaptureIosManagedAppConfigurationState] = None
     # Defines if third party keyboards are allowed while accessing a managed app
     third_party_keyboards_blocked: Optional[bool] = None
+    # Configuration state (blocked or not blocked) for Apple Intelligence writing tools setting. Possible values are: notBlocked, blocked, unknownFutureValue.
+    writing_tools_configuration_state: Optional[WritingToolsIosManagedAppConfigurationState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> IosManagedAppProtection:
@@ -82,19 +91,25 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .genmoji_ios_managed_app_configuration_state import GenmojiIosManagedAppConfigurationState
         from .key_value_pair import KeyValuePair
         from .managed_app_data_encryption_type import ManagedAppDataEncryptionType
         from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
         from .managed_app_remediation_action import ManagedAppRemediationAction
         from .managed_mobile_app import ManagedMobileApp
+        from .screen_capture_ios_managed_app_configuration_state import ScreenCaptureIosManagedAppConfigurationState
         from .targeted_managed_app_protection import TargetedManagedAppProtection
+        from .writing_tools_ios_managed_app_configuration_state import WritingToolsIosManagedAppConfigurationState
 
+        from .genmoji_ios_managed_app_configuration_state import GenmojiIosManagedAppConfigurationState
         from .key_value_pair import KeyValuePair
         from .managed_app_data_encryption_type import ManagedAppDataEncryptionType
         from .managed_app_policy_deployment_summary import ManagedAppPolicyDeploymentSummary
         from .managed_app_remediation_action import ManagedAppRemediationAction
         from .managed_mobile_app import ManagedMobileApp
+        from .screen_capture_ios_managed_app_configuration_state import ScreenCaptureIosManagedAppConfigurationState
         from .targeted_managed_app_protection import TargetedManagedAppProtection
+        from .writing_tools_ios_managed_app_configuration_state import WritingToolsIosManagedAppConfigurationState
 
         fields: dict[str, Callable[[Any], None]] = {
             "allowWidgetContentSync": lambda n : setattr(self, 'allow_widget_content_sync', n.get_bool_value()),
@@ -112,13 +127,16 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
             "exemptedUniversalLinks": lambda n : setattr(self, 'exempted_universal_links', n.get_collection_of_primitive_values(str)),
             "faceIdBlocked": lambda n : setattr(self, 'face_id_blocked', n.get_bool_value()),
             "filterOpenInToOnlyManagedApps": lambda n : setattr(self, 'filter_open_in_to_only_managed_apps', n.get_bool_value()),
+            "genmojiConfigurationState": lambda n : setattr(self, 'genmoji_configuration_state', n.get_enum_value(GenmojiIosManagedAppConfigurationState)),
             "managedUniversalLinks": lambda n : setattr(self, 'managed_universal_links', n.get_collection_of_primitive_values(str)),
             "messagingRedirectAppUrlScheme": lambda n : setattr(self, 'messaging_redirect_app_url_scheme', n.get_str_value()),
             "minimumRequiredSdkVersion": lambda n : setattr(self, 'minimum_required_sdk_version', n.get_str_value()),
             "minimumWarningSdkVersion": lambda n : setattr(self, 'minimum_warning_sdk_version', n.get_str_value()),
             "minimumWipeSdkVersion": lambda n : setattr(self, 'minimum_wipe_sdk_version', n.get_str_value()),
             "protectInboundDataFromUnknownSources": lambda n : setattr(self, 'protect_inbound_data_from_unknown_sources', n.get_bool_value()),
+            "screenCaptureConfigurationState": lambda n : setattr(self, 'screen_capture_configuration_state', n.get_enum_value(ScreenCaptureIosManagedAppConfigurationState)),
             "thirdPartyKeyboardsBlocked": lambda n : setattr(self, 'third_party_keyboards_blocked', n.get_bool_value()),
+            "writingToolsConfigurationState": lambda n : setattr(self, 'writing_tools_configuration_state', n.get_enum_value(WritingToolsIosManagedAppConfigurationState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -148,12 +166,15 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
         writer.write_collection_of_primitive_values("exemptedUniversalLinks", self.exempted_universal_links)
         writer.write_bool_value("faceIdBlocked", self.face_id_blocked)
         writer.write_bool_value("filterOpenInToOnlyManagedApps", self.filter_open_in_to_only_managed_apps)
+        writer.write_enum_value("genmojiConfigurationState", self.genmoji_configuration_state)
         writer.write_collection_of_primitive_values("managedUniversalLinks", self.managed_universal_links)
         writer.write_str_value("messagingRedirectAppUrlScheme", self.messaging_redirect_app_url_scheme)
         writer.write_str_value("minimumRequiredSdkVersion", self.minimum_required_sdk_version)
         writer.write_str_value("minimumWarningSdkVersion", self.minimum_warning_sdk_version)
         writer.write_str_value("minimumWipeSdkVersion", self.minimum_wipe_sdk_version)
         writer.write_bool_value("protectInboundDataFromUnknownSources", self.protect_inbound_data_from_unknown_sources)
+        writer.write_enum_value("screenCaptureConfigurationState", self.screen_capture_configuration_state)
         writer.write_bool_value("thirdPartyKeyboardsBlocked", self.third_party_keyboards_blocked)
+        writer.write_enum_value("writingToolsConfigurationState", self.writing_tools_configuration_state)
     
 

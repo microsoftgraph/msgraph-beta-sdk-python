@@ -5,7 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .authorization_system import AuthorizationSystem
     from .aws_authorization_system_resource import AwsAuthorizationSystemResource
     from .azure_authorization_system_resource import AzureAuthorizationSystemResource
     from .entity import Entity
@@ -15,16 +14,6 @@ from .entity import Entity
 
 @dataclass
 class AuthorizationSystemResource(Entity, Parsable):
-    # The authorization system that the resource exists in.
-    authorization_system: Optional[AuthorizationSystem] = None
-    # The name of the resource. Read-only. Supports $filter (eq,contains).
-    display_name: Optional[str] = None
-    # The ID of the resource as defined by the authorization system provider. Read-only. Supports $filter (eq).
-    external_id: Optional[str] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
-    # The type of the resource. Read-only. Supports $filter (eq).
-    resource_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AuthorizationSystemResource:
@@ -59,23 +48,17 @@ class AuthorizationSystemResource(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .authorization_system import AuthorizationSystem
         from .aws_authorization_system_resource import AwsAuthorizationSystemResource
         from .azure_authorization_system_resource import AzureAuthorizationSystemResource
         from .entity import Entity
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
 
-        from .authorization_system import AuthorizationSystem
         from .aws_authorization_system_resource import AwsAuthorizationSystemResource
         from .azure_authorization_system_resource import AzureAuthorizationSystemResource
         from .entity import Entity
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
 
         fields: dict[str, Callable[[Any], None]] = {
-            "authorizationSystem": lambda n : setattr(self, 'authorization_system', n.get_object_value(AuthorizationSystem)),
-            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
-            "resourceType": lambda n : setattr(self, 'resource_type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -90,9 +73,5 @@ class AuthorizationSystemResource(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_object_value("authorizationSystem", self.authorization_system)
-        writer.write_str_value("displayName", self.display_name)
-        writer.write_str_value("externalId", self.external_id)
-        writer.write_str_value("resourceType", self.resource_type)
     
 
