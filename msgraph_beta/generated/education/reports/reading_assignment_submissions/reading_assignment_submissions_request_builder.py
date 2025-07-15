@@ -49,10 +49,10 @@ class ReadingAssignmentSubmissionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ReadingAssignmentSubmissionsRequestBuilderGetQueryParameters]] = None) -> Optional[ReadingAssignmentSubmissionCollectionResponse]:
         """
-        Read the properties and relationships of a readingAssignmentSubmission object.
+        Get a list of reading assignments that were submitted by a student.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ReadingAssignmentSubmissionCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/readingassignmentsubmission-get?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/reportsroot-list-readingassignmentsubmissions?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -93,7 +93,7 @@ class ReadingAssignmentSubmissionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ReadingAssignmentSubmissionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a readingAssignmentSubmission object.
+        Get a list of reading assignments that were submitted by a student.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +139,7 @@ class ReadingAssignmentSubmissionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ReadingAssignmentSubmissionsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a readingAssignmentSubmission object.
+        Get a list of reading assignments that were submitted by a student.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

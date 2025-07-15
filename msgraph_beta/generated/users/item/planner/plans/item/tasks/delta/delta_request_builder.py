@@ -35,7 +35,6 @@ class DeltaRequestBuilder(BaseRequestBuilder):
         Get newly created, updated, or deleted tasks in either a Planner plan or assigned to the signed-in user without having to perform a full read of the entire resource collection. For details, see Use delta query to track changes in Microsoft Graph data.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeltaGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/plannertask-delta?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

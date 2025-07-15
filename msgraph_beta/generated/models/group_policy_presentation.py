@@ -1,5 +1,4 @@
 from __future__ import annotations
-import datetime
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
@@ -7,7 +6,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .group_policy_definition import GroupPolicyDefinition
     from .group_policy_presentation_check_box import GroupPolicyPresentationCheckBox
     from .group_policy_presentation_combo_box import GroupPolicyPresentationComboBox
     from .group_policy_presentation_decimal_text_box import GroupPolicyPresentationDecimalTextBox
@@ -26,14 +24,6 @@ class GroupPolicyPresentation(Entity, Parsable):
     """
     The base entity for the display presentation of any of the additional options in a group policy definition.
     """
-    # The group policy definition associated with the presentation.
-    definition: Optional[GroupPolicyDefinition] = None
-    # Localized text label for any presentation entity. The default value is empty.
-    label: Optional[str] = None
-    # The date and time the entity was last modified.
-    last_modified_date_time: Optional[datetime.datetime] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> GroupPolicyPresentation:
@@ -97,7 +87,6 @@ class GroupPolicyPresentation(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .group_policy_definition import GroupPolicyDefinition
         from .group_policy_presentation_check_box import GroupPolicyPresentationCheckBox
         from .group_policy_presentation_combo_box import GroupPolicyPresentationComboBox
         from .group_policy_presentation_decimal_text_box import GroupPolicyPresentationDecimalTextBox
@@ -110,7 +99,6 @@ class GroupPolicyPresentation(Entity, Parsable):
         from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
 
         from .entity import Entity
-        from .group_policy_definition import GroupPolicyDefinition
         from .group_policy_presentation_check_box import GroupPolicyPresentationCheckBox
         from .group_policy_presentation_combo_box import GroupPolicyPresentationComboBox
         from .group_policy_presentation_decimal_text_box import GroupPolicyPresentationDecimalTextBox
@@ -123,9 +111,6 @@ class GroupPolicyPresentation(Entity, Parsable):
         from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
 
         fields: dict[str, Callable[[Any], None]] = {
-            "definition": lambda n : setattr(self, 'definition', n.get_object_value(GroupPolicyDefinition)),
-            "label": lambda n : setattr(self, 'label', n.get_str_value()),
-            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -140,8 +125,5 @@ class GroupPolicyPresentation(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_object_value("definition", self.definition)
-        writer.write_str_value("label", self.label)
-        writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
     
 

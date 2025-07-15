@@ -41,7 +41,6 @@ class MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTi
         Get the number of users, devices, and workloads per traffic type in a specified time period.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EntitiesSummariesWithStartDateTimeWithEndDateTimeGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-reports-entitiessummaries?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

@@ -7,7 +7,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .risk_detail import RiskDetail
-    from .risk_event_type import RiskEventType
 
 @dataclass
 class RiskUserActivity(AdditionalDataHolder, BackedModel, Parsable):
@@ -19,7 +18,7 @@ class RiskUserActivity(AdditionalDataHolder, BackedModel, Parsable):
     # The possible values are none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue.
     detail: Optional[RiskDetail] = None
     # List of risk event types. Deprecated. Use riskEventType instead.
-    event_types: Optional[list[RiskEventType]] = None
+    event_types: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The type of risk event detected. The possible values are: anonymizedIPAddress, investigationsThreatIntelligence, investigationsThreatIntelligenceSigninLinked,leakedCredentials, maliciousIPAddress, maliciousIPAddressValidCredentialsBlockedIP, malwareInfectedIPAddress, mcasImpossibleTravel, mcasSuspiciousInboxManipulationRules, suspiciousAPITraffic, suspiciousIPAddress,   unfamiliarFeatures, unlikelyTravel. For more information about each value, see Risk types and detection.
@@ -42,14 +41,12 @@ class RiskUserActivity(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .risk_detail import RiskDetail
-        from .risk_event_type import RiskEventType
 
         from .risk_detail import RiskDetail
-        from .risk_event_type import RiskEventType
 
         fields: dict[str, Callable[[Any], None]] = {
             "detail": lambda n : setattr(self, 'detail', n.get_enum_value(RiskDetail)),
-            "eventTypes": lambda n : setattr(self, 'event_types', n.get_collection_of_enum_values(RiskEventType)),
+            "eventTypes": lambda n : setattr(self, 'event_types', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "riskEventTypes": lambda n : setattr(self, 'risk_event_types', n.get_collection_of_primitive_values(str)),
         }
@@ -64,7 +61,7 @@ class RiskUserActivity(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("detail", self.detail)
-        writer.write_collection_of_enum_values("eventTypes", self.event_types)
+        writer.write_collection_of_primitive_values("eventTypes", self.event_types)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_primitive_values("riskEventTypes", self.risk_event_types)
         writer.write_additional_data_value(self.additional_data)

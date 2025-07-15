@@ -34,7 +34,6 @@ class RefreshRequestBuilder(BaseRequestBuilder):
         In Microsoft Entra entitlement management, refresh the accessPackageResource object to fetch the latest details for displayName, description, and resourceType from the origin system. For the AadApplication originSystem, this operation also updates the displayName and description for the accessPackageResourceRole. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackageresource-refresh?view=graph-rest-beta
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         request_info = self.to_post_request_information(

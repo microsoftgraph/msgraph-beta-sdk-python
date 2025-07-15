@@ -11,10 +11,6 @@ from .entity import Entity
 
 @dataclass
 class RecommendationConfiguration(Entity, Parsable):
-    # Indicates whether notifications for recommendations are enabled.
-    is_notification_enabled: Optional[bool] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RecommendationConfiguration:
@@ -37,7 +33,6 @@ class RecommendationConfiguration(Entity, Parsable):
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
-            "isNotificationEnabled": lambda n : setattr(self, 'is_notification_enabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,6 +47,5 @@ class RecommendationConfiguration(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_bool_value("isNotificationEnabled", self.is_notification_enabled)
     
 

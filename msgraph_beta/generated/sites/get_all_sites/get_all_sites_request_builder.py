@@ -35,7 +35,6 @@ class GetAllSitesRequestBuilder(BaseRequestBuilder):
         List sites across geographies in an organization. For more details, see Best practices for discovering files and detecting changes at scale.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAllSitesGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/site-getallsites?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

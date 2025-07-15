@@ -16,11 +16,11 @@ class ThreatIntelligenceMatchingConditions(AdditionalDataHolder, BackedModel, Pa
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The destinations property
+    # A collection of destinations that are considered potential threats for network access evaluation.
     destinations: Optional[list[ThreatIntelligenceDestination]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The severity property
+    # The severity level of the threat associated with the destinations. Higher severity levels typically result in stricter security controls. The possible values are: low, medium, high, unknownFutureValue.
     severity: Optional[ThreatIntelligenceSeverity] = None
     
     @staticmethod

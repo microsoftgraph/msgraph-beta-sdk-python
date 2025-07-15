@@ -6,16 +6,11 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .non_admin_setting import NonAdminSetting
 
 from .entity import Entity
 
 @dataclass
 class UxSetting(Entity, Parsable):
-    # The OdataType property
-    odata_type: Optional[str] = None
-    # The restrictNonAdminAccess property
-    restrict_non_admin_access: Optional[NonAdminSetting] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> UxSetting:
@@ -34,13 +29,10 @@ class UxSetting(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .non_admin_setting import NonAdminSetting
 
         from .entity import Entity
-        from .non_admin_setting import NonAdminSetting
 
         fields: dict[str, Callable[[Any], None]] = {
-            "restrictNonAdminAccess": lambda n : setattr(self, 'restrict_non_admin_access', n.get_enum_value(NonAdminSetting)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,6 +47,5 @@ class UxSetting(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_enum_value("restrictNonAdminAccess", self.restrict_non_admin_access)
     
 

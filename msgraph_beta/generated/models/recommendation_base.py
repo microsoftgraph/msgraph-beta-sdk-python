@@ -11,7 +11,6 @@ if TYPE_CHECKING:
     from .impacted_resource import ImpactedResource
     from .recommendation import Recommendation
     from .recommendation_category import RecommendationCategory
-    from .recommendation_feature_areas import RecommendationFeatureAreas
     from .recommendation_priority import RecommendationPriority
     from .recommendation_status import RecommendationStatus
     from .recommendation_type import RecommendationType
@@ -34,7 +33,7 @@ class RecommendationBase(Entity, Parsable):
     # The title of the recommendation.
     display_name: Optional[str] = None
     # The directory feature that the recommendation is related to.
-    feature_areas: Optional[list[RecommendationFeatureAreas]] = None
+    feature_areas: Optional[list[str]] = None
     # The future date and time when a recommendation should be completed.
     impact_start_date_time: Optional[datetime.datetime] = None
     # Indicates the scope of impact of a recommendation. tenantLevel indicates that the recommendation impacts the whole tenant. Other possible values include users, apps.
@@ -63,7 +62,7 @@ class RecommendationBase(Entity, Parsable):
     release_type: Optional[str] = None
     # Description of the impact on users of the remediation. Only applies to recommendations with category set to identitySecureScore.
     remediation_impact: Optional[str] = None
-    # The required licenses to view the recommendation. The possible values are: notApplicable, microsoftEntraIdFree, microsoftEntraIdP1, microsoftEntraIdP2, microsoftEntraIdGovernance, microsoftEntraWorkloadId, unknownFutureValue.
+    # The required licenses to view the recommendation. The possible values are: notApplicable, microsoftEntraIdFree, microsoftEntraIdP1, microsoftEntraIdP2, microsoftEntraIdGovernance, microsoftEntraWorkloadId, unknownFutureValue, aatp. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: aatp.
     required_licenses: Optional[RequiredLicenses] = None
     # The status property
     status: Optional[RecommendationStatus] = None
@@ -98,7 +97,6 @@ class RecommendationBase(Entity, Parsable):
         from .impacted_resource import ImpactedResource
         from .recommendation import Recommendation
         from .recommendation_category import RecommendationCategory
-        from .recommendation_feature_areas import RecommendationFeatureAreas
         from .recommendation_priority import RecommendationPriority
         from .recommendation_status import RecommendationStatus
         from .recommendation_type import RecommendationType
@@ -109,7 +107,6 @@ class RecommendationBase(Entity, Parsable):
         from .impacted_resource import ImpactedResource
         from .recommendation import Recommendation
         from .recommendation_category import RecommendationCategory
-        from .recommendation_feature_areas import RecommendationFeatureAreas
         from .recommendation_priority import RecommendationPriority
         from .recommendation_status import RecommendationStatus
         from .recommendation_type import RecommendationType
@@ -122,7 +119,7 @@ class RecommendationBase(Entity, Parsable):
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "currentScore": lambda n : setattr(self, 'current_score', n.get_float_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "featureAreas": lambda n : setattr(self, 'feature_areas', n.get_collection_of_enum_values(RecommendationFeatureAreas)),
+            "featureAreas": lambda n : setattr(self, 'feature_areas', n.get_collection_of_primitive_values(str)),
             "impactStartDateTime": lambda n : setattr(self, 'impact_start_date_time', n.get_datetime_value()),
             "impactType": lambda n : setattr(self, 'impact_type', n.get_str_value()),
             "impactedResources": lambda n : setattr(self, 'impacted_resources', n.get_collection_of_object_values(ImpactedResource)),
@@ -158,7 +155,7 @@ class RecommendationBase(Entity, Parsable):
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_float_value("currentScore", self.current_score)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_collection_of_enum_values("featureAreas", self.feature_areas)
+        writer.write_collection_of_primitive_values("featureAreas", self.feature_areas)
         writer.write_datetime_value("impactStartDateTime", self.impact_start_date_time)
         writer.write_str_value("impactType", self.impact_type)
         writer.write_collection_of_object_values("impactedResources", self.impacted_resources)

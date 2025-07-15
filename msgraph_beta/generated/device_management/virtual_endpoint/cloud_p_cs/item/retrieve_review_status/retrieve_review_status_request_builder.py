@@ -35,7 +35,6 @@ class RetrieveReviewStatusRequestBuilder(BaseRequestBuilder):
         Get the review status of a Cloud PC.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcReviewStatus]
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-retrievereviewstatus?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

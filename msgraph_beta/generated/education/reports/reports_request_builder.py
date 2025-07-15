@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.reports_root import ReportsRoot
     from .reading_assignment_submissions.reading_assignment_submissions_request_builder import ReadingAssignmentSubmissionsRequestBuilder
+    from .reading_coach_passages.reading_coach_passages_request_builder import ReadingCoachPassagesRequestBuilder
     from .reflect_check_in_responses.reflect_check_in_responses_request_builder import ReflectCheckInResponsesRequestBuilder
     from .speaker_assignment_submissions.speaker_assignment_submissions_request_builder import SpeakerAssignmentSubmissionsRequestBuilder
 
@@ -149,6 +150,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .reading_assignment_submissions.reading_assignment_submissions_request_builder import ReadingAssignmentSubmissionsRequestBuilder
 
         return ReadingAssignmentSubmissionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def reading_coach_passages(self) -> ReadingCoachPassagesRequestBuilder:
+        """
+        Provides operations to manage the readingCoachPassages property of the microsoft.graph.reportsRoot entity.
+        """
+        from .reading_coach_passages.reading_coach_passages_request_builder import ReadingCoachPassagesRequestBuilder
+
+        return ReadingCoachPassagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def reflect_check_in_responses(self) -> ReflectCheckInResponsesRequestBuilder:

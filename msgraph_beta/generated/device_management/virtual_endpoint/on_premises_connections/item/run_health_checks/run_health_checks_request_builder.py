@@ -34,7 +34,6 @@ class RunHealthChecksRequestBuilder(BaseRequestBuilder):
         Run health checks on the cloudPcOnPremisesConnection object. It triggers a new health check for this cloudPcOnPremisesConnection object and change the healthCheckStatus and healthCheckStatusDetails properties when check finished.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-runhealthcheck?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

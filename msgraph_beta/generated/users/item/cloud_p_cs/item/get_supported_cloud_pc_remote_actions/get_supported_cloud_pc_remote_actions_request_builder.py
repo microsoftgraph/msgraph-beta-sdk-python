@@ -35,7 +35,6 @@ class GetSupportedCloudPcRemoteActionsRequestBuilder(BaseRequestBuilder):
         Get a list of supported Cloud PC remote actions for a specific Cloud PC device, including the action names and capabilities.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetSupportedCloudPcRemoteActionsGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-getsupportedcloudpcremoteactions?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

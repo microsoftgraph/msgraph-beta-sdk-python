@@ -49,9 +49,10 @@ class ThreatIntelligencePoliciesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ThreatIntelligencePoliciesRequestBuilderGetQueryParameters]] = None) -> Optional[ThreatIntelligencePolicyCollectionResponse]:
         """
-        Get threatIntelligencePolicies from networkAccess
+        Get a list of the threatIntelligencePolicy objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ThreatIntelligencePolicyCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-networkaccessroot-list-threatintelligencepolicies?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class ThreatIntelligencePoliciesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ThreatIntelligencePolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ThreatIntelligencePolicy]:
         """
-        Create new navigation property to threatIntelligencePolicies for networkAccess
+        Create a new threatIntelligencePolicy object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ThreatIntelligencePolicy]
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-networkaccessroot-post-threatintelligencepolicies?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class ThreatIntelligencePoliciesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ThreatIntelligencePoliciesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get threatIntelligencePolicies from networkAccess
+        Get a list of the threatIntelligencePolicy objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class ThreatIntelligencePoliciesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ThreatIntelligencePolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to threatIntelligencePolicies for networkAccess
+        Create a new threatIntelligencePolicy object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class ThreatIntelligencePoliciesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ThreatIntelligencePoliciesRequestBuilderGetQueryParameters():
         """
-        Get threatIntelligencePolicies from networkAccess
+        Get a list of the threatIntelligencePolicy objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

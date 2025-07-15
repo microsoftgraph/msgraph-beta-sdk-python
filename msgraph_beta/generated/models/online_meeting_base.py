@@ -19,7 +19,6 @@ if TYPE_CHECKING:
     from .meeting_live_share_options import MeetingLiveShareOptions
     from .online_meeting import OnlineMeeting
     from .online_meeting_presenters import OnlineMeetingPresenters
-    from .online_meeting_role import OnlineMeetingRole
     from .virtual_event_session import VirtualEventSession
     from .watermark_protection_values import WatermarkProtectionValues
 
@@ -56,7 +55,7 @@ class OnlineMeetingBase(Entity, Parsable):
     # Specifies who can be a presenter in a meeting. Possible values are: everyone, organization, roleIsPresenter, organizer, unknownFutureValue.
     allowed_presenters: Optional[OnlineMeetingPresenters] = None
     # Specifies whose identity is anonymized in the meeting. Possible values are: attendee. The attendee value can't be removed through a PATCH operation once added.
-    anonymize_identity_for_roles: Optional[list[OnlineMeetingRole]] = None
+    anonymize_identity_for_roles: Optional[list[str]] = None
     # The attendance reports of an online meeting. Read-only.
     attendance_reports: Optional[list[MeetingAttendanceReport]] = None
     # The phone access (dial-in) information for an online meeting. Read-only.
@@ -133,7 +132,6 @@ class OnlineMeetingBase(Entity, Parsable):
         from .meeting_live_share_options import MeetingLiveShareOptions
         from .online_meeting import OnlineMeeting
         from .online_meeting_presenters import OnlineMeetingPresenters
-        from .online_meeting_role import OnlineMeetingRole
         from .virtual_event_session import VirtualEventSession
         from .watermark_protection_values import WatermarkProtectionValues
 
@@ -151,7 +149,6 @@ class OnlineMeetingBase(Entity, Parsable):
         from .meeting_live_share_options import MeetingLiveShareOptions
         from .online_meeting import OnlineMeeting
         from .online_meeting_presenters import OnlineMeetingPresenters
-        from .online_meeting_role import OnlineMeetingRole
         from .virtual_event_session import VirtualEventSession
         from .watermark_protection_values import WatermarkProtectionValues
 
@@ -170,7 +167,7 @@ class OnlineMeetingBase(Entity, Parsable):
             "allowWhiteboard": lambda n : setattr(self, 'allow_whiteboard', n.get_bool_value()),
             "allowedLobbyAdmitters": lambda n : setattr(self, 'allowed_lobby_admitters', n.get_enum_value(AllowedLobbyAdmitterRoles)),
             "allowedPresenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(OnlineMeetingPresenters)),
-            "anonymizeIdentityForRoles": lambda n : setattr(self, 'anonymize_identity_for_roles', n.get_collection_of_enum_values(OnlineMeetingRole)),
+            "anonymizeIdentityForRoles": lambda n : setattr(self, 'anonymize_identity_for_roles', n.get_collection_of_primitive_values(str)),
             "attendanceReports": lambda n : setattr(self, 'attendance_reports', n.get_collection_of_object_values(MeetingAttendanceReport)),
             "audioConferencing": lambda n : setattr(self, 'audio_conferencing', n.get_object_value(AudioConferencing)),
             "chatInfo": lambda n : setattr(self, 'chat_info', n.get_object_value(ChatInfo)),
@@ -214,7 +211,7 @@ class OnlineMeetingBase(Entity, Parsable):
         writer.write_bool_value("allowWhiteboard", self.allow_whiteboard)
         writer.write_enum_value("allowedLobbyAdmitters", self.allowed_lobby_admitters)
         writer.write_enum_value("allowedPresenters", self.allowed_presenters)
-        writer.write_collection_of_enum_values("anonymizeIdentityForRoles", self.anonymize_identity_for_roles)
+        writer.write_collection_of_primitive_values("anonymizeIdentityForRoles", self.anonymize_identity_for_roles)
         writer.write_collection_of_object_values("attendanceReports", self.attendance_reports)
         writer.write_object_value("audioConferencing", self.audio_conferencing)
         writer.write_object_value("chatInfo", self.chat_info)

@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .client_fallback_action import ClientFallbackAction
     from .forwarding_rule_action import ForwardingRuleAction
     from .internet_access_forwarding_rule import InternetAccessForwardingRule
     from .m365_forwarding_rule import M365ForwardingRule
@@ -21,6 +22,8 @@ class ForwardingRule(PolicyRule, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingRule"
     # The action property
     action: Optional[ForwardingRuleAction] = None
+    # The clientFallbackAction property
+    client_fallback_action: Optional[ClientFallbackAction] = None
     # Destinations maintain a list of potential destinations and destination types that the user may access within the context of a network filtering policy. This includes IP addresses and fully qualified domain names (FQDNs)/URLs.
     destinations: Optional[list[RuleDestination]] = None
     # The ruleType property
@@ -59,6 +62,7 @@ class ForwardingRule(PolicyRule, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .client_fallback_action import ClientFallbackAction
         from .forwarding_rule_action import ForwardingRuleAction
         from .internet_access_forwarding_rule import InternetAccessForwardingRule
         from .m365_forwarding_rule import M365ForwardingRule
@@ -67,6 +71,7 @@ class ForwardingRule(PolicyRule, Parsable):
         from .private_access_forwarding_rule import PrivateAccessForwardingRule
         from .rule_destination import RuleDestination
 
+        from .client_fallback_action import ClientFallbackAction
         from .forwarding_rule_action import ForwardingRuleAction
         from .internet_access_forwarding_rule import InternetAccessForwardingRule
         from .m365_forwarding_rule import M365ForwardingRule
@@ -77,6 +82,7 @@ class ForwardingRule(PolicyRule, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(ForwardingRuleAction)),
+            "clientFallbackAction": lambda n : setattr(self, 'client_fallback_action', n.get_enum_value(ClientFallbackAction)),
             "destinations": lambda n : setattr(self, 'destinations', n.get_collection_of_object_values(RuleDestination)),
             "ruleType": lambda n : setattr(self, 'rule_type', n.get_enum_value(NetworkDestinationType)),
         }
@@ -94,6 +100,7 @@ class ForwardingRule(PolicyRule, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("action", self.action)
+        writer.write_enum_value("clientFallbackAction", self.client_fallback_action)
         writer.write_collection_of_object_values("destinations", self.destinations)
         writer.write_enum_value("ruleType", self.rule_type)
     

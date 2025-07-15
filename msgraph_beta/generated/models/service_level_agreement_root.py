@@ -5,17 +5,12 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .azure_a_d_authentication import AzureADAuthentication
     from .entity import Entity
 
 from .entity import Entity
 
 @dataclass
 class ServiceLevelAgreementRoot(Entity, Parsable):
-    # Collects the monthly Microsoft Entra Health SLA attainment metrics for a Microsoft Entra tenant.
-    azure_a_d_authentication: Optional[AzureADAuthentication] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ServiceLevelAgreementRoot:
@@ -33,14 +28,11 @@ class ServiceLevelAgreementRoot(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .azure_a_d_authentication import AzureADAuthentication
         from .entity import Entity
 
-        from .azure_a_d_authentication import AzureADAuthentication
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
-            "azureADAuthentication": lambda n : setattr(self, 'azure_a_d_authentication', n.get_object_value(AzureADAuthentication)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,6 +47,5 @@ class ServiceLevelAgreementRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_object_value("azureADAuthentication", self.azure_a_d_authentication)
     
 

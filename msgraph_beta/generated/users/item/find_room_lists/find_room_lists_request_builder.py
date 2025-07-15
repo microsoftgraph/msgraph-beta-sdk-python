@@ -35,7 +35,6 @@ class FindRoomListsRequestBuilder(BaseRequestBuilder):
         Get the room lists defined in a tenant, as represented by their emailAddress objects. Tenants can organize meeting rooms into room lists. In this API, each meeting room and room list is represented by an emailAddress instance.You can get all the room lists in the tenant, get all the rooms in the tenant, or get all the rooms in a specific room list.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FindRoomListsGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/user-findroomlists?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

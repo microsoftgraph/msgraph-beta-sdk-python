@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .policy import Policy
     from .status import Status
     from .threat_intelligence_policy_link import ThreatIntelligencePolicyLink
+    from .tls_inspection_policy_link import TlsInspectionPolicyLink
 
 from ..entity import Entity
 
@@ -51,6 +52,10 @@ class PolicyLink(Entity, Parsable):
             from .threat_intelligence_policy_link import ThreatIntelligencePolicyLink
 
             return ThreatIntelligencePolicyLink()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionPolicyLink".casefold():
+            from .tls_inspection_policy_link import TlsInspectionPolicyLink
+
+            return TlsInspectionPolicyLink()
         return PolicyLink()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -64,6 +69,7 @@ class PolicyLink(Entity, Parsable):
         from .policy import Policy
         from .status import Status
         from .threat_intelligence_policy_link import ThreatIntelligencePolicyLink
+        from .tls_inspection_policy_link import TlsInspectionPolicyLink
 
         from ..entity import Entity
         from .filtering_policy_link import FilteringPolicyLink
@@ -71,6 +77,7 @@ class PolicyLink(Entity, Parsable):
         from .policy import Policy
         from .status import Status
         from .threat_intelligence_policy_link import ThreatIntelligencePolicyLink
+        from .tls_inspection_policy_link import TlsInspectionPolicyLink
 
         fields: dict[str, Callable[[Any], None]] = {
             "policy": lambda n : setattr(self, 'policy', n.get_object_value(Policy)),

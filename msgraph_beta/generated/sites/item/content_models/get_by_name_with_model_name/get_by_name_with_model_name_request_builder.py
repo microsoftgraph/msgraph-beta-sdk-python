@@ -41,7 +41,6 @@ class GetByNameWithModelNameRequestBuilder(BaseRequestBuilder):
         Read the properties and relationships of a contentModel object by its model name. The name should be the full model filename, including the file extension; for example, exampleModel.classifier.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContentModel]
-        Find more info here: https://learn.microsoft.com/graph/api/contentmodel-getbyname?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

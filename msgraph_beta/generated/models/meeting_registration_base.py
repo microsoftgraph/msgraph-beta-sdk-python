@@ -7,20 +7,12 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .external_meeting_registration import ExternalMeetingRegistration
-    from .meeting_audience import MeetingAudience
-    from .meeting_registrant_base import MeetingRegistrantBase
     from .meeting_registration import MeetingRegistration
 
 from .entity import Entity
 
 @dataclass
 class MeetingRegistrationBase(Entity, Parsable):
-    # Specifies who can register for the meeting.
-    allowed_registrant: Optional[MeetingAudience] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
-    # Registrants of the online meeting.
-    registrants: Optional[list[MeetingRegistrantBase]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MeetingRegistrationBase:
@@ -53,19 +45,13 @@ class MeetingRegistrationBase(Entity, Parsable):
         """
         from .entity import Entity
         from .external_meeting_registration import ExternalMeetingRegistration
-        from .meeting_audience import MeetingAudience
-        from .meeting_registrant_base import MeetingRegistrantBase
         from .meeting_registration import MeetingRegistration
 
         from .entity import Entity
         from .external_meeting_registration import ExternalMeetingRegistration
-        from .meeting_audience import MeetingAudience
-        from .meeting_registrant_base import MeetingRegistrantBase
         from .meeting_registration import MeetingRegistration
 
         fields: dict[str, Callable[[Any], None]] = {
-            "allowedRegistrant": lambda n : setattr(self, 'allowed_registrant', n.get_enum_value(MeetingAudience)),
-            "registrants": lambda n : setattr(self, 'registrants', n.get_collection_of_object_values(MeetingRegistrantBase)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -80,7 +66,5 @@ class MeetingRegistrationBase(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_enum_value("allowedRegistrant", self.allowed_registrant)
-        writer.write_collection_of_object_values("registrants", self.registrants)
     
 

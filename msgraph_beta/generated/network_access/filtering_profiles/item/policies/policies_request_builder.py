@@ -49,9 +49,10 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PoliciesRequestBuilderGetQueryParameters]] = None) -> Optional[PolicyLinkCollectionResponse]:
         """
-        The traffic forwarding policies associated with this profile.
+        Get a list of the tlsInspectionPolicyLink objects on a filtering profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PolicyLinkCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-tlsinspectionpolicylink-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: PolicyLink, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[PolicyLink]:
         """
-        Create new navigation property to policies for networkAccess
+        Create a new tlsInspectionPolicyLink to connect a filtering profile with a tlsInspectionPolicy. One 1 tlsInspectionPolicy is allowed for every filtering profile.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PolicyLink]
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-tlsinspectionpolicylink-post?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PoliciesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The traffic forwarding policies associated with this profile.
+        Get a list of the tlsInspectionPolicyLink objects on a filtering profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: PolicyLink, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to policies for networkAccess
+        Create a new tlsInspectionPolicyLink to connect a filtering profile with a tlsInspectionPolicy. One 1 tlsInspectionPolicy is allowed for every filtering profile.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PoliciesRequestBuilderGetQueryParameters():
         """
-        The traffic forwarding policies associated with this profile.
+        Get a list of the tlsInspectionPolicyLink objects on a filtering profile.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

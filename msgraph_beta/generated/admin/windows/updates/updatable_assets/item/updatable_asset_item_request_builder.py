@@ -36,10 +36,10 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete an azureADDevice object. When a Microsoft Entra device is deleted, it is unregistered and automatically unenrolled from management for all update categories, as well as removed from every deploymentAudience and updatableAssetGroup.
+        Delete an updatableAssetGroup object. When an updatableAssetGroup object, its member updatableAsset objects are not deleted.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-azureaddevice-delete?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-updatableassetgroup-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -55,10 +55,10 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UpdatableAssetItemRequestBuilderGetQueryParameters]] = None) -> Optional[UpdatableAsset]:
         """
-        Read the properties of an azureADDevice object.
+        Read the properties and relationships of an updatableAsset object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UpdatableAsset]
-        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-azureaddevice-get?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-updatableasset-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -99,7 +99,7 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete an azureADDevice object. When a Microsoft Entra device is deleted, it is unregistered and automatically unenrolled from management for all update categories, as well as removed from every deploymentAudience and updatableAssetGroup.
+        Delete an updatableAssetGroup object. When an updatableAssetGroup object, its member updatableAsset objects are not deleted.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UpdatableAssetItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties of an azureADDevice object.
+        Read the properties and relationships of an updatableAsset object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -190,7 +190,7 @@ class UpdatableAssetItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UpdatableAssetItemRequestBuilderGetQueryParameters():
         """
-        Read the properties of an azureADDevice object.
+        Read the properties and relationships of an updatableAsset object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

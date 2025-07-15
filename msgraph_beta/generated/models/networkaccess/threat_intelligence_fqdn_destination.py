@@ -13,7 +13,7 @@ from .threat_intelligence_destination import ThreatIntelligenceDestination
 class ThreatIntelligenceFqdnDestination(ThreatIntelligenceDestination, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.threatIntelligenceFqdnDestination"
-    # The values property
+    # A collection of fully qualified domain names (FQDNs) associated with potential security threats.
     values: Optional[list[str]] = None
     
     @staticmethod

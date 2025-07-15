@@ -38,7 +38,6 @@ class FindByMethodModeWithAuthenticationMethodModesRequestBuilder(BaseRequestBui
         Get a list of the authenticationStrengthPolicy objects and their properties filtered to only include policies that include the authentication method mode specified in the request.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FindByMethodModeWithAuthenticationMethodModesGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-findbymethodmode?view=graph-rest-beta
         """
         warn("The findByMethodMode function is deprecated. Please use OData filter query instead. as of 2023-02/FindByMethodModeRemove on 2023-02-01 and will be removed 2023-03-31", DeprecationWarning)
         request_info = self.to_get_request_information(

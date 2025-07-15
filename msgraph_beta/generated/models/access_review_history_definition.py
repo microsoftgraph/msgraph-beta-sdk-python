@@ -6,7 +6,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .access_review_history_decision_filter import AccessReviewHistoryDecisionFilter
     from .access_review_history_instance import AccessReviewHistoryInstance
     from .access_review_history_schedule_settings import AccessReviewHistoryScheduleSettings
     from .access_review_history_status import AccessReviewHistoryStatus
@@ -23,7 +22,7 @@ class AccessReviewHistoryDefinition(Entity, Parsable):
     # Timestamp when the access review definition was created.
     created_date_time: Optional[datetime.datetime] = None
     # Determines which review decisions will be included in the fetched review history data if specified. Optional on create. All decisions are included by default if no decisions are provided on create. Possible values are: approve, deny, dontKnow, notReviewed, and notNotified.
-    decisions: Optional[list[AccessReviewHistoryDecisionFilter]] = None
+    decisions: Optional[list[str]] = None
     # Name for the access review history data collection. Required.
     display_name: Optional[str] = None
     # The downloadUri property
@@ -61,7 +60,6 @@ class AccessReviewHistoryDefinition(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .access_review_history_decision_filter import AccessReviewHistoryDecisionFilter
         from .access_review_history_instance import AccessReviewHistoryInstance
         from .access_review_history_schedule_settings import AccessReviewHistoryScheduleSettings
         from .access_review_history_status import AccessReviewHistoryStatus
@@ -69,7 +67,6 @@ class AccessReviewHistoryDefinition(Entity, Parsable):
         from .entity import Entity
         from .user_identity import UserIdentity
 
-        from .access_review_history_decision_filter import AccessReviewHistoryDecisionFilter
         from .access_review_history_instance import AccessReviewHistoryInstance
         from .access_review_history_schedule_settings import AccessReviewHistoryScheduleSettings
         from .access_review_history_status import AccessReviewHistoryStatus
@@ -80,7 +77,7 @@ class AccessReviewHistoryDefinition(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(UserIdentity)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "decisions": lambda n : setattr(self, 'decisions', n.get_collection_of_enum_values(AccessReviewHistoryDecisionFilter)),
+            "decisions": lambda n : setattr(self, 'decisions', n.get_collection_of_primitive_values(str)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "downloadUri": lambda n : setattr(self, 'download_uri', n.get_str_value()),
             "fulfilledDateTime": lambda n : setattr(self, 'fulfilled_date_time', n.get_datetime_value()),
@@ -106,7 +103,7 @@ class AccessReviewHistoryDefinition(Entity, Parsable):
         super().serialize(writer)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
-        writer.write_collection_of_enum_values("decisions", self.decisions)
+        writer.write_collection_of_primitive_values("decisions", self.decisions)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("downloadUri", self.download_uri)
         writer.write_datetime_value("fulfilledDateTime", self.fulfilled_date_time)

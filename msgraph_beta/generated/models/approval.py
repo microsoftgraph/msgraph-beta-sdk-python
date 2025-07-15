@@ -5,17 +5,12 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .approval_step import ApprovalStep
     from .entity import Entity
 
 from .entity import Entity
 
 @dataclass
 class Approval(Entity, Parsable):
-    # The OdataType property
-    odata_type: Optional[str] = None
-    # Used to represent the decision associated with a single step in the approval process configured in approvalStage.
-    steps: Optional[list[ApprovalStep]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Approval:
@@ -33,14 +28,11 @@ class Approval(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .approval_step import ApprovalStep
         from .entity import Entity
 
-        from .approval_step import ApprovalStep
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
-            "steps": lambda n : setattr(self, 'steps', n.get_collection_of_object_values(ApprovalStep)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,6 +47,5 @@ class Approval(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("steps", self.steps)
     
 

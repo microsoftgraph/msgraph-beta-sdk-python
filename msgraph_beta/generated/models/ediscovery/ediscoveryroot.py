@@ -6,16 +6,11 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
-    from .case import Case
 
 from ..entity import Entity
 
 @dataclass
 class Ediscoveryroot(Entity, Parsable):
-    # The cases property
-    cases: Optional[list[Case]] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Ediscoveryroot:
@@ -34,13 +29,10 @@ class Ediscoveryroot(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
-        from .case import Case
 
         from ..entity import Entity
-        from .case import Case
 
         fields: dict[str, Callable[[Any], None]] = {
-            "cases": lambda n : setattr(self, 'cases', n.get_collection_of_object_values(Case)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,6 +47,5 @@ class Ediscoveryroot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("cases", self.cases)
     
 

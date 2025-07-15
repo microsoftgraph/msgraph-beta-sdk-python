@@ -15,7 +15,7 @@ from .policy import Policy
 class ThreatIntelligencePolicy(Policy, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.threatIntelligencePolicy"
-    # The lastModifiedDateTime property
+    # The date and time when the policy was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The settings property
     settings: Optional[ThreatIntelligencePolicySettings] = None

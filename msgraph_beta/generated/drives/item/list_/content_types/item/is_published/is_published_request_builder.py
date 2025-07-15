@@ -35,7 +35,6 @@ class IsPublishedRequestBuilder(BaseRequestBuilder):
         Invoke function isPublished
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IsPublishedGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/contenttype-ispublished?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

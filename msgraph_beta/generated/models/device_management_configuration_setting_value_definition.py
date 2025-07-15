@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .device_management_configuration_float_setting_value_definition import DeviceManagementConfigurationFloatSettingValueDefinition
     from .device_management_configuration_integer_setting_value_definition import DeviceManagementConfigurationIntegerSettingValueDefinition
     from .device_management_configuration_string_setting_value_definition import DeviceManagementConfigurationStringSettingValueDefinition
 
@@ -33,6 +34,10 @@ class DeviceManagementConfigurationSettingValueDefinition(AdditionalDataHolder, 
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationFloatSettingValueDefinition".casefold():
+            from .device_management_configuration_float_setting_value_definition import DeviceManagementConfigurationFloatSettingValueDefinition
+
+            return DeviceManagementConfigurationFloatSettingValueDefinition()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueDefinition".casefold():
             from .device_management_configuration_integer_setting_value_definition import DeviceManagementConfigurationIntegerSettingValueDefinition
 
@@ -48,9 +53,11 @@ class DeviceManagementConfigurationSettingValueDefinition(AdditionalDataHolder, 
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .device_management_configuration_float_setting_value_definition import DeviceManagementConfigurationFloatSettingValueDefinition
         from .device_management_configuration_integer_setting_value_definition import DeviceManagementConfigurationIntegerSettingValueDefinition
         from .device_management_configuration_string_setting_value_definition import DeviceManagementConfigurationStringSettingValueDefinition
 
+        from .device_management_configuration_float_setting_value_definition import DeviceManagementConfigurationFloatSettingValueDefinition
         from .device_management_configuration_integer_setting_value_definition import DeviceManagementConfigurationIntegerSettingValueDefinition
         from .device_management_configuration_string_setting_value_definition import DeviceManagementConfigurationStringSettingValueDefinition
 

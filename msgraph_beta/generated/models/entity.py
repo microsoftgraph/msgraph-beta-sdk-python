@@ -733,6 +733,8 @@ if TYPE_CHECKING:
     from .file_security_profile import FileSecurityProfile
     from .file_storage import FileStorage
     from .file_storage_container import FileStorageContainer
+    from .file_storage_container_type import FileStorageContainerType
+    from .file_storage_container_type_registration import FileStorageContainerTypeRegistration
     from .filter_operator_schema import FilterOperatorSchema
     from .finding import Finding
     from .focus_activity_statistics import FocusActivityStatistics
@@ -1143,7 +1145,7 @@ if TYPE_CHECKING:
     from .networkaccess.connectivity_configuration_link import ConnectivityConfigurationLink
     from .networkaccess.cross_tenant_access_settings import CrossTenantAccessSettings
     from .networkaccess.device_link import DeviceLink
-    from .networkaccess.enriched_audit_logs import EnrichedAuditLogs
+    from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
     from .networkaccess.filtering_policy import FilteringPolicy
     from .networkaccess.filtering_policy_link import FilteringPolicyLink
     from .networkaccess.filtering_profile import FilteringProfile
@@ -1171,6 +1173,10 @@ if TYPE_CHECKING:
     from .networkaccess.threat_intelligence_policy import ThreatIntelligencePolicy
     from .networkaccess.threat_intelligence_policy_link import ThreatIntelligencePolicyLink
     from .networkaccess.threat_intelligence_rule import ThreatIntelligenceRule
+    from .networkaccess.tls_inspection_policy import TlsInspectionPolicy
+    from .networkaccess.tls_inspection_policy_link import TlsInspectionPolicyLink
+    from .networkaccess.tls_inspection_rule import TlsInspectionRule
+    from .networkaccess.tls_termination import TlsTermination
     from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
     from .news_link_page import NewsLinkPage
     from .note import Note
@@ -1331,6 +1337,7 @@ if TYPE_CHECKING:
     from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
     from .play_prompt_operation import PlayPromptOperation
     from .policy_base import PolicyBase
+    from .policy_file import PolicyFile
     from .policy_root import PolicyRoot
     from .policy_set import PolicySet
     from .policy_set_assignment import PolicySetAssignment
@@ -1409,6 +1416,7 @@ if TYPE_CHECKING:
     from .rbac_application import RbacApplication
     from .rbac_application_multiple import RbacApplicationMultiple
     from .reading_assignment_submission import ReadingAssignmentSubmission
+    from .reading_coach_passage import ReadingCoachPassage
     from .recommendation import Recommendation
     from .recommendation_base import RecommendationBase
     from .recommendation_configuration import RecommendationConfiguration
@@ -1543,8 +1551,10 @@ if TYPE_CHECKING:
     from .security.host_reputation import HostReputation
     from .security.host_ssl_certificate import HostSslCertificate
     from .security.host_tracker import HostTracker
+    from .security.identity_accounts import IdentityAccounts
     from .security.identity_container import IdentityContainer
     from .security.incident import Incident
+    from .security.incident_task import IncidentTask
     from .security.indicator import Indicator
     from .security.information_protection import InformationProtection
     from .security.information_protection_policy_setting import InformationProtectionPolicySetting
@@ -1577,6 +1587,7 @@ if TYPE_CHECKING:
     from .security.unclassified_artifact import UnclassifiedArtifact
     from .security.unified_group_source import UnifiedGroupSource
     from .security.url_threat_submission import UrlThreatSubmission
+    from .security.user import User
     from .security.user_source import UserSource
     from .security.vulnerability import Vulnerability
     from .security.vulnerability_component import VulnerabilityComponent
@@ -1630,6 +1641,16 @@ if TYPE_CHECKING:
     from .sharepoint_settings import SharepointSettings
     from .share_point_group import SharePointGroup
     from .share_point_group_member import SharePointGroupMember
+    from .share_point_migration_event import SharePointMigrationEvent
+    from .share_point_migration_finish_manifest_file_upload_event import SharePointMigrationFinishManifestFileUploadEvent
+    from .share_point_migration_job import SharePointMigrationJob
+    from .share_point_migration_job_cancelled_event import SharePointMigrationJobCancelledEvent
+    from .share_point_migration_job_deleted_event import SharePointMigrationJobDeletedEvent
+    from .share_point_migration_job_error_event import SharePointMigrationJobErrorEvent
+    from .share_point_migration_job_postponed_event import SharePointMigrationJobPostponedEvent
+    from .share_point_migration_job_progress_event import SharePointMigrationJobProgressEvent
+    from .share_point_migration_job_queued_event import SharePointMigrationJobQueuedEvent
+    from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
     from .share_point_protection_policy import SharePointProtectionPolicy
     from .share_point_restore_session import SharePointRestoreSession
     from .shift import Shift
@@ -1639,6 +1660,7 @@ if TYPE_CHECKING:
     from .simulation import Simulation
     from .simulation_automation import SimulationAutomation
     from .simulation_automation_run import SimulationAutomationRun
+    from .single_value_extended_property import SingleValueExtendedProperty
     from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
     from .site import Site
     from .site_page import SitePage
@@ -5053,6 +5075,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .file_storage_container import FileStorageContainer
 
             return FileStorageContainer()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.fileStorageContainerType".casefold():
+            from .file_storage_container_type import FileStorageContainerType
+
+            return FileStorageContainerType()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.fileStorageContainerTypeRegistration".casefold():
+            from .file_storage_container_type_registration import FileStorageContainerTypeRegistration
+
+            return FileStorageContainerTypeRegistration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.filterOperatorSchema".casefold():
             from .filter_operator_schema import FilterOperatorSchema
 
@@ -6705,10 +6735,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.device_link import DeviceLink
 
             return DeviceLink()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.enrichedAuditLogs".casefold():
-            from .networkaccess.enriched_audit_logs import EnrichedAuditLogs
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.externalCertificateAuthorityCertificate".casefold():
+            from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
 
-            return EnrichedAuditLogs()
+            return ExternalCertificateAuthorityCertificate()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringPolicy".casefold():
             from .networkaccess.filtering_policy import FilteringPolicy
 
@@ -6818,6 +6848,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.threat_intelligence_rule import ThreatIntelligenceRule
 
             return ThreatIntelligenceRule()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionPolicy".casefold():
+            from .networkaccess.tls_inspection_policy import TlsInspectionPolicy
+
+            return TlsInspectionPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionPolicyLink".casefold():
+            from .networkaccess.tls_inspection_policy_link import TlsInspectionPolicyLink
+
+            return TlsInspectionPolicyLink()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionRule".casefold():
+            from .networkaccess.tls_inspection_rule import TlsInspectionRule
+
+            return TlsInspectionRule()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsTermination".casefold():
+            from .networkaccess.tls_termination import TlsTermination
+
+            return TlsTermination()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategoryFilteringRule".casefold():
             from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
 
@@ -7462,6 +7508,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.policy_base import PolicyBase
 
             return PolicyBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyFile".casefold():
+            from .policy_file import PolicyFile
+
+            return PolicyFile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyRoot".casefold():
             from .policy_root import PolicyRoot
 
@@ -7775,6 +7825,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .reading_assignment_submission import ReadingAssignmentSubmission
 
             return ReadingAssignmentSubmission()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.readingCoachPassage".casefold():
+            from .reading_coach_passage import ReadingCoachPassage
+
+            return ReadingCoachPassage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.recommendation".casefold():
             from .recommendation import Recommendation
 
@@ -8319,6 +8373,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.host_tracker import HostTracker
 
             return HostTracker()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.identityAccounts".casefold():
+            from .security.identity_accounts import IdentityAccounts
+
+            return IdentityAccounts()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.identityContainer".casefold():
             from .security.identity_container import IdentityContainer
 
@@ -8327,6 +8385,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.incident import Incident
 
             return Incident()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.incidentTask".casefold():
+            from .security.incident_task import IncidentTask
+
+            return IncidentTask()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.indicator".casefold():
             from .security.indicator import Indicator
 
@@ -8461,6 +8523,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.url_threat_submission import UrlThreatSubmission
 
             return UrlThreatSubmission()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.user".casefold():
+            from .security.user import User
+            from .user import User
+
+            return User()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.userSource".casefold():
             from .ediscovery.user_source import UserSource
             from .security.user_source import UserSource
@@ -8671,6 +8738,46 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .share_point_group_member import SharePointGroupMember
 
             return SharePointGroupMember()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationEvent".casefold():
+            from .share_point_migration_event import SharePointMigrationEvent
+
+            return SharePointMigrationEvent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationFinishManifestFileUploadEvent".casefold():
+            from .share_point_migration_finish_manifest_file_upload_event import SharePointMigrationFinishManifestFileUploadEvent
+
+            return SharePointMigrationFinishManifestFileUploadEvent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationJob".casefold():
+            from .share_point_migration_job import SharePointMigrationJob
+
+            return SharePointMigrationJob()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationJobCancelledEvent".casefold():
+            from .share_point_migration_job_cancelled_event import SharePointMigrationJobCancelledEvent
+
+            return SharePointMigrationJobCancelledEvent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationJobDeletedEvent".casefold():
+            from .share_point_migration_job_deleted_event import SharePointMigrationJobDeletedEvent
+
+            return SharePointMigrationJobDeletedEvent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationJobErrorEvent".casefold():
+            from .share_point_migration_job_error_event import SharePointMigrationJobErrorEvent
+
+            return SharePointMigrationJobErrorEvent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationJobPostponedEvent".casefold():
+            from .share_point_migration_job_postponed_event import SharePointMigrationJobPostponedEvent
+
+            return SharePointMigrationJobPostponedEvent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationJobProgressEvent".casefold():
+            from .share_point_migration_job_progress_event import SharePointMigrationJobProgressEvent
+
+            return SharePointMigrationJobProgressEvent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationJobQueuedEvent".casefold():
+            from .share_point_migration_job_queued_event import SharePointMigrationJobQueuedEvent
+
+            return SharePointMigrationJobQueuedEvent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationJobStartEvent".casefold():
+            from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
+
+            return SharePointMigrationJobStartEvent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointProtectionPolicy".casefold():
             from .share_point_protection_policy import SharePointProtectionPolicy
 
@@ -8711,6 +8818,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .simulation_automation_run import SimulationAutomationRun
 
             return SimulationAutomationRun()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.singleValueExtendedProperty".casefold():
+            from .single_value_extended_property import SingleValueExtendedProperty
+
+            return SingleValueExtendedProperty()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.singleValueLegacyExtendedProperty".casefold():
             from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
@@ -9382,6 +9493,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return UsedInsight()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.user".casefold():
+            from .security.user import User
             from .user import User
 
             return User()
@@ -11269,6 +11381,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .file_security_profile import FileSecurityProfile
         from .file_storage import FileStorage
         from .file_storage_container import FileStorageContainer
+        from .file_storage_container_type import FileStorageContainerType
+        from .file_storage_container_type_registration import FileStorageContainerTypeRegistration
         from .filter_operator_schema import FilterOperatorSchema
         from .finding import Finding
         from .focus_activity_statistics import FocusActivityStatistics
@@ -11679,7 +11793,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.connectivity_configuration_link import ConnectivityConfigurationLink
         from .networkaccess.cross_tenant_access_settings import CrossTenantAccessSettings
         from .networkaccess.device_link import DeviceLink
-        from .networkaccess.enriched_audit_logs import EnrichedAuditLogs
+        from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
         from .networkaccess.filtering_policy import FilteringPolicy
         from .networkaccess.filtering_policy_link import FilteringPolicyLink
         from .networkaccess.filtering_profile import FilteringProfile
@@ -11707,6 +11821,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.threat_intelligence_policy import ThreatIntelligencePolicy
         from .networkaccess.threat_intelligence_policy_link import ThreatIntelligencePolicyLink
         from .networkaccess.threat_intelligence_rule import ThreatIntelligenceRule
+        from .networkaccess.tls_inspection_policy import TlsInspectionPolicy
+        from .networkaccess.tls_inspection_policy_link import TlsInspectionPolicyLink
+        from .networkaccess.tls_inspection_rule import TlsInspectionRule
+        from .networkaccess.tls_termination import TlsTermination
         from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
         from .news_link_page import NewsLinkPage
         from .note import Note
@@ -11867,6 +11985,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
+        from .policy_file import PolicyFile
         from .policy_root import PolicyRoot
         from .policy_set import PolicySet
         from .policy_set_assignment import PolicySetAssignment
@@ -11945,6 +12064,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .rbac_application import RbacApplication
         from .rbac_application_multiple import RbacApplicationMultiple
         from .reading_assignment_submission import ReadingAssignmentSubmission
+        from .reading_coach_passage import ReadingCoachPassage
         from .recommendation import Recommendation
         from .recommendation_base import RecommendationBase
         from .recommendation_configuration import RecommendationConfiguration
@@ -12079,8 +12199,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.host_reputation import HostReputation
         from .security.host_ssl_certificate import HostSslCertificate
         from .security.host_tracker import HostTracker
+        from .security.identity_accounts import IdentityAccounts
         from .security.identity_container import IdentityContainer
         from .security.incident import Incident
+        from .security.incident_task import IncidentTask
         from .security.indicator import Indicator
         from .security.information_protection import InformationProtection
         from .security.information_protection_policy_setting import InformationProtectionPolicySetting
@@ -12113,6 +12235,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.unclassified_artifact import UnclassifiedArtifact
         from .security.unified_group_source import UnifiedGroupSource
         from .security.url_threat_submission import UrlThreatSubmission
+        from .security.user import User
         from .security.user_source import UserSource
         from .security.vulnerability import Vulnerability
         from .security.vulnerability_component import VulnerabilityComponent
@@ -12166,6 +12289,16 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .sharepoint_settings import SharepointSettings
         from .share_point_group import SharePointGroup
         from .share_point_group_member import SharePointGroupMember
+        from .share_point_migration_event import SharePointMigrationEvent
+        from .share_point_migration_finish_manifest_file_upload_event import SharePointMigrationFinishManifestFileUploadEvent
+        from .share_point_migration_job import SharePointMigrationJob
+        from .share_point_migration_job_cancelled_event import SharePointMigrationJobCancelledEvent
+        from .share_point_migration_job_deleted_event import SharePointMigrationJobDeletedEvent
+        from .share_point_migration_job_error_event import SharePointMigrationJobErrorEvent
+        from .share_point_migration_job_postponed_event import SharePointMigrationJobPostponedEvent
+        from .share_point_migration_job_progress_event import SharePointMigrationJobProgressEvent
+        from .share_point_migration_job_queued_event import SharePointMigrationJobQueuedEvent
+        from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
         from .share_point_protection_policy import SharePointProtectionPolicy
         from .share_point_restore_session import SharePointRestoreSession
         from .shift import Shift
@@ -12175,6 +12308,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .simulation import Simulation
         from .simulation_automation import SimulationAutomation
         from .simulation_automation_run import SimulationAutomationRun
+        from .single_value_extended_property import SingleValueExtendedProperty
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
         from .site import Site
         from .site_page import SitePage
@@ -13358,6 +13492,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .file_security_profile import FileSecurityProfile
         from .file_storage import FileStorage
         from .file_storage_container import FileStorageContainer
+        from .file_storage_container_type import FileStorageContainerType
+        from .file_storage_container_type_registration import FileStorageContainerTypeRegistration
         from .filter_operator_schema import FilterOperatorSchema
         from .finding import Finding
         from .focus_activity_statistics import FocusActivityStatistics
@@ -13768,7 +13904,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.connectivity_configuration_link import ConnectivityConfigurationLink
         from .networkaccess.cross_tenant_access_settings import CrossTenantAccessSettings
         from .networkaccess.device_link import DeviceLink
-        from .networkaccess.enriched_audit_logs import EnrichedAuditLogs
+        from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
         from .networkaccess.filtering_policy import FilteringPolicy
         from .networkaccess.filtering_policy_link import FilteringPolicyLink
         from .networkaccess.filtering_profile import FilteringProfile
@@ -13796,6 +13932,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.threat_intelligence_policy import ThreatIntelligencePolicy
         from .networkaccess.threat_intelligence_policy_link import ThreatIntelligencePolicyLink
         from .networkaccess.threat_intelligence_rule import ThreatIntelligenceRule
+        from .networkaccess.tls_inspection_policy import TlsInspectionPolicy
+        from .networkaccess.tls_inspection_policy_link import TlsInspectionPolicyLink
+        from .networkaccess.tls_inspection_rule import TlsInspectionRule
+        from .networkaccess.tls_termination import TlsTermination
         from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
         from .news_link_page import NewsLinkPage
         from .note import Note
@@ -13956,6 +14096,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
+        from .policy_file import PolicyFile
         from .policy_root import PolicyRoot
         from .policy_set import PolicySet
         from .policy_set_assignment import PolicySetAssignment
@@ -14034,6 +14175,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .rbac_application import RbacApplication
         from .rbac_application_multiple import RbacApplicationMultiple
         from .reading_assignment_submission import ReadingAssignmentSubmission
+        from .reading_coach_passage import ReadingCoachPassage
         from .recommendation import Recommendation
         from .recommendation_base import RecommendationBase
         from .recommendation_configuration import RecommendationConfiguration
@@ -14168,8 +14310,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.host_reputation import HostReputation
         from .security.host_ssl_certificate import HostSslCertificate
         from .security.host_tracker import HostTracker
+        from .security.identity_accounts import IdentityAccounts
         from .security.identity_container import IdentityContainer
         from .security.incident import Incident
+        from .security.incident_task import IncidentTask
         from .security.indicator import Indicator
         from .security.information_protection import InformationProtection
         from .security.information_protection_policy_setting import InformationProtectionPolicySetting
@@ -14202,6 +14346,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.unclassified_artifact import UnclassifiedArtifact
         from .security.unified_group_source import UnifiedGroupSource
         from .security.url_threat_submission import UrlThreatSubmission
+        from .security.user import User
         from .security.user_source import UserSource
         from .security.vulnerability import Vulnerability
         from .security.vulnerability_component import VulnerabilityComponent
@@ -14255,6 +14400,16 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .sharepoint_settings import SharepointSettings
         from .share_point_group import SharePointGroup
         from .share_point_group_member import SharePointGroupMember
+        from .share_point_migration_event import SharePointMigrationEvent
+        from .share_point_migration_finish_manifest_file_upload_event import SharePointMigrationFinishManifestFileUploadEvent
+        from .share_point_migration_job import SharePointMigrationJob
+        from .share_point_migration_job_cancelled_event import SharePointMigrationJobCancelledEvent
+        from .share_point_migration_job_deleted_event import SharePointMigrationJobDeletedEvent
+        from .share_point_migration_job_error_event import SharePointMigrationJobErrorEvent
+        from .share_point_migration_job_postponed_event import SharePointMigrationJobPostponedEvent
+        from .share_point_migration_job_progress_event import SharePointMigrationJobProgressEvent
+        from .share_point_migration_job_queued_event import SharePointMigrationJobQueuedEvent
+        from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
         from .share_point_protection_policy import SharePointProtectionPolicy
         from .share_point_restore_session import SharePointRestoreSession
         from .shift import Shift
@@ -14264,6 +14419,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .simulation import Simulation
         from .simulation_automation import SimulationAutomation
         from .simulation_automation_run import SimulationAutomationRun
+        from .single_value_extended_property import SingleValueExtendedProperty
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
         from .site import Site
         from .site_page import SitePage

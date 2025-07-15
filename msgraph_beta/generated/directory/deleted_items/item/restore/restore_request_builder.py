@@ -35,7 +35,6 @@ class RestoreRequestBuilder(BaseRequestBuilder):
         Restore a recently deleted directory object from deleted items. The following types are supported:- administrativeUnit- application- certificateBasedAuthPki- certificateAuthorityDetail- externalUserProfile- group- pendingExternalUserProfile- servicePrincipal- user If an item was accidentally deleted, you can fully restore the item. This isn't applicable to security groups, which are deleted permanently. Also, restoring an application doesn't restore the associated service principal automatically. You must call this API to explicitly restore the deleted service principal. A recently deleted item remains available for up to 30 days. After 30 days, the item is permanently deleted.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObject]
-        Find more info here: https://learn.microsoft.com/graph/api/directory-deleteditems-restore?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

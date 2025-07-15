@@ -33,9 +33,10 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property policies for networkAccess
+        Delete a tlsInspectionPolicyLink object. Used to unlink a tlsInspectionPolicy from a filtering profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-tlsinspectionpolicylink-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,9 +52,10 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PolicyLinkItemRequestBuilderGetQueryParameters]] = None) -> Optional[PolicyLink]:
         """
-        The traffic forwarding policies associated with this profile.
+        Read the properties and relationships of a threatIntelligencePolicyLink object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PolicyLink]
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-threatintelligencepolicylink-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,10 +73,11 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: PolicyLink, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[PolicyLink]:
         """
-        Update the navigation property policies in networkAccess
+        Update the properties of a threatIntelligencePolicyLink object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PolicyLink]
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-threatintelligencepolicylink-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -94,7 +97,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property policies for networkAccess
+        Delete a tlsInspectionPolicyLink object. Used to unlink a tlsInspectionPolicy from a filtering profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +108,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PolicyLinkItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The traffic forwarding policies associated with this profile.
+        Read the properties and relationships of a threatIntelligencePolicyLink object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +119,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: PolicyLink, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property policies in networkAccess
+        Update the properties of a threatIntelligencePolicyLink object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -158,7 +161,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PolicyLinkItemRequestBuilderGetQueryParameters():
         """
-        The traffic forwarding policies associated with this profile.
+        Read the properties and relationships of a threatIntelligencePolicyLink object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

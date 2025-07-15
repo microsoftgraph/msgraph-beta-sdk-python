@@ -38,7 +38,6 @@ class FilterByCurrentUserWithOnRequestBuilder(BaseRequestBuilder):
         In Microsoft Entra Entitlement Management, retrieve a list of accessPackageAssignmentRequest objects filtered on the signed-in user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FilterByCurrentUserWithOnGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/accesspackageassignmentrequest-filterbycurrentuser?view=graph-rest-beta
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         request_info = self.to_get_request_information(

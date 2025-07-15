@@ -28,6 +28,8 @@ if TYPE_CHECKING:
     from .settings.settings_request_builder import SettingsRequestBuilder
     from .tenant_status.tenant_status_request_builder import TenantStatusRequestBuilder
     from .threat_intelligence_policies.threat_intelligence_policies_request_builder import ThreatIntelligencePoliciesRequestBuilder
+    from .tls.tls_request_builder import TlsRequestBuilder
+    from .tls_inspection_policies.tls_inspection_policies_request_builder import TlsInspectionPoliciesRequestBuilder
 
 class NetworkAccessRequestBuilder(BaseRequestBuilder):
     """
@@ -228,6 +230,24 @@ class NetworkAccessRequestBuilder(BaseRequestBuilder):
         from .threat_intelligence_policies.threat_intelligence_policies_request_builder import ThreatIntelligencePoliciesRequestBuilder
 
         return ThreatIntelligencePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tls(self) -> TlsRequestBuilder:
+        """
+        Provides operations to manage the tls property of the microsoft.graph.networkaccess.networkAccessRoot entity.
+        """
+        from .tls.tls_request_builder import TlsRequestBuilder
+
+        return TlsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tls_inspection_policies(self) -> TlsInspectionPoliciesRequestBuilder:
+        """
+        Provides operations to manage the tlsInspectionPolicies property of the microsoft.graph.networkaccess.networkAccessRoot entity.
+        """
+        from .tls_inspection_policies.tls_inspection_policies_request_builder import TlsInspectionPoliciesRequestBuilder
+
+        return TlsInspectionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class NetworkAccessRequestBuilderGetQueryParameters():
