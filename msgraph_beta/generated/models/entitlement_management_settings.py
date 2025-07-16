@@ -11,6 +11,12 @@ from .entity import Entity
 
 @dataclass
 class EntitlementManagementSettings(Entity, Parsable):
+    # If externalUserLifecycleAction is BlockSignInAndDelete, the number of days after an external user is blocked from sign in before their account is deleted.
+    days_until_external_user_deleted_after_blocked: Optional[int] = None
+    # One of None, BlockSignIn, or BlockSignInAndDelete.
+    external_user_lifecycle_action: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EntitlementManagementSettings:
@@ -33,6 +39,8 @@ class EntitlementManagementSettings(Entity, Parsable):
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
+            "daysUntilExternalUserDeletedAfterBlocked": lambda n : setattr(self, 'days_until_external_user_deleted_after_blocked', n.get_int_value()),
+            "externalUserLifecycleAction": lambda n : setattr(self, 'external_user_lifecycle_action', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -47,5 +55,7 @@ class EntitlementManagementSettings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_int_value("daysUntilExternalUserDeletedAfterBlocked", self.days_until_external_user_deleted_after_blocked)
+        writer.write_str_value("externalUserLifecycleAction", self.external_user_lifecycle_action)
     
 

@@ -34,6 +34,7 @@ class MicrosoftGraphEdiscoveryActivateRequestBuilder(BaseRequestBuilder):
         Activate a custodian that was released from a case. This method makes the custodian part of the case again. For details, see Manage custodians in an Advanced eDiscovery case.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/ediscovery-custodian-activate?view=graph-rest-beta
         """
         warn("The ediscovery Apis are deprecated under /compliance and will stop returning data from February 01, 2023. Please use the new ediscovery Apis under /security. as of 2022-12/ediscoveryNamespace on 2022-12-05 and will be removed 2023-02-01", DeprecationWarning)
         request_info = self.to_post_request_information(

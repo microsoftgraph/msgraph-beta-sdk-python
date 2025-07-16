@@ -21,6 +21,8 @@ from .entity import Entity
 
 @dataclass
 class PlannerDelta(Entity, Parsable):
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PlannerDelta:

@@ -15,6 +15,16 @@ class MobileAppCatalogPackage(Entity, Parsable):
     """
     mobileAppCatalogPackage is an abstract type that application catalog package entities derive from. A mobileAppCatalogPackage entity contains information about an application catalog package that can be deployed to Intune-managed devices.
     """
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The name of the product (example: "Fabrikam for Business"). Returned by default. Read-only. Supports: $filter, $search, $select. This property is read-only.
+    product_display_name: Optional[str] = None
+    # The identifier of a specific product irrespective of version, or other attributes. Read-only. Returned by default. Supports: $filter, $select. This property is read-only.
+    product_id: Optional[str] = None
+    # The name of the application catalog package publisher (example: "Fabrikam"). Returned by default. Read-only. Supports $filter, $search, $select. This property is read-only.
+    publisher_display_name: Optional[str] = None
+    # The name of the product version (example: "1.2203.156"). Returned by default. Read-only. Supports: $filter, $search, $select. This property is read-only.
+    version_display_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MobileAppCatalogPackage:
@@ -48,6 +58,10 @@ class MobileAppCatalogPackage(Entity, Parsable):
         from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
 
         fields: dict[str, Callable[[Any], None]] = {
+            "productDisplayName": lambda n : setattr(self, 'product_display_name', n.get_str_value()),
+            "productId": lambda n : setattr(self, 'product_id', n.get_str_value()),
+            "publisherDisplayName": lambda n : setattr(self, 'publisher_display_name', n.get_str_value()),
+            "versionDisplayName": lambda n : setattr(self, 'version_display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

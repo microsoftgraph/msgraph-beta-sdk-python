@@ -6,11 +6,16 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aws_identity import AwsIdentity
+    from .aws_role import AwsRole
 
 from .aws_identity import AwsIdentity
 
 @dataclass
 class AwsUser(AwsIdentity, Parsable):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.awsUser"
+    # Roles assumed by the user.
+    assumable_roles: Optional[list[AwsRole]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AwsUser:
@@ -29,10 +34,13 @@ class AwsUser(AwsIdentity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aws_identity import AwsIdentity
+        from .aws_role import AwsRole
 
         from .aws_identity import AwsIdentity
+        from .aws_role import AwsRole
 
         fields: dict[str, Callable[[Any], None]] = {
+            "assumableRoles": lambda n : setattr(self, 'assumable_roles', n.get_collection_of_object_values(AwsRole)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -47,5 +55,6 @@ class AwsUser(AwsIdentity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("assumableRoles", self.assumable_roles)
     
 

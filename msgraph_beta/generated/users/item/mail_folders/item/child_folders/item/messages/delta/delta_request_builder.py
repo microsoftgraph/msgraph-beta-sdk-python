@@ -35,6 +35,7 @@ class DeltaRequestBuilder(BaseRequestBuilder):
         Get a set of messages that were added, deleted, or updated in a specified folder. A delta function call for messages in a folder is similar to a GET request, except that by appropriatelyapplying state tokens in one or more of these calls, you can [query for incremental changes in the messages inthat folder](/graph/delta-query-messages). Using deltas allows you toincrementally maintain and synchronize a local store of a user's messages.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeltaGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/message-delta?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

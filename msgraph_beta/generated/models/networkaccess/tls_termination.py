@@ -6,11 +6,16 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
 
 from ..entity import Entity
 
 @dataclass
 class TlsTermination(Entity, Parsable):
+    # List of customer's Certificate Authority (CA) certificates used for TLS inspection in Global Secure Access
+    external_certificate_authority_certificates: Optional[list[ExternalCertificateAuthorityCertificate]] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TlsTermination:
@@ -29,10 +34,13 @@ class TlsTermination(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
 
         from ..entity import Entity
+        from .external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
 
         fields: dict[str, Callable[[Any], None]] = {
+            "externalCertificateAuthorityCertificates": lambda n : setattr(self, 'external_certificate_authority_certificates', n.get_collection_of_object_values(ExternalCertificateAuthorityCertificate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -47,5 +55,6 @@ class TlsTermination(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("externalCertificateAuthorityCertificates", self.external_certificate_authority_certificates)
     
 

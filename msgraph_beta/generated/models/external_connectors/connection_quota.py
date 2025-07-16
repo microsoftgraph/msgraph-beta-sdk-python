@@ -11,6 +11,10 @@ from ..entity import Entity
 
 @dataclass
 class ConnectionQuota(Entity, Parsable):
+    # The minimum of two values, one representing the items remaining in the connection and the other remaining items at tenant-level. The following equation represents the formula used to calculate the minimum number: min ({max capacity in the connection} – {number of items in the connection}, {tenant quota} – {number of items indexed in all connections}). If the connection is not monetized, such as in a preview connector or preview content experience, then this property is simply the number of remaining items in the connection.
+    items_remaining: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ConnectionQuota:
@@ -33,6 +37,7 @@ class ConnectionQuota(Entity, Parsable):
         from ..entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
+            "itemsRemaining": lambda n : setattr(self, 'items_remaining', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -47,5 +52,6 @@ class ConnectionQuota(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_int_value("itemsRemaining", self.items_remaining)
     
 

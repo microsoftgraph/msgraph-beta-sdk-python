@@ -36,6 +36,7 @@ class GetCloudPcPerformanceReportRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcreports-getcloudpcperformancereport?view=graph-rest-beta
         """
         warn("Starting from December 31, 2024, this API (&apos;getCloudPcPerformanceReport&apos;) will be deprecated and no longer supported. Please use the retrieveCloudPcTenantMetricsReport API. as of 2024-09/getCloudPcPerformanceReport on 2024-09-10 and will be removed 2024-12-31", DeprecationWarning)
         if body is None:

@@ -34,6 +34,7 @@ class CancelSecurityActionRequestBuilder(BaseRequestBuilder):
         Cancel a security operation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/securityaction-cancelsecurityaction?view=graph-rest-beta
         """
         warn("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation on 2024-04-10 and will be removed 2026-04-10", DeprecationWarning)
         request_info = self.to_post_request_information(

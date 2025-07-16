@@ -34,6 +34,7 @@ class PermanentDeleteRequestBuilder(BaseRequestBuilder):
         Permanently delete a calendar folder and the events that it contains and remove them from the mailbox. For more information about item retention, see Configure Deleted Item retention and Recoverable Items quotas.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/calendar-permanentdelete?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

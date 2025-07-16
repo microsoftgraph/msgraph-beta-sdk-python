@@ -35,6 +35,7 @@ class GetAttackSimulationTrainingUserCoverageRequestBuilder(BaseRequestBuilder):
         List training coverage for each user of a tenant in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAttackSimulationTrainingUserCoverageGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getattacksimulationtrainingusercoverage?view=graph-rest-beta
         """
         warn("This report function api is deprecated and will stop returning data on August 20, 2022. Api is now moved to /reports/security. Please use the new API. as of 2022-05/Tasks_And_Plans on 2022-05-24 and will be removed 2022-08-20", DeprecationWarning)
         request_info = self.to_get_request_information(

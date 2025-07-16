@@ -35,6 +35,7 @@ class CreationOptionsWithChallengeTimeoutInMinutesRequestBuilder(BaseRequestBuil
         Retrieve creation options required to generate and register a Microsoft Entra ID-compatible passkey. Self-service operations aren't supported.  
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WebauthnCredentialCreationOptions]
+        Find more info here: https://learn.microsoft.com/graph/api/fido2authenticationmethod-creationoptions?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

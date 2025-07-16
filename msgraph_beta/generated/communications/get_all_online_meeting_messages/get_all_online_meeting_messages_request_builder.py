@@ -35,6 +35,7 @@ class GetAllOnlineMeetingMessagesRequestBuilder(BaseRequestBuilder):
         Get all Teams question and answer (Q&A) conversation messages in a tenant. This function returns a snapshot of all Q&A activity in JSON format. The export includes:- The original question or discussion text- The user who posted the message- All replies and responders- Vote counts- Moderation status (pending or dismissed)- Private replies- The meeting ID and organizer ID that are used for mapping to meeting metadata.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetAllOnlineMeetingMessagesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudcommunications-getallonlinemeetingmessages?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

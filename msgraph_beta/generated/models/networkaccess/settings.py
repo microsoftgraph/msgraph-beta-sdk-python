@@ -6,11 +6,22 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .conditional_access_settings import ConditionalAccessSettings
+    from .cross_tenant_access_settings import CrossTenantAccessSettings
+    from .forwarding_options import ForwardingOptions
 
 from ..entity import Entity
 
 @dataclass
 class Settings(Entity, Parsable):
+    # The conditionalAccess property
+    conditional_access: Optional[ConditionalAccessSettings] = None
+    # The crossTenantAccess property
+    cross_tenant_access: Optional[CrossTenantAccessSettings] = None
+    # The forwardingOptions property
+    forwarding_options: Optional[ForwardingOptions] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Settings:
@@ -29,10 +40,19 @@ class Settings(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .conditional_access_settings import ConditionalAccessSettings
+        from .cross_tenant_access_settings import CrossTenantAccessSettings
+        from .forwarding_options import ForwardingOptions
 
         from ..entity import Entity
+        from .conditional_access_settings import ConditionalAccessSettings
+        from .cross_tenant_access_settings import CrossTenantAccessSettings
+        from .forwarding_options import ForwardingOptions
 
         fields: dict[str, Callable[[Any], None]] = {
+            "conditionalAccess": lambda n : setattr(self, 'conditional_access', n.get_object_value(ConditionalAccessSettings)),
+            "crossTenantAccess": lambda n : setattr(self, 'cross_tenant_access', n.get_object_value(CrossTenantAccessSettings)),
+            "forwardingOptions": lambda n : setattr(self, 'forwarding_options', n.get_object_value(ForwardingOptions)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -47,5 +67,8 @@ class Settings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("conditionalAccess", self.conditional_access)
+        writer.write_object_value("crossTenantAccess", self.cross_tenant_access)
+        writer.write_object_value("forwardingOptions", self.forwarding_options)
     
 

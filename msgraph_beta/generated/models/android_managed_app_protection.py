@@ -57,9 +57,9 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
     block_after_company_portal_update_deferral_in_days: Optional[int] = None
     # Whether the app should connect to the configured VPN on launch.
     connect_to_vpn_on_launch: Optional[bool] = None
-    # Friendly name of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
+    # Friendly name of the preferred custom browser to open weblink on Android.
     custom_browser_display_name: Optional[str] = None
-    # Unique identifier of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.
+    # Unique identifier of a custom browser to open weblink on Android.
     custom_browser_package_id: Optional[str] = None
     # Friendly name of a custom dialer app to click-to-open a phone number on Android.
     custom_dialer_app_display_name: Optional[str] = None

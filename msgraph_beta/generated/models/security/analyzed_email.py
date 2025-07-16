@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .analyzed_email_url import AnalyzedEmailUrl
     from .antispam_directionality import AntispamDirectionality
     from .threat_detection_detail import ThreatDetectionDetail
+    from .threat_type import ThreatType
     from .timeline_event import TimelineEvent
 
 from ..entity import Entity
@@ -94,7 +95,7 @@ class AnalyzedEmail(Entity, Parsable):
     # Information about threats detected in the email.
     threat_detection_details: Optional[list[ThreatDetectionDetail]] = None
     # Indicates the threat types. The possible values are: unknown, spam, malware, phish, none, unknownFutureValue.
-    threat_types: Optional[list[str]] = None
+    threat_types: Optional[list[ThreatType]] = None
     # Delivery and post-delivery events that happened to the email.
     timeline_events: Optional[list[TimelineEvent]] = None
     # A collection of the URLs in the email.
@@ -127,6 +128,7 @@ class AnalyzedEmail(Entity, Parsable):
         from .analyzed_email_url import AnalyzedEmailUrl
         from .antispam_directionality import AntispamDirectionality
         from .threat_detection_detail import ThreatDetectionDetail
+        from .threat_type import ThreatType
         from .timeline_event import TimelineEvent
 
         from ..entity import Entity
@@ -140,6 +142,7 @@ class AnalyzedEmail(Entity, Parsable):
         from .analyzed_email_url import AnalyzedEmailUrl
         from .antispam_directionality import AntispamDirectionality
         from .threat_detection_detail import ThreatDetectionDetail
+        from .threat_type import ThreatType
         from .timeline_event import TimelineEvent
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -177,7 +180,7 @@ class AnalyzedEmail(Entity, Parsable):
             "spamConfidenceLevel": lambda n : setattr(self, 'spam_confidence_level', n.get_str_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
             "threatDetectionDetails": lambda n : setattr(self, 'threat_detection_details', n.get_collection_of_object_values(ThreatDetectionDetail)),
-            "threatTypes": lambda n : setattr(self, 'threat_types', n.get_collection_of_primitive_values(str)),
+            "threatTypes": lambda n : setattr(self, 'threat_types', n.get_collection_of_enum_values(ThreatType)),
             "timelineEvents": lambda n : setattr(self, 'timeline_events', n.get_collection_of_object_values(TimelineEvent)),
             "urls": lambda n : setattr(self, 'urls', n.get_collection_of_object_values(AnalyzedEmailUrl)),
         }
@@ -228,7 +231,7 @@ class AnalyzedEmail(Entity, Parsable):
         writer.write_str_value("spamConfidenceLevel", self.spam_confidence_level)
         writer.write_str_value("subject", self.subject)
         writer.write_collection_of_object_values("threatDetectionDetails", self.threat_detection_details)
-        writer.write_collection_of_primitive_values("threatTypes", self.threat_types)
+        writer.write_collection_of_enum_values("threatTypes", self.threat_types)
         writer.write_collection_of_object_values("timelineEvents", self.timeline_events)
         writer.write_collection_of_object_values("urls", self.urls)
     

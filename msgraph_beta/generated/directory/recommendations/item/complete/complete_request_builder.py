@@ -35,6 +35,7 @@ class CompleteRequestBuilder(BaseRequestBuilder):
         Complete a recommendation object and update its status to completedByUser.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Recommendation]
+        Find more info here: https://learn.microsoft.com/graph/api/recommendation-complete?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

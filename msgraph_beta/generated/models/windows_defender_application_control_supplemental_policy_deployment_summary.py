@@ -14,6 +14,12 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary(Entit
     """
     Contains properties for the deployment summary of a WindowsDefenderApplicationControl supplemental policy.
     """
+    # Number of Devices that have successfully deployed this WindowsDefenderApplicationControl supplemental policy.
+    deployed_device_count: Optional[int] = None
+    # Number of Devices that have failed to deploy this WindowsDefenderApplicationControl supplemental policy.
+    failed_device_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary:
@@ -36,6 +42,8 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary(Entit
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
+            "deployedDeviceCount": lambda n : setattr(self, 'deployed_device_count', n.get_int_value()),
+            "failedDeviceCount": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -50,5 +58,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary(Entit
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_int_value("deployedDeviceCount", self.deployed_device_count)
+        writer.write_int_value("failedDeviceCount", self.failed_device_count)
     
 

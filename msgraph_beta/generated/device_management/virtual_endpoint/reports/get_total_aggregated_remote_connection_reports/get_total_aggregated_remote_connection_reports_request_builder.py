@@ -36,6 +36,7 @@ class GetTotalAggregatedRemoteConnectionReportsRequestBuilder(BaseRequestBuilder
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcreports-gettotalaggregatedremoteconnectionreports?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")

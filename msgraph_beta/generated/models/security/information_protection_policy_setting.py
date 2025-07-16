@@ -11,6 +11,16 @@ from ..entity import Entity
 
 @dataclass
 class InformationProtectionPolicySetting(Entity, Parsable):
+    # The defaultLabelId property
+    default_label_id: Optional[str] = None
+    # Exposes whether justification input is required on label downgrade.
+    is_downgrade_justification_required: Optional[bool] = None
+    # Exposes whether mandatory labeling is enabled.
+    is_mandatory: Optional[bool] = None
+    # Exposes the more information URL that can be configured by the administrator.
+    more_info_url: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> InformationProtectionPolicySetting:
@@ -33,6 +43,10 @@ class InformationProtectionPolicySetting(Entity, Parsable):
         from ..entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
+            "defaultLabelId": lambda n : setattr(self, 'default_label_id', n.get_str_value()),
+            "isDowngradeJustificationRequired": lambda n : setattr(self, 'is_downgrade_justification_required', n.get_bool_value()),
+            "isMandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
+            "moreInfoUrl": lambda n : setattr(self, 'more_info_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -47,5 +61,9 @@ class InformationProtectionPolicySetting(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("defaultLabelId", self.default_label_id)
+        writer.write_bool_value("isDowngradeJustificationRequired", self.is_downgrade_justification_required)
+        writer.write_bool_value("isMandatory", self.is_mandatory)
+        writer.write_str_value("moreInfoUrl", self.more_info_url)
     
 

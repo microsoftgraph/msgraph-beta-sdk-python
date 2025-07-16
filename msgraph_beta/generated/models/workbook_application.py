@@ -11,6 +11,10 @@ from .entity import Entity
 
 @dataclass
 class WorkbookApplication(Entity, Parsable):
+    # Returns the calculation mode used in the workbook. Possible values are: Automatic, AutomaticExceptTables, Manual.
+    calculation_mode: Optional[str] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> WorkbookApplication:
@@ -33,6 +37,7 @@ class WorkbookApplication(Entity, Parsable):
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
+            "calculationMode": lambda n : setattr(self, 'calculation_mode', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -47,5 +52,6 @@ class WorkbookApplication(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("calculationMode", self.calculation_mode)
     
 
