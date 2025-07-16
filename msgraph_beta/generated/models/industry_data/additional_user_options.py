@@ -14,7 +14,7 @@ class AdditionalUserOptions(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Indicates whether student contact association should be allowed.
     allow_student_contact_association: Optional[bool] = None
-    # Indicates whether all students should be marked as minors.
+    # Indicates whether all students should be marked as minors. The markAllStudentsAsMinors property is deprecated and will stop returning data on October 15, 2025. Going forward, use the studentAgeGroup property.
     mark_all_students_as_minors: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

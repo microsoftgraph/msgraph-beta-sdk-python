@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .call_recording import CallRecording
     from .call_transcript import CallTranscript
     from .meeting_attendance_report import MeetingAttendanceReport
+    from .meeting_capabilities import MeetingCapabilities
     from .meeting_participants import MeetingParticipants
     from .meeting_registration import MeetingRegistration
     from .online_meeting_base import OnlineMeetingBase
@@ -35,7 +36,7 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
     # Settings related to a live event.
     broadcast_settings: Optional[BroadcastMeetingSettings] = None
     # The list of meeting capabilities. Possible values are: questionAndAnswer,unknownFutureValue.
-    capabilities: Optional[list[str]] = None
+    capabilities: Optional[list[MeetingCapabilities]] = None
     # The meeting creation time in UTC. Read-only.
     creation_date_time: Optional[datetime.datetime] = None
     # The meeting end time in UTC. Required when you create an online meeting.
@@ -84,6 +85,7 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
         from .call_recording import CallRecording
         from .call_transcript import CallTranscript
         from .meeting_attendance_report import MeetingAttendanceReport
+        from .meeting_capabilities import MeetingCapabilities
         from .meeting_participants import MeetingParticipants
         from .meeting_registration import MeetingRegistration
         from .online_meeting_base import OnlineMeetingBase
@@ -93,6 +95,7 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
         from .call_recording import CallRecording
         from .call_transcript import CallTranscript
         from .meeting_attendance_report import MeetingAttendanceReport
+        from .meeting_capabilities import MeetingCapabilities
         from .meeting_participants import MeetingParticipants
         from .meeting_registration import MeetingRegistration
         from .online_meeting_base import OnlineMeetingBase
@@ -103,7 +106,7 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
             "attendeeReport": lambda n : setattr(self, 'attendee_report', n.get_bytes_value()),
             "broadcastRecording": lambda n : setattr(self, 'broadcast_recording', n.get_bytes_value()),
             "broadcastSettings": lambda n : setattr(self, 'broadcast_settings', n.get_object_value(BroadcastMeetingSettings)),
-            "capabilities": lambda n : setattr(self, 'capabilities', n.get_collection_of_primitive_values(str)),
+            "capabilities": lambda n : setattr(self, 'capabilities', n.get_collection_of_enum_values(MeetingCapabilities)),
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
@@ -136,7 +139,7 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
         writer.write_bytes_value("attendeeReport", self.attendee_report)
         writer.write_bytes_value("broadcastRecording", self.broadcast_recording)
         writer.write_object_value("broadcastSettings", self.broadcast_settings)
-        writer.write_collection_of_primitive_values("capabilities", self.capabilities)
+        writer.write_collection_of_enum_values("capabilities", self.capabilities)
         writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_str_value("externalId", self.external_id)

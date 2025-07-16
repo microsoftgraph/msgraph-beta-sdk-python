@@ -14,6 +14,18 @@ class DeviceManagementIntentUserStateSummary(Entity, Parsable):
     """
     Entity that represents user state summary for an intent
     """
+    # Number of users in conflict
+    conflict_count: Optional[int] = None
+    # Number of error users
+    error_count: Optional[int] = None
+    # Number of failed users
+    failed_count: Optional[int] = None
+    # Number of not applicable users
+    not_applicable_count: Optional[int] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # Number of succeeded users
+    success_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementIntentUserStateSummary:
@@ -36,6 +48,11 @@ class DeviceManagementIntentUserStateSummary(Entity, Parsable):
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
+            "conflictCount": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
+            "errorCount": lambda n : setattr(self, 'error_count', n.get_int_value()),
+            "failedCount": lambda n : setattr(self, 'failed_count', n.get_int_value()),
+            "notApplicableCount": lambda n : setattr(self, 'not_applicable_count', n.get_int_value()),
+            "successCount": lambda n : setattr(self, 'success_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -50,5 +67,10 @@ class DeviceManagementIntentUserStateSummary(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_int_value("conflictCount", self.conflict_count)
+        writer.write_int_value("errorCount", self.error_count)
+        writer.write_int_value("failedCount", self.failed_count)
+        writer.write_int_value("notApplicableCount", self.not_applicable_count)
+        writer.write_int_value("successCount", self.success_count)
     
 

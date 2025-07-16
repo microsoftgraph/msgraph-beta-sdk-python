@@ -35,6 +35,7 @@ class RetrieveCloudPCRemoteActionResultsRequestBuilder(BaseRequestBuilder):
         Retrieve remote action results and check the status of a specific remote action performed on the associated Cloud PC device.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RetrieveCloudPCRemoteActionResultsGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-retrievecloudpcremoteactionresults?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

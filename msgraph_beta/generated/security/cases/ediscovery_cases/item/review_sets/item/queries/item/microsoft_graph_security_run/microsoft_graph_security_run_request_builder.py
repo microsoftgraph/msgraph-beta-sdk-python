@@ -35,6 +35,7 @@ class MicrosoftGraphSecurityRunRequestBuilder(BaseRequestBuilder):
         Run reviewset query to get the list of files.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RunGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryreviewsetquery-run?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

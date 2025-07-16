@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .remote_assistance_state import RemoteAssistanceState
 
 from .entity import Entity
 
@@ -14,6 +15,14 @@ class RemoteAssistanceSettings(Entity, Parsable):
     """
     Remote assistance settings for the account
     """
+    # Indicates if sessions to unenrolled devices are allowed for the account. This setting is configurable by the admin. Default value is false.
+    allow_sessions_to_unenrolled_devices: Optional[bool] = None
+    # Indicates if sessions to block chat function. This setting is configurable by the admin. Default value is false.
+    block_chat: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # State of remote assistance for the account
+    remote_assistance_state: Optional[RemoteAssistanceState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RemoteAssistanceSettings:
@@ -32,10 +41,15 @@ class RemoteAssistanceSettings(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .remote_assistance_state import RemoteAssistanceState
 
         from .entity import Entity
+        from .remote_assistance_state import RemoteAssistanceState
 
         fields: dict[str, Callable[[Any], None]] = {
+            "allowSessionsToUnenrolledDevices": lambda n : setattr(self, 'allow_sessions_to_unenrolled_devices', n.get_bool_value()),
+            "blockChat": lambda n : setattr(self, 'block_chat', n.get_bool_value()),
+            "remoteAssistanceState": lambda n : setattr(self, 'remote_assistance_state', n.get_enum_value(RemoteAssistanceState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -50,5 +64,8 @@ class RemoteAssistanceSettings(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_bool_value("allowSessionsToUnenrolledDevices", self.allow_sessions_to_unenrolled_devices)
+        writer.write_bool_value("blockChat", self.block_chat)
+        writer.write_enum_value("remoteAssistanceState", self.remote_assistance_state)
     
 

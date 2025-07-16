@@ -41,6 +41,7 @@ class GetActiveUserMetricsForOneNoteWebWithInclusiveIntervalStartDateTimeWithExc
         Get all the active usage based on the number of active users who open or save OneNote for the web.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetActiveUserMetricsForOneNoteWebWithInclusiveIntervalStartDateTimeWithExclusiveIntervalEndDateTimeWithAggregationIntervalInMinutesGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/serviceactivity-getactiveusermetricsforonenoteweb?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

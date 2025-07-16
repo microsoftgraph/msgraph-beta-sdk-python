@@ -6,11 +6,16 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .identity_type import IdentityType
 
 from ..entity import Entity
 
 @dataclass
 class Identity(Entity, Parsable):
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The type of identity. Possible values are: user or group for Microsoft Entra identities and externalgroup for groups in an external system.
+    type: Optional[IdentityType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Identity:
@@ -29,10 +34,13 @@ class Identity(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .identity_type import IdentityType
 
         from ..entity import Entity
+        from .identity_type import IdentityType
 
         fields: dict[str, Callable[[Any], None]] = {
+            "type": lambda n : setattr(self, 'type', n.get_enum_value(IdentityType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -47,5 +55,6 @@ class Identity(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_enum_value("type", self.type)
     
 

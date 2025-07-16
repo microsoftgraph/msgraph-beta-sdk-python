@@ -34,6 +34,7 @@ class PowerOnRequestBuilder(BaseRequestBuilder):
         Power on a Windows 365 Frontline Cloud PC. This action supports Microsoft Endpoint Manager (MEM) admin scenarios.  After a Windows 365 Frontline Cloud PC is powered on, it is allocated to a user, and licenses are assigned immediately. Only IT admin users can perform this action. 
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-poweron?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

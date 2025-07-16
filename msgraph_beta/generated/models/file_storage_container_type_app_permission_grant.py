@@ -5,6 +5,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .file_storage_container_type_app_permission import FileStorageContainerTypeAppPermission
+
 @dataclass
 class FileStorageContainerTypeAppPermissionGrant(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -15,9 +18,9 @@ class FileStorageContainerTypeAppPermissionGrant(AdditionalDataHolder, BackedMod
     # The appId property
     app_id: Optional[str] = None
     # The applicationPermissions property
-    application_permissions: Optional[list[str]] = None
+    application_permissions: Optional[list[FileStorageContainerTypeAppPermission]] = None
     # The delegatedPermissions property
-    delegated_permissions: Optional[list[str]] = None
+    delegated_permissions: Optional[list[FileStorageContainerTypeAppPermission]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -37,10 +40,14 @@ class FileStorageContainerTypeAppPermissionGrant(AdditionalDataHolder, BackedMod
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .file_storage_container_type_app_permission import FileStorageContainerTypeAppPermission
+
+        from .file_storage_container_type_app_permission import FileStorageContainerTypeAppPermission
+
         fields: dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
-            "applicationPermissions": lambda n : setattr(self, 'application_permissions', n.get_collection_of_primitive_values(str)),
-            "delegatedPermissions": lambda n : setattr(self, 'delegated_permissions', n.get_collection_of_primitive_values(str)),
+            "applicationPermissions": lambda n : setattr(self, 'application_permissions', n.get_collection_of_enum_values(FileStorageContainerTypeAppPermission)),
+            "delegatedPermissions": lambda n : setattr(self, 'delegated_permissions', n.get_collection_of_enum_values(FileStorageContainerTypeAppPermission)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -54,8 +61,8 @@ class FileStorageContainerTypeAppPermissionGrant(AdditionalDataHolder, BackedMod
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("appId", self.app_id)
-        writer.write_collection_of_primitive_values("applicationPermissions", self.application_permissions)
-        writer.write_collection_of_primitive_values("delegatedPermissions", self.delegated_permissions)
+        writer.write_collection_of_enum_values("applicationPermissions", self.application_permissions)
+        writer.write_collection_of_enum_values("delegatedPermissions", self.delegated_permissions)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     
