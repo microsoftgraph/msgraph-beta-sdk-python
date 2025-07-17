@@ -34,6 +34,7 @@ class RestartRequestBuilder(BaseRequestBuilder):
         Restart the specified Microsoft Teams-enabled device asynchronously.  A device is restarted after the async operation completes successfully, which might occur subsequent to a response from this API.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/teamworkdevice-restart?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration

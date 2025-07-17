@@ -35,6 +35,7 @@ class GetOpenShiftsRequestBuilder(BaseRequestBuilder):
         Get all openShift objects across all teams a user is a direct member of.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetOpenShiftsGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/team-getopenshifts?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

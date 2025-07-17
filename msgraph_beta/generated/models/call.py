@@ -21,9 +21,11 @@ if TYPE_CHECKING:
     from .media_config import MediaConfig
     from .meeting_capability import MeetingCapability
     from .meeting_info import MeetingInfo
+    from .modality import Modality
     from .participant import Participant
     from .participant_info import ParticipantInfo
     from .result_info import ResultInfo
+    from .routing_policy import RoutingPolicy
     from .tone_info import ToneInfo
 
 from .entity import Entity
@@ -31,7 +33,7 @@ from .entity import Entity
 @dataclass
 class Call(Entity, Parsable):
     # The list of active modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data. Read-only.
-    active_modalities: Optional[list[str]] = None
+    active_modalities: Optional[list[Modality]] = None
     # The participant that answered the call. Read-only.
     answered_by: Optional[ParticipantInfo] = None
     # The audioRoutingGroups property
@@ -69,13 +71,13 @@ class Call(Entity, Parsable):
     # The participants property
     participants: Optional[list[Participant]] = None
     # The list of requested modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data.
-    requested_modalities: Optional[list[str]] = None
+    requested_modalities: Optional[list[Modality]] = None
     # The result information. For example, the result can hold termination reason. Read-only.
     result_info: Optional[ResultInfo] = None
     # Ringing timeout in seconds for outgoing peer to peer calls. The max value for this attribute is 115 seconds.
     ringing_timeout_in_seconds: Optional[int] = None
     # This property is applicable for peer to peer calls only. Possible values are: none, noMissedCall, disableForwardingExceptPhone, disableForwarding, preferSkypeForBusiness, unknownFutureValue.
-    routing_policies: Optional[list[str]] = None
+    routing_policies: Optional[list[RoutingPolicy]] = None
     # The originator of the call.
     source: Optional[ParticipantInfo] = None
     # The call state. Possible values are: incoming, establishing, ringing, established, hold, transferring, transferAccepted, redirecting, terminating, terminated. Read-only.
@@ -125,9 +127,11 @@ class Call(Entity, Parsable):
         from .media_config import MediaConfig
         from .meeting_capability import MeetingCapability
         from .meeting_info import MeetingInfo
+        from .modality import Modality
         from .participant import Participant
         from .participant_info import ParticipantInfo
         from .result_info import ResultInfo
+        from .routing_policy import RoutingPolicy
         from .tone_info import ToneInfo
 
         from .audio_routing_group import AudioRoutingGroup
@@ -146,13 +150,15 @@ class Call(Entity, Parsable):
         from .media_config import MediaConfig
         from .meeting_capability import MeetingCapability
         from .meeting_info import MeetingInfo
+        from .modality import Modality
         from .participant import Participant
         from .participant_info import ParticipantInfo
         from .result_info import ResultInfo
+        from .routing_policy import RoutingPolicy
         from .tone_info import ToneInfo
 
         fields: dict[str, Callable[[Any], None]] = {
-            "activeModalities": lambda n : setattr(self, 'active_modalities', n.get_collection_of_primitive_values(str)),
+            "activeModalities": lambda n : setattr(self, 'active_modalities', n.get_collection_of_enum_values(Modality)),
             "answeredBy": lambda n : setattr(self, 'answered_by', n.get_object_value(ParticipantInfo)),
             "audioRoutingGroups": lambda n : setattr(self, 'audio_routing_groups', n.get_collection_of_object_values(AudioRoutingGroup)),
             "callChainId": lambda n : setattr(self, 'call_chain_id', n.get_str_value()),
@@ -170,10 +176,10 @@ class Call(Entity, Parsable):
             "myParticipantId": lambda n : setattr(self, 'my_participant_id', n.get_str_value()),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(CommsOperation)),
             "participants": lambda n : setattr(self, 'participants', n.get_collection_of_object_values(Participant)),
-            "requestedModalities": lambda n : setattr(self, 'requested_modalities', n.get_collection_of_primitive_values(str)),
+            "requestedModalities": lambda n : setattr(self, 'requested_modalities', n.get_collection_of_enum_values(Modality)),
             "resultInfo": lambda n : setattr(self, 'result_info', n.get_object_value(ResultInfo)),
             "ringingTimeoutInSeconds": lambda n : setattr(self, 'ringing_timeout_in_seconds', n.get_int_value()),
-            "routingPolicies": lambda n : setattr(self, 'routing_policies', n.get_collection_of_primitive_values(str)),
+            "routingPolicies": lambda n : setattr(self, 'routing_policies', n.get_collection_of_enum_values(RoutingPolicy)),
             "source": lambda n : setattr(self, 'source', n.get_object_value(ParticipantInfo)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(CallState)),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
@@ -196,7 +202,7 @@ class Call(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_primitive_values("activeModalities", self.active_modalities)
+        writer.write_collection_of_enum_values("activeModalities", self.active_modalities)
         writer.write_object_value("answeredBy", self.answered_by)
         writer.write_collection_of_object_values("audioRoutingGroups", self.audio_routing_groups)
         writer.write_str_value("callChainId", self.call_chain_id)
@@ -214,10 +220,10 @@ class Call(Entity, Parsable):
         writer.write_str_value("myParticipantId", self.my_participant_id)
         writer.write_collection_of_object_values("operations", self.operations)
         writer.write_collection_of_object_values("participants", self.participants)
-        writer.write_collection_of_primitive_values("requestedModalities", self.requested_modalities)
+        writer.write_collection_of_enum_values("requestedModalities", self.requested_modalities)
         writer.write_object_value("resultInfo", self.result_info)
         writer.write_int_value("ringingTimeoutInSeconds", self.ringing_timeout_in_seconds)
-        writer.write_collection_of_primitive_values("routingPolicies", self.routing_policies)
+        writer.write_collection_of_enum_values("routingPolicies", self.routing_policies)
         writer.write_object_value("source", self.source)
         writer.write_enum_value("state", self.state)
         writer.write_str_value("subject", self.subject)

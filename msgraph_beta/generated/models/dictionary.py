@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
     from .open_complex_dictionary_type import OpenComplexDictionaryType
     from .partner.security.additional_data_dictionary import AdditionalDataDictionary
+    from .planner_forms_dictionary import PlannerFormsDictionary
     from .result_template_dictionary import ResultTemplateDictionary
     from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
@@ -58,6 +59,10 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
             from .partner.security.additional_data_dictionary import AdditionalDataDictionary
 
             return AdditionalDataDictionary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerFormsDictionary".casefold():
+            from .planner_forms_dictionary import PlannerFormsDictionary
+
+            return PlannerFormsDictionary()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.resultTemplateDictionary".casefold():
             from .result_template_dictionary import ResultTemplateDictionary
 
@@ -78,6 +83,7 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
         from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
         from .open_complex_dictionary_type import OpenComplexDictionaryType
         from .partner.security.additional_data_dictionary import AdditionalDataDictionary
+        from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
         from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
@@ -86,6 +92,7 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
         from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
         from .open_complex_dictionary_type import OpenComplexDictionaryType
         from .partner.security.additional_data_dictionary import AdditionalDataDictionary
+        from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
         from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 

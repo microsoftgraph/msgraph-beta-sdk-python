@@ -38,6 +38,7 @@ class MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithInc
         Get known issues related to a particular product based on a specified timeframe in the past.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-product-getknownissuesbytimerange?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration

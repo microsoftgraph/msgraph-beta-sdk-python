@@ -37,6 +37,7 @@ class GetPlanRequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BusinessScenarioPlanReference]
+        Find more info here: https://learn.microsoft.com/graph/api/businessscenarioplanner-getplan?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")

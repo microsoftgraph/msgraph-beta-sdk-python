@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .printer_feed_orientation import PrinterFeedOrientation
     from .print_color_mode import PrintColorMode
     from .print_duplex_mode import PrintDuplexMode
+    from .print_finishing import PrintFinishing
     from .print_margin import PrintMargin
     from .print_multipage_layout import PrintMultipageLayout
     from .print_orientation import PrintOrientation
@@ -39,7 +40,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # The feedOrientation property
     feed_orientation: Optional[PrinterFeedOrientation] = None
     # The finishings property
-    finishings: Optional[list[str]] = None
+    finishings: Optional[list[PrintFinishing]] = None
     # The fitPdfToPage property
     fit_pdf_to_page: Optional[bool] = None
     # The inputBin property
@@ -88,6 +89,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         from .printer_feed_orientation import PrinterFeedOrientation
         from .print_color_mode import PrintColorMode
         from .print_duplex_mode import PrintDuplexMode
+        from .print_finishing import PrintFinishing
         from .print_margin import PrintMargin
         from .print_multipage_layout import PrintMultipageLayout
         from .print_orientation import PrintOrientation
@@ -99,6 +101,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         from .printer_feed_orientation import PrinterFeedOrientation
         from .print_color_mode import PrintColorMode
         from .print_duplex_mode import PrintDuplexMode
+        from .print_finishing import PrintFinishing
         from .print_margin import PrintMargin
         from .print_multipage_layout import PrintMultipageLayout
         from .print_orientation import PrintOrientation
@@ -113,7 +116,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             "duplexMode": lambda n : setattr(self, 'duplex_mode', n.get_enum_value(PrintDuplexMode)),
             "feedDirection": lambda n : setattr(self, 'feed_direction', n.get_enum_value(PrinterFeedDirection)),
             "feedOrientation": lambda n : setattr(self, 'feed_orientation', n.get_enum_value(PrinterFeedOrientation)),
-            "finishings": lambda n : setattr(self, 'finishings', n.get_collection_of_primitive_values(str)),
+            "finishings": lambda n : setattr(self, 'finishings', n.get_collection_of_enum_values(PrintFinishing)),
             "fitPdfToPage": lambda n : setattr(self, 'fit_pdf_to_page', n.get_bool_value()),
             "inputBin": lambda n : setattr(self, 'input_bin', n.get_str_value()),
             "margin": lambda n : setattr(self, 'margin', n.get_object_value(PrintMargin)),
@@ -145,7 +148,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("duplexMode", self.duplex_mode)
         writer.write_enum_value("feedDirection", self.feed_direction)
         writer.write_enum_value("feedOrientation", self.feed_orientation)
-        writer.write_collection_of_primitive_values("finishings", self.finishings)
+        writer.write_collection_of_enum_values("finishings", self.finishings)
         writer.write_bool_value("fitPdfToPage", self.fit_pdf_to_page)
         writer.write_str_value("inputBin", self.input_bin)
         writer.write_object_value("margin", self.margin)
