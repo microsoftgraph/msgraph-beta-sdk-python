@@ -52,10 +52,10 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PolicyLinkItemRequestBuilderGetQueryParameters]] = None) -> Optional[PolicyLink]:
         """
-        Read the properties and relationships of a threatIntelligencePolicyLink object.
+        Get a tlsInspectionPolicyLink object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PolicyLink]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-threatintelligencepolicylink-get?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-tlsinspectionpolicylink-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -108,7 +108,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PolicyLinkItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a threatIntelligencePolicyLink object.
+        Get a tlsInspectionPolicyLink object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -161,7 +161,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PolicyLinkItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a threatIntelligencePolicyLink object.
+        Get a tlsInspectionPolicyLink object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
