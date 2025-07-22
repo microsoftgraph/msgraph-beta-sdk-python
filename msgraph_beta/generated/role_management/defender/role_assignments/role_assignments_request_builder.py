@@ -50,7 +50,7 @@ class RoleAssignmentsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RoleAssignmentsRequestBuilderGetQueryParameters]] = None) -> Optional[UnifiedRoleAssignmentMultipleCollectionResponse]:
         """
-        Get roleAssignments from roleManagement
+        Get the properties and relationships of a unifiedRoleAssignmentMultiple object of an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- Defender (Microsoft Defender XDR Unified RBAC) For other Microsoft 365 applications (like Microsoft Entra ID), use unifiedRoleAssignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedRoleAssignmentMultipleCollectionResponse]
         """
@@ -71,10 +71,11 @@ class RoleAssignmentsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: UnifiedRoleAssignmentMultiple, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[UnifiedRoleAssignmentMultiple]:
         """
-        Create new navigation property to roleAssignments for roleManagement
+        Create a new unifiedRoleAssignmentMultiple object for an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- Defender (Microsoft Defender XDR) For other Microsoft 365 applications (like Microsoft Entra ID), use unifiedRoleAssignment.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UnifiedRoleAssignmentMultiple]
+        Find more info here: https://learn.microsoft.com/graph/api/rbacapplicationmultiple-post-roleassignments?view=graph-rest-beta
         """
         warn("This version is being deprecated and is scheduled for removal on 2025-12-01.Please migrate to the latest version before the removal date. as of 2025-01/PrivatePreview:microsoft.applicationAuthorization on 2025-01-01 and will be removed 2025-12-01", DeprecationWarning)
         if body is None:
@@ -95,7 +96,7 @@ class RoleAssignmentsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RoleAssignmentsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get roleAssignments from roleManagement
+        Get the properties and relationships of a unifiedRoleAssignmentMultiple object of an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- Defender (Microsoft Defender XDR Unified RBAC) For other Microsoft 365 applications (like Microsoft Entra ID), use unifiedRoleAssignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +108,7 @@ class RoleAssignmentsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: UnifiedRoleAssignmentMultiple, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to roleAssignments for roleManagement
+        Create a new unifiedRoleAssignmentMultiple object for an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- Defender (Microsoft Defender XDR) For other Microsoft 365 applications (like Microsoft Entra ID), use unifiedRoleAssignment.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +145,7 @@ class RoleAssignmentsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RoleAssignmentsRequestBuilderGetQueryParameters():
         """
-        Get roleAssignments from roleManagement
+        Get the properties and relationships of a unifiedRoleAssignmentMultiple object of an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune)- Defender (Microsoft Defender XDR Unified RBAC) For other Microsoft 365 applications (like Microsoft Entra ID), use unifiedRoleAssignment.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
