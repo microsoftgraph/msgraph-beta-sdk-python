@@ -20,9 +20,9 @@ class EducationalActivity(ItemFacet, Parsable):
     completion_month_year: Optional[datetime.date] = None
     # The month and year the user completed the educational activity referenced.
     end_month_year: Optional[datetime.date] = None
-    # The institution property
+    # Contains details of the institution studied at.
     institution: Optional[InstitutionData] = None
-    # The program property
+    # Contains extended information about the program or course.
     program: Optional[EducationalActivityDetail] = None
     # The month and year the user commenced the activity referenced.
     start_month_year: Optional[datetime.date] = None

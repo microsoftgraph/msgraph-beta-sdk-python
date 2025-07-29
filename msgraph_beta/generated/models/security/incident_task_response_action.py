@@ -27,7 +27,7 @@ from .response_action import ResponseAction
 class IncidentTaskResponseAction(ResponseAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.incidentTaskResponseAction"
-    # The identifierValue property
+    # Required. The identifier value for the response action. This value is specific to the type of action being performed.
     identifier_value: Optional[str] = None
     
     @staticmethod

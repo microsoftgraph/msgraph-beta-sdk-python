@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .cloud_pc_connectivity_result import CloudPcConnectivityResult
     from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
     from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
+    from .cloud_pc_frontline_shared_device_detail import CloudPcFrontlineSharedDeviceDetail
     from .cloud_pc_login_result import CloudPcLoginResult
     from .cloud_pc_operating_system import CloudPcOperatingSystem
     from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
@@ -76,6 +77,8 @@ class CloudPC(Entity, Parsable):
     power_state: Optional[CloudPcPowerState] = None
     # The product type of the Cloud PC. The possible values are: enterprise, frontline, devBox, powerAutomate, business, unknownFutureValue. For the available service plans and pricing for enterprise, frontline, and business, see Windows 365 for business. For pricing information for devBox, see Microsoft Dev Box pricing. For the available plans and pricing for powerAutomate, see Power Automate pricing. The default value is enterprise. Supports $filter and $select. For more information, see Example 4: List Cloud PCs filtered by product type. Read-only.
     product_type: Optional[CloudPcProductType] = None
+    # The latest provisioned date and time, automatically generated and assigned during the initial provisioning or any subsequent reprovisioning of the Cloud PC. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    provisioned_date_time: Optional[datetime.datetime] = None
     # The provisioning policy ID of the Cloud PC.
     provisioning_policy_id: Optional[str] = None
     # The provisioning policy that is applied during the provisioning of Cloud PCs.
@@ -90,6 +93,8 @@ class CloudPC(Entity, Parsable):
     service_plan_name: Optional[str] = None
     # The service plan type of the Cloud PC.
     service_plan_type: Optional[CloudPcServicePlanType] = None
+    # Indicates the Cloud PC device details (for example, assignedToUserPrincipalName) associated with the frontline shared service plan.
+    shared_device_detail: Optional[CloudPcFrontlineSharedDeviceDetail] = None
     # The status property
     status: Optional[CloudPcStatus] = None
     # Indicates the detailed status associated with Cloud PC, including error/warning code, error/warning message, additionalInformation. For example, { 'code': 'internalServerError', 'message': 'There was an error during the Cloud PC upgrade. Please contact support.', 'additionalInformation': null }.
@@ -122,6 +127,7 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_connectivity_result import CloudPcConnectivityResult
         from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
         from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
+        from .cloud_pc_frontline_shared_device_detail import CloudPcFrontlineSharedDeviceDetail
         from .cloud_pc_login_result import CloudPcLoginResult
         from .cloud_pc_operating_system import CloudPcOperatingSystem
         from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
@@ -142,6 +148,7 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_connectivity_result import CloudPcConnectivityResult
         from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
         from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
+        from .cloud_pc_frontline_shared_device_detail import CloudPcFrontlineSharedDeviceDetail
         from .cloud_pc_login_result import CloudPcLoginResult
         from .cloud_pc_operating_system import CloudPcOperatingSystem
         from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
@@ -180,6 +187,7 @@ class CloudPC(Entity, Parsable):
             "partnerAgentInstallResults": lambda n : setattr(self, 'partner_agent_install_results', n.get_collection_of_object_values(CloudPcPartnerAgentInstallResult)),
             "powerState": lambda n : setattr(self, 'power_state', n.get_enum_value(CloudPcPowerState)),
             "productType": lambda n : setattr(self, 'product_type', n.get_enum_value(CloudPcProductType)),
+            "provisionedDateTime": lambda n : setattr(self, 'provisioned_date_time', n.get_datetime_value()),
             "provisioningPolicyId": lambda n : setattr(self, 'provisioning_policy_id', n.get_str_value()),
             "provisioningPolicyName": lambda n : setattr(self, 'provisioning_policy_name', n.get_str_value()),
             "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
@@ -187,6 +195,7 @@ class CloudPC(Entity, Parsable):
             "servicePlanId": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
             "servicePlanName": lambda n : setattr(self, 'service_plan_name', n.get_str_value()),
             "servicePlanType": lambda n : setattr(self, 'service_plan_type', n.get_enum_value(CloudPcServicePlanType)),
+            "sharedDeviceDetail": lambda n : setattr(self, 'shared_device_detail', n.get_object_value(CloudPcFrontlineSharedDeviceDetail)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPcStatus)),
             "statusDetail": lambda n : setattr(self, 'status_detail', n.get_object_value(CloudPcStatusDetail)),
             "statusDetails": lambda n : setattr(self, 'status_details', n.get_object_value(CloudPcStatusDetails)),
@@ -228,6 +237,7 @@ class CloudPC(Entity, Parsable):
         writer.write_collection_of_object_values("partnerAgentInstallResults", self.partner_agent_install_results)
         writer.write_enum_value("powerState", self.power_state)
         writer.write_enum_value("productType", self.product_type)
+        writer.write_datetime_value("provisionedDateTime", self.provisioned_date_time)
         writer.write_str_value("provisioningPolicyId", self.provisioning_policy_id)
         writer.write_str_value("provisioningPolicyName", self.provisioning_policy_name)
         writer.write_enum_value("provisioningType", self.provisioning_type)
@@ -235,6 +245,7 @@ class CloudPC(Entity, Parsable):
         writer.write_str_value("servicePlanId", self.service_plan_id)
         writer.write_str_value("servicePlanName", self.service_plan_name)
         writer.write_enum_value("servicePlanType", self.service_plan_type)
+        writer.write_object_value("sharedDeviceDetail", self.shared_device_detail)
         writer.write_enum_value("status", self.status)
         writer.write_object_value("statusDetail", self.status_detail)
         writer.write_object_value("statusDetails", self.status_details)

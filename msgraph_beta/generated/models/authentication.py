@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .authentication_method import AuthenticationMethod
     from .email_authentication_method import EmailAuthenticationMethod
     from .entity import Entity
+    from .external_authentication_method import ExternalAuthenticationMethod
     from .fido2_authentication_method import Fido2AuthenticationMethod
     from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
     from .long_running_operation import LongRunningOperation
@@ -29,6 +30,8 @@ from .entity import Entity
 class Authentication(Entity, Parsable):
     # Represents the email addresses registered to a user for authentication.
     email_methods: Optional[list[EmailAuthenticationMethod]] = None
+    # The externalAuthenticationMethods property
+    external_authentication_methods: Optional[list[ExternalAuthenticationMethod]] = None
     # Represents the FIDO2 security keys registered to a user for authentication.
     fido2_methods: Optional[list[Fido2AuthenticationMethod]] = None
     # The hardware OATH time-based one-time password (TOTP) devices assigned to a user for authentication.
@@ -81,6 +84,7 @@ class Authentication(Entity, Parsable):
         from .authentication_method import AuthenticationMethod
         from .email_authentication_method import EmailAuthenticationMethod
         from .entity import Entity
+        from .external_authentication_method import ExternalAuthenticationMethod
         from .fido2_authentication_method import Fido2AuthenticationMethod
         from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .long_running_operation import LongRunningOperation
@@ -99,6 +103,7 @@ class Authentication(Entity, Parsable):
         from .authentication_method import AuthenticationMethod
         from .email_authentication_method import EmailAuthenticationMethod
         from .entity import Entity
+        from .external_authentication_method import ExternalAuthenticationMethod
         from .fido2_authentication_method import Fido2AuthenticationMethod
         from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .long_running_operation import LongRunningOperation
@@ -116,6 +121,7 @@ class Authentication(Entity, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "emailMethods": lambda n : setattr(self, 'email_methods', n.get_collection_of_object_values(EmailAuthenticationMethod)),
+            "externalAuthenticationMethods": lambda n : setattr(self, 'external_authentication_methods', n.get_collection_of_object_values(ExternalAuthenticationMethod)),
             "fido2Methods": lambda n : setattr(self, 'fido2_methods', n.get_collection_of_object_values(Fido2AuthenticationMethod)),
             "hardwareOathMethods": lambda n : setattr(self, 'hardware_oath_methods', n.get_collection_of_object_values(HardwareOathAuthenticationMethod)),
             "methods": lambda n : setattr(self, 'methods', n.get_collection_of_object_values(AuthenticationMethod)),
@@ -146,6 +152,7 @@ class Authentication(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("emailMethods", self.email_methods)
+        writer.write_collection_of_object_values("externalAuthenticationMethods", self.external_authentication_methods)
         writer.write_collection_of_object_values("fido2Methods", self.fido2_methods)
         writer.write_collection_of_object_values("hardwareOathMethods", self.hardware_oath_methods)
         writer.write_collection_of_object_values("methods", self.methods)

@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .count.count_request_builder import CountRequestBuilder
     from .get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id.get_provisioned_cloud_p_cs_with_group_id_with_service_plan_id_request_builder import GetProvisionedCloudPCsWithGroupIdWithServicePlanIdRequestBuilder
     from .item.cloud_p_c_item_request_builder import CloudPCItemRequestBuilder
+    from .retrieve_cloud_pc_count_by_status.retrieve_cloud_pc_count_by_status_request_builder import RetrieveCloudPcCountByStatusRequestBuilder
     from .validate_bulk_resize.validate_bulk_resize_request_builder import ValidateBulkResizeRequestBuilder
 
 class CloudPCsRequestBuilder(BaseRequestBuilder):
@@ -152,6 +153,15 @@ class CloudPCsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_cloud_pc_count_by_status(self) -> RetrieveCloudPcCountByStatusRequestBuilder:
+        """
+        Provides operations to call the retrieveCloudPcCountByStatus method.
+        """
+        from .retrieve_cloud_pc_count_by_status.retrieve_cloud_pc_count_by_status_request_builder import RetrieveCloudPcCountByStatusRequestBuilder
+
+        return RetrieveCloudPcCountByStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def validate_bulk_resize(self) -> ValidateBulkResizeRequestBuilder:

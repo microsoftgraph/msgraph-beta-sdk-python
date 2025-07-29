@@ -32,7 +32,7 @@ class IncidentRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[IncidentRequestBuilderGetQueryParameters]] = None) -> Optional[Incident]:
         """
-        Get incident from security
+        Required. The incident that contains this task. Must contain a valid incident ID.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Incident]
         """
@@ -52,7 +52,7 @@ class IncidentRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[IncidentRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get incident from security
+        Required. The incident that contains this task. Must contain a valid incident ID.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class IncidentRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IncidentRequestBuilderGetQueryParameters():
         """
-        Get incident from security
+        Required. The incident that contains this task. Must contain a valid incident ID.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

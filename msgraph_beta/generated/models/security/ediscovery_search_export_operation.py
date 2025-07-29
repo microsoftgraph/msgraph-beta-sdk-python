@@ -19,7 +19,7 @@ from .case_operation import CaseOperation
 
 @dataclass
 class EdiscoverySearchExportOperation(CaseOperation, Parsable):
-    # The additional items to include in the export. The possible values are: none, teamsAndYammerConversations, cloudAttachments, allDocumentVersions, subfolderContents, listAttachments, unknownFutureValue, htmlTranscripts, advancedIndexing, allItemsInFolder, includeFolderAndPath, condensePaths, friendlyName, splitSource, optimizedPartitionSize, includeReport. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: htmlTranscripts, advancedIndexing, allItemsInFolder, includeFolderAndPath, condensePaths, friendlyName, splitSource, optimizedPartitionSize, includeReport.
+    # The additional items to include in the export. The possible values are: none, teamsAndYammerConversations, cloudAttachments, allDocumentVersions, subfolderContents, listAttachments, unknownFutureValue, htmlTranscripts, advancedIndexing, allItemsInFolder, includeFolderAndPath, condensePaths, friendlyName, splitSource, includeReport. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: htmlTranscripts, advancedIndexing, allItemsInFolder, includeFolderAndPath, condensePaths, friendlyName, splitSource, includeReport.
     additional_options: Optional[AdditionalOptions] = None
     # The versions of cloud attachments to include in messages. Possible values are: latest, recent10, recent100, all, unknownFutureValue.
     cloud_attachment_version: Optional[CloudAttachmentVersion] = None
@@ -33,7 +33,7 @@ class EdiscoverySearchExportOperation(CaseOperation, Parsable):
     export_criteria: Optional[ExportCriteria] = None
     # Contains the properties for an export file metadata, including downloadUrl, fileName, and size.
     export_file_metadata: Optional[list[ExportFileMetadata]] = None
-    # Format of the emails of the export. The possible values are: pst, msg, eml, unknownFutureValue.
+    # Format of the emails of the export. The possible values are: pst, msg, eml (deprecated), unknownFutureValue. The eml member is deprecated. It remains in beta for backward compatibility. Going forward, use either pst or msg.
     export_format: Optional[ExportFormat] = None
     # Location scope for partially indexed items. You can choose to include partially indexed items only in responsive locations with search hits or in all targeted locations. The possible values are: responsiveLocations, nonresponsiveLocations, unknownFutureValue.
     export_location: Optional[ExportLocation] = None

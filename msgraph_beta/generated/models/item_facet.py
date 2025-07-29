@@ -39,7 +39,7 @@ from .entity import Entity
 class ItemFacet(Entity, Parsable):
     # The audiences that are able to see the values contained within the associated entity. Possible values are: me, family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
     allowed_audiences: Optional[AllowedAudiences] = None
-    # The createdBy property
+    # Provides the identifier of the user and/or application that created the entity.
     created_by: Optional[IdentitySet] = None
     # Provides the dateTimeOffset for when the entity was created.
     created_date_time: Optional[datetime.datetime] = None
@@ -47,7 +47,7 @@ class ItemFacet(Entity, Parsable):
     inference: Optional[InferenceData] = None
     # The isSearchable property
     is_searchable: Optional[bool] = None
-    # The lastModifiedBy property
+    # Provides the identifier of the user and/or application that last modified the entity.
     last_modified_by: Optional[IdentitySet] = None
     # Provides the dateTimeOffset for when the entity was created.
     last_modified_date_time: Optional[datetime.datetime] = None

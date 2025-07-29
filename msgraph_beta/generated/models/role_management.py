@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .rbac_application import RbacApplication
     from .rbac_application_multiple import RbacApplicationMultiple
     from .unified_rbac_application import UnifiedRbacApplication
+    from .unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
 
 @dataclass
 class RoleManagement(AdditionalDataHolder, BackedModel, Parsable):
@@ -20,7 +21,7 @@ class RoleManagement(AdditionalDataHolder, BackedModel, Parsable):
     # The cloudPC property
     cloud_p_c: Optional[RbacApplicationMultiple] = None
     # The defender property
-    defender: Optional[RbacApplicationMultiple] = None
+    defender: Optional[UnifiedRbacApplicationMultiple] = None
     # The RbacApplication for Device Management
     device_management: Optional[RbacApplicationMultiple] = None
     # The directory property
@@ -53,14 +54,16 @@ class RoleManagement(AdditionalDataHolder, BackedModel, Parsable):
         from .rbac_application import RbacApplication
         from .rbac_application_multiple import RbacApplicationMultiple
         from .unified_rbac_application import UnifiedRbacApplication
+        from .unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
 
         from .rbac_application import RbacApplication
         from .rbac_application_multiple import RbacApplicationMultiple
         from .unified_rbac_application import UnifiedRbacApplication
+        from .unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
 
         fields: dict[str, Callable[[Any], None]] = {
             "cloudPC": lambda n : setattr(self, 'cloud_p_c', n.get_object_value(RbacApplicationMultiple)),
-            "defender": lambda n : setattr(self, 'defender', n.get_object_value(RbacApplicationMultiple)),
+            "defender": lambda n : setattr(self, 'defender', n.get_object_value(UnifiedRbacApplicationMultiple)),
             "deviceManagement": lambda n : setattr(self, 'device_management', n.get_object_value(RbacApplicationMultiple)),
             "directory": lambda n : setattr(self, 'directory', n.get_object_value(RbacApplication)),
             "enterpriseApps": lambda n : setattr(self, 'enterprise_apps', n.get_collection_of_object_values(RbacApplication)),

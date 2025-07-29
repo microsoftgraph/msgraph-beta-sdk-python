@@ -22,23 +22,23 @@ class IncidentTask(Entity, Parsable):
     action_status: Optional[IncidentTaskActionStatus] = None
     # The actionType property
     action_type: Optional[IncidentTaskActionType] = None
-    # The createdByDisplayName property
+    # Name of the entity that created the task. Read-only.
     created_by_display_name: Optional[str] = None
-    # The createdDateTime property
+    # Creation time of the task. Read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # The description property
+    # Description of the remediation action.
     description: Optional[str] = None
-    # The displayName property
+    # Title of the task.
     display_name: Optional[str] = None
-    # The incident property
+    # Required. The incident that contains this task. Must contain a valid incident ID.
     incident: Optional[Incident] = None
-    # The lastModifiedByDisplayName property
+    # Name of the entity that last updated the task. Read-only.
     last_modified_by_display_name: Optional[str] = None
-    # The lastModifiedDateTime property
+    # Last update time of the task. Read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The responseAction property
+    # The reponse action.
     response_action: Optional[IncidentTaskResponseAction] = None
     # The source property
     source: Optional[IncidentTaskSource] = None

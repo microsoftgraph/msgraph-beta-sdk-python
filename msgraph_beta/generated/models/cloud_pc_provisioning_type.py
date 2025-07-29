@@ -6,4 +6,5 @@ class CloudPcProvisioningType(str, Enum):
     UnknownFutureValue = "unknownFutureValue",
     SharedByUser = "sharedByUser",
     SharedByEntraGroup = "sharedByEntraGroup",
+    Reserve = "reserve",
 

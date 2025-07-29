@@ -39,6 +39,7 @@ class MarkAsNotJunkRequestBuilder(BaseRequestBuilder):
         Returns: Optional[Message]
         Find more info here: https://learn.microsoft.com/graph/api/message-markasnotjunk?view=graph-rest-beta
         """
+        warn("The MarkAsNotJunk API is deprecated and will stop working from Dec 30, 2025. Please use the ReportMessage API. as of 2022-09/Mark_As_Not_Junk on 2025-04-25 and will be removed 2025-12-30", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -62,6 +63,7 @@ class MarkAsNotJunkRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The MarkAsNotJunk API is deprecated and will stop working from Dec 30, 2025. Please use the ReportMessage API. as of 2022-09/Mark_As_Not_Junk on 2025-04-25 and will be removed 2025-12-30", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -76,6 +78,7 @@ class MarkAsNotJunkRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MarkAsNotJunkRequestBuilder
         """
+        warn("The MarkAsNotJunk API is deprecated and will stop working from Dec 30, 2025. Please use the ReportMessage API. as of 2022-09/Mark_As_Not_Junk on 2025-04-25 and will be removed 2025-12-30", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MarkAsNotJunkRequestBuilder(self.request_adapter, raw_url)

@@ -16,7 +16,7 @@ class WebAccount(ItemFacet, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.webAccount"
     # Contains the description the user has provided for the account on the service being referenced.
     description: Optional[str] = None
-    # The service property
+    # Contains basic detail about the service that is being associated.
     service: Optional[ServiceInformation] = None
     # Contains a status message from the cloud service if provided or synchronized.
     status_message: Optional[str] = None

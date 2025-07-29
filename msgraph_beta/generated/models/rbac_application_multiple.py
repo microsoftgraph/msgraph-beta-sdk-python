@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
     from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
     from .unified_role_assignment_multiple import UnifiedRoleAssignmentMultiple
     from .unified_role_definition import UnifiedRoleDefinition
@@ -32,6 +33,15 @@ class RbacApplicationMultiple(Entity, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unifiedRbacApplicationMultiple".casefold():
+            from .unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
+
+            return UnifiedRbacApplicationMultiple()
         return RbacApplicationMultiple()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -40,11 +50,13 @@ class RbacApplicationMultiple(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
         from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
         from .unified_role_assignment_multiple import UnifiedRoleAssignmentMultiple
         from .unified_role_definition import UnifiedRoleDefinition
 
         from .entity import Entity
+        from .unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
         from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
         from .unified_role_assignment_multiple import UnifiedRoleAssignmentMultiple
         from .unified_role_definition import UnifiedRoleDefinition

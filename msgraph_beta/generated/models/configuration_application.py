@@ -16,6 +16,8 @@ from .entity import Entity
 class ConfigurationApplication(Entity, Parsable):
     # The appId property
     app_id: Optional[str] = None
+    # The appOwnerOrganizationId property
+    app_owner_organization_id: Optional[str] = None
     # The clientCredentials property
     client_credentials: Optional[ClientCredentials] = None
     # The createdBy property
@@ -61,6 +63,7 @@ class ConfigurationApplication(Entity, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
+            "appOwnerOrganizationId": lambda n : setattr(self, 'app_owner_organization_id', n.get_str_value()),
             "clientCredentials": lambda n : setattr(self, 'client_credentials', n.get_object_value(ClientCredentials)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -84,6 +87,7 @@ class ConfigurationApplication(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("appId", self.app_id)
+        writer.write_str_value("appOwnerOrganizationId", self.app_owner_organization_id)
         writer.write_object_value("clientCredentials", self.client_credentials)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_str_value("description", self.description)

@@ -13,7 +13,7 @@ from .incident_task_response_action import IncidentTaskResponseAction
 class StopAndQuarantineFileIncidentTaskResponseAction(IncidentTaskResponseAction, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.stopAndQuarantineFileIncidentTaskResponseAction"
-    # The deviceId property
+    # Optional. The identifier of the device where the file is located. This property allows targeting the action to a specific device when the same file exists on multiple devices.
     device_id: Optional[str] = None
     
     @staticmethod

@@ -19,7 +19,7 @@ class WorkPosition(ItemFacet, Parsable):
     categories: Optional[list[str]] = None
     # Colleagues that are associated with this position.
     colleagues: Optional[list[RelatedPerson]] = None
-    # The detail property
+    # Contains detailed information about the position.
     detail: Optional[PositionDetail] = None
     # Denotes whether or not the position is current.
     is_current: Optional[bool] = None

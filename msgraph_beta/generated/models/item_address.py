@@ -15,7 +15,7 @@ from .item_facet import ItemFacet
 class ItemAddress(ItemFacet, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.itemAddress"
-    # The detail property
+    # Details about the address itself.
     detail: Optional[PhysicalAddress] = None
     # Friendly name the user has assigned to this address.
     display_name: Optional[str] = None
