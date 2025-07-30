@@ -13,4 +13,5 @@ class CloudPcDeviceImageErrorCode(str, Enum):
     SourceImageSizeExceedsLimitation = "sourceImageSizeExceedsLimitation",
     SourceImageWithDataDiskNotSupported = "sourceImageWithDataDiskNotSupported",
     SourceImageWithDiskEncryptionSetNotSupported = "sourceImageWithDiskEncryptionSetNotSupported",
+    SourceImageWithAzureDiskEncryptionNotSupported = "sourceImageWithAzureDiskEncryptionNotSupported",
 

@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .cloud_pc_cross_region_disaster_recovery_setting import CloudPcCrossRegionDisasterRecoverySetting
     from .cloud_pc_notification_setting import CloudPcNotificationSetting
+    from .cloud_pc_provisioning_source_type import CloudPcProvisioningSourceType
     from .cloud_pc_restore_point_setting import CloudPcRestorePointSetting
     from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
     from .entity import Entity
@@ -32,6 +33,8 @@ class CloudPcUserSetting(Entity, Parsable):
     notification_setting: Optional[CloudPcNotificationSetting] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The provisioningSourceType property
+    provisioning_source_type: Optional[CloudPcProvisioningSourceType] = None
     # Indicates whether an end user is allowed to reset their Cloud PC. When true, the user is allowed to reset their Cloud PC. When false, end-user initiated reset isn't allowed. The default value is false.
     reset_enabled: Optional[bool] = None
     # Defines how frequently a restore point is created that is, a snapshot is taken) for users' provisioned Cloud PCs (default is 12 hours), and whether the user is allowed to restore their own Cloud PCs to a backup made at a specific point in time.
@@ -57,12 +60,14 @@ class CloudPcUserSetting(Entity, Parsable):
         """
         from .cloud_pc_cross_region_disaster_recovery_setting import CloudPcCrossRegionDisasterRecoverySetting
         from .cloud_pc_notification_setting import CloudPcNotificationSetting
+        from .cloud_pc_provisioning_source_type import CloudPcProvisioningSourceType
         from .cloud_pc_restore_point_setting import CloudPcRestorePointSetting
         from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
         from .entity import Entity
 
         from .cloud_pc_cross_region_disaster_recovery_setting import CloudPcCrossRegionDisasterRecoverySetting
         from .cloud_pc_notification_setting import CloudPcNotificationSetting
+        from .cloud_pc_provisioning_source_type import CloudPcProvisioningSourceType
         from .cloud_pc_restore_point_setting import CloudPcRestorePointSetting
         from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
         from .entity import Entity
@@ -75,6 +80,7 @@ class CloudPcUserSetting(Entity, Parsable):
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "localAdminEnabled": lambda n : setattr(self, 'local_admin_enabled', n.get_bool_value()),
             "notificationSetting": lambda n : setattr(self, 'notification_setting', n.get_object_value(CloudPcNotificationSetting)),
+            "provisioningSourceType": lambda n : setattr(self, 'provisioning_source_type', n.get_enum_value(CloudPcProvisioningSourceType)),
             "resetEnabled": lambda n : setattr(self, 'reset_enabled', n.get_bool_value()),
             "restorePointSetting": lambda n : setattr(self, 'restore_point_setting', n.get_object_value(CloudPcRestorePointSetting)),
             "selfServiceEnabled": lambda n : setattr(self, 'self_service_enabled', n.get_bool_value()),
@@ -99,6 +105,7 @@ class CloudPcUserSetting(Entity, Parsable):
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_bool_value("localAdminEnabled", self.local_admin_enabled)
         writer.write_object_value("notificationSetting", self.notification_setting)
+        writer.write_enum_value("provisioningSourceType", self.provisioning_source_type)
         writer.write_bool_value("resetEnabled", self.reset_enabled)
         writer.write_object_value("restorePointSetting", self.restore_point_setting)
         writer.write_bool_value("selfServiceEnabled", self.self_service_enabled)

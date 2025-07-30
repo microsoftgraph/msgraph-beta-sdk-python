@@ -699,6 +699,7 @@ if TYPE_CHECKING:
     from .externally_accessible_aws_storage_bucket_finding import ExternallyAccessibleAwsStorageBucketFinding
     from .externally_accessible_azure_blob_container_finding import ExternallyAccessibleAzureBlobContainerFinding
     from .externally_accessible_gcp_storage_bucket_finding import ExternallyAccessibleGcpStorageBucketFinding
+    from .external_authentication_method import ExternalAuthenticationMethod
     from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
     from .external_connection import ExternalConnection
     from .external_connectors.connection_operation import ConnectionOperation
@@ -1225,6 +1226,7 @@ if TYPE_CHECKING:
     from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
     from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
     from .on_premises_publishing_profile import OnPremisesPublishingProfile
+    from .on_premises_sync_behavior import OnPremisesSyncBehavior
     from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
     from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
     from .on_user_create_start_listener import OnUserCreateStartListener
@@ -1791,6 +1793,7 @@ if TYPE_CHECKING:
     from .trust_framework_policy import TrustFrameworkPolicy
     from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
     from .unified_rbac_application import UnifiedRbacApplication
+    from .unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
     from .unified_rbac_resource_action import UnifiedRbacResourceAction
     from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
     from .unified_rbac_resource_scope import UnifiedRbacResourceScope
@@ -4923,6 +4926,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .external import External
 
             return External()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalAuthenticationMethod".casefold():
+            from .external_authentication_method import ExternalAuthenticationMethod
+
+            return ExternalAuthenticationMethod()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalAuthenticationMethodConfiguration".casefold():
             from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
 
@@ -7060,6 +7067,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .on_premises_publishing_profile import OnPremisesPublishingProfile
 
             return OnPremisesPublishingProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPremisesSyncBehavior".casefold():
+            from .on_premises_sync_behavior import OnPremisesSyncBehavior
+
+            return OnPremisesSyncBehavior()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onTokenIssuanceStartCustomExtension".casefold():
             from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
 
@@ -9343,6 +9354,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .unified_rbac_application import UnifiedRbacApplication
 
             return UnifiedRbacApplication()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unifiedRbacApplicationMultiple".casefold():
+            from .unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
+
+            return UnifiedRbacApplicationMultiple()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.unifiedRbacResourceAction".casefold():
             from .unified_rbac_resource_action import UnifiedRbacResourceAction
 
@@ -11347,6 +11362,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .externally_accessible_aws_storage_bucket_finding import ExternallyAccessibleAwsStorageBucketFinding
         from .externally_accessible_azure_blob_container_finding import ExternallyAccessibleAzureBlobContainerFinding
         from .externally_accessible_gcp_storage_bucket_finding import ExternallyAccessibleGcpStorageBucketFinding
+        from .external_authentication_method import ExternalAuthenticationMethod
         from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
         from .external_connection import ExternalConnection
         from .external_connectors.connection_operation import ConnectionOperation
@@ -11873,6 +11889,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
         from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
         from .on_premises_publishing_profile import OnPremisesPublishingProfile
+        from .on_premises_sync_behavior import OnPremisesSyncBehavior
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
@@ -12439,6 +12456,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .trust_framework_policy import TrustFrameworkPolicy
         from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
         from .unified_rbac_application import UnifiedRbacApplication
+        from .unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
         from .unified_rbac_resource_action import UnifiedRbacResourceAction
         from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
         from .unified_rbac_resource_scope import UnifiedRbacResourceScope
@@ -13458,6 +13476,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .externally_accessible_aws_storage_bucket_finding import ExternallyAccessibleAwsStorageBucketFinding
         from .externally_accessible_azure_blob_container_finding import ExternallyAccessibleAzureBlobContainerFinding
         from .externally_accessible_gcp_storage_bucket_finding import ExternallyAccessibleGcpStorageBucketFinding
+        from .external_authentication_method import ExternalAuthenticationMethod
         from .external_authentication_method_configuration import ExternalAuthenticationMethodConfiguration
         from .external_connection import ExternalConnection
         from .external_connectors.connection_operation import ConnectionOperation
@@ -13984,6 +14003,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_premises_conditional_access_settings import OnPremisesConditionalAccessSettings
         from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
         from .on_premises_publishing_profile import OnPremisesPublishingProfile
+        from .on_premises_sync_behavior import OnPremisesSyncBehavior
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
@@ -14550,6 +14570,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .trust_framework_policy import TrustFrameworkPolicy
         from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
         from .unified_rbac_application import UnifiedRbacApplication
+        from .unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
         from .unified_rbac_resource_action import UnifiedRbacResourceAction
         from .unified_rbac_resource_namespace import UnifiedRbacResourceNamespace
         from .unified_rbac_resource_scope import UnifiedRbacResourceScope

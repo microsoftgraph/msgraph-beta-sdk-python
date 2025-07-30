@@ -17,9 +17,9 @@ class EventQuery(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # Represents unique identification for the  query. 'Asset ID' for SharePoint Online and OneDrive for Business, 'keywords' for Exchange Online.
+    # Represents unique identification for the  query. 'Asset ID' for SharePoint in Microsoft 365 and OneDrive for work or school, 'keywords' for Exchange Online.
     query: Optional[str] = None
-    # Represents the type of query associated with an event. 'files' for SPO and ODB and 'messages' for EXO.The possible values are: files, messages, unknownFutureValue.
+    # Represents the type of query associated with an event. 'files' for SharePoint in Microsoft 365 and OneDrive for work or school, and 'messages' for Exchange Online. The possible values are: files, messages, unknownFutureValue.
     query_type: Optional[QueryType] = None
     
     @staticmethod

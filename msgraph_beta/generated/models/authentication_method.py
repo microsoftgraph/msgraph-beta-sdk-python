@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .email_authentication_method import EmailAuthenticationMethod
     from .entity import Entity
+    from .external_authentication_method import ExternalAuthenticationMethod
     from .fido2_authentication_method import Fido2AuthenticationMethod
     from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
     from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
@@ -47,6 +48,10 @@ class AuthenticationMethod(Entity, Parsable):
             from .email_authentication_method import EmailAuthenticationMethod
 
             return EmailAuthenticationMethod()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalAuthenticationMethod".casefold():
+            from .external_authentication_method import ExternalAuthenticationMethod
+
+            return ExternalAuthenticationMethod()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.fido2AuthenticationMethod".casefold():
             from .fido2_authentication_method import Fido2AuthenticationMethod
 
@@ -100,6 +105,7 @@ class AuthenticationMethod(Entity, Parsable):
         """
         from .email_authentication_method import EmailAuthenticationMethod
         from .entity import Entity
+        from .external_authentication_method import ExternalAuthenticationMethod
         from .fido2_authentication_method import Fido2AuthenticationMethod
         from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
@@ -114,6 +120,7 @@ class AuthenticationMethod(Entity, Parsable):
 
         from .email_authentication_method import EmailAuthenticationMethod
         from .entity import Entity
+        from .external_authentication_method import ExternalAuthenticationMethod
         from .fido2_authentication_method import Fido2AuthenticationMethod
         from .hardware_oath_authentication_method import HardwareOathAuthenticationMethod
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod

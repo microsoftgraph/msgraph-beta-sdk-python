@@ -49,9 +49,10 @@ class IncidentTasksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[IncidentTasksRequestBuilderGetQueryParameters]] = None) -> Optional[IncidentTaskCollectionResponse]:
         """
-        Get incidentTasks from security
+        Get incident tasks that Microsoft Defender Experts for XDR identified for remediation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IncidentTaskCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/security-list-incidenttasks?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +93,7 @@ class IncidentTasksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[IncidentTasksRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get incidentTasks from security
+        Get incident tasks that Microsoft Defender Experts for XDR identified for remediation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class IncidentTasksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IncidentTasksRequestBuilderGetQueryParameters():
         """
-        Get incidentTasks from security
+        Get incident tasks that Microsoft Defender Experts for XDR identified for remediation.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

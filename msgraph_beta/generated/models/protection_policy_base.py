@@ -18,6 +18,8 @@ from .entity import Entity
 
 @dataclass
 class ProtectionPolicyBase(Entity, Parsable):
+    # The billingPolicyId property
+    billing_policy_id: Optional[str] = None
     # The identity of person who created the policy.
     created_by: Optional[IdentitySet] = None
     # The time of creation of the policy.
@@ -85,6 +87,7 @@ class ProtectionPolicyBase(Entity, Parsable):
         from .share_point_protection_policy import SharePointProtectionPolicy
 
         fields: dict[str, Callable[[Any], None]] = {
+            "billingPolicyId": lambda n : setattr(self, 'billing_policy_id', n.get_str_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -106,6 +109,7 @@ class ProtectionPolicyBase(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("billingPolicyId", self.billing_policy_id)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("displayName", self.display_name)

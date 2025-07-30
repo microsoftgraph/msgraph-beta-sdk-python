@@ -5,6 +5,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .student_age_group import StudentAgeGroup
+
 @dataclass
 class AdditionalUserOptions(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -18,6 +21,8 @@ class AdditionalUserOptions(AdditionalDataHolder, BackedModel, Parsable):
     mark_all_students_as_minors: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Indicates the age group classification for students. Possible values are: minor, notAdult, adult, unknownFutureValue. Use null to disable age group enforcement.
+    student_age_group: Optional[StudentAgeGroup] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AdditionalUserOptions:
@@ -35,10 +40,15 @@ class AdditionalUserOptions(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .student_age_group import StudentAgeGroup
+
+        from .student_age_group import StudentAgeGroup
+
         fields: dict[str, Callable[[Any], None]] = {
             "allowStudentContactAssociation": lambda n : setattr(self, 'allow_student_contact_association', n.get_bool_value()),
             "markAllStudentsAsMinors": lambda n : setattr(self, 'mark_all_students_as_minors', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "studentAgeGroup": lambda n : setattr(self, 'student_age_group', n.get_enum_value(StudentAgeGroup)),
         }
         return fields
     
@@ -53,6 +63,7 @@ class AdditionalUserOptions(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("allowStudentContactAssociation", self.allow_student_contact_association)
         writer.write_bool_value("markAllStudentsAsMinors", self.mark_all_students_as_minors)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_enum_value("studentAgeGroup", self.student_age_group)
         writer.write_additional_data_value(self.additional_data)
     
 

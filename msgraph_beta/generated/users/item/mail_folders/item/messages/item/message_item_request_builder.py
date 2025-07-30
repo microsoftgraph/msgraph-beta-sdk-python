@@ -30,6 +30,7 @@ if TYPE_CHECKING:
     from .permanent_delete.permanent_delete_request_builder import PermanentDeleteRequestBuilder
     from .reply.reply_request_builder import ReplyRequestBuilder
     from .reply_all.reply_all_request_builder import ReplyAllRequestBuilder
+    from .report_message.report_message_request_builder import ReportMessageRequestBuilder
     from .send.send_request_builder import SendRequestBuilder
     from .unsubscribe.unsubscribe_request_builder import UnsubscribeRequestBuilder
     from .value.content_request_builder import ContentRequestBuilder
@@ -289,6 +290,15 @@ class MessageItemRequestBuilder(BaseRequestBuilder):
         from .reply_all.reply_all_request_builder import ReplyAllRequestBuilder
 
         return ReplyAllRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def report_message(self) -> ReportMessageRequestBuilder:
+        """
+        Provides operations to call the reportMessage method.
+        """
+        from .report_message.report_message_request_builder import ReportMessageRequestBuilder
+
+        return ReportMessageRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def send(self) -> SendRequestBuilder:

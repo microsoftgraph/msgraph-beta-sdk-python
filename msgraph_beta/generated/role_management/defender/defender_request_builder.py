@@ -15,7 +15,8 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
-    from ...models.rbac_application_multiple import RbacApplicationMultiple
+    from ...models.unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
+    from .custom_app_scopes.custom_app_scopes_request_builder import CustomAppScopesRequestBuilder
     from .resource_namespaces.resource_namespaces_request_builder import ResourceNamespacesRequestBuilder
     from .role_assignments.role_assignments_request_builder import RoleAssignmentsRequestBuilder
     from .role_definitions.role_definitions_request_builder import RoleDefinitionsRequestBuilder
@@ -52,11 +53,11 @@ class DefenderRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[DefenderRequestBuilderGetQueryParameters]] = None) -> Optional[RbacApplicationMultiple]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[DefenderRequestBuilderGetQueryParameters]] = None) -> Optional[UnifiedRbacApplicationMultiple]:
         """
         Get defender from roleManagement
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[RbacApplicationMultiple]
+        Returns: Optional[UnifiedRbacApplicationMultiple]
         """
         warn("This version is being deprecated and is scheduled for removal on 2025-12-01.Please migrate to the latest version before the removal date. as of 2025-01/PrivatePreview:microsoft.applicationAuthorization on 2025-01-01 and will be removed 2025-12-01", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -69,16 +70,16 @@ class DefenderRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.rbac_application_multiple import RbacApplicationMultiple
+        from ...models.unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
 
-        return await self.request_adapter.send_async(request_info, RbacApplicationMultiple, error_mapping)
+        return await self.request_adapter.send_async(request_info, UnifiedRbacApplicationMultiple, error_mapping)
     
-    async def patch(self,body: RbacApplicationMultiple, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[RbacApplicationMultiple]:
+    async def patch(self,body: UnifiedRbacApplicationMultiple, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[UnifiedRbacApplicationMultiple]:
         """
         Update the navigation property defender in roleManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[RbacApplicationMultiple]
+        Returns: Optional[UnifiedRbacApplicationMultiple]
         """
         warn("This version is being deprecated and is scheduled for removal on 2025-12-01.Please migrate to the latest version before the removal date. as of 2025-01/PrivatePreview:microsoft.applicationAuthorization on 2025-01-01 and will be removed 2025-12-01", DeprecationWarning)
         if body is None:
@@ -93,9 +94,9 @@ class DefenderRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.rbac_application_multiple import RbacApplicationMultiple
+        from ...models.unified_rbac_application_multiple import UnifiedRbacApplicationMultiple
 
-        return await self.request_adapter.send_async(request_info, RbacApplicationMultiple, error_mapping)
+        return await self.request_adapter.send_async(request_info, UnifiedRbacApplicationMultiple, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
@@ -121,7 +122,7 @@ class DefenderRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: RbacApplicationMultiple, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: UnifiedRbacApplicationMultiple, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update the navigation property defender in roleManagement
         param body: The request body
@@ -147,6 +148,15 @@ class DefenderRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DefenderRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def custom_app_scopes(self) -> CustomAppScopesRequestBuilder:
+        """
+        Provides operations to manage the customAppScopes property of the microsoft.graph.unifiedRbacApplicationMultiple entity.
+        """
+        from .custom_app_scopes.custom_app_scopes_request_builder import CustomAppScopesRequestBuilder
+
+        return CustomAppScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def resource_namespaces(self) -> ResourceNamespacesRequestBuilder:

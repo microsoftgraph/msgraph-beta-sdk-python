@@ -15,9 +15,9 @@ class ExtendedKeyUsage(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The extended key usage (EKU) name that provides a user-friendly way to identify an EKU.
+    # Extended Key Usage Name
     name: Optional[str] = None
-    # The object identifier (OID) of an extended key usage of a certificate. For example, '1.3.6.1.5.5.7.3.2' for client authentication.
+    # Extended Key Usage Object Identifier
     object_identifier: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -18,7 +18,7 @@ class UserAccountInformation(ItemFacet, Parsable):
     age_group: Optional[str] = None
     # Contains the two-character country code associated with the users' account.
     country_code: Optional[str] = None
-    # The preferredLanguageTag property
+    # Contains the language the user has associated as preferred for the account.
     preferred_language_tag: Optional[LocaleInfo] = None
     # The user principal name (UPN) of the user associated with the account.
     user_principal_name: Optional[str] = None
