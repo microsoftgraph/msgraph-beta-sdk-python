@@ -41,7 +41,7 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
     creation_date_time: Optional[datetime.datetime] = None
     # The meeting end time in UTC. Required when you create an online meeting.
     end_date_time: Optional[datetime.datetime] = None
-    # The external ID. A custom ID. Optional.
+    # The external ID that is a custom identifier. Optional.
     external_id: Optional[str] = None
     # Indicates whether this event is a Teams live event.
     is_broadcast: Optional[bool] = None

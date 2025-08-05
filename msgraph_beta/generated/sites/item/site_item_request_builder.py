@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     from .document_processing_jobs.document_processing_jobs_request_builder import DocumentProcessingJobsRequestBuilder
     from .drive.drive_request_builder import DriveRequestBuilder
     from .drives.drives_request_builder import DrivesRequestBuilder
+    from .extensions.extensions_request_builder import ExtensionsRequestBuilder
     from .external_columns.external_columns_request_builder import ExternalColumnsRequestBuilder
     from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder import GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
     from .get_applicable_content_types_for_list_with_list_id.get_applicable_content_types_for_list_with_list_id_request_builder import GetApplicableContentTypesForListWithListIdRequestBuilder
@@ -258,6 +259,15 @@ class SiteItemRequestBuilder(BaseRequestBuilder):
         from .drives.drives_request_builder import DrivesRequestBuilder
 
         return DrivesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def extensions(self) -> ExtensionsRequestBuilder:
+        """
+        Provides operations to manage the extensions property of the microsoft.graph.site entity.
+        """
+        from .extensions.extensions_request_builder import ExtensionsRequestBuilder
+
+        return ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def external_columns(self) -> ExternalColumnsRequestBuilder:

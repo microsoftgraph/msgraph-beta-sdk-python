@@ -14,13 +14,13 @@ from .related_resource import RelatedResource
 class RelatedDestination(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedDestination"
-    # The fqdn property
+    # Fully qualified domain name of the destination. Required.
     fqdn: Optional[str] = None
-    # The ip property
+    # IP address of the destination. Required.
     ip: Optional[str] = None
     # The networkingProtocol property
     networking_protocol: Optional[NetworkingProtocol] = None
-    # The port property
+    # Port number used to access the destination. Required.
     port: Optional[int] = None
     
     @staticmethod

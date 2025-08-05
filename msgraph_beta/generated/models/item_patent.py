@@ -22,7 +22,7 @@ class ItemPatent(ItemFacet, Parsable):
     is_pending: Optional[bool] = None
     # The date that the patent was granted.
     issued_date: Optional[datetime.date] = None
-    # Authority which granted the patent.
+    # Authority that granted the patent.
     issuing_authority: Optional[str] = None
     # The patent number.
     number: Optional[str] = None

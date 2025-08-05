@@ -1317,6 +1317,7 @@ if TYPE_CHECKING:
     from .person_website import PersonWebsite
     from .phone_authentication_method import PhoneAuthenticationMethod
     from .phone_user_conversation_member import PhoneUserConversationMember
+    from .photo_update_settings import PhotoUpdateSettings
     from .pinned_chat_message_info import PinnedChatMessageInfo
     from .place import Place
     from .planner import Planner
@@ -1842,6 +1843,7 @@ if TYPE_CHECKING:
     from .user_count_metric import UserCountMetric
     from .user_credential_usage_details import UserCredentialUsageDetails
     from .user_data_security_and_governance import UserDataSecurityAndGovernance
+    from .user_events_summary import UserEventsSummary
     from .user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
     from .user_experience_analytics_anomaly_correlation_group_overview import UserExperienceAnalyticsAnomalyCorrelationGroupOverview
     from .user_experience_analytics_anomaly_device import UserExperienceAnalyticsAnomalyDevice
@@ -1890,8 +1892,11 @@ if TYPE_CHECKING:
     from .user_insights_root import UserInsightsRoot
     from .user_insights_settings import UserInsightsSettings
     from .user_install_state_summary import UserInstallStateSummary
+    from .user_mfa_sign_in_summary import UserMfaSignInSummary
+    from .user_password_resets_and_changes_summary import UserPasswordResetsAndChangesSummary
     from .user_protection_scope_container import UserProtectionScopeContainer
     from .user_p_f_x_certificate import UserPFXCertificate
+    from .user_registration_activity_summary import UserRegistrationActivitySummary
     from .user_registration_details import UserRegistrationDetails
     from .user_requests_metric import UserRequestsMetric
     from .user_scope_teams_app_installation import UserScopeTeamsAppInstallation
@@ -7430,6 +7435,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .phone_user_conversation_member import PhoneUserConversationMember
 
             return PhoneUserConversationMember()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.photoUpdateSettings".casefold():
+            from .photo_update_settings import PhotoUpdateSettings
+
+            return PhotoUpdateSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.pinnedChatMessageInfo".casefold():
             from .pinned_chat_message_info import PinnedChatMessageInfo
 
@@ -9552,6 +9561,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_data_security_and_governance import UserDataSecurityAndGovernance
 
             return UserDataSecurityAndGovernance()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userEventsSummary".casefold():
+            from .user_events_summary import UserEventsSummary
+
+            return UserEventsSummary()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userExperienceAnalyticsAnomaly".casefold():
             from .user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
 
@@ -9744,6 +9757,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_install_state_summary import UserInstallStateSummary
 
             return UserInstallStateSummary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userMfaSignInSummary".casefold():
+            from .user_mfa_sign_in_summary import UserMfaSignInSummary
+
+            return UserMfaSignInSummary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userPasswordResetsAndChangesSummary".casefold():
+            from .user_password_resets_and_changes_summary import UserPasswordResetsAndChangesSummary
+
+            return UserPasswordResetsAndChangesSummary()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userPFXCertificate".casefold():
             from .user_p_f_x_certificate import UserPFXCertificate
 
@@ -9752,6 +9773,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .user_protection_scope_container import UserProtectionScopeContainer
 
             return UserProtectionScopeContainer()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userRegistrationActivitySummary".casefold():
+            from .user_registration_activity_summary import UserRegistrationActivitySummary
+
+            return UserRegistrationActivitySummary()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userRegistrationDetails".casefold():
             from .user_registration_details import UserRegistrationDetails
 
@@ -11980,6 +12005,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .person_website import PersonWebsite
         from .phone_authentication_method import PhoneAuthenticationMethod
         from .phone_user_conversation_member import PhoneUserConversationMember
+        from .photo_update_settings import PhotoUpdateSettings
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .place import Place
         from .planner import Planner
@@ -12505,6 +12531,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_count_metric import UserCountMetric
         from .user_credential_usage_details import UserCredentialUsageDetails
         from .user_data_security_and_governance import UserDataSecurityAndGovernance
+        from .user_events_summary import UserEventsSummary
         from .user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
         from .user_experience_analytics_anomaly_correlation_group_overview import UserExperienceAnalyticsAnomalyCorrelationGroupOverview
         from .user_experience_analytics_anomaly_device import UserExperienceAnalyticsAnomalyDevice
@@ -12553,8 +12580,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_insights_root import UserInsightsRoot
         from .user_insights_settings import UserInsightsSettings
         from .user_install_state_summary import UserInstallStateSummary
+        from .user_mfa_sign_in_summary import UserMfaSignInSummary
+        from .user_password_resets_and_changes_summary import UserPasswordResetsAndChangesSummary
         from .user_protection_scope_container import UserProtectionScopeContainer
         from .user_p_f_x_certificate import UserPFXCertificate
+        from .user_registration_activity_summary import UserRegistrationActivitySummary
         from .user_registration_details import UserRegistrationDetails
         from .user_requests_metric import UserRequestsMetric
         from .user_scope_teams_app_installation import UserScopeTeamsAppInstallation
@@ -14094,6 +14124,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .person_website import PersonWebsite
         from .phone_authentication_method import PhoneAuthenticationMethod
         from .phone_user_conversation_member import PhoneUserConversationMember
+        from .photo_update_settings import PhotoUpdateSettings
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .place import Place
         from .planner import Planner
@@ -14619,6 +14650,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_count_metric import UserCountMetric
         from .user_credential_usage_details import UserCredentialUsageDetails
         from .user_data_security_and_governance import UserDataSecurityAndGovernance
+        from .user_events_summary import UserEventsSummary
         from .user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
         from .user_experience_analytics_anomaly_correlation_group_overview import UserExperienceAnalyticsAnomalyCorrelationGroupOverview
         from .user_experience_analytics_anomaly_device import UserExperienceAnalyticsAnomalyDevice
@@ -14667,8 +14699,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_insights_root import UserInsightsRoot
         from .user_insights_settings import UserInsightsSettings
         from .user_install_state_summary import UserInstallStateSummary
+        from .user_mfa_sign_in_summary import UserMfaSignInSummary
+        from .user_password_resets_and_changes_summary import UserPasswordResetsAndChangesSummary
         from .user_protection_scope_container import UserProtectionScopeContainer
         from .user_p_f_x_certificate import UserPFXCertificate
+        from .user_registration_activity_summary import UserRegistrationActivitySummary
         from .user_registration_details import UserRegistrationDetails
         from .user_requests_metric import UserRequestsMetric
         from .user_scope_teams_app_installation import UserScopeTeamsAppInstallation

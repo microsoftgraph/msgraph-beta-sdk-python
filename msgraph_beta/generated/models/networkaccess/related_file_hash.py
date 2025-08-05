@@ -16,7 +16,7 @@ class RelatedFileHash(RelatedResource, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedFileHash"
     # The algorithm property
     algorithm: Optional[Algorithm] = None
-    # The value property
+    # The hash value. Required.
     value: Optional[str] = None
     
     @staticmethod

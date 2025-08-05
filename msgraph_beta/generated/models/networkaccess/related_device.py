@@ -13,7 +13,7 @@ from .related_resource import RelatedResource
 class RelatedDevice(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedDevice"
-    # The deviceId property
+    # Unique identifier of the device involved in the alert. Required.
     device_id: Optional[str] = None
     
     @staticmethod

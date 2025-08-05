@@ -20,7 +20,12 @@ if TYPE_CHECKING:
     from .users_registered_by_feature_with_included_user_types_with_included_user_roles.users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder import UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder
     from .users_registered_by_method.users_registered_by_method_request_builder import UsersRegisteredByMethodRequestBuilder
     from .users_registered_by_method_with_included_user_types_with_included_user_roles.users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder import UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder
+    from .user_events_summary.user_events_summary_request_builder import UserEventsSummaryRequestBuilder
+    from .user_mfa_sign_in_summary.user_mfa_sign_in_summary_request_builder import UserMfaSignInSummaryRequestBuilder
+    from .user_password_resets_and_changes_summary.user_password_resets_and_changes_summary_request_builder import UserPasswordResetsAndChangesSummaryRequestBuilder
+    from .user_registration_activity_with_period.user_registration_activity_with_period_request_builder import UserRegistrationActivityWithPeriodRequestBuilder
     from .user_registration_details.user_registration_details_request_builder import UserRegistrationDetailsRequestBuilder
+    from .user_sign_ins_by_auth_method_summary_with_period.user_sign_ins_by_auth_method_summary_with_period_request_builder import UserSignInsByAuthMethodSummaryWithPeriodRequestBuilder
 
 class AuthenticationMethodsRequestBuilder(BaseRequestBuilder):
     """
@@ -133,6 +138,30 @@ class AuthenticationMethodsRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    def user_registration_activity_with_period(self,period: str) -> UserRegistrationActivityWithPeriodRequestBuilder:
+        """
+        Provides operations to call the userRegistrationActivity method.
+        param period: Usage: period='{period}'
+        Returns: UserRegistrationActivityWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise TypeError("period cannot be null.")
+        from .user_registration_activity_with_period.user_registration_activity_with_period_request_builder import UserRegistrationActivityWithPeriodRequestBuilder
+
+        return UserRegistrationActivityWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
+    def user_sign_ins_by_auth_method_summary_with_period(self,period: str) -> UserSignInsByAuthMethodSummaryWithPeriodRequestBuilder:
+        """
+        Provides operations to call the userSignInsByAuthMethodSummary method.
+        param period: Usage: period='{period}'
+        Returns: UserSignInsByAuthMethodSummaryWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise TypeError("period cannot be null.")
+        from .user_sign_ins_by_auth_method_summary_with_period.user_sign_ins_by_auth_method_summary_with_period_request_builder import UserSignInsByAuthMethodSummaryWithPeriodRequestBuilder
+
+        return UserSignInsByAuthMethodSummaryWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
     def users_registered_by_feature_with_included_user_types_with_included_user_roles(self,included_user_roles: str, included_user_types: str) -> UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder:
         """
         Provides operations to call the usersRegisteredByFeature method.
@@ -172,6 +201,33 @@ class AuthenticationMethodsRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AuthenticationMethodsRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def user_events_summary(self) -> UserEventsSummaryRequestBuilder:
+        """
+        Provides operations to manage the userEventsSummary property of the microsoft.graph.authenticationMethodsRoot entity.
+        """
+        from .user_events_summary.user_events_summary_request_builder import UserEventsSummaryRequestBuilder
+
+        return UserEventsSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_mfa_sign_in_summary(self) -> UserMfaSignInSummaryRequestBuilder:
+        """
+        Provides operations to manage the userMfaSignInSummary property of the microsoft.graph.authenticationMethodsRoot entity.
+        """
+        from .user_mfa_sign_in_summary.user_mfa_sign_in_summary_request_builder import UserMfaSignInSummaryRequestBuilder
+
+        return UserMfaSignInSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_password_resets_and_changes_summary(self) -> UserPasswordResetsAndChangesSummaryRequestBuilder:
+        """
+        Provides operations to manage the userPasswordResetsAndChangesSummary property of the microsoft.graph.authenticationMethodsRoot entity.
+        """
+        from .user_password_resets_and_changes_summary.user_password_resets_and_changes_summary_request_builder import UserPasswordResetsAndChangesSummaryRequestBuilder
+
+        return UserPasswordResetsAndChangesSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_registration_details(self) -> UserRegistrationDetailsRequestBuilder:

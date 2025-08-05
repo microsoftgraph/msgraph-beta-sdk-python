@@ -32,9 +32,10 @@ class ExternalAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property externalAuthenticationMethods for users
+        Delete an externalAuthenticationMethod object. This API doesn't support self-service operations.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/authentication-delete-externalauthenticationmethods?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,7 +51,7 @@ class ExternalAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ExternalAuthenticationMethodItemRequestBuilderGetQueryParameters]] = None) -> Optional[ExternalAuthenticationMethod]:
         """
-        Get externalAuthenticationMethods from users
+        Represents the external methods registered to a user for authentication.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalAuthenticationMethod]
         """
@@ -93,7 +94,7 @@ class ExternalAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property externalAuthenticationMethods for users
+        Delete an externalAuthenticationMethod object. This API doesn't support self-service operations.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +105,7 @@ class ExternalAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ExternalAuthenticationMethodItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get externalAuthenticationMethods from users
+        Represents the external methods registered to a user for authentication.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +149,7 @@ class ExternalAuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExternalAuthenticationMethodItemRequestBuilderGetQueryParameters():
         """
-        Get externalAuthenticationMethods from users
+        Represents the external methods registered to a user for authentication.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

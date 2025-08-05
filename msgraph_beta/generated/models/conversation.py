@@ -23,7 +23,7 @@ class Conversation(Entity, Parsable):
     preview: Optional[str] = None
     # A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
     threads: Optional[list[ConversationThread]] = None
-    # The topic of the conversation. This property can be set when the conversation is created, but it cannot be updated.
+    # The topic of the conversation. This property can be set when the conversation is created, but it can't be updated.
     topic: Optional[str] = None
     # All the users that sent a message to this Conversation.
     unique_senders: Optional[list[str]] = None

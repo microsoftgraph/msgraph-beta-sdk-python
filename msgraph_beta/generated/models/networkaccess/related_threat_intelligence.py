@@ -13,7 +13,7 @@ from .related_resource import RelatedResource
 class RelatedThreatIntelligence(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedThreatIntelligence"
-    # The threatCount property
+    # Number of threats detected by threat intelligence. Required.
     threat_count: Optional[int] = None
     
     @staticmethod
