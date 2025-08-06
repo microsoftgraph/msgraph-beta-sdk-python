@@ -13,7 +13,7 @@ from .related_resource import RelatedResource
 class RelatedToken(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedToken"
-    # The uniqueTokenIdentifier property
+    # Unique identifier of the token. Required.
     unique_token_identifier: Optional[str] = None
     
     @staticmethod

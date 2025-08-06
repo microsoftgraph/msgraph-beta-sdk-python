@@ -32,7 +32,7 @@ class PolicyRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PolicyRequestBuilderGetQueryParameters]] = None) -> Optional[FilteringPolicy]:
         """
-        Get policy from networkAccess
+        The filtering policy associated with the alert. This relationship allows you to retrieve or manage the filtering policy that triggered or is related to the alert instance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FilteringPolicy]
         """
@@ -52,7 +52,7 @@ class PolicyRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PolicyRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get policy from networkAccess
+        The filtering policy associated with the alert. This relationship allows you to retrieve or manage the filtering policy that triggered or is related to the alert instance.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class PolicyRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PolicyRequestBuilderGetQueryParameters():
         """
-        Get policy from networkAccess
+        The filtering policy associated with the alert. This relationship allows you to retrieve or manage the filtering policy that triggered or is related to the alert instance.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

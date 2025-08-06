@@ -49,7 +49,7 @@ class ExternalAuthenticationMethodsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ExternalAuthenticationMethodsRequestBuilderGetQueryParameters]] = None) -> Optional[ExternalAuthenticationMethodCollectionResponse]:
         """
-        Get externalAuthenticationMethods from users
+        Represents the external methods registered to a user for authentication.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalAuthenticationMethodCollectionResponse]
         """
@@ -69,10 +69,11 @@ class ExternalAuthenticationMethodsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ExternalAuthenticationMethod, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ExternalAuthenticationMethod]:
         """
-        Create new navigation property to externalAuthenticationMethods for users
+        Create a new externalAuthenticationMethod object. This API doesn't support self-service operations.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalAuthenticationMethod]
+        Find more info here: https://learn.microsoft.com/graph/api/authentication-post-externalauthenticationmethods?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +93,7 @@ class ExternalAuthenticationMethodsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ExternalAuthenticationMethodsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get externalAuthenticationMethods from users
+        Represents the external methods registered to a user for authentication.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +104,7 @@ class ExternalAuthenticationMethodsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ExternalAuthenticationMethod, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to externalAuthenticationMethods for users
+        Create a new externalAuthenticationMethod object. This API doesn't support self-service operations.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +139,7 @@ class ExternalAuthenticationMethodsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExternalAuthenticationMethodsRequestBuilderGetQueryParameters():
         """
-        Get externalAuthenticationMethods from users
+        Represents the external methods registered to a user for authentication.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

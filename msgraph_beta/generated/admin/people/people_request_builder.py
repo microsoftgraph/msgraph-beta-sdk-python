@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from ...models.people_admin_settings import PeopleAdminSettings
     from .item_insights.item_insights_request_builder import ItemInsightsRequestBuilder
     from .name_pronunciation.name_pronunciation_request_builder import NamePronunciationRequestBuilder
+    from .photo_update_settings.photo_update_settings_request_builder import PhotoUpdateSettingsRequestBuilder
     from .profile_card_properties.profile_card_properties_request_builder import ProfileCardPropertiesRequestBuilder
     from .profile_property_settings.profile_property_settings_request_builder import ProfilePropertySettingsRequestBuilder
     from .profile_sources.profile_sources_request_builder import ProfileSourcesRequestBuilder
@@ -175,6 +176,15 @@ class PeopleRequestBuilder(BaseRequestBuilder):
         from .name_pronunciation.name_pronunciation_request_builder import NamePronunciationRequestBuilder
 
         return NamePronunciationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def photo_update_settings(self) -> PhotoUpdateSettingsRequestBuilder:
+        """
+        Provides operations to manage the photoUpdateSettings property of the microsoft.graph.peopleAdminSettings entity.
+        """
+        from .photo_update_settings.photo_update_settings_request_builder import PhotoUpdateSettingsRequestBuilder
+
+        return PhotoUpdateSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def profile_card_properties(self) -> ProfileCardPropertiesRequestBuilder:

@@ -13,17 +13,17 @@ class AlertFrequencyPoint(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The highSeverityCount property
+    # Total number of high alert severity. Required.
     high_severity_count: Optional[int] = None
-    # The informationalSeverityCount property
+    # Total number of informational alert severity. Required.
     informational_severity_count: Optional[int] = None
-    # The lowSeverityCount property
+    # Total number of low alert severity. Required.
     low_severity_count: Optional[int] = None
-    # The mediumSeverityCount property
+    # Total number of medium alert severity. Required.
     medium_severity_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The timeStampDateTime property
+    # The time bucket for counting the alert severities. Required.
     time_stamp_date_time: Optional[datetime.datetime] = None
     
     @staticmethod

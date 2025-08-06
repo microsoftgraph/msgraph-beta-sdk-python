@@ -13,11 +13,11 @@ from .related_resource import RelatedResource
 class RelatedFile(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedFile"
-    # The directory property
+    # Directory path of the file. Required.
     directory: Optional[str] = None
-    # The name property
+    # Name of the file. Required.
     name: Optional[str] = None
-    # The sizeInBytes property
+    # Size of the file in bytes. Required.
     size_in_bytes: Optional[int] = None
     
     @staticmethod
