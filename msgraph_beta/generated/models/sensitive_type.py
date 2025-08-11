@@ -1,4 +1,5 @@
 from __future__ import annotations
+import datetime
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
@@ -18,6 +19,8 @@ class SensitiveType(Entity, Parsable):
     classification_method: Optional[ClassificationMethod] = None
     # The description property
     description: Optional[str] = None
+    # The lastModifiedDateTime property
+    last_modified_date_time: Optional[datetime.datetime] = None
     # The name property
     name: Optional[str] = None
     # The OdataType property
@@ -64,6 +67,7 @@ class SensitiveType(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(ClassificationMethod)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
             "rulePackageId": lambda n : setattr(self, 'rule_package_id', n.get_str_value()),
@@ -87,6 +91,7 @@ class SensitiveType(Entity, Parsable):
         super().serialize(writer)
         writer.write_enum_value("classificationMethod", self.classification_method)
         writer.write_str_value("description", self.description)
+        writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("name", self.name)
         writer.write_str_value("publisherName", self.publisher_name)
         writer.write_str_value("rulePackageId", self.rule_package_id)

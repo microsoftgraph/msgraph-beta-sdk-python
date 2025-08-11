@@ -13,7 +13,7 @@ from .related_resource import RelatedResource
 class RelatedRemoteNetwork(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedRemoteNetwork"
-    # The remoteNetworkId property
+    # Unique identifier of the remote network. Required.
     remote_network_id: Optional[str] = None
     
     @staticmethod

@@ -13,7 +13,7 @@ from .related_resource import RelatedResource
 class RelatedTenant(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedTenant"
-    # The tenantId property
+    # Unique identifier of the tenant. Required.
     tenant_id: Optional[str] = None
     
     @staticmethod

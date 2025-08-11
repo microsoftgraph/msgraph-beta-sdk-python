@@ -13,7 +13,7 @@ from .related_resource import RelatedResource
 class RelatedTransaction(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedTransaction"
-    # The transactionId property
+    # Unique identifier of the transaction. Required.
     transaction_id: Optional[str] = None
     
     @staticmethod

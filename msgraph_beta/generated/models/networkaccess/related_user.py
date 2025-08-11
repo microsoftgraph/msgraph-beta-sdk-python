@@ -13,9 +13,9 @@ from .related_resource import RelatedResource
 class RelatedUser(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedUser"
-    # The userId property
+    # Unique identifier of the user. Required.
     user_id: Optional[str] = None
-    # The userPrincipalName property
+    # Principal name of the user. Required.
     user_principal_name: Optional[str] = None
     
     @staticmethod

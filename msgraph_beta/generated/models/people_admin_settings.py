@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .insights_settings import InsightsSettings
     from .name_pronunciation_settings import NamePronunciationSettings
+    from .photo_update_settings import PhotoUpdateSettings
     from .profile_card_property import ProfileCardProperty
     from .profile_property_setting import ProfilePropertySetting
     from .profile_source import ProfileSource
@@ -23,6 +24,8 @@ class PeopleAdminSettings(Entity, Parsable):
     name_pronunciation: Optional[NamePronunciationSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Administrator settings that manage the support for item photo updates in an organization.
+    photo_update_settings: Optional[PhotoUpdateSettings] = None
     # A collection of the properties an administrator defined as visible on the Microsoft 365 profile card.
     profile_card_properties: Optional[list[ProfileCardProperty]] = None
     # A collection of profile property configuration settings defined by an administrator for an organization.
@@ -51,6 +54,7 @@ class PeopleAdminSettings(Entity, Parsable):
         from .entity import Entity
         from .insights_settings import InsightsSettings
         from .name_pronunciation_settings import NamePronunciationSettings
+        from .photo_update_settings import PhotoUpdateSettings
         from .profile_card_property import ProfileCardProperty
         from .profile_property_setting import ProfilePropertySetting
         from .profile_source import ProfileSource
@@ -59,6 +63,7 @@ class PeopleAdminSettings(Entity, Parsable):
         from .entity import Entity
         from .insights_settings import InsightsSettings
         from .name_pronunciation_settings import NamePronunciationSettings
+        from .photo_update_settings import PhotoUpdateSettings
         from .profile_card_property import ProfileCardProperty
         from .profile_property_setting import ProfilePropertySetting
         from .profile_source import ProfileSource
@@ -67,6 +72,7 @@ class PeopleAdminSettings(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "itemInsights": lambda n : setattr(self, 'item_insights', n.get_object_value(InsightsSettings)),
             "namePronunciation": lambda n : setattr(self, 'name_pronunciation', n.get_object_value(NamePronunciationSettings)),
+            "photoUpdateSettings": lambda n : setattr(self, 'photo_update_settings', n.get_object_value(PhotoUpdateSettings)),
             "profileCardProperties": lambda n : setattr(self, 'profile_card_properties', n.get_collection_of_object_values(ProfileCardProperty)),
             "profilePropertySettings": lambda n : setattr(self, 'profile_property_settings', n.get_collection_of_object_values(ProfilePropertySetting)),
             "profileSources": lambda n : setattr(self, 'profile_sources', n.get_collection_of_object_values(ProfileSource)),
@@ -87,6 +93,7 @@ class PeopleAdminSettings(Entity, Parsable):
         super().serialize(writer)
         writer.write_object_value("itemInsights", self.item_insights)
         writer.write_object_value("namePronunciation", self.name_pronunciation)
+        writer.write_object_value("photoUpdateSettings", self.photo_update_settings)
         writer.write_collection_of_object_values("profileCardProperties", self.profile_card_properties)
         writer.write_collection_of_object_values("profilePropertySettings", self.profile_property_settings)
         writer.write_collection_of_object_values("profileSources", self.profile_sources)

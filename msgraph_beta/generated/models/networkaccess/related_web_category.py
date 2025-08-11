@@ -13,7 +13,7 @@ from .related_resource import RelatedResource
 class RelatedWebCategory(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedWebCategory"
-    # The webCategoryName property
+    # Name of the web category. Required.
     web_category_name: Optional[str] = None
     
     @staticmethod

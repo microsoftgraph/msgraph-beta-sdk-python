@@ -18,7 +18,7 @@ class AlertSummary(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The alertType property
     alert_type: Optional[AlertType] = None
-    # The count property
+    # Total number of alerts with this specific severity and type. Required.
     count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None

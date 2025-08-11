@@ -13,7 +13,7 @@ from .related_resource import RelatedResource
 class RelatedUrl(RelatedResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.relatedUrl"
-    # The url property
+    # The destination URL. Required.
     url: Optional[str] = None
     
     @staticmethod

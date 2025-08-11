@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .deleted import Deleted
     from .document_processing_job import DocumentProcessingJob
     from .drive import Drive
+    from .extension import Extension
     from .information_protection import InformationProtection
     from .item_analytics import ItemAnalytics
     from .list_ import List_
@@ -51,6 +52,8 @@ class Site(BaseItem, Parsable):
     drive: Optional[Drive] = None
     # The collection of drives (document libraries) under this site.
     drives: Optional[list[Drive]] = None
+    # The collection of open extensions defined for this site. Nullable.
+    extensions: Optional[list[Extension]] = None
     # The collection of column definitions available in the site that is referenced from the sites in the parent hierarchy of the current site.
     external_columns: Optional[list[ColumnDefinition]] = None
     # The informationProtection property
@@ -110,6 +113,7 @@ class Site(BaseItem, Parsable):
         from .deleted import Deleted
         from .document_processing_job import DocumentProcessingJob
         from .drive import Drive
+        from .extension import Extension
         from .information_protection import InformationProtection
         from .item_analytics import ItemAnalytics
         from .list_ import List_
@@ -132,6 +136,7 @@ class Site(BaseItem, Parsable):
         from .deleted import Deleted
         from .document_processing_job import DocumentProcessingJob
         from .drive import Drive
+        from .extension import Extension
         from .information_protection import InformationProtection
         from .item_analytics import ItemAnalytics
         from .list_ import List_
@@ -156,6 +161,7 @@ class Site(BaseItem, Parsable):
             "documentProcessingJobs": lambda n : setattr(self, 'document_processing_jobs', n.get_collection_of_object_values(DocumentProcessingJob)),
             "drive": lambda n : setattr(self, 'drive', n.get_object_value(Drive)),
             "drives": lambda n : setattr(self, 'drives', n.get_collection_of_object_values(Drive)),
+            "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(Extension)),
             "externalColumns": lambda n : setattr(self, 'external_columns', n.get_collection_of_object_values(ColumnDefinition)),
             "informationProtection": lambda n : setattr(self, 'information_protection', n.get_object_value(InformationProtection)),
             "isPersonalSite": lambda n : setattr(self, 'is_personal_site', n.get_bool_value()),
@@ -196,6 +202,7 @@ class Site(BaseItem, Parsable):
         writer.write_collection_of_object_values("documentProcessingJobs", self.document_processing_jobs)
         writer.write_object_value("drive", self.drive)
         writer.write_collection_of_object_values("drives", self.drives)
+        writer.write_collection_of_object_values("extensions", self.extensions)
         writer.write_collection_of_object_values("externalColumns", self.external_columns)
         writer.write_object_value("informationProtection", self.information_protection)
         writer.write_bool_value("isPersonalSite", self.is_personal_site)

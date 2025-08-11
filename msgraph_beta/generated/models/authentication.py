@@ -30,7 +30,7 @@ from .entity import Entity
 class Authentication(Entity, Parsable):
     # Represents the email addresses registered to a user for authentication.
     email_methods: Optional[list[EmailAuthenticationMethod]] = None
-    # The externalAuthenticationMethods property
+    # Represents the external methods registered to a user for authentication.
     external_authentication_methods: Optional[list[ExternalAuthenticationMethod]] = None
     # Represents the FIDO2 security keys registered to a user for authentication.
     fido2_methods: Optional[list[Fido2AuthenticationMethod]] = None
