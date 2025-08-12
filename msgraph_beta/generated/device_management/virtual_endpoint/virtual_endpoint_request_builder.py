@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from ...models.virtual_endpoint import VirtualEndpoint
     from .audit_events.audit_events_request_builder import AuditEventsRequestBuilder
     from .bulk_actions.bulk_actions_request_builder import BulkActionsRequestBuilder
+    from .cloud_apps.cloud_apps_request_builder import CloudAppsRequestBuilder
     from .cloud_p_cs.cloud_p_cs_request_builder import CloudPCsRequestBuilder
     from .cross_cloud_government_organization_mapping.cross_cloud_government_organization_mapping_request_builder import CrossCloudGovernmentOrganizationMappingRequestBuilder
     from .device_images.device_images_request_builder import DeviceImagesRequestBuilder
@@ -174,6 +175,15 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         from .bulk_actions.bulk_actions_request_builder import BulkActionsRequestBuilder
 
         return BulkActionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def cloud_apps(self) -> CloudAppsRequestBuilder:
+        """
+        Provides operations to manage the cloudApps property of the microsoft.graph.virtualEndpoint entity.
+        """
+        from .cloud_apps.cloud_apps_request_builder import CloudAppsRequestBuilder
+
+        return CloudAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def cloud_p_cs(self) -> CloudPCsRequestBuilder:

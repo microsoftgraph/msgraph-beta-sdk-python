@@ -20,6 +20,10 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
     company: Optional[CompanyDetail] = None
     # A description for the position in question.
     description: Optional[str] = None
+    # The identifier assigned to the employee.
+    employee_id: Optional[str] = None
+    # The type of employment for the position.
+    employee_type: Optional[str] = None
     # The date when the position ended.
     end_month_year: Optional[datetime.date] = None
     # The title of the position.
@@ -64,6 +68,8 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "company": lambda n : setattr(self, 'company', n.get_object_value(CompanyDetail)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
+            "employeeId": lambda n : setattr(self, 'employee_id', n.get_str_value()),
+            "employeeType": lambda n : setattr(self, 'employee_type', n.get_str_value()),
             "endMonthYear": lambda n : setattr(self, 'end_month_year', n.get_date_value()),
             "jobTitle": lambda n : setattr(self, 'job_title', n.get_str_value()),
             "layer": lambda n : setattr(self, 'layer', n.get_int_value()),
@@ -87,6 +93,8 @@ class PositionDetail(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_object_value("company", self.company)
         writer.write_str_value("description", self.description)
+        writer.write_str_value("employeeId", self.employee_id)
+        writer.write_str_value("employeeType", self.employee_type)
         writer.write_date_value("endMonthYear", self.end_month_year)
         writer.write_str_value("jobTitle", self.job_title)
         writer.write_int_value("layer", self.layer)

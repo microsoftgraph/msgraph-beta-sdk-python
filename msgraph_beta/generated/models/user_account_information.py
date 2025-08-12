@@ -7,6 +7,8 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .item_facet import ItemFacet
     from .locale_info import LocaleInfo
+    from .origin_tenant_info import OriginTenantInfo
+    from .user_persona import UserPersona
 
 from .item_facet import ItemFacet
 
@@ -18,8 +20,12 @@ class UserAccountInformation(ItemFacet, Parsable):
     age_group: Optional[str] = None
     # Contains the two-character country code associated with the users' account.
     country_code: Optional[str] = None
-    # Contains the language the user has associated as preferred for the account.
+    # Contains the identifiers of the user and the origin tenant that provisioned the user. This property is populated when the user is invited as a guest to the host tenant.
+    origin_tenant_info: Optional[OriginTenantInfo] = None
+    # Contains the language that the user associated as preferred for their account.
     preferred_language_tag: Optional[LocaleInfo] = None
+    # Represents the user's persona. The possible values are: unknown, externalMember, externalGuest, internalMember, internalGuest, unknownFutureValue.
+    user_persona: Optional[UserPersona] = None
     # The user principal name (UPN) of the user associated with the account.
     user_principal_name: Optional[str] = None
     
@@ -41,14 +47,20 @@ class UserAccountInformation(ItemFacet, Parsable):
         """
         from .item_facet import ItemFacet
         from .locale_info import LocaleInfo
+        from .origin_tenant_info import OriginTenantInfo
+        from .user_persona import UserPersona
 
         from .item_facet import ItemFacet
         from .locale_info import LocaleInfo
+        from .origin_tenant_info import OriginTenantInfo
+        from .user_persona import UserPersona
 
         fields: dict[str, Callable[[Any], None]] = {
             "ageGroup": lambda n : setattr(self, 'age_group', n.get_str_value()),
             "countryCode": lambda n : setattr(self, 'country_code', n.get_str_value()),
+            "originTenantInfo": lambda n : setattr(self, 'origin_tenant_info', n.get_object_value(OriginTenantInfo)),
             "preferredLanguageTag": lambda n : setattr(self, 'preferred_language_tag', n.get_object_value(LocaleInfo)),
+            "userPersona": lambda n : setattr(self, 'user_persona', n.get_enum_value(UserPersona)),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -66,7 +78,9 @@ class UserAccountInformation(ItemFacet, Parsable):
         super().serialize(writer)
         writer.write_str_value("ageGroup", self.age_group)
         writer.write_str_value("countryCode", self.country_code)
+        writer.write_object_value("originTenantInfo", self.origin_tenant_info)
         writer.write_object_value("preferredLanguageTag", self.preferred_language_tag)
+        writer.write_enum_value("userPersona", self.user_persona)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
     
 

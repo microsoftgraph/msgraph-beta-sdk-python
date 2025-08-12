@@ -83,7 +83,7 @@ class DeviceAppManagement(Entity, Parsable):
     mobile_app_categories: Optional[list[MobileAppCategory]] = None
     # The Managed Device Mobile Application Configurations.
     mobile_app_configurations: Optional[list[ManagedDeviceMobileAppConfiguration]] = None
-    # List mobileAppRelationship objects for mobile applications.
+    # The mobile app relationship represents the dependency or supersedence relationship between two Intune mobile LOB applications.
     mobile_app_relationships: Optional[list[MobileAppRelationship]] = None
     # The mobile apps.
     mobile_apps: Optional[list[MobileApp]] = None

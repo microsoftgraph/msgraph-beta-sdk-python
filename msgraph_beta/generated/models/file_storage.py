@@ -14,13 +14,13 @@ from .entity import Entity
 
 @dataclass
 class FileStorage(Entity, Parsable):
-    # The containerTypeRegistrations property
+    # The collection of fileStorageContainerTypeRegistration resources.
     container_type_registrations: Optional[list[FileStorageContainerTypeRegistration]] = None
-    # The containerTypes property
+    # The collection of fileStorageContainerType resources.
     container_types: Optional[list[FileStorageContainerType]] = None
-    # The containers property
+    # The collection of active fileStorageContainer resources.
     containers: Optional[list[FileStorageContainer]] = None
-    # The deletedContainers property
+    # The collection of deleted fileStorageContainer resources.
     deleted_containers: Optional[list[FileStorageContainer]] = None
     # The OdataType property
     odata_type: Optional[str] = None

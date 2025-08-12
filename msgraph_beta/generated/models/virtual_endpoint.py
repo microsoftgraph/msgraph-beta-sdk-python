@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .cloud_pc_audit_event import CloudPcAuditEvent
     from .cloud_pc_bulk_action import CloudPcBulkAction
+    from .cloud_pc_cloud_app import CloudPcCloudApp
     from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
     from .cloud_pc_device_image import CloudPcDeviceImage
     from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
@@ -31,6 +32,8 @@ class VirtualEndpoint(Entity, Parsable):
     audit_events: Optional[list[CloudPcAuditEvent]] = None
     # Bulk actions applied to a Cloud PC.
     bulk_actions: Optional[list[CloudPcBulkAction]] = None
+    # The cloudApps property
+    cloud_apps: Optional[list[CloudPcCloudApp]] = None
     # Cloud managed virtual desktops.
     cloud_p_cs: Optional[list[CloudPC]] = None
     # Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
@@ -80,6 +83,7 @@ class VirtualEndpoint(Entity, Parsable):
         """
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
+        from .cloud_pc_cloud_app import CloudPcCloudApp
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
         from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
@@ -98,6 +102,7 @@ class VirtualEndpoint(Entity, Parsable):
 
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
+        from .cloud_pc_cloud_app import CloudPcCloudApp
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
         from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
@@ -117,6 +122,7 @@ class VirtualEndpoint(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "auditEvents": lambda n : setattr(self, 'audit_events', n.get_collection_of_object_values(CloudPcAuditEvent)),
             "bulkActions": lambda n : setattr(self, 'bulk_actions', n.get_collection_of_object_values(CloudPcBulkAction)),
+            "cloudApps": lambda n : setattr(self, 'cloud_apps', n.get_collection_of_object_values(CloudPcCloudApp)),
             "cloudPCs": lambda n : setattr(self, 'cloud_p_cs', n.get_collection_of_object_values(CloudPC)),
             "crossCloudGovernmentOrganizationMapping": lambda n : setattr(self, 'cross_cloud_government_organization_mapping', n.get_object_value(CloudPcCrossCloudGovernmentOrganizationMapping)),
             "deviceImages": lambda n : setattr(self, 'device_images', n.get_collection_of_object_values(CloudPcDeviceImage)),
@@ -147,6 +153,7 @@ class VirtualEndpoint(Entity, Parsable):
         super().serialize(writer)
         writer.write_collection_of_object_values("auditEvents", self.audit_events)
         writer.write_collection_of_object_values("bulkActions", self.bulk_actions)
+        writer.write_collection_of_object_values("cloudApps", self.cloud_apps)
         writer.write_collection_of_object_values("cloudPCs", self.cloud_p_cs)
         writer.write_object_value("crossCloudGovernmentOrganizationMapping", self.cross_cloud_government_organization_mapping)
         writer.write_collection_of_object_values("deviceImages", self.device_images)

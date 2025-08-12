@@ -15,6 +15,5 @@ class AdditionalOptions(str, Enum):
     CondensePaths = "condensePaths",
     FriendlyName = "friendlyName",
     SplitSource = "splitSource",
-    OptimizedPartitionSize = "optimizedPartitionSize",
     IncludeReport = "includeReport",
 

@@ -15,7 +15,7 @@ from .entity import Entity
 @dataclass
 class MobileAppRelationship(Entity, Parsable):
     """
-    Describes a relationship between two mobile apps.
+    The MobileAppRelationship describes the relationship between two mobile applications by providing information that tells if an application is dependent on or superseded by another application.
     """
     # The OdataType property
     odata_type: Optional[str] = None

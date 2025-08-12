@@ -33,9 +33,10 @@ class FileStorageContainerTypeRegistrationItemRequestBuilder(BaseRequestBuilder)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property containerTypeRegistrations for storage
+        Delete a fileStorageContainerTypeRegistration object. A registration can only be deleted if it has neither containers nor deleted containers
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/filestorage-delete-containertyperegistrations?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,9 +52,10 @@ class FileStorageContainerTypeRegistrationItemRequestBuilder(BaseRequestBuilder)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[FileStorageContainerTypeRegistrationItemRequestBuilderGetQueryParameters]] = None) -> Optional[FileStorageContainerTypeRegistration]:
         """
-        Get containerTypeRegistrations from storage
+        Read the properties and relationships of a fileStorageContainerTypeRegistration object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FileStorageContainerTypeRegistration]
+        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainertyperegistration-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,10 +73,11 @@ class FileStorageContainerTypeRegistrationItemRequestBuilder(BaseRequestBuilder)
     
     async def patch(self,body: FileStorageContainerTypeRegistration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[FileStorageContainerTypeRegistration]:
         """
-        Update the navigation property containerTypeRegistrations in storage
+        Update the properties of a fileStorageContainerTypeRegistration object. ETag is used for optimistic concurrency control. It must match the value from Create, Get or the previous Update.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FileStorageContainerTypeRegistration]
+        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainertyperegistration-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -94,7 +97,7 @@ class FileStorageContainerTypeRegistrationItemRequestBuilder(BaseRequestBuilder)
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property containerTypeRegistrations for storage
+        Delete a fileStorageContainerTypeRegistration object. A registration can only be deleted if it has neither containers nor deleted containers
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +108,7 @@ class FileStorageContainerTypeRegistrationItemRequestBuilder(BaseRequestBuilder)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[FileStorageContainerTypeRegistrationItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get containerTypeRegistrations from storage
+        Read the properties and relationships of a fileStorageContainerTypeRegistration object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +119,7 @@ class FileStorageContainerTypeRegistrationItemRequestBuilder(BaseRequestBuilder)
     
     def to_patch_request_information(self,body: FileStorageContainerTypeRegistration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property containerTypeRegistrations in storage
+        Update the properties of a fileStorageContainerTypeRegistration object. ETag is used for optimistic concurrency control. It must match the value from Create, Get or the previous Update.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -158,7 +161,7 @@ class FileStorageContainerTypeRegistrationItemRequestBuilder(BaseRequestBuilder)
     @dataclass
     class FileStorageContainerTypeRegistrationItemRequestBuilderGetQueryParameters():
         """
-        Get containerTypeRegistrations from storage
+        Read the properties and relationships of a fileStorageContainerTypeRegistration object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

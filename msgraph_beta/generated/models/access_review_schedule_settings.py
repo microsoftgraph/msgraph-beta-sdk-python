@@ -30,6 +30,8 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, BackedModel, Parsable):
     default_decision_enabled: Optional[bool] = None
     # Duration of each recurrence of review (accessReviewInstance) in number of days. NOTE: If the stageSettings of the accessReviewScheduleDefinition object is defined, its durationInDays setting will be used instead of the value of this property.
     instance_duration_in_days: Optional[int] = None
+    # The isAgenticExperienceEnabled property
+    is_agentic_experience_enabled: Optional[bool] = None
     # Indicates whether reviewers are required to provide justification with their decision. Default value is false.
     justification_required_on_approval: Optional[bool] = None
     # Indicates whether emails are enabled or disabled. Default value is false.
@@ -78,6 +80,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, BackedModel, Parsable):
             "defaultDecision": lambda n : setattr(self, 'default_decision', n.get_str_value()),
             "defaultDecisionEnabled": lambda n : setattr(self, 'default_decision_enabled', n.get_bool_value()),
             "instanceDurationInDays": lambda n : setattr(self, 'instance_duration_in_days', n.get_int_value()),
+            "isAgenticExperienceEnabled": lambda n : setattr(self, 'is_agentic_experience_enabled', n.get_bool_value()),
             "justificationRequiredOnApproval": lambda n : setattr(self, 'justification_required_on_approval', n.get_bool_value()),
             "mailNotificationsEnabled": lambda n : setattr(self, 'mail_notifications_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -103,6 +106,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("defaultDecision", self.default_decision)
         writer.write_bool_value("defaultDecisionEnabled", self.default_decision_enabled)
         writer.write_int_value("instanceDurationInDays", self.instance_duration_in_days)
+        writer.write_bool_value("isAgenticExperienceEnabled", self.is_agentic_experience_enabled)
         writer.write_bool_value("justificationRequiredOnApproval", self.justification_required_on_approval)
         writer.write_bool_value("mailNotificationsEnabled", self.mail_notifications_enabled)
         writer.write_str_value("@odata.type", self.odata_type)

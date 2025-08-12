@@ -19,10 +19,14 @@ class CompanyDetail(AdditionalDataHolder, BackedModel, Parsable):
     address: Optional[PhysicalAddress] = None
     # Legal entity number of the company or its subdivision. For information on how to set the value for the companyCode, see profileSourceAnnotation.
     company_code: Optional[str] = None
+    # The cost center associated with the company or department.
+    cost_center: Optional[str] = None
     # Department Name within a company.
     department: Optional[str] = None
     # Company name.
     display_name: Optional[str] = None
+    # The division within the company.
+    division: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Office Location of the person referred to.
@@ -57,8 +61,10 @@ class CompanyDetail(AdditionalDataHolder, BackedModel, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(PhysicalAddress)),
             "companyCode": lambda n : setattr(self, 'company_code', n.get_str_value()),
+            "costCenter": lambda n : setattr(self, 'cost_center', n.get_str_value()),
             "department": lambda n : setattr(self, 'department', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "division": lambda n : setattr(self, 'division', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "officeLocation": lambda n : setattr(self, 'office_location', n.get_str_value()),
             "pronunciation": lambda n : setattr(self, 'pronunciation', n.get_str_value()),
@@ -77,8 +83,10 @@ class CompanyDetail(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_object_value("address", self.address)
         writer.write_str_value("companyCode", self.company_code)
+        writer.write_str_value("costCenter", self.cost_center)
         writer.write_str_value("department", self.department)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_str_value("division", self.division)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("officeLocation", self.office_location)
         writer.write_str_value("pronunciation", self.pronunciation)

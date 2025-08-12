@@ -49,7 +49,7 @@ class MobileAppRelationshipsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MobileAppRelationshipsRequestBuilderGetQueryParameters]] = None) -> Optional[MobileAppRelationshipCollectionResponse]:
         """
-        List mobileAppRelationship objects for mobile applications.
+        The mobile app relationship represents the dependency or supersedence relationship between two Intune mobile LOB applications.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MobileAppRelationshipCollectionResponse]
         """
@@ -92,7 +92,7 @@ class MobileAppRelationshipsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MobileAppRelationshipsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        List mobileAppRelationship objects for mobile applications.
+        The mobile app relationship represents the dependency or supersedence relationship between two Intune mobile LOB applications.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class MobileAppRelationshipsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MobileAppRelationshipsRequestBuilderGetQueryParameters():
         """
-        List mobileAppRelationship objects for mobile applications.
+        The mobile app relationship represents the dependency or supersedence relationship between two Intune mobile LOB applications.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -49,9 +49,10 @@ class ContainerTypesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ContainerTypesRequestBuilderGetQueryParameters]] = None) -> Optional[FileStorageContainerTypeCollectionResponse]:
         """
-        Get containerTypes from storage
+        Get a list of the fileStorageContainerType objects and their properties for the current tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FileStorageContainerTypeCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/filestorage-list-containertypes?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class ContainerTypesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: FileStorageContainerType, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[FileStorageContainerType]:
         """
-        Create new navigation property to containerTypes for storage
+        Create a new fileStorageContainerType in the owning tenant. The number of container types in a tenant is limited.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FileStorageContainerType]
+        Find more info here: https://learn.microsoft.com/graph/api/filestorage-post-containertypes?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class ContainerTypesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ContainerTypesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get containerTypes from storage
+        Get a list of the fileStorageContainerType objects and their properties for the current tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class ContainerTypesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: FileStorageContainerType, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to containerTypes for storage
+        Create a new fileStorageContainerType in the owning tenant. The number of container types in a tenant is limited.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class ContainerTypesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContainerTypesRequestBuilderGetQueryParameters():
         """
-        Get containerTypes from storage
+        Get a list of the fileStorageContainerType objects and their properties for the current tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
