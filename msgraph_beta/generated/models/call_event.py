@@ -10,6 +10,8 @@ if TYPE_CHECKING:
     from .emergency_call_event import EmergencyCallEvent
     from .entity import Entity
     from .participant import Participant
+    from .recording_state import RecordingState
+    from .transcription_state import TranscriptionState
 
 from .entity import Entity
 
@@ -23,6 +25,10 @@ class CallEvent(Entity, Parsable):
     odata_type: Optional[str] = None
     # Participants collection for the call event.
     participants: Optional[list[Participant]] = None
+    # The recordingState property
+    recording_state: Optional[RecordingState] = None
+    # The transcriptionState property
+    transcription_state: Optional[TranscriptionState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CallEvent:
@@ -53,16 +59,22 @@ class CallEvent(Entity, Parsable):
         from .emergency_call_event import EmergencyCallEvent
         from .entity import Entity
         from .participant import Participant
+        from .recording_state import RecordingState
+        from .transcription_state import TranscriptionState
 
         from .call_event_type import CallEventType
         from .emergency_call_event import EmergencyCallEvent
         from .entity import Entity
         from .participant import Participant
+        from .recording_state import RecordingState
+        from .transcription_state import TranscriptionState
 
         fields: dict[str, Callable[[Any], None]] = {
             "callEventType": lambda n : setattr(self, 'call_event_type', n.get_enum_value(CallEventType)),
             "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
             "participants": lambda n : setattr(self, 'participants', n.get_collection_of_object_values(Participant)),
+            "recordingState": lambda n : setattr(self, 'recording_state', n.get_object_value(RecordingState)),
+            "transcriptionState": lambda n : setattr(self, 'transcription_state', n.get_object_value(TranscriptionState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -80,5 +92,7 @@ class CallEvent(Entity, Parsable):
         writer.write_enum_value("callEventType", self.call_event_type)
         writer.write_datetime_value("eventDateTime", self.event_date_time)
         writer.write_collection_of_object_values("participants", self.participants)
+        writer.write_object_value("recordingState", self.recording_state)
+        writer.write_object_value("transcriptionState", self.transcription_state)
     
 

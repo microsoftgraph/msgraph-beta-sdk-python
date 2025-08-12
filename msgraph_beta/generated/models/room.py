@@ -14,31 +14,27 @@ from .place import Place
 class Room(Place, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.room"
-    # Specifies the name of the audio device in the room.
+    # The name of the audio device that is available in the room.
     audio_device_name: Optional[str] = None
-    # Type of room. Possible values are standard, and reserved.
+    # Specifies how the room can be booked. Possible values are:unknown - Unspecified booking behavior. We don't recommend that you use this value.standard - Available for general booking.reserved - Reserved for specific users or purposes.
     booking_type: Optional[BookingType] = None
-    # Specifies the building name or building number that the room is in.
+    # The name or identifier of the building where the room is located.
     building: Optional[str] = None
-    # Specifies the capacity of the room.
+    # The maximum number of people the room can accommodate.
     capacity: Optional[int] = None
-    # Specifies the name of the display device in the room.
+    # The name of the display device (for example, monitor or projector) that is available in the room.
     display_device_name: Optional[str] = None
-    # Email address of the room.
+    # The email address associated with the room. This email address is used for booking.
     email_address: Optional[str] = None
-    # Specifies a descriptive label for the floor, for example, P.
+    # A human-readable label for the floor; for example, Ground Floor.
     floor_label: Optional[str] = None
-    # Specifies the floor number that the room is on.
+    # The numeric floor level within the building. For example, 1 for first floor, 2 for second floor, and so on.
     floor_number: Optional[int] = None
-    # Specifies whether the room is wheelchair accessible.
-    is_wheel_chair_accessible: Optional[bool] = None
-    # Specifies a descriptive label for the room, for example, a number or name.
-    label: Optional[str] = None
-    # Specifies a nickname for the room, for example, 'conf room'.
+    # Indicates whether the room is configured with the Microsoft Teams Rooms system.
+    is_teams_enabled: Optional[bool] = None
+    # A short, friendly name for the room, often used for easier identification or display in UI.
     nickname: Optional[str] = None
-    # Specifies other features of the room; for example, the type of view or furniture type.
-    tags: Optional[list[str]] = None
-    # Specifies the name of the video device in the room.
+    # The name of the video device that is available in the room.
     video_device_name: Optional[str] = None
     
     @staticmethod
@@ -72,10 +68,8 @@ class Room(Place, Parsable):
             "emailAddress": lambda n : setattr(self, 'email_address', n.get_str_value()),
             "floorLabel": lambda n : setattr(self, 'floor_label', n.get_str_value()),
             "floorNumber": lambda n : setattr(self, 'floor_number', n.get_int_value()),
-            "isWheelChairAccessible": lambda n : setattr(self, 'is_wheel_chair_accessible', n.get_bool_value()),
-            "label": lambda n : setattr(self, 'label', n.get_str_value()),
+            "isTeamsEnabled": lambda n : setattr(self, 'is_teams_enabled', n.get_bool_value()),
             "nickname": lambda n : setattr(self, 'nickname', n.get_str_value()),
-            "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
             "videoDeviceName": lambda n : setattr(self, 'video_device_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -99,10 +93,8 @@ class Room(Place, Parsable):
         writer.write_str_value("emailAddress", self.email_address)
         writer.write_str_value("floorLabel", self.floor_label)
         writer.write_int_value("floorNumber", self.floor_number)
-        writer.write_bool_value("isWheelChairAccessible", self.is_wheel_chair_accessible)
-        writer.write_str_value("label", self.label)
+        writer.write_bool_value("isTeamsEnabled", self.is_teams_enabled)
         writer.write_str_value("nickname", self.nickname)
-        writer.write_collection_of_primitive_values("tags", self.tags)
         writer.write_str_value("videoDeviceName", self.video_device_name)
     
 

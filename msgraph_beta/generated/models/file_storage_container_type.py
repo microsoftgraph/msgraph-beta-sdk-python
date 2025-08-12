@@ -20,17 +20,17 @@ class FileStorageContainerType(Entity, Parsable):
     billing_classification: Optional[FileStorageContainerBillingClassification] = None
     # The billingStatus property
     billing_status: Optional[FileStorageContainerBillingStatus] = None
-    # The createdDateTime property
+    # The creation date. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # The etag property
+    # Used in update scenarios for optimistic concurrency control. Read-only.
     etag: Optional[str] = None
-    # The expirationDateTime property
+    # The expiration date. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     expiration_date_time: Optional[datetime.datetime] = None
-    # The name property
+    # The name of the fileStorageContainerType.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The owningAppId property
+    # ID of the application that owns the fileStorageContainerType.
     owning_app_id: Optional[UUID] = None
     # The settings property
     settings: Optional[FileStorageContainerTypeSettings] = None

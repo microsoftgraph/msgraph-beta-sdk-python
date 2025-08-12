@@ -88,6 +88,8 @@ if TYPE_CHECKING:
     from .get_windows_update_alert_summary_report.get_windows_update_alert_summary_report_request_builder import GetWindowsUpdateAlertSummaryReportRequestBuilder
     from .get_zebra_fota_deployment_report.get_zebra_fota_deployment_report_request_builder import GetZebraFotaDeploymentReportRequestBuilder
     from .retrieve_android_work_profile_device_migration_statuses.retrieve_android_work_profile_device_migration_statuses_request_builder import RetrieveAndroidWorkProfileDeviceMigrationStatusesRequestBuilder
+    from .retrieve_apple_device_o_s_update_status.retrieve_apple_device_o_s_update_status_request_builder import RetrieveAppleDeviceOSUpdateStatusRequestBuilder
+    from .retrieve_apple_o_s_update_failures.retrieve_apple_o_s_update_failures_request_builder import RetrieveAppleOSUpdateFailuresRequestBuilder
     from .retrieve_cloud_pki_leaf_certificate_report.retrieve_cloud_pki_leaf_certificate_report_request_builder import RetrieveCloudPkiLeafCertificateReportRequestBuilder
     from .retrieve_cloud_pki_leaf_certificate_summary_report.retrieve_cloud_pki_leaf_certificate_summary_report_request_builder import RetrieveCloudPkiLeafCertificateSummaryReportRequestBuilder
     from .retrieve_device_app_installation_status_report.retrieve_device_app_installation_status_report_request_builder import RetrieveDeviceAppInstallationStatusReportRequestBuilder
@@ -862,6 +864,24 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .retrieve_android_work_profile_device_migration_statuses.retrieve_android_work_profile_device_migration_statuses_request_builder import RetrieveAndroidWorkProfileDeviceMigrationStatusesRequestBuilder
 
         return RetrieveAndroidWorkProfileDeviceMigrationStatusesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_apple_device_o_s_update_status(self) -> RetrieveAppleDeviceOSUpdateStatusRequestBuilder:
+        """
+        Provides operations to call the retrieveAppleDeviceOSUpdateStatus method.
+        """
+        from .retrieve_apple_device_o_s_update_status.retrieve_apple_device_o_s_update_status_request_builder import RetrieveAppleDeviceOSUpdateStatusRequestBuilder
+
+        return RetrieveAppleDeviceOSUpdateStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_apple_o_s_update_failures(self) -> RetrieveAppleOSUpdateFailuresRequestBuilder:
+        """
+        Provides operations to call the retrieveAppleOSUpdateFailures method.
+        """
+        from .retrieve_apple_o_s_update_failures.retrieve_apple_o_s_update_failures_request_builder import RetrieveAppleOSUpdateFailuresRequestBuilder
+
+        return RetrieveAppleOSUpdateFailuresRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_cloud_pki_leaf_certificate_report(self) -> RetrieveCloudPkiLeafCertificateReportRequestBuilder:

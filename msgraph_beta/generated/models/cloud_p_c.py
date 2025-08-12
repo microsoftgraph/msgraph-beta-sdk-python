@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .cloud_pc_status_detail import CloudPcStatusDetail
     from .cloud_pc_status_details import CloudPcStatusDetails
     from .cloud_pc_user_account_type import CloudPcUserAccountType
+    from .cloud_pc_user_experience_type import CloudPcUserExperienceType
     from .entity import Entity
     from .frontline_cloud_pc_availability import FrontlineCloudPcAvailability
 
@@ -103,6 +104,8 @@ class CloudPC(Entity, Parsable):
     status_details: Optional[CloudPcStatusDetails] = None
     # The account type of the user on provisioned Cloud PCs. Possible values are: standardUser, administrator, unknownFutureValue.
     user_account_type: Optional[CloudPcUserAccountType] = None
+    # The userExperienceType property
+    user_experience_type: Optional[CloudPcUserExperienceType] = None
     # The user principal name (UPN) of the user assigned to the Cloud PC.
     user_principal_name: Optional[str] = None
     
@@ -140,6 +143,7 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_status_detail import CloudPcStatusDetail
         from .cloud_pc_status_details import CloudPcStatusDetails
         from .cloud_pc_user_account_type import CloudPcUserAccountType
+        from .cloud_pc_user_experience_type import CloudPcUserExperienceType
         from .entity import Entity
         from .frontline_cloud_pc_availability import FrontlineCloudPcAvailability
 
@@ -161,6 +165,7 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_status_detail import CloudPcStatusDetail
         from .cloud_pc_status_details import CloudPcStatusDetails
         from .cloud_pc_user_account_type import CloudPcUserAccountType
+        from .cloud_pc_user_experience_type import CloudPcUserExperienceType
         from .entity import Entity
         from .frontline_cloud_pc_availability import FrontlineCloudPcAvailability
 
@@ -200,6 +205,7 @@ class CloudPC(Entity, Parsable):
             "statusDetail": lambda n : setattr(self, 'status_detail', n.get_object_value(CloudPcStatusDetail)),
             "statusDetails": lambda n : setattr(self, 'status_details', n.get_object_value(CloudPcStatusDetails)),
             "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(CloudPcUserAccountType)),
+            "userExperienceType": lambda n : setattr(self, 'user_experience_type', n.get_enum_value(CloudPcUserExperienceType)),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -250,6 +256,7 @@ class CloudPC(Entity, Parsable):
         writer.write_object_value("statusDetail", self.status_detail)
         writer.write_object_value("statusDetails", self.status_details)
         writer.write_enum_value("userAccountType", self.user_account_type)
+        writer.write_enum_value("userExperienceType", self.user_experience_type)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
     
 

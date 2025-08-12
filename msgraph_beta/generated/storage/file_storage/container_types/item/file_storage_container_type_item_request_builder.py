@@ -32,9 +32,10 @@ class FileStorageContainerTypeItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property containerTypes for storage
+        Delete a fileStorageContainerType object from the tenant. A fileStorageContainerType can only be deleted if no registrations are associated with it in any tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/filestorage-delete-containertypes?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,9 +51,10 @@ class FileStorageContainerTypeItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[FileStorageContainerTypeItemRequestBuilderGetQueryParameters]] = None) -> Optional[FileStorageContainerType]:
         """
-        Get containerTypes from storage
+        Get a fileStorageContainerType using its ID.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FileStorageContainerType]
+        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainertype-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,10 +72,11 @@ class FileStorageContainerTypeItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: FileStorageContainerType, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[FileStorageContainerType]:
         """
-        Update the navigation property containerTypes in storage
+        Update the properties of a fileStorageContainerType object. The properties updated are reflected in each registered fileStorageContainerTypeRegistration in a maximum of 24 hours. Settings overridden in a tenant aren't updated. ETag is used for optimistic concurrency control. It must match the value from Create, Get or the previous Update.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FileStorageContainerType]
+        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainertype-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -93,7 +96,7 @@ class FileStorageContainerTypeItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property containerTypes for storage
+        Delete a fileStorageContainerType object from the tenant. A fileStorageContainerType can only be deleted if no registrations are associated with it in any tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +107,7 @@ class FileStorageContainerTypeItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[FileStorageContainerTypeItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get containerTypes from storage
+        Get a fileStorageContainerType using its ID.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +118,7 @@ class FileStorageContainerTypeItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: FileStorageContainerType, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property containerTypes in storage
+        Update the properties of a fileStorageContainerType object. The properties updated are reflected in each registered fileStorageContainerTypeRegistration in a maximum of 24 hours. Settings overridden in a tenant aren't updated. ETag is used for optimistic concurrency control. It must match the value from Create, Get or the previous Update.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,7 +151,7 @@ class FileStorageContainerTypeItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FileStorageContainerTypeItemRequestBuilderGetQueryParameters():
         """
-        Get containerTypes from storage
+        Get a fileStorageContainerType using its ID.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

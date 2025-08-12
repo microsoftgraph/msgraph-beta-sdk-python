@@ -11,5 +11,4 @@ class ExportOptions(str, Enum):
     IncludeFolderAndPath = "includeFolderAndPath",
     FriendlyName = "friendlyName",
     CondensePaths = "condensePaths",
-    OptimizedPartitionSize = "optimizedPartitionSize",
 

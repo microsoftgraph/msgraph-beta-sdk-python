@@ -15,11 +15,11 @@ class FileStorageContainerTypeAppPermissionGrant(AdditionalDataHolder, BackedMod
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The appId property
+    # Application ID to which to set permissions.
     app_id: Optional[str] = None
-    # The applicationPermissions property
+    # Allowed permissions when you use delegated tokens. The possible values are: none, readContent, writeContent, manageContent, create, delete, read, write, enumeratePermissions, addPermissions, updatePermissions, deletePermissions, deleteOwnPermission, managePermissions, full, unknownFutureValue.
     application_permissions: Optional[list[FileStorageContainerTypeAppPermission]] = None
-    # The delegatedPermissions property
+    # Allowed permissions when you use application tokens. The possible values are: none, readContent, writeContent, manageContent, create, delete, read, write, enumeratePermissions, addPermissions, updatePermissions, deletePermissions, deleteOwnPermission, managePermissions, full, unknownFutureValue.
     delegated_permissions: Optional[list[FileStorageContainerTypeAppPermission]] = None
     # The OdataType property
     odata_type: Optional[str] = None

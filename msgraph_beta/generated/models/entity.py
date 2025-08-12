@@ -265,6 +265,7 @@ if TYPE_CHECKING:
     from .browser_shared_cookie import BrowserSharedCookie
     from .browser_site import BrowserSite
     from .browser_site_list import BrowserSiteList
+    from .building import Building
     from .built_in_identity_provider import BuiltInIdentityProvider
     from .bulk_upload import BulkUpload
     from .business_flow import BusinessFlow
@@ -334,6 +335,7 @@ if TYPE_CHECKING:
     from .cloud_pc_bulk_restore import CloudPcBulkRestore
     from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
     from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
+    from .cloud_pc_cloud_app import CloudPcCloudApp
     from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
     from .cloud_pc_device_image import CloudPcDeviceImage
     from .cloud_pc_export_job import CloudPcExportJob
@@ -440,6 +442,7 @@ if TYPE_CHECKING:
     from .dep_onboarding_setting import DepOnboardingSetting
     from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
     from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
+    from .desk import Desk
     from .detected_app import DetectedApp
     from .device import Device
     from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
@@ -738,6 +741,7 @@ if TYPE_CHECKING:
     from .file_storage_container_type_registration import FileStorageContainerTypeRegistration
     from .filter_operator_schema import FilterOperatorSchema
     from .finding import Finding
+    from .floor import Floor
     from .focus_activity_statistics import FocusActivityStatistics
     from .gcp_authorization_system import GcpAuthorizationSystem
     from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
@@ -1484,6 +1488,7 @@ if TYPE_CHECKING:
     from .secret_information_access_aws_role_finding import SecretInformationAccessAwsRoleFinding
     from .secret_information_access_aws_serverless_function_finding import SecretInformationAccessAwsServerlessFunctionFinding
     from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
+    from .section import Section
     from .section_group import SectionGroup
     from .secure_score import SecureScore
     from .secure_score_control_profile import SecureScoreControlProfile
@@ -3191,6 +3196,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .browser_site_list import BrowserSiteList
 
             return BrowserSiteList()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.building".casefold():
+            from .building import Building
+
+            return Building()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.builtInIdentityProvider".casefold():
             from .built_in_identity_provider import BuiltInIdentityProvider
 
@@ -3473,6 +3482,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
 
             return CloudPcBulkTroubleshoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcCloudApp".casefold():
+            from .cloud_pc_cloud_app import CloudPcCloudApp
+
+            return CloudPcCloudApp()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPCConnectivityIssue".casefold():
             from .cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
 
@@ -3894,6 +3907,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
 
             return DepVisionOSEnrollmentProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.desk".casefold():
+            from .desk import Desk
+
+            return Desk()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.detectedApp".casefold():
             from .detected_app import DetectedApp
 
@@ -5103,6 +5120,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .finding import Finding
 
             return Finding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.floor".casefold():
+            from .floor import Floor
+
+            return Floor()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.focusActivityStatistics".casefold():
             from .focus_activity_statistics import FocusActivityStatistics
 
@@ -8106,6 +8127,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
 
             return SecretInformationAccessAwsUserFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.section".casefold():
+            from .section import Section
+
+            return Section()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sectionGroup".casefold():
             from .section_group import SectionGroup
 
@@ -10953,6 +10978,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .browser_shared_cookie import BrowserSharedCookie
         from .browser_site import BrowserSite
         from .browser_site_list import BrowserSiteList
+        from .building import Building
         from .built_in_identity_provider import BuiltInIdentityProvider
         from .bulk_upload import BulkUpload
         from .business_flow import BusinessFlow
@@ -11022,6 +11048,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_bulk_restore import CloudPcBulkRestore
         from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
         from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
+        from .cloud_pc_cloud_app import CloudPcCloudApp
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
         from .cloud_pc_export_job import CloudPcExportJob
@@ -11128,6 +11155,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .dep_onboarding_setting import DepOnboardingSetting
         from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
         from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
+        from .desk import Desk
         from .detected_app import DetectedApp
         from .device import Device
         from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
@@ -11426,6 +11454,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .file_storage_container_type_registration import FileStorageContainerTypeRegistration
         from .filter_operator_schema import FilterOperatorSchema
         from .finding import Finding
+        from .floor import Floor
         from .focus_activity_statistics import FocusActivityStatistics
         from .gcp_authorization_system import GcpAuthorizationSystem
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
@@ -12172,6 +12201,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .secret_information_access_aws_role_finding import SecretInformationAccessAwsRoleFinding
         from .secret_information_access_aws_serverless_function_finding import SecretInformationAccessAwsServerlessFunctionFinding
         from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
+        from .section import Section
         from .section_group import SectionGroup
         from .secure_score import SecureScore
         from .secure_score_control_profile import SecureScoreControlProfile
@@ -13072,6 +13102,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .browser_shared_cookie import BrowserSharedCookie
         from .browser_site import BrowserSite
         from .browser_site_list import BrowserSiteList
+        from .building import Building
         from .built_in_identity_provider import BuiltInIdentityProvider
         from .bulk_upload import BulkUpload
         from .business_flow import BusinessFlow
@@ -13141,6 +13172,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_bulk_restore import CloudPcBulkRestore
         from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
         from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
+        from .cloud_pc_cloud_app import CloudPcCloudApp
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
         from .cloud_pc_export_job import CloudPcExportJob
@@ -13247,6 +13279,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .dep_onboarding_setting import DepOnboardingSetting
         from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
         from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
+        from .desk import Desk
         from .detected_app import DetectedApp
         from .device import Device
         from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
@@ -13545,6 +13578,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .file_storage_container_type_registration import FileStorageContainerTypeRegistration
         from .filter_operator_schema import FilterOperatorSchema
         from .finding import Finding
+        from .floor import Floor
         from .focus_activity_statistics import FocusActivityStatistics
         from .gcp_authorization_system import GcpAuthorizationSystem
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
@@ -14291,6 +14325,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .secret_information_access_aws_role_finding import SecretInformationAccessAwsRoleFinding
         from .secret_information_access_aws_serverless_function_finding import SecretInformationAccessAwsServerlessFunctionFinding
         from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
+        from .section import Section
         from .section_group import SectionGroup
         from .secure_score import SecureScore
         from .secure_score_control_profile import SecureScoreControlProfile

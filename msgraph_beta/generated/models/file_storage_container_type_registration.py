@@ -17,23 +17,23 @@ from .entity import Entity
 
 @dataclass
 class FileStorageContainerTypeRegistration(Entity, Parsable):
-    # The applicationPermissionGrants property
+    # Access privileges of applications on containers.
     application_permission_grants: Optional[list[FileStorageContainerTypeAppPermissionGrant]] = None
     # The billingClassification property
     billing_classification: Optional[FileStorageContainerBillingClassification] = None
     # The billingStatus property
     billing_status: Optional[FileStorageContainerBillingStatus] = None
-    # The etag property
+    # Used in update scenarios for optimistic concurrency control. Read-only.
     etag: Optional[str] = None
-    # The expirationDateTime property
+    # The expiration date. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     expiration_date_time: Optional[datetime.datetime] = None
-    # The name property
+    # The name of the fileStorageContainerTypeRegistration. Read-only.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The owningAppId property
+    # ID of the application that owns the fileStorageContainerType. Read-only.
     owning_app_id: Optional[UUID] = None
-    # The registeredDateTime property
+    # The registration date. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     registered_date_time: Optional[datetime.datetime] = None
     # The settings property
     settings: Optional[FileStorageContainerTypeRegistrationSettings] = None

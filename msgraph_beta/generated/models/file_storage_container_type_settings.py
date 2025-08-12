@@ -16,25 +16,25 @@ class FileStorageContainerTypeSettings(AdditionalDataHolder, BackedModel, Parsab
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The consumingTenantOverridables property
+    # A comma-separated list of settings that can be overridden in the consuming tenant. The possible values are: urlTemplate, isDiscoverabilityEnabled, isSearchEnabled, isItemVersioningEnabled, itemMajorVersionLimit, maxStoragePerContainerInBytes, unknownFutureValue.
     consuming_tenant_overridables: Optional[FileStorageContainerTypeSettingsOverride] = None
-    # The isDiscoverabilityEnabled property
+    # Indicates whether items from containers are surfaced in experiences such as My Activity or Microsoft 365.
     is_discoverability_enabled: Optional[bool] = None
-    # The isItemVersioningEnabled property
+    # Indicates whether item versioning is enabled.
     is_item_versioning_enabled: Optional[bool] = None
-    # The isSearchEnabled property
+    # Indicates whether search is enabled.
     is_search_enabled: Optional[bool] = None
-    # The isSharingRestricted property
+    # Only the manager and owner can share files in the container if restricted sharing is enabled.
     is_sharing_restricted: Optional[bool] = None
-    # The itemMajorVersionLimit property
+    # Maximum number of versions. Versioning must be enabled ('isItemVersioningEnabled'=true).
     item_major_version_limit: Optional[int] = None
-    # The maxStoragePerContainerInBytes property
+    # Controls maximum storage in bytes.
     max_storage_per_container_in_bytes: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sharingCapability property
+    # Sharing capabilities permitted for containers. This value can always be overridden during registration if needed. The possible values are: disabled, externalUserSharingOnly, externalUserAndGuestSharing, existingExternalUserSharingOnly, unknownFutureValue.
     sharing_capability: Optional[SharingCapabilities] = None
-    # The urlTemplate property
+    # Pattern used to redirect files.
     url_template: Optional[str] = None
     
     @staticmethod

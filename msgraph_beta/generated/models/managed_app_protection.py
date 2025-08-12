@@ -39,7 +39,7 @@ class ManagedAppProtection(ManagedAppPolicy, Parsable):
     allowed_data_storage_locations: Optional[list[ManagedAppDataStorageLocation]] = None
     # Data can be transferred from/to these classes of apps
     allowed_inbound_data_transfer_sources: Optional[ManagedAppDataTransferLevel] = None
-    # Specify the number of characters that may be cut or copied from Org data and accounts to any application. This setting overrides the AllowedOutboundClipboardSharingLevel restriction. Default value of '0' means no exception is allowed.
+    # Specify the number of characters that may be cut or copied from Org data and accounts to any application. This setting overrides the AllowedOutboundClipboardSharingLevel restriction. Default value of '0' means no exception is allowed. Valid values 0 to 65535
     allowed_outbound_clipboard_sharing_exception_length: Optional[int] = None
     # Represents the level to which the device's clipboard may be shared between apps
     allowed_outbound_clipboard_sharing_level: Optional[ManagedAppClipboardSharingLevel] = None
@@ -73,7 +73,7 @@ class ManagedAppProtection(ManagedAppPolicy, Parsable):
     managed_browser_to_open_links_required: Optional[bool] = None
     # The maxium threat level allowed for an app to be compliant.
     maximum_allowed_device_threat_level: Optional[ManagedAppDeviceThreatLevel] = None
-    # Maximum number of incorrect pin retry attempts before the managed app is either blocked or wiped.
+    # Maximum number of incorrect pin retry attempts before the managed app is either blocked or wiped. Valid values 1 to 65535
     maximum_pin_retries: Optional[int] = None
     # Versions bigger than the specified version will block the managed app from accessing company data.
     maximum_required_os_version: Optional[str] = None
@@ -117,7 +117,7 @@ class ManagedAppProtection(ManagedAppPolicy, Parsable):
     pin_required: Optional[bool] = None
     # Timeout in minutes for an app pin instead of non biometrics passcode
     pin_required_instead_of_biometric_timeout: Optional[datetime.timedelta] = None
-    # Requires a pin to be unique from the number specified in this property.
+    # Requires a pin to be unique from the number specified in this property. Valid values 0 to 24
     previous_pin_block_count: Optional[int] = None
     # Indicates whether printing is allowed from managed apps.
     print_blocked: Optional[bool] = None
