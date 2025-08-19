@@ -33,10 +33,11 @@ class MicrosoftGraphSecurityInvokeActionRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: InvokeActionPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[InvokeActionResult]:
         """
-        Invoke action invokeAction
+        Perform actions such as revoking accounts and forcing password reset for identity accounts that are observed in Microsoft Defender for Identity. This action allows reading and performing identity security actions on behalf of the signed-in identity.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[InvokeActionResult]
+        Find more info here: https://learn.microsoft.com/graph/api/security-identityaccounts-invokeaction?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -56,7 +57,7 @@ class MicrosoftGraphSecurityInvokeActionRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: InvokeActionPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action invokeAction
+        Perform actions such as revoking accounts and forcing password reset for identity accounts that are observed in Microsoft Defender for Identity. This action allows reading and performing identity security actions on behalf of the signed-in identity.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

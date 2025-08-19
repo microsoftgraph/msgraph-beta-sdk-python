@@ -32,10 +32,11 @@ class PublishRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: PublishPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action publish
+        Publish a cloudPcCloudApp object to make it available to end users through their portal, such as the Windows App. 
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpccloudapp-publish?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -53,7 +54,7 @@ class PublishRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: PublishPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action publish
+        Publish a cloudPcCloudApp object to make it available to end users through their portal, such as the Windows App. 
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -16,7 +16,7 @@ class MacOsLobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOsLobAppAssignmentSettings"
-    # Whether or not to uninstall the app when device is removed from Intune.
+    # When TRUE, indicates that the app should be uninstalled when the device is removed from Intune. When FALSE, indicates that the app will not be uninstalled when the device is removed from Intune.
     uninstall_on_device_removal: Optional[bool] = None
     
     @staticmethod

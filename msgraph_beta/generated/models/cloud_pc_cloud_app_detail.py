@@ -12,13 +12,13 @@ class CloudPcCloudAppDetail(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The commandLineArguments property
+    # Specifies the command-line arguments for the cloud app. These parameters are passed to the cloud app when it's launched. The maximum allowed length for this property is 2,048 characters. For example, -fullscreen -loop.
     command_line_arguments: Optional[str] = None
-    # The filePath property
+    # Specifies the path to the executable file for the application within the OS of the hosting Cloud PC. The value should be an absolute path to a Windows or Universal app. For example, C:/app.exe or shell:AppsFolder/appname!App. Read-only.
     file_path: Optional[str] = None
-    # The iconIndex property
+    # Specifies the index of the icon within the file specified by the iconPath property. For example, if iconPath is set to C:/Program Files/MyApp/myapp.ico and iconIndex is set to 0, the system uses the first icon in the myapp.ico file. The default value is 0.
     icon_index: Optional[int] = None
-    # The iconPath property
+    # Specifies the path to the icon file for the application within the OS of the hosting Cloud PC. When an admin updates the path of a cloud app, the value should be a rooted absolute path. For example, C:/Windows/system32/WindowsPowerShell/v1.0/powershell_ise.exe. If this property isn't defined, a default icon is used.
     icon_path: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -15,31 +15,31 @@ from .entity import Entity
 
 @dataclass
 class CloudPcCloudApp(Entity, Parsable):
-    # The actionFailedErrorCode property
+    # The error code if publishing, unpublishing, or resetting a cloud app fails. Possible values are: cloudAppQuotaExceeded, cloudPcLicenseNotFound, internalServerError, appDiscoveryFailed, unknownFutureValue. The default value is null. Supports $filter, $select, $orderBy. Read-only.
     action_failed_error_code: Optional[CloudPcCloudAppActionFailedErrorCode] = None
-    # The actionFailedErrorMessage property
+    # The error message when the IT admin failed to publish, unpublish, update, or reset a cloud app. For example: 'Publish failed because it exceeds the 500 cloud apps limitation under the policy. You need to unpublish some cloud apps under this policy in order to publish this cloud app again.' Read-only.
     action_failed_error_message: Optional[str] = None
-    # The addedDateTime property
+    # The date and time when the cloud app was added to this tenant and became visible in the admin portal. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. An IT admin can't set or modify it. Supports $filter, $select, and $orderBy. Read-only.
     added_date_time: Optional[datetime.datetime] = None
     # The appDetail property
     app_detail: Optional[CloudPcCloudAppDetail] = None
     # The appStatus property
     app_status: Optional[CloudPcCloudAppStatus] = None
-    # The availableToUser property
+    # Indicates whether this cloud app is available to end users through the end-user portal or the Windows App. The default value is false. It changes to true if the cloud app is successfully published, and reverts to false when the admin unpublishes the cloud app. Supports $filter, $select, and $orderBy.
     available_to_user: Optional[bool] = None
-    # The description property
+    # The description associated with the cloud app. The maximum allowed length for this property is 512 characters. Supports $filter, $select, and $orderBy.
     description: Optional[str] = None
-    # The discoveredAppName property
+    # Name of the discovered app associated with the cloud app. For example, Paint, Supports $filter, $select, and $orderBy. Read-only.
     discovered_app_name: Optional[str] = None
-    # The displayName property
+    # The display name for the cloud app. The display name for the cloud app, which appears on the end-user portal and must be unique within a single provisioning policy. It uses the discovered app name as the default value. The maximum allowed length for this property is 64 characters. For example, Paint. Supports $filter, $select, and $orderBy.
     display_name: Optional[str] = None
-    # The lastPublishedDateTime property
+    # The latest date time when the admin published the cloud app. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. An IT admin can't set or modify it. Supports $filter, $select, and $orderBy. Read-only.
     last_published_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The provisioningPolicyId property
+    # The ID of the provisioning policy associated with this cloud app. For example, 96133506-c05b-4dbb-a150-ed4adc59895f. Supports $filter, $select, and $orderBy. Read-only. Required.
     provisioning_policy_id: Optional[str] = None
-    # The scopeIds property
+    # The list of scope tag IDs for this cloud app. Inherited from the provisioning policy when the app is created or updated. Read-only.
     scope_ids: Optional[list[str]] = None
     
     @staticmethod

@@ -50,9 +50,10 @@ class CloudPcCloudAppItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CloudPcCloudAppItemRequestBuilderGetQueryParameters]] = None) -> Optional[CloudPcCloudApp]:
         """
-        Get cloudApps from deviceManagement
+        Read the properties of a specific cloudPcCloudApp object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcCloudApp]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpccloudapp-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,10 +71,11 @@ class CloudPcCloudAppItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: CloudPcCloudApp, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcCloudApp]:
         """
-        Update the navigation property cloudApps in deviceManagement
+        Update the properties of a cloudPcCloudApp object, such as the display name or icon path.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcCloudApp]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpccloudapp-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -104,7 +106,7 @@ class CloudPcCloudAppItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CloudPcCloudAppItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get cloudApps from deviceManagement
+        Read the properties of a specific cloudPcCloudApp object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +117,7 @@ class CloudPcCloudAppItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: CloudPcCloudApp, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property cloudApps in deviceManagement
+        Update the properties of a cloudPcCloudApp object, such as the display name or icon path.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,7 +150,7 @@ class CloudPcCloudAppItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcCloudAppItemRequestBuilderGetQueryParameters():
         """
-        Get cloudApps from deviceManagement
+        Read the properties of a specific cloudPcCloudApp object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

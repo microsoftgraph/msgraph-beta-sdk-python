@@ -391,6 +391,7 @@ if TYPE_CHECKING:
     from .copilot_admin import CopilotAdmin
     from .copilot_admin_limited_mode import CopilotAdminLimitedMode
     from .copilot_admin_setting import CopilotAdminSetting
+    from .copilot_communications_root import CopilotCommunicationsRoot
     from .copilot_people_admin_setting import CopilotPeopleAdminSetting
     from .copilot_setting import CopilotSetting
     from .cors_configuration_v2 import CorsConfiguration_v2
@@ -1130,6 +1131,7 @@ if TYPE_CHECKING:
     from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
     from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
     from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
+    from .multi_activity_subscription import MultiActivitySubscription
     from .multi_tenant_organization import MultiTenantOrganization
     from .multi_tenant_organization_identity_sync_policy_template import MultiTenantOrganizationIdentitySyncPolicyTemplate
     from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
@@ -1424,6 +1426,9 @@ if TYPE_CHECKING:
     from .rbac_application_multiple import RbacApplicationMultiple
     from .reading_assignment_submission import ReadingAssignmentSubmission
     from .reading_coach_passage import ReadingCoachPassage
+    from .realtime_activity_feed_root import RealtimeActivityFeedRoot
+    from .realtime_activity_meeting import RealtimeActivityMeeting
+    from .real_time_transcript import RealTimeTranscript
     from .recommendation import Recommendation
     from .recommendation_base import RecommendationBase
     from .recommendation_configuration import RecommendationConfiguration
@@ -3703,6 +3708,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .copilot_admin_setting import CopilotAdminSetting
 
             return CopilotAdminSetting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotCommunicationsRoot".casefold():
+            from .copilot_communications_root import CopilotCommunicationsRoot
+
+            return CopilotCommunicationsRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotPeopleAdminSetting".casefold():
             from .copilot_people_admin_setting import CopilotPeopleAdminSetting
 
@@ -6685,6 +6694,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
 
             return MonthlyUserInsightMetricsRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.multiActivitySubscription".casefold():
+            from .multi_activity_subscription import MultiActivitySubscription
+
+            return MultiActivitySubscription()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.multiTenantOrganization".casefold():
             from .multi_tenant_organization import MultiTenantOrganization
 
@@ -7870,6 +7883,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .reading_coach_passage import ReadingCoachPassage
 
             return ReadingCoachPassage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.realtimeActivityFeedRoot".casefold():
+            from .realtime_activity_feed_root import RealtimeActivityFeedRoot
+
+            return RealtimeActivityFeedRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.realtimeActivityMeeting".casefold():
+            from .realtime_activity_meeting import RealtimeActivityMeeting
+
+            return RealtimeActivityMeeting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.realTimeTranscript".casefold():
+            from .real_time_transcript import RealTimeTranscript
+
+            return RealTimeTranscript()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.recommendation".casefold():
             from .recommendation import Recommendation
 
@@ -11104,6 +11129,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_admin import CopilotAdmin
         from .copilot_admin_limited_mode import CopilotAdminLimitedMode
         from .copilot_admin_setting import CopilotAdminSetting
+        from .copilot_communications_root import CopilotCommunicationsRoot
         from .copilot_people_admin_setting import CopilotPeopleAdminSetting
         from .copilot_setting import CopilotSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
@@ -11843,6 +11869,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
         from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
         from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
+        from .multi_activity_subscription import MultiActivitySubscription
         from .multi_tenant_organization import MultiTenantOrganization
         from .multi_tenant_organization_identity_sync_policy_template import MultiTenantOrganizationIdentitySyncPolicyTemplate
         from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
@@ -12137,6 +12164,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .rbac_application_multiple import RbacApplicationMultiple
         from .reading_assignment_submission import ReadingAssignmentSubmission
         from .reading_coach_passage import ReadingCoachPassage
+        from .realtime_activity_feed_root import RealtimeActivityFeedRoot
+        from .realtime_activity_meeting import RealtimeActivityMeeting
+        from .real_time_transcript import RealTimeTranscript
         from .recommendation import Recommendation
         from .recommendation_base import RecommendationBase
         from .recommendation_configuration import RecommendationConfiguration
@@ -13228,6 +13258,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_admin import CopilotAdmin
         from .copilot_admin_limited_mode import CopilotAdminLimitedMode
         from .copilot_admin_setting import CopilotAdminSetting
+        from .copilot_communications_root import CopilotCommunicationsRoot
         from .copilot_people_admin_setting import CopilotPeopleAdminSetting
         from .copilot_setting import CopilotSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
@@ -13967,6 +13998,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
         from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
         from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
+        from .multi_activity_subscription import MultiActivitySubscription
         from .multi_tenant_organization import MultiTenantOrganization
         from .multi_tenant_organization_identity_sync_policy_template import MultiTenantOrganizationIdentitySyncPolicyTemplate
         from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
@@ -14261,6 +14293,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .rbac_application_multiple import RbacApplicationMultiple
         from .reading_assignment_submission import ReadingAssignmentSubmission
         from .reading_coach_passage import ReadingCoachPassage
+        from .realtime_activity_feed_root import RealtimeActivityFeedRoot
+        from .realtime_activity_meeting import RealtimeActivityMeeting
+        from .real_time_transcript import RealTimeTranscript
         from .recommendation import Recommendation
         from .recommendation_base import RecommendationBase
         from .recommendation_configuration import RecommendationConfiguration

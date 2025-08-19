@@ -13,9 +13,9 @@ from .identity_accounts import IdentityAccounts
 class User(IdentityAccounts, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.user"
-    # The emailAddress property
+    # Email address of the user.
     email_address: Optional[str] = None
-    # The userPrincipalName property
+    # The user principal name.
     user_principal_name: Optional[str] = None
     
     @staticmethod

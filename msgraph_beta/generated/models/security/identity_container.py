@@ -16,7 +16,7 @@ from ..entity import Entity
 class IdentityContainer(Entity, Parsable):
     # Represents potential issues within a customer's Microsoft Defender for Identity configuration that Microsoft Defender for Identity identified.
     health_issues: Optional[list[HealthIssue]] = None
-    # The identityAccounts property
+    # Represents an identity's details in the context of Microsoft Defender for Identity.
     identity_accounts: Optional[list[IdentityAccounts]] = None
     # The OdataType property
     odata_type: Optional[str] = None
