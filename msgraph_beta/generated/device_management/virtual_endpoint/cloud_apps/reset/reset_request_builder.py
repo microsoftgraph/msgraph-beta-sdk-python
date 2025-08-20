@@ -32,10 +32,11 @@ class ResetRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ResetPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action reset
+        Reset the app details of the cloudPcCloudApp object to the app details of the initially discovered app that this cloud app is mapped to. This action requires the Microsoft.CloudPC/CloudApps/Update permission.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpccloudapp-reset?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -53,7 +54,7 @@ class ResetRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ResetPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action reset
+        Reset the app details of the cloudPcCloudApp object to the app details of the initially discovered app that this cloud app is mapped to. This action requires the Microsoft.CloudPC/CloudApps/Update permission.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

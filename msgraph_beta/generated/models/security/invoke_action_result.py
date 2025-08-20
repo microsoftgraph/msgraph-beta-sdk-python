@@ -16,11 +16,11 @@ class InvokeActionResult(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The accountId property
+    # The account ID.
     account_id: Optional[str] = None
     # The action property
     action: Optional[Action] = None
-    # The correlationId property
+    # The unique identifier for tracking the request.
     correlation_id: Optional[str] = None
     # The identityProvider property
     identity_provider: Optional[IdentityProvider] = None

@@ -51,9 +51,10 @@ class IdentityAccountsItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[IdentityAccountsItemRequestBuilderGetQueryParameters]] = None) -> Optional[IdentityAccounts]:
         """
-        Get identityAccounts from security
+        Read the properties and relationships of a single identity security account object. This allows retrieving information about available identity accounts.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityAccounts]
+        Find more info here: https://learn.microsoft.com/graph/api/security-identityaccounts-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -105,7 +106,7 @@ class IdentityAccountsItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[IdentityAccountsItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get identityAccounts from security
+        Read the properties and relationships of a single identity security account object. This allows retrieving information about available identity accounts.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +159,7 @@ class IdentityAccountsItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IdentityAccountsItemRequestBuilderGetQueryParameters():
         """
-        Get identityAccounts from security
+        Read the properties and relationships of a single identity security account object. This allows retrieving information about available identity accounts.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

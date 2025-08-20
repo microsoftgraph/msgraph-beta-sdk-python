@@ -104,7 +104,7 @@ class CloudPC(Entity, Parsable):
     status_details: Optional[CloudPcStatusDetails] = None
     # The account type of the user on provisioned Cloud PCs. Possible values are: standardUser, administrator, unknownFutureValue.
     user_account_type: Optional[CloudPcUserAccountType] = None
-    # The userExperienceType property
+    # Specifies the type of cloud object the end user can access. The possible values are: cloudPc, cloudApp, unknownFutureValue. When set to cloudPc, it indicates that the end user can access the entire desktop. When set to cloudApp, it indicates that the end user can only access cloud apps published under the associated provisioning policy. Since the cloud app experience also creates Cloud PC devices that appear in the Cloud PC device list, this property helps differentiate them. The default value is cloudPc. This property is defined in the provisioning policy.
     user_experience_type: Optional[CloudPcUserExperienceType] = None
     # The user principal name (UPN) of the user assigned to the Cloud PC.
     user_principal_name: Optional[str] = None

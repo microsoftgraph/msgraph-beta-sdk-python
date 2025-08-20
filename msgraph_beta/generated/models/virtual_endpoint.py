@@ -32,7 +32,7 @@ class VirtualEndpoint(Entity, Parsable):
     audit_events: Optional[list[CloudPcAuditEvent]] = None
     # Bulk actions applied to a Cloud PC.
     bulk_actions: Optional[list[CloudPcBulkAction]] = None
-    # The cloudApps property
+    # A collection of cloud apps that are built on frontline shared options and provide Windows 365 end users with access to app-only sessions instead of a full desktop experience.
     cloud_apps: Optional[list[CloudPcCloudApp]] = None
     # Cloud managed virtual desktops.
     cloud_p_cs: Optional[list[CloudPC]] = None

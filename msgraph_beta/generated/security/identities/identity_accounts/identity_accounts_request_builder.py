@@ -49,9 +49,10 @@ class IdentityAccountsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[IdentityAccountsRequestBuilderGetQueryParameters]] = None) -> Optional[IdentityAccountsCollectionResponse]:
         """
-        Get identityAccounts from security
+        Get a list of the identityAccounts objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[IdentityAccountsCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/security-identitycontainer-list-identityaccounts?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +93,7 @@ class IdentityAccountsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[IdentityAccountsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get identityAccounts from security
+        Get a list of the identityAccounts objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class IdentityAccountsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IdentityAccountsRequestBuilderGetQueryParameters():
         """
-        Get identityAccounts from security
+        Get a list of the identityAccounts objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -13,19 +13,19 @@ from ..entity import Entity
 
 @dataclass
 class IdentityAccounts(Entity, Parsable):
-    # The accounts property
+    # Collection of accounts of the identity in different identity providers.
     accounts: Optional[list[Account]] = None
-    # The cloudSecurityIdentifier property
+    # The cloud security identifier of the identityAccount.
     cloud_security_identifier: Optional[str] = None
-    # The displayName property
+    # The  Active Directory display name of the identityAccount.
     display_name: Optional[str] = None
-    # The domain property
+    # The Active Directory domain name of the identityAccount.
     domain: Optional[str] = None
-    # The isEnabled property
+    # Boolean indicating if the identityAccounts is enabled.
     is_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The onPremisesSecurityIdentifier property
+    # The on-premises security identifier of the identityAccount.
     on_premises_security_identifier: Optional[str] = None
     
     @staticmethod
