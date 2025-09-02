@@ -14,34 +14,34 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
-    from ....models.mobility_management_policy import MobilityManagementPolicy
-    from ....models.o_data_errors.o_data_error import ODataError
-    from .included_groups.included_groups_request_builder import IncludedGroupsRequestBuilder
+    from .....models.named_location import NamedLocation
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .restore.restore_request_builder import RestoreRequestBuilder
 
-class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
+class NamedLocationItemRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the mobileDeviceManagementPolicies property of the microsoft.graph.policyRoot entity.
+    Provides operations to manage the namedLocations property of the microsoft.graph.conditionalAccessRoot entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
-        Instantiates a new MobilityManagementPolicyItemRequestBuilder and sets the default values.
+        Instantiates a new NamedLocationItemRequestBuilder and sets the default values.
         param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/policies/mobileDeviceManagementPolicies/{mobilityManagementPolicy%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identity/conditionalAccess/namedLocations/{namedLocation%2Did}{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a mobilityManagementPolicy object.
+        Delete a namedLocation object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/mobiledevicemanagementpolicies-delete?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/namedlocation-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from ....models.o_data_errors.o_data_error import ODataError
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
@@ -50,54 +50,54 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[MobilityManagementPolicyItemRequestBuilderGetQueryParameters]] = None) -> Optional[MobilityManagementPolicy]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[NamedLocationItemRequestBuilderGetQueryParameters]] = None) -> Optional[NamedLocation]:
         """
-        Read the properties and relationships of a mobilityManagementPolicy object.
+        Read the properties and relationships of a compliantNetworkNamedLocation object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[MobilityManagementPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/mobiledevicemanagementpolicies-get?view=graph-rest-beta
+        Returns: Optional[NamedLocation]
+        Find more info here: https://learn.microsoft.com/graph/api/compliantnetworknamedlocation-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from ....models.o_data_errors.o_data_error import ODataError
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.mobility_management_policy import MobilityManagementPolicy
+        from .....models.named_location import NamedLocation
 
-        return await self.request_adapter.send_async(request_info, MobilityManagementPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, NamedLocation, error_mapping)
     
-    async def patch(self,body: MobilityManagementPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MobilityManagementPolicy]:
+    async def patch(self,body: NamedLocation, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[NamedLocation]:
         """
-        Update the properties of a mobilityManagementPolicy object.
+        Update the properties of a countryNamedLocation object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[MobilityManagementPolicy]
-        Find more info here: https://learn.microsoft.com/graph/api/mobiledevicemanagementpolicies-update?view=graph-rest-beta
+        Returns: Optional[NamedLocation]
+        Find more info here: https://learn.microsoft.com/graph/api/countrynamedlocation-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from ....models.o_data_errors.o_data_error import ODataError
+        from .....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.mobility_management_policy import MobilityManagementPolicy
+        from .....models.named_location import NamedLocation
 
-        return await self.request_adapter.send_async(request_info, MobilityManagementPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, NamedLocation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a mobilityManagementPolicy object.
+        Delete a namedLocation object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,9 +106,9 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MobilityManagementPolicyItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[NamedLocationItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a mobilityManagementPolicy object.
+        Read the properties and relationships of a compliantNetworkNamedLocation object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -117,9 +117,9 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: MobilityManagementPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: NamedLocation, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a mobilityManagementPolicy object.
+        Update the properties of a countryNamedLocation object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -132,36 +132,36 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: str) -> MobilityManagementPolicyItemRequestBuilder:
+    def with_url(self,raw_url: str) -> NamedLocationItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: MobilityManagementPolicyItemRequestBuilder
+        Returns: NamedLocationItemRequestBuilder
         """
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
-        return MobilityManagementPolicyItemRequestBuilder(self.request_adapter, raw_url)
+        return NamedLocationItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def included_groups(self) -> IncludedGroupsRequestBuilder:
+    def restore(self) -> RestoreRequestBuilder:
         """
-        Provides operations to manage the includedGroups property of the microsoft.graph.mobilityManagementPolicy entity.
+        Provides operations to call the restore method.
         """
-        from .included_groups.included_groups_request_builder import IncludedGroupsRequestBuilder
+        from .restore.restore_request_builder import RestoreRequestBuilder
 
-        return IncludedGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
-    class MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class NamedLocationItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
     @dataclass
-    class MobilityManagementPolicyItemRequestBuilderGetQueryParameters():
+    class NamedLocationItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a mobilityManagementPolicy object.
+        Read the properties and relationships of a compliantNetworkNamedLocation object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -185,14 +185,14 @@ class MobilityManagementPolicyItemRequestBuilder(BaseRequestBuilder):
 
     
     @dataclass
-    class MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration(RequestConfiguration[MobilityManagementPolicyItemRequestBuilderGetQueryParameters]):
+    class NamedLocationItemRequestBuilderGetRequestConfiguration(RequestConfiguration[NamedLocationItemRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
     @dataclass
-    class MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class NamedLocationItemRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

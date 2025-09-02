@@ -294,6 +294,7 @@ if TYPE_CHECKING:
     from .cancel_media_processing_operation import CancelMediaProcessingOperation
     from .canvas_layout import CanvasLayout
     from .cart_to_class_association import CartToClassAssociation
+    from .ca_policies_deletable_root import CaPoliciesDeletableRoot
     from .certificate_authority_as_entity import CertificateAuthorityAsEntity
     from .certificate_authority_detail import CertificateAuthorityDetail
     from .certificate_authority_path import CertificateAuthorityPath
@@ -1119,12 +1120,14 @@ if TYPE_CHECKING:
     from .mobile_app_install_status import MobileAppInstallStatus
     from .mobile_app_install_summary import MobileAppInstallSummary
     from .mobile_app_intent_and_state import MobileAppIntentAndState
+    from .mobile_app_management_policy import MobileAppManagementPolicy
     from .mobile_app_policy_set_item import MobileAppPolicySetItem
     from .mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
     from .mobile_app_relationship import MobileAppRelationship
     from .mobile_app_supersedence import MobileAppSupersedence
     from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
     from .mobile_contained_app import MobileContainedApp
+    from .mobile_device_management_policy import MobileDeviceManagementPolicy
     from .mobile_lob_app import MobileLobApp
     from .mobile_threat_defense_connector import MobileThreatDefenseConnector
     from .mobility_management_policy import MobilityManagementPolicy
@@ -1346,6 +1349,7 @@ if TYPE_CHECKING:
     from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
     from .play_prompt_operation import PlayPromptOperation
     from .policy_base import PolicyBase
+    from .policy_deletable_root import PolicyDeletableRoot
     from .policy_file import PolicyFile
     from .policy_root import PolicyRoot
     from .policy_set import PolicySet
@@ -3314,6 +3318,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .canvas_layout import CanvasLayout
 
             return CanvasLayout()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.caPoliciesDeletableRoot".casefold():
+            from .ca_policies_deletable_root import CaPoliciesDeletableRoot
+
+            return CaPoliciesDeletableRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cartToClassAssociation".casefold():
             from .cart_to_class_association import CartToClassAssociation
 
@@ -6646,6 +6654,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mobile_app_intent_and_state import MobileAppIntentAndState
 
             return MobileAppIntentAndState()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppManagementPolicy".casefold():
+            from .mobile_app_management_policy import MobileAppManagementPolicy
+
+            return MobileAppManagementPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppPolicySetItem".casefold():
             from .mobile_app_policy_set_item import MobileAppPolicySetItem
 
@@ -6670,6 +6682,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mobile_contained_app import MobileContainedApp
 
             return MobileContainedApp()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileDeviceManagementPolicy".casefold():
+            from .mobile_device_management_policy import MobileDeviceManagementPolicy
+
+            return MobileDeviceManagementPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileLobApp".casefold():
             from .mobile_lob_app import MobileLobApp
 
@@ -7562,6 +7578,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.policy_base import PolicyBase
 
             return PolicyBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyDeletableRoot".casefold():
+            from .policy_deletable_root import PolicyDeletableRoot
+
+            return PolicyDeletableRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyFile".casefold():
             from .policy_file import PolicyFile
 
@@ -11032,6 +11052,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cancel_media_processing_operation import CancelMediaProcessingOperation
         from .canvas_layout import CanvasLayout
         from .cart_to_class_association import CartToClassAssociation
+        from .ca_policies_deletable_root import CaPoliciesDeletableRoot
         from .certificate_authority_as_entity import CertificateAuthorityAsEntity
         from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_authority_path import CertificateAuthorityPath
@@ -11857,12 +11878,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mobile_app_install_status import MobileAppInstallStatus
         from .mobile_app_install_summary import MobileAppInstallSummary
         from .mobile_app_intent_and_state import MobileAppIntentAndState
+        from .mobile_app_management_policy import MobileAppManagementPolicy
         from .mobile_app_policy_set_item import MobileAppPolicySetItem
         from .mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
         from .mobile_app_relationship import MobileAppRelationship
         from .mobile_app_supersedence import MobileAppSupersedence
         from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
         from .mobile_contained_app import MobileContainedApp
+        from .mobile_device_management_policy import MobileDeviceManagementPolicy
         from .mobile_lob_app import MobileLobApp
         from .mobile_threat_defense_connector import MobileThreatDefenseConnector
         from .mobility_management_policy import MobilityManagementPolicy
@@ -12084,6 +12107,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
+        from .policy_deletable_root import PolicyDeletableRoot
         from .policy_file import PolicyFile
         from .policy_root import PolicyRoot
         from .policy_set import PolicySet
@@ -13161,6 +13185,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cancel_media_processing_operation import CancelMediaProcessingOperation
         from .canvas_layout import CanvasLayout
         from .cart_to_class_association import CartToClassAssociation
+        from .ca_policies_deletable_root import CaPoliciesDeletableRoot
         from .certificate_authority_as_entity import CertificateAuthorityAsEntity
         from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_authority_path import CertificateAuthorityPath
@@ -13986,12 +14011,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mobile_app_install_status import MobileAppInstallStatus
         from .mobile_app_install_summary import MobileAppInstallSummary
         from .mobile_app_intent_and_state import MobileAppIntentAndState
+        from .mobile_app_management_policy import MobileAppManagementPolicy
         from .mobile_app_policy_set_item import MobileAppPolicySetItem
         from .mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
         from .mobile_app_relationship import MobileAppRelationship
         from .mobile_app_supersedence import MobileAppSupersedence
         from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
         from .mobile_contained_app import MobileContainedApp
+        from .mobile_device_management_policy import MobileDeviceManagementPolicy
         from .mobile_lob_app import MobileLobApp
         from .mobile_threat_defense_connector import MobileThreatDefenseConnector
         from .mobility_management_policy import MobilityManagementPolicy
@@ -14213,6 +14240,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
+        from .policy_deletable_root import PolicyDeletableRoot
         from .policy_file import PolicyFile
         from .policy_root import PolicyRoot
         from .policy_set import PolicySet

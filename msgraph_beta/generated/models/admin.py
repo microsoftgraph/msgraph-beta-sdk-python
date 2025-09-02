@@ -55,7 +55,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
     service_announcement: Optional[ServiceAnnouncement] = None
     # The sharepoint property
     sharepoint: Optional[Sharepoint] = None
-    # Represents a collection of user configurations.
+    # A container for all Teams telephone number management functionalities and user configurations.
     teams: Optional[TeamsAdminRoot] = None
     # The todo property
     todo: Optional[AdminTodo] = None

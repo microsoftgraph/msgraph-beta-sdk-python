@@ -9,6 +9,10 @@ if TYPE_CHECKING:
     from .authentication_context_class_references.authentication_context_class_references_request_builder import AuthenticationContextClassReferencesRequestBuilder
     from .authentication_strength.authentication_strength_request_builder import AuthenticationStrengthRequestBuilder
     from .authentication_strengths.authentication_strengths_request_builder import AuthenticationStrengthsRequestBuilder
+    from .deleted_items.deleted_items_request_builder import DeletedItemsRequestBuilder
+    from .evaluate.evaluate_request_builder import EvaluateRequestBuilder
+    from .named_locations.named_locations_request_builder import NamedLocationsRequestBuilder
+    from .policies.policies_request_builder import PoliciesRequestBuilder
     from .templates.templates_request_builder import TemplatesRequestBuilder
 
 class ConditionalAccessRequestBuilder(BaseRequestBuilder):
@@ -50,6 +54,42 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
         from .authentication_strengths.authentication_strengths_request_builder import AuthenticationStrengthsRequestBuilder
 
         return AuthenticationStrengthsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def deleted_items(self) -> DeletedItemsRequestBuilder:
+        """
+        Provides operations to manage the deletedItems property of the microsoft.graph.conditionalAccessRoot entity.
+        """
+        from .deleted_items.deleted_items_request_builder import DeletedItemsRequestBuilder
+
+        return DeletedItemsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def evaluate(self) -> EvaluateRequestBuilder:
+        """
+        Provides operations to call the evaluate method.
+        """
+        from .evaluate.evaluate_request_builder import EvaluateRequestBuilder
+
+        return EvaluateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def named_locations(self) -> NamedLocationsRequestBuilder:
+        """
+        Provides operations to manage the namedLocations property of the microsoft.graph.conditionalAccessRoot entity.
+        """
+        from .named_locations.named_locations_request_builder import NamedLocationsRequestBuilder
+
+        return NamedLocationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def policies(self) -> PoliciesRequestBuilder:
+        """
+        Provides operations to manage the policies property of the microsoft.graph.conditionalAccessRoot entity.
+        """
+        from .policies.policies_request_builder import PoliciesRequestBuilder
+
+        return PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def templates(self) -> TemplatesRequestBuilder:

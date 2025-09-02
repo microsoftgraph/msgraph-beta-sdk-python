@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ......models.cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
     from ......models.o_data_errors.o_data_error import ODataError
+    from .restore.restore_request_builder import RestoreRequestBuilder
 
 class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     """
@@ -140,6 +141,15 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return IdentitySynchronizationRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def restore(self) -> RestoreRequestBuilder:
+        """
+        Provides operations to call the restore method.
+        """
+        from .restore.restore_request_builder import RestoreRequestBuilder
+
+        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class IdentitySynchronizationRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

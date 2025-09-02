@@ -23,6 +23,8 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
     duration_in_days: Optional[int] = None
     # Specifies whether to display recommendations to the reviewer. The default value is true
     is_access_recommendation_enabled: Optional[bool] = None
+    # The isAgenticExperienceEnabled property
+    is_agentic_experience_enabled: Optional[bool] = None
     # Specifies whether the reviewer must provide justification for the approval. The default value is true.
     is_approval_justification_required: Optional[bool] = None
     # If true, access reviews are required for assignments from this policy.
@@ -64,6 +66,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
             "accessReviewTimeoutBehavior": lambda n : setattr(self, 'access_review_timeout_behavior', n.get_enum_value(AccessReviewTimeoutBehavior)),
             "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
             "isAccessRecommendationEnabled": lambda n : setattr(self, 'is_access_recommendation_enabled', n.get_bool_value()),
+            "isAgenticExperienceEnabled": lambda n : setattr(self, 'is_agentic_experience_enabled', n.get_bool_value()),
             "isApprovalJustificationRequired": lambda n : setattr(self, 'is_approval_justification_required', n.get_bool_value()),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -85,6 +88,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("accessReviewTimeoutBehavior", self.access_review_timeout_behavior)
         writer.write_int_value("durationInDays", self.duration_in_days)
         writer.write_bool_value("isAccessRecommendationEnabled", self.is_access_recommendation_enabled)
+        writer.write_bool_value("isAgenticExperienceEnabled", self.is_agentic_experience_enabled)
         writer.write_bool_value("isApprovalJustificationRequired", self.is_approval_justification_required)
         writer.write_bool_value("isEnabled", self.is_enabled)
         writer.write_str_value("@odata.type", self.odata_type)

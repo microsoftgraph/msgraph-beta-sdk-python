@@ -28,7 +28,7 @@ class CloudCommunications(AdditionalDataHolder, BackedModel, Parsable):
     calls: Optional[list[Call]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # A collection of structured question-and-answer (Q&A) thread in Teams directly associated with online meetings.
+    # A collection of structured question-and-answer (Q&A) threads in Teams directly associated with online meetings.
     online_meeting_conversations: Optional[list[OnlineMeetingEngagementConversation]] = None
     # The onlineMeetings property
     online_meetings: Optional[list[OnlineMeeting]] = None

@@ -27,7 +27,7 @@ class CountRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/policies/mobileDeviceManagementPolicies/{mobilityManagementPolicy%2Did}/includedGroups/$count{?%24filter,%24search}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/policies/mobileDeviceManagementPolicies/{mobileDeviceManagementPolicy%2Did}/includedGroups/$count{?%24filter,%24search}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CountRequestBuilderGetQueryParameters]] = None) -> Optional[int]:
         """
