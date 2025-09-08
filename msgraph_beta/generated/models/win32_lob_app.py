@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .mobile_app_script_reference import MobileAppScriptReference
     from .mobile_lob_app import MobileLobApp
     from .win32_catalog_app import Win32CatalogApp
     from .win32_lob_app_detection import Win32LobAppDetection
@@ -25,6 +26,10 @@ class Win32LobApp(MobileLobApp, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.win32LobApp"
+    # Contains the unique identifier of the associated install script for this Win32 app to be used instead of the install command line by the managed device during app installation. When null, the install command line is used instead.
+    active_install_script: Optional[MobileAppScriptReference] = None
+    # Contains the unique identifier of the associated uninstall script for this Win32 app to be used instead of the uninstall command line by the managed device during app uninstallation. When null, the uninstall command line is used instead.
+    active_uninstall_script: Optional[MobileAppScriptReference] = None
     # Indicates whether the uninstall is supported from the company portal for the Win32 app with an available assignment. When TRUE, indicates that uninstall is supported from the company portal for the Windows app (Win32) with an available assignment. When FALSE, indicates that uninstall is not supported for the Windows app (Win32) with an Available assignment. Default value is FALSE.
     allow_available_uninstall: Optional[bool] = None
     # Indicates the Windows architecture(s) this app should be installed on. The app will be treated as not applicable for devices with architectures not matching the selected value. When a non-null value is provided for the allowedArchitectures property, the value of the applicableArchitectures property is set to none. Possible values are: null, x86, x64, arm64. Possible values are: none, x86, x64, arm, neutral, arm64.
@@ -89,6 +94,7 @@ class Win32LobApp(MobileLobApp, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .mobile_app_script_reference import MobileAppScriptReference
         from .mobile_lob_app import MobileLobApp
         from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app_detection import Win32LobAppDetection
@@ -100,6 +106,7 @@ class Win32LobApp(MobileLobApp, Parsable):
         from .windows_architecture import WindowsArchitecture
         from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
 
+        from .mobile_app_script_reference import MobileAppScriptReference
         from .mobile_lob_app import MobileLobApp
         from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app_detection import Win32LobAppDetection
@@ -112,6 +119,8 @@ class Win32LobApp(MobileLobApp, Parsable):
         from .windows_minimum_operating_system import WindowsMinimumOperatingSystem
 
         fields: dict[str, Callable[[Any], None]] = {
+            "activeInstallScript": lambda n : setattr(self, 'active_install_script', n.get_object_value(MobileAppScriptReference)),
+            "activeUninstallScript": lambda n : setattr(self, 'active_uninstall_script', n.get_object_value(MobileAppScriptReference)),
             "allowAvailableUninstall": lambda n : setattr(self, 'allow_available_uninstall', n.get_bool_value()),
             "allowedArchitectures": lambda n : setattr(self, 'allowed_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
             "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
@@ -145,6 +154,8 @@ class Win32LobApp(MobileLobApp, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("activeInstallScript", self.active_install_script)
+        writer.write_object_value("activeUninstallScript", self.active_uninstall_script)
         writer.write_bool_value("allowAvailableUninstall", self.allow_available_uninstall)
         writer.write_enum_value("allowedArchitectures", self.allowed_architectures)
         writer.write_enum_value("applicableArchitectures", self.applicable_architectures)

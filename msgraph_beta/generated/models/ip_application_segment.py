@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .action_type import ActionType
     from .application import Application
     from .application_segment import ApplicationSegment
     from .private_network_destination_type import PrivateNetworkDestinationType
@@ -16,6 +17,8 @@ from .application_segment import ApplicationSegment
 class IpApplicationSegment(ApplicationSegment, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.ipApplicationSegment"
+    # The action property
+    action: Optional[ActionType] = None
     # The on-premises nonweb application published through Microsoft Entra application proxy. Expanded by default and supports $expand.
     application: Optional[Application] = None
     # Either the IP address, IP range, or FQDN of the applicationSegment, with or without wildcards.
@@ -45,17 +48,20 @@ class IpApplicationSegment(ApplicationSegment, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .action_type import ActionType
         from .application import Application
         from .application_segment import ApplicationSegment
         from .private_network_destination_type import PrivateNetworkDestinationType
         from .private_network_protocol import PrivateNetworkProtocol
 
+        from .action_type import ActionType
         from .application import Application
         from .application_segment import ApplicationSegment
         from .private_network_destination_type import PrivateNetworkDestinationType
         from .private_network_protocol import PrivateNetworkProtocol
 
         fields: dict[str, Callable[[Any], None]] = {
+            "action": lambda n : setattr(self, 'action', n.get_enum_value(ActionType)),
             "application": lambda n : setattr(self, 'application', n.get_object_value(Application)),
             "destinationHost": lambda n : setattr(self, 'destination_host', n.get_str_value()),
             "destinationType": lambda n : setattr(self, 'destination_type', n.get_enum_value(PrivateNetworkDestinationType)),
@@ -76,6 +82,7 @@ class IpApplicationSegment(ApplicationSegment, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_enum_value("action", self.action)
         writer.write_object_value("application", self.application)
         writer.write_str_value("destinationHost", self.destination_host)
         writer.write_enum_value("destinationType", self.destination_type)

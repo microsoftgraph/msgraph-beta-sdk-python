@@ -5,4 +5,6 @@ class WindowsManagedAppClipboardSharingLevel(str, Enum):
     AnyDestinationAnySource = "anyDestinationAnySource",
     # Org users cannot cut, copy or paste data to or from external accounts, documents, locations or applications from or into the org context.
     None_ = "none",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

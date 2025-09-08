@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .windows_quality_update_cadence import WindowsQualityUpdateCadence
     from .windows_quality_update_catalog_product_revision import WindowsQualityUpdateCatalogProductRevision
     from .windows_quality_update_category import WindowsQualityUpdateCategory
+    from .windows_quality_update_cve_severity_information import WindowsQualityUpdateCveSeverityInformation
     from .windows_update_catalog_item import WindowsUpdateCatalogItem
 
 from .windows_update_catalog_item import WindowsUpdateCatalogItem
@@ -21,6 +22,8 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.windowsQualityUpdateCatalogItem"
     # Windows quality update category
     classification: Optional[WindowsQualityUpdateCategory] = None
+    # CVE information for catalog items
+    cve_severity_information: Optional[WindowsQualityUpdateCveSeverityInformation] = None
     # When TRUE, indicates that the quality updates qualify for expedition. When FALSE, indicates the quality updates do not quality for expedition. Default value is FALSE. Read-only
     is_expeditable: Optional[bool] = None
     # Identifies the knowledge base article associated with the Windows quality update catalog item. Read-only
@@ -49,15 +52,18 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem, Parsable):
         from .windows_quality_update_cadence import WindowsQualityUpdateCadence
         from .windows_quality_update_catalog_product_revision import WindowsQualityUpdateCatalogProductRevision
         from .windows_quality_update_category import WindowsQualityUpdateCategory
+        from .windows_quality_update_cve_severity_information import WindowsQualityUpdateCveSeverityInformation
         from .windows_update_catalog_item import WindowsUpdateCatalogItem
 
         from .windows_quality_update_cadence import WindowsQualityUpdateCadence
         from .windows_quality_update_catalog_product_revision import WindowsQualityUpdateCatalogProductRevision
         from .windows_quality_update_category import WindowsQualityUpdateCategory
+        from .windows_quality_update_cve_severity_information import WindowsQualityUpdateCveSeverityInformation
         from .windows_update_catalog_item import WindowsUpdateCatalogItem
 
         fields: dict[str, Callable[[Any], None]] = {
             "classification": lambda n : setattr(self, 'classification', n.get_enum_value(WindowsQualityUpdateCategory)),
+            "cveSeverityInformation": lambda n : setattr(self, 'cve_severity_information', n.get_object_value(WindowsQualityUpdateCveSeverityInformation)),
             "isExpeditable": lambda n : setattr(self, 'is_expeditable', n.get_bool_value()),
             "kbArticleId": lambda n : setattr(self, 'kb_article_id', n.get_str_value()),
             "productRevisions": lambda n : setattr(self, 'product_revisions', n.get_collection_of_object_values(WindowsQualityUpdateCatalogProductRevision)),
@@ -77,6 +83,7 @@ class WindowsQualityUpdateCatalogItem(WindowsUpdateCatalogItem, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("classification", self.classification)
+        writer.write_object_value("cveSeverityInformation", self.cve_severity_information)
         writer.write_bool_value("isExpeditable", self.is_expeditable)
         writer.write_str_value("kbArticleId", self.kb_article_id)
         writer.write_collection_of_object_values("productRevisions", self.product_revisions)

@@ -19,7 +19,7 @@ class IosLobAppProvisioningConfiguration(Entity, Parsable):
     """
     This topic provides descriptions of the declared methods, properties and relationships exposed by the iOS LOB App Provisioning Configuration resource.
     """
-    # The associated group assignments for IosLobAppProvisioningConfiguration.
+    # The associated group assignments for IosLobAppProvisioningConfiguration, this determines which devices/users the IOS LOB app provisioning conifguration will be targeted to.
     assignments: Optional[list[IosLobAppProvisioningConfigurationAssignment]] = None
     # DateTime the object was created.
     created_date_time: Optional[datetime.datetime] = None
@@ -29,7 +29,7 @@ class IosLobAppProvisioningConfiguration(Entity, Parsable):
     device_statuses: Optional[list[ManagedDeviceMobileAppConfigurationDeviceStatus]] = None
     # Admin provided name of the device configuration.
     display_name: Optional[str] = None
-    # Optional profile expiration date and time.
+    # Optional profile expiration date and time. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Returned by default.
     expiration_date_time: Optional[datetime.datetime] = None
     # The associated group assignments.
     group_assignments: Optional[list[MobileAppProvisioningConfigGroupAssignment]] = None

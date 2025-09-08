@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ......models.cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
     from ......models.o_data_errors.o_data_error import ODataError
+    from .restore.restore_request_builder import RestoreRequestBuilder
 
 class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     """
@@ -72,11 +73,11 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     
     async def put(self,body: CrossTenantIdentitySyncPolicyPartner, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CrossTenantIdentitySyncPolicyPartner]:
         """
-        Update the user synchronization policy of a partner-specific configuration.
+        Create a cross-tenant user synchronization policy for a partner-specific configuration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantIdentitySyncPolicyPartner]
-        Find more info here: https://learn.microsoft.com/graph/api/crosstenantidentitysyncpolicypartner-update?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -118,7 +119,7 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     
     def to_put_request_information(self,body: CrossTenantIdentitySyncPolicyPartner, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the user synchronization policy of a partner-specific configuration.
+        Create a cross-tenant user synchronization policy for a partner-specific configuration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,6 +141,15 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return IdentitySynchronizationRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def restore(self) -> RestoreRequestBuilder:
+        """
+        Provides operations to call the restore method.
+        """
+        from .restore.restore_request_builder import RestoreRequestBuilder
+
+        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class IdentitySynchronizationRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

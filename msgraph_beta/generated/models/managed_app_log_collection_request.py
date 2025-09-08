@@ -24,13 +24,9 @@ class ManagedAppLogCollectionRequest(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
     # The user principal name associated with the request for the managed application log collection. Read-only.
-    requested_by: Optional[str] = None
-    # The user principal name associated with the request for the managed application log collection. Read-only.
     requested_by_user_principal_name: Optional[str] = None
     # DateTime of when the log upload request was received. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Returned by default. Read-only.
     requested_date_time: Optional[datetime.datetime] = None
-    # Indicates the status for the app log collection request - pending, completed or failed. Default is pending.
-    status: Optional[str] = None
     # The collection of log upload results as reported by each component on the device. Such components can be the application itself, the Mobile Application Management (MAM) SDK, and other on-device components that are requested to upload diagnostic logs. Read-only.
     uploaded_logs: Optional[list[ManagedAppLogUpload]] = None
     # Represents the current consent status of the associated `managedAppLogCollectionRequest`.
@@ -65,10 +61,8 @@ class ManagedAppLogCollectionRequest(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "managedAppRegistrationId": lambda n : setattr(self, 'managed_app_registration_id', n.get_str_value()),
-            "requestedBy": lambda n : setattr(self, 'requested_by', n.get_str_value()),
             "requestedByUserPrincipalName": lambda n : setattr(self, 'requested_by_user_principal_name', n.get_str_value()),
             "requestedDateTime": lambda n : setattr(self, 'requested_date_time', n.get_datetime_value()),
-            "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "uploadedLogs": lambda n : setattr(self, 'uploaded_logs', n.get_collection_of_object_values(ManagedAppLogUpload)),
             "userLogUploadConsent": lambda n : setattr(self, 'user_log_upload_consent', n.get_enum_value(ManagedAppLogUploadConsent)),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
@@ -88,10 +82,8 @@ class ManagedAppLogCollectionRequest(Entity, Parsable):
         super().serialize(writer)
         writer.write_datetime_value("completedDateTime", self.completed_date_time)
         writer.write_str_value("managedAppRegistrationId", self.managed_app_registration_id)
-        writer.write_str_value("requestedBy", self.requested_by)
         writer.write_str_value("requestedByUserPrincipalName", self.requested_by_user_principal_name)
         writer.write_datetime_value("requestedDateTime", self.requested_date_time)
-        writer.write_str_value("status", self.status)
         writer.write_collection_of_object_values("uploadedLogs", self.uploaded_logs)
         writer.write_enum_value("userLogUploadConsent", self.user_log_upload_consent)
         writer.write_str_value("version", self.version)

@@ -1,8 +1,7 @@
 from __future__ import annotations
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
@@ -11,14 +10,14 @@ if TYPE_CHECKING:
     from .cross_tenant_access_policy_tenant_restrictions import CrossTenantAccessPolicyTenantRestrictions
     from .cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
     from .inbound_outbound_policy_configuration import InboundOutboundPolicyConfiguration
+    from .policy_deletable_item import PolicyDeletableItem
+
+from .policy_deletable_item import PolicyDeletableItem
 
 @dataclass
-class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedModel, Parsable):
-    # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
-
-    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: dict[str, Any] = field(default_factory=dict)
+class CrossTenantAccessPolicyConfigurationPartner(PolicyDeletableItem, Parsable):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.crossTenantAccessPolicyConfigurationPartner"
     # Determines the partner-specific configuration for automatic user consent settings. Unless configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
     automatic_user_consent_settings: Optional[InboundOutboundPolicyConfiguration] = None
     # Defines your partner-specific configuration for users from other organizations accessing your resources via Microsoft Entra B2B collaboration.
@@ -37,8 +36,6 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedMo
     is_in_multi_tenant_organization: Optional[bool] = None
     # Identifies whether the partner-specific configuration is a Cloud Service Provider for your organization.
     is_service_provider: Optional[bool] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     # The tenant identifier for the partner Microsoft Entra organization. Read-only. Key.
     tenant_id: Optional[str] = None
     # Defines the partner-specific tenant restrictions configuration for users in your organization who access a partner organization using partner supplied identities on your network or devices.
@@ -65,12 +62,14 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedMo
         from .cross_tenant_access_policy_tenant_restrictions import CrossTenantAccessPolicyTenantRestrictions
         from .cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
         from .inbound_outbound_policy_configuration import InboundOutboundPolicyConfiguration
+        from .policy_deletable_item import PolicyDeletableItem
 
         from .cross_tenant_access_policy_b2_b_setting import CrossTenantAccessPolicyB2BSetting
         from .cross_tenant_access_policy_inbound_trust import CrossTenantAccessPolicyInboundTrust
         from .cross_tenant_access_policy_tenant_restrictions import CrossTenantAccessPolicyTenantRestrictions
         from .cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
         from .inbound_outbound_policy_configuration import InboundOutboundPolicyConfiguration
+        from .policy_deletable_item import PolicyDeletableItem
 
         fields: dict[str, Callable[[Any], None]] = {
             "automaticUserConsentSettings": lambda n : setattr(self, 'automatic_user_consent_settings', n.get_object_value(InboundOutboundPolicyConfiguration)),
@@ -82,10 +81,11 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedMo
             "inboundTrust": lambda n : setattr(self, 'inbound_trust', n.get_object_value(CrossTenantAccessPolicyInboundTrust)),
             "isInMultiTenantOrganization": lambda n : setattr(self, 'is_in_multi_tenant_organization', n.get_bool_value()),
             "isServiceProvider": lambda n : setattr(self, 'is_service_provider', n.get_bool_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "tenantRestrictions": lambda n : setattr(self, 'tenant_restrictions', n.get_object_value(CrossTenantAccessPolicyTenantRestrictions)),
         }
+        super_fields = super().get_field_deserializers()
+        fields.update(super_fields)
         return fields
     
     def serialize(self,writer: SerializationWriter) -> None:
@@ -96,6 +96,7 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedMo
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        super().serialize(writer)
         writer.write_object_value("automaticUserConsentSettings", self.automatic_user_consent_settings)
         writer.write_object_value("b2bCollaborationInbound", self.b2b_collaboration_inbound)
         writer.write_object_value("b2bCollaborationOutbound", self.b2b_collaboration_outbound)
@@ -105,9 +106,7 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, BackedMo
         writer.write_object_value("inboundTrust", self.inbound_trust)
         writer.write_bool_value("isInMultiTenantOrganization", self.is_in_multi_tenant_organization)
         writer.write_bool_value("isServiceProvider", self.is_service_provider)
-        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_object_value("tenantRestrictions", self.tenant_restrictions)
-        writer.write_additional_data_value(self.additional_data)
     
 

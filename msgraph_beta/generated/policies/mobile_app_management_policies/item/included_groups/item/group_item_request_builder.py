@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class GroupItemRequestBuilder(BaseRequestBuilder):
     """
-    Builds and executes requests for operations under /policies/mobileAppManagementPolicies/{mobilityManagementPolicy-id}/includedGroups/{group-id}
+    Builds and executes requests for operations under /policies/mobileAppManagementPolicies/{mobileAppManagementPolicy-id}/includedGroups/{group-id}
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -20,7 +20,7 @@ class GroupItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/policies/mobileAppManagementPolicies/{mobilityManagementPolicy%2Did}/includedGroups/{group%2Did}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/policies/mobileAppManagementPolicies/{mobileAppManagementPolicy%2Did}/includedGroups/{group%2Did}", path_parameters)
     
     @property
     def ref(self) -> RefRequestBuilder:

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.user import User
     from .activities.activities_request_builder import ActivitiesRequestBuilder
+    from .adhoc_calls.adhoc_calls_request_builder import AdhocCallsRequestBuilder
     from .agreement_acceptances.agreement_acceptances_request_builder import AgreementAcceptancesRequestBuilder
     from .analytics.analytics_request_builder import AnalyticsRequestBuilder
     from .approvals.approvals_request_builder import ApprovalsRequestBuilder
@@ -345,6 +346,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .activities.activities_request_builder import ActivitiesRequestBuilder
 
         return ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def adhoc_calls(self) -> AdhocCallsRequestBuilder:
+        """
+        Provides operations to manage the adhocCalls property of the microsoft.graph.user entity.
+        """
+        from .adhoc_calls.adhoc_calls_request_builder import AdhocCallsRequestBuilder
+
+        return AdhocCallsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def agreement_acceptances(self) -> AgreementAcceptancesRequestBuilder:

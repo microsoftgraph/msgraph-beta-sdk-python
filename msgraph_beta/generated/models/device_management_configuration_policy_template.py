@@ -25,6 +25,8 @@ class DeviceManagementConfigurationPolicyTemplate(Entity, Parsable):
     base_id: Optional[str] = None
     # Template description
     description: Optional[str] = None
+    # Indicates whether assignments to Entra security groups is disabled
+    disable_entra_group_policy_assignment: Optional[bool] = None
     # Template display name
     display_name: Optional[str] = None
     # Description of template version
@@ -80,6 +82,7 @@ class DeviceManagementConfigurationPolicyTemplate(Entity, Parsable):
             "allowUnmanagedSettings": lambda n : setattr(self, 'allow_unmanaged_settings', n.get_bool_value()),
             "baseId": lambda n : setattr(self, 'base_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
+            "disableEntraGroupPolicyAssignment": lambda n : setattr(self, 'disable_entra_group_policy_assignment', n.get_bool_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "displayVersion": lambda n : setattr(self, 'display_version', n.get_str_value()),
             "lifecycleState": lambda n : setattr(self, 'lifecycle_state', n.get_enum_value(DeviceManagementTemplateLifecycleState)),
@@ -106,6 +109,7 @@ class DeviceManagementConfigurationPolicyTemplate(Entity, Parsable):
         writer.write_bool_value("allowUnmanagedSettings", self.allow_unmanaged_settings)
         writer.write_str_value("baseId", self.base_id)
         writer.write_str_value("description", self.description)
+        writer.write_bool_value("disableEntraGroupPolicyAssignment", self.disable_entra_group_policy_assignment)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("displayVersion", self.display_version)
         writer.write_enum_value("lifecycleState", self.lifecycle_state)

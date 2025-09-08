@@ -49,7 +49,7 @@ class OnlineMeetingConversationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[OnlineMeetingConversationsRequestBuilderGetQueryParameters]] = None) -> Optional[OnlineMeetingEngagementConversationCollectionResponse]:
         """
-        A collection of structured question-and-answer (Q&A) thread in Teams directly associated with online meetings.
+        A collection of structured question-and-answer (Q&A) threads in Teams directly associated with online meetings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[OnlineMeetingEngagementConversationCollectionResponse]
         """
@@ -92,7 +92,7 @@ class OnlineMeetingConversationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[OnlineMeetingConversationsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        A collection of structured question-and-answer (Q&A) thread in Teams directly associated with online meetings.
+        A collection of structured question-and-answer (Q&A) threads in Teams directly associated with online meetings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class OnlineMeetingConversationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class OnlineMeetingConversationsRequestBuilderGetQueryParameters():
         """
-        A collection of structured question-and-answer (Q&A) thread in Teams directly associated with online meetings.
+        A collection of structured question-and-answer (Q&A) threads in Teams directly associated with online meetings.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
