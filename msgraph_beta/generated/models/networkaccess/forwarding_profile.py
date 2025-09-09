@@ -18,6 +18,8 @@ class ForwardingProfile(Profile, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingProfile"
     # Specifies the users, groups, devices, and remote networks whose traffic is associated with the given traffic forwarding profile.
     associations: Optional[list[Association]] = None
+    # The isCustomProfile property
+    is_custom_profile: Optional[bool] = None
     # Profile priority.
     priority: Optional[int] = None
     # The servicePrincipal property
@@ -53,6 +55,7 @@ class ForwardingProfile(Profile, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "associations": lambda n : setattr(self, 'associations', n.get_collection_of_object_values(Association)),
+            "isCustomProfile": lambda n : setattr(self, 'is_custom_profile', n.get_bool_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
             "servicePrincipal": lambda n : setattr(self, 'service_principal', n.get_object_value(ServicePrincipal)),
             "trafficForwardingType": lambda n : setattr(self, 'traffic_forwarding_type', n.get_enum_value(TrafficForwardingType)),
@@ -71,6 +74,7 @@ class ForwardingProfile(Profile, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("associations", self.associations)
+        writer.write_bool_value("isCustomProfile", self.is_custom_profile)
         writer.write_int_value("priority", self.priority)
         writer.write_object_value("servicePrincipal", self.service_principal)
         writer.write_enum_value("trafficForwardingType", self.traffic_forwarding_type)

@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.room_list import RoomList
+    from .check_ins.check_ins_request_builder import CheckInsRequestBuilder
     from .rooms.rooms_request_builder import RoomsRequestBuilder
     from .rooms_with_place_id.rooms_with_place_id_request_builder import RoomsWithPlaceIdRequestBuilder
     from .workspaces.workspaces_request_builder import WorkspacesRequestBuilder
@@ -98,6 +99,15 @@ class GraphRoomListRequestBuilder(BaseRequestBuilder):
         from .workspaces_with_place_id.workspaces_with_place_id_request_builder import WorkspacesWithPlaceIdRequestBuilder
 
         return WorkspacesWithPlaceIdRequestBuilder(self.request_adapter, self.path_parameters, place_id)
+    
+    @property
+    def check_ins(self) -> CheckInsRequestBuilder:
+        """
+        Provides operations to manage the checkIns property of the microsoft.graph.place entity.
+        """
+        from .check_ins.check_ins_request_builder import CheckInsRequestBuilder
+
+        return CheckInsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def rooms(self) -> RoomsRequestBuilder:

@@ -19,6 +19,8 @@ if TYPE_CHECKING:
     from .health_issues.health_issues_request_builder import HealthIssuesRequestBuilder
     from .identity_accounts.identity_accounts_request_builder import IdentityAccountsRequestBuilder
     from .sensors.sensors_request_builder import SensorsRequestBuilder
+    from .sensor_candidates.sensor_candidates_request_builder import SensorCandidatesRequestBuilder
+    from .sensor_candidate_activation_configuration.sensor_candidate_activation_configuration_request_builder import SensorCandidateActivationConfigurationRequestBuilder
 
 class IdentitiesRequestBuilder(BaseRequestBuilder):
     """
@@ -158,6 +160,24 @@ class IdentitiesRequestBuilder(BaseRequestBuilder):
         from .identity_accounts.identity_accounts_request_builder import IdentityAccountsRequestBuilder
 
         return IdentityAccountsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sensor_candidate_activation_configuration(self) -> SensorCandidateActivationConfigurationRequestBuilder:
+        """
+        Provides operations to manage the sensorCandidateActivationConfiguration property of the microsoft.graph.security.identityContainer entity.
+        """
+        from .sensor_candidate_activation_configuration.sensor_candidate_activation_configuration_request_builder import SensorCandidateActivationConfigurationRequestBuilder
+
+        return SensorCandidateActivationConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sensor_candidates(self) -> SensorCandidatesRequestBuilder:
+        """
+        Provides operations to manage the sensorCandidates property of the microsoft.graph.security.identityContainer entity.
+        """
+        from .sensor_candidates.sensor_candidates_request_builder import SensorCandidatesRequestBuilder
+
+        return SensorCandidatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sensors(self) -> SensorsRequestBuilder:

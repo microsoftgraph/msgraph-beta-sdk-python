@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from ..device import Device
     from ..user import User
     from .application_snapshot import ApplicationSnapshot
+    from .cloud_application_metadata import CloudApplicationMetadata
     from .device_category import DeviceCategory
     from .filtering_policy_action import FilteringPolicyAction
     from .headers import Headers
@@ -33,6 +34,8 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
     agent_version: Optional[str] = None
     # Destination Application ID accessed in Azure AD during the transaction. Supports $filter (eq) and $orderby.
     application_snapshot: Optional[ApplicationSnapshot] = None
+    # Contains metadata about the cloud application involved in the network transaction, such as application name, category, and risk level. Supports $filter (eq) and $orderby.
+    cloud_application_metadata: Optional[CloudApplicationMetadata] = None
     # Represents a unique identifier assigned to a connection. Supports $filter (eq) and $orderby.
     connection_id: Optional[str] = None
     # Represents the date and time when a network access traffic log entry was created. Supports $filter (eq) and $orderby.
@@ -141,6 +144,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         from ..device import Device
         from ..user import User
         from .application_snapshot import ApplicationSnapshot
+        from .cloud_application_metadata import CloudApplicationMetadata
         from .device_category import DeviceCategory
         from .filtering_policy_action import FilteringPolicyAction
         from .headers import Headers
@@ -154,6 +158,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         from ..device import Device
         from ..user import User
         from .application_snapshot import ApplicationSnapshot
+        from .cloud_application_metadata import CloudApplicationMetadata
         from .device_category import DeviceCategory
         from .filtering_policy_action import FilteringPolicyAction
         from .headers import Headers
@@ -168,6 +173,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
             "action": lambda n : setattr(self, 'action', n.get_enum_value(FilteringPolicyAction)),
             "agentVersion": lambda n : setattr(self, 'agent_version', n.get_str_value()),
             "applicationSnapshot": lambda n : setattr(self, 'application_snapshot', n.get_object_value(ApplicationSnapshot)),
+            "cloudApplicationMetadata": lambda n : setattr(self, 'cloud_application_metadata', n.get_object_value(CloudApplicationMetadata)),
             "connectionId": lambda n : setattr(self, 'connection_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -226,6 +232,7 @@ class NetworkAccessTraffic(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("action", self.action)
         writer.write_str_value("agentVersion", self.agent_version)
         writer.write_object_value("applicationSnapshot", self.application_snapshot)
+        writer.write_object_value("cloudApplicationMetadata", self.cloud_application_metadata)
         writer.write_str_value("connectionId", self.connection_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

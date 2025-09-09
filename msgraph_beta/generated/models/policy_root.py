@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .authorization_policy import AuthorizationPolicy
     from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
     from .claims_mapping_policy import ClaimsMappingPolicy
+    from .conditional_access_policy import ConditionalAccessPolicy
     from .cross_tenant_access_policy import CrossTenantAccessPolicy
     from .device_registration_policy import DeviceRegistrationPolicy
     from .directory_role_access_review_policy import DirectoryRoleAccessReviewPolicy
@@ -24,9 +25,11 @@ if TYPE_CHECKING:
     from .federated_token_validation_policy import FederatedTokenValidationPolicy
     from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
     from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
-    from .mobility_management_policy import MobilityManagementPolicy
+    from .mobile_app_management_policy import MobileAppManagementPolicy
+    from .mobile_device_management_policy import MobileDeviceManagementPolicy
     from .permission_grant_policy import PermissionGrantPolicy
     from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
+    from .policy_deletable_root import PolicyDeletableRoot
     from .service_principal_creation_policy import ServicePrincipalCreationPolicy
     from .tenant_app_management_policy import TenantAppManagementPolicy
     from .token_issuance_policy import TokenIssuancePolicy
@@ -58,10 +61,14 @@ class PolicyRoot(Entity, Parsable):
     b2c_authentication_methods_policy: Optional[B2cAuthenticationMethodsPolicy] = None
     # The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
     claims_mapping_policies: Optional[list[ClaimsMappingPolicy]] = None
+    # The custom rules that define an access scenario.
+    conditional_access_policies: Optional[list[ConditionalAccessPolicy]] = None
     # The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.
     cross_tenant_access_policy: Optional[CrossTenantAccessPolicy] = None
     # The tenant-wide policy that enforces app management restrictions for all applications and service principals.
     default_app_management_policy: Optional[TenantAppManagementPolicy] = None
+    # Policies that support soft-delete functionality and can be restored within 30 days.
+    deleted_items: Optional[PolicyDeletableRoot] = None
     # Represents the policy scope that controls quota restrictions, additional authentication, and authorization policies to register device identities to your organization.
     device_registration_policy: Optional[DeviceRegistrationPolicy] = None
     # The directoryRoleAccessReviewPolicy property
@@ -77,9 +84,9 @@ class PolicyRoot(Entity, Parsable):
     # The policy that represents the security defaults that protect against common attacks.
     identity_security_defaults_enforcement_policy: Optional[IdentitySecurityDefaultsEnforcementPolicy] = None
     # The policy that defines autoenrollment configuration for a mobility management (MDM or MAM) application.
-    mobile_app_management_policies: Optional[list[MobilityManagementPolicy]] = None
+    mobile_app_management_policies: Optional[list[MobileAppManagementPolicy]] = None
     # The mobileDeviceManagementPolicies property
-    mobile_device_management_policies: Optional[list[MobilityManagementPolicy]] = None
+    mobile_device_management_policies: Optional[list[MobileDeviceManagementPolicy]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The policy that specifies the conditions under which consent can be granted.
@@ -123,6 +130,7 @@ class PolicyRoot(Entity, Parsable):
         from .authorization_policy import AuthorizationPolicy
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .claims_mapping_policy import ClaimsMappingPolicy
+        from .conditional_access_policy import ConditionalAccessPolicy
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .device_registration_policy import DeviceRegistrationPolicy
         from .directory_role_access_review_policy import DirectoryRoleAccessReviewPolicy
@@ -132,9 +140,11 @@ class PolicyRoot(Entity, Parsable):
         from .federated_token_validation_policy import FederatedTokenValidationPolicy
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
-        from .mobility_management_policy import MobilityManagementPolicy
+        from .mobile_app_management_policy import MobileAppManagementPolicy
+        from .mobile_device_management_policy import MobileDeviceManagementPolicy
         from .permission_grant_policy import PermissionGrantPolicy
         from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
+        from .policy_deletable_root import PolicyDeletableRoot
         from .service_principal_creation_policy import ServicePrincipalCreationPolicy
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .token_issuance_policy import TokenIssuancePolicy
@@ -152,6 +162,7 @@ class PolicyRoot(Entity, Parsable):
         from .authorization_policy import AuthorizationPolicy
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .claims_mapping_policy import ClaimsMappingPolicy
+        from .conditional_access_policy import ConditionalAccessPolicy
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .device_registration_policy import DeviceRegistrationPolicy
         from .directory_role_access_review_policy import DirectoryRoleAccessReviewPolicy
@@ -161,9 +172,11 @@ class PolicyRoot(Entity, Parsable):
         from .federated_token_validation_policy import FederatedTokenValidationPolicy
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
-        from .mobility_management_policy import MobilityManagementPolicy
+        from .mobile_app_management_policy import MobileAppManagementPolicy
+        from .mobile_device_management_policy import MobileDeviceManagementPolicy
         from .permission_grant_policy import PermissionGrantPolicy
         from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
+        from .policy_deletable_root import PolicyDeletableRoot
         from .service_principal_creation_policy import ServicePrincipalCreationPolicy
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .token_issuance_policy import TokenIssuancePolicy
@@ -182,8 +195,10 @@ class PolicyRoot(Entity, Parsable):
             "authorizationPolicy": lambda n : setattr(self, 'authorization_policy', n.get_collection_of_object_values(AuthorizationPolicy)),
             "b2cAuthenticationMethodsPolicy": lambda n : setattr(self, 'b2c_authentication_methods_policy', n.get_object_value(B2cAuthenticationMethodsPolicy)),
             "claimsMappingPolicies": lambda n : setattr(self, 'claims_mapping_policies', n.get_collection_of_object_values(ClaimsMappingPolicy)),
+            "conditionalAccessPolicies": lambda n : setattr(self, 'conditional_access_policies', n.get_collection_of_object_values(ConditionalAccessPolicy)),
             "crossTenantAccessPolicy": lambda n : setattr(self, 'cross_tenant_access_policy', n.get_object_value(CrossTenantAccessPolicy)),
             "defaultAppManagementPolicy": lambda n : setattr(self, 'default_app_management_policy', n.get_object_value(TenantAppManagementPolicy)),
+            "deletedItems": lambda n : setattr(self, 'deleted_items', n.get_object_value(PolicyDeletableRoot)),
             "deviceRegistrationPolicy": lambda n : setattr(self, 'device_registration_policy', n.get_object_value(DeviceRegistrationPolicy)),
             "directoryRoleAccessReviewPolicy": lambda n : setattr(self, 'directory_role_access_review_policy', n.get_object_value(DirectoryRoleAccessReviewPolicy)),
             "externalIdentitiesPolicy": lambda n : setattr(self, 'external_identities_policy', n.get_object_value(ExternalIdentitiesPolicy)),
@@ -191,8 +206,8 @@ class PolicyRoot(Entity, Parsable):
             "federatedTokenValidationPolicy": lambda n : setattr(self, 'federated_token_validation_policy', n.get_object_value(FederatedTokenValidationPolicy)),
             "homeRealmDiscoveryPolicies": lambda n : setattr(self, 'home_realm_discovery_policies', n.get_collection_of_object_values(HomeRealmDiscoveryPolicy)),
             "identitySecurityDefaultsEnforcementPolicy": lambda n : setattr(self, 'identity_security_defaults_enforcement_policy', n.get_object_value(IdentitySecurityDefaultsEnforcementPolicy)),
-            "mobileAppManagementPolicies": lambda n : setattr(self, 'mobile_app_management_policies', n.get_collection_of_object_values(MobilityManagementPolicy)),
-            "mobileDeviceManagementPolicies": lambda n : setattr(self, 'mobile_device_management_policies', n.get_collection_of_object_values(MobilityManagementPolicy)),
+            "mobileAppManagementPolicies": lambda n : setattr(self, 'mobile_app_management_policies', n.get_collection_of_object_values(MobileAppManagementPolicy)),
+            "mobileDeviceManagementPolicies": lambda n : setattr(self, 'mobile_device_management_policies', n.get_collection_of_object_values(MobileDeviceManagementPolicy)),
             "permissionGrantPolicies": lambda n : setattr(self, 'permission_grant_policies', n.get_collection_of_object_values(PermissionGrantPolicy)),
             "permissionGrantPreApprovalPolicies": lambda n : setattr(self, 'permission_grant_pre_approval_policies', n.get_collection_of_object_values(PermissionGrantPreApprovalPolicy)),
             "roleManagementPolicies": lambda n : setattr(self, 'role_management_policies', n.get_collection_of_object_values(UnifiedRoleManagementPolicy)),
@@ -224,8 +239,10 @@ class PolicyRoot(Entity, Parsable):
         writer.write_collection_of_object_values("authorizationPolicy", self.authorization_policy)
         writer.write_object_value("b2cAuthenticationMethodsPolicy", self.b2c_authentication_methods_policy)
         writer.write_collection_of_object_values("claimsMappingPolicies", self.claims_mapping_policies)
+        writer.write_collection_of_object_values("conditionalAccessPolicies", self.conditional_access_policies)
         writer.write_object_value("crossTenantAccessPolicy", self.cross_tenant_access_policy)
         writer.write_object_value("defaultAppManagementPolicy", self.default_app_management_policy)
+        writer.write_object_value("deletedItems", self.deleted_items)
         writer.write_object_value("deviceRegistrationPolicy", self.device_registration_policy)
         writer.write_object_value("directoryRoleAccessReviewPolicy", self.directory_role_access_review_policy)
         writer.write_object_value("externalIdentitiesPolicy", self.external_identities_policy)

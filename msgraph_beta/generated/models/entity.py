@@ -40,6 +40,7 @@ if TYPE_CHECKING:
     from .activity_history_item import ActivityHistoryItem
     from .activity_statistics import ActivityStatistics
     from .add_large_gallery_view_operation import AddLargeGalleryViewOperation
+    from .adhoc_call import AdhocCall
     from .administrative_unit import AdministrativeUnit
     from .admin_apps_and_services import AdminAppsAndServices
     from .admin_consent_request_policy import AdminConsentRequestPolicy
@@ -250,6 +251,7 @@ if TYPE_CHECKING:
     from .backup_restore_root import BackupRestoreRoot
     from .base_item import BaseItem
     from .base_item_version import BaseItemVersion
+    from .base_map_feature import BaseMapFeature
     from .base_site_page import BaseSitePage
     from .bitlocker import Bitlocker
     from .bitlocker_recovery_key import BitlockerRecoveryKey
@@ -266,6 +268,7 @@ if TYPE_CHECKING:
     from .browser_site import BrowserSite
     from .browser_site_list import BrowserSiteList
     from .building import Building
+    from .building_map import BuildingMap
     from .built_in_identity_provider import BuiltInIdentityProvider
     from .bulk_upload import BulkUpload
     from .business_flow import BusinessFlow
@@ -294,6 +297,7 @@ if TYPE_CHECKING:
     from .cancel_media_processing_operation import CancelMediaProcessingOperation
     from .canvas_layout import CanvasLayout
     from .cart_to_class_association import CartToClassAssociation
+    from .ca_policies_deletable_root import CaPoliciesDeletableRoot
     from .certificate_authority_as_entity import CertificateAuthorityAsEntity
     from .certificate_authority_detail import CertificateAuthorityDetail
     from .certificate_authority_path import CertificateAuthorityPath
@@ -742,8 +746,10 @@ if TYPE_CHECKING:
     from .file_storage_container_type_registration import FileStorageContainerTypeRegistration
     from .filter_operator_schema import FilterOperatorSchema
     from .finding import Finding
+    from .fixture_map import FixtureMap
     from .floor import Floor
     from .focus_activity_statistics import FocusActivityStatistics
+    from .footprint_map import FootprintMap
     from .gcp_authorization_system import GcpAuthorizationSystem
     from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
     from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -926,6 +932,7 @@ if TYPE_CHECKING:
     from .ios_vpp_app_assigned_user_license import IosVppAppAssignedUserLicense
     from .ios_vpp_e_book import IosVppEBook
     from .ios_vpp_e_book_assignment import IosVppEBookAssignment
+    from .ios_wired_network_configuration import IosWiredNetworkConfiguration
     from .ios_wi_fi_configuration import IosWiFiConfiguration
     from .ip_application_segment import IpApplicationSegment
     from .ip_security_profile import IpSecurityProfile
@@ -952,6 +959,7 @@ if TYPE_CHECKING:
     from .learning_course_activity import LearningCourseActivity
     from .learning_provider import LearningProvider
     from .learning_self_initiated_course import LearningSelfInitiatedCourse
+    from .level_map import LevelMap
     from .license_details import LicenseDetails
     from .linked_resource import LinkedResource
     from .list_ import List_
@@ -1115,16 +1123,19 @@ if TYPE_CHECKING:
     from .mobile_app_category import MobileAppCategory
     from .mobile_app_content import MobileAppContent
     from .mobile_app_content_file import MobileAppContentFile
+    from .mobile_app_content_script import MobileAppContentScript
     from .mobile_app_dependency import MobileAppDependency
     from .mobile_app_install_status import MobileAppInstallStatus
     from .mobile_app_install_summary import MobileAppInstallSummary
     from .mobile_app_intent_and_state import MobileAppIntentAndState
+    from .mobile_app_management_policy import MobileAppManagementPolicy
     from .mobile_app_policy_set_item import MobileAppPolicySetItem
     from .mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
     from .mobile_app_relationship import MobileAppRelationship
     from .mobile_app_supersedence import MobileAppSupersedence
     from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
     from .mobile_contained_app import MobileContainedApp
+    from .mobile_device_management_policy import MobileDeviceManagementPolicy
     from .mobile_lob_app import MobileLobApp
     from .mobile_threat_defense_connector import MobileThreatDefenseConnector
     from .mobility_management_policy import MobilityManagementPolicy
@@ -1346,6 +1357,7 @@ if TYPE_CHECKING:
     from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
     from .play_prompt_operation import PlayPromptOperation
     from .policy_base import PolicyBase
+    from .policy_deletable_root import PolicyDeletableRoot
     from .policy_file import PolicyFile
     from .policy_root import PolicyRoot
     from .policy_set import PolicySet
@@ -1495,6 +1507,7 @@ if TYPE_CHECKING:
     from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
     from .section import Section
     from .section_group import SectionGroup
+    from .section_map import SectionMap
     from .secure_score import SecureScore
     from .secure_score_control_profile import SecureScoreControlProfile
     from .security.alert import Alert
@@ -1587,6 +1600,8 @@ if TYPE_CHECKING:
     from .security.security import Security
     from .security.sensitivity_label import SensitivityLabel
     from .security.sensor import Sensor
+    from .security.sensor_candidate import SensorCandidate
+    from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
     from .security.site_source import SiteSource
     from .security.ssl_certificate import SslCertificate
     from .security.subcategory_template import SubcategoryTemplate
@@ -1757,7 +1772,6 @@ if TYPE_CHECKING:
     from .team_info import TeamInfo
     from .team_template import TeamTemplate
     from .team_template_definition import TeamTemplateDefinition
-    from .telecom_expense_management_partner import TelecomExpenseManagementPartner
     from .template import Template
     from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
     from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
@@ -1832,6 +1846,7 @@ if TYPE_CHECKING:
     from .unified_role_schedule_base import UnifiedRoleScheduleBase
     from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
     from .unified_storage_quota import UnifiedStorageQuota
+    from .unit_map import UnitMap
     from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
     from .unmute_participant_operation import UnmuteParticipantOperation
     from .unsupported_device_configuration import UnsupportedDeviceConfiguration
@@ -1947,6 +1962,9 @@ if TYPE_CHECKING:
     from .web_part import WebPart
     from .win32_catalog_app import Win32CatalogApp
     from .win32_lob_app import Win32LobApp
+    from .win32_lob_app_install_power_shell_script import Win32LobAppInstallPowerShellScript
+    from .win32_lob_app_script import Win32LobAppScript
+    from .win32_lob_app_uninstall_power_shell_script import Win32LobAppUninstallPowerShellScript
     from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
     from .windows10_certificate_profile_base import Windows10CertificateProfileBase
     from .windows10_compliance_policy import Windows10CompliancePolicy
@@ -2297,6 +2315,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .add_large_gallery_view_operation import AddLargeGalleryViewOperation
 
             return AddLargeGalleryViewOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.adhocCall".casefold():
+            from .adhoc_call import AdhocCall
+
+            return AdhocCall()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.adminAppsAndServices".casefold():
             from .admin_apps_and_services import AdminAppsAndServices
 
@@ -3141,6 +3163,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .base_item_version import BaseItemVersion
 
             return BaseItemVersion()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.baseMapFeature".casefold():
+            from .base_map_feature import BaseMapFeature
+
+            return BaseMapFeature()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.baseSitePage".casefold():
             from .base_site_page import BaseSitePage
 
@@ -3205,6 +3231,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .building import Building
 
             return Building()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.buildingMap".casefold():
+            from .building_map import BuildingMap
+
+            return BuildingMap()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.builtInIdentityProvider".casefold():
             from .built_in_identity_provider import BuiltInIdentityProvider
 
@@ -3314,6 +3344,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .canvas_layout import CanvasLayout
 
             return CanvasLayout()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.caPoliciesDeletableRoot".casefold():
+            from .ca_policies_deletable_root import CaPoliciesDeletableRoot
+
+            return CaPoliciesDeletableRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cartToClassAssociation".casefold():
             from .cart_to_class_association import CartToClassAssociation
 
@@ -5129,6 +5163,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .finding import Finding
 
             return Finding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.fixtureMap".casefold():
+            from .fixture_map import FixtureMap
+
+            return FixtureMap()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.floor".casefold():
             from .floor import Floor
 
@@ -5137,6 +5175,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .focus_activity_statistics import FocusActivityStatistics
 
             return FocusActivityStatistics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.footprintMap".casefold():
+            from .footprint_map import FootprintMap
+
+            return FootprintMap()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpAuthorizationSystem".casefold():
             from .gcp_authorization_system import GcpAuthorizationSystem
 
@@ -5874,6 +5916,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .ios_wi_fi_configuration import IosWiFiConfiguration
 
             return IosWiFiConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosWiredNetworkConfiguration".casefold():
+            from .ios_wired_network_configuration import IosWiredNetworkConfiguration
+
+            return IosWiredNetworkConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.ipApplicationSegment".casefold():
             from .ip_application_segment import IpApplicationSegment
 
@@ -5974,6 +6020,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .learning_self_initiated_course import LearningSelfInitiatedCourse
 
             return LearningSelfInitiatedCourse()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.levelMap".casefold():
+            from .level_map import LevelMap
+
+            return LevelMap()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.licenseDetails".casefold():
             from .license_details import LicenseDetails
 
@@ -6630,6 +6680,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mobile_app_content_file import MobileAppContentFile
 
             return MobileAppContentFile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppContentScript".casefold():
+            from .mobile_app_content_script import MobileAppContentScript
+
+            return MobileAppContentScript()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppDependency".casefold():
             from .mobile_app_dependency import MobileAppDependency
 
@@ -6646,6 +6700,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mobile_app_intent_and_state import MobileAppIntentAndState
 
             return MobileAppIntentAndState()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppManagementPolicy".casefold():
+            from .mobile_app_management_policy import MobileAppManagementPolicy
+
+            return MobileAppManagementPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppPolicySetItem".casefold():
             from .mobile_app_policy_set_item import MobileAppPolicySetItem
 
@@ -6670,6 +6728,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mobile_contained_app import MobileContainedApp
 
             return MobileContainedApp()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileDeviceManagementPolicy".casefold():
+            from .mobile_device_management_policy import MobileDeviceManagementPolicy
+
+            return MobileDeviceManagementPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileLobApp".casefold():
             from .mobile_lob_app import MobileLobApp
 
@@ -7562,6 +7624,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.policy_base import PolicyBase
 
             return PolicyBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyDeletableRoot".casefold():
+            from .policy_deletable_root import PolicyDeletableRoot
+
+            return PolicyDeletableRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyFile".casefold():
             from .policy_file import PolicyFile
 
@@ -8160,6 +8226,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .section_group import SectionGroup
 
             return SectionGroup()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sectionMap".casefold():
+            from .section_map import SectionMap
+
+            return SectionMap()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.secureScore".casefold():
             from .secure_score import SecureScore
 
@@ -8538,6 +8608,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.sensor import Sensor
 
             return Sensor()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.sensorCandidate".casefold():
+            from .security.sensor_candidate import SensorCandidate
+
+            return SensorCandidate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.sensorCandidateActivationConfiguration".casefold():
+            from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
+
+            return SensorCandidateActivationConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.siteSource".casefold():
             from .ediscovery.site_source import SiteSource
             from .security.site_source import SiteSource
@@ -9224,10 +9302,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .teamwork_tag_member import TeamworkTagMember
 
             return TeamworkTagMember()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.telecomExpenseManagementPartner".casefold():
-            from .telecom_expense_management_partner import TelecomExpenseManagementPartner
-
-            return TelecomExpenseManagementPartner()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.template".casefold():
             from .template import Template
 
@@ -9525,6 +9599,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .unified_storage_quota import UnifiedStorageQuota
 
             return UnifiedStorageQuota()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unitMap".casefold():
+            from .unit_map import UnitMap
+
+            return UnitMap()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.unmanagedDeviceDiscoveryTask".casefold():
             from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
 
@@ -9987,6 +10065,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .win32_lob_app import Win32LobApp
 
             return Win32LobApp()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppInstallPowerShellScript".casefold():
+            from .win32_lob_app_install_power_shell_script import Win32LobAppInstallPowerShellScript
+
+            return Win32LobAppInstallPowerShellScript()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppScript".casefold():
+            from .win32_lob_app_script import Win32LobAppScript
+
+            return Win32LobAppScript()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppUninstallPowerShellScript".casefold():
+            from .win32_lob_app_uninstall_power_shell_script import Win32LobAppUninstallPowerShellScript
+
+            return Win32LobAppUninstallPowerShellScript()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32MobileAppCatalogPackage".casefold():
             from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
 
@@ -10778,6 +10868,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .activity_history_item import ActivityHistoryItem
         from .activity_statistics import ActivityStatistics
         from .add_large_gallery_view_operation import AddLargeGalleryViewOperation
+        from .adhoc_call import AdhocCall
         from .administrative_unit import AdministrativeUnit
         from .admin_apps_and_services import AdminAppsAndServices
         from .admin_consent_request_policy import AdminConsentRequestPolicy
@@ -10988,6 +11079,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .backup_restore_root import BackupRestoreRoot
         from .base_item import BaseItem
         from .base_item_version import BaseItemVersion
+        from .base_map_feature import BaseMapFeature
         from .base_site_page import BaseSitePage
         from .bitlocker import Bitlocker
         from .bitlocker_recovery_key import BitlockerRecoveryKey
@@ -11004,6 +11096,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .browser_site import BrowserSite
         from .browser_site_list import BrowserSiteList
         from .building import Building
+        from .building_map import BuildingMap
         from .built_in_identity_provider import BuiltInIdentityProvider
         from .bulk_upload import BulkUpload
         from .business_flow import BusinessFlow
@@ -11032,6 +11125,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cancel_media_processing_operation import CancelMediaProcessingOperation
         from .canvas_layout import CanvasLayout
         from .cart_to_class_association import CartToClassAssociation
+        from .ca_policies_deletable_root import CaPoliciesDeletableRoot
         from .certificate_authority_as_entity import CertificateAuthorityAsEntity
         from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_authority_path import CertificateAuthorityPath
@@ -11480,8 +11574,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .file_storage_container_type_registration import FileStorageContainerTypeRegistration
         from .filter_operator_schema import FilterOperatorSchema
         from .finding import Finding
+        from .fixture_map import FixtureMap
         from .floor import Floor
         from .focus_activity_statistics import FocusActivityStatistics
+        from .footprint_map import FootprintMap
         from .gcp_authorization_system import GcpAuthorizationSystem
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
         from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -11664,6 +11760,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .ios_vpp_app_assigned_user_license import IosVppAppAssignedUserLicense
         from .ios_vpp_e_book import IosVppEBook
         from .ios_vpp_e_book_assignment import IosVppEBookAssignment
+        from .ios_wired_network_configuration import IosWiredNetworkConfiguration
         from .ios_wi_fi_configuration import IosWiFiConfiguration
         from .ip_application_segment import IpApplicationSegment
         from .ip_security_profile import IpSecurityProfile
@@ -11690,6 +11787,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .learning_course_activity import LearningCourseActivity
         from .learning_provider import LearningProvider
         from .learning_self_initiated_course import LearningSelfInitiatedCourse
+        from .level_map import LevelMap
         from .license_details import LicenseDetails
         from .linked_resource import LinkedResource
         from .list_ import List_
@@ -11853,16 +11951,19 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mobile_app_category import MobileAppCategory
         from .mobile_app_content import MobileAppContent
         from .mobile_app_content_file import MobileAppContentFile
+        from .mobile_app_content_script import MobileAppContentScript
         from .mobile_app_dependency import MobileAppDependency
         from .mobile_app_install_status import MobileAppInstallStatus
         from .mobile_app_install_summary import MobileAppInstallSummary
         from .mobile_app_intent_and_state import MobileAppIntentAndState
+        from .mobile_app_management_policy import MobileAppManagementPolicy
         from .mobile_app_policy_set_item import MobileAppPolicySetItem
         from .mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
         from .mobile_app_relationship import MobileAppRelationship
         from .mobile_app_supersedence import MobileAppSupersedence
         from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
         from .mobile_contained_app import MobileContainedApp
+        from .mobile_device_management_policy import MobileDeviceManagementPolicy
         from .mobile_lob_app import MobileLobApp
         from .mobile_threat_defense_connector import MobileThreatDefenseConnector
         from .mobility_management_policy import MobilityManagementPolicy
@@ -12084,6 +12185,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
+        from .policy_deletable_root import PolicyDeletableRoot
         from .policy_file import PolicyFile
         from .policy_root import PolicyRoot
         from .policy_set import PolicySet
@@ -12233,6 +12335,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
         from .section import Section
         from .section_group import SectionGroup
+        from .section_map import SectionMap
         from .secure_score import SecureScore
         from .secure_score_control_profile import SecureScoreControlProfile
         from .security.alert import Alert
@@ -12325,6 +12428,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.security import Security
         from .security.sensitivity_label import SensitivityLabel
         from .security.sensor import Sensor
+        from .security.sensor_candidate import SensorCandidate
+        from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
         from .security.subcategory_template import SubcategoryTemplate
@@ -12495,7 +12600,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .team_info import TeamInfo
         from .team_template import TeamTemplate
         from .team_template_definition import TeamTemplateDefinition
-        from .telecom_expense_management_partner import TelecomExpenseManagementPartner
         from .template import Template
         from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
         from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
@@ -12570,6 +12674,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .unified_role_schedule_base import UnifiedRoleScheduleBase
         from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
         from .unified_storage_quota import UnifiedStorageQuota
+        from .unit_map import UnitMap
         from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
         from .unmute_participant_operation import UnmuteParticipantOperation
         from .unsupported_device_configuration import UnsupportedDeviceConfiguration
@@ -12685,6 +12790,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .web_part import WebPart
         from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
+        from .win32_lob_app_install_power_shell_script import Win32LobAppInstallPowerShellScript
+        from .win32_lob_app_script import Win32LobAppScript
+        from .win32_lob_app_uninstall_power_shell_script import Win32LobAppUninstallPowerShellScript
         from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
         from .windows10_certificate_profile_base import Windows10CertificateProfileBase
         from .windows10_compliance_policy import Windows10CompliancePolicy
@@ -12907,6 +13015,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .activity_history_item import ActivityHistoryItem
         from .activity_statistics import ActivityStatistics
         from .add_large_gallery_view_operation import AddLargeGalleryViewOperation
+        from .adhoc_call import AdhocCall
         from .administrative_unit import AdministrativeUnit
         from .admin_apps_and_services import AdminAppsAndServices
         from .admin_consent_request_policy import AdminConsentRequestPolicy
@@ -13117,6 +13226,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .backup_restore_root import BackupRestoreRoot
         from .base_item import BaseItem
         from .base_item_version import BaseItemVersion
+        from .base_map_feature import BaseMapFeature
         from .base_site_page import BaseSitePage
         from .bitlocker import Bitlocker
         from .bitlocker_recovery_key import BitlockerRecoveryKey
@@ -13133,6 +13243,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .browser_site import BrowserSite
         from .browser_site_list import BrowserSiteList
         from .building import Building
+        from .building_map import BuildingMap
         from .built_in_identity_provider import BuiltInIdentityProvider
         from .bulk_upload import BulkUpload
         from .business_flow import BusinessFlow
@@ -13161,6 +13272,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cancel_media_processing_operation import CancelMediaProcessingOperation
         from .canvas_layout import CanvasLayout
         from .cart_to_class_association import CartToClassAssociation
+        from .ca_policies_deletable_root import CaPoliciesDeletableRoot
         from .certificate_authority_as_entity import CertificateAuthorityAsEntity
         from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_authority_path import CertificateAuthorityPath
@@ -13609,8 +13721,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .file_storage_container_type_registration import FileStorageContainerTypeRegistration
         from .filter_operator_schema import FilterOperatorSchema
         from .finding import Finding
+        from .fixture_map import FixtureMap
         from .floor import Floor
         from .focus_activity_statistics import FocusActivityStatistics
+        from .footprint_map import FootprintMap
         from .gcp_authorization_system import GcpAuthorizationSystem
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
         from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -13793,6 +13907,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .ios_vpp_app_assigned_user_license import IosVppAppAssignedUserLicense
         from .ios_vpp_e_book import IosVppEBook
         from .ios_vpp_e_book_assignment import IosVppEBookAssignment
+        from .ios_wired_network_configuration import IosWiredNetworkConfiguration
         from .ios_wi_fi_configuration import IosWiFiConfiguration
         from .ip_application_segment import IpApplicationSegment
         from .ip_security_profile import IpSecurityProfile
@@ -13819,6 +13934,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .learning_course_activity import LearningCourseActivity
         from .learning_provider import LearningProvider
         from .learning_self_initiated_course import LearningSelfInitiatedCourse
+        from .level_map import LevelMap
         from .license_details import LicenseDetails
         from .linked_resource import LinkedResource
         from .list_ import List_
@@ -13982,16 +14098,19 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mobile_app_category import MobileAppCategory
         from .mobile_app_content import MobileAppContent
         from .mobile_app_content_file import MobileAppContentFile
+        from .mobile_app_content_script import MobileAppContentScript
         from .mobile_app_dependency import MobileAppDependency
         from .mobile_app_install_status import MobileAppInstallStatus
         from .mobile_app_install_summary import MobileAppInstallSummary
         from .mobile_app_intent_and_state import MobileAppIntentAndState
+        from .mobile_app_management_policy import MobileAppManagementPolicy
         from .mobile_app_policy_set_item import MobileAppPolicySetItem
         from .mobile_app_provisioning_config_group_assignment import MobileAppProvisioningConfigGroupAssignment
         from .mobile_app_relationship import MobileAppRelationship
         from .mobile_app_supersedence import MobileAppSupersedence
         from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
         from .mobile_contained_app import MobileContainedApp
+        from .mobile_device_management_policy import MobileDeviceManagementPolicy
         from .mobile_lob_app import MobileLobApp
         from .mobile_threat_defense_connector import MobileThreatDefenseConnector
         from .mobility_management_policy import MobilityManagementPolicy
@@ -14213,6 +14332,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
+        from .policy_deletable_root import PolicyDeletableRoot
         from .policy_file import PolicyFile
         from .policy_root import PolicyRoot
         from .policy_set import PolicySet
@@ -14362,6 +14482,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
         from .section import Section
         from .section_group import SectionGroup
+        from .section_map import SectionMap
         from .secure_score import SecureScore
         from .secure_score_control_profile import SecureScoreControlProfile
         from .security.alert import Alert
@@ -14454,6 +14575,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.security import Security
         from .security.sensitivity_label import SensitivityLabel
         from .security.sensor import Sensor
+        from .security.sensor_candidate import SensorCandidate
+        from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
         from .security.subcategory_template import SubcategoryTemplate
@@ -14624,7 +14747,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .team_info import TeamInfo
         from .team_template import TeamTemplate
         from .team_template_definition import TeamTemplateDefinition
-        from .telecom_expense_management_partner import TelecomExpenseManagementPartner
         from .template import Template
         from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
         from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
@@ -14699,6 +14821,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .unified_role_schedule_base import UnifiedRoleScheduleBase
         from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
         from .unified_storage_quota import UnifiedStorageQuota
+        from .unit_map import UnitMap
         from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
         from .unmute_participant_operation import UnmuteParticipantOperation
         from .unsupported_device_configuration import UnsupportedDeviceConfiguration
@@ -14814,6 +14937,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .web_part import WebPart
         from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
+        from .win32_lob_app_install_power_shell_script import Win32LobAppInstallPowerShellScript
+        from .win32_lob_app_script import Win32LobAppScript
+        from .win32_lob_app_uninstall_power_shell_script import Win32LobAppUninstallPowerShellScript
         from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
         from .windows10_certificate_profile_base import Windows10CertificateProfileBase
         from .windows10_compliance_policy import Windows10CompliancePolicy

@@ -121,7 +121,6 @@ if TYPE_CHECKING:
     from ..role_scope_tag import RoleScopeTag
     from ..service_now_connection import ServiceNowConnection
     from ..software_update_status_summary import SoftwareUpdateStatusSummary
-    from ..telecom_expense_management_partner import TelecomExpenseManagementPartner
     from ..tenant_attach_r_b_a_c import TenantAttachRBAC
     from ..terms_and_conditions import TermsAndConditions
     from ..user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
@@ -434,8 +433,6 @@ class DeviceManagement(Entity, Parsable):
     subscription_state: Optional[DeviceManagementSubscriptionState] = None
     # Tenant mobile device management subscriptions.
     subscriptions: Optional[DeviceManagementSubscriptions] = None
-    # The telecom expense management partners.
-    telecom_expense_management_partners: Optional[list[TelecomExpenseManagementPartner]] = None
     # List of setting insights in a template
     template_insights: Optional[list[DeviceManagementTemplateInsightsDefinition]] = None
     # List of all TemplateSettings
@@ -707,7 +704,6 @@ class DeviceManagement(Entity, Parsable):
         from ..role_scope_tag import RoleScopeTag
         from ..service_now_connection import ServiceNowConnection
         from ..software_update_status_summary import SoftwareUpdateStatusSummary
-        from ..telecom_expense_management_partner import TelecomExpenseManagementPartner
         from ..tenant_attach_r_b_a_c import TenantAttachRBAC
         from ..terms_and_conditions import TermsAndConditions
         from ..user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
@@ -886,7 +882,6 @@ class DeviceManagement(Entity, Parsable):
         from ..role_scope_tag import RoleScopeTag
         from ..service_now_connection import ServiceNowConnection
         from ..software_update_status_summary import SoftwareUpdateStatusSummary
-        from ..telecom_expense_management_partner import TelecomExpenseManagementPartner
         from ..tenant_attach_r_b_a_c import TenantAttachRBAC
         from ..terms_and_conditions import TermsAndConditions
         from ..user_experience_analytics_anomaly import UserExperienceAnalyticsAnomaly
@@ -1073,7 +1068,6 @@ class DeviceManagement(Entity, Parsable):
             "softwareUpdateStatusSummary": lambda n : setattr(self, 'software_update_status_summary', n.get_object_value(SoftwareUpdateStatusSummary)),
             "subscriptionState": lambda n : setattr(self, 'subscription_state', n.get_enum_value(DeviceManagementSubscriptionState)),
             "subscriptions": lambda n : setattr(self, 'subscriptions', n.get_collection_of_enum_values(DeviceManagementSubscriptions)),
-            "telecomExpenseManagementPartners": lambda n : setattr(self, 'telecom_expense_management_partners', n.get_collection_of_object_values(TelecomExpenseManagementPartner)),
             "templateInsights": lambda n : setattr(self, 'template_insights', n.get_collection_of_object_values(DeviceManagementTemplateInsightsDefinition)),
             "templateSettings": lambda n : setattr(self, 'template_settings', n.get_collection_of_object_values(DeviceManagementConfigurationSettingTemplate)),
             "templates": lambda n : setattr(self, 'templates', n.get_collection_of_object_values(DeviceManagementTemplate)),
@@ -1276,7 +1270,6 @@ class DeviceManagement(Entity, Parsable):
         writer.write_object_value("softwareUpdateStatusSummary", self.software_update_status_summary)
         writer.write_enum_value("subscriptionState", self.subscription_state)
         writer.write_enum_value("subscriptions", self.subscriptions)
-        writer.write_collection_of_object_values("telecomExpenseManagementPartners", self.telecom_expense_management_partners)
         writer.write_collection_of_object_values("templateInsights", self.template_insights)
         writer.write_collection_of_object_values("templateSettings", self.template_settings)
         writer.write_collection_of_object_values("templates", self.templates)

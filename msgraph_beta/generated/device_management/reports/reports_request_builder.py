@@ -93,6 +93,7 @@ if TYPE_CHECKING:
     from .retrieve_cloud_pki_leaf_certificate_report.retrieve_cloud_pki_leaf_certificate_report_request_builder import RetrieveCloudPkiLeafCertificateReportRequestBuilder
     from .retrieve_cloud_pki_leaf_certificate_summary_report.retrieve_cloud_pki_leaf_certificate_summary_report_request_builder import RetrieveCloudPkiLeafCertificateSummaryReportRequestBuilder
     from .retrieve_device_app_installation_status_report.retrieve_device_app_installation_status_report_request_builder import RetrieveDeviceAppInstallationStatusReportRequestBuilder
+    from .retrieve_enrollment_time_grouping_failure_report.retrieve_enrollment_time_grouping_failure_report_request_builder import RetrieveEnrollmentTimeGroupingFailureReportRequestBuilder
     from .retrieve_security_task_apps_report.retrieve_security_task_apps_report_request_builder import RetrieveSecurityTaskAppsReportRequestBuilder
     from .retrieve_win32_catalog_apps_update_report.retrieve_win32_catalog_apps_update_report_request_builder import RetrieveWin32CatalogAppsUpdateReportRequestBuilder
 
@@ -909,6 +910,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .retrieve_device_app_installation_status_report.retrieve_device_app_installation_status_report_request_builder import RetrieveDeviceAppInstallationStatusReportRequestBuilder
 
         return RetrieveDeviceAppInstallationStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_enrollment_time_grouping_failure_report(self) -> RetrieveEnrollmentTimeGroupingFailureReportRequestBuilder:
+        """
+        Provides operations to call the retrieveEnrollmentTimeGroupingFailureReport method.
+        """
+        from .retrieve_enrollment_time_grouping_failure_report.retrieve_enrollment_time_grouping_failure_report_request_builder import RetrieveEnrollmentTimeGroupingFailureReportRequestBuilder
+
+        return RetrieveEnrollmentTimeGroupingFailureReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_security_task_apps_report(self) -> RetrieveSecurityTaskAppsReportRequestBuilder:

@@ -14,11 +14,11 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
-    from ...models.mobility_management_policy import MobilityManagementPolicy
-    from ...models.mobility_management_policy_collection_response import MobilityManagementPolicyCollectionResponse
+    from ...models.mobile_app_management_policy import MobileAppManagementPolicy
+    from ...models.mobile_app_management_policy_collection_response import MobileAppManagementPolicyCollectionResponse
     from ...models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
-    from .item.mobility_management_policy_item_request_builder import MobilityManagementPolicyItemRequestBuilder
+    from .item.mobile_app_management_policy_item_request_builder import MobileAppManagementPolicyItemRequestBuilder
 
 class MobileAppManagementPoliciesRequestBuilder(BaseRequestBuilder):
     """
@@ -33,25 +33,25 @@ class MobileAppManagementPoliciesRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/policies/mobileAppManagementPolicies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
-    def by_mobility_management_policy_id(self,mobility_management_policy_id: str) -> MobilityManagementPolicyItemRequestBuilder:
+    def by_mobile_app_management_policy_id(self,mobile_app_management_policy_id: str) -> MobileAppManagementPolicyItemRequestBuilder:
         """
         Provides operations to manage the mobileAppManagementPolicies property of the microsoft.graph.policyRoot entity.
-        param mobility_management_policy_id: The unique identifier of mobilityManagementPolicy
-        Returns: MobilityManagementPolicyItemRequestBuilder
+        param mobile_app_management_policy_id: The unique identifier of mobileAppManagementPolicy
+        Returns: MobileAppManagementPolicyItemRequestBuilder
         """
-        if mobility_management_policy_id is None:
-            raise TypeError("mobility_management_policy_id cannot be null.")
-        from .item.mobility_management_policy_item_request_builder import MobilityManagementPolicyItemRequestBuilder
+        if mobile_app_management_policy_id is None:
+            raise TypeError("mobile_app_management_policy_id cannot be null.")
+        from .item.mobile_app_management_policy_item_request_builder import MobileAppManagementPolicyItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["mobilityManagementPolicy%2Did"] = mobility_management_policy_id
-        return MobilityManagementPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        url_tpl_params["mobileAppManagementPolicy%2Did"] = mobile_app_management_policy_id
+        return MobileAppManagementPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[MobileAppManagementPoliciesRequestBuilderGetQueryParameters]] = None) -> Optional[MobilityManagementPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[MobileAppManagementPoliciesRequestBuilderGetQueryParameters]] = None) -> Optional[MobileAppManagementPolicyCollectionResponse]:
         """
         Get a list of the mobilityManagementPolicy objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[MobilityManagementPolicyCollectionResponse]
+        Returns: Optional[MobileAppManagementPolicyCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/mobileappmanagementpolicies-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
@@ -64,16 +64,16 @@ class MobileAppManagementPoliciesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.mobility_management_policy_collection_response import MobilityManagementPolicyCollectionResponse
+        from ...models.mobile_app_management_policy_collection_response import MobileAppManagementPolicyCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, MobilityManagementPolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobileAppManagementPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: MobilityManagementPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MobilityManagementPolicy]:
+    async def post(self,body: MobileAppManagementPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MobileAppManagementPolicy]:
         """
         Create new navigation property to mobileAppManagementPolicies for policies
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[MobilityManagementPolicy]
+        Returns: Optional[MobileAppManagementPolicy]
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -87,9 +87,9 @@ class MobileAppManagementPoliciesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.mobility_management_policy import MobilityManagementPolicy
+        from ...models.mobile_app_management_policy import MobileAppManagementPolicy
 
-        return await self.request_adapter.send_async(request_info, MobilityManagementPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, MobileAppManagementPolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MobileAppManagementPoliciesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
@@ -102,7 +102,7 @@ class MobileAppManagementPoliciesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: MobilityManagementPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_post_request_information(self,body: MobileAppManagementPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to mobileAppManagementPolicies for policies
         param body: The request body

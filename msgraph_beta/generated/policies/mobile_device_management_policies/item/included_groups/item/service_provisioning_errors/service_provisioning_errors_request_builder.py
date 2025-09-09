@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 
 class ServiceProvisioningErrorsRequestBuilder(BaseRequestBuilder):
     """
-    Builds and executes requests for operations under /policies/mobileDeviceManagementPolicies/{mobilityManagementPolicy-id}/includedGroups/{group-id}/serviceProvisioningErrors
+    Builds and executes requests for operations under /policies/mobileDeviceManagementPolicies/{mobileDeviceManagementPolicy-id}/includedGroups/{group-id}/serviceProvisioningErrors
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -29,7 +29,7 @@ class ServiceProvisioningErrorsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/policies/mobileDeviceManagementPolicies/{mobilityManagementPolicy%2Did}/includedGroups/{group%2Did}/serviceProvisioningErrors{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/policies/mobileDeviceManagementPolicies/{mobileDeviceManagementPolicy%2Did}/includedGroups/{group%2Did}/serviceProvisioningErrors{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ServiceProvisioningErrorsRequestBuilderGetQueryParameters]] = None) -> Optional[ServiceProvisioningErrorCollectionResponse]:
         """
