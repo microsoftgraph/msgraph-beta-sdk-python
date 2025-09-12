@@ -19,8 +19,6 @@ class ManagedAppLogUpload(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The Mobile Application Management (MAM) Logs Uploading Component. Such components can be the application itself, the MAM SDK, and other on-device components that are capable of uploading diagnostic logs. Read-only.
-    managed_app_component: Optional[str] = None
-    # The Mobile Application Management (MAM) Logs Uploading Component. Such components can be the application itself, the MAM SDK, and other on-device components that are capable of uploading diagnostic logs. Read-only.
     managed_app_component_description: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -50,7 +48,6 @@ class ManagedAppLogUpload(AdditionalDataHolder, BackedModel, Parsable):
         from .managed_app_log_upload_state import ManagedAppLogUploadState
 
         fields: dict[str, Callable[[Any], None]] = {
-            "managedAppComponent": lambda n : setattr(self, 'managed_app_component', n.get_str_value()),
             "managedAppComponentDescription": lambda n : setattr(self, 'managed_app_component_description', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "referenceId": lambda n : setattr(self, 'reference_id', n.get_str_value()),
@@ -66,7 +63,6 @@ class ManagedAppLogUpload(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("managedAppComponent", self.managed_app_component)
         writer.write_str_value("managedAppComponentDescription", self.managed_app_component_description)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("referenceId", self.reference_id)

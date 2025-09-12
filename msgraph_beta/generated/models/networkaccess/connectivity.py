@@ -20,7 +20,7 @@ class Connectivity(Entity, Parsable):
     odata_type: Optional[str] = None
     # The locations, such as branches, that are connected to Global Secure Access services through an IPsec tunnel.
     remote_networks: Optional[list[RemoteNetwork]] = None
-    # The webCategories property
+    # The URL category.
     web_categories: Optional[list[WebCategory]] = None
     
     @staticmethod

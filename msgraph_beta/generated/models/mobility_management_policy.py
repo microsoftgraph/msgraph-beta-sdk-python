@@ -7,6 +7,8 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .group import Group
+    from .mobile_app_management_policy import MobileAppManagementPolicy
+    from .mobile_device_management_policy import MobileDeviceManagementPolicy
     from .policy_scope import PolicyScope
 
 from .entity import Entity
@@ -41,6 +43,19 @@ class MobilityManagementPolicy(Entity, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppManagementPolicy".casefold():
+            from .mobile_app_management_policy import MobileAppManagementPolicy
+
+            return MobileAppManagementPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileDeviceManagementPolicy".casefold():
+            from .mobile_device_management_policy import MobileDeviceManagementPolicy
+
+            return MobileDeviceManagementPolicy()
         return MobilityManagementPolicy()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -50,10 +65,14 @@ class MobilityManagementPolicy(Entity, Parsable):
         """
         from .entity import Entity
         from .group import Group
+        from .mobile_app_management_policy import MobileAppManagementPolicy
+        from .mobile_device_management_policy import MobileDeviceManagementPolicy
         from .policy_scope import PolicyScope
 
         from .entity import Entity
         from .group import Group
+        from .mobile_app_management_policy import MobileAppManagementPolicy
+        from .mobile_device_management_policy import MobileDeviceManagementPolicy
         from .policy_scope import PolicyScope
 
         fields: dict[str, Callable[[Any], None]] = {

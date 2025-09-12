@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .exchange_protection_policy import ExchangeProtectionPolicy
     from .identity_set import IdentitySet
     from .one_drive_for_business_protection_policy import OneDriveForBusinessProtectionPolicy
+    from .protection_policy_artifact_count import ProtectionPolicyArtifactCount
     from .protection_policy_status import ProtectionPolicyStatus
     from .retention_setting import RetentionSetting
     from .share_point_protection_policy import SharePointProtectionPolicy
@@ -22,16 +23,20 @@ class ProtectionPolicyBase(Entity, Parsable):
     billing_policy_id: Optional[str] = None
     # The identity of person who created the policy.
     created_by: Optional[IdentitySet] = None
-    # The time of creation of the policy.
+    # The date and time when the policy was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
     # The name of the policy to be created.
     display_name: Optional[str] = None
+    # Indicates whether the policy is enabled.
+    is_enabled: Optional[bool] = None
     # The identity of the person who last modified the policy.
     last_modified_by: Optional[IdentitySet] = None
-    # The timestamp of the last modification of the policy.
+    # The date and time when the policy was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The count of artifacts in the protection policy by status. Returned only on $select.
+    protection_policy_artifact_count: Optional[ProtectionPolicyArtifactCount] = None
     # Contains the retention setting details for the policy.
     retention_settings: Optional[list[RetentionSetting]] = None
     # The aggregated status of the protection units associated with the policy. The possible values are: inactive, activeWithErrors, updating, active, unknownFutureValue.
@@ -74,6 +79,7 @@ class ProtectionPolicyBase(Entity, Parsable):
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .identity_set import IdentitySet
         from .one_drive_for_business_protection_policy import OneDriveForBusinessProtectionPolicy
+        from .protection_policy_artifact_count import ProtectionPolicyArtifactCount
         from .protection_policy_status import ProtectionPolicyStatus
         from .retention_setting import RetentionSetting
         from .share_point_protection_policy import SharePointProtectionPolicy
@@ -82,6 +88,7 @@ class ProtectionPolicyBase(Entity, Parsable):
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .identity_set import IdentitySet
         from .one_drive_for_business_protection_policy import OneDriveForBusinessProtectionPolicy
+        from .protection_policy_artifact_count import ProtectionPolicyArtifactCount
         from .protection_policy_status import ProtectionPolicyStatus
         from .retention_setting import RetentionSetting
         from .share_point_protection_policy import SharePointProtectionPolicy
@@ -91,8 +98,10 @@ class ProtectionPolicyBase(Entity, Parsable):
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "protectionPolicyArtifactCount": lambda n : setattr(self, 'protection_policy_artifact_count', n.get_object_value(ProtectionPolicyArtifactCount)),
             "retentionSettings": lambda n : setattr(self, 'retention_settings', n.get_collection_of_object_values(RetentionSetting)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(ProtectionPolicyStatus)),
         }
@@ -113,8 +122,10 @@ class ProtectionPolicyBase(Entity, Parsable):
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_bool_value("isEnabled", self.is_enabled)
         writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_object_value("protectionPolicyArtifactCount", self.protection_policy_artifact_count)
         writer.write_collection_of_object_values("retentionSettings", self.retention_settings)
         writer.write_enum_value("status", self.status)
     

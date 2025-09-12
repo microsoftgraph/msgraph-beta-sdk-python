@@ -23,7 +23,7 @@ class CloudPcGalleryImage(Entity, Parsable):
     odata_type: Optional[str] = None
     # The offer name of this gallery image that is passed to ARM to retrieve the image resource. Read-only. The offer property is deprecated and will stop returning data on January 31, 2024. Going forward, use the offerName property.
     offer: Optional[str] = None
-    # The official display offer name of this gallery image. For example, Windows 10 Enterprise + OS Optimizations. The offerDisplayName property is deprecated and will stop returning data on January 31, 2024.
+    # The official display offer name of this gallery image. For example, Windows 11 Enterprise. The offerDisplayName property is deprecated and will stop returning data on January 31, 2024.
     offer_display_name: Optional[str] = None
     # The offer name of this gallery image that is passed to ARM to retrieve the image resource. Read-only.
     offer_name: Optional[str] = None

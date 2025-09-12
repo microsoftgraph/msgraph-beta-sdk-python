@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .building import Building
+    from .check_in_claim import CheckInClaim
     from .desk import Desk
     from .entity import Entity
     from .floor import Floor
@@ -22,6 +23,8 @@ from .entity import Entity
 class Place(Entity, Parsable):
     # The physical address of the place, including the street, city, state, country or region, and postal code.
     address: Optional[PhysicalAddress] = None
+    # The checkIns property
+    check_ins: Optional[list[CheckInClaim]] = None
     # The name that is associated with the place.
     display_name: Optional[str] = None
     # Specifies the place location in latitude, longitude, and (optionally) altitude coordinates.
@@ -91,6 +94,7 @@ class Place(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .building import Building
+        from .check_in_claim import CheckInClaim
         from .desk import Desk
         from .entity import Entity
         from .floor import Floor
@@ -102,6 +106,7 @@ class Place(Entity, Parsable):
         from .workspace import Workspace
 
         from .building import Building
+        from .check_in_claim import CheckInClaim
         from .desk import Desk
         from .entity import Entity
         from .floor import Floor
@@ -114,6 +119,7 @@ class Place(Entity, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(PhysicalAddress)),
+            "checkIns": lambda n : setattr(self, 'check_ins', n.get_collection_of_object_values(CheckInClaim)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "geoCoordinates": lambda n : setattr(self, 'geo_coordinates', n.get_object_value(OutlookGeoCoordinates)),
             "isWheelChairAccessible": lambda n : setattr(self, 'is_wheel_chair_accessible', n.get_bool_value()),
@@ -137,6 +143,7 @@ class Place(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("address", self.address)
+        writer.write_collection_of_object_values("checkIns", self.check_ins)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("geoCoordinates", self.geo_coordinates)
         writer.write_bool_value("isWheelChairAccessible", self.is_wheel_chair_accessible)

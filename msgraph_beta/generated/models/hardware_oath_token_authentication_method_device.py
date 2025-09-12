@@ -1,4 +1,5 @@
 from __future__ import annotations
+import datetime
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
@@ -23,6 +24,8 @@ class HardwareOathTokenAuthenticationMethodDevice(AuthenticationMethodDevice, Pa
     assigned_to: Optional[Identity] = None
     # Hash function of the hardrware token. The possible values are: hmacsha1 or hmacsha256. Default value is: hmacsha1. Supports $filter (eq).
     hash_function: Optional[HardwareOathTokenHashFunction] = None
+    # The lastUsedDateTime property
+    last_used_date_time: Optional[datetime.datetime] = None
     # Manufacturer name of the hardware token. Supports $filter (eq).
     manufacturer: Optional[str] = None
     # Model name of the hardware token. Supports $filter (eq).
@@ -68,6 +71,7 @@ class HardwareOathTokenAuthenticationMethodDevice(AuthenticationMethodDevice, Pa
             "assignTo": lambda n : setattr(self, 'assign_to', n.get_object_value(User)),
             "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_object_value(Identity)),
             "hashFunction": lambda n : setattr(self, 'hash_function', n.get_enum_value(HardwareOathTokenHashFunction)),
+            "lastUsedDateTime": lambda n : setattr(self, 'last_used_date_time', n.get_datetime_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
             "secretKey": lambda n : setattr(self, 'secret_key', n.get_str_value()),
@@ -91,6 +95,7 @@ class HardwareOathTokenAuthenticationMethodDevice(AuthenticationMethodDevice, Pa
         writer.write_object_value("assignTo", self.assign_to)
         writer.write_object_value("assignedTo", self.assigned_to)
         writer.write_enum_value("hashFunction", self.hash_function)
+        writer.write_datetime_value("lastUsedDateTime", self.last_used_date_time)
         writer.write_str_value("manufacturer", self.manufacturer)
         writer.write_str_value("model", self.model)
         writer.write_str_value("secretKey", self.secret_key)

@@ -14,6 +14,8 @@ from .policy import Policy
 class ForwardingPolicy(Policy, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingPolicy"
+    # The privateAccessAppId property
+    private_access_app_id: Optional[str] = None
     # The trafficForwardingType property
     traffic_forwarding_type: Optional[TrafficForwardingType] = None
     
@@ -40,6 +42,7 @@ class ForwardingPolicy(Policy, Parsable):
         from .traffic_forwarding_type import TrafficForwardingType
 
         fields: dict[str, Callable[[Any], None]] = {
+            "privateAccessAppId": lambda n : setattr(self, 'private_access_app_id', n.get_str_value()),
             "trafficForwardingType": lambda n : setattr(self, 'traffic_forwarding_type', n.get_enum_value(TrafficForwardingType)),
         }
         super_fields = super().get_field_deserializers()
@@ -55,6 +58,7 @@ class ForwardingPolicy(Policy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("privateAccessAppId", self.private_access_app_id)
         writer.write_enum_value("trafficForwardingType", self.traffic_forwarding_type)
     
 

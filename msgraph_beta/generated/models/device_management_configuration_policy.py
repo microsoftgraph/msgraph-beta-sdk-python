@@ -29,6 +29,8 @@ class DeviceManagementConfigurationPolicy(Entity, Parsable):
     creation_source: Optional[str] = None
     # Policy description
     description: Optional[str] = None
+    # Indicates whether Entra Group policy assignment is disabled
+    disable_entra_group_policy_assignment: Optional[bool] = None
     # Policy assignment status. This property is read-only.
     is_assigned: Optional[bool] = None
     # Policy last modification date and time
@@ -89,6 +91,7 @@ class DeviceManagementConfigurationPolicy(Entity, Parsable):
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "creationSource": lambda n : setattr(self, 'creation_source', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
+            "disableEntraGroupPolicyAssignment": lambda n : setattr(self, 'disable_entra_group_policy_assignment', n.get_bool_value()),
             "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
@@ -117,6 +120,7 @@ class DeviceManagementConfigurationPolicy(Entity, Parsable):
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("creationSource", self.creation_source)
         writer.write_str_value("description", self.description)
+        writer.write_bool_value("disableEntraGroupPolicyAssignment", self.disable_entra_group_policy_assignment)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("name", self.name)
         writer.write_enum_value("platforms", self.platforms)

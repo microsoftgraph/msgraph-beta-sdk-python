@@ -1,26 +1,23 @@
 from __future__ import annotations
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cross_tenant_user_sync_inbound import CrossTenantUserSyncInbound
+    from .policy_deletable_item import PolicyDeletableItem
+
+from .policy_deletable_item import PolicyDeletableItem
 
 @dataclass
-class CrossTenantIdentitySyncPolicyPartner(AdditionalDataHolder, BackedModel, Parsable):
-    # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
-
-    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: dict[str, Any] = field(default_factory=dict)
+class CrossTenantIdentitySyncPolicyPartner(PolicyDeletableItem, Parsable):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.crossTenantIdentitySyncPolicyPartner"
     # Display name for the cross-tenant user synchronization policy. Use the name of the partner Microsoft Entra tenant to easily identify the policy. Optional.
     display_name: Optional[str] = None
     # The externalCloudAuthorizedApplicationId property
     external_cloud_authorized_application_id: Optional[str] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     # Tenant identifier for the partner Microsoft Entra organization. Read-only.
     tenant_id: Optional[str] = None
     # Defines whether users can be synchronized from the partner tenant. Key.
@@ -43,16 +40,19 @@ class CrossTenantIdentitySyncPolicyPartner(AdditionalDataHolder, BackedModel, Pa
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cross_tenant_user_sync_inbound import CrossTenantUserSyncInbound
+        from .policy_deletable_item import PolicyDeletableItem
 
         from .cross_tenant_user_sync_inbound import CrossTenantUserSyncInbound
+        from .policy_deletable_item import PolicyDeletableItem
 
         fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "externalCloudAuthorizedApplicationId": lambda n : setattr(self, 'external_cloud_authorized_application_id', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "userSyncInbound": lambda n : setattr(self, 'user_sync_inbound', n.get_object_value(CrossTenantUserSyncInbound)),
         }
+        super_fields = super().get_field_deserializers()
+        fields.update(super_fields)
         return fields
     
     def serialize(self,writer: SerializationWriter) -> None:
@@ -63,11 +63,10 @@ class CrossTenantIdentitySyncPolicyPartner(AdditionalDataHolder, BackedModel, Pa
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("externalCloudAuthorizedApplicationId", self.external_cloud_authorized_application_id)
-        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_object_value("userSyncInbound", self.user_sync_inbound)
-        writer.write_additional_data_value(self.additional_data)
     
 

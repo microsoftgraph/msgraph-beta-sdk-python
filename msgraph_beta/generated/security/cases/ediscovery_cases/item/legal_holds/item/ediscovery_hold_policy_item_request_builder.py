@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
     from .......models.security.ediscovery_hold_policy import EdiscoveryHoldPolicy
+    from .microsoft_graph_security_retry_policy.microsoft_graph_security_retry_policy_request_builder import MicrosoftGraphSecurityRetryPolicyRequestBuilder
     from .site_sources.site_sources_request_builder import SiteSourcesRequestBuilder
     from .user_sources.user_sources_request_builder import UserSourcesRequestBuilder
 
@@ -139,6 +140,15 @@ class EdiscoveryHoldPolicyItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return EdiscoveryHoldPolicyItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def microsoft_graph_security_retry_policy(self) -> MicrosoftGraphSecurityRetryPolicyRequestBuilder:
+        """
+        Provides operations to call the retryPolicy method.
+        """
+        from .microsoft_graph_security_retry_policy.microsoft_graph_security_retry_policy_request_builder import MicrosoftGraphSecurityRetryPolicyRequestBuilder
+
+        return MicrosoftGraphSecurityRetryPolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def site_sources(self) -> SiteSourcesRequestBuilder:

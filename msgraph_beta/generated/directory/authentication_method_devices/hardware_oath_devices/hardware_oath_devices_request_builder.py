@@ -70,11 +70,11 @@ class HardwareOathDevicesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: HardwareOathTokenAuthenticationMethodDevice, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[HardwareOathTokenAuthenticationMethodDevice]:
         """
-        Create a new hardwareOathTokenAuthenticationMethodDevice object. This API supports two scenarios:- Create the new hardware token without assigning to a user. You can then assign to a user.- Create and assign a hardware token to a user in the same request. 
+        Create one or more hardwareOathTokenAuthenticationMethodDevice objects. This API supports two scenarios:- Create the new hardware tokens without assigning to users. You can then assign to a user.- Create and assign any individual hardware tokens to users in the same request.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[HardwareOathTokenAuthenticationMethodDevice]
-        Find more info here: https://learn.microsoft.com/graph/api/authenticationmethoddevice-post-hardwareoathdevices?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/authenticationmethoddevice-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -105,7 +105,7 @@ class HardwareOathDevicesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: HardwareOathTokenAuthenticationMethodDevice, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new hardwareOathTokenAuthenticationMethodDevice object. This API supports two scenarios:- Create the new hardware token without assigning to a user. You can then assign to a user.- Create and assign a hardware token to a user in the same request. 
+        Create one or more hardwareOathTokenAuthenticationMethodDevice objects. This API supports two scenarios:- Create the new hardware tokens without assigning to users. You can then assign to a user.- Create and assign any individual hardware tokens to users in the same request.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

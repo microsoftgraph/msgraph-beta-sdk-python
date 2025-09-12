@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
     from .android_device_owner_kiosk_customization_status_bar import AndroidDeviceOwnerKioskCustomizationStatusBar
     from .android_device_owner_kiosk_customization_system_navigation import AndroidDeviceOwnerKioskCustomizationSystemNavigation
+    from .android_device_owner_kiosk_mode_app import AndroidDeviceOwnerKioskModeApp
     from .android_device_owner_kiosk_mode_app_position_item import AndroidDeviceOwnerKioskModeAppPositionItem
     from .android_device_owner_kiosk_mode_folder_icon import AndroidDeviceOwnerKioskModeFolderIcon
     from .android_device_owner_kiosk_mode_icon_size import AndroidDeviceOwnerKioskModeIconSize
@@ -133,6 +134,8 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     kiosk_mode_lock_home_screen: Optional[bool] = None
     # A list of managed folders for a device in Kiosk Mode. This collection can contain a maximum of 500 elements.
     kiosk_mode_managed_folders: Optional[list[AndroidDeviceOwnerKioskModeManagedFolder]] = None
+    # Indicates the list of managed applications and associated settings, which will be applied when android device is run on kiosk mode with Managed Home Screen. This collection can contain a maximum of 500 elements.
+    kiosk_mode_managed_home_screen_app_settings: Optional[list[AndroidDeviceOwnerKioskModeApp]] = None
     # Whether or not to automatically sign-out of MHS and Shared device mode applications after inactive for Managed Home Screen.
     kiosk_mode_managed_home_screen_auto_signout: Optional[bool] = None
     # Number of seconds to give user notice before automatically signing them out for Managed Home Screen. Valid values 0 to 9999999
@@ -349,6 +352,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
         from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
         from .android_device_owner_kiosk_customization_status_bar import AndroidDeviceOwnerKioskCustomizationStatusBar
         from .android_device_owner_kiosk_customization_system_navigation import AndroidDeviceOwnerKioskCustomizationSystemNavigation
+        from .android_device_owner_kiosk_mode_app import AndroidDeviceOwnerKioskModeApp
         from .android_device_owner_kiosk_mode_app_position_item import AndroidDeviceOwnerKioskModeAppPositionItem
         from .android_device_owner_kiosk_mode_folder_icon import AndroidDeviceOwnerKioskModeFolderIcon
         from .android_device_owner_kiosk_mode_icon_size import AndroidDeviceOwnerKioskModeIconSize
@@ -380,6 +384,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
         from .android_device_owner_global_proxy import AndroidDeviceOwnerGlobalProxy
         from .android_device_owner_kiosk_customization_status_bar import AndroidDeviceOwnerKioskCustomizationStatusBar
         from .android_device_owner_kiosk_customization_system_navigation import AndroidDeviceOwnerKioskCustomizationSystemNavigation
+        from .android_device_owner_kiosk_mode_app import AndroidDeviceOwnerKioskModeApp
         from .android_device_owner_kiosk_mode_app_position_item import AndroidDeviceOwnerKioskModeAppPositionItem
         from .android_device_owner_kiosk_mode_folder_icon import AndroidDeviceOwnerKioskModeFolderIcon
         from .android_device_owner_kiosk_mode_icon_size import AndroidDeviceOwnerKioskModeIconSize
@@ -447,6 +452,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
             "kioskModeIconSize": lambda n : setattr(self, 'kiosk_mode_icon_size', n.get_enum_value(AndroidDeviceOwnerKioskModeIconSize)),
             "kioskModeLockHomeScreen": lambda n : setattr(self, 'kiosk_mode_lock_home_screen', n.get_bool_value()),
             "kioskModeManagedFolders": lambda n : setattr(self, 'kiosk_mode_managed_folders', n.get_collection_of_object_values(AndroidDeviceOwnerKioskModeManagedFolder)),
+            "kioskModeManagedHomeScreenAppSettings": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_app_settings', n.get_collection_of_object_values(AndroidDeviceOwnerKioskModeApp)),
             "kioskModeManagedHomeScreenAutoSignout": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_auto_signout', n.get_bool_value()),
             "kioskModeManagedHomeScreenInactiveSignOutDelayInSeconds": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_inactive_sign_out_delay_in_seconds', n.get_int_value()),
             "kioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_inactive_sign_out_notice_in_seconds', n.get_int_value()),
@@ -600,6 +606,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
         writer.write_enum_value("kioskModeIconSize", self.kiosk_mode_icon_size)
         writer.write_bool_value("kioskModeLockHomeScreen", self.kiosk_mode_lock_home_screen)
         writer.write_collection_of_object_values("kioskModeManagedFolders", self.kiosk_mode_managed_folders)
+        writer.write_collection_of_object_values("kioskModeManagedHomeScreenAppSettings", self.kiosk_mode_managed_home_screen_app_settings)
         writer.write_bool_value("kioskModeManagedHomeScreenAutoSignout", self.kiosk_mode_managed_home_screen_auto_signout)
         writer.write_int_value("kioskModeManagedHomeScreenInactiveSignOutDelayInSeconds", self.kiosk_mode_managed_home_screen_inactive_sign_out_delay_in_seconds)
         writer.write_int_value("kioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds", self.kiosk_mode_managed_home_screen_inactive_sign_out_notice_in_seconds)

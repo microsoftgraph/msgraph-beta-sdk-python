@@ -93,6 +93,7 @@ if TYPE_CHECKING:
     from .ios_trusted_root_certificate import IosTrustedRootCertificate
     from .ios_update_configuration import IosUpdateConfiguration
     from .ios_vpn_configuration import IosVpnConfiguration
+    from .ios_wired_network_configuration import IosWiredNetworkConfiguration
     from .ios_wi_fi_configuration import IosWiFiConfiguration
     from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
     from .mac_o_s_custom_app_configuration import MacOSCustomAppConfiguration
@@ -525,6 +526,10 @@ class DeviceConfiguration(Entity, Parsable):
             from .ios_wi_fi_configuration import IosWiFiConfiguration
 
             return IosWiFiConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosWiredNetworkConfiguration".casefold():
+            from .ios_wired_network_configuration import IosWiredNetworkConfiguration
+
+            return IosWiredNetworkConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSCertificateProfileBase".casefold():
             from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
 
@@ -855,6 +860,7 @@ class DeviceConfiguration(Entity, Parsable):
         from .ios_trusted_root_certificate import IosTrustedRootCertificate
         from .ios_update_configuration import IosUpdateConfiguration
         from .ios_vpn_configuration import IosVpnConfiguration
+        from .ios_wired_network_configuration import IosWiredNetworkConfiguration
         from .ios_wi_fi_configuration import IosWiFiConfiguration
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
         from .mac_o_s_custom_app_configuration import MacOSCustomAppConfiguration
@@ -1004,6 +1010,7 @@ class DeviceConfiguration(Entity, Parsable):
         from .ios_trusted_root_certificate import IosTrustedRootCertificate
         from .ios_update_configuration import IosUpdateConfiguration
         from .ios_vpn_configuration import IosVpnConfiguration
+        from .ios_wired_network_configuration import IosWiredNetworkConfiguration
         from .ios_wi_fi_configuration import IosWiFiConfiguration
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
         from .mac_o_s_custom_app_configuration import MacOSCustomAppConfiguration

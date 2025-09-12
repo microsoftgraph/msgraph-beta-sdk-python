@@ -139,7 +139,6 @@ if TYPE_CHECKING:
     from .service_now_connections.service_now_connections_request_builder import ServiceNowConnectionsRequestBuilder
     from .setting_definitions.setting_definitions_request_builder import SettingDefinitionsRequestBuilder
     from .software_update_status_summary.software_update_status_summary_request_builder import SoftwareUpdateStatusSummaryRequestBuilder
-    from .telecom_expense_management_partners.telecom_expense_management_partners_request_builder import TelecomExpenseManagementPartnersRequestBuilder
     from .templates.templates_request_builder import TemplatesRequestBuilder
     from .template_insights.template_insights_request_builder import TemplateInsightsRequestBuilder
     from .template_settings.template_settings_request_builder import TemplateSettingsRequestBuilder
@@ -1438,15 +1437,6 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .software_update_status_summary.software_update_status_summary_request_builder import SoftwareUpdateStatusSummaryRequestBuilder
 
         return SoftwareUpdateStatusSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def telecom_expense_management_partners(self) -> TelecomExpenseManagementPartnersRequestBuilder:
-        """
-        Provides operations to manage the telecomExpenseManagementPartners property of the microsoft.graph.deviceManagement entity.
-        """
-        from .telecom_expense_management_partners.telecom_expense_management_partners_request_builder import TelecomExpenseManagementPartnersRequestBuilder
-
-        return TelecomExpenseManagementPartnersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def template_insights(self) -> TemplateInsightsRequestBuilder:

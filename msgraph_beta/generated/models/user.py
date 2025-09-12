@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_review_instance import AccessReviewInstance
+    from .adhoc_call import AdhocCall
     from .agreement_acceptance import AgreementAcceptance
     from .approval import Approval
     from .app_consent_request import AppConsentRequest
@@ -98,6 +99,8 @@ class User(DirectoryObject, Parsable):
     account_enabled: Optional[bool] = None
     # The user's activities across devices. Read-only. Nullable.
     activities: Optional[list[UserActivity]] = None
+    # Ad hoc calls associated with the user. Read-only. Nullable.
+    adhoc_calls: Optional[list[AdhocCall]] = None
     # Sets the age group of the user. Allowed values: null, Minor, NotAdult, and Adult. For more information, see legal age group property definitions. Supports $filter (eq, ne, not, and in).
     age_group: Optional[str] = None
     # The user's terms of use acceptance statuses. Read-only. Nullable.
@@ -428,6 +431,7 @@ class User(DirectoryObject, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_review_instance import AccessReviewInstance
+        from .adhoc_call import AdhocCall
         from .agreement_acceptance import AgreementAcceptance
         from .approval import Approval
         from .app_consent_request import AppConsentRequest
@@ -508,6 +512,7 @@ class User(DirectoryObject, Parsable):
         from .windows_information_protection_device_registration import WindowsInformationProtectionDeviceRegistration
 
         from .access_review_instance import AccessReviewInstance
+        from .adhoc_call import AdhocCall
         from .agreement_acceptance import AgreementAcceptance
         from .approval import Approval
         from .app_consent_request import AppConsentRequest
@@ -591,6 +596,7 @@ class User(DirectoryObject, Parsable):
             "aboutMe": lambda n : setattr(self, 'about_me', n.get_str_value()),
             "accountEnabled": lambda n : setattr(self, 'account_enabled', n.get_bool_value()),
             "activities": lambda n : setattr(self, 'activities', n.get_collection_of_object_values(UserActivity)),
+            "adhocCalls": lambda n : setattr(self, 'adhoc_calls', n.get_collection_of_object_values(AdhocCall)),
             "ageGroup": lambda n : setattr(self, 'age_group', n.get_str_value()),
             "agreementAcceptances": lambda n : setattr(self, 'agreement_acceptances', n.get_collection_of_object_values(AgreementAcceptance)),
             "analytics": lambda n : setattr(self, 'analytics', n.get_object_value(UserAnalytics)),
@@ -764,6 +770,7 @@ class User(DirectoryObject, Parsable):
         writer.write_str_value("aboutMe", self.about_me)
         writer.write_bool_value("accountEnabled", self.account_enabled)
         writer.write_collection_of_object_values("activities", self.activities)
+        writer.write_collection_of_object_values("adhocCalls", self.adhoc_calls)
         writer.write_str_value("ageGroup", self.age_group)
         writer.write_collection_of_object_values("agreementAcceptances", self.agreement_acceptances)
         writer.write_object_value("analytics", self.analytics)
