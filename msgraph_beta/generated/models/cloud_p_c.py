@@ -11,6 +11,8 @@ if TYPE_CHECKING:
     from .cloud_pc_connectivity_result import CloudPcConnectivityResult
     from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
     from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
+    from .cloud_pc_entra_group_detail import CloudPcEntraGroupDetail
+    from .cloud_pc_entra_user_detail import CloudPcEntraUserDetail
     from .cloud_pc_frontline_shared_device_detail import CloudPcFrontlineSharedDeviceDetail
     from .cloud_pc_login_result import CloudPcLoginResult
     from .cloud_pc_operating_system import CloudPcOperatingSystem
@@ -54,6 +56,8 @@ class CloudPC(Entity, Parsable):
     frontline_cloud_pc_availability: Optional[FrontlineCloudPcAvailability] = None
     # The date and time when the grace period ends and reprovisioning or deprovisioning happens. Required only if the status is inGracePeriod. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     grace_period_end_date_time: Optional[datetime.datetime] = None
+    # The Microsoft Entra group details (for example, ID and display name) for the Entra ID group associated with the user's Reserve Cloud PC assignment. Read-only.
+    group_detail: Optional[CloudPcEntraGroupDetail] = None
     # Name of the OS image that's on the Cloud PC.
     image_display_name: Optional[str] = None
     # The last login result of the Cloud PC. For example, { 'time': '2014-01-01T00:00:00Z'}.
@@ -104,6 +108,8 @@ class CloudPC(Entity, Parsable):
     status_details: Optional[CloudPcStatusDetails] = None
     # The account type of the user on provisioned Cloud PCs. Possible values are: standardUser, administrator, unknownFutureValue.
     user_account_type: Optional[CloudPcUserAccountType] = None
+    # The user details (for example, ID and display name) for the user associated with a Reserve Cloud PC assignment. Read-only.
+    user_detail: Optional[CloudPcEntraUserDetail] = None
     # Specifies the type of cloud object the end user can access. The possible values are: cloudPc, cloudApp, unknownFutureValue. When set to cloudPc, it indicates that the end user can access the entire desktop. When set to cloudApp, it indicates that the end user can only access cloud apps published under the associated provisioning policy. Since the cloud app experience also creates Cloud PC devices that appear in the Cloud PC device list, this property helps differentiate them. The default value is cloudPc. This property is defined in the provisioning policy.
     user_experience_type: Optional[CloudPcUserExperienceType] = None
     # The user principal name (UPN) of the user assigned to the Cloud PC.
@@ -130,6 +136,8 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_connectivity_result import CloudPcConnectivityResult
         from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
         from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
+        from .cloud_pc_entra_group_detail import CloudPcEntraGroupDetail
+        from .cloud_pc_entra_user_detail import CloudPcEntraUserDetail
         from .cloud_pc_frontline_shared_device_detail import CloudPcFrontlineSharedDeviceDetail
         from .cloud_pc_login_result import CloudPcLoginResult
         from .cloud_pc_operating_system import CloudPcOperatingSystem
@@ -152,6 +160,8 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_connectivity_result import CloudPcConnectivityResult
         from .cloud_pc_disaster_recovery_capability import CloudPcDisasterRecoveryCapability
         from .cloud_pc_disk_encryption_state import CloudPcDiskEncryptionState
+        from .cloud_pc_entra_group_detail import CloudPcEntraGroupDetail
+        from .cloud_pc_entra_user_detail import CloudPcEntraUserDetail
         from .cloud_pc_frontline_shared_device_detail import CloudPcFrontlineSharedDeviceDetail
         from .cloud_pc_login_result import CloudPcLoginResult
         from .cloud_pc_operating_system import CloudPcOperatingSystem
@@ -181,6 +191,7 @@ class CloudPC(Entity, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "frontlineCloudPcAvailability": lambda n : setattr(self, 'frontline_cloud_pc_availability', n.get_enum_value(FrontlineCloudPcAvailability)),
             "gracePeriodEndDateTime": lambda n : setattr(self, 'grace_period_end_date_time', n.get_datetime_value()),
+            "groupDetail": lambda n : setattr(self, 'group_detail', n.get_object_value(CloudPcEntraGroupDetail)),
             "imageDisplayName": lambda n : setattr(self, 'image_display_name', n.get_str_value()),
             "lastLoginResult": lambda n : setattr(self, 'last_login_result', n.get_object_value(CloudPcLoginResult)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -205,6 +216,7 @@ class CloudPC(Entity, Parsable):
             "statusDetail": lambda n : setattr(self, 'status_detail', n.get_object_value(CloudPcStatusDetail)),
             "statusDetails": lambda n : setattr(self, 'status_details', n.get_object_value(CloudPcStatusDetails)),
             "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(CloudPcUserAccountType)),
+            "userDetail": lambda n : setattr(self, 'user_detail', n.get_object_value(CloudPcEntraUserDetail)),
             "userExperienceType": lambda n : setattr(self, 'user_experience_type', n.get_enum_value(CloudPcUserExperienceType)),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
@@ -232,6 +244,7 @@ class CloudPC(Entity, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("frontlineCloudPcAvailability", self.frontline_cloud_pc_availability)
         writer.write_datetime_value("gracePeriodEndDateTime", self.grace_period_end_date_time)
+        writer.write_object_value("groupDetail", self.group_detail)
         writer.write_str_value("imageDisplayName", self.image_display_name)
         writer.write_object_value("lastLoginResult", self.last_login_result)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
@@ -256,6 +269,7 @@ class CloudPC(Entity, Parsable):
         writer.write_object_value("statusDetail", self.status_detail)
         writer.write_object_value("statusDetails", self.status_details)
         writer.write_enum_value("userAccountType", self.user_account_type)
+        writer.write_object_value("userDetail", self.user_detail)
         writer.write_enum_value("userExperienceType", self.user_experience_type)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
     

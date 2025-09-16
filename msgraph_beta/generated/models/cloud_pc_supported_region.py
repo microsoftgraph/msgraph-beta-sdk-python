@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .cloud_pc_geographic_location_type import CloudPcGeographicLocationType
     from .cloud_pc_management_service import CloudPcManagementService
     from .cloud_pc_region_group import CloudPcRegionGroup
     from .cloud_pc_supported_region_restriction_detail import CloudPcSupportedRegionRestrictionDetail
@@ -17,6 +18,8 @@ from .entity import Entity
 class CloudPcSupportedRegion(Entity, Parsable):
     # The name for the supported region. Read-only.
     display_name: Optional[str] = None
+    # The geographic location where the region is located. Possible values are: default, asia, australasia, canada, europe, india, africa, usCentral, usEast, usWest, southAmerica, middleEast, centralAmerica, usGovernment, unknownFutureValue. Default value is default. Read-only.
+    geographic_location_type: Optional[CloudPcGeographicLocationType] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The regionGroup property
@@ -44,12 +47,14 @@ class CloudPcSupportedRegion(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .cloud_pc_geographic_location_type import CloudPcGeographicLocationType
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_region_group import CloudPcRegionGroup
         from .cloud_pc_supported_region_restriction_detail import CloudPcSupportedRegionRestrictionDetail
         from .cloud_pc_supported_region_status import CloudPcSupportedRegionStatus
         from .entity import Entity
 
+        from .cloud_pc_geographic_location_type import CloudPcGeographicLocationType
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_region_group import CloudPcRegionGroup
         from .cloud_pc_supported_region_restriction_detail import CloudPcSupportedRegionRestrictionDetail
@@ -58,6 +63,7 @@ class CloudPcSupportedRegion(Entity, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "geographicLocationType": lambda n : setattr(self, 'geographic_location_type', n.get_enum_value(CloudPcGeographicLocationType)),
             "regionGroup": lambda n : setattr(self, 'region_group', n.get_enum_value(CloudPcRegionGroup)),
             "regionRestrictionDetail": lambda n : setattr(self, 'region_restriction_detail', n.get_object_value(CloudPcSupportedRegionRestrictionDetail)),
             "regionStatus": lambda n : setattr(self, 'region_status', n.get_enum_value(CloudPcSupportedRegionStatus)),
@@ -77,6 +83,7 @@ class CloudPcSupportedRegion(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_enum_value("geographicLocationType", self.geographic_location_type)
         writer.write_enum_value("regionGroup", self.region_group)
         writer.write_object_value("regionRestrictionDetail", self.region_restriction_detail)
         writer.write_enum_value("regionStatus", self.region_status)

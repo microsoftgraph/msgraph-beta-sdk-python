@@ -343,6 +343,7 @@ if TYPE_CHECKING:
     from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
     from .cloud_pc_device_image import CloudPcDeviceImage
     from .cloud_pc_export_job import CloudPcExportJob
+    from .cloud_pc_external_partner import CloudPcExternalPartner
     from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
     from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
     from .cloud_pc_gallery_image import CloudPcGalleryImage
@@ -3541,6 +3542,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_export_job import CloudPcExportJob
 
             return CloudPcExportJob()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcExternalPartner".casefold():
+            from .cloud_pc_external_partner import CloudPcExternalPartner
+
+            return CloudPcExternalPartner()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcExternalPartnerSetting".casefold():
             from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
 
@@ -11171,6 +11176,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
         from .cloud_pc_export_job import CloudPcExportJob
+        from .cloud_pc_external_partner import CloudPcExternalPartner
         from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
         from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
         from .cloud_pc_gallery_image import CloudPcGalleryImage
@@ -13318,6 +13324,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
         from .cloud_pc_export_job import CloudPcExportJob
+        from .cloud_pc_external_partner import CloudPcExternalPartner
         from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
         from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
         from .cloud_pc_gallery_image import CloudPcGalleryImage

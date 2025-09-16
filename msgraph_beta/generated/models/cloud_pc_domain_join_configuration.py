@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_domain_join_type import CloudPcDomainJoinType
+    from .cloud_pc_geographic_location_type import CloudPcGeographicLocationType
     from .cloud_pc_region_group import CloudPcRegionGroup
 
 @dataclass
@@ -18,6 +19,8 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Specifies the method by which the provisioned Cloud PC joins Microsoft Entra ID. If you choose the hybridAzureADJoin type, only provide a value for the onPremisesConnectionId property and leave the regionName property empty. If you choose the azureADJoin type, provide a value for either the onPremisesConnectionId or the regionName property. Possible values are: azureADJoin, hybridAzureADJoin, unknownFutureValue.
     domain_join_type: Optional[CloudPcDomainJoinType] = None
+    # The geographic location where the region is located. Possible values are: default, asia, australasia, canada, europe, india, africa, usCentral, usEast, usWest, southAmerica, middleEast, centralAmerica, usGovernment, unknownFutureValue. Default value is default. Read-only.
+    geographic_location_type: Optional[CloudPcGeographicLocationType] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The Azure network connection ID that matches the virtual network IT admins want the provisioning policy to use when they create Cloud PCs. You can use this property in both domain join types: Azure AD joined or Hybrid Microsoft Entra joined. If you enter an onPremisesConnectionId, leave the regionName property empty.
@@ -46,13 +49,16 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_domain_join_type import CloudPcDomainJoinType
+        from .cloud_pc_geographic_location_type import CloudPcGeographicLocationType
         from .cloud_pc_region_group import CloudPcRegionGroup
 
         from .cloud_pc_domain_join_type import CloudPcDomainJoinType
+        from .cloud_pc_geographic_location_type import CloudPcGeographicLocationType
         from .cloud_pc_region_group import CloudPcRegionGroup
 
         fields: dict[str, Callable[[Any], None]] = {
             "domainJoinType": lambda n : setattr(self, 'domain_join_type', n.get_enum_value(CloudPcDomainJoinType)),
+            "geographicLocationType": lambda n : setattr(self, 'geographic_location_type', n.get_enum_value(CloudPcGeographicLocationType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "onPremisesConnectionId": lambda n : setattr(self, 'on_premises_connection_id', n.get_str_value()),
             "regionGroup": lambda n : setattr(self, 'region_group', n.get_enum_value(CloudPcRegionGroup)),
@@ -70,6 +76,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("domainJoinType", self.domain_join_type)
+        writer.write_enum_value("geographicLocationType", self.geographic_location_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("onPremisesConnectionId", self.on_premises_connection_id)
         writer.write_enum_value("regionGroup", self.region_group)

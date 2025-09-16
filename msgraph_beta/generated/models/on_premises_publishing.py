@@ -39,6 +39,8 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     is_accessible_via_z_t_n_a_client: Optional[bool] = None
     # Indicates whether backend SSL certificate validation is enabled for the application. For all new Application Proxy apps, the property is set to true by default. For all existing apps, the property is set to false.
     is_backend_certificate_validation_enabled: Optional[bool] = None
+    # Indicates whether continuous access evaluation is enabled for Application Proxy application. For all Application Proxy apps, the property is set to true by default.
+    is_continuous_access_evaluation_enabled: Optional[bool] = None
     # Indicates Microsoft Entra Private Access should handle DNS resolution. false by default.
     is_dns_resolution_enabled: Optional[bool] = None
     # Indicates if the HTTPOnly cookie flag should be set in the HTTP response headers. Set this value to true to have Application Proxy cookies include the HTTPOnly flag in the HTTP response headers. If using Remote Desktop Services, set this value to False. Default value is false.
@@ -123,6 +125,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
             "internalUrl": lambda n : setattr(self, 'internal_url', n.get_str_value()),
             "isAccessibleViaZTNAClient": lambda n : setattr(self, 'is_accessible_via_z_t_n_a_client', n.get_bool_value()),
             "isBackendCertificateValidationEnabled": lambda n : setattr(self, 'is_backend_certificate_validation_enabled', n.get_bool_value()),
+            "isContinuousAccessEvaluationEnabled": lambda n : setattr(self, 'is_continuous_access_evaluation_enabled', n.get_bool_value()),
             "isDnsResolutionEnabled": lambda n : setattr(self, 'is_dns_resolution_enabled', n.get_bool_value()),
             "isHttpOnlyCookieEnabled": lambda n : setattr(self, 'is_http_only_cookie_enabled', n.get_bool_value()),
             "isOnPremPublishingEnabled": lambda n : setattr(self, 'is_on_prem_publishing_enabled', n.get_bool_value()),
@@ -161,6 +164,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("internalUrl", self.internal_url)
         writer.write_bool_value("isAccessibleViaZTNAClient", self.is_accessible_via_z_t_n_a_client)
         writer.write_bool_value("isBackendCertificateValidationEnabled", self.is_backend_certificate_validation_enabled)
+        writer.write_bool_value("isContinuousAccessEvaluationEnabled", self.is_continuous_access_evaluation_enabled)
         writer.write_bool_value("isDnsResolutionEnabled", self.is_dns_resolution_enabled)
         writer.write_bool_value("isHttpOnlyCookieEnabled", self.is_http_only_cookie_enabled)
         writer.write_bool_value("isOnPremPublishingEnabled", self.is_on_prem_publishing_enabled)

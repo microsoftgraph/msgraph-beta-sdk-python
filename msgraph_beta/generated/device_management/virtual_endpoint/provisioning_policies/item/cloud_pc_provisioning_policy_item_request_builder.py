@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .assignments.assignments_request_builder import AssignmentsRequestBuilder
     from .retrieve_policy_apply_action_result.retrieve_policy_apply_action_result_request_builder import RetrievePolicyApplyActionResultRequestBuilder
     from .retrieve_policy_apply_schedule.retrieve_policy_apply_schedule_request_builder import RetrievePolicyApplyScheduleRequestBuilder
+    from .retry.retry_request_builder import RetryRequestBuilder
     from .schedule_policy_apply_task.schedule_policy_apply_task_request_builder import SchedulePolicyApplyTaskRequestBuilder
 
 class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
@@ -191,6 +192,15 @@ class CloudPcProvisioningPolicyItemRequestBuilder(BaseRequestBuilder):
         from .retrieve_policy_apply_schedule.retrieve_policy_apply_schedule_request_builder import RetrievePolicyApplyScheduleRequestBuilder
 
         return RetrievePolicyApplyScheduleRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retry(self) -> RetryRequestBuilder:
+        """
+        Provides operations to call the retry method.
+        """
+        from .retry.retry_request_builder import RetryRequestBuilder
+
+        return RetryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def schedule_policy_apply_task(self) -> SchedulePolicyApplyTaskRequestBuilder:
