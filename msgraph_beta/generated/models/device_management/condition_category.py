@@ -12,4 +12,7 @@ class ConditionCategory(str, Enum):
     UnknownFutureValue = "unknownFutureValue",
     FrontlineBufferUsageDuration = "frontlineBufferUsageDuration",
     FrontlineBufferUsageThreshold = "frontlineBufferUsageThreshold",
+    CloudPcUserSettingsPersistenceUsageThreshold = "cloudPcUserSettingsPersistenceUsageThreshold",
+    CloudPcDeprovisionedThreshold = "cloudPcDeprovisionedThreshold",
+    CloudPcReserveDeprovisionFailedThreshold = "cloudPcReserveDeprovisionFailedThreshold",
 

@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .cloud_p_cs.cloud_p_cs_request_builder import CloudPCsRequestBuilder
     from .cross_cloud_government_organization_mapping.cross_cloud_government_organization_mapping_request_builder import CrossCloudGovernmentOrganizationMappingRequestBuilder
     from .device_images.device_images_request_builder import DeviceImagesRequestBuilder
+    from .external_partners.external_partners_request_builder import ExternalPartnersRequestBuilder
     from .external_partner_settings.external_partner_settings_request_builder import ExternalPartnerSettingsRequestBuilder
     from .front_line_service_plans.front_line_service_plans_request_builder import FrontLineServicePlansRequestBuilder
     from .gallery_images.gallery_images_request_builder import GalleryImagesRequestBuilder
@@ -220,6 +221,15 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         from .external_partner_settings.external_partner_settings_request_builder import ExternalPartnerSettingsRequestBuilder
 
         return ExternalPartnerSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def external_partners(self) -> ExternalPartnersRequestBuilder:
+        """
+        Provides operations to manage the externalPartners property of the microsoft.graph.virtualEndpoint entity.
+        """
+        from .external_partners.external_partners_request_builder import ExternalPartnersRequestBuilder
+
+        return ExternalPartnersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def front_line_service_plans(self) -> FrontLineServicePlansRequestBuilder:

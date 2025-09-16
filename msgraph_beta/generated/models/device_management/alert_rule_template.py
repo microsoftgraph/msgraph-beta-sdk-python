@@ -9,4 +9,6 @@ class AlertRuleTemplate(str, Enum):
     CloudPcFrontlineInsufficientLicensesScenario = "cloudPcFrontlineInsufficientLicensesScenario",
     CloudPcInaccessibleScenario = "cloudPcInaccessibleScenario",
     CloudPcFrontlineConcurrencyScenario = "cloudPcFrontlineConcurrencyScenario",
+    CloudPcUserSettingsPersistenceScenario = "cloudPcUserSettingsPersistenceScenario",
+    CloudPcDeprovisionFailedScenario = "cloudPcDeprovisionFailedScenario",
 

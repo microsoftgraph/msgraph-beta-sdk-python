@@ -5,4 +5,6 @@ class CloudPcManagementService(str, Enum):
     DevBox = "devBox",
     UnknownFutureValue = "unknownFutureValue",
     RpaBox = "rpaBox",
+    Microsoft365Opal = "microsoft365Opal",
+    Microsoft365BizChat = "microsoft365BizChat",
 

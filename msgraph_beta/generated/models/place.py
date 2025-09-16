@@ -23,7 +23,7 @@ from .entity import Entity
 class Place(Entity, Parsable):
     # The physical address of the place, including the street, city, state, country or region, and postal code.
     address: Optional[PhysicalAddress] = None
-    # The checkIns property
+    # A subresource of a place object that indicates the check-in status of an Outlook calendar event booked at the place.
     check_ins: Optional[list[CheckInClaim]] = None
     # The name that is associated with the place.
     display_name: Optional[str] = None

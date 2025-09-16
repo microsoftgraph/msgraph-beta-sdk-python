@@ -73,11 +73,11 @@ class FileStorageContainerTypeRegistrationItemRequestBuilder(BaseRequestBuilder)
     
     async def patch(self,body: FileStorageContainerTypeRegistration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[FileStorageContainerTypeRegistration]:
         """
-        Create or replace a fileStorageContainerTypeRegistration object. This method registers a fileStorageContainerType in the tenant.  For standard containers, billing must be valid for the registration to complete successfully. Settings can't be modified during registration.
+        Update the properties of a fileStorageContainerTypeRegistration object. ETag is used for optimistic concurrency control. It must match the value from Create, Get or the previous Update.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FileStorageContainerTypeRegistration]
-        Find more info here: https://learn.microsoft.com/graph/api/filestorage-post-containertyperegistrations?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainertyperegistration-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -119,7 +119,7 @@ class FileStorageContainerTypeRegistrationItemRequestBuilder(BaseRequestBuilder)
     
     def to_patch_request_information(self,body: FileStorageContainerTypeRegistration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create or replace a fileStorageContainerTypeRegistration object. This method registers a fileStorageContainerType in the tenant.  For standard containers, billing must be valid for the registration to complete successfully. Settings can't be modified during registration.
+        Update the properties of a fileStorageContainerTypeRegistration object. ETag is used for optimistic concurrency control. It must match the value from Create, Get or the previous Update.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

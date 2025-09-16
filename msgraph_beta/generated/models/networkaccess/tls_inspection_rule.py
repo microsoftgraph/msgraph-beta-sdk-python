@@ -17,7 +17,7 @@ class TlsInspectionRule(PolicyRule, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.tlsInspectionRule"
     # Optional description explaining the purpose of the rule.
     description: Optional[str] = None
-    # The matchingConditions property
+    # The conditions that determine when this rule should be applied to traffic.
     matching_conditions: Optional[TlsInspectionMatchingConditions] = None
     # The priority of the rule. Rules are evaluated in ascending order of priority. Lower numbers indicate higher priority. Supports $filter (eq, ne, not, ge, le, in) and $orderby.
     priority: Optional[int] = None

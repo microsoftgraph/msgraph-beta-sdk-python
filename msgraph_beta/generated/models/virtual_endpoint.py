@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .cloud_pc_cloud_app import CloudPcCloudApp
     from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
     from .cloud_pc_device_image import CloudPcDeviceImage
+    from .cloud_pc_external_partner import CloudPcExternalPartner
     from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
     from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
     from .cloud_pc_gallery_image import CloudPcGalleryImage
@@ -42,6 +43,8 @@ class VirtualEndpoint(Entity, Parsable):
     device_images: Optional[list[CloudPcDeviceImage]] = None
     # The external partner settings on a Cloud PC.
     external_partner_settings: Optional[list[CloudPcExternalPartnerSetting]] = None
+    # The externalPartners property
+    external_partners: Optional[list[CloudPcExternalPartner]] = None
     # Front-line service plans for a Cloud PC.
     front_line_service_plans: Optional[list[CloudPcFrontLineServicePlan]] = None
     # The gallery image resource on Cloud PC.
@@ -86,6 +89,7 @@ class VirtualEndpoint(Entity, Parsable):
         from .cloud_pc_cloud_app import CloudPcCloudApp
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
+        from .cloud_pc_external_partner import CloudPcExternalPartner
         from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
         from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
         from .cloud_pc_gallery_image import CloudPcGalleryImage
@@ -105,6 +109,7 @@ class VirtualEndpoint(Entity, Parsable):
         from .cloud_pc_cloud_app import CloudPcCloudApp
         from .cloud_pc_cross_cloud_government_organization_mapping import CloudPcCrossCloudGovernmentOrganizationMapping
         from .cloud_pc_device_image import CloudPcDeviceImage
+        from .cloud_pc_external_partner import CloudPcExternalPartner
         from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
         from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
         from .cloud_pc_gallery_image import CloudPcGalleryImage
@@ -127,6 +132,7 @@ class VirtualEndpoint(Entity, Parsable):
             "crossCloudGovernmentOrganizationMapping": lambda n : setattr(self, 'cross_cloud_government_organization_mapping', n.get_object_value(CloudPcCrossCloudGovernmentOrganizationMapping)),
             "deviceImages": lambda n : setattr(self, 'device_images', n.get_collection_of_object_values(CloudPcDeviceImage)),
             "externalPartnerSettings": lambda n : setattr(self, 'external_partner_settings', n.get_collection_of_object_values(CloudPcExternalPartnerSetting)),
+            "externalPartners": lambda n : setattr(self, 'external_partners', n.get_collection_of_object_values(CloudPcExternalPartner)),
             "frontLineServicePlans": lambda n : setattr(self, 'front_line_service_plans', n.get_collection_of_object_values(CloudPcFrontLineServicePlan)),
             "galleryImages": lambda n : setattr(self, 'gallery_images', n.get_collection_of_object_values(CloudPcGalleryImage)),
             "onPremisesConnections": lambda n : setattr(self, 'on_premises_connections', n.get_collection_of_object_values(CloudPcOnPremisesConnection)),
@@ -158,6 +164,7 @@ class VirtualEndpoint(Entity, Parsable):
         writer.write_object_value("crossCloudGovernmentOrganizationMapping", self.cross_cloud_government_organization_mapping)
         writer.write_collection_of_object_values("deviceImages", self.device_images)
         writer.write_collection_of_object_values("externalPartnerSettings", self.external_partner_settings)
+        writer.write_collection_of_object_values("externalPartners", self.external_partners)
         writer.write_collection_of_object_values("frontLineServicePlans", self.front_line_service_plans)
         writer.write_collection_of_object_values("galleryImages", self.gallery_images)
         writer.write_collection_of_object_values("onPremisesConnections", self.on_premises_connections)
