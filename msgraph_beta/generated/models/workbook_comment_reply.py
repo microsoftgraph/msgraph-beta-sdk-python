@@ -12,9 +12,9 @@ from .entity import Entity
 
 @dataclass
 class WorkbookCommentReply(Entity, Parsable):
-    # The content of the reply.
+    # The content of the reply that is the displayed to end-users.
     content: Optional[str] = None
-    # The content type for the reply.
+    # The content type for the reply. Supported values are: plain, mention.
     content_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
