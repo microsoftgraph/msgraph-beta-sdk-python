@@ -12,7 +12,7 @@ class CloudPcConnectionSettings(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The enableSingleSignOn property
+    # Indicates whether single sign-on is enabled. The default value is false.
     enable_single_sign_on: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
