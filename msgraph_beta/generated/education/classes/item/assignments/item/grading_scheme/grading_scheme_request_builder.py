@@ -32,7 +32,7 @@ class GradingSchemeRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GradingSchemeRequestBuilderGetQueryParameters]] = None) -> Optional[EducationGradingScheme]:
         """
-        Get gradingScheme from education
+        When set, enables users to configure custom string grades based on the percentage of total points earned on this assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationGradingScheme]
         """
@@ -52,7 +52,7 @@ class GradingSchemeRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GradingSchemeRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get gradingScheme from education
+        When set, enables users to configure custom string grades based on the percentage of total points earned on this assignment.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class GradingSchemeRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GradingSchemeRequestBuilderGetQueryParameters():
         """
-        Get gradingScheme from education
+        When set, enables users to configure custom string grades based on the percentage of total points earned on this assignment.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

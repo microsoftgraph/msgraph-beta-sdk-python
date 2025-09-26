@@ -49,7 +49,7 @@ class CommentsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CommentsRequestBuilderGetQueryParameters]] = None) -> Optional[WorkbookCommentCollectionResponse]:
         """
-        Get comments from drives
+        Represents a collection of comments in a workbook.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkbookCommentCollectionResponse]
         """
@@ -92,7 +92,7 @@ class CommentsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CommentsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get comments from drives
+        Represents a collection of comments in a workbook.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class CommentsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CommentsRequestBuilderGetQueryParameters():
         """
-        Get comments from drives
+        Represents a collection of comments in a workbook.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

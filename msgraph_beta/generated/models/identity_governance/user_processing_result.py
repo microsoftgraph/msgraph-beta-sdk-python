@@ -26,7 +26,7 @@ class UserProcessingResult(Entity, Parsable):
     processing_status: Optional[LifecycleWorkflowProcessingStatus] = None
     # The date time that the workflow is scheduled to be executed for a user.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
     scheduled_date_time: Optional[datetime.datetime] = None
-    # The date time that the workflow execution started. Value is null if the workflow execution has not started.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+    # The date time that the workflow execution started. Value is null if the workflow execution hasn't started.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
     started_date_time: Optional[datetime.datetime] = None
     # The subject property
     subject: Optional[User] = None

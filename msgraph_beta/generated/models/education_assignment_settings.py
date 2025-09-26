@@ -13,11 +13,11 @@ from .entity import Entity
 
 @dataclass
 class EducationAssignmentSettings(Entity, Parsable):
-    # The defaultGradingScheme property
+    # The default grading scheme for assignments created in this class.
     default_grading_scheme: Optional[EducationGradingScheme] = None
     # When set, enables users to weight assignments differently when computing a class average grade.
     grading_categories: Optional[list[EducationGradingCategory]] = None
-    # The gradingSchemes property
+    # The grading schemes that can be attached to assignments created in this class.
     grading_schemes: Optional[list[EducationGradingScheme]] = None
     # The OdataType property
     odata_type: Optional[str] = None

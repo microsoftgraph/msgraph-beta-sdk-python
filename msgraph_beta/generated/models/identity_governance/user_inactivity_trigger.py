@@ -13,7 +13,7 @@ from .workflow_execution_trigger import WorkflowExecutionTrigger
 class UserInactivityTrigger(WorkflowExecutionTrigger, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.identityGovernance.userInactivityTrigger"
-    # The inactivityPeriodInDays property
+    # The number of days a user must be inactive before triggering workflow execution.
     inactivity_period_in_days: Optional[int] = None
     
     @staticmethod

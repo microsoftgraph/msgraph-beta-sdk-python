@@ -20,7 +20,7 @@ from .entity import Entity
 class Workbook(Entity, Parsable):
     # The application property
     application: Optional[WorkbookApplication] = None
-    # The comments property
+    # Represents a collection of comments in a workbook.
     comments: Optional[list[WorkbookComment]] = None
     # The functions property
     functions: Optional[WorkbookFunctions] = None

@@ -69,11 +69,11 @@ class GradingSchemesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: EducationGradingScheme, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[EducationGradingScheme]:
         """
-        Create a new educationGradingScheme object.
+        Create a new educationGradingScheme on an educationClass. Only teachers can perform this operation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationGradingScheme]
-        Find more info here: https://learn.microsoft.com/graph/api/educationgradingscheme-post?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/educationassignmentsettings-post-gradingschemes?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -104,7 +104,7 @@ class GradingSchemesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: EducationGradingScheme, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new educationGradingScheme object.
+        Create a new educationGradingScheme on an educationClass. Only teachers can perform this operation.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -59,7 +59,7 @@ class EducationAssignment(Entity, Parsable):
     grading: Optional[EducationAssignmentGradeType] = None
     # When set, enables users to weight assignments differently when computing a class average grade.
     grading_category: Optional[EducationGradingCategory] = None
-    # The gradingScheme property
+    # When set, enables users to configure custom string grades based on the percentage of total points earned on this assignment.
     grading_scheme: Optional[EducationGradingScheme] = None
     # Instructions for the assignment. This property and the display name tell the student what to do.
     instructions: Optional[EducationItemBody] = None
