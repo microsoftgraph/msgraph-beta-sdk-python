@@ -23,7 +23,7 @@ class ConditionalAccessRoot(Entity, Parsable):
     authentication_strength: Optional[AuthenticationStrengthRoot] = None
     # DEPRECATED. See the authenticationStrength relationship instead.
     authentication_strengths: Optional[AuthenticationStrengthRoot] = None
-    # The deletedItems property
+    # Read-only. Nullable. Returns a collection of the deleted Conditional Access objects.
     deleted_items: Optional[CaPoliciesDeletableRoot] = None
     # Read-only. Nullable. Returns a collection of the specified named locations.
     named_locations: Optional[list[NamedLocation]] = None

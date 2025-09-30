@@ -11,11 +11,11 @@ from .share_point_migration_event import SharePointMigrationEvent
 
 @dataclass
 class SharePointMigrationJobCancelledEvent(SharePointMigrationEvent, Parsable):
-    # The isCancelledByUser property
+    # True when a user cancels the job; otherwise, false. Read-only.
     is_cancelled_by_user: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The totalRetryCount property
+    # The current retry count of the job. Read-only.
     total_retry_count: Optional[int] = None
     
     @staticmethod

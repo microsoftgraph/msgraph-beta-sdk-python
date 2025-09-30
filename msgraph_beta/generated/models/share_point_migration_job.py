@@ -17,7 +17,7 @@ class SharePointMigrationJob(Entity, Parsable):
     container_info: Optional[SharePointMigrationContainerInfo] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The progressEvents property
+    # A collection of migration events that reflects the job status changes.
     progress_events: Optional[list[SharePointMigrationEvent]] = None
     
     @staticmethod

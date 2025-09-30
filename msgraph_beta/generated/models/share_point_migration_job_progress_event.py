@@ -11,41 +11,41 @@ from .share_point_migration_event import SharePointMigrationEvent
 
 @dataclass
 class SharePointMigrationJobProgressEvent(SharePointMigrationEvent, Parsable):
-    # The bytesProcessed property
+    # The number of bytes processed. Read-only.
     bytes_processed: Optional[int] = None
-    # The bytesProcessedOnlyCurrentVersion property
+    # The number of bytes processed with version history excluded. Read-only.
     bytes_processed_only_current_version: Optional[int] = None
-    # The cpuDurationMs property
+    # CPU duration in milliseconds. Read-only.
     cpu_duration_ms: Optional[int] = None
-    # The filesProcessed property
+    # The number of files processed. Read-only.
     files_processed: Optional[int] = None
-    # The filesProcessedOnlyCurrentVersion property
+    # The number of files processed with version history excluded. Read-only.
     files_processed_only_current_version: Optional[int] = None
-    # The isCompleted property
+    # True if the job status is End. False if the job is In progress. Read-only.
     is_completed: Optional[bool] = None
-    # The lastProcessedObjectId property
+    # The unique identifier of the last object processed. Read-only.
     last_processed_object_id: Optional[str] = None
-    # The objectsProcessed property
+    # The number of objects processed. Read-only.
     objects_processed: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sqlDurationMs property
+    # SQL duration in milliseconds. Read-only.
     sql_duration_ms: Optional[int] = None
-    # The sqlQueryCount property
+    # SQL query count. Read-only.
     sql_query_count: Optional[int] = None
-    # The totalDurationMs property
+    # Total duration time in milliseconds. Read-only.
     total_duration_ms: Optional[int] = None
-    # The totalErrors property
+    # Total errors. Read-only.
     total_errors: Optional[int] = None
-    # The totalExpectedBytes property
+    # Total bytes to be processed. Read-only.
     total_expected_bytes: Optional[int] = None
-    # The totalExpectedObjects property
+    # The number of objects to process. Read-only.
     total_expected_objects: Optional[int] = None
-    # The totalRetryCount property
+    # The current retry count of the job. Read-only.
     total_retry_count: Optional[int] = None
-    # The totalWarnings property
+    # Total warnings. Read-only.
     total_warnings: Optional[int] = None
-    # The waitTimeOnSqlThrottlingMs property
+    # Waiting time due to SQL throttling, in milliseconds. Read-only.
     wait_time_on_sql_throttling_ms: Optional[int] = None
     
     @staticmethod

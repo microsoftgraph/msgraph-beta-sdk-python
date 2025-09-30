@@ -12,15 +12,15 @@ from .share_point_migration_event import SharePointMigrationEvent
 
 @dataclass
 class SharePointMigrationJobPostponedEvent(SharePointMigrationEvent, Parsable):
-    # The jobsInQueue property
+    # The number of migration jobs in the queue of the current database. Read-only.
     jobs_in_queue: Optional[int] = None
-    # The nextPickupDateTime property
+    # The date and time that indicate when this job is picked up next. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     next_pickup_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The reason property
+    # The reason for the postponement. Read-only.
     reason: Optional[str] = None
-    # The totalRetryCount property
+    # The current retry count of the job. Read-only.
     total_retry_count: Optional[int] = None
     
     @staticmethod

@@ -50,7 +50,7 @@ class PolicyRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PolicyRequestBuilderGetQueryParameters]] = None) -> Optional[TeamsPolicyAssignment]:
         """
-        Get policy from admin
+        Represents a navigation property to the Teams policy assignment object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamsPolicyAssignment]
         """
@@ -104,7 +104,7 @@ class PolicyRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PolicyRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get policy from admin
+        Represents a navigation property to the Teams policy assignment object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class PolicyRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PolicyRequestBuilderGetQueryParameters():
         """
-        Get policy from admin
+        Represents a navigation property to the Teams policy assignment object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

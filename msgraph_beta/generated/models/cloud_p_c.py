@@ -40,7 +40,7 @@ class CloudPC(Entity, Parsable):
     allotment_display_name: Optional[str] = None
     # The connection setting of the Cloud PC. Possible values: enableSingleSignOn. Read Only.
     connection_setting: Optional[CloudPcConnectionSetting] = None
-    # The connectionSettings property
+    # The connection settings of the Cloud PC. Possible values: enableSingleSignOn. Read-only. This property is deprecated and stopped retuning data on August 31, 2024. Going forward, use the connectionSetting property.
     connection_settings: Optional[CloudPcConnectionSettings] = None
     # The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC can be connected.
     connectivity_result: Optional[CloudPcConnectivityResult] = None
@@ -88,7 +88,7 @@ class CloudPC(Entity, Parsable):
     provisioning_policy_id: Optional[str] = None
     # The provisioning policy that is applied during the provisioning of Cloud PCs.
     provisioning_policy_name: Optional[str] = None
-    # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue,sharedByUser, sharedByEntraGroup. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup. The default value is dedicated. CAUTION: The shared member is deprecated and will stop returning on April 30, 2027； in the future, use the sharedByUser member.
+    # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup, reserve. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup, reserve. The default value is dedicated. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member.
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The scopeIds property
     scope_ids: Optional[list[str]] = None

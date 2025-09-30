@@ -18,15 +18,15 @@ class SharePointMigrationJobErrorEvent(SharePointMigrationEvent, Parsable):
     error: Optional[PublicError] = None
     # The errorLevel property
     error_level: Optional[SharePointMigrationJobErrorLevel] = None
-    # The objectId property
+    # The object ID. Read-only.
     object_id: Optional[str] = None
     # The objectType property
     object_type: Optional[SharePointMigrationObjectType] = None
-    # The objectUrl property
+    # The object URL. Read-only.
     object_url: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The totalRetryCount property
+    # The current retry count of the job. Read-only.
     total_retry_count: Optional[int] = None
     
     @staticmethod

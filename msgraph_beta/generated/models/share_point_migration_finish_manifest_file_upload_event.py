@@ -11,7 +11,7 @@ from .share_point_migration_event import SharePointMigrationEvent
 
 @dataclass
 class SharePointMigrationFinishManifestFileUploadEvent(SharePointMigrationEvent, Parsable):
-    # The manifestFileName property
+    # The exported manifest file name. Read-only.
     manifest_file_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

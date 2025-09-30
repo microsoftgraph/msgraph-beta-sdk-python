@@ -13,11 +13,11 @@ from .entity import Entity
 
 @dataclass
 class CaPoliciesDeletableRoot(Entity, Parsable):
-    # The namedLocations property
+    # Read-only. Nullable. Returns a collection of the specified named locations.
     named_locations: Optional[list[NamedLocation]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The policies property
+    # Read-only. Nullable. Returns a collection of the specified Conditional Access policies.
     policies: Optional[list[ConditionalAccessPolicy]] = None
     
     @staticmethod

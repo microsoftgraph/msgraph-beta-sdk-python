@@ -54,7 +54,7 @@ class FileStorageContainer(Entity, Parsable):
     item_major_version_limit: Optional[int] = None
     # Indicates the lock state of the fileStorageContainer. The possible values are unlocked and lockedReadOnly. Read-only.
     lock_state: Optional[SiteLockState] = None
-    # The migrationJobs property
+    # The collection of sharePointMigrationJob objects local to the container. Read-write.
     migration_jobs: Optional[list[SharePointMigrationJob]] = None
     # The OdataType property
     odata_type: Optional[str] = None

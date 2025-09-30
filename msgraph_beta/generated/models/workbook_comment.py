@@ -13,9 +13,9 @@ from .entity import Entity
 
 @dataclass
 class WorkbookComment(Entity, Parsable):
-    # The content of the comment.
+    # The content of the comment that is the String displayed to end-users.
     content: Optional[str] = None
-    # The content type of the comment.
+    # The content type of the comment. Supported values are: plain, mention.
     content_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
