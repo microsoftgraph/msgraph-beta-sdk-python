@@ -15,7 +15,7 @@ from ..entity import Entity
 class TeamsAdminRoot(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
-    # The policy property
+    # Represents a navigation property to the Teams policy assignment object.
     policy: Optional[TeamsPolicyAssignment] = None
     # Represents the configuration information of users who have accounts hosted on Microsoft Teams.
     user_configurations: Optional[list[TeamsUserConfiguration]] = None

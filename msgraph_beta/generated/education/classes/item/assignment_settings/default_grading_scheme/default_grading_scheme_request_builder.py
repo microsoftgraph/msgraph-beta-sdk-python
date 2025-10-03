@@ -32,7 +32,7 @@ class DefaultGradingSchemeRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DefaultGradingSchemeRequestBuilderGetQueryParameters]] = None) -> Optional[EducationGradingScheme]:
         """
-        Get defaultGradingScheme from education
+        The default grading scheme for assignments created in this class.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationGradingScheme]
         """
@@ -52,7 +52,7 @@ class DefaultGradingSchemeRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DefaultGradingSchemeRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get defaultGradingScheme from education
+        The default grading scheme for assignments created in this class.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class DefaultGradingSchemeRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DefaultGradingSchemeRequestBuilderGetQueryParameters():
         """
-        Get defaultGradingScheme from education
+        The default grading scheme for assignments created in this class.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

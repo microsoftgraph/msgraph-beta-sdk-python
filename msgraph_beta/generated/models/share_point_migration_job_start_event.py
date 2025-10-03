@@ -11,11 +11,11 @@ from .share_point_migration_event import SharePointMigrationEvent
 
 @dataclass
 class SharePointMigrationJobStartEvent(SharePointMigrationEvent, Parsable):
-    # The isRestarted property
+    # True if the job is restarted. False if it's the initial start. Read-only.
     is_restarted: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The totalRetryCount property
+    # The current retry count of the job. Read-only.
     total_retry_count: Optional[int] = None
     
     @staticmethod

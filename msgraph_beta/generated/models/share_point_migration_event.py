@@ -20,11 +20,11 @@ from .entity import Entity
 
 @dataclass
 class SharePointMigrationEvent(Entity, Parsable):
-    # The correlationId property
+    # The correlation ID of a migration job. Read-only.
     correlation_id: Optional[str] = None
-    # The eventDateTime property
+    # The date and time when the job status changes. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     event_date_time: Optional[datetime.datetime] = None
-    # The jobId property
+    # The unique identifier of a migration job. Read-only.
     job_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

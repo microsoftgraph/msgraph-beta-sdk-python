@@ -52,7 +52,7 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeletedItemsRequestBuilderGetQueryParameters]] = None) -> Optional[CaPoliciesDeletableRoot]:
         """
-        Get deletedItems from identity
+        Read-only. Nullable. Returns a collection of the deleted Conditional Access objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CaPoliciesDeletableRoot]
         """
@@ -106,7 +106,7 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeletedItemsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get deletedItems from identity
+        Read-only. Nullable. Returns a collection of the deleted Conditional Access objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -168,7 +168,7 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeletedItemsRequestBuilderGetQueryParameters():
         """
-        Get deletedItems from identity
+        Read-only. Nullable. Returns a collection of the deleted Conditional Access objects.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

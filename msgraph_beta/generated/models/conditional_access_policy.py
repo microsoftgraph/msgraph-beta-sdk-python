@@ -29,7 +29,7 @@ class ConditionalAccessPolicy(PolicyDeletableItem, Parsable):
     display_name: Optional[str] = None
     # Specifies the grant controls that must be fulfilled to pass the policy.
     grant_controls: Optional[ConditionalAccessGrantControls] = None
-    # The id property
+    # Specifies the identifier of a conditionalAccessPolicy object. Read-only.
     id: Optional[str] = None
     # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Readonly.
     modified_date_time: Optional[datetime.datetime] = None

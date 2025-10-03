@@ -49,7 +49,7 @@ class MigrationJobsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MigrationJobsRequestBuilderGetQueryParameters]] = None) -> Optional[SharePointMigrationJobCollectionResponse]:
         """
-        Get migrationJobs from storage
+        The collection of sharePointMigrationJob objects local to the container. Read-write.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SharePointMigrationJobCollectionResponse]
         """
@@ -92,7 +92,7 @@ class MigrationJobsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MigrationJobsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get migrationJobs from storage
+        The collection of sharePointMigrationJob objects local to the container. Read-write.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class MigrationJobsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MigrationJobsRequestBuilderGetQueryParameters():
         """
-        Get migrationJobs from storage
+        The collection of sharePointMigrationJob objects local to the container. Read-write.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

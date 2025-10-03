@@ -52,7 +52,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TeamsRequestBuilderGetQueryParameters]] = None) -> Optional[TeamsAdminRoot]:
         """
-        A container for all Teams telephone number management functionalities and user configurations.
+        A container for Teams administration functionalities, such as user configurations, telephone number management, and policy assignments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamsAdminRoot]
         """
@@ -106,7 +106,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TeamsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        A container for all Teams telephone number management functionalities and user configurations.
+        A container for Teams administration functionalities, such as user configurations, telephone number management, and policy assignments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -168,7 +168,7 @@ class TeamsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamsRequestBuilderGetQueryParameters():
         """
-        A container for all Teams telephone number management functionalities and user configurations.
+        A container for Teams administration functionalities, such as user configurations, telephone number management, and policy assignments.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

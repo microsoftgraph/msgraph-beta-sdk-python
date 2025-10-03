@@ -34,7 +34,7 @@ class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(BaseRe
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Permanently delete a policyDeletableItem object, which might be one of the following deleted policy types:- crossTenantAccessPolicyConfigurationPartner- crossTenantIdentitySyncPolicyPartner
+        Permanently delete a policyDeletableItem object, which might be one of the following deleted policy types:- crossTenantAccessPolicyConfigurationPartner- crossTenantIdentitySyncPolicyPartner- conditionalAccessPolicy- namedLocation
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/policydeletableitem-delete?view=graph-rest-beta
@@ -53,7 +53,7 @@ class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(BaseRe
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderGetQueryParameters]] = None) -> Optional[CrossTenantAccessPolicyConfigurationPartner]:
         """
-        Read the properties and relationships of a policyDeletableItem object, which might be one of the following deleted policy types:- crossTenantAccessPolicyConfigurationPartner- crossTenantIdentitySyncPolicyPartner
+        Read the properties and relationships of a policyDeletableItem object, which might be one of the following deleted policy types:- crossTenantAccessPolicyConfigurationPartner- crossTenantIdentitySyncPolicyPartner- conditionalAccessPolicy- namedLocation
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantAccessPolicyConfigurationPartner]
         Find more info here: https://learn.microsoft.com/graph/api/policydeletableitem-get?view=graph-rest-beta
@@ -97,7 +97,7 @@ class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(BaseRe
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Permanently delete a policyDeletableItem object, which might be one of the following deleted policy types:- crossTenantAccessPolicyConfigurationPartner- crossTenantIdentitySyncPolicyPartner
+        Permanently delete a policyDeletableItem object, which might be one of the following deleted policy types:- crossTenantAccessPolicyConfigurationPartner- crossTenantIdentitySyncPolicyPartner- conditionalAccessPolicy- namedLocation
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +108,7 @@ class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(BaseRe
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a policyDeletableItem object, which might be one of the following deleted policy types:- crossTenantAccessPolicyConfigurationPartner- crossTenantIdentitySyncPolicyPartner
+        Read the properties and relationships of a policyDeletableItem object, which might be one of the following deleted policy types:- crossTenantAccessPolicyConfigurationPartner- crossTenantIdentitySyncPolicyPartner- conditionalAccessPolicy- namedLocation
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -170,7 +170,7 @@ class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(BaseRe
     @dataclass
     class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a policyDeletableItem object, which might be one of the following deleted policy types:- crossTenantAccessPolicyConfigurationPartner- crossTenantIdentitySyncPolicyPartner
+        Read the properties and relationships of a policyDeletableItem object, which might be one of the following deleted policy types:- crossTenantAccessPolicyConfigurationPartner- crossTenantIdentitySyncPolicyPartner- conditionalAccessPolicy- namedLocation
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

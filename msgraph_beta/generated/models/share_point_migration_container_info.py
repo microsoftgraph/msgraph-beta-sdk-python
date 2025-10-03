@@ -12,11 +12,11 @@ class SharePointMigrationContainerInfo(AdditionalDataHolder, BackedModel, Parsab
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The dataContainerUri property
+    # A valid URL with a SAS token for accessing the Azure blob storage container that contains the file content. Read-only.
     data_container_uri: Optional[str] = None
-    # The encryptionKey property
+    # Provides the AES-256-CBC encryption key if files stored in Azure blob containers are encrypted. The key is Base64-encoded. Read-only.
     encryption_key: Optional[str] = None
-    # The metadataContainerUri property
+    # A valid URL with a SAS token for accessing the Azure blob storage container that contains the file metadata. Read-only.
     metadata_container_uri: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
