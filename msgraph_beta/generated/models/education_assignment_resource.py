@@ -12,7 +12,7 @@ from .entity import Entity
 
 @dataclass
 class EducationAssignmentResource(Entity, Parsable):
-    # The dependentResources property
+    # A collection of assignment resources that depend on the parent educationAssignmentResource.
     dependent_resources: Optional[list[EducationAssignmentResource]] = None
     # Indicates whether this resource should be copied to each student submission for modification and submission. Required
     distribute_for_student_work: Optional[bool] = None
