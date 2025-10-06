@@ -33,10 +33,10 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a tlsInspectionPolicyLink object. Used to unlink a tlsInspectionPolicy from a filtering profile.
+        Delete a threatIntelligencePolicyLink object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-tlsinspectionpolicylink-delete?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-threatintelligencepolicylink-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -52,10 +52,10 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PolicyLinkItemRequestBuilderGetQueryParameters]] = None) -> Optional[PolicyLink]:
         """
-        Get a tlsInspectionPolicyLink object.
+        Read the properties and relationships of a threatIntelligencePolicyLink object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PolicyLink]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-tlsinspectionpolicylink-get?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-threatintelligencepolicylink-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -97,7 +97,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a tlsInspectionPolicyLink object. Used to unlink a tlsInspectionPolicy from a filtering profile.
+        Delete a threatIntelligencePolicyLink object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +108,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PolicyLinkItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a tlsInspectionPolicyLink object.
+        Read the properties and relationships of a threatIntelligencePolicyLink object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -161,7 +161,7 @@ class PolicyLinkItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PolicyLinkItemRequestBuilderGetQueryParameters():
         """
-        Get a tlsInspectionPolicyLink object.
+        Read the properties and relationships of a threatIntelligencePolicyLink object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

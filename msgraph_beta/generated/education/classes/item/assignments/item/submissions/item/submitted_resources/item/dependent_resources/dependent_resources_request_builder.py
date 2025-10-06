@@ -49,7 +49,7 @@ class DependentResourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DependentResourcesRequestBuilderGetQueryParameters]] = None) -> Optional[EducationSubmissionResourceCollectionResponse]:
         """
-        Get dependentResources from education
+        A collection of submission resources that depend on the parent educationSubmissionResource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationSubmissionResourceCollectionResponse]
         """
@@ -92,7 +92,7 @@ class DependentResourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DependentResourcesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get dependentResources from education
+        A collection of submission resources that depend on the parent educationSubmissionResource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class DependentResourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DependentResourcesRequestBuilderGetQueryParameters():
         """
-        Get dependentResources from education
+        A collection of submission resources that depend on the parent educationSubmissionResource.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -32,10 +32,10 @@ class RestoreRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[NamedLocation]:
         """
-        Restore a deleted ipNamedLocation object.
+        Restore a deleted countryNamedLocation object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[NamedLocation]
-        Find more info here: https://learn.microsoft.com/graph/api/ipnamedlocation-restore?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/countrynamedlocation-restore?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -53,7 +53,7 @@ class RestoreRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Restore a deleted ipNamedLocation object.
+        Restore a deleted countryNamedLocation object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

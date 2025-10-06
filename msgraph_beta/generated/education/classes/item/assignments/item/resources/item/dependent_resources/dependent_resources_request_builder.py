@@ -49,9 +49,10 @@ class DependentResourcesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DependentResourcesRequestBuilderGetQueryParameters]] = None) -> Optional[EducationAssignmentResourceCollectionResponse]:
         """
-        Get dependentResources from education
+        List the dependent education assignment resources for a given education assignment resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EducationAssignmentResourceCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/educationassignmentresource-list-dependentresources?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +93,7 @@ class DependentResourcesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DependentResourcesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get dependentResources from education
+        List the dependent education assignment resources for a given education assignment resource.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class DependentResourcesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DependentResourcesRequestBuilderGetQueryParameters():
         """
-        Get dependentResources from education
+        List the dependent education assignment resources for a given education assignment resource.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
