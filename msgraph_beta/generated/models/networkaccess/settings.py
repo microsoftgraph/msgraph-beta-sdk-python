@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from ..entity import Entity
     from .conditional_access_settings import ConditionalAccessSettings
     from .cross_tenant_access_settings import CrossTenantAccessSettings
+    from .custom_block_page import CustomBlockPage
     from .forwarding_options import ForwardingOptions
 
 from ..entity import Entity
@@ -18,6 +19,8 @@ class Settings(Entity, Parsable):
     conditional_access: Optional[ConditionalAccessSettings] = None
     # The crossTenantAccess property
     cross_tenant_access: Optional[CrossTenantAccessSettings] = None
+    # The customBlockPage property
+    custom_block_page: Optional[CustomBlockPage] = None
     # The forwardingOptions property
     forwarding_options: Optional[ForwardingOptions] = None
     # The OdataType property
@@ -42,16 +45,19 @@ class Settings(Entity, Parsable):
         from ..entity import Entity
         from .conditional_access_settings import ConditionalAccessSettings
         from .cross_tenant_access_settings import CrossTenantAccessSettings
+        from .custom_block_page import CustomBlockPage
         from .forwarding_options import ForwardingOptions
 
         from ..entity import Entity
         from .conditional_access_settings import ConditionalAccessSettings
         from .cross_tenant_access_settings import CrossTenantAccessSettings
+        from .custom_block_page import CustomBlockPage
         from .forwarding_options import ForwardingOptions
 
         fields: dict[str, Callable[[Any], None]] = {
             "conditionalAccess": lambda n : setattr(self, 'conditional_access', n.get_object_value(ConditionalAccessSettings)),
             "crossTenantAccess": lambda n : setattr(self, 'cross_tenant_access', n.get_object_value(CrossTenantAccessSettings)),
+            "customBlockPage": lambda n : setattr(self, 'custom_block_page', n.get_object_value(CustomBlockPage)),
             "forwardingOptions": lambda n : setattr(self, 'forwarding_options', n.get_object_value(ForwardingOptions)),
         }
         super_fields = super().get_field_deserializers()
@@ -69,6 +75,7 @@ class Settings(Entity, Parsable):
         super().serialize(writer)
         writer.write_object_value("conditionalAccess", self.conditional_access)
         writer.write_object_value("crossTenantAccess", self.cross_tenant_access)
+        writer.write_object_value("customBlockPage", self.custom_block_page)
         writer.write_object_value("forwardingOptions", self.forwarding_options)
     
 

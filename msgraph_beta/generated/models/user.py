@@ -57,6 +57,7 @@ if TYPE_CHECKING:
     from .on_premises_extension_attributes import OnPremisesExtensionAttributes
     from .on_premises_provisioning_error import OnPremisesProvisioningError
     from .on_premises_sip_info import OnPremisesSipInfo
+    from .on_premises_sync_behavior import OnPremisesSyncBehavior
     from .outlook_user import OutlookUser
     from .o_auth2_permission_grant import OAuth2PermissionGrant
     from .password_profile import PasswordProfile
@@ -305,6 +306,8 @@ class User(DirectoryObject, Parsable):
     on_premises_security_identifier: Optional[str] = None
     # Contains all on-premises Session Initiation Protocol (SIP) information related to the user. Read-only.
     on_premises_sip_info: Optional[OnPremisesSipInfo] = None
+    # Indicates the state of synchronization for a user between the cloud and on-premises Active Directory. Supports $filter only with advanced query capabilities, for example, $filter=onPremisesSyncBehavior/isCloudManaged eq true&$count=true.
+    on_premises_sync_behavior: Optional[OnPremisesSyncBehavior] = None
     # true if this user object is currently being synced from an on-premises Active Directory (AD); otherwise, the user isn't being synced and can be managed in Microsoft Entra ID. Read-only. Supports $filter (eq, ne, not, in, and eq on null values).
     on_premises_sync_enabled: Optional[bool] = None
     # Contains the on-premises userPrincipalName synchronized from the on-premises directory. Supports $filter (eq, ne, not, ge, le, in, startsWith).
@@ -481,6 +484,7 @@ class User(DirectoryObject, Parsable):
         from .on_premises_extension_attributes import OnPremisesExtensionAttributes
         from .on_premises_provisioning_error import OnPremisesProvisioningError
         from .on_premises_sip_info import OnPremisesSipInfo
+        from .on_premises_sync_behavior import OnPremisesSyncBehavior
         from .outlook_user import OutlookUser
         from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .password_profile import PasswordProfile
@@ -562,6 +566,7 @@ class User(DirectoryObject, Parsable):
         from .on_premises_extension_attributes import OnPremisesExtensionAttributes
         from .on_premises_provisioning_error import OnPremisesProvisioningError
         from .on_premises_sip_info import OnPremisesSipInfo
+        from .on_premises_sync_behavior import OnPremisesSyncBehavior
         from .outlook_user import OutlookUser
         from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .password_profile import PasswordProfile
@@ -699,6 +704,7 @@ class User(DirectoryObject, Parsable):
             "onPremisesSamAccountName": lambda n : setattr(self, 'on_premises_sam_account_name', n.get_str_value()),
             "onPremisesSecurityIdentifier": lambda n : setattr(self, 'on_premises_security_identifier', n.get_str_value()),
             "onPremisesSipInfo": lambda n : setattr(self, 'on_premises_sip_info', n.get_object_value(OnPremisesSipInfo)),
+            "onPremisesSyncBehavior": lambda n : setattr(self, 'on_premises_sync_behavior', n.get_object_value(OnPremisesSyncBehavior)),
             "onPremisesSyncEnabled": lambda n : setattr(self, 'on_premises_sync_enabled', n.get_bool_value()),
             "onPremisesUserPrincipalName": lambda n : setattr(self, 'on_premises_user_principal_name', n.get_str_value()),
             "onenote": lambda n : setattr(self, 'onenote', n.get_object_value(Onenote)),
@@ -873,6 +879,7 @@ class User(DirectoryObject, Parsable):
         writer.write_str_value("onPremisesSamAccountName", self.on_premises_sam_account_name)
         writer.write_str_value("onPremisesSecurityIdentifier", self.on_premises_security_identifier)
         writer.write_object_value("onPremisesSipInfo", self.on_premises_sip_info)
+        writer.write_object_value("onPremisesSyncBehavior", self.on_premises_sync_behavior)
         writer.write_bool_value("onPremisesSyncEnabled", self.on_premises_sync_enabled)
         writer.write_str_value("onPremisesUserPrincipalName", self.on_premises_user_principal_name)
         writer.write_object_value("onenote", self.onenote)

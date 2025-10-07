@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .audit_activity_initiator import AuditActivityInitiator
+    from .audit_activity_performer import AuditActivityPerformer
     from .entity import Entity
     from .key_value import KeyValue
     from .operation_result import OperationResult
@@ -34,6 +35,8 @@ class DirectoryAudit(Entity, Parsable):
     odata_type: Optional[str] = None
     # Indicates the type of operation that was performed. The possible values include but aren't limited to the following: Add, Assign, Update, Unassign, and Delete.
     operation_type: Optional[str] = None
+    # The performedBy property
+    performed_by: Optional[AuditActivityPerformer] = None
     # Indicates the result of the activity. Possible values are: success, failure, timeout, unknownFutureValue.
     result: Optional[OperationResult] = None
     # Indicates the reason for failure if the result is failure or timeout.
@@ -60,12 +63,14 @@ class DirectoryAudit(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .audit_activity_initiator import AuditActivityInitiator
+        from .audit_activity_performer import AuditActivityPerformer
         from .entity import Entity
         from .key_value import KeyValue
         from .operation_result import OperationResult
         from .target_resource import TargetResource
 
         from .audit_activity_initiator import AuditActivityInitiator
+        from .audit_activity_performer import AuditActivityPerformer
         from .entity import Entity
         from .key_value import KeyValue
         from .operation_result import OperationResult
@@ -80,6 +85,7 @@ class DirectoryAudit(Entity, Parsable):
             "initiatedBy": lambda n : setattr(self, 'initiated_by', n.get_object_value(AuditActivityInitiator)),
             "loggedByService": lambda n : setattr(self, 'logged_by_service', n.get_str_value()),
             "operationType": lambda n : setattr(self, 'operation_type', n.get_str_value()),
+            "performedBy": lambda n : setattr(self, 'performed_by', n.get_object_value(AuditActivityPerformer)),
             "result": lambda n : setattr(self, 'result', n.get_enum_value(OperationResult)),
             "resultReason": lambda n : setattr(self, 'result_reason', n.get_str_value()),
             "targetResources": lambda n : setattr(self, 'target_resources', n.get_collection_of_object_values(TargetResource)),
@@ -106,6 +112,7 @@ class DirectoryAudit(Entity, Parsable):
         writer.write_object_value("initiatedBy", self.initiated_by)
         writer.write_str_value("loggedByService", self.logged_by_service)
         writer.write_str_value("operationType", self.operation_type)
+        writer.write_object_value("performedBy", self.performed_by)
         writer.write_enum_value("result", self.result)
         writer.write_str_value("resultReason", self.result_reason)
         writer.write_collection_of_object_values("targetResources", self.target_resources)

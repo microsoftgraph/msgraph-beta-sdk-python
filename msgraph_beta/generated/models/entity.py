@@ -176,6 +176,7 @@ if TYPE_CHECKING:
     from .app_vulnerability_managed_device import AppVulnerabilityManagedDevice
     from .app_vulnerability_mobile_app import AppVulnerabilityMobileApp
     from .app_vulnerability_task import AppVulnerabilityTask
+    from .arkose_fraud_protection_provider import ArkoseFraudProtectionProvider
     from .assigned_compute_instance_details import AssignedComputeInstanceDetails
     from .assignment_filter_evaluation_status_details import AssignmentFilterEvaluationStatusDetails
     from .associated_team_info import AssociatedTeamInfo
@@ -188,6 +189,7 @@ if TYPE_CHECKING:
     from .attribute_mapping_function_schema import AttributeMappingFunctionSchema
     from .attribute_set import AttributeSet
     from .audio_routing_group import AudioRoutingGroup
+    from .audit_activity_type import AuditActivityType
     from .audit_event import AuditEvent
     from .authentication import Authentication
     from .authentications_metric import AuthenticationsMetric
@@ -751,6 +753,7 @@ if TYPE_CHECKING:
     from .floor import Floor
     from .focus_activity_statistics import FocusActivityStatistics
     from .footprint_map import FootprintMap
+    from .fraud_protection_provider import FraudProtectionProvider
     from .gcp_authorization_system import GcpAuthorizationSystem
     from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
     from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -819,6 +822,7 @@ if TYPE_CHECKING:
     from .horizontal_section import HorizontalSection
     from .horizontal_section_column import HorizontalSectionColumn
     from .host_security_profile import HostSecurityProfile
+    from .human_security_fraud_protection_provider import HumanSecurityFraudProtectionProvider
     from .identity_api_connector import IdentityApiConnector
     from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
     from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
@@ -1163,6 +1167,7 @@ if TYPE_CHECKING:
     from .networkaccess.connectivity import Connectivity
     from .networkaccess.connectivity_configuration_link import ConnectivityConfigurationLink
     from .networkaccess.cross_tenant_access_settings import CrossTenantAccessSettings
+    from .networkaccess.custom_block_page import CustomBlockPage
     from .networkaccess.device_link import DeviceLink
     from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
     from .networkaccess.filtering_policy import FilteringPolicy
@@ -1236,6 +1241,7 @@ if TYPE_CHECKING:
     from .on_attribute_collection_submit_listener import OnAttributeCollectionSubmitListener
     from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
     from .on_email_otp_send_listener import OnEmailOtpSendListener
+    from .on_fraud_protection_load_start_listener import OnFraudProtectionLoadStartListener
     from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
     from .on_otp_send_custom_extension import OnOtpSendCustomExtension
     from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
@@ -1547,6 +1553,7 @@ if TYPE_CHECKING:
     from .security.ediscovery_file import EdiscoveryFile
     from .security.ediscovery_hold_operation import EdiscoveryHoldOperation
     from .security.ediscovery_hold_policy import EdiscoveryHoldPolicy
+    from .security.ediscovery_hold_policy_sync_operation import EdiscoveryHoldPolicySyncOperation
     from .security.ediscovery_index_operation import EdiscoveryIndexOperation
     from .security.ediscovery_noncustodial_data_source import EdiscoveryNoncustodialDataSource
     from .security.ediscovery_purge_data_operation import EdiscoveryPurgeDataOperation
@@ -1686,6 +1693,7 @@ if TYPE_CHECKING:
     from .shifts_role_definition import ShiftsRoleDefinition
     from .shift_preferences import ShiftPreferences
     from .sign_in import SignIn
+    from .sign_in_events_activity import SignInEventsActivity
     from .simulation import Simulation
     from .simulation_automation import SimulationAutomation
     from .simulation_automation_run import SimulationAutomationRun
@@ -1726,6 +1734,7 @@ if TYPE_CHECKING:
     from .subscribed_sku import SubscribedSku
     from .subscribe_to_tone_operation import SubscribeToToneOperation
     from .subscription import Subscription
+    from .summarized_sign_in import SummarizedSignIn
     from .super_aws_resource_finding import SuperAwsResourceFinding
     from .super_aws_role_finding import SuperAwsRoleFinding
     from .super_azure_service_principal_finding import SuperAzureServicePrincipalFinding
@@ -1746,8 +1755,10 @@ if TYPE_CHECKING:
     from .task_file_attachment import TaskFileAttachment
     from .tax_group import TaxGroup
     from .team import Team
+    from .teams_administration.policy_identifier_detail import PolicyIdentifierDetail
     from .teams_administration.teams_admin_root import TeamsAdminRoot
     from .teams_administration.teams_policy_assignment import TeamsPolicyAssignment
+    from .teams_administration.teams_policy_user_assignment import TeamsPolicyUserAssignment
     from .teams_administration.teams_user_configuration import TeamsUserConfiguration
     from .teams_app import TeamsApp
     from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
@@ -2863,6 +2874,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .app_vulnerability_task import AppVulnerabilityTask
 
             return AppVulnerabilityTask()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.arkoseFraudProtectionProvider".casefold():
+            from .arkose_fraud_protection_provider import ArkoseFraudProtectionProvider
+
+            return ArkoseFraudProtectionProvider()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.assignedComputeInstanceDetails".casefold():
             from .assigned_compute_instance_details import AssignedComputeInstanceDetails
 
@@ -2911,6 +2926,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .audio_routing_group import AudioRoutingGroup
 
             return AudioRoutingGroup()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.auditActivityType".casefold():
+            from .audit_activity_type import AuditActivityType
+
+            return AuditActivityType()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.auditEvent".casefold():
             from .audit_event import AuditEvent
             from .managed_tenants.audit_event import AuditEvent
@@ -5184,6 +5203,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .footprint_map import FootprintMap
 
             return FootprintMap()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.fraudProtectionProvider".casefold():
+            from .fraud_protection_provider import FraudProtectionProvider
+
+            return FraudProtectionProvider()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpAuthorizationSystem".casefold():
             from .gcp_authorization_system import GcpAuthorizationSystem
 
@@ -5460,6 +5483,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .host_security_profile import HostSecurityProfile
 
             return HostSecurityProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.humanSecurityFraudProtectionProvider".casefold():
+            from .human_security_fraud_protection_provider import HumanSecurityFraudProtectionProvider
+
+            return HumanSecurityFraudProtectionProvider()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityApiConnector".casefold():
             from .identity_api_connector import IdentityApiConnector
 
@@ -6844,6 +6871,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.cross_tenant_access_settings import CrossTenantAccessSettings
 
             return CrossTenantAccessSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.customBlockPage".casefold():
+            from .networkaccess.custom_block_page import CustomBlockPage
+
+            return CustomBlockPage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.deviceLink".casefold():
             from .networkaccess.device_link import DeviceLink
 
@@ -7129,6 +7160,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .onenote_section import OnenoteSection
 
             return OnenoteSection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onFraudProtectionLoadStartListener".casefold():
+            from .on_fraud_protection_load_start_listener import OnFraudProtectionLoadStartListener
+
+            return OnFraudProtectionLoadStartListener()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onInteractiveAuthFlowStartListener".casefold():
             from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
 
@@ -8394,6 +8429,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.ediscovery_hold_policy import EdiscoveryHoldPolicy
 
             return EdiscoveryHoldPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ediscoveryHoldPolicySyncOperation".casefold():
+            from .security.ediscovery_hold_policy_sync_operation import EdiscoveryHoldPolicySyncOperation
+
+            return EdiscoveryHoldPolicySyncOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ediscoveryIndexOperation".casefold():
             from .security.ediscovery_index_operation import EdiscoveryIndexOperation
 
@@ -8959,6 +8998,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .sign_in import SignIn
 
             return SignIn()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.signInEventsActivity".casefold():
+            from .sign_in_events_activity import SignInEventsActivity
+
+            return SignInEventsActivity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.simulation".casefold():
             from .simulation import Simulation
 
@@ -9119,6 +9162,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .subscription import Subscription
 
             return Subscription()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.summarizedSignIn".casefold():
+            from .summarized_sign_in import SummarizedSignIn
+
+            return SummarizedSignIn()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.superAwsResourceFinding".casefold():
             from .super_aws_resource_finding import SuperAwsResourceFinding
 
@@ -9203,6 +9250,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .team_info import TeamInfo
 
             return TeamInfo()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAdministration.policyIdentifierDetail".casefold():
+            from .teams_administration.policy_identifier_detail import PolicyIdentifierDetail
+
+            return PolicyIdentifierDetail()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAdministration.teamsAdminRoot".casefold():
             from .teams_administration.teams_admin_root import TeamsAdminRoot
 
@@ -9211,6 +9262,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .teams_administration.teams_policy_assignment import TeamsPolicyAssignment
 
             return TeamsPolicyAssignment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAdministration.teamsPolicyUserAssignment".casefold():
+            from .teams_administration.teams_policy_user_assignment import TeamsPolicyUserAssignment
+
+            return TeamsPolicyUserAssignment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAdministration.teamsUserConfiguration".casefold():
             from .teams_administration.teams_user_configuration import TeamsUserConfiguration
 
@@ -11009,6 +11064,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .app_vulnerability_managed_device import AppVulnerabilityManagedDevice
         from .app_vulnerability_mobile_app import AppVulnerabilityMobileApp
         from .app_vulnerability_task import AppVulnerabilityTask
+        from .arkose_fraud_protection_provider import ArkoseFraudProtectionProvider
         from .assigned_compute_instance_details import AssignedComputeInstanceDetails
         from .assignment_filter_evaluation_status_details import AssignmentFilterEvaluationStatusDetails
         from .associated_team_info import AssociatedTeamInfo
@@ -11021,6 +11077,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .attribute_mapping_function_schema import AttributeMappingFunctionSchema
         from .attribute_set import AttributeSet
         from .audio_routing_group import AudioRoutingGroup
+        from .audit_activity_type import AuditActivityType
         from .audit_event import AuditEvent
         from .authentication import Authentication
         from .authentications_metric import AuthenticationsMetric
@@ -11584,6 +11641,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .floor import Floor
         from .focus_activity_statistics import FocusActivityStatistics
         from .footprint_map import FootprintMap
+        from .fraud_protection_provider import FraudProtectionProvider
         from .gcp_authorization_system import GcpAuthorizationSystem
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
         from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -11652,6 +11710,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .horizontal_section import HorizontalSection
         from .horizontal_section_column import HorizontalSectionColumn
         from .host_security_profile import HostSecurityProfile
+        from .human_security_fraud_protection_provider import HumanSecurityFraudProtectionProvider
         from .identity_api_connector import IdentityApiConnector
         from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
@@ -11996,6 +12055,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.connectivity import Connectivity
         from .networkaccess.connectivity_configuration_link import ConnectivityConfigurationLink
         from .networkaccess.cross_tenant_access_settings import CrossTenantAccessSettings
+        from .networkaccess.custom_block_page import CustomBlockPage
         from .networkaccess.device_link import DeviceLink
         from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
         from .networkaccess.filtering_policy import FilteringPolicy
@@ -12069,6 +12129,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_attribute_collection_submit_listener import OnAttributeCollectionSubmitListener
         from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
         from .on_email_otp_send_listener import OnEmailOtpSendListener
+        from .on_fraud_protection_load_start_listener import OnFraudProtectionLoadStartListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
         from .on_otp_send_custom_extension import OnOtpSendCustomExtension
         from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
@@ -12380,6 +12441,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.ediscovery_file import EdiscoveryFile
         from .security.ediscovery_hold_operation import EdiscoveryHoldOperation
         from .security.ediscovery_hold_policy import EdiscoveryHoldPolicy
+        from .security.ediscovery_hold_policy_sync_operation import EdiscoveryHoldPolicySyncOperation
         from .security.ediscovery_index_operation import EdiscoveryIndexOperation
         from .security.ediscovery_noncustodial_data_source import EdiscoveryNoncustodialDataSource
         from .security.ediscovery_purge_data_operation import EdiscoveryPurgeDataOperation
@@ -12519,6 +12581,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .shifts_role_definition import ShiftsRoleDefinition
         from .shift_preferences import ShiftPreferences
         from .sign_in import SignIn
+        from .sign_in_events_activity import SignInEventsActivity
         from .simulation import Simulation
         from .simulation_automation import SimulationAutomation
         from .simulation_automation_run import SimulationAutomationRun
@@ -12559,6 +12622,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .subscribed_sku import SubscribedSku
         from .subscribe_to_tone_operation import SubscribeToToneOperation
         from .subscription import Subscription
+        from .summarized_sign_in import SummarizedSignIn
         from .super_aws_resource_finding import SuperAwsResourceFinding
         from .super_aws_role_finding import SuperAwsRoleFinding
         from .super_azure_service_principal_finding import SuperAzureServicePrincipalFinding
@@ -12579,8 +12643,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .task_file_attachment import TaskFileAttachment
         from .tax_group import TaxGroup
         from .team import Team
+        from .teams_administration.policy_identifier_detail import PolicyIdentifierDetail
         from .teams_administration.teams_admin_root import TeamsAdminRoot
         from .teams_administration.teams_policy_assignment import TeamsPolicyAssignment
+        from .teams_administration.teams_policy_user_assignment import TeamsPolicyUserAssignment
         from .teams_administration.teams_user_configuration import TeamsUserConfiguration
         from .teams_app import TeamsApp
         from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
@@ -13157,6 +13223,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .app_vulnerability_managed_device import AppVulnerabilityManagedDevice
         from .app_vulnerability_mobile_app import AppVulnerabilityMobileApp
         from .app_vulnerability_task import AppVulnerabilityTask
+        from .arkose_fraud_protection_provider import ArkoseFraudProtectionProvider
         from .assigned_compute_instance_details import AssignedComputeInstanceDetails
         from .assignment_filter_evaluation_status_details import AssignmentFilterEvaluationStatusDetails
         from .associated_team_info import AssociatedTeamInfo
@@ -13169,6 +13236,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .attribute_mapping_function_schema import AttributeMappingFunctionSchema
         from .attribute_set import AttributeSet
         from .audio_routing_group import AudioRoutingGroup
+        from .audit_activity_type import AuditActivityType
         from .audit_event import AuditEvent
         from .authentication import Authentication
         from .authentications_metric import AuthenticationsMetric
@@ -13732,6 +13800,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .floor import Floor
         from .focus_activity_statistics import FocusActivityStatistics
         from .footprint_map import FootprintMap
+        from .fraud_protection_provider import FraudProtectionProvider
         from .gcp_authorization_system import GcpAuthorizationSystem
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
         from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -13800,6 +13869,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .horizontal_section import HorizontalSection
         from .horizontal_section_column import HorizontalSectionColumn
         from .host_security_profile import HostSecurityProfile
+        from .human_security_fraud_protection_provider import HumanSecurityFraudProtectionProvider
         from .identity_api_connector import IdentityApiConnector
         from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
@@ -14144,6 +14214,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.connectivity import Connectivity
         from .networkaccess.connectivity_configuration_link import ConnectivityConfigurationLink
         from .networkaccess.cross_tenant_access_settings import CrossTenantAccessSettings
+        from .networkaccess.custom_block_page import CustomBlockPage
         from .networkaccess.device_link import DeviceLink
         from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
         from .networkaccess.filtering_policy import FilteringPolicy
@@ -14217,6 +14288,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_attribute_collection_submit_listener import OnAttributeCollectionSubmitListener
         from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
         from .on_email_otp_send_listener import OnEmailOtpSendListener
+        from .on_fraud_protection_load_start_listener import OnFraudProtectionLoadStartListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
         from .on_otp_send_custom_extension import OnOtpSendCustomExtension
         from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
@@ -14528,6 +14600,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.ediscovery_file import EdiscoveryFile
         from .security.ediscovery_hold_operation import EdiscoveryHoldOperation
         from .security.ediscovery_hold_policy import EdiscoveryHoldPolicy
+        from .security.ediscovery_hold_policy_sync_operation import EdiscoveryHoldPolicySyncOperation
         from .security.ediscovery_index_operation import EdiscoveryIndexOperation
         from .security.ediscovery_noncustodial_data_source import EdiscoveryNoncustodialDataSource
         from .security.ediscovery_purge_data_operation import EdiscoveryPurgeDataOperation
@@ -14667,6 +14740,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .shifts_role_definition import ShiftsRoleDefinition
         from .shift_preferences import ShiftPreferences
         from .sign_in import SignIn
+        from .sign_in_events_activity import SignInEventsActivity
         from .simulation import Simulation
         from .simulation_automation import SimulationAutomation
         from .simulation_automation_run import SimulationAutomationRun
@@ -14707,6 +14781,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .subscribed_sku import SubscribedSku
         from .subscribe_to_tone_operation import SubscribeToToneOperation
         from .subscription import Subscription
+        from .summarized_sign_in import SummarizedSignIn
         from .super_aws_resource_finding import SuperAwsResourceFinding
         from .super_aws_role_finding import SuperAwsRoleFinding
         from .super_azure_service_principal_finding import SuperAzureServicePrincipalFinding
@@ -14727,8 +14802,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .task_file_attachment import TaskFileAttachment
         from .tax_group import TaxGroup
         from .team import Team
+        from .teams_administration.policy_identifier_detail import PolicyIdentifierDetail
         from .teams_administration.teams_admin_root import TeamsAdminRoot
         from .teams_administration.teams_policy_assignment import TeamsPolicyAssignment
+        from .teams_administration.teams_policy_user_assignment import TeamsPolicyUserAssignment
         from .teams_administration.teams_user_configuration import TeamsUserConfiguration
         from .teams_app import TeamsApp
         from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition

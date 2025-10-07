@@ -16,11 +16,17 @@ from warnings import warn
 if TYPE_CHECKING:
     from ..models.audit_log_root import AuditLogRoot
     from ..models.o_data_errors.o_data_error import ODataError
+    from .audit_activity_types.audit_activity_types_request_builder import AuditActivityTypesRequestBuilder
     from .custom_security_attribute_audits.custom_security_attribute_audits_request_builder import CustomSecurityAttributeAuditsRequestBuilder
     from .directory_audits.directory_audits_request_builder import DirectoryAuditsRequestBuilder
     from .directory_provisioning.directory_provisioning_request_builder import DirectoryProvisioningRequestBuilder
+    from .get_summarized_m_s_i_sign_ins_with_aggregation_window.get_summarized_m_s_i_sign_ins_with_aggregation_window_request_builder import GetSummarizedMSISignInsWithAggregationWindowRequestBuilder
+    from .get_summarized_non_interactive_sign_ins_with_aggregation_window.get_summarized_non_interactive_sign_ins_with_aggregation_window_request_builder import GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder
+    from .get_summarized_service_principal_sign_ins_with_aggregation_window.get_summarized_service_principal_sign_ins_with_aggregation_window_request_builder import GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder
     from .provisioning.provisioning_request_builder import ProvisioningRequestBuilder
     from .sign_ins.sign_ins_request_builder import SignInsRequestBuilder
+    from .sign_in_events_app_summary.sign_in_events_app_summary_request_builder import SignInEventsAppSummaryRequestBuilder
+    from .sign_in_events_summary.sign_in_events_summary_request_builder import SignInEventsSummaryRequestBuilder
     from .sign_ups.sign_ups_request_builder import SignUpsRequestBuilder
 
 class AuditLogsRequestBuilder(BaseRequestBuilder):
@@ -55,6 +61,42 @@ class AuditLogsRequestBuilder(BaseRequestBuilder):
         from ..models.audit_log_root import AuditLogRoot
 
         return await self.request_adapter.send_async(request_info, AuditLogRoot, error_mapping)
+    
+    def get_summarized_m_s_i_sign_ins_with_aggregation_window(self,aggregation_window: str) -> GetSummarizedMSISignInsWithAggregationWindowRequestBuilder:
+        """
+        Provides operations to call the getSummarizedMSISignIns method.
+        param aggregation_window: Usage: aggregationWindow='{aggregationWindow}'
+        Returns: GetSummarizedMSISignInsWithAggregationWindowRequestBuilder
+        """
+        if aggregation_window is None:
+            raise TypeError("aggregation_window cannot be null.")
+        from .get_summarized_m_s_i_sign_ins_with_aggregation_window.get_summarized_m_s_i_sign_ins_with_aggregation_window_request_builder import GetSummarizedMSISignInsWithAggregationWindowRequestBuilder
+
+        return GetSummarizedMSISignInsWithAggregationWindowRequestBuilder(self.request_adapter, self.path_parameters, aggregation_window)
+    
+    def get_summarized_non_interactive_sign_ins_with_aggregation_window(self,aggregation_window: str) -> GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder:
+        """
+        Provides operations to call the getSummarizedNonInteractiveSignIns method.
+        param aggregation_window: Usage: aggregationWindow='{aggregationWindow}'
+        Returns: GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder
+        """
+        if aggregation_window is None:
+            raise TypeError("aggregation_window cannot be null.")
+        from .get_summarized_non_interactive_sign_ins_with_aggregation_window.get_summarized_non_interactive_sign_ins_with_aggregation_window_request_builder import GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder
+
+        return GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder(self.request_adapter, self.path_parameters, aggregation_window)
+    
+    def get_summarized_service_principal_sign_ins_with_aggregation_window(self,aggregation_window: str) -> GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder:
+        """
+        Provides operations to call the getSummarizedServicePrincipalSignIns method.
+        param aggregation_window: Usage: aggregationWindow='{aggregationWindow}'
+        Returns: GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder
+        """
+        if aggregation_window is None:
+            raise TypeError("aggregation_window cannot be null.")
+        from .get_summarized_service_principal_sign_ins_with_aggregation_window.get_summarized_service_principal_sign_ins_with_aggregation_window_request_builder import GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder
+
+        return GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder(self.request_adapter, self.path_parameters, aggregation_window)
     
     async def patch(self,body: AuditLogRoot, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AuditLogRoot]:
         """
@@ -116,6 +158,15 @@ class AuditLogsRequestBuilder(BaseRequestBuilder):
         return AuditLogsRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def audit_activity_types(self) -> AuditActivityTypesRequestBuilder:
+        """
+        Provides operations to manage the auditActivityTypes property of the microsoft.graph.auditLogRoot entity.
+        """
+        from .audit_activity_types.audit_activity_types_request_builder import AuditActivityTypesRequestBuilder
+
+        return AuditActivityTypesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def custom_security_attribute_audits(self) -> CustomSecurityAttributeAuditsRequestBuilder:
         """
         Provides operations to manage the customSecurityAttributeAudits property of the microsoft.graph.auditLogRoot entity.
@@ -150,6 +201,24 @@ class AuditLogsRequestBuilder(BaseRequestBuilder):
         from .provisioning.provisioning_request_builder import ProvisioningRequestBuilder
 
         return ProvisioningRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sign_in_events_app_summary(self) -> SignInEventsAppSummaryRequestBuilder:
+        """
+        Provides operations to manage the signInEventsAppSummary property of the microsoft.graph.auditLogRoot entity.
+        """
+        from .sign_in_events_app_summary.sign_in_events_app_summary_request_builder import SignInEventsAppSummaryRequestBuilder
+
+        return SignInEventsAppSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sign_in_events_summary(self) -> SignInEventsSummaryRequestBuilder:
+        """
+        Provides operations to manage the signInEventsSummary property of the microsoft.graph.auditLogRoot entity.
+        """
+        from .sign_in_events_summary.sign_in_events_summary_request_builder import SignInEventsSummaryRequestBuilder
+
+        return SignInEventsSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sign_ins(self) -> SignInsRequestBuilder:

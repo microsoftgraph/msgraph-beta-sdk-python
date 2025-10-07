@@ -20,8 +20,6 @@ class TranscriptPayload(AdditionalDataHolder, BackedModel, Parsable):
     audio_capture_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sequenceId property
-    sequence_id: Optional[int] = None
     # The speaker property
     speaker: Optional[TranscriptSpeaker] = None
     # The spokenLanguage property
@@ -52,7 +50,6 @@ class TranscriptPayload(AdditionalDataHolder, BackedModel, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "audioCaptureDateTime": lambda n : setattr(self, 'audio_capture_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "sequenceId": lambda n : setattr(self, 'sequence_id', n.get_int_value()),
             "speaker": lambda n : setattr(self, 'speaker', n.get_object_value(TranscriptSpeaker)),
             "spokenLanguage": lambda n : setattr(self, 'spoken_language', n.get_str_value()),
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
@@ -69,7 +66,6 @@ class TranscriptPayload(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_datetime_value("audioCaptureDateTime", self.audio_capture_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_int_value("sequenceId", self.sequence_id)
         writer.write_object_value("speaker", self.speaker)
         writer.write_str_value("spokenLanguage", self.spoken_language)
         writer.write_str_value("text", self.text)

@@ -5,12 +5,12 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .rule_destination import RuleDestination
+    from .ip_destination import IpDestination
 
-from .rule_destination import RuleDestination
+from .ip_destination import IpDestination
 
 @dataclass
-class IpRange(RuleDestination, Parsable):
+class IpRange(IpDestination, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.ipRange"
     # Specifies the starting IP address of the IP range.
@@ -34,9 +34,9 @@ class IpRange(RuleDestination, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .rule_destination import RuleDestination
+        from .ip_destination import IpDestination
 
-        from .rule_destination import RuleDestination
+        from .ip_destination import IpDestination
 
         fields: dict[str, Callable[[Any], None]] = {
             "beginAddress": lambda n : setattr(self, 'begin_address', n.get_str_value()),

@@ -96,6 +96,7 @@ if TYPE_CHECKING:
     from .onenote.onenote_request_builder import OnenoteRequestBuilder
     from .online_meetings.online_meetings_request_builder import OnlineMeetingsRequestBuilder
     from .online_meetings_with_join_web_url.online_meetings_with_join_web_url_request_builder import OnlineMeetingsWithJoinWebUrlRequestBuilder
+    from .on_premises_sync_behavior.on_premises_sync_behavior_request_builder import OnPremisesSyncBehaviorRequestBuilder
     from .outlook.outlook_request_builder import OutlookRequestBuilder
     from .owned_devices.owned_devices_request_builder import OwnedDevicesRequestBuilder
     from .owned_objects.owned_objects_request_builder import OwnedObjectsRequestBuilder
@@ -994,6 +995,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .oauth2_permission_grants.oauth2_permission_grants_request_builder import Oauth2PermissionGrantsRequestBuilder
 
         return Oauth2PermissionGrantsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def on_premises_sync_behavior(self) -> OnPremisesSyncBehaviorRequestBuilder:
+        """
+        Provides operations to manage the onPremisesSyncBehavior property of the microsoft.graph.user entity.
+        """
+        from .on_premises_sync_behavior.on_premises_sync_behavior_request_builder import OnPremisesSyncBehaviorRequestBuilder
+
+        return OnPremisesSyncBehaviorRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def onenote(self) -> OnenoteRequestBuilder:
