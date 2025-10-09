@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .dep_enrollment_base_profile import DepEnrollmentBaseProfile
+    from .dep_profile_admin_account_password_rotation_setting import DepProfileAdminAccountPasswordRotationSetting
 
 from .dep_enrollment_base_profile import DepEnrollmentBaseProfile
 
@@ -30,6 +31,8 @@ class DepMacOSEnrollmentProfile(DepEnrollmentBaseProfile, Parsable):
     auto_unlock_with_watch_disabled: Optional[bool] = None
     # Indicates if iCloud Documents and Desktop screen is disabled
     choose_your_lock_screen_disabled: Optional[bool] = None
+    # Settings for local admin account password automatic rotation.
+    dep_profile_admin_account_password_rotation_setting: Optional[DepProfileAdminAccountPasswordRotationSetting] = None
     # Indicates whether Setup Assistant will auto populate the primary account information
     dont_auto_populate_primary_account_info: Optional[bool] = None
     # Indicates whether the user will enable blockediting
@@ -76,8 +79,10 @@ class DepMacOSEnrollmentProfile(DepEnrollmentBaseProfile, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .dep_enrollment_base_profile import DepEnrollmentBaseProfile
+        from .dep_profile_admin_account_password_rotation_setting import DepProfileAdminAccountPasswordRotationSetting
 
         from .dep_enrollment_base_profile import DepEnrollmentBaseProfile
+        from .dep_profile_admin_account_password_rotation_setting import DepProfileAdminAccountPasswordRotationSetting
 
         fields: dict[str, Callable[[Any], None]] = {
             "accessibilityScreenDisabled": lambda n : setattr(self, 'accessibility_screen_disabled', n.get_bool_value()),
@@ -87,6 +92,7 @@ class DepMacOSEnrollmentProfile(DepEnrollmentBaseProfile, Parsable):
             "autoAdvanceSetupEnabled": lambda n : setattr(self, 'auto_advance_setup_enabled', n.get_bool_value()),
             "autoUnlockWithWatchDisabled": lambda n : setattr(self, 'auto_unlock_with_watch_disabled', n.get_bool_value()),
             "chooseYourLockScreenDisabled": lambda n : setattr(self, 'choose_your_lock_screen_disabled', n.get_bool_value()),
+            "depProfileAdminAccountPasswordRotationSetting": lambda n : setattr(self, 'dep_profile_admin_account_password_rotation_setting', n.get_object_value(DepProfileAdminAccountPasswordRotationSetting)),
             "dontAutoPopulatePrimaryAccountInfo": lambda n : setattr(self, 'dont_auto_populate_primary_account_info', n.get_bool_value()),
             "enableRestrictEditing": lambda n : setattr(self, 'enable_restrict_editing', n.get_bool_value()),
             "fileVaultDisabled": lambda n : setattr(self, 'file_vault_disabled', n.get_bool_value()),
@@ -122,6 +128,7 @@ class DepMacOSEnrollmentProfile(DepEnrollmentBaseProfile, Parsable):
         writer.write_bool_value("autoAdvanceSetupEnabled", self.auto_advance_setup_enabled)
         writer.write_bool_value("autoUnlockWithWatchDisabled", self.auto_unlock_with_watch_disabled)
         writer.write_bool_value("chooseYourLockScreenDisabled", self.choose_your_lock_screen_disabled)
+        writer.write_object_value("depProfileAdminAccountPasswordRotationSetting", self.dep_profile_admin_account_password_rotation_setting)
         writer.write_bool_value("dontAutoPopulatePrimaryAccountInfo", self.dont_auto_populate_primary_account_info)
         writer.write_bool_value("enableRestrictEditing", self.enable_restrict_editing)
         writer.write_bool_value("fileVaultDisabled", self.file_vault_disabled)

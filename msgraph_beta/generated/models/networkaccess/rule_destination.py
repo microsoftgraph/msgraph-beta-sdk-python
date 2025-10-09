@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .fqdn import Fqdn
     from .ip_address import IpAddress
+    from .ip_destination import IpDestination
     from .ip_range import IpRange
     from .ip_subnet import IpSubnet
     from .url import Url
@@ -45,6 +46,10 @@ class RuleDestination(AdditionalDataHolder, BackedModel, Parsable):
             from .ip_address import IpAddress
 
             return IpAddress()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.ipDestination".casefold():
+            from .ip_destination import IpDestination
+
+            return IpDestination()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.ipRange".casefold():
             from .ip_range import IpRange
 
@@ -70,6 +75,7 @@ class RuleDestination(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .fqdn import Fqdn
         from .ip_address import IpAddress
+        from .ip_destination import IpDestination
         from .ip_range import IpRange
         from .ip_subnet import IpSubnet
         from .url import Url
@@ -77,6 +83,7 @@ class RuleDestination(AdditionalDataHolder, BackedModel, Parsable):
 
         from .fqdn import Fqdn
         from .ip_address import IpAddress
+        from .ip_destination import IpDestination
         from .ip_range import IpRange
         from .ip_subnet import IpSubnet
         from .url import Url

@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .workbook_comment_mention import WorkbookCommentMention
     from .workbook_document_task import WorkbookDocumentTask
 
 from .entity import Entity
@@ -16,8 +17,12 @@ class WorkbookCommentReply(Entity, Parsable):
     content: Optional[str] = None
     # The content type for the reply. Supported values are: plain, mention.
     content_type: Optional[str] = None
+    # A collection that contains all the people mentioned within the reply. When contentType is plain, this property is an empty array. Read-only.
+    mentions: Optional[list[WorkbookCommentMention]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The rich content of the reply (for example, reply content with mentions, where the first mentioned entity has an ID attribute of 0 and the second has an ID attribute of 1). When contentType is plain, this property is empty. Read-only.
+    rich_content: Optional[str] = None
     # The task associated with the comment thread.
     task: Optional[WorkbookDocumentTask] = None
     
@@ -38,14 +43,18 @@ class WorkbookCommentReply(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .workbook_comment_mention import WorkbookCommentMention
         from .workbook_document_task import WorkbookDocumentTask
 
         from .entity import Entity
+        from .workbook_comment_mention import WorkbookCommentMention
         from .workbook_document_task import WorkbookDocumentTask
 
         fields: dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_str_value()),
             "contentType": lambda n : setattr(self, 'content_type', n.get_str_value()),
+            "mentions": lambda n : setattr(self, 'mentions', n.get_collection_of_object_values(WorkbookCommentMention)),
+            "richContent": lambda n : setattr(self, 'rich_content', n.get_str_value()),
             "task": lambda n : setattr(self, 'task', n.get_object_value(WorkbookDocumentTask)),
         }
         super_fields = super().get_field_deserializers()
@@ -63,6 +72,8 @@ class WorkbookCommentReply(Entity, Parsable):
         super().serialize(writer)
         writer.write_str_value("content", self.content)
         writer.write_str_value("contentType", self.content_type)
+        writer.write_collection_of_object_values("mentions", self.mentions)
+        writer.write_str_value("richContent", self.rich_content)
         writer.write_object_value("task", self.task)
     
 

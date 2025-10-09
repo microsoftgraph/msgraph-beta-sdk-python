@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from .conditional_access.conditional_access_request_builder import ConditionalAccessRequestBuilder
     from .cross_tenant_access.cross_tenant_access_request_builder import CrossTenantAccessRequestBuilder
+    from .custom_block_page.custom_block_page_request_builder import CustomBlockPageRequestBuilder
     from .forwarding_options.forwarding_options_request_builder import ForwardingOptionsRequestBuilder
 
 class SettingsRequestBuilder(BaseRequestBuilder):
@@ -158,6 +159,15 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         from .cross_tenant_access.cross_tenant_access_request_builder import CrossTenantAccessRequestBuilder
 
         return CrossTenantAccessRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def custom_block_page(self) -> CustomBlockPageRequestBuilder:
+        """
+        Provides operations to manage the customBlockPage property of the microsoft.graph.networkaccess.settings entity.
+        """
+        from .custom_block_page.custom_block_page_request_builder import CustomBlockPageRequestBuilder
+
+        return CustomBlockPageRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def forwarding_options(self) -> ForwardingOptionsRequestBuilder:

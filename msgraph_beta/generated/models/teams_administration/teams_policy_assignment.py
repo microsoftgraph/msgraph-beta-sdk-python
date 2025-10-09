@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .teams_policy_user_assignment import TeamsPolicyUserAssignment
 
 from ..entity import Entity
 
@@ -13,6 +14,8 @@ from ..entity import Entity
 class TeamsPolicyAssignment(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
+    # Navigation property to the collection of user policy assignments.
+    user_assignments: Optional[list[TeamsPolicyUserAssignment]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TeamsPolicyAssignment:
@@ -31,10 +34,13 @@ class TeamsPolicyAssignment(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .teams_policy_user_assignment import TeamsPolicyUserAssignment
 
         from ..entity import Entity
+        from .teams_policy_user_assignment import TeamsPolicyUserAssignment
 
         fields: dict[str, Callable[[Any], None]] = {
+            "userAssignments": lambda n : setattr(self, 'user_assignments', n.get_collection_of_object_values(TeamsPolicyUserAssignment)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -49,5 +55,6 @@ class TeamsPolicyAssignment(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("userAssignments", self.user_assignments)
     
 

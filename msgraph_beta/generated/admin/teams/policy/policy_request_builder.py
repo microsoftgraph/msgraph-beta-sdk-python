@@ -16,6 +16,8 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.teams_administration.teams_policy_assignment import TeamsPolicyAssignment
+    from .microsoft_graph_teams_administration_get_policy_id_with_type_with_name.microsoft_graph_teams_administration_get_policy_id_with_type_with_name_request_builder import MicrosoftGraphTeamsAdministrationGetPolicyIdWithTypeWithNameRequestBuilder
+    from .user_assignments.user_assignments_request_builder import UserAssignmentsRequestBuilder
 
 class PolicyRequestBuilder(BaseRequestBuilder):
     """
@@ -67,6 +69,21 @@ class PolicyRequestBuilder(BaseRequestBuilder):
         from ....models.teams_administration.teams_policy_assignment import TeamsPolicyAssignment
 
         return await self.request_adapter.send_async(request_info, TeamsPolicyAssignment, error_mapping)
+    
+    def microsoft_graph_teams_administration_get_policy_id_with_type_with_name(self,name: str, type: str) -> MicrosoftGraphTeamsAdministrationGetPolicyIdWithTypeWithNameRequestBuilder:
+        """
+        Provides operations to call the getPolicyId method.
+        param name: Usage: name='{name}'
+        param type: Usage: type='{type}'
+        Returns: MicrosoftGraphTeamsAdministrationGetPolicyIdWithTypeWithNameRequestBuilder
+        """
+        if name is None:
+            raise TypeError("name cannot be null.")
+        if type is None:
+            raise TypeError("type cannot be null.")
+        from .microsoft_graph_teams_administration_get_policy_id_with_type_with_name.microsoft_graph_teams_administration_get_policy_id_with_type_with_name_request_builder import MicrosoftGraphTeamsAdministrationGetPolicyIdWithTypeWithNameRequestBuilder
+
+        return MicrosoftGraphTeamsAdministrationGetPolicyIdWithTypeWithNameRequestBuilder(self.request_adapter, self.path_parameters, name, type)
     
     async def patch(self,body: TeamsPolicyAssignment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TeamsPolicyAssignment]:
         """
@@ -137,6 +154,15 @@ class PolicyRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PolicyRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def user_assignments(self) -> UserAssignmentsRequestBuilder:
+        """
+        Provides operations to manage the userAssignments property of the microsoft.graph.teamsAdministration.teamsPolicyAssignment entity.
+        """
+        from .user_assignments.user_assignments_request_builder import UserAssignmentsRequestBuilder
+
+        return UserAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PolicyRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

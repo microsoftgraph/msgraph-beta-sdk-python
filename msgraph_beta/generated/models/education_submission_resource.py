@@ -14,7 +14,7 @@ from .entity import Entity
 class EducationSubmissionResource(Entity, Parsable):
     # Pointer to the assignment from which the resource was copied. If the value is null, the student uploaded the resource.
     assignment_resource_url: Optional[str] = None
-    # The dependentResources property
+    # A collection of submission resources that depend on the parent educationSubmissionResource.
     dependent_resources: Optional[list[EducationSubmissionResource]] = None
     # The OdataType property
     odata_type: Optional[str] = None

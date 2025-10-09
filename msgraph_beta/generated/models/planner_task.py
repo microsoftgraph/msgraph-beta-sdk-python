@@ -59,6 +59,8 @@ class PlannerTask(PlannerDelta, Parsable):
     details: Optional[PlannerTaskDetails] = None
     # The date and time at which the task is due. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     due_date_time: Optional[datetime.datetime] = None
+    # The hasChat property
+    has_chat: Optional[bool] = None
     # Read-only. This value is true if the details object of the task has a nonempty description. Otherwise,false.
     has_description: Optional[bool] = None
     # Read-only. If set to true, the task is archived. An archived task is read-only.
@@ -169,6 +171,7 @@ class PlannerTask(PlannerDelta, Parsable):
             "creationSource": lambda n : setattr(self, 'creation_source', n.get_object_value(PlannerTaskCreation)),
             "details": lambda n : setattr(self, 'details', n.get_object_value(PlannerTaskDetails)),
             "dueDateTime": lambda n : setattr(self, 'due_date_time', n.get_datetime_value()),
+            "hasChat": lambda n : setattr(self, 'has_chat', n.get_bool_value()),
             "hasDescription": lambda n : setattr(self, 'has_description', n.get_bool_value()),
             "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
             "isOnMyDay": lambda n : setattr(self, 'is_on_my_day', n.get_bool_value()),
@@ -217,6 +220,7 @@ class PlannerTask(PlannerDelta, Parsable):
         writer.write_object_value("creationSource", self.creation_source)
         writer.write_object_value("details", self.details)
         writer.write_datetime_value("dueDateTime", self.due_date_time)
+        writer.write_bool_value("hasChat", self.has_chat)
         writer.write_bool_value("hasDescription", self.has_description)
         writer.write_bool_value("isArchived", self.is_archived)
         writer.write_bool_value("isOnMyDay", self.is_on_my_day)

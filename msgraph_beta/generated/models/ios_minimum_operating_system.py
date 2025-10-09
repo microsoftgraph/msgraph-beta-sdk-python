@@ -35,6 +35,8 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
     v17_0: Optional[bool] = None
     # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 18.0 or later is required to install the app. If 'False', iOS Version 18.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v18_0: Optional[bool] = None
+    # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 26.0 or later is required to install the app. If 'False', iOS Version 26.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
+    v26_0: Optional[bool] = None
     # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 8.0 or later is required to install the app. If 'False', iOS Version 8.0  is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v8_0: Optional[bool] = None
     # Indicates the minimum iOS version support required for the managed device. When 'True', iOS with OS Version 9.0 or later is required to install the app. If 'False', iOS Version 9.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
@@ -67,6 +69,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
             "v16_0": lambda n : setattr(self, 'v16_0', n.get_bool_value()),
             "v17_0": lambda n : setattr(self, 'v17_0', n.get_bool_value()),
             "v18_0": lambda n : setattr(self, 'v18_0', n.get_bool_value()),
+            "v26_0": lambda n : setattr(self, 'v26_0', n.get_bool_value()),
             "v8_0": lambda n : setattr(self, 'v8_0', n.get_bool_value()),
             "v9_0": lambda n : setattr(self, 'v9_0', n.get_bool_value()),
         }
@@ -90,6 +93,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("v16_0", self.v16_0)
         writer.write_bool_value("v17_0", self.v17_0)
         writer.write_bool_value("v18_0", self.v18_0)
+        writer.write_bool_value("v26_0", self.v26_0)
         writer.write_bool_value("v8_0", self.v8_0)
         writer.write_bool_value("v9_0", self.v9_0)
         writer.write_additional_data_value(self.additional_data)

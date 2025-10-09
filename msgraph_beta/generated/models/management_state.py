@@ -25,4 +25,6 @@ class ManagementState(str, Enum):
     RetireCanceled = "retireCanceled",
     # The device is discovered but not fully enrolled.
     Discovered = "discovered",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

@@ -45,6 +45,8 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
     v14_0: Optional[bool] = None
     # Indicates the minimum OS X version support required for the managed device. When 'True', macOS with OS X 15.0 or later is required to install the app. If 'False', OS X Version 15.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
     v15_0: Optional[bool] = None
+    # Indicates the minimum OS X version support required for the managed device. When 'True', macOS with OS X 26.0 or later is required to install the app. If 'False', OS X Version 26.0 is not the minimum version. Default value is False. Exactly one of the minimum operating system boolean values will be TRUE.
+    v26_0: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MacOSMinimumOperatingSystem:
@@ -78,6 +80,7 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
             "v13_0": lambda n : setattr(self, 'v13_0', n.get_bool_value()),
             "v14_0": lambda n : setattr(self, 'v14_0', n.get_bool_value()),
             "v15_0": lambda n : setattr(self, 'v15_0', n.get_bool_value()),
+            "v26_0": lambda n : setattr(self, 'v26_0', n.get_bool_value()),
         }
         return fields
     
@@ -104,6 +107,7 @@ class MacOSMinimumOperatingSystem(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_bool_value("v13_0", self.v13_0)
         writer.write_bool_value("v14_0", self.v14_0)
         writer.write_bool_value("v15_0", self.v15_0)
+        writer.write_bool_value("v26_0", self.v26_0)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .file_storage_container_type_agent_settings import FileStorageContainerTypeAgentSettings
     from .file_storage_container_type_settings_override import FileStorageContainerTypeSettingsOverride
     from .sharing_capabilities import SharingCapabilities
 
@@ -16,6 +17,8 @@ class FileStorageContainerTypeSettings(AdditionalDataHolder, BackedModel, Parsab
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # Contains agent-related settings. Optional
+    agent: Optional[FileStorageContainerTypeAgentSettings] = None
     # A comma-separated list of settings that can be overridden in the consuming tenant. The possible values are: urlTemplate, isDiscoverabilityEnabled, isSearchEnabled, isItemVersioningEnabled, itemMajorVersionLimit, maxStoragePerContainerInBytes, unknownFutureValue.
     consuming_tenant_overridables: Optional[FileStorageContainerTypeSettingsOverride] = None
     # Indicates whether items from containers are surfaced in experiences such as My Activity or Microsoft 365.
@@ -53,13 +56,16 @@ class FileStorageContainerTypeSettings(AdditionalDataHolder, BackedModel, Parsab
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .file_storage_container_type_agent_settings import FileStorageContainerTypeAgentSettings
         from .file_storage_container_type_settings_override import FileStorageContainerTypeSettingsOverride
         from .sharing_capabilities import SharingCapabilities
 
+        from .file_storage_container_type_agent_settings import FileStorageContainerTypeAgentSettings
         from .file_storage_container_type_settings_override import FileStorageContainerTypeSettingsOverride
         from .sharing_capabilities import SharingCapabilities
 
         fields: dict[str, Callable[[Any], None]] = {
+            "agent": lambda n : setattr(self, 'agent', n.get_object_value(FileStorageContainerTypeAgentSettings)),
             "consumingTenantOverridables": lambda n : setattr(self, 'consuming_tenant_overridables', n.get_collection_of_enum_values(FileStorageContainerTypeSettingsOverride)),
             "isDiscoverabilityEnabled": lambda n : setattr(self, 'is_discoverability_enabled', n.get_bool_value()),
             "isItemVersioningEnabled": lambda n : setattr(self, 'is_item_versioning_enabled', n.get_bool_value()),
@@ -81,6 +87,7 @@ class FileStorageContainerTypeSettings(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_object_value("agent", self.agent)
         writer.write_enum_value("consumingTenantOverridables", self.consuming_tenant_overridables)
         writer.write_bool_value("isDiscoverabilityEnabled", self.is_discoverability_enabled)
         writer.write_bool_value("isItemVersioningEnabled", self.is_item_versioning_enabled)
