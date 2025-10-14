@@ -14,7 +14,7 @@ from .authentication_event_listener import AuthenticationEventListener
 class OnFraudProtectionLoadStartListener(AuthenticationEventListener, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onFraudProtectionLoadStartListener"
-    # The handler property
+    # Configuration for what to invoke if the event resolves to this listener.
     handler: Optional[OnFraudProtectionLoadStartHandler] = None
     
     @staticmethod

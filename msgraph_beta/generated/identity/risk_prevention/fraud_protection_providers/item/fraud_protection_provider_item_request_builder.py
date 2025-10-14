@@ -50,7 +50,7 @@ class FraudProtectionProviderItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[FraudProtectionProviderItemRequestBuilderGetQueryParameters]] = None) -> Optional[FraudProtectionProvider]:
         """
-        Get fraudProtectionProviders from identity
+        Represents entry point for fraud protection provider configurations for Microsoft Entra External ID tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FraudProtectionProvider]
         """
@@ -104,7 +104,7 @@ class FraudProtectionProviderItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[FraudProtectionProviderItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get fraudProtectionProviders from identity
+        Represents entry point for fraud protection provider configurations for Microsoft Entra External ID tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class FraudProtectionProviderItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FraudProtectionProviderItemRequestBuilderGetQueryParameters():
         """
-        Get fraudProtectionProviders from identity
+        Represents entry point for fraud protection provider configurations for Microsoft Entra External ID tenants.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

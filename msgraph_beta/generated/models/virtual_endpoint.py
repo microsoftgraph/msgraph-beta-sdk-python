@@ -43,7 +43,7 @@ class VirtualEndpoint(Entity, Parsable):
     device_images: Optional[list[CloudPcDeviceImage]] = None
     # The external partner settings on a Cloud PC.
     external_partner_settings: Optional[list[CloudPcExternalPartnerSetting]] = None
-    # The externalPartners property
+    # The external partners on a Cloud PC.
     external_partners: Optional[list[CloudPcExternalPartner]] = None
     # Front-line service plans for a Cloud PC.
     front_line_service_plans: Optional[list[CloudPcFrontLineServicePlan]] = None
