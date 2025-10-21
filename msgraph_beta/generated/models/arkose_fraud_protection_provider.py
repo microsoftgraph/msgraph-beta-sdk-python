@@ -13,13 +13,13 @@ from .fraud_protection_provider import FraudProtectionProvider
 class ArkoseFraudProtectionProvider(FraudProtectionProvider, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.arkoseFraudProtectionProvider"
-    # The clientSubDomain property
+    # Used to invoke the Arkose service from the client application. Request from your Arkose Customer Success Manager or use the default client-api value.
     client_sub_domain: Optional[str] = None
-    # The privateKey property
+    # The private key available on the Arkose Portal. Contact your Arkose Customer Success Manager for assistance with your keys.
     private_key: Optional[str] = None
-    # The publicKey property
+    # The public key available on the Arkose Portal. Contact your Arkose Customer Success Manager for assistance with your keys.
     public_key: Optional[str] = None
-    # The verifySubDomain property
+    # Used to invoke the Arkose service from the Microsoft authentication server. Request from your Arkose Customer Success Manager or use the default verify-api value.
     verify_sub_domain: Optional[str] = None
     
     @staticmethod

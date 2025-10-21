@@ -13,7 +13,7 @@ from .entity import Entity
 
 @dataclass
 class FraudProtectionProvider(Entity, Parsable):
-    # The displayName property
+    # The display name of the fraud protection provider configuration.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

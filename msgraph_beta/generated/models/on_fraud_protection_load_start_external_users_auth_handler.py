@@ -14,7 +14,7 @@ from .on_fraud_protection_load_start_handler import OnFraudProtectionLoadStartHa
 class OnFraudProtectionLoadStartExternalUsersAuthHandler(OnFraudProtectionLoadStartHandler, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.onFraudProtectionLoadStartExternalUsersAuthHandler"
-    # The signUp property
+    # Specifies the configuration of the fraud protection configuration for sign-up events.
     sign_up: Optional[FraudProtectionConfiguration] = None
     
     @staticmethod

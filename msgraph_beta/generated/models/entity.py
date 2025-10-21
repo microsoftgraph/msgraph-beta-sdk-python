@@ -53,6 +53,7 @@ if TYPE_CHECKING:
     from .admin_windows_updates import AdminWindowsUpdates
     from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
     from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
+    from .agent_identity import AgentIdentity
     from .agreement import Agreement
     from .agreement_acceptance import AgreementAcceptance
     from .agreement_file import AgreementFile
@@ -1526,6 +1527,7 @@ if TYPE_CHECKING:
     from .security.audit_log_query import AuditLogQuery
     from .security.audit_log_record import AuditLogRecord
     from .security.authority_template import AuthorityTemplate
+    from .security.auto_auditing_configuration import AutoAuditingConfiguration
     from .security.case import Case
     from .security.cases_root import CasesRoot
     from .security.case_operation import CaseOperation
@@ -1606,10 +1608,15 @@ if TYPE_CHECKING:
     from .security.rules_root import RulesRoot
     from .security.search import Search
     from .security.security import Security
+    from .security.security_copilot.evaluation import Evaluation
+    from .security.security_copilot.prompt import Prompt
+    from .security.security_copilot.session import Session
+    from .security.security_copilot.workspace import Workspace
     from .security.sensitivity_label import SensitivityLabel
     from .security.sensor import Sensor
     from .security.sensor_candidate import SensorCandidate
     from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
+    from .security.settings_container import SettingsContainer
     from .security.site_source import SiteSource
     from .security.ssl_certificate import SslCertificate
     from .security.subcategory_template import SubcategoryTemplate
@@ -1638,6 +1645,7 @@ if TYPE_CHECKING:
     from .security_baseline_state_summary import SecurityBaselineStateSummary
     from .security_baseline_template import SecurityBaselineTemplate
     from .security_configuration_task import SecurityConfigurationTask
+    from .security_copilot import SecurityCopilot
     from .security_reports_root import SecurityReportsRoot
     from .security_tool_aws_resource_administrator_finding import SecurityToolAwsResourceAdministratorFinding
     from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
@@ -1755,11 +1763,14 @@ if TYPE_CHECKING:
     from .task_file_attachment import TaskFileAttachment
     from .tax_group import TaxGroup
     from .team import Team
+    from .teams_administration.number_assignment import NumberAssignment
     from .teams_administration.policy_identifier_detail import PolicyIdentifierDetail
     from .teams_administration.teams_admin_root import TeamsAdminRoot
     from .teams_administration.teams_policy_assignment import TeamsPolicyAssignment
     from .teams_administration.teams_policy_user_assignment import TeamsPolicyUserAssignment
     from .teams_administration.teams_user_configuration import TeamsUserConfiguration
+    from .teams_administration.telephone_number_long_running_operation import TelephoneNumberLongRunningOperation
+    from .teams_administration.telephone_number_management_root import TelephoneNumberManagementRoot
     from .teams_app import TeamsApp
     from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
     from .teams_app_definition import TeamsAppDefinition
@@ -2379,6 +2390,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
 
             return AdvancedThreatProtectionOnboardingStateSummary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentity".casefold():
+            from .agent_identity import AgentIdentity
+
+            return AgentIdentity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.agreement".casefold():
             from .agreement import Agreement
 
@@ -3346,6 +3361,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return Segment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.callRecords.session".casefold():
             from .call_records.session import Session
+            from .security.security_copilot.session import Session
 
             return Session()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.callSettings".casefold():
@@ -8317,6 +8333,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.authority_template import AuthorityTemplate
 
             return AuthorityTemplate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.autoAuditingConfiguration".casefold():
+            from .security.auto_auditing_configuration import AutoAuditingConfiguration
+
+            return AutoAuditingConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.case".casefold():
             from .ediscovery.case import Case
             from .security.case import Case
@@ -8643,6 +8663,24 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.security import Security
 
             return Security()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.securityCopilot.evaluation".casefold():
+            from .security.security_copilot.evaluation import Evaluation
+
+            return Evaluation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.securityCopilot.prompt".casefold():
+            from .security.security_copilot.prompt import Prompt
+
+            return Prompt()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.securityCopilot.session".casefold():
+            from .call_records.session import Session
+            from .security.security_copilot.session import Session
+
+            return Session()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.securityCopilot.workspace".casefold():
+            from .security.security_copilot.workspace import Workspace
+            from .workspace import Workspace
+
+            return Workspace()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.sensitivityLabel".casefold():
             from .security.sensitivity_label import SensitivityLabel
             from .sensitivity_label import SensitivityLabel
@@ -8660,6 +8698,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
 
             return SensorCandidateActivationConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.settingsContainer".casefold():
+            from .security.settings_container import SettingsContainer
+
+            return SettingsContainer()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.siteSource".casefold():
             from .ediscovery.site_source import SiteSource
             from .security.site_source import SiteSource
@@ -8777,6 +8819,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security_configuration_task import SecurityConfigurationTask
 
             return SecurityConfigurationTask()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityCopilot".casefold():
+            from .security_copilot import SecurityCopilot
+
+            return SecurityCopilot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityReportsRoot".casefold():
             from .security_reports_root import SecurityReportsRoot
 
@@ -9250,6 +9296,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .team_info import TeamInfo
 
             return TeamInfo()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAdministration.numberAssignment".casefold():
+            from .teams_administration.number_assignment import NumberAssignment
+
+            return NumberAssignment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAdministration.policyIdentifierDetail".casefold():
             from .teams_administration.policy_identifier_detail import PolicyIdentifierDetail
 
@@ -9270,6 +9320,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .teams_administration.teams_user_configuration import TeamsUserConfiguration
 
             return TeamsUserConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAdministration.telephoneNumberLongRunningOperation".casefold():
+            from .teams_administration.telephone_number_long_running_operation import TelephoneNumberLongRunningOperation
+
+            return TelephoneNumberLongRunningOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsAdministration.telephoneNumberManagementRoot".casefold():
+            from .teams_administration.telephone_number_management_root import TelephoneNumberManagementRoot
+
+            return TelephoneNumberManagementRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamsApp".casefold():
             from .teams_app import TeamsApp
 
@@ -10864,6 +10922,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return WorkPosition()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.workspace".casefold():
+            from .security.security_copilot.workspace import Workspace
             from .workspace import Workspace
 
             return Workspace()
@@ -10941,6 +11000,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_windows_updates import AdminWindowsUpdates
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
+        from .agent_identity import AgentIdentity
         from .agreement import Agreement
         from .agreement_acceptance import AgreementAcceptance
         from .agreement_file import AgreementFile
@@ -12414,6 +12474,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.audit_log_query import AuditLogQuery
         from .security.audit_log_record import AuditLogRecord
         from .security.authority_template import AuthorityTemplate
+        from .security.auto_auditing_configuration import AutoAuditingConfiguration
         from .security.case import Case
         from .security.cases_root import CasesRoot
         from .security.case_operation import CaseOperation
@@ -12494,10 +12555,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.rules_root import RulesRoot
         from .security.search import Search
         from .security.security import Security
+        from .security.security_copilot.evaluation import Evaluation
+        from .security.security_copilot.prompt import Prompt
+        from .security.security_copilot.session import Session
+        from .security.security_copilot.workspace import Workspace
         from .security.sensitivity_label import SensitivityLabel
         from .security.sensor import Sensor
         from .security.sensor_candidate import SensorCandidate
         from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
+        from .security.settings_container import SettingsContainer
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
         from .security.subcategory_template import SubcategoryTemplate
@@ -12526,6 +12592,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security_baseline_state_summary import SecurityBaselineStateSummary
         from .security_baseline_template import SecurityBaselineTemplate
         from .security_configuration_task import SecurityConfigurationTask
+        from .security_copilot import SecurityCopilot
         from .security_reports_root import SecurityReportsRoot
         from .security_tool_aws_resource_administrator_finding import SecurityToolAwsResourceAdministratorFinding
         from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
@@ -12643,11 +12710,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .task_file_attachment import TaskFileAttachment
         from .tax_group import TaxGroup
         from .team import Team
+        from .teams_administration.number_assignment import NumberAssignment
         from .teams_administration.policy_identifier_detail import PolicyIdentifierDetail
         from .teams_administration.teams_admin_root import TeamsAdminRoot
         from .teams_administration.teams_policy_assignment import TeamsPolicyAssignment
         from .teams_administration.teams_policy_user_assignment import TeamsPolicyUserAssignment
         from .teams_administration.teams_user_configuration import TeamsUserConfiguration
+        from .teams_administration.telephone_number_long_running_operation import TelephoneNumberLongRunningOperation
+        from .teams_administration.telephone_number_management_root import TelephoneNumberManagementRoot
         from .teams_app import TeamsApp
         from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
         from .teams_app_definition import TeamsAppDefinition
@@ -13100,6 +13170,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_windows_updates import AdminWindowsUpdates
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
+        from .agent_identity import AgentIdentity
         from .agreement import Agreement
         from .agreement_acceptance import AgreementAcceptance
         from .agreement_file import AgreementFile
@@ -14573,6 +14644,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.audit_log_query import AuditLogQuery
         from .security.audit_log_record import AuditLogRecord
         from .security.authority_template import AuthorityTemplate
+        from .security.auto_auditing_configuration import AutoAuditingConfiguration
         from .security.case import Case
         from .security.cases_root import CasesRoot
         from .security.case_operation import CaseOperation
@@ -14653,10 +14725,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.rules_root import RulesRoot
         from .security.search import Search
         from .security.security import Security
+        from .security.security_copilot.evaluation import Evaluation
+        from .security.security_copilot.prompt import Prompt
+        from .security.security_copilot.session import Session
+        from .security.security_copilot.workspace import Workspace
         from .security.sensitivity_label import SensitivityLabel
         from .security.sensor import Sensor
         from .security.sensor_candidate import SensorCandidate
         from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
+        from .security.settings_container import SettingsContainer
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
         from .security.subcategory_template import SubcategoryTemplate
@@ -14685,6 +14762,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security_baseline_state_summary import SecurityBaselineStateSummary
         from .security_baseline_template import SecurityBaselineTemplate
         from .security_configuration_task import SecurityConfigurationTask
+        from .security_copilot import SecurityCopilot
         from .security_reports_root import SecurityReportsRoot
         from .security_tool_aws_resource_administrator_finding import SecurityToolAwsResourceAdministratorFinding
         from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
@@ -14802,11 +14880,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .task_file_attachment import TaskFileAttachment
         from .tax_group import TaxGroup
         from .team import Team
+        from .teams_administration.number_assignment import NumberAssignment
         from .teams_administration.policy_identifier_detail import PolicyIdentifierDetail
         from .teams_administration.teams_admin_root import TeamsAdminRoot
         from .teams_administration.teams_policy_assignment import TeamsPolicyAssignment
         from .teams_administration.teams_policy_user_assignment import TeamsPolicyUserAssignment
         from .teams_administration.teams_user_configuration import TeamsUserConfiguration
+        from .teams_administration.telephone_number_long_running_operation import TelephoneNumberLongRunningOperation
+        from .teams_administration.telephone_number_management_root import TelephoneNumberManagementRoot
         from .teams_app import TeamsApp
         from .teams_app_dashboard_card_definition import TeamsAppDashboardCardDefinition
         from .teams_app_definition import TeamsAppDefinition

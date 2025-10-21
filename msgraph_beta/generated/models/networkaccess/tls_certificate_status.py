@@ -7,4 +7,6 @@ class TlsCertificateStatus(str, Enum):
     UnknownFutureValue = "unknownFutureValue",
     Expiring = "expiring",
     Expired = "expired",
+    Enabled = "enabled",
+    Disabled = "disabled",
 

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.teams_administration.teams_admin_root import TeamsAdminRoot
     from .policy.policy_request_builder import PolicyRequestBuilder
+    from .telephone_number_management.telephone_number_management_request_builder import TelephoneNumberManagementRequestBuilder
     from .user_configurations.user_configurations_request_builder import UserConfigurationsRequestBuilder
 
 class TeamsRequestBuilder(BaseRequestBuilder):
@@ -148,6 +149,15 @@ class TeamsRequestBuilder(BaseRequestBuilder):
         from .policy.policy_request_builder import PolicyRequestBuilder
 
         return PolicyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def telephone_number_management(self) -> TelephoneNumberManagementRequestBuilder:
+        """
+        Provides operations to manage the telephoneNumberManagement property of the microsoft.graph.teamsAdministration.teamsAdminRoot entity.
+        """
+        from .telephone_number_management.telephone_number_management_request_builder import TelephoneNumberManagementRequestBuilder
+
+        return TelephoneNumberManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_configurations(self) -> UserConfigurationsRequestBuilder:

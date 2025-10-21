@@ -27,6 +27,10 @@ class ConfigurationMonitor(Entity, Parsable):
     description: Optional[str] = None
     # The displayName property
     display_name: Optional[str] = None
+    # The inactivationReason property
+    inactivation_reason: Optional[str] = None
+    # The lastModifiedBy property
+    last_modified_by: Optional[IdentitySet] = None
     # The lastModifiedDateTime property
     last_modified_date_time: Optional[datetime.datetime] = None
     # The mode property
@@ -37,6 +41,8 @@ class ConfigurationMonitor(Entity, Parsable):
     odata_type: Optional[str] = None
     # The parameters property
     parameters: Optional[OpenComplexDictionaryType] = None
+    # The runAsUTCMServicePrincipal property
+    run_as_u_t_c_m_service_principal: Optional[bool] = None
     # The runningOnBehalfOf property
     running_on_behalf_of: Optional[IdentitySet] = None
     # The status property
@@ -80,10 +86,13 @@ class ConfigurationMonitor(Entity, Parsable):
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "inactivationReason": lambda n : setattr(self, 'inactivation_reason', n.get_str_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "mode": lambda n : setattr(self, 'mode', n.get_enum_value(MonitorMode)),
             "monitorRunFrequencyInHours": lambda n : setattr(self, 'monitor_run_frequency_in_hours', n.get_int_value()),
             "parameters": lambda n : setattr(self, 'parameters', n.get_object_value(OpenComplexDictionaryType)),
+            "runAsUTCMServicePrincipal": lambda n : setattr(self, 'run_as_u_t_c_m_service_principal', n.get_bool_value()),
             "runningOnBehalfOf": lambda n : setattr(self, 'running_on_behalf_of', n.get_object_value(IdentitySet)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(MonitorStatus)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
@@ -105,8 +114,11 @@ class ConfigurationMonitor(Entity, Parsable):
         writer.write_object_value("createdBy", self.created_by)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_enum_value("mode", self.mode)
+        writer.write_int_value("monitorRunFrequencyInHours", self.monitor_run_frequency_in_hours)
         writer.write_object_value("parameters", self.parameters)
+        writer.write_bool_value("runAsUTCMServicePrincipal", self.run_as_u_t_c_m_service_principal)
         writer.write_object_value("runningOnBehalfOf", self.running_on_behalf_of)
         writer.write_enum_value("status", self.status)
     

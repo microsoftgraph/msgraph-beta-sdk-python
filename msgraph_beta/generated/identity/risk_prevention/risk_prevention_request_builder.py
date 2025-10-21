@@ -51,7 +51,7 @@ class RiskPreventionRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RiskPreventionRequestBuilderGetQueryParameters]] = None) -> Optional[RiskPreventionContainer]:
         """
-        Get riskPrevention from identity
+        Represents the entry point for fraud and risk prevention configurations in Microsoft Entra External ID, including third-party provider settings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RiskPreventionContainer]
         """
@@ -105,7 +105,7 @@ class RiskPreventionRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RiskPreventionRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get riskPrevention from identity
+        Represents the entry point for fraud and risk prevention configurations in Microsoft Entra External ID, including third-party provider settings.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +158,7 @@ class RiskPreventionRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RiskPreventionRequestBuilderGetQueryParameters():
         """
-        Get riskPrevention from identity
+        Represents the entry point for fraud and risk prevention configurations in Microsoft Entra External ID, including third-party provider settings.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
