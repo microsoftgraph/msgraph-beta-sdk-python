@@ -18,7 +18,7 @@ class EmergencyCallEvent(CallEvent, Parsable):
     emergency_number_dialed: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The policy name for emergency call event.
+    # The policy name for the emergency call event.
     policy_name: Optional[str] = None
     
     @staticmethod

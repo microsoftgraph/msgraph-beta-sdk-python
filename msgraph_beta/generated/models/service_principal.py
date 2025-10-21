@@ -8,6 +8,7 @@ from uuid import UUID
 
 if TYPE_CHECKING:
     from .add_in import AddIn
+    from .agent_identity import AgentIdentity
     from .app_management_policy import AppManagementPolicy
     from .app_role import AppRole
     from .app_role_assignment import AppRoleAssignment
@@ -168,6 +169,15 @@ class ServicePrincipal(DirectoryObject, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentity".casefold():
+            from .agent_identity import AgentIdentity
+
+            return AgentIdentity()
         return ServicePrincipal()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -176,6 +186,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .add_in import AddIn
+        from .agent_identity import AgentIdentity
         from .app_management_policy import AppManagementPolicy
         from .app_role import AppRole
         from .app_role_assignment import AppRoleAssignment
@@ -203,6 +214,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
         from .verified_publisher import VerifiedPublisher
 
         from .add_in import AddIn
+        from .agent_identity import AgentIdentity
         from .app_management_policy import AppManagementPolicy
         from .app_role import AppRole
         from .app_role_assignment import AppRoleAssignment

@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
     from .administrative_unit import AdministrativeUnit
+    from .agent_identity import AgentIdentity
     from .application import Application
     from .app_management_policy import AppManagementPolicy
     from .app_role_assignment import AppRoleAssignment
@@ -86,6 +87,10 @@ class DirectoryObject(Entity, Parsable):
             from .administrative_unit import AdministrativeUnit
 
             return AdministrativeUnit()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentity".casefold():
+            from .agent_identity import AgentIdentity
+
+            return AgentIdentity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.application".casefold():
             from .application import Application
 
@@ -275,6 +280,7 @@ class DirectoryObject(Entity, Parsable):
         """
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
         from .administrative_unit import AdministrativeUnit
+        from .agent_identity import AgentIdentity
         from .application import Application
         from .app_management_policy import AppManagementPolicy
         from .app_role_assignment import AppRoleAssignment
@@ -324,6 +330,7 @@ class DirectoryObject(Entity, Parsable):
 
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
         from .administrative_unit import AdministrativeUnit
+        from .agent_identity import AgentIdentity
         from .application import Application
         from .app_management_policy import AppManagementPolicy
         from .app_role_assignment import AppRoleAssignment

@@ -12,7 +12,7 @@ from .dictionary import Dictionary
 @dataclass
 class CustomAppScopeAttributesDictionary(Dictionary, Parsable):
     # The OdataType property
-    odata_type: Optional[str] = None
+    odata_type: Optional[str] = "#microsoft.graph.customAppScopeAttributesDictionary"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CustomAppScopeAttributesDictionary:

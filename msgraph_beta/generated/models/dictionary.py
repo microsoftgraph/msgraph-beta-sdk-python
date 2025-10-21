@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .partner.security.additional_data_dictionary import AdditionalDataDictionary
     from .planner_forms_dictionary import PlannerFormsDictionary
     from .result_template_dictionary import ResultTemplateDictionary
+    from .string_dictionary import StringDictionary
     from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
 @dataclass
@@ -72,6 +73,10 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
             from .result_template_dictionary import ResultTemplateDictionary
 
             return ResultTemplateDictionary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.stringDictionary".casefold():
+            from .string_dictionary import StringDictionary
+
+            return StringDictionary()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.wafAllowedHeadersDictionary".casefold():
             from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
@@ -91,6 +96,7 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
         from .partner.security.additional_data_dictionary import AdditionalDataDictionary
         from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
+        from .string_dictionary import StringDictionary
         from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
         from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
@@ -101,6 +107,7 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
         from .partner.security.additional_data_dictionary import AdditionalDataDictionary
         from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
+        from .string_dictionary import StringDictionary
         from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
         fields: dict[str, Callable[[Any], None]] = {

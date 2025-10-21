@@ -26,7 +26,7 @@ class AuthenticationEventListener(Entity, Parsable):
     authentication_events_flow_id: Optional[str] = None
     # The conditions on which this authenticationEventListener should trigger.
     conditions: Optional[AuthenticationConditions] = None
-    # The displayName property
+    # The display name of the listener.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

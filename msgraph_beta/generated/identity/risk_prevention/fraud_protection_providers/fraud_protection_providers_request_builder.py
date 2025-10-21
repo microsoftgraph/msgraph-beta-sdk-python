@@ -49,7 +49,7 @@ class FraudProtectionProvidersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[FraudProtectionProvidersRequestBuilderGetQueryParameters]] = None) -> Optional[FraudProtectionProviderCollectionResponse]:
         """
-        Get fraudProtectionProviders from identity
+        Represents entry point for fraud protection provider configurations for Microsoft Entra External ID tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FraudProtectionProviderCollectionResponse]
         """
@@ -69,10 +69,11 @@ class FraudProtectionProvidersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: FraudProtectionProvider, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[FraudProtectionProvider]:
         """
-        Create new navigation property to fraudProtectionProviders for identity
+        Create a new fraudProtectionProvider object. You can create one of the following subtypes that are derived from fraudProtectionProvider.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FraudProtectionProvider]
+        Find more info here: https://learn.microsoft.com/graph/api/riskpreventioncontainer-post-fraudprotectionproviders?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +93,7 @@ class FraudProtectionProvidersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[FraudProtectionProvidersRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get fraudProtectionProviders from identity
+        Represents entry point for fraud protection provider configurations for Microsoft Entra External ID tenants.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +104,7 @@ class FraudProtectionProvidersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: FraudProtectionProvider, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to fraudProtectionProviders for identity
+        Create a new fraudProtectionProvider object. You can create one of the following subtypes that are derived from fraudProtectionProvider.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +139,7 @@ class FraudProtectionProvidersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FraudProtectionProvidersRequestBuilderGetQueryParameters():
         """
-        Get fraudProtectionProviders from identity
+        Represents entry point for fraud protection provider configurations for Microsoft Entra External ID tenants.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

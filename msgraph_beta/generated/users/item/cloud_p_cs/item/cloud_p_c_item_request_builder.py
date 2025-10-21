@@ -72,7 +72,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CloudPCItemRequestBuilderGetQueryParameters]] = None) -> Optional[CloudPC]:
         """
-        Get cloudPCs from users
+        The user's Cloud PCs. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPC]
         """
@@ -126,7 +126,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CloudPCItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get cloudPCs from users
+        The user's Cloud PCs. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -368,7 +368,7 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPCItemRequestBuilderGetQueryParameters():
         """
-        Get cloudPCs from users
+        The user's Cloud PCs. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

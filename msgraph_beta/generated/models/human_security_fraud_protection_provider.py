@@ -13,9 +13,9 @@ from .fraud_protection_provider import FraudProtectionProvider
 class HumanSecurityFraudProtectionProvider(FraudProtectionProvider, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.humanSecurityFraudProtectionProvider"
-    # The appId property
+    # Unique identifier for an individual application. You can retrieve this from the HUMAN Security admin console or request it from your HUMAN Security Customer Success Manager.
     app_id: Optional[str] = None
-    # The serverToken property
+    # Unique identifier used to authenticate API calls between the Server side integration and the HUMAN platform. You can retrieve this from the HUMAN Security admin console or request it from your HUMAN Security Customer Success Manager.
     server_token: Optional[str] = None
     
     @staticmethod

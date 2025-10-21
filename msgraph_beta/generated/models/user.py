@@ -144,7 +144,7 @@ class User(DirectoryObject, Parsable):
     cloud_clipboard: Optional[CloudClipboardRoot] = None
     # The relationships of a user to cloud licensing resources.
     cloud_licensing: Optional[UserCloudLicensing] = None
-    # The cloudPCs property
+    # The user's Cloud PCs. Read-only. Nullable.
     cloud_p_cs: Optional[list[CloudPC]] = None
     # Microsoft realtime communication information related to the user.  Supports $filter (eq, ne,not).
     cloud_realtime_communication_info: Optional[CloudRealtimeCommunicationInfo] = None

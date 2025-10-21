@@ -41,6 +41,7 @@ if TYPE_CHECKING:
     from .secure_scores.secure_scores_request_builder import SecureScoresRequestBuilder
     from .secure_score_control_profiles.secure_score_control_profiles_request_builder import SecureScoreControlProfilesRequestBuilder
     from .security_actions.security_actions_request_builder import SecurityActionsRequestBuilder
+    from .security_copilot.security_copilot_request_builder import SecurityCopilotRequestBuilder
     from .subject_rights_requests.subject_rights_requests_request_builder import SubjectRightsRequestsRequestBuilder
     from .threat_intelligence.threat_intelligence_request_builder import ThreatIntelligenceRequestBuilder
     from .threat_submission.threat_submission_request_builder import ThreatSubmissionRequestBuilder
@@ -365,6 +366,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .security_actions.security_actions_request_builder import SecurityActionsRequestBuilder
 
         return SecurityActionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def security_copilot(self) -> SecurityCopilotRequestBuilder:
+        """
+        Provides operations to manage the securityCopilot property of the microsoft.graph.security entity.
+        """
+        from .security_copilot.security_copilot_request_builder import SecurityCopilotRequestBuilder
+
+        return SecurityCopilotRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def subject_rights_requests(self) -> SubjectRightsRequestsRequestBuilder:

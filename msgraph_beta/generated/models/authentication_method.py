@@ -27,7 +27,7 @@ from .entity import Entity
 class AuthenticationMethod(Entity, Parsable):
     # The date and time the authentication method was registered to the user. Read-only. Optional. This optional value is null if the authentication method doesn't populate it. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The lastUsedDateTime property
+    # The date and time the authentication method was last used by the user. Read-only. Optional. This optional value is null if the authentication method doesn't populate it. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_used_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

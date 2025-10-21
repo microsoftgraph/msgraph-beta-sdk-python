@@ -98,7 +98,7 @@ class CloudPC(Entity, Parsable):
     service_plan_name: Optional[str] = None
     # The service plan type of the Cloud PC.
     service_plan_type: Optional[CloudPcServicePlanType] = None
-    # Indicates the Cloud PC device details (for example, assignedToUserPrincipalName) associated with the frontline shared service plan.
+    # Indicates the Cloud PC device details associated with the frontline shared service plan, including the user's UPN and the session start date and time.
     shared_device_detail: Optional[CloudPcFrontlineSharedDeviceDetail] = None
     # The status property
     status: Optional[CloudPcStatus] = None

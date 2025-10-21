@@ -13,11 +13,11 @@ from .entity import Entity
 class CloudPcFrontLineServicePlan(Entity, Parsable):
     # The allotmentLicensesCount property
     allotment_licenses_count: Optional[int] = None
-    # The display name of the front-line service plan. For example, 2vCPU/8GB/128GB Front-line or 4vCPU/16GB/256GB Front-line.
+    # The display name of the frontline service plan. For example, 2vCPU/8GB/128GB Front-line or 4vCPU/16GB/256GB Front-line.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The total number of front-line service plans purchased by the customer.
+    # The total number of frontline service plans purchased by the customer.
     total_count: Optional[int] = None
     # The number of service plans that have been used for the account.
     used_count: Optional[int] = None

@@ -12,7 +12,7 @@ from ..dictionary import Dictionary
 @dataclass
 class ExtendedProperties(Dictionary, Parsable):
     # The OdataType property
-    odata_type: Optional[str] = None
+    odata_type: Optional[str] = "#microsoft.graph.networkaccess.extendedProperties"
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ExtendedProperties:
