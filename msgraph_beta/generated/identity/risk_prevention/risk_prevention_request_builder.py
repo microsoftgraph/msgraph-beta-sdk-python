@@ -17,6 +17,8 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.risk_prevention_container import RiskPreventionContainer
     from .fraud_protection_providers.fraud_protection_providers_request_builder import FraudProtectionProvidersRequestBuilder
+    from .web_application_firewall_providers.web_application_firewall_providers_request_builder import WebApplicationFirewallProvidersRequestBuilder
+    from .web_application_firewall_verifications.web_application_firewall_verifications_request_builder import WebApplicationFirewallVerificationsRequestBuilder
 
 class RiskPreventionRequestBuilder(BaseRequestBuilder):
     """
@@ -147,6 +149,24 @@ class RiskPreventionRequestBuilder(BaseRequestBuilder):
         from .fraud_protection_providers.fraud_protection_providers_request_builder import FraudProtectionProvidersRequestBuilder
 
         return FraudProtectionProvidersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def web_application_firewall_providers(self) -> WebApplicationFirewallProvidersRequestBuilder:
+        """
+        Provides operations to manage the webApplicationFirewallProviders property of the microsoft.graph.riskPreventionContainer entity.
+        """
+        from .web_application_firewall_providers.web_application_firewall_providers_request_builder import WebApplicationFirewallProvidersRequestBuilder
+
+        return WebApplicationFirewallProvidersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def web_application_firewall_verifications(self) -> WebApplicationFirewallVerificationsRequestBuilder:
+        """
+        Provides operations to manage the webApplicationFirewallVerifications property of the microsoft.graph.riskPreventionContainer entity.
+        """
+        from .web_application_firewall_verifications.web_application_firewall_verifications_request_builder import WebApplicationFirewallVerificationsRequestBuilder
+
+        return WebApplicationFirewallVerificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RiskPreventionRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

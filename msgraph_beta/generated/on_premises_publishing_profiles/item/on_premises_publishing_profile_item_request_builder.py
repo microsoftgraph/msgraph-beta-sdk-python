@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .connectors.connectors_request_builder import ConnectorsRequestBuilder
     from .connector_groups.connector_groups_request_builder import ConnectorGroupsRequestBuilder
     from .published_resources.published_resources_request_builder import PublishedResourcesRequestBuilder
+    from .sensors.sensors_request_builder import SensorsRequestBuilder
 
 class OnPremisesPublishingProfileItemRequestBuilder(BaseRequestBuilder):
     """
@@ -197,6 +198,15 @@ class OnPremisesPublishingProfileItemRequestBuilder(BaseRequestBuilder):
         from .published_resources.published_resources_request_builder import PublishedResourcesRequestBuilder
 
         return PublishedResourcesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sensors(self) -> SensorsRequestBuilder:
+        """
+        Provides operations to manage the sensors property of the microsoft.graph.onPremisesPublishingProfile entity.
+        """
+        from .sensors.sensors_request_builder import SensorsRequestBuilder
+
+        return SensorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class OnPremisesPublishingProfileItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

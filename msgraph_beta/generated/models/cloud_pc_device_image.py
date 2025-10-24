@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .cloud_pc_device_image_os_status import CloudPcDeviceImageOsStatus
     from .cloud_pc_device_image_status import CloudPcDeviceImageStatus
     from .cloud_pc_device_image_status_details import CloudPcDeviceImageStatusDetails
+    from .cloud_pc_image_os_architecture_type import CloudPcImageOsArchitectureType
     from .entity import Entity
 
 from .entity import Entity
@@ -28,6 +29,8 @@ class CloudPcDeviceImage(Entity, Parsable):
     odata_type: Optional[str] = None
     # The operating system of the image. For example, Windows 11 Enterprise. Read-only.
     operating_system: Optional[str] = None
+    # The osArchitecture property
+    os_architecture: Optional[CloudPcImageOsArchitectureType] = None
     # The OS build version of the image. For example, 1909. Read-only.
     os_build_number: Optional[str] = None
     # The OS status of this image. Possible values are: supported, supportedWithWarning, unknown, unknownFutureValue. The default value is unknown. Read-only.
@@ -67,12 +70,14 @@ class CloudPcDeviceImage(Entity, Parsable):
         from .cloud_pc_device_image_os_status import CloudPcDeviceImageOsStatus
         from .cloud_pc_device_image_status import CloudPcDeviceImageStatus
         from .cloud_pc_device_image_status_details import CloudPcDeviceImageStatusDetails
+        from .cloud_pc_image_os_architecture_type import CloudPcImageOsArchitectureType
         from .entity import Entity
 
         from .cloud_pc_device_image_error_code import CloudPcDeviceImageErrorCode
         from .cloud_pc_device_image_os_status import CloudPcDeviceImageOsStatus
         from .cloud_pc_device_image_status import CloudPcDeviceImageStatus
         from .cloud_pc_device_image_status_details import CloudPcDeviceImageStatusDetails
+        from .cloud_pc_image_os_architecture_type import CloudPcImageOsArchitectureType
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -81,6 +86,7 @@ class CloudPcDeviceImage(Entity, Parsable):
             "expirationDate": lambda n : setattr(self, 'expiration_date', n.get_date_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "operatingSystem": lambda n : setattr(self, 'operating_system', n.get_str_value()),
+            "osArchitecture": lambda n : setattr(self, 'os_architecture', n.get_enum_value(CloudPcImageOsArchitectureType)),
             "osBuildNumber": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
             "osStatus": lambda n : setattr(self, 'os_status', n.get_enum_value(CloudPcDeviceImageOsStatus)),
             "osVersionNumber": lambda n : setattr(self, 'os_version_number', n.get_str_value()),
@@ -109,6 +115,7 @@ class CloudPcDeviceImage(Entity, Parsable):
         writer.write_date_value("expirationDate", self.expiration_date)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("operatingSystem", self.operating_system)
+        writer.write_enum_value("osArchitecture", self.os_architecture)
         writer.write_str_value("osBuildNumber", self.os_build_number)
         writer.write_enum_value("osStatus", self.os_status)
         writer.write_str_value("osVersionNumber", self.os_version_number)

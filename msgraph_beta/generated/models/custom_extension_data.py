@@ -7,6 +7,8 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package_assignment_request_callback_data import AccessPackageAssignmentRequestCallbackData
+    from .access_review_data_upload_request_callout_data import AccessReviewDataUploadRequestCalloutData
+    from .access_review_data_upload_trigger_callback_data import AccessReviewDataUploadTriggerCallbackData
     from .assignment_request_approval_stage_callback_data import AssignmentRequestApprovalStageCallbackData
     from .identity_governance.custom_task_extension_callback_data import CustomTaskExtensionCallbackData
     from .identity_governance.custom_task_extension_callout_data import CustomTaskExtensionCalloutData
@@ -39,6 +41,14 @@ class CustomExtensionData(AdditionalDataHolder, BackedModel, Parsable):
             from .access_package_assignment_request_callback_data import AccessPackageAssignmentRequestCallbackData
 
             return AccessPackageAssignmentRequestCallbackData()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewDataUploadRequestCalloutData".casefold():
+            from .access_review_data_upload_request_callout_data import AccessReviewDataUploadRequestCalloutData
+
+            return AccessReviewDataUploadRequestCalloutData()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewDataUploadTriggerCallbackData".casefold():
+            from .access_review_data_upload_trigger_callback_data import AccessReviewDataUploadTriggerCallbackData
+
+            return AccessReviewDataUploadTriggerCallbackData()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.assignmentRequestApprovalStageCallbackData".casefold():
             from .assignment_request_approval_stage_callback_data import AssignmentRequestApprovalStageCallbackData
 
@@ -59,11 +69,15 @@ class CustomExtensionData(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package_assignment_request_callback_data import AccessPackageAssignmentRequestCallbackData
+        from .access_review_data_upload_request_callout_data import AccessReviewDataUploadRequestCalloutData
+        from .access_review_data_upload_trigger_callback_data import AccessReviewDataUploadTriggerCallbackData
         from .assignment_request_approval_stage_callback_data import AssignmentRequestApprovalStageCallbackData
         from .identity_governance.custom_task_extension_callback_data import CustomTaskExtensionCallbackData
         from .identity_governance.custom_task_extension_callout_data import CustomTaskExtensionCalloutData
 
         from .access_package_assignment_request_callback_data import AccessPackageAssignmentRequestCallbackData
+        from .access_review_data_upload_request_callout_data import AccessReviewDataUploadRequestCalloutData
+        from .access_review_data_upload_trigger_callback_data import AccessReviewDataUploadTriggerCallbackData
         from .assignment_request_approval_stage_callback_data import AssignmentRequestApprovalStageCallbackData
         from .identity_governance.custom_task_extension_callback_data import CustomTaskExtensionCallbackData
         from .identity_governance.custom_task_extension_callout_data import CustomTaskExtensionCalloutData

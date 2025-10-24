@@ -8,4 +8,5 @@ class OnPremisesPublishingType(str, Enum):
     IntunePfx = "intunePfx",
     OflineDomainJoin = "oflineDomainJoin",
     UnknownFutureValue = "unknownFutureValue",
+    PrivateAccess = "privateAccess",
 

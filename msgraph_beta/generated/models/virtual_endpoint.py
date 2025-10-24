@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
     from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
     from .cloud_pc_gallery_image import CloudPcGalleryImage
+    from .cloud_pc_managed_license import CloudPcManagedLicense
     from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
     from .cloud_pc_organization_settings import CloudPcOrganizationSettings
     from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
@@ -49,6 +50,8 @@ class VirtualEndpoint(Entity, Parsable):
     front_line_service_plans: Optional[list[CloudPcFrontLineServicePlan]] = None
     # The gallery image resource on Cloud PC.
     gallery_images: Optional[list[CloudPcGalleryImage]] = None
+    # The managed licenses for Cloud PCs in the organization.
+    managed_licenses: Optional[list[CloudPcManagedLicense]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
@@ -93,6 +96,7 @@ class VirtualEndpoint(Entity, Parsable):
         from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
         from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
         from .cloud_pc_gallery_image import CloudPcGalleryImage
+        from .cloud_pc_managed_license import CloudPcManagedLicense
         from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
@@ -113,6 +117,7 @@ class VirtualEndpoint(Entity, Parsable):
         from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
         from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
         from .cloud_pc_gallery_image import CloudPcGalleryImage
+        from .cloud_pc_managed_license import CloudPcManagedLicense
         from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
@@ -135,6 +140,7 @@ class VirtualEndpoint(Entity, Parsable):
             "externalPartners": lambda n : setattr(self, 'external_partners', n.get_collection_of_object_values(CloudPcExternalPartner)),
             "frontLineServicePlans": lambda n : setattr(self, 'front_line_service_plans', n.get_collection_of_object_values(CloudPcFrontLineServicePlan)),
             "galleryImages": lambda n : setattr(self, 'gallery_images', n.get_collection_of_object_values(CloudPcGalleryImage)),
+            "managedLicenses": lambda n : setattr(self, 'managed_licenses', n.get_collection_of_object_values(CloudPcManagedLicense)),
             "onPremisesConnections": lambda n : setattr(self, 'on_premises_connections', n.get_collection_of_object_values(CloudPcOnPremisesConnection)),
             "organizationSettings": lambda n : setattr(self, 'organization_settings', n.get_object_value(CloudPcOrganizationSettings)),
             "provisioningPolicies": lambda n : setattr(self, 'provisioning_policies', n.get_collection_of_object_values(CloudPcProvisioningPolicy)),
@@ -167,6 +173,7 @@ class VirtualEndpoint(Entity, Parsable):
         writer.write_collection_of_object_values("externalPartners", self.external_partners)
         writer.write_collection_of_object_values("frontLineServicePlans", self.front_line_service_plans)
         writer.write_collection_of_object_values("galleryImages", self.gallery_images)
+        writer.write_collection_of_object_values("managedLicenses", self.managed_licenses)
         writer.write_collection_of_object_values("onPremisesConnections", self.on_premises_connections)
         writer.write_object_value("organizationSettings", self.organization_settings)
         writer.write_collection_of_object_values("provisioningPolicies", self.provisioning_policies)
