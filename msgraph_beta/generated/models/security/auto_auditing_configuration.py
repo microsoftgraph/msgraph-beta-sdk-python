@@ -11,7 +11,7 @@ from ..entity import Entity
 
 @dataclass
 class AutoAuditingConfiguration(Entity, Parsable):
-    # The isAutomatic property
+    # Indicates whether automatic auditing is enabled for Defender for Identity monitoring.
     is_automatic: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

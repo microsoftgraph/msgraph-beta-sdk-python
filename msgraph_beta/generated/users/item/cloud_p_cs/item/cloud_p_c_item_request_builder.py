@@ -30,7 +30,9 @@ if TYPE_CHECKING:
     from .reprovision.reprovision_request_builder import ReprovisionRequestBuilder
     from .resize.resize_request_builder import ResizeRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
+    from .retrieve_cloud_pc_launch_detail.retrieve_cloud_pc_launch_detail_request_builder import RetrieveCloudPcLaunchDetailRequestBuilder
     from .retrieve_cloud_p_c_remote_action_results.retrieve_cloud_p_c_remote_action_results_request_builder import RetrieveCloudPCRemoteActionResultsRequestBuilder
+    from .retrieve_frontline_cloud_pc_detail.retrieve_frontline_cloud_pc_detail_request_builder import RetrieveFrontlineCloudPcDetailRequestBuilder
     from .retrieve_review_status.retrieve_review_status_request_builder import RetrieveReviewStatusRequestBuilder
     from .retrieve_snapshots.retrieve_snapshots_request_builder import RetrieveSnapshotsRequestBuilder
     from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
@@ -294,6 +296,24 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         from .retrieve_cloud_p_c_remote_action_results.retrieve_cloud_p_c_remote_action_results_request_builder import RetrieveCloudPCRemoteActionResultsRequestBuilder
 
         return RetrieveCloudPCRemoteActionResultsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_cloud_pc_launch_detail(self) -> RetrieveCloudPcLaunchDetailRequestBuilder:
+        """
+        Provides operations to call the retrieveCloudPcLaunchDetail method.
+        """
+        from .retrieve_cloud_pc_launch_detail.retrieve_cloud_pc_launch_detail_request_builder import RetrieveCloudPcLaunchDetailRequestBuilder
+
+        return RetrieveCloudPcLaunchDetailRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_frontline_cloud_pc_detail(self) -> RetrieveFrontlineCloudPcDetailRequestBuilder:
+        """
+        Provides operations to call the retrieveFrontlineCloudPcDetail method.
+        """
+        from .retrieve_frontline_cloud_pc_detail.retrieve_frontline_cloud_pc_detail_request_builder import RetrieveFrontlineCloudPcDetailRequestBuilder
+
+        return RetrieveFrontlineCloudPcDetailRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_review_status(self) -> RetrieveReviewStatusRequestBuilder:

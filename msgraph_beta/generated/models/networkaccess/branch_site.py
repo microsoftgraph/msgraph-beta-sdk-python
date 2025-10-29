@@ -10,7 +10,6 @@ if TYPE_CHECKING:
     from .branch_connectivity_configuration import BranchConnectivityConfiguration
     from .connectivity_state import ConnectivityState
     from .device_link import DeviceLink
-    from .forwarding_profile import ForwardingProfile
     from .region import Region
 
 from ..entity import Entity
@@ -27,8 +26,6 @@ class BranchSite(Entity, Parsable):
     country: Optional[str] = None
     # Each unique CPE device associated with a branch is specified. Supports $expand.
     device_links: Optional[list[DeviceLink]] = None
-    # Each forwarding profile associated with a branch site is specified. Supports $expand.
-    forwarding_profiles: Optional[list[ForwardingProfile]] = None
     # last modified time.
     last_modified_date_time: Optional[datetime.datetime] = None
     # Name.
@@ -60,14 +57,12 @@ class BranchSite(Entity, Parsable):
         from .branch_connectivity_configuration import BranchConnectivityConfiguration
         from .connectivity_state import ConnectivityState
         from .device_link import DeviceLink
-        from .forwarding_profile import ForwardingProfile
         from .region import Region
 
         from ..entity import Entity
         from .branch_connectivity_configuration import BranchConnectivityConfiguration
         from .connectivity_state import ConnectivityState
         from .device_link import DeviceLink
-        from .forwarding_profile import ForwardingProfile
         from .region import Region
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -76,7 +71,6 @@ class BranchSite(Entity, Parsable):
             "connectivityState": lambda n : setattr(self, 'connectivity_state', n.get_enum_value(ConnectivityState)),
             "country": lambda n : setattr(self, 'country', n.get_str_value()),
             "deviceLinks": lambda n : setattr(self, 'device_links', n.get_collection_of_object_values(DeviceLink)),
-            "forwardingProfiles": lambda n : setattr(self, 'forwarding_profiles', n.get_collection_of_object_values(ForwardingProfile)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "region": lambda n : setattr(self, 'region', n.get_enum_value(Region)),
@@ -100,7 +94,6 @@ class BranchSite(Entity, Parsable):
         writer.write_enum_value("connectivityState", self.connectivity_state)
         writer.write_str_value("country", self.country)
         writer.write_collection_of_object_values("deviceLinks", self.device_links)
-        writer.write_collection_of_object_values("forwardingProfiles", self.forwarding_profiles)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("name", self.name)
         writer.write_enum_value("region", self.region)

@@ -21,7 +21,7 @@ class CloudPcSnapshot(Entity, Parsable):
     created_date_time: Optional[datetime.datetime] = None
     # The date and time when the snapshot expires. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     expiration_date_time: Optional[datetime.datetime] = None
-    # Indicates the health check status of the Cloud PC snapshot. Possible values are, unknown, healthy, unhealthy, unknownFutureValue. The default value is unknown. Read-only. Nullable.
+    # Indicates the health check status of the Cloud PC snapshot. The possible values are: unknown, healthy, unhealthy, unknownFutureValue. The default value is unknown. Read-only. Nullable.
     health_check_status: Optional[CloudPcSnapshotHealthCheckStatus] = None
     # The date and time at which the snapshot was last used to restore the Cloud PC device. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_restored_date_time: Optional[datetime.datetime] = None

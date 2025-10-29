@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .count.count_request_builder import CountRequestBuilder
     from .delta.delta_request_builder import DeltaRequestBuilder
     from .get_all_sites.get_all_sites_request_builder import GetAllSitesRequestBuilder
+    from .get_operation_status_with_operation_id.get_operation_status_with_operation_id_request_builder import GetOperationStatusWithOperationIdRequestBuilder
     from .item.site_item_request_builder import SiteItemRequestBuilder
     from .remove.remove_request_builder import RemoveRequestBuilder
 
@@ -69,6 +70,18 @@ class SitesRequestBuilder(BaseRequestBuilder):
         from ....models.site_collection_response import SiteCollectionResponse
 
         return await self.request_adapter.send_async(request_info, SiteCollectionResponse, error_mapping)
+    
+    def get_operation_status_with_operation_id(self,operation_id: str) -> GetOperationStatusWithOperationIdRequestBuilder:
+        """
+        Provides operations to call the getOperationStatus method.
+        param operation_id: Usage: operationId='{operationId}'
+        Returns: GetOperationStatusWithOperationIdRequestBuilder
+        """
+        if operation_id is None:
+            raise TypeError("operation_id cannot be null.")
+        from .get_operation_status_with_operation_id.get_operation_status_with_operation_id_request_builder import GetOperationStatusWithOperationIdRequestBuilder
+
+        return GetOperationStatusWithOperationIdRequestBuilder(self.request_adapter, self.path_parameters, operation_id)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SitesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """

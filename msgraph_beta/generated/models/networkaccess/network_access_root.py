@@ -9,9 +9,7 @@ if TYPE_CHECKING:
     from .alert import Alert
     from .connectivity import Connectivity
     from .filtering_policy import FilteringPolicy
-    from .filtering_profile import FilteringProfile
     from .forwarding_policy import ForwardingPolicy
-    from .forwarding_profile import ForwardingProfile
     from .logs import Logs
     from .reports import Reports
     from .settings import Settings
@@ -30,12 +28,8 @@ class NetworkAccessRoot(Entity, Parsable):
     connectivity: Optional[Connectivity] = None
     # A filtering policy defines the specific traffic that is allowed or blocked through the Global Secure Access services for a filtering profile.
     filtering_policies: Optional[list[FilteringPolicy]] = None
-    # A filtering profile associates network access policies with Microsoft Entra ID Conditional Access policies, so that access policies can be applied to users and groups.
-    filtering_profiles: Optional[list[FilteringProfile]] = None
     # The forwardingPolicies property
     forwarding_policies: Optional[list[ForwardingPolicy]] = None
-    # The forwardingProfiles property
-    forwarding_profiles: Optional[list[ForwardingProfile]] = None
     # Represents network connections that are routed through Global Secure Access.
     logs: Optional[Logs] = None
     # The OdataType property
@@ -73,9 +67,7 @@ class NetworkAccessRoot(Entity, Parsable):
         from .alert import Alert
         from .connectivity import Connectivity
         from .filtering_policy import FilteringPolicy
-        from .filtering_profile import FilteringProfile
         from .forwarding_policy import ForwardingPolicy
-        from .forwarding_profile import ForwardingProfile
         from .logs import Logs
         from .reports import Reports
         from .settings import Settings
@@ -88,9 +80,7 @@ class NetworkAccessRoot(Entity, Parsable):
         from .alert import Alert
         from .connectivity import Connectivity
         from .filtering_policy import FilteringPolicy
-        from .filtering_profile import FilteringProfile
         from .forwarding_policy import ForwardingPolicy
-        from .forwarding_profile import ForwardingProfile
         from .logs import Logs
         from .reports import Reports
         from .settings import Settings
@@ -103,9 +93,7 @@ class NetworkAccessRoot(Entity, Parsable):
             "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(Alert)),
             "connectivity": lambda n : setattr(self, 'connectivity', n.get_object_value(Connectivity)),
             "filteringPolicies": lambda n : setattr(self, 'filtering_policies', n.get_collection_of_object_values(FilteringPolicy)),
-            "filteringProfiles": lambda n : setattr(self, 'filtering_profiles', n.get_collection_of_object_values(FilteringProfile)),
             "forwardingPolicies": lambda n : setattr(self, 'forwarding_policies', n.get_collection_of_object_values(ForwardingPolicy)),
-            "forwardingProfiles": lambda n : setattr(self, 'forwarding_profiles', n.get_collection_of_object_values(ForwardingProfile)),
             "logs": lambda n : setattr(self, 'logs', n.get_object_value(Logs)),
             "reports": lambda n : setattr(self, 'reports', n.get_object_value(Reports)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(Settings)),
@@ -130,9 +118,7 @@ class NetworkAccessRoot(Entity, Parsable):
         writer.write_collection_of_object_values("alerts", self.alerts)
         writer.write_object_value("connectivity", self.connectivity)
         writer.write_collection_of_object_values("filteringPolicies", self.filtering_policies)
-        writer.write_collection_of_object_values("filteringProfiles", self.filtering_profiles)
         writer.write_collection_of_object_values("forwardingPolicies", self.forwarding_policies)
-        writer.write_collection_of_object_values("forwardingProfiles", self.forwarding_profiles)
         writer.write_object_value("logs", self.logs)
         writer.write_object_value("reports", self.reports)
         writer.write_object_value("settings", self.settings)

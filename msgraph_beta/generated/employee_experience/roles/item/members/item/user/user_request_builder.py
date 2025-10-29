@@ -34,7 +34,7 @@ class UserRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UserRequestBuilderGetQueryParameters]] = None) -> Optional[User]:
         """
-        User entity of the member who has been assigned the role.
+        The user who has this role assigned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[User]
         """
@@ -54,7 +54,7 @@ class UserRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UserRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        User entity of the member who has been assigned the role.
+        The user who has this role assigned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -94,7 +94,7 @@ class UserRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserRequestBuilderGetQueryParameters():
         """
-        User entity of the member who has been assigned the role.
+        The user who has this role assigned.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -49,7 +49,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MembersRequestBuilderGetQueryParameters]] = None) -> Optional[EngagementRoleMemberCollectionResponse]:
         """
-        Get a list of the engagementRoleMember objects and their properties.
+        Get a list of users with assigned roles in Viva Engage.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EngagementRoleMemberCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/engagementrole-list-members?view=graph-rest-beta
@@ -70,7 +70,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: EngagementRoleMember, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[EngagementRoleMember]:
         """
-        Assign a Viva Engage role to a user.
+        Create a new engagementRoleMember object that assigns a Viva Engage role to a user.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EngagementRoleMember]
@@ -94,7 +94,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MembersRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the engagementRoleMember objects and their properties.
+        Get a list of users with assigned roles in Viva Engage.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: EngagementRoleMember, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Assign a Viva Engage role to a user.
+        Create a new engagementRoleMember object that assigns a Viva Engage role to a user.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +140,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MembersRequestBuilderGetQueryParameters():
         """
-        Get a list of the engagementRoleMember objects and their properties.
+        Get a list of users with assigned roles in Viva Engage.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .android_managed_store_account_bind_status import AndroidManagedStoreAccountBindStatus
     from .android_managed_store_account_enrollment_target import AndroidManagedStoreAccountEnrollmentTarget
     from .entity import Entity
+    from .managed_google_play_enterprise_type import ManagedGooglePlayEnterpriseType
 
 from .entity import Entity
 
@@ -35,6 +36,8 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity, Parsable):
     last_app_sync_status: Optional[AndroidManagedStoreAccountAppSyncStatus] = None
     # Last modification time for Android enterprise settings
     last_modified_date_time: Optional[datetime.datetime] = None
+    # Bind Type of the tenant with the Google EMM API
+    managed_google_play_enterprise_type: Optional[ManagedGooglePlayEnterpriseType] = None
     # Initial scope tags for MGP apps
     managed_google_play_initial_scope_tag_ids: Optional[list[str]] = None
     # The OdataType property
@@ -67,12 +70,14 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity, Parsable):
         from .android_managed_store_account_bind_status import AndroidManagedStoreAccountBindStatus
         from .android_managed_store_account_enrollment_target import AndroidManagedStoreAccountEnrollmentTarget
         from .entity import Entity
+        from .managed_google_play_enterprise_type import ManagedGooglePlayEnterpriseType
 
         from .android_enrollment_company_code import AndroidEnrollmentCompanyCode
         from .android_managed_store_account_app_sync_status import AndroidManagedStoreAccountAppSyncStatus
         from .android_managed_store_account_bind_status import AndroidManagedStoreAccountBindStatus
         from .android_managed_store_account_enrollment_target import AndroidManagedStoreAccountEnrollmentTarget
         from .entity import Entity
+        from .managed_google_play_enterprise_type import ManagedGooglePlayEnterpriseType
 
         fields: dict[str, Callable[[Any], None]] = {
             "androidDeviceOwnerFullyManagedEnrollmentEnabled": lambda n : setattr(self, 'android_device_owner_fully_managed_enrollment_enabled', n.get_bool_value()),
@@ -83,6 +88,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity, Parsable):
             "lastAppSyncDateTime": lambda n : setattr(self, 'last_app_sync_date_time', n.get_datetime_value()),
             "lastAppSyncStatus": lambda n : setattr(self, 'last_app_sync_status', n.get_enum_value(AndroidManagedStoreAccountAppSyncStatus)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "managedGooglePlayEnterpriseType": lambda n : setattr(self, 'managed_google_play_enterprise_type', n.get_enum_value(ManagedGooglePlayEnterpriseType)),
             "managedGooglePlayInitialScopeTagIds": lambda n : setattr(self, 'managed_google_play_initial_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "ownerOrganizationName": lambda n : setattr(self, 'owner_organization_name', n.get_str_value()),
             "ownerUserPrincipalName": lambda n : setattr(self, 'owner_user_principal_name', n.get_str_value()),
@@ -109,6 +115,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(Entity, Parsable):
         writer.write_datetime_value("lastAppSyncDateTime", self.last_app_sync_date_time)
         writer.write_enum_value("lastAppSyncStatus", self.last_app_sync_status)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_enum_value("managedGooglePlayEnterpriseType", self.managed_google_play_enterprise_type)
         writer.write_collection_of_primitive_values("managedGooglePlayInitialScopeTagIds", self.managed_google_play_initial_scope_tag_ids)
         writer.write_str_value("ownerOrganizationName", self.owner_organization_name)
         writer.write_str_value("ownerUserPrincipalName", self.owner_user_principal_name)

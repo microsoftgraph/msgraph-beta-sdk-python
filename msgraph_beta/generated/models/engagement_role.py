@@ -17,7 +17,7 @@ class EngagementRole(Entity, Parsable):
     """
     # The name of the role.
     display_name: Optional[str] = None
-    # Users who have been assigned this role.
+    # Users that have this role assigned.
     members: Optional[list[EngagementRoleMember]] = None
     # The OdataType property
     odata_type: Optional[str] = None

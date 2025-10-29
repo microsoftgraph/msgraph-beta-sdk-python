@@ -30,7 +30,7 @@ class WorkplaceSensorDevice(Entity, Parsable):
     odata_type: Optional[str] = None
     # The unique identifier of the place where the device is located. If the device is installed in a room equipped with a mailbox, this property should match the ExternalDirectoryObjectId or Microsoft Entra object ID of the room mailbox.
     place_id: Optional[str] = None
-    # A list of sensors associated with the device that collect and report data about physical or environmental conditions, such as occupancy, people count, inferred occupancy, temperature, and more.
+    # A list of sensors associated with the device that collect and report data about physical or environmental conditions, such as occupancy, people count, inferred occupancy, temperature, Wi-Fi, and more.
     sensors: Optional[list[WorkplaceSensor]] = None
     # A list of custom tags associated with the device.
     tags: Optional[list[str]] = None

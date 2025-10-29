@@ -27,6 +27,7 @@ if TYPE_CHECKING:
     from .front_line_service_plans.front_line_service_plans_request_builder import FrontLineServicePlansRequestBuilder
     from .gallery_images.gallery_images_request_builder import GalleryImagesRequestBuilder
     from .get_effective_permissions.get_effective_permissions_request_builder import GetEffectivePermissionsRequestBuilder
+    from .managed_licenses.managed_licenses_request_builder import ManagedLicensesRequestBuilder
     from .on_premises_connections.on_premises_connections_request_builder import OnPremisesConnectionsRequestBuilder
     from .organization_settings.organization_settings_request_builder import OrganizationSettingsRequestBuilder
     from .provisioning_policies.provisioning_policies_request_builder import ProvisioningPoliciesRequestBuilder
@@ -257,6 +258,15 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         from .get_effective_permissions.get_effective_permissions_request_builder import GetEffectivePermissionsRequestBuilder
 
         return GetEffectivePermissionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_licenses(self) -> ManagedLicensesRequestBuilder:
+        """
+        Provides operations to manage the managedLicenses property of the microsoft.graph.virtualEndpoint entity.
+        """
+        from .managed_licenses.managed_licenses_request_builder import ManagedLicensesRequestBuilder
+
+        return ManagedLicensesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def on_premises_connections(self) -> OnPremisesConnectionsRequestBuilder:
