@@ -14,21 +14,21 @@ from ...entity import Entity
 
 @dataclass
 class Evaluation(Entity, Parsable):
-    # The completedDateTime property
+    # Evaluation completion time.
     completed_date_time: Optional[datetime.datetime] = None
-    # The createdDateTime property
+    # Evaluation created time.
     created_date_time: Optional[datetime.datetime] = None
-    # The executionCount property
+    # Evaluation execution count.
     execution_count: Optional[int] = None
-    # The isCancelled property
+    # Evaluation cancellation status.
     is_cancelled: Optional[bool] = None
-    # The lastModifiedDateTime property
+    # Evaluation modified time.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The result property
+    # Evaluation results collection.
     result: Optional[EvaluationResult] = None
-    # The runStartDateTime property
+    # Evaluation Run start time.
     run_start_date_time: Optional[datetime.datetime] = None
     # The state property
     state: Optional[EvaluationState] = None

@@ -49,9 +49,10 @@ class WorkspacesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[WorkspacesRequestBuilderGetQueryParameters]] = None) -> Optional[WorkspaceCollectionResponse]:
         """
-        Get workspaces from security
+        Get a list of the workspace objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[WorkspaceCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/securitycopilot-list-workspaces?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +93,7 @@ class WorkspacesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[WorkspacesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get workspaces from security
+        Get a list of the workspace objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class WorkspacesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WorkspacesRequestBuilderGetQueryParameters():
         """
-        Get workspaces from security
+        Get a list of the workspace objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

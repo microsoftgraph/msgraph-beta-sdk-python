@@ -29,7 +29,7 @@ class IdentityContainer(Entity, Parsable):
     sensor_candidates: Optional[list[SensorCandidate]] = None
     # Represents a customer's Microsoft Defender for Identity sensors.
     sensors: Optional[list[Sensor]] = None
-    # The settings property
+    # Represents a container for security identities settings APIs.
     settings: Optional[SettingsContainer] = None
     
     @staticmethod

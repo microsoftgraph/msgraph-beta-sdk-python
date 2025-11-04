@@ -49,7 +49,7 @@ class EvaluationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[EvaluationsRequestBuilderGetQueryParameters]] = None) -> Optional[EvaluationCollectionResponse]:
         """
-        Get evaluations from security
+        Collection of evaluations
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EvaluationCollectionResponse]
         """
@@ -92,7 +92,7 @@ class EvaluationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[EvaluationsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get evaluations from security
+        Collection of evaluations
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class EvaluationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EvaluationsRequestBuilderGetQueryParameters():
         """
-        Get evaluations from security
+        Collection of evaluations
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from .ip_application_segment import IpApplicationSegment
     from .on_premises_agent import OnPremisesAgent
     from .on_premises_agent_group import OnPremisesAgentGroup
+    from .private_access_sensor import PrivateAccessSensor
     from .published_resource import PublishedResource
 
 from .entity import Entity
@@ -38,6 +39,8 @@ class OnPremisesPublishingProfile(Entity, Parsable):
     odata_type: Optional[str] = None
     # List of existing publishedResource objects. Read-only. Nullable.
     published_resources: Optional[list[PublishedResource]] = None
+    # The sensors property
+    sensors: Optional[list[PrivateAccessSensor]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OnPremisesPublishingProfile:
@@ -62,6 +65,7 @@ class OnPremisesPublishingProfile(Entity, Parsable):
         from .ip_application_segment import IpApplicationSegment
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
+        from .private_access_sensor import PrivateAccessSensor
         from .published_resource import PublishedResource
 
         from .connector import Connector
@@ -71,6 +75,7 @@ class OnPremisesPublishingProfile(Entity, Parsable):
         from .ip_application_segment import IpApplicationSegment
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
+        from .private_access_sensor import PrivateAccessSensor
         from .published_resource import PublishedResource
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -83,6 +88,7 @@ class OnPremisesPublishingProfile(Entity, Parsable):
             "isDefaultAccessEnabled": lambda n : setattr(self, 'is_default_access_enabled', n.get_bool_value()),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "publishedResources": lambda n : setattr(self, 'published_resources', n.get_collection_of_object_values(PublishedResource)),
+            "sensors": lambda n : setattr(self, 'sensors', n.get_collection_of_object_values(PrivateAccessSensor)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -106,5 +112,6 @@ class OnPremisesPublishingProfile(Entity, Parsable):
         writer.write_bool_value("isDefaultAccessEnabled", self.is_default_access_enabled)
         writer.write_bool_value("isEnabled", self.is_enabled)
         writer.write_collection_of_object_values("publishedResources", self.published_resources)
+        writer.write_collection_of_object_values("sensors", self.sensors)
     
 

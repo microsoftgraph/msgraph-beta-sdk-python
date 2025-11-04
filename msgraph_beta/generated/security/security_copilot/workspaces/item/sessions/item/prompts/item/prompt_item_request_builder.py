@@ -51,7 +51,7 @@ class PromptItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PromptItemRequestBuilderGetQueryParameters]] = None) -> Optional[Prompt]:
         """
-        Get prompts from security
+        The collection of prompts in the session.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Prompt]
         """
@@ -105,7 +105,7 @@ class PromptItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PromptItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get prompts from security
+        The collection of prompts in the session.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +158,7 @@ class PromptItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PromptItemRequestBuilderGetQueryParameters():
         """
-        Get prompts from security
+        The collection of prompts in the session.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

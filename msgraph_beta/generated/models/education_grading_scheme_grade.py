@@ -14,7 +14,7 @@ class EducationGradingSchemeGrade(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The midpoint of the grade range.
     default_percentage: Optional[float] = None
-    # The name of the grading scheme.
+    # The name of this individual grade.
     display_name: Optional[str] = None
     # The minimum percentage of the total points needed to achieve this grade.
     min_percentage: Optional[float] = None

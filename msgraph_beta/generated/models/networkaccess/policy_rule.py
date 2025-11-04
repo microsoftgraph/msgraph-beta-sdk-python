@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .private_access_forwarding_rule import PrivateAccessForwardingRule
     from .threat_intelligence_rule import ThreatIntelligenceRule
     from .tls_inspection_rule import TlsInspectionRule
+    from .url_destination_filtering_rule import UrlDestinationFilteringRule
     from .web_category_filtering_rule import WebCategoryFilteringRule
 
 from ..entity import Entity
@@ -71,6 +72,10 @@ class PolicyRule(Entity, Parsable):
             from .tls_inspection_rule import TlsInspectionRule
 
             return TlsInspectionRule()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.urlDestinationFilteringRule".casefold():
+            from .url_destination_filtering_rule import UrlDestinationFilteringRule
+
+            return UrlDestinationFilteringRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategoryFilteringRule".casefold():
             from .web_category_filtering_rule import WebCategoryFilteringRule
 
@@ -91,6 +96,7 @@ class PolicyRule(Entity, Parsable):
         from .private_access_forwarding_rule import PrivateAccessForwardingRule
         from .threat_intelligence_rule import ThreatIntelligenceRule
         from .tls_inspection_rule import TlsInspectionRule
+        from .url_destination_filtering_rule import UrlDestinationFilteringRule
         from .web_category_filtering_rule import WebCategoryFilteringRule
 
         from ..entity import Entity
@@ -102,6 +108,7 @@ class PolicyRule(Entity, Parsable):
         from .private_access_forwarding_rule import PrivateAccessForwardingRule
         from .threat_intelligence_rule import ThreatIntelligenceRule
         from .tls_inspection_rule import TlsInspectionRule
+        from .url_destination_filtering_rule import UrlDestinationFilteringRule
         from .web_category_filtering_rule import WebCategoryFilteringRule
 
         fields: dict[str, Callable[[Any], None]] = {

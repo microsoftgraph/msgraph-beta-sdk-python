@@ -51,7 +51,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SettingsRequestBuilderGetQueryParameters]] = None) -> Optional[SettingsContainer]:
         """
-        Get settings from security
+        Represents a container for security identities settings APIs.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SettingsContainer]
         """
@@ -105,7 +105,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SettingsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get settings from security
+        Represents a container for security identities settings APIs.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +158,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SettingsRequestBuilderGetQueryParameters():
         """
-        Get settings from security
+        Represents a container for security identities settings APIs.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

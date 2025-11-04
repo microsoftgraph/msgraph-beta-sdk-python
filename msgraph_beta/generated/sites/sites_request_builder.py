@@ -15,11 +15,13 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
+    from ..models.site import Site
     from ..models.site_collection_response import SiteCollectionResponse
     from .add.add_request_builder import AddRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .delta.delta_request_builder import DeltaRequestBuilder
     from .get_all_sites.get_all_sites_request_builder import GetAllSitesRequestBuilder
+    from .get_operation_status_with_operation_id.get_operation_status_with_operation_id_request_builder import GetOperationStatusWithOperationIdRequestBuilder
     from .item.site_item_request_builder import SiteItemRequestBuilder
     from .remove.remove_request_builder import RemoveRequestBuilder
 
@@ -71,6 +73,42 @@ class SitesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SiteCollectionResponse, error_mapping)
     
+    def get_operation_status_with_operation_id(self,operation_id: str) -> GetOperationStatusWithOperationIdRequestBuilder:
+        """
+        Provides operations to call the getOperationStatus method.
+        param operation_id: Usage: operationId='{operationId}'
+        Returns: GetOperationStatusWithOperationIdRequestBuilder
+        """
+        if operation_id is None:
+            raise TypeError("operation_id cannot be null.")
+        from .get_operation_status_with_operation_id.get_operation_status_with_operation_id_request_builder import GetOperationStatusWithOperationIdRequestBuilder
+
+        return GetOperationStatusWithOperationIdRequestBuilder(self.request_adapter, self.path_parameters, operation_id)
+    
+    async def post(self,body: Site, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Site]:
+        """
+        Create a new SharePoint site.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[Site]
+        Find more info here: https://learn.microsoft.com/graph/api/site-post-sites?view=graph-rest-beta
+        """
+        if body is None:
+            raise TypeError("body cannot be null.")
+        request_info = self.to_post_request_information(
+            body, request_configuration
+        )
+        from ..models.o_data_errors.o_data_error import ODataError
+
+        error_mapping: dict[str, type[ParsableFactory]] = {
+            "XXX": ODataError,
+        }
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        from ..models.site import Site
+
+        return await self.request_adapter.send_async(request_info, Site, error_mapping)
+    
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SitesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         List all available sites in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a $search query against the /sites collection to find sites matching given keywords.If you want to list all sites across all geographies, refer to getAllSites. For more guidance about building applications that use site discovery for scanning purposes, see Best practices for discovering files and detecting changes at scale.
@@ -80,6 +118,21 @@ class SitesRequestBuilder(BaseRequestBuilder):
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
+        return request_info
+    
+    def to_post_request_information(self,body: Site, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+        """
+        Create a new SharePoint site.
+        param body: The request body
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        if body is None:
+            raise TypeError("body cannot be null.")
+        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
+        request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
+        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
     def with_url(self,raw_url: str) -> SitesRequestBuilder:
@@ -195,6 +248,13 @@ class SitesRequestBuilder(BaseRequestBuilder):
     
     @dataclass
     class SitesRequestBuilderGetRequestConfiguration(RequestConfiguration[SitesRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class SitesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

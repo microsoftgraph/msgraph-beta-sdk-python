@@ -16,21 +16,21 @@ from ...entity import Entity
 
 @dataclass
 class Prompt(Entity, Parsable):
-    # The content property
+    # Input content to the prompt.
     content: Optional[str] = None
-    # The createdDateTime property
+    # Created time.
     created_date_time: Optional[datetime.datetime] = None
-    # The evaluations property
+    # Collection of evaluations
     evaluations: Optional[list[Evaluation]] = None
-    # The inputs property
+    # Not implemented.
     inputs: Optional[Dictionary] = None
-    # The lastModifiedDateTime property
+    # Last modified time.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The skillInputDescriptors property
+    # Skill Input descriptor.
     skill_input_descriptors: Optional[list[SkillInputDescriptor]] = None
-    # The skillName property
+    # Skill name.
     skill_name: Optional[str] = None
     # The type property
     type: Optional[PromptType] = None

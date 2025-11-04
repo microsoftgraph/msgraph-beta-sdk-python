@@ -7,4 +7,8 @@ class WindowsQualityUpdateCategory(str, Enum):
     Security = "security",
     # Non security only update type
     NonSecurity = "nonSecurity",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
+    # Quick machine recovery update type
+    QuickMachineRecovery = "quickMachineRecovery",
 

@@ -17,6 +17,8 @@ class SharePointOneDriveOptions(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The type of search content. The possible values are: privateContent, sharedContent. Read-only.
     include_content: Optional[SearchContent] = None
+    # Indicates whether the search results include content that is normally hidden, such as archived content and SharePoint Embedded (RaaS). The default value is false, which prevents hidden content from being returned. You can also optionally include KQL to scope your query for hidden content to specific content types. For more information, see Search hidden content.
+    include_hidden_content: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -42,6 +44,7 @@ class SharePointOneDriveOptions(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "includeContent": lambda n : setattr(self, 'include_content', n.get_collection_of_enum_values(SearchContent)),
+            "includeHiddenContent": lambda n : setattr(self, 'include_hidden_content', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -55,6 +58,7 @@ class SharePointOneDriveOptions(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("includeContent", self.include_content)
+        writer.write_bool_value("includeHiddenContent", self.include_hidden_content)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

@@ -13,15 +13,15 @@ from ...entity import Entity
 
 @dataclass
 class Session(Entity, Parsable):
-    # The createdDateTime property
+    # Created time of the session (UTC).
     created_date_time: Optional[datetime.datetime] = None
-    # The displayName property
+    # Display name for the session.
     display_name: Optional[str] = None
-    # The lastModifiedDateTime property
+    # Last modified time of the session (UTC). Updated when displayName changes.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The prompts property
+    # The collection of prompts in the session.
     prompts: Optional[list[Prompt]] = None
     
     @staticmethod

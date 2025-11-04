@@ -50,7 +50,7 @@ class SecureScoreItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SecureScoreItemRequestBuilderGetQueryParameters]] = None) -> Optional[SecureScore]:
         """
-        Measurements of tenants’ security posture to help protect them from threats.
+        Measurements of tenants' security posture to help protect them from threats.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecureScore]
         """
@@ -104,7 +104,7 @@ class SecureScoreItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SecureScoreItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Measurements of tenants’ security posture to help protect them from threats.
+        Measurements of tenants' security posture to help protect them from threats.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class SecureScoreItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SecureScoreItemRequestBuilderGetQueryParameters():
         """
-        Measurements of tenants’ security posture to help protect them from threats.
+        Measurements of tenants' security posture to help protect them from threats.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

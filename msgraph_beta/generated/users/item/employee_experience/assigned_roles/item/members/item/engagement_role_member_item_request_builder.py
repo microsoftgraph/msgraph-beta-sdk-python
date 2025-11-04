@@ -51,7 +51,7 @@ class EngagementRoleMemberItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[EngagementRoleMemberItemRequestBuilderGetQueryParameters]] = None) -> Optional[EngagementRoleMember]:
         """
-        Users who have been assigned this role.
+        Users that have this role assigned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EngagementRoleMember]
         """
@@ -105,7 +105,7 @@ class EngagementRoleMemberItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[EngagementRoleMemberItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Users who have been assigned this role.
+        Users that have this role assigned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +158,7 @@ class EngagementRoleMemberItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EngagementRoleMemberItemRequestBuilderGetQueryParameters():
         """
-        Users who have been assigned this role.
+        Users that have this role assigned.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

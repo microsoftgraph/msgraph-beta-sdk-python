@@ -51,7 +51,7 @@ class SessionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SessionItemRequestBuilderGetQueryParameters]] = None) -> Optional[Session]:
         """
-        Get sessions from security
+        Represents sessions in Security Copilot.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Session]
         """
@@ -105,7 +105,7 @@ class SessionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SessionItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get sessions from security
+        Represents sessions in Security Copilot.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +158,7 @@ class SessionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SessionItemRequestBuilderGetQueryParameters():
         """
-        Get sessions from security
+        Represents sessions in Security Copilot.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -17,6 +17,8 @@ from .entity import Entity
 
 @dataclass
 class CallEvent(Entity, Parsable):
+    # The callConversationId property
+    call_conversation_id: Optional[str] = None
     # The event type of the call. Possible values are: callStarted, callEnded, unknownFutureValue, rosterUpdated. You must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: rosterUpdated.
     call_event_type: Optional[CallEventType] = None
     # The date and time when the event occurred. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
@@ -70,6 +72,7 @@ class CallEvent(Entity, Parsable):
         from .transcription_state import TranscriptionState
 
         fields: dict[str, Callable[[Any], None]] = {
+            "callConversationId": lambda n : setattr(self, 'call_conversation_id', n.get_str_value()),
             "callEventType": lambda n : setattr(self, 'call_event_type', n.get_enum_value(CallEventType)),
             "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
             "participants": lambda n : setattr(self, 'participants', n.get_collection_of_object_values(Participant)),
@@ -89,6 +92,7 @@ class CallEvent(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("callConversationId", self.call_conversation_id)
         writer.write_enum_value("callEventType", self.call_event_type)
         writer.write_datetime_value("eventDateTime", self.event_date_time)
         writer.write_collection_of_object_values("participants", self.participants)

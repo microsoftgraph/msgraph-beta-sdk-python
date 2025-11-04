@@ -18,7 +18,6 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from .branches.branches_request_builder import BranchesRequestBuilder
     from .microsoft_graph_networkaccess_get_web_category_by_url_with_url.microsoft_graph_networkaccess_get_web_category_by_url_with_url_request_builder import MicrosoftGraphNetworkaccessGetWebCategoryByUrlWithUrlRequestBuilder
-    from .remote_networks.remote_networks_request_builder import RemoteNetworksRequestBuilder
 
 class ConnectivityRequestBuilder(BaseRequestBuilder):
     """
@@ -161,15 +160,6 @@ class ConnectivityRequestBuilder(BaseRequestBuilder):
         from .branches.branches_request_builder import BranchesRequestBuilder
 
         return BranchesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def remote_networks(self) -> RemoteNetworksRequestBuilder:
-        """
-        Provides operations to manage the remoteNetworks property of the microsoft.graph.networkaccess.connectivity entity.
-        """
-        from .remote_networks.remote_networks_request_builder import RemoteNetworksRequestBuilder
-
-        return RemoteNetworksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ConnectivityRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
