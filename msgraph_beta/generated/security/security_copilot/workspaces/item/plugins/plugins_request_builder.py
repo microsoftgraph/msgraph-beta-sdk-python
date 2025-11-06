@@ -49,7 +49,7 @@ class PluginsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PluginsRequestBuilderGetQueryParameters]] = None) -> Optional[PluginCollectionResponse]:
         """
-        Get plugins from security
+        Represents plugins in Security Copilot.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PluginCollectionResponse]
         """
@@ -92,7 +92,7 @@ class PluginsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PluginsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get plugins from security
+        Represents plugins in Security Copilot.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class PluginsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PluginsRequestBuilderGetQueryParameters():
         """
-        Get plugins from security
+        Represents plugins in Security Copilot.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

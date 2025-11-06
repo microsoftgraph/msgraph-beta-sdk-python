@@ -11,13 +11,13 @@ from .skill_variable_descriptor import SkillVariableDescriptor
 
 @dataclass
 class SkillInputDescriptor(SkillVariableDescriptor, Parsable):
-    # The defaultValue property
+    # Unsupported.
     default_value: Optional[str] = None
-    # The isRequired property
+    # Unsupported.
     is_required: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The placeholderValue property
+    # Unsupported.
     placeholder_value: Optional[str] = None
     
     @staticmethod

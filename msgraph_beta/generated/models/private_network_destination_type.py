@@ -7,4 +7,5 @@ class PrivateNetworkDestinationType(str, Enum):
     Fqdn = "fqdn",
     DnsSuffix = "dnsSuffix",
     UnknownFutureValue = "unknownFutureValue",
+    ServicePrincipalName = "servicePrincipalName",
 

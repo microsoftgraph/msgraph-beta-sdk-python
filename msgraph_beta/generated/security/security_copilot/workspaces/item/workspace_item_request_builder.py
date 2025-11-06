@@ -52,7 +52,7 @@ class WorkspaceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[WorkspaceItemRequestBuilderGetQueryParameters]] = None) -> Optional[Workspace]:
         """
-        Get workspaces from security
+        References a workspace in Security Copilot.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Workspace]
         """
@@ -106,7 +106,7 @@ class WorkspaceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[WorkspaceItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get workspaces from security
+        References a workspace in Security Copilot.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -168,7 +168,7 @@ class WorkspaceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class WorkspaceItemRequestBuilderGetQueryParameters():
         """
-        Get workspaces from security
+        References a workspace in Security Copilot.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

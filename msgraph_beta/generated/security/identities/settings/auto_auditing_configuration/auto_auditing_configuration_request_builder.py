@@ -50,9 +50,10 @@ class AutoAuditingConfigurationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AutoAuditingConfigurationRequestBuilderGetQueryParameters]] = None) -> Optional[AutoAuditingConfiguration]:
         """
-        Get autoAuditingConfiguration from security
+        Get the properties and relationships of an microsoft.graph.security.autoAuditingConfiguration object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AutoAuditingConfiguration]
+        Find more info here: https://learn.microsoft.com/graph/api/security-autoauditingconfiguration-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -104,7 +105,7 @@ class AutoAuditingConfigurationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AutoAuditingConfigurationRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get autoAuditingConfiguration from security
+        Get the properties and relationships of an microsoft.graph.security.autoAuditingConfiguration object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +149,7 @@ class AutoAuditingConfigurationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AutoAuditingConfigurationRequestBuilderGetQueryParameters():
         """
-        Get autoAuditingConfiguration from security
+        Get the properties and relationships of an microsoft.graph.security.autoAuditingConfiguration object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -20,7 +20,10 @@ if TYPE_CHECKING:
     from .count.count_request_builder import CountRequestBuilder
     from .get_storage_accounts_with_subscription_id.get_storage_accounts_with_subscription_id_request_builder import GetStorageAccountsWithSubscriptionIdRequestBuilder
     from .get_subscriptions.get_subscriptions_request_builder import GetSubscriptionsRequestBuilder
+    from .import_snapshot.import_snapshot_request_builder import ImportSnapshotRequestBuilder
     from .item.cloud_pc_snapshot_item_request_builder import CloudPcSnapshotItemRequestBuilder
+    from .purge_imported_snapshot.purge_imported_snapshot_request_builder import PurgeImportedSnapshotRequestBuilder
+    from .retrieve_snapshot_import_results_with_snapshot_id.retrieve_snapshot_import_results_with_snapshot_id_request_builder import RetrieveSnapshotImportResultsWithSnapshotIdRequestBuilder
 
 class SnapshotsRequestBuilder(BaseRequestBuilder):
     """
@@ -104,6 +107,18 @@ class SnapshotsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcSnapshot, error_mapping)
     
+    def retrieve_snapshot_import_results_with_snapshot_id(self,snapshot_id: str) -> RetrieveSnapshotImportResultsWithSnapshotIdRequestBuilder:
+        """
+        Provides operations to call the retrieveSnapshotImportResults method.
+        param snapshot_id: Usage: snapshotId='{snapshotId}'
+        Returns: RetrieveSnapshotImportResultsWithSnapshotIdRequestBuilder
+        """
+        if snapshot_id is None:
+            raise TypeError("snapshot_id cannot be null.")
+        from .retrieve_snapshot_import_results_with_snapshot_id.retrieve_snapshot_import_results_with_snapshot_id_request_builder import RetrieveSnapshotImportResultsWithSnapshotIdRequestBuilder
+
+        return RetrieveSnapshotImportResultsWithSnapshotIdRequestBuilder(self.request_adapter, self.path_parameters, snapshot_id)
+    
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SnapshotsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Cloud PC snapshots.
@@ -157,6 +172,24 @@ class SnapshotsRequestBuilder(BaseRequestBuilder):
         from .get_subscriptions.get_subscriptions_request_builder import GetSubscriptionsRequestBuilder
 
         return GetSubscriptionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def import_snapshot(self) -> ImportSnapshotRequestBuilder:
+        """
+        Provides operations to call the importSnapshot method.
+        """
+        from .import_snapshot.import_snapshot_request_builder import ImportSnapshotRequestBuilder
+
+        return ImportSnapshotRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def purge_imported_snapshot(self) -> PurgeImportedSnapshotRequestBuilder:
+        """
+        Provides operations to call the purgeImportedSnapshot method.
+        """
+        from .purge_imported_snapshot.purge_imported_snapshot_request_builder import PurgeImportedSnapshotRequestBuilder
+
+        return PurgeImportedSnapshotRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SnapshotsRequestBuilderGetQueryParameters():

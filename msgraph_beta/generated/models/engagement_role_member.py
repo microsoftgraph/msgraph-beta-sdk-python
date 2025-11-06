@@ -16,11 +16,11 @@ class EngagementRoleMember(Entity, Parsable):
     """
     Entity to represent the assignment of a role to a user.
     """
-    # The timestamp when the role was assigned to the user.
+    # The date and time when the role was assigned to the user. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # User entity of the member who has been assigned the role.
+    # The user who has this role assigned.
     user: Optional[User] = None
     # The Microsoft Entra ID of the user who has the role assigned.
     user_id: Optional[str] = None

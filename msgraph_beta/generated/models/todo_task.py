@@ -59,7 +59,7 @@ class TodoTask(Entity, Parsable):
     recurrence: Optional[PatternedRecurrence] = None
     # The date and time in the specified time zone for a reminder alert of the task to occur.
     reminder_date_time: Optional[DateTimeTimeZone] = None
-    # The singleValueExtendedProperties property
+    # A collection of custom fields linked to the task.
     single_value_extended_properties: Optional[list[SingleValueExtendedProperty]] = None
     # The date and time in the specified time zone at which the task is scheduled to start.
     start_date_time: Optional[DateTimeTimeZone] = None

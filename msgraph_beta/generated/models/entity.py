@@ -64,6 +64,7 @@ if TYPE_CHECKING:
     from .ai_interaction_history import AiInteractionHistory
     from .ai_online_meeting import AiOnlineMeeting
     from .ai_user import AiUser
+    from .akamai_web_application_firewall_provider import AkamaiWebApplicationFirewallProvider
     from .alert import Alert
     from .allowed_data_location import AllowedDataLocation
     from .allowed_value import AllowedValue
@@ -324,6 +325,7 @@ if TYPE_CHECKING:
     from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
     from .cloud_clipboard_item import CloudClipboardItem
     from .cloud_clipboard_root import CloudClipboardRoot
+    from .cloud_flare_web_application_firewall_provider import CloudFlareWebApplicationFirewallProvider
     from .cloud_licensing.usage_right import UsageRight
     from .cloud_pc_audit_event import CloudPcAuditEvent
     from .cloud_pc_bulk_action import CloudPcBulkAction
@@ -350,6 +352,7 @@ if TYPE_CHECKING:
     from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
     from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
     from .cloud_pc_gallery_image import CloudPcGalleryImage
+    from .cloud_pc_managed_license import CloudPcManagedLicense
     from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
     from .cloud_pc_organization_settings import CloudPcOrganizationSettings
     from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
@@ -413,6 +416,7 @@ if TYPE_CHECKING:
     from .custom_authentication_extension import CustomAuthenticationExtension
     from .custom_callout_extension import CustomCalloutExtension
     from .custom_claims_policy import CustomClaimsPolicy
+    from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
     from .custom_extension_handler import CustomExtensionHandler
     from .custom_extension_stage_setting import CustomExtensionStageSetting
     from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -1173,12 +1177,10 @@ if TYPE_CHECKING:
     from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
     from .networkaccess.filtering_policy import FilteringPolicy
     from .networkaccess.filtering_policy_link import FilteringPolicyLink
-    from .networkaccess.filtering_profile import FilteringProfile
     from .networkaccess.filtering_rule import FilteringRule
     from .networkaccess.forwarding_options import ForwardingOptions
     from .networkaccess.forwarding_policy import ForwardingPolicy
     from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
-    from .networkaccess.forwarding_profile import ForwardingProfile
     from .networkaccess.forwarding_rule import ForwardingRule
     from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
     from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
@@ -1189,8 +1191,6 @@ if TYPE_CHECKING:
     from .networkaccess.policy_link import PolicyLink
     from .networkaccess.policy_rule import PolicyRule
     from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
-    from .networkaccess.profile import Profile
-    from .networkaccess.remote_network import RemoteNetwork
     from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
     from .networkaccess.reports import Reports
     from .networkaccess.settings import Settings
@@ -1202,6 +1202,7 @@ if TYPE_CHECKING:
     from .networkaccess.tls_inspection_policy_link import TlsInspectionPolicyLink
     from .networkaccess.tls_inspection_rule import TlsInspectionRule
     from .networkaccess.tls_termination import TlsTermination
+    from .networkaccess.url_destination_filtering_rule import UrlDestinationFilteringRule
     from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
     from .news_link_page import NewsLinkPage
     from .note import Note
@@ -1391,6 +1392,7 @@ if TYPE_CHECKING:
     from .print_usage import PrintUsage
     from .print_usage_by_printer import PrintUsageByPrinter
     from .print_usage_by_user import PrintUsageByUser
+    from .private_access_sensor import PrivateAccessSensor
     from .privileged_access import PrivilegedAccess
     from .privileged_access_group import PrivilegedAccessGroup
     from .privileged_access_group_assignment_schedule import PrivilegedAccessGroupAssignmentSchedule
@@ -1981,6 +1983,8 @@ if TYPE_CHECKING:
     from .vulnerable_managed_device import VulnerableManagedDevice
     from .web_account import WebAccount
     from .web_app import WebApp
+    from .web_application_firewall_provider import WebApplicationFirewallProvider
+    from .web_application_firewall_verification_model import WebApplicationFirewallVerificationModel
     from .web_application_segment import WebApplicationSegment
     from .web_part import WebPart
     from .win32_catalog_app import Win32CatalogApp
@@ -2116,6 +2120,7 @@ if TYPE_CHECKING:
     from .windows_wifi_configuration import WindowsWifiConfiguration
     from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
     from .windows_wired_network_configuration import WindowsWiredNetworkConfiguration
+    from .windows_ztdns_configuration import WindowsZtdnsConfiguration
     from .win_get_app import WinGetApp
     from .workbook import Workbook
     from .workbook_application import WorkbookApplication
@@ -2434,6 +2439,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .ai_user import AiUser
 
             return AiUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.akamaiWebApplicationFirewallProvider".casefold():
+            from .akamai_web_application_firewall_provider import AkamaiWebApplicationFirewallProvider
+
+            return AkamaiWebApplicationFirewallProvider()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.alert".casefold():
             from .alert import Alert
             from .health_monitoring.alert import Alert
@@ -3480,6 +3489,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_clipboard_root import CloudClipboardRoot
 
             return CloudClipboardRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudFlareWebApplicationFirewallProvider".casefold():
+            from .cloud_flare_web_application_firewall_provider import CloudFlareWebApplicationFirewallProvider
+
+            return CloudFlareWebApplicationFirewallProvider()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudLicensing.usageRight".casefold():
             from .cloud_licensing.usage_right import UsageRight
             from .usage_right import UsageRight
@@ -3593,6 +3606,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_gallery_image import CloudPcGalleryImage
 
             return CloudPcGalleryImage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcManagedLicense".casefold():
+            from .cloud_pc_managed_license import CloudPcManagedLicense
+
+            return CloudPcManagedLicense()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcOnPremisesConnection".casefold():
             from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
 
@@ -3838,6 +3855,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .custom_claims_policy import CustomClaimsPolicy
 
             return CustomClaimsPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.customDataProvidedResourceUploadSession".casefold():
+            from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
+
+            return CustomDataProvidedResourceUploadSession()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.customExtensionHandler".casefold():
             from .custom_extension_handler import CustomExtensionHandler
 
@@ -6907,10 +6928,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.filtering_policy_link import FilteringPolicyLink
 
             return FilteringPolicyLink()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringProfile".casefold():
-            from .networkaccess.filtering_profile import FilteringProfile
-
-            return FilteringProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringRule".casefold():
             from .networkaccess.filtering_rule import FilteringRule
 
@@ -6927,10 +6944,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
 
             return ForwardingPolicyLink()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfile".casefold():
-            from .networkaccess.forwarding_profile import ForwardingProfile
-
-            return ForwardingProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingRule".casefold():
             from .networkaccess.forwarding_rule import ForwardingRule
 
@@ -6971,15 +6984,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
 
             return PrivateAccessForwardingRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.profile".casefold():
-            from .networkaccess.profile import Profile
-            from .profile import Profile
-
-            return Profile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.remoteNetwork".casefold():
-            from .networkaccess.remote_network import RemoteNetwork
-
-            return RemoteNetwork()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.remoteNetworkHealthEvent".casefold():
             from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
 
@@ -7024,6 +7028,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.tls_termination import TlsTermination
 
             return TlsTermination()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.urlDestinationFilteringRule".casefold():
+            from .networkaccess.url_destination_filtering_rule import UrlDestinationFilteringRule
+
+            return UrlDestinationFilteringRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategoryFilteringRule".casefold():
             from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
 
@@ -7784,6 +7792,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .print_usage_by_user import PrintUsageByUser
 
             return PrintUsageByUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privateAccessSensor".casefold():
+            from .private_access_sensor import PrivateAccessSensor
+
+            return PrivateAccessSensor()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegedAccess".casefold():
             from .privileged_access import PrivilegedAccess
 
@@ -7897,7 +7909,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return PrivilegeManagementElevationRequest()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.profile".casefold():
-            from .networkaccess.profile import Profile
             from .profile import Profile
 
             return Profile()
@@ -10167,6 +10178,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .web_app import WebApp
 
             return WebApp()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.webApplicationFirewallProvider".casefold():
+            from .web_application_firewall_provider import WebApplicationFirewallProvider
+
+            return WebApplicationFirewallProvider()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.webApplicationFirewallVerificationModel".casefold():
+            from .web_application_firewall_verification_model import WebApplicationFirewallVerificationModel
+
+            return WebApplicationFirewallVerificationModel()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.webApplicationSegment".casefold():
             from .web_application_segment import WebApplicationSegment
 
@@ -10709,6 +10728,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_wired_network_configuration import WindowsWiredNetworkConfiguration
 
             return WindowsWiredNetworkConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsZtdnsConfiguration".casefold():
+            from .windows_ztdns_configuration import WindowsZtdnsConfiguration
+
+            return WindowsZtdnsConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.winGetApp".casefold():
             from .win_get_app import WinGetApp
 
@@ -11011,6 +11034,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .ai_interaction_history import AiInteractionHistory
         from .ai_online_meeting import AiOnlineMeeting
         from .ai_user import AiUser
+        from .akamai_web_application_firewall_provider import AkamaiWebApplicationFirewallProvider
         from .alert import Alert
         from .allowed_data_location import AllowedDataLocation
         from .allowed_value import AllowedValue
@@ -11271,6 +11295,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
         from .cloud_clipboard_item import CloudClipboardItem
         from .cloud_clipboard_root import CloudClipboardRoot
+        from .cloud_flare_web_application_firewall_provider import CloudFlareWebApplicationFirewallProvider
         from .cloud_licensing.usage_right import UsageRight
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
@@ -11297,6 +11322,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
         from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
         from .cloud_pc_gallery_image import CloudPcGalleryImage
+        from .cloud_pc_managed_license import CloudPcManagedLicense
         from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
@@ -11360,6 +11386,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_authentication_extension import CustomAuthenticationExtension
         from .custom_callout_extension import CustomCalloutExtension
         from .custom_claims_policy import CustomClaimsPolicy
+        from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .custom_extension_handler import CustomExtensionHandler
         from .custom_extension_stage_setting import CustomExtensionStageSetting
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -12120,12 +12147,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
         from .networkaccess.filtering_policy import FilteringPolicy
         from .networkaccess.filtering_policy_link import FilteringPolicyLink
-        from .networkaccess.filtering_profile import FilteringProfile
         from .networkaccess.filtering_rule import FilteringRule
         from .networkaccess.forwarding_options import ForwardingOptions
         from .networkaccess.forwarding_policy import ForwardingPolicy
         from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
-        from .networkaccess.forwarding_profile import ForwardingProfile
         from .networkaccess.forwarding_rule import ForwardingRule
         from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
         from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
@@ -12136,8 +12161,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.policy_link import PolicyLink
         from .networkaccess.policy_rule import PolicyRule
         from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
-        from .networkaccess.profile import Profile
-        from .networkaccess.remote_network import RemoteNetwork
         from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
@@ -12149,6 +12172,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.tls_inspection_policy_link import TlsInspectionPolicyLink
         from .networkaccess.tls_inspection_rule import TlsInspectionRule
         from .networkaccess.tls_termination import TlsTermination
+        from .networkaccess.url_destination_filtering_rule import UrlDestinationFilteringRule
         from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
         from .news_link_page import NewsLinkPage
         from .note import Note
@@ -12338,6 +12362,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
         from .print_usage_by_user import PrintUsageByUser
+        from .private_access_sensor import PrivateAccessSensor
         from .privileged_access import PrivilegedAccess
         from .privileged_access_group import PrivilegedAccessGroup
         from .privileged_access_group_assignment_schedule import PrivilegedAccessGroupAssignmentSchedule
@@ -12928,6 +12953,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .vulnerable_managed_device import VulnerableManagedDevice
         from .web_account import WebAccount
         from .web_app import WebApp
+        from .web_application_firewall_provider import WebApplicationFirewallProvider
+        from .web_application_firewall_verification_model import WebApplicationFirewallVerificationModel
         from .web_application_segment import WebApplicationSegment
         from .web_part import WebPart
         from .win32_catalog_app import Win32CatalogApp
@@ -13063,6 +13090,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_wifi_configuration import WindowsWifiConfiguration
         from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
         from .windows_wired_network_configuration import WindowsWiredNetworkConfiguration
+        from .windows_ztdns_configuration import WindowsZtdnsConfiguration
         from .win_get_app import WinGetApp
         from .workbook import Workbook
         from .workbook_application import WorkbookApplication
@@ -13181,6 +13209,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .ai_interaction_history import AiInteractionHistory
         from .ai_online_meeting import AiOnlineMeeting
         from .ai_user import AiUser
+        from .akamai_web_application_firewall_provider import AkamaiWebApplicationFirewallProvider
         from .alert import Alert
         from .allowed_data_location import AllowedDataLocation
         from .allowed_value import AllowedValue
@@ -13441,6 +13470,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
         from .cloud_clipboard_item import CloudClipboardItem
         from .cloud_clipboard_root import CloudClipboardRoot
+        from .cloud_flare_web_application_firewall_provider import CloudFlareWebApplicationFirewallProvider
         from .cloud_licensing.usage_right import UsageRight
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
@@ -13467,6 +13497,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_external_partner_setting import CloudPcExternalPartnerSetting
         from .cloud_pc_front_line_service_plan import CloudPcFrontLineServicePlan
         from .cloud_pc_gallery_image import CloudPcGalleryImage
+        from .cloud_pc_managed_license import CloudPcManagedLicense
         from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
@@ -13530,6 +13561,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_authentication_extension import CustomAuthenticationExtension
         from .custom_callout_extension import CustomCalloutExtension
         from .custom_claims_policy import CustomClaimsPolicy
+        from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .custom_extension_handler import CustomExtensionHandler
         from .custom_extension_stage_setting import CustomExtensionStageSetting
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -14290,12 +14322,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
         from .networkaccess.filtering_policy import FilteringPolicy
         from .networkaccess.filtering_policy_link import FilteringPolicyLink
-        from .networkaccess.filtering_profile import FilteringProfile
         from .networkaccess.filtering_rule import FilteringRule
         from .networkaccess.forwarding_options import ForwardingOptions
         from .networkaccess.forwarding_policy import ForwardingPolicy
         from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
-        from .networkaccess.forwarding_profile import ForwardingProfile
         from .networkaccess.forwarding_rule import ForwardingRule
         from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
         from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
@@ -14306,8 +14336,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.policy_link import PolicyLink
         from .networkaccess.policy_rule import PolicyRule
         from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
-        from .networkaccess.profile import Profile
-        from .networkaccess.remote_network import RemoteNetwork
         from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
@@ -14319,6 +14347,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.tls_inspection_policy_link import TlsInspectionPolicyLink
         from .networkaccess.tls_inspection_rule import TlsInspectionRule
         from .networkaccess.tls_termination import TlsTermination
+        from .networkaccess.url_destination_filtering_rule import UrlDestinationFilteringRule
         from .networkaccess.web_category_filtering_rule import WebCategoryFilteringRule
         from .news_link_page import NewsLinkPage
         from .note import Note
@@ -14508,6 +14537,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
         from .print_usage_by_user import PrintUsageByUser
+        from .private_access_sensor import PrivateAccessSensor
         from .privileged_access import PrivilegedAccess
         from .privileged_access_group import PrivilegedAccessGroup
         from .privileged_access_group_assignment_schedule import PrivilegedAccessGroupAssignmentSchedule
@@ -15098,6 +15128,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .vulnerable_managed_device import VulnerableManagedDevice
         from .web_account import WebAccount
         from .web_app import WebApp
+        from .web_application_firewall_provider import WebApplicationFirewallProvider
+        from .web_application_firewall_verification_model import WebApplicationFirewallVerificationModel
         from .web_application_segment import WebApplicationSegment
         from .web_part import WebPart
         from .win32_catalog_app import Win32CatalogApp
@@ -15233,6 +15265,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_wifi_configuration import WindowsWifiConfiguration
         from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
         from .windows_wired_network_configuration import WindowsWiredNetworkConfiguration
+        from .windows_ztdns_configuration import WindowsZtdnsConfiguration
         from .win_get_app import WinGetApp
         from .workbook import Workbook
         from .workbook_application import WorkbookApplication

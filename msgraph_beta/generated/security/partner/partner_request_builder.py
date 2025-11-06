@@ -52,7 +52,7 @@ class PartnerRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PartnerRequestBuilderGetQueryParameters]] = None) -> Optional[PartnerSecurity]:
         """
-        A container that safeguards the Microsoft Azure resources of Microsoft Cloud Solution Provider (CSP) partners’ customers, including alerts, scores, and all aspects of security.
+        A container that safeguards the Microsoft Azure resources of Microsoft Cloud Solution Provider (CSP) partners' customers, including alerts, scores, and all aspects of security.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PartnerSecurity]
         """
@@ -106,7 +106,7 @@ class PartnerRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PartnerRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        A container that safeguards the Microsoft Azure resources of Microsoft Cloud Solution Provider (CSP) partners’ customers, including alerts, scores, and all aspects of security.
+        A container that safeguards the Microsoft Azure resources of Microsoft Cloud Solution Provider (CSP) partners' customers, including alerts, scores, and all aspects of security.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -168,7 +168,7 @@ class PartnerRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PartnerRequestBuilderGetQueryParameters():
         """
-        A container that safeguards the Microsoft Azure resources of Microsoft Cloud Solution Provider (CSP) partners’ customers, including alerts, scores, and all aspects of security.
+        A container that safeguards the Microsoft Azure resources of Microsoft Cloud Solution Provider (CSP) partners' customers, including alerts, scores, and all aspects of security.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

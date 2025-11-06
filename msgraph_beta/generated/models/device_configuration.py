@@ -155,6 +155,7 @@ if TYPE_CHECKING:
     from .windows_wifi_configuration import WindowsWifiConfiguration
     from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
     from .windows_wired_network_configuration import WindowsWiredNetworkConfiguration
+    from .windows_ztdns_configuration import WindowsZtdnsConfiguration
 
 from .entity import Entity
 
@@ -766,6 +767,10 @@ class DeviceConfiguration(Entity, Parsable):
             from .windows_wired_network_configuration import WindowsWiredNetworkConfiguration
 
             return WindowsWiredNetworkConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsZtdnsConfiguration".casefold():
+            from .windows_ztdns_configuration import WindowsZtdnsConfiguration
+
+            return WindowsZtdnsConfiguration()
         return DeviceConfiguration()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -922,6 +927,7 @@ class DeviceConfiguration(Entity, Parsable):
         from .windows_wifi_configuration import WindowsWifiConfiguration
         from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
         from .windows_wired_network_configuration import WindowsWiredNetworkConfiguration
+        from .windows_ztdns_configuration import WindowsZtdnsConfiguration
 
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_custom_configuration import AndroidCustomConfiguration
@@ -1072,6 +1078,7 @@ class DeviceConfiguration(Entity, Parsable):
         from .windows_wifi_configuration import WindowsWifiConfiguration
         from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
         from .windows_wired_network_configuration import WindowsWiredNetworkConfiguration
+        from .windows_ztdns_configuration import WindowsZtdnsConfiguration
 
         fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(DeviceConfigurationAssignment)),

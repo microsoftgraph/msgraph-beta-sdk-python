@@ -13,13 +13,13 @@ from ...entity import Entity
 
 @dataclass
 class Workspace(Entity, Parsable):
-    # The displayName property
+    # Name of the Security Copilot workspace.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The plugins property
+    # Represents plugins in Security Copilot.
     plugins: Optional[list[Plugin]] = None
-    # The sessions property
+    # Represents sessions in Security Copilot.
     sessions: Optional[list[Session]] = None
     
     @staticmethod

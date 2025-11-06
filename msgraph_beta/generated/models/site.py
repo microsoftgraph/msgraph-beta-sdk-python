@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .document_processing_job import DocumentProcessingJob
     from .drive import Drive
     from .extension import Extension
+    from .identity_input import IdentityInput
     from .information_protection import InformationProtection
     from .item_analytics import ItemAnalytics
     from .list_ import List_
@@ -25,7 +26,9 @@ if TYPE_CHECKING:
     from .root import Root
     from .sharepoint_ids import SharepointIds
     from .site_collection import SiteCollection
+    from .site_lock_state import SiteLockState
     from .site_settings import SiteSettings
+    from .site_template_type import SiteTemplateType
     from .term_store.store import Store
 
 from .base_item import BaseItem
@@ -64,10 +67,16 @@ class Site(BaseItem, Parsable):
     items: Optional[list[BaseItem]] = None
     # The collection of lists under this site.
     lists: Optional[list[List_]] = None
+    # The language settings of the site.
+    locale: Optional[str] = None
+    # The state of the site. The possible values are: unlocked, lockedReadOnly, lockedNoAccess, lockedNoAdditions, unknownFutureValue
+    lock_state: Optional[SiteLockState] = None
     # The onenote property
     onenote: Optional[Onenote] = None
     # The collection of long running operations for the site.
     operations: Optional[list[RichLongRunningOperation]] = None
+    # The site owner to be provided at the time of site creation only.
+    owner_identity_to_resolve: Optional[IdentityInput] = None
     # The collection of page templates on this site.
     page_templates: Optional[list[PageTemplate]] = None
     # The collection of pages in the baseSitePages list on this site.
@@ -80,12 +89,16 @@ class Site(BaseItem, Parsable):
     root: Optional[Root] = None
     # The settings on this site. Read-only.
     settings: Optional[SiteSettings] = None
+    # Determines whether the site and its content can be shared via email.
+    share_by_email_enabled: Optional[bool] = None
     # Returns identifiers useful for SharePoint REST compatibility. Read-only.
     sharepoint_ids: Optional[SharepointIds] = None
     # Provides details about the site's site collection. Available only on the root site. Read-only.
     site_collection: Optional[SiteCollection] = None
     # The collection of the sub-sites under this site.
     sites: Optional[list[Site]] = None
+    # Specifies the template applied to the site. The possible values are: sitepagepublishing, group, sts, unknownFutureValue.
+    template: Optional[SiteTemplateType] = None
     # The termStore under this site.
     term_store: Optional[Store] = None
     
@@ -114,6 +127,7 @@ class Site(BaseItem, Parsable):
         from .document_processing_job import DocumentProcessingJob
         from .drive import Drive
         from .extension import Extension
+        from .identity_input import IdentityInput
         from .information_protection import InformationProtection
         from .item_analytics import ItemAnalytics
         from .list_ import List_
@@ -125,7 +139,9 @@ class Site(BaseItem, Parsable):
         from .root import Root
         from .sharepoint_ids import SharepointIds
         from .site_collection import SiteCollection
+        from .site_lock_state import SiteLockState
         from .site_settings import SiteSettings
+        from .site_template_type import SiteTemplateType
         from .term_store.store import Store
 
         from .base_item import BaseItem
@@ -137,6 +153,7 @@ class Site(BaseItem, Parsable):
         from .document_processing_job import DocumentProcessingJob
         from .drive import Drive
         from .extension import Extension
+        from .identity_input import IdentityInput
         from .information_protection import InformationProtection
         from .item_analytics import ItemAnalytics
         from .list_ import List_
@@ -148,7 +165,9 @@ class Site(BaseItem, Parsable):
         from .root import Root
         from .sharepoint_ids import SharepointIds
         from .site_collection import SiteCollection
+        from .site_lock_state import SiteLockState
         from .site_settings import SiteSettings
+        from .site_template_type import SiteTemplateType
         from .term_store.store import Store
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -167,17 +186,22 @@ class Site(BaseItem, Parsable):
             "isPersonalSite": lambda n : setattr(self, 'is_personal_site', n.get_bool_value()),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(BaseItem)),
             "lists": lambda n : setattr(self, 'lists', n.get_collection_of_object_values(List_)),
+            "locale": lambda n : setattr(self, 'locale', n.get_str_value()),
+            "lockState": lambda n : setattr(self, 'lock_state', n.get_enum_value(SiteLockState)),
             "onenote": lambda n : setattr(self, 'onenote', n.get_object_value(Onenote)),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(RichLongRunningOperation)),
+            "ownerIdentityToResolve": lambda n : setattr(self, 'owner_identity_to_resolve', n.get_object_value(IdentityInput)),
             "pageTemplates": lambda n : setattr(self, 'page_templates', n.get_collection_of_object_values(PageTemplate)),
             "pages": lambda n : setattr(self, 'pages', n.get_collection_of_object_values(BaseSitePage)),
             "permissions": lambda n : setattr(self, 'permissions', n.get_collection_of_object_values(Permission)),
             "recycleBin": lambda n : setattr(self, 'recycle_bin', n.get_object_value(RecycleBin)),
             "root": lambda n : setattr(self, 'root', n.get_object_value(Root)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(SiteSettings)),
+            "shareByEmailEnabled": lambda n : setattr(self, 'share_by_email_enabled', n.get_bool_value()),
             "sharepointIds": lambda n : setattr(self, 'sharepoint_ids', n.get_object_value(SharepointIds)),
             "siteCollection": lambda n : setattr(self, 'site_collection', n.get_object_value(SiteCollection)),
             "sites": lambda n : setattr(self, 'sites', n.get_collection_of_object_values(Site)),
+            "template": lambda n : setattr(self, 'template', n.get_enum_value(SiteTemplateType)),
             "termStore": lambda n : setattr(self, 'term_store', n.get_object_value(Store)),
         }
         super_fields = super().get_field_deserializers()
@@ -208,17 +232,22 @@ class Site(BaseItem, Parsable):
         writer.write_bool_value("isPersonalSite", self.is_personal_site)
         writer.write_collection_of_object_values("items", self.items)
         writer.write_collection_of_object_values("lists", self.lists)
+        writer.write_str_value("locale", self.locale)
+        writer.write_enum_value("lockState", self.lock_state)
         writer.write_object_value("onenote", self.onenote)
         writer.write_collection_of_object_values("operations", self.operations)
+        writer.write_object_value("ownerIdentityToResolve", self.owner_identity_to_resolve)
         writer.write_collection_of_object_values("pageTemplates", self.page_templates)
         writer.write_collection_of_object_values("pages", self.pages)
         writer.write_collection_of_object_values("permissions", self.permissions)
         writer.write_object_value("recycleBin", self.recycle_bin)
         writer.write_object_value("root", self.root)
         writer.write_object_value("settings", self.settings)
+        writer.write_bool_value("shareByEmailEnabled", self.share_by_email_enabled)
         writer.write_object_value("sharepointIds", self.sharepoint_ids)
         writer.write_object_value("siteCollection", self.site_collection)
         writer.write_collection_of_object_values("sites", self.sites)
+        writer.write_enum_value("template", self.template)
         writer.write_object_value("termStore", self.term_store)
     
 

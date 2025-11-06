@@ -20,8 +20,11 @@ if TYPE_CHECKING:
     from .approve_apps.approve_apps_request_builder import ApproveAppsRequestBuilder
     from .complete_signup.complete_signup_request_builder import CompleteSignupRequestBuilder
     from .create_google_play_web_token.create_google_play_web_token_request_builder import CreateGooglePlayWebTokenRequestBuilder
+    from .request_enterprise_upgrade_url.request_enterprise_upgrade_url_request_builder import RequestEnterpriseUpgradeUrlRequestBuilder
     from .request_signup_url.request_signup_url_request_builder import RequestSignupUrlRequestBuilder
+    from .retrieve_store_layout.retrieve_store_layout_request_builder import RetrieveStoreLayoutRequestBuilder
     from .set_android_device_owner_fully_managed_enrollment_state.set_android_device_owner_fully_managed_enrollment_state_request_builder import SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder
+    from .set_store_layout.set_store_layout_request_builder import SetStoreLayoutRequestBuilder
     from .sync_apps.sync_apps_request_builder import SyncAppsRequestBuilder
     from .unbind.unbind_request_builder import UnbindRequestBuilder
 
@@ -183,6 +186,15 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder(BaseRequestBuil
         return CreateGooglePlayWebTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def request_enterprise_upgrade_url(self) -> RequestEnterpriseUpgradeUrlRequestBuilder:
+        """
+        Provides operations to call the requestEnterpriseUpgradeUrl method.
+        """
+        from .request_enterprise_upgrade_url.request_enterprise_upgrade_url_request_builder import RequestEnterpriseUpgradeUrlRequestBuilder
+
+        return RequestEnterpriseUpgradeUrlRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def request_signup_url(self) -> RequestSignupUrlRequestBuilder:
         """
         Provides operations to call the requestSignupUrl method.
@@ -192,6 +204,15 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder(BaseRequestBuil
         return RequestSignupUrlRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def retrieve_store_layout(self) -> RetrieveStoreLayoutRequestBuilder:
+        """
+        Provides operations to call the retrieveStoreLayout method.
+        """
+        from .retrieve_store_layout.retrieve_store_layout_request_builder import RetrieveStoreLayoutRequestBuilder
+
+        return RetrieveStoreLayoutRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def set_android_device_owner_fully_managed_enrollment_state(self) -> SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder:
         """
         Provides operations to call the setAndroidDeviceOwnerFullyManagedEnrollmentState method.
@@ -199,6 +220,15 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder(BaseRequestBuil
         from .set_android_device_owner_fully_managed_enrollment_state.set_android_device_owner_fully_managed_enrollment_state_request_builder import SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder
 
         return SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def set_store_layout(self) -> SetStoreLayoutRequestBuilder:
+        """
+        Provides operations to call the setStoreLayout method.
+        """
+        from .set_store_layout.set_store_layout_request_builder import SetStoreLayoutRequestBuilder
+
+        return SetStoreLayoutRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sync_apps(self) -> SyncAppsRequestBuilder:

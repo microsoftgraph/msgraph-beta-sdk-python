@@ -51,7 +51,7 @@ class SecurityCopilotRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SecurityCopilotRequestBuilderGetQueryParameters]] = None) -> Optional[SecurityCopilot]:
         """
-        Get securityCopilot from security
+        Represents the resources related to Microsoft Security Copilot.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecurityCopilot]
         """
@@ -105,7 +105,7 @@ class SecurityCopilotRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SecurityCopilotRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get securityCopilot from security
+        Represents the resources related to Microsoft Security Copilot.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +158,7 @@ class SecurityCopilotRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SecurityCopilotRequestBuilderGetQueryParameters():
         """
-        Get securityCopilot from security
+        Represents the resources related to Microsoft Security Copilot.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

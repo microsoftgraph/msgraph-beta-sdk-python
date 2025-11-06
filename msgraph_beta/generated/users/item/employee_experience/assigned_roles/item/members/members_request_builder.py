@@ -49,7 +49,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MembersRequestBuilderGetQueryParameters]] = None) -> Optional[EngagementRoleMemberCollectionResponse]:
         """
-        Users who have been assigned this role.
+        Users that have this role assigned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EngagementRoleMemberCollectionResponse]
         """
@@ -92,7 +92,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MembersRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Users who have been assigned this role.
+        Users that have this role assigned.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class MembersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MembersRequestBuilderGetQueryParameters():
         """
-        Users who have been assigned this role.
+        Users that have this role assigned.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

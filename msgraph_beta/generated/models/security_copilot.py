@@ -14,7 +14,7 @@ from .entity import Entity
 class SecurityCopilot(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
-    # The workspaces property
+    # References a workspace in Security Copilot.
     workspaces: Optional[list[Workspace]] = None
     
     @staticmethod

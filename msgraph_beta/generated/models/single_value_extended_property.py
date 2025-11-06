@@ -13,7 +13,7 @@ from .entity import Entity
 class SingleValueExtendedProperty(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
-    # The value property
+    # The value of the property.
     value: Optional[str] = None
     
     @staticmethod

@@ -12,7 +12,7 @@ from ..entity import Entity
 
 @dataclass
 class SettingsContainer(Entity, Parsable):
-    # The autoAuditingConfiguration property
+    # Represents automatic configuration for collection of Windows event logs as needed for Defender for Identity sensors.
     auto_auditing_configuration: Optional[AutoAuditingConfiguration] = None
     # The OdataType property
     odata_type: Optional[str] = None

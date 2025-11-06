@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .network_destination_type import NetworkDestinationType
     from .policy_rule import PolicyRule
     from .rule_destination import RuleDestination
+    from .url_destination_filtering_rule import UrlDestinationFilteringRule
     from .web_category_filtering_rule import WebCategoryFilteringRule
 
 from .policy_rule import PolicyRule
@@ -40,6 +41,10 @@ class FilteringRule(PolicyRule, Parsable):
             from .fqdn_filtering_rule import FqdnFilteringRule
 
             return FqdnFilteringRule()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.urlDestinationFilteringRule".casefold():
+            from .url_destination_filtering_rule import UrlDestinationFilteringRule
+
+            return UrlDestinationFilteringRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategoryFilteringRule".casefold():
             from .web_category_filtering_rule import WebCategoryFilteringRule
 
@@ -55,12 +60,14 @@ class FilteringRule(PolicyRule, Parsable):
         from .network_destination_type import NetworkDestinationType
         from .policy_rule import PolicyRule
         from .rule_destination import RuleDestination
+        from .url_destination_filtering_rule import UrlDestinationFilteringRule
         from .web_category_filtering_rule import WebCategoryFilteringRule
 
         from .fqdn_filtering_rule import FqdnFilteringRule
         from .network_destination_type import NetworkDestinationType
         from .policy_rule import PolicyRule
         from .rule_destination import RuleDestination
+        from .url_destination_filtering_rule import UrlDestinationFilteringRule
         from .web_category_filtering_rule import WebCategoryFilteringRule
 
         fields: dict[str, Callable[[Any], None]] = {

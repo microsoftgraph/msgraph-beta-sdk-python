@@ -15,18 +15,12 @@ class SearchHit(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The _id property
-    _id: Optional[str] = None
-    # The _score property
-    _score: Optional[int] = None
-    # The _source property
-    _source: Optional[Entity] = None
-    # The _summary property
-    _summary: Optional[str] = None
     # The name of the content source that the externalItem is part of.
     content_source: Optional[str] = None
     # The internal identifier for the item. The format of the identifier varies based on the entity type. For details, see hitId format.
     hit_id: Optional[str] = None
+    # The id property
+    id: Optional[str] = None
     # Indicates whether the current result is collapses when the collapseProperties property in the searchRequest is used.
     is_collapsed: Optional[bool] = None
     # The OdataType property
@@ -37,6 +31,12 @@ class SearchHit(AdditionalDataHolder, BackedModel, Parsable):
     resource: Optional[Entity] = None
     # ID of the result template for rendering the search result. This ID must map to a display layout in the resultTemplates dictionary, included in the searchresponse as well.
     result_template_id: Optional[str] = None
+    # The score property
+    score: Optional[int] = None
+    # The summary property
+    search_hit_summary: Optional[str] = None
+    # The source property
+    source: Optional[Entity] = None
     # A summary of the result, if a summary is available.
     summary: Optional[str] = None
     
@@ -61,17 +61,17 @@ class SearchHit(AdditionalDataHolder, BackedModel, Parsable):
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
-            "_id": lambda n : setattr(self, '_id', n.get_str_value()),
-            "_score": lambda n : setattr(self, '_score', n.get_int_value()),
-            "_source": lambda n : setattr(self, '_source', n.get_object_value(Entity)),
-            "_summary": lambda n : setattr(self, '_summary', n.get_str_value()),
             "contentSource": lambda n : setattr(self, 'content_source', n.get_str_value()),
             "hitId": lambda n : setattr(self, 'hit_id', n.get_str_value()),
+            "_id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isCollapsed": lambda n : setattr(self, 'is_collapsed', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "rank": lambda n : setattr(self, 'rank', n.get_int_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_object_value(Entity)),
             "resultTemplateId": lambda n : setattr(self, 'result_template_id', n.get_str_value()),
+            "_score": lambda n : setattr(self, 'score', n.get_int_value()),
+            "_summary": lambda n : setattr(self, 'search_hit_summary', n.get_str_value()),
+            "_source": lambda n : setattr(self, 'source', n.get_object_value(Entity)),
             "summary": lambda n : setattr(self, 'summary', n.get_str_value()),
         }
         return fields
@@ -84,17 +84,17 @@ class SearchHit(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("_id", self._id)
-        writer.write_int_value("_score", self._score)
-        writer.write_object_value("_source", self._source)
-        writer.write_str_value("_summary", self._summary)
         writer.write_str_value("contentSource", self.content_source)
         writer.write_str_value("hitId", self.hit_id)
+        writer.write_str_value("_id", self.id)
         writer.write_bool_value("isCollapsed", self.is_collapsed)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("rank", self.rank)
         writer.write_object_value("resource", self.resource)
         writer.write_str_value("resultTemplateId", self.result_template_id)
+        writer.write_int_value("_score", self.score)
+        writer.write_str_value("_summary", self.search_hit_summary)
+        writer.write_object_value("_source", self.source)
         writer.write_str_value("summary", self.summary)
         writer.write_additional_data_value(self.additional_data)
     

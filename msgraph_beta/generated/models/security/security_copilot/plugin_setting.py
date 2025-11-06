@@ -16,27 +16,27 @@ class PluginSetting(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The acceptableValues property
+    # Acceptable values for plugin type
     acceptable_values: Optional[list[str]] = None
-    # The defaultValue property
+    # Default value available for the plugin if not configured
     default_value: Optional[str] = None
-    # The description property
+    # Description of the value requested
     description: Optional[str] = None
     # The displayType property
     display_type: Optional[PluginSettingDisplayType] = None
-    # The hintText property
+    # Hint for the plugin
     hint_text: Optional[str] = None
-    # The isRequired property
+    # Setting whether the value is required
     is_required: Optional[bool] = None
-    # The label property
+    # Label for the setting
     label: Optional[str] = None
-    # The name property
+    # Name of the setting
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The settingValue property
     setting_value: Optional[PluginSettingType] = None
-    # The value property
+    # Value
     value: Optional[str] = None
     
     @staticmethod

@@ -20,25 +20,25 @@ class Plugin(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The authorization property
+    # Authorization for the plugin.
     authorization: Optional[PluginAuth] = None
     # The catalogScope property
     catalog_scope: Optional[PluginCatalogScope] = None
     # The category property
     category: Optional[PluginCategory] = None
-    # The description property
+    # Brief description of the plugin.
     description: Optional[str] = None
-    # The displayName property
+    # Display name of the plugin.   Supports $filter (eq).
     display_name: Optional[str] = None
-    # The isEnabled property
+    # Displays whether the plugin is enabled for use within the catalogScope.   Supports $filter (eq).
     is_enabled: Optional[bool] = None
-    # The name property
+    # Represents the name of the plugin. Primary key.   Supports $filter (eq, contains).
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The previewState property
     preview_state: Optional[PluginPreviewStates] = None
-    # The settings property
+    # Settings for the plugin.
     settings: Optional[list[PluginSetting]] = None
     # The supportedAuthTypes property
     supported_auth_types: Optional[PluginAuthTypes] = None
