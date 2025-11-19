@@ -16,6 +16,10 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.backup_restore_root import BackupRestoreRoot
     from ...models.o_data_errors.o_data_error import ODataError
+    from .all_drives_backup.all_drives_backup_request_builder import AllDrivesBackupRequestBuilder
+    from .all_mailboxes_backup.all_mailboxes_backup_request_builder import AllMailboxesBackupRequestBuilder
+    from .all_sites_backup.all_sites_backup_request_builder import AllSitesBackupRequestBuilder
+    from .browse_sessions.browse_sessions_request_builder import BrowseSessionsRequestBuilder
     from .drive_inclusion_rules.drive_inclusion_rules_request_builder import DriveInclusionRulesRequestBuilder
     from .drive_protection_units.drive_protection_units_request_builder import DriveProtectionUnitsRequestBuilder
     from .drive_protection_units_bulk_addition_jobs.drive_protection_units_bulk_addition_jobs_request_builder import DriveProtectionUnitsBulkAdditionJobsRequestBuilder
@@ -26,6 +30,7 @@ if TYPE_CHECKING:
     from .mailbox_inclusion_rules.mailbox_inclusion_rules_request_builder import MailboxInclusionRulesRequestBuilder
     from .mailbox_protection_units.mailbox_protection_units_request_builder import MailboxProtectionUnitsRequestBuilder
     from .mailbox_protection_units_bulk_addition_jobs.mailbox_protection_units_bulk_addition_jobs_request_builder import MailboxProtectionUnitsBulkAdditionJobsRequestBuilder
+    from .one_drive_for_business_browse_sessions.one_drive_for_business_browse_sessions_request_builder import OneDriveForBusinessBrowseSessionsRequestBuilder
     from .one_drive_for_business_protection_policies.one_drive_for_business_protection_policies_request_builder import OneDriveForBusinessProtectionPoliciesRequestBuilder
     from .one_drive_for_business_restore_sessions.one_drive_for_business_restore_sessions_request_builder import OneDriveForBusinessRestoreSessionsRequestBuilder
     from .protection_policies.protection_policies_request_builder import ProtectionPoliciesRequestBuilder
@@ -33,6 +38,7 @@ if TYPE_CHECKING:
     from .restore_points.restore_points_request_builder import RestorePointsRequestBuilder
     from .restore_sessions.restore_sessions_request_builder import RestoreSessionsRequestBuilder
     from .service_apps.service_apps_request_builder import ServiceAppsRequestBuilder
+    from .share_point_browse_sessions.share_point_browse_sessions_request_builder import SharePointBrowseSessionsRequestBuilder
     from .share_point_protection_policies.share_point_protection_policies_request_builder import SharePointProtectionPoliciesRequestBuilder
     from .share_point_restore_sessions.share_point_restore_sessions_request_builder import SharePointRestoreSessionsRequestBuilder
     from .site_inclusion_rules.site_inclusion_rules_request_builder import SiteInclusionRulesRequestBuilder
@@ -162,6 +168,42 @@ class BackupRestoreRequestBuilder(BaseRequestBuilder):
         return BackupRestoreRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def all_drives_backup(self) -> AllDrivesBackupRequestBuilder:
+        """
+        Provides operations to manage the allDrivesBackup property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .all_drives_backup.all_drives_backup_request_builder import AllDrivesBackupRequestBuilder
+
+        return AllDrivesBackupRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def all_mailboxes_backup(self) -> AllMailboxesBackupRequestBuilder:
+        """
+        Provides operations to manage the allMailboxesBackup property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .all_mailboxes_backup.all_mailboxes_backup_request_builder import AllMailboxesBackupRequestBuilder
+
+        return AllMailboxesBackupRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def all_sites_backup(self) -> AllSitesBackupRequestBuilder:
+        """
+        Provides operations to manage the allSitesBackup property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .all_sites_backup.all_sites_backup_request_builder import AllSitesBackupRequestBuilder
+
+        return AllSitesBackupRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def browse_sessions(self) -> BrowseSessionsRequestBuilder:
+        """
+        Provides operations to manage the browseSessions property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .browse_sessions.browse_sessions_request_builder import BrowseSessionsRequestBuilder
+
+        return BrowseSessionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def drive_inclusion_rules(self) -> DriveInclusionRulesRequestBuilder:
         """
         Provides operations to manage the driveInclusionRules property of the microsoft.graph.backupRestoreRoot entity.
@@ -252,6 +294,15 @@ class BackupRestoreRequestBuilder(BaseRequestBuilder):
         return MailboxProtectionUnitsBulkAdditionJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def one_drive_for_business_browse_sessions(self) -> OneDriveForBusinessBrowseSessionsRequestBuilder:
+        """
+        Provides operations to manage the oneDriveForBusinessBrowseSessions property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .one_drive_for_business_browse_sessions.one_drive_for_business_browse_sessions_request_builder import OneDriveForBusinessBrowseSessionsRequestBuilder
+
+        return OneDriveForBusinessBrowseSessionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def one_drive_for_business_protection_policies(self) -> OneDriveForBusinessProtectionPoliciesRequestBuilder:
         """
         Provides operations to manage the oneDriveForBusinessProtectionPolicies property of the microsoft.graph.backupRestoreRoot entity.
@@ -313,6 +364,15 @@ class BackupRestoreRequestBuilder(BaseRequestBuilder):
         from .service_apps.service_apps_request_builder import ServiceAppsRequestBuilder
 
         return ServiceAppsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def share_point_browse_sessions(self) -> SharePointBrowseSessionsRequestBuilder:
+        """
+        Provides operations to manage the sharePointBrowseSessions property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .share_point_browse_sessions.share_point_browse_sessions_request_builder import SharePointBrowseSessionsRequestBuilder
+
+        return SharePointBrowseSessionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def share_point_protection_policies(self) -> SharePointProtectionPoliciesRequestBuilder:

@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .backup_policy_protection_mode import BackupPolicyProtectionMode
     from .entity import Entity
     from .exchange_protection_policy import ExchangeProtectionPolicy
     from .identity_set import IdentitySet
@@ -35,6 +36,8 @@ class ProtectionPolicyBase(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The protectionMode property
+    protection_mode: Optional[BackupPolicyProtectionMode] = None
     # The count of artifacts in the protection policy by status. Returned only on $select.
     protection_policy_artifact_count: Optional[ProtectionPolicyArtifactCount] = None
     # Contains the retention setting details for the policy.
@@ -75,6 +78,7 @@ class ProtectionPolicyBase(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .backup_policy_protection_mode import BackupPolicyProtectionMode
         from .entity import Entity
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .identity_set import IdentitySet
@@ -84,6 +88,7 @@ class ProtectionPolicyBase(Entity, Parsable):
         from .retention_setting import RetentionSetting
         from .share_point_protection_policy import SharePointProtectionPolicy
 
+        from .backup_policy_protection_mode import BackupPolicyProtectionMode
         from .entity import Entity
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .identity_set import IdentitySet
@@ -101,6 +106,7 @@ class ProtectionPolicyBase(Entity, Parsable):
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "protectionMode": lambda n : setattr(self, 'protection_mode', n.get_enum_value(BackupPolicyProtectionMode)),
             "protectionPolicyArtifactCount": lambda n : setattr(self, 'protection_policy_artifact_count', n.get_object_value(ProtectionPolicyArtifactCount)),
             "retentionSettings": lambda n : setattr(self, 'retention_settings', n.get_collection_of_object_values(RetentionSetting)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(ProtectionPolicyStatus)),
@@ -125,6 +131,7 @@ class ProtectionPolicyBase(Entity, Parsable):
         writer.write_bool_value("isEnabled", self.is_enabled)
         writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_enum_value("protectionMode", self.protection_mode)
         writer.write_object_value("protectionPolicyArtifactCount", self.protection_policy_artifact_count)
         writer.write_collection_of_object_values("retentionSettings", self.retention_settings)
         writer.write_enum_value("status", self.status)

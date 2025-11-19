@@ -3,6 +3,7 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
 if TYPE_CHECKING:
     from .authentication_method_target import AuthenticationMethodTarget
@@ -11,6 +12,8 @@ from .authentication_method_target import AuthenticationMethodTarget
 
 @dataclass
 class PasskeyAuthenticationMethodTarget(AuthenticationMethodTarget, Parsable):
+    # List of passkey profiles scoped to the targets. Required.
+    allowed_passkey_profiles: Optional[list[UUID]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -35,6 +38,7 @@ class PasskeyAuthenticationMethodTarget(AuthenticationMethodTarget, Parsable):
         from .authentication_method_target import AuthenticationMethodTarget
 
         fields: dict[str, Callable[[Any], None]] = {
+            "allowedPasskeyProfiles": lambda n : setattr(self, 'allowed_passkey_profiles', n.get_collection_of_primitive_values(UUID)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -49,5 +53,6 @@ class PasskeyAuthenticationMethodTarget(AuthenticationMethodTarget, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_primitive_values("allowedPasskeyProfiles", self.allowed_passkey_profiles)
     
 

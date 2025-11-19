@@ -39,7 +39,7 @@ class OnPremisesPublishingProfile(Entity, Parsable):
     odata_type: Optional[str] = None
     # List of existing publishedResource objects. Read-only. Nullable.
     published_resources: Optional[list[PublishedResource]] = None
-    # The sensors property
+    # A lightweight agent installed on domain controllers that helps secure access and enforce MFA to on-premise resources.
     sensors: Optional[list[PrivateAccessSensor]] = None
     
     @staticmethod

@@ -18,7 +18,7 @@ class SensorCandidate(Entity, Parsable):
     last_seen_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The version of the Defender for Identity sensor client.
+    # The version of the Defender for Identity sensor client.  Supports $filter (eq).
     sense_client_version: Optional[str] = None
     
     @staticmethod

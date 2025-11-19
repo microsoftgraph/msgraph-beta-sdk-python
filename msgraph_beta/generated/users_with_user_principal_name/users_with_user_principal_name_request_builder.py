@@ -35,7 +35,7 @@ class UsersWithUserPrincipalNameRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a user object.   When deleted, user resources, including their mailbox and license assignments, are moved to a temporary container and if the user is restored within 30 days, these objects are restored to them. The user is also restored to any groups they were a member of. After 30 days and if not restored, the user object is permanently deleted and their assigned resources freed. To manage the deleted user object, see deletedItems.
+        Delete a user object. If the ID specified in the request URL is that of an agentUser object, this request deletes the agent user. When deleted, user resources, including their mailbox and license assignments, are moved to a temporary container and if the user is restored within 30 days, these objects are restored to them. The user is also restored to any groups they were a member of. After 30 days and if not restored, the user object is permanently deleted and their assigned resources freed. To manage the deleted user object, see deletedItems.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/user-delete?view=graph-rest-beta
@@ -54,7 +54,7 @@ class UsersWithUserPrincipalNameRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UsersWithUserPrincipalNameRequestBuilderGetQueryParameters]] = None) -> Optional[User]:
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the user and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance. Customers through Microsoft Entra ID for customers can also use this API operation to retrieve their details.
+        Retrieve the properties and relationships of a user object. If the ID specified is that of an agentUser, the API returns the properties of the agentUser object. This operation returns by default only a subset of the more commonly used properties. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance. Customers through Microsoft Entra ID for customers can also use this API operation to retrieve their details.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[User]
         Find more info here: https://learn.microsoft.com/graph/api/user-get?view=graph-rest-beta
@@ -75,7 +75,7 @@ class UsersWithUserPrincipalNameRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: User, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[User]:
         """
-        Update the properties of a user object.
+        Update the properties of a user or agentUser object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[User]
@@ -99,7 +99,7 @@ class UsersWithUserPrincipalNameRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a user object.   When deleted, user resources, including their mailbox and license assignments, are moved to a temporary container and if the user is restored within 30 days, these objects are restored to them. The user is also restored to any groups they were a member of. After 30 days and if not restored, the user object is permanently deleted and their assigned resources freed. To manage the deleted user object, see deletedItems.
+        Delete a user object. If the ID specified in the request URL is that of an agentUser object, this request deletes the agent user. When deleted, user resources, including their mailbox and license assignments, are moved to a temporary container and if the user is restored within 30 days, these objects are restored to them. The user is also restored to any groups they were a member of. After 30 days and if not restored, the user object is permanently deleted and their assigned resources freed. To manage the deleted user object, see deletedItems.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class UsersWithUserPrincipalNameRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UsersWithUserPrincipalNameRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the user and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance. Customers through Microsoft Entra ID for customers can also use this API operation to retrieve their details.
+        Retrieve the properties and relationships of a user object. If the ID specified is that of an agentUser, the API returns the properties of the agentUser object. This operation returns by default only a subset of the more commonly used properties. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance. Customers through Microsoft Entra ID for customers can also use this API operation to retrieve their details.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -121,7 +121,7 @@ class UsersWithUserPrincipalNameRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: User, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a user object.
+        Update the properties of a user or agentUser object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -154,7 +154,7 @@ class UsersWithUserPrincipalNameRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UsersWithUserPrincipalNameRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the user and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance. Customers through Microsoft Entra ID for customers can also use this API operation to retrieve their details.
+        Retrieve the properties and relationships of a user object. If the ID specified is that of an agentUser, the API returns the properties of the agentUser object. This operation returns by default only a subset of the more commonly used properties. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance. Customers through Microsoft Entra ID for customers can also use this API operation to retrieve their details.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .cloud_pc_provisioning_policy_image_type import CloudPcProvisioningPolicyImageType
     from .cloud_pc_provisioning_type import CloudPcProvisioningType
     from .cloud_pc_user_experience_type import CloudPcUserExperienceType
+    from .cloud_pc_user_settings_persistence_configuration import CloudPcUserSettingsPersistenceConfiguration
     from .cloud_pc_windows_setting import CloudPcWindowsSetting
     from .cloud_pc_windows_settings import CloudPcWindowsSettings
     from .entity import Entity
@@ -73,6 +74,8 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
     scope_ids: Optional[list[str]] = None
     # Specifies the type of cloud object the end user can access. Possible values are: cloudPc, cloudApp, unknownFutureValue. cloudPc indicates that the end user can access the entire desktop. cloudApp indicates that the end user can only access apps published under this provisioning policy. The type can't be changed once the provisioning policy is created. If not specified during creation, the default value is cloudPc. When cloudApp is selected, the provisioningType must be sharedByEntraGroup. Supports $filter, $select, $orderBy.
     user_experience_type: Optional[CloudPcUserExperienceType] = None
+    # Indicates specific settings that enable the persistence of user application settings between Cloud PC sessions. The default value is null. This feature is only available for Cloud PC provisioning policies of type sharedByEntraGroup. Supports $select.
+    user_settings_persistence_configuration: Optional[CloudPcUserSettingsPersistenceConfiguration] = None
     # Indicates a specific Windows setting to configure during the creation of Cloud PCs for this provisioning policy. Supports $select.
     windows_setting: Optional[CloudPcWindowsSetting] = None
     # Specific Windows settings to configure during the creation of Cloud PCs for this provisioning policy. Supports $select. The windowsSettings property is deprecated and will stop returning data on January 31, 2024. Going forward, use the windowsSetting property.
@@ -102,6 +105,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
         from .cloud_pc_provisioning_policy_image_type import CloudPcProvisioningPolicyImageType
         from .cloud_pc_provisioning_type import CloudPcProvisioningType
         from .cloud_pc_user_experience_type import CloudPcUserExperienceType
+        from .cloud_pc_user_settings_persistence_configuration import CloudPcUserSettingsPersistenceConfiguration
         from .cloud_pc_windows_setting import CloudPcWindowsSetting
         from .cloud_pc_windows_settings import CloudPcWindowsSettings
         from .entity import Entity
@@ -115,6 +119,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
         from .cloud_pc_provisioning_policy_image_type import CloudPcProvisioningPolicyImageType
         from .cloud_pc_provisioning_type import CloudPcProvisioningType
         from .cloud_pc_user_experience_type import CloudPcUserExperienceType
+        from .cloud_pc_user_settings_persistence_configuration import CloudPcUserSettingsPersistenceConfiguration
         from .cloud_pc_windows_setting import CloudPcWindowsSetting
         from .cloud_pc_windows_settings import CloudPcWindowsSettings
         from .entity import Entity
@@ -145,6 +150,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
             "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
             "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
             "userExperienceType": lambda n : setattr(self, 'user_experience_type', n.get_enum_value(CloudPcUserExperienceType)),
+            "userSettingsPersistenceConfiguration": lambda n : setattr(self, 'user_settings_persistence_configuration', n.get_object_value(CloudPcUserSettingsPersistenceConfiguration)),
             "windowsSetting": lambda n : setattr(self, 'windows_setting', n.get_object_value(CloudPcWindowsSetting)),
             "windowsSettings": lambda n : setattr(self, 'windows_settings', n.get_object_value(CloudPcWindowsSettings)),
         }
@@ -185,6 +191,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
         writer.write_enum_value("provisioningType", self.provisioning_type)
         writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
         writer.write_enum_value("userExperienceType", self.user_experience_type)
+        writer.write_object_value("userSettingsPersistenceConfiguration", self.user_settings_persistence_configuration)
         writer.write_object_value("windowsSetting", self.windows_setting)
         writer.write_object_value("windowsSettings", self.windows_settings)
     

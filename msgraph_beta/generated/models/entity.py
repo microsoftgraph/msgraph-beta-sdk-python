@@ -53,7 +53,9 @@ if TYPE_CHECKING:
     from .admin_windows_updates import AdminWindowsUpdates
     from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
     from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
+    from .agent import Agent
     from .agent_identity import AgentIdentity
+    from .agent_risk_detection import AgentRiskDetection
     from .agreement import Agreement
     from .agreement_acceptance import AgreementAcceptance
     from .agreement_file import AgreementFile
@@ -68,6 +70,9 @@ if TYPE_CHECKING:
     from .alert import Alert
     from .allowed_data_location import AllowedDataLocation
     from .allowed_value import AllowedValue
+    from .all_drives_backup import AllDrivesBackup
+    from .all_mailboxes_backup import AllMailboxesBackup
+    from .all_sites_backup import AllSitesBackup
     from .android_certificate_profile_base import AndroidCertificateProfileBase
     from .android_compliance_policy import AndroidCompliancePolicy
     from .android_custom_configuration import AndroidCustomConfiguration
@@ -271,6 +276,7 @@ if TYPE_CHECKING:
     from .browser_shared_cookie import BrowserSharedCookie
     from .browser_site import BrowserSite
     from .browser_site_list import BrowserSiteList
+    from .browse_session_base import BrowseSessionBase
     from .building import Building
     from .building_map import BuildingMap
     from .built_in_identity_provider import BuiltInIdentityProvider
@@ -357,6 +363,7 @@ if TYPE_CHECKING:
     from .cloud_pc_organization_settings import CloudPcOrganizationSettings
     from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
     from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
+    from .cloud_pc_report import CloudPcReport
     from .cloud_pc_reports import CloudPcReports
     from .cloud_pc_service_plan import CloudPcServicePlan
     from .cloud_pc_snapshot import CloudPcSnapshot
@@ -400,9 +407,12 @@ if TYPE_CHECKING:
     from .conversation_member import ConversationMember
     from .conversation_thread import ConversationThread
     from .copilot_admin import CopilotAdmin
+    from .copilot_admin_catalog import CopilotAdminCatalog
     from .copilot_admin_limited_mode import CopilotAdminLimitedMode
     from .copilot_admin_setting import CopilotAdminSetting
     from .copilot_communications_root import CopilotCommunicationsRoot
+    from .copilot_package import CopilotPackage
+    from .copilot_package_detail import CopilotPackageDetail
     from .copilot_people_admin_setting import CopilotPeopleAdminSetting
     from .copilot_setting import CopilotSetting
     from .cors_configuration_v2 import CorsConfiguration_v2
@@ -416,7 +426,6 @@ if TYPE_CHECKING:
     from .custom_authentication_extension import CustomAuthenticationExtension
     from .custom_callout_extension import CustomCalloutExtension
     from .custom_claims_policy import CustomClaimsPolicy
-    from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
     from .custom_extension_handler import CustomExtensionHandler
     from .custom_extension_stage_setting import CustomExtensionStageSetting
     from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -759,6 +768,7 @@ if TYPE_CHECKING:
     from .focus_activity_statistics import FocusActivityStatistics
     from .footprint_map import FootprintMap
     from .fraud_protection_provider import FraudProtectionProvider
+    from .full_service_backup_base import FullServiceBackupBase
     from .gcp_authorization_system import GcpAuthorizationSystem
     from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
     from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -778,7 +788,10 @@ if TYPE_CHECKING:
     from .governance_role_definition import GovernanceRoleDefinition
     from .governance_role_setting import GovernanceRoleSetting
     from .governance_subject import GovernanceSubject
+    from .granular_drive_restore_artifact import GranularDriveRestoreArtifact
     from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
+    from .granular_restore_artifact_base import GranularRestoreArtifactBase
+    from .granular_site_restore_artifact import GranularSiteRestoreArtifact
     from .group import Group
     from .group_lifecycle_policy import GroupLifecyclePolicy
     from .group_policy_category import GroupPolicyCategory
@@ -849,6 +862,7 @@ if TYPE_CHECKING:
     from .identity_user_flow import IdentityUserFlow
     from .identity_user_flow_attribute import IdentityUserFlowAttribute
     from .identity_user_flow_attribute_assignment import IdentityUserFlowAttributeAssignment
+    from .identity_verified_id_root import IdentityVerifiedIdRoot
     from .impacted_resource import ImpactedResource
     from .imported_apple_device_identity import ImportedAppleDeviceIdentity
     from .imported_apple_device_identity_result import ImportedAppleDeviceIdentityResult
@@ -1231,6 +1245,7 @@ if TYPE_CHECKING:
     from .onenote_page import OnenotePage
     from .onenote_resource import OnenoteResource
     from .onenote_section import OnenoteSection
+    from .one_drive_for_business_browse_session import OneDriveForBusinessBrowseSession
     from .one_drive_for_business_protection_policy import OneDriveForBusinessProtectionPolicy
     from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
     from .online_meeting import OnlineMeeting
@@ -1312,6 +1327,7 @@ if TYPE_CHECKING:
     from .partners.billing.unbilled_usage import UnbilledUsage
     from .partners.partners import Partners
     from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
+    from .passkey_profile import PasskeyProfile
     from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
     from .password_authentication_method import PasswordAuthenticationMethod
     from .payload import Payload
@@ -1479,6 +1495,10 @@ if TYPE_CHECKING:
     from .restore_session_base import RestoreSessionBase
     from .restricted_apps_violation import RestrictedAppsViolation
     from .rich_long_running_operation import RichLongRunningOperation
+    from .risky_agent import RiskyAgent
+    from .risky_agent_identity import RiskyAgentIdentity
+    from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
+    from .risky_agent_user import RiskyAgentUser
     from .risky_service_principal import RiskyServicePrincipal
     from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
     from .risky_user import RiskyUser
@@ -1685,6 +1705,7 @@ if TYPE_CHECKING:
     from .shared_with_channel_team_info import SharedWithChannelTeamInfo
     from .sharepoint import Sharepoint
     from .sharepoint_settings import SharepointSettings
+    from .share_point_browse_session import SharePointBrowseSession
     from .share_point_group import SharePointGroup
     from .share_point_group_member import SharePointGroupMember
     from .share_point_migration_event import SharePointMigrationEvent
@@ -1959,6 +1980,9 @@ if TYPE_CHECKING:
     from .user_teamwork import UserTeamwork
     from .user_virtual_events_root import UserVirtualEventsRoot
     from .ux_setting import UxSetting
+    from .verifiable_credentials_authentication_method_configuration import VerifiableCredentialsAuthenticationMethodConfiguration
+    from .verifiable_credential_authentication_method_target import VerifiableCredentialAuthenticationMethodTarget
+    from .verified_id_profile import VerifiedIdProfile
     from .vertical_section import VerticalSection
     from .video_news_link_page import VideoNewsLinkPage
     from .virtual_endpoint import VirtualEndpoint
@@ -2395,10 +2419,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
 
             return AdvancedThreatProtectionOnboardingStateSummary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agent".casefold():
+            from .agent import Agent
+
+            return Agent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentity".casefold():
             from .agent_identity import AgentIdentity
 
             return AgentIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentRiskDetection".casefold():
+            from .agent_risk_detection import AgentRiskDetection
+
+            return AgentRiskDetection()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.agreement".casefold():
             from .agreement import Agreement
 
@@ -2450,6 +2482,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.alert import Alert
 
             return Alert()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allDrivesBackup".casefold():
+            from .all_drives_backup import AllDrivesBackup
+
+            return AllDrivesBackup()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allMailboxesBackup".casefold():
+            from .all_mailboxes_backup import AllMailboxesBackup
+
+            return AllMailboxesBackup()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.allowedDataLocation".casefold():
             from .allowed_data_location import AllowedDataLocation
 
@@ -2458,6 +2498,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .allowed_value import AllowedValue
 
             return AllowedValue()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allSitesBackup".casefold():
+            from .all_sites_backup import AllSitesBackup
+
+            return AllSitesBackup()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidCertificateProfileBase".casefold():
             from .android_certificate_profile_base import AndroidCertificateProfileBase
 
@@ -3271,6 +3315,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .browser_site_list import BrowserSiteList
 
             return BrowserSiteList()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.browseSessionBase".casefold():
+            from .browse_session_base import BrowseSessionBase
+
+            return BrowseSessionBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.building".casefold():
             from .building import Building
 
@@ -3626,6 +3674,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
 
             return CloudPcProvisioningPolicyAssignment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcReport".casefold():
+            from .cloud_pc_report import CloudPcReport
+
+            return CloudPcReport()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcReports".casefold():
             from .cloud_pc_reports import CloudPcReports
 
@@ -3791,6 +3843,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .copilot_admin import CopilotAdmin
 
             return CopilotAdmin()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotAdminCatalog".casefold():
+            from .copilot_admin_catalog import CopilotAdminCatalog
+
+            return CopilotAdminCatalog()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotAdminLimitedMode".casefold():
             from .copilot_admin_limited_mode import CopilotAdminLimitedMode
 
@@ -3803,6 +3859,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .copilot_communications_root import CopilotCommunicationsRoot
 
             return CopilotCommunicationsRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotPackage".casefold():
+            from .copilot_package import CopilotPackage
+
+            return CopilotPackage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotPackageDetail".casefold():
+            from .copilot_package_detail import CopilotPackageDetail
+
+            return CopilotPackageDetail()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotPeopleAdminSetting".casefold():
             from .copilot_people_admin_setting import CopilotPeopleAdminSetting
 
@@ -3855,10 +3919,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .custom_claims_policy import CustomClaimsPolicy
 
             return CustomClaimsPolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.customDataProvidedResourceUploadSession".casefold():
-            from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
-
-            return CustomDataProvidedResourceUploadSession()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.customExtensionHandler".casefold():
             from .custom_extension_handler import CustomExtensionHandler
 
@@ -5244,6 +5304,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .fraud_protection_provider import FraudProtectionProvider
 
             return FraudProtectionProvider()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.fullServiceBackupBase".casefold():
+            from .full_service_backup_base import FullServiceBackupBase
+
+            return FullServiceBackupBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpAuthorizationSystem".casefold():
             from .gcp_authorization_system import GcpAuthorizationSystem
 
@@ -5320,10 +5384,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .governance_subject import GovernanceSubject
 
             return GovernanceSubject()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.granularDriveRestoreArtifact".casefold():
+            from .granular_drive_restore_artifact import GranularDriveRestoreArtifact
+
+            return GranularDriveRestoreArtifact()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.granularMailboxRestoreArtifact".casefold():
             from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
 
             return GranularMailboxRestoreArtifact()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.granularRestoreArtifactBase".casefold():
+            from .granular_restore_artifact_base import GranularRestoreArtifactBase
+
+            return GranularRestoreArtifactBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.granularSiteRestoreArtifact".casefold():
+            from .granular_site_restore_artifact import GranularSiteRestoreArtifact
+
+            return GranularSiteRestoreArtifact()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.group".casefold():
             from .group import Group
             from .term_store.group import Group
@@ -5608,6 +5684,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_user_flow_attribute_assignment import IdentityUserFlowAttributeAssignment
 
             return IdentityUserFlowAttributeAssignment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityVerifiedIdRoot".casefold():
+            from .identity_verified_id_root import IdentityVerifiedIdRoot
+
+            return IdentityVerifiedIdRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.impactedResource".casefold():
             from .impacted_resource import ImpactedResource
 
@@ -7140,6 +7220,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .on_authentication_method_load_start_listener import OnAuthenticationMethodLoadStartListener
 
             return OnAuthenticationMethodLoadStartListener()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.oneDriveForBusinessBrowseSession".casefold():
+            from .one_drive_for_business_browse_session import OneDriveForBusinessBrowseSession
+
+            return OneDriveForBusinessBrowseSession()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.oneDriveForBusinessProtectionPolicy".casefold():
             from .one_drive_for_business_protection_policy import OneDriveForBusinessProtectionPolicy
 
@@ -7471,6 +7555,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
 
             return PasskeyAuthenticationMethodTarget()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.passkeyProfile".casefold():
+            from .passkey_profile import PasskeyProfile
+
+            return PasskeyProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.passwordAuthenticationMethod".casefold():
             from .password_authentication_method import PasswordAuthenticationMethod
 
@@ -8144,6 +8232,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .risk_detection import RiskDetection
 
             return RiskDetection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgent".casefold():
+            from .risky_agent import RiskyAgent
+
+            return RiskyAgent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgentIdentity".casefold():
+            from .risky_agent_identity import RiskyAgentIdentity
+
+            return RiskyAgentIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgentIdentityBlueprintPrincipal".casefold():
+            from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
+
+            return RiskyAgentIdentityBlueprintPrincipal()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgentUser".casefold():
+            from .risky_agent_user import RiskyAgentUser
+
+            return RiskyAgentUser()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyServicePrincipal".casefold():
             from .risky_service_principal import RiskyServicePrincipal
 
@@ -8979,6 +9083,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .sharepoint import Sharepoint
 
             return Sharepoint()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointBrowseSession".casefold():
+            from .share_point_browse_session import SharePointBrowseSession
+
+            return SharePointBrowseSession()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointGroup".casefold():
             from .share_point_group import SharePointGroup
 
@@ -10082,6 +10190,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .ux_setting import UxSetting
 
             return UxSetting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.verifiableCredentialAuthenticationMethodTarget".casefold():
+            from .verifiable_credential_authentication_method_target import VerifiableCredentialAuthenticationMethodTarget
+
+            return VerifiableCredentialAuthenticationMethodTarget()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.verifiableCredentialsAuthenticationMethodConfiguration".casefold():
+            from .verifiable_credentials_authentication_method_configuration import VerifiableCredentialsAuthenticationMethodConfiguration
+
+            return VerifiableCredentialsAuthenticationMethodConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.verifiedIdProfile".casefold():
+            from .verified_id_profile import VerifiedIdProfile
+
+            return VerifiedIdProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.verticalSection".casefold():
             from .vertical_section import VerticalSection
 
@@ -11023,7 +11143,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_windows_updates import AdminWindowsUpdates
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
+        from .agent import Agent
         from .agent_identity import AgentIdentity
+        from .agent_risk_detection import AgentRiskDetection
         from .agreement import Agreement
         from .agreement_acceptance import AgreementAcceptance
         from .agreement_file import AgreementFile
@@ -11038,6 +11160,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .alert import Alert
         from .allowed_data_location import AllowedDataLocation
         from .allowed_value import AllowedValue
+        from .all_drives_backup import AllDrivesBackup
+        from .all_mailboxes_backup import AllMailboxesBackup
+        from .all_sites_backup import AllSitesBackup
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_compliance_policy import AndroidCompliancePolicy
         from .android_custom_configuration import AndroidCustomConfiguration
@@ -11241,6 +11366,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .browser_shared_cookie import BrowserSharedCookie
         from .browser_site import BrowserSite
         from .browser_site_list import BrowserSiteList
+        from .browse_session_base import BrowseSessionBase
         from .building import Building
         from .building_map import BuildingMap
         from .built_in_identity_provider import BuiltInIdentityProvider
@@ -11327,6 +11453,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
         from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
+        from .cloud_pc_report import CloudPcReport
         from .cloud_pc_reports import CloudPcReports
         from .cloud_pc_service_plan import CloudPcServicePlan
         from .cloud_pc_snapshot import CloudPcSnapshot
@@ -11370,9 +11497,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .conversation_member import ConversationMember
         from .conversation_thread import ConversationThread
         from .copilot_admin import CopilotAdmin
+        from .copilot_admin_catalog import CopilotAdminCatalog
         from .copilot_admin_limited_mode import CopilotAdminLimitedMode
         from .copilot_admin_setting import CopilotAdminSetting
         from .copilot_communications_root import CopilotCommunicationsRoot
+        from .copilot_package import CopilotPackage
+        from .copilot_package_detail import CopilotPackageDetail
         from .copilot_people_admin_setting import CopilotPeopleAdminSetting
         from .copilot_setting import CopilotSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
@@ -11386,7 +11516,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_authentication_extension import CustomAuthenticationExtension
         from .custom_callout_extension import CustomCalloutExtension
         from .custom_claims_policy import CustomClaimsPolicy
-        from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .custom_extension_handler import CustomExtensionHandler
         from .custom_extension_stage_setting import CustomExtensionStageSetting
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -11729,6 +11858,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .focus_activity_statistics import FocusActivityStatistics
         from .footprint_map import FootprintMap
         from .fraud_protection_provider import FraudProtectionProvider
+        from .full_service_backup_base import FullServiceBackupBase
         from .gcp_authorization_system import GcpAuthorizationSystem
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
         from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -11748,7 +11878,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .governance_role_definition import GovernanceRoleDefinition
         from .governance_role_setting import GovernanceRoleSetting
         from .governance_subject import GovernanceSubject
+        from .granular_drive_restore_artifact import GranularDriveRestoreArtifact
         from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
+        from .granular_restore_artifact_base import GranularRestoreArtifactBase
+        from .granular_site_restore_artifact import GranularSiteRestoreArtifact
         from .group import Group
         from .group_lifecycle_policy import GroupLifecyclePolicy
         from .group_policy_category import GroupPolicyCategory
@@ -11819,6 +11952,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_user_flow import IdentityUserFlow
         from .identity_user_flow_attribute import IdentityUserFlowAttribute
         from .identity_user_flow_attribute_assignment import IdentityUserFlowAttributeAssignment
+        from .identity_verified_id_root import IdentityVerifiedIdRoot
         from .impacted_resource import ImpactedResource
         from .imported_apple_device_identity import ImportedAppleDeviceIdentity
         from .imported_apple_device_identity_result import ImportedAppleDeviceIdentityResult
@@ -12201,6 +12335,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .onenote_page import OnenotePage
         from .onenote_resource import OnenoteResource
         from .onenote_section import OnenoteSection
+        from .one_drive_for_business_browse_session import OneDriveForBusinessBrowseSession
         from .one_drive_for_business_protection_policy import OneDriveForBusinessProtectionPolicy
         from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
         from .online_meeting import OnlineMeeting
@@ -12282,6 +12417,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .partners.billing.unbilled_usage import UnbilledUsage
         from .partners.partners import Partners
         from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
+        from .passkey_profile import PasskeyProfile
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
         from .password_authentication_method import PasswordAuthenticationMethod
         from .payload import Payload
@@ -12449,6 +12585,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .restore_session_base import RestoreSessionBase
         from .restricted_apps_violation import RestrictedAppsViolation
         from .rich_long_running_operation import RichLongRunningOperation
+        from .risky_agent import RiskyAgent
+        from .risky_agent_identity import RiskyAgentIdentity
+        from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
+        from .risky_agent_user import RiskyAgentUser
         from .risky_service_principal import RiskyServicePrincipal
         from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
         from .risky_user import RiskyUser
@@ -12655,6 +12795,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
         from .sharepoint import Sharepoint
         from .sharepoint_settings import SharepointSettings
+        from .share_point_browse_session import SharePointBrowseSession
         from .share_point_group import SharePointGroup
         from .share_point_group_member import SharePointGroupMember
         from .share_point_migration_event import SharePointMigrationEvent
@@ -12929,6 +13070,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_teamwork import UserTeamwork
         from .user_virtual_events_root import UserVirtualEventsRoot
         from .ux_setting import UxSetting
+        from .verifiable_credentials_authentication_method_configuration import VerifiableCredentialsAuthenticationMethodConfiguration
+        from .verifiable_credential_authentication_method_target import VerifiableCredentialAuthenticationMethodTarget
+        from .verified_id_profile import VerifiedIdProfile
         from .vertical_section import VerticalSection
         from .video_news_link_page import VideoNewsLinkPage
         from .virtual_endpoint import VirtualEndpoint
@@ -13198,7 +13342,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_windows_updates import AdminWindowsUpdates
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
+        from .agent import Agent
         from .agent_identity import AgentIdentity
+        from .agent_risk_detection import AgentRiskDetection
         from .agreement import Agreement
         from .agreement_acceptance import AgreementAcceptance
         from .agreement_file import AgreementFile
@@ -13213,6 +13359,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .alert import Alert
         from .allowed_data_location import AllowedDataLocation
         from .allowed_value import AllowedValue
+        from .all_drives_backup import AllDrivesBackup
+        from .all_mailboxes_backup import AllMailboxesBackup
+        from .all_sites_backup import AllSitesBackup
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_compliance_policy import AndroidCompliancePolicy
         from .android_custom_configuration import AndroidCustomConfiguration
@@ -13416,6 +13565,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .browser_shared_cookie import BrowserSharedCookie
         from .browser_site import BrowserSite
         from .browser_site_list import BrowserSiteList
+        from .browse_session_base import BrowseSessionBase
         from .building import Building
         from .building_map import BuildingMap
         from .built_in_identity_provider import BuiltInIdentityProvider
@@ -13502,6 +13652,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
         from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
+        from .cloud_pc_report import CloudPcReport
         from .cloud_pc_reports import CloudPcReports
         from .cloud_pc_service_plan import CloudPcServicePlan
         from .cloud_pc_snapshot import CloudPcSnapshot
@@ -13545,9 +13696,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .conversation_member import ConversationMember
         from .conversation_thread import ConversationThread
         from .copilot_admin import CopilotAdmin
+        from .copilot_admin_catalog import CopilotAdminCatalog
         from .copilot_admin_limited_mode import CopilotAdminLimitedMode
         from .copilot_admin_setting import CopilotAdminSetting
         from .copilot_communications_root import CopilotCommunicationsRoot
+        from .copilot_package import CopilotPackage
+        from .copilot_package_detail import CopilotPackageDetail
         from .copilot_people_admin_setting import CopilotPeopleAdminSetting
         from .copilot_setting import CopilotSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
@@ -13561,7 +13715,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_authentication_extension import CustomAuthenticationExtension
         from .custom_callout_extension import CustomCalloutExtension
         from .custom_claims_policy import CustomClaimsPolicy
-        from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .custom_extension_handler import CustomExtensionHandler
         from .custom_extension_stage_setting import CustomExtensionStageSetting
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -13904,6 +14057,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .focus_activity_statistics import FocusActivityStatistics
         from .footprint_map import FootprintMap
         from .fraud_protection_provider import FraudProtectionProvider
+        from .full_service_backup_base import FullServiceBackupBase
         from .gcp_authorization_system import GcpAuthorizationSystem
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
         from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -13923,7 +14077,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .governance_role_definition import GovernanceRoleDefinition
         from .governance_role_setting import GovernanceRoleSetting
         from .governance_subject import GovernanceSubject
+        from .granular_drive_restore_artifact import GranularDriveRestoreArtifact
         from .granular_mailbox_restore_artifact import GranularMailboxRestoreArtifact
+        from .granular_restore_artifact_base import GranularRestoreArtifactBase
+        from .granular_site_restore_artifact import GranularSiteRestoreArtifact
         from .group import Group
         from .group_lifecycle_policy import GroupLifecyclePolicy
         from .group_policy_category import GroupPolicyCategory
@@ -13994,6 +14151,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_user_flow import IdentityUserFlow
         from .identity_user_flow_attribute import IdentityUserFlowAttribute
         from .identity_user_flow_attribute_assignment import IdentityUserFlowAttributeAssignment
+        from .identity_verified_id_root import IdentityVerifiedIdRoot
         from .impacted_resource import ImpactedResource
         from .imported_apple_device_identity import ImportedAppleDeviceIdentity
         from .imported_apple_device_identity_result import ImportedAppleDeviceIdentityResult
@@ -14376,6 +14534,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .onenote_page import OnenotePage
         from .onenote_resource import OnenoteResource
         from .onenote_section import OnenoteSection
+        from .one_drive_for_business_browse_session import OneDriveForBusinessBrowseSession
         from .one_drive_for_business_protection_policy import OneDriveForBusinessProtectionPolicy
         from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
         from .online_meeting import OnlineMeeting
@@ -14457,6 +14616,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .partners.billing.unbilled_usage import UnbilledUsage
         from .partners.partners import Partners
         from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
+        from .passkey_profile import PasskeyProfile
         from .passwordless_microsoft_authenticator_authentication_method import PasswordlessMicrosoftAuthenticatorAuthenticationMethod
         from .password_authentication_method import PasswordAuthenticationMethod
         from .payload import Payload
@@ -14624,6 +14784,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .restore_session_base import RestoreSessionBase
         from .restricted_apps_violation import RestrictedAppsViolation
         from .rich_long_running_operation import RichLongRunningOperation
+        from .risky_agent import RiskyAgent
+        from .risky_agent_identity import RiskyAgentIdentity
+        from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
+        from .risky_agent_user import RiskyAgentUser
         from .risky_service_principal import RiskyServicePrincipal
         from .risky_service_principal_history_item import RiskyServicePrincipalHistoryItem
         from .risky_user import RiskyUser
@@ -14830,6 +14994,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
         from .sharepoint import Sharepoint
         from .sharepoint_settings import SharepointSettings
+        from .share_point_browse_session import SharePointBrowseSession
         from .share_point_group import SharePointGroup
         from .share_point_group_member import SharePointGroupMember
         from .share_point_migration_event import SharePointMigrationEvent
@@ -15104,6 +15269,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_teamwork import UserTeamwork
         from .user_virtual_events_root import UserVirtualEventsRoot
         from .ux_setting import UxSetting
+        from .verifiable_credentials_authentication_method_configuration import VerifiableCredentialsAuthenticationMethodConfiguration
+        from .verifiable_credential_authentication_method_target import VerifiableCredentialAuthenticationMethodTarget
+        from .verified_id_profile import VerifiedIdProfile
         from .vertical_section import VerticalSection
         from .video_news_link_page import VideoNewsLinkPage
         from .virtual_endpoint import VirtualEndpoint

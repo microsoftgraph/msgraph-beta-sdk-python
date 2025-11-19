@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .activitystatistics.activitystatistics_request_builder import ActivitystatisticsRequestBuilder
     from .admin.admin_request_builder import AdminRequestBuilder
     from .administrative_units.administrative_units_request_builder import AdministrativeUnitsRequestBuilder
+    from .agents.agents_request_builder import AgentsRequestBuilder
     from .agreements.agreements_request_builder import AgreementsRequestBuilder
     from .agreement_acceptances.agreement_acceptances_request_builder import AgreementAcceptancesRequestBuilder
     from .allowed_data_locations.allowed_data_locations_request_builder import AllowedDataLocationsRequestBuilder
@@ -308,6 +309,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .administrative_units.administrative_units_request_builder import AdministrativeUnitsRequestBuilder
 
         return AdministrativeUnitsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def agents(self) -> AgentsRequestBuilder:
+        """
+        Provides operations to manage the collection of agent entities.
+        """
+        from .agents.agents_request_builder import AgentsRequestBuilder
+
+        return AgentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def agreement_acceptances(self) -> AgreementAcceptancesRequestBuilder:

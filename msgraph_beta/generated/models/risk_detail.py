@@ -19,4 +19,7 @@ class RiskDetail(str, Enum):
     UserChangedPasswordOnPremises = "userChangedPasswordOnPremises",
     AdminDismissedRiskForSignIn = "adminDismissedRiskForSignIn",
     AdminConfirmedAccountSafe = "adminConfirmedAccountSafe",
+    AdminConfirmedAgentSafe = "adminConfirmedAgentSafe",
+    AdminConfirmedAgentCompromised = "adminConfirmedAgentCompromised",
+    AdminDismissedRiskForAgent = "adminDismissedRiskForAgent",
 

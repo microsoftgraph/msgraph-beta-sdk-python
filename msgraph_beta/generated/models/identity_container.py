@@ -17,7 +17,9 @@ if TYPE_CHECKING:
     from .identity_provider_base import IdentityProviderBase
     from .identity_user_flow import IdentityUserFlow
     from .identity_user_flow_attribute import IdentityUserFlowAttribute
+    from .identity_verified_id_root import IdentityVerifiedIdRoot
     from .risk_prevention_container import RiskPreventionContainer
+    from .sign_in_identifier_base import SignInIdentifierBase
 
 @dataclass
 class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
@@ -48,10 +50,14 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Represents the entry point for fraud and risk prevention configurations in Microsoft Entra External ID, including third-party provider settings.
     risk_prevention: Optional[RiskPreventionContainer] = None
+    # The signInIdentifiers property
+    sign_in_identifiers: Optional[list[SignInIdentifierBase]] = None
     # Represents entry point for identity userflow attributes.
     user_flow_attributes: Optional[list[IdentityUserFlowAttribute]] = None
     # The userFlows property
     user_flows: Optional[list[IdentityUserFlow]] = None
+    # The verifiedId property
+    verified_id: Optional[IdentityVerifiedIdRoot] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> IdentityContainer:
@@ -80,7 +86,9 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_provider_base import IdentityProviderBase
         from .identity_user_flow import IdentityUserFlow
         from .identity_user_flow_attribute import IdentityUserFlowAttribute
+        from .identity_verified_id_root import IdentityVerifiedIdRoot
         from .risk_prevention_container import RiskPreventionContainer
+        from .sign_in_identifier_base import SignInIdentifierBase
 
         from .authentication_events_flow import AuthenticationEventsFlow
         from .authentication_event_listener import AuthenticationEventListener
@@ -93,7 +101,9 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_provider_base import IdentityProviderBase
         from .identity_user_flow import IdentityUserFlow
         from .identity_user_flow_attribute import IdentityUserFlowAttribute
+        from .identity_verified_id_root import IdentityVerifiedIdRoot
         from .risk_prevention_container import RiskPreventionContainer
+        from .sign_in_identifier_base import SignInIdentifierBase
 
         fields: dict[str, Callable[[Any], None]] = {
             "apiConnectors": lambda n : setattr(self, 'api_connectors', n.get_collection_of_object_values(IdentityApiConnector)),
@@ -107,8 +117,10 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
             "identityProviders": lambda n : setattr(self, 'identity_providers', n.get_collection_of_object_values(IdentityProviderBase)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "riskPrevention": lambda n : setattr(self, 'risk_prevention', n.get_object_value(RiskPreventionContainer)),
+            "signInIdentifiers": lambda n : setattr(self, 'sign_in_identifiers', n.get_collection_of_object_values(SignInIdentifierBase)),
             "userFlowAttributes": lambda n : setattr(self, 'user_flow_attributes', n.get_collection_of_object_values(IdentityUserFlowAttribute)),
             "userFlows": lambda n : setattr(self, 'user_flows', n.get_collection_of_object_values(IdentityUserFlow)),
+            "verifiedId": lambda n : setattr(self, 'verified_id', n.get_object_value(IdentityVerifiedIdRoot)),
         }
         return fields
     
@@ -131,8 +143,10 @@ class IdentityContainer(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("identityProviders", self.identity_providers)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("riskPrevention", self.risk_prevention)
+        writer.write_collection_of_object_values("signInIdentifiers", self.sign_in_identifiers)
         writer.write_collection_of_object_values("userFlowAttributes", self.user_flow_attributes)
         writer.write_collection_of_object_values("userFlows", self.user_flows)
+        writer.write_object_value("verifiedId", self.verified_id)
         writer.write_additional_data_value(self.additional_data)
     
 

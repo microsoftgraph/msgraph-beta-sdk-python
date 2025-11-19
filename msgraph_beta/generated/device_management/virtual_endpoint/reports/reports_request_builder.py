@@ -56,6 +56,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
+        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -70,10 +71,11 @@ class ReportsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ReportsRequestBuilderGetQueryParameters]] = None) -> Optional[CloudPcReports]:
         """
-        Cloud PC related reports.
+        Cloud PC-related reports.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcReports]
         """
+        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -94,6 +96,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param cloud_pc_id: Usage: cloudPcId='{cloudPcId}'
         Returns: GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder
         """
+        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
         if cloud_pc_id is None:
             raise TypeError("cloud_pc_id cannot be null.")
         from .get_real_time_remote_connection_latency_with_cloud_pc_id.get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder import GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder
@@ -106,6 +109,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param cloud_pc_id: Usage: cloudPcId='{cloudPcId}'
         Returns: GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder
         """
+        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
         if cloud_pc_id is None:
             raise TypeError("cloud_pc_id cannot be null.")
         from .get_real_time_remote_connection_status_with_cloud_pc_id.get_real_time_remote_connection_status_with_cloud_pc_id_request_builder import GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder
@@ -119,6 +123,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcReports]
         """
+        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -141,6 +146,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -148,10 +154,11 @@ class ReportsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ReportsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Cloud PC related reports.
+        Cloud PC-related reports.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -164,6 +171,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -178,6 +186,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ReportsRequestBuilder
         """
+        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ReportsRequestBuilder(self.request_adapter, raw_url)
@@ -354,7 +363,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ReportsRequestBuilderGetQueryParameters():
         """
-        Cloud PC related reports.
+        Cloud PC-related reports.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

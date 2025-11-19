@@ -19,7 +19,7 @@ class AgentSignIn(AdditionalDataHolder, BackedModel, Parsable):
     agent_type: Optional[AgentType] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The ID of the parent application for agentic instances.
+    # The appId of the parent agent where the agentType is agentic.
     parent_app_id: Optional[str] = None
     
     @staticmethod

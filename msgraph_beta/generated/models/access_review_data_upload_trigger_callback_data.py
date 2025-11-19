@@ -13,13 +13,13 @@ from .custom_extension_data import CustomExtensionData
 class AccessReviewDataUploadTriggerCallbackData(CustomExtensionData, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.accessReviewDataUploadTriggerCallbackData"
-    # The permissionDescription property
+    # A description for the permission.
     permission_description: Optional[str] = None
-    # The permissionId property
+    # The id of the permission assigned to this principal.
     permission_id: Optional[str] = None
-    # The permissionName property
+    # The name of the permission assigned to this principal.
     permission_name: Optional[str] = None
-    # The permissionType property
+    # The type of the permission assigned to this principal.
     permission_type: Optional[str] = None
     # The principalAADId property
     principal_a_a_d_id: Optional[str] = None
