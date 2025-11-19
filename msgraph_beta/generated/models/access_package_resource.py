@@ -10,7 +10,6 @@ if TYPE_CHECKING:
     from .access_package_resource_environment import AccessPackageResourceEnvironment
     from .access_package_resource_role import AccessPackageResourceRole
     from .access_package_resource_scope import AccessPackageResourceScope
-    from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
     from .entity import Entity
 
 from .entity import Entity
@@ -39,12 +38,10 @@ class AccessPackageResource(Entity, Parsable):
     odata_type: Optional[str] = None
     # The unique identifier of the resource in the origin system. In the case of a Microsoft Entra group, originId is the identifier of the group. Supports $filter (eq).
     origin_id: Optional[str] = None
-    # The type of the resource in the origin system, such as SharePointOnline, AadApplication, or AadGroup. Supports $filter (eq).
+    # The type of the resource in the origin system, such as SharePointOnline, AadApplication, AadGroup or CustomDataProvidedResource. Supports $filter (eq).
     origin_system: Optional[str] = None
     # The type of the resource, such as Application if it is a Microsoft Entra connected application, or SharePoint Online Site for a SharePoint Online site.
     resource_type: Optional[str] = None
-    # The uploadSessions property
-    upload_sessions: Optional[list[CustomDataProvidedResourceUploadSession]] = None
     # A unique resource locator for the resource, such as the URL for signing a user into an application.
     url: Optional[str] = None
     
@@ -68,14 +65,12 @@ class AccessPackageResource(Entity, Parsable):
         from .access_package_resource_environment import AccessPackageResourceEnvironment
         from .access_package_resource_role import AccessPackageResourceRole
         from .access_package_resource_scope import AccessPackageResourceScope
-        from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .entity import Entity
 
         from .access_package_resource_attribute import AccessPackageResourceAttribute
         from .access_package_resource_environment import AccessPackageResourceEnvironment
         from .access_package_resource_role import AccessPackageResourceRole
         from .access_package_resource_scope import AccessPackageResourceScope
-        from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -91,7 +86,6 @@ class AccessPackageResource(Entity, Parsable):
             "originId": lambda n : setattr(self, 'origin_id', n.get_str_value()),
             "originSystem": lambda n : setattr(self, 'origin_system', n.get_str_value()),
             "resourceType": lambda n : setattr(self, 'resource_type', n.get_str_value()),
-            "uploadSessions": lambda n : setattr(self, 'upload_sessions', n.get_collection_of_object_values(CustomDataProvidedResourceUploadSession)),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -119,7 +113,6 @@ class AccessPackageResource(Entity, Parsable):
         writer.write_str_value("originId", self.origin_id)
         writer.write_str_value("originSystem", self.origin_system)
         writer.write_str_value("resourceType", self.resource_type)
-        writer.write_collection_of_object_values("uploadSessions", self.upload_sessions)
         writer.write_str_value("url", self.url)
     
 

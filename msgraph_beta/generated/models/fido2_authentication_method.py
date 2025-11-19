@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .attestation_level import AttestationLevel
     from .authentication_method import AuthenticationMethod
+    from .passkey_type import PasskeyType
     from .webauthn_public_key_credential import WebauthnPublicKeyCredential
 
 from .authentication_method import AuthenticationMethod
@@ -25,6 +26,8 @@ class Fido2AuthenticationMethod(AuthenticationMethod, Parsable):
     display_name: Optional[str] = None
     # The manufacturer-assigned model of the FIDO2 security key.
     model: Optional[str] = None
+    # The type of passkey allowed in the passkey profile. The possible values are: deviceBound, synced, unknownFutureValue.
+    passkey_type: Optional[PasskeyType] = None
     # Contains the WebAuthn public key credential information being registered. Only used for write requests. This property isn't returned on read operations.
     public_key_credential: Optional[WebauthnPublicKeyCredential] = None
     
@@ -46,10 +49,12 @@ class Fido2AuthenticationMethod(AuthenticationMethod, Parsable):
         """
         from .attestation_level import AttestationLevel
         from .authentication_method import AuthenticationMethod
+        from .passkey_type import PasskeyType
         from .webauthn_public_key_credential import WebauthnPublicKeyCredential
 
         from .attestation_level import AttestationLevel
         from .authentication_method import AuthenticationMethod
+        from .passkey_type import PasskeyType
         from .webauthn_public_key_credential import WebauthnPublicKeyCredential
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -58,6 +63,7 @@ class Fido2AuthenticationMethod(AuthenticationMethod, Parsable):
             "attestationLevel": lambda n : setattr(self, 'attestation_level', n.get_enum_value(AttestationLevel)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
+            "passkeyType": lambda n : setattr(self, 'passkey_type', n.get_enum_value(PasskeyType)),
             "publicKeyCredential": lambda n : setattr(self, 'public_key_credential', n.get_object_value(WebauthnPublicKeyCredential)),
         }
         super_fields = super().get_field_deserializers()
@@ -78,6 +84,7 @@ class Fido2AuthenticationMethod(AuthenticationMethod, Parsable):
         writer.write_enum_value("attestationLevel", self.attestation_level)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("model", self.model)
+        writer.write_enum_value("passkeyType", self.passkey_type)
         writer.write_object_value("publicKeyCredential", self.public_key_credential)
     
 

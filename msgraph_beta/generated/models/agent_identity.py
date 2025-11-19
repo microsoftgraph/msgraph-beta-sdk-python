@@ -16,9 +16,9 @@ class AgentIdentity(ServicePrincipal, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.agentIdentity"
     # The agentAppId property
     agent_app_id: Optional[str] = None
-    # The agentIdentityBlueprintId property
+    # The appId of the agent identity blueprint that defines the configuration for this agent identity.
     agent_identity_blueprint_id: Optional[str] = None
-    # The createdDateTime property
+    # The date and time the agent identity was created. Read-only. Inherited from servicePrincipal.
     created_date_time: Optional[datetime.datetime] = None
     
     @staticmethod

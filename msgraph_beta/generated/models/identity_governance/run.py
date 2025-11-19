@@ -17,7 +17,7 @@ from ..entity import Entity
 
 @dataclass
 class Run(Entity, Parsable):
-    # The scope for which users the workflow runs. The possible values are: allUsers, failedUsers, unknownFutureValue.
+    # The scope for which the workflow runs.
     activated_on_scope: Optional[ActivationScope] = None
     # The date time that the run completed. Value is null if the workflow hasn't completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
     completed_date_time: Optional[datetime.datetime] = None

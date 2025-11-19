@@ -50,7 +50,7 @@ class SensorCandidateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SensorCandidateItemRequestBuilderGetQueryParameters]] = None) -> Optional[SensorCandidate]:
         """
-        Get sensorCandidates from security
+        Represents Microsoft Defender for Identity sensors that are ready to be activated.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SensorCandidate]
         """
@@ -104,7 +104,7 @@ class SensorCandidateItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SensorCandidateItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get sensorCandidates from security
+        Represents Microsoft Defender for Identity sensors that are ready to be activated.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class SensorCandidateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SensorCandidateItemRequestBuilderGetQueryParameters():
         """
-        Get sensorCandidates from security
+        Represents Microsoft Defender for Identity sensors that are ready to be activated.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

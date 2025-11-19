@@ -50,7 +50,7 @@ class PrivateAccessSensorItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PrivateAccessSensorItemRequestBuilderGetQueryParameters]] = None) -> Optional[PrivateAccessSensor]:
         """
-        Get sensors from onPremisesPublishingProfiles
+        A lightweight agent installed on domain controllers that helps secure access and enforce MFA to on-premise resources.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrivateAccessSensor]
         """
@@ -104,7 +104,7 @@ class PrivateAccessSensorItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PrivateAccessSensorItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get sensors from onPremisesPublishingProfiles
+        A lightweight agent installed on domain controllers that helps secure access and enforce MFA to on-premise resources.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class PrivateAccessSensorItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PrivateAccessSensorItemRequestBuilderGetQueryParameters():
         """
-        Get sensors from onPremisesPublishingProfiles
+        A lightweight agent installed on domain controllers that helps secure access and enforce MFA to on-premise resources.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -48,10 +48,10 @@ class TransitiveReportsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TransitiveReportsRequestBuilderGetQueryParameters]] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Retrieve a count of transitive reports for a user.
+        Get the transitive reports for an agentUser.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/user-get-transitivereports?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/agentuser-list-transitivereports?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,7 +69,7 @@ class TransitiveReportsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TransitiveReportsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve a count of transitive reports for a user.
+        Get the transitive reports for an agentUser.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,7 +100,7 @@ class TransitiveReportsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TransitiveReportsRequestBuilderGetQueryParameters():
         """
-        Retrieve a count of transitive reports for a user.
+        Get the transitive reports for an agentUser.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

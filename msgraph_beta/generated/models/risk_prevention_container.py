@@ -21,9 +21,9 @@ class RiskPreventionContainer(AdditionalDataHolder, BackedModel, Parsable):
     fraud_protection_providers: Optional[list[FraudProtectionProvider]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The webApplicationFirewallProviders property
+    # Collection of WAF provider configurations registered in the External ID tenant.
     web_application_firewall_providers: Optional[list[WebApplicationFirewallProvider]] = None
-    # The webApplicationFirewallVerifications property
+    # Collection of verification operations performed for domains or hosts with WAF providers registered in the External ID tenant.
     web_application_firewall_verifications: Optional[list[WebApplicationFirewallVerificationModel]] = None
     
     @staticmethod

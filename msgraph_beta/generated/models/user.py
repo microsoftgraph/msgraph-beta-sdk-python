@@ -96,7 +96,7 @@ class User(DirectoryObject, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.user"
     # A freeform text entry field for users to describe themselves. Returned only on $select.
     about_me: Optional[str] = None
-    # true if the account is enabled; otherwise, false. This property is required when a user is created. Supports $filter (eq, ne, not, and in).
+    # true if the account is enabled; otherwise, false. This property is required when creating the object. Supports $filter (eq, ne, not, and in).
     account_enabled: Optional[bool] = None
     # The user's activities across devices. Read-only. Nullable.
     activities: Optional[list[UserActivity]] = None

@@ -17,7 +17,7 @@ class ConditionalAccessClientApplications(AdditionalDataHolder, BackedModel, Par
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Service principal IDs excluded from the policy scope.
     exclude_service_principals: Optional[list[str]] = None
-    # Service principal IDs included in the policy scope, or ServicePrincipalsInMyTenant.
+    # Service principal IDs included in the policy scope or ServicePrincipalsInMyTenant.
     include_service_principals: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

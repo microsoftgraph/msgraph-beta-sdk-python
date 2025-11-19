@@ -6,4 +6,5 @@ class ProtectionPolicyStatus(str, Enum):
     Updating = "updating",
     Active = "active",
     UnknownFutureValue = "unknownFutureValue",
+    Dormant = "dormant",
 

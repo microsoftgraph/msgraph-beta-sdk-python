@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .microsoft_authenticator_authentication_method_target import MicrosoftAuthenticatorAuthenticationMethodTarget
     from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
     from .sms_authentication_method_target import SmsAuthenticationMethodTarget
+    from .verifiable_credential_authentication_method_target import VerifiableCredentialAuthenticationMethodTarget
     from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
 
 from .entity import Entity
@@ -49,6 +50,10 @@ class AuthenticationMethodTarget(Entity, Parsable):
             from .sms_authentication_method_target import SmsAuthenticationMethodTarget
 
             return SmsAuthenticationMethodTarget()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.verifiableCredentialAuthenticationMethodTarget".casefold():
+            from .verifiable_credential_authentication_method_target import VerifiableCredentialAuthenticationMethodTarget
+
+            return VerifiableCredentialAuthenticationMethodTarget()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.voiceAuthenticationMethodTarget".casefold():
             from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
 
@@ -65,6 +70,7 @@ class AuthenticationMethodTarget(Entity, Parsable):
         from .microsoft_authenticator_authentication_method_target import MicrosoftAuthenticatorAuthenticationMethodTarget
         from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
         from .sms_authentication_method_target import SmsAuthenticationMethodTarget
+        from .verifiable_credential_authentication_method_target import VerifiableCredentialAuthenticationMethodTarget
         from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
 
         from .authentication_method_target_type import AuthenticationMethodTargetType
@@ -72,6 +78,7 @@ class AuthenticationMethodTarget(Entity, Parsable):
         from .microsoft_authenticator_authentication_method_target import MicrosoftAuthenticatorAuthenticationMethodTarget
         from .passkey_authentication_method_target import PasskeyAuthenticationMethodTarget
         from .sms_authentication_method_target import SmsAuthenticationMethodTarget
+        from .verifiable_credential_authentication_method_target import VerifiableCredentialAuthenticationMethodTarget
         from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
 
         fields: dict[str, Callable[[Any], None]] = {

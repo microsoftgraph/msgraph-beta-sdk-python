@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
     from .cloud_pc_organization_settings import CloudPcOrganizationSettings
     from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
+    from .cloud_pc_report import CloudPcReport
     from .cloud_pc_reports import CloudPcReports
     from .cloud_pc_service_plan import CloudPcServicePlan
     from .cloud_pc_snapshot import CloudPcSnapshot
@@ -60,7 +61,9 @@ class VirtualEndpoint(Entity, Parsable):
     organization_settings: Optional[CloudPcOrganizationSettings] = None
     # Cloud PC provisioning policy.
     provisioning_policies: Optional[list[CloudPcProvisioningPolicy]] = None
-    # Cloud PC related reports.
+    # Cloud PC-related reports. Read-only.
+    report: Optional[CloudPcReport] = None
+    # Cloud PC-related reports.
     reports: Optional[CloudPcReports] = None
     # Cloud PC service plans.
     service_plans: Optional[list[CloudPcServicePlan]] = None
@@ -100,6 +103,7 @@ class VirtualEndpoint(Entity, Parsable):
         from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
+        from .cloud_pc_report import CloudPcReport
         from .cloud_pc_reports import CloudPcReports
         from .cloud_pc_service_plan import CloudPcServicePlan
         from .cloud_pc_snapshot import CloudPcSnapshot
@@ -121,6 +125,7 @@ class VirtualEndpoint(Entity, Parsable):
         from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
+        from .cloud_pc_report import CloudPcReport
         from .cloud_pc_reports import CloudPcReports
         from .cloud_pc_service_plan import CloudPcServicePlan
         from .cloud_pc_snapshot import CloudPcSnapshot
@@ -144,6 +149,7 @@ class VirtualEndpoint(Entity, Parsable):
             "onPremisesConnections": lambda n : setattr(self, 'on_premises_connections', n.get_collection_of_object_values(CloudPcOnPremisesConnection)),
             "organizationSettings": lambda n : setattr(self, 'organization_settings', n.get_object_value(CloudPcOrganizationSettings)),
             "provisioningPolicies": lambda n : setattr(self, 'provisioning_policies', n.get_collection_of_object_values(CloudPcProvisioningPolicy)),
+            "report": lambda n : setattr(self, 'report', n.get_object_value(CloudPcReport)),
             "reports": lambda n : setattr(self, 'reports', n.get_object_value(CloudPcReports)),
             "servicePlans": lambda n : setattr(self, 'service_plans', n.get_collection_of_object_values(CloudPcServicePlan)),
             "snapshots": lambda n : setattr(self, 'snapshots', n.get_collection_of_object_values(CloudPcSnapshot)),
@@ -177,6 +183,7 @@ class VirtualEndpoint(Entity, Parsable):
         writer.write_collection_of_object_values("onPremisesConnections", self.on_premises_connections)
         writer.write_object_value("organizationSettings", self.organization_settings)
         writer.write_collection_of_object_values("provisioningPolicies", self.provisioning_policies)
+        writer.write_object_value("report", self.report)
         writer.write_object_value("reports", self.reports)
         writer.write_collection_of_object_values("servicePlans", self.service_plans)
         writer.write_collection_of_object_values("snapshots", self.snapshots)

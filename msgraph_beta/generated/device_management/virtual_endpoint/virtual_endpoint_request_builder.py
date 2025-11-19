@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     from .on_premises_connections.on_premises_connections_request_builder import OnPremisesConnectionsRequestBuilder
     from .organization_settings.organization_settings_request_builder import OrganizationSettingsRequestBuilder
     from .provisioning_policies.provisioning_policies_request_builder import ProvisioningPoliciesRequestBuilder
+    from .report.report_request_builder import ReportRequestBuilder
     from .reports.reports_request_builder import ReportsRequestBuilder
     from .retrieve_scoped_permissions.retrieve_scoped_permissions_request_builder import RetrieveScopedPermissionsRequestBuilder
     from .retrieve_tenant_encryption_setting.retrieve_tenant_encryption_setting_request_builder import RetrieveTenantEncryptionSettingRequestBuilder
@@ -294,6 +295,15 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         from .provisioning_policies.provisioning_policies_request_builder import ProvisioningPoliciesRequestBuilder
 
         return ProvisioningPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def report(self) -> ReportRequestBuilder:
+        """
+        Provides operations to manage the report property of the microsoft.graph.virtualEndpoint entity.
+        """
+        from .report.report_request_builder import ReportRequestBuilder
+
+        return ReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def reports(self) -> ReportsRequestBuilder:
