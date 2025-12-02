@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .access_review_instance_decision_item_access_package_assignment_policy_resource import AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource
     from .access_review_instance_decision_item_azure_role_resource import AccessReviewInstanceDecisionItemAzureRoleResource
+    from .access_review_instance_decision_item_custom_data_provided_resource import AccessReviewInstanceDecisionItemCustomDataProvidedResource
     from .access_review_instance_decision_item_service_principal_resource import AccessReviewInstanceDecisionItemServicePrincipalResource
 
 @dataclass
@@ -17,6 +18,8 @@ class AccessReviewInstanceDecisionItemResource(AdditionalDataHolder, BackedModel
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # Description of the resource
+    description: Optional[str] = None
     # Display name of the resource
     display_name: Optional[str] = None
     # Resource ID
@@ -48,6 +51,10 @@ class AccessReviewInstanceDecisionItemResource(AdditionalDataHolder, BackedModel
             from .access_review_instance_decision_item_azure_role_resource import AccessReviewInstanceDecisionItemAzureRoleResource
 
             return AccessReviewInstanceDecisionItemAzureRoleResource()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewInstanceDecisionItemCustomDataProvidedResource".casefold():
+            from .access_review_instance_decision_item_custom_data_provided_resource import AccessReviewInstanceDecisionItemCustomDataProvidedResource
+
+            return AccessReviewInstanceDecisionItemCustomDataProvidedResource()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalResource".casefold():
             from .access_review_instance_decision_item_service_principal_resource import AccessReviewInstanceDecisionItemServicePrincipalResource
 
@@ -61,13 +68,16 @@ class AccessReviewInstanceDecisionItemResource(AdditionalDataHolder, BackedModel
         """
         from .access_review_instance_decision_item_access_package_assignment_policy_resource import AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource
         from .access_review_instance_decision_item_azure_role_resource import AccessReviewInstanceDecisionItemAzureRoleResource
+        from .access_review_instance_decision_item_custom_data_provided_resource import AccessReviewInstanceDecisionItemCustomDataProvidedResource
         from .access_review_instance_decision_item_service_principal_resource import AccessReviewInstanceDecisionItemServicePrincipalResource
 
         from .access_review_instance_decision_item_access_package_assignment_policy_resource import AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource
         from .access_review_instance_decision_item_azure_role_resource import AccessReviewInstanceDecisionItemAzureRoleResource
+        from .access_review_instance_decision_item_custom_data_provided_resource import AccessReviewInstanceDecisionItemCustomDataProvidedResource
         from .access_review_instance_decision_item_service_principal_resource import AccessReviewInstanceDecisionItemServicePrincipalResource
 
         fields: dict[str, Callable[[Any], None]] = {
+            "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -83,6 +93,7 @@ class AccessReviewInstanceDecisionItemResource(AdditionalDataHolder, BackedModel
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("id", self.id)
         writer.write_str_value("@odata.type", self.odata_type)

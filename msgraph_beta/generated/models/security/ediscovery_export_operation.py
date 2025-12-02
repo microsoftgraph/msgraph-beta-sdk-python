@@ -26,7 +26,7 @@ class EdiscoveryExportOperation(CaseOperation, Parsable):
     export_file_metadata: Optional[list[ExportFileMetadata]] = None
     # The options provided for the export. For more information, see reviewSet: export. The fileInfo member is deprecated and stopped returning data on April 30, 2023. Going forward, the summary and load files are always included. Possible values are: originalFiles, text, pdfReplacement, tags, unknownFutureValue, splitSource, includeFolderAndPath, friendlyName, condensePaths. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: splitSource, includeFolderAndPath, friendlyName, condensePaths.
     export_options: Optional[ExportOptions] = None
-    # The options that specify the structure of the export. For more information, see reviewSet: export. Possible values are: none, directory (deprecated), pst, unknownFutureValue, msg. Use the Prefer: include-unknown-enum-members request header to get the following value from this evolvable enum: msg. The directory member is deprecated. It remains in beta for backward compatibility. Going forward, use either pst or msg.
+    # The options that specify the structure of the export. For more information, see reviewSet: export. Possible values are: none, directory (deprecated), pst, unknownFutureValue, msg. Use the Prefer: include-unknown-enum-members request header to get the following members from this evolvable enum: msg. The directory member is deprecated. It remains in beta for backward compatibility. Going forward, use either pst or msg.
     export_structure: Optional[ExportFileStructure] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from ..models.place import Place
     from .count.count_request_builder import CountRequestBuilder
+    from .get_operation_with_id.get_operation_with_id_request_builder import GetOperationWithIdRequestBuilder
     from .graph_building.graph_building_request_builder import GraphBuildingRequestBuilder
     from .graph_desk.graph_desk_request_builder import GraphDeskRequestBuilder
     from .graph_floor.graph_floor_request_builder import GraphFloorRequestBuilder
@@ -25,6 +26,7 @@ if TYPE_CHECKING:
     from .graph_section.graph_section_request_builder import GraphSectionRequestBuilder
     from .graph_workspace.graph_workspace_request_builder import GraphWorkspaceRequestBuilder
     from .item.place_item_request_builder import PlaceItemRequestBuilder
+    from .list_operations.list_operations_request_builder import ListOperationsRequestBuilder
 
 class PlacesRequestBuilder(BaseRequestBuilder):
     """
@@ -52,6 +54,18 @@ class PlacesRequestBuilder(BaseRequestBuilder):
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["place%2Did"] = place_id
         return PlaceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def get_operation_with_id(self,id: str) -> GetOperationWithIdRequestBuilder:
+        """
+        Provides operations to call the getOperation method.
+        param id: Usage: id='{id}'
+        Returns: GetOperationWithIdRequestBuilder
+        """
+        if id is None:
+            raise TypeError("id cannot be null.")
+        from .get_operation_with_id.get_operation_with_id_request_builder import GetOperationWithIdRequestBuilder
+
+        return GetOperationWithIdRequestBuilder(self.request_adapter, self.path_parameters, id)
     
     async def post(self,body: Place, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Place]:
         """
@@ -173,6 +187,15 @@ class PlacesRequestBuilder(BaseRequestBuilder):
         from .graph_workspace.graph_workspace_request_builder import GraphWorkspaceRequestBuilder
 
         return GraphWorkspaceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def list_operations(self) -> ListOperationsRequestBuilder:
+        """
+        Provides operations to call the listOperations method.
+        """
+        from .list_operations.list_operations_request_builder import ListOperationsRequestBuilder
+
+        return ListOperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PlacesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):

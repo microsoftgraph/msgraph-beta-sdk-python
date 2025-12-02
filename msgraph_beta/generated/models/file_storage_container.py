@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .file_storage_container_settings import FileStorageContainerSettings
     from .file_storage_container_status import FileStorageContainerStatus
     from .file_storage_container_viewpoint import FileStorageContainerViewpoint
+    from .information_barrier import InformationBarrier
     from .permission import Permission
     from .recycle_bin import RecycleBin
     from .share_point_group import SharePointGroup
@@ -48,6 +49,8 @@ class FileStorageContainer(Entity, Parsable):
     drive: Optional[Drive] = None
     # The externalGroupId property
     external_group_id: Optional[UUID] = None
+    # Information barrier of a fileStorageContainer. Read-write.
+    information_barrier: Optional[InformationBarrier] = None
     # The isItemVersioningEnabled property
     is_item_versioning_enabled: Optional[bool] = None
     # The itemMajorVersionLimit property
@@ -102,6 +105,7 @@ class FileStorageContainer(Entity, Parsable):
         from .file_storage_container_settings import FileStorageContainerSettings
         from .file_storage_container_status import FileStorageContainerStatus
         from .file_storage_container_viewpoint import FileStorageContainerViewpoint
+        from .information_barrier import InformationBarrier
         from .permission import Permission
         from .recycle_bin import RecycleBin
         from .share_point_group import SharePointGroup
@@ -119,6 +123,7 @@ class FileStorageContainer(Entity, Parsable):
         from .file_storage_container_settings import FileStorageContainerSettings
         from .file_storage_container_status import FileStorageContainerStatus
         from .file_storage_container_viewpoint import FileStorageContainerViewpoint
+        from .information_barrier import InformationBarrier
         from .permission import Permission
         from .recycle_bin import RecycleBin
         from .share_point_group import SharePointGroup
@@ -138,6 +143,7 @@ class FileStorageContainer(Entity, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "drive": lambda n : setattr(self, 'drive', n.get_object_value(Drive)),
             "externalGroupId": lambda n : setattr(self, 'external_group_id', n.get_uuid_value()),
+            "informationBarrier": lambda n : setattr(self, 'information_barrier', n.get_object_value(InformationBarrier)),
             "isItemVersioningEnabled": lambda n : setattr(self, 'is_item_versioning_enabled', n.get_bool_value()),
             "itemMajorVersionLimit": lambda n : setattr(self, 'item_major_version_limit', n.get_int_value()),
             "lockState": lambda n : setattr(self, 'lock_state', n.get_enum_value(SiteLockState)),
@@ -175,6 +181,7 @@ class FileStorageContainer(Entity, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("drive", self.drive)
         writer.write_uuid_value("externalGroupId", self.external_group_id)
+        writer.write_object_value("informationBarrier", self.information_barrier)
         writer.write_bool_value("isItemVersioningEnabled", self.is_item_versioning_enabled)
         writer.write_int_value("itemMajorVersionLimit", self.item_major_version_limit)
         writer.write_enum_value("lockState", self.lock_state)

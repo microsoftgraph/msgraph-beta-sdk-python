@@ -39,6 +39,7 @@ class PrivilegedAccessRequestBuilder(BaseRequestBuilder):
         param privileged_access_id: The unique identifier of privilegedAccess
         Returns: PrivilegedAccessItemRequestBuilder
         """
+        warn("The PIM Iteration 2 beta API is deprecated and will be removed on October 28, 2026. Please migrate to PIM Iteration 3 API. as of 2025-10/PIM_Iteration2_Deprecation on 2025-10-27 and will be removed 2026-10-28", DeprecationWarning)
         if privileged_access_id is None:
             raise TypeError("privileged_access_id cannot be null.")
         from .item.privileged_access_item_request_builder import PrivilegedAccessItemRequestBuilder
@@ -53,6 +54,7 @@ class PrivilegedAccessRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrivilegedAccessCollectionResponse]
         """
+        warn("The PIM Iteration 2 beta API is deprecated and will be removed on October 28, 2026. Please migrate to PIM Iteration 3 API. as of 2025-10/PIM_Iteration2_Deprecation on 2025-10-27 and will be removed 2026-10-28", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -74,6 +76,7 @@ class PrivilegedAccessRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PrivilegedAccess]
         """
+        warn("The PIM Iteration 2 beta API is deprecated and will be removed on October 28, 2026. Please migrate to PIM Iteration 3 API. as of 2025-10/PIM_Iteration2_Deprecation on 2025-10-27 and will be removed 2026-10-28", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -96,6 +99,7 @@ class PrivilegedAccessRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The PIM Iteration 2 beta API is deprecated and will be removed on October 28, 2026. Please migrate to PIM Iteration 3 API. as of 2025-10/PIM_Iteration2_Deprecation on 2025-10-27 and will be removed 2026-10-28", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -108,6 +112,7 @@ class PrivilegedAccessRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The PIM Iteration 2 beta API is deprecated and will be removed on October 28, 2026. Please migrate to PIM Iteration 3 API. as of 2025-10/PIM_Iteration2_Deprecation on 2025-10-27 and will be removed 2026-10-28", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -122,6 +127,7 @@ class PrivilegedAccessRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: PrivilegedAccessRequestBuilder
         """
+        warn("The PIM Iteration 2 beta API is deprecated and will be removed on October 28, 2026. Please migrate to PIM Iteration 3 API. as of 2025-10/PIM_Iteration2_Deprecation on 2025-10-27 and will be removed 2026-10-28", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PrivilegedAccessRequestBuilder(self.request_adapter, raw_url)

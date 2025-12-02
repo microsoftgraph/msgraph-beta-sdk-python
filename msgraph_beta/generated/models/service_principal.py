@@ -9,6 +9,7 @@ from uuid import UUID
 if TYPE_CHECKING:
     from .add_in import AddIn
     from .agent_identity import AgentIdentity
+    from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
     from .app_management_policy import AppManagementPolicy
     from .app_role import AppRole
     from .app_role_assignment import AppRoleAssignment
@@ -71,6 +72,8 @@ class ServicePrincipal(DirectoryObject, Parsable):
     claims_mapping_policies: Optional[list[ClaimsMappingPolicy]] = None
     # A claims policy that allows application admins to customize the claims that will be emitted in tokens affected by this policy.
     claims_policy: Optional[CustomClaimsPolicy] = None
+    # The appId (called Application (client) ID on the Microsoft Entra admin center) of the application used to create the service principal. Set internally by Microsoft Entra ID. Read-only.
+    created_by_app_id: Optional[str] = None
     # Directory objects created by this service principal. Read-only. Nullable.
     created_objects: Optional[list[DirectoryObject]] = None
     # An open complex type that holds the value of a custom security attribute that is assigned to a directory object. Nullable. Returned only on $select. Supports $filter (eq, ne, not, startsWith). Filter value is case sensitive.To read this property, the calling app must be assigned the CustomSecAttributeAssignment.Read.All permission. To write this property, the calling app must be assigned the CustomSecAttributeAssignment.ReadWrite.All permissions. To read or write this property in delegated scenarios, the admin must be assigned the Attribute Assignment Administrator role.
@@ -178,6 +181,10 @@ class ServicePrincipal(DirectoryObject, Parsable):
             from .agent_identity import AgentIdentity
 
             return AgentIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentityBlueprintPrincipal".casefold():
+            from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
+
+            return AgentIdentityBlueprintPrincipal()
         return ServicePrincipal()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -187,6 +194,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
         """
         from .add_in import AddIn
         from .agent_identity import AgentIdentity
+        from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
         from .app_management_policy import AppManagementPolicy
         from .app_role import AppRole
         from .app_role_assignment import AppRoleAssignment
@@ -215,6 +223,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
 
         from .add_in import AddIn
         from .agent_identity import AgentIdentity
+        from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
         from .app_management_policy import AppManagementPolicy
         from .app_role import AppRole
         from .app_role_assignment import AppRoleAssignment
@@ -257,6 +266,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
             "applicationTemplateId": lambda n : setattr(self, 'application_template_id', n.get_str_value()),
             "claimsMappingPolicies": lambda n : setattr(self, 'claims_mapping_policies', n.get_collection_of_object_values(ClaimsMappingPolicy)),
             "claimsPolicy": lambda n : setattr(self, 'claims_policy', n.get_object_value(CustomClaimsPolicy)),
+            "createdByAppId": lambda n : setattr(self, 'created_by_app_id', n.get_str_value()),
             "createdObjects": lambda n : setattr(self, 'created_objects', n.get_collection_of_object_values(DirectoryObject)),
             "customSecurityAttributes": lambda n : setattr(self, 'custom_security_attributes', n.get_object_value(CustomSecurityAttributeValue)),
             "delegatedPermissionClassifications": lambda n : setattr(self, 'delegated_permission_classifications', n.get_collection_of_object_values(DelegatedPermissionClassification)),
@@ -330,6 +340,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
         writer.write_str_value("applicationTemplateId", self.application_template_id)
         writer.write_collection_of_object_values("claimsMappingPolicies", self.claims_mapping_policies)
         writer.write_object_value("claimsPolicy", self.claims_policy)
+        writer.write_str_value("createdByAppId", self.created_by_app_id)
         writer.write_collection_of_object_values("createdObjects", self.created_objects)
         writer.write_object_value("customSecurityAttributes", self.custom_security_attributes)
         writer.write_collection_of_object_values("delegatedPermissionClassifications", self.delegated_permission_classifications)

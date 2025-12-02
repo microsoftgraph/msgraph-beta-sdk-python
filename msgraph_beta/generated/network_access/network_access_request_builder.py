@@ -19,7 +19,9 @@ if TYPE_CHECKING:
     from .alerts.alerts_request_builder import AlertsRequestBuilder
     from .connectivity.connectivity_request_builder import ConnectivityRequestBuilder
     from .filtering_policies.filtering_policies_request_builder import FilteringPoliciesRequestBuilder
+    from .filtering_profiles.filtering_profiles_request_builder import FilteringProfilesRequestBuilder
     from .forwarding_policies.forwarding_policies_request_builder import ForwardingPoliciesRequestBuilder
+    from .forwarding_profiles.forwarding_profiles_request_builder import ForwardingProfilesRequestBuilder
     from .logs.logs_request_builder import LogsRequestBuilder
     from .microsoft_graph_networkaccess_onboard.microsoft_graph_networkaccess_onboard_request_builder import MicrosoftGraphNetworkaccessOnboardRequestBuilder
     from .reports.reports_request_builder import ReportsRequestBuilder
@@ -149,6 +151,15 @@ class NetworkAccessRequestBuilder(BaseRequestBuilder):
         return FilteringPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def filtering_profiles(self) -> FilteringProfilesRequestBuilder:
+        """
+        Provides operations to manage the filteringProfiles property of the microsoft.graph.networkaccess.networkAccessRoot entity.
+        """
+        from .filtering_profiles.filtering_profiles_request_builder import FilteringProfilesRequestBuilder
+
+        return FilteringProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def forwarding_policies(self) -> ForwardingPoliciesRequestBuilder:
         """
         Provides operations to manage the forwardingPolicies property of the microsoft.graph.networkaccess.networkAccessRoot entity.
@@ -156,6 +167,15 @@ class NetworkAccessRequestBuilder(BaseRequestBuilder):
         from .forwarding_policies.forwarding_policies_request_builder import ForwardingPoliciesRequestBuilder
 
         return ForwardingPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def forwarding_profiles(self) -> ForwardingProfilesRequestBuilder:
+        """
+        Provides operations to manage the forwardingProfiles property of the microsoft.graph.networkaccess.networkAccessRoot entity.
+        """
+        from .forwarding_profiles.forwarding_profiles_request_builder import ForwardingProfilesRequestBuilder
+
+        return ForwardingProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def logs(self) -> LogsRequestBuilder:

@@ -25,6 +25,8 @@ class Place(Entity, Parsable):
     address: Optional[PhysicalAddress] = None
     # A subresource of a place object that indicates the check-in status of an Outlook calendar event booked at the place.
     check_ins: Optional[list[CheckInClaim]] = None
+    # The children property
+    children: Optional[list[Place]] = None
     # The name that is associated with the place.
     display_name: Optional[str] = None
     # Specifies the place location in latitude, longitude, and (optionally) altitude coordinates.
@@ -39,8 +41,6 @@ class Place(Entity, Parsable):
     parent_id: Optional[str] = None
     # The phone number of the place.
     phone: Optional[str] = None
-    # An alternate immutable unique identifier of the place. Read-only.
-    place_id: Optional[str] = None
     # Custom tags that are associated with the place for categorization or filtering.
     tags: Optional[list[str]] = None
     
@@ -120,13 +120,13 @@ class Place(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(PhysicalAddress)),
             "checkIns": lambda n : setattr(self, 'check_ins', n.get_collection_of_object_values(CheckInClaim)),
+            "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(Place)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "geoCoordinates": lambda n : setattr(self, 'geo_coordinates', n.get_object_value(OutlookGeoCoordinates)),
             "isWheelChairAccessible": lambda n : setattr(self, 'is_wheel_chair_accessible', n.get_bool_value()),
             "label": lambda n : setattr(self, 'label', n.get_str_value()),
             "parentId": lambda n : setattr(self, 'parent_id', n.get_str_value()),
             "phone": lambda n : setattr(self, 'phone', n.get_str_value()),
-            "placeId": lambda n : setattr(self, 'place_id', n.get_str_value()),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
@@ -144,13 +144,13 @@ class Place(Entity, Parsable):
         super().serialize(writer)
         writer.write_object_value("address", self.address)
         writer.write_collection_of_object_values("checkIns", self.check_ins)
+        writer.write_collection_of_object_values("children", self.children)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("geoCoordinates", self.geo_coordinates)
         writer.write_bool_value("isWheelChairAccessible", self.is_wheel_chair_accessible)
         writer.write_str_value("label", self.label)
         writer.write_str_value("parentId", self.parent_id)
         writer.write_str_value("phone", self.phone)
-        writer.write_str_value("placeId", self.place_id)
         writer.write_collection_of_primitive_values("tags", self.tags)
     
 

@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .access_package_resource_role_scope import AccessPackageResourceRoleScope
     from .access_package_resource_scope import AccessPackageResourceScope
     from .access_package_subject import AccessPackageSubject
+    from .access_package_suggestion import AccessPackageSuggestion
     from .access_review import AccessReview
     from .access_review_decision import AccessReviewDecision
     from .access_review_history_definition import AccessReviewHistoryDefinition
@@ -54,8 +55,14 @@ if TYPE_CHECKING:
     from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
     from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
     from .agent import Agent
+    from .agent_card_manifest import AgentCardManifest
+    from .agent_collection import AgentCollection
     from .agent_identity import AgentIdentity
+    from .agent_identity_blueprint import AgentIdentityBlueprint
+    from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
+    from .agent_instance import AgentInstance
     from .agent_risk_detection import AgentRiskDetection
+    from .agent_user import AgentUser
     from .agreement import Agreement
     from .agreement_acceptance import AgreementAcceptance
     from .agreement_file import AgreementFile
@@ -224,6 +231,7 @@ if TYPE_CHECKING:
     from .authorization_system_resource import AuthorizationSystemResource
     from .authorization_system_type_action import AuthorizationSystemTypeAction
     from .authorization_system_type_service import AuthorizationSystemTypeService
+    from .available_access_package import AvailableAccessPackage
     from .aws_access_key import AwsAccessKey
     from .aws_authorization_system import AwsAuthorizationSystem
     from .aws_authorization_system_resource import AwsAuthorizationSystemResource
@@ -254,6 +262,7 @@ if TYPE_CHECKING:
     from .azure_serverless_function import AzureServerlessFunction
     from .azure_service_principal import AzureServicePrincipal
     from .azure_user import AzureUser
+    from .b2b_management_policy import B2bManagementPolicy
     from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
     from .b2c_identity_user_flow import B2cIdentityUserFlow
     from .b2x_identity_user_flow import B2xIdentityUserFlow
@@ -372,6 +381,7 @@ if TYPE_CHECKING:
     from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
     from .cloud_p_c import CloudPC
     from .cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
+    from .cloud_p_c_user_settings_persistence_detail import CloudPCUserSettingsPersistenceDetail
     from .column_definition import ColumnDefinition
     from .column_link import ColumnLink
     from .comanagement_eligible_device import ComanagementEligibleDevice
@@ -414,6 +424,7 @@ if TYPE_CHECKING:
     from .copilot_package import CopilotPackage
     from .copilot_package_detail import CopilotPackageDetail
     from .copilot_people_admin_setting import CopilotPeopleAdminSetting
+    from .copilot_report_root import CopilotReportRoot
     from .copilot_setting import CopilotSetting
     from .cors_configuration_v2 import CorsConfiguration_v2
     from .credential_usage_summary import CredentialUsageSummary
@@ -421,11 +432,15 @@ if TYPE_CHECKING:
     from .credential_user_registration_details import CredentialUserRegistrationDetails
     from .cross_tenant_access_policy import CrossTenantAccessPolicy
     from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
+    from .cross_tenant_migration_job import CrossTenantMigrationJob
+    from .cross_tenant_migration_task import CrossTenantMigrationTask
     from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
     from .custom_app_scope import CustomAppScope
     from .custom_authentication_extension import CustomAuthenticationExtension
     from .custom_callout_extension import CustomCalloutExtension
     from .custom_claims_policy import CustomClaimsPolicy
+    from .custom_data_provided_resource import CustomDataProvidedResource
+    from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
     from .custom_extension_handler import CustomExtensionHandler
     from .custom_extension_stage_setting import CustomExtensionStageSetting
     from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -823,6 +838,7 @@ if TYPE_CHECKING:
     from .group_policy_setting_mapping import GroupPolicySettingMapping
     from .group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
     from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
+    from .group_resource import GroupResource
     from .hardware_configuration import HardwareConfiguration
     from .hardware_configuration_assignment import HardwareConfigurationAssignment
     from .hardware_configuration_device_state import HardwareConfigurationDeviceState
@@ -1141,6 +1157,7 @@ if TYPE_CHECKING:
     from .microsoft_tunnel_server import MicrosoftTunnelServer
     from .microsoft_tunnel_server_log_collection_response import MicrosoftTunnelServerLogCollectionResponse
     from .microsoft_tunnel_site import MicrosoftTunnelSite
+    from .migrations_root import MigrationsRoot
     from .mobile_app import MobileApp
     from .mobile_app_assignment import MobileAppAssignment
     from .mobile_app_catalog_package import MobileAppCatalogPackage
@@ -1179,6 +1196,7 @@ if TYPE_CHECKING:
     from .name_pronunciation_settings import NamePronunciationSettings
     from .ndes_connector import NdesConnector
     from .networkaccess.alert import Alert
+    from .networkaccess.base_entity import BaseEntity
     from .networkaccess.branch_site import BranchSite
     from .networkaccess.conditional_access_policy import ConditionalAccessPolicy
     from .networkaccess.conditional_access_settings import ConditionalAccessSettings
@@ -1191,10 +1209,12 @@ if TYPE_CHECKING:
     from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
     from .networkaccess.filtering_policy import FilteringPolicy
     from .networkaccess.filtering_policy_link import FilteringPolicyLink
+    from .networkaccess.filtering_profile import FilteringProfile
     from .networkaccess.filtering_rule import FilteringRule
     from .networkaccess.forwarding_options import ForwardingOptions
     from .networkaccess.forwarding_policy import ForwardingPolicy
     from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
+    from .networkaccess.forwarding_profile import ForwardingProfile
     from .networkaccess.forwarding_rule import ForwardingRule
     from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
     from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
@@ -1205,6 +1225,8 @@ if TYPE_CHECKING:
     from .networkaccess.policy_link import PolicyLink
     from .networkaccess.policy_rule import PolicyRule
     from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
+    from .networkaccess.profile import Profile
+    from .networkaccess.remote_network import RemoteNetwork
     from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
     from .networkaccess.reports import Reports
     from .networkaccess.settings import Settings
@@ -1268,6 +1290,7 @@ if TYPE_CHECKING:
     from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
     from .on_premises_publishing_profile import OnPremisesPublishingProfile
     from .on_premises_sync_behavior import OnPremisesSyncBehavior
+    from .on_prem_authentication_policy import OnPremAuthenticationPolicy
     from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
     from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
     from .on_user_create_start_listener import OnUserCreateStartListener
@@ -1285,6 +1308,7 @@ if TYPE_CHECKING:
     from .organizational_branding import OrganizationalBranding
     from .organizational_branding_localization import OrganizationalBrandingLocalization
     from .organizational_branding_properties import OrganizationalBrandingProperties
+    from .organizational_branding_theme import OrganizationalBrandingTheme
     from .organization_settings import OrganizationSettings
     from .org_contact import OrgContact
     from .outlook_category import OutlookCategory
@@ -1362,6 +1386,7 @@ if TYPE_CHECKING:
     from .photo_update_settings import PhotoUpdateSettings
     from .pinned_chat_message_info import PinnedChatMessageInfo
     from .place import Place
+    from .place_operation import PlaceOperation
     from .planner import Planner
     from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
     from .planner_bucket import PlannerBucket
@@ -1707,7 +1732,10 @@ if TYPE_CHECKING:
     from .sharepoint_settings import SharepointSettings
     from .share_point_browse_session import SharePointBrowseSession
     from .share_point_group import SharePointGroup
+    from .share_point_group_identity_mapping import SharePointGroupIdentityMapping
     from .share_point_group_member import SharePointGroupMember
+    from .share_point_identity_mapping import SharePointIdentityMapping
+    from .share_point_migrations_root import SharePointMigrationsRoot
     from .share_point_migration_event import SharePointMigrationEvent
     from .share_point_migration_finish_manifest_file_upload_event import SharePointMigrationFinishManifestFileUploadEvent
     from .share_point_migration_job import SharePointMigrationJob
@@ -1718,8 +1746,11 @@ if TYPE_CHECKING:
     from .share_point_migration_job_progress_event import SharePointMigrationJobProgressEvent
     from .share_point_migration_job_queued_event import SharePointMigrationJobQueuedEvent
     from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
+    from .share_point_migration_task import SharePointMigrationTask
     from .share_point_protection_policy import SharePointProtectionPolicy
     from .share_point_restore_session import SharePointRestoreSession
+    from .share_point_root import SharePointRoot
+    from .share_point_user_identity_mapping import SharePointUserIdentityMapping
     from .shift import Shift
     from .shifts_role_definition import ShiftsRoleDefinition
     from .shift_preferences import ShiftPreferences
@@ -2295,6 +2326,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .access_package_subject import AccessPackageSubject
 
             return AccessPackageSubject()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessPackageSuggestion".casefold():
+            from .access_package_suggestion import AccessPackageSuggestion
+
+            return AccessPackageSuggestion()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReview".casefold():
             from .access_review import AccessReview
 
@@ -2423,14 +2458,38 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .agent import Agent
 
             return Agent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentCardManifest".casefold():
+            from .agent_card_manifest import AgentCardManifest
+
+            return AgentCardManifest()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentCollection".casefold():
+            from .agent_collection import AgentCollection
+
+            return AgentCollection()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentity".casefold():
             from .agent_identity import AgentIdentity
 
             return AgentIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentityBlueprint".casefold():
+            from .agent_identity_blueprint import AgentIdentityBlueprint
+
+            return AgentIdentityBlueprint()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentityBlueprintPrincipal".casefold():
+            from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
+
+            return AgentIdentityBlueprintPrincipal()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentInstance".casefold():
+            from .agent_instance import AgentInstance
+
+            return AgentInstance()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentRiskDetection".casefold():
             from .agent_risk_detection import AgentRiskDetection
 
             return AgentRiskDetection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentUser".casefold():
+            from .agent_user import AgentUser
+
+            return AgentUser()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.agreement".casefold():
             from .agreement import Agreement
 
@@ -3107,6 +3166,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .authorization_system_type_service import AuthorizationSystemTypeService
 
             return AuthorizationSystemTypeService()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.availableAccessPackage".casefold():
+            from .available_access_package import AvailableAccessPackage
+
+            return AvailableAccessPackage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsAccessKey".casefold():
             from .aws_access_key import AwsAccessKey
 
@@ -3227,6 +3290,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .azure_user import AzureUser
 
             return AzureUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2bManagementPolicy".casefold():
+            from .b2b_management_policy import B2bManagementPolicy
+
+            return B2bManagementPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2cAuthenticationMethodsPolicy".casefold():
             from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
 
@@ -3702,6 +3769,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
 
             return CloudPcUserSettingAssignment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPCUserSettingsPersistenceDetail".casefold():
+            from .cloud_p_c_user_settings_persistence_detail import CloudPCUserSettingsPersistenceDetail
+
+            return CloudPCUserSettingsPersistenceDetail()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.columnDefinition".casefold():
             from .column_definition import ColumnDefinition
 
@@ -3871,6 +3942,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .copilot_people_admin_setting import CopilotPeopleAdminSetting
 
             return CopilotPeopleAdminSetting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotReportRoot".casefold():
+            from .copilot_report_root import CopilotReportRoot
+
+            return CopilotReportRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotSetting".casefold():
             from .copilot_setting import CopilotSetting
 
@@ -3899,6 +3974,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
 
             return CrossTenantAccessPolicyConfigurationDefault()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantMigrationJob".casefold():
+            from .cross_tenant_migration_job import CrossTenantMigrationJob
+
+            return CrossTenantMigrationJob()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantMigrationTask".casefold():
+            from .cross_tenant_migration_task import CrossTenantMigrationTask
+
+            return CrossTenantMigrationTask()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.customAccessPackageWorkflowExtension".casefold():
             from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
 
@@ -3919,6 +4002,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .custom_claims_policy import CustomClaimsPolicy
 
             return CustomClaimsPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.customDataProvidedResource".casefold():
+            from .custom_data_provided_resource import CustomDataProvidedResource
+
+            return CustomDataProvidedResource()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.customDataProvidedResourceUploadSession".casefold():
+            from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
+
+            return CustomDataProvidedResourceUploadSession()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.customExtensionHandler".casefold():
             from .custom_extension_handler import CustomExtensionHandler
 
@@ -5525,6 +5616,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
 
             return GroupPolicyUploadedPresentation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupResource".casefold():
+            from .group_resource import GroupResource
+
+            return GroupResource()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.hardwareConfiguration".casefold():
             from .hardware_configuration import HardwareConfiguration
 
@@ -6805,6 +6900,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .microsoft_tunnel_site import MicrosoftTunnelSite
 
             return MicrosoftTunnelSite()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.migrationsRoot".casefold():
+            from .migrations_root import MigrationsRoot
+
+            return MigrationsRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileApp".casefold():
             from .mobile_app import MobileApp
 
@@ -6960,6 +7059,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.alert import Alert
 
             return Alert()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.baseEntity".casefold():
+            from .networkaccess.base_entity import BaseEntity
+
+            return BaseEntity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.branchSite".casefold():
             from .networkaccess.branch_site import BranchSite
 
@@ -7008,6 +7111,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.filtering_policy_link import FilteringPolicyLink
 
             return FilteringPolicyLink()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringProfile".casefold():
+            from .networkaccess.filtering_profile import FilteringProfile
+
+            return FilteringProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringRule".casefold():
             from .networkaccess.filtering_rule import FilteringRule
 
@@ -7024,6 +7131,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
 
             return ForwardingPolicyLink()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfile".casefold():
+            from .networkaccess.forwarding_profile import ForwardingProfile
+
+            return ForwardingProfile()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingRule".casefold():
             from .networkaccess.forwarding_rule import ForwardingRule
 
@@ -7064,6 +7175,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
 
             return PrivateAccessForwardingRule()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.profile".casefold():
+            from .networkaccess.profile import Profile
+            from .profile import Profile
+
+            return Profile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.remoteNetwork".casefold():
+            from .networkaccess.remote_network import RemoteNetwork
+
+            return RemoteNetwork()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.remoteNetworkHealthEvent".casefold():
             from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
 
@@ -7296,6 +7416,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
 
             return OnPhoneMethodLoadStartListener()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPremAuthenticationPolicy".casefold():
+            from .on_prem_authentication_policy import OnPremAuthenticationPolicy
+
+            return OnPremAuthenticationPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPremisesAgent".casefold():
             from .on_premises_agent import OnPremisesAgent
 
@@ -7389,6 +7513,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .organizational_branding_properties import OrganizationalBrandingProperties
 
             return OrganizationalBrandingProperties()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.organizationalBrandingTheme".casefold():
+            from .organizational_branding_theme import OrganizationalBrandingTheme
+
+            return OrganizationalBrandingTheme()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.organizationSettings".casefold():
             from .organization_settings import OrganizationSettings
 
@@ -7695,6 +7823,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .place import Place
 
             return Place()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.placeOperation".casefold():
+            from .place_operation import PlaceOperation
+
+            return PlaceOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.planner".casefold():
             from .planner import Planner
 
@@ -7997,6 +8129,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return PrivilegeManagementElevationRequest()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.profile".casefold():
+            from .networkaccess.profile import Profile
             from .profile import Profile
 
             return Profile()
@@ -9091,10 +9224,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .share_point_group import SharePointGroup
 
             return SharePointGroup()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointGroupIdentityMapping".casefold():
+            from .share_point_group_identity_mapping import SharePointGroupIdentityMapping
+
+            return SharePointGroupIdentityMapping()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointGroupMember".casefold():
             from .share_point_group_member import SharePointGroupMember
 
             return SharePointGroupMember()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointIdentityMapping".casefold():
+            from .share_point_identity_mapping import SharePointIdentityMapping
+
+            return SharePointIdentityMapping()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationEvent".casefold():
             from .share_point_migration_event import SharePointMigrationEvent
 
@@ -9135,6 +9276,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
 
             return SharePointMigrationJobStartEvent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationsRoot".casefold():
+            from .share_point_migrations_root import SharePointMigrationsRoot
+
+            return SharePointMigrationsRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointMigrationTask".casefold():
+            from .share_point_migration_task import SharePointMigrationTask
+
+            return SharePointMigrationTask()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointProtectionPolicy".casefold():
             from .share_point_protection_policy import SharePointProtectionPolicy
 
@@ -9143,10 +9292,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .share_point_restore_session import SharePointRestoreSession
 
             return SharePointRestoreSession()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointRoot".casefold():
+            from .share_point_root import SharePointRoot
+
+            return SharePointRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharepointSettings".casefold():
             from .sharepoint_settings import SharepointSettings
 
             return SharepointSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointUserIdentityMapping".casefold():
+            from .share_point_user_identity_mapping import SharePointUserIdentityMapping
+
+            return SharePointUserIdentityMapping()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.shift".casefold():
             from .shift import Shift
 
@@ -11112,6 +11269,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .access_package_resource_role_scope import AccessPackageResourceRoleScope
         from .access_package_resource_scope import AccessPackageResourceScope
         from .access_package_subject import AccessPackageSubject
+        from .access_package_suggestion import AccessPackageSuggestion
         from .access_review import AccessReview
         from .access_review_decision import AccessReviewDecision
         from .access_review_history_definition import AccessReviewHistoryDefinition
@@ -11144,8 +11302,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
         from .agent import Agent
+        from .agent_card_manifest import AgentCardManifest
+        from .agent_collection import AgentCollection
         from .agent_identity import AgentIdentity
+        from .agent_identity_blueprint import AgentIdentityBlueprint
+        from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
+        from .agent_instance import AgentInstance
         from .agent_risk_detection import AgentRiskDetection
+        from .agent_user import AgentUser
         from .agreement import Agreement
         from .agreement_acceptance import AgreementAcceptance
         from .agreement_file import AgreementFile
@@ -11314,6 +11478,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .authorization_system_resource import AuthorizationSystemResource
         from .authorization_system_type_action import AuthorizationSystemTypeAction
         from .authorization_system_type_service import AuthorizationSystemTypeService
+        from .available_access_package import AvailableAccessPackage
         from .aws_access_key import AwsAccessKey
         from .aws_authorization_system import AwsAuthorizationSystem
         from .aws_authorization_system_resource import AwsAuthorizationSystemResource
@@ -11344,6 +11509,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .azure_serverless_function import AzureServerlessFunction
         from .azure_service_principal import AzureServicePrincipal
         from .azure_user import AzureUser
+        from .b2b_management_policy import B2bManagementPolicy
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
@@ -11462,6 +11628,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
         from .cloud_p_c import CloudPC
         from .cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
+        from .cloud_p_c_user_settings_persistence_detail import CloudPCUserSettingsPersistenceDetail
         from .column_definition import ColumnDefinition
         from .column_link import ColumnLink
         from .comanagement_eligible_device import ComanagementEligibleDevice
@@ -11504,6 +11671,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_package import CopilotPackage
         from .copilot_package_detail import CopilotPackageDetail
         from .copilot_people_admin_setting import CopilotPeopleAdminSetting
+        from .copilot_report_root import CopilotReportRoot
         from .copilot_setting import CopilotSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .credential_usage_summary import CredentialUsageSummary
@@ -11511,11 +11679,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
+        from .cross_tenant_migration_job import CrossTenantMigrationJob
+        from .cross_tenant_migration_task import CrossTenantMigrationTask
         from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
         from .custom_app_scope import CustomAppScope
         from .custom_authentication_extension import CustomAuthenticationExtension
         from .custom_callout_extension import CustomCalloutExtension
         from .custom_claims_policy import CustomClaimsPolicy
+        from .custom_data_provided_resource import CustomDataProvidedResource
+        from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .custom_extension_handler import CustomExtensionHandler
         from .custom_extension_stage_setting import CustomExtensionStageSetting
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -11913,6 +12085,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .group_policy_setting_mapping import GroupPolicySettingMapping
         from .group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
         from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
+        from .group_resource import GroupResource
         from .hardware_configuration import HardwareConfiguration
         from .hardware_configuration_assignment import HardwareConfigurationAssignment
         from .hardware_configuration_device_state import HardwareConfigurationDeviceState
@@ -12231,6 +12404,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .microsoft_tunnel_server import MicrosoftTunnelServer
         from .microsoft_tunnel_server_log_collection_response import MicrosoftTunnelServerLogCollectionResponse
         from .microsoft_tunnel_site import MicrosoftTunnelSite
+        from .migrations_root import MigrationsRoot
         from .mobile_app import MobileApp
         from .mobile_app_assignment import MobileAppAssignment
         from .mobile_app_catalog_package import MobileAppCatalogPackage
@@ -12269,6 +12443,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .name_pronunciation_settings import NamePronunciationSettings
         from .ndes_connector import NdesConnector
         from .networkaccess.alert import Alert
+        from .networkaccess.base_entity import BaseEntity
         from .networkaccess.branch_site import BranchSite
         from .networkaccess.conditional_access_policy import ConditionalAccessPolicy
         from .networkaccess.conditional_access_settings import ConditionalAccessSettings
@@ -12281,10 +12456,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
         from .networkaccess.filtering_policy import FilteringPolicy
         from .networkaccess.filtering_policy_link import FilteringPolicyLink
+        from .networkaccess.filtering_profile import FilteringProfile
         from .networkaccess.filtering_rule import FilteringRule
         from .networkaccess.forwarding_options import ForwardingOptions
         from .networkaccess.forwarding_policy import ForwardingPolicy
         from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
+        from .networkaccess.forwarding_profile import ForwardingProfile
         from .networkaccess.forwarding_rule import ForwardingRule
         from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
         from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
@@ -12295,6 +12472,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.policy_link import PolicyLink
         from .networkaccess.policy_rule import PolicyRule
         from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
+        from .networkaccess.profile import Profile
+        from .networkaccess.remote_network import RemoteNetwork
         from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
@@ -12358,6 +12537,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
         from .on_premises_publishing_profile import OnPremisesPublishingProfile
         from .on_premises_sync_behavior import OnPremisesSyncBehavior
+        from .on_prem_authentication_policy import OnPremAuthenticationPolicy
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
@@ -12375,6 +12555,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
+        from .organizational_branding_theme import OrganizationalBrandingTheme
         from .organization_settings import OrganizationSettings
         from .org_contact import OrgContact
         from .outlook_category import OutlookCategory
@@ -12452,6 +12633,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .photo_update_settings import PhotoUpdateSettings
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .place import Place
+        from .place_operation import PlaceOperation
         from .planner import Planner
         from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
         from .planner_bucket import PlannerBucket
@@ -12797,7 +12979,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .sharepoint_settings import SharepointSettings
         from .share_point_browse_session import SharePointBrowseSession
         from .share_point_group import SharePointGroup
+        from .share_point_group_identity_mapping import SharePointGroupIdentityMapping
         from .share_point_group_member import SharePointGroupMember
+        from .share_point_identity_mapping import SharePointIdentityMapping
+        from .share_point_migrations_root import SharePointMigrationsRoot
         from .share_point_migration_event import SharePointMigrationEvent
         from .share_point_migration_finish_manifest_file_upload_event import SharePointMigrationFinishManifestFileUploadEvent
         from .share_point_migration_job import SharePointMigrationJob
@@ -12808,8 +12993,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .share_point_migration_job_progress_event import SharePointMigrationJobProgressEvent
         from .share_point_migration_job_queued_event import SharePointMigrationJobQueuedEvent
         from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
+        from .share_point_migration_task import SharePointMigrationTask
         from .share_point_protection_policy import SharePointProtectionPolicy
         from .share_point_restore_session import SharePointRestoreSession
+        from .share_point_root import SharePointRoot
+        from .share_point_user_identity_mapping import SharePointUserIdentityMapping
         from .shift import Shift
         from .shifts_role_definition import ShiftsRoleDefinition
         from .shift_preferences import ShiftPreferences
@@ -13311,6 +13499,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .access_package_resource_role_scope import AccessPackageResourceRoleScope
         from .access_package_resource_scope import AccessPackageResourceScope
         from .access_package_subject import AccessPackageSubject
+        from .access_package_suggestion import AccessPackageSuggestion
         from .access_review import AccessReview
         from .access_review_decision import AccessReviewDecision
         from .access_review_history_definition import AccessReviewHistoryDefinition
@@ -13343,8 +13532,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
         from .agent import Agent
+        from .agent_card_manifest import AgentCardManifest
+        from .agent_collection import AgentCollection
         from .agent_identity import AgentIdentity
+        from .agent_identity_blueprint import AgentIdentityBlueprint
+        from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
+        from .agent_instance import AgentInstance
         from .agent_risk_detection import AgentRiskDetection
+        from .agent_user import AgentUser
         from .agreement import Agreement
         from .agreement_acceptance import AgreementAcceptance
         from .agreement_file import AgreementFile
@@ -13513,6 +13708,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .authorization_system_resource import AuthorizationSystemResource
         from .authorization_system_type_action import AuthorizationSystemTypeAction
         from .authorization_system_type_service import AuthorizationSystemTypeService
+        from .available_access_package import AvailableAccessPackage
         from .aws_access_key import AwsAccessKey
         from .aws_authorization_system import AwsAuthorizationSystem
         from .aws_authorization_system_resource import AwsAuthorizationSystemResource
@@ -13543,6 +13739,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .azure_serverless_function import AzureServerlessFunction
         from .azure_service_principal import AzureServicePrincipal
         from .azure_user import AzureUser
+        from .b2b_management_policy import B2bManagementPolicy
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
@@ -13661,6 +13858,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_user_setting_assignment import CloudPcUserSettingAssignment
         from .cloud_p_c import CloudPC
         from .cloud_p_c_connectivity_issue import CloudPCConnectivityIssue
+        from .cloud_p_c_user_settings_persistence_detail import CloudPCUserSettingsPersistenceDetail
         from .column_definition import ColumnDefinition
         from .column_link import ColumnLink
         from .comanagement_eligible_device import ComanagementEligibleDevice
@@ -13703,6 +13901,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_package import CopilotPackage
         from .copilot_package_detail import CopilotPackageDetail
         from .copilot_people_admin_setting import CopilotPeopleAdminSetting
+        from .copilot_report_root import CopilotReportRoot
         from .copilot_setting import CopilotSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .credential_usage_summary import CredentialUsageSummary
@@ -13710,11 +13909,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
+        from .cross_tenant_migration_job import CrossTenantMigrationJob
+        from .cross_tenant_migration_task import CrossTenantMigrationTask
         from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
         from .custom_app_scope import CustomAppScope
         from .custom_authentication_extension import CustomAuthenticationExtension
         from .custom_callout_extension import CustomCalloutExtension
         from .custom_claims_policy import CustomClaimsPolicy
+        from .custom_data_provided_resource import CustomDataProvidedResource
+        from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .custom_extension_handler import CustomExtensionHandler
         from .custom_extension_stage_setting import CustomExtensionStageSetting
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
@@ -14112,6 +14315,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .group_policy_setting_mapping import GroupPolicySettingMapping
         from .group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
         from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
+        from .group_resource import GroupResource
         from .hardware_configuration import HardwareConfiguration
         from .hardware_configuration_assignment import HardwareConfigurationAssignment
         from .hardware_configuration_device_state import HardwareConfigurationDeviceState
@@ -14430,6 +14634,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .microsoft_tunnel_server import MicrosoftTunnelServer
         from .microsoft_tunnel_server_log_collection_response import MicrosoftTunnelServerLogCollectionResponse
         from .microsoft_tunnel_site import MicrosoftTunnelSite
+        from .migrations_root import MigrationsRoot
         from .mobile_app import MobileApp
         from .mobile_app_assignment import MobileAppAssignment
         from .mobile_app_catalog_package import MobileAppCatalogPackage
@@ -14468,6 +14673,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .name_pronunciation_settings import NamePronunciationSettings
         from .ndes_connector import NdesConnector
         from .networkaccess.alert import Alert
+        from .networkaccess.base_entity import BaseEntity
         from .networkaccess.branch_site import BranchSite
         from .networkaccess.conditional_access_policy import ConditionalAccessPolicy
         from .networkaccess.conditional_access_settings import ConditionalAccessSettings
@@ -14480,10 +14686,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.external_certificate_authority_certificate import ExternalCertificateAuthorityCertificate
         from .networkaccess.filtering_policy import FilteringPolicy
         from .networkaccess.filtering_policy_link import FilteringPolicyLink
+        from .networkaccess.filtering_profile import FilteringProfile
         from .networkaccess.filtering_rule import FilteringRule
         from .networkaccess.forwarding_options import ForwardingOptions
         from .networkaccess.forwarding_policy import ForwardingPolicy
         from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
+        from .networkaccess.forwarding_profile import ForwardingProfile
         from .networkaccess.forwarding_rule import ForwardingRule
         from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
         from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
@@ -14494,6 +14702,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.policy_link import PolicyLink
         from .networkaccess.policy_rule import PolicyRule
         from .networkaccess.private_access_forwarding_rule import PrivateAccessForwardingRule
+        from .networkaccess.profile import Profile
+        from .networkaccess.remote_network import RemoteNetwork
         from .networkaccess.remote_network_health_event import RemoteNetworkHealthEvent
         from .networkaccess.reports import Reports
         from .networkaccess.settings import Settings
@@ -14557,6 +14767,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_premises_directory_synchronization import OnPremisesDirectorySynchronization
         from .on_premises_publishing_profile import OnPremisesPublishingProfile
         from .on_premises_sync_behavior import OnPremisesSyncBehavior
+        from .on_prem_authentication_policy import OnPremAuthenticationPolicy
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
@@ -14574,6 +14785,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .organizational_branding import OrganizationalBranding
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
+        from .organizational_branding_theme import OrganizationalBrandingTheme
         from .organization_settings import OrganizationSettings
         from .org_contact import OrgContact
         from .outlook_category import OutlookCategory
@@ -14651,6 +14863,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .photo_update_settings import PhotoUpdateSettings
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .place import Place
+        from .place_operation import PlaceOperation
         from .planner import Planner
         from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
         from .planner_bucket import PlannerBucket
@@ -14996,7 +15209,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .sharepoint_settings import SharepointSettings
         from .share_point_browse_session import SharePointBrowseSession
         from .share_point_group import SharePointGroup
+        from .share_point_group_identity_mapping import SharePointGroupIdentityMapping
         from .share_point_group_member import SharePointGroupMember
+        from .share_point_identity_mapping import SharePointIdentityMapping
+        from .share_point_migrations_root import SharePointMigrationsRoot
         from .share_point_migration_event import SharePointMigrationEvent
         from .share_point_migration_finish_manifest_file_upload_event import SharePointMigrationFinishManifestFileUploadEvent
         from .share_point_migration_job import SharePointMigrationJob
@@ -15007,8 +15223,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .share_point_migration_job_progress_event import SharePointMigrationJobProgressEvent
         from .share_point_migration_job_queued_event import SharePointMigrationJobQueuedEvent
         from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
+        from .share_point_migration_task import SharePointMigrationTask
         from .share_point_protection_policy import SharePointProtectionPolicy
         from .share_point_restore_session import SharePointRestoreSession
+        from .share_point_root import SharePointRoot
+        from .share_point_user_identity_mapping import SharePointUserIdentityMapping
         from .shift import Shift
         from .shifts_role_definition import ShiftsRoleDefinition
         from .shift_preferences import ShiftPreferences

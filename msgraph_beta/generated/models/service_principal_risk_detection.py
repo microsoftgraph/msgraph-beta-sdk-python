@@ -47,7 +47,7 @@ class ServicePrincipalRiskDetection(Entity, Parsable):
     odata_type: Optional[str] = None
     # Request identifier of the sign-in activity associated with the risk detection. This property is null if the risk detection isn't associated with a sign-in activity. Supports $filter (eq).
     request_id: Optional[str] = None
-    # Details of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license are returned hidden. The possible values are: none, hidden, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.
+    # Details of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license are returned hidden.
     risk_detail: Optional[RiskDetail] = None
     # The type of risk event detected. The possible values are: investigationsThreatIntelligence, generic, adminConfirmedServicePrincipalCompromised, suspiciousSignins, leakedCredentials, anomalousServicePrincipalActivity, maliciousApplication, suspiciousApplication, suspiciousAPITraffic.
     risk_event_type: Optional[str] = None

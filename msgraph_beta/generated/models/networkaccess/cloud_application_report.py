@@ -7,7 +7,6 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .cloud_application_category import CloudApplicationCategory
     from .traffic_type import TrafficType
 
 @dataclass
@@ -17,8 +16,8 @@ class CloudApplicationReport(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The category property
-    category: Optional[CloudApplicationCategory] = None
+    # The list of categories for the application. Supported values are: Collaboration, Business Management, Consumer, Content management, CRM, Data services, Developer services, E-commerce, Education, ERP, Finance, Health, Human resources, IT infrastructure, Mail, Management, Marketing, Media, Productivity, Project management, Telecommunications, Tools, Travel, and Web design & hosting.
+    categories: Optional[list[str]] = None
     # The ID of the application in the SaaS application catalog.
     cloud_application_catalog_id: Optional[str] = None
     # The compliance score of the application.
@@ -68,14 +67,12 @@ class CloudApplicationReport(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .cloud_application_category import CloudApplicationCategory
         from .traffic_type import TrafficType
 
-        from .cloud_application_category import CloudApplicationCategory
         from .traffic_type import TrafficType
 
         fields: dict[str, Callable[[Any], None]] = {
-            "category": lambda n : setattr(self, 'category', n.get_enum_value(CloudApplicationCategory)),
+            "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "cloudApplicationCatalogId": lambda n : setattr(self, 'cloud_application_catalog_id', n.get_str_value()),
             "complianceScore": lambda n : setattr(self, 'compliance_score', n.get_int_value()),
             "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
@@ -103,7 +100,7 @@ class CloudApplicationReport(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_enum_value("category", self.category)
+        writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_str_value("cloudApplicationCatalogId", self.cloud_application_catalog_id)
         writer.write_int_value("complianceScore", self.compliance_score)
         writer.write_int_value("deviceCount", self.device_count)

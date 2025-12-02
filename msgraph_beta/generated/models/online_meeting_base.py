@@ -66,7 +66,7 @@ class OnlineMeetingBase(Entity, Parsable):
     chat_info: Optional[ChatInfo] = None
     # Specifies the configuration settings for meeting chat restrictions.
     chat_restrictions: Optional[ChatRestrictions] = None
-    # The expiryDateTime property
+    # Indicates the date and time when the meeting resource expires. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     expiry_date_time: Optional[datetime.datetime] = None
     # Indicates whether end-to-end encryption (E2EE) is enabled for the online meeting.
     is_end_to_end_encryption_enabled: Optional[bool] = None
@@ -80,6 +80,10 @@ class OnlineMeetingBase(Entity, Parsable):
     join_web_url: Optional[str] = None
     # Specifies which participants can bypass the meeting lobby.
     lobby_bypass_settings: Optional[LobbyBypassSettings] = None
+    # Provides the URL to the Teams meeting options page for the specified meeting. This link allows only the organizer to configure meeting settings.
+    meeting_options_web_url: Optional[str] = None
+    # Specifies the spoken language used during the meeting for recording and transcription purposes.
+    meeting_spoken_language_tag: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Indicates whether to record the meeting automatically.
@@ -185,6 +189,8 @@ class OnlineMeetingBase(Entity, Parsable):
             "joinMeetingIdSettings": lambda n : setattr(self, 'join_meeting_id_settings', n.get_object_value(JoinMeetingIdSettings)),
             "joinWebUrl": lambda n : setattr(self, 'join_web_url', n.get_str_value()),
             "lobbyBypassSettings": lambda n : setattr(self, 'lobby_bypass_settings', n.get_object_value(LobbyBypassSettings)),
+            "meetingOptionsWebUrl": lambda n : setattr(self, 'meeting_options_web_url', n.get_str_value()),
+            "meetingSpokenLanguageTag": lambda n : setattr(self, 'meeting_spoken_language_tag', n.get_str_value()),
             "recordAutomatically": lambda n : setattr(self, 'record_automatically', n.get_bool_value()),
             "shareMeetingChatHistoryDefault": lambda n : setattr(self, 'share_meeting_chat_history_default', n.get_enum_value(MeetingChatHistoryDefaultMode)),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
@@ -230,6 +236,8 @@ class OnlineMeetingBase(Entity, Parsable):
         writer.write_object_value("joinMeetingIdSettings", self.join_meeting_id_settings)
         writer.write_str_value("joinWebUrl", self.join_web_url)
         writer.write_object_value("lobbyBypassSettings", self.lobby_bypass_settings)
+        writer.write_str_value("meetingOptionsWebUrl", self.meeting_options_web_url)
+        writer.write_str_value("meetingSpokenLanguageTag", self.meeting_spoken_language_tag)
         writer.write_bool_value("recordAutomatically", self.record_automatically)
         writer.write_enum_value("shareMeetingChatHistoryDefault", self.share_meeting_chat_history_default)
         writer.write_str_value("subject", self.subject)

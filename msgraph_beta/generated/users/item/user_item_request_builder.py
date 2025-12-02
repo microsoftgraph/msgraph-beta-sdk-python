@@ -57,6 +57,7 @@ if TYPE_CHECKING:
     from .export_device_and_app_management_data_with_skip_with_top.export_device_and_app_management_data_with_skip_with_top_request_builder import ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder
     from .export_personal_data.export_personal_data_request_builder import ExportPersonalDataRequestBuilder
     from .extensions.extensions_request_builder import ExtensionsRequestBuilder
+    from .find_meeting_locations.find_meeting_locations_request_builder import FindMeetingLocationsRequestBuilder
     from .find_meeting_times.find_meeting_times_request_builder import FindMeetingTimesRequestBuilder
     from .find_rooms.find_rooms_request_builder import FindRoomsRequestBuilder
     from .find_rooms_with_room_list.find_rooms_with_room_list_request_builder import FindRoomsWithRoomListRequestBuilder
@@ -680,6 +681,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .extensions.extensions_request_builder import ExtensionsRequestBuilder
 
         return ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def find_meeting_locations(self) -> FindMeetingLocationsRequestBuilder:
+        """
+        Provides operations to call the findMeetingLocations method.
+        """
+        from .find_meeting_locations.find_meeting_locations_request_builder import FindMeetingLocationsRequestBuilder
+
+        return FindMeetingLocationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def find_meeting_times(self) -> FindMeetingTimesRequestBuilder:

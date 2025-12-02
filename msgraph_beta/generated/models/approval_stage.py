@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package_dynamic_approval_stage import AccessPackageDynamicApprovalStage
+    from .approver_information_visibility import ApproverInformationVisibility
     from .user_set import UserSet
 
 @dataclass
@@ -18,6 +19,8 @@ class ApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The number of days that a request can be pending a response before it is automatically denied.
     approval_stage_time_out_in_days: Optional[int] = None
+    # The approverInformationVisibility property
+    approver_information_visibility: Optional[ApproverInformationVisibility] = None
     # The users who are asked to approve requests if escalation is enabled and the primary approvers don't respond before the escalation time. This property can be a collection of singleUser, groupMembers, requestorManager, internalSponsors, and externalSponsors. When you create or update a policy, if there are no escalation approvers, or escalation approvers aren't required for the stage, assign an empty collection to this property.
     escalation_approvers: Optional[list[UserSet]] = None
     # If escalation is required, the time a request can be pending a response from a primary approver.
@@ -57,13 +60,16 @@ class ApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package_dynamic_approval_stage import AccessPackageDynamicApprovalStage
+        from .approver_information_visibility import ApproverInformationVisibility
         from .user_set import UserSet
 
         from .access_package_dynamic_approval_stage import AccessPackageDynamicApprovalStage
+        from .approver_information_visibility import ApproverInformationVisibility
         from .user_set import UserSet
 
         fields: dict[str, Callable[[Any], None]] = {
             "approvalStageTimeOutInDays": lambda n : setattr(self, 'approval_stage_time_out_in_days', n.get_int_value()),
+            "approverInformationVisibility": lambda n : setattr(self, 'approver_information_visibility', n.get_enum_value(ApproverInformationVisibility)),
             "escalationApprovers": lambda n : setattr(self, 'escalation_approvers', n.get_collection_of_object_values(UserSet)),
             "escalationTimeInMinutes": lambda n : setattr(self, 'escalation_time_in_minutes', n.get_int_value()),
             "isApproverJustificationRequired": lambda n : setattr(self, 'is_approver_justification_required', n.get_bool_value()),
@@ -82,6 +88,7 @@ class ApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_int_value("approvalStageTimeOutInDays", self.approval_stage_time_out_in_days)
+        writer.write_enum_value("approverInformationVisibility", self.approver_information_visibility)
         writer.write_collection_of_object_values("escalationApprovers", self.escalation_approvers)
         writer.write_int_value("escalationTimeInMinutes", self.escalation_time_in_minutes)
         writer.write_bool_value("isApproverJustificationRequired", self.is_approver_justification_required)

@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .admin.admin_request_builder import AdminRequestBuilder
     from .administrative_units.administrative_units_request_builder import AdministrativeUnitsRequestBuilder
     from .agents.agents_request_builder import AgentsRequestBuilder
+    from .agent_registry.agent_registry_request_builder import AgentRegistryRequestBuilder
     from .agreements.agreements_request_builder import AgreementsRequestBuilder
     from .agreement_acceptances.agreement_acceptances_request_builder import AgreementAcceptancesRequestBuilder
     from .allowed_data_locations.allowed_data_locations_request_builder import AllowedDataLocationsRequestBuilder
@@ -98,7 +99,6 @@ if TYPE_CHECKING:
     from .payload_response.payload_response_request_builder import PayloadResponseRequestBuilder
     from .permission_grants.permission_grants_request_builder import PermissionGrantsRequestBuilder
     from .places.places_request_builder import PlacesRequestBuilder
-    from .places_with_place_id.places_with_place_id_request_builder import PlacesWithPlaceIdRequestBuilder
     from .planner.planner_request_builder import PlannerRequestBuilder
     from .policies.policies_request_builder import PoliciesRequestBuilder
     from .print.print_request_builder import PrintRequestBuilder
@@ -229,18 +229,6 @@ class BaseGraphServiceClient(BaseRequestBuilder):
 
         return GroupsWithUniqueNameRequestBuilder(self.request_adapter, self.path_parameters, unique_name)
     
-    def places_with_place_id(self,place_id: str) -> PlacesWithPlaceIdRequestBuilder:
-        """
-        Provides operations to manage the collection of place entities.
-        param place_id: Alternate key of place
-        Returns: PlacesWithPlaceIdRequestBuilder
-        """
-        if place_id is None:
-            raise TypeError("place_id cannot be null.")
-        from .places_with_place_id.places_with_place_id_request_builder import PlacesWithPlaceIdRequestBuilder
-
-        return PlacesWithPlaceIdRequestBuilder(self.request_adapter, self.path_parameters, place_id)
-    
     def service_principals_with_app_id(self,app_id: str) -> ServicePrincipalsWithAppIdRequestBuilder:
         """
         Provides operations to manage the collection of servicePrincipal entities.
@@ -309,6 +297,15 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         from .administrative_units.administrative_units_request_builder import AdministrativeUnitsRequestBuilder
 
         return AdministrativeUnitsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def agent_registry(self) -> AgentRegistryRequestBuilder:
+        """
+        Provides operations to manage the agentRegistry singleton.
+        """
+        from .agent_registry.agent_registry_request_builder import AgentRegistryRequestBuilder
+
+        return AgentRegistryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def agents(self) -> AgentsRequestBuilder:

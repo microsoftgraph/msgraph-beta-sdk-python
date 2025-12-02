@@ -15,6 +15,10 @@ class AgentSignIn(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The subject's parent object ID. This is either the id of the agentIdentity or agentIdentityBlueprint.
+    agent_subject_parent_id: Optional[str] = None
+    # The agentSubjectType property
+    agent_subject_type: Optional[AgentType] = None
     # The agentType property
     agent_type: Optional[AgentType] = None
     # The OdataType property
@@ -43,6 +47,8 @@ class AgentSignIn(AdditionalDataHolder, BackedModel, Parsable):
         from .agent_type import AgentType
 
         fields: dict[str, Callable[[Any], None]] = {
+            "agentSubjectParentId": lambda n : setattr(self, 'agent_subject_parent_id', n.get_str_value()),
+            "agentSubjectType": lambda n : setattr(self, 'agent_subject_type', n.get_enum_value(AgentType)),
             "agentType": lambda n : setattr(self, 'agent_type', n.get_enum_value(AgentType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "parentAppId": lambda n : setattr(self, 'parent_app_id', n.get_str_value()),
@@ -57,6 +63,8 @@ class AgentSignIn(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_str_value("agentSubjectParentId", self.agent_subject_parent_id)
+        writer.write_enum_value("agentSubjectType", self.agent_subject_type)
         writer.write_enum_value("agentType", self.agent_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("parentAppId", self.parent_app_id)

@@ -11,4 +11,5 @@ class PropertyType(str, Enum):
     DoubleCollection = "doubleCollection",
     DateTimeCollection = "dateTimeCollection",
     UnknownFutureValue = "unknownFutureValue",
+    Principal = "principal",
 

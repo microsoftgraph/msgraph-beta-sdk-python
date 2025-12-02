@@ -29,7 +29,9 @@ if TYPE_CHECKING:
     from .access_package_resource_environments.access_package_resource_environments_request_builder import AccessPackageResourceEnvironmentsRequestBuilder
     from .access_package_resource_requests.access_package_resource_requests_request_builder import AccessPackageResourceRequestsRequestBuilder
     from .access_package_resource_role_scopes.access_package_resource_role_scopes_request_builder import AccessPackageResourceRoleScopesRequestBuilder
+    from .access_package_suggestions.access_package_suggestions_request_builder import AccessPackageSuggestionsRequestBuilder
     from .assignment_requests.assignment_requests_request_builder import AssignmentRequestsRequestBuilder
+    from .available_access_packages.available_access_packages_request_builder import AvailableAccessPackagesRequestBuilder
     from .connected_organizations.connected_organizations_request_builder import ConnectedOrganizationsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
     from .subjects.subjects_request_builder import SubjectsRequestBuilder
@@ -284,6 +286,15 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         return AccessPackageResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def access_package_suggestions(self) -> AccessPackageSuggestionsRequestBuilder:
+        """
+        Provides operations to manage the accessPackageSuggestions property of the microsoft.graph.entitlementManagement entity.
+        """
+        from .access_package_suggestions.access_package_suggestions_request_builder import AccessPackageSuggestionsRequestBuilder
+
+        return AccessPackageSuggestionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def access_packages(self) -> AccessPackagesRequestBuilder:
         """
         Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.
@@ -300,6 +311,15 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         from .assignment_requests.assignment_requests_request_builder import AssignmentRequestsRequestBuilder
 
         return AssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def available_access_packages(self) -> AvailableAccessPackagesRequestBuilder:
+        """
+        Provides operations to manage the availableAccessPackages property of the microsoft.graph.entitlementManagement entity.
+        """
+        from .available_access_packages.available_access_packages_request_builder import AvailableAccessPackagesRequestBuilder
+
+        return AvailableAccessPackagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def connected_organizations(self) -> ConnectedOrganizationsRequestBuilder:

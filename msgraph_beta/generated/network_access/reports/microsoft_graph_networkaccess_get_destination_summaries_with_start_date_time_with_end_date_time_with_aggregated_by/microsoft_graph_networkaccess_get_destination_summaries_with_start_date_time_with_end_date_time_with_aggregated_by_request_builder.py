@@ -40,7 +40,7 @@ class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEnd
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilderGetQueryParameters]] = None) -> Optional[GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByGetResponse]:
         """
-        Get counts of the visits to the top destination aggregations.
+        Get counts of the visits to the top destination aggregations as logged in Global Secure Access
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByGetResponse]
         """
@@ -60,7 +60,7 @@ class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEnd
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get counts of the visits to the top destination aggregations.
+        Get counts of the visits to the top destination aggregations as logged in Global Secure Access
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -82,7 +82,7 @@ class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEnd
     @dataclass
     class MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilderGetQueryParameters():
         """
-        Get counts of the visits to the top destination aggregations.
+        Get counts of the visits to the top destination aggregations as logged in Global Secure Access
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

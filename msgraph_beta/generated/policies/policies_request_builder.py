@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .authentication_methods_policy.authentication_methods_policy_request_builder import AuthenticationMethodsPolicyRequestBuilder
     from .authentication_strength_policies.authentication_strength_policies_request_builder import AuthenticationStrengthPoliciesRequestBuilder
     from .authorization_policy.authorization_policy_request_builder import AuthorizationPolicyRequestBuilder
+    from .b2b_management_policies.b2b_management_policies_request_builder import B2bManagementPoliciesRequestBuilder
     from .b2c_authentication_methods_policy.b2c_authentication_methods_policy_request_builder import B2cAuthenticationMethodsPolicyRequestBuilder
     from .claims_mapping_policies.claims_mapping_policies_request_builder import ClaimsMappingPoliciesRequestBuilder
     from .conditional_access_policies.conditional_access_policies_request_builder import ConditionalAccessPoliciesRequestBuilder
@@ -39,6 +40,7 @@ if TYPE_CHECKING:
     from .identity_security_defaults_enforcement_policy.identity_security_defaults_enforcement_policy_request_builder import IdentitySecurityDefaultsEnforcementPolicyRequestBuilder
     from .mobile_app_management_policies.mobile_app_management_policies_request_builder import MobileAppManagementPoliciesRequestBuilder
     from .mobile_device_management_policies.mobile_device_management_policies_request_builder import MobileDeviceManagementPoliciesRequestBuilder
+    from .on_prem_authentication_policies.on_prem_authentication_policies_request_builder import OnPremAuthenticationPoliciesRequestBuilder
     from .permission_grant_policies.permission_grant_policies_request_builder import PermissionGrantPoliciesRequestBuilder
     from .permission_grant_pre_approval_policies.permission_grant_pre_approval_policies_request_builder import PermissionGrantPreApprovalPoliciesRequestBuilder
     from .role_management_policies.role_management_policies_request_builder import RoleManagementPoliciesRequestBuilder
@@ -212,6 +214,15 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         return AuthorizationPolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def b2b_management_policies(self) -> B2bManagementPoliciesRequestBuilder:
+        """
+        Provides operations to manage the b2bManagementPolicies property of the microsoft.graph.policyRoot entity.
+        """
+        from .b2b_management_policies.b2b_management_policies_request_builder import B2bManagementPoliciesRequestBuilder
+
+        return B2bManagementPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def b2c_authentication_methods_policy(self) -> B2cAuthenticationMethodsPolicyRequestBuilder:
         """
         Provides operations to manage the b2cAuthenticationMethodsPolicy property of the microsoft.graph.policyRoot entity.
@@ -345,6 +356,15 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         from .mobile_device_management_policies.mobile_device_management_policies_request_builder import MobileDeviceManagementPoliciesRequestBuilder
 
         return MobileDeviceManagementPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def on_prem_authentication_policies(self) -> OnPremAuthenticationPoliciesRequestBuilder:
+        """
+        Provides operations to manage the onPremAuthenticationPolicies property of the microsoft.graph.policyRoot entity.
+        """
+        from .on_prem_authentication_policies.on_prem_authentication_policies_request_builder import OnPremAuthenticationPoliciesRequestBuilder
+
+        return OnPremAuthenticationPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def permission_grant_policies(self) -> PermissionGrantPoliciesRequestBuilder:

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.workspace import Workspace
     from .check_ins.check_ins_request_builder import CheckInsRequestBuilder
+    from .children.children_request_builder import ChildrenRequestBuilder
 
 class GraphWorkspaceRequestBuilder(BaseRequestBuilder):
     """
@@ -81,6 +82,15 @@ class GraphWorkspaceRequestBuilder(BaseRequestBuilder):
         from .check_ins.check_ins_request_builder import CheckInsRequestBuilder
 
         return CheckInsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def children(self) -> ChildrenRequestBuilder:
+        """
+        Provides operations to manage the children property of the microsoft.graph.place entity.
+        """
+        from .children.children_request_builder import ChildrenRequestBuilder
+
+        return ChildrenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GraphWorkspaceRequestBuilderGetQueryParameters():
