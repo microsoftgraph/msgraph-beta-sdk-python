@@ -11,7 +11,7 @@ from .ai_interaction_entity import AiInteractionEntity
 
 @dataclass
 class AiAgentInfo(AiInteractionEntity, Parsable):
-    # The blueprintId property
+    # Identifier of the parent agent blueprint that defines the identity and configuration of the agent.
     blueprint_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

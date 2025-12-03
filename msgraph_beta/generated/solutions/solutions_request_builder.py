@@ -22,6 +22,8 @@ if TYPE_CHECKING:
     from .booking_currencies.booking_currencies_request_builder import BookingCurrenciesRequestBuilder
     from .business_scenarios.business_scenarios_request_builder import BusinessScenariosRequestBuilder
     from .business_scenarios_with_unique_name.business_scenarios_with_unique_name_request_builder import BusinessScenariosWithUniqueNameRequestBuilder
+    from .migrations.migrations_request_builder import MigrationsRequestBuilder
+    from .share_point.share_point_request_builder import SharePointRequestBuilder
     from .virtual_events.virtual_events_request_builder import VirtualEventsRequestBuilder
 
 class SolutionsRequestBuilder(BaseRequestBuilder):
@@ -172,6 +174,24 @@ class SolutionsRequestBuilder(BaseRequestBuilder):
         from .business_scenarios.business_scenarios_request_builder import BusinessScenariosRequestBuilder
 
         return BusinessScenariosRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def migrations(self) -> MigrationsRequestBuilder:
+        """
+        Provides operations to manage the migrations property of the microsoft.graph.solutionsRoot entity.
+        """
+        from .migrations.migrations_request_builder import MigrationsRequestBuilder
+
+        return MigrationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def share_point(self) -> SharePointRequestBuilder:
+        """
+        Provides operations to manage the sharePoint property of the microsoft.graph.solutionsRoot entity.
+        """
+        from .share_point.share_point_request_builder import SharePointRequestBuilder
+
+        return SharePointRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def virtual_events(self) -> VirtualEventsRequestBuilder:

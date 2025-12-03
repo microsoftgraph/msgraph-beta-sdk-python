@@ -26,7 +26,7 @@ class Presence(Entity, Parsable):
     sequence_number: Optional[str] = None
     # The presence status message of a user.
     status_message: Optional[PresenceStatusMessage] = None
-    # The workLocation property
+    # Represents the user’s aggregated work location state.
     work_location: Optional[UserWorkLocation] = None
     
     @staticmethod

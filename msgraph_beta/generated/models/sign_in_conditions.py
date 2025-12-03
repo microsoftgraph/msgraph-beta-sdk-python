@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .agent_id_risk_level import AgentIdRiskLevel
     from .authentication_flow import AuthenticationFlow
     from .conditional_access_client_app import ConditionalAccessClientApp
     from .conditional_access_device_platform import ConditionalAccessDevicePlatform
@@ -20,6 +21,8 @@ class SignInConditions(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # Agent identity risk levels included in the policy. Possible values are: none, low, medium, high, unknownFutureValue. This enumeration is multivalued.
+    agent_id_risk_level: Optional[AgentIdRiskLevel] = None
     # Type of authentication flow. The possible value is: deviceCodeFlow or authenticationTransfer. Default value is none.
     authentication_flow: Optional[AuthenticationFlow] = None
     # Client application type. The possible value is: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other, unknownFutureValue. Default value is all.
@@ -59,6 +62,7 @@ class SignInConditions(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .agent_id_risk_level import AgentIdRiskLevel
         from .authentication_flow import AuthenticationFlow
         from .conditional_access_client_app import ConditionalAccessClientApp
         from .conditional_access_device_platform import ConditionalAccessDevicePlatform
@@ -66,6 +70,7 @@ class SignInConditions(AdditionalDataHolder, BackedModel, Parsable):
         from .insider_risk_level import InsiderRiskLevel
         from .risk_level import RiskLevel
 
+        from .agent_id_risk_level import AgentIdRiskLevel
         from .authentication_flow import AuthenticationFlow
         from .conditional_access_client_app import ConditionalAccessClientApp
         from .conditional_access_device_platform import ConditionalAccessDevicePlatform
@@ -74,6 +79,7 @@ class SignInConditions(AdditionalDataHolder, BackedModel, Parsable):
         from .risk_level import RiskLevel
 
         fields: dict[str, Callable[[Any], None]] = {
+            "agentIdRiskLevel": lambda n : setattr(self, 'agent_id_risk_level', n.get_enum_value(AgentIdRiskLevel)),
             "authenticationFlow": lambda n : setattr(self, 'authentication_flow', n.get_object_value(AuthenticationFlow)),
             "clientAppType": lambda n : setattr(self, 'client_app_type', n.get_enum_value(ConditionalAccessClientApp)),
             "country": lambda n : setattr(self, 'country', n.get_str_value()),
@@ -96,6 +102,7 @@ class SignInConditions(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("agentIdRiskLevel", self.agent_id_risk_level)
         writer.write_object_value("authenticationFlow", self.authentication_flow)
         writer.write_enum_value("clientAppType", self.client_app_type)
         writer.write_str_value("country", self.country)

@@ -16,7 +16,9 @@ if TYPE_CHECKING:
     from .access_package_resource_request import AccessPackageResourceRequest
     from .access_package_resource_role_scope import AccessPackageResourceRoleScope
     from .access_package_subject import AccessPackageSubject
+    from .access_package_suggestion import AccessPackageSuggestion
     from .approval import Approval
+    from .available_access_package import AvailableAccessPackage
     from .connected_organization import ConnectedOrganization
     from .entitlement_management_settings import EntitlementManagementSettings
     from .entity import Entity
@@ -45,10 +47,14 @@ class EntitlementManagement(Entity, Parsable):
     access_package_resource_role_scopes: Optional[list[AccessPackageResourceRoleScope]] = None
     # A reference to a resource associated with an access package catalog.
     access_package_resources: Optional[list[AccessPackageResource]] = None
+    # The accessPackageSuggestions property
+    access_package_suggestions: Optional[list[AccessPackageSuggestion]] = None
     # Represents access package objects.
     access_packages: Optional[list[AccessPackage]] = None
     # Represents access package assignment requests created by or on behalf of a user.
     assignment_requests: Optional[list[AccessPackageAssignmentRequest]] = None
+    # The availableAccessPackages property
+    available_access_packages: Optional[list[AvailableAccessPackage]] = None
     # Represents references to a directory or domain of another organization whose users can request access.
     connected_organizations: Optional[list[ConnectedOrganization]] = None
     # The OdataType property
@@ -85,7 +91,9 @@ class EntitlementManagement(Entity, Parsable):
         from .access_package_resource_request import AccessPackageResourceRequest
         from .access_package_resource_role_scope import AccessPackageResourceRoleScope
         from .access_package_subject import AccessPackageSubject
+        from .access_package_suggestion import AccessPackageSuggestion
         from .approval import Approval
+        from .available_access_package import AvailableAccessPackage
         from .connected_organization import ConnectedOrganization
         from .entitlement_management_settings import EntitlementManagementSettings
         from .entity import Entity
@@ -101,7 +109,9 @@ class EntitlementManagement(Entity, Parsable):
         from .access_package_resource_request import AccessPackageResourceRequest
         from .access_package_resource_role_scope import AccessPackageResourceRoleScope
         from .access_package_subject import AccessPackageSubject
+        from .access_package_suggestion import AccessPackageSuggestion
         from .approval import Approval
+        from .available_access_package import AvailableAccessPackage
         from .connected_organization import ConnectedOrganization
         from .entitlement_management_settings import EntitlementManagementSettings
         from .entity import Entity
@@ -117,8 +127,10 @@ class EntitlementManagement(Entity, Parsable):
             "accessPackageResourceRequests": lambda n : setattr(self, 'access_package_resource_requests', n.get_collection_of_object_values(AccessPackageResourceRequest)),
             "accessPackageResourceRoleScopes": lambda n : setattr(self, 'access_package_resource_role_scopes', n.get_collection_of_object_values(AccessPackageResourceRoleScope)),
             "accessPackageResources": lambda n : setattr(self, 'access_package_resources', n.get_collection_of_object_values(AccessPackageResource)),
+            "accessPackageSuggestions": lambda n : setattr(self, 'access_package_suggestions', n.get_collection_of_object_values(AccessPackageSuggestion)),
             "accessPackages": lambda n : setattr(self, 'access_packages', n.get_collection_of_object_values(AccessPackage)),
             "assignmentRequests": lambda n : setattr(self, 'assignment_requests', n.get_collection_of_object_values(AccessPackageAssignmentRequest)),
+            "availableAccessPackages": lambda n : setattr(self, 'available_access_packages', n.get_collection_of_object_values(AvailableAccessPackage)),
             "connectedOrganizations": lambda n : setattr(self, 'connected_organizations', n.get_collection_of_object_values(ConnectedOrganization)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(EntitlementManagementSettings)),
             "subjects": lambda n : setattr(self, 'subjects', n.get_collection_of_object_values(AccessPackageSubject)),
@@ -146,8 +158,10 @@ class EntitlementManagement(Entity, Parsable):
         writer.write_collection_of_object_values("accessPackageResourceRequests", self.access_package_resource_requests)
         writer.write_collection_of_object_values("accessPackageResourceRoleScopes", self.access_package_resource_role_scopes)
         writer.write_collection_of_object_values("accessPackageResources", self.access_package_resources)
+        writer.write_collection_of_object_values("accessPackageSuggestions", self.access_package_suggestions)
         writer.write_collection_of_object_values("accessPackages", self.access_packages)
         writer.write_collection_of_object_values("assignmentRequests", self.assignment_requests)
+        writer.write_collection_of_object_values("availableAccessPackages", self.available_access_packages)
         writer.write_collection_of_object_values("connectedOrganizations", self.connected_organizations)
         writer.write_object_value("settings", self.settings)
         writer.write_collection_of_object_values("subjects", self.subjects)

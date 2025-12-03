@@ -9,10 +9,14 @@ if TYPE_CHECKING:
     from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
     from .administrative_unit import AdministrativeUnit
     from .agent_identity import AgentIdentity
+    from .agent_identity_blueprint import AgentIdentityBlueprint
+    from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
+    from .agent_user import AgentUser
     from .application import Application
     from .app_management_policy import AppManagementPolicy
     from .app_role_assignment import AppRoleAssignment
     from .authorization_policy import AuthorizationPolicy
+    from .b2b_management_policy import B2bManagementPolicy
     from .certificate_authority_detail import CertificateAuthorityDetail
     from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
     from .certificate_based_auth_pki import CertificateBasedAuthPki
@@ -33,11 +37,13 @@ if TYPE_CHECKING:
     from .external_user_profile import ExternalUserProfile
     from .federated_token_validation_policy import FederatedTokenValidationPolicy
     from .group import Group
+    from .group_resource import GroupResource
     from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
     from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
     from .mailbox import Mailbox
     from .multi_tenant_organization_member import MultiTenantOrganizationMember
     from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
+    from .on_prem_authentication_policy import OnPremAuthenticationPolicy
     from .organization import Organization
     from .org_contact import OrgContact
     from .pending_external_user_profile import PendingExternalUserProfile
@@ -91,6 +97,18 @@ class DirectoryObject(Entity, Parsable):
             from .agent_identity import AgentIdentity
 
             return AgentIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentityBlueprint".casefold():
+            from .agent_identity_blueprint import AgentIdentityBlueprint
+
+            return AgentIdentityBlueprint()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentityBlueprintPrincipal".casefold():
+            from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
+
+            return AgentIdentityBlueprintPrincipal()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentUser".casefold():
+            from .agent_user import AgentUser
+
+            return AgentUser()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.application".casefold():
             from .application import Application
 
@@ -107,6 +125,10 @@ class DirectoryObject(Entity, Parsable):
             from .authorization_policy import AuthorizationPolicy
 
             return AuthorizationPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2bManagementPolicy".casefold():
+            from .b2b_management_policy import B2bManagementPolicy
+
+            return B2bManagementPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.certificateAuthorityDetail".casefold():
             from .certificate_authority_detail import CertificateAuthorityDetail
 
@@ -183,6 +205,10 @@ class DirectoryObject(Entity, Parsable):
             from .group import Group
 
             return Group()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupResource".casefold():
+            from .group_resource import GroupResource
+
+            return GroupResource()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.homeRealmDiscoveryPolicy".casefold():
             from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
 
@@ -203,6 +229,10 @@ class DirectoryObject(Entity, Parsable):
             from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
 
             return MutualTlsOauthConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPremAuthenticationPolicy".casefold():
+            from .on_prem_authentication_policy import OnPremAuthenticationPolicy
+
+            return OnPremAuthenticationPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.organization".casefold():
             from .organization import Organization
 
@@ -281,10 +311,14 @@ class DirectoryObject(Entity, Parsable):
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
         from .administrative_unit import AdministrativeUnit
         from .agent_identity import AgentIdentity
+        from .agent_identity_blueprint import AgentIdentityBlueprint
+        from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
+        from .agent_user import AgentUser
         from .application import Application
         from .app_management_policy import AppManagementPolicy
         from .app_role_assignment import AppRoleAssignment
         from .authorization_policy import AuthorizationPolicy
+        from .b2b_management_policy import B2bManagementPolicy
         from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
         from .certificate_based_auth_pki import CertificateBasedAuthPki
@@ -305,11 +339,13 @@ class DirectoryObject(Entity, Parsable):
         from .external_user_profile import ExternalUserProfile
         from .federated_token_validation_policy import FederatedTokenValidationPolicy
         from .group import Group
+        from .group_resource import GroupResource
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
         from .mailbox import Mailbox
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
         from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
+        from .on_prem_authentication_policy import OnPremAuthenticationPolicy
         from .organization import Organization
         from .org_contact import OrgContact
         from .pending_external_user_profile import PendingExternalUserProfile
@@ -331,10 +367,14 @@ class DirectoryObject(Entity, Parsable):
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
         from .administrative_unit import AdministrativeUnit
         from .agent_identity import AgentIdentity
+        from .agent_identity_blueprint import AgentIdentityBlueprint
+        from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
+        from .agent_user import AgentUser
         from .application import Application
         from .app_management_policy import AppManagementPolicy
         from .app_role_assignment import AppRoleAssignment
         from .authorization_policy import AuthorizationPolicy
+        from .b2b_management_policy import B2bManagementPolicy
         from .certificate_authority_detail import CertificateAuthorityDetail
         from .certificate_based_application_configuration import CertificateBasedApplicationConfiguration
         from .certificate_based_auth_pki import CertificateBasedAuthPki
@@ -355,11 +395,13 @@ class DirectoryObject(Entity, Parsable):
         from .external_user_profile import ExternalUserProfile
         from .federated_token_validation_policy import FederatedTokenValidationPolicy
         from .group import Group
+        from .group_resource import GroupResource
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
         from .mailbox import Mailbox
         from .multi_tenant_organization_member import MultiTenantOrganizationMember
         from .mutual_tls_oauth_configuration import MutualTlsOauthConfiguration
+        from .on_prem_authentication_policy import OnPremAuthenticationPolicy
         from .organization import Organization
         from .org_contact import OrgContact
         from .pending_external_user_profile import PendingExternalUserProfile

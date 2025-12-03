@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
+    from .agent_identity_blueprint import AgentIdentityBlueprint
     from .api_application import ApiApplication
     from .app_management_policy import AppManagementPolicy
     from .app_role import AppRole
@@ -56,6 +57,8 @@ class Application(DirectoryObject, Parsable):
     certification: Optional[Certification] = None
     # The connectorGroup the application is using with Microsoft Entra application proxy. Nullable.
     connector_group: Optional[ConnectorGroup] = None
+    # The globally unique appId (called Application (client) ID on the Microsoft Entra admin center) of the application that created this application. Set internally by Microsoft Entra ID. Read-only.
+    created_by_app_id: Optional[str] = None
     # The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderby.
     created_date_time: Optional[datetime.datetime] = None
     # Supports $filter (/$count eq 0, /$count ne 0). Read-only.
@@ -148,6 +151,15 @@ class Application(DirectoryObject, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentityBlueprint".casefold():
+            from .agent_identity_blueprint import AgentIdentityBlueprint
+
+            return AgentIdentityBlueprint()
         return Application()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -155,6 +167,7 @@ class Application(DirectoryObject, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .agent_identity_blueprint import AgentIdentityBlueprint
         from .api_application import ApiApplication
         from .app_management_policy import AppManagementPolicy
         from .app_role import AppRole
@@ -184,6 +197,7 @@ class Application(DirectoryObject, Parsable):
         from .web_application import WebApplication
         from .windows_application import WindowsApplication
 
+        from .agent_identity_blueprint import AgentIdentityBlueprint
         from .api_application import ApiApplication
         from .app_management_policy import AppManagementPolicy
         from .app_role import AppRole
@@ -221,6 +235,7 @@ class Application(DirectoryObject, Parsable):
             "authenticationBehaviors": lambda n : setattr(self, 'authentication_behaviors', n.get_object_value(AuthenticationBehaviors)),
             "certification": lambda n : setattr(self, 'certification', n.get_object_value(Certification)),
             "connectorGroup": lambda n : setattr(self, 'connector_group', n.get_object_value(ConnectorGroup)),
+            "createdByAppId": lambda n : setattr(self, 'created_by_app_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "createdOnBehalfOf": lambda n : setattr(self, 'created_on_behalf_of', n.get_object_value(DirectoryObject)),
             "defaultRedirectUri": lambda n : setattr(self, 'default_redirect_uri', n.get_str_value()),
@@ -283,6 +298,7 @@ class Application(DirectoryObject, Parsable):
         writer.write_object_value("authenticationBehaviors", self.authentication_behaviors)
         writer.write_object_value("certification", self.certification)
         writer.write_object_value("connectorGroup", self.connector_group)
+        writer.write_str_value("createdByAppId", self.created_by_app_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("createdOnBehalfOf", self.created_on_behalf_of)
         writer.write_str_value("defaultRedirectUri", self.default_redirect_uri)

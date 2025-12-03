@@ -17,7 +17,7 @@ class SensitivityLabel(Entity, Parsable):
     content_formats: Optional[list[str]] = None
     # The admin-defined description for the label.
     description: Optional[str] = None
-    # Indicates whether the label has protection actions configured.
+    # Indicates whether the label has protection actions (such as encryption or do not forward) configured.
     has_protection: Optional[bool] = None
     # Indicates whether the label is active or not. Active labels should be hidden or disabled in the UI.
     is_active: Optional[bool] = None

@@ -18,7 +18,7 @@ class UserWorkLocation(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The placeId property
+    # Identifier of the place (when applicable).
     place_id: Optional[str] = None
     # The source property
     source: Optional[WorkLocationSource] = None

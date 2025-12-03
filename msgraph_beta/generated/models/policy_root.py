@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .authentication_methods_policy import AuthenticationMethodsPolicy
     from .authentication_strength_policy import AuthenticationStrengthPolicy
     from .authorization_policy import AuthorizationPolicy
+    from .b2b_management_policy import B2bManagementPolicy
     from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
     from .claims_mapping_policy import ClaimsMappingPolicy
     from .conditional_access_policy import ConditionalAccessPolicy
@@ -27,6 +28,7 @@ if TYPE_CHECKING:
     from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
     from .mobile_app_management_policy import MobileAppManagementPolicy
     from .mobile_device_management_policy import MobileDeviceManagementPolicy
+    from .on_prem_authentication_policy import OnPremAuthenticationPolicy
     from .permission_grant_policy import PermissionGrantPolicy
     from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
     from .policy_deletable_root import PolicyDeletableRoot
@@ -57,6 +59,8 @@ class PolicyRoot(Entity, Parsable):
     authentication_strength_policies: Optional[list[AuthenticationStrengthPolicy]] = None
     # The policy that controls Microsoft Entra authorization settings.
     authorization_policy: Optional[list[AuthorizationPolicy]] = None
+    # The policy to manage Microsoft Entra B2B features in Microsoft Entra External ID for workforce tenants.
+    b2b_management_policies: Optional[list[B2bManagementPolicy]] = None
     # The Azure AD B2C policies that define how end users register via local accounts.
     b2c_authentication_methods_policy: Optional[B2cAuthenticationMethodsPolicy] = None
     # The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
@@ -89,6 +93,8 @@ class PolicyRoot(Entity, Parsable):
     mobile_device_management_policies: Optional[list[MobileDeviceManagementPolicy]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The policy that controls how authentication requests from on-premises environments are managed.
+    on_prem_authentication_policies: Optional[list[OnPremAuthenticationPolicy]] = None
     # The policy that specifies the conditions under which consent can be granted.
     permission_grant_policies: Optional[list[PermissionGrantPolicy]] = None
     # Policies that specify the conditions under which consent can be granted to a specific application.
@@ -128,6 +134,7 @@ class PolicyRoot(Entity, Parsable):
         from .authentication_methods_policy import AuthenticationMethodsPolicy
         from .authentication_strength_policy import AuthenticationStrengthPolicy
         from .authorization_policy import AuthorizationPolicy
+        from .b2b_management_policy import B2bManagementPolicy
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .conditional_access_policy import ConditionalAccessPolicy
@@ -142,6 +149,7 @@ class PolicyRoot(Entity, Parsable):
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
         from .mobile_app_management_policy import MobileAppManagementPolicy
         from .mobile_device_management_policy import MobileDeviceManagementPolicy
+        from .on_prem_authentication_policy import OnPremAuthenticationPolicy
         from .permission_grant_policy import PermissionGrantPolicy
         from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .policy_deletable_root import PolicyDeletableRoot
@@ -160,6 +168,7 @@ class PolicyRoot(Entity, Parsable):
         from .authentication_methods_policy import AuthenticationMethodsPolicy
         from .authentication_strength_policy import AuthenticationStrengthPolicy
         from .authorization_policy import AuthorizationPolicy
+        from .b2b_management_policy import B2bManagementPolicy
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .conditional_access_policy import ConditionalAccessPolicy
@@ -174,6 +183,7 @@ class PolicyRoot(Entity, Parsable):
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
         from .mobile_app_management_policy import MobileAppManagementPolicy
         from .mobile_device_management_policy import MobileDeviceManagementPolicy
+        from .on_prem_authentication_policy import OnPremAuthenticationPolicy
         from .permission_grant_policy import PermissionGrantPolicy
         from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .policy_deletable_root import PolicyDeletableRoot
@@ -193,6 +203,7 @@ class PolicyRoot(Entity, Parsable):
             "authenticationMethodsPolicy": lambda n : setattr(self, 'authentication_methods_policy', n.get_object_value(AuthenticationMethodsPolicy)),
             "authenticationStrengthPolicies": lambda n : setattr(self, 'authentication_strength_policies', n.get_collection_of_object_values(AuthenticationStrengthPolicy)),
             "authorizationPolicy": lambda n : setattr(self, 'authorization_policy', n.get_collection_of_object_values(AuthorizationPolicy)),
+            "b2bManagementPolicies": lambda n : setattr(self, 'b2b_management_policies', n.get_collection_of_object_values(B2bManagementPolicy)),
             "b2cAuthenticationMethodsPolicy": lambda n : setattr(self, 'b2c_authentication_methods_policy', n.get_object_value(B2cAuthenticationMethodsPolicy)),
             "claimsMappingPolicies": lambda n : setattr(self, 'claims_mapping_policies', n.get_collection_of_object_values(ClaimsMappingPolicy)),
             "conditionalAccessPolicies": lambda n : setattr(self, 'conditional_access_policies', n.get_collection_of_object_values(ConditionalAccessPolicy)),
@@ -208,6 +219,7 @@ class PolicyRoot(Entity, Parsable):
             "identitySecurityDefaultsEnforcementPolicy": lambda n : setattr(self, 'identity_security_defaults_enforcement_policy', n.get_object_value(IdentitySecurityDefaultsEnforcementPolicy)),
             "mobileAppManagementPolicies": lambda n : setattr(self, 'mobile_app_management_policies', n.get_collection_of_object_values(MobileAppManagementPolicy)),
             "mobileDeviceManagementPolicies": lambda n : setattr(self, 'mobile_device_management_policies', n.get_collection_of_object_values(MobileDeviceManagementPolicy)),
+            "onPremAuthenticationPolicies": lambda n : setattr(self, 'on_prem_authentication_policies', n.get_collection_of_object_values(OnPremAuthenticationPolicy)),
             "permissionGrantPolicies": lambda n : setattr(self, 'permission_grant_policies', n.get_collection_of_object_values(PermissionGrantPolicy)),
             "permissionGrantPreApprovalPolicies": lambda n : setattr(self, 'permission_grant_pre_approval_policies', n.get_collection_of_object_values(PermissionGrantPreApprovalPolicy)),
             "roleManagementPolicies": lambda n : setattr(self, 'role_management_policies', n.get_collection_of_object_values(UnifiedRoleManagementPolicy)),
@@ -237,6 +249,7 @@ class PolicyRoot(Entity, Parsable):
         writer.write_object_value("authenticationMethodsPolicy", self.authentication_methods_policy)
         writer.write_collection_of_object_values("authenticationStrengthPolicies", self.authentication_strength_policies)
         writer.write_collection_of_object_values("authorizationPolicy", self.authorization_policy)
+        writer.write_collection_of_object_values("b2bManagementPolicies", self.b2b_management_policies)
         writer.write_object_value("b2cAuthenticationMethodsPolicy", self.b2c_authentication_methods_policy)
         writer.write_collection_of_object_values("claimsMappingPolicies", self.claims_mapping_policies)
         writer.write_collection_of_object_values("conditionalAccessPolicies", self.conditional_access_policies)
@@ -252,6 +265,7 @@ class PolicyRoot(Entity, Parsable):
         writer.write_object_value("identitySecurityDefaultsEnforcementPolicy", self.identity_security_defaults_enforcement_policy)
         writer.write_collection_of_object_values("mobileAppManagementPolicies", self.mobile_app_management_policies)
         writer.write_collection_of_object_values("mobileDeviceManagementPolicies", self.mobile_device_management_policies)
+        writer.write_collection_of_object_values("onPremAuthenticationPolicies", self.on_prem_authentication_policies)
         writer.write_collection_of_object_values("permissionGrantPolicies", self.permission_grant_policies)
         writer.write_collection_of_object_values("permissionGrantPreApprovalPolicies", self.permission_grant_pre_approval_policies)
         writer.write_collection_of_object_values("roleManagementPolicies", self.role_management_policies)

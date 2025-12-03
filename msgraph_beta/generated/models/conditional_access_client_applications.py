@@ -15,8 +15,14 @@ class ConditionalAccessClientApplications(AdditionalDataHolder, BackedModel, Par
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # Filter that defines rules based on custom security attribute tags to include/exclude agent identities in the policy.
+    agent_id_service_principal_filter: Optional[ConditionalAccessFilter] = None
+    # Agent identity object IDs excluded from the policy.
+    exclude_agent_id_service_principals: Optional[list[str]] = None
     # Service principal IDs excluded from the policy scope.
     exclude_service_principals: Optional[list[str]] = None
+    # Agent identity object IDs included in the policy.
+    include_agent_id_service_principals: Optional[list[str]] = None
     # Service principal IDs included in the policy scope or ServicePrincipalsInMyTenant.
     include_service_principals: Optional[list[str]] = None
     # The OdataType property
@@ -45,7 +51,10 @@ class ConditionalAccessClientApplications(AdditionalDataHolder, BackedModel, Par
         from .conditional_access_filter import ConditionalAccessFilter
 
         fields: dict[str, Callable[[Any], None]] = {
+            "agentIdServicePrincipalFilter": lambda n : setattr(self, 'agent_id_service_principal_filter', n.get_object_value(ConditionalAccessFilter)),
+            "excludeAgentIdServicePrincipals": lambda n : setattr(self, 'exclude_agent_id_service_principals', n.get_collection_of_primitive_values(str)),
             "excludeServicePrincipals": lambda n : setattr(self, 'exclude_service_principals', n.get_collection_of_primitive_values(str)),
+            "includeAgentIdServicePrincipals": lambda n : setattr(self, 'include_agent_id_service_principals', n.get_collection_of_primitive_values(str)),
             "includeServicePrincipals": lambda n : setattr(self, 'include_service_principals', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "servicePrincipalFilter": lambda n : setattr(self, 'service_principal_filter', n.get_object_value(ConditionalAccessFilter)),
@@ -60,7 +69,10 @@ class ConditionalAccessClientApplications(AdditionalDataHolder, BackedModel, Par
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_object_value("agentIdServicePrincipalFilter", self.agent_id_service_principal_filter)
+        writer.write_collection_of_primitive_values("excludeAgentIdServicePrincipals", self.exclude_agent_id_service_principals)
         writer.write_collection_of_primitive_values("excludeServicePrincipals", self.exclude_service_principals)
+        writer.write_collection_of_primitive_values("includeAgentIdServicePrincipals", self.include_agent_id_service_principals)
         writer.write_collection_of_primitive_values("includeServicePrincipals", self.include_service_principals)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("servicePrincipalFilter", self.service_principal_filter)

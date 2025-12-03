@@ -31,9 +31,10 @@ class ClearLocationRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action clearLocation
+        Clear the work location signals for a user, including both the manual and automatic layers for the current date.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/presence-clearlocation?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class ClearLocationRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action clearLocation
+        Clear the work location signals for a user, including both the manual and automatic layers for the current date.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

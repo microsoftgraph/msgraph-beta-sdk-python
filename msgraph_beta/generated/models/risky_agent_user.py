@@ -5,12 +5,15 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .agent_user import AgentUser
     from .risky_agent import RiskyAgent
 
 from .risky_agent import RiskyAgent
 
 @dataclass
 class RiskyAgentUser(RiskyAgent, Parsable):
+    # The agentUser property
+    agent_user: Optional[AgentUser] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -30,11 +33,14 @@ class RiskyAgentUser(RiskyAgent, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .agent_user import AgentUser
         from .risky_agent import RiskyAgent
 
+        from .agent_user import AgentUser
         from .risky_agent import RiskyAgent
 
         fields: dict[str, Callable[[Any], None]] = {
+            "agentUser": lambda n : setattr(self, 'agent_user', n.get_object_value(AgentUser)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -49,5 +55,6 @@ class RiskyAgentUser(RiskyAgent, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("agentUser", self.agent_user)
     
 

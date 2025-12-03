@@ -8,8 +8,8 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .assigned_place_mode import AssignedPlaceMode
     from .drop_in_place_mode import DropInPlaceMode
-    from .offline_place_mode import OfflinePlaceMode
     from .reservable_place_mode import ReservablePlaceMode
+    from .unavailable_place_mode import UnavailablePlaceMode
 
 @dataclass
 class PlaceMode(AdditionalDataHolder, BackedModel, Parsable):
@@ -43,14 +43,14 @@ class PlaceMode(AdditionalDataHolder, BackedModel, Parsable):
             from .drop_in_place_mode import DropInPlaceMode
 
             return DropInPlaceMode()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.offlinePlaceMode".casefold():
-            from .offline_place_mode import OfflinePlaceMode
-
-            return OfflinePlaceMode()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.reservablePlaceMode".casefold():
             from .reservable_place_mode import ReservablePlaceMode
 
             return ReservablePlaceMode()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unavailablePlaceMode".casefold():
+            from .unavailable_place_mode import UnavailablePlaceMode
+
+            return UnavailablePlaceMode()
         return PlaceMode()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -60,13 +60,13 @@ class PlaceMode(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .assigned_place_mode import AssignedPlaceMode
         from .drop_in_place_mode import DropInPlaceMode
-        from .offline_place_mode import OfflinePlaceMode
         from .reservable_place_mode import ReservablePlaceMode
+        from .unavailable_place_mode import UnavailablePlaceMode
 
         from .assigned_place_mode import AssignedPlaceMode
         from .drop_in_place_mode import DropInPlaceMode
-        from .offline_place_mode import OfflinePlaceMode
         from .reservable_place_mode import ReservablePlaceMode
+        from .unavailable_place_mode import UnavailablePlaceMode
 
         fields: dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

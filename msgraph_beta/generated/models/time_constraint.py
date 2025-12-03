@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .activity_domain import ActivityDomain
+    from .patterned_recurrence import PatternedRecurrence
     from .time_slot import TimeSlot
 
 @dataclass
@@ -20,6 +21,8 @@ class TimeConstraint(AdditionalDataHolder, BackedModel, Parsable):
     activity_domain: Optional[ActivityDomain] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The recurrence property
+    recurrence: Optional[PatternedRecurrence] = None
     # The timeSlots property
     time_slots: Optional[list[TimeSlot]] = None
     
@@ -40,14 +43,17 @@ class TimeConstraint(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .activity_domain import ActivityDomain
+        from .patterned_recurrence import PatternedRecurrence
         from .time_slot import TimeSlot
 
         from .activity_domain import ActivityDomain
+        from .patterned_recurrence import PatternedRecurrence
         from .time_slot import TimeSlot
 
         fields: dict[str, Callable[[Any], None]] = {
             "activityDomain": lambda n : setattr(self, 'activity_domain', n.get_enum_value(ActivityDomain)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "recurrence": lambda n : setattr(self, 'recurrence', n.get_object_value(PatternedRecurrence)),
             "timeSlots": lambda n : setattr(self, 'time_slots', n.get_collection_of_object_values(TimeSlot)),
         }
         return fields
@@ -62,6 +68,7 @@ class TimeConstraint(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("activityDomain", self.activity_domain)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_object_value("recurrence", self.recurrence)
         writer.write_collection_of_object_values("timeSlots", self.time_slots)
         writer.write_additional_data_value(self.additional_data)
     

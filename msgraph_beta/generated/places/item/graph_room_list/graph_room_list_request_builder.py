@@ -17,10 +17,9 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.room_list import RoomList
     from .check_ins.check_ins_request_builder import CheckInsRequestBuilder
+    from .children.children_request_builder import ChildrenRequestBuilder
     from .rooms.rooms_request_builder import RoomsRequestBuilder
-    from .rooms_with_place_id.rooms_with_place_id_request_builder import RoomsWithPlaceIdRequestBuilder
     from .workspaces.workspaces_request_builder import WorkspacesRequestBuilder
-    from .workspaces_with_place_id.workspaces_with_place_id_request_builder import WorkspacesWithPlaceIdRequestBuilder
 
 class GraphRoomListRequestBuilder(BaseRequestBuilder):
     """
@@ -55,18 +54,6 @@ class GraphRoomListRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, RoomList, error_mapping)
     
-    def rooms_with_place_id(self,place_id: str) -> RoomsWithPlaceIdRequestBuilder:
-        """
-        Provides operations to manage the rooms property of the microsoft.graph.roomList entity.
-        param place_id: Alternate key of room
-        Returns: RoomsWithPlaceIdRequestBuilder
-        """
-        if place_id is None:
-            raise TypeError("place_id cannot be null.")
-        from .rooms_with_place_id.rooms_with_place_id_request_builder import RoomsWithPlaceIdRequestBuilder
-
-        return RoomsWithPlaceIdRequestBuilder(self.request_adapter, self.path_parameters, place_id)
-    
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GraphRoomListRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Get the item of type microsoft.graph.place as microsoft.graph.roomList
@@ -88,18 +75,6 @@ class GraphRoomListRequestBuilder(BaseRequestBuilder):
             raise TypeError("raw_url cannot be null.")
         return GraphRoomListRequestBuilder(self.request_adapter, raw_url)
     
-    def workspaces_with_place_id(self,place_id: str) -> WorkspacesWithPlaceIdRequestBuilder:
-        """
-        Provides operations to manage the workspaces property of the microsoft.graph.roomList entity.
-        param place_id: Alternate key of workspace
-        Returns: WorkspacesWithPlaceIdRequestBuilder
-        """
-        if place_id is None:
-            raise TypeError("place_id cannot be null.")
-        from .workspaces_with_place_id.workspaces_with_place_id_request_builder import WorkspacesWithPlaceIdRequestBuilder
-
-        return WorkspacesWithPlaceIdRequestBuilder(self.request_adapter, self.path_parameters, place_id)
-    
     @property
     def check_ins(self) -> CheckInsRequestBuilder:
         """
@@ -108,6 +83,15 @@ class GraphRoomListRequestBuilder(BaseRequestBuilder):
         from .check_ins.check_ins_request_builder import CheckInsRequestBuilder
 
         return CheckInsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def children(self) -> ChildrenRequestBuilder:
+        """
+        Provides operations to manage the children property of the microsoft.graph.place entity.
+        """
+        from .children.children_request_builder import ChildrenRequestBuilder
+
+        return ChildrenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def rooms(self) -> RoomsRequestBuilder:

@@ -19,7 +19,7 @@ from .entity import Entity
 class CallEvent(Entity, Parsable):
     # The callConversationId property
     call_conversation_id: Optional[str] = None
-    # The event type of the call. Possible values are: callStarted, callEnded, unknownFutureValue, rosterUpdated. You must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: rosterUpdated.
+    # The event type of the call. Possible values are: callStarted, callEnded, unknownFutureValue, rosterUpdated. You must use the Prefer: include-unknown-enum-members request header to get the following members in this evolvable enum: rosterUpdated.
     call_event_type: Optional[CallEventType] = None
     # The date and time when the event occurred. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     event_date_time: Optional[datetime.datetime] = None

@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_review_history_definition import AccessReviewHistoryDefinition
+    from .access_review_instance import AccessReviewInstance
     from .access_review_instance_decision_item import AccessReviewInstanceDecisionItem
     from .access_review_policy import AccessReviewPolicy
     from .access_review_schedule_definition import AccessReviewScheduleDefinition
@@ -21,6 +22,8 @@ class AccessReviewSet(Entity, Parsable):
     definitions: Optional[list[AccessReviewScheduleDefinition]] = None
     # Represents a collection of access review history data and the scopes used to collect that data.
     history_definitions: Optional[list[AccessReviewHistoryDefinition]] = None
+    # Represents the instance of a review.
+    instances: Optional[list[AccessReviewInstance]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Resource that enables administrators to manage directory-level access review policies in their tenant.
@@ -43,12 +46,14 @@ class AccessReviewSet(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_review_history_definition import AccessReviewHistoryDefinition
+        from .access_review_instance import AccessReviewInstance
         from .access_review_instance_decision_item import AccessReviewInstanceDecisionItem
         from .access_review_policy import AccessReviewPolicy
         from .access_review_schedule_definition import AccessReviewScheduleDefinition
         from .entity import Entity
 
         from .access_review_history_definition import AccessReviewHistoryDefinition
+        from .access_review_instance import AccessReviewInstance
         from .access_review_instance_decision_item import AccessReviewInstanceDecisionItem
         from .access_review_policy import AccessReviewPolicy
         from .access_review_schedule_definition import AccessReviewScheduleDefinition
@@ -58,6 +63,7 @@ class AccessReviewSet(Entity, Parsable):
             "decisions": lambda n : setattr(self, 'decisions', n.get_collection_of_object_values(AccessReviewInstanceDecisionItem)),
             "definitions": lambda n : setattr(self, 'definitions', n.get_collection_of_object_values(AccessReviewScheduleDefinition)),
             "historyDefinitions": lambda n : setattr(self, 'history_definitions', n.get_collection_of_object_values(AccessReviewHistoryDefinition)),
+            "instances": lambda n : setattr(self, 'instances', n.get_collection_of_object_values(AccessReviewInstance)),
             "policy": lambda n : setattr(self, 'policy', n.get_object_value(AccessReviewPolicy)),
         }
         super_fields = super().get_field_deserializers()
@@ -76,6 +82,7 @@ class AccessReviewSet(Entity, Parsable):
         writer.write_collection_of_object_values("decisions", self.decisions)
         writer.write_collection_of_object_values("definitions", self.definitions)
         writer.write_collection_of_object_values("historyDefinitions", self.history_definitions)
+        writer.write_collection_of_object_values("instances", self.instances)
         writer.write_object_value("policy", self.policy)
     
 

@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .conditional_access_agent_id_risk_levels import ConditionalAccessAgentIdRiskLevels
     from .conditional_access_applications import ConditionalAccessApplications
     from .conditional_access_authentication_flows import ConditionalAccessAuthenticationFlows
     from .conditional_access_client_app import ConditionalAccessClientApp
@@ -25,6 +26,8 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # Agent identity risk levels included in the policy. Possible values are: low, medium, high, unknownFutureValue. This enumeration is multivalued.
+    agent_id_risk_levels: Optional[ConditionalAccessAgentIdRiskLevels] = None
     # Applications and user actions included in and excluded from the policy. Required.
     applications: Optional[ConditionalAccessApplications] = None
     # Authentication flows included in the policy scope. For more information, see Conditional Access: Authentication flows.
@@ -70,6 +73,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .conditional_access_agent_id_risk_levels import ConditionalAccessAgentIdRiskLevels
         from .conditional_access_applications import ConditionalAccessApplications
         from .conditional_access_authentication_flows import ConditionalAccessAuthenticationFlows
         from .conditional_access_client_app import ConditionalAccessClientApp
@@ -82,6 +86,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
         from .conditional_access_users import ConditionalAccessUsers
         from .risk_level import RiskLevel
 
+        from .conditional_access_agent_id_risk_levels import ConditionalAccessAgentIdRiskLevels
         from .conditional_access_applications import ConditionalAccessApplications
         from .conditional_access_authentication_flows import ConditionalAccessAuthenticationFlows
         from .conditional_access_client_app import ConditionalAccessClientApp
@@ -95,6 +100,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
         from .risk_level import RiskLevel
 
         fields: dict[str, Callable[[Any], None]] = {
+            "agentIdRiskLevels": lambda n : setattr(self, 'agent_id_risk_levels', n.get_collection_of_enum_values(ConditionalAccessAgentIdRiskLevels)),
             "applications": lambda n : setattr(self, 'applications', n.get_object_value(ConditionalAccessApplications)),
             "authenticationFlows": lambda n : setattr(self, 'authentication_flows', n.get_object_value(ConditionalAccessAuthenticationFlows)),
             "clientAppTypes": lambda n : setattr(self, 'client_app_types', n.get_collection_of_enum_values(ConditionalAccessClientApp)),
@@ -120,6 +126,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("agentIdRiskLevels", self.agent_id_risk_levels)
         writer.write_object_value("applications", self.applications)
         writer.write_object_value("authenticationFlows", self.authentication_flows)
         writer.write_collection_of_enum_values("clientAppTypes", self.client_app_types)

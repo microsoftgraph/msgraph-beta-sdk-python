@@ -11,6 +11,8 @@ if TYPE_CHECKING:
     from .booking_business import BookingBusiness
     from .booking_currency import BookingCurrency
     from .business_scenario import BusinessScenario
+    from .migrations_root import MigrationsRoot
+    from .share_point_root import SharePointRoot
     from .virtual_events_root import VirtualEventsRoot
 
 @dataclass
@@ -30,8 +32,12 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
     booking_currencies: Optional[list[BookingCurrency]] = None
     # A collection of scenarios that contain relevant data and configuration information for a specific problem domain.
     business_scenarios: Optional[list[BusinessScenario]] = None
+    # The migrations property
+    migrations: Optional[MigrationsRoot] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Container for SharePoint resources that include cross-organization migration operations.
+    share_point: Optional[SharePointRoot] = None
     # A collection of virtual events.
     virtual_events: Optional[VirtualEventsRoot] = None
     
@@ -56,6 +62,8 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         from .booking_business import BookingBusiness
         from .booking_currency import BookingCurrency
         from .business_scenario import BusinessScenario
+        from .migrations_root import MigrationsRoot
+        from .share_point_root import SharePointRoot
         from .virtual_events_root import VirtualEventsRoot
 
         from .approval_solution import ApprovalSolution
@@ -63,6 +71,8 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         from .booking_business import BookingBusiness
         from .booking_currency import BookingCurrency
         from .business_scenario import BusinessScenario
+        from .migrations_root import MigrationsRoot
+        from .share_point_root import SharePointRoot
         from .virtual_events_root import VirtualEventsRoot
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -71,7 +81,9 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
             "bookingBusinesses": lambda n : setattr(self, 'booking_businesses', n.get_collection_of_object_values(BookingBusiness)),
             "bookingCurrencies": lambda n : setattr(self, 'booking_currencies', n.get_collection_of_object_values(BookingCurrency)),
             "businessScenarios": lambda n : setattr(self, 'business_scenarios', n.get_collection_of_object_values(BusinessScenario)),
+            "migrations": lambda n : setattr(self, 'migrations', n.get_object_value(MigrationsRoot)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "sharePoint": lambda n : setattr(self, 'share_point', n.get_object_value(SharePointRoot)),
             "virtualEvents": lambda n : setattr(self, 'virtual_events', n.get_object_value(VirtualEventsRoot)),
         }
         return fields
@@ -89,7 +101,9 @@ class SolutionsRoot(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("bookingBusinesses", self.booking_businesses)
         writer.write_collection_of_object_values("bookingCurrencies", self.booking_currencies)
         writer.write_collection_of_object_values("businessScenarios", self.business_scenarios)
+        writer.write_object_value("migrations", self.migrations)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_object_value("sharePoint", self.share_point)
         writer.write_object_value("virtualEvents", self.virtual_events)
         writer.write_additional_data_value(self.additional_data)
     

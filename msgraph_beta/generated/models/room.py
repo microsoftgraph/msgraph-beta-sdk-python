@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .booking_type import BookingType
     from .place import Place
+    from .place_feature_enablement import PlaceFeatureEnablement
 
 from .place import Place
 
@@ -34,6 +35,10 @@ class Room(Place, Parsable):
     is_teams_enabled: Optional[bool] = None
     # A short, friendly name for the room, often used for easier identification or display in UI.
     nickname: Optional[str] = None
+    # An alternate immutable unique identifier of the room. Read-only.
+    place_id: Optional[str] = None
+    # The teamsEnabledState property
+    teams_enabled_state: Optional[PlaceFeatureEnablement] = None
     # The name of the video device that is available in the room.
     video_device_name: Optional[str] = None
     
@@ -55,9 +60,11 @@ class Room(Place, Parsable):
         """
         from .booking_type import BookingType
         from .place import Place
+        from .place_feature_enablement import PlaceFeatureEnablement
 
         from .booking_type import BookingType
         from .place import Place
+        from .place_feature_enablement import PlaceFeatureEnablement
 
         fields: dict[str, Callable[[Any], None]] = {
             "audioDeviceName": lambda n : setattr(self, 'audio_device_name', n.get_str_value()),
@@ -70,6 +77,8 @@ class Room(Place, Parsable):
             "floorNumber": lambda n : setattr(self, 'floor_number', n.get_int_value()),
             "isTeamsEnabled": lambda n : setattr(self, 'is_teams_enabled', n.get_bool_value()),
             "nickname": lambda n : setattr(self, 'nickname', n.get_str_value()),
+            "placeId": lambda n : setattr(self, 'place_id', n.get_str_value()),
+            "teamsEnabledState": lambda n : setattr(self, 'teams_enabled_state', n.get_enum_value(PlaceFeatureEnablement)),
             "videoDeviceName": lambda n : setattr(self, 'video_device_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -95,6 +104,8 @@ class Room(Place, Parsable):
         writer.write_int_value("floorNumber", self.floor_number)
         writer.write_bool_value("isTeamsEnabled", self.is_teams_enabled)
         writer.write_str_value("nickname", self.nickname)
+        writer.write_str_value("placeId", self.place_id)
+        writer.write_enum_value("teamsEnabledState", self.teams_enabled_state)
         writer.write_str_value("videoDeviceName", self.video_device_name)
     
 

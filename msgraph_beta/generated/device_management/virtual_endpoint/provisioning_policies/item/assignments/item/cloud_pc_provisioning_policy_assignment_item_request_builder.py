@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
     from .assigned_users.assigned_users_request_builder import AssignedUsersRequestBuilder
     from .assigned_users_with_user_principal_name.assigned_users_with_user_principal_name_request_builder import AssignedUsersWithUserPrincipalNameRequestBuilder
+    from .user_settings_persistence_detail.user_settings_persistence_detail_request_builder import UserSettingsPersistenceDetailRequestBuilder
 
 class CloudPcProvisioningPolicyAssignmentItemRequestBuilder(BaseRequestBuilder):
     """
@@ -160,6 +161,15 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder(BaseRequestBuilder):
         from .assigned_users.assigned_users_request_builder import AssignedUsersRequestBuilder
 
         return AssignedUsersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_settings_persistence_detail(self) -> UserSettingsPersistenceDetailRequestBuilder:
+        """
+        Provides operations to manage the userSettingsPersistenceDetail property of the microsoft.graph.cloudPcProvisioningPolicyAssignment entity.
+        """
+        from .user_settings_persistence_detail.user_settings_persistence_detail_request_builder import UserSettingsPersistenceDetailRequestBuilder
+
+        return UserSettingsPersistenceDetailRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CloudPcProvisioningPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .decisions.decisions_request_builder import DecisionsRequestBuilder
     from .definitions.definitions_request_builder import DefinitionsRequestBuilder
     from .history_definitions.history_definitions_request_builder import HistoryDefinitionsRequestBuilder
+    from .instances.instances_request_builder import InstancesRequestBuilder
     from .policy.policy_request_builder import PolicyRequestBuilder
 
 class AccessReviewsRequestBuilder(BaseRequestBuilder):
@@ -168,6 +169,15 @@ class AccessReviewsRequestBuilder(BaseRequestBuilder):
         from .history_definitions.history_definitions_request_builder import HistoryDefinitionsRequestBuilder
 
         return HistoryDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def instances(self) -> InstancesRequestBuilder:
+        """
+        Provides operations to manage the instances property of the microsoft.graph.accessReviewSet entity.
+        """
+        from .instances.instances_request_builder import InstancesRequestBuilder
+
+        return InstancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def policy(self) -> PolicyRequestBuilder:

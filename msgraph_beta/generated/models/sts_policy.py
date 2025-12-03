@@ -6,9 +6,11 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
+    from .b2b_management_policy import B2bManagementPolicy
     from .claims_mapping_policy import ClaimsMappingPolicy
     from .directory_object import DirectoryObject
     from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
+    from .on_prem_authentication_policy import OnPremAuthenticationPolicy
     from .policy_base import PolicyBase
     from .token_issuance_policy import TokenIssuancePolicy
     from .token_lifetime_policy import TokenLifetimePolicy
@@ -44,6 +46,10 @@ class StsPolicy(PolicyBase, Parsable):
             from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
 
             return ActivityBasedTimeoutPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2bManagementPolicy".casefold():
+            from .b2b_management_policy import B2bManagementPolicy
+
+            return B2bManagementPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.claimsMappingPolicy".casefold():
             from .claims_mapping_policy import ClaimsMappingPolicy
 
@@ -52,6 +58,10 @@ class StsPolicy(PolicyBase, Parsable):
             from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
 
             return HomeRealmDiscoveryPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPremAuthenticationPolicy".casefold():
+            from .on_prem_authentication_policy import OnPremAuthenticationPolicy
+
+            return OnPremAuthenticationPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.tokenIssuancePolicy".casefold():
             from .token_issuance_policy import TokenIssuancePolicy
 
@@ -68,17 +78,21 @@ class StsPolicy(PolicyBase, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
+        from .b2b_management_policy import B2bManagementPolicy
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .directory_object import DirectoryObject
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
+        from .on_prem_authentication_policy import OnPremAuthenticationPolicy
         from .policy_base import PolicyBase
         from .token_issuance_policy import TokenIssuancePolicy
         from .token_lifetime_policy import TokenLifetimePolicy
 
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
+        from .b2b_management_policy import B2bManagementPolicy
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .directory_object import DirectoryObject
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
+        from .on_prem_authentication_policy import OnPremAuthenticationPolicy
         from .policy_base import PolicyBase
         from .token_issuance_policy import TokenIssuancePolicy
         from .token_lifetime_policy import TokenLifetimePolicy

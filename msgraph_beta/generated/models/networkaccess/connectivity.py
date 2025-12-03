@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .branch_site import BranchSite
+    from .remote_network import RemoteNetwork
     from .web_category import WebCategory
 
 from ..entity import Entity
@@ -17,6 +18,8 @@ class Connectivity(Entity, Parsable):
     branches: Optional[list[BranchSite]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The locations, such as branches, that are connected to Global Secure Access services through an IPsec tunnel.
+    remote_networks: Optional[list[RemoteNetwork]] = None
     # The URL category.
     web_categories: Optional[list[WebCategory]] = None
     
@@ -38,14 +41,17 @@ class Connectivity(Entity, Parsable):
         """
         from ..entity import Entity
         from .branch_site import BranchSite
+        from .remote_network import RemoteNetwork
         from .web_category import WebCategory
 
         from ..entity import Entity
         from .branch_site import BranchSite
+        from .remote_network import RemoteNetwork
         from .web_category import WebCategory
 
         fields: dict[str, Callable[[Any], None]] = {
             "branches": lambda n : setattr(self, 'branches', n.get_collection_of_object_values(BranchSite)),
+            "remoteNetworks": lambda n : setattr(self, 'remote_networks', n.get_collection_of_object_values(RemoteNetwork)),
             "webCategories": lambda n : setattr(self, 'web_categories', n.get_collection_of_object_values(WebCategory)),
         }
         super_fields = super().get_field_deserializers()
@@ -62,6 +68,7 @@ class Connectivity(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("branches", self.branches)
+        writer.write_collection_of_object_values("remoteNetworks", self.remote_networks)
         writer.write_collection_of_object_values("webCategories", self.web_categories)
     
 
