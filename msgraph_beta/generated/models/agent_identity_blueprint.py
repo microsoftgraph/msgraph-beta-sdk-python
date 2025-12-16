@@ -14,7 +14,7 @@ from .application import Application
 class AgentIdentityBlueprint(Application, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.agentIdentityBlueprint"
-    # The sponsors for this agent identity blueprint. Sponsors are users or groups who can authorize and manage the lifecycle of agent identity instances.
+    # The sponsors for this agent identity blueprint. Sponsors are users or groups who can authorize and manage the lifecycle of agent identity instances. Required during the create operation.
     sponsors: Optional[list[DirectoryObject]] = None
     
     @staticmethod

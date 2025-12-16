@@ -20,7 +20,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, BackedModel, Parsable)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Determine whether AirPrint service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
+    # Determine whether AirPrint service will be exempt from the always-on VPN connection. The possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
     air_print_exception_action: Optional[VpnServiceExceptionAction] = None
     # Specifies whether traffic from all captive network plugins should be allowed outside the vpn
     allow_all_captive_network_plugins: Optional[bool] = None
@@ -28,7 +28,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, BackedModel, Parsable)
     allow_captive_web_sheet: Optional[bool] = None
     # Determines whether all, some, or no non-native captive networking apps are allowed
     allowed_captive_network_plugins: Optional[SpecifiedCaptiveNetworkPlugins] = None
-    # Determine whether Cellular service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
+    # Determine whether Cellular service will be exempt from the always-on VPN connection. The possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
     cellular_exception_action: Optional[VpnServiceExceptionAction] = None
     # Specifies how often in seconds to send a network address translation keepalive package through the VPN
     nat_keep_alive_interval_in_seconds: Optional[int] = None
@@ -40,7 +40,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, BackedModel, Parsable)
     tunnel_configuration: Optional[VpnTunnelConfigurationType] = None
     # Allow the user to toggle the VPN configuration using the UI
     user_toggle_enabled: Optional[bool] = None
-    # Determine whether voicemail service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
+    # Determine whether voicemail service will be exempt from the always-on VPN connection. The possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
     voicemail_exception_action: Optional[VpnServiceExceptionAction] = None
     
     @staticmethod

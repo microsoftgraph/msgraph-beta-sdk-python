@@ -27,7 +27,7 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
     allowed_android_device_manufacturers: Optional[str] = None
     # List of device models allowed, as a string, for the managed app to work.
     allowed_android_device_models: Optional[list[str]] = None
-    # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
+    # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). The possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_account_is_clocked_out: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_android_device_manufacturer_not_allowed: Optional[ManagedAppRemediationAction] = None
@@ -39,13 +39,13 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
     app_action_if_android_safety_net_device_attestation_failed: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_device_lock_not_set: Optional[ManagedAppRemediationAction] = None
-    # If the device does not have a passcode of high complexity or higher, trigger the stored action. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
+    # If the device does not have a passcode of high complexity or higher, trigger the stored action. The possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_device_passcode_complexity_less_than_high: Optional[ManagedAppRemediationAction] = None
-    # If the device does not have a passcode of low complexity or higher, trigger the stored action. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
+    # If the device does not have a passcode of low complexity or higher, trigger the stored action. The possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_device_passcode_complexity_less_than_low: Optional[ManagedAppRemediationAction] = None
-    # If the device does not have a passcode of medium complexity or higher, trigger the stored action. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
+    # If the device does not have a passcode of medium complexity or higher, trigger the stored action. The possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_device_passcode_complexity_less_than_medium: Optional[ManagedAppRemediationAction] = None
-    # Defines the behavior of a managed app when Samsung Knox Attestation is required. Possible values are null, warn, block & wipe. If the admin does not set this action, the default is null, which indicates this setting is not configured. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
+    # Defines the behavior of a managed app when Samsung Knox Attestation is required. Possible values are null, warn, block & wipe. If the admin does not set this action, the default is null, which indicates this setting is not configured. The possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_samsung_knox_attestation_required: Optional[ManagedAppRemediationAction] = None
     # If Keyboard Restriction is enabled, only keyboards in this approved list will be allowed. A key should be Android package id for a keyboard and value should be a friendly name
     approved_keyboards: Optional[list[KeyValuePair]] = None

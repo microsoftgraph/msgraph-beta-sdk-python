@@ -45,7 +45,7 @@ class EducationClass(Entity, Parsable):
     external_id: Optional[str] = None
     # Name of the class in the syncing system.
     external_name: Optional[str] = None
-    # The type of external source this resource was generated from (automatically determined from externalSourceDetail). Possible values are: sis, lms, or manual.
+    # The type of external source this resource was generated from (automatically determined from externalSourceDetail). The possible values are: sis, lms, or manual.
     external_source: Optional[EducationExternalSource] = None
     # The name of the external source from which this resource was generated.
     external_source_detail: Optional[str] = None

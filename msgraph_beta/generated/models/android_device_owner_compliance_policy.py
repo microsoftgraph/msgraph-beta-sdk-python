@@ -19,11 +19,11 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerCompliancePolicy"
-    # Indicates the Microsoft Defender for Endpoint (also referred to Microsoft Defender Advanced Threat Protection (MDATP)) minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet. Possible values are: unavailable, secured, low, medium, high, notSet.
+    # Indicates the Microsoft Defender for Endpoint (also referred to Microsoft Defender Advanced Threat Protection (MDATP)) minimum risk level to report noncompliance. The possible values are: unavailable, secured, low, medium, high, notSet. The possible values are: unavailable, secured, low, medium, high, notSet.
     advanced_threat_protection_required_security_level: Optional[DeviceThreatProtectionLevel] = None
     # Indicates whether the policy requires devices have device threat protection enabled.  When TRUE, threat protection is enabled.  When FALSE, threat protection is not enabled.  Default is FALSE.
     device_threat_protection_enabled: Optional[bool] = None
-    # Indicates the minimum mobile threat protection risk level to that results in Intune reporting device noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet. Possible values are: unavailable, secured, low, medium, high, notSet.
+    # Indicates the minimum mobile threat protection risk level to that results in Intune reporting device noncompliance. The possible values are: unavailable, secured, low, medium, high, notSet. The possible values are: unavailable, secured, low, medium, high, notSet.
     device_threat_protection_required_security_level: Optional[DeviceThreatProtectionLevel] = None
     # Indicates the minimum Android security patch level required to mark the device as compliant.  For example: 'February 1, 2025'
     min_android_security_patch_level: Optional[str] = None
@@ -53,7 +53,7 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy, Parsable):
     password_previous_password_count_to_block: Optional[int] = None
     # Indicates whether a password is required to unlock the device. When TRUE, there must be a password set that unlocks the device for the device to be marked as compliant.  When FALSE, a device is marked as compliant whether or not a password is set as required to unlock the device.  Default is FALSE.
     password_required: Optional[bool] = None
-    # Indicates the password complexity requirement for the device to be marked compliant. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+    # Indicates the password complexity requirement for the device to be marked compliant. The possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword. The possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
     password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
     # Indicates whether the device has pending security or OS updates and sets the compliance state accordingly.  When TRUE, checks if there are any pending system updates on each check in and if there are any pending security or OS version updates (System Updates), the device will be reported as non-compliant. If set to FALSE, then checks for any pending security or OS version updates (System Updates) are done without impact to device compliance state. Default is FALSE.
     require_no_pending_system_updates: Optional[bool] = None
@@ -65,7 +65,7 @@ class AndroidDeviceOwnerCompliancePolicy(DeviceCompliancePolicy, Parsable):
     security_require_safety_net_attestation_basic_integrity: Optional[bool] = None
     # Indicates whether the compliance check will validate the Google Play Integrity check. When TRUE, the Google Play integrity device check must pass to consider the device compliant.  When FALSE, the Google Play integrity device check can pass or fail and the device will be considered compliant.  Default is FALSE.
     security_require_safety_net_attestation_certified_device: Optional[bool] = None
-    # Indicates the types of measurements and reference data used to evaluate the device SafetyNet evaluation. Evaluation is completed on the device to assess device integrity based on checks defined by Android and built into the device hardware, for example, compromised OS version or root detection. Possible values are: basic, hardwareBacked, with default value of basic. Possible values are: basic, hardwareBacked.
+    # Indicates the types of measurements and reference data used to evaluate the device SafetyNet evaluation. Evaluation is completed on the device to assess device integrity based on checks defined by Android and built into the device hardware, for example, compromised OS version or root detection. The possible values are: basic, hardwareBacked, with default value of basic. The possible values are: basic, hardwareBacked.
     security_required_android_safety_net_evaluation_type: Optional[AndroidSafetyNetEvaluationType] = None
     # Indicates whether encryption on Android devices is required to mark the device as compliant.
     storage_require_encryption: Optional[bool] = None

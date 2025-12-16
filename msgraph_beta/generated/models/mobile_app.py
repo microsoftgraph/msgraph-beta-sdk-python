@@ -104,7 +104,7 @@ class MobileApp(Entity, Parsable):
     superseded_app_count: Optional[int] = None
     # The total number of apps this app directly or indirectly supersedes. This property is read-only.
     superseding_app_count: Optional[int] = None
-    # The upload state. Possible values are: 0 - Not Ready, 1 - Ready, 2 - Processing. This property is read-only.
+    # The upload state. The possible values are: 0 - Not Ready, 1 - Ready, 2 - Processing. This property is read-only.
     upload_state: Optional[int] = None
     
     @staticmethod

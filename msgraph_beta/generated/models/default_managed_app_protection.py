@@ -32,7 +32,7 @@ class DefaultManagedAppProtection(ManagedAppProtection, Parsable):
     allowed_android_device_models: Optional[list[str]] = None
     # Semicolon seperated list of device models allowed, as a string, for the managed app to work. (iOS Only)
     allowed_ios_device_models: Optional[str] = None
-    # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
+    # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). The possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_account_is_clocked_out: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_android_device_manufacturer_not_allowed: Optional[ManagedAppRemediationAction] = None
@@ -44,11 +44,11 @@ class DefaultManagedAppProtection(ManagedAppProtection, Parsable):
     app_action_if_android_safety_net_device_attestation_failed: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_device_lock_not_set: Optional[ManagedAppRemediationAction] = None
-    # If the device does not have a passcode of high complexity or higher, trigger the stored action. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
+    # If the device does not have a passcode of high complexity or higher, trigger the stored action. The possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_device_passcode_complexity_less_than_high: Optional[ManagedAppRemediationAction] = None
-    # If the device does not have a passcode of low complexity or higher, trigger the stored action. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
+    # If the device does not have a passcode of low complexity or higher, trigger the stored action. The possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_device_passcode_complexity_less_than_low: Optional[ManagedAppRemediationAction] = None
-    # If the device does not have a passcode of medium complexity or higher, trigger the stored action. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
+    # If the device does not have a passcode of medium complexity or higher, trigger the stored action. The possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_device_passcode_complexity_less_than_medium: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_ios_device_model_not_allowed: Optional[ManagedAppRemediationAction] = None

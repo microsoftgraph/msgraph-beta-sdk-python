@@ -19,7 +19,7 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(DeviceConfi
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidDeviceOwnerDerivedCredentialAuthenticationConfiguration"
-    # Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
+    # Certificate access type. The possible values are: userApproval, specificApps, unknownFutureValue.
     certificate_access_type: Optional[AndroidDeviceOwnerCertificateAccessType] = None
     # Tenant level settings for the Derived Credentials to be used for authentication.
     derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None

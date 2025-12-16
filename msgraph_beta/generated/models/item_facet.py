@@ -37,7 +37,7 @@ from .entity import Entity
 
 @dataclass
 class ItemFacet(Entity, Parsable):
-    # The audiences that are able to see the values contained within the associated entity. Possible values are: me, family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
+    # The audiences that are able to see the values contained within the associated entity. The possible values are: me, family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
     allowed_audiences: Optional[AllowedAudiences] = None
     # Provides the identifier of the user and/or application that created the entity.
     created_by: Optional[IdentitySet] = None

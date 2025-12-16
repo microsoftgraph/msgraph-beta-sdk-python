@@ -70,10 +70,11 @@ class CertificateBasedApplicationConfigurationsRequestBuilder(BaseRequestBuilder
     
     async def post(self,body: CertificateBasedApplicationConfiguration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CertificateBasedApplicationConfiguration]:
         """
-        Create new navigation property to certificateBasedApplicationConfigurations for directory
+        Create a new certificateBasedApplicationConfiguration  object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CertificateBasedApplicationConfiguration]
+        Find more info here: https://learn.microsoft.com/graph/api/certificateauthoritypath-post-certificatebasedapplicationconfigurations?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -104,7 +105,7 @@ class CertificateBasedApplicationConfigurationsRequestBuilder(BaseRequestBuilder
     
     def to_post_request_information(self,body: CertificateBasedApplicationConfiguration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to certificateBasedApplicationConfigurations for directory
+        Create a new certificateBasedApplicationConfiguration  object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -21,7 +21,7 @@ class SignInConditions(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Agent identity risk levels included in the policy. Possible values are: none, low, medium, high, unknownFutureValue. This enumeration is multivalued.
+    # Agent identity risk levels included in the policy. The possible values are: none, low, medium, high, unknownFutureValue. This enumeration is multivalued.
     agent_id_risk_level: Optional[AgentIdRiskLevel] = None
     # Type of authentication flow. The possible value is: deviceCodeFlow or authenticationTransfer. Default value is none.
     authentication_flow: Optional[AuthenticationFlow] = None

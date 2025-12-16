@@ -27,15 +27,15 @@ class MacOSScepCertificateProfile(MacOSCertificateProfileBase, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.macOSScepCertificateProfile"
     # AllowAllAppsAccess setting
     allow_all_apps_access: Optional[bool] = None
-    # Target store certificate. Possible values are: user, machine.
+    # Target store certificate. The possible values are: user, machine.
     certificate_store: Optional[CertificateStore] = None
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
     custom_subject_alternative_names: Optional[list[CustomSubjectAlternativeName]] = None
-    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. The possible values are: deviceChannel, userChannel, unknownFutureValue.
     deployment_channel: Optional[AppleDeploymentChannel] = None
     # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
     extended_key_usages: Optional[list[ExtendedKeyUsage]] = None
-    # SCEP Hash Algorithm. Possible values are: sha1, sha2.
+    # SCEP Hash Algorithm. The possible values are: sha1, sha2.
     hash_algorithm: Optional[HashAlgorithms] = None
     # Key Size Options.
     key_size: Optional[KeySize] = None

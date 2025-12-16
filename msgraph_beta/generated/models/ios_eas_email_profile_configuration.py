@@ -26,7 +26,7 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase, Parsable
     odata_type: Optional[str] = "#microsoft.graph.iosEasEmailProfileConfiguration"
     # Account name.
     account_name: Optional[str] = None
-    # Authentication method for this Email profile. Possible values are: usernameAndPassword, certificate, derivedCredential.
+    # Authentication method for this Email profile. The possible values are: usernameAndPassword, certificate, derivedCredential.
     authentication_method: Optional[EasAuthenticationMethod] = None
     # Indicates whether or not to block moving messages to other email accounts.
     block_moving_messages_to_other_email_accounts: Optional[bool] = None
@@ -38,13 +38,13 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase, Parsable
     derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None
     # Possible values for email sync duration.
     duration_of_email_to_sync: Optional[EmailSyncDuration] = None
-    # Exchange data to sync. Possible values are: none, calendars, contacts, email, notes, reminders.
+    # Exchange data to sync. The possible values are: none, calendars, contacts, email, notes, reminders.
     eas_services: Optional[EasServices] = None
     # Allow users to change sync settings.
     eas_services_user_override_enabled: Optional[bool] = None
     # Possible values for username source or email source.
     email_address_source: Optional[UserEmailSource] = None
-    # Encryption Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
+    # Encryption Certificate type for this Email profile. The possible values are: none, certificate, derivedCredential.
     encryption_certificate_type: Optional[EmailCertificateType] = None
     # Exchange location that (URL) that the native mail app connects to.
     host_name: Optional[str] = None
@@ -56,7 +56,7 @@ class IosEasEmailProfileConfiguration(EasEmailProfileConfigurationBase, Parsable
     require_smime: Optional[bool] = None
     # Indicates whether or not to use SSL.
     require_ssl: Optional[bool] = None
-    # Signing Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
+    # Signing Certificate type for this Email profile. The possible values are: none, certificate, derivedCredential.
     signing_certificate_type: Optional[EmailCertificateType] = None
     # Indicates whether or not to allow unencrypted emails.
     smime_enable_per_message_switch: Optional[bool] = None

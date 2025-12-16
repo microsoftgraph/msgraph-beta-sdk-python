@@ -17,7 +17,7 @@ class DeviceConfigurationAssignment(Entity, Parsable):
     """
     The device configuration assignment entity assigns an AAD group to a specific device configuration.
     """
-    # The admin intent to apply or remove the profile. Possible values are: apply, remove.
+    # The admin intent to apply or remove the profile. The possible values are: apply, remove.
     intent: Optional[DeviceConfigAssignmentIntent] = None
     # The OdataType property
     odata_type: Optional[str] = None

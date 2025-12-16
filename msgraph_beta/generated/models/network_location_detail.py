@@ -17,7 +17,7 @@ class NetworkLocationDetail(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Provides the name of the network used when signing in.
     network_names: Optional[list[str]] = None
-    # Provides the type of network used when signing in. Possible values are: intranet, extranet, namedNetwork, trusted, unknownFutureValue.
+    # Provides the type of network used when signing in. The possible values are: intranet, extranet, namedNetwork, trusted, unknownFutureValue.
     network_type: Optional[NetworkType] = None
     # The OdataType property
     odata_type: Optional[str] = None

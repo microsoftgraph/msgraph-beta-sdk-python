@@ -34,7 +34,7 @@ class WindowsCertificateProfileBase(DeviceConfiguration, Parsable):
     key_storage_provider: Optional[KeyStorageProviderOption] = None
     # Certificate renewal threshold percentage. Valid values 1 to 99
     renewal_threshold_percentage: Optional[int] = None
-    # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
+    # Certificate Subject Alternative Name Type. The possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
     subject_alternative_name_type: Optional[SubjectAlternativeNameType] = None
     # Subject Name Format Options.
     subject_name_format: Optional[SubjectNameFormat] = None

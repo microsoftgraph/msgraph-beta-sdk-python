@@ -31,7 +31,7 @@ class AospDeviceOwnerDeviceConfiguration(DeviceConfiguration, Parsable):
     password_minimum_length: Optional[int] = None
     # Minutes of inactivity before the screen times out.
     password_minutes_of_inactivity_before_screen_timeout: Optional[int] = None
-    # Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+    # Indicates the minimum password quality required on the device. The possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
     password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
     # Indicates the number of times a user can enter an incorrect password before the device is wiped. Valid values 4 to 11
     password_sign_in_failure_count_before_factory_reset: Optional[int] = None

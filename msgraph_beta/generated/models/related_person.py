@@ -19,7 +19,7 @@ class RelatedPerson(AdditionalDataHolder, BackedModel, Parsable):
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Possible values are: manager, colleague, directReport, dotLineReport, assistant, dotLineManager, alternateContact, friend, spouse, sibling, child, parent, sponsor, emergencyContact, other, unknownFutureValue.
+    # The possible values are: manager, colleague, directReport, dotLineReport, assistant, dotLineManager, alternateContact, friend, spouse, sibling, child, parent, sponsor, emergencyContact, other, unknownFutureValue.
     relationship: Optional[PersonRelationship] = None
     # The user's directory object ID (Microsoft Entra ID or CID).
     user_id: Optional[str] = None

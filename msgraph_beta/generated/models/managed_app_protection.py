@@ -49,7 +49,7 @@ class ManagedAppProtection(ManagedAppPolicy, Parsable):
     app_action_if_device_compliance_required: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_maximum_pin_retries_exceeded: Optional[ManagedAppRemediationAction] = None
-    # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
+    # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. The possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_unable_to_authenticate_user: Optional[ManagedAppRemediationAction] = None
     # Indicates whether a user can bring data into org documents.
     block_data_ingestion_into_organization_documents: Optional[bool] = None
@@ -95,7 +95,7 @@ class ManagedAppProtection(ManagedAppPolicy, Parsable):
     minimum_wipe_app_version: Optional[str] = None
     # Versions less than or equal to the specified version will wipe the managed app and the associated company data.
     minimum_wipe_os_version: Optional[str] = None
-    # Indicates how to prioritize which Mobile Threat Defense (MTD) partner is enabled for a given platform, when more than one is enabled. An app can only be actively using a single Mobile Threat Defense partner. When NULL, Microsoft Defender will be given preference. Otherwise setting the value to defenderOverThirdPartyPartner or thirdPartyPartnerOverDefender will make explicit which partner to prioritize. Possible values are: null, defenderOverThirdPartyPartner, thirdPartyPartnerOverDefender and unknownFutureValue. Default value is null. Possible values are: defenderOverThirdPartyPartner, thirdPartyPartnerOverDefender, unknownFutureValue.
+    # Indicates how to prioritize which Mobile Threat Defense (MTD) partner is enabled for a given platform, when more than one is enabled. An app can only be actively using a single Mobile Threat Defense partner. When NULL, Microsoft Defender will be given preference. Otherwise setting the value to defenderOverThirdPartyPartner or thirdPartyPartnerOverDefender will make explicit which partner to prioritize. The possible values are: null, defenderOverThirdPartyPartner, thirdPartyPartnerOverDefender and unknownFutureValue. Default value is null. The possible values are: defenderOverThirdPartyPartner, thirdPartyPartnerOverDefender, unknownFutureValue.
     mobile_threat_defense_partner_priority: Optional[MobileThreatDefensePartnerPriority] = None
     # An admin initiated action to be applied on a managed app.
     mobile_threat_defense_remediation_action: Optional[ManagedAppRemediationAction] = None

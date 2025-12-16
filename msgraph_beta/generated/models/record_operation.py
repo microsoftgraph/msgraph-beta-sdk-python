@@ -12,7 +12,7 @@ from .comms_operation import CommsOperation
 
 @dataclass
 class RecordOperation(CommsOperation, Parsable):
-    # Possible values are: operationCanceled, stopToneDetected, maxRecordDurationReached, initialSilenceTimeout, maxSilenceTimeout, playPromptFailed, playBeepFailed, mediaReceiveTimeout, unspecifiedError, none.
+    # The possible values are: operationCanceled, stopToneDetected, maxRecordDurationReached, initialSilenceTimeout, maxSilenceTimeout, playPromptFailed, playBeepFailed, mediaReceiveTimeout, unspecifiedError, none.
     completion_reason: Optional[RecordCompletionReason] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -19,7 +19,7 @@ class MicrosoftTunnelServer(Entity, Parsable):
     """
     # The digest of the current agent image running on this server. Supports: $filter, $select, $top, $skip, $orderby. $search is not supported. Read-only.
     agent_image_digest: Optional[str] = None
-    # Microsoft Tunnel server deployment mode. The value is set when the server is registered. Possible values are standaloneRootful, standaloneRootless, podRootful, podRootless. Default value: standaloneRootful. Supports: $filter, $select, $top, $skip, $orderby. $search is not supported. Read-only. Possible values are: standaloneRootful, standaloneRootless, podRootful, podRootless, unknownFutureValue.
+    # Microsoft Tunnel server deployment mode. The value is set when the server is registered. Possible values are standaloneRootful, standaloneRootless, podRootful, podRootless. Default value: standaloneRootful. Supports: $filter, $select, $top, $skip, $orderby. $search is not supported. Read-only. The possible values are: standaloneRootful, standaloneRootless, podRootful, podRootless, unknownFutureValue.
     deployment_mode: Optional[MicrosoftTunnelDeploymentMode] = None
     # The display name of the server. It is the same as the host name during registration and can be changed later. Supports: $filter, $select, $top, $skip, $orderby. $search is not supported. Max allowed length is 200 chars.
     display_name: Optional[str] = None

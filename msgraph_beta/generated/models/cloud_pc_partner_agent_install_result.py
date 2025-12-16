@@ -18,7 +18,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, BackedModel, Parsab
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Contains a detailed error message when the partner agent installation failed.
     error_message: Optional[str] = None
-    # The status of a partner agent installation. Possible values are: installed, installFailed, installing, uninstalling, uninstallFailed and licensed. Read-Only.
+    # The status of a partner agent installation. The possible values are: installed, installFailed, installing, uninstalling, uninstallFailed and licensed. Read-Only.
     install_status: Optional[CloudPcPartnerAgentInstallStatus] = None
     # Indicates whether the partner agent is a third party. When true, the agent is a third-party (non-Microsoft) agent and when false, the agent is a Microsoft agent or isn't known.  The default value is false.
     is_third_party_partner: Optional[bool] = None

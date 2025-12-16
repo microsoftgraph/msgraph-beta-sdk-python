@@ -28,7 +28,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
     allow_widget_content_sync: Optional[bool] = None
     # Semicolon seperated list of device models allowed, as a string, for the managed app to work.
     allowed_ios_device_models: Optional[str] = None
-    # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
+    # Defines a managed app behavior, either block or warn, if the user is clocked out (non-working time). The possible values are: block, wipe, warn, blockWhenSettingIsSupported.
     app_action_if_account_is_clocked_out: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_ios_device_model_not_allowed: Optional[ManagedAppRemediationAction] = None
@@ -54,7 +54,7 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
     face_id_blocked: Optional[bool] = None
     # Defines if open-in operation is supported from the managed app to the filesharing locations selected. This setting only applies when AllowedOutboundDataTransferDestinations is set to ManagedApps and DisableProtectionOfManagedOutboundOpenInData is set to False.
     filter_open_in_to_only_managed_apps: Optional[bool] = None
-    # Configuration state (blocked or not blocked) for Apple Intelligence Genmoji setting. Possible values are: notBlocked, blocked, unknownFutureValue.
+    # Configuration state (blocked or not blocked) for Apple Intelligence Genmoji setting. The possible values are: notBlocked, blocked, unknownFutureValue.
     genmoji_configuration_state: Optional[GenmojiIosManagedAppConfigurationState] = None
     # A list of custom urls that are allowed to invocate a managed app
     managed_universal_links: Optional[list[str]] = None
@@ -68,11 +68,11 @@ class IosManagedAppProtection(TargetedManagedAppProtection, Parsable):
     minimum_wipe_sdk_version: Optional[str] = None
     # Protect incoming data from unknown source. This setting is only allowed to be True when AllowedInboundDataTransferSources is set to AllApps.
     protect_inbound_data_from_unknown_sources: Optional[bool] = None
-    # Configuration state (blocked or not blocked) for Apple Intelligence screen capture setting. Possible values are: notBlocked, blocked, unknownFutureValue.
+    # Configuration state (blocked or not blocked) for Apple Intelligence screen capture setting. The possible values are: notBlocked, blocked, unknownFutureValue.
     screen_capture_configuration_state: Optional[ScreenCaptureIosManagedAppConfigurationState] = None
     # Defines if third party keyboards are allowed while accessing a managed app
     third_party_keyboards_blocked: Optional[bool] = None
-    # Configuration state (blocked or not blocked) for Apple Intelligence writing tools setting. Possible values are: notBlocked, blocked, unknownFutureValue.
+    # Configuration state (blocked or not blocked) for Apple Intelligence writing tools setting. The possible values are: notBlocked, blocked, unknownFutureValue.
     writing_tools_configuration_state: Optional[WritingToolsIosManagedAppConfigurationState] = None
     
     @staticmethod

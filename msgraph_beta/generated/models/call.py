@@ -32,7 +32,7 @@ from .entity import Entity
 
 @dataclass
 class Call(Entity, Parsable):
-    # The list of active modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data. Read-only.
+    # The list of active modalities. The possible values are: unknown, audio, video, videoBasedScreenSharing, data. Read-only.
     active_modalities: Optional[list[Modality]] = None
     # The participant that answered the call. Read-only.
     answered_by: Optional[ParticipantInfo] = None
@@ -70,17 +70,17 @@ class Call(Entity, Parsable):
     operations: Optional[list[CommsOperation]] = None
     # The participants property
     participants: Optional[list[Participant]] = None
-    # The list of requested modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data.
+    # The list of requested modalities. The possible values are: unknown, audio, video, videoBasedScreenSharing, data.
     requested_modalities: Optional[list[Modality]] = None
     # The result information. For example, the result can hold termination reason. Read-only.
     result_info: Optional[ResultInfo] = None
     # Ringing timeout in seconds for outgoing peer to peer calls. The max value for this attribute is 115 seconds.
     ringing_timeout_in_seconds: Optional[int] = None
-    # This property is applicable for peer to peer calls only. Possible values are: none, noMissedCall, disableForwardingExceptPhone, disableForwarding, preferSkypeForBusiness, unknownFutureValue.
+    # This property is applicable for peer to peer calls only. The possible values are: none, noMissedCall, disableForwardingExceptPhone, disableForwarding, preferSkypeForBusiness, unknownFutureValue.
     routing_policies: Optional[list[RoutingPolicy]] = None
     # The originator of the call.
     source: Optional[ParticipantInfo] = None
-    # The call state. Possible values are: incoming, establishing, ringing, established, hold, transferring, transferAccepted, redirecting, terminating, terminated. Read-only.
+    # The call state. The possible values are: incoming, establishing, ringing, established, hold, transferring, transferAccepted, redirecting, terminating, terminated. Read-only.
     state: Optional[CallState] = None
     # The subject of the conversation.
     subject: Optional[str] = None

@@ -35,7 +35,7 @@ class OnlineMeeting(OnlineMeetingBase, Parsable):
     broadcast_recording: Optional[bytes] = None
     # Settings related to a live event.
     broadcast_settings: Optional[BroadcastMeetingSettings] = None
-    # The list of meeting capabilities. Possible values are: questionAndAnswer,unknownFutureValue.
+    # The list of meeting capabilities. The possible values are: questionAndAnswer,unknownFutureValue.
     capabilities: Optional[list[MeetingCapabilities]] = None
     # The meeting creation time in UTC. Read-only.
     creation_date_time: Optional[datetime.datetime] = None

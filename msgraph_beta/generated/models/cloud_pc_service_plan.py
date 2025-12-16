@@ -18,7 +18,7 @@ class CloudPcServicePlan(Entity, Parsable):
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Specifies the type of license used when provisioning Cloud PCs. By default, the license type is dedicated. Possible values are: dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup, reserve. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup, reserve. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member.
+    # Specifies the type of license used when provisioning Cloud PCs. By default, the license type is dedicated. The possible values are: dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup, reserve. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup, reserve. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member.
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The size of the RAM in GB. Read-only.
     ram_in_g_b: Optional[int] = None
@@ -26,7 +26,7 @@ class CloudPcServicePlan(Entity, Parsable):
     storage_in_g_b: Optional[int] = None
     # The supportedSolution property
     supported_solution: Optional[CloudPcManagementService] = None
-    # The type of the service plan. Possible values are: enterprise, business, unknownFutureValue. Read-only.
+    # The type of the service plan. The possible values are: enterprise, business, unknownFutureValue. Read-only.
     type: Optional[CloudPcServicePlanType] = None
     # The size of the user profile disk in GB. Read-only.
     user_profile_in_g_b: Optional[int] = None

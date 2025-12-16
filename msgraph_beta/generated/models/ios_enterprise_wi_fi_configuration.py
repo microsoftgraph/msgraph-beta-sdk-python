@@ -23,17 +23,17 @@ class IosEnterpriseWiFiConfiguration(IosWiFiConfiguration, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.iosEnterpriseWiFiConfiguration"
-    # Authentication Method when EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
+    # Authentication Method when EAP Type is configured to PEAP or EAP-TTLS. The possible values are: certificate, usernameAndPassword, derivedCredential.
     authentication_method: Optional[WiFiAuthenticationMethod] = None
     # Tenant level settings for the Derived Credentials to be used for authentication.
     derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None
-    # EAP-FAST Configuration Option when EAP-FAST is the selected EAP Type. Possible values are: noProtectedAccessCredential, useProtectedAccessCredential, useProtectedAccessCredentialAndProvision, useProtectedAccessCredentialAndProvisionAnonymously.
+    # EAP-FAST Configuration Option when EAP-FAST is the selected EAP Type. The possible values are: noProtectedAccessCredential, useProtectedAccessCredential, useProtectedAccessCredentialAndProvision, useProtectedAccessCredentialAndProvisionAnonymously.
     eap_fast_configuration: Optional[EapFastConfiguration] = None
     # Extensible Authentication Protocol (EAP) configuration types.
     eap_type: Optional[EapType] = None
     # Identity Certificate for client authentication when EAP Type is configured to EAP-TLS, EAP-TTLS (with Certificate Authentication), or PEAP (with Certificate Authentication).
     identity_certificate_for_client_authentication: Optional[IosCertificateProfileBase] = None
-    # Non-EAP Method for Authentication when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
+    # Non-EAP Method for Authentication when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. The possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
     inner_authentication_protocol_for_eap_ttls: Optional[NonEapAuthenticationMethodForEapTtlsType] = None
     # Enable identity privacy (Outer Identity) when EAP Type is configured to EAP - TTLS, EAP - FAST or PEAP. This property masks usernames with the text you enter. For example, if you use 'anonymous', each user that authenticates with this Wi-Fi connection using their real username is displayed as 'anonymous'.
     outer_identity_privacy_temporary_value: Optional[str] = None

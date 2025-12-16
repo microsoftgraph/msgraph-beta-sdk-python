@@ -53,7 +53,7 @@ class AndroidEasEmailProfileConfiguration(DeviceConfiguration, Parsable):
     sync_notes: Optional[bool] = None
     # Toggles syncing tasks. If set to false tasks are turned off on the device.
     sync_tasks: Optional[bool] = None
-    # UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: fullDomainName, netBiosDomainName.
+    # UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. The possible values are: fullDomainName, netBiosDomainName.
     user_domain_name_source: Optional[DomainNameSource] = None
     # Android username source.
     username_source: Optional[AndroidUsernameSource] = None

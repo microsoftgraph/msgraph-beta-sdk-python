@@ -81,7 +81,7 @@ class PlannerTask(PlannerDelta, Parsable):
     percent_complete: Optional[int] = None
     # Plan ID to which the task belongs.
     plan_id: Optional[str] = None
-    # The type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference.
+    # The type of preview that shows up on the task. The possible values are: automatic, noPreview, checklist, description, reference.
     preview_type: Optional[PlannerPreviewType] = None
     # The priority of the task. Valid values are between 0 and 10, inclusive. Larger values indicate lower priority. For example, 0 has the highest priority and 10 has the lowest priority. Currently, planner interprets values 0 and 1 as 'urgent', 2 and 3 and 4 as 'important', 5, 6, and 7 as 'medium', and 8, 9, and 10 as 'low'. Currently, planner sets the value 1 for 'urgent', 3 for 'important', 5 for 'medium', and 9 for 'low'.
     priority: Optional[int] = None
@@ -91,7 +91,7 @@ class PlannerTask(PlannerDelta, Parsable):
     recurrence: Optional[PlannerTaskRecurrence] = None
     # Number of external references that exist on the task.
     reference_count: Optional[int] = None
-    # Indicates all the requirements specified on the plannerTask. Possible values are: none, checklistCompletion, unknownFutureValue, formCompletion, approvalCompletion. Read-only. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: formCompletion, approvalCompletion. The plannerTaskCompletionRequirementDetails in plannerTaskDetails has details of the requirements specified, if any.
+    # Indicates all the requirements specified on the plannerTask. The possible values are: none, checklistCompletion, unknownFutureValue, formCompletion, approvalCompletion. Read-only. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: formCompletion, approvalCompletion. The plannerTaskCompletionRequirementDetails in plannerTaskDetails has details of the requirements specified, if any.
     specified_completion_requirements: Optional[PlannerTaskCompletionRequirements] = None
     # Date and time at which the task starts. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     start_date_time: Optional[datetime.datetime] = None

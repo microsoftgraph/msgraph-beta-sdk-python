@@ -51,9 +51,10 @@ class SharePointMigrationTaskItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SharePointMigrationTaskItemRequestBuilderGetQueryParameters]] = None) -> Optional[SharePointMigrationTask]:
         """
-        Get crossOrganizationMigrationTasks from solutions
+        Get a sharePointMigrationTask that was previously created, using the task ID. The returned sharePointMigrationTask object includes the source and target site URLs, migration status, optional timestamps (startedDateTime and finishedDateTime), and error details about issues during processing.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SharePointMigrationTask]
+        Find more info here: https://learn.microsoft.com/graph/api/sharepointmigrationtask-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -105,7 +106,7 @@ class SharePointMigrationTaskItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SharePointMigrationTaskItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get crossOrganizationMigrationTasks from solutions
+        Get a sharePointMigrationTask that was previously created, using the task ID. The returned sharePointMigrationTask object includes the source and target site URLs, migration status, optional timestamps (startedDateTime and finishedDateTime), and error details about issues during processing.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +159,7 @@ class SharePointMigrationTaskItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SharePointMigrationTaskItemRequestBuilderGetQueryParameters():
         """
-        Get crossOrganizationMigrationTasks from solutions
+        Get a sharePointMigrationTask that was previously created, using the task ID. The returned sharePointMigrationTask object includes the source and target site URLs, migration status, optional timestamps (startedDateTime and finishedDateTime), and error details about issues during processing.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

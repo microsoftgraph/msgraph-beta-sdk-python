@@ -17,7 +17,7 @@ class AppConsentRequest(Entity, Parsable):
     app_display_name: Optional[str] = None
     # The identifier of the application. Required. Supports $filter (eq only) and $orderby.
     app_id: Optional[str] = None
-    # The consent type of the request. Possible values are: Static and Dynamic. These represent static and dynamic permissions, respectively, requested in the consent workflow. Supports $filter (eq only) and $orderby. Required.
+    # The consent type of the request. The possible values are: Static and Dynamic. These represent static and dynamic permissions, respectively, requested in the consent workflow. Supports $filter (eq only) and $orderby. Required.
     consent_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -22,7 +22,7 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.macOSPkcsCertificateProfile"
     # AllowAllAppsAccess setting
     allow_all_apps_access: Optional[bool] = None
-    # Target store certificate. Possible values are: user, machine.
+    # Target store certificate. The possible values are: user, machine.
     certificate_store: Optional[CertificateStore] = None
     # PKCS certificate template name.
     certificate_template_name: Optional[str] = None
@@ -32,7 +32,7 @@ class MacOSPkcsCertificateProfile(MacOSCertificateProfileBase, Parsable):
     certification_authority_name: Optional[str] = None
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
     custom_subject_alternative_names: Optional[list[CustomSubjectAlternativeName]] = None
-    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. The possible values are: deviceChannel, userChannel, unknownFutureValue.
     deployment_channel: Optional[AppleDeploymentChannel] = None
     # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
     managed_device_certificate_states: Optional[list[ManagedDeviceCertificateState]] = None

@@ -33,7 +33,7 @@ class AndroidWorkProfileCertificateProfileBase(DeviceConfiguration, Parsable):
     renewal_threshold_percentage: Optional[int] = None
     # Trusted Root Certificate.
     root_certificate: Optional[AndroidWorkProfileTrustedRootCertificate] = None
-    # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
+    # Certificate Subject Alternative Name Type. The possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
     subject_alternative_name_type: Optional[SubjectAlternativeNameType] = None
     # Subject Name Format Options.
     subject_name_format: Optional[SubjectNameFormat] = None

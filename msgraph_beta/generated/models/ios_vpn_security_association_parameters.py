@@ -25,9 +25,9 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, BackedModel, Par
     odata_type: Optional[str] = None
     # Diffie-Hellman Group
     security_diffie_hellman_group: Optional[int] = None
-    # Encryption algorithm. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
+    # Encryption algorithm. The possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
     security_encryption_algorithm: Optional[VpnEncryptionAlgorithmType] = None
-    # Integrity algorithm. Possible values are: sha2256, sha196, sha1160, sha2384, sha2_512, md5.
+    # Integrity algorithm. The possible values are: sha2256, sha196, sha1160, sha2384, sha2_512, md5.
     security_integrity_algorithm: Optional[VpnIntegrityAlgorithmType] = None
     
     @staticmethod

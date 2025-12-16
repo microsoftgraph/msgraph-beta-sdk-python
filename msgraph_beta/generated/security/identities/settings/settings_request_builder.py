@@ -16,7 +16,6 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.security.settings_container import SettingsContainer
-    from .auto_auditing_configuration.auto_auditing_configuration_request_builder import AutoAuditingConfigurationRequestBuilder
 
 class SettingsRequestBuilder(BaseRequestBuilder):
     """
@@ -138,15 +137,6 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SettingsRequestBuilder(self.request_adapter, raw_url)
-    
-    @property
-    def auto_auditing_configuration(self) -> AutoAuditingConfigurationRequestBuilder:
-        """
-        Provides operations to manage the autoAuditingConfiguration property of the microsoft.graph.security.settingsContainer entity.
-        """
-        from .auto_auditing_configuration.auto_auditing_configuration_request_builder import AutoAuditingConfigurationRequestBuilder
-
-        return AutoAuditingConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SettingsRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

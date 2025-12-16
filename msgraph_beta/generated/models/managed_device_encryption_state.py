@@ -21,7 +21,7 @@ class ManagedDeviceEncryptionState(Entity, Parsable):
     """
     Encryption report per device
     """
-    # Advanced BitLocker State. Possible values are: success, noUserConsent, osVolumeUnprotected, osVolumeTpmRequired, osVolumeTpmOnlyRequired, osVolumeTpmPinRequired, osVolumeTpmStartupKeyRequired, osVolumeTpmPinStartupKeyRequired, osVolumeEncryptionMethodMismatch, recoveryKeyBackupFailed, fixedDriveNotEncrypted, fixedDriveEncryptionMethodMismatch, loggedOnUserNonAdmin, windowsRecoveryEnvironmentNotConfigured, tpmNotAvailable, tpmNotReady, networkError.
+    # Advanced BitLocker State. The possible values are: success, noUserConsent, osVolumeUnprotected, osVolumeTpmRequired, osVolumeTpmOnlyRequired, osVolumeTpmPinRequired, osVolumeTpmStartupKeyRequired, osVolumeTpmPinStartupKeyRequired, osVolumeEncryptionMethodMismatch, recoveryKeyBackupFailed, fixedDriveNotEncrypted, fixedDriveEncryptionMethodMismatch, loggedOnUserNonAdmin, windowsRecoveryEnvironmentNotConfigured, tpmNotAvailable, tpmNotReady, networkError.
     advanced_bit_locker_states: Optional[AdvancedBitLockerState] = None
     # Device name
     device_name: Optional[str] = None
@@ -33,7 +33,7 @@ class ManagedDeviceEncryptionState(Entity, Parsable):
     encryption_readiness_state: Optional[EncryptionReadinessState] = None
     # Encryption state
     encryption_state: Optional[EncryptionState] = None
-    # FileVault State. Possible values are: success, driveEncryptedByUser, userDeferredEncryption, escrowNotEnabled.
+    # FileVault State. The possible values are: success, driveEncryptedByUser, userDeferredEncryption, escrowNotEnabled.
     file_vault_states: Optional[FileVaultState] = None
     # The OdataType property
     odata_type: Optional[str] = None

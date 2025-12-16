@@ -35,7 +35,7 @@ class ConnectedOrganization(Entity, Parsable):
     modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The state of a connected organization defines whether assignment policies with requestor scope type AllConfiguredConnectedOrganizationSubjects are applicable or not. Possible values are: configured, proposed.
+    # The state of a connected organization defines whether assignment policies with requestor scope type AllConfiguredConnectedOrganizationSubjects are applicable or not. The possible values are: configured, proposed.
     state: Optional[ConnectedOrganizationState] = None
     
     @staticmethod

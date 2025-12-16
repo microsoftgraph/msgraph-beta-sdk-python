@@ -33,9 +33,9 @@ class AospDeviceOwnerCertificateProfileBase(DeviceConfiguration, Parsable):
     renewal_threshold_percentage: Optional[int] = None
     # Trusted Root Certificate.
     root_certificate: Optional[AospDeviceOwnerTrustedRootCertificate] = None
-    # Certificate Subject Alternative Name Type. This collection can contain a maximum of 500 elements. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
+    # Certificate Subject Alternative Name Type. This collection can contain a maximum of 500 elements. The possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
     subject_alternative_name_type: Optional[SubjectAlternativeNameType] = None
-    # Certificate Subject Name Format. This collection can contain a maximum of 500 elements. Possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
+    # Certificate Subject Name Format. This collection can contain a maximum of 500 elements. The possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
     subject_name_format: Optional[SubjectNameFormat] = None
     
     @staticmethod

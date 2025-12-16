@@ -29,7 +29,7 @@ class AospDeviceOwnerCompliancePolicy(DeviceCompliancePolicy, Parsable):
     password_minutes_of_inactivity_before_lock: Optional[int] = None
     # Require a password to unlock device.
     password_required: Optional[bool] = None
-    # Type of characters in password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+    # Type of characters in password. The possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
     password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
     # Indicates the device should not be rooted. When TRUE, if the device is detected as rooted it will be reported non-compliant. When FALSE, the device is not reported as non-compliant regardless of device rooted state. Default is FALSE.
     security_block_jailbroken_devices: Optional[bool] = None

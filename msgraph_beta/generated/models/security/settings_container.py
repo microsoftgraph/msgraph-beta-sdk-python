@@ -6,14 +6,11 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
-    from .auto_auditing_configuration import AutoAuditingConfiguration
 
 from ..entity import Entity
 
 @dataclass
 class SettingsContainer(Entity, Parsable):
-    # Represents automatic configuration for collection of Windows event logs as needed for Defender for Identity sensors.
-    auto_auditing_configuration: Optional[AutoAuditingConfiguration] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -34,13 +31,10 @@ class SettingsContainer(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
-        from .auto_auditing_configuration import AutoAuditingConfiguration
 
         from ..entity import Entity
-        from .auto_auditing_configuration import AutoAuditingConfiguration
 
         fields: dict[str, Callable[[Any], None]] = {
-            "autoAuditingConfiguration": lambda n : setattr(self, 'auto_auditing_configuration', n.get_object_value(AutoAuditingConfiguration)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,6 +49,5 @@ class SettingsContainer(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_object_value("autoAuditingConfiguration", self.auto_auditing_configuration)
     
 

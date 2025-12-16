@@ -23,7 +23,7 @@ class IosScepCertificateProfile(IosCertificateProfileBase, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.iosScepCertificateProfile"
-    # Target store certificate. Possible values are: user, machine.
+    # Target store certificate. The possible values are: user, machine.
     certificate_store: Optional[CertificateStore] = None
     # Custom Subject Alternative Name Settings. The OnPremisesUserPrincipalName variable is support as well as others documented here: https://go.microsoft.com/fwlink/?LinkId=2027630. This collection can contain a maximum of 500 elements.
     custom_subject_alternative_names: Optional[list[CustomSubjectAlternativeName]] = None

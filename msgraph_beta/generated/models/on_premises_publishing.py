@@ -29,7 +29,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     application_server_timeout: Optional[str] = None
     # System-defined value that indicates whether this application is an application proxy configured application. The possible values are quickaccessapp and nonwebapp. Read-only.
     application_type: Optional[str] = None
-    # Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Pass through doesn't require authentication. Possible values are: passthru, aadPreAuthentication.
+    # Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Pass through doesn't require authentication. The possible values are: passthru, aadPreAuthentication.
     external_authentication_type: Optional[ExternalAuthenticationType] = None
     # The published external URL for the application. For example, https://intranet-contoso.msappproxy.net/.
     external_url: Optional[str] = None

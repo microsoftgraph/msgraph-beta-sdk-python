@@ -24,7 +24,7 @@ class AndroidDeviceOwnerWiFiConfiguration(DeviceConfiguration, Parsable):
     connect_automatically: Optional[bool] = None
     # When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.
     connect_when_network_name_is_hidden: Optional[bool] = None
-    # The MAC address randomization mode for Android device Wi-Fi configuration. Possible values include automatic and hardware. Default value is automatic. Possible values are: automatic, hardware, unknownFutureValue.
+    # The MAC address randomization mode for Android device Wi-Fi configuration. Possible values include automatic and hardware. Default value is automatic. The possible values are: automatic, hardware, unknownFutureValue.
     mac_address_randomization_mode: Optional[MacAddressRandomizationMode] = None
     # Network Name
     network_name: Optional[str] = None

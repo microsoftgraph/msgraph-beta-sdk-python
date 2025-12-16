@@ -19,7 +19,7 @@ class IosPkcsCertificateProfile(IosCertificateProfileBase, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.iosPkcsCertificateProfile"
-    # Target store certificate. Possible values are: user, machine.
+    # Target store certificate. The possible values are: user, machine.
     certificate_store: Optional[CertificateStore] = None
     # PKCS Certificate Template Name.
     certificate_template_name: Optional[str] = None

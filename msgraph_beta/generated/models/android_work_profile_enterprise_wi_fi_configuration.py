@@ -22,15 +22,15 @@ class AndroidWorkProfileEnterpriseWiFiConfiguration(AndroidWorkProfileWiFiConfig
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.androidWorkProfileEnterpriseWiFiConfiguration"
-    # Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
+    # Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. The possible values are: certificate, usernameAndPassword, derivedCredential.
     authentication_method: Optional[WiFiAuthenticationMethod] = None
     # Extensible Authentication Protocol (EAP) Configuration Types.
     eap_type: Optional[AndroidEapType] = None
     # Identity Certificate for client authentication when EAP Type is configured to EAP-TLS, EAP-TTLS (with Certificate Authentication), or PEAP (with Certificate Authentication). This is the certificate presented by client to the Wi-Fi endpoint. The authentication server sitting behind the Wi-Fi endpoint must accept this certificate to successfully establish a Wi-Fi connection.
     identity_certificate_for_client_authentication: Optional[AndroidWorkProfileCertificateProfileBase] = None
-    # Non-EAP Method for Authentication (Inner Identity) when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
+    # Non-EAP Method for Authentication (Inner Identity) when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. The possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
     inner_authentication_protocol_for_eap_ttls: Optional[NonEapAuthenticationMethodForEapTtlsType] = None
-    # Non-EAP Method for Authentication (Inner Identity) when EAP Type is PEAP and Authenticationmethod is Username and Password. Possible values are: none, microsoftChapVersionTwo.
+    # Non-EAP Method for Authentication (Inner Identity) when EAP Type is PEAP and Authenticationmethod is Username and Password. The possible values are: none, microsoftChapVersionTwo.
     inner_authentication_protocol_for_peap: Optional[NonEapAuthenticationMethodForPeap] = None
     # Enable identity privacy (Outer Identity) when EAP Type is configured to EAP-TTLS or PEAP. The String provided here is used to mask the username of individual users when they attempt to connect to Wi-Fi network.
     outer_identity_privacy_temporary_value: Optional[str] = None

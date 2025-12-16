@@ -14,28 +14,29 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
+    from .....models.control_configuration import ControlConfiguration
     from .....models.o_data_errors.o_data_error import ODataError
-    from .....models.security.auto_auditing_configuration import AutoAuditingConfiguration
 
-class AutoAuditingConfigurationRequestBuilder(BaseRequestBuilder):
+class ControlConfigurationItemRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the autoAuditingConfiguration property of the microsoft.graph.security.settingsContainer entity.
+    Provides operations to manage the controlConfigurations property of the microsoft.graph.entitlementManagement entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
-        Instantiates a new AutoAuditingConfigurationRequestBuilder and sets the default values.
+        Instantiates a new ControlConfigurationItemRequestBuilder and sets the default values.
         param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/security/identities/settings/autoAuditingConfiguration{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/controlConfigurations/{controlConfiguration%2Did}{?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property autoAuditingConfiguration for security
+        Delete navigation property controlConfigurations for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
+        warn("Controls configurations preview. as of PrivatePreview:ControlConfigurations on 2024-09-27 and will be removed 2025-09-27", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -48,13 +49,13 @@ class AutoAuditingConfigurationRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[AutoAuditingConfigurationRequestBuilderGetQueryParameters]] = None) -> Optional[AutoAuditingConfiguration]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ControlConfigurationItemRequestBuilderGetQueryParameters]] = None) -> Optional[ControlConfiguration]:
         """
-        Get the properties and relationships of an microsoft.graph.security.autoAuditingConfiguration object.
+        Represents the policies that control lifecycle and access to access packages across the organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[AutoAuditingConfiguration]
-        Find more info here: https://learn.microsoft.com/graph/api/security-autoauditingconfiguration-get?view=graph-rest-beta
+        Returns: Optional[ControlConfiguration]
         """
+        warn("Controls configurations preview. as of PrivatePreview:ControlConfigurations on 2024-09-27 and will be removed 2025-09-27", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -65,20 +66,21 @@ class AutoAuditingConfigurationRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.security.auto_auditing_configuration import AutoAuditingConfiguration
+        from .....models.control_configuration import ControlConfiguration
 
-        return await self.request_adapter.send_async(request_info, AutoAuditingConfiguration, error_mapping)
+        return await self.request_adapter.send_async(request_info, ControlConfiguration, error_mapping)
     
-    async def patch(self,body: AutoAuditingConfiguration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AutoAuditingConfiguration]:
+    async def put(self,body: ControlConfiguration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ControlConfiguration]:
         """
-        Update the navigation property autoAuditingConfiguration in security
+        Update the navigation property controlConfigurations in identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[AutoAuditingConfiguration]
+        Returns: Optional[ControlConfiguration]
         """
+        warn("Controls configurations preview. as of PrivatePreview:ControlConfigurations on 2024-09-27 and will be removed 2025-09-27", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
-        request_info = self.to_patch_request_information(
+        request_info = self.to_put_request_information(
             body, request_configuration
         )
         from .....models.o_data_errors.o_data_error import ODataError
@@ -88,68 +90,72 @@ class AutoAuditingConfigurationRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.security.auto_auditing_configuration import AutoAuditingConfiguration
+        from .....models.control_configuration import ControlConfiguration
 
-        return await self.request_adapter.send_async(request_info, AutoAuditingConfiguration, error_mapping)
+        return await self.request_adapter.send_async(request_info, ControlConfiguration, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property autoAuditingConfiguration for security
+        Delete navigation property controlConfigurations for identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Controls configurations preview. as of PrivatePreview:ControlConfigurations on 2024-09-27 and will be removed 2025-09-27", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AutoAuditingConfigurationRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ControlConfigurationItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get the properties and relationships of an microsoft.graph.security.autoAuditingConfiguration object.
+        Represents the policies that control lifecycle and access to access packages across the organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Controls configurations preview. as of PrivatePreview:ControlConfigurations on 2024-09-27 and will be removed 2025-09-27", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: AutoAuditingConfiguration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_put_request_information(self,body: ControlConfiguration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property autoAuditingConfiguration in security
+        Update the navigation property controlConfigurations in identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Controls configurations preview. as of PrivatePreview:ControlConfigurations on 2024-09-27 and will be removed 2025-09-27", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.PUT, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: str) -> AutoAuditingConfigurationRequestBuilder:
+    def with_url(self,raw_url: str) -> ControlConfigurationItemRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: AutoAuditingConfigurationRequestBuilder
+        Returns: ControlConfigurationItemRequestBuilder
         """
+        warn("Controls configurations preview. as of PrivatePreview:ControlConfigurations on 2024-09-27 and will be removed 2025-09-27", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
-        return AutoAuditingConfigurationRequestBuilder(self.request_adapter, raw_url)
+        return ControlConfigurationItemRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class AutoAuditingConfigurationRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class ControlConfigurationItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
     @dataclass
-    class AutoAuditingConfigurationRequestBuilderGetQueryParameters():
+    class ControlConfigurationItemRequestBuilderGetQueryParameters():
         """
-        Get the properties and relationships of an microsoft.graph.security.autoAuditingConfiguration object.
+        Represents the policies that control lifecycle and access to access packages across the organization.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
@@ -173,14 +179,14 @@ class AutoAuditingConfigurationRequestBuilder(BaseRequestBuilder):
 
     
     @dataclass
-    class AutoAuditingConfigurationRequestBuilderGetRequestConfiguration(RequestConfiguration[AutoAuditingConfigurationRequestBuilderGetQueryParameters]):
+    class ControlConfigurationItemRequestBuilderGetRequestConfiguration(RequestConfiguration[ControlConfigurationItemRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
     @dataclass
-    class AutoAuditingConfigurationRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class ControlConfigurationItemRequestBuilderPutRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

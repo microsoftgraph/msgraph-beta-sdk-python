@@ -14,11 +14,11 @@ from .entity import Entity
 
 @dataclass
 class PlaceOperation(Entity, Parsable):
-    # The details property
+    # The detailed result of the operation, including errors and successful places.
     details: Optional[list[PlaceExecutionResult]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The progress property
+    # The progress of the operation.
     progress: Optional[PlaceOperationProgress] = None
     # The status property
     status: Optional[PlaceOperationStatus] = None

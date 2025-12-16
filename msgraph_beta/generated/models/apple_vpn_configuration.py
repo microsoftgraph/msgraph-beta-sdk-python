@@ -59,7 +59,7 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
     on_demand_rules: Optional[list[VpnOnDemandRule]] = None
     # Opt-In to sharing the device's Id to third-party vpn clients for use during network access control validation.
     opt_in_to_device_id_sharing: Optional[bool] = None
-    # Provider type for per-app VPN. Possible values are: notConfigured, appProxy, packetTunnel.
+    # Provider type for per-app VPN. The possible values are: notConfigured, appProxy, packetTunnel.
     provider_type: Optional[VpnProviderType] = None
     # Proxy Server.
     proxy_server: Optional[VpnProxyServer] = None

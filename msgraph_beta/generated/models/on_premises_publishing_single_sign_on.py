@@ -20,7 +20,7 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, BackedModel, Parsab
     kerberos_sign_on_settings: Optional[KerberosSignOnSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased, oAuthToken.
+    # The preferred single-sign on mode for the application. The possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased, oAuthToken.
     single_sign_on_mode: Optional[SingleSignOnMode] = None
     
     @staticmethod

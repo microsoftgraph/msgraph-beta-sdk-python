@@ -22,7 +22,7 @@ class Windows81SCEPCertificateProfile(Windows81CertificateProfileBase, Parsable)
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windows81SCEPCertificateProfile"
-    # Target store certificate. Possible values are: user, machine.
+    # Target store certificate. The possible values are: user, machine.
     certificate_store: Optional[CertificateStore] = None
     # Hash Algorithm Options.
     hash_algorithm: Optional[HashAlgorithms] = None

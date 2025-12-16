@@ -20,7 +20,7 @@ class Fido2AuthenticationMethod(AuthenticationMethod, Parsable):
     aa_guid: Optional[str] = None
     # The attestation certificate or certificates attached to this security key.
     attestation_certificates: Optional[list[str]] = None
-    # The attestation level of this FIDO2 security key. Possible values are: attested, notAttested, unknownFutureValue.
+    # The attestation level of this FIDO2 security key. The possible values are: attested, notAttested, unknownFutureValue.
     attestation_level: Optional[AttestationLevel] = None
     # The display name of the key as given by the user.
     display_name: Optional[str] = None

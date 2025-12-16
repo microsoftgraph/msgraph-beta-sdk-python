@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class UserConfiguration(Entity, Parsable):
-    # The binaryData property
+    # Arbitrary binary data.
     binary_data: Optional[bytes] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -16,9 +16,9 @@ class PlaceExecutionResult(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The children property
+    # The upsert results of children places of the place.
     children: Optional[list[PlaceExecutionResult]] = None
-    # The error property
+    # The error that occurred during the upsert of the place.
     error: Optional[PublicError] = None
     # The OdataType property
     odata_type: Optional[str] = None

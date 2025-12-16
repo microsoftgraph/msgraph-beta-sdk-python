@@ -22,9 +22,9 @@ class ChannelModerationSettings(AdditionalDataHolder, BackedModel, Parsable):
     allow_new_message_from_connectors: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates who is allowed to reply to the teams channel. Possible values are: everyone, authorAndModerators, unknownFutureValue.
+    # Indicates who is allowed to reply to the teams channel. The possible values are: everyone, authorAndModerators, unknownFutureValue.
     reply_restriction: Optional[ReplyRestriction] = None
-    # Indicates who is allowed to post messages to teams channel. Possible values are: everyone, everyoneExceptGuests, moderators, unknownFutureValue.
+    # Indicates who is allowed to post messages to teams channel. The possible values are: everyone, everyoneExceptGuests, moderators, unknownFutureValue.
     user_new_message_restriction: Optional[UserNewMessageRestriction] = None
     
     @staticmethod
