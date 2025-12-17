@@ -32,7 +32,7 @@ class Win32LobApp(MobileLobApp, Parsable):
     active_uninstall_script: Optional[MobileAppScriptReference] = None
     # Indicates whether the uninstall is supported from the company portal for the Win32 app with an available assignment. When TRUE, indicates that uninstall is supported from the company portal for the Windows app (Win32) with an available assignment. When FALSE, indicates that uninstall is not supported for the Windows app (Win32) with an Available assignment. Default value is FALSE.
     allow_available_uninstall: Optional[bool] = None
-    # Indicates the Windows architecture(s) this app should be installed on. The app will be treated as not applicable for devices with architectures not matching the selected value. When a non-null value is provided for the allowedArchitectures property, the value of the applicableArchitectures property is set to none. Possible values are: null, x86, x64, arm64. Possible values are: none, x86, x64, arm, neutral, arm64.
+    # Indicates the Windows architecture(s) this app should be installed on. The app will be treated as not applicable for devices with architectures not matching the selected value. When a non-null value is provided for the allowedArchitectures property, the value of the applicableArchitectures property is set to none. The possible values are: null, x86, x64, arm64. The possible values are: none, x86, x64, arm, neutral, arm64.
     allowed_architectures: Optional[WindowsArchitecture] = None
     # Contains properties for Windows architecture.
     applicable_architectures: Optional[WindowsArchitecture] = None
@@ -58,11 +58,11 @@ class Win32LobApp(MobileLobApp, Parsable):
     minimum_supported_windows_release: Optional[str] = None
     # Indicates the MSI details if this Win32 app is an MSI app.
     msi_information: Optional[Win32LobAppMsiInformation] = None
-    # Indicates the requirement rules to detect Win32 Line of Business (LoB) app. Possible values are: Win32LobAppFileSystemRequirement, Win32LobAppPowerShellScriptRequirement, Win32LobAppRegistryRequirement.
+    # Indicates the requirement rules to detect Win32 Line of Business (LoB) app. The possible values are: Win32LobAppFileSystemRequirement, Win32LobAppPowerShellScriptRequirement, Win32LobAppRegistryRequirement.
     requirement_rules: Optional[list[Win32LobAppRequirement]] = None
     # Indicates the return codes for post installation behavior.
     return_codes: Optional[list[Win32LobAppReturnCode]] = None
-    # Indicates the detection and requirement rules for this app. Possible values are: Win32LobAppFileSystemRule, Win32LobAppPowerShellScriptRule, Win32LobAppProductCodeRule, Win32LobAppRegistryRule.
+    # Indicates the detection and requirement rules for this app. The possible values are: Win32LobAppFileSystemRule, Win32LobAppPowerShellScriptRule, Win32LobAppProductCodeRule, Win32LobAppRegistryRule.
     rules: Optional[list[Win32LobAppRule]] = None
     # Indicates the relative path of the setup file in the encrypted Win32LobApp package. Example: Intel-SA-00075 Detection and Mitigation Tool.msi.
     setup_file_path: Optional[str] = None

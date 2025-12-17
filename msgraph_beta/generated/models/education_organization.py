@@ -17,7 +17,7 @@ class EducationOrganization(Entity, Parsable):
     description: Optional[str] = None
     # Organization display name.
     display_name: Optional[str] = None
-    # Where this user was created from. Possible values are: sis, lms, or manual.
+    # Where this user was created from. The possible values are: sis, lms, or manual.
     external_source: Optional[EducationExternalSource] = None
     # The externalSourceDetail property
     external_source_detail: Optional[str] = None

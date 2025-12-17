@@ -24,7 +24,7 @@ class MacOSWiFiConfiguration(DeviceConfiguration, Parsable):
     connect_automatically: Optional[bool] = None
     # Connect when the network is not broadcasting its name (SSID). When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.
     connect_when_network_name_is_hidden: Optional[bool] = None
-    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. The possible values are: deviceChannel, userChannel, unknownFutureValue.
     deployment_channel: Optional[AppleDeploymentChannel] = None
     # Network Name
     network_name: Optional[str] = None

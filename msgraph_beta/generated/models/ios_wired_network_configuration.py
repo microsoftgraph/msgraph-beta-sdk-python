@@ -23,9 +23,9 @@ class IosWiredNetworkConfiguration(DeviceConfiguration, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.iosWiredNetworkConfiguration"
-    # Authentication Method when EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
+    # Authentication Method when EAP Type is configured to PEAP or EAP-TTLS. The possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
     authentication_method: Optional[WiredNetworkAuthenticationMethod] = None
-    # EAP-FAST Configuration Option when EAP-FAST is the selected EAP Type. Possible values are: noProtectedAccessCredential, useProtectedAccessCredential, useProtectedAccessCredentialAndProvision, useProtectedAccessCredentialAndProvisionAnonymously.
+    # EAP-FAST Configuration Option when EAP-FAST is the selected EAP Type. The possible values are: noProtectedAccessCredential, useProtectedAccessCredential, useProtectedAccessCredentialAndProvision, useProtectedAccessCredentialAndProvisionAnonymously.
     eap_fast_configuration: Optional[EapFastConfiguration] = None
     # Extensible Authentication Protocol (EAP) configuration types.
     eap_type: Optional[IosWiredNetworkEapType] = None
@@ -35,7 +35,7 @@ class IosWiredNetworkConfiguration(DeviceConfiguration, Parsable):
     network_interface: Optional[WiredNetworkInterface] = None
     # Network Name.
     network_name: Optional[str] = None
-    # Non-EAP Method for Authentication (Inner Identity) when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
+    # Non-EAP Method for Authentication (Inner Identity) when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. The possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
     non_eap_authentication_method_for_eap_ttls: Optional[NonEapAuthenticationMethodForEapTtlsType] = None
     # Enable identity privacy (Outer Identity) when EAP Type is configured to EAP-TLS, EAP-TTLS or PEAP. This property masks usernames with the text you enter. For example, if you use 'anonymous', each user that authenticates with this wired network using their real username is displayed as 'anonymous'.
     outer_identity_privacy_mask_value: Optional[str] = None

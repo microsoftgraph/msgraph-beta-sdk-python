@@ -50,9 +50,10 @@ class ConversationMemberItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ConversationMemberItemRequestBuilderGetQueryParameters]] = None) -> Optional[ConversationMember]:
         """
-        A collection of membership records associated with the channel. It includes both direct and indirect members of shared channels.
+        Retrieve a single conversationMember (direct or indirect) from the allMembers collection using the membership ID. This API provides access to the following member types:- *Direct members*: Users who are added directly to the channel, including users from other tenants (cross-tenant).- *Indirect members*: Users who are members of a team with which the channel is shared, including teams in the same tenant or in a different tenant (cross-tenant). When you retrieve an indirect member, the @microsoft.graph.originalSourceMembershipUrl property identifies the original source team, which indicates that the user is an indirect member of the shared channel.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConversationMember]
+        Find more info here: https://learn.microsoft.com/graph/api/channel-get-allmembers?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -104,7 +105,7 @@ class ConversationMemberItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ConversationMemberItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        A collection of membership records associated with the channel. It includes both direct and indirect members of shared channels.
+        Retrieve a single conversationMember (direct or indirect) from the allMembers collection using the membership ID. This API provides access to the following member types:- *Direct members*: Users who are added directly to the channel, including users from other tenants (cross-tenant).- *Indirect members*: Users who are members of a team with which the channel is shared, including teams in the same tenant or in a different tenant (cross-tenant). When you retrieve an indirect member, the @microsoft.graph.originalSourceMembershipUrl property identifies the original source team, which indicates that the user is an indirect member of the shared channel.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +149,7 @@ class ConversationMemberItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConversationMemberItemRequestBuilderGetQueryParameters():
         """
-        A collection of membership records associated with the channel. It includes both direct and indirect members of shared channels.
+        Retrieve a single conversationMember (direct or indirect) from the allMembers collection using the membership ID. This API provides access to the following member types:- *Direct members*: Users who are added directly to the channel, including users from other tenants (cross-tenant).- *Indirect members*: Users who are members of a team with which the channel is shared, including teams in the same tenant or in a different tenant (cross-tenant). When you retrieve an indirect member, the @microsoft.graph.originalSourceMembershipUrl property identifies the original source team, which indicates that the user is an indirect member of the shared channel.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

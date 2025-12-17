@@ -20,7 +20,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Select the encryption method for operating system drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
+    # Select the encryption method for operating system drives. The possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
     encryption_method: Optional[BitLockerEncryptionMethod] = None
     # Indicates the minimum length of startup pin. Valid values 4 to 20
     minimum_pin_length: Optional[int] = None

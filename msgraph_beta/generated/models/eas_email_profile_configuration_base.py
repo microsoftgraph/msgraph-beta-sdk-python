@@ -24,9 +24,9 @@ class EasEmailProfileConfigurationBase(DeviceConfiguration, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.easEmailProfileConfigurationBase"
     # Custom domain name value used while generating an email profile before installing on the device.
     custom_domain_name: Optional[str] = None
-    # UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: fullDomainName, netBiosDomainName.
+    # UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. The possible values are: fullDomainName, netBiosDomainName.
     user_domain_name_source: Optional[DomainNameSource] = None
-    # Name of the AAD field, that will be used to retrieve UserName for email profile. Possible values are: userPrincipalName, primarySmtpAddress, samAccountName.
+    # Name of the AAD field, that will be used to retrieve UserName for email profile. The possible values are: userPrincipalName, primarySmtpAddress, samAccountName.
     username_a_a_d_source: Optional[UsernameSource] = None
     # Possible values for username source or email source.
     username_source: Optional[UserEmailSource] = None

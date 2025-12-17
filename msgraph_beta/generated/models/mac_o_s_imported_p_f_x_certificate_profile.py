@@ -19,7 +19,7 @@ class MacOSImportedPFXCertificateProfile(MacOSCertificateProfileBase, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOSImportedPFXCertificateProfile"
-    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. The possible values are: deviceChannel, userChannel, unknownFutureValue.
     deployment_channel: Optional[AppleDeploymentChannel] = None
     # PFX Import Options.
     intended_purpose: Optional[IntendedPurpose] = None

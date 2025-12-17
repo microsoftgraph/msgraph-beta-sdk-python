@@ -19,7 +19,7 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Select the encryption method for fixed drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
+    # Select the encryption method for fixed drives. The possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
     encryption_method: Optional[BitLockerEncryptionMethod] = None
     # The OdataType property
     odata_type: Optional[str] = None

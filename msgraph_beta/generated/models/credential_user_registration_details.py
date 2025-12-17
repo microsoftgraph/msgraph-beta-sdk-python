@@ -12,7 +12,7 @@ from .entity import Entity
 
 @dataclass
 class CredentialUserRegistrationDetails(Entity, Parsable):
-    # Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
+    # Represents the authentication method that the user has registered. The possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
     auth_methods: Optional[list[RegistrationAuthMethod]] = None
     # Indicates whether the user is ready to perform self-service password reset or MFA.
     is_capable: Optional[bool] = None

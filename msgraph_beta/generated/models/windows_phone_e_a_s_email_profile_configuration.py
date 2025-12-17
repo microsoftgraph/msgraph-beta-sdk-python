@@ -25,7 +25,7 @@ class WindowsPhoneEASEmailProfileConfiguration(EasEmailProfileConfigurationBase,
     apply_only_to_windows_phone81: Optional[bool] = None
     # Possible values for email sync duration.
     duration_of_email_to_sync: Optional[EmailSyncDuration] = None
-    # Email attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: userPrincipalName, primarySmtpAddress.
+    # Email attribute that is picked from AAD and injected into this profile before installing on the device. The possible values are: userPrincipalName, primarySmtpAddress.
     email_address_source: Optional[UserEmailSource] = None
     # Possible values for email sync schedule.
     email_sync_schedule: Optional[EmailSyncSchedule] = None

@@ -20,13 +20,13 @@ class RuleCondition(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The built-in aggregation method for the rule condition. The possible values are: count, percentage, affectedCloudPcCount, affectedCloudPcPercentage, unknownFutureValue.
     aggregation: Optional[AggregationType] = None
-    # The property that the rule condition monitors. Possible values are: provisionFailures, imageUploadFailures, azureNetworkConnectionCheckFailures, cloudPcInGracePeriod, frontlineInsufficientLicenses, cloudPcConnectionErrors, cloudPcHostHealthCheckFailures, cloudPcZoneOutage, unknownFutureValue, frontlineBufferUsageDuration, frontlineBufferUsageThreshold, cloudPcUserSettingsPersistenceUsageThreshold, cloudPcDeprovisionedThreshold, cloudPcReserveDeprovisionFailedThreshold. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: frontlineBufferUsageDuration, frontlineBufferUsageThreshold, cloudPcUserSettingsPersistenceUsageThreshold, cloudPcDeprovisionedThreshold, cloudPcReserveDeprovisionFailedThreshold.
+    # The property that the rule condition monitors. The possible values are: provisionFailures, imageUploadFailures, azureNetworkConnectionCheckFailures, cloudPcInGracePeriod, frontlineInsufficientLicenses, cloudPcConnectionErrors, cloudPcHostHealthCheckFailures, cloudPcZoneOutage, unknownFutureValue, frontlineBufferUsageDuration, frontlineBufferUsageThreshold, cloudPcUserSettingsPersistenceUsageThreshold, cloudPcDeprovisionedThreshold, cloudPcReserveDeprovisionFailedThreshold. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: frontlineBufferUsageDuration, frontlineBufferUsageThreshold, cloudPcUserSettingsPersistenceUsageThreshold, cloudPcDeprovisionedThreshold, cloudPcReserveDeprovisionFailedThreshold.
     condition_category: Optional[ConditionCategory] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The built-in operator for the rule condition. The possible values are: greaterOrEqual, equal, greater, less, lessOrEqual, notEqual, unknownFutureValue.
     operator: Optional[OperatorType] = None
-    # The relationship type.  Possible values are: and, or.
+    # The relationship type.  The possible values are: and, or.
     relationship_type: Optional[RelationshipType] = None
     # The threshold value of the alert condition. The threshold value can be a number in string form or string like 'WestUS'.
     threshold_value: Optional[str] = None

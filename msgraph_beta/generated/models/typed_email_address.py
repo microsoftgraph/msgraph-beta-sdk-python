@@ -16,7 +16,7 @@ class TypedEmailAddress(EmailAddress, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.typedEmailAddress"
     # To specify a custom type of email address, set type to other, and assign otherLabel to a custom string. For example, you may use a specific email address for your volunteer activities. Set type to other, and set otherLabel to a custom string such as Volunteer work.
     other_label: Optional[str] = None
-    # The type of email address. Possible values are: unknown, work, personal, main, other. The default value is unknown, which means address has not been set as a specific type.
+    # The type of email address. The possible values are: unknown, work, personal, main, other. The default value is unknown, which means address has not been set as a specific type.
     type: Optional[EmailType] = None
     
     @staticmethod

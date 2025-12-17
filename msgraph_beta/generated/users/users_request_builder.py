@@ -55,10 +55,10 @@ class UsersRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UsersRequestBuilderGetQueryParameters]] = None) -> Optional[UserCollectionResponse]:
         """
-        Get a list of the agentUser objects and their properties.
+        Retrieve a list of user objects. This API also returns agentUser objects. This operation returns by default only a subset of the more commonly used properties for each user and agentUser. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/agentuser-list?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/user-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -100,7 +100,7 @@ class UsersRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UsersRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the agentUser objects and their properties.
+        Retrieve a list of user objects. This API also returns agentUser objects. This operation returns by default only a subset of the more commonly used properties for each user and agentUser. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -200,7 +200,7 @@ class UsersRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UsersRequestBuilderGetQueryParameters():
         """
-        Get a list of the agentUser objects and their properties.
+        Retrieve a list of user objects. This API also returns agentUser objects. This operation returns by default only a subset of the more commonly used properties for each user and agentUser. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

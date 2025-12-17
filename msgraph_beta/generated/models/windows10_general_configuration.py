@@ -133,7 +133,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
     defender_files_and_folders_to_exclude: Optional[list[str]] = None
     # Possible values for monitoring file activity.
     defender_monitor_file_activity: Optional[DefenderMonitorFileActivity] = None
-    # Gets or sets Defender’s action to take on Potentially Unwanted Application (PUA), which includes software with behaviors of ad-injection, software bundling, persistent solicitation for payment or subscription, etc. Defender alerts user when PUA is being downloaded or attempts to install itself. Added in Windows 10 for desktop. Possible values are: deviceDefault, block, audit.
+    # Gets or sets Defender’s action to take on Potentially Unwanted Application (PUA), which includes software with behaviors of ad-injection, software bundling, persistent solicitation for payment or subscription, etc. Defender alerts user when PUA is being downloaded or attempts to install itself. Added in Windows 10 for desktop. The possible values are: deviceDefault, block, audit.
     defender_potentially_unwanted_app_action: Optional[DefenderPotentiallyUnwantedAppAction] = None
     # Possible values of Defender PUA Protection
     defender_potentially_unwanted_app_action_setting: Optional[DefenderProtectionType] = None
@@ -175,7 +175,7 @@ class Windows10GeneralConfiguration(DeviceConfiguration, Parsable):
     defender_scheduled_scan_time: Optional[datetime.time] = None
     # The signature update interval in hours. Specify 0 not to check. Valid values 0 to 24
     defender_signature_update_interval_in_hours: Optional[int] = None
-    # Checks for the user consent level in Windows Defender to send data. Possible values are: sendSafeSamplesAutomatically, alwaysPrompt, neverSend, sendAllSamplesAutomatically.
+    # Checks for the user consent level in Windows Defender to send data. The possible values are: sendSafeSamplesAutomatically, alwaysPrompt, neverSend, sendAllSamplesAutomatically.
     defender_submit_samples_consent_type: Optional[DefenderSubmitSamplesConsentType] = None
     # Possible values for a weekly schedule.
     defender_system_scan_schedule: Optional[WeeklySchedule] = None

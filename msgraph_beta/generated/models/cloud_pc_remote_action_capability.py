@@ -16,9 +16,9 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, BackedModel, Parsable)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Indicates the state of the supported action capability to perform a Cloud PC remote action. Possible values are: enabled, disabled. Default value is enabled.
+    # Indicates the state of the supported action capability to perform a Cloud PC remote action. The possible values are: enabled, disabled. Default value is enabled.
     action_capability: Optional[ActionCapability] = None
-    # The name of the supported Cloud PC remote action. Possible values are: unknown, restart, rename, restore, resize, reprovision, troubleShoot, changeUserAccountType, placeUnderReview. Default value is unknown.
+    # The name of the supported Cloud PC remote action. The possible values are: unknown, restart, rename, restore, resize, reprovision, troubleShoot, changeUserAccountType, placeUnderReview. Default value is unknown.
     action_name: Optional[CloudPcRemoteActionName] = None
     # The OdataType property
     odata_type: Optional[str] = None

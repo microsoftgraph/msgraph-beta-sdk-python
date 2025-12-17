@@ -16,7 +16,7 @@ from .entity import Entity
 class SharePointMigrationsRoot(Entity, Parsable):
     # Collection of group identity mappings for cross-organization migration.
     cross_organization_group_mappings: Optional[list[SharePointGroupIdentityMapping]] = None
-    # The crossOrganizationMigrationTasks property
+    # A collection of sharePointMigrationTask resources that represent cross-organization migration tasks.
     cross_organization_migration_tasks: Optional[list[SharePointMigrationTask]] = None
     # Collection of user identity mappings for cross-organization migration.
     cross_organization_user_mappings: Optional[list[SharePointUserIdentityMapping]] = None

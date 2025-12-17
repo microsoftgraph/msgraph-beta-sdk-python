@@ -13,7 +13,7 @@ from .entity import Entity
 
 @dataclass
 class InferenceClassificationOverride(Entity, Parsable):
-    # Specifies how incoming messages from a specific sender should always be classified as. Possible values are: focused, other.
+    # Specifies how incoming messages from a specific sender should always be classified as. The possible values are: focused, other.
     classify_as: Optional[InferenceClassificationType] = None
     # The OdataType property
     odata_type: Optional[str] = None

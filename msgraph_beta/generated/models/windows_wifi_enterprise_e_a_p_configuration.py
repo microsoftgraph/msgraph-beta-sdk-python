@@ -23,13 +23,13 @@ class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsWifiEnterpriseEAPConfiguration"
-    # Specify the authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential.
+    # Specify the authentication method. The possible values are: certificate, usernameAndPassword, derivedCredential.
     authentication_method: Optional[WiFiAuthenticationMethod] = None
     # Specify the number of seconds for the client to wait after an authentication attempt before failing. Valid range 1-3600.
     authentication_period_in_seconds: Optional[int] = None
     # Specify the number of seconds between a failed authentication and the next authentication attempt. Valid range 1-3600.
     authentication_retry_delay_period_in_seconds: Optional[int] = None
-    # Specify whether to authenticate the user, the device, either, or to use guest authentication (none). If you’re using certificate authentication, make sure the certificate type matches the authentication type. Possible values are: none, user, machine, machineOrUser, guest.
+    # Specify whether to authenticate the user, the device, either, or to use guest authentication (none). If you’re using certificate authentication, make sure the certificate type matches the authentication type. The possible values are: none, user, machine, machineOrUser, guest.
     authentication_type: Optional[WifiAuthenticationType] = None
     # Specify whether to cache user credentials on the device so that users don’t need to keep entering them each time they connect.
     cache_credentials: Optional[bool] = None
@@ -45,7 +45,7 @@ class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration, Parsable):
     enable_pre_authentication: Optional[bool] = None
     # Specify identity certificate for client authentication.
     identity_certificate_for_client_authentication: Optional[WindowsCertificateProfileBase] = None
-    # Specify inner authentication protocol for EAP TTLS. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
+    # Specify inner authentication protocol for EAP TTLS. The possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
     inner_authentication_protocol_for_e_a_p_t_t_l_s: Optional[NonEapAuthenticationMethodForEapTtlsType] = None
     # Specify the maximum authentication failures allowed for a set of credentials. Valid range 1-100.
     maximum_authentication_failures: Optional[int] = None
@@ -59,7 +59,7 @@ class WindowsWifiEnterpriseEAPConfiguration(WindowsWifiConfiguration, Parsable):
     maximum_pairwise_master_key_cache_time_in_minutes: Optional[int] = None
     # Specify maximum pre-authentication attempts.  Valid range: 1-16
     maximum_pre_authentication_attempts: Optional[int] = None
-    # Specify the network single sign on type. Possible values are: disabled, prelogon, postlogon.
+    # Specify the network single sign on type. The possible values are: disabled, prelogon, postlogon.
     network_single_sign_on: Optional[NetworkSingleSignOnType] = None
     # Specify the string to replace usernames for privacy when using EAP TTLS or PEAP.
     outer_identity_privacy_temporary_value: Optional[str] = None

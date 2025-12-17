@@ -18,7 +18,7 @@ class WorkloadAction(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The unique identifier for the workload action. Required. Read-only.
     action_id: Optional[str] = None
-    # The category for the workload action. Possible values are: automated, manual, unknownFutureValue. Optional. Read-only.
+    # The category for the workload action. The possible values are: automated, manual, unknownFutureValue. Optional. Read-only.
     category: Optional[WorkloadActionCategory] = None
     # The description for the workload action. Optional. Read-only.
     description: Optional[str] = None

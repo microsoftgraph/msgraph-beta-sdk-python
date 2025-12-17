@@ -26,7 +26,7 @@ class CloudCertificationAuthorityLeafCertificate(Entity, Parsable):
     device_id: Optional[str] = None
     # Name of the device for which the certificate was created. Read-only. Supports $select.
     device_name: Optional[str] = None
-    # The platform of the device for which the certificate was created. Possible values are: Android, AndroidForWork, iOS, MacOS, WindowsPhone81, Windows81AndLater, Windows10AndLater, AndroidWorkProfile, Unknown, AndroidAOSP, AndroidMobileApplicationManagement, iOSMobileApplicationManagement. Default value: Unknown. Read-only. Supports $select.
+    # The platform of the device for which the certificate was created. The possible values are: Android, AndroidForWork, iOS, MacOS, WindowsPhone81, Windows81AndLater, Windows10AndLater, AndroidWorkProfile, Unknown, AndroidAOSP, AndroidMobileApplicationManagement, iOSMobileApplicationManagement. Default value: Unknown. Read-only. Supports $select.
     device_platform: Optional[str] = None
     # Certificate extensions that further define the purpose of the public key contained in a certificate. Data is formatted as a comma-separated list of object identifiers (OID). For example a possible value is '1.3.6.1.5.5.7.3.2'. Read-only. Nullable.
     extended_key_usages: Optional[list[str]] = None

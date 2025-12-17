@@ -52,9 +52,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     android_device_owner_delegated_scope_app_settings: Optional[list[AndroidDeviceOwnerDelegatedScopeAppSetting]] = None
     # Indicates whether or not the user is allowed to enable to unknown sources setting.
     apps_allow_install_from_unknown_sources: Optional[bool] = None
-    # Indicates the value of the app auto update policy. Possible values are: notConfigured, userChoice, never, wiFiOnly, always.
+    # Indicates the value of the app auto update policy. The possible values are: notConfigured, userChoice, never, wiFiOnly, always.
     apps_auto_update_policy: Optional[AndroidDeviceOwnerAppAutoUpdatePolicyType] = None
-    # Indicates the permission policy for requests for runtime permissions if one is not defined for the app specifically. Possible values are: deviceDefault, prompt, autoGrant, autoDeny.
+    # Indicates the permission policy for requests for runtime permissions if one is not defined for the app specifically. The possible values are: deviceDefault, prompt, autoGrant, autoDeny.
     apps_default_permission_policy: Optional[AndroidDeviceOwnerDefaultAppPermissionPolicyType] = None
     # Whether or not to recommend all apps skip any first-time-use hints they may have added.
     apps_recommend_skipping_first_use_hints: Optional[bool] = None
@@ -72,7 +72,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     certificate_credential_configuration_disabled: Optional[bool] = None
     # Indicates whether or not text copied from one profile (personal or work) can be pasted in the other.
     cross_profile_policies_allow_copy_paste: Optional[bool] = None
-    # Indicates whether data from one profile (personal or work) can be shared with apps in the other profile. Possible values are: notConfigured, crossProfileDataSharingBlocked, dataSharingFromWorkToPersonalBlocked, crossProfileDataSharingAllowed, unkownFutureValue.
+    # Indicates whether data from one profile (personal or work) can be shared with apps in the other profile. The possible values are: notConfigured, crossProfileDataSharingBlocked, dataSharingFromWorkToPersonalBlocked, crossProfileDataSharingAllowed, unkownFutureValue.
     cross_profile_policies_allow_data_sharing: Optional[AndroidDeviceOwnerCrossProfileDataSharing] = None
     # Indicates whether or not contacts stored in work profile are shown in personal profile contact searches/incoming calls.
     cross_profile_policies_show_work_contacts_in_personal_profile: Optional[bool] = None
@@ -82,7 +82,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     date_time_configuration_blocked: Optional[bool] = None
     # Represents the customized detailed help text provided to users when they attempt to modify managed settings on their device.
     detailed_help_text: Optional[AndroidDeviceOwnerUserFacingMessage] = None
-    # Indicates the location setting configuration for fully managed devices (COBO) and corporate owned devices with a work profile (COPE). Possible values are: notConfigured, disabled, unknownFutureValue.
+    # Indicates the location setting configuration for fully managed devices (COBO) and corporate owned devices with a work profile (COPE). The possible values are: notConfigured, disabled, unknownFutureValue.
     device_location_mode: Optional[AndroidDeviceOwnerLocationMode] = None
     # Represents the customized lock screen message provided to users when they attempt to modify managed settings on their device.
     device_owner_lock_screen_message: Optional[AndroidDeviceOwnerUserFacingMessage] = None
@@ -100,11 +100,11 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     kiosk_customization_device_settings_blocked: Optional[bool] = None
     # Whether the power menu is shown when a user long presses the Power button of a device in Kiosk Mode.
     kiosk_customization_power_button_actions_blocked: Optional[bool] = None
-    # Indicates whether system info and notifications are disabled in Kiosk Mode. Possible values are: notConfigured, notificationsAndSystemInfoEnabled, systemInfoOnly.
+    # Indicates whether system info and notifications are disabled in Kiosk Mode. The possible values are: notConfigured, notificationsAndSystemInfoEnabled, systemInfoOnly.
     kiosk_customization_status_bar: Optional[AndroidDeviceOwnerKioskCustomizationStatusBar] = None
     # Indicates whether system error dialogs for crashed or unresponsive apps are shown in Kiosk Mode.
     kiosk_customization_system_error_warnings: Optional[bool] = None
-    # Indicates which navigation features are enabled in Kiosk Mode. Possible values are: notConfigured, navigationEnabled, homeButtonOnly.
+    # Indicates which navigation features are enabled in Kiosk Mode. The possible values are: notConfigured, navigationEnabled, homeButtonOnly.
     kiosk_customization_system_navigation: Optional[AndroidDeviceOwnerKioskCustomizationSystemNavigation] = None
     # Whether or not to enable app ordering in Kiosk Mode.
     kiosk_mode_app_order_enabled: Optional[bool] = None
@@ -122,13 +122,13 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     kiosk_mode_exit_code: Optional[str] = None
     # Whether or not to allow a user to use the flashlight in Kiosk Mode.
     kiosk_mode_flashlight_configuration_enabled: Optional[bool] = None
-    # Folder icon configuration for managed home screen in Kiosk Mode. Possible values are: notConfigured, darkSquare, darkCircle, lightSquare, lightCircle.
+    # Folder icon configuration for managed home screen in Kiosk Mode. The possible values are: notConfigured, darkSquare, darkCircle, lightSquare, lightCircle.
     kiosk_mode_folder_icon: Optional[AndroidDeviceOwnerKioskModeFolderIcon] = None
     # Number of rows for Managed Home Screen grid with app ordering enabled in Kiosk Mode. Valid values 1 to 9999999
     kiosk_mode_grid_height: Optional[int] = None
     # Number of columns for Managed Home Screen grid with app ordering enabled in Kiosk Mode. Valid values 1 to 9999999
     kiosk_mode_grid_width: Optional[int] = None
-    # Icon size configuration for managed home screen in Kiosk Mode. Possible values are: notConfigured, smallest, small, regular, large, largest.
+    # Icon size configuration for managed home screen in Kiosk Mode. The possible values are: notConfigured, smallest, small, regular, large, largest.
     kiosk_mode_icon_size: Optional[AndroidDeviceOwnerKioskModeIconSize] = None
     # Whether or not to lock home screen to the end user in Kiosk Mode.
     kiosk_mode_lock_home_screen: Optional[bool] = None
@@ -142,7 +142,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     kiosk_mode_managed_home_screen_inactive_sign_out_delay_in_seconds: Optional[int] = None
     # Number of seconds device is inactive before automatically signing user out for Managed Home Screen. Valid values 0 to 9999999
     kiosk_mode_managed_home_screen_inactive_sign_out_notice_in_seconds: Optional[int] = None
-    # Complexity of PIN for sign-in session for Managed Home Screen. Possible values are: notConfigured, simple, complex.
+    # Complexity of PIN for sign-in session for Managed Home Screen. The possible values are: notConfigured, simple, complex.
     kiosk_mode_managed_home_screen_pin_complexity: Optional[KioskModeManagedHomeScreenPinComplexity] = None
     # Whether or not require user to set a PIN for sign-in session for Managed Home Screen.
     kiosk_mode_managed_home_screen_pin_required: Optional[bool] = None
@@ -158,7 +158,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     kiosk_mode_managed_settings_entry_disabled: Optional[bool] = None
     # Whether or not to allow a user to change the media volume in Kiosk Mode.
     kiosk_mode_media_volume_configuration_enabled: Optional[bool] = None
-    # Screen orientation configuration for managed home screen in Kiosk Mode. Possible values are: notConfigured, portrait, landscape, autoRotate.
+    # Screen orientation configuration for managed home screen in Kiosk Mode. The possible values are: notConfigured, portrait, landscape, autoRotate.
     kiosk_mode_screen_orientation: Optional[AndroidDeviceOwnerKioskModeScreenOrientation] = None
     # Whether or not to enable screen saver mode or not in Kiosk Mode.
     kiosk_mode_screen_saver_configuration_enabled: Optional[bool] = None
@@ -174,11 +174,11 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     kiosk_mode_show_app_notification_badge: Optional[bool] = None
     # Whether or not to allow a user to access basic device information.
     kiosk_mode_show_device_info: Optional[bool] = None
-    # Whether or not to use single app kiosk mode or multi-app kiosk mode. Possible values are: notConfigured, singleAppMode, multiAppMode.
+    # Whether or not to use single app kiosk mode or multi-app kiosk mode. The possible values are: notConfigured, singleAppMode, multiAppMode.
     kiosk_mode_use_managed_home_screen_app: Optional[KioskModeType] = None
     # Whether or not to display a virtual home button when the device is in Kiosk Mode.
     kiosk_mode_virtual_home_button_enabled: Optional[bool] = None
-    # Indicates whether the virtual home button is a swipe up home button or a floating home button. Possible values are: notConfigured, swipeUp, floating.
+    # Indicates whether the virtual home button is a swipe up home button or a floating home button. The possible values are: notConfigured, swipeUp, floating.
     kiosk_mode_virtual_home_button_type: Optional[AndroidDeviceOwnerVirtualHomeButtonType] = None
     # URL to a publicly accessible image to use for the wallpaper when the device is in Kiosk Mode.
     kiosk_mode_wallpaper_url: Optional[str] = None
@@ -202,13 +202,13 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     microsoft_launcher_custom_wallpaper_image_url: Optional[str] = None
     # Indicates whether or not the user can modify the device dock configuration on the device.
     microsoft_launcher_dock_presence_allow_user_modification: Optional[bool] = None
-    # Indicates whether or not you want to configure the device dock. Possible values are: notConfigured, show, hide, disabled.
+    # Indicates whether or not you want to configure the device dock. The possible values are: notConfigured, show, hide, disabled.
     microsoft_launcher_dock_presence_configuration: Optional[MicrosoftLauncherDockPresence] = None
     # Indicates whether or not the user can modify the launcher feed on the device.
     microsoft_launcher_feed_allow_user_modification: Optional[bool] = None
     # Indicates whether or not you want to enable the launcher feed on the device.
     microsoft_launcher_feed_enabled: Optional[bool] = None
-    # Indicates the search bar placement configuration on the device. Possible values are: notConfigured, top, bottom, hide.
+    # Indicates the search bar placement configuration on the device. The possible values are: notConfigured, top, bottom, hide.
     microsoft_launcher_search_bar_placement_configuration: Optional[MicrosoftLauncherSearchBarPlacement] = None
     # Indicates whether or not the device will allow connecting to a temporary network connection at boot time.
     network_escape_hatch_allowed: Optional[bool] = None
@@ -238,9 +238,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     password_minutes_of_inactivity_before_screen_timeout: Optional[int] = None
     # Indicates the length of password history, where the user will not be able to enter a new password that is the same as any password in the history. Valid values 0 to 24
     password_previous_password_count_to_block: Optional[int] = None
-    # Indicates the timeout period after which a device must be unlocked using a form of strong authentication. Possible values are: deviceDefault, daily, unkownFutureValue.
+    # Indicates the timeout period after which a device must be unlocked using a form of strong authentication. The possible values are: deviceDefault, daily, unkownFutureValue.
     password_require_unlock: Optional[AndroidDeviceOwnerRequiredPasswordUnlock] = None
-    # Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+    # Indicates the minimum password quality required on the device. The possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
     password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
     # Indicates the number of times a user can enter an incorrect password before the device is wiped. Valid values 4 to 11
     password_sign_in_failure_count_before_factory_reset: Optional[int] = None
@@ -250,11 +250,11 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     personal_profile_camera_blocked: Optional[bool] = None
     # Policy applied to applications in the personal profile. This collection can contain a maximum of 500 elements.
     personal_profile_personal_applications: Optional[list[AppListItem]] = None
-    # Used together with PersonalProfilePersonalApplications to control how apps in the personal profile are allowed or blocked. Possible values are: notConfigured, blockedApps, allowedApps.
+    # Used together with PersonalProfilePersonalApplications to control how apps in the personal profile are allowed or blocked. The possible values are: notConfigured, blockedApps, allowedApps.
     personal_profile_play_store_mode: Optional[PersonalProfilePersonalPlayStoreMode] = None
     # Indicates whether to disable the capability to take screenshots on the personal profile.
     personal_profile_screen_capture_blocked: Optional[bool] = None
-    # Indicates the Play Store mode of the device. Possible values are: notConfigured, allowList, blockList.
+    # Indicates the Play Store mode of the device. The possible values are: notConfigured, allowList, blockList.
     play_store_mode: Optional[AndroidDeviceOwnerPlayStoreMode] = None
     # Indicates whether or not to disable the capability to take screenshots.
     screen_capture_blocked: Optional[bool] = None
@@ -280,7 +280,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     storage_block_usb_file_transfer: Optional[bool] = None
     # Indicates the annually repeating time periods during which system updates are postponed. This collection can contain a maximum of 500 elements.
     system_update_freeze_periods: Optional[list[AndroidDeviceOwnerSystemUpdateFreezePeriod]] = None
-    # The type of system update configuration. Possible values are: deviceDefault, postpone, windowed, automatic.
+    # The type of system update configuration. The possible values are: deviceDefault, postpone, windowed, automatic.
     system_update_install_type: Optional[AndroidDeviceOwnerSystemUpdateInstallType] = None
     # Indicates the number of minutes after midnight that the system update window ends. Valid values 0 to 1440
     system_update_window_end_minutes_after_midnight: Optional[int] = None
@@ -320,9 +320,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     work_profile_password_minimum_upper_case_characters: Optional[int] = None
     # Indicates the length of the work profile password history, where the user will not be able to enter a new password that is the same as any password in the history. Valid values 0 to 24
     work_profile_password_previous_password_count_to_block: Optional[int] = None
-    # Indicates the timeout period after which a work profile must be unlocked using a form of strong authentication. Possible values are: deviceDefault, daily, unkownFutureValue.
+    # Indicates the timeout period after which a work profile must be unlocked using a form of strong authentication. The possible values are: deviceDefault, daily, unkownFutureValue.
     work_profile_password_require_unlock: Optional[AndroidDeviceOwnerRequiredPasswordUnlock] = None
-    # Indicates the minimum password quality required on the work profile password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+    # Indicates the minimum password quality required on the work profile password. The possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
     work_profile_password_required_type: Optional[AndroidDeviceOwnerRequiredPasswordType] = None
     # Indicates the number of times a user can enter an incorrect work profile password before the device is wiped. Valid values 4 to 11
     work_profile_password_sign_in_failure_count_before_factory_reset: Optional[int] = None

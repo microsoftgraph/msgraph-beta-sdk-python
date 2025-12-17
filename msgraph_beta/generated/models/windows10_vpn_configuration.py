@@ -59,7 +59,7 @@ class Windows10VpnConfiguration(WindowsVpnConfiguration, Parsable):
     microsoft_tunnel_site_id: Optional[str] = None
     # Only associated Apps can use connection (per-app VPN).
     only_associated_apps_can_use_connection: Optional[bool] = None
-    # Profile target type. Possible values are: user, device, autoPilotDevice.
+    # Profile target type. The possible values are: user, device, autoPilotDevice.
     profile_target: Optional[Windows10VpnProfileTarget] = None
     # Proxy Server.
     proxy_server: Optional[Windows10VpnProxyServer] = None

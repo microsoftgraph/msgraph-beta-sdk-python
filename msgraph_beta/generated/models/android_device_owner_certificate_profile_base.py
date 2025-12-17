@@ -34,9 +34,9 @@ class AndroidDeviceOwnerCertificateProfileBase(DeviceConfiguration, Parsable):
     renewal_threshold_percentage: Optional[int] = None
     # Trusted Root Certificate.
     root_certificate: Optional[AndroidDeviceOwnerTrustedRootCertificate] = None
-    # Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
+    # Certificate Subject Alternative Name Type. The possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
     subject_alternative_name_type: Optional[SubjectAlternativeNameType] = None
-    # Certificate Subject Name Format. Possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
+    # Certificate Subject Name Format. The possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
     subject_name_format: Optional[SubjectNameFormat] = None
     
     @staticmethod

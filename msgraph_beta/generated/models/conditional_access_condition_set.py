@@ -26,13 +26,13 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Agent identity risk levels included in the policy. Possible values are: low, medium, high, unknownFutureValue. This enumeration is multivalued.
+    # Agent identity risk levels included in the policy. The possible values are: low, medium, high, unknownFutureValue. This enumeration is multivalued.
     agent_id_risk_levels: Optional[ConditionalAccessAgentIdRiskLevels] = None
     # Applications and user actions included in and excluded from the policy. Required.
     applications: Optional[ConditionalAccessApplications] = None
     # Authentication flows included in the policy scope. For more information, see Conditional Access: Authentication flows.
     authentication_flows: Optional[ConditionalAccessAuthenticationFlows] = None
-    # Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.  The easUnsupported enumeration member is deprecated in favor of exchangeActiveSync, which includes EAS supported and unsupported platforms.
+    # Client application types included in the policy. The possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.  The easUnsupported enumeration member is deprecated in favor of exchangeActiveSync, which includes EAS supported and unsupported platforms.
     client_app_types: Optional[list[ConditionalAccessClientApp]] = None
     # Client applications (service principals and workload identities) included in and excluded from the policy. Either users or clientApplications is required.
     client_applications: Optional[ConditionalAccessClientApplications] = None
@@ -48,11 +48,11 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, BackedModel, Parsable)
     odata_type: Optional[str] = None
     # Platforms included in and excluded from the policy.
     platforms: Optional[ConditionalAccessPlatforms] = None
-    # Service principal risk levels included in the policy. Possible values are: low, medium, high, none, unknownFutureValue.
+    # Service principal risk levels included in the policy. The possible values are: low, medium, high, none, unknownFutureValue.
     service_principal_risk_levels: Optional[list[RiskLevel]] = None
-    # Sign-in risk levels included in the policy. Possible values are: low, medium, high, hidden, none, unknownFutureValue. Required.
+    # Sign-in risk levels included in the policy. The possible values are: low, medium, high, hidden, none, unknownFutureValue. Required.
     sign_in_risk_levels: Optional[list[RiskLevel]] = None
-    # User risk levels included in the policy. Possible values are: low, medium, high, hidden, none, unknownFutureValue. Required.
+    # User risk levels included in the policy. The possible values are: low, medium, high, hidden, none, unknownFutureValue. Required.
     user_risk_levels: Optional[list[RiskLevel]] = None
     # Users, groups, and roles included in and excluded from the policy. Either users or clientApplications is required.
     users: Optional[ConditionalAccessUsers] = None

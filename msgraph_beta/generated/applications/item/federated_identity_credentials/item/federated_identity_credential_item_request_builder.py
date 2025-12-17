@@ -32,7 +32,7 @@ class FederatedIdentityCredentialItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Deletes a federatedIdentityCredential object from an application.
+        Delete a federatedIdentityCredential object from an application or an agentIdentityBlueprint.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/federatedidentitycredential-delete?view=graph-rest-beta
@@ -51,7 +51,7 @@ class FederatedIdentityCredentialItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[FederatedIdentityCredentialItemRequestBuilderGetQueryParameters]] = None) -> Optional[FederatedIdentityCredential]:
         """
-        Read the properties and relationships of a federatedIdentityCredential object.
+        Read the properties and relationships of a federatedIdentityCredential object assigned to an application or an agentIdentityBlueprint.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FederatedIdentityCredential]
         Find more info here: https://learn.microsoft.com/graph/api/federatedidentitycredential-get?view=graph-rest-beta
@@ -72,7 +72,7 @@ class FederatedIdentityCredentialItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: FederatedIdentityCredential, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[FederatedIdentityCredential]:
         """
-        Create a new federatedIdentityCredential object for an application if it doesn't exist, or update the properties of an existing federatedIdentityCredential object. By configuring a trust relationship between your Microsoft Entra application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.
+        Create a new federatedIdentityCredential object for an application or an agentIdentityBlueprint if it doesn't exist, or update the properties of an existing federatedIdentityCredential object. By configuring a trust relationship between your Microsoft Entra application registration or agentIdentityBlueprint and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application or agentIdentityBlueprint.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[FederatedIdentityCredential]
@@ -96,7 +96,7 @@ class FederatedIdentityCredentialItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Deletes a federatedIdentityCredential object from an application.
+        Delete a federatedIdentityCredential object from an application or an agentIdentityBlueprint.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +107,7 @@ class FederatedIdentityCredentialItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[FederatedIdentityCredentialItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a federatedIdentityCredential object.
+        Read the properties and relationships of a federatedIdentityCredential object assigned to an application or an agentIdentityBlueprint.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +118,7 @@ class FederatedIdentityCredentialItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: FederatedIdentityCredential, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new federatedIdentityCredential object for an application if it doesn't exist, or update the properties of an existing federatedIdentityCredential object. By configuring a trust relationship between your Microsoft Entra application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.
+        Create a new federatedIdentityCredential object for an application or an agentIdentityBlueprint if it doesn't exist, or update the properties of an existing federatedIdentityCredential object. By configuring a trust relationship between your Microsoft Entra application registration or agentIdentityBlueprint and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application or agentIdentityBlueprint.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -151,7 +151,7 @@ class FederatedIdentityCredentialItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class FederatedIdentityCredentialItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a federatedIdentityCredential object.
+        Read the properties and relationships of a federatedIdentityCredential object assigned to an application or an agentIdentityBlueprint.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

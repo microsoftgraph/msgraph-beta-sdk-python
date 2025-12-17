@@ -17,7 +17,7 @@ class KerberosSignOnSettings(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The Internal Application SPN of the application server. This SPN needs to be in the list of services to which the connector can present delegated credentials.
     kerberos_service_principal_name: Optional[str] = None
-    # The Delegated Login Identity for the connector to use on behalf of your users. For more information, see Working with different on-premises and cloud identities . Possible values are: userPrincipalName, onPremisesUserPrincipalName, userPrincipalUsername, onPremisesUserPrincipalUsername, onPremisesSAMAccountName.
+    # The Delegated Login Identity for the connector to use on behalf of your users. For more information, see Working with different on-premises and cloud identities . The possible values are: userPrincipalName, onPremisesUserPrincipalName, userPrincipalUsername, onPremisesUserPrincipalUsername, onPremisesSAMAccountName.
     kerberos_sign_on_mapping_attribute_type: Optional[KerberosSignOnMappingAttributeType] = None
     # The OdataType property
     odata_type: Optional[str] = None

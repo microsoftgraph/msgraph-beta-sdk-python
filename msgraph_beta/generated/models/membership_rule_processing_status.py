@@ -22,7 +22,7 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, BackedModel, Parsable
     last_membership_updated: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Current status of a dynamic group processing. Possible values are: NotStarted, Running, Succeeded, Failed, and UnknownFutureValue.  Required. Read-only.
+    # Current status of a dynamic group processing. The possible values are: NotStarted, Running, Succeeded, Failed, and UnknownFutureValue.  Required. Read-only.
     status: Optional[MembershipRuleProcessingStatusDetails] = None
     
     @staticmethod

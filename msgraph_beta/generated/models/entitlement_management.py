@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .approval import Approval
     from .available_access_package import AvailableAccessPackage
     from .connected_organization import ConnectedOrganization
+    from .control_configuration import ControlConfiguration
     from .entitlement_management_settings import EntitlementManagementSettings
     from .entity import Entity
 
@@ -57,6 +58,8 @@ class EntitlementManagement(Entity, Parsable):
     available_access_packages: Optional[list[AvailableAccessPackage]] = None
     # Represents references to a directory or domain of another organization whose users can request access.
     connected_organizations: Optional[list[ConnectedOrganization]] = None
+    # Represents the policies that control lifecycle and access to access packages across the organization.
+    control_configurations: Optional[list[ControlConfiguration]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents the settings that control the behavior of Microsoft Entra entitlement management.
@@ -95,6 +98,7 @@ class EntitlementManagement(Entity, Parsable):
         from .approval import Approval
         from .available_access_package import AvailableAccessPackage
         from .connected_organization import ConnectedOrganization
+        from .control_configuration import ControlConfiguration
         from .entitlement_management_settings import EntitlementManagementSettings
         from .entity import Entity
 
@@ -113,6 +117,7 @@ class EntitlementManagement(Entity, Parsable):
         from .approval import Approval
         from .available_access_package import AvailableAccessPackage
         from .connected_organization import ConnectedOrganization
+        from .control_configuration import ControlConfiguration
         from .entitlement_management_settings import EntitlementManagementSettings
         from .entity import Entity
 
@@ -132,6 +137,7 @@ class EntitlementManagement(Entity, Parsable):
             "assignmentRequests": lambda n : setattr(self, 'assignment_requests', n.get_collection_of_object_values(AccessPackageAssignmentRequest)),
             "availableAccessPackages": lambda n : setattr(self, 'available_access_packages', n.get_collection_of_object_values(AvailableAccessPackage)),
             "connectedOrganizations": lambda n : setattr(self, 'connected_organizations', n.get_collection_of_object_values(ConnectedOrganization)),
+            "controlConfigurations": lambda n : setattr(self, 'control_configurations', n.get_collection_of_object_values(ControlConfiguration)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(EntitlementManagementSettings)),
             "subjects": lambda n : setattr(self, 'subjects', n.get_collection_of_object_values(AccessPackageSubject)),
         }
@@ -163,6 +169,7 @@ class EntitlementManagement(Entity, Parsable):
         writer.write_collection_of_object_values("assignmentRequests", self.assignment_requests)
         writer.write_collection_of_object_values("availableAccessPackages", self.available_access_packages)
         writer.write_collection_of_object_values("connectedOrganizations", self.connected_organizations)
+        writer.write_collection_of_object_values("controlConfigurations", self.control_configurations)
         writer.write_object_value("settings", self.settings)
         writer.write_collection_of_object_values("subjects", self.subjects)
     

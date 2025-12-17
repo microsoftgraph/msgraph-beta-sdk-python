@@ -137,7 +137,7 @@ class MacOSGeneralDeviceConfiguration(DeviceConfiguration, Parsable):
     spotlight_block_internet_results: Optional[bool] = None
     # Maximum hours after which the user must enter their password to unlock the device instead of using Touch ID. Available for devices running macOS 12 and later. Valid values 0 to 2147483647
     touch_id_timeout_in_hours: Optional[int] = None
-    # Determines whether to delay OS and/or app updates for macOS. Possible values are: none, delayOSUpdateVisibility, delayAppUpdateVisibility, unknownFutureValue, delayMajorOsUpdateVisibility.
+    # Determines whether to delay OS and/or app updates for macOS. The possible values are: none, delayOSUpdateVisibility, delayAppUpdateVisibility, unknownFutureValue, delayMajorOsUpdateVisibility.
     update_delay_policy: Optional[MacOSSoftwareUpdateDelayPolicy] = None
     # TRUE prevents the wallpaper from being changed. FALSE allows the wallpaper to be changed. Available for devices running macOS versions 10.13 and later.
     wallpaper_modification_blocked: Optional[bool] = None

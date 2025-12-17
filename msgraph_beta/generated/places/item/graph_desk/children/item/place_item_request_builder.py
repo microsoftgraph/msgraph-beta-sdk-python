@@ -32,7 +32,7 @@ class PlaceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PlaceItemRequestBuilderGetQueryParameters]] = None) -> Optional[Place]:
         """
-        Get children from places
+        A collection of children places that is only used in the Upsert places API.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Place]
         """
@@ -52,7 +52,7 @@ class PlaceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PlaceItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get children from places
+        A collection of children places that is only used in the Upsert places API.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class PlaceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlaceItemRequestBuilderGetQueryParameters():
         """
-        Get children from places
+        A collection of children places that is only used in the Upsert places API.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

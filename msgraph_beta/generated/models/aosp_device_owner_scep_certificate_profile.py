@@ -22,7 +22,7 @@ class AospDeviceOwnerScepCertificateProfile(AospDeviceOwnerCertificateProfileBas
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.aospDeviceOwnerScepCertificateProfile"
-    # Target store certificate. This collection can contain a maximum of 500 elements. Possible values are: user, machine.
+    # Target store certificate. This collection can contain a maximum of 500 elements. The possible values are: user, machine.
     certificate_store: Optional[CertificateStore] = None
     # Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
     custom_subject_alternative_names: Optional[list[CustomSubjectAlternativeName]] = None

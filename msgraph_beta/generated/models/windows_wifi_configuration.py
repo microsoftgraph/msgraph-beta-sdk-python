@@ -28,7 +28,7 @@ class WindowsWifiConfiguration(DeviceConfiguration, Parsable):
     connect_when_network_name_is_hidden: Optional[bool] = None
     # Specify whether to force FIPS compliance.
     force_f_i_p_s_compliance: Optional[bool] = None
-    # Specify the metered connection limit type for the wifi connection. Possible values are: unrestricted, fixed, variable.
+    # Specify the metered connection limit type for the wifi connection. The possible values are: unrestricted, fixed, variable.
     metered_connection_limit: Optional[MeteredConnectionLimitType] = None
     # Specify the network configuration name.
     network_name: Optional[str] = None
@@ -40,11 +40,11 @@ class WindowsWifiConfiguration(DeviceConfiguration, Parsable):
     proxy_manual_address: Optional[str] = None
     # Specify the port for the proxy server.
     proxy_manual_port: Optional[int] = None
-    # Specify the proxy setting for Wi-Fi configuration. Possible values are: none, manual, automatic, unknownFutureValue.
+    # Specify the proxy setting for Wi-Fi configuration. The possible values are: none, manual, automatic, unknownFutureValue.
     proxy_setting: Optional[WiFiProxySetting] = None
     # Specify the SSID of the wifi connection.
     ssid: Optional[str] = None
-    # Specify the Wifi Security Type. Possible values are: open, wpaPersonal, wpaEnterprise, wep, wpa2Personal, wpa2Enterprise.
+    # Specify the Wifi Security Type. The possible values are: open, wpaPersonal, wpaEnterprise, wep, wpa2Personal, wpa2Enterprise.
     wifi_security_type: Optional[WiFiSecurityType] = None
     
     @staticmethod

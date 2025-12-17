@@ -413,6 +413,7 @@ if TYPE_CHECKING:
     from .content_type import ContentType
     from .continuous_access_evaluation_policy import ContinuousAccessEvaluationPolicy
     from .contract import Contract
+    from .control_configuration import ControlConfiguration
     from .conversation import Conversation
     from .conversation_member import ConversationMember
     from .conversation_thread import ConversationThread
@@ -699,6 +700,7 @@ if TYPE_CHECKING:
     from .endpoint_privilege_management_provisioning_status import EndpointPrivilegeManagementProvisioningStatus
     from .end_user_notification import EndUserNotification
     from .end_user_notification_detail import EndUserNotificationDetail
+    from .end_user_settings import EndUserSettings
     from .engagement_async_operation import EngagementAsyncOperation
     from .engagement_conversation import EngagementConversation
     from .engagement_conversation_discussion_message import EngagementConversationDiscussionMessage
@@ -717,6 +719,7 @@ if TYPE_CHECKING:
     from .entitlement_management import EntitlementManagement
     from .entitlement_management_settings import EntitlementManagementSettings
     from .entra import Entra
+    from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
     from .evaluate_label_job_response import EvaluateLabelJobResponse
     from .event import Event
     from .event_message import EventMessage
@@ -926,6 +929,7 @@ if TYPE_CHECKING:
     from .information_protection import InformationProtection
     from .information_protection_label import InformationProtectionLabel
     from .information_protection_policy import InformationProtectionPolicy
+    from .insider_risky_user_approval import InsiderRiskyUserApproval
     from .insights_settings import InsightsSettings
     from .insight_summary import InsightSummary
     from .internal_domain_federation import InternalDomainFederation
@@ -1574,7 +1578,6 @@ if TYPE_CHECKING:
     from .security.audit_log_query import AuditLogQuery
     from .security.audit_log_record import AuditLogRecord
     from .security.authority_template import AuthorityTemplate
-    from .security.auto_auditing_configuration import AutoAuditingConfiguration
     from .security.case import Case
     from .security.cases_root import CasesRoot
     from .security.case_operation import CaseOperation
@@ -3898,6 +3901,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .contract import Contract
 
             return Contract()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.controlConfiguration".casefold():
+            from .control_configuration import ControlConfiguration
+
+            return ControlConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.conversation".casefold():
             from .conversation import Conversation
 
@@ -5055,6 +5062,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .end_user_notification_detail import EndUserNotificationDetail
 
             return EndUserNotificationDetail()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.endUserSettings".casefold():
+            from .end_user_settings import EndUserSettings
+
+            return EndUserSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementAsyncOperation".casefold():
             from .engagement_async_operation import EngagementAsyncOperation
 
@@ -5127,6 +5138,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .entra import Entra
 
             return Entra()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraIdProtectionRiskyUserApproval".casefold():
+            from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
+
+            return EntraIdProtectionRiskyUserApproval()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.evaluateLabelJobResponse".casefold():
             from .evaluate_label_job_response import EvaluateLabelJobResponse
 
@@ -5972,6 +5987,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .information_protection_policy import InformationProtectionPolicy
 
             return InformationProtectionPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.insiderRiskyUserApproval".casefold():
+            from .insider_risky_user_approval import InsiderRiskyUserApproval
+
+            return InsiderRiskyUserApproval()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.insightsSettings".casefold():
             from .insights_settings import InsightsSettings
 
@@ -8581,10 +8600,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.authority_template import AuthorityTemplate
 
             return AuthorityTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.autoAuditingConfiguration".casefold():
-            from .security.auto_auditing_configuration import AutoAuditingConfiguration
-
-            return AutoAuditingConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.case".casefold():
             from .ediscovery.case import Case
             from .security.case import Case
@@ -11660,6 +11675,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .content_type import ContentType
         from .continuous_access_evaluation_policy import ContinuousAccessEvaluationPolicy
         from .contract import Contract
+        from .control_configuration import ControlConfiguration
         from .conversation import Conversation
         from .conversation_member import ConversationMember
         from .conversation_thread import ConversationThread
@@ -11946,6 +11962,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .endpoint_privilege_management_provisioning_status import EndpointPrivilegeManagementProvisioningStatus
         from .end_user_notification import EndUserNotification
         from .end_user_notification_detail import EndUserNotificationDetail
+        from .end_user_settings import EndUserSettings
         from .engagement_async_operation import EngagementAsyncOperation
         from .engagement_conversation import EngagementConversation
         from .engagement_conversation_discussion_message import EngagementConversationDiscussionMessage
@@ -11964,6 +11981,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .entitlement_management import EntitlementManagement
         from .entitlement_management_settings import EntitlementManagementSettings
         from .entra import Entra
+        from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
         from .evaluate_label_job_response import EvaluateLabelJobResponse
         from .event import Event
         from .event_message import EventMessage
@@ -12173,6 +12191,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .information_protection import InformationProtection
         from .information_protection_label import InformationProtectionLabel
         from .information_protection_policy import InformationProtectionPolicy
+        from .insider_risky_user_approval import InsiderRiskyUserApproval
         from .insights_settings import InsightsSettings
         from .insight_summary import InsightSummary
         from .internal_domain_federation import InternalDomainFederation
@@ -12821,7 +12840,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.audit_log_query import AuditLogQuery
         from .security.audit_log_record import AuditLogRecord
         from .security.authority_template import AuthorityTemplate
-        from .security.auto_auditing_configuration import AutoAuditingConfiguration
         from .security.case import Case
         from .security.cases_root import CasesRoot
         from .security.case_operation import CaseOperation
@@ -13890,6 +13908,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .content_type import ContentType
         from .continuous_access_evaluation_policy import ContinuousAccessEvaluationPolicy
         from .contract import Contract
+        from .control_configuration import ControlConfiguration
         from .conversation import Conversation
         from .conversation_member import ConversationMember
         from .conversation_thread import ConversationThread
@@ -14176,6 +14195,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .endpoint_privilege_management_provisioning_status import EndpointPrivilegeManagementProvisioningStatus
         from .end_user_notification import EndUserNotification
         from .end_user_notification_detail import EndUserNotificationDetail
+        from .end_user_settings import EndUserSettings
         from .engagement_async_operation import EngagementAsyncOperation
         from .engagement_conversation import EngagementConversation
         from .engagement_conversation_discussion_message import EngagementConversationDiscussionMessage
@@ -14194,6 +14214,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .entitlement_management import EntitlementManagement
         from .entitlement_management_settings import EntitlementManagementSettings
         from .entra import Entra
+        from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
         from .evaluate_label_job_response import EvaluateLabelJobResponse
         from .event import Event
         from .event_message import EventMessage
@@ -14403,6 +14424,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .information_protection import InformationProtection
         from .information_protection_label import InformationProtectionLabel
         from .information_protection_policy import InformationProtectionPolicy
+        from .insider_risky_user_approval import InsiderRiskyUserApproval
         from .insights_settings import InsightsSettings
         from .insight_summary import InsightSummary
         from .internal_domain_federation import InternalDomainFederation
@@ -15051,7 +15073,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.audit_log_query import AuditLogQuery
         from .security.audit_log_record import AuditLogRecord
         from .security.authority_template import AuthorityTemplate
-        from .security.auto_auditing_configuration import AutoAuditingConfiguration
         from .security.case import Case
         from .security.cases_root import CasesRoot
         from .security.case_operation import CaseOperation

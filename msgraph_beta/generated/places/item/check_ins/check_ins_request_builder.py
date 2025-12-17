@@ -69,7 +69,7 @@ class CheckInsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CheckInClaim, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CheckInClaim]:
         """
-        Create a new checkInClaim object to record the check-in status for a specific place, such as a desk, room, or workspace, associated with a specific calendar reservation. This check-in confirms that the reserved space is in use and prevents automatic release if auto-release policies are configured for that place.
+        Create a new checkInClaim object to record the check-in status for a specific place, such as a desk or a room, associated with a specific calendar reservation. This check-in confirms that the reserved space is in use and prevents automatic release if auto-release policies are configured for that place.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CheckInClaim]
@@ -104,7 +104,7 @@ class CheckInsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CheckInClaim, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new checkInClaim object to record the check-in status for a specific place, such as a desk, room, or workspace, associated with a specific calendar reservation. This check-in confirms that the reserved space is in use and prevents automatic release if auto-release policies are configured for that place.
+        Create a new checkInClaim object to record the check-in status for a specific place, such as a desk or a room, associated with a specific calendar reservation. This check-in confirms that the reserved space is in use and prevents automatic release if auto-release policies are configured for that place.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

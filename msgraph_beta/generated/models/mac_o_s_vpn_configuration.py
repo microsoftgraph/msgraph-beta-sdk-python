@@ -18,7 +18,7 @@ class MacOSVpnConfiguration(AppleVpnConfiguration, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOSVpnConfiguration"
-    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. The possible values are: deviceChannel, userChannel, unknownFutureValue.
     deployment_channel: Optional[AppleDeploymentChannel] = None
     # Identity certificate for client authentication when authentication method is certificate.
     identity_certificate: Optional[MacOSCertificateProfileBase] = None

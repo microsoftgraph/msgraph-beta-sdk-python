@@ -17,7 +17,7 @@ class AutomaticRepliesSetting(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The set of audience external to the signed-in user's organization who will receive the ExternalReplyMessage, if Status is AlwaysEnabled or Scheduled. Possible values are: none, contactsOnly, all.
+    # The set of audience external to the signed-in user's organization who will receive the ExternalReplyMessage, if Status is AlwaysEnabled or Scheduled. The possible values are: none, contactsOnly, all.
     external_audience: Optional[ExternalAudienceScope] = None
     # The automatic reply to send to the specified external audience, if Status is AlwaysEnabled or Scheduled.
     external_reply_message: Optional[str] = None
@@ -29,7 +29,7 @@ class AutomaticRepliesSetting(AdditionalDataHolder, BackedModel, Parsable):
     scheduled_end_date_time: Optional[DateTimeTimeZone] = None
     # The date and time that automatic replies are set to begin, if Status is set to Scheduled.
     scheduled_start_date_time: Optional[DateTimeTimeZone] = None
-    # Configurations status for automatic replies. Possible values are: disabled, alwaysEnabled, scheduled.
+    # Configurations status for automatic replies. The possible values are: disabled, alwaysEnabled, scheduled.
     status: Optional[AutomaticRepliesStatus] = None
     
     @staticmethod

@@ -32,7 +32,7 @@ class MacOSSoftwareUpdateConfiguration(DeviceConfiguration, Parsable):
     firmware_update_behavior: Optional[MacOSSoftwareUpdateBehavior] = None
     # The maximum number of times the system allows the user to postpone an update before it’s installed. Supported values: 0 - 366. Valid values 0 to 365
     max_user_deferrals_count: Optional[int] = None
-    # The scheduling priority for downloading and preparing the requested update. Default: Low. Possible values: Null, Low, High. Possible values are: low, high, unknownFutureValue.
+    # The scheduling priority for downloading and preparing the requested update. Default: Low. Possible values: Null, Low, High. The possible values are: low, high, unknownFutureValue.
     priority: Optional[MacOSPriority] = None
     # Update schedule type for macOS software updates.
     update_schedule_type: Optional[MacOSSoftwareUpdateScheduleType] = None

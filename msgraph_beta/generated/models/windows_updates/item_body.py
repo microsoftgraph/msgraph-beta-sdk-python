@@ -17,7 +17,7 @@ class ItemBody(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The content of the item.
     content: Optional[str] = None
-    # The type of the content indicated by the enum value of bodyType. Possible values are: text, html, unknownFutureValue.
+    # The type of the content indicated by the enum value of bodyType. The possible values are: text, html, unknownFutureValue.
     content_type: Optional[BodyType] = None
     # The OdataType property
     odata_type: Optional[str] = None

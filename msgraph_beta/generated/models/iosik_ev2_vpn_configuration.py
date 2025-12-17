@@ -32,7 +32,7 @@ class IosikEv2VpnConfiguration(IosVpnConfiguration, Parsable):
     child_security_association_parameters: Optional[IosVpnSecurityAssociationParameters] = None
     # The type of VPN client authentication type
     client_authentication_type: Optional[VpnClientAuthenticationType] = None
-    # Determine how often to check if a peer connection is still active. . Possible values are: medium, none, low, high.
+    # Determine how often to check if a peer connection is still active. . The possible values are: medium, none, low, high.
     dead_peer_detection_rate: Optional[VpnDeadPeerDetectionRate] = None
     # Disable MOBIKE
     disable_mobility_and_multihoming: Optional[bool] = None
@@ -60,7 +60,7 @@ class IosikEv2VpnConfiguration(IosVpnConfiguration, Parsable):
     server_certificate_common_name: Optional[str] = None
     # Issuer Common name of the IKEv2 Server Certificate issuer used in Authentication
     server_certificate_issuer_common_name: Optional[str] = None
-    # The type of certificate the VPN server will present to the VPN client for authentication. Possible values are: rsa, ecdsa256, ecdsa384, ecdsa521.
+    # The type of certificate the VPN server will present to the VPN client for authentication. The possible values are: rsa, ecdsa256, ecdsa384, ecdsa521.
     server_certificate_type: Optional[VpnServerCertificateType] = None
     # Used when Shared Secret Authentication is selected
     shared_secret: Optional[str] = None

@@ -27,7 +27,7 @@ class IosCertificateProfileBase(IosCertificateProfile, Parsable):
     certificate_validity_period_value: Optional[int] = None
     # Certificate renewal threshold percentage. Valid values 1 to 99
     renewal_threshold_percentage: Optional[int] = None
-    # Certificate Subject Alternative Name type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
+    # Certificate Subject Alternative Name type. The possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
     subject_alternative_name_type: Optional[SubjectAlternativeNameType] = None
     # Subject Name Format Options for Apple devices.
     subject_name_format: Optional[AppleSubjectNameFormat] = None

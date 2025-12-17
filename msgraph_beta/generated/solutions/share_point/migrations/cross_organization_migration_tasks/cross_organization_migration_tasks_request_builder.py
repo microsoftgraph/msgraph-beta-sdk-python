@@ -52,7 +52,7 @@ class CrossOrganizationMigrationTasksRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CrossOrganizationMigrationTasksRequestBuilderGetQueryParameters]] = None) -> Optional[SharePointMigrationTaskCollectionResponse]:
         """
-        Get crossOrganizationMigrationTasks from solutions
+        Get a sharePointMigrationTask that was previously created, using the task ID. The returned sharePointMigrationTask object includes the source and target site URLs, migration status, optional timestamps (startedDateTime and finishedDateTime), and error details about issues during processing.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SharePointMigrationTaskCollectionResponse]
         """
@@ -108,10 +108,11 @@ class CrossOrganizationMigrationTasksRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: SharePointMigrationTask, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[SharePointMigrationTask]:
         """
-        Create new navigation property to crossOrganizationMigrationTasks for solutions
+        Create or update a sharePointMigrationTask to migrate a resource from the source organization to the target organization, using the sharePointMigrationTaskParameters. The resource can be a user, a group, or a site. When an existing sharePointMigrationTask is retrieved, it might contain not only the specifics of the source and target organizations and resources, but also the status of the migration and errors encountered during the migration operation. The API calls occur on the source site and only add list items to the my site root web, for example, contoso-my.sharepoint.com. Then, it triggers a multi-geo site move job in the backend to enqueue and orchestrate several tenant workflow jobs, such as backup, restore, and cleanup, supported by TJ infrastructure. The OData type of sharePointResourceMigrationParameters differentiates user migration from site migration, rather than using different subpaths. For a user's OneDrive migration, specify sharePointUserMigrationParameters. If this migration task is a regular SharePoint site migration, specify sharePointSiteMigrationParameters. If this migration task is a group-connected site migration, specify sharePointGroupMigrationParameters.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SharePointMigrationTask]
+        Find more info here: https://learn.microsoft.com/graph/api/sharepointmigrationtask-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -131,7 +132,7 @@ class CrossOrganizationMigrationTasksRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CrossOrganizationMigrationTasksRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get crossOrganizationMigrationTasks from solutions
+        Get a sharePointMigrationTask that was previously created, using the task ID. The returned sharePointMigrationTask object includes the source and target site URLs, migration status, optional timestamps (startedDateTime and finishedDateTime), and error details about issues during processing.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -142,7 +143,7 @@ class CrossOrganizationMigrationTasksRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: SharePointMigrationTask, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to crossOrganizationMigrationTasks for solutions
+        Create or update a sharePointMigrationTask to migrate a resource from the source organization to the target organization, using the sharePointMigrationTaskParameters. The resource can be a user, a group, or a site. When an existing sharePointMigrationTask is retrieved, it might contain not only the specifics of the source and target organizations and resources, but also the status of the migration and errors encountered during the migration operation. The API calls occur on the source site and only add list items to the my site root web, for example, contoso-my.sharepoint.com. Then, it triggers a multi-geo site move job in the backend to enqueue and orchestrate several tenant workflow jobs, such as backup, restore, and cleanup, supported by TJ infrastructure. The OData type of sharePointResourceMigrationParameters differentiates user migration from site migration, rather than using different subpaths. For a user's OneDrive migration, specify sharePointUserMigrationParameters. If this migration task is a regular SharePoint site migration, specify sharePointSiteMigrationParameters. If this migration task is a group-connected site migration, specify sharePointGroupMigrationParameters.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -177,7 +178,7 @@ class CrossOrganizationMigrationTasksRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CrossOrganizationMigrationTasksRequestBuilderGetQueryParameters():
         """
-        Get crossOrganizationMigrationTasks from solutions
+        Get a sharePointMigrationTask that was previously created, using the task ID. The returned sharePointMigrationTask object includes the source and target site URLs, migration status, optional timestamps (startedDateTime and finishedDateTime), and error details about issues during processing.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

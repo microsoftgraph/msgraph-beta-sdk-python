@@ -31,9 +31,10 @@ class CancelRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action cancel
+        Cancel a sharePointMigrationTask that moves a specific object from a source organization to a target organization. Only cancel the sharePointMigrationTask before it starts and when reverting doesn't cause system instability.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/sharepointmigrationtask-cancel?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class CancelRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action cancel
+        Cancel a sharePointMigrationTask that moves a specific object from a source organization to a target organization. Only cancel the sharePointMigrationTask before it starts and when reverting doesn't cause system instability.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

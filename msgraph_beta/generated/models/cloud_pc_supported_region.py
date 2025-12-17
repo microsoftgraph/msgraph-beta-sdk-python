@@ -18,7 +18,7 @@ from .entity import Entity
 class CloudPcSupportedRegion(Entity, Parsable):
     # The name for the supported region. Read-only.
     display_name: Optional[str] = None
-    # The geographic location where the region is located. Possible values are: default, asia, australasia, canada, europe, india, africa, usCentral, usEast, usWest, southAmerica, middleEast, centralAmerica, usGovernment, unknownFutureValue. Default value is default. Read-only.
+    # The geographic location where the region is located. The possible values are: default, asia, australasia, canada, europe, india, africa, usCentral, usEast, usWest, southAmerica, middleEast, centralAmerica, usGovernment, unknownFutureValue. Default value is default. Read-only.
     geographic_location_type: Optional[CloudPcGeographicLocationType] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -26,7 +26,7 @@ class CloudPcSupportedRegion(Entity, Parsable):
     region_group: Optional[CloudPcRegionGroup] = None
     # When the region isn't available, all region restrictions are set to true. These restrictions apply to three properties: cPURestricted, gPURestricted, and nestedVirtualizationRestricted. cPURestricted indicates whether the region is available for CPU, gPURestricted indicates whether the region is available for GPU, and nestedVirtualizationRestricted indicates whether the region is available for nested virtualization. Read-only.
     region_restriction_detail: Optional[CloudPcSupportedRegionRestrictionDetail] = None
-    # The status of the supported region. Possible values are: available, restricted, unavailable, unknownFutureValue. Read-only.
+    # The status of the supported region. The possible values are: available, restricted, unavailable, unknownFutureValue. Read-only.
     region_status: Optional[CloudPcSupportedRegionStatus] = None
     # The supportedSolution property
     supported_solution: Optional[CloudPcManagementService] = None

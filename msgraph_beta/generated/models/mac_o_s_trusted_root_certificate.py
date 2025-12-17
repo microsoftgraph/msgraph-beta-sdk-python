@@ -19,7 +19,7 @@ class MacOSTrustedRootCertificate(DeviceConfiguration, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.macOSTrustedRootCertificate"
     # File name to display in UI.
     cert_file_name: Optional[str] = None
-    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. The possible values are: deviceChannel, userChannel, unknownFutureValue.
     deployment_channel: Optional[AppleDeploymentChannel] = None
     # Trusted Root Certificate.
     trusted_root_certificate: Optional[bytes] = None

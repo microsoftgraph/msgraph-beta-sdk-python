@@ -24,13 +24,13 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.windowsWiredNetworkConfiguration"
     # Specify the duration for which automatic authentication attempts will be blocked from occuring after a failed authentication attempt.
     authentication_block_period_in_minutes: Optional[int] = None
-    # Specify the authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential. Possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
+    # Specify the authentication method. The possible values are: certificate, usernameAndPassword, derivedCredential. The possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
     authentication_method: Optional[WiredNetworkAuthenticationMethod] = None
     # Specify the number of seconds for the client to wait after an authentication attempt before failing. Valid range 1-3600.
     authentication_period_in_seconds: Optional[int] = None
     # Specify the number of seconds between a failed authentication and the next authentication attempt. Valid range 1-3600.
     authentication_retry_delay_period_in_seconds: Optional[int] = None
-    # Specify whether to authenticate the user, the device, either, or to use guest authentication (none). If you're using certificate authentication, make sure the certificate type matches the authentication type. Possible values are: none, user, machine, machineOrUser, guest. Possible values are: none, user, machine, machineOrUser, guest, unknownFutureValue.
+    # Specify whether to authenticate the user, the device, either, or to use guest authentication (none). If you're using certificate authentication, make sure the certificate type matches the authentication type. The possible values are: none, user, machine, machineOrUser, guest. The possible values are: none, user, machine, machineOrUser, guest, unknownFutureValue.
     authentication_type: Optional[WiredNetworkAuthenticationType] = None
     # When TRUE, caches user credentials on the device so that users don't need to keep entering them each time they connect. When FALSE, do not cache credentials. Default value is FALSE.
     cache_credentials: Optional[bool] = None
@@ -46,7 +46,7 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration, Parsable):
     force_f_i_p_s_compliance: Optional[bool] = None
     # Specify identity certificate for client authentication.
     identity_certificate_for_client_authentication: Optional[WindowsCertificateProfileBase] = None
-    # Specify inner authentication protocol for EAP TTLS. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
+    # Specify inner authentication protocol for EAP TTLS. The possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo. The possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
     inner_authentication_protocol_for_e_a_p_t_t_l_s: Optional[NonEapAuthenticationMethodForEapTtlsType] = None
     # Specify the maximum authentication failures allowed for a set of credentials. Valid range 1-100.
     maximum_authentication_failures: Optional[int] = None
@@ -62,7 +62,7 @@ class WindowsWiredNetworkConfiguration(DeviceConfiguration, Parsable):
     root_certificate_for_client_validation: Optional[Windows81TrustedRootCertificate] = None
     # Specify root certificates for server validation. This collection can contain a maximum of 500 elements.
     root_certificates_for_server_validation: Optional[list[Windows81TrustedRootCertificate]] = None
-    # Specify the secondary authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential. Possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
+    # Specify the secondary authentication method. The possible values are: certificate, usernameAndPassword, derivedCredential. The possible values are: certificate, usernameAndPassword, derivedCredential, unknownFutureValue.
     secondary_authentication_method: Optional[WiredNetworkAuthenticationMethod] = None
     # Specify secondary identity certificate for client authentication.
     secondary_identity_certificate_for_client_authentication: Optional[WindowsCertificateProfileBase] = None

@@ -20,7 +20,7 @@ class SkillProficiency(ItemFacet, Parsable):
     collaboration_tags: Optional[list[str]] = None
     # Contains a friendly name for the skill.
     display_name: Optional[str] = None
-    # Detail of the users proficiency with this skill. Possible values are: elementary, limitedWorking, generalProfessional, advancedProfessional, expert, unknownFutureValue.
+    # Detail of the users proficiency with this skill. The possible values are: elementary, limitedWorking, generalProfessional, advancedProfessional, expert, unknownFutureValue.
     proficiency: Optional[SkillProficiencyLevel] = None
     # The thumbnailUrl property
     thumbnail_url: Optional[str] = None

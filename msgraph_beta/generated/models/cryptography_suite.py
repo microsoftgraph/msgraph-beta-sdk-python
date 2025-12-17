@@ -22,19 +22,19 @@ class CryptographySuite(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Authentication Transform Constants. Possible values are: md596, sha196, sha256128, aes128Gcm, aes192Gcm, aes256Gcm.
+    # Authentication Transform Constants. The possible values are: md596, sha196, sha256128, aes128Gcm, aes192Gcm, aes256Gcm.
     authentication_transform_constants: Optional[AuthenticationTransformConstant] = None
-    # Cipher Transform Constants. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
+    # Cipher Transform Constants. The possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
     cipher_transform_constants: Optional[VpnEncryptionAlgorithmType] = None
-    # Diffie Hellman Group. Possible values are: group1, group2, group14, ecp256, ecp384, group24.
+    # Diffie Hellman Group. The possible values are: group1, group2, group14, ecp256, ecp384, group24.
     dh_group: Optional[DiffieHellmanGroup] = None
-    # Encryption Method. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
+    # Encryption Method. The possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
     encryption_method: Optional[VpnEncryptionAlgorithmType] = None
-    # Integrity Check Method. Possible values are: sha2256, sha196, sha1160, sha2384, sha2_512, md5.
+    # Integrity Check Method. The possible values are: sha2256, sha196, sha1160, sha2384, sha2_512, md5.
     integrity_check_method: Optional[VpnIntegrityAlgorithmType] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Perfect Forward Secrecy Group. Possible values are: pfs1, pfs2, pfs2048, ecp256, ecp384, pfsMM, pfs24.
+    # Perfect Forward Secrecy Group. The possible values are: pfs1, pfs2, pfs2048, ecp256, ecp384, pfsMM, pfs24.
     pfs_group: Optional[PerfectForwardSecrecyGroup] = None
     
     @staticmethod
