@@ -25,11 +25,11 @@ class IdentityContainer(Entity, Parsable):
     odata_type: Optional[str] = None
     # The sensorCandidateActivationConfiguration property
     sensor_candidate_activation_configuration: Optional[SensorCandidateActivationConfiguration] = None
-    # Represents Microsoft Defender for Identity sensors that are ready to be activated.
+    # The sensorCandidates property
     sensor_candidates: Optional[list[SensorCandidate]] = None
     # Represents a customer's Microsoft Defender for Identity sensors.
     sensors: Optional[list[Sensor]] = None
-    # Represents a container for security identities settings APIs.
+    # The settings property
     settings: Optional[SettingsContainer] = None
     
     @staticmethod

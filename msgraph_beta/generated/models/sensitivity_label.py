@@ -29,6 +29,8 @@ class SensitivityLabel(Entity, Parsable):
     description: Optional[str] = None
     # The displayName property
     display_name: Optional[str] = None
+    # The hasProtection property
+    has_protection: Optional[bool] = None
     # The isDefault property
     is_default: Optional[bool] = None
     # The isEnabled property
@@ -88,6 +90,7 @@ class SensitivityLabel(Entity, Parsable):
             "color": lambda n : setattr(self, 'color', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "hasProtection": lambda n : setattr(self, 'has_protection', n.get_bool_value()),
             "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "isEndpointProtectionEnabled": lambda n : setattr(self, 'is_endpoint_protection_enabled', n.get_bool_value()),
@@ -119,6 +122,7 @@ class SensitivityLabel(Entity, Parsable):
         writer.write_str_value("color", self.color)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_bool_value("hasProtection", self.has_protection)
         writer.write_bool_value("isDefault", self.is_default)
         writer.write_bool_value("isEnabled", self.is_enabled)
         writer.write_bool_value("isEndpointProtectionEnabled", self.is_endpoint_protection_enabled)

@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .structured_data_entry import StructuredDataEntry
 
 from .entity import Entity
 
@@ -15,6 +16,10 @@ class UserConfiguration(Entity, Parsable):
     binary_data: Optional[bytes] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Key-value pairs of supported data types.
+    structured_data: Optional[list[StructuredDataEntry]] = None
+    # Binary data for storing serialized XML.
+    xml_data: Optional[bytes] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> UserConfiguration:
@@ -33,11 +38,15 @@ class UserConfiguration(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .structured_data_entry import StructuredDataEntry
 
         from .entity import Entity
+        from .structured_data_entry import StructuredDataEntry
 
         fields: dict[str, Callable[[Any], None]] = {
             "binaryData": lambda n : setattr(self, 'binary_data', n.get_bytes_value()),
+            "structuredData": lambda n : setattr(self, 'structured_data', n.get_collection_of_object_values(StructuredDataEntry)),
+            "xmlData": lambda n : setattr(self, 'xml_data', n.get_bytes_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,5 +62,7 @@ class UserConfiguration(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bytes_value("binaryData", self.binary_data)
+        writer.write_collection_of_object_values("structuredData", self.structured_data)
+        writer.write_bytes_value("xmlData", self.xml_data)
     
 

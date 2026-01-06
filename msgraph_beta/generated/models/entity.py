@@ -422,6 +422,10 @@ if TYPE_CHECKING:
     from .copilot_admin_limited_mode import CopilotAdminLimitedMode
     from .copilot_admin_setting import CopilotAdminSetting
     from .copilot_communications_root import CopilotCommunicationsRoot
+    from .copilot_conversation import CopilotConversation
+    from .copilot_conversation_message import CopilotConversationMessage
+    from .copilot_conversation_request_message import CopilotConversationRequestMessage
+    from .copilot_conversation_response_message import CopilotConversationResponseMessage
     from .copilot_package import CopilotPackage
     from .copilot_package_detail import CopilotPackageDetail
     from .copilot_people_admin_setting import CopilotPeopleAdminSetting
@@ -733,6 +737,8 @@ if TYPE_CHECKING:
     from .exact_match_session_base import ExactMatchSessionBase
     from .exact_match_upload_agent import ExactMatchUploadAgent
     from .exchange_admin import ExchangeAdmin
+    from .exchange_message_trace import ExchangeMessageTrace
+    from .exchange_message_trace_detail import ExchangeMessageTraceDetail
     from .exchange_protection_policy import ExchangeProtectionPolicy
     from .exchange_restore_session import ExchangeRestoreSession
     from .exchange_settings import ExchangeSettings
@@ -1145,6 +1151,7 @@ if TYPE_CHECKING:
     from .message_recipient import MessageRecipient
     from .message_rule import MessageRule
     from .message_trace import MessageTrace
+    from .message_tracing_root import MessageTracingRoot
     from .mfa_completion_metric import MfaCompletionMetric
     from .mfa_failure import MfaFailure
     from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
@@ -2232,6 +2239,9 @@ if TYPE_CHECKING:
     from .working_time_schedule import WorkingTimeSchedule
     from .workplace_sensor_device import WorkplaceSensorDevice
     from .workspace import Workspace
+    from .work_hours_and_locations_setting import WorkHoursAndLocationsSetting
+    from .work_plan_occurrence import WorkPlanOccurrence
+    from .work_plan_recurrence import WorkPlanRecurrence
     from .work_position import WorkPosition
     from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
     from .x509_certificate_combination_configuration import X509CertificateCombinationConfiguration
@@ -3937,6 +3947,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .copilot_communications_root import CopilotCommunicationsRoot
 
             return CopilotCommunicationsRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotConversation".casefold():
+            from .copilot_conversation import CopilotConversation
+
+            return CopilotConversation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotConversationMessage".casefold():
+            from .copilot_conversation_message import CopilotConversationMessage
+
+            return CopilotConversationMessage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotConversationRequestMessage".casefold():
+            from .copilot_conversation_request_message import CopilotConversationRequestMessage
+
+            return CopilotConversationRequestMessage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotConversationResponseMessage".casefold():
+            from .copilot_conversation_response_message import CopilotConversationResponseMessage
+
+            return CopilotConversationResponseMessage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotPackage".casefold():
             from .copilot_package import CopilotPackage
 
@@ -5194,6 +5220,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .exchange_admin import ExchangeAdmin
 
             return ExchangeAdmin()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exchangeMessageTrace".casefold():
+            from .exchange_message_trace import ExchangeMessageTrace
+
+            return ExchangeMessageTrace()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exchangeMessageTraceDetail".casefold():
+            from .exchange_message_trace_detail import ExchangeMessageTraceDetail
+
+            return ExchangeMessageTraceDetail()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.exchangeProtectionPolicy".casefold():
             from .exchange_protection_policy import ExchangeProtectionPolicy
 
@@ -6855,6 +6889,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .message_trace import MessageTrace
 
             return MessageTrace()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.messageTracingRoot".casefold():
+            from .message_tracing_root import MessageTracingRoot
+
+            return MessageTracingRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mfaCompletionMetric".casefold():
             from .mfa_completion_metric import MfaCompletionMetric
 
@@ -11224,6 +11262,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .workforce_integration import WorkforceIntegration
 
             return WorkforceIntegration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.workHoursAndLocationsSetting".casefold():
+            from .work_hours_and_locations_setting import WorkHoursAndLocationsSetting
+
+            return WorkHoursAndLocationsSetting()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.workingTimeSchedule".casefold():
             from .working_time_schedule import WorkingTimeSchedule
 
@@ -11232,6 +11274,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .workplace_sensor_device import WorkplaceSensorDevice
 
             return WorkplaceSensorDevice()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.workPlanOccurrence".casefold():
+            from .work_plan_occurrence import WorkPlanOccurrence
+
+            return WorkPlanOccurrence()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.workPlanRecurrence".casefold():
+            from .work_plan_recurrence import WorkPlanRecurrence
+
+            return WorkPlanRecurrence()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.workPosition".casefold():
             from .work_position import WorkPosition
 
@@ -11684,6 +11734,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_admin_limited_mode import CopilotAdminLimitedMode
         from .copilot_admin_setting import CopilotAdminSetting
         from .copilot_communications_root import CopilotCommunicationsRoot
+        from .copilot_conversation import CopilotConversation
+        from .copilot_conversation_message import CopilotConversationMessage
+        from .copilot_conversation_request_message import CopilotConversationRequestMessage
+        from .copilot_conversation_response_message import CopilotConversationResponseMessage
         from .copilot_package import CopilotPackage
         from .copilot_package_detail import CopilotPackageDetail
         from .copilot_people_admin_setting import CopilotPeopleAdminSetting
@@ -11995,6 +12049,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .exact_match_session_base import ExactMatchSessionBase
         from .exact_match_upload_agent import ExactMatchUploadAgent
         from .exchange_admin import ExchangeAdmin
+        from .exchange_message_trace import ExchangeMessageTrace
+        from .exchange_message_trace_detail import ExchangeMessageTraceDetail
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .exchange_restore_session import ExchangeRestoreSession
         from .exchange_settings import ExchangeSettings
@@ -12407,6 +12463,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .message_recipient import MessageRecipient
         from .message_rule import MessageRule
         from .message_trace import MessageTrace
+        from .message_tracing_root import MessageTracingRoot
         from .mfa_completion_metric import MfaCompletionMetric
         from .mfa_failure import MfaFailure
         from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
@@ -13494,6 +13551,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .working_time_schedule import WorkingTimeSchedule
         from .workplace_sensor_device import WorkplaceSensorDevice
         from .workspace import Workspace
+        from .work_hours_and_locations_setting import WorkHoursAndLocationsSetting
+        from .work_plan_occurrence import WorkPlanOccurrence
+        from .work_plan_recurrence import WorkPlanRecurrence
         from .work_position import WorkPosition
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
         from .x509_certificate_combination_configuration import X509CertificateCombinationConfiguration
@@ -13917,6 +13977,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_admin_limited_mode import CopilotAdminLimitedMode
         from .copilot_admin_setting import CopilotAdminSetting
         from .copilot_communications_root import CopilotCommunicationsRoot
+        from .copilot_conversation import CopilotConversation
+        from .copilot_conversation_message import CopilotConversationMessage
+        from .copilot_conversation_request_message import CopilotConversationRequestMessage
+        from .copilot_conversation_response_message import CopilotConversationResponseMessage
         from .copilot_package import CopilotPackage
         from .copilot_package_detail import CopilotPackageDetail
         from .copilot_people_admin_setting import CopilotPeopleAdminSetting
@@ -14228,6 +14292,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .exact_match_session_base import ExactMatchSessionBase
         from .exact_match_upload_agent import ExactMatchUploadAgent
         from .exchange_admin import ExchangeAdmin
+        from .exchange_message_trace import ExchangeMessageTrace
+        from .exchange_message_trace_detail import ExchangeMessageTraceDetail
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .exchange_restore_session import ExchangeRestoreSession
         from .exchange_settings import ExchangeSettings
@@ -14640,6 +14706,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .message_recipient import MessageRecipient
         from .message_rule import MessageRule
         from .message_trace import MessageTrace
+        from .message_tracing_root import MessageTracingRoot
         from .mfa_completion_metric import MfaCompletionMetric
         from .mfa_failure import MfaFailure
         from .mfa_telecom_fraud_metric import MfaTelecomFraudMetric
@@ -15727,6 +15794,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .working_time_schedule import WorkingTimeSchedule
         from .workplace_sensor_device import WorkplaceSensorDevice
         from .workspace import Workspace
+        from .work_hours_and_locations_setting import WorkHoursAndLocationsSetting
+        from .work_plan_occurrence import WorkPlanOccurrence
+        from .work_plan_recurrence import WorkPlanRecurrence
         from .work_position import WorkPosition
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
         from .x509_certificate_combination_configuration import X509CertificateCombinationConfiguration

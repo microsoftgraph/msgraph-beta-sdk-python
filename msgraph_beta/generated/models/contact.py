@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .email_address import EmailAddress
     from .extension import Extension
     from .followup_flag import FollowupFlag
     from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
@@ -77,14 +78,20 @@ class Contact(OutlookItem, Parsable):
     photo: Optional[ProfilePhoto] = None
     # Addresses associated with the contact, for example, home address and business address.
     postal_addresses: Optional[list[PhysicalAddress]] = None
+    # The primary email address of the contact.
+    primary_email_address: Optional[EmailAddress] = None
     # The contact's profession.
     profession: Optional[str] = None
+    # The secondary email address of the contact.
+    secondary_email_address: Optional[EmailAddress] = None
     # The collection of single-value extended properties defined for the contact. Read-only. Nullable.
     single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
     # The name of the contact's spouse/partner.
     spouse_name: Optional[str] = None
     # The contact's surname.
     surname: Optional[str] = None
+    # The tertiary email address of the contact.
+    tertiary_email_address: Optional[EmailAddress] = None
     # The contact's title.
     title: Optional[str] = None
     # Web sites associated with the contact.
@@ -114,6 +121,7 @@ class Contact(OutlookItem, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .email_address import EmailAddress
         from .extension import Extension
         from .followup_flag import FollowupFlag
         from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
@@ -125,6 +133,7 @@ class Contact(OutlookItem, Parsable):
         from .typed_email_address import TypedEmailAddress
         from .website import Website
 
+        from .email_address import EmailAddress
         from .extension import Extension
         from .followup_flag import FollowupFlag
         from .multi_value_legacy_extended_property import MultiValueLegacyExtendedProperty
@@ -164,10 +173,13 @@ class Contact(OutlookItem, Parsable):
             "phones": lambda n : setattr(self, 'phones', n.get_collection_of_object_values(Phone)),
             "photo": lambda n : setattr(self, 'photo', n.get_object_value(ProfilePhoto)),
             "postalAddresses": lambda n : setattr(self, 'postal_addresses', n.get_collection_of_object_values(PhysicalAddress)),
+            "primaryEmailAddress": lambda n : setattr(self, 'primary_email_address', n.get_object_value(EmailAddress)),
             "profession": lambda n : setattr(self, 'profession', n.get_str_value()),
+            "secondaryEmailAddress": lambda n : setattr(self, 'secondary_email_address', n.get_object_value(EmailAddress)),
             "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(SingleValueLegacyExtendedProperty)),
             "spouseName": lambda n : setattr(self, 'spouse_name', n.get_str_value()),
             "surname": lambda n : setattr(self, 'surname', n.get_str_value()),
+            "tertiaryEmailAddress": lambda n : setattr(self, 'tertiary_email_address', n.get_object_value(EmailAddress)),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
             "websites": lambda n : setattr(self, 'websites', n.get_collection_of_object_values(Website)),
             "weddingAnniversary": lambda n : setattr(self, 'wedding_anniversary', n.get_date_value()),
@@ -215,10 +227,13 @@ class Contact(OutlookItem, Parsable):
         writer.write_collection_of_object_values("phones", self.phones)
         writer.write_object_value("photo", self.photo)
         writer.write_collection_of_object_values("postalAddresses", self.postal_addresses)
+        writer.write_object_value("primaryEmailAddress", self.primary_email_address)
         writer.write_str_value("profession", self.profession)
+        writer.write_object_value("secondaryEmailAddress", self.secondary_email_address)
         writer.write_collection_of_object_values("singleValueExtendedProperties", self.single_value_extended_properties)
         writer.write_str_value("spouseName", self.spouse_name)
         writer.write_str_value("surname", self.surname)
+        writer.write_object_value("tertiaryEmailAddress", self.tertiary_email_address)
         writer.write_str_value("title", self.title)
         writer.write_collection_of_object_values("websites", self.websites)
         writer.write_date_value("weddingAnniversary", self.wedding_anniversary)

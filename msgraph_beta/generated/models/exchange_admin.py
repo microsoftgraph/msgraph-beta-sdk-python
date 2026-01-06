@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .mailbox import Mailbox
     from .message_trace import MessageTrace
+    from .message_tracing_root import MessageTracingRoot
 
 from .entity import Entity
 
@@ -19,6 +20,8 @@ class ExchangeAdmin(Entity, Parsable):
     message_traces: Optional[list[MessageTrace]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The tracing property
+    tracing: Optional[MessageTracingRoot] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ExchangeAdmin:
@@ -39,14 +42,17 @@ class ExchangeAdmin(Entity, Parsable):
         from .entity import Entity
         from .mailbox import Mailbox
         from .message_trace import MessageTrace
+        from .message_tracing_root import MessageTracingRoot
 
         from .entity import Entity
         from .mailbox import Mailbox
         from .message_trace import MessageTrace
+        from .message_tracing_root import MessageTracingRoot
 
         fields: dict[str, Callable[[Any], None]] = {
             "mailboxes": lambda n : setattr(self, 'mailboxes', n.get_collection_of_object_values(Mailbox)),
             "messageTraces": lambda n : setattr(self, 'message_traces', n.get_collection_of_object_values(MessageTrace)),
+            "tracing": lambda n : setattr(self, 'tracing', n.get_object_value(MessageTracingRoot)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,5 +69,6 @@ class ExchangeAdmin(Entity, Parsable):
         super().serialize(writer)
         writer.write_collection_of_object_values("mailboxes", self.mailboxes)
         writer.write_collection_of_object_values("messageTraces", self.message_traces)
+        writer.write_object_value("tracing", self.tracing)
     
 
