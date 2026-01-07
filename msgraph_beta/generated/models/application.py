@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from .request_signature_verification import RequestSignatureVerification
     from .required_resource_access import RequiredResourceAccess
     from .service_principal_lock_configuration import ServicePrincipalLockConfiguration
+    from .sign_in_audience_restrictions_base import SignInAudienceRestrictionsBase
     from .spa_application import SpaApplication
     from .synchronization import Synchronization
     from .token_issuance_policy import TokenIssuancePolicy
@@ -85,6 +86,8 @@ class Application(DirectoryObject, Parsable):
     info: Optional[InformationalUrl] = None
     # Specifies whether this application supports device authentication without a user. The default is false.
     is_device_only_auth_supported: Optional[bool] = None
+    # Specifies whether the service principal of the app in a tenant or across tenants for multi-tenant apps can obtain new access tokens or access protected resources. When set to true, existing tokens remain valid until they expire based on their configured lifetimes, and the app stays visible in the Enterprise apps list but users cannot sign in.true if the application is deactivated (disabled); otherwise false.
+    is_disabled: Optional[bool] = None
     # Specifies the fallback application type as public client, such as an installed application running on a mobile device. The default value is false, which means the fallback application type is confidential client such as a web app. There are certain scenarios where Microsoft Entra ID can't determine the client application type. For example, the ROPC flow where the application is configured without specifying a redirect URI. In those cases Microsoft Entra ID interprets the application type based on the value of this property.
     is_fallback_public_client: Optional[bool] = None
     # The collection of key credentials associated with the application. Not nullable. Supports $filter (eq, not, ge, le).
@@ -121,6 +124,8 @@ class Application(DirectoryObject, Parsable):
     service_principal_lock_configuration: Optional[ServicePrincipalLockConfiguration] = None
     # Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg (default), AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. The value for this property has implications on other app object properties. As a result, if you change this property, you may need to change other properties first. For more information, see Validation differences for signInAudience.Supports $filter (eq, ne, not).
     sign_in_audience: Optional[str] = None
+    # The signInAudienceRestrictions property
+    sign_in_audience_restrictions: Optional[SignInAudienceRestrictionsBase] = None
     # Specifies settings for a single-page application, including sign out URLs and redirect URIs for authorization codes and access tokens.
     spa: Optional[SpaApplication] = None
     # Represents the capability for Microsoft Entra identity synchronization through the Microsoft Graph API.
@@ -189,6 +194,7 @@ class Application(DirectoryObject, Parsable):
         from .request_signature_verification import RequestSignatureVerification
         from .required_resource_access import RequiredResourceAccess
         from .service_principal_lock_configuration import ServicePrincipalLockConfiguration
+        from .sign_in_audience_restrictions_base import SignInAudienceRestrictionsBase
         from .spa_application import SpaApplication
         from .synchronization import Synchronization
         from .token_issuance_policy import TokenIssuancePolicy
@@ -219,6 +225,7 @@ class Application(DirectoryObject, Parsable):
         from .request_signature_verification import RequestSignatureVerification
         from .required_resource_access import RequiredResourceAccess
         from .service_principal_lock_configuration import ServicePrincipalLockConfiguration
+        from .sign_in_audience_restrictions_base import SignInAudienceRestrictionsBase
         from .spa_application import SpaApplication
         from .synchronization import Synchronization
         from .token_issuance_policy import TokenIssuancePolicy
@@ -249,6 +256,7 @@ class Application(DirectoryObject, Parsable):
             "identifierUris": lambda n : setattr(self, 'identifier_uris', n.get_collection_of_primitive_values(str)),
             "info": lambda n : setattr(self, 'info', n.get_object_value(InformationalUrl)),
             "isDeviceOnlyAuthSupported": lambda n : setattr(self, 'is_device_only_auth_supported', n.get_bool_value()),
+            "isDisabled": lambda n : setattr(self, 'is_disabled', n.get_bool_value()),
             "isFallbackPublicClient": lambda n : setattr(self, 'is_fallback_public_client', n.get_bool_value()),
             "keyCredentials": lambda n : setattr(self, 'key_credentials', n.get_collection_of_object_values(KeyCredential)),
             "logo": lambda n : setattr(self, 'logo', n.get_bytes_value()),
@@ -267,6 +275,7 @@ class Application(DirectoryObject, Parsable):
             "serviceManagementReference": lambda n : setattr(self, 'service_management_reference', n.get_str_value()),
             "servicePrincipalLockConfiguration": lambda n : setattr(self, 'service_principal_lock_configuration', n.get_object_value(ServicePrincipalLockConfiguration)),
             "signInAudience": lambda n : setattr(self, 'sign_in_audience', n.get_str_value()),
+            "signInAudienceRestrictions": lambda n : setattr(self, 'sign_in_audience_restrictions', n.get_object_value(SignInAudienceRestrictionsBase)),
             "spa": lambda n : setattr(self, 'spa', n.get_object_value(SpaApplication)),
             "synchronization": lambda n : setattr(self, 'synchronization', n.get_object_value(Synchronization)),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
@@ -312,6 +321,7 @@ class Application(DirectoryObject, Parsable):
         writer.write_collection_of_primitive_values("identifierUris", self.identifier_uris)
         writer.write_object_value("info", self.info)
         writer.write_bool_value("isDeviceOnlyAuthSupported", self.is_device_only_auth_supported)
+        writer.write_bool_value("isDisabled", self.is_disabled)
         writer.write_bool_value("isFallbackPublicClient", self.is_fallback_public_client)
         writer.write_collection_of_object_values("keyCredentials", self.key_credentials)
         writer.write_bytes_value("logo", self.logo)
@@ -330,6 +340,7 @@ class Application(DirectoryObject, Parsable):
         writer.write_str_value("serviceManagementReference", self.service_management_reference)
         writer.write_object_value("servicePrincipalLockConfiguration", self.service_principal_lock_configuration)
         writer.write_str_value("signInAudience", self.sign_in_audience)
+        writer.write_object_value("signInAudienceRestrictions", self.sign_in_audience_restrictions)
         writer.write_object_value("spa", self.spa)
         writer.write_object_value("synchronization", self.synchronization)
         writer.write_collection_of_primitive_values("tags", self.tags)

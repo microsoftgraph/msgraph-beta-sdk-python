@@ -35,7 +35,7 @@ class Room(Place, Parsable):
     is_teams_enabled: Optional[bool] = None
     # A short, friendly name for the room, often used for easier identification or display in UI.
     nickname: Optional[str] = None
-    # An alternate immutable unique identifier of the room. Read-only.
+    # An alternative immutable unique identifier of the room. Read-only.
     place_id: Optional[str] = None
     # The teamsEnabledState property
     teams_enabled_state: Optional[PlaceFeatureEnablement] = None

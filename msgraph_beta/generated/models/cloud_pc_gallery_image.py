@@ -7,7 +7,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_gallery_image_status import CloudPcGalleryImageStatus
-    from .cloud_pc_image_os_architecture_type import CloudPcImageOsArchitectureType
     from .entity import Entity
 
 from .entity import Entity
@@ -28,8 +27,6 @@ class CloudPcGalleryImage(Entity, Parsable):
     offer_display_name: Optional[str] = None
     # The offer name of this gallery image that is passed to ARM to retrieve the image resource. Read-only.
     offer_name: Optional[str] = None
-    # The osArchitecture property
-    os_architecture: Optional[CloudPcImageOsArchitectureType] = None
     # The operating system version of this gallery image. For example, 10.0.22000.296. Read-only.
     os_version_number: Optional[str] = None
     # The publisher name of this gallery image that is passed to ARM to retrieve the image resource. Read-only. The publisher property is deprecated and will stop returning data on January 31, 2024. Going forward, use the publisherName property.
@@ -68,11 +65,9 @@ class CloudPcGalleryImage(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_gallery_image_status import CloudPcGalleryImageStatus
-        from .cloud_pc_image_os_architecture_type import CloudPcImageOsArchitectureType
         from .entity import Entity
 
         from .cloud_pc_gallery_image_status import CloudPcGalleryImageStatus
-        from .cloud_pc_image_os_architecture_type import CloudPcImageOsArchitectureType
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -82,7 +77,6 @@ class CloudPcGalleryImage(Entity, Parsable):
             "offer": lambda n : setattr(self, 'offer', n.get_str_value()),
             "offerDisplayName": lambda n : setattr(self, 'offer_display_name', n.get_str_value()),
             "offerName": lambda n : setattr(self, 'offer_name', n.get_str_value()),
-            "osArchitecture": lambda n : setattr(self, 'os_architecture', n.get_enum_value(CloudPcImageOsArchitectureType)),
             "osVersionNumber": lambda n : setattr(self, 'os_version_number', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
             "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
@@ -113,7 +107,6 @@ class CloudPcGalleryImage(Entity, Parsable):
         writer.write_str_value("offer", self.offer)
         writer.write_str_value("offerDisplayName", self.offer_display_name)
         writer.write_str_value("offerName", self.offer_name)
-        writer.write_enum_value("osArchitecture", self.os_architecture)
         writer.write_str_value("osVersionNumber", self.os_version_number)
         writer.write_str_value("publisher", self.publisher)
         writer.write_str_value("publisherName", self.publisher_name)

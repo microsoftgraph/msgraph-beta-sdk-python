@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from uuid import UUID
 
 if TYPE_CHECKING:
+    from .deleted import Deleted
     from .entity import Entity
     from .share_point_group_identity_mapping import SharePointGroupIdentityMapping
     from .share_point_user_identity_mapping import SharePointUserIdentityMapping
@@ -14,6 +15,8 @@ from .entity import Entity
 
 @dataclass
 class SharePointIdentityMapping(Entity, Parsable):
+    # Indicates that an identity mapping was deleted successfully.
+    deleted: Optional[Deleted] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The unique identifier of the source organization in the migration.
@@ -48,15 +51,18 @@ class SharePointIdentityMapping(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .deleted import Deleted
         from .entity import Entity
         from .share_point_group_identity_mapping import SharePointGroupIdentityMapping
         from .share_point_user_identity_mapping import SharePointUserIdentityMapping
 
+        from .deleted import Deleted
         from .entity import Entity
         from .share_point_group_identity_mapping import SharePointGroupIdentityMapping
         from .share_point_user_identity_mapping import SharePointUserIdentityMapping
 
         fields: dict[str, Callable[[Any], None]] = {
+            "deleted": lambda n : setattr(self, 'deleted', n.get_object_value(Deleted)),
             "sourceOrganizationId": lambda n : setattr(self, 'source_organization_id', n.get_uuid_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -72,6 +78,7 @@ class SharePointIdentityMapping(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("deleted", self.deleted)
         writer.write_uuid_value("sourceOrganizationId", self.source_organization_id)
     
 

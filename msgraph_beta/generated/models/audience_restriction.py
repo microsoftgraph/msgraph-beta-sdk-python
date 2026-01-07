@@ -9,6 +9,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
     from .app_management_restriction_state import AppManagementRestrictionState
+    from .azure_ad_multiple_orgs_audience_restriction import AzureAdMultipleOrgsAudienceRestriction
 
 @dataclass
 class AudienceRestriction(AdditionalDataHolder, BackedModel, Parsable):
@@ -37,6 +38,15 @@ class AudienceRestriction(AdditionalDataHolder, BackedModel, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureAdMultipleOrgsAudienceRestriction".casefold():
+            from .azure_ad_multiple_orgs_audience_restriction import AzureAdMultipleOrgsAudienceRestriction
+
+            return AzureAdMultipleOrgsAudienceRestriction()
         return AudienceRestriction()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -46,9 +56,11 @@ class AudienceRestriction(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
         from .app_management_restriction_state import AppManagementRestrictionState
+        from .azure_ad_multiple_orgs_audience_restriction import AzureAdMultipleOrgsAudienceRestriction
 
         from .app_management_policy_actor_exemptions import AppManagementPolicyActorExemptions
         from .app_management_restriction_state import AppManagementRestrictionState
+        from .azure_ad_multiple_orgs_audience_restriction import AzureAdMultipleOrgsAudienceRestriction
 
         fields: dict[str, Callable[[Any], None]] = {
             "excludeActors": lambda n : setattr(self, 'exclude_actors', n.get_object_value(AppManagementPolicyActorExemptions)),

@@ -28,6 +28,7 @@ if TYPE_CHECKING:
     from .provision_email.provision_email_request_builder import ProvisionEmailRequestBuilder
     from .remove_email.remove_email_request_builder import RemoveEmailRequestBuilder
     from .shared_with_teams.shared_with_teams_request_builder import SharedWithTeamsRequestBuilder
+    from .start_migration.start_migration_request_builder import StartMigrationRequestBuilder
     from .tabs.tabs_request_builder import TabsRequestBuilder
     from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
 
@@ -259,6 +260,15 @@ class ChannelItemRequestBuilder(BaseRequestBuilder):
         from .shared_with_teams.shared_with_teams_request_builder import SharedWithTeamsRequestBuilder
 
         return SharedWithTeamsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def start_migration(self) -> StartMigrationRequestBuilder:
+        """
+        Provides operations to call the startMigration method.
+        """
+        from .start_migration.start_migration_request_builder import StartMigrationRequestBuilder
+
+        return StartMigrationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def tabs(self) -> TabsRequestBuilder:

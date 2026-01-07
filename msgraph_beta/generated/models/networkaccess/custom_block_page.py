@@ -13,7 +13,7 @@ from ..entity import Entity
 
 @dataclass
 class CustomBlockPage(Entity, Parsable):
-    # The configuration property
+    # The current configuration of the customized message. The body can be input in limited markdown language, supporting links via the format: link.
     configuration: Optional[BlockPageConfigurationBase] = None
     # The OdataType property
     odata_type: Optional[str] = None

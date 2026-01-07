@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .application import Application
     from .directory_object import DirectoryObject
+    from .inheritable_permission import InheritablePermission
 
 from .application import Application
 
@@ -14,6 +15,8 @@ from .application import Application
 class AgentIdentityBlueprint(Application, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.agentIdentityBlueprint"
+    # Defines scopes of a resource application that may be automatically granted to agent identities without additional consent.
+    inheritable_permissions: Optional[list[InheritablePermission]] = None
     # The sponsors for this agent identity blueprint. Sponsors are users or groups who can authorize and manage the lifecycle of agent identity instances. Required during the create operation.
     sponsors: Optional[list[DirectoryObject]] = None
     
@@ -35,11 +38,14 @@ class AgentIdentityBlueprint(Application, Parsable):
         """
         from .application import Application
         from .directory_object import DirectoryObject
+        from .inheritable_permission import InheritablePermission
 
         from .application import Application
         from .directory_object import DirectoryObject
+        from .inheritable_permission import InheritablePermission
 
         fields: dict[str, Callable[[Any], None]] = {
+            "inheritablePermissions": lambda n : setattr(self, 'inheritable_permissions', n.get_collection_of_object_values(InheritablePermission)),
             "sponsors": lambda n : setattr(self, 'sponsors', n.get_collection_of_object_values(DirectoryObject)),
         }
         super_fields = super().get_field_deserializers()
@@ -55,6 +61,7 @@ class AgentIdentityBlueprint(Application, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("inheritablePermissions", self.inheritable_permissions)
         writer.write_collection_of_object_values("sponsors", self.sponsors)
     
 

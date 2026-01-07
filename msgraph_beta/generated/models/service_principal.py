@@ -98,6 +98,8 @@ class ServicePrincipal(DirectoryObject, Parsable):
     homepage: Optional[str] = None
     # Basic profile information of the acquired application such as app's marketing, support, terms of service and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience. For more info, see How to: Add Terms of service and privacy statement for registered Microsoft Entra apps. Supports $filter (eq, ne, not, ge, le, and eq on null values).
     info: Optional[InformationalUrl] = None
+    # Specifies whether the service principal of the app in a tenant or across tenants for multi-tenant apps can obtain new access tokens or access protected resources. When set to true, existing tokens remain valid until they expire based on their configured lifetimes, and the app stays visible in the Enterprise apps list but users cannot sign in.true if the application is deactivated (disabled); otherwise false.
+    is_disabled: Optional[bool] = None
     # The collection of key credentials associated with the service principal. Not nullable. Supports $filter (eq, not, ge, le).
     key_credentials: Optional[list[KeyCredential]] = None
     # The licenseDetails property
@@ -279,6 +281,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
             "homeRealmDiscoveryPolicies": lambda n : setattr(self, 'home_realm_discovery_policies', n.get_collection_of_object_values(HomeRealmDiscoveryPolicy)),
             "homepage": lambda n : setattr(self, 'homepage', n.get_str_value()),
             "info": lambda n : setattr(self, 'info', n.get_object_value(InformationalUrl)),
+            "isDisabled": lambda n : setattr(self, 'is_disabled', n.get_bool_value()),
             "keyCredentials": lambda n : setattr(self, 'key_credentials', n.get_collection_of_object_values(KeyCredential)),
             "licenseDetails": lambda n : setattr(self, 'license_details', n.get_collection_of_object_values(LicenseDetails)),
             "loginUrl": lambda n : setattr(self, 'login_url', n.get_str_value()),
@@ -353,6 +356,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
         writer.write_collection_of_object_values("homeRealmDiscoveryPolicies", self.home_realm_discovery_policies)
         writer.write_str_value("homepage", self.homepage)
         writer.write_object_value("info", self.info)
+        writer.write_bool_value("isDisabled", self.is_disabled)
         writer.write_collection_of_object_values("keyCredentials", self.key_credentials)
         writer.write_collection_of_object_values("licenseDetails", self.license_details)
         writer.write_str_value("loginUrl", self.login_url)

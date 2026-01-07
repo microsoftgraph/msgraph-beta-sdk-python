@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.cloud_pc_report import CloudPcReport
     from ....models.o_data_errors.o_data_error import ODataError
+    from .retrieve_cloud_pc_client_app_usage_report.retrieve_cloud_pc_client_app_usage_report_request_builder import RetrieveCloudPcClientAppUsageReportRequestBuilder
     from .retrieve_cloud_pc_recommendation_reports.retrieve_cloud_pc_recommendation_reports_request_builder import RetrieveCloudPcRecommendationReportsRequestBuilder
 
 class ReportRequestBuilder(BaseRequestBuilder):
@@ -138,6 +139,15 @@ class ReportRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ReportRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def retrieve_cloud_pc_client_app_usage_report(self) -> RetrieveCloudPcClientAppUsageReportRequestBuilder:
+        """
+        Provides operations to call the retrieveCloudPcClientAppUsageReport method.
+        """
+        from .retrieve_cloud_pc_client_app_usage_report.retrieve_cloud_pc_client_app_usage_report_request_builder import RetrieveCloudPcClientAppUsageReportRequestBuilder
+
+        return RetrieveCloudPcClientAppUsageReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_cloud_pc_recommendation_reports(self) -> RetrieveCloudPcRecommendationReportsRequestBuilder:

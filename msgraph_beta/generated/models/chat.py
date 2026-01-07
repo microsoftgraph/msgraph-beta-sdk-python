@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .conversation_member import ConversationMember
     from .entity import Entity
     from .identity_set import IdentitySet
+    from .migration_mode import MigrationMode
     from .pinned_chat_message_info import PinnedChatMessageInfo
     from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
     from .teams_app_installation import TeamsAppInstallation
@@ -42,12 +43,16 @@ class Chat(Entity, Parsable):
     members: Optional[list[ConversationMember]] = None
     # A collection of all the messages in the chat. Nullable.
     messages: Optional[list[ChatMessage]] = None
+    # Indicates whether a chat is in migration mode. This value is null for chats that never entered migration mode. The possible values are: inProgress, completed, unknownFutureValue.
+    migration_mode: Optional[MigrationMode] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents details about an online meeting. If the chat isn't associated with an online meeting, the property is empty. Read-only.
     online_meeting_info: Optional[TeamworkOnlineMeetingInfo] = None
     # A collection of all the Teams async operations that ran or are running on the chat. Nullable.
     operations: Optional[list[TeamsAsyncOperation]] = None
+    # Timestamp of the original creation time for the chat. The value is null if the chat never entered migration mode.
+    original_created_date_time: Optional[datetime.datetime] = None
     # A collection of permissions granted to apps for the chat.
     permission_grants: Optional[list[ResourceSpecificPermissionGrant]] = None
     # A collection of all the pinned messages in the chat. Nullable.
@@ -86,6 +91,7 @@ class Chat(Entity, Parsable):
         from .conversation_member import ConversationMember
         from .entity import Entity
         from .identity_set import IdentitySet
+        from .migration_mode import MigrationMode
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .teams_app_installation import TeamsAppInstallation
@@ -100,6 +106,7 @@ class Chat(Entity, Parsable):
         from .conversation_member import ConversationMember
         from .entity import Entity
         from .identity_set import IdentitySet
+        from .migration_mode import MigrationMode
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .teams_app_installation import TeamsAppInstallation
@@ -117,8 +124,10 @@ class Chat(Entity, Parsable):
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(ConversationMember)),
             "messages": lambda n : setattr(self, 'messages', n.get_collection_of_object_values(ChatMessage)),
+            "migrationMode": lambda n : setattr(self, 'migration_mode', n.get_enum_value(MigrationMode)),
             "onlineMeetingInfo": lambda n : setattr(self, 'online_meeting_info', n.get_object_value(TeamworkOnlineMeetingInfo)),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(TeamsAsyncOperation)),
+            "originalCreatedDateTime": lambda n : setattr(self, 'original_created_date_time', n.get_datetime_value()),
             "permissionGrants": lambda n : setattr(self, 'permission_grants', n.get_collection_of_object_values(ResourceSpecificPermissionGrant)),
             "pinnedMessages": lambda n : setattr(self, 'pinned_messages', n.get_collection_of_object_values(PinnedChatMessageInfo)),
             "tabs": lambda n : setattr(self, 'tabs', n.get_collection_of_object_values(TeamsTab)),
@@ -149,8 +158,10 @@ class Chat(Entity, Parsable):
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_collection_of_object_values("members", self.members)
         writer.write_collection_of_object_values("messages", self.messages)
+        writer.write_enum_value("migrationMode", self.migration_mode)
         writer.write_object_value("onlineMeetingInfo", self.online_meeting_info)
         writer.write_collection_of_object_values("operations", self.operations)
+        writer.write_datetime_value("originalCreatedDateTime", self.original_created_date_time)
         writer.write_collection_of_object_values("permissionGrants", self.permission_grants)
         writer.write_collection_of_object_values("pinnedMessages", self.pinned_messages)
         writer.write_collection_of_object_values("tabs", self.tabs)

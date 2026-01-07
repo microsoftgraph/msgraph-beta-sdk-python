@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from .mailboxes.mailboxes_request_builder import MailboxesRequestBuilder
     from .message_traces.message_traces_request_builder import MessageTracesRequestBuilder
+    from .tracing.tracing_request_builder import TracingRequestBuilder
 
 class ExchangeRequestBuilder(BaseRequestBuilder):
     """
@@ -164,6 +165,15 @@ class ExchangeRequestBuilder(BaseRequestBuilder):
         from .message_traces.message_traces_request_builder import MessageTracesRequestBuilder
 
         return MessageTracesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tracing(self) -> TracingRequestBuilder:
+        """
+        Provides operations to manage the tracing property of the microsoft.graph.exchangeAdmin entity.
+        """
+        from .tracing.tracing_request_builder import TracingRequestBuilder
+
+        return TracingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ExchangeRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

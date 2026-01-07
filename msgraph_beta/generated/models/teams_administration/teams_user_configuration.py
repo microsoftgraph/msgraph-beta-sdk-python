@@ -16,7 +16,7 @@ from ..entity import Entity
 
 @dataclass
 class TeamsUserConfiguration(Entity, Parsable):
-    # The type of the account in the Teams context. The possible values are: user, resourceAccount, guest, sfbOnPremUser, unknown, unknownFutureValue, ineligibleUser. Use the Prefer: include-unknown-enum-members request header to get the following value from this enum evolvable enum: ineligibleUser.
+    # The accountType property
     account_type: Optional[AccountType] = None
     # The date and time when the user was created. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
