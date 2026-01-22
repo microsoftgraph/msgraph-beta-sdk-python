@@ -18,7 +18,7 @@ from .entity import Entity
 class CloudPcSupportedRegion(Entity, Parsable):
     # The name for the supported region. Read-only.
     display_name: Optional[str] = None
-    # The geographic location where the region is located. The possible values are: default, asia, australasia, canada, europe, india, africa, usCentral, usEast, usWest, southAmerica, middleEast, centralAmerica, usGovernment, unknownFutureValue. Default value is default. Read-only.
+    # The geographic location where the region is located. The possible values are: default, asia, australasia, canada, europe, india, africa, usCentral, usEast, usWest, southAmerica, middleEast, centralAmerica, usGovernment, unknownFutureValue, mexico. Use the Prefer: include-unknown-enum-members request header to get the following value from this evolvable enum: mexico. The default value is default. Read-only.
     geographic_location_type: Optional[CloudPcGeographicLocationType] = None
     # The OdataType property
     odata_type: Optional[str] = None

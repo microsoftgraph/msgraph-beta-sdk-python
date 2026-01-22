@@ -12,17 +12,17 @@ from .entity import Entity
 
 @dataclass
 class ExchangeMessageTraceDetail(Entity, Parsable):
-    # The action property
+    # The action taken on the message during the event.
     action: Optional[str] = None
-    # The data property
+    # Additional data associated with the event, containing supplementary information specific to the event.
     data: Optional[str] = None
-    # The dateTime property
+    # The date and time when the event occurred. The timestamp is in UTC format.
     date_time: Optional[datetime.datetime] = None
-    # The description property
+    # A detailed description that provides context about what happened during message processing.
     description: Optional[str] = None
-    # The event property
+    # The event that occurred during message processing.
     event: Optional[str] = None
-    # The messageId property
+    # The Message-ID header field of the message. The format depends on the messaging server that sent the message.
     message_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

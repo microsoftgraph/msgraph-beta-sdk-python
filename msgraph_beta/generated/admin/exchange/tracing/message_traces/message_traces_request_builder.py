@@ -50,9 +50,10 @@ class MessageTracesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MessageTracesRequestBuilderGetQueryParameters]] = None) -> Optional[ExchangeMessageTraceCollectionResponse]:
         """
-        Get messageTraces from admin
+        Get a list of exchangeMessageTrace objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExchangeMessageTraceCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/messagetracingroot-list-messagetraces?view=graph-rest-beta
         """
         warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -95,7 +96,7 @@ class MessageTracesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MessageTracesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get messageTraces from admin
+        Get a list of exchangeMessageTrace objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -144,7 +145,7 @@ class MessageTracesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MessageTracesRequestBuilderGetQueryParameters():
         """
-        Get messageTraces from admin
+        Get a list of exchangeMessageTrace objects.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -19,7 +19,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, BackedModel, Parsable
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Specifies the method by which the provisioned Cloud PC joins Microsoft Entra ID. If you choose the hybridAzureADJoin type, only provide a value for the onPremisesConnectionId property and leave the regionName property empty. If you choose the azureADJoin type, provide a value for either the onPremisesConnectionId or the regionName property. The possible values are: azureADJoin, hybridAzureADJoin, unknownFutureValue.
     domain_join_type: Optional[CloudPcDomainJoinType] = None
-    # The geographic location where the region is located. The possible values are: default, asia, australasia, canada, europe, india, africa, usCentral, usEast, usWest, southAmerica, middleEast, centralAmerica, usGovernment, unknownFutureValue. Default value is default. Read-only.
+    # The geographic location where the region is located. The possible values are: default, asia, australasia, canada, europe, india, africa, usCentral, usEast, usWest, southAmerica, middleEast, centralAmerica, usGovernment, unknownFutureValue, mexico. Use the Prefer: include-unknown-enum-members request header to get the following value from this evolvable enum: mexico. The default value is default. Read-only.
     geographic_location_type: Optional[CloudPcGeographicLocationType] = None
     # The OdataType property
     odata_type: Optional[str] = None
