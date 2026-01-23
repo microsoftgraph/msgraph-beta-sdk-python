@@ -32,7 +32,7 @@ class TeamsAppItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TeamsAppItemRequestBuilderGetQueryParameters]] = None) -> Optional[TeamsApp]:
         """
-        Get enabledApps from groups
+        A collection of enabled apps in the channel.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamsApp]
         """
@@ -52,7 +52,7 @@ class TeamsAppItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TeamsAppItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get enabledApps from groups
+        A collection of enabled apps in the channel.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class TeamsAppItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamsAppItemRequestBuilderGetQueryParameters():
         """
-        Get enabledApps from groups
+        A collection of enabled apps in the channel.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

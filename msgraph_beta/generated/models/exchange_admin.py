@@ -20,7 +20,7 @@ class ExchangeAdmin(Entity, Parsable):
     message_traces: Optional[list[MessageTrace]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The tracing property
+    # Represents a container for administrative resources to trace messages.
     tracing: Optional[MessageTracingRoot] = None
     
     @staticmethod

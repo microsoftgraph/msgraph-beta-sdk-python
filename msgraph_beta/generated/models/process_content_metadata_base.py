@@ -7,6 +7,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .content_activity_metadata import ContentActivityMetadata
     from .content_base import ContentBase
     from .process_conversation_metadata import ProcessConversationMetadata
     from .process_file_metadata import ProcessFileMetadata
@@ -53,6 +54,10 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.contentActivityMetadata".casefold():
+            from .content_activity_metadata import ContentActivityMetadata
+
+            return ContentActivityMetadata()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.processConversationMetadata".casefold():
             from .process_conversation_metadata import ProcessConversationMetadata
 
@@ -68,10 +73,12 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .content_activity_metadata import ContentActivityMetadata
         from .content_base import ContentBase
         from .process_conversation_metadata import ProcessConversationMetadata
         from .process_file_metadata import ProcessFileMetadata
 
+        from .content_activity_metadata import ContentActivityMetadata
         from .content_base import ContentBase
         from .process_conversation_metadata import ProcessConversationMetadata
         from .process_file_metadata import ProcessFileMetadata

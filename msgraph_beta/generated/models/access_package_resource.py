@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .custom_data_provided_resource import CustomDataProvidedResource
     from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
     from .entity import Entity
+    from .external_origin_resource_connector import ExternalOriginResourceConnector
 
 from .entity import Entity
 
@@ -34,6 +35,8 @@ class AccessPackageResource(Entity, Parsable):
     description: Optional[str] = None
     # The display name of the resource, such as the application name, group name, or site name.
     display_name: Optional[str] = None
+    # The externalOriginResourceConnector property
+    external_origin_resource_connector: Optional[ExternalOriginResourceConnector] = None
     # True if the resource is not yet available for assignment. Read-only.
     is_pending_onboarding: Optional[bool] = None
     # The OdataType property
@@ -81,6 +84,7 @@ class AccessPackageResource(Entity, Parsable):
         from .custom_data_provided_resource import CustomDataProvidedResource
         from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .entity import Entity
+        from .external_origin_resource_connector import ExternalOriginResourceConnector
 
         from .access_package_resource_attribute import AccessPackageResourceAttribute
         from .access_package_resource_environment import AccessPackageResourceEnvironment
@@ -89,6 +93,7 @@ class AccessPackageResource(Entity, Parsable):
         from .custom_data_provided_resource import CustomDataProvidedResource
         from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .entity import Entity
+        from .external_origin_resource_connector import ExternalOriginResourceConnector
 
         fields: dict[str, Callable[[Any], None]] = {
             "accessPackageResourceEnvironment": lambda n : setattr(self, 'access_package_resource_environment', n.get_object_value(AccessPackageResourceEnvironment)),
@@ -99,6 +104,7 @@ class AccessPackageResource(Entity, Parsable):
             "attributes": lambda n : setattr(self, 'attributes', n.get_collection_of_object_values(AccessPackageResourceAttribute)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "externalOriginResourceConnector": lambda n : setattr(self, 'external_origin_resource_connector', n.get_object_value(ExternalOriginResourceConnector)),
             "isPendingOnboarding": lambda n : setattr(self, 'is_pending_onboarding', n.get_bool_value()),
             "originId": lambda n : setattr(self, 'origin_id', n.get_str_value()),
             "originSystem": lambda n : setattr(self, 'origin_system', n.get_str_value()),
@@ -127,6 +133,7 @@ class AccessPackageResource(Entity, Parsable):
         writer.write_collection_of_object_values("attributes", self.attributes)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_object_value("externalOriginResourceConnector", self.external_origin_resource_connector)
         writer.write_bool_value("isPendingOnboarding", self.is_pending_onboarding)
         writer.write_str_value("originId", self.origin_id)
         writer.write_str_value("originSystem", self.origin_system)

@@ -766,6 +766,7 @@ if TYPE_CHECKING:
     from .external_item import ExternalItem
     from .external_meeting_registrant import ExternalMeetingRegistrant
     from .external_meeting_registration import ExternalMeetingRegistration
+    from .external_origin_resource_connector import ExternalOriginResourceConnector
     from .external_profile import ExternalProfile
     from .external_users_self_service_sign_up_events_flow import ExternalUsersSelfServiceSignUpEventsFlow
     from .external_user_profile import ExternalUserProfile
@@ -5344,6 +5345,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .external_meeting_registration import ExternalMeetingRegistration
 
             return ExternalMeetingRegistration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalOriginResourceConnector".casefold():
+            from .external_origin_resource_connector import ExternalOriginResourceConnector
+
+            return ExternalOriginResourceConnector()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalProfile".casefold():
             from .external_profile import ExternalProfile
 
@@ -12078,6 +12083,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .external_item import ExternalItem
         from .external_meeting_registrant import ExternalMeetingRegistrant
         from .external_meeting_registration import ExternalMeetingRegistration
+        from .external_origin_resource_connector import ExternalOriginResourceConnector
         from .external_profile import ExternalProfile
         from .external_users_self_service_sign_up_events_flow import ExternalUsersSelfServiceSignUpEventsFlow
         from .external_user_profile import ExternalUserProfile
@@ -14321,6 +14327,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .external_item import ExternalItem
         from .external_meeting_registrant import ExternalMeetingRegistrant
         from .external_meeting_registration import ExternalMeetingRegistration
+        from .external_origin_resource_connector import ExternalOriginResourceConnector
         from .external_profile import ExternalProfile
         from .external_users_self_service_sign_up_events_flow import ExternalUsersSelfServiceSignUpEventsFlow
         from .external_user_profile import ExternalUserProfile

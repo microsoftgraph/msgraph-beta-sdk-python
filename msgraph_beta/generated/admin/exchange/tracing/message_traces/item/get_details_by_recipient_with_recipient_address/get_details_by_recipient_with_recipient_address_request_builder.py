@@ -35,9 +35,10 @@ class GetDetailsByRecipientWithRecipientAddressRequestBuilder(BaseRequestBuilder
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetDetailsByRecipientWithRecipientAddressRequestBuilderGetQueryParameters]] = None) -> Optional[GetDetailsByRecipientWithRecipientAddressGetResponse]:
         """
-        Invoke function getDetailsByRecipient
+        Get a list of exchangeMessageTraceDetail objects filtered on the recipient.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetDetailsByRecipientWithRecipientAddressGetResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/exchangemessagetrace-getdetailsbyrecipient?view=graph-rest-beta
         """
         warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -56,7 +57,7 @@ class GetDetailsByRecipientWithRecipientAddressRequestBuilder(BaseRequestBuilder
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetDetailsByRecipientWithRecipientAddressRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getDetailsByRecipient
+        Get a list of exchangeMessageTraceDetail objects filtered on the recipient.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -80,7 +81,7 @@ class GetDetailsByRecipientWithRecipientAddressRequestBuilder(BaseRequestBuilder
     @dataclass
     class GetDetailsByRecipientWithRecipientAddressRequestBuilderGetQueryParameters():
         """
-        Invoke function getDetailsByRecipient
+        Get a list of exchangeMessageTraceDetail objects filtered on the recipient.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

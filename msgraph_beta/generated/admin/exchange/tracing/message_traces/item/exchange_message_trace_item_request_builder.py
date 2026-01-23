@@ -52,7 +52,7 @@ class ExchangeMessageTraceItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ExchangeMessageTraceItemRequestBuilderGetQueryParameters]] = None) -> Optional[ExchangeMessageTrace]:
         """
-        Get messageTraces from admin
+        Represents the trace information of messages that pass-through Exchange Online organizations.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExchangeMessageTrace]
         """
@@ -122,7 +122,7 @@ class ExchangeMessageTraceItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ExchangeMessageTraceItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get messageTraces from admin
+        Represents the trace information of messages that pass-through Exchange Online organizations.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -169,7 +169,7 @@ class ExchangeMessageTraceItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExchangeMessageTraceItemRequestBuilderGetQueryParameters():
         """
-        Get messageTraces from admin
+        Represents the trace information of messages that pass-through Exchange Online organizations.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

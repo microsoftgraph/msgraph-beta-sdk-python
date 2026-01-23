@@ -45,6 +45,8 @@ class Incident(Entity, Parsable):
     last_update_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The priorityScore property
+    priority_score: Optional[int] = None
     # A rich text string that represents the actions that are reccomnded to take in order to resolve the incident.
     recommended_actions: Optional[str] = None
     # List of hunting Kusto Query Language (KQL) queries related to the incident.
@@ -111,6 +113,7 @@ class Incident(Entity, Parsable):
             "incidentWebUrl": lambda n : setattr(self, 'incident_web_url', n.get_str_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_str_value()),
             "lastUpdateDateTime": lambda n : setattr(self, 'last_update_date_time', n.get_datetime_value()),
+            "priorityScore": lambda n : setattr(self, 'priority_score', n.get_int_value()),
             "recommendedActions": lambda n : setattr(self, 'recommended_actions', n.get_str_value()),
             "recommendedHuntingQueries": lambda n : setattr(self, 'recommended_hunting_queries', n.get_collection_of_object_values(RecommendedHuntingQuery)),
             "redirectIncidentId": lambda n : setattr(self, 'redirect_incident_id', n.get_str_value()),
@@ -146,6 +149,7 @@ class Incident(Entity, Parsable):
         writer.write_str_value("incidentWebUrl", self.incident_web_url)
         writer.write_str_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastUpdateDateTime", self.last_update_date_time)
+        writer.write_int_value("priorityScore", self.priority_score)
         writer.write_str_value("recommendedActions", self.recommended_actions)
         writer.write_collection_of_object_values("recommendedHuntingQueries", self.recommended_hunting_queries)
         writer.write_str_value("redirectIncidentId", self.redirect_incident_id)

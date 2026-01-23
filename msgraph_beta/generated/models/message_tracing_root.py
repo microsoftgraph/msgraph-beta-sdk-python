@@ -12,7 +12,7 @@ from .entity import Entity
 
 @dataclass
 class MessageTracingRoot(Entity, Parsable):
-    # The messageTraces property
+    # Represents the trace information of messages that pass-through Exchange Online organizations.
     message_traces: Optional[list[ExchangeMessageTrace]] = None
     # The OdataType property
     odata_type: Optional[str] = None

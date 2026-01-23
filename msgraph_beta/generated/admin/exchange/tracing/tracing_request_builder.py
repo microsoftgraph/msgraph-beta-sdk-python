@@ -52,7 +52,7 @@ class TracingRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TracingRequestBuilderGetQueryParameters]] = None) -> Optional[MessageTracingRoot]:
         """
-        Get tracing from admin
+        Represents a container for administrative resources to trace messages.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MessageTracingRoot]
         """
@@ -109,7 +109,7 @@ class TracingRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TracingRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get tracing from admin
+        Represents a container for administrative resources to trace messages.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -165,7 +165,7 @@ class TracingRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TracingRequestBuilderGetQueryParameters():
         """
-        Get tracing from admin
+        Represents a container for administrative resources to trace messages.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

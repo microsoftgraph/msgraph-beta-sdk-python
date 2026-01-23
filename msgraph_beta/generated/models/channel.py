@@ -34,7 +34,7 @@ class Channel(Entity, Parsable):
     display_name: Optional[str] = None
     # The email address for sending messages to the channel. Read-only.
     email: Optional[str] = None
-    # The enabledApps property
+    # A collection of enabled apps in the channel.
     enabled_apps: Optional[list[TeamsApp]] = None
     # Metadata for the location where the channel's files are stored.
     files_folder: Optional[DriveItem] = None

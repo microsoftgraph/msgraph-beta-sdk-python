@@ -13,25 +13,25 @@ from .entity import Entity
 
 @dataclass
 class ExchangeMessageTrace(Entity, Parsable):
-    # The fromIP property
+    # The source IP address. For incoming messages, this value is the public IP address of the SMTP email server that sent the message.
     from_i_p: Optional[str] = None
-    # The messageId property
+    # The Message-ID header field of the message. The format of the Message-ID depends on the messaging server that sent the message.
     message_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The receivedDateTime property
+    # The date and time when the message was received by Exchange Online. The timestamp is in UTC format.
     received_date_time: Optional[datetime.datetime] = None
-    # The recipientAddress property
+    # The SMTP email address of the user that the message was addressed to.
     recipient_address: Optional[str] = None
-    # The senderAddress property
+    # The SMTP email address of the user the message was purportedly from.
     sender_address: Optional[str] = None
-    # The size property
+    # The size of the message in bytes.
     size: Optional[int] = None
     # The status property
     status: Optional[ExchangeMessageTraceStatus] = None
-    # The subject property
+    # The subject line of the message.
     subject: Optional[str] = None
-    # The toIP property
+    # The destination IP address. For outgoing messages, this value is the public IP address in the resolved MX record for the destination domain. For incoming messages to Exchange Online, this value is blank.
     to_i_p: Optional[str] = None
     
     @staticmethod
