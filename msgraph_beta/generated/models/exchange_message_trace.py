@@ -13,25 +13,25 @@ from .entity import Entity
 
 @dataclass
 class ExchangeMessageTrace(Entity, Parsable):
-    # The source IP address. For incoming messages, this value is the public IP address of the SMTP email server that sent the message.
+    # The source IP address. For incoming messages, this value is the public IP address of the SMTP email server that sent the message. Supports $filter (eq).
     from_i_p: Optional[str] = None
-    # The Message-ID header field of the message. The format of the Message-ID depends on the messaging server that sent the message.
+    # The Message-ID header field of the message. The format of the Message-ID depends on the messaging server that sent the message. Supports $filter (eq).
     message_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The date and time when the message was received by Exchange Online. The timestamp is in UTC format.
+    # The date and time when the message was received by Exchange Online. The timestamp is in UTC format. Supports $filter (ge, le).
     received_date_time: Optional[datetime.datetime] = None
-    # The SMTP email address of the user that the message was addressed to.
+    # The SMTP email address of the user that the message was addressed to. Supports $filter (eq).
     recipient_address: Optional[str] = None
-    # The SMTP email address of the user the message was purportedly from.
+    # The SMTP email address of the user the message was purportedly from. Supports $filter (eq).
     sender_address: Optional[str] = None
     # The size of the message in bytes.
     size: Optional[int] = None
     # The status property
     status: Optional[ExchangeMessageTraceStatus] = None
-    # The subject line of the message.
+    # The subject line of the message. Supports $filter (contains, startsWith, endsWith).
     subject: Optional[str] = None
-    # The destination IP address. For outgoing messages, this value is the public IP address in the resolved MX record for the destination domain. For incoming messages to Exchange Online, this value is blank.
+    # The destination IP address. For outgoing messages, this value is the public IP address in the resolved MX record for the destination domain. For incoming messages to Exchange Online, this value is blank. Supports $filter (eq).
     to_i_p: Optional[str] = None
     
     @staticmethod

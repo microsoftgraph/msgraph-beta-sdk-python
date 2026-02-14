@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .agent_identity_type import AgentIdentityType
     from .entity import Entity
     from .risk_detail import RiskDetail
     from .risk_detection_timing_type import RiskDetectionTimingType
@@ -28,6 +29,8 @@ class AgentRiskDetection(Entity, Parsable):
     detected_date_time: Optional[datetime.datetime] = None
     # The detectionTimingType property
     detection_timing_type: Optional[RiskDetectionTimingType] = None
+    # The identityType property
+    identity_type: Optional[AgentIdentityType] = None
     # Date and time that the risk detection was last updated.  Supports $filter (eq, le, and ge).
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -59,12 +62,14 @@ class AgentRiskDetection(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .agent_identity_type import AgentIdentityType
         from .entity import Entity
         from .risk_detail import RiskDetail
         from .risk_detection_timing_type import RiskDetectionTimingType
         from .risk_level import RiskLevel
         from .risk_state import RiskState
 
+        from .agent_identity_type import AgentIdentityType
         from .entity import Entity
         from .risk_detail import RiskDetail
         from .risk_detection_timing_type import RiskDetectionTimingType
@@ -78,6 +83,7 @@ class AgentRiskDetection(Entity, Parsable):
             "agentId": lambda n : setattr(self, 'agent_id', n.get_str_value()),
             "detectedDateTime": lambda n : setattr(self, 'detected_date_time', n.get_datetime_value()),
             "detectionTimingType": lambda n : setattr(self, 'detection_timing_type', n.get_enum_value(RiskDetectionTimingType)),
+            "identityType": lambda n : setattr(self, 'identity_type', n.get_enum_value(AgentIdentityType)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "riskDetail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(RiskDetail)),
             "riskEventType": lambda n : setattr(self, 'risk_event_type', n.get_str_value()),
@@ -104,6 +110,7 @@ class AgentRiskDetection(Entity, Parsable):
         writer.write_str_value("agentId", self.agent_id)
         writer.write_datetime_value("detectedDateTime", self.detected_date_time)
         writer.write_enum_value("detectionTimingType", self.detection_timing_type)
+        writer.write_enum_value("identityType", self.identity_type)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_enum_value("riskDetail", self.risk_detail)
         writer.write_str_value("riskEventType", self.risk_event_type)

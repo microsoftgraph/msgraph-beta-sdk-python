@@ -33,9 +33,10 @@ class ConfigurationMonitorItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property configurationMonitors for admin
+        Delete a configurationMonitor object permanently. When deleted, the configurationMonitor data can't be restored.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/configurationmonitor-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,9 +52,10 @@ class ConfigurationMonitorItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ConfigurationMonitorItemRequestBuilderGetQueryParameters]] = None) -> Optional[ConfigurationMonitor]:
         """
-        Get configurationMonitors from admin
+        Get the properties and relationships of a configurationMonitor object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConfigurationMonitor]
+        Find more info here: https://learn.microsoft.com/graph/api/configurationmonitor-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,10 +73,11 @@ class ConfigurationMonitorItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: ConfigurationMonitor, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ConfigurationMonitor]:
         """
-        Update the navigation property configurationMonitors in admin
+        Update the properties of a configurationMonitor object, including the monitor name, description, and baseline. You must provide the full monitor body when you call this API.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConfigurationMonitor]
+        Find more info here: https://learn.microsoft.com/graph/api/configurationmonitor-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -94,7 +97,7 @@ class ConfigurationMonitorItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property configurationMonitors for admin
+        Delete a configurationMonitor object permanently. When deleted, the configurationMonitor data can't be restored.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +108,7 @@ class ConfigurationMonitorItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ConfigurationMonitorItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get configurationMonitors from admin
+        Get the properties and relationships of a configurationMonitor object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +119,7 @@ class ConfigurationMonitorItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: ConfigurationMonitor, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property configurationMonitors in admin
+        Update the properties of a configurationMonitor object, including the monitor name, description, and baseline. You must provide the full monitor body when you call this API.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -158,7 +161,7 @@ class ConfigurationMonitorItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConfigurationMonitorItemRequestBuilderGetQueryParameters():
         """
-        Get configurationMonitors from admin
+        Get the properties and relationships of a configurationMonitor object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

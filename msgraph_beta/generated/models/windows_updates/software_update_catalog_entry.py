@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .driver_update_catalog_entry import DriverUpdateCatalogEntry
     from .feature_update_catalog_entry import FeatureUpdateCatalogEntry
     from .quality_update_catalog_entry import QualityUpdateCatalogEntry
+    from .recovery_update_catalog_entry import RecoveryUpdateCatalogEntry
 
 from .catalog_entry import CatalogEntry
 
@@ -43,6 +44,10 @@ class SoftwareUpdateCatalogEntry(CatalogEntry, Parsable):
             from .quality_update_catalog_entry import QualityUpdateCatalogEntry
 
             return QualityUpdateCatalogEntry()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.recoveryUpdateCatalogEntry".casefold():
+            from .recovery_update_catalog_entry import RecoveryUpdateCatalogEntry
+
+            return RecoveryUpdateCatalogEntry()
         return SoftwareUpdateCatalogEntry()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -54,11 +59,13 @@ class SoftwareUpdateCatalogEntry(CatalogEntry, Parsable):
         from .driver_update_catalog_entry import DriverUpdateCatalogEntry
         from .feature_update_catalog_entry import FeatureUpdateCatalogEntry
         from .quality_update_catalog_entry import QualityUpdateCatalogEntry
+        from .recovery_update_catalog_entry import RecoveryUpdateCatalogEntry
 
         from .catalog_entry import CatalogEntry
         from .driver_update_catalog_entry import DriverUpdateCatalogEntry
         from .feature_update_catalog_entry import FeatureUpdateCatalogEntry
         from .quality_update_catalog_entry import QualityUpdateCatalogEntry
+        from .recovery_update_catalog_entry import RecoveryUpdateCatalogEntry
 
         fields: dict[str, Callable[[Any], None]] = {
         }
