@@ -97,7 +97,7 @@ class Site(BaseItem, Parsable):
     site_collection: Optional[SiteCollection] = None
     # The collection of the sub-sites under this site.
     sites: Optional[list[Site]] = None
-    # Specifies the template applied to the site. The possible values are: sitepagepublishing, group, sts, unknownFutureValue.
+    # Specifies the template applied to the site. The possible values are: sitepagepublishing, sts, unknownFutureValue.
     template: Optional[SiteTemplateType] = None
     # The termStore under this site.
     term_store: Optional[Store] = None

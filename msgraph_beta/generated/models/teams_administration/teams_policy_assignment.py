@@ -14,7 +14,7 @@ from ..entity import Entity
 class TeamsPolicyAssignment(Entity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = None
-    # Navigation property to the collection of user policy assignments.
+    # The collection of user policy assignments.
     user_assignments: Optional[list[TeamsPolicyUserAssignment]] = None
     
     @staticmethod

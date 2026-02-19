@@ -45,7 +45,7 @@ class BackupRestoreRoot(Entity, Parsable):
     all_mailboxes_backup: Optional[AllMailboxesBackup] = None
     # The allSitesBackup property
     all_sites_backup: Optional[AllSitesBackup] = None
-    # The browseSessions property
+    # The list of browse sessions in the tenant.
     browse_sessions: Optional[list[BrowseSessionBase]] = None
     # The list of drive inclusion rules applied to the tenant.
     drive_inclusion_rules: Optional[list[DriveProtectionRule]] = None
@@ -67,7 +67,7 @@ class BackupRestoreRoot(Entity, Parsable):
     mailbox_protection_units_bulk_addition_jobs: Optional[list[MailboxProtectionUnitsBulkAdditionJob]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The oneDriveForBusinessBrowseSessions property
+    # The list of onedriveforbusiness browse sessions in the tenant.
     one_drive_for_business_browse_sessions: Optional[list[OneDriveForBusinessBrowseSession]] = None
     # The list of OneDrive for Business protection policies in the tenant.
     one_drive_for_business_protection_policies: Optional[list[OneDriveForBusinessProtectionPolicy]] = None
@@ -85,7 +85,7 @@ class BackupRestoreRoot(Entity, Parsable):
     service_apps: Optional[list[ServiceApp]] = None
     # Represents the tenant-level status of the Backup Storage service.
     service_status: Optional[ServiceStatus] = None
-    # The sharePointBrowseSessions property
+    # The list of sharepoint browse sessions in the tenant.
     share_point_browse_sessions: Optional[list[SharePointBrowseSession]] = None
     # The list of SharePoint protection policies in the tenant.
     share_point_protection_policies: Optional[list[SharePointProtectionPolicy]] = None

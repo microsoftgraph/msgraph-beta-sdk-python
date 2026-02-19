@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .assignment import Assignment
     from .usage_right import UsageRight
 
 @dataclass
@@ -15,6 +16,8 @@ class GroupCloudLicensing(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The assignments property
+    assignments: Optional[list[Assignment]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The usageRights property
@@ -36,11 +39,14 @@ class GroupCloudLicensing(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .assignment import Assignment
         from .usage_right import UsageRight
 
+        from .assignment import Assignment
         from .usage_right import UsageRight
 
         fields: dict[str, Callable[[Any], None]] = {
+            "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(Assignment)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "usageRights": lambda n : setattr(self, 'usage_rights', n.get_collection_of_object_values(UsageRight)),
         }
@@ -54,6 +60,7 @@ class GroupCloudLicensing(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("usageRights", self.usage_rights)
         writer.write_additional_data_value(self.additional_data)

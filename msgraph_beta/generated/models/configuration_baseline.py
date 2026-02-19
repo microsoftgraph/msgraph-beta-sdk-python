@@ -13,15 +13,15 @@ from .entity import Entity
 
 @dataclass
 class ConfigurationBaseline(Entity, Parsable):
-    # The description property
+    # User-friendly description of the baseline given by the user.
     description: Optional[str] = None
-    # The displayName property
+    # User-friendly name given by the user to the baseline.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The parameters property
+    # Collection of parameters attached to the baseline.
     parameters: Optional[list[BaselineParameter]] = None
-    # The resources property
+    # Collection of resources and their properties that are added to the baseline. At least one property of one resource must be present in the baseline.
     resources: Optional[list[BaselineResource]] = None
     
     @staticmethod

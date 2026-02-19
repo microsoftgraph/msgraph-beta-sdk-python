@@ -50,9 +50,10 @@ class ConfigurationDriftItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ConfigurationDriftItemRequestBuilderGetQueryParameters]] = None) -> Optional[ConfigurationDrift]:
         """
-        Get configurationDrifts from admin
+        Get the properties and relationships of a configurationDrift object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConfigurationDrift]
+        Find more info here: https://learn.microsoft.com/graph/api/configurationdrift-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -104,7 +105,7 @@ class ConfigurationDriftItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ConfigurationDriftItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get configurationDrifts from admin
+        Get the properties and relationships of a configurationDrift object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +149,7 @@ class ConfigurationDriftItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConfigurationDriftItemRequestBuilderGetQueryParameters():
         """
-        Get configurationDrifts from admin
+        Get the properties and relationships of a configurationDrift object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

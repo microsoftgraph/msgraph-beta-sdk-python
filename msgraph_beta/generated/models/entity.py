@@ -341,7 +341,12 @@ if TYPE_CHECKING:
     from .cloud_clipboard_item import CloudClipboardItem
     from .cloud_clipboard_root import CloudClipboardRoot
     from .cloud_flare_web_application_firewall_provider import CloudFlareWebApplicationFirewallProvider
+    from .cloud_licensing.admin_cloud_licensing import AdminCloudLicensing
+    from .cloud_licensing.allotment import Allotment
+    from .cloud_licensing.assignment import Assignment
+    from .cloud_licensing.assignment_error import AssignmentError
     from .cloud_licensing.usage_right import UsageRight
+    from .cloud_licensing.waiting_member import WaitingMember
     from .cloud_pc_audit_event import CloudPcAuditEvent
     from .cloud_pc_bulk_action import CloudPcBulkAction
     from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
@@ -392,7 +397,6 @@ if TYPE_CHECKING:
     from .compliance_management_partner import ComplianceManagementPartner
     from .conditional_access_root import ConditionalAccessRoot
     from .conditional_access_template import ConditionalAccessTemplate
-    from .configuration_application import ConfigurationApplication
     from .configuration_baseline import ConfigurationBaseline
     from .configuration_drift import ConfigurationDrift
     from .configuration_management import ConfigurationManagement
@@ -1295,6 +1299,8 @@ if TYPE_CHECKING:
     from .on_fraud_protection_load_start_listener import OnFraudProtectionLoadStartListener
     from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
     from .on_otp_send_custom_extension import OnOtpSendCustomExtension
+    from .on_password_submit_custom_extension import OnPasswordSubmitCustomExtension
+    from .on_password_submit_listener import OnPasswordSubmitListener
     from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
     from .on_premises_agent import OnPremisesAgent
     from .on_premises_agent_group import OnPremisesAgentGroup
@@ -1586,6 +1592,7 @@ if TYPE_CHECKING:
     from .security.audit_log_query import AuditLogQuery
     from .security.audit_log_record import AuditLogRecord
     from .security.authority_template import AuthorityTemplate
+    from .security.auto_auditing_configuration import AutoAuditingConfiguration
     from .security.case import Case
     from .security.cases_root import CasesRoot
     from .security.case_operation import CaseOperation
@@ -1628,6 +1635,7 @@ if TYPE_CHECKING:
     from .security.email_threat_submission_policy import EmailThreatSubmissionPolicy
     from .security.email_url_threat_submission import EmailUrlThreatSubmission
     from .security.endpoint_discovered_cloud_app_detail import EndpointDiscoveredCloudAppDetail
+    from .security.environment import Environment
     from .security.file import File
     from .security.file_content_threat_submission import FileContentThreatSubmission
     from .security.file_plan_descriptor import FilePlanDescriptor
@@ -1695,6 +1703,7 @@ if TYPE_CHECKING:
     from .security.whois_base_record import WhoisBaseRecord
     from .security.whois_history_record import WhoisHistoryRecord
     from .security.whois_record import WhoisRecord
+    from .security.zone import Zone
     from .security_action import SecurityAction
     from .security_baseline_category_state_summary import SecurityBaselineCategoryStateSummary
     from .security_baseline_device_state import SecurityBaselineDeviceState
@@ -1866,6 +1875,7 @@ if TYPE_CHECKING:
     from .tenant_app_management_policy import TenantAppManagementPolicy
     from .tenant_attach_r_b_a_c import TenantAttachRBAC
     from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
+    from .tenant_governance_services.long_running_operation import LongRunningOperation
     from .tenant_protection_scope_container import TenantProtectionScopeContainer
     from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
     from .tenant_setup_info import TenantSetupInfo
@@ -2170,10 +2180,16 @@ if TYPE_CHECKING:
     from .windows_updates.knowledge_base_article import KnowledgeBaseArticle
     from .windows_updates.known_issue import KnownIssue
     from .windows_updates.operational_insights_connection import OperationalInsightsConnection
+    from .windows_updates.policy import Policy
+    from .windows_updates.policy_approval import PolicyApproval
     from .windows_updates.product import Product
     from .windows_updates.product_revision import ProductRevision
     from .windows_updates.quality_update_catalog_entry import QualityUpdateCatalogEntry
+    from .windows_updates.quality_update_policy import QualityUpdatePolicy
+    from .windows_updates.quality_update_ring import QualityUpdateRing
+    from .windows_updates.recovery_update_catalog_entry import RecoveryUpdateCatalogEntry
     from .windows_updates.resource_connection import ResourceConnection
+    from .windows_updates.ring import Ring
     from .windows_updates.software_update_catalog_entry import SoftwareUpdateCatalogEntry
     from .windows_updates.updatable_asset import UpdatableAsset
     from .windows_updates.updatable_asset_group import UpdatableAssetGroup
@@ -3622,11 +3638,31 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_flare_web_application_firewall_provider import CloudFlareWebApplicationFirewallProvider
 
             return CloudFlareWebApplicationFirewallProvider()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudLicensing.adminCloudLicensing".casefold():
+            from .cloud_licensing.admin_cloud_licensing import AdminCloudLicensing
+
+            return AdminCloudLicensing()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudLicensing.allotment".casefold():
+            from .cloud_licensing.allotment import Allotment
+
+            return Allotment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudLicensing.assignment".casefold():
+            from .cloud_licensing.assignment import Assignment
+
+            return Assignment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudLicensing.assignmentError".casefold():
+            from .cloud_licensing.assignment_error import AssignmentError
+
+            return AssignmentError()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudLicensing.usageRight".casefold():
             from .cloud_licensing.usage_right import UsageRight
             from .usage_right import UsageRight
 
             return UsageRight()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudLicensing.waitingMember".casefold():
+            from .cloud_licensing.waiting_member import WaitingMember
+
+            return WaitingMember()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPC".casefold():
             from .cloud_p_c import CloudPC
 
@@ -3831,10 +3867,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .config_manager_collection import ConfigManagerCollection
 
             return ConfigManagerCollection()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationApplication".casefold():
-            from .configuration_application import ConfigurationApplication
-
-            return ConfigurationApplication()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationBaseline".casefold():
             from .configuration_baseline import ConfigurationBaseline
 
@@ -6356,6 +6388,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return LoginPage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.longRunningOperation".casefold():
             from .long_running_operation import LongRunningOperation
+            from .tenant_governance_services.long_running_operation import LongRunningOperation
 
             return LongRunningOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.lookupResultRow".casefold():
@@ -7223,6 +7256,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return NetworkAccessRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.policy".casefold():
             from .networkaccess.policy import Policy
+            from .windows_updates.policy import Policy
 
             return Policy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.policyLink".casefold():
@@ -7474,6 +7508,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .on_otp_send_custom_extension import OnOtpSendCustomExtension
 
             return OnOtpSendCustomExtension()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPasswordSubmitCustomExtension".casefold():
+            from .on_password_submit_custom_extension import OnPasswordSubmitCustomExtension
+
+            return OnPasswordSubmitCustomExtension()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPasswordSubmitListener".casefold():
+            from .on_password_submit_listener import OnPasswordSubmitListener
+
+            return OnPasswordSubmitListener()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPhoneMethodLoadStartListener".casefold():
             from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
 
@@ -8643,6 +8685,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.authority_template import AuthorityTemplate
 
             return AuthorityTemplate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.autoAuditingConfiguration".casefold():
+            from .security.auto_auditing_configuration import AutoAuditingConfiguration
+
+            return AutoAuditingConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.case".casefold():
             from .ediscovery.case import Case
             from .security.case import Case
@@ -8815,6 +8861,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.endpoint_discovered_cloud_app_detail import EndpointDiscoveredCloudAppDetail
 
             return EndpointDiscoveredCloudAppDetail()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.environment".casefold():
+            from .security.environment import Environment
+
+            return Environment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.file".casefold():
             from .security.file import File
 
@@ -9093,6 +9143,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.whois_record import WhoisRecord
 
             return WhoisRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.zone".casefold():
+            from .security.zone import Zone
+
+            return Zone()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityAction".casefold():
             from .security_action import SecurityAction
 
@@ -9778,6 +9832,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
 
             return TenantDataSecurityAndGovernance()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.longRunningOperation".casefold():
+            from .long_running_operation import LongRunningOperation
+            from .tenant_governance_services.long_running_operation import LongRunningOperation
+
+            return LongRunningOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantProtectionScopeContainer".casefold():
             from .tenant_protection_scope_container import TenantProtectionScopeContainer
 
@@ -11007,6 +11066,15 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_updates.operational_insights_connection import OperationalInsightsConnection
 
             return OperationalInsightsConnection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.policy".casefold():
+            from .networkaccess.policy import Policy
+            from .windows_updates.policy import Policy
+
+            return Policy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.policyApproval".casefold():
+            from .windows_updates.policy_approval import PolicyApproval
+
+            return PolicyApproval()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.product".casefold():
             from .windows_updates.product import Product
 
@@ -11019,10 +11087,26 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_updates.quality_update_catalog_entry import QualityUpdateCatalogEntry
 
             return QualityUpdateCatalogEntry()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdatePolicy".casefold():
+            from .windows_updates.quality_update_policy import QualityUpdatePolicy
+
+            return QualityUpdatePolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateRing".casefold():
+            from .windows_updates.quality_update_ring import QualityUpdateRing
+
+            return QualityUpdateRing()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.recoveryUpdateCatalogEntry".casefold():
+            from .windows_updates.recovery_update_catalog_entry import RecoveryUpdateCatalogEntry
+
+            return RecoveryUpdateCatalogEntry()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.resourceConnection".casefold():
             from .windows_updates.resource_connection import ResourceConnection
 
             return ResourceConnection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.ring".casefold():
+            from .windows_updates.ring import Ring
+
+            return Ring()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.softwareUpdateCatalogEntry".casefold():
             from .windows_updates.software_update_catalog_entry import SoftwareUpdateCatalogEntry
 
@@ -11658,7 +11742,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_clipboard_item import CloudClipboardItem
         from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_flare_web_application_firewall_provider import CloudFlareWebApplicationFirewallProvider
+        from .cloud_licensing.admin_cloud_licensing import AdminCloudLicensing
+        from .cloud_licensing.allotment import Allotment
+        from .cloud_licensing.assignment import Assignment
+        from .cloud_licensing.assignment_error import AssignmentError
         from .cloud_licensing.usage_right import UsageRight
+        from .cloud_licensing.waiting_member import WaitingMember
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
@@ -11709,7 +11798,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .compliance_management_partner import ComplianceManagementPartner
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
-        from .configuration_application import ConfigurationApplication
         from .configuration_baseline import ConfigurationBaseline
         from .configuration_drift import ConfigurationDrift
         from .configuration_management import ConfigurationManagement
@@ -12612,6 +12700,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_fraud_protection_load_start_listener import OnFraudProtectionLoadStartListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
         from .on_otp_send_custom_extension import OnOtpSendCustomExtension
+        from .on_password_submit_custom_extension import OnPasswordSubmitCustomExtension
+        from .on_password_submit_listener import OnPasswordSubmitListener
         from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
@@ -12903,6 +12993,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.audit_log_query import AuditLogQuery
         from .security.audit_log_record import AuditLogRecord
         from .security.authority_template import AuthorityTemplate
+        from .security.auto_auditing_configuration import AutoAuditingConfiguration
         from .security.case import Case
         from .security.cases_root import CasesRoot
         from .security.case_operation import CaseOperation
@@ -12945,6 +13036,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.email_threat_submission_policy import EmailThreatSubmissionPolicy
         from .security.email_url_threat_submission import EmailUrlThreatSubmission
         from .security.endpoint_discovered_cloud_app_detail import EndpointDiscoveredCloudAppDetail
+        from .security.environment import Environment
         from .security.file import File
         from .security.file_content_threat_submission import FileContentThreatSubmission
         from .security.file_plan_descriptor import FilePlanDescriptor
@@ -13012,6 +13104,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.whois_base_record import WhoisBaseRecord
         from .security.whois_history_record import WhoisHistoryRecord
         from .security.whois_record import WhoisRecord
+        from .security.zone import Zone
         from .security_action import SecurityAction
         from .security_baseline_category_state_summary import SecurityBaselineCategoryStateSummary
         from .security_baseline_device_state import SecurityBaselineDeviceState
@@ -13183,6 +13276,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .tenant_attach_r_b_a_c import TenantAttachRBAC
         from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
+        from .tenant_governance_services.long_running_operation import LongRunningOperation
         from .tenant_protection_scope_container import TenantProtectionScopeContainer
         from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
         from .tenant_setup_info import TenantSetupInfo
@@ -13487,10 +13581,16 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_updates.knowledge_base_article import KnowledgeBaseArticle
         from .windows_updates.known_issue import KnownIssue
         from .windows_updates.operational_insights_connection import OperationalInsightsConnection
+        from .windows_updates.policy import Policy
+        from .windows_updates.policy_approval import PolicyApproval
         from .windows_updates.product import Product
         from .windows_updates.product_revision import ProductRevision
         from .windows_updates.quality_update_catalog_entry import QualityUpdateCatalogEntry
+        from .windows_updates.quality_update_policy import QualityUpdatePolicy
+        from .windows_updates.quality_update_ring import QualityUpdateRing
+        from .windows_updates.recovery_update_catalog_entry import RecoveryUpdateCatalogEntry
         from .windows_updates.resource_connection import ResourceConnection
+        from .windows_updates.ring import Ring
         from .windows_updates.software_update_catalog_entry import SoftwareUpdateCatalogEntry
         from .windows_updates.updatable_asset import UpdatableAsset
         from .windows_updates.updatable_asset_group import UpdatableAssetGroup
@@ -13902,7 +14002,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_clipboard_item import CloudClipboardItem
         from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_flare_web_application_firewall_provider import CloudFlareWebApplicationFirewallProvider
+        from .cloud_licensing.admin_cloud_licensing import AdminCloudLicensing
+        from .cloud_licensing.allotment import Allotment
+        from .cloud_licensing.assignment import Assignment
+        from .cloud_licensing.assignment_error import AssignmentError
         from .cloud_licensing.usage_right import UsageRight
+        from .cloud_licensing.waiting_member import WaitingMember
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
@@ -13953,7 +14058,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .compliance_management_partner import ComplianceManagementPartner
         from .conditional_access_root import ConditionalAccessRoot
         from .conditional_access_template import ConditionalAccessTemplate
-        from .configuration_application import ConfigurationApplication
         from .configuration_baseline import ConfigurationBaseline
         from .configuration_drift import ConfigurationDrift
         from .configuration_management import ConfigurationManagement
@@ -14856,6 +14960,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_fraud_protection_load_start_listener import OnFraudProtectionLoadStartListener
         from .on_interactive_auth_flow_start_listener import OnInteractiveAuthFlowStartListener
         from .on_otp_send_custom_extension import OnOtpSendCustomExtension
+        from .on_password_submit_custom_extension import OnPasswordSubmitCustomExtension
+        from .on_password_submit_listener import OnPasswordSubmitListener
         from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
         from .on_premises_agent import OnPremisesAgent
         from .on_premises_agent_group import OnPremisesAgentGroup
@@ -15147,6 +15253,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.audit_log_query import AuditLogQuery
         from .security.audit_log_record import AuditLogRecord
         from .security.authority_template import AuthorityTemplate
+        from .security.auto_auditing_configuration import AutoAuditingConfiguration
         from .security.case import Case
         from .security.cases_root import CasesRoot
         from .security.case_operation import CaseOperation
@@ -15189,6 +15296,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.email_threat_submission_policy import EmailThreatSubmissionPolicy
         from .security.email_url_threat_submission import EmailUrlThreatSubmission
         from .security.endpoint_discovered_cloud_app_detail import EndpointDiscoveredCloudAppDetail
+        from .security.environment import Environment
         from .security.file import File
         from .security.file_content_threat_submission import FileContentThreatSubmission
         from .security.file_plan_descriptor import FilePlanDescriptor
@@ -15256,6 +15364,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.whois_base_record import WhoisBaseRecord
         from .security.whois_history_record import WhoisHistoryRecord
         from .security.whois_record import WhoisRecord
+        from .security.zone import Zone
         from .security_action import SecurityAction
         from .security_baseline_category_state_summary import SecurityBaselineCategoryStateSummary
         from .security_baseline_device_state import SecurityBaselineDeviceState
@@ -15427,6 +15536,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .tenant_attach_r_b_a_c import TenantAttachRBAC
         from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
+        from .tenant_governance_services.long_running_operation import LongRunningOperation
         from .tenant_protection_scope_container import TenantProtectionScopeContainer
         from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
         from .tenant_setup_info import TenantSetupInfo
@@ -15731,10 +15841,16 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_updates.knowledge_base_article import KnowledgeBaseArticle
         from .windows_updates.known_issue import KnownIssue
         from .windows_updates.operational_insights_connection import OperationalInsightsConnection
+        from .windows_updates.policy import Policy
+        from .windows_updates.policy_approval import PolicyApproval
         from .windows_updates.product import Product
         from .windows_updates.product_revision import ProductRevision
         from .windows_updates.quality_update_catalog_entry import QualityUpdateCatalogEntry
+        from .windows_updates.quality_update_policy import QualityUpdatePolicy
+        from .windows_updates.quality_update_ring import QualityUpdateRing
+        from .windows_updates.recovery_update_catalog_entry import RecoveryUpdateCatalogEntry
         from .windows_updates.resource_connection import ResourceConnection
+        from .windows_updates.ring import Ring
         from .windows_updates.software_update_catalog_entry import SoftwareUpdateCatalogEntry
         from .windows_updates.updatable_asset import UpdatableAsset
         from .windows_updates.updatable_asset_group import UpdatableAssetGroup

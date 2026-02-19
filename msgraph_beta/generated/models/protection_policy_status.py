@@ -7,4 +7,6 @@ class ProtectionPolicyStatus(str, Enum):
     Active = "active",
     UnknownFutureValue = "unknownFutureValue",
     Dormant = "dormant",
+    OffboardRequested = "offboardRequested",
+    Offboarded = "offboarded",
 

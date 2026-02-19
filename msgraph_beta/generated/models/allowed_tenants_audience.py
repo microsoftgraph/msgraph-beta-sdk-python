@@ -13,7 +13,7 @@ from .sign_in_audience_restrictions_base import SignInAudienceRestrictionsBase
 class AllowedTenantsAudience(SignInAudienceRestrictionsBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.allowedTenantsAudience"
-    # The list of Entra tenant IDs where the application can be used as either a client application or a resource application (API). Must contain at least one value. The tenant ID where the application is registered may be included, but is not required (see isHomeTenantAllowed). Required.
+    # The list of Entra tenant IDs where the application can be used as either a client application or a resource application (API). This property must contain at least one value and can't include more than 20 values. The tenant ID where the application is registered may be included, but is not required (see isHomeTenantAllowed). Required.
     allowed_tenant_ids: Optional[list[str]] = None
     # Whether the tenant where the application is registered is allowed. Currently, only true is supported. Default is true.
     is_home_tenant_allowed: Optional[bool] = None

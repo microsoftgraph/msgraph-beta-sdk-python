@@ -21,33 +21,29 @@ class ConfigurationMonitor(Entity, Parsable):
     baseline: Optional[ConfigurationBaseline] = None
     # The createdBy property
     created_by: Optional[IdentitySet] = None
-    # The createdDateTime property
+    # The date and time when the monitor was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The description property
+    # User-friendly description of the monitor given by the user.
     description: Optional[str] = None
-    # The displayName property
+    # User-friendly name given by the user to the monitor.
     display_name: Optional[str] = None
-    # The inactivationReason property
+    # The reason for the monitor's inactivation.
     inactivation_reason: Optional[str] = None
     # The lastModifiedBy property
     last_modified_by: Optional[IdentitySet] = None
-    # The lastModifiedDateTime property
+    # The date and time when the monitor was last modified. If no modifications are made to the monitor, it's the same as createdDateTime. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The mode property
     mode: Optional[MonitorMode] = None
-    # The monitorRunFrequencyInHours property
+    # Frequency at which the monitor runs. The default frequency is six hours. Regardless of when you create or update a monitor, it gets triggered within the next 6 hours. Currently, monitors are picked up at fixed times: 6 AM, 12 PM, 6 PM, and 12 AM (all in GMT). For example, if you create a monitor at 9 AM, it gets triggered around 12 PM. If you update a monitor at 4 PM, it gets triggered around 6 PM.
     monitor_run_frequency_in_hours: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The parameters property
+    # Key-value pairs that contain parameter values which might be used in the baseline.
     parameters: Optional[OpenComplexDictionaryType] = None
-    # The runAsUTCMServicePrincipal property
-    run_as_u_t_c_m_service_principal: Optional[bool] = None
-    # The runningOnBehalfOf property
-    running_on_behalf_of: Optional[IdentitySet] = None
     # The status property
     status: Optional[MonitorStatus] = None
-    # The tenantId property
+    # Globally unique identifier (GUID) of the tenant for which the monitor runs. Fetched automatically by the system.
     tenant_id: Optional[str] = None
     
     @staticmethod
@@ -92,8 +88,6 @@ class ConfigurationMonitor(Entity, Parsable):
             "mode": lambda n : setattr(self, 'mode', n.get_enum_value(MonitorMode)),
             "monitorRunFrequencyInHours": lambda n : setattr(self, 'monitor_run_frequency_in_hours', n.get_int_value()),
             "parameters": lambda n : setattr(self, 'parameters', n.get_object_value(OpenComplexDictionaryType)),
-            "runAsUTCMServicePrincipal": lambda n : setattr(self, 'run_as_u_t_c_m_service_principal', n.get_bool_value()),
-            "runningOnBehalfOf": lambda n : setattr(self, 'running_on_behalf_of', n.get_object_value(IdentitySet)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(MonitorStatus)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
@@ -116,10 +110,7 @@ class ConfigurationMonitor(Entity, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_enum_value("mode", self.mode)
-        writer.write_int_value("monitorRunFrequencyInHours", self.monitor_run_frequency_in_hours)
         writer.write_object_value("parameters", self.parameters)
-        writer.write_bool_value("runAsUTCMServicePrincipal", self.run_as_u_t_c_m_service_principal)
-        writer.write_object_value("runningOnBehalfOf", self.running_on_behalf_of)
         writer.write_enum_value("status", self.status)
     
 
