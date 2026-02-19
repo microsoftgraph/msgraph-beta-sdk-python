@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .audiences_configuration import AudiencesConfiguration
     from .identifier_uri_configuration import IdentifierUriConfiguration
+    from .redirect_uri_configuration import RedirectUriConfiguration
 
 @dataclass
 class CustomAppManagementApplicationConfiguration(AdditionalDataHolder, BackedModel, Parsable):
@@ -22,6 +23,8 @@ class CustomAppManagementApplicationConfiguration(AdditionalDataHolder, BackedMo
     identifier_uris: Optional[IdentifierUriConfiguration] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The redirectUris property
+    redirect_uris: Optional[RedirectUriConfiguration] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CustomAppManagementApplicationConfiguration:
@@ -41,14 +44,17 @@ class CustomAppManagementApplicationConfiguration(AdditionalDataHolder, BackedMo
         """
         from .audiences_configuration import AudiencesConfiguration
         from .identifier_uri_configuration import IdentifierUriConfiguration
+        from .redirect_uri_configuration import RedirectUriConfiguration
 
         from .audiences_configuration import AudiencesConfiguration
         from .identifier_uri_configuration import IdentifierUriConfiguration
+        from .redirect_uri_configuration import RedirectUriConfiguration
 
         fields: dict[str, Callable[[Any], None]] = {
             "audiences": lambda n : setattr(self, 'audiences', n.get_object_value(AudiencesConfiguration)),
             "identifierUris": lambda n : setattr(self, 'identifier_uris', n.get_object_value(IdentifierUriConfiguration)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "redirectUris": lambda n : setattr(self, 'redirect_uris', n.get_object_value(RedirectUriConfiguration)),
         }
         return fields
     
@@ -63,6 +69,7 @@ class CustomAppManagementApplicationConfiguration(AdditionalDataHolder, BackedMo
         writer.write_object_value("audiences", self.audiences)
         writer.write_object_value("identifierUris", self.identifier_uris)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_object_value("redirectUris", self.redirect_uris)
         writer.write_additional_data_value(self.additional_data)
     
 

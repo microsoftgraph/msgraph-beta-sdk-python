@@ -14,7 +14,7 @@ class DriftedProperty(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The propertyName property
+    # The name of the property.
     property_name: Optional[str] = None
     
     @staticmethod

@@ -7,4 +7,5 @@ class RemediationAction(str, Enum):
     SoftDelete = "softDelete",
     MoveToDeletedItems = "moveToDeletedItems",
     UnknownFutureValue = "unknownFutureValue",
+    MoveToQuarantine = "moveToQuarantine",
 

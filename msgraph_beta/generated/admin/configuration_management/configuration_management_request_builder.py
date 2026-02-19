@@ -16,7 +16,6 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.configuration_management import ConfigurationManagement
     from ...models.o_data_errors.o_data_error import ODataError
-    from .configuration_applications.configuration_applications_request_builder import ConfigurationApplicationsRequestBuilder
     from .configuration_drifts.configuration_drifts_request_builder import ConfigurationDriftsRequestBuilder
     from .configuration_monitoring_results.configuration_monitoring_results_request_builder import ConfigurationMonitoringResultsRequestBuilder
     from .configuration_monitors.configuration_monitors_request_builder import ConfigurationMonitorsRequestBuilder
@@ -143,15 +142,6 @@ class ConfigurationManagementRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ConfigurationManagementRequestBuilder(self.request_adapter, raw_url)
-    
-    @property
-    def configuration_applications(self) -> ConfigurationApplicationsRequestBuilder:
-        """
-        Provides operations to manage the configurationApplications property of the microsoft.graph.configurationManagement entity.
-        """
-        from .configuration_applications.configuration_applications_request_builder import ConfigurationApplicationsRequestBuilder
-
-        return ConfigurationApplicationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def configuration_drifts(self) -> ConfigurationDriftsRequestBuilder:

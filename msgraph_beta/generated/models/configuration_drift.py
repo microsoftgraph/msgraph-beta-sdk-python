@@ -15,23 +15,23 @@ from .entity import Entity
 
 @dataclass
 class ConfigurationDrift(Entity, Parsable):
-    # The baselineResourceDisplayName property
+    # Resource instance for which the drift is detected.
     baseline_resource_display_name: Optional[str] = None
-    # The driftedProperties property
+    # Properties within one or more resource instances in which drift is detected.
     drifted_properties: Optional[list[DriftedProperty]] = None
-    # The firstReportedDateTime property
+    # The date and time at which drift is first detected. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     first_reported_date_time: Optional[datetime.datetime] = None
-    # The monitorId property
+    # Globally unique identifier (GUID) of the monitor. System-generated.
     monitor_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The resourceInstanceIdentifier property
     resource_instance_identifier: Optional[OpenComplexDictionaryType] = None
-    # The resourceType property
+    # Resource for which the drift is detected.
     resource_type: Optional[str] = None
     # The status property
     status: Optional[DriftStatus] = None
-    # The tenantId property
+    # Globally unique identifier (GUID) of the tenant for which the monitor runs. Fetched automatically by the system.
     tenant_id: Optional[str] = None
     
     @staticmethod

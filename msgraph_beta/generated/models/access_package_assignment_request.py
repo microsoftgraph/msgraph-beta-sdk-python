@@ -23,7 +23,7 @@ from .entity import Entity
 class AccessPackageAssignmentRequest(Entity, Parsable):
     # The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable. Supports $expand.
     access_package: Optional[AccessPackage] = None
-    # For a requestType of UserAdd or AdminAdd, an access package assignment requested to be created. For a requestType of UserRemove, AdminRemove, or SystemRemove, this property has the id property of an existing assignment to be removed. Supports $expand.
+    # For a requestType of UserAdd or AdminAdd, an access package assignment requested to be created. For a requestType of UserRemove, AdminRemove, ApproverRemove, or SystemRemove, this property has the id property of an existing assignment to be removed. Supports $expand.
     access_package_assignment: Optional[AccessPackageAssignment] = None
     # Answers provided by the requestor to accessPackageQuestions asked of them at the time of request.
     answers: Optional[list[AccessPackageAnswer]] = None
@@ -49,7 +49,7 @@ class AccessPackageAssignmentRequest(Entity, Parsable):
     request_state: Optional[str] = None
     # More information on the request processing status. Read-only.
     request_status: Optional[str] = None
-    # One of UserAdd, UserExtend, UserUpdate, UserRemove, AdminAdd, AdminRemove, or SystemRemove. A request from the user has a requestType of UserAdd, UserUpdate, or UserRemove. Read-only.
+    # One of UserAdd, UserExtend, UserUpdate, UserRemove, AdminAdd, AdminRemove, ApproverRemove, or SystemRemove. A request from the user has a requestType of UserAdd, UserUpdate, or UserRemove. Read-only.
     request_type: Optional[str] = None
     # The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
     requestor: Optional[AccessPackageSubject] = None

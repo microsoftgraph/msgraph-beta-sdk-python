@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from .available_access_packages.available_access_packages_request_builder import AvailableAccessPackagesRequestBuilder
     from .connected_organizations.connected_organizations_request_builder import ConnectedOrganizationsRequestBuilder
     from .control_configurations.control_configurations_request_builder import ControlConfigurationsRequestBuilder
+    from .external_origin_resource_connectors.external_origin_resource_connectors_request_builder import ExternalOriginResourceConnectorsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
     from .subjects.subjects_request_builder import SubjectsRequestBuilder
     from .subjects_with_object_id.subjects_with_object_id_request_builder import SubjectsWithObjectIdRequestBuilder
@@ -339,6 +340,15 @@ class EntitlementManagementRequestBuilder(BaseRequestBuilder):
         from .control_configurations.control_configurations_request_builder import ControlConfigurationsRequestBuilder
 
         return ControlConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def external_origin_resource_connectors(self) -> ExternalOriginResourceConnectorsRequestBuilder:
+        """
+        Provides operations to manage the externalOriginResourceConnectors property of the microsoft.graph.entitlementManagement entity.
+        """
+        from .external_origin_resource_connectors.external_origin_resource_connectors_request_builder import ExternalOriginResourceConnectorsRequestBuilder
+
+        return ExternalOriginResourceConnectorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def settings(self) -> SettingsRequestBuilder:

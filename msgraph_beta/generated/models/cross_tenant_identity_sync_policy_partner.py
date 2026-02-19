@@ -19,7 +19,7 @@ class CrossTenantIdentitySyncPolicyPartner(PolicyDeletableItem, Parsable):
     display_name: Optional[str] = None
     # The externalCloudAuthorizedApplicationId property
     external_cloud_authorized_application_id: Optional[str] = None
-    # The groupSyncInbound property
+    # Defines whether groups can be synchronized from a partner tenant. Key.
     group_sync_inbound: Optional[CrossTenantGroupSyncInbound] = None
     # Tenant identifier for the partner Microsoft Entra organization. Read-only.
     tenant_id: Optional[str] = None
