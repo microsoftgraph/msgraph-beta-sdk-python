@@ -35,4 +35,6 @@ class DeviceManagementConfigurationTemplateFamily(str, Enum):
     WindowsOsRecoveryPolicies = "windowsOsRecoveryPolicies",
     # Template Family for Company Portal settings
     CompanyPortal = "companyPortal",
+    # Windows Recovery and Remediation Configuration Policy
+    WindowsRecoveryAndRemediationConfiguration = "windowsRecoveryAndRemediationConfiguration",
 

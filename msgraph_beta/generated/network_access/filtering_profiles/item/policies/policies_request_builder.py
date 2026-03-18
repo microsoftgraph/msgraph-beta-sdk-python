@@ -49,10 +49,10 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PoliciesRequestBuilderGetQueryParameters]] = None) -> Optional[PolicyLinkCollectionResponse]:
         """
-        Get a list of the threatIntelligencePolicyLink objects and their properties.
+        Get a list of the filteringPolicyLink objects and their properties. The associated policy can be of the following types:
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PolicyLinkCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-threatintelligencepolicylink-list?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-filteringpolicylink-list?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,11 +70,11 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: PolicyLink, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[PolicyLink]:
         """
-        Create a new tlsInspectionPolicyLink to connect a filtering profile with a tlsInspectionPolicy. One 1 tlsInspectionPolicy is allowed for every filtering profile.
+        Add a Global Secure Access network policy to a filteringProfile. The policy can be one of the following types:
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PolicyLink]
-        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-tlsinspectionpolicylink-post?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/networkaccess-filteringpolicylink-post?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -94,7 +94,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PoliciesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the threatIntelligencePolicyLink objects and their properties.
+        Get a list of the filteringPolicyLink objects and their properties. The associated policy can be of the following types:
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: PolicyLink, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new tlsInspectionPolicyLink to connect a filtering profile with a tlsInspectionPolicy. One 1 tlsInspectionPolicy is allowed for every filtering profile.
+        Add a Global Secure Access network policy to a filteringProfile. The policy can be one of the following types:
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +140,7 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PoliciesRequestBuilderGetQueryParameters():
         """
-        Get a list of the threatIntelligencePolicyLink objects and their properties.
+        Get a list of the filteringPolicyLink objects and their properties. The associated policy can be of the following types:
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

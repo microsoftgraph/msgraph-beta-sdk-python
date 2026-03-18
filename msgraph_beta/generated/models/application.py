@@ -58,7 +58,7 @@ class Application(DirectoryObject, Parsable):
     certification: Optional[Certification] = None
     # The connectorGroup the application is using with Microsoft Entra application proxy. Nullable.
     connector_group: Optional[ConnectorGroup] = None
-    # The globally unique appId (called Application (client) ID on the Microsoft Entra admin center) of the application that created this application. Set internally by Microsoft Entra ID. Read-only.
+    # The appId of the application that created this application. Set internally by Microsoft Entra ID. Read-only.
     created_by_app_id: Optional[str] = None
     # The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderby.
     created_date_time: Optional[datetime.datetime] = None
@@ -94,6 +94,8 @@ class Application(DirectoryObject, Parsable):
     key_credentials: Optional[list[KeyCredential]] = None
     # The main logo for the application. Not nullable.
     logo: Optional[bytes] = None
+    # A collection of application IDs for applications designated as managers of this application. Manager applications can create service principals for the applications they manage. Currently, only Microsoft first-party application IDs can be set as values. Maximum of 10 values. Not nullable. Read-only for third-party (3P) callers; writes by 3P callers are rejected with a 400 Bad Request error. Returned only on $select.
+    manager_applications: Optional[list[UUID]] = None
     # Specifies whether the Native Authentication APIs are enabled for the application. The possible values are: noneand all. Default is none. For more information, see Native Authentication.
     native_authentication_apis_enabled: Optional[NativeAuthenticationApisEnabled] = None
     # Notes relevant for the management of the application.
@@ -260,6 +262,7 @@ class Application(DirectoryObject, Parsable):
             "isFallbackPublicClient": lambda n : setattr(self, 'is_fallback_public_client', n.get_bool_value()),
             "keyCredentials": lambda n : setattr(self, 'key_credentials', n.get_collection_of_object_values(KeyCredential)),
             "logo": lambda n : setattr(self, 'logo', n.get_bytes_value()),
+            "managerApplications": lambda n : setattr(self, 'manager_applications', n.get_collection_of_primitive_values(UUID)),
             "nativeAuthenticationApisEnabled": lambda n : setattr(self, 'native_authentication_apis_enabled', n.get_collection_of_enum_values(NativeAuthenticationApisEnabled)),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
             "onPremisesPublishing": lambda n : setattr(self, 'on_premises_publishing', n.get_object_value(OnPremisesPublishing)),
@@ -325,6 +328,7 @@ class Application(DirectoryObject, Parsable):
         writer.write_bool_value("isFallbackPublicClient", self.is_fallback_public_client)
         writer.write_collection_of_object_values("keyCredentials", self.key_credentials)
         writer.write_bytes_value("logo", self.logo)
+        writer.write_collection_of_primitive_values("managerApplications", self.manager_applications)
         writer.write_enum_value("nativeAuthenticationApisEnabled", self.native_authentication_apis_enabled)
         writer.write_str_value("notes", self.notes)
         writer.write_object_value("onPremisesPublishing", self.on_premises_publishing)

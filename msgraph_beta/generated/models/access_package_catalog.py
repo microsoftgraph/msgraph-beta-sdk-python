@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
     from .custom_callout_extension import CustomCalloutExtension
     from .entity import Entity
+    from .privilege_level import PrivilegeLevel
 
 from .entity import Entity
 
@@ -50,6 +51,8 @@ class AccessPackageCatalog(Entity, Parsable):
     modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The privilegeLevel property
+    privilege_level: Optional[PrivilegeLevel] = None
     # The uniqueName property
     unique_name: Optional[str] = None
     
@@ -76,6 +79,7 @@ class AccessPackageCatalog(Entity, Parsable):
         from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
         from .custom_callout_extension import CustomCalloutExtension
         from .entity import Entity
+        from .privilege_level import PrivilegeLevel
 
         from .access_package import AccessPackage
         from .access_package_resource import AccessPackageResource
@@ -84,6 +88,7 @@ class AccessPackageCatalog(Entity, Parsable):
         from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
         from .custom_callout_extension import CustomCalloutExtension
         from .entity import Entity
+        from .privilege_level import PrivilegeLevel
 
         fields: dict[str, Callable[[Any], None]] = {
             "accessPackageCustomWorkflowExtensions": lambda n : setattr(self, 'access_package_custom_workflow_extensions', n.get_collection_of_object_values(CustomCalloutExtension)),
@@ -101,6 +106,7 @@ class AccessPackageCatalog(Entity, Parsable):
             "isExternallyVisible": lambda n : setattr(self, 'is_externally_visible', n.get_bool_value()),
             "modifiedBy": lambda n : setattr(self, 'modified_by', n.get_str_value()),
             "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "privilegeLevel": lambda n : setattr(self, 'privilege_level', n.get_enum_value(PrivilegeLevel)),
             "uniqueName": lambda n : setattr(self, 'unique_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -131,6 +137,7 @@ class AccessPackageCatalog(Entity, Parsable):
         writer.write_bool_value("isExternallyVisible", self.is_externally_visible)
         writer.write_str_value("modifiedBy", self.modified_by)
         writer.write_datetime_value("modifiedDateTime", self.modified_date_time)
+        writer.write_enum_value("privilegeLevel", self.privilege_level)
         writer.write_str_value("uniqueName", self.unique_name)
     
 

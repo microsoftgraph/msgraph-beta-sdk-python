@@ -191,7 +191,7 @@ class User(DirectoryObject, Parsable):
     drive: Optional[Drive] = None
     # A collection of drives available for this user. Read-only.
     drives: Optional[list[Drive]] = None
-    # The employeeExperience property
+    # The employee experience resources for the user. Read-only. Nullable.
     employee_experience: Optional[EmployeeExperienceUser] = None
     # The date and time when the user was hired or will start work if there is a future hire. Supports $filter (eq, ne, not , ge, le, in).
     employee_hire_date: Optional[datetime.datetime] = None

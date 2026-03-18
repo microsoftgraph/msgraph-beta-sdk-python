@@ -34,6 +34,8 @@ class List_(BaseItem, Parsable):
     display_name: Optional[str] = None
     # Allows access to the list as a drive resource with driveItems. Only present on document libraries.
     drive: Optional[Drive] = None
+    # The itemCount property
+    item_count: Optional[int] = None
     # All items contained in the list.
     items: Optional[list[ListItem]] = None
     # Contains more details about the list.
@@ -97,6 +99,7 @@ class List_(BaseItem, Parsable):
             "contentTypes": lambda n : setattr(self, 'content_types', n.get_collection_of_object_values(ContentType)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "drive": lambda n : setattr(self, 'drive', n.get_object_value(Drive)),
+            "itemCount": lambda n : setattr(self, 'item_count', n.get_int_value()),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(ListItem)),
             "list": lambda n : setattr(self, 'list_', n.get_object_value(ListInfo)),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(RichLongRunningOperation)),
@@ -123,6 +126,7 @@ class List_(BaseItem, Parsable):
         writer.write_collection_of_object_values("contentTypes", self.content_types)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("drive", self.drive)
+        writer.write_int_value("itemCount", self.item_count)
         writer.write_collection_of_object_values("items", self.items)
         writer.write_object_value("list", self.list_)
         writer.write_collection_of_object_values("operations", self.operations)
