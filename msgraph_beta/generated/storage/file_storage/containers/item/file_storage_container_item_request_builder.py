@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .....models.file_storage_container import FileStorageContainer
     from .....models.o_data_errors.o_data_error import ODataError
     from .activate.activate_request_builder import ActivateRequestBuilder
+    from .archive.archive_request_builder import ArchiveRequestBuilder
     from .columns.columns_request_builder import ColumnsRequestBuilder
     from .drive.drive_request_builder import DriveRequestBuilder
     from .lock.lock_request_builder import LockRequestBuilder
@@ -27,6 +28,7 @@ if TYPE_CHECKING:
     from .recycle_bin.recycle_bin_request_builder import RecycleBinRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
     from .share_point_groups.share_point_groups_request_builder import SharePointGroupsRequestBuilder
+    from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
     from .unlock.unlock_request_builder import UnlockRequestBuilder
 
 class FileStorageContainerItemRequestBuilder(BaseRequestBuilder):
@@ -161,6 +163,15 @@ class FileStorageContainerItemRequestBuilder(BaseRequestBuilder):
         return ActivateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def archive(self) -> ArchiveRequestBuilder:
+        """
+        Provides operations to call the archive method.
+        """
+        from .archive.archive_request_builder import ArchiveRequestBuilder
+
+        return ArchiveRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def columns(self) -> ColumnsRequestBuilder:
         """
         Provides operations to manage the columns property of the microsoft.graph.fileStorageContainer entity.
@@ -249,6 +260,15 @@ class FileStorageContainerItemRequestBuilder(BaseRequestBuilder):
         from .share_point_groups.share_point_groups_request_builder import SharePointGroupsRequestBuilder
 
         return SharePointGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def unarchive(self) -> UnarchiveRequestBuilder:
+        """
+        Provides operations to call the unarchive method.
+        """
+        from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
+
+        return UnarchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def unlock(self) -> UnlockRequestBuilder:

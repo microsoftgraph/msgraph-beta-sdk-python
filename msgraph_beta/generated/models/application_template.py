@@ -31,6 +31,8 @@ class ApplicationTemplate(Entity, Parsable):
     home_page_url: Optional[str] = None
     # The informationalUrls property
     informational_urls: Optional[InformationalUrls] = None
+    # Indicates whether the application is integrated with Entra ID (for example, through single sign-on or user provisioning).
+    is_entra_integrated: Optional[bool] = None
     # The date and time when the data for the application was last updated, represented using ISO 8601 format and always in UTC time.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The URL to get the logo for this application.
@@ -88,6 +90,7 @@ class ApplicationTemplate(Entity, Parsable):
             "endpoints": lambda n : setattr(self, 'endpoints', n.get_collection_of_primitive_values(str)),
             "homePageUrl": lambda n : setattr(self, 'home_page_url', n.get_str_value()),
             "informationalUrls": lambda n : setattr(self, 'informational_urls', n.get_object_value(InformationalUrls)),
+            "isEntraIntegrated": lambda n : setattr(self, 'is_entra_integrated', n.get_bool_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "logoUrl": lambda n : setattr(self, 'logo_url', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
@@ -117,6 +120,7 @@ class ApplicationTemplate(Entity, Parsable):
         writer.write_collection_of_primitive_values("endpoints", self.endpoints)
         writer.write_str_value("homePageUrl", self.home_page_url)
         writer.write_object_value("informationalUrls", self.informational_urls)
+        writer.write_bool_value("isEntraIntegrated", self.is_entra_integrated)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("logoUrl", self.logo_url)
         writer.write_str_value("publisher", self.publisher)

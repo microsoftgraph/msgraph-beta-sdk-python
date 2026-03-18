@@ -28,6 +28,8 @@ class CrossTenantAccessPolicyConfigurationPartner(PolicyDeletableItem, Parsable)
     b2b_direct_connect_inbound: Optional[CrossTenantAccessPolicyB2BSetting] = None
     # Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Microsoft Entra B2B direct connect.
     b2b_direct_connect_outbound: Optional[CrossTenantAccessPolicyB2BSetting] = None
+    # The blockServiceProviderOutboundAccess property
+    block_service_provider_outbound_access: Optional[bool] = None
     # Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multitenant organization by automating the creation, update, and deletion of users from one tenant to another.
     identity_synchronization: Optional[CrossTenantIdentitySyncPolicyPartner] = None
     # Determines the partner-specific configuration for trusting other Conditional Access claims from external Microsoft Entra organizations.
@@ -77,6 +79,7 @@ class CrossTenantAccessPolicyConfigurationPartner(PolicyDeletableItem, Parsable)
             "b2bCollaborationOutbound": lambda n : setattr(self, 'b2b_collaboration_outbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
             "b2bDirectConnectInbound": lambda n : setattr(self, 'b2b_direct_connect_inbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
             "b2bDirectConnectOutbound": lambda n : setattr(self, 'b2b_direct_connect_outbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
+            "blockServiceProviderOutboundAccess": lambda n : setattr(self, 'block_service_provider_outbound_access', n.get_bool_value()),
             "identitySynchronization": lambda n : setattr(self, 'identity_synchronization', n.get_object_value(CrossTenantIdentitySyncPolicyPartner)),
             "inboundTrust": lambda n : setattr(self, 'inbound_trust', n.get_object_value(CrossTenantAccessPolicyInboundTrust)),
             "isInMultiTenantOrganization": lambda n : setattr(self, 'is_in_multi_tenant_organization', n.get_bool_value()),
@@ -102,6 +105,7 @@ class CrossTenantAccessPolicyConfigurationPartner(PolicyDeletableItem, Parsable)
         writer.write_object_value("b2bCollaborationOutbound", self.b2b_collaboration_outbound)
         writer.write_object_value("b2bDirectConnectInbound", self.b2b_direct_connect_inbound)
         writer.write_object_value("b2bDirectConnectOutbound", self.b2b_direct_connect_outbound)
+        writer.write_bool_value("blockServiceProviderOutboundAccess", self.block_service_provider_outbound_access)
         writer.write_object_value("identitySynchronization", self.identity_synchronization)
         writer.write_object_value("inboundTrust", self.inbound_trust)
         writer.write_bool_value("isInMultiTenantOrganization", self.is_in_multi_tenant_organization)

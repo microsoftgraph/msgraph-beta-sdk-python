@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .cloud_firewall_policy import CloudFirewallPolicy
     from .filtering_policy import FilteringPolicy
     from .forwarding_policy import ForwardingPolicy
     from .policy_rule import PolicyRule
@@ -41,6 +42,10 @@ class Policy(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallPolicy".casefold():
+            from .cloud_firewall_policy import CloudFirewallPolicy
+
+            return CloudFirewallPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringPolicy".casefold():
             from .filtering_policy import FilteringPolicy
 
@@ -65,6 +70,7 @@ class Policy(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .cloud_firewall_policy import CloudFirewallPolicy
         from .filtering_policy import FilteringPolicy
         from .forwarding_policy import ForwardingPolicy
         from .policy_rule import PolicyRule
@@ -72,6 +78,7 @@ class Policy(Entity, Parsable):
         from .tls_inspection_policy import TlsInspectionPolicy
 
         from ..entity import Entity
+        from .cloud_firewall_policy import CloudFirewallPolicy
         from .filtering_policy import FilteringPolicy
         from .forwarding_policy import ForwardingPolicy
         from .policy_rule import PolicyRule

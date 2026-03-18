@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from .mobile_app_management_policy import MobileAppManagementPolicy
     from .mobile_device_management_policy import MobileDeviceManagementPolicy
     from .on_prem_authentication_policy import OnPremAuthenticationPolicy
+    from .ownerless_group_policy import OwnerlessGroupPolicy
     from .permission_grant_policy import PermissionGrantPolicy
     from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
     from .policy_deletable_root import PolicyDeletableRoot
@@ -95,6 +96,8 @@ class PolicyRoot(Entity, Parsable):
     odata_type: Optional[str] = None
     # The policy that controls how authentication requests from on-premises environments are managed.
     on_prem_authentication_policies: Optional[list[OnPremAuthenticationPolicy]] = None
+    # The ownerlessGroupPolicy property
+    ownerless_group_policy: Optional[OwnerlessGroupPolicy] = None
     # The policy that specifies the conditions under which consent can be granted.
     permission_grant_policies: Optional[list[PermissionGrantPolicy]] = None
     # Policies that specify the conditions under which consent can be granted to a specific application.
@@ -150,6 +153,7 @@ class PolicyRoot(Entity, Parsable):
         from .mobile_app_management_policy import MobileAppManagementPolicy
         from .mobile_device_management_policy import MobileDeviceManagementPolicy
         from .on_prem_authentication_policy import OnPremAuthenticationPolicy
+        from .ownerless_group_policy import OwnerlessGroupPolicy
         from .permission_grant_policy import PermissionGrantPolicy
         from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .policy_deletable_root import PolicyDeletableRoot
@@ -184,6 +188,7 @@ class PolicyRoot(Entity, Parsable):
         from .mobile_app_management_policy import MobileAppManagementPolicy
         from .mobile_device_management_policy import MobileDeviceManagementPolicy
         from .on_prem_authentication_policy import OnPremAuthenticationPolicy
+        from .ownerless_group_policy import OwnerlessGroupPolicy
         from .permission_grant_policy import PermissionGrantPolicy
         from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .policy_deletable_root import PolicyDeletableRoot
@@ -220,6 +225,7 @@ class PolicyRoot(Entity, Parsable):
             "mobileAppManagementPolicies": lambda n : setattr(self, 'mobile_app_management_policies', n.get_collection_of_object_values(MobileAppManagementPolicy)),
             "mobileDeviceManagementPolicies": lambda n : setattr(self, 'mobile_device_management_policies', n.get_collection_of_object_values(MobileDeviceManagementPolicy)),
             "onPremAuthenticationPolicies": lambda n : setattr(self, 'on_prem_authentication_policies', n.get_collection_of_object_values(OnPremAuthenticationPolicy)),
+            "ownerlessGroupPolicy": lambda n : setattr(self, 'ownerless_group_policy', n.get_object_value(OwnerlessGroupPolicy)),
             "permissionGrantPolicies": lambda n : setattr(self, 'permission_grant_policies', n.get_collection_of_object_values(PermissionGrantPolicy)),
             "permissionGrantPreApprovalPolicies": lambda n : setattr(self, 'permission_grant_pre_approval_policies', n.get_collection_of_object_values(PermissionGrantPreApprovalPolicy)),
             "roleManagementPolicies": lambda n : setattr(self, 'role_management_policies', n.get_collection_of_object_values(UnifiedRoleManagementPolicy)),
@@ -266,6 +272,7 @@ class PolicyRoot(Entity, Parsable):
         writer.write_collection_of_object_values("mobileAppManagementPolicies", self.mobile_app_management_policies)
         writer.write_collection_of_object_values("mobileDeviceManagementPolicies", self.mobile_device_management_policies)
         writer.write_collection_of_object_values("onPremAuthenticationPolicies", self.on_prem_authentication_policies)
+        writer.write_object_value("ownerlessGroupPolicy", self.ownerless_group_policy)
         writer.write_collection_of_object_values("permissionGrantPolicies", self.permission_grant_policies)
         writer.write_collection_of_object_values("permissionGrantPreApprovalPolicies", self.permission_grant_pre_approval_policies)
         writer.write_collection_of_object_values("roleManagementPolicies", self.role_management_policies)
