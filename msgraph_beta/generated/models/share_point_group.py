@@ -18,6 +18,8 @@ class SharePointGroup(Entity, Parsable):
     members: Optional[list[SharePointGroupMember]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The principalId property
+    principal_id: Optional[str] = None
     # The user-visible title of the sharePointGroup. Read-write.
     title: Optional[str] = None
     
@@ -46,6 +48,7 @@ class SharePointGroup(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(SharePointGroupMember)),
+            "principalId": lambda n : setattr(self, 'principal_id', n.get_str_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -63,6 +66,7 @@ class SharePointGroup(Entity, Parsable):
         super().serialize(writer)
         writer.write_str_value("description", self.description)
         writer.write_collection_of_object_values("members", self.members)
+        writer.write_str_value("principalId", self.principal_id)
         writer.write_str_value("title", self.title)
     
 

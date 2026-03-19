@@ -29,9 +29,9 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, BackedModel, Parsable):
     device_model: Optional[str] = None
     # Represents various network types for Zebra FOTA deployment.
     download_rule_network_type: Optional[ZebraFotaNetworkType] = None
-    # Date and time in the device time zone when the download will start (e.g., 2018-07-25T10:20:32). The default value is UTC now and the maximum is 10 days from deployment creation.
+    # Date and time in the device time zone when the download will start (e.g., `2018-07-25T10:20:32`). The default value is UTC now and the maximum is 10 days from deployment creation.
     download_rule_start_date_time: Optional[datetime.datetime] = None
-    # A description provided by Zebra for the the firmware artifact to update the device to (e.g.: LifeGuard Update 120 (released 29-June-2022).
+    # A description provided by Zebra for the the firmware artifact to update the device to (e.g.: `LifeGuard Update 120 (released 29-June-2022)`.
     firmware_target_artifact_description: Optional[str] = None
     # Deployment's Board Support Package (BSP. E.g.: '01.18.02.00'). Required only for custom update type.
     firmware_target_board_support_package_version: Optional[str] = None
@@ -51,7 +51,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, BackedModel, Parsable):
     schedule_duration_in_days: Optional[int] = None
     # Represents various schedule modes for Zebra FOTA deployment.
     schedule_mode: Optional[ZebraFotaScheduleMode] = None
-    # This attribute indicates the deployment time offset (e.g.180 represents an offset of +03:00, and -270 represents an offset of -04:30). The time offset is the time timezone where the devices are located. The deployment start and end data uses this timezone
+    # This attribute indicates the deployment time offset (e.g.`180` represents an offset of `+03:00`, and `-270` represents an offset of `-04:30`). The time offset is the time timezone where the devices are located. The deployment start and end data uses this timezone
     time_zone_offset_in_minutes: Optional[int] = None
     # Represents various update types for Zebra FOTA deployment.
     update_type: Optional[ZebraFotaUpdateType] = None

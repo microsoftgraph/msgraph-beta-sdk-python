@@ -22,11 +22,11 @@ from .entity import Entity
 class ProtectionPolicyBase(Entity, Parsable):
     # The billingPolicyId property
     billing_policy_id: Optional[str] = None
-    # The identity of person who created the policy.
+    # The identity of the person who created the policy.
     created_by: Optional[IdentitySet] = None
     # The date and time when the policy was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The name of the policy to be created.
+    # The name of the policy.
     display_name: Optional[str] = None
     # Indicates whether the policy is enabled.
     is_enabled: Optional[bool] = None
@@ -36,7 +36,7 @@ class ProtectionPolicyBase(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The offboardRequestedDateTime property
+    # The date and time when offboarding was requested for the protection policy. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     offboard_requested_date_time: Optional[datetime.datetime] = None
     # The protectionMode property
     protection_mode: Optional[BackupPolicyProtectionMode] = None
@@ -44,7 +44,7 @@ class ProtectionPolicyBase(Entity, Parsable):
     protection_policy_artifact_count: Optional[ProtectionPolicyArtifactCount] = None
     # Contains the retention setting details for the policy.
     retention_settings: Optional[list[RetentionSetting]] = None
-    # The aggregated status of the protection units associated with the policy. The possible values are: inactive, activeWithErrors, updating, active, unknownFutureValue.
+    # The aggregated status of the protection units associated with the policy. The possible values are: inactive, activeWithErrors, updating, active, unknownFutureValue, offboardRequested, offboarded. You must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: offboardRequested, offboarded.
     status: Optional[ProtectionPolicyStatus] = None
     
     @staticmethod

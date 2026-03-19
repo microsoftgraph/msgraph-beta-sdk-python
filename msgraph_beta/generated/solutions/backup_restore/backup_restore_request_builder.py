@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.backup_restore_root import BackupRestoreRoot
     from ...models.o_data_errors.o_data_error import ODataError
+    from .activity_logs.activity_logs_request_builder import ActivityLogsRequestBuilder
     from .all_drives_backup.all_drives_backup_request_builder import AllDrivesBackupRequestBuilder
     from .all_mailboxes_backup.all_mailboxes_backup_request_builder import AllMailboxesBackupRequestBuilder
     from .all_sites_backup.all_sites_backup_request_builder import AllSitesBackupRequestBuilder
@@ -35,6 +36,7 @@ if TYPE_CHECKING:
     from .one_drive_for_business_restore_sessions.one_drive_for_business_restore_sessions_request_builder import OneDriveForBusinessRestoreSessionsRequestBuilder
     from .protection_policies.protection_policies_request_builder import ProtectionPoliciesRequestBuilder
     from .protection_units.protection_units_request_builder import ProtectionUnitsRequestBuilder
+    from .reports.reports_request_builder import ReportsRequestBuilder
     from .restore_points.restore_points_request_builder import RestorePointsRequestBuilder
     from .restore_sessions.restore_sessions_request_builder import RestoreSessionsRequestBuilder
     from .service_apps.service_apps_request_builder import ServiceAppsRequestBuilder
@@ -166,6 +168,15 @@ class BackupRestoreRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return BackupRestoreRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def activity_logs(self) -> ActivityLogsRequestBuilder:
+        """
+        Provides operations to manage the activityLogs property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .activity_logs.activity_logs_request_builder import ActivityLogsRequestBuilder
+
+        return ActivityLogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def all_drives_backup(self) -> AllDrivesBackupRequestBuilder:
@@ -337,6 +348,15 @@ class BackupRestoreRequestBuilder(BaseRequestBuilder):
         from .protection_units.protection_units_request_builder import ProtectionUnitsRequestBuilder
 
         return ProtectionUnitsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def reports(self) -> ReportsRequestBuilder:
+        """
+        Provides operations to manage the reports property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .reports.reports_request_builder import ReportsRequestBuilder
+
+        return ReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def restore_points(self) -> RestorePointsRequestBuilder:

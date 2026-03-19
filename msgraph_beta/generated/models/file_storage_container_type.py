@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .file_storage_container_billing_classification import FileStorageContainerBillingClassification
     from .file_storage_container_billing_status import FileStorageContainerBillingStatus
     from .file_storage_container_type_settings import FileStorageContainerTypeSettings
+    from .permission import Permission
 
 from .entity import Entity
 
@@ -32,6 +33,8 @@ class FileStorageContainerType(Entity, Parsable):
     odata_type: Optional[str] = None
     # ID of the application that owns the fileStorageContainerType.
     owning_app_id: Optional[UUID] = None
+    # The permissions property
+    permissions: Optional[list[Permission]] = None
     # The settings property
     settings: Optional[FileStorageContainerTypeSettings] = None
     
@@ -55,11 +58,13 @@ class FileStorageContainerType(Entity, Parsable):
         from .file_storage_container_billing_classification import FileStorageContainerBillingClassification
         from .file_storage_container_billing_status import FileStorageContainerBillingStatus
         from .file_storage_container_type_settings import FileStorageContainerTypeSettings
+        from .permission import Permission
 
         from .entity import Entity
         from .file_storage_container_billing_classification import FileStorageContainerBillingClassification
         from .file_storage_container_billing_status import FileStorageContainerBillingStatus
         from .file_storage_container_type_settings import FileStorageContainerTypeSettings
+        from .permission import Permission
 
         fields: dict[str, Callable[[Any], None]] = {
             "billingClassification": lambda n : setattr(self, 'billing_classification', n.get_enum_value(FileStorageContainerBillingClassification)),
@@ -69,6 +74,7 @@ class FileStorageContainerType(Entity, Parsable):
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "owningAppId": lambda n : setattr(self, 'owning_app_id', n.get_uuid_value()),
+            "permissions": lambda n : setattr(self, 'permissions', n.get_collection_of_object_values(Permission)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(FileStorageContainerTypeSettings)),
         }
         super_fields = super().get_field_deserializers()
@@ -91,6 +97,7 @@ class FileStorageContainerType(Entity, Parsable):
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_str_value("name", self.name)
         writer.write_uuid_value("owningAppId", self.owning_app_id)
+        writer.write_collection_of_object_values("permissions", self.permissions)
         writer.write_object_value("settings", self.settings)
     
 

@@ -26,6 +26,8 @@ class CrossTenantAccessPolicyConfigurationDefault(Entity, Parsable):
     b2b_direct_connect_inbound: Optional[CrossTenantAccessPolicyB2BSetting] = None
     # Defines your default configuration for users in your organization going outbound to access resources in another organization via Microsoft Entra B2B direct connect.
     b2b_direct_connect_outbound: Optional[CrossTenantAccessPolicyB2BSetting] = None
+    # The blockServiceProviderOutboundAccess property
+    block_service_provider_outbound_access: Optional[bool] = None
     # Determines the default configuration for trusting other Conditional Access claims from external Microsoft Entra organizations.
     inbound_trust: Optional[CrossTenantAccessPolicyInboundTrust] = None
     # Defines the priority order based on which an identity provider is selected during invitation redemption for a guest user.
@@ -73,6 +75,7 @@ class CrossTenantAccessPolicyConfigurationDefault(Entity, Parsable):
             "b2bCollaborationOutbound": lambda n : setattr(self, 'b2b_collaboration_outbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
             "b2bDirectConnectInbound": lambda n : setattr(self, 'b2b_direct_connect_inbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
             "b2bDirectConnectOutbound": lambda n : setattr(self, 'b2b_direct_connect_outbound', n.get_object_value(CrossTenantAccessPolicyB2BSetting)),
+            "blockServiceProviderOutboundAccess": lambda n : setattr(self, 'block_service_provider_outbound_access', n.get_bool_value()),
             "inboundTrust": lambda n : setattr(self, 'inbound_trust', n.get_object_value(CrossTenantAccessPolicyInboundTrust)),
             "invitationRedemptionIdentityProviderConfiguration": lambda n : setattr(self, 'invitation_redemption_identity_provider_configuration', n.get_object_value(DefaultInvitationRedemptionIdentityProviderConfiguration)),
             "isServiceDefault": lambda n : setattr(self, 'is_service_default', n.get_bool_value()),
@@ -96,6 +99,7 @@ class CrossTenantAccessPolicyConfigurationDefault(Entity, Parsable):
         writer.write_object_value("b2bCollaborationOutbound", self.b2b_collaboration_outbound)
         writer.write_object_value("b2bDirectConnectInbound", self.b2b_direct_connect_inbound)
         writer.write_object_value("b2bDirectConnectOutbound", self.b2b_direct_connect_outbound)
+        writer.write_bool_value("blockServiceProviderOutboundAccess", self.block_service_provider_outbound_access)
         writer.write_object_value("inboundTrust", self.inbound_trust)
         writer.write_object_value("invitationRedemptionIdentityProviderConfiguration", self.invitation_redemption_identity_provider_configuration)
         writer.write_bool_value("isServiceDefault", self.is_service_default)

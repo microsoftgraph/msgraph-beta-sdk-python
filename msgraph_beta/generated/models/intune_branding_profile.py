@@ -74,8 +74,6 @@ class IntuneBrandingProfile(Entity, Parsable):
     profile_name: Optional[str] = None
     # List of scope tags assigned to the branding profile
     role_scope_tag_ids: Optional[list[str]] = None
-    # Boolean that indicates if a push notification is sent to users when their device ownership type changes from personal to corporate
-    send_device_ownership_change_push_notification: Optional[bool] = None
     # Boolean that indicates if AzureAD Enterprise Apps will be shown in Company Portal
     show_azure_a_d_enterprise_apps: Optional[bool] = None
     # Boolean that indicates if Configuration Manager Apps will be shown in Company Portal
@@ -148,7 +146,6 @@ class IntuneBrandingProfile(Entity, Parsable):
             "profileDescription": lambda n : setattr(self, 'profile_description', n.get_str_value()),
             "profileName": lambda n : setattr(self, 'profile_name', n.get_str_value()),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "sendDeviceOwnershipChangePushNotification": lambda n : setattr(self, 'send_device_ownership_change_push_notification', n.get_bool_value()),
             "showAzureADEnterpriseApps": lambda n : setattr(self, 'show_azure_a_d_enterprise_apps', n.get_bool_value()),
             "showConfigurationManagerApps": lambda n : setattr(self, 'show_configuration_manager_apps', n.get_bool_value()),
             "showDisplayNameNextToLogo": lambda n : setattr(self, 'show_display_name_next_to_logo', n.get_bool_value()),
@@ -196,7 +193,6 @@ class IntuneBrandingProfile(Entity, Parsable):
         writer.write_str_value("profileDescription", self.profile_description)
         writer.write_str_value("profileName", self.profile_name)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
-        writer.write_bool_value("sendDeviceOwnershipChangePushNotification", self.send_device_ownership_change_push_notification)
         writer.write_bool_value("showAzureADEnterpriseApps", self.show_azure_a_d_enterprise_apps)
         writer.write_bool_value("showConfigurationManagerApps", self.show_configuration_manager_apps)
         writer.write_bool_value("showDisplayNameNextToLogo", self.show_display_name_next_to_logo)

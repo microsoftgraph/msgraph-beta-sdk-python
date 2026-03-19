@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ..models.networkaccess.network_access_root import NetworkAccessRoot
     from ..models.o_data_errors.o_data_error import ODataError
     from .alerts.alerts_request_builder import AlertsRequestBuilder
+    from .cloud_firewall_policies.cloud_firewall_policies_request_builder import CloudFirewallPoliciesRequestBuilder
     from .connectivity.connectivity_request_builder import ConnectivityRequestBuilder
     from .filtering_policies.filtering_policies_request_builder import FilteringPoliciesRequestBuilder
     from .filtering_profiles.filtering_profiles_request_builder import FilteringProfilesRequestBuilder
@@ -131,6 +132,15 @@ class NetworkAccessRequestBuilder(BaseRequestBuilder):
         from .alerts.alerts_request_builder import AlertsRequestBuilder
 
         return AlertsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def cloud_firewall_policies(self) -> CloudFirewallPoliciesRequestBuilder:
+        """
+        Provides operations to manage the cloudFirewallPolicies property of the microsoft.graph.networkaccess.networkAccessRoot entity.
+        """
+        from .cloud_firewall_policies.cloud_firewall_policies_request_builder import CloudFirewallPoliciesRequestBuilder
+
+        return CloudFirewallPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def connectivity(self) -> ConnectivityRequestBuilder:

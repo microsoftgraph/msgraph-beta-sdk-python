@@ -52,16 +52,21 @@ if TYPE_CHECKING:
     from .remove_device_firmware_configuration_interface_management.remove_device_firmware_configuration_interface_management_request_builder import RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder
     from .request_remote_assistance.request_remote_assistance_request_builder import RequestRemoteAssistanceRequestBuilder
     from .reset_passcode.reset_passcode_request_builder import ResetPasscodeRequestBuilder
+    from .restore_managed_home_screen.restore_managed_home_screen_request_builder import RestoreManagedHomeScreenRequestBuilder
     from .retire.retire_request_builder import RetireRequestBuilder
+    from .retrieve_device_local_admin_account_detail.retrieve_device_local_admin_account_detail_request_builder import RetrieveDeviceLocalAdminAccountDetailRequestBuilder
     from .retrieve_mac_o_s_managed_device_local_admin_account_detail.retrieve_mac_o_s_managed_device_local_admin_account_detail_request_builder import RetrieveMacOSManagedDeviceLocalAdminAccountDetailRequestBuilder
+    from .retrieve_recovery_lock_passcode.retrieve_recovery_lock_passcode_request_builder import RetrieveRecoveryLockPasscodeRequestBuilder
     from .revoke_apple_vpp_licenses.revoke_apple_vpp_licenses_request_builder import RevokeAppleVppLicensesRequestBuilder
     from .rotate_bit_locker_keys.rotate_bit_locker_keys_request_builder import RotateBitLockerKeysRequestBuilder
     from .rotate_file_vault_key.rotate_file_vault_key_request_builder import RotateFileVaultKeyRequestBuilder
     from .rotate_local_admin_password.rotate_local_admin_password_request_builder import RotateLocalAdminPasswordRequestBuilder
+    from .rotate_recovery_lock_passcode.rotate_recovery_lock_passcode_request_builder import RotateRecoveryLockPasscodeRequestBuilder
     from .security_baseline_states.security_baseline_states_request_builder import SecurityBaselineStatesRequestBuilder
     from .send_custom_notification_to_company_portal.send_custom_notification_to_company_portal_request_builder import SendCustomNotificationToCompanyPortalRequestBuilder
     from .set_device_name.set_device_name_request_builder import SetDeviceNameRequestBuilder
     from .shut_down.shut_down_request_builder import ShutDownRequestBuilder
+    from .suspend_managed_home_screen.suspend_managed_home_screen_request_builder import SuspendManagedHomeScreenRequestBuilder
     from .sync_device.sync_device_request_builder import SyncDeviceRequestBuilder
     from .trigger_configuration_manager_action.trigger_configuration_manager_action_request_builder import TriggerConfigurationManagerActionRequestBuilder
     from .update_windows_device_account.update_windows_device_account_request_builder import UpdateWindowsDeviceAccountRequestBuilder
@@ -517,6 +522,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         return ResetPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def restore_managed_home_screen(self) -> RestoreManagedHomeScreenRequestBuilder:
+        """
+        Provides operations to call the restoreManagedHomeScreen method.
+        """
+        from .restore_managed_home_screen.restore_managed_home_screen_request_builder import RestoreManagedHomeScreenRequestBuilder
+
+        return RestoreManagedHomeScreenRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def retire(self) -> RetireRequestBuilder:
         """
         Provides operations to call the retire method.
@@ -526,6 +540,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         return RetireRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def retrieve_device_local_admin_account_detail(self) -> RetrieveDeviceLocalAdminAccountDetailRequestBuilder:
+        """
+        Provides operations to call the retrieveDeviceLocalAdminAccountDetail method.
+        """
+        from .retrieve_device_local_admin_account_detail.retrieve_device_local_admin_account_detail_request_builder import RetrieveDeviceLocalAdminAccountDetailRequestBuilder
+
+        return RetrieveDeviceLocalAdminAccountDetailRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def retrieve_mac_o_s_managed_device_local_admin_account_detail(self) -> RetrieveMacOSManagedDeviceLocalAdminAccountDetailRequestBuilder:
         """
         Provides operations to call the retrieveMacOSManagedDeviceLocalAdminAccountDetail method.
@@ -533,6 +556,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .retrieve_mac_o_s_managed_device_local_admin_account_detail.retrieve_mac_o_s_managed_device_local_admin_account_detail_request_builder import RetrieveMacOSManagedDeviceLocalAdminAccountDetailRequestBuilder
 
         return RetrieveMacOSManagedDeviceLocalAdminAccountDetailRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_recovery_lock_passcode(self) -> RetrieveRecoveryLockPasscodeRequestBuilder:
+        """
+        Provides operations to call the retrieveRecoveryLockPasscode method.
+        """
+        from .retrieve_recovery_lock_passcode.retrieve_recovery_lock_passcode_request_builder import RetrieveRecoveryLockPasscodeRequestBuilder
+
+        return RetrieveRecoveryLockPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def revoke_apple_vpp_licenses(self) -> RevokeAppleVppLicensesRequestBuilder:
@@ -571,6 +603,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         return RotateLocalAdminPasswordRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def rotate_recovery_lock_passcode(self) -> RotateRecoveryLockPasscodeRequestBuilder:
+        """
+        Provides operations to call the rotateRecoveryLockPasscode method.
+        """
+        from .rotate_recovery_lock_passcode.rotate_recovery_lock_passcode_request_builder import RotateRecoveryLockPasscodeRequestBuilder
+
+        return RotateRecoveryLockPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def security_baseline_states(self) -> SecurityBaselineStatesRequestBuilder:
         """
         Provides operations to manage the securityBaselineStates property of the microsoft.graph.managedDevice entity.
@@ -605,6 +646,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .shut_down.shut_down_request_builder import ShutDownRequestBuilder
 
         return ShutDownRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def suspend_managed_home_screen(self) -> SuspendManagedHomeScreenRequestBuilder:
+        """
+        Provides operations to call the suspendManagedHomeScreen method.
+        """
+        from .suspend_managed_home_screen.suspend_managed_home_screen_request_builder import SuspendManagedHomeScreenRequestBuilder
+
+        return SuspendManagedHomeScreenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sync_device(self) -> SyncDeviceRequestBuilder:

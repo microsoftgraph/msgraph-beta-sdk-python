@@ -16,7 +16,7 @@ class ZebraFotaConnector(Entity, Parsable):
     """
     The Zebra FOTA connector entity that represents the tenant's authorization status for Intune to call Zebra Update Services.
     """
-    # Complete account enrollment authorization URL. This corresponds to verificationuricomplete in the Zebra API documentations.
+    # Complete account enrollment authorization URL. This corresponds to verification_uri_complete in the Zebra API documentations.
     enrollment_authorization_url: Optional[str] = None
     # Tenant enrollment token from Zebra. The token is used to enroll Zebra devices in the FOTA Service via app config.
     enrollment_token: Optional[str] = None

@@ -9,6 +9,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .content_activity_metadata import ContentActivityMetadata
     from .content_base import ContentBase
+    from .content_category import ContentCategory
     from .process_conversation_metadata import ProcessConversationMetadata
     from .process_file_metadata import ProcessFileMetadata
 
@@ -21,6 +22,8 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Represents the actual content, either as text (textContent) or binary data (binaryContent). Optional if metadata alone is sufficient for policy evaluation. Do not use for contentActivities.
     content: Optional[ContentBase] = None
+    # The type of content. The possible values are: none, ai, unknownFutureValue.  The default value is ai, which refers to AI generated content.
+    content_category: Optional[ContentCategory] = None
     # An identifier used to group multiple related content entries (for example, different parts of the same file upload, messages in a conversation).
     correlation_id: Optional[str] = None
     # Required. Timestamp indicating when the original content was created (for example, file creation time, message sent time).
@@ -75,16 +78,19 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .content_activity_metadata import ContentActivityMetadata
         from .content_base import ContentBase
+        from .content_category import ContentCategory
         from .process_conversation_metadata import ProcessConversationMetadata
         from .process_file_metadata import ProcessFileMetadata
 
         from .content_activity_metadata import ContentActivityMetadata
         from .content_base import ContentBase
+        from .content_category import ContentCategory
         from .process_conversation_metadata import ProcessConversationMetadata
         from .process_file_metadata import ProcessFileMetadata
 
         fields: dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_object_value(ContentBase)),
+            "contentCategory": lambda n : setattr(self, 'content_category', n.get_enum_value(ContentCategory)),
             "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
@@ -106,6 +112,7 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("content", self.content)
+        writer.write_enum_value("contentCategory", self.content_category)
         writer.write_str_value("correlationId", self.correlation_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("identifier", self.identifier)

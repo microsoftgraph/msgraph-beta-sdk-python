@@ -17,8 +17,6 @@ class ExternalTokenBasedSapIagConnectionInfo(ConnectionInfo, Parsable):
     access_token_url: Optional[str] = None
     # The clientId property
     client_id: Optional[str] = None
-    # The domain property
-    domain: Optional[str] = None
     # The keyVaultName property
     key_vault_name: Optional[str] = None
     # The resourceGroup property
@@ -51,7 +49,6 @@ class ExternalTokenBasedSapIagConnectionInfo(ConnectionInfo, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "accessTokenUrl": lambda n : setattr(self, 'access_token_url', n.get_str_value()),
             "clientId": lambda n : setattr(self, 'client_id', n.get_str_value()),
-            "domain": lambda n : setattr(self, 'domain', n.get_str_value()),
             "keyVaultName": lambda n : setattr(self, 'key_vault_name', n.get_str_value()),
             "resourceGroup": lambda n : setattr(self, 'resource_group', n.get_str_value()),
             "secretName": lambda n : setattr(self, 'secret_name', n.get_str_value()),
@@ -72,7 +69,6 @@ class ExternalTokenBasedSapIagConnectionInfo(ConnectionInfo, Parsable):
         super().serialize(writer)
         writer.write_str_value("accessTokenUrl", self.access_token_url)
         writer.write_str_value("clientId", self.client_id)
-        writer.write_str_value("domain", self.domain)
         writer.write_str_value("keyVaultName", self.key_vault_name)
         writer.write_str_value("resourceGroup", self.resource_group)
         writer.write_str_value("secretName", self.secret_name)
