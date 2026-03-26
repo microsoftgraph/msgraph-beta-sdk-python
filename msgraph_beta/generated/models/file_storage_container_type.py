@@ -33,7 +33,7 @@ class FileStorageContainerType(Entity, Parsable):
     odata_type: Optional[str] = None
     # ID of the application that owns the fileStorageContainerType.
     owning_app_id: Optional[UUID] = None
-    # The permissions property
+    # The set of permissions for users in the container type. The permissions collection defines who has access to manage the container type. Use the owner role to grant management access.
     permissions: Optional[list[Permission]] = None
     # The settings property
     settings: Optional[FileStorageContainerTypeSettings] = None

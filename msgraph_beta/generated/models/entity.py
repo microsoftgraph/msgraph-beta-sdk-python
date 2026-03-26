@@ -733,6 +733,12 @@ if TYPE_CHECKING:
     from .entitlement_management_settings import EntitlementManagementSettings
     from .entra import Entra
     from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
+    from .entra_recovery_services.recovery import Recovery
+    from .entra_recovery_services.recovery_change_object_base import RecoveryChangeObjectBase
+    from .entra_recovery_services.recovery_job import RecoveryJob
+    from .entra_recovery_services.recovery_job_base import RecoveryJobBase
+    from .entra_recovery_services.recovery_preview_job import RecoveryPreviewJob
+    from .entra_recovery_services.snapshot import Snapshot
     from .evaluate_label_job_response import EvaluateLabelJobResponse
     from .event import Event
     from .event_message import EventMessage
@@ -1897,7 +1903,31 @@ if TYPE_CHECKING:
     from .tenant_app_management_policy import TenantAppManagementPolicy
     from .tenant_attach_r_b_a_c import TenantAttachRBAC
     from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
+    from .tenant_governance_services.b2b_registration_metrics import B2bRegistrationMetrics
+    from .tenant_governance_services.b2_b_registration_metrics_base import B2BRegistrationMetricsBase
+    from .tenant_governance_services.b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
+    from .tenant_governance_services.b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
+    from .tenant_governance_services.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
+    from .tenant_governance_services.b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
+    from .tenant_governance_services.b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
+    from .tenant_governance_services.b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
+    from .tenant_governance_services.billing_metrics import BillingMetrics
+    from .tenant_governance_services.billing_metrics_base import BillingMetricsBase
+    from .tenant_governance_services.billing_metrics_initial import BillingMetricsInitial
+    from .tenant_governance_services.billing_metrics_recent import BillingMetricsRecent
+    from .tenant_governance_services.governance_invitation import GovernanceInvitation
+    from .tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
+    from .tenant_governance_services.governance_relationship import GovernanceRelationship
+    from .tenant_governance_services.governance_request import GovernanceRequest
     from .tenant_governance_services.long_running_operation import LongRunningOperation
+    from .tenant_governance_services.multi_tenant_application_metrics import MultiTenantApplicationMetrics
+    from .tenant_governance_services.multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
+    from .tenant_governance_services.multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
+    from .tenant_governance_services.multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
+    from .tenant_governance_services.related_tenant import RelatedTenant
+    from .tenant_governance_services.related_tenants_refresh_request import RelatedTenantsRefreshRequest
+    from .tenant_governance_services.tenant_governance import TenantGovernance
+    from .tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
     from .tenant_protection_scope_container import TenantProtectionScopeContainer
     from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
     from .tenant_setup_info import TenantSetupInfo
@@ -5244,6 +5274,30 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
 
             return EntraIdProtectionRiskyUserApproval()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraRecoveryServices.recovery".casefold():
+            from .entra_recovery_services.recovery import Recovery
+
+            return Recovery()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraRecoveryServices.recoveryChangeObjectBase".casefold():
+            from .entra_recovery_services.recovery_change_object_base import RecoveryChangeObjectBase
+
+            return RecoveryChangeObjectBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraRecoveryServices.recoveryJob".casefold():
+            from .entra_recovery_services.recovery_job import RecoveryJob
+
+            return RecoveryJob()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraRecoveryServices.recoveryJobBase".casefold():
+            from .entra_recovery_services.recovery_job_base import RecoveryJobBase
+
+            return RecoveryJobBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraRecoveryServices.recoveryPreviewJob".casefold():
+            from .entra_recovery_services.recovery_preview_job import RecoveryPreviewJob
+
+            return RecoveryPreviewJob()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraRecoveryServices.snapshot".casefold():
+            from .entra_recovery_services.snapshot import Snapshot
+
+            return Snapshot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.evaluateLabelJobResponse".casefold():
             from .evaluate_label_job_response import EvaluateLabelJobResponse
 
@@ -5578,6 +5632,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return GovernanceInsight()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.governancePolicyTemplate".casefold():
             from .governance_policy_template import GovernancePolicyTemplate
+            from .tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
 
             return GovernancePolicyTemplate()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.governanceResource".casefold():
@@ -9943,11 +9998,108 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
 
             return TenantDataSecurityAndGovernance()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2bRegistrationMetrics".casefold():
+            from .tenant_governance_services.b2b_registration_metrics import B2bRegistrationMetrics
+
+            return B2bRegistrationMetrics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BRegistrationMetricsBase".casefold():
+            from .tenant_governance_services.b2_b_registration_metrics_base import B2BRegistrationMetricsBase
+
+            return B2BRegistrationMetricsBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BRegistrationMetricsInitial".casefold():
+            from .tenant_governance_services.b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
+
+            return B2BRegistrationMetricsInitial()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BRegistrationMetricsRecent".casefold():
+            from .tenant_governance_services.b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
+
+            return B2BRegistrationMetricsRecent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BSignInActivityMetrics".casefold():
+            from .tenant_governance_services.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
+
+            return B2BSignInActivityMetrics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BSignInActivityMetricsBase".casefold():
+            from .tenant_governance_services.b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
+
+            return B2BSignInActivityMetricsBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BSignInActivityMetricsInitial".casefold():
+            from .tenant_governance_services.b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
+
+            return B2BSignInActivityMetricsInitial()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BSignInActivityMetricsRecent".casefold():
+            from .tenant_governance_services.b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
+
+            return B2BSignInActivityMetricsRecent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.billingMetrics".casefold():
+            from .tenant_governance_services.billing_metrics import BillingMetrics
+
+            return BillingMetrics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.billingMetricsBase".casefold():
+            from .tenant_governance_services.billing_metrics_base import BillingMetricsBase
+
+            return BillingMetricsBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.billingMetricsInitial".casefold():
+            from .tenant_governance_services.billing_metrics_initial import BillingMetricsInitial
+
+            return BillingMetricsInitial()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.billingMetricsRecent".casefold():
+            from .tenant_governance_services.billing_metrics_recent import BillingMetricsRecent
+
+            return BillingMetricsRecent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.governanceInvitation".casefold():
+            from .tenant_governance_services.governance_invitation import GovernanceInvitation
+
+            return GovernanceInvitation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.governancePolicyTemplate".casefold():
+            from .governance_policy_template import GovernancePolicyTemplate
+            from .tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
+
+            return GovernancePolicyTemplate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.governanceRelationship".casefold():
+            from .tenant_governance_services.governance_relationship import GovernanceRelationship
+
+            return GovernanceRelationship()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.governanceRequest".casefold():
+            from .tenant_governance_services.governance_request import GovernanceRequest
+
+            return GovernanceRequest()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.longRunningOperation".casefold():
             from .long_running_operation import LongRunningOperation
             from .tenant_governance_services.long_running_operation import LongRunningOperation
 
             return LongRunningOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.multiTenantApplicationMetrics".casefold():
+            from .tenant_governance_services.multi_tenant_application_metrics import MultiTenantApplicationMetrics
+
+            return MultiTenantApplicationMetrics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.multiTenantApplicationMetricsBase".casefold():
+            from .tenant_governance_services.multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
+
+            return MultiTenantApplicationMetricsBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.multiTenantApplicationMetricsInitial".casefold():
+            from .tenant_governance_services.multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
+
+            return MultiTenantApplicationMetricsInitial()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.multiTenantApplicationMetricsRecent".casefold():
+            from .tenant_governance_services.multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
+
+            return MultiTenantApplicationMetricsRecent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.relatedTenant".casefold():
+            from .tenant_governance_services.related_tenant import RelatedTenant
+
+            return RelatedTenant()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.relatedTenantsRefreshRequest".casefold():
+            from .tenant_governance_services.related_tenants_refresh_request import RelatedTenantsRefreshRequest
+
+            return RelatedTenantsRefreshRequest()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.tenantGovernance".casefold():
+            from .tenant_governance_services.tenant_governance import TenantGovernance
+
+            return TenantGovernance()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.tenantGovernanceSetting".casefold():
+            from .tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
+
+            return TenantGovernanceSetting()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantProtectionScopeContainer".casefold():
             from .tenant_protection_scope_container import TenantProtectionScopeContainer
 
@@ -12249,6 +12401,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .entitlement_management_settings import EntitlementManagementSettings
         from .entra import Entra
         from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
+        from .entra_recovery_services.recovery import Recovery
+        from .entra_recovery_services.recovery_change_object_base import RecoveryChangeObjectBase
+        from .entra_recovery_services.recovery_job import RecoveryJob
+        from .entra_recovery_services.recovery_job_base import RecoveryJobBase
+        from .entra_recovery_services.recovery_preview_job import RecoveryPreviewJob
+        from .entra_recovery_services.snapshot import Snapshot
         from .evaluate_label_job_response import EvaluateLabelJobResponse
         from .event import Event
         from .event_message import EventMessage
@@ -13413,7 +13571,31 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .tenant_attach_r_b_a_c import TenantAttachRBAC
         from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
+        from .tenant_governance_services.b2b_registration_metrics import B2bRegistrationMetrics
+        from .tenant_governance_services.b2_b_registration_metrics_base import B2BRegistrationMetricsBase
+        from .tenant_governance_services.b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
+        from .tenant_governance_services.b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
+        from .tenant_governance_services.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
+        from .tenant_governance_services.b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
+        from .tenant_governance_services.b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
+        from .tenant_governance_services.b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
+        from .tenant_governance_services.billing_metrics import BillingMetrics
+        from .tenant_governance_services.billing_metrics_base import BillingMetricsBase
+        from .tenant_governance_services.billing_metrics_initial import BillingMetricsInitial
+        from .tenant_governance_services.billing_metrics_recent import BillingMetricsRecent
+        from .tenant_governance_services.governance_invitation import GovernanceInvitation
+        from .tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
+        from .tenant_governance_services.governance_relationship import GovernanceRelationship
+        from .tenant_governance_services.governance_request import GovernanceRequest
         from .tenant_governance_services.long_running_operation import LongRunningOperation
+        from .tenant_governance_services.multi_tenant_application_metrics import MultiTenantApplicationMetrics
+        from .tenant_governance_services.multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
+        from .tenant_governance_services.multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
+        from .tenant_governance_services.multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
+        from .tenant_governance_services.related_tenant import RelatedTenant
+        from .tenant_governance_services.related_tenants_refresh_request import RelatedTenantsRefreshRequest
+        from .tenant_governance_services.tenant_governance import TenantGovernance
+        from .tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
         from .tenant_protection_scope_container import TenantProtectionScopeContainer
         from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
         from .tenant_setup_info import TenantSetupInfo
@@ -14532,6 +14714,12 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .entitlement_management_settings import EntitlementManagementSettings
         from .entra import Entra
         from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
+        from .entra_recovery_services.recovery import Recovery
+        from .entra_recovery_services.recovery_change_object_base import RecoveryChangeObjectBase
+        from .entra_recovery_services.recovery_job import RecoveryJob
+        from .entra_recovery_services.recovery_job_base import RecoveryJobBase
+        from .entra_recovery_services.recovery_preview_job import RecoveryPreviewJob
+        from .entra_recovery_services.snapshot import Snapshot
         from .evaluate_label_job_response import EvaluateLabelJobResponse
         from .event import Event
         from .event_message import EventMessage
@@ -15696,7 +15884,31 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .tenant_attach_r_b_a_c import TenantAttachRBAC
         from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
+        from .tenant_governance_services.b2b_registration_metrics import B2bRegistrationMetrics
+        from .tenant_governance_services.b2_b_registration_metrics_base import B2BRegistrationMetricsBase
+        from .tenant_governance_services.b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
+        from .tenant_governance_services.b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
+        from .tenant_governance_services.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
+        from .tenant_governance_services.b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
+        from .tenant_governance_services.b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
+        from .tenant_governance_services.b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
+        from .tenant_governance_services.billing_metrics import BillingMetrics
+        from .tenant_governance_services.billing_metrics_base import BillingMetricsBase
+        from .tenant_governance_services.billing_metrics_initial import BillingMetricsInitial
+        from .tenant_governance_services.billing_metrics_recent import BillingMetricsRecent
+        from .tenant_governance_services.governance_invitation import GovernanceInvitation
+        from .tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
+        from .tenant_governance_services.governance_relationship import GovernanceRelationship
+        from .tenant_governance_services.governance_request import GovernanceRequest
         from .tenant_governance_services.long_running_operation import LongRunningOperation
+        from .tenant_governance_services.multi_tenant_application_metrics import MultiTenantApplicationMetrics
+        from .tenant_governance_services.multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
+        from .tenant_governance_services.multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
+        from .tenant_governance_services.multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
+        from .tenant_governance_services.related_tenant import RelatedTenant
+        from .tenant_governance_services.related_tenants_refresh_request import RelatedTenantsRefreshRequest
+        from .tenant_governance_services.tenant_governance import TenantGovernance
+        from .tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
         from .tenant_protection_scope_container import TenantProtectionScopeContainer
         from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
         from .tenant_setup_info import TenantSetupInfo

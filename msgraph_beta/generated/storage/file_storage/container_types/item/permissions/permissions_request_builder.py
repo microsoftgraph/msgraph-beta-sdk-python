@@ -49,9 +49,10 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PermissionsRequestBuilderGetQueryParameters]] = None) -> Optional[PermissionCollectionResponse]:
         """
-        Get permissions from storage
+        Get the list of permission objects associated with a fileStorageContainerType. Each permission represents a user with management rights to the container type. The calling user must be listed in the permissions collection for the container type with the owner role, or be a SharePoint Embedded Administrator or Global Administrator.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PermissionCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainertype-list-permissions?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Permission, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Permission]:
         """
-        Create new navigation property to permissions for storage
+        Create a user permission object, which adds this permission to a fileStorageContainerType. Only existing owners (users with the owner role in the permissions collection of the container type), SharePoint Embedded Administrators, or Global Administrators can add permissions. The following constraints apply:- A maximum of 3 permissions per container type is allowed. Adding a fourth permission returns a 400 Bad Request error.- Duplicate permissions are treated as idempotent. If the specified user already has a permission on the container type, the service makes no changes and returns the existing permission resource in the response body with a 201 Created status, even though no new permission is created.- Currently only the owner role is supported.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Permission]
+        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainertype-post-permissions?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PermissionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get permissions from storage
+        Get the list of permission objects associated with a fileStorageContainerType. Each permission represents a user with management rights to the container type. The calling user must be listed in the permissions collection for the container type with the owner role, or be a SharePoint Embedded Administrator or Global Administrator.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Permission, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to permissions for storage
+        Create a user permission object, which adds this permission to a fileStorageContainerType. Only existing owners (users with the owner role in the permissions collection of the container type), SharePoint Embedded Administrators, or Global Administrators can add permissions. The following constraints apply:- A maximum of 3 permissions per container type is allowed. Adding a fourth permission returns a 400 Bad Request error.- Duplicate permissions are treated as idempotent. If the specified user already has a permission on the container type, the service makes no changes and returns the existing permission resource in the response body with a 201 Created status, even though no new permission is created.- Currently only the owner role is supported.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PermissionsRequestBuilderGetQueryParameters():
         """
-        Get permissions from storage
+        Get the list of permission objects associated with a fileStorageContainerType. Each permission represents a user with management rights to the container type. The calling user must be listed in the permissions collection for the container type with the owner role, or be a SharePoint Embedded Administrator or Global Administrator.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

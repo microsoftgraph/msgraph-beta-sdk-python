@@ -37,7 +37,7 @@ class RetrieveCloudPcRecommendationReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
         """
-        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
+        warn("Starting from December 31, 2025, this API (&apos;cloudPcReports/retrieveCloudPcRecommendationReports&apos;) will be deprecated and no longer supported. Please use the cloudPcReport/retrieveCloudPcRecommendationReports API. as of 2025-09/cloudPcReports/retrieveCloudPcRecommendationReports on 2025-09-01 and will be removed 2025-12-31", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -59,7 +59,7 @@ class RetrieveCloudPcRecommendationReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
+        warn("Starting from December 31, 2025, this API (&apos;cloudPcReports/retrieveCloudPcRecommendationReports&apos;) will be deprecated and no longer supported. Please use the cloudPcReport/retrieveCloudPcRecommendationReports API. as of 2025-09/cloudPcReports/retrieveCloudPcRecommendationReports on 2025-09-01 and will be removed 2025-12-31", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -74,7 +74,7 @@ class RetrieveCloudPcRecommendationReportsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: RetrieveCloudPcRecommendationReportsRequestBuilder
         """
-        warn("Starting from December 31, 2026, this entity type (&apos;cloudPcReports&apos;) will be deprecated and no longer supported. Please use &apos;cloudPcReport&apos; instead. as of 2025-09/cloudPcReports on 2025-09-01 and will be removed 2026-12-31", DeprecationWarning)
+        warn("Starting from December 31, 2025, this API (&apos;cloudPcReports/retrieveCloudPcRecommendationReports&apos;) will be deprecated and no longer supported. Please use the cloudPcReport/retrieveCloudPcRecommendationReports API. as of 2025-09/cloudPcReports/retrieveCloudPcRecommendationReports on 2025-09-01 and will be removed 2025-12-31", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return RetrieveCloudPcRecommendationReportsRequestBuilder(self.request_adapter, raw_url)

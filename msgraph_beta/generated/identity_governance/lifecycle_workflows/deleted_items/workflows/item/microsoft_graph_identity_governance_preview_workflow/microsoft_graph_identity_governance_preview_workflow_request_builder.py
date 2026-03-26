@@ -32,10 +32,11 @@ class MicrosoftGraphIdentityGovernancePreviewWorkflowRequestBuilder(BaseRequestB
     
     async def post(self,body: PreviewWorkflowPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action previewWorkflow
+        Run a workflow in preview mode for selected directory objects without affecting production users. This action triggers workflow processing in preview mode, and results can be retrieved using the List userProcessingResults operation with $filter=workflowExecutionType eq 'previewMode'.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/identitygovernance-workflow-previewworkflow?view=graph-rest-beta
         """
         warn(" as of 2025-01/PrivatePreview:organizationalUnit on 2025-08-12 and will be removed 2026-02-28", DeprecationWarning)
         if body is None:
@@ -54,7 +55,7 @@ class MicrosoftGraphIdentityGovernancePreviewWorkflowRequestBuilder(BaseRequestB
     
     def to_post_request_information(self,body: PreviewWorkflowPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action previewWorkflow
+        Run a workflow in preview mode for selected directory objects without affecting production users. This action triggers workflow processing in preview mode, and results can be retrieved using the List userProcessingResults operation with $filter=workflowExecutionType eq 'previewMode'.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

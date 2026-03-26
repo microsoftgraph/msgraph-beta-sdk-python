@@ -5,6 +5,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .application_activity import ApplicationActivity
+
 @dataclass
 class CloudApplicationMetadata(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -12,6 +15,8 @@ class CloudApplicationMetadata(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The activity property
+    activity: Optional[ApplicationActivity] = None
     # The list of categories for the application. Supported values are: Collaboration, Business Management, Consumer, Content management, CRM, Data services, Developer services, E-commerce, Education, ERP, Finance, Health, Human resources, IT infrastructure, Mail, Management, Marketing, Media, Productivity, Project management, Telecommunications, Tools, Travel, and Web design & hosting.
     categories: Optional[list[str]] = None
     # The ID of the application in the SaaS application catalog.
@@ -51,7 +56,12 @@ class CloudApplicationMetadata(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .application_activity import ApplicationActivity
+
+        from .application_activity import ApplicationActivity
+
         fields: dict[str, Callable[[Any], None]] = {
+            "activity": lambda n : setattr(self, 'activity', n.get_enum_value(ApplicationActivity)),
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "cloudApplicationCatalogId": lambda n : setattr(self, 'cloud_application_catalog_id', n.get_str_value()),
             "complianceScore": lambda n : setattr(self, 'compliance_score', n.get_int_value()),
@@ -74,6 +84,7 @@ class CloudApplicationMetadata(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("activity", self.activity)
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_str_value("cloudApplicationCatalogId", self.cloud_application_catalog_id)
         writer.write_int_value("complianceScore", self.compliance_score)

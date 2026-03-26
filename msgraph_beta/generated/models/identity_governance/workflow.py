@@ -27,7 +27,7 @@ class Workflow(WorkflowBase, Parsable):
     id: Optional[str] = None
     # The date time when the workflow is expected to run next based on the schedule interval, if there are any users matching the execution conditions. Supports $filter(lt,gt) and $orderby.
     next_schedule_run_date_time: Optional[datetime.datetime] = None
-    # The previewScope property
+    # A read-only collection of directory objects that are currently in-scope for the workflow based on its execution conditions. This property helps preview which users would be affected before running the workflow. Nullable. Read-only. Returned only on $expand. Supports $expand.
     preview_scope: Optional[list[DirectoryObject]] = None
     # Workflow runs.
     runs: Optional[list[Run]] = None
