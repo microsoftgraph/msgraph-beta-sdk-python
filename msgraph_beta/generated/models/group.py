@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     from .license_processing_state import LicenseProcessingState
     from .membership_rule_processing_status import MembershipRuleProcessingStatus
     from .onenote import Onenote
+    from .on_premises_extension_attributes import OnPremisesExtensionAttributes
     from .on_premises_provisioning_error import OnPremisesProvisioningError
     from .on_premises_sync_behavior import OnPremisesSyncBehavior
     from .planner_group import PlannerGroup
@@ -133,6 +134,8 @@ class Group(DirectoryObject, Parsable):
     membership_rule_processing_status: Optional[MembershipRuleProcessingStatus] = None
     # Contains the on-premises domain FQDN, also called dnsDomainName synchronized from the on-premises directory. The property is only populated for customers synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect.Returned by default. Read-only.
     on_premises_domain_name: Optional[str] = None
+    # The onPremisesExtensionAttributes property
+    on_premises_extension_attributes: Optional[OnPremisesExtensionAttributes] = None
     # Indicates the last time at which the group was synced with the on-premises directory.The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Read-only. Supports $filter (eq, ne, not, ge, le, in).
     on_premises_last_sync_date_time: Optional[datetime.datetime] = None
     # Contains the on-premises netBios name synchronized from the on-premises directory. The property is only populated for customers synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect.Returned by default. Read-only.
@@ -245,6 +248,7 @@ class Group(DirectoryObject, Parsable):
         from .license_processing_state import LicenseProcessingState
         from .membership_rule_processing_status import MembershipRuleProcessingStatus
         from .onenote import Onenote
+        from .on_premises_extension_attributes import OnPremisesExtensionAttributes
         from .on_premises_provisioning_error import OnPremisesProvisioningError
         from .on_premises_sync_behavior import OnPremisesSyncBehavior
         from .planner_group import PlannerGroup
@@ -273,6 +277,7 @@ class Group(DirectoryObject, Parsable):
         from .license_processing_state import LicenseProcessingState
         from .membership_rule_processing_status import MembershipRuleProcessingStatus
         from .onenote import Onenote
+        from .on_premises_extension_attributes import OnPremisesExtensionAttributes
         from .on_premises_provisioning_error import OnPremisesProvisioningError
         from .on_premises_sync_behavior import OnPremisesSyncBehavior
         from .planner_group import PlannerGroup
@@ -328,6 +333,7 @@ class Group(DirectoryObject, Parsable):
             "membershipRuleProcessingState": lambda n : setattr(self, 'membership_rule_processing_state', n.get_str_value()),
             "membershipRuleProcessingStatus": lambda n : setattr(self, 'membership_rule_processing_status', n.get_object_value(MembershipRuleProcessingStatus)),
             "onPremisesDomainName": lambda n : setattr(self, 'on_premises_domain_name', n.get_str_value()),
+            "onPremisesExtensionAttributes": lambda n : setattr(self, 'on_premises_extension_attributes', n.get_object_value(OnPremisesExtensionAttributes)),
             "onPremisesLastSyncDateTime": lambda n : setattr(self, 'on_premises_last_sync_date_time', n.get_datetime_value()),
             "onPremisesNetBiosName": lambda n : setattr(self, 'on_premises_net_bios_name', n.get_str_value()),
             "onPremisesProvisioningErrors": lambda n : setattr(self, 'on_premises_provisioning_errors', n.get_collection_of_object_values(OnPremisesProvisioningError)),
@@ -425,6 +431,7 @@ class Group(DirectoryObject, Parsable):
         writer.write_str_value("membershipRuleProcessingState", self.membership_rule_processing_state)
         writer.write_object_value("membershipRuleProcessingStatus", self.membership_rule_processing_status)
         writer.write_str_value("onPremisesDomainName", self.on_premises_domain_name)
+        writer.write_object_value("onPremisesExtensionAttributes", self.on_premises_extension_attributes)
         writer.write_datetime_value("onPremisesLastSyncDateTime", self.on_premises_last_sync_date_time)
         writer.write_str_value("onPremisesNetBiosName", self.on_premises_net_bios_name)
         writer.write_collection_of_object_values("onPremisesProvisioningErrors", self.on_premises_provisioning_errors)

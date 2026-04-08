@@ -38,6 +38,7 @@ if TYPE_CHECKING:
     from .event import Event
     from .extension import Extension
     from .group import Group
+    from .identity_governance_user_settings import IdentityGovernanceUserSettings
     from .inference_classification import InferenceClassification
     from .information_protection import InformationProtection
     from .item_insights import ItemInsights
@@ -221,6 +222,8 @@ class User(DirectoryObject, Parsable):
     hire_date: Optional[datetime.datetime] = None
     # Represents the identities that can be used to sign in to this user account. An identity can be provided by Microsoft (also known as a local account), by organizations, or by social identity providers such as Facebook, Google, and Microsoft and tied to a user account. It may contain multiple items with the same signInType value.  Supports $filter (eq) with limitations.
     identities: Optional[list[ObjectIdentity]] = None
+    # The identityGovernance property
+    identity_governance: Optional[IdentityGovernanceUserSettings] = None
     # The object ID of the parent identity for agent users. Always null for regular user accounts. For agentUser resources, this property references the object ID of the associated agent identity.
     identity_parent_id: Optional[str] = None
     # The instant message voice-over IP (VOIP) session initiation protocol (SIP) addresses for the user. Read-only. Supports $filter (eq, not, ge, le, startsWith).
@@ -477,6 +480,7 @@ class User(DirectoryObject, Parsable):
         from .event import Event
         from .extension import Extension
         from .group import Group
+        from .identity_governance_user_settings import IdentityGovernanceUserSettings
         from .inference_classification import InferenceClassification
         from .information_protection import InformationProtection
         from .item_insights import ItemInsights
@@ -560,6 +564,7 @@ class User(DirectoryObject, Parsable):
         from .event import Event
         from .extension import Extension
         from .group import Group
+        from .identity_governance_user_settings import IdentityGovernanceUserSettings
         from .inference_classification import InferenceClassification
         from .information_protection import InformationProtection
         from .item_insights import ItemInsights
@@ -675,6 +680,7 @@ class User(DirectoryObject, Parsable):
             "givenName": lambda n : setattr(self, 'given_name', n.get_str_value()),
             "hireDate": lambda n : setattr(self, 'hire_date', n.get_datetime_value()),
             "identities": lambda n : setattr(self, 'identities', n.get_collection_of_object_values(ObjectIdentity)),
+            "identityGovernance": lambda n : setattr(self, 'identity_governance', n.get_object_value(IdentityGovernanceUserSettings)),
             "identityParentId": lambda n : setattr(self, 'identity_parent_id', n.get_str_value()),
             "imAddresses": lambda n : setattr(self, 'im_addresses', n.get_collection_of_primitive_values(str)),
             "inferenceClassification": lambda n : setattr(self, 'inference_classification', n.get_object_value(InferenceClassification)),
@@ -851,6 +857,7 @@ class User(DirectoryObject, Parsable):
         writer.write_str_value("givenName", self.given_name)
         writer.write_datetime_value("hireDate", self.hire_date)
         writer.write_collection_of_object_values("identities", self.identities)
+        writer.write_object_value("identityGovernance", self.identity_governance)
         writer.write_str_value("identityParentId", self.identity_parent_id)
         writer.write_collection_of_primitive_values("imAddresses", self.im_addresses)
         writer.write_object_value("inferenceClassification", self.inference_classification)

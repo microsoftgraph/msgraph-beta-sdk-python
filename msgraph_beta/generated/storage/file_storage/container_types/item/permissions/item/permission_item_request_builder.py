@@ -52,7 +52,7 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PermissionItemRequestBuilderGetQueryParameters]] = None) -> Optional[Permission]:
         """
-        Get permissions from storage
+        The set of permissions for users in the container type. The permissions collection defines who has access to manage the container type. Use the owner role to grant management access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Permission]
         """
@@ -106,7 +106,7 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PermissionItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get permissions from storage
+        The set of permissions for users in the container type. The permissions collection defines who has access to manage the container type. Use the owner role to grant management access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -168,7 +168,7 @@ class PermissionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PermissionItemRequestBuilderGetQueryParameters():
         """
-        Get permissions from storage
+        The set of permissions for users in the container type. The permissions collection defines who has access to manage the container type. Use the owner role to grant management access.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

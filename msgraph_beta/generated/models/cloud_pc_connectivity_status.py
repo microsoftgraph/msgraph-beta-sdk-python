@@ -6,4 +6,6 @@ class CloudPcConnectivityStatus(str, Enum):
     AvailableWithWarning = "availableWithWarning",
     Unavailable = "unavailable",
     UnknownFutureValue = "unknownFutureValue",
+    UnderServiceMaintenance = "underServiceMaintenance",
+    InUse = "inUse",
 

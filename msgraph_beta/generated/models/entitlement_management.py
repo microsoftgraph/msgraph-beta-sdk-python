@@ -61,7 +61,7 @@ class EntitlementManagement(Entity, Parsable):
     connected_organizations: Optional[list[ConnectedOrganization]] = None
     # Represents the policies that control lifecycle and access to access packages across the organization.
     control_configurations: Optional[list[ControlConfiguration]] = None
-    # The externalOriginResourceConnectors property
+    # Represents the connectors used to communicate with external resource systems.
     external_origin_resource_connectors: Optional[list[ExternalOriginResourceConnector]] = None
     # The OdataType property
     odata_type: Optional[str] = None

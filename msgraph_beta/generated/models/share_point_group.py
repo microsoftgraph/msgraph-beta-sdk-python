@@ -18,7 +18,7 @@ class SharePointGroup(Entity, Parsable):
     members: Optional[list[SharePointGroupMember]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The principalId property
+    # The principal ID of the SharePoint group in the tenant. Read-only.
     principal_id: Optional[str] = None
     # The user-visible title of the sharePointGroup. Read-write.
     title: Optional[str] = None

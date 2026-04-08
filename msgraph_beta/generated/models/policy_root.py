@@ -96,7 +96,7 @@ class PolicyRoot(Entity, Parsable):
     odata_type: Optional[str] = None
     # The policy that controls how authentication requests from on-premises environments are managed.
     on_prem_authentication_policies: Optional[list[OnPremAuthenticationPolicy]] = None
-    # The ownerlessGroupPolicy property
+    # The policy configuration for managing groups that have lost their sole owner.
     ownerless_group_policy: Optional[OwnerlessGroupPolicy] = None
     # The policy that specifies the conditions under which consent can be granted.
     permission_grant_policies: Optional[list[PermissionGrantPolicy]] = None

@@ -49,7 +49,7 @@ class PreviewScopeRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PreviewScopeRequestBuilderGetQueryParameters]] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Get previewScope from identityGovernance
+        A read-only collection of directory objects that are currently in-scope for the workflow based on its execution conditions. This property helps preview which users would be affected before running the workflow. Nullable. Read-only. Returned only on $expand. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
         """
@@ -70,7 +70,7 @@ class PreviewScopeRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PreviewScopeRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get previewScope from identityGovernance
+        A read-only collection of directory objects that are currently in-scope for the workflow based on its execution conditions. This property helps preview which users would be affected before running the workflow. Nullable. Read-only. Returned only on $expand. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +103,7 @@ class PreviewScopeRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PreviewScopeRequestBuilderGetQueryParameters():
         """
-        Get previewScope from identityGovernance
+        A read-only collection of directory objects that are currently in-scope for the workflow based on its execution conditions. This property helps preview which users would be affected before running the workflow. Nullable. Read-only. Returned only on $expand. Supports $expand.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

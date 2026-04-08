@@ -34,9 +34,10 @@ class TargetedChatMessageItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property targetedMessages for users
+        Delete a specific targeted message from a chat context. Teams administrators can use this API to remove targeted messages from group chats.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/chat-delete-targetedmessages?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -52,7 +53,7 @@ class TargetedChatMessageItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TargetedChatMessageItemRequestBuilderGetQueryParameters]] = None) -> Optional[TargetedChatMessage]:
         """
-        Get targetedMessages from users
+        A collection of targeted messages in the chat that are visible only to specific users. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TargetedChatMessage]
         """
@@ -95,7 +96,7 @@ class TargetedChatMessageItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property targetedMessages for users
+        Delete a specific targeted message from a chat context. Teams administrators can use this API to remove targeted messages from group chats.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -106,7 +107,7 @@ class TargetedChatMessageItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TargetedChatMessageItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get targetedMessages from users
+        A collection of targeted messages in the chat that are visible only to specific users. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -168,7 +169,7 @@ class TargetedChatMessageItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TargetedChatMessageItemRequestBuilderGetQueryParameters():
         """
-        Get targetedMessages from users
+        A collection of targeted messages in the chat that are visible only to specific users. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
