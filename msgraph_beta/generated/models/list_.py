@@ -34,7 +34,7 @@ class List_(BaseItem, Parsable):
     display_name: Optional[str] = None
     # Allows access to the list as a drive resource with driveItems. Only present on document libraries.
     drive: Optional[Drive] = None
-    # The itemCount property
+    # The number of items in the list. Read-only.
     item_count: Optional[int] = None
     # All items contained in the list.
     items: Optional[list[ListItem]] = None

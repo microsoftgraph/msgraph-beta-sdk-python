@@ -32,9 +32,10 @@ class MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequestBuilder(BaseRequ
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[PreviewTaskFailuresPostResponse]:
         """
-        Invoke action previewTaskFailures
+        Validate the tasks configured in a workflow to check for configuration errors. This action identifies any tasks that would fail during execution, allowing you to fix issues before running the workflow. Returns an empty collection if no task failures are detected.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PreviewTaskFailuresPostResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/identitygovernance-workflow-previewtaskfailures?view=graph-rest-beta
         """
         warn(" as of 2025-01/PrivatePreview:organizationalUnit on 2025-08-12 and will be removed 2026-02-28", DeprecationWarning)
         request_info = self.to_post_request_information(
@@ -53,7 +54,7 @@ class MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequestBuilder(BaseRequ
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action previewTaskFailures
+        Validate the tasks configured in a workflow to check for configuration errors. This action identifies any tasks that would fail during execution, allowing you to fix issues before running the workflow. Returns an empty collection if no task failures are detected.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

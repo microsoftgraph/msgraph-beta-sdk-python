@@ -33,10 +33,11 @@ class MicrosoftGraphSecurityMergeIncidentsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: MergeIncidentsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MergeResponse]:
         """
-        Invoke action mergeIncidents
+        Merge multiple incident resources into a single incident.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MergeResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/security-incident-mergeincidents?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -56,7 +57,7 @@ class MicrosoftGraphSecurityMergeIncidentsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: MergeIncidentsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action mergeIncidents
+        Merge multiple incident resources into a single incident.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

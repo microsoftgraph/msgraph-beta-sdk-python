@@ -13,17 +13,17 @@ from .connection_info import ConnectionInfo
 class ExternalTokenBasedSapIagConnectionInfo(ConnectionInfo, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.externalTokenBasedSapIagConnectionInfo"
-    # The accessTokenUrl property
+    # The URL endpoint used to obtain access tokens for authentication with the SAP IAG system.
     access_token_url: Optional[str] = None
-    # The clientId property
+    # The client identifier used for authentication with the SAP IAG system.
     client_id: Optional[str] = None
-    # The keyVaultName property
+    # The name of the Azure Key Vault that stores the client secret for authentication.
     key_vault_name: Optional[str] = None
-    # The resourceGroup property
+    # The Azure resource group that contains the Key Vault.
     resource_group: Optional[str] = None
-    # The secretName property
+    # The name of the secret in Azure Key Vault that contains the client secret.
     secret_name: Optional[str] = None
-    # The subscriptionId property
+    # The Azure subscription ID that contains the Key Vault.
     subscription_id: Optional[str] = None
     
     @staticmethod

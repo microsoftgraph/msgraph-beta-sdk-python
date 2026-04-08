@@ -21,17 +21,17 @@ class ConfigurationMonitor(Entity, Parsable):
     baseline: Optional[ConfigurationBaseline] = None
     # The createdBy property
     created_by: Optional[IdentitySet] = None
-    # The date and time when the monitor was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The date and time when the monitor was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ne, ge, le) and $orderby.
     created_date_time: Optional[datetime.datetime] = None
-    # User-friendly description of the monitor given by the user.
+    # User-friendly description of the monitor given by the user. Supports $filter (eq, ne, startsWith) and $orderby.
     description: Optional[str] = None
-    # User-friendly name given by the user to the monitor.
+    # User-friendly name given by the user to the monitor. Supports $filter (eq, ne, startsWith) and $orderby.
     display_name: Optional[str] = None
-    # The reason for the monitor's inactivation.
+    # The reason for the monitor's inactivation. Returned only on $select.
     inactivation_reason: Optional[str] = None
     # The lastModifiedBy property
     last_modified_by: Optional[IdentitySet] = None
-    # The date and time when the monitor was last modified. If no modifications are made to the monitor, it's the same as createdDateTime. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The date and time when the monitor was last modified. If no modifications are made to the monitor, it's the same as createdDateTime. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ne, ge, le) and $orderby.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The mode property
     mode: Optional[MonitorMode] = None
@@ -39,11 +39,11 @@ class ConfigurationMonitor(Entity, Parsable):
     monitor_run_frequency_in_hours: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Key-value pairs that contain parameter values which might be used in the baseline.
+    # Key-value pairs that contain parameter values which might be used in the baseline. Returned only on $select.
     parameters: Optional[OpenComplexDictionaryType] = None
     # The status property
     status: Optional[MonitorStatus] = None
-    # Globally unique identifier (GUID) of the tenant for which the monitor runs. Fetched automatically by the system.
+    # Globally unique identifier (GUID) of the tenant for which the monitor runs. Fetched automatically by the system. Supports $filter (eq, ne).
     tenant_id: Optional[str] = None
     
     @staticmethod

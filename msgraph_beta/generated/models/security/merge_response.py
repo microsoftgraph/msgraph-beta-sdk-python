@@ -14,7 +14,7 @@ class MergeResponse(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The targetIncidentId property
+    # The ID of the target incident after the operation completes.
     target_incident_id: Optional[str] = None
     
     @staticmethod

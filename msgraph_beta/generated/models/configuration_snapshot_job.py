@@ -14,27 +14,27 @@ from .entity import Entity
 
 @dataclass
 class ConfigurationSnapshotJob(Entity, Parsable):
-    # The date and time when the snapshot job was completed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The date and time when the snapshot job was completed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ne, ge, le) and $orderby.
     completed_date_time: Optional[datetime.datetime] = None
     # The createdBy property
     created_by: Optional[IdentitySet] = None
-    # The date and time when the snapshot job was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The date and time when the snapshot job was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ne, ge, le) and $orderby.
     created_date_time: Optional[datetime.datetime] = None
-    # User-friendly description of the snapshot given by the user.
+    # User-friendly description of the snapshot given by the user. Supports $filter (eq, ne, startsWith) and $orderby.
     description: Optional[str] = None
-    # User-friendly name provided by the user during snapshot creation.
+    # User-friendly name provided by the user during snapshot creation. Supports $filter (eq, ne, startsWith) and $orderby.
     display_name: Optional[str] = None
-    # Details of errors related to the reasons why the snapshot can't complete.
+    # Details of errors related to the reasons why the snapshot can't complete. Returned only on $select.
     error_details: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The URL at which the snapshot file resides.
+    # The URL at which the snapshot file resides. Returned only on $select.
     resource_location: Optional[str] = None
-    # The names of all resources included in the request body by the user who created the snapshot. Fetched by the system.
+    # The names of all resources included in the request body by the user who created the snapshot. Fetched by the system. Returned only on $select.
     resources: Optional[list[str]] = None
     # The status property
     status: Optional[SnapshotJobStatus] = None
-    # Globally unique identifier (GUID) of the tenant for which the snapshot is created.
+    # Globally unique identifier (GUID) of the tenant for which the snapshot is created. Supports $filter (eq, ne).
     tenant_id: Optional[str] = None
     
     @staticmethod

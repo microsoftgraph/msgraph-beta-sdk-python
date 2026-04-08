@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .get_all_retained_targeted_messages.get_all_retained_targeted_messages_request_builder import GetAllRetainedTargetedMessagesRequestBuilder
     from .get_all_targeted_messages.get_all_targeted_messages_request_builder import GetAllTargetedMessagesRequestBuilder
     from .installed_apps.installed_apps_request_builder import InstalledAppsRequestBuilder
+    from .sections.sections_request_builder import SectionsRequestBuilder
     from .send_activity_notification.send_activity_notification_request_builder import SendActivityNotificationRequestBuilder
 
 class TeamworkRequestBuilder(BaseRequestBuilder):
@@ -189,6 +190,15 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
         from .installed_apps.installed_apps_request_builder import InstalledAppsRequestBuilder
 
         return InstalledAppsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sections(self) -> SectionsRequestBuilder:
+        """
+        Provides operations to manage the sections property of the microsoft.graph.userTeamwork entity.
+        """
+        from .sections.sections_request_builder import SectionsRequestBuilder
+
+        return SectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def send_activity_notification(self) -> SendActivityNotificationRequestBuilder:

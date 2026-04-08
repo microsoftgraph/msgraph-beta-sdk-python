@@ -15,23 +15,23 @@ from .entity import Entity
 
 @dataclass
 class ConfigurationDrift(Entity, Parsable):
-    # Resource instance for which the drift is detected.
+    # Resource instance for which the drift is detected. Supports $filter (eq, ne, startsWith) and $orderby.
     baseline_resource_display_name: Optional[str] = None
-    # Properties within one or more resource instances in which drift is detected.
+    # Properties within one or more resource instances in which drift is detected. Returned only on $select.
     drifted_properties: Optional[list[DriftedProperty]] = None
-    # The date and time at which drift is first detected. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # The date and time at which drift is first detected. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ne, ge, le) and $orderby.
     first_reported_date_time: Optional[datetime.datetime] = None
-    # Globally unique identifier (GUID) of the monitor. System-generated.
+    # Globally unique identifier (GUID) of the monitor. System-generated. Supports $filter (eq, ne).
     monitor_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The resourceInstanceIdentifier property
     resource_instance_identifier: Optional[OpenComplexDictionaryType] = None
-    # Resource for which the drift is detected.
+    # Resource for which the drift is detected. Supports $filter (eq, ne, startsWith).
     resource_type: Optional[str] = None
     # The status property
     status: Optional[DriftStatus] = None
-    # Globally unique identifier (GUID) of the tenant for which the monitor runs. Fetched automatically by the system.
+    # Globally unique identifier (GUID) of the tenant for which the monitor runs. Fetched automatically by the system. Supports $filter (eq, ne).
     tenant_id: Optional[str] = None
     
     @staticmethod

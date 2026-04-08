@@ -12,15 +12,15 @@ class PreviewFailedTask(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The definitionId property
+    # The identifier of the task definition of the task that failed during the preview operation of a workflow.
     definition_id: Optional[str] = None
-    # The failureReason property
+    # The reason why the task failed in the preview operation of a workflow.
     failure_reason: Optional[str] = None
-    # The name property
+    # The name of the task that failed within the preview operation of a workflow.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The taskId property
+    # The identifier of the task that failed during the preview operation of a workflow.
     task_id: Optional[str] = None
     
     @staticmethod

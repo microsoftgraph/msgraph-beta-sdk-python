@@ -14,21 +14,21 @@ from .entity import Entity
 
 @dataclass
 class ConfigurationMonitoringResult(Entity, Parsable):
-    # Number of drifts observed during a monitor run.
+    # Number of drifts observed during a monitor run. Supports $filter (eq, ne, ge, le) and $orderby.
     drifts_count: Optional[int] = None
-    # All the error details that prevent the monitor from running successfully. The error details are a contained entity.
+    # All the error details that prevent the monitor from running successfully. The error details are a contained entity. Returned only on $select.
     error_details: Optional[list[ErrorDetail]] = None
-    # Globally unique identifier (GUID) of the monitor. System-generated.
+    # Globally unique identifier (GUID) of the monitor. System-generated. Supports $filter (eq, ne).
     monitor_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Date and time at which the monitor run completed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # Date and time at which the monitor run completed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ne, ge, le) and $orderby.
     run_completion_date_time: Optional[datetime.datetime] = None
-    # Date and time at which the monitor run initiated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    # Date and time at which the monitor run initiated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ne, ge, le) and $orderby.
     run_initiation_date_time: Optional[datetime.datetime] = None
     # The runStatus property
     run_status: Optional[MonitorRunStatus] = None
-    # Globally unique identifier (GUID) of the tenant for which the monitor runs. Fetched automatically by the system.
+    # Globally unique identifier (GUID) of the tenant for which the monitor runs. Fetched automatically by the system. Supports $filter (eq, ne).
     tenant_id: Optional[str] = None
     
     @staticmethod
