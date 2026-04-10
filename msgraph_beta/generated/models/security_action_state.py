@@ -20,7 +20,7 @@ class SecurityActionState(AdditionalDataHolder, BackedModel, Parsable):
     app_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Status of the securityAction in this update. Possible values are: NotStarted, Running, Completed, Failed.
+    # Status of the securityAction in this update. The possible values are: NotStarted, Running, Completed, Failed.
     status: Optional[OperationStatus] = None
     # Timestamp when the actionState was updated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     updated_date_time: Optional[datetime.datetime] = None

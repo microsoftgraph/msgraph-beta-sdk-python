@@ -16,5 +16,6 @@ class CloudPcStatus(str, Enum):
     ResizePendingLicense = "resizePendingLicense",
     UpdatingSingleSignOn = "updatingSingleSignOn",
     ModifyingSingleSignOn = "modifyingSingleSignOn",
+    RefreshPolicyConfiguration = "refreshPolicyConfiguration",
     Preparing = "preparing",
 

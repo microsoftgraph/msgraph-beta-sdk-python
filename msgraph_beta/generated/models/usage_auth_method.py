@@ -29,4 +29,5 @@ class UsageAuthMethod(str, Enum):
     Fido2SecurityKey = "fido2SecurityKey",
     OneTimePasscode = "oneTimePasscode",
     PassKeySynced = "passKeySynced",
+    QrCode = "qrCode",
 

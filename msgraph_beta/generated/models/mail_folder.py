@@ -44,7 +44,7 @@ class MailFolder(Entity, Parsable):
     total_item_count: Optional[int] = None
     # The number of items in the mailFolder marked as unread.
     unread_item_count: Optional[int] = None
-    # The userConfigurations property
+    # The user configuration objects associated to the mailFolder.
     user_configurations: Optional[list[UserConfiguration]] = None
     # The well-known folder name for the folder. The possible values are listed above. This property is only set for default folders created by Outlook. For other folders, this property is null.
     well_known_name: Optional[str] = None

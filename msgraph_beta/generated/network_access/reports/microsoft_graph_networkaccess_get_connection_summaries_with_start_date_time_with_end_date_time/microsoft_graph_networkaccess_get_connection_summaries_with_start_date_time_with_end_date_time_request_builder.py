@@ -38,7 +38,7 @@ class MicrosoftGraphNetworkaccessGetConnectionSummariesWithStartDateTimeWithEndD
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessGetConnectionSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters]] = None) -> Optional[GetConnectionSummariesWithStartDateTimeWithEndDateTimeGetResponse]:
         """
-        An API part of Global Secure Access (GSA) product, reports of connections count per traffic type: Private/Internet/Microsoft.
+        Returns connections count per traffic type: Private/Internet/Microsoft.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetConnectionSummariesWithStartDateTimeWithEndDateTimeGetResponse]
         Find more info here: https://learn.microsoft.com/graph/api/networkaccess-reports-getconnectionsummaries?view=graph-rest-beta
@@ -59,7 +59,7 @@ class MicrosoftGraphNetworkaccessGetConnectionSummariesWithStartDateTimeWithEndD
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessGetConnectionSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        An API part of Global Secure Access (GSA) product, reports of connections count per traffic type: Private/Internet/Microsoft.
+        Returns connections count per traffic type: Private/Internet/Microsoft.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -81,7 +81,7 @@ class MicrosoftGraphNetworkaccessGetConnectionSummariesWithStartDateTimeWithEndD
     @dataclass
     class MicrosoftGraphNetworkaccessGetConnectionSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters():
         """
-        An API part of Global Secure Access (GSA) product, reports of connections count per traffic type: Private/Internet/Microsoft.
+        Returns connections count per traffic type: Private/Internet/Microsoft.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

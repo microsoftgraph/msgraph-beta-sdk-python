@@ -18,7 +18,7 @@ class EventMessageRequest(EventMessage, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.eventMessageRequest"
     # True if the meeting organizer allows invitees to propose a new time when responding, false otherwise. Optional. Default is true.
     allow_new_time_proposals: Optional[bool] = None
-    # The type of meeting request. Possible values are: none, newMeetingRequest, fullUpdate, informationalUpdate, silentUpdate, outdated, and principalWantsCopy.
+    # The type of meeting request. The possible values are: none, newMeetingRequest, fullUpdate, informationalUpdate, silentUpdate, outdated, and principalWantsCopy.
     meeting_request_type: Optional[MeetingRequestType] = None
     # If the meeting update changes the meeting end time, this property specifies the previous meeting end time.
     previous_end_date_time: Optional[DateTimeTimeZone] = None

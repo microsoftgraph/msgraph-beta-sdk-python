@@ -32,7 +32,7 @@ class PlannerTaskDetails(PlannerDelta, Parsable):
     notes: Optional[ItemBody] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # This sets the type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference. When set to automatic the displayed preview is chosen by the app viewing the task.
+    # This sets the type of preview that shows up on the task. The possible values are: automatic, noPreview, checklist, description, reference. When set to automatic the displayed preview is chosen by the app viewing the task.
     preview_type: Optional[PlannerPreviewType] = None
     # The collection of references on the task.
     references: Optional[PlannerExternalReferences] = None

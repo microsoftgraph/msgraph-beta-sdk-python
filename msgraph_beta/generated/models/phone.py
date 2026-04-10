@@ -19,7 +19,7 @@ class Phone(AdditionalDataHolder, BackedModel, Parsable):
     number: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The type of phone number. Possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.
+    # The type of phone number. The possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.
     type: Optional[PhoneType] = None
     
     @staticmethod

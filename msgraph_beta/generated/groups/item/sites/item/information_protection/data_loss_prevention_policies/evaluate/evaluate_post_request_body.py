@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ........models.dlp_evaluation_input import DlpEvaluationInput
     from ........models.dlp_notification import DlpNotification
+    from ........models.text_classification_request import TextClassificationRequest
 
 @dataclass
 class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,6 +17,8 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The classifyText property
+    classify_text: Optional[TextClassificationRequest] = None
     # The evaluationInput property
     evaluation_input: Optional[DlpEvaluationInput] = None
     # The notificationInfo property
@@ -41,11 +44,14 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         from ........models.dlp_evaluation_input import DlpEvaluationInput
         from ........models.dlp_notification import DlpNotification
+        from ........models.text_classification_request import TextClassificationRequest
 
         from ........models.dlp_evaluation_input import DlpEvaluationInput
         from ........models.dlp_notification import DlpNotification
+        from ........models.text_classification_request import TextClassificationRequest
 
         fields: dict[str, Callable[[Any], None]] = {
+            "classifyText": lambda n : setattr(self, 'classify_text', n.get_object_value(TextClassificationRequest)),
             "evaluationInput": lambda n : setattr(self, 'evaluation_input', n.get_object_value(DlpEvaluationInput)),
             "notificationInfo": lambda n : setattr(self, 'notification_info', n.get_object_value(DlpNotification)),
             "target": lambda n : setattr(self, 'target', n.get_str_value()),
@@ -60,6 +66,7 @@ class EvaluatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_object_value("classifyText", self.classify_text)
         writer.write_object_value("evaluationInput", self.evaluation_input)
         writer.write_object_value("notificationInfo", self.notification_info)
         writer.write_str_value("target", self.target)

@@ -15,7 +15,7 @@ from .entity import Entity
 
 @dataclass
 class MobilityManagementPolicy(Entity, Parsable):
-    # Indicates the user scope of the mobility management policy. Possible values are: none, all, selected.
+    # Indicates the user scope of the mobility management policy. The possible values are: none, all, selected.
     applies_to: Optional[PolicyScope] = None
     # Compliance URL of the mobility management application.
     compliance_url: Optional[str] = None

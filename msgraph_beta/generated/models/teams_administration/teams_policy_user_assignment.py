@@ -15,7 +15,7 @@ class TeamsPolicyUserAssignment(Entity, Parsable):
     odata_type: Optional[str] = None
     # The unique identifier (GUID) of the policy within the specified policy type.
     policy_id: Optional[str] = None
-    # The type of Teams policy assigned or unassigned, such as TeamsMeetingBroadcastPolicy.
+    # The type of Teams policy assigned or unassigned, such as teamsMeetingBroadcastPolicy.
     policy_type: Optional[str] = None
     # The unique identifier (GUID) of the user.
     user_id: Optional[str] = None

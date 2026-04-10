@@ -12,13 +12,13 @@ class PlaceOperationProgress(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The failedPlaceCount property
+    # The count of places failed to upsert.
     failed_place_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The succeededPlaceCount property
+    # The count of places succeeded to upsert.
     succeeded_place_count: Optional[int] = None
-    # The totalPlaceCount property
+    # The total count of places in the request.
     total_place_count: Optional[int] = None
     
     @staticmethod

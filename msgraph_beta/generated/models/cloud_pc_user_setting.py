@@ -33,7 +33,7 @@ class CloudPcUserSetting(Entity, Parsable):
     notification_setting: Optional[CloudPcNotificationSetting] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates the provisioning source of the Cloud PC prepared for an end user. Possible values are: image, snapshot, unknownFutureValue. The default value is image. If this property isn't set or set to null, its functionality is the same as setting it to image.
+    # Indicates the provisioning source of the Cloud PC prepared for an end user. The possible values are: image, snapshot, unknownFutureValue. The default value is image. If this property isn't set or set to null, its functionality is the same as setting it to image.
     provisioning_source_type: Optional[CloudPcProvisioningSourceType] = None
     # Indicates whether an end user is allowed to reset their Cloud PC. When true, the user is allowed to reset their Cloud PC. When false, end-user initiated reset isn't allowed. The default value is false.
     reset_enabled: Optional[bool] = None

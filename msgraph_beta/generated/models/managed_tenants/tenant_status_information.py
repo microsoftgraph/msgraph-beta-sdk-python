@@ -19,7 +19,7 @@ class TenantStatusInformation(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The status of the delegated admin privilege relationship between the managing entity and the managed tenant. Possible values are: none, delegatedAdminPrivileges, unknownFutureValue, granularDelegatedAdminPrivileges, delegatedAndGranularDelegetedAdminPrivileges. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: granularDelegatedAdminPrivileges , delegatedAndGranularDelegetedAdminPrivileges. Optional. Read-only.
+    # The status of the delegated admin privilege relationship between the managing entity and the managed tenant. The possible values are: none, delegatedAdminPrivileges, unknownFutureValue, granularDelegatedAdminPrivileges, delegatedAndGranularDelegetedAdminPrivileges. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: granularDelegatedAdminPrivileges , delegatedAndGranularDelegetedAdminPrivileges. Optional. Read-only.
     delegated_privilege_status: Optional[DelegatedPrivilegeStatus] = None
     # The date and time the delegated admin privileges status was updated. Optional. Read-only.
     last_delegated_privilege_refresh_date_time: Optional[datetime.datetime] = None
@@ -33,9 +33,9 @@ class TenantStatusInformation(AdditionalDataHolder, BackedModel, Parsable):
     onboarded_by_user_id: Optional[str] = None
     # The date and time when the managed tenant was onboarded. Optional. Read-only.
     onboarded_date_time: Optional[datetime.datetime] = None
-    # The onboarding status for the managed tenant.. Possible values are: ineligible, inProcess, active, inactive, unknownFutureValue. Optional. Read-only.
+    # The onboarding status for the managed tenant.. The possible values are: ineligible, inProcess, active, inactive, unknownFutureValue. Optional. Read-only.
     onboarding_status: Optional[TenantOnboardingStatus] = None
-    # Organization's onboarding eligibility reason in Microsoft 365 Lighthouse.. Possible values are: none, contractType, delegatedAdminPrivileges,usersCount,license and unknownFutureValue. Optional. Read-only.
+    # Organization's onboarding eligibility reason in Microsoft 365 Lighthouse.. The possible values are: none, contractType, delegatedAdminPrivileges,usersCount,license and unknownFutureValue. Optional. Read-only.
     tenant_onboarding_eligibility_reason: Optional[TenantOnboardingEligibilityReason] = None
     # The collection of workload statues for the managed tenant. Optional. Read-only.
     workload_statuses: Optional[list[WorkloadStatus]] = None

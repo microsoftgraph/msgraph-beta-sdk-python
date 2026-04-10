@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .planner_delta import PlannerDelta
     from .planner_preview_type import PlannerPreviewType
     from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
+    from .planner_task_chat_message import PlannerTaskChatMessage
     from .planner_task_completion_requirements import PlannerTaskCompletionRequirements
     from .planner_task_creation import PlannerTaskCreation
     from .planner_task_details import PlannerTaskDetails
@@ -59,9 +60,9 @@ class PlannerTask(PlannerDelta, Parsable):
     details: Optional[PlannerTaskDetails] = None
     # The date and time at which the task is due. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     due_date_time: Optional[datetime.datetime] = None
-    # The hasChat property
+    # Read-only. This value is true if the task has chat messages associated with it. Otherwise, false.
     has_chat: Optional[bool] = None
-    # Read-only. This value is true if the details object of the task has a nonempty description. Otherwise,false.
+    # Read-only. This value is true if the details object of the task has a nonempty description. Otherwise, false.
     has_description: Optional[bool] = None
     # Read-only. If set to true, the task is archived. An archived task is read-only.
     is_archived: Optional[bool] = None
@@ -73,15 +74,17 @@ class PlannerTask(PlannerDelta, Parsable):
     last_modified_by: Optional[IdentitySet] = None
     # The lastModifiedDateTime property
     last_modified_date_time: Optional[datetime.datetime] = None
+    # Read-only. Nullable. Chat messages associated with the task.
+    messages: Optional[list[PlannerTaskChatMessage]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The hint used to order items of this type in a list view. For more information, see Using order hints in plannern.
+    # The hint used to order items of this type in a list view. For more information, see Using order hints in planner.
     order_hint: Optional[str] = None
     # The percentage of task completion. When set to 100, the task is completed.
     percent_complete: Optional[int] = None
     # Plan ID to which the task belongs.
     plan_id: Optional[str] = None
-    # The type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference.
+    # The type of preview that shows up on the task. The possible values are: automatic, noPreview, checklist, description, reference.
     preview_type: Optional[PlannerPreviewType] = None
     # The priority of the task. Valid values are between 0 and 10, inclusive. Larger values indicate lower priority. For example, 0 has the highest priority and 10 has the lowest priority. Currently, planner interprets values 0 and 1 as 'urgent', 2 and 3 and 4 as 'important', 5, 6, and 7 as 'medium', and 8, 9, and 10 as 'low'. Currently, planner sets the value 1 for 'urgent', 3 for 'important', 5 for 'medium', and 9 for 'low'.
     priority: Optional[int] = None
@@ -91,7 +94,7 @@ class PlannerTask(PlannerDelta, Parsable):
     recurrence: Optional[PlannerTaskRecurrence] = None
     # Number of external references that exist on the task.
     reference_count: Optional[int] = None
-    # Indicates all the requirements specified on the plannerTask. Possible values are: none, checklistCompletion, unknownFutureValue, formCompletion, approvalCompletion. Read-only. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: formCompletion, approvalCompletion. The plannerTaskCompletionRequirementDetails in plannerTaskDetails has details of the requirements specified, if any.
+    # Indicates all the requirements specified on the plannerTask. The possible values are: none, checklistCompletion, unknownFutureValue, formCompletion, approvalCompletion. Read-only. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: formCompletion, approvalCompletion. The plannerTaskCompletionRequirementDetails in plannerTaskDetails has details of the requirements specified, if any.
     specified_completion_requirements: Optional[PlannerTaskCompletionRequirements] = None
     # Date and time at which the task starts. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     start_date_time: Optional[datetime.datetime] = None
@@ -133,6 +136,7 @@ class PlannerTask(PlannerDelta, Parsable):
         from .planner_delta import PlannerDelta
         from .planner_preview_type import PlannerPreviewType
         from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
+        from .planner_task_chat_message import PlannerTaskChatMessage
         from .planner_task_completion_requirements import PlannerTaskCompletionRequirements
         from .planner_task_creation import PlannerTaskCreation
         from .planner_task_details import PlannerTaskDetails
@@ -148,6 +152,7 @@ class PlannerTask(PlannerDelta, Parsable):
         from .planner_delta import PlannerDelta
         from .planner_preview_type import PlannerPreviewType
         from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
+        from .planner_task_chat_message import PlannerTaskChatMessage
         from .planner_task_completion_requirements import PlannerTaskCompletionRequirements
         from .planner_task_creation import PlannerTaskCreation
         from .planner_task_details import PlannerTaskDetails
@@ -178,6 +183,7 @@ class PlannerTask(PlannerDelta, Parsable):
             "isOnMyDayLastModifiedDate": lambda n : setattr(self, 'is_on_my_day_last_modified_date', n.get_date_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "messages": lambda n : setattr(self, 'messages', n.get_collection_of_object_values(PlannerTaskChatMessage)),
             "orderHint": lambda n : setattr(self, 'order_hint', n.get_str_value()),
             "percentComplete": lambda n : setattr(self, 'percent_complete', n.get_int_value()),
             "planId": lambda n : setattr(self, 'plan_id', n.get_str_value()),
@@ -227,6 +233,7 @@ class PlannerTask(PlannerDelta, Parsable):
         writer.write_date_value("isOnMyDayLastModifiedDate", self.is_on_my_day_last_modified_date)
         writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_collection_of_object_values("messages", self.messages)
         writer.write_str_value("orderHint", self.order_hint)
         writer.write_int_value("percentComplete", self.percent_complete)
         writer.write_str_value("planId", self.plan_id)

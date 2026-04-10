@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .agent_identity_type import AgentIdentityType
     from .entity import Entity
     from .risky_agent_identity import RiskyAgentIdentity
     from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
@@ -20,6 +21,10 @@ from .entity import Entity
 class RiskyAgent(Entity, Parsable):
     # Name of the agent.  Supports $filter (eq, startsWith).
     agent_display_name: Optional[str] = None
+    # The identifier of the blueprint associated with the agent. Nullable.
+    blueprint_id: Optional[str] = None
+    # The identityType property
+    identity_type: Optional[AgentIdentityType] = None
     # Indicates whether the agent is deleted.
     is_deleted: Optional[bool] = None
     # Indicates whether the agent is enabled.
@@ -70,6 +75,7 @@ class RiskyAgent(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .agent_identity_type import AgentIdentityType
         from .entity import Entity
         from .risky_agent_identity import RiskyAgentIdentity
         from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
@@ -78,6 +84,7 @@ class RiskyAgent(Entity, Parsable):
         from .risk_level import RiskLevel
         from .risk_state import RiskState
 
+        from .agent_identity_type import AgentIdentityType
         from .entity import Entity
         from .risky_agent_identity import RiskyAgentIdentity
         from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
@@ -88,6 +95,8 @@ class RiskyAgent(Entity, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "agentDisplayName": lambda n : setattr(self, 'agent_display_name', n.get_str_value()),
+            "blueprintId": lambda n : setattr(self, 'blueprint_id', n.get_str_value()),
+            "identityType": lambda n : setattr(self, 'identity_type', n.get_enum_value(AgentIdentityType)),
             "isDeleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "isProcessing": lambda n : setattr(self, 'is_processing', n.get_bool_value()),
@@ -110,6 +119,8 @@ class RiskyAgent(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("agentDisplayName", self.agent_display_name)
+        writer.write_str_value("blueprintId", self.blueprint_id)
+        writer.write_enum_value("identityType", self.identity_type)
         writer.write_bool_value("isDeleted", self.is_deleted)
         writer.write_bool_value("isEnabled", self.is_enabled)
         writer.write_bool_value("isProcessing", self.is_processing)

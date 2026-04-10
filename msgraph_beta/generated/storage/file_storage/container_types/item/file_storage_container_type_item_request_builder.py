@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.file_storage_container_type import FileStorageContainerType
     from .....models.o_data_errors.o_data_error import ODataError
+    from .permissions.permissions_request_builder import PermissionsRequestBuilder
 
 class FileStorageContainerTypeItemRequestBuilder(BaseRequestBuilder):
     """
@@ -140,6 +141,15 @@ class FileStorageContainerTypeItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return FileStorageContainerTypeItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def permissions(self) -> PermissionsRequestBuilder:
+        """
+        Provides operations to manage the permissions property of the microsoft.graph.fileStorageContainerType entity.
+        """
+        from .permissions.permissions_request_builder import PermissionsRequestBuilder
+
+        return PermissionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class FileStorageContainerTypeItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

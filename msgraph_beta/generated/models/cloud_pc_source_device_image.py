@@ -5,6 +5,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .cloud_pc_source_image_category import CloudPcSourceImageCategory
+
 @dataclass
 class CloudPcSourceDeviceImage(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -12,6 +15,8 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The category property
+    category: Optional[CloudPcSourceImageCategory] = None
     # The display name for the source image. Read-only.
     display_name: Optional[str] = None
     # The unique identifier (ID) of the source image. Read-only. The id property is deprecated and will stop returning data on January 31, 2024. Going forward, use the resourceId property.
@@ -41,7 +46,12 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .cloud_pc_source_image_category import CloudPcSourceImageCategory
+
+        from .cloud_pc_source_image_category import CloudPcSourceImageCategory
+
         fields: dict[str, Callable[[Any], None]] = {
+            "category": lambda n : setattr(self, 'category', n.get_enum_value(CloudPcSourceImageCategory)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -59,6 +69,7 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("category", self.category)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("id", self.id)
         writer.write_str_value("@odata.type", self.odata_type)

@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .agent_identity_type import AgentIdentityType
     from .entity import Entity
     from .risk_detail import RiskDetail
     from .risk_detection_timing_type import RiskDetectionTimingType
@@ -24,10 +25,14 @@ class AgentRiskDetection(Entity, Parsable):
     agent_display_name: Optional[str] = None
     # The unique identifier for the agent. This is equivalent to 'id' to the specific agent type. See riskyAgentIdentity, riskyAgentIdentityBlueprintPrincipal, and riskyAgentUser.  Supports $filter (eq, startsWith).
     agent_id: Optional[str] = None
+    # The identifier of the blueprint associated with the agent. Nullable.
+    blueprint_id: Optional[str] = None
     # Date and time that the risk was detected. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $filter (eq, le, and ge).
     detected_date_time: Optional[datetime.datetime] = None
     # The detectionTimingType property
     detection_timing_type: Optional[RiskDetectionTimingType] = None
+    # The identityType property
+    identity_type: Optional[AgentIdentityType] = None
     # Date and time that the risk detection was last updated.  Supports $filter (eq, le, and ge).
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -42,6 +47,8 @@ class AgentRiskDetection(Entity, Parsable):
     risk_level: Optional[RiskLevel] = None
     # The riskState property
     risk_state: Optional[RiskState] = None
+    # The source system that generated the risk detection. Nullable.
+    source: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AgentRiskDetection:
@@ -59,12 +66,14 @@ class AgentRiskDetection(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .agent_identity_type import AgentIdentityType
         from .entity import Entity
         from .risk_detail import RiskDetail
         from .risk_detection_timing_type import RiskDetectionTimingType
         from .risk_level import RiskLevel
         from .risk_state import RiskState
 
+        from .agent_identity_type import AgentIdentityType
         from .entity import Entity
         from .risk_detail import RiskDetail
         from .risk_detection_timing_type import RiskDetectionTimingType
@@ -76,14 +85,17 @@ class AgentRiskDetection(Entity, Parsable):
             "additionalInfo": lambda n : setattr(self, 'additional_info', n.get_str_value()),
             "agentDisplayName": lambda n : setattr(self, 'agent_display_name', n.get_str_value()),
             "agentId": lambda n : setattr(self, 'agent_id', n.get_str_value()),
+            "blueprintId": lambda n : setattr(self, 'blueprint_id', n.get_str_value()),
             "detectedDateTime": lambda n : setattr(self, 'detected_date_time', n.get_datetime_value()),
             "detectionTimingType": lambda n : setattr(self, 'detection_timing_type', n.get_enum_value(RiskDetectionTimingType)),
+            "identityType": lambda n : setattr(self, 'identity_type', n.get_enum_value(AgentIdentityType)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "riskDetail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(RiskDetail)),
             "riskEventType": lambda n : setattr(self, 'risk_event_type', n.get_str_value()),
             "riskEvidence": lambda n : setattr(self, 'risk_evidence', n.get_str_value()),
             "riskLevel": lambda n : setattr(self, 'risk_level', n.get_enum_value(RiskLevel)),
             "riskState": lambda n : setattr(self, 'risk_state', n.get_enum_value(RiskState)),
+            "source": lambda n : setattr(self, 'source', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -102,13 +114,16 @@ class AgentRiskDetection(Entity, Parsable):
         writer.write_str_value("additionalInfo", self.additional_info)
         writer.write_str_value("agentDisplayName", self.agent_display_name)
         writer.write_str_value("agentId", self.agent_id)
+        writer.write_str_value("blueprintId", self.blueprint_id)
         writer.write_datetime_value("detectedDateTime", self.detected_date_time)
         writer.write_enum_value("detectionTimingType", self.detection_timing_type)
+        writer.write_enum_value("identityType", self.identity_type)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_enum_value("riskDetail", self.risk_detail)
         writer.write_str_value("riskEventType", self.risk_event_type)
         writer.write_str_value("riskEvidence", self.risk_evidence)
         writer.write_enum_value("riskLevel", self.risk_level)
         writer.write_enum_value("riskState", self.risk_state)
+        writer.write_str_value("source", self.source)
     
 

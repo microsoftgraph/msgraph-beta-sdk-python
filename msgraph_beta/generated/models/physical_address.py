@@ -29,7 +29,7 @@ class PhysicalAddress(AdditionalDataHolder, BackedModel, Parsable):
     state: Optional[str] = None
     # The street.
     street: Optional[str] = None
-    # The type of address. Possible values are: unknown, home, business, other.
+    # The type of address. The possible values are: unknown, home, business, other.
     type: Optional[PhysicalAddressType] = None
     
     @staticmethod

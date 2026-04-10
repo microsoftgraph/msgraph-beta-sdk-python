@@ -25,7 +25,7 @@ class Place(Entity, Parsable):
     address: Optional[PhysicalAddress] = None
     # A subresource of a place object that indicates the check-in status of an Outlook calendar event booked at the place.
     check_ins: Optional[list[CheckInClaim]] = None
-    # The children property
+    # A collection of children places that is only used in the Upsert places API.
     children: Optional[list[Place]] = None
     # The name that is associated with the place.
     display_name: Optional[str] = None

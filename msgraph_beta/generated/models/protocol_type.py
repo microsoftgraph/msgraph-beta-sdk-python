@@ -27,4 +27,6 @@ class ProtocolType(str, Enum):
     PrtNonBrokerBased = "prtNonBrokerBased",
     OnBehalfOf = "onBehalfOf",
     SamlOnBehalfOf = "samlOnBehalfOf",
+    OfficeS2S = "officeS2S",
+    WsTrust = "wsTrust",
 

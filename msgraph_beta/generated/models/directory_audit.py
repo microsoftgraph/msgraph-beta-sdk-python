@@ -37,7 +37,7 @@ class DirectoryAudit(Entity, Parsable):
     operation_type: Optional[str] = None
     # The performedBy property
     performed_by: Optional[AuditActivityPerformer] = None
-    # Indicates the result of the activity. Possible values are: success, failure, timeout, unknownFutureValue.
+    # Indicates the result of the activity. The possible values are: success, failure, timeout, unknownFutureValue.
     result: Optional[OperationResult] = None
     # Indicates the reason for failure if the result is failure or timeout.
     result_reason: Optional[str] = None

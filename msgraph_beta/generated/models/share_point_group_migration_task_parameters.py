@@ -14,9 +14,9 @@ from .share_point_migration_task_parameters import SharePointMigrationTaskParame
 class SharePointGroupMigrationTaskParameters(SharePointMigrationTaskParameters, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.sharePointGroupMigrationTaskParameters"
-    # The sourceGroupIdentity property
+    # The identity of the source group in the source tenant, including its mail nickname.
     source_group_identity: Optional[GroupIdentity] = None
-    # The targetGroupIdentity property
+    # The identity of the target group in the target tenant, including its mail nickname.
     target_group_identity: Optional[GroupIdentity] = None
     
     @staticmethod

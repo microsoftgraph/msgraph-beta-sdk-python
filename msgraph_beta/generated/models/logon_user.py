@@ -21,7 +21,7 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
     account_domain: Optional[str] = None
     # Account name of user account used to logon.
     account_name: Optional[str] = None
-    # User Account type, per Windows definition. Possible values are: unknown, standard, power, administrator.
+    # User Account type, per Windows definition. The possible values are: unknown, standard, power, administrator.
     account_type: Optional[UserAccountSecurityType] = None
     # DateTime at which the earliest logon by this user account occurred (provider-determined period). The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     first_seen_date_time: Optional[datetime.datetime] = None
@@ -29,7 +29,7 @@ class LogonUser(AdditionalDataHolder, BackedModel, Parsable):
     last_seen_date_time: Optional[datetime.datetime] = None
     # User logon ID.
     logon_id: Optional[str] = None
-    # Collection of the logon types observed for the logged on user from when first to last seen. Possible values are: unknown, interactive, remoteInteractive, network, batch, service.
+    # Collection of the logon types observed for the logged on user from when first to last seen. The possible values are: unknown, interactive, remoteInteractive, network, batch, service.
     logon_types: Optional[list[LogonType]] = None
     # The OdataType property
     odata_type: Optional[str] = None

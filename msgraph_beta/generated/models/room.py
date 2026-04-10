@@ -17,7 +17,7 @@ class Room(Place, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.room"
     # The name of the audio device that is available in the room.
     audio_device_name: Optional[str] = None
-    # Specifies how the room can be booked. Possible values are:unknown - Unspecified booking behavior. We don't recommend that you use this value.standard - Available for general booking.reserved - Reserved for specific users or purposes.
+    # Specifies how the room can be booked. The possible values are:unknown - Unspecified booking behavior. We don't recommend that you use this value.standard - Available for general booking.reserved - Reserved for specific users or purposes.
     booking_type: Optional[BookingType] = None
     # The name or identifier of the building where the room is located.
     building: Optional[str] = None
@@ -35,7 +35,7 @@ class Room(Place, Parsable):
     is_teams_enabled: Optional[bool] = None
     # A short, friendly name for the room, often used for easier identification or display in UI.
     nickname: Optional[str] = None
-    # An alternate immutable unique identifier of the room. Read-only.
+    # An alternative immutable unique identifier of the room. Read-only.
     place_id: Optional[str] = None
     # The teamsEnabledState property
     teams_enabled_state: Optional[PlaceFeatureEnablement] = None

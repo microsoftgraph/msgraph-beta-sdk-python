@@ -19,9 +19,9 @@ class SiteArchivalDetails(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Represents the current archive status of the site collection. Returned only on $select.
     archive_status: Optional[SiteArchiveStatus] = None
-    # The archivedBy property
+    # The user or application that archived the container.
     archived_by: Optional[IdentitySet] = None
-    # The archivedDateTime property
+    # Time when the container was archived. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     archived_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

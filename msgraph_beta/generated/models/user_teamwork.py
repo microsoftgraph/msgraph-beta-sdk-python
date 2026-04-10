@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .associated_team_info import AssociatedTeamInfo
     from .entity import Entity
+    from .teamwork_section import TeamworkSection
     from .user_scope_teams_app_installation import UserScopeTeamsAppInstallation
 
 from .entity import Entity
@@ -23,6 +24,8 @@ class UserTeamwork(Entity, Parsable):
     odata_type: Optional[str] = None
     # Represents the region of the organization or the user. For users with multigeo licenses, the property contains the user's region (if available). For users without multigeo licenses, the property contains the organization's region.The region value can be any region supported by the Teams payload. The possible values are: Americas, Europe and MiddleEast, Asia Pacific, UAE, Australia, Brazil, Canada, Switzerland, Germany, France, India, Japan, South Korea, Norway, Singapore, United Kingdom, South Africa, Sweden, Qatar, Poland, Italy, Israel, Spain, Mexico, USGov Community Cloud, USGov Community Cloud High, USGov Department of Defense, and China.
     region: Optional[str] = None
+    # User's teamwork sections for organizing chats and channels. The collection response may include @microsoft.graph.sectionsOrder and @microsoft.graph.sectionsVersion instance annotations for ordering and optimistic concurrency control.
+    sections: Optional[list[TeamworkSection]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> UserTeamwork:
@@ -42,10 +45,12 @@ class UserTeamwork(Entity, Parsable):
         """
         from .associated_team_info import AssociatedTeamInfo
         from .entity import Entity
+        from .teamwork_section import TeamworkSection
         from .user_scope_teams_app_installation import UserScopeTeamsAppInstallation
 
         from .associated_team_info import AssociatedTeamInfo
         from .entity import Entity
+        from .teamwork_section import TeamworkSection
         from .user_scope_teams_app_installation import UserScopeTeamsAppInstallation
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -53,6 +58,7 @@ class UserTeamwork(Entity, Parsable):
             "installedApps": lambda n : setattr(self, 'installed_apps', n.get_collection_of_object_values(UserScopeTeamsAppInstallation)),
             "locale": lambda n : setattr(self, 'locale', n.get_str_value()),
             "region": lambda n : setattr(self, 'region', n.get_str_value()),
+            "sections": lambda n : setattr(self, 'sections', n.get_collection_of_object_values(TeamworkSection)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -71,5 +77,6 @@ class UserTeamwork(Entity, Parsable):
         writer.write_collection_of_object_values("installedApps", self.installed_apps)
         writer.write_str_value("locale", self.locale)
         writer.write_str_value("region", self.region)
+        writer.write_collection_of_object_values("sections", self.sections)
     
 

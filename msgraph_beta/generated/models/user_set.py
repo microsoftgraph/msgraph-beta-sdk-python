@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .internal_sponsors import InternalSponsors
     from .requestor_manager import RequestorManager
     from .single_user import SingleUser
+    from .target_agent_identity_sponsors_or_owners import TargetAgentIdentitySponsorsOrOwners
     from .target_user_sponsors import TargetUserSponsors
 
 @dataclass
@@ -69,6 +70,10 @@ class UserSet(AdditionalDataHolder, BackedModel, Parsable):
             from .single_user import SingleUser
 
             return SingleUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.targetAgentIdentitySponsorsOrOwners".casefold():
+            from .target_agent_identity_sponsors_or_owners import TargetAgentIdentitySponsorsOrOwners
+
+            return TargetAgentIdentitySponsorsOrOwners()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.targetUserSponsors".casefold():
             from .target_user_sponsors import TargetUserSponsors
 
@@ -87,6 +92,7 @@ class UserSet(AdditionalDataHolder, BackedModel, Parsable):
         from .internal_sponsors import InternalSponsors
         from .requestor_manager import RequestorManager
         from .single_user import SingleUser
+        from .target_agent_identity_sponsors_or_owners import TargetAgentIdentitySponsorsOrOwners
         from .target_user_sponsors import TargetUserSponsors
 
         from .attribute_rule_members import AttributeRuleMembers
@@ -96,6 +102,7 @@ class UserSet(AdditionalDataHolder, BackedModel, Parsable):
         from .internal_sponsors import InternalSponsors
         from .requestor_manager import RequestorManager
         from .single_user import SingleUser
+        from .target_agent_identity_sponsors_or_owners import TargetAgentIdentitySponsorsOrOwners
         from .target_user_sponsors import TargetUserSponsors
 
         fields: dict[str, Callable[[Any], None]] = {

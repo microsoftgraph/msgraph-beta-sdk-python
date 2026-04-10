@@ -19,7 +19,7 @@ class WorkbookSortField(AdditionalDataHolder, BackedModel, Parsable):
     ascending: Optional[bool] = None
     # Represents the color that is the target of the condition if the sorting is on font or cell color.
     color: Optional[str] = None
-    # Represents additional sorting options for this field. Possible values are: Normal, TextAsNumber.
+    # Represents additional sorting options for this field. The possible values are: Normal, TextAsNumber.
     data_option: Optional[str] = None
     # Represents the icon that is the target of the condition if the sorting is on the cell's icon.
     icon: Optional[WorkbookIcon] = None
@@ -27,7 +27,7 @@ class WorkbookSortField(AdditionalDataHolder, BackedModel, Parsable):
     key: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Represents the type of sorting of this condition. Possible values are: Value, CellColor, FontColor, Icon.
+    # Represents the type of sorting of this condition. The possible values are: Value, CellColor, FontColor, Icon.
     sort_on: Optional[str] = None
     
     @staticmethod
