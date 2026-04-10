@@ -51,7 +51,7 @@ class UserAssignmentsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UserAssignmentsRequestBuilderGetQueryParameters]] = None) -> Optional[TeamsPolicyUserAssignmentCollectionResponse]:
         """
-        Navigation property to the collection of user policy assignments.
+        The collection of user policy assignments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamsPolicyUserAssignmentCollectionResponse]
         """
@@ -94,7 +94,7 @@ class UserAssignmentsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UserAssignmentsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Navigation property to the collection of user policy assignments.
+        The collection of user policy assignments.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +158,7 @@ class UserAssignmentsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserAssignmentsRequestBuilderGetQueryParameters():
         """
-        Navigation property to the collection of user policy assignments.
+        The collection of user policy assignments.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

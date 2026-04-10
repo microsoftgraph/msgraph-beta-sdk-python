@@ -22,7 +22,7 @@ class OnenotePatchContentCommand(AdditionalDataHolder, BackedModel, Parsable):
     content: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The location to add the supplied content, relative to the target element. Possible values are: after (default) or before.
+    # The location to add the supplied content, relative to the target element. The possible values are: after (default) or before.
     position: Optional[OnenotePatchInsertPosition] = None
     # The element to update. Must be the #<data-id> or the generated {id} of the element, or the body or title keyword.
     target: Optional[str] = None

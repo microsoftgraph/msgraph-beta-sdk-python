@@ -16,7 +16,7 @@ class ContentInfo(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The format of the content to be labeled. Possible values are: file, email.
+    # The format of the content to be labeled. The possible values are: file, email.
     content_format: Optional[str] = None
     # Identifier used for Azure Information Protection Analytics.
     identifier: Optional[str] = None

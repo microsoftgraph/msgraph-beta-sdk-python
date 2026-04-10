@@ -48,7 +48,7 @@ class ChildrenRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ChildrenRequestBuilderGetQueryParameters]] = None) -> Optional[PlaceCollectionResponse]:
         """
-        Get children from places
+        A collection of children places that is only used in the Upsert places API.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlaceCollectionResponse]
         """
@@ -68,7 +68,7 @@ class ChildrenRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ChildrenRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get children from places
+        A collection of children places that is only used in the Upsert places API.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +99,7 @@ class ChildrenRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ChildrenRequestBuilderGetQueryParameters():
         """
-        Get children from places
+        A collection of children places that is only used in the Upsert places API.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

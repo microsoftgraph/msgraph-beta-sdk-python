@@ -17,7 +17,11 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.user_teamwork import UserTeamwork
     from .associated_teams.associated_teams_request_builder import AssociatedTeamsRequestBuilder
+    from .delete_targeted_message.delete_targeted_message_request_builder import DeleteTargetedMessageRequestBuilder
+    from .get_all_retained_targeted_messages.get_all_retained_targeted_messages_request_builder import GetAllRetainedTargetedMessagesRequestBuilder
+    from .get_all_targeted_messages.get_all_targeted_messages_request_builder import GetAllTargetedMessagesRequestBuilder
     from .installed_apps.installed_apps_request_builder import InstalledAppsRequestBuilder
+    from .sections.sections_request_builder import SectionsRequestBuilder
     from .send_activity_notification.send_activity_notification_request_builder import SendActivityNotificationRequestBuilder
 
 class TeamworkRequestBuilder(BaseRequestBuilder):
@@ -152,6 +156,33 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
         return AssociatedTeamsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def delete_targeted_message(self) -> DeleteTargetedMessageRequestBuilder:
+        """
+        Provides operations to call the deleteTargetedMessage method.
+        """
+        from .delete_targeted_message.delete_targeted_message_request_builder import DeleteTargetedMessageRequestBuilder
+
+        return DeleteTargetedMessageRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_all_retained_targeted_messages(self) -> GetAllRetainedTargetedMessagesRequestBuilder:
+        """
+        Provides operations to call the getAllRetainedTargetedMessages method.
+        """
+        from .get_all_retained_targeted_messages.get_all_retained_targeted_messages_request_builder import GetAllRetainedTargetedMessagesRequestBuilder
+
+        return GetAllRetainedTargetedMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_all_targeted_messages(self) -> GetAllTargetedMessagesRequestBuilder:
+        """
+        Provides operations to call the getAllTargetedMessages method.
+        """
+        from .get_all_targeted_messages.get_all_targeted_messages_request_builder import GetAllTargetedMessagesRequestBuilder
+
+        return GetAllTargetedMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def installed_apps(self) -> InstalledAppsRequestBuilder:
         """
         Provides operations to manage the installedApps property of the microsoft.graph.userTeamwork entity.
@@ -159,6 +190,15 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
         from .installed_apps.installed_apps_request_builder import InstalledAppsRequestBuilder
 
         return InstalledAppsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sections(self) -> SectionsRequestBuilder:
+        """
+        Provides operations to manage the sections property of the microsoft.graph.userTeamwork entity.
+        """
+        from .sections.sections_request_builder import SectionsRequestBuilder
+
+        return SectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def send_activity_notification(self) -> SendActivityNotificationRequestBuilder:

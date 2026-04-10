@@ -50,7 +50,7 @@ class ConfigurationBaselineItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ConfigurationBaselineItemRequestBuilderGetQueryParameters]] = None) -> Optional[ConfigurationBaseline]:
         """
-        Get configurationSnapshots from admin
+        A container for configuration snapshot baselines.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConfigurationBaseline]
         """
@@ -104,7 +104,7 @@ class ConfigurationBaselineItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ConfigurationBaselineItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get configurationSnapshots from admin
+        A container for configuration snapshot baselines.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class ConfigurationBaselineItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConfigurationBaselineItemRequestBuilderGetQueryParameters():
         """
-        Get configurationSnapshots from admin
+        A container for configuration snapshot baselines.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

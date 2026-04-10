@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .windows_updates.catalog import Catalog
     from .windows_updates.deployment import Deployment
     from .windows_updates.deployment_audience import DeploymentAudience
+    from .windows_updates.policy import Policy
     from .windows_updates.product import Product
     from .windows_updates.resource_connection import ResourceConnection
     from .windows_updates.updatable_asset import UpdatableAsset
@@ -26,6 +27,8 @@ class AdminWindowsUpdates(Entity, Parsable):
     deployments: Optional[list[Deployment]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # A collection of policies for approving the deployment of different content to an audience over time.
+    policies: Optional[list[Policy]] = None
     # A collection of Windows products.
     products: Optional[list[Product]] = None
     # Service connections to external resources such as analytics workspaces.
@@ -55,6 +58,7 @@ class AdminWindowsUpdates(Entity, Parsable):
         from .windows_updates.catalog import Catalog
         from .windows_updates.deployment import Deployment
         from .windows_updates.deployment_audience import DeploymentAudience
+        from .windows_updates.policy import Policy
         from .windows_updates.product import Product
         from .windows_updates.resource_connection import ResourceConnection
         from .windows_updates.updatable_asset import UpdatableAsset
@@ -64,6 +68,7 @@ class AdminWindowsUpdates(Entity, Parsable):
         from .windows_updates.catalog import Catalog
         from .windows_updates.deployment import Deployment
         from .windows_updates.deployment_audience import DeploymentAudience
+        from .windows_updates.policy import Policy
         from .windows_updates.product import Product
         from .windows_updates.resource_connection import ResourceConnection
         from .windows_updates.updatable_asset import UpdatableAsset
@@ -73,6 +78,7 @@ class AdminWindowsUpdates(Entity, Parsable):
             "catalog": lambda n : setattr(self, 'catalog', n.get_object_value(Catalog)),
             "deploymentAudiences": lambda n : setattr(self, 'deployment_audiences', n.get_collection_of_object_values(DeploymentAudience)),
             "deployments": lambda n : setattr(self, 'deployments', n.get_collection_of_object_values(Deployment)),
+            "policies": lambda n : setattr(self, 'policies', n.get_collection_of_object_values(Policy)),
             "products": lambda n : setattr(self, 'products', n.get_collection_of_object_values(Product)),
             "resourceConnections": lambda n : setattr(self, 'resource_connections', n.get_collection_of_object_values(ResourceConnection)),
             "updatableAssets": lambda n : setattr(self, 'updatable_assets', n.get_collection_of_object_values(UpdatableAsset)),
@@ -94,6 +100,7 @@ class AdminWindowsUpdates(Entity, Parsable):
         writer.write_object_value("catalog", self.catalog)
         writer.write_collection_of_object_values("deploymentAudiences", self.deployment_audiences)
         writer.write_collection_of_object_values("deployments", self.deployments)
+        writer.write_collection_of_object_values("policies", self.policies)
         writer.write_collection_of_object_values("products", self.products)
         writer.write_collection_of_object_values("resourceConnections", self.resource_connections)
         writer.write_collection_of_object_values("updatableAssets", self.updatable_assets)

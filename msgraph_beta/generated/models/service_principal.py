@@ -72,7 +72,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
     claims_mapping_policies: Optional[list[ClaimsMappingPolicy]] = None
     # A claims policy that allows application admins to customize the claims that will be emitted in tokens affected by this policy.
     claims_policy: Optional[CustomClaimsPolicy] = None
-    # The appId (called Application (client) ID on the Microsoft Entra admin center) of the application used to create the service principal. Set internally by Microsoft Entra ID. Read-only.
+    # The appId of the application that created this service principal. Set internally by Microsoft Entra ID. Read-only.
     created_by_app_id: Optional[str] = None
     # Directory objects created by this service principal. Read-only. Nullable.
     created_objects: Optional[list[DirectoryObject]] = None
@@ -82,7 +82,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
     delegated_permission_classifications: Optional[list[DelegatedPermissionClassification]] = None
     # Free text field to provide an internal end-user facing description of the service principal. End-user portals such MyApps displays the application description in this field. The maximum allowed size is 1,024 characters. Supports $filter (eq, ne, not, ge, le, startsWith) and $search.
     description: Optional[str] = None
-    # Specifies whether Microsoft has disabled the registered application. Possible values are: null (default value), NotDisabled, and DisabledDueToViolationOfServicesAgreement (reasons may include suspicious, abusive, or malicious activity, or a violation of the Microsoft Services Agreement).  Supports $filter (eq, ne, not).
+    # Specifies whether Microsoft has disabled the registered application. The possible values are: null (default value), NotDisabled, and DisabledDueToViolationOfServicesAgreement (reasons may include suspicious, abusive, or malicious activity, or a violation of the Microsoft Services Agreement).  Supports $filter (eq, ne, not).
     disabled_by_microsoft_status: Optional[str] = None
     # The display name for the service principal. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     display_name: Optional[str] = None
@@ -98,6 +98,8 @@ class ServicePrincipal(DirectoryObject, Parsable):
     homepage: Optional[str] = None
     # Basic profile information of the acquired application such as app's marketing, support, terms of service and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience. For more info, see How to: Add Terms of service and privacy statement for registered Microsoft Entra apps. Supports $filter (eq, ne, not, ge, le, and eq on null values).
     info: Optional[InformationalUrl] = None
+    # Specifies whether the service principal of the app in a tenant or across tenants for multi-tenant apps can obtain new access tokens or access protected resources. When set to true, existing tokens remain valid until they expire based on their configured lifetimes, and the app stays visible in the Enterprise apps list but users cannot sign in.true if the application is deactivated (disabled); otherwise false.
+    is_disabled: Optional[bool] = None
     # The collection of key credentials associated with the service principal. Not nullable. Supports $filter (eq, not, ge, le).
     key_credentials: Optional[list[KeyCredential]] = None
     # The licenseDetails property
@@ -144,7 +146,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
     saml_single_sign_on_settings: Optional[SamlSingleSignOnSettings] = None
     # Contains the list of identifiersUris, copied over from the associated application. More values can be added to hybrid applications. These values can be used to identify the permissions exposed by this app within Microsoft Entra ID. For example,Client apps can specify a resource URI that is based on the values of this property to acquire an access token, which is the URI returned in the 'aud' claim.The any operator is required for filter expressions on multi-valued properties. Not nullable.  Supports $filter (eq, not, ge, le, startsWith).
     service_principal_names: Optional[list[str]] = None
-    # Identifies if the service principal represents an application or a managed identity. This is set by Microsoft Entra ID internally. For a service principal that represents an application this is set as Application. For a service principal that represents a managed identity this is set as ManagedIdentity. The SocialIdp type is for internal use.
+    # Identifies if the service principal represents an application or a managed identity. This property is set by Microsoft Entra ID internally. For a service principal that represents an application this is set as Application. For a service principal that represents a managed identity this is set as ManagedIdentity.For a service principal that represents an agent identity, this is set to ServiceIdentity. The SocialIdp type is for internal use.
     service_principal_type: Optional[str] = None
     # Specifies the Microsoft accounts that are supported for the current application. Read-only. Supported values are:AzureADMyOrg: Users with a Microsoft work or school account in my organization's Microsoft Entra tenant (single-tenant).AzureADMultipleOrgs: Users with a Microsoft work or school account in any organization's Microsoft Entra tenant (multitenant).AzureADandPersonalMicrosoftAccount: Users with a personal Microsoft account, or a work or school account in any organization's Microsoft Entra tenant.PersonalMicrosoftAccount: Users with a personal Microsoft account only.
     sign_in_audience: Optional[str] = None
@@ -279,6 +281,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
             "homeRealmDiscoveryPolicies": lambda n : setattr(self, 'home_realm_discovery_policies', n.get_collection_of_object_values(HomeRealmDiscoveryPolicy)),
             "homepage": lambda n : setattr(self, 'homepage', n.get_str_value()),
             "info": lambda n : setattr(self, 'info', n.get_object_value(InformationalUrl)),
+            "isDisabled": lambda n : setattr(self, 'is_disabled', n.get_bool_value()),
             "keyCredentials": lambda n : setattr(self, 'key_credentials', n.get_collection_of_object_values(KeyCredential)),
             "licenseDetails": lambda n : setattr(self, 'license_details', n.get_collection_of_object_values(LicenseDetails)),
             "loginUrl": lambda n : setattr(self, 'login_url', n.get_str_value()),
@@ -353,6 +356,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
         writer.write_collection_of_object_values("homeRealmDiscoveryPolicies", self.home_realm_discovery_policies)
         writer.write_str_value("homepage", self.homepage)
         writer.write_object_value("info", self.info)
+        writer.write_bool_value("isDisabled", self.is_disabled)
         writer.write_collection_of_object_values("keyCredentials", self.key_credentials)
         writer.write_collection_of_object_values("licenseDetails", self.license_details)
         writer.write_str_value("loginUrl", self.login_url)

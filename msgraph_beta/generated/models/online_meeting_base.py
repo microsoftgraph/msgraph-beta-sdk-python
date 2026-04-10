@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .online_meeting import OnlineMeeting
     from .online_meeting_presenters import OnlineMeetingPresenters
     from .online_meeting_role import OnlineMeetingRole
+    from .online_meeting_sensitivity_label_assignment import OnlineMeetingSensitivityLabelAssignment
     from .virtual_event_session import VirtualEventSession
     from .watermark_protection_values import WatermarkProtectionValues
 
@@ -36,9 +37,9 @@ class OnlineMeetingBase(Entity, Parsable):
     allow_breakout_rooms: Optional[bool] = None
     # Indicates whether copying and sharing meeting content is enabled for the meeting.
     allow_copying_and_sharing_meeting_content: Optional[bool] = None
-    # Indicates whether live share is enabled for the meeting. Possible values are: enabled, disabled, unknownFutureValue.
+    # Indicates whether live share is enabled for the meeting. The possible values are: enabled, disabled, unknownFutureValue.
     allow_live_share: Optional[MeetingLiveShareOptions] = None
-    # Specifies the mode of meeting chat. Possible values are: enabled, disabled, limited, unknownFutureValue.
+    # Specifies the mode of meeting chat. The possible values are: enabled, disabled, limited, unknownFutureValue.
     allow_meeting_chat: Optional[MeetingChatMode] = None
     # Specifies if participants are allowed to rename themselves in an instance of the meeting.
     allow_participants_to_change_name: Optional[bool] = None
@@ -52,11 +53,11 @@ class OnlineMeetingBase(Entity, Parsable):
     allow_transcription: Optional[bool] = None
     # Indicates whether whiteboard is enabled for the meeting.
     allow_whiteboard: Optional[bool] = None
-    # Specifies the users who can admit from the lobby. Possible values are: organizerAndCoOrganizersAndPresenters, organizerAndCoOrganizers, unknownFutureValue.
+    # Specifies the users who can admit from the lobby. The possible values are: organizerAndCoOrganizersAndPresenters, organizerAndCoOrganizers, unknownFutureValue.
     allowed_lobby_admitters: Optional[AllowedLobbyAdmitterRoles] = None
-    # Specifies who can be a presenter in a meeting. Possible values are: everyone, organization, roleIsPresenter, organizer, unknownFutureValue.
+    # Specifies who can be a presenter in a meeting. The possible values are: everyone, organization, roleIsPresenter, organizer, unknownFutureValue.
     allowed_presenters: Optional[OnlineMeetingPresenters] = None
-    # Specifies whose identity is anonymized in the meeting. Possible values are: attendee. The attendee value can't be removed through a PATCH operation once added.
+    # Specifies whose identity is anonymized in the meeting. The possible values are: attendee. The attendee value can't be removed through a PATCH operation once added.
     anonymize_identity_for_roles: Optional[list[OnlineMeetingRole]] = None
     # The attendance reports of an online meeting. Read-only.
     attendance_reports: Optional[list[MeetingAttendanceReport]] = None
@@ -88,7 +89,9 @@ class OnlineMeetingBase(Entity, Parsable):
     odata_type: Optional[str] = None
     # Indicates whether to record the meeting automatically.
     record_automatically: Optional[bool] = None
-    # Specifies whether meeting chat history is shared with participants.  Possible values are: all, none, unknownFutureValue.
+    # Specifies the sensitivity label applied to the Teams meeting.
+    sensitivity_label_assignment: Optional[OnlineMeetingSensitivityLabelAssignment] = None
+    # Specifies whether meeting chat history is shared with participants.  The possible values are: all, none, unknownFutureValue.
     share_meeting_chat_history_default: Optional[MeetingChatHistoryDefaultMode] = None
     # The subject of the online meeting.
     subject: Optional[str] = None
@@ -141,6 +144,7 @@ class OnlineMeetingBase(Entity, Parsable):
         from .online_meeting import OnlineMeeting
         from .online_meeting_presenters import OnlineMeetingPresenters
         from .online_meeting_role import OnlineMeetingRole
+        from .online_meeting_sensitivity_label_assignment import OnlineMeetingSensitivityLabelAssignment
         from .virtual_event_session import VirtualEventSession
         from .watermark_protection_values import WatermarkProtectionValues
 
@@ -159,6 +163,7 @@ class OnlineMeetingBase(Entity, Parsable):
         from .online_meeting import OnlineMeeting
         from .online_meeting_presenters import OnlineMeetingPresenters
         from .online_meeting_role import OnlineMeetingRole
+        from .online_meeting_sensitivity_label_assignment import OnlineMeetingSensitivityLabelAssignment
         from .virtual_event_session import VirtualEventSession
         from .watermark_protection_values import WatermarkProtectionValues
 
@@ -192,6 +197,7 @@ class OnlineMeetingBase(Entity, Parsable):
             "meetingOptionsWebUrl": lambda n : setattr(self, 'meeting_options_web_url', n.get_str_value()),
             "meetingSpokenLanguageTag": lambda n : setattr(self, 'meeting_spoken_language_tag', n.get_str_value()),
             "recordAutomatically": lambda n : setattr(self, 'record_automatically', n.get_bool_value()),
+            "sensitivityLabelAssignment": lambda n : setattr(self, 'sensitivity_label_assignment', n.get_object_value(OnlineMeetingSensitivityLabelAssignment)),
             "shareMeetingChatHistoryDefault": lambda n : setattr(self, 'share_meeting_chat_history_default', n.get_enum_value(MeetingChatHistoryDefaultMode)),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
             "videoTeleconferenceId": lambda n : setattr(self, 'video_teleconference_id', n.get_str_value()),
@@ -239,6 +245,7 @@ class OnlineMeetingBase(Entity, Parsable):
         writer.write_str_value("meetingOptionsWebUrl", self.meeting_options_web_url)
         writer.write_str_value("meetingSpokenLanguageTag", self.meeting_spoken_language_tag)
         writer.write_bool_value("recordAutomatically", self.record_automatically)
+        writer.write_object_value("sensitivityLabelAssignment", self.sensitivity_label_assignment)
         writer.write_enum_value("shareMeetingChatHistoryDefault", self.share_meeting_chat_history_default)
         writer.write_str_value("subject", self.subject)
         writer.write_str_value("videoTeleconferenceId", self.video_teleconference_id)

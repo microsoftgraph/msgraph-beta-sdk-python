@@ -14,4 +14,6 @@ class CloudPcDeviceImageErrorCode(str, Enum):
     SourceImageWithDataDiskNotSupported = "sourceImageWithDataDiskNotSupported",
     SourceImageWithDiskEncryptionSetNotSupported = "sourceImageWithDiskEncryptionSetNotSupported",
     SourceImageWithAzureDiskEncryptionNotSupported = "sourceImageWithAzureDiskEncryptionNotSupported",
+    FSLogixInstalledSourceImageNotSupported = "fSLogixInstalledSourceImageNotSupported",
+    StartMenuAppLimitExceeded = "startMenuAppLimitExceeded",
 

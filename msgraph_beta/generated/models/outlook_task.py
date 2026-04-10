@@ -34,7 +34,7 @@ class OutlookTask(OutlookItem, Parsable):
     due_date_time: Optional[DateTimeTimeZone] = None
     # Set to true if the task has attachments.
     has_attachments: Optional[bool] = None
-    # The importance of the event. Possible values are: low, normal, high.
+    # The importance of the event. The possible values are: low, normal, high.
     importance: Optional[Importance] = None
     # Set to true if an alert is set to remind the user of the task.
     is_reminder_on: Optional[bool] = None
@@ -48,13 +48,13 @@ class OutlookTask(OutlookItem, Parsable):
     recurrence: Optional[PatternedRecurrence] = None
     # The date and time for a reminder alert of the task to occur.
     reminder_date_time: Optional[DateTimeTimeZone] = None
-    # Indicates the level of privacy for the task. Possible values are: normal, personal, private, confidential.
+    # Indicates the level of privacy for the task. The possible values are: normal, personal, private, confidential.
     sensitivity: Optional[Sensitivity] = None
     # The collection of single-value extended properties defined for the task. Read-only. Nullable.
     single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
     # The date in the specified time zone when the task is to begin.
     start_date_time: Optional[DateTimeTimeZone] = None
-    # Indicates the state or progress of the task. Possible values are: notStarted, inProgress, completed, waitingOnOthers, deferred.
+    # Indicates the state or progress of the task. The possible values are: notStarted, inProgress, completed, waitingOnOthers, deferred.
     status: Optional[TaskStatus] = None
     # A brief description or title of the task.
     subject: Optional[str] = None

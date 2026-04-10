@@ -24,7 +24,7 @@ class OnPremisesAgent(Entity, Parsable):
     odata_type: Optional[str] = None
     # The status property
     status: Optional[AgentStatus] = None
-    # Possible values are: applicationProxy, exchangeOnline, authentication, provisioning, intunePfx, oflineDomainJoin, unknownFutureValue, privateAccess. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: privateAccess.
+    # The possible values are: applicationProxy, exchangeOnline, authentication, provisioning, intunePfx, oflineDomainJoin, unknownFutureValue, privateAccess. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: privateAccess.
     supported_publishing_types: Optional[list[OnPremisesPublishingType]] = None
     
     @staticmethod

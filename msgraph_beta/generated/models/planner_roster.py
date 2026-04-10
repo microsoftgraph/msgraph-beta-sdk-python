@@ -14,7 +14,7 @@ from .entity import Entity
 
 @dataclass
 class PlannerRoster(Entity, Parsable):
-    # The sensitivity label applied to the roster. If mandatory labeling is enabled for the user and no label is specified, the user can't create the roster. Also, if labels are mandatory for the user, the user can't change the label of the roster to null. Possible values are: standard, privileged, auto, unknownFutureValue.
+    # The sensitivity label applied to the roster. If mandatory labeling is enabled for the user and no label is specified, the user can't create the roster. Also, if labels are mandatory for the user, the user can't change the label of the roster to null. The possible values are: standard, privileged, auto, unknownFutureValue.
     assigned_sensitivity_label: Optional[SensitivityLabelAssignment] = None
     # Retrieves the members of the plannerRoster.
     members: Optional[list[PlannerRosterMember]] = None

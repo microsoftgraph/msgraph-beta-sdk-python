@@ -45,7 +45,7 @@ class TrustFrameworkKey_v2(AdditionalDataHolder, BackedModel, Parsable):
     qi: Optional[str] = None
     # Status of the key. The possible values are: enabled, disabled, unknownFutureValue.
     status: Optional[TrustFrameworkKeyStatus] = None
-    # The use (public key use) parameter identifies the intended use of the public key. The use parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. Possible values are: sig (signature), enc (encryption).
+    # The use (public key use) parameter identifies the intended use of the public key. The use parameter is employed to indicate whether a public key is used for encrypting data or verifying the signature on data. The possible values are: sig (signature), enc (encryption).
     use: Optional[str] = None
     # The x5c (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates. For more information, see RFC 5280.
     x5c: Optional[list[str]] = None

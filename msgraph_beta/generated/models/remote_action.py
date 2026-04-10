@@ -79,4 +79,8 @@ class RemoteAction(str, Enum):
     ChangeAssignments = "changeAssignments",
     # Indicates remote device action to delete a device from Intune portal.
     Delete = "delete",
+    # Indicates remote device action to temporarily suspend the Managed Home Screen kiosk app.
+    SuspendManagedHomeScreen = "suspendManagedHomeScreen",
+    # Indicates remote device action to restore the Managed Home Screen kiosk app.
+    RestoreManagedHomeScreen = "restoreManagedHomeScreen",
 

@@ -15,7 +15,7 @@ from .recipient import Recipient
 class AttendeeBase(Recipient, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.attendeeBase"
-    # The type of attendee. Possible values are: required, optional, resource. Currently if the attendee is a person, findMeetingTimes always considers the person is of the Required type.
+    # The type of attendee. The possible values are: required, optional, resource. Currently if the attendee is a person, findMeetingTimes always considers the person is of the Required type.
     type: Optional[AttendeeType] = None
     
     @staticmethod

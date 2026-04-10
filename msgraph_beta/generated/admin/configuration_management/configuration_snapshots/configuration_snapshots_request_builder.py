@@ -49,9 +49,10 @@ class ConfigurationSnapshotsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ConfigurationSnapshotsRequestBuilderGetQueryParameters]] = None) -> Optional[ConfigurationBaselineCollectionResponse]:
         """
-        Get configurationSnapshots from admin
+        Get a list of configurationBaseline objects that represent configuration snapshots and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConfigurationBaselineCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/configurationmanagement-list-configurationsnapshots?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +93,7 @@ class ConfigurationSnapshotsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ConfigurationSnapshotsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get configurationSnapshots from admin
+        Get a list of configurationBaseline objects that represent configuration snapshots and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class ConfigurationSnapshotsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConfigurationSnapshotsRequestBuilderGetQueryParameters():
         """
-        Get configurationSnapshots from admin
+        Get a list of configurationBaseline objects that represent configuration snapshots and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

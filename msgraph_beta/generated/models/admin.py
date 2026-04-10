@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .admin_report_settings import AdminReportSettings
     from .admin_todo import AdminTodo
     from .admin_windows import AdminWindows
+    from .cloud_licensing.admin_cloud_licensing import AdminCloudLicensing
     from .configuration_management import ConfigurationManagement
     from .edge import Edge
     from .entra import Entra
@@ -31,6 +32,8 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The appsAndServices property
     apps_and_services: Optional[AdminAppsAndServices] = None
+    # The root of the cloud licensing API for the entire organization. Read-only.
+    cloud_licensing: Optional[AdminCloudLicensing] = None
     # The configurationManagement property
     configuration_management: Optional[ConfigurationManagement] = None
     # The dynamics property
@@ -85,6 +88,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_report_settings import AdminReportSettings
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
+        from .cloud_licensing.admin_cloud_licensing import AdminCloudLicensing
         from .configuration_management import ConfigurationManagement
         from .edge import Edge
         from .entra import Entra
@@ -101,6 +105,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_report_settings import AdminReportSettings
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
+        from .cloud_licensing.admin_cloud_licensing import AdminCloudLicensing
         from .configuration_management import ConfigurationManagement
         from .edge import Edge
         from .entra import Entra
@@ -112,6 +117,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "appsAndServices": lambda n : setattr(self, 'apps_and_services', n.get_object_value(AdminAppsAndServices)),
+            "cloudLicensing": lambda n : setattr(self, 'cloud_licensing', n.get_object_value(AdminCloudLicensing)),
             "configurationManagement": lambda n : setattr(self, 'configuration_management', n.get_object_value(ConfigurationManagement)),
             "dynamics": lambda n : setattr(self, 'dynamics', n.get_object_value(AdminDynamics)),
             "edge": lambda n : setattr(self, 'edge', n.get_object_value(Edge)),
@@ -139,6 +145,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("appsAndServices", self.apps_and_services)
+        writer.write_object_value("cloudLicensing", self.cloud_licensing)
         writer.write_object_value("configurationManagement", self.configuration_management)
         writer.write_object_value("dynamics", self.dynamics)
         writer.write_object_value("edge", self.edge)

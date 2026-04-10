@@ -19,6 +19,10 @@ from .entity import Entity
 
 @dataclass
 class ProtectionUnitBase(Entity, Parsable):
+    # The retention period of the backup, in days.
+    backup_retention_period_in_days: Optional[int] = None
+    # The unique identifier of the billing policy assigned to the protection unit for cost allocation.
+    billing_policy_id: Optional[str] = None
     # The identity of person who created the protection unit.
     created_by: Optional[IdentitySet] = None
     # The time of creation of the protection unit.
@@ -92,6 +96,8 @@ class ProtectionUnitBase(Entity, Parsable):
         from .site_protection_unit import SiteProtectionUnit
 
         fields: dict[str, Callable[[Any], None]] = {
+            "backupRetentionPeriodInDays": lambda n : setattr(self, 'backup_retention_period_in_days', n.get_int_value()),
+            "billingPolicyId": lambda n : setattr(self, 'billing_policy_id', n.get_str_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(PublicError)),
@@ -115,6 +121,8 @@ class ProtectionUnitBase(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_int_value("backupRetentionPeriodInDays", self.backup_retention_period_in_days)
+        writer.write_str_value("billingPolicyId", self.billing_policy_id)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("error", self.error)

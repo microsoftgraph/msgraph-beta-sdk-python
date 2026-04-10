@@ -41,7 +41,7 @@ class SecurityAction(Entity, Parsable):
     parameters: Optional[list[KeyValuePair]] = None
     # Collection of securityActionState to keep the history of an action.
     states: Optional[list[SecurityActionState]] = None
-    # Status of the action. Possible values are: NotStarted, Running, Completed, Failed.
+    # Status of the action. The possible values are: NotStarted, Running, Completed, Failed.
     status: Optional[OperationStatus] = None
     # The user principal name of the signed-in user that submitted  (POST) the action. The user should be extracted from the auth token and not entered manually by the calling application.
     user: Optional[str] = None

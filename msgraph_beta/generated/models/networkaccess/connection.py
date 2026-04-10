@@ -9,7 +9,9 @@ if TYPE_CHECKING:
     from ..entity import Entity
     from .application_snapshot import ApplicationSnapshot
     from .connection_status import ConnectionStatus
+    from .cross_tenant_access_type import CrossTenantAccessType
     from .device_category import DeviceCategory
+    from .device_join_type import DeviceJoinType
     from .networking_protocol import NetworkingProtocol
     from .private_access_details import PrivateAccessDetails
     from .traffic_type import TrafficType
@@ -24,6 +26,8 @@ class Connection(Entity, Parsable):
     application_snapshot: Optional[ApplicationSnapshot] = None
     # The time the connection was created.
     created_date_time: Optional[datetime.datetime] = None
+    # Cross tenant access details, for B2B scenarios. The possible values are: none, b2bCollaboration, unknownFutureValue.
+    cross_tenant_access_type: Optional[CrossTenantAccessType] = None
     # The destination FQDN of the connection.
     destination_fqdn: Optional[str] = None
     # The destination IP of the connection.
@@ -34,12 +38,16 @@ class Connection(Entity, Parsable):
     device_category: Optional[DeviceCategory] = None
     # The DeviceID.
     device_id: Optional[str] = None
+    # Device registration type, for BYOD scenarios. The possible values are: none, microsoftEntraJoined, microsoftEntraRegistered, unknownFutureValue.
+    device_join_type: Optional[DeviceJoinType] = None
     # The device operating system type.
     device_operating_system: Optional[str] = None
     # The device operating system version.
     device_operating_system_version: Optional[str] = None
     # The time the connection was terminated.
     end_date_time: Optional[datetime.datetime] = None
+    # The identifier of the home tenant, for Entra B2B scenarios.
+    home_tenant_id: Optional[str] = None
     # The process initiating the traffic connection.
     initiating_process_name: Optional[str] = None
     # When the connection was last updated.
@@ -96,7 +104,9 @@ class Connection(Entity, Parsable):
         from ..entity import Entity
         from .application_snapshot import ApplicationSnapshot
         from .connection_status import ConnectionStatus
+        from .cross_tenant_access_type import CrossTenantAccessType
         from .device_category import DeviceCategory
+        from .device_join_type import DeviceJoinType
         from .networking_protocol import NetworkingProtocol
         from .private_access_details import PrivateAccessDetails
         from .traffic_type import TrafficType
@@ -104,7 +114,9 @@ class Connection(Entity, Parsable):
         from ..entity import Entity
         from .application_snapshot import ApplicationSnapshot
         from .connection_status import ConnectionStatus
+        from .cross_tenant_access_type import CrossTenantAccessType
         from .device_category import DeviceCategory
+        from .device_join_type import DeviceJoinType
         from .networking_protocol import NetworkingProtocol
         from .private_access_details import PrivateAccessDetails
         from .traffic_type import TrafficType
@@ -113,14 +125,17 @@ class Connection(Entity, Parsable):
             "agentVersion": lambda n : setattr(self, 'agent_version', n.get_str_value()),
             "applicationSnapshot": lambda n : setattr(self, 'application_snapshot', n.get_object_value(ApplicationSnapshot)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "crossTenantAccessType": lambda n : setattr(self, 'cross_tenant_access_type', n.get_enum_value(CrossTenantAccessType)),
             "destinationFqdn": lambda n : setattr(self, 'destination_fqdn', n.get_str_value()),
             "destinationIp": lambda n : setattr(self, 'destination_ip', n.get_str_value()),
             "destinationPort": lambda n : setattr(self, 'destination_port', n.get_int_value()),
             "deviceCategory": lambda n : setattr(self, 'device_category', n.get_enum_value(DeviceCategory)),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceJoinType": lambda n : setattr(self, 'device_join_type', n.get_enum_value(DeviceJoinType)),
             "deviceOperatingSystem": lambda n : setattr(self, 'device_operating_system', n.get_str_value()),
             "deviceOperatingSystemVersion": lambda n : setattr(self, 'device_operating_system_version', n.get_str_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "homeTenantId": lambda n : setattr(self, 'home_tenant_id', n.get_str_value()),
             "initiatingProcessName": lambda n : setattr(self, 'initiating_process_name', n.get_str_value()),
             "lastUpdateDateTime": lambda n : setattr(self, 'last_update_date_time', n.get_datetime_value()),
             "networkProtocol": lambda n : setattr(self, 'network_protocol', n.get_enum_value(NetworkingProtocol)),
@@ -155,14 +170,17 @@ class Connection(Entity, Parsable):
         writer.write_str_value("agentVersion", self.agent_version)
         writer.write_object_value("applicationSnapshot", self.application_snapshot)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_enum_value("crossTenantAccessType", self.cross_tenant_access_type)
         writer.write_str_value("destinationFqdn", self.destination_fqdn)
         writer.write_str_value("destinationIp", self.destination_ip)
         writer.write_int_value("destinationPort", self.destination_port)
         writer.write_enum_value("deviceCategory", self.device_category)
         writer.write_str_value("deviceId", self.device_id)
+        writer.write_enum_value("deviceJoinType", self.device_join_type)
         writer.write_str_value("deviceOperatingSystem", self.device_operating_system)
         writer.write_str_value("deviceOperatingSystemVersion", self.device_operating_system_version)
         writer.write_datetime_value("endDateTime", self.end_date_time)
+        writer.write_str_value("homeTenantId", self.home_tenant_id)
         writer.write_str_value("initiatingProcessName", self.initiating_process_name)
         writer.write_datetime_value("lastUpdateDateTime", self.last_update_date_time)
         writer.write_enum_value("networkProtocol", self.network_protocol)

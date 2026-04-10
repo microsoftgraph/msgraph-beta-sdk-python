@@ -16,4 +16,5 @@ class CloudPcGeographicLocationType(str, Enum):
     CentralAmerica = "centralAmerica",
     UsGovernment = "usGovernment",
     UnknownFutureValue = "unknownFutureValue",
+    Mexico = "mexico",
 

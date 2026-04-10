@@ -16,7 +16,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Default rule that applies when a property or action-specific rule is not provided. Possible values are: Allow, Block
+    # Default rule that applies when a property or action-specific rule is not provided. The possible values are: Allow, Block
     default_rule: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

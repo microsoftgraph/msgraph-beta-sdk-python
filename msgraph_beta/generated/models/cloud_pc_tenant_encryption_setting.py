@@ -20,7 +20,7 @@ class CloudPcTenantEncryptionSetting(AdditionalDataHolder, BackedModel, Parsable
     last_sync_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates the Cloud PC disk encryption type for a tenant. It is a tenant-level setting that applies globally to all Cloud PCs in the tenant. Possible values are: platformManagedKey, customerManagedKey, unknownFutureValue. Read-only.
+    # Indicates the Cloud PC disk encryption type for a tenant. It is a tenant-level setting that applies globally to all Cloud PCs in the tenant. The possible values are: platformManagedKey, customerManagedKey, unknownFutureValue. Read-only.
     tenant_disk_encryption_type: Optional[CloudPcDiskEncryptionType] = None
     
     @staticmethod

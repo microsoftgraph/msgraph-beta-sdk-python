@@ -18,7 +18,7 @@ from .entity import Entity
 class RiskyUser(Entity, Parsable):
     # The history property
     history: Optional[list[RiskyUserHistoryItem]] = None
-    # Indicates whether the user is deleted. Possible values are: true, false.
+    # Indicates whether the user is deleted. The possible values are: true, false.
     is_deleted: Optional[bool] = None
     # Indicates whether a user's risky state is being processed by the backend.
     is_processing: Optional[bool] = None
@@ -30,7 +30,7 @@ class RiskyUser(Entity, Parsable):
     risk_last_updated_date_time: Optional[datetime.datetime] = None
     # Level of the detected risky user. The possible values are low, medium, high, hidden, none, unknownFutureValue.
     risk_level: Optional[RiskLevel] = None
-    # State of the user's risk. Possible values are: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, unknownFutureValue.
+    # State of the user's risk. The possible values are: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, unknownFutureValue.
     risk_state: Optional[RiskState] = None
     # Risky user display name.
     user_display_name: Optional[str] = None
