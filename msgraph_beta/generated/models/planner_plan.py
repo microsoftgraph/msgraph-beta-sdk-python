@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .content_sensitivity_label_assignment import ContentSensitivityLabelAssignment
     from .identity_set import IdentitySet
     from .planner_archival_info import PlannerArchivalInfo
     from .planner_bucket import PlannerBucket
@@ -27,6 +28,8 @@ class PlannerPlan(PlannerDelta, Parsable):
     buckets: Optional[list[PlannerBucket]] = None
     # Identifies the container of the plan. Either specify all properties, or specify only the url, the containerId, and type. After it's set, this property can’t be updated. It changes when a plan is moved from one container to another, using plan move to container. Required.
     container: Optional[PlannerPlanContainer] = None
+    # The sensitivity label assignment for the plan. Used to classify and protect the plan content based on organizational policies. This property is null if no sensitivity label is assigned. Optional.
+    content_sensitivity_label_assignment: Optional[ContentSensitivityLabelAssignment] = None
     # Read-only. Other user experiences in which this plan is used, represented as plannerPlanContext entries.
     contexts: Optional[PlannerPlanContextCollection] = None
     # Read-only. The user who created the plan.
@@ -66,6 +69,7 @@ class PlannerPlan(PlannerDelta, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .content_sensitivity_label_assignment import ContentSensitivityLabelAssignment
         from .identity_set import IdentitySet
         from .planner_archival_info import PlannerArchivalInfo
         from .planner_bucket import PlannerBucket
@@ -77,6 +81,7 @@ class PlannerPlan(PlannerDelta, Parsable):
         from .planner_shared_with_container import PlannerSharedWithContainer
         from .planner_task import PlannerTask
 
+        from .content_sensitivity_label_assignment import ContentSensitivityLabelAssignment
         from .identity_set import IdentitySet
         from .planner_archival_info import PlannerArchivalInfo
         from .planner_bucket import PlannerBucket
@@ -92,6 +97,7 @@ class PlannerPlan(PlannerDelta, Parsable):
             "archivalInfo": lambda n : setattr(self, 'archival_info', n.get_object_value(PlannerArchivalInfo)),
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_object_values(PlannerBucket)),
             "container": lambda n : setattr(self, 'container', n.get_object_value(PlannerPlanContainer)),
+            "contentSensitivityLabelAssignment": lambda n : setattr(self, 'content_sensitivity_label_assignment', n.get_object_value(ContentSensitivityLabelAssignment)),
             "contexts": lambda n : setattr(self, 'contexts', n.get_object_value(PlannerPlanContextCollection)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -119,6 +125,7 @@ class PlannerPlan(PlannerDelta, Parsable):
         writer.write_object_value("archivalInfo", self.archival_info)
         writer.write_collection_of_object_values("buckets", self.buckets)
         writer.write_object_value("container", self.container)
+        writer.write_object_value("contentSensitivityLabelAssignment", self.content_sensitivity_label_assignment)
         writer.write_object_value("contexts", self.contexts)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

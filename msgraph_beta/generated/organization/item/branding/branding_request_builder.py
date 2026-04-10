@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .localizations.localizations_request_builder import LocalizationsRequestBuilder
     from .square_logo.square_logo_request_builder import SquareLogoRequestBuilder
     from .square_logo_dark.square_logo_dark_request_builder import SquareLogoDarkRequestBuilder
+    from .themes.themes_request_builder import ThemesRequestBuilder
 
 class BrandingRequestBuilder(BaseRequestBuilder):
     """
@@ -220,6 +221,15 @@ class BrandingRequestBuilder(BaseRequestBuilder):
         from .square_logo_dark.square_logo_dark_request_builder import SquareLogoDarkRequestBuilder
 
         return SquareLogoDarkRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def themes(self) -> ThemesRequestBuilder:
+        """
+        Provides operations to manage the themes property of the microsoft.graph.organizationalBranding entity.
+        """
+        from .themes.themes_request_builder import ThemesRequestBuilder
+
+        return ThemesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class BrandingRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

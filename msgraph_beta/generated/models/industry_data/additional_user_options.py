@@ -21,7 +21,7 @@ class AdditionalUserOptions(AdditionalDataHolder, BackedModel, Parsable):
     mark_all_students_as_minors: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates the age group classification for students. Possible values are: minor, notAdult, adult, unknownFutureValue. Use null to disable age group enforcement.
+    # Indicates the age group classification for students. The possible values are: minor, notAdult, adult, unknownFutureValue. Use null to disable age group enforcement.
     student_age_group: Optional[StudentAgeGroup] = None
     
     @staticmethod

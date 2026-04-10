@@ -17,11 +17,11 @@ class ReferenceAttachment(Attachment, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.referenceAttachment"
     # Specifies whether the attachment is a link to a folder. You must set this property to true if sourceUrl is a link to a folder. Optional.
     is_folder: Optional[bool] = None
-    # Specifies the permissions granted for the attachment by the type of provider in providerType. Possible values are: other, view, edit, anonymousView, anonymousEdit, organizationView, organizationEdit. Optional.
+    # Specifies the permissions granted for the attachment by the type of provider in providerType. The possible values are: other, view, edit, anonymousView, anonymousEdit, organizationView, organizationEdit. Optional.
     permission: Optional[ReferenceAttachmentPermission] = None
     # Applies to only a reference attachment of an image - URL to get a preview image. Use thumbnailUrl and previewUrl only when sourceUrl identifies an image file. Optional.
     preview_url: Optional[str] = None
-    # The type of provider that supports an attachment of this contentType. Possible values are: other, oneDriveBusiness, oneDriveConsumer, dropbox. Optional.
+    # The type of provider that supports an attachment of this contentType. The possible values are: other, oneDriveBusiness, oneDriveConsumer, dropbox. Optional.
     provider_type: Optional[ReferenceAttachmentProvider] = None
     # URL to get the attachment content. If this value is a URL to a folder, then for the folder to be displayed correctly in Outlook or Outlook on the web, set isFolder to true. Required.
     source_url: Optional[str] = None

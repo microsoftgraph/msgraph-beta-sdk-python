@@ -20,7 +20,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The specified action. Supported values in the Microsoft Endpoint Manager portal are: Reprovision, Resize, Restore. Supported values in enterprise Cloud PC devices are: Reboot, Rename, Reprovision, Troubleshoot.
     action_name: Optional[str] = None
-    # State of the action. Possible values are: None, pending, canceled, active, done, failed, notSupported. Read-only.
+    # State of the action. The possible values are: None, pending, canceled, active, done, failed, notSupported. Read-only.
     action_state: Optional[ActionState] = None
     # The ID of the Cloud PC device on which the remote action is performed. Read-only.
     cloud_pc_id: Optional[str] = None

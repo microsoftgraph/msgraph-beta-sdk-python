@@ -69,10 +69,11 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Permission, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Permission]:
         """
-        Create new navigation property to permissions for sites
+        Create a new permission object on a list.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Permission]
+        Find more info here: https://learn.microsoft.com/graph/api/list-post-permissions?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -103,7 +104,7 @@ class PermissionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Permission, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to permissions for sites
+        Create a new permission object on a list.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

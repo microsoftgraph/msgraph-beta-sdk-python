@@ -21,7 +21,7 @@ class Website(AdditionalDataHolder, BackedModel, Parsable):
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Possible values are: other, home, work, blog, profile.
+    # The possible values are: other, home, work, blog, profile.
     type: Optional[WebsiteType] = None
     
     @staticmethod

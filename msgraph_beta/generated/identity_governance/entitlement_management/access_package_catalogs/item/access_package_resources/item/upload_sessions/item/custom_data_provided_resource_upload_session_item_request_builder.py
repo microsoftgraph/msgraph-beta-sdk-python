@@ -16,7 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .........models.custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
     from .........models.o_data_errors.o_data_error import ODataError
-    from .files.files_request_builder import FilesRequestBuilder
+    from .upload_file.upload_file_request_builder import UploadFileRequestBuilder
 
 class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuilder):
     """
@@ -37,7 +37,7 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -52,11 +52,12 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CustomDataProvidedResourceUploadSessionItemRequestBuilderGetQueryParameters]] = None) -> Optional[CustomDataProvidedResourceUploadSession]:
         """
-        Get uploadSessions from identityGovernance
+        Read the properties and relationships of a customDataProvidedResourceUploadSession object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomDataProvidedResourceUploadSession]
+        Find more info here: https://learn.microsoft.com/graph/api/customdataprovidedresourceuploadsession-get?view=graph-rest-beta
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -73,12 +74,13 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
     
     async def patch(self,body: CustomDataProvidedResourceUploadSession, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CustomDataProvidedResourceUploadSession]:
         """
-        Update the navigation property uploadSessions in identityGovernance
+        Update the properties of a customDataProvidedResourceUploadSession created for a customDataProvidedResource object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomDataProvidedResourceUploadSession]
+        Find more info here: https://learn.microsoft.com/graph/api/customdataprovidedresourceuploadsession-update?view=graph-rest-beta
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -101,7 +103,7 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -109,11 +111,11 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CustomDataProvidedResourceUploadSessionItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get uploadSessions from identityGovernance
+        Read the properties and relationships of a customDataProvidedResourceUploadSession object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -121,12 +123,12 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
     
     def to_patch_request_information(self,body: CustomDataProvidedResourceUploadSession, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property uploadSessions in identityGovernance
+        Update the properties of a customDataProvidedResourceUploadSession created for a customDataProvidedResource object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -141,19 +143,19 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
         param raw_url: The raw URL to use for the request builder.
         Returns: CustomDataProvidedResourceUploadSessionItemRequestBuilder
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CustomDataProvidedResourceUploadSessionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def files(self) -> FilesRequestBuilder:
+    def upload_file(self) -> UploadFileRequestBuilder:
         """
-        Provides operations to manage the files property of the microsoft.graph.customDataProvidedResourceUploadSession entity.
+        Provides operations to call the uploadFile method.
         """
-        from .files.files_request_builder import FilesRequestBuilder
+        from .upload_file.upload_file_request_builder import UploadFileRequestBuilder
 
-        return FilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return UploadFileRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CustomDataProvidedResourceUploadSessionItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
@@ -165,7 +167,7 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
     @dataclass
     class CustomDataProvidedResourceUploadSessionItemRequestBuilderGetQueryParameters():
         """
-        Get uploadSessions from identityGovernance
+        Read the properties and relationships of a customDataProvidedResourceUploadSession object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

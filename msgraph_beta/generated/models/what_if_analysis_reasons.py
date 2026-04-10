@@ -22,4 +22,6 @@ class WhatIfAnalysisReasons(str, Enum):
     InsiderRisk = "insiderRisk",
     AuthenticationFlow = "authenticationFlow",
     UnknownFutureValue = "unknownFutureValue",
+    AgentIdRisk = "agentIdRisk",
+    AgentIdentities = "agentIdentities",
 

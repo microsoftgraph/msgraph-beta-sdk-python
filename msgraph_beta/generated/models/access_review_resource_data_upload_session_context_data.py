@@ -13,9 +13,9 @@ from .custom_extension_data import CustomExtensionData
 class AccessReviewResourceDataUploadSessionContextData(CustomExtensionData, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.accessReviewResourceDataUploadSessionContextData"
-    # The accessReviewId property
+    # The access review definition id.
     access_review_id: Optional[str] = None
-    # The accessReviewInstanceId property
+    # The access review instance id.
     access_review_instance_id: Optional[str] = None
     
     @staticmethod

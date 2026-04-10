@@ -38,7 +38,6 @@ class ReprocessedRunsRequestBuilder(BaseRequestBuilder):
         param run_id: The unique identifier of run
         Returns: RunItemRequestBuilder
         """
-        warn(" as of 2025-01/PrivatePreview:organizationalUnit on 2025-03-14 and will be removed 2026-08-01", DeprecationWarning)
         if run_id is None:
             raise TypeError("run_id cannot be null.")
         from .item.run_item_request_builder import RunItemRequestBuilder
@@ -53,7 +52,6 @@ class ReprocessedRunsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RunCollectionResponse]
         """
-        warn(" as of 2025-01/PrivatePreview:organizationalUnit on 2025-03-14 and will be removed 2026-08-01", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -74,7 +72,6 @@ class ReprocessedRunsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2025-01/PrivatePreview:organizationalUnit on 2025-03-14 and will be removed 2026-08-01", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -86,7 +83,6 @@ class ReprocessedRunsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ReprocessedRunsRequestBuilder
         """
-        warn(" as of 2025-01/PrivatePreview:organizationalUnit on 2025-03-14 and will be removed 2026-08-01", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ReprocessedRunsRequestBuilder(self.request_adapter, raw_url)

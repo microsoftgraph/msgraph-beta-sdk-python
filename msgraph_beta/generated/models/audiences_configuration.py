@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .audience_restriction import AudienceRestriction
+    from .azure_ad_multiple_orgs_audience_restriction import AzureAdMultipleOrgsAudienceRestriction
 
 @dataclass
 class AudiencesConfiguration(AdditionalDataHolder, BackedModel, Parsable):
@@ -16,7 +17,7 @@ class AudiencesConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Setting to allow or disallow creation of apps with multitenant signInAudience.
-    azure_ad_multiple_orgs: Optional[AudienceRestriction] = None
+    azure_ad_multiple_orgs: Optional[AzureAdMultipleOrgsAudienceRestriction] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Setting to allow or disallow creation of apps with personal Microsoft account signInAudience.
@@ -39,11 +40,13 @@ class AudiencesConfiguration(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .audience_restriction import AudienceRestriction
+        from .azure_ad_multiple_orgs_audience_restriction import AzureAdMultipleOrgsAudienceRestriction
 
         from .audience_restriction import AudienceRestriction
+        from .azure_ad_multiple_orgs_audience_restriction import AzureAdMultipleOrgsAudienceRestriction
 
         fields: dict[str, Callable[[Any], None]] = {
-            "azureAdMultipleOrgs": lambda n : setattr(self, 'azure_ad_multiple_orgs', n.get_object_value(AudienceRestriction)),
+            "azureAdMultipleOrgs": lambda n : setattr(self, 'azure_ad_multiple_orgs', n.get_object_value(AzureAdMultipleOrgsAudienceRestriction)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "personalMicrosoftAccount": lambda n : setattr(self, 'personal_microsoft_account', n.get_object_value(AudienceRestriction)),
         }

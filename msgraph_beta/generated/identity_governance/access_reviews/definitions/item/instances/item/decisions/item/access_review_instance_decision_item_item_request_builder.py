@@ -73,10 +73,11 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: AccessReviewInstanceDecisionItem, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AccessReviewInstanceDecisionItem]:
         """
-        Update the navigation property decisions in identityGovernance
+        Update access decisions, known as accessReviewInstanceDecisionItems, for which the user is the reviewer.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewInstanceDecisionItem]
+        Find more info here: https://learn.microsoft.com/graph/api/accessreviewinstancedecisionitem-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -118,7 +119,7 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: AccessReviewInstanceDecisionItem, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property decisions in identityGovernance
+        Update access decisions, known as accessReviewInstanceDecisionItems, for which the user is the reviewer.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

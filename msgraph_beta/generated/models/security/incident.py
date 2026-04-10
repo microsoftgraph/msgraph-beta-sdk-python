@@ -23,7 +23,7 @@ class Incident(Entity, Parsable):
     alerts: Optional[list[Alert]] = None
     # Owner of the incident, or null if no owner is assigned. Free editable text.
     assigned_to: Optional[str] = None
-    # The specification for the incident. Possible values are: unknown, falsePositive, truePositive, informationalExpectedActivity, unknownFutureValue.
+    # The specification for the incident. The possible values are: unknown, falsePositive, truePositive, informationalExpectedActivity, unknownFutureValue.
     classification: Optional[AlertClassification] = None
     # Array of comments created by the Security Operations (SecOps) team when the incident is managed.
     comments: Optional[list[AlertComment]] = None
@@ -33,7 +33,7 @@ class Incident(Entity, Parsable):
     custom_tags: Optional[list[str]] = None
     # Description of the incident.
     description: Optional[str] = None
-    # Specifies the determination of the incident. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.
+    # Specifies the determination of the incident. The possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.
     determination: Optional[AlertDetermination] = None
     # The incident name.
     display_name: Optional[str] = None
@@ -45,6 +45,8 @@ class Incident(Entity, Parsable):
     last_update_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # A priority score for the incident from 0 to 100, with > 85 being the top priority, 15 - 85 medium priority, and < 15 low priority. This score is generated using machine learning and is based on multiple factors, including severity, disruption impact, threat intelligence, alert types, asset criticality, threat analytics, incident rarity, and additional priority signals. The value can also be null which indicates the feature is not open for the tenant or the value of the score is pending calculation.
+    priority_score: Optional[int] = None
     # A rich text string that represents the actions that are reccomnded to take in order to resolve the incident.
     recommended_actions: Optional[str] = None
     # List of hunting Kusto Query Language (KQL) queries related to the incident.
@@ -111,6 +113,7 @@ class Incident(Entity, Parsable):
             "incidentWebUrl": lambda n : setattr(self, 'incident_web_url', n.get_str_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_str_value()),
             "lastUpdateDateTime": lambda n : setattr(self, 'last_update_date_time', n.get_datetime_value()),
+            "priorityScore": lambda n : setattr(self, 'priority_score', n.get_int_value()),
             "recommendedActions": lambda n : setattr(self, 'recommended_actions', n.get_str_value()),
             "recommendedHuntingQueries": lambda n : setattr(self, 'recommended_hunting_queries', n.get_collection_of_object_values(RecommendedHuntingQuery)),
             "redirectIncidentId": lambda n : setattr(self, 'redirect_incident_id', n.get_str_value()),
@@ -146,6 +149,7 @@ class Incident(Entity, Parsable):
         writer.write_str_value("incidentWebUrl", self.incident_web_url)
         writer.write_str_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastUpdateDateTime", self.last_update_date_time)
+        writer.write_int_value("priorityScore", self.priority_score)
         writer.write_str_value("recommendedActions", self.recommended_actions)
         writer.write_collection_of_object_values("recommendedHuntingQueries", self.recommended_hunting_queries)
         writer.write_str_value("redirectIncidentId", self.redirect_incident_id)

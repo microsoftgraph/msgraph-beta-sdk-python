@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_management_assignment_target import CloudPcManagementAssignmentTarget
+    from .cloud_p_c_user_settings_persistence_detail import CloudPCUserSettingsPersistenceDetail
     from .entity import Entity
     from .user import User
 
@@ -19,6 +20,8 @@ class CloudPcProvisioningPolicyAssignment(Entity, Parsable):
     odata_type: Optional[str] = None
     # The assignment target for the provisioning policy. Currently, the only target supported for this policy is a user group. For details, see cloudPcManagementGroupAssignmentTarget.
     target: Optional[CloudPcManagementAssignmentTarget] = None
+    # The assignment targeted user settings persistence for the provisioning policy. It allows user application data and Windows settings to be saved and applied between sessions.
+    user_settings_persistence_detail: Optional[CloudPCUserSettingsPersistenceDetail] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcProvisioningPolicyAssignment:
@@ -37,16 +40,19 @@ class CloudPcProvisioningPolicyAssignment(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_management_assignment_target import CloudPcManagementAssignmentTarget
+        from .cloud_p_c_user_settings_persistence_detail import CloudPCUserSettingsPersistenceDetail
         from .entity import Entity
         from .user import User
 
         from .cloud_pc_management_assignment_target import CloudPcManagementAssignmentTarget
+        from .cloud_p_c_user_settings_persistence_detail import CloudPCUserSettingsPersistenceDetail
         from .entity import Entity
         from .user import User
 
         fields: dict[str, Callable[[Any], None]] = {
             "assignedUsers": lambda n : setattr(self, 'assigned_users', n.get_collection_of_object_values(User)),
             "target": lambda n : setattr(self, 'target', n.get_object_value(CloudPcManagementAssignmentTarget)),
+            "userSettingsPersistenceDetail": lambda n : setattr(self, 'user_settings_persistence_detail', n.get_object_value(CloudPCUserSettingsPersistenceDetail)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,5 +69,6 @@ class CloudPcProvisioningPolicyAssignment(Entity, Parsable):
         super().serialize(writer)
         writer.write_collection_of_object_values("assignedUsers", self.assigned_users)
         writer.write_object_value("target", self.target)
+        writer.write_object_value("userSettingsPersistenceDetail", self.user_settings_persistence_detail)
     
 

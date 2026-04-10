@@ -24,7 +24,7 @@ class Office365GroupsActivityDetail(Entity, Parsable):
     group_display_name: Optional[str] = None
     # The group id.
     group_id: Optional[str] = None
-    # The group type. Possible values are: Public or Private.
+    # The group type. The possible values are: Public or Private.
     group_type: Optional[str] = None
     # Whether this user has been deleted or soft deleted.
     is_deleted: Optional[bool] = None

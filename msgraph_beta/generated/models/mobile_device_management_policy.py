@@ -11,6 +11,8 @@ from .mobility_management_policy import MobilityManagementPolicy
 
 @dataclass
 class MobileDeviceManagementPolicy(MobilityManagementPolicy, Parsable):
+    # Controls the option if users in an automatic enrollment configuration on Microsoft Entra registered devices are prompted to MDM enroll their device in the Entra account registration flow.
+    is_mdm_enrollment_during_registration_disabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -35,6 +37,7 @@ class MobileDeviceManagementPolicy(MobilityManagementPolicy, Parsable):
         from .mobility_management_policy import MobilityManagementPolicy
 
         fields: dict[str, Callable[[Any], None]] = {
+            "isMdmEnrollmentDuringRegistrationDisabled": lambda n : setattr(self, 'is_mdm_enrollment_during_registration_disabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -49,5 +52,6 @@ class MobileDeviceManagementPolicy(MobilityManagementPolicy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_bool_value("isMdmEnrollmentDuringRegistrationDisabled", self.is_mdm_enrollment_during_registration_disabled)
     
 

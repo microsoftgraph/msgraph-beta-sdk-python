@@ -36,7 +36,7 @@ class PrintJobConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     duplex_mode: Optional[PrintDuplexMode] = None
     # The orientation to use when feeding media into the printer. Valid values are described in the following table. Read-only.
     feed_orientation: Optional[PrinterFeedOrientation] = None
-    # Finishing processes to use when printing.
+    # Finishing processes to use when printing. Possible values are: none, staple, punch, cover, bind, saddleStitch, stitchEdge, stapleTopLeft, stapleBottomLeft, stapleTopRight, stapleBottomRight, stitchLeftEdge, stitchTopEdge, stitchRightEdge, stitchBottomEdge, stapleDualLeft, stapleDualTop, stapleDualRight, stapleDualBottom, unknownFutureValue. You must use the Prefer: include-unknown-enum-members request header to get the following values in this [evolvable enum](/graph/best-practices-concept#handling-future-members-in-evolvable-enumerottom,bindLeft,bindTop,bindRight,bindBottom,foldAccordion,foldDoubleGate,foldGate,foldHalf,foldHalfZ,foldLeftGate,foldLetter,foldParallel,foldPoster,foldRightGate,foldZ,foldEngineeringZ,punchTopLeft,punchBottomLeft,punchTopRight,punchBottomRight,punchDualLeft,punchDualTop,punchDualRight,punchDualBottom,punchTripleLeft,punchTripleTop,punchTripleRight,punchTripleBottom,punchQuadLeft,punchQuadTop,punchQuadRight,punchQuadBottom,fold,trim,bale,bookletMaker,coat,laminate,trimAfterPages,trimAfterDocuments,trimAfterCopies,trimAfterJob`.
     finishings: Optional[list[PrintFinishing]] = None
     # The fitPdfToPage property
     fit_pdf_to_page: Optional[bool] = None

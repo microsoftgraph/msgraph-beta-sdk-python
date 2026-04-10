@@ -17,9 +17,15 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.place import Place
     from .check_ins.check_ins_request_builder import CheckInsRequestBuilder
+    from .children.children_request_builder import ChildrenRequestBuilder
     from .descendants.descendants_request_builder import DescendantsRequestBuilder
+    from .graph_building.graph_building_request_builder import GraphBuildingRequestBuilder
+    from .graph_desk.graph_desk_request_builder import GraphDeskRequestBuilder
+    from .graph_floor.graph_floor_request_builder import GraphFloorRequestBuilder
     from .graph_room.graph_room_request_builder import GraphRoomRequestBuilder
     from .graph_room_list.graph_room_list_request_builder import GraphRoomListRequestBuilder
+    from .graph_section.graph_section_request_builder import GraphSectionRequestBuilder
+    from .graph_workspace.graph_workspace_request_builder import GraphWorkspaceRequestBuilder
 
 class PlaceItemRequestBuilder(BaseRequestBuilder):
     """
@@ -55,11 +61,11 @@ class PlaceItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Place, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Place]:
         """
-        Update the properties of place object that can be a building, floor, section, desk, room, workspace, or roomList. You can identify the place by specifying the id property.
+        Upsert one or more place objects in async mode. This API allows you to create and update multiple places efficiently in a single request. For more information on how to use this API, including scenarios, best practices, and concurrency limits, see Working with the upsert Places API in Microsoft Graph.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Place]
-        Find more info here: https://learn.microsoft.com/graph/api/place-update?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/place-patch-places?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -90,7 +96,7 @@ class PlaceItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Place, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of place object that can be a building, floor, section, desk, room, workspace, or roomList. You can identify the place by specifying the id property.
+        Upsert one or more place objects in async mode. This API allows you to create and update multiple places efficiently in a single request. For more information on how to use this API, including scenarios, best practices, and concurrency limits, see Working with the upsert Places API in Microsoft Graph.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -123,6 +129,15 @@ class PlaceItemRequestBuilder(BaseRequestBuilder):
         return CheckInsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def children(self) -> ChildrenRequestBuilder:
+        """
+        Provides operations to manage the children property of the microsoft.graph.place entity.
+        """
+        from .children.children_request_builder import ChildrenRequestBuilder
+
+        return ChildrenRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def descendants(self) -> DescendantsRequestBuilder:
         """
         Provides operations to call the descendants method.
@@ -130,6 +145,33 @@ class PlaceItemRequestBuilder(BaseRequestBuilder):
         from .descendants.descendants_request_builder import DescendantsRequestBuilder
 
         return DescendantsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_building(self) -> GraphBuildingRequestBuilder:
+        """
+        Casts the previous resource to building.
+        """
+        from .graph_building.graph_building_request_builder import GraphBuildingRequestBuilder
+
+        return GraphBuildingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_desk(self) -> GraphDeskRequestBuilder:
+        """
+        Casts the previous resource to desk.
+        """
+        from .graph_desk.graph_desk_request_builder import GraphDeskRequestBuilder
+
+        return GraphDeskRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_floor(self) -> GraphFloorRequestBuilder:
+        """
+        Casts the previous resource to floor.
+        """
+        from .graph_floor.graph_floor_request_builder import GraphFloorRequestBuilder
+
+        return GraphFloorRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def graph_room(self) -> GraphRoomRequestBuilder:
@@ -148,6 +190,24 @@ class PlaceItemRequestBuilder(BaseRequestBuilder):
         from .graph_room_list.graph_room_list_request_builder import GraphRoomListRequestBuilder
 
         return GraphRoomListRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_section(self) -> GraphSectionRequestBuilder:
+        """
+        Casts the previous resource to section.
+        """
+        from .graph_section.graph_section_request_builder import GraphSectionRequestBuilder
+
+        return GraphSectionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_workspace(self) -> GraphWorkspaceRequestBuilder:
+        """
+        Casts the previous resource to workspace.
+        """
+        from .graph_workspace.graph_workspace_request_builder import GraphWorkspaceRequestBuilder
+
+        return GraphWorkspaceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PlaceItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

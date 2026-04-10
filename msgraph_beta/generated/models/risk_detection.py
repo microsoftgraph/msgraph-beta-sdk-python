@@ -20,7 +20,7 @@ from .entity import Entity
 
 @dataclass
 class RiskDetection(Entity, Parsable):
-    # Indicates the activity type the detected risk is linked to. The possible values are signin, user, unknownFutureValue.
+    # Indicates the activity type the detected risk is linked to.
     activity: Optional[ActivityType] = None
     # Date and time that the risky activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     activity_date_time: Optional[datetime.datetime] = None
@@ -44,7 +44,7 @@ class RiskDetection(Entity, Parsable):
     odata_type: Optional[str] = None
     # Request ID of the sign-in associated with the risk detection. This property is null if the risk detection is not associated with a sign-in.
     request_id: Optional[str] = None
-    # Details of the detected risk. The possible values are: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal, m365DAdminDismissedDetection. Use the Prefer: include - unknown -enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal , m365DAdminDismissedDetection. Note: Details for this property are only available for Microsoft Entra ID P2 customers. P1 customers will be returned hidden.
+    # Details of the detected risk. Note: Details for this property are only available for Microsoft Entra ID P2 customers. P1 customers will be returned hidden.
     risk_detail: Optional[RiskDetail] = None
     # The type of risk event detected. The possible values are adminConfirmedUserCompromised, anomalousUserActivity, anomalousToken, anonymizedIPAddress,attackerinTheMiddle,attemptedPRTAccess, generic, investigationsThreatIntelligence, investigationsThreatIntelligenceSigninLinked,leakedCredentials, maliciousIPAddress, maliciousIPAddressValidCredentialsBlockedIP, malwareInfectedIPAddress, mcasImpossibleTravel,mcasFinSuspiciousFileAccess, mcasSuspiciousInboxManipulationRules,nationStateIP, newCountry, passwordSpray, riskyIPAddress, suspiciousAPITraffic, suspiciousBrowser, suspiciousInboxForwarding, suspiciousIPAddress,suspiciousSendingPatterns, tokenIssuerAnomaly,  unfamiliarFeatures, unlikelyTravel, userReportedSuspiciousActivity.  For more information about each value, see Risk types and detection.
     risk_event_type: Optional[str] = None

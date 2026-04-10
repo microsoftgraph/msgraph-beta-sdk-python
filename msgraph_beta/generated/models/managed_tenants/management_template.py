@@ -19,7 +19,7 @@ from ..entity import Entity
 
 @dataclass
 class ManagementTemplate(Entity, Parsable):
-    # The management category for the management template. Possible values are: custom, devices, identity, unknownFutureValue. Required. Read-only.
+    # The management category for the management template. The possible values are: custom, devices, identity, unknownFutureValue. Required. Read-only.
     category: Optional[ManagementCategory] = None
     # The createdByUserId property
     created_by_user_id: Optional[str] = None

@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .communications_phone_identity import CommunicationsPhoneIdentity
     from .communications_user_identity import CommunicationsUserIdentity
     from .email_identity import EmailIdentity
+    from .group_identity import GroupIdentity
     from .initiator import Initiator
     from .program_resource import ProgramResource
     from .provisioned_identity import ProvisionedIdentity
@@ -23,6 +24,7 @@ if TYPE_CHECKING:
     from .provisioning_system import ProvisioningSystem
     from .security.submission_user_identity import SubmissionUserIdentity
     from .service_principal_identity import ServicePrincipalIdentity
+    from .share_point_group_identity import SharePointGroupIdentity
     from .share_point_identity import SharePointIdentity
     from .source_provisioned_identity import SourceProvisionedIdentity
     from .target_provisioned_identity import TargetProvisionedIdentity
@@ -101,6 +103,10 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
             from .email_identity import EmailIdentity
 
             return EmailIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupIdentity".casefold():
+            from .group_identity import GroupIdentity
+
+            return GroupIdentity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.initiator".casefold():
             from .initiator import Initiator
 
@@ -129,6 +135,10 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
             from .service_principal_identity import ServicePrincipalIdentity
 
             return ServicePrincipalIdentity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointGroupIdentity".casefold():
+            from .share_point_group_identity import SharePointGroupIdentity
+
+            return SharePointGroupIdentity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointIdentity".casefold():
             from .share_point_identity import SharePointIdentity
 
@@ -179,6 +189,7 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
         from .communications_phone_identity import CommunicationsPhoneIdentity
         from .communications_user_identity import CommunicationsUserIdentity
         from .email_identity import EmailIdentity
+        from .group_identity import GroupIdentity
         from .initiator import Initiator
         from .program_resource import ProgramResource
         from .provisioned_identity import ProvisionedIdentity
@@ -186,6 +197,7 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
         from .provisioning_system import ProvisioningSystem
         from .security.submission_user_identity import SubmissionUserIdentity
         from .service_principal_identity import ServicePrincipalIdentity
+        from .share_point_group_identity import SharePointGroupIdentity
         from .share_point_identity import SharePointIdentity
         from .source_provisioned_identity import SourceProvisionedIdentity
         from .target_provisioned_identity import TargetProvisionedIdentity
@@ -205,6 +217,7 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
         from .communications_phone_identity import CommunicationsPhoneIdentity
         from .communications_user_identity import CommunicationsUserIdentity
         from .email_identity import EmailIdentity
+        from .group_identity import GroupIdentity
         from .initiator import Initiator
         from .program_resource import ProgramResource
         from .provisioned_identity import ProvisionedIdentity
@@ -212,6 +225,7 @@ class Identity(AdditionalDataHolder, BackedModel, Parsable):
         from .provisioning_system import ProvisioningSystem
         from .security.submission_user_identity import SubmissionUserIdentity
         from .service_principal_identity import ServicePrincipalIdentity
+        from .share_point_group_identity import SharePointGroupIdentity
         from .share_point_identity import SharePointIdentity
         from .source_provisioned_identity import SourceProvisionedIdentity
         from .target_provisioned_identity import TargetProvisionedIdentity

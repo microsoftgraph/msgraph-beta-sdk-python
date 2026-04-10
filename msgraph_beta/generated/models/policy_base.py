@@ -8,12 +8,14 @@ if TYPE_CHECKING:
     from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
     from .app_management_policy import AppManagementPolicy
     from .authorization_policy import AuthorizationPolicy
+    from .b2b_management_policy import B2bManagementPolicy
     from .claims_mapping_policy import ClaimsMappingPolicy
     from .cross_tenant_access_policy import CrossTenantAccessPolicy
     from .directory_object import DirectoryObject
     from .external_identities_policy import ExternalIdentitiesPolicy
     from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
     from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
+    from .on_prem_authentication_policy import OnPremAuthenticationPolicy
     from .permission_grant_policy import PermissionGrantPolicy
     from .service_principal_creation_policy import ServicePrincipalCreationPolicy
     from .sts_policy import StsPolicy
@@ -59,6 +61,10 @@ class PolicyBase(DirectoryObject, Parsable):
             from .authorization_policy import AuthorizationPolicy
 
             return AuthorizationPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2bManagementPolicy".casefold():
+            from .b2b_management_policy import B2bManagementPolicy
+
+            return B2bManagementPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.claimsMappingPolicy".casefold():
             from .claims_mapping_policy import ClaimsMappingPolicy
 
@@ -79,6 +85,10 @@ class PolicyBase(DirectoryObject, Parsable):
             from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
 
             return IdentitySecurityDefaultsEnforcementPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPremAuthenticationPolicy".casefold():
+            from .on_prem_authentication_policy import OnPremAuthenticationPolicy
+
+            return OnPremAuthenticationPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.permissionGrantPolicy".casefold():
             from .permission_grant_policy import PermissionGrantPolicy
 
@@ -117,12 +127,14 @@ class PolicyBase(DirectoryObject, Parsable):
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
         from .app_management_policy import AppManagementPolicy
         from .authorization_policy import AuthorizationPolicy
+        from .b2b_management_policy import B2bManagementPolicy
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .directory_object import DirectoryObject
         from .external_identities_policy import ExternalIdentitiesPolicy
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
+        from .on_prem_authentication_policy import OnPremAuthenticationPolicy
         from .permission_grant_policy import PermissionGrantPolicy
         from .service_principal_creation_policy import ServicePrincipalCreationPolicy
         from .sts_policy import StsPolicy
@@ -134,12 +146,14 @@ class PolicyBase(DirectoryObject, Parsable):
         from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
         from .app_management_policy import AppManagementPolicy
         from .authorization_policy import AuthorizationPolicy
+        from .b2b_management_policy import B2bManagementPolicy
         from .claims_mapping_policy import ClaimsMappingPolicy
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .directory_object import DirectoryObject
         from .external_identities_policy import ExternalIdentitiesPolicy
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
         from .identity_security_defaults_enforcement_policy import IdentitySecurityDefaultsEnforcementPolicy
+        from .on_prem_authentication_policy import OnPremAuthenticationPolicy
         from .permission_grant_policy import PermissionGrantPolicy
         from .service_principal_creation_policy import ServicePrincipalCreationPolicy
         from .sts_policy import StsPolicy

@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_review_instance import AccessReviewInstance
+    from .access_review_instance_decision_item_permission import AccessReviewInstanceDecisionItemPermission
     from .access_review_instance_decision_item_resource import AccessReviewInstanceDecisionItemResource
     from .access_review_instance_decision_item_target import AccessReviewInstanceDecisionItemTarget
     from .decision_item_principal_resource_membership import DecisionItemPrincipalResourceMembership
@@ -25,6 +26,8 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
     applied_by: Optional[UserIdentity] = None
     # The timestamp when the approval decision was applied. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $select. Read-only.
     applied_date_time: Optional[datetime.datetime] = None
+    # The description of the apply result.
+    apply_description: Optional[str] = None
     # The result of applying the decision. Possible values: New, AppliedSuccessfully, AppliedWithUnknownFailure, AppliedSuccessfullyButObjectNotFound, and ApplyNotSupported. Supports $select, $orderby, and $filter (eq only). Read-only.
     apply_result: Optional[str] = None
     # Result of the review. Possible values: Approve, Deny, NotReviewed, or DontKnow. Supports $select, $orderby, and $filter (eq only).
@@ -37,6 +40,8 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
     justification: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The permission that grants the principal access to a resource.
+    permission: Optional[AccessReviewInstanceDecisionItemPermission] = None
     # Every decision item in an access review represents a principal's access to a resource. This property represents details of the principal. For example, if a decision item represents access of User 'Bob' to Group 'Sales' - The principal is 'Bob' and the resource is 'Sales'. Principals can be of two types - userIdentity and servicePrincipalIdentity. Supports $select. Read-only.
     principal: Optional[Identity] = None
     # Link to the principal object. For example: https://graph.microsoft.com/v1.0/users/a6c7aecb-cbfd-4763-87ef-e91b4bd509d9. Read-only.
@@ -73,6 +78,7 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_review_instance import AccessReviewInstance
+        from .access_review_instance_decision_item_permission import AccessReviewInstanceDecisionItemPermission
         from .access_review_instance_decision_item_resource import AccessReviewInstanceDecisionItemResource
         from .access_review_instance_decision_item_target import AccessReviewInstanceDecisionItemTarget
         from .decision_item_principal_resource_membership import DecisionItemPrincipalResourceMembership
@@ -82,6 +88,7 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
         from .user_identity import UserIdentity
 
         from .access_review_instance import AccessReviewInstance
+        from .access_review_instance_decision_item_permission import AccessReviewInstanceDecisionItemPermission
         from .access_review_instance_decision_item_resource import AccessReviewInstanceDecisionItemResource
         from .access_review_instance_decision_item_target import AccessReviewInstanceDecisionItemTarget
         from .decision_item_principal_resource_membership import DecisionItemPrincipalResourceMembership
@@ -94,11 +101,13 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
             "accessReviewId": lambda n : setattr(self, 'access_review_id', n.get_str_value()),
             "appliedBy": lambda n : setattr(self, 'applied_by', n.get_object_value(UserIdentity)),
             "appliedDateTime": lambda n : setattr(self, 'applied_date_time', n.get_datetime_value()),
+            "applyDescription": lambda n : setattr(self, 'apply_description', n.get_str_value()),
             "applyResult": lambda n : setattr(self, 'apply_result', n.get_str_value()),
             "decision": lambda n : setattr(self, 'decision', n.get_str_value()),
             "insights": lambda n : setattr(self, 'insights', n.get_collection_of_object_values(GovernanceInsight)),
             "instance": lambda n : setattr(self, 'instance', n.get_object_value(AccessReviewInstance)),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
+            "permission": lambda n : setattr(self, 'permission', n.get_object_value(AccessReviewInstanceDecisionItemPermission)),
             "principal": lambda n : setattr(self, 'principal', n.get_object_value(Identity)),
             "principalLink": lambda n : setattr(self, 'principal_link', n.get_str_value()),
             "principalResourceMembership": lambda n : setattr(self, 'principal_resource_membership', n.get_object_value(DecisionItemPrincipalResourceMembership)),
@@ -125,11 +134,13 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
         writer.write_str_value("accessReviewId", self.access_review_id)
         writer.write_object_value("appliedBy", self.applied_by)
         writer.write_datetime_value("appliedDateTime", self.applied_date_time)
+        writer.write_str_value("applyDescription", self.apply_description)
         writer.write_str_value("applyResult", self.apply_result)
         writer.write_str_value("decision", self.decision)
         writer.write_collection_of_object_values("insights", self.insights)
         writer.write_object_value("instance", self.instance)
         writer.write_str_value("justification", self.justification)
+        writer.write_object_value("permission", self.permission)
         writer.write_object_value("principal", self.principal)
         writer.write_str_value("principalLink", self.principal_link)
         writer.write_object_value("principalResourceMembership", self.principal_resource_membership)

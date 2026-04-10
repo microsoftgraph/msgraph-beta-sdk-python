@@ -27,7 +27,7 @@ class CloudPcSnapshot(Entity, Parsable):
     last_restored_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The type of snapshot that indicates how to create the snapshot. Possible values are automatic, manual, unknownFutureValue, retention. Use the Prefer: include-unknown-enum-members request header to get the following value from this evolvable enum: retention. The default value is automatic.
+    # The type of snapshot that indicates how to create the snapshot. Possible values are automatic, manual, unknownFutureValue, retention. Use the Prefer: include-unknown-enum-members request header to get the following members from this evolvable enum: retention. The default value is automatic.
     snapshot_type: Optional[CloudPcSnapshotType] = None
     # The status of the Cloud PC snapshot. The possible values are: ready, unknownFutureValue.
     status: Optional[CloudPcSnapshotStatus] = None

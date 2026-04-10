@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .item.directory_object_item_request_builder import DirectoryObjectItemRequestBuilder
+    from .ref.ref_request_builder import RefRequestBuilder
 
 class SponsorsRequestBuilder(BaseRequestBuilder):
     """
@@ -34,7 +35,7 @@ class SponsorsRequestBuilder(BaseRequestBuilder):
     
     def by_directory_object_id(self,directory_object_id: str) -> DirectoryObjectItemRequestBuilder:
         """
-        Provides operations to manage the sponsors property of the microsoft.graph.user entity.
+        Gets an item from the msgraph_beta.generated.users.item.sponsors.item collection
         param directory_object_id: The unique identifier of directoryObject
         Returns: DirectoryObjectItemRequestBuilder
         """
@@ -48,10 +49,10 @@ class SponsorsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SponsorsRequestBuilderGetQueryParameters]] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Get a user's sponsors. Sponsors are users and groups that are responsible for this guest's privileges in the tenant and for keeping the guest's information and access up to date.
+        Get an agentUser's sponsors. Sponsors are users and groups that are responsible for this agent user's privileges in the tenant and for keeping the agent user's information and access up to date.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/user-list-sponsors?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/agentuser-list-sponsors?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,7 +70,7 @@ class SponsorsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SponsorsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a user's sponsors. Sponsors are users and groups that are responsible for this guest's privileges in the tenant and for keeping the guest's information and access up to date.
+        Get an agentUser's sponsors. Sponsors are users and groups that are responsible for this agent user's privileges in the tenant and for keeping the agent user's information and access up to date.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -97,10 +98,19 @@ class SponsorsRequestBuilder(BaseRequestBuilder):
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def ref(self) -> RefRequestBuilder:
+        """
+        Provides operations to manage the collection of user entities.
+        """
+        from .ref.ref_request_builder import RefRequestBuilder
+
+        return RefRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class SponsorsRequestBuilderGetQueryParameters():
         """
-        Get a user's sponsors. Sponsors are users and groups that are responsible for this guest's privileges in the tenant and for keeping the guest's information and access up to date.
+        Get an agentUser's sponsors. Sponsors are users and groups that are responsible for this agent user's privileges in the tenant and for keeping the agent user's information and access up to date.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

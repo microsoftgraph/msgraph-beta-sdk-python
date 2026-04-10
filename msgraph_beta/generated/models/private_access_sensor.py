@@ -12,19 +12,19 @@ from .entity import Entity
 
 @dataclass
 class PrivateAccessSensor(Entity, Parsable):
-    # The externalIp property
+    # External IP of sensor.
     external_ip: Optional[str] = None
-    # The isAuditMode property
+    # Not Implementated.
     is_audit_mode: Optional[bool] = None
-    # The isBreakglassEnabled property
+    # Not Implemented.
     is_breakglass_enabled: Optional[bool] = None
-    # The machineName property
+    # Machine name of sensor.
     machine_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The status property
     status: Optional[SensorStatus] = None
-    # The version property
+    # Version of sensor.
     version: Optional[str] = None
     
     @staticmethod

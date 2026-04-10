@@ -32,7 +32,7 @@ class UserConfigurationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UserConfigurationItemRequestBuilderGetQueryParameters]] = None) -> Optional[UserConfiguration]:
         """
-        Get userConfigurations from users
+        The user configuration objects associated to the mailFolder.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserConfiguration]
         """
@@ -52,7 +52,7 @@ class UserConfigurationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UserConfigurationItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get userConfigurations from users
+        The user configuration objects associated to the mailFolder.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class UserConfigurationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserConfigurationItemRequestBuilderGetQueryParameters():
         """
-        Get userConfigurations from users
+        The user configuration objects associated to the mailFolder.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .organizational_branding_localization import OrganizationalBrandingLocalization
     from .organizational_branding_properties import OrganizationalBrandingProperties
+    from .organizational_branding_theme import OrganizationalBrandingTheme
 
 from .organizational_branding_properties import OrganizationalBrandingProperties
 
@@ -16,6 +17,8 @@ class OrganizationalBranding(OrganizationalBrandingProperties, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.organizationalBranding"
     # Add different branding based on a locale.
     localizations: Optional[list[OrganizationalBrandingLocalization]] = None
+    # Collection of branding themes for the tenant.
+    themes: Optional[list[OrganizationalBrandingTheme]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> OrganizationalBranding:
@@ -35,12 +38,15 @@ class OrganizationalBranding(OrganizationalBrandingProperties, Parsable):
         """
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
+        from .organizational_branding_theme import OrganizationalBrandingTheme
 
         from .organizational_branding_localization import OrganizationalBrandingLocalization
         from .organizational_branding_properties import OrganizationalBrandingProperties
+        from .organizational_branding_theme import OrganizationalBrandingTheme
 
         fields: dict[str, Callable[[Any], None]] = {
             "localizations": lambda n : setattr(self, 'localizations', n.get_collection_of_object_values(OrganizationalBrandingLocalization)),
+            "themes": lambda n : setattr(self, 'themes', n.get_collection_of_object_values(OrganizationalBrandingTheme)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,5 +62,6 @@ class OrganizationalBranding(OrganizationalBrandingProperties, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("localizations", self.localizations)
+        writer.write_collection_of_object_values("themes", self.themes)
     
 

@@ -16,7 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ..........models.custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
     from ..........models.o_data_errors.o_data_error import ODataError
-    from .files.files_request_builder import FilesRequestBuilder
+    from .upload_file.upload_file_request_builder import UploadFileRequestBuilder
 
 class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuilder):
     """
@@ -37,7 +37,6 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -56,7 +55,6 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomDataProvidedResourceUploadSession]
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -78,7 +76,6 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomDataProvidedResourceUploadSession]
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -101,7 +98,6 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -113,7 +109,6 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -126,7 +121,6 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -141,19 +135,18 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
         param raw_url: The raw URL to use for the request builder.
         Returns: CustomDataProvidedResourceUploadSessionItemRequestBuilder
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CustomDataProvidedResourceUploadSessionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def files(self) -> FilesRequestBuilder:
+    def upload_file(self) -> UploadFileRequestBuilder:
         """
-        Provides operations to manage the files property of the microsoft.graph.customDataProvidedResourceUploadSession entity.
+        Provides operations to call the uploadFile method.
         """
-        from .files.files_request_builder import FilesRequestBuilder
+        from .upload_file.upload_file_request_builder import UploadFileRequestBuilder
 
-        return FilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return UploadFileRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CustomDataProvidedResourceUploadSessionItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

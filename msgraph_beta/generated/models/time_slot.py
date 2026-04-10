@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .date_time_time_zone import DateTimeTimeZone
+    from .time_slot_availability import TimeSlotAvailability
 
 @dataclass
 class TimeSlot(AdditionalDataHolder, BackedModel, Parsable):
@@ -31,6 +32,15 @@ class TimeSlot(AdditionalDataHolder, BackedModel, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.timeSlotAvailability".casefold():
+            from .time_slot_availability import TimeSlotAvailability
+
+            return TimeSlotAvailability()
         return TimeSlot()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -39,8 +49,10 @@ class TimeSlot(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .date_time_time_zone import DateTimeTimeZone
+        from .time_slot_availability import TimeSlotAvailability
 
         from .date_time_time_zone import DateTimeTimeZone
+        from .time_slot_availability import TimeSlotAvailability
 
         fields: dict[str, Callable[[Any], None]] = {
             "end": lambda n : setattr(self, 'end', n.get_object_value(DateTimeTimeZone)),

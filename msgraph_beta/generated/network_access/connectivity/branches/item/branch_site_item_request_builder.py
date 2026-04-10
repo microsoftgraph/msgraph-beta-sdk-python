@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .connectivity_configuration.connectivity_configuration_request_builder import ConnectivityConfigurationRequestBuilder
     from .device_links.device_links_request_builder import DeviceLinksRequestBuilder
+    from .forwarding_profiles.forwarding_profiles_request_builder import ForwardingProfilesRequestBuilder
 
 class BranchSiteItemRequestBuilder(BaseRequestBuilder):
     """
@@ -167,6 +168,15 @@ class BranchSiteItemRequestBuilder(BaseRequestBuilder):
         from .device_links.device_links_request_builder import DeviceLinksRequestBuilder
 
         return DeviceLinksRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def forwarding_profiles(self) -> ForwardingProfilesRequestBuilder:
+        """
+        Provides operations to manage the forwardingProfiles property of the microsoft.graph.networkaccess.branchSite entity.
+        """
+        from .forwarding_profiles.forwarding_profiles_request_builder import ForwardingProfilesRequestBuilder
+
+        return ForwardingProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class BranchSiteItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

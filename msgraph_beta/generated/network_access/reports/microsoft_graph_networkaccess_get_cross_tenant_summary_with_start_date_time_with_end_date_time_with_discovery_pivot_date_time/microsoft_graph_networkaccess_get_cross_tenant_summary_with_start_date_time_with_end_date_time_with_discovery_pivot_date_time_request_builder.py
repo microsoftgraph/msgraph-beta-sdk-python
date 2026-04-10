@@ -40,7 +40,7 @@ class MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithStartDateTimeWithEndDa
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CrossTenantSummary]:
         """
-        Get a summary of the cross-tenant access patterns.
+        Get a summary of the cross-tenant access patterns as logged in Global Secure Access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantSummary]
         """
@@ -60,7 +60,7 @@ class MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithStartDateTimeWithEndDa
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Get a summary of the cross-tenant access patterns.
+        Get a summary of the cross-tenant access patterns as logged in Global Secure Access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

@@ -6,12 +6,14 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .attribute_rule_members import AttributeRuleMembers
     from .connected_organization_members import ConnectedOrganizationMembers
     from .external_sponsors import ExternalSponsors
     from .group_members import GroupMembers
     from .internal_sponsors import InternalSponsors
     from .requestor_manager import RequestorManager
     from .single_user import SingleUser
+    from .target_agent_identity_sponsors_or_owners import TargetAgentIdentitySponsorsOrOwners
     from .target_user_sponsors import TargetUserSponsors
 
 @dataclass
@@ -40,6 +42,10 @@ class UserSet(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.attributeRuleMembers".casefold():
+            from .attribute_rule_members import AttributeRuleMembers
+
+            return AttributeRuleMembers()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.connectedOrganizationMembers".casefold():
             from .connected_organization_members import ConnectedOrganizationMembers
 
@@ -64,6 +70,10 @@ class UserSet(AdditionalDataHolder, BackedModel, Parsable):
             from .single_user import SingleUser
 
             return SingleUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.targetAgentIdentitySponsorsOrOwners".casefold():
+            from .target_agent_identity_sponsors_or_owners import TargetAgentIdentitySponsorsOrOwners
+
+            return TargetAgentIdentitySponsorsOrOwners()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.targetUserSponsors".casefold():
             from .target_user_sponsors import TargetUserSponsors
 
@@ -75,20 +85,24 @@ class UserSet(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .attribute_rule_members import AttributeRuleMembers
         from .connected_organization_members import ConnectedOrganizationMembers
         from .external_sponsors import ExternalSponsors
         from .group_members import GroupMembers
         from .internal_sponsors import InternalSponsors
         from .requestor_manager import RequestorManager
         from .single_user import SingleUser
+        from .target_agent_identity_sponsors_or_owners import TargetAgentIdentitySponsorsOrOwners
         from .target_user_sponsors import TargetUserSponsors
 
+        from .attribute_rule_members import AttributeRuleMembers
         from .connected_organization_members import ConnectedOrganizationMembers
         from .external_sponsors import ExternalSponsors
         from .group_members import GroupMembers
         from .internal_sponsors import InternalSponsors
         from .requestor_manager import RequestorManager
         from .single_user import SingleUser
+        from .target_agent_identity_sponsors_or_owners import TargetAgentIdentitySponsorsOrOwners
         from .target_user_sponsors import TargetUserSponsors
 
         fields: dict[str, Callable[[Any], None]] = {

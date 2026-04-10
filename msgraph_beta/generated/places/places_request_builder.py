@@ -17,9 +17,16 @@ if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from ..models.place import Place
     from .count.count_request_builder import CountRequestBuilder
+    from .get_operation_with_id.get_operation_with_id_request_builder import GetOperationWithIdRequestBuilder
+    from .graph_building.graph_building_request_builder import GraphBuildingRequestBuilder
+    from .graph_desk.graph_desk_request_builder import GraphDeskRequestBuilder
+    from .graph_floor.graph_floor_request_builder import GraphFloorRequestBuilder
     from .graph_room.graph_room_request_builder import GraphRoomRequestBuilder
     from .graph_room_list.graph_room_list_request_builder import GraphRoomListRequestBuilder
+    from .graph_section.graph_section_request_builder import GraphSectionRequestBuilder
+    from .graph_workspace.graph_workspace_request_builder import GraphWorkspaceRequestBuilder
     from .item.place_item_request_builder import PlaceItemRequestBuilder
+    from .list_operations.list_operations_request_builder import ListOperationsRequestBuilder
 
 class PlacesRequestBuilder(BaseRequestBuilder):
     """
@@ -47,6 +54,18 @@ class PlacesRequestBuilder(BaseRequestBuilder):
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["place%2Did"] = place_id
         return PlaceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def get_operation_with_id(self,id: str) -> GetOperationWithIdRequestBuilder:
+        """
+        Provides operations to call the getOperation method.
+        param id: Usage: id='{id}'
+        Returns: GetOperationWithIdRequestBuilder
+        """
+        if id is None:
+            raise TypeError("id cannot be null.")
+        from .get_operation_with_id.get_operation_with_id_request_builder import GetOperationWithIdRequestBuilder
+
+        return GetOperationWithIdRequestBuilder(self.request_adapter, self.path_parameters, id)
     
     async def post(self,body: Place, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Place]:
         """
@@ -107,6 +126,33 @@ class PlacesRequestBuilder(BaseRequestBuilder):
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def graph_building(self) -> GraphBuildingRequestBuilder:
+        """
+        Casts the previous resource to building.
+        """
+        from .graph_building.graph_building_request_builder import GraphBuildingRequestBuilder
+
+        return GraphBuildingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_desk(self) -> GraphDeskRequestBuilder:
+        """
+        Casts the previous resource to desk.
+        """
+        from .graph_desk.graph_desk_request_builder import GraphDeskRequestBuilder
+
+        return GraphDeskRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_floor(self) -> GraphFloorRequestBuilder:
+        """
+        Casts the previous resource to floor.
+        """
+        from .graph_floor.graph_floor_request_builder import GraphFloorRequestBuilder
+
+        return GraphFloorRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def graph_room(self) -> GraphRoomRequestBuilder:
         """
         Casts the previous resource to room.
@@ -123,6 +169,33 @@ class PlacesRequestBuilder(BaseRequestBuilder):
         from .graph_room_list.graph_room_list_request_builder import GraphRoomListRequestBuilder
 
         return GraphRoomListRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_section(self) -> GraphSectionRequestBuilder:
+        """
+        Casts the previous resource to section.
+        """
+        from .graph_section.graph_section_request_builder import GraphSectionRequestBuilder
+
+        return GraphSectionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_workspace(self) -> GraphWorkspaceRequestBuilder:
+        """
+        Casts the previous resource to workspace.
+        """
+        from .graph_workspace.graph_workspace_request_builder import GraphWorkspaceRequestBuilder
+
+        return GraphWorkspaceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def list_operations(self) -> ListOperationsRequestBuilder:
+        """
+        Provides operations to call the listOperations method.
+        """
+        from .list_operations.list_operations_request_builder import ListOperationsRequestBuilder
+
+        return ListOperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PlacesRequestBuilderPostRequestConfiguration(RequestConfiguration[QueryParameters]):

@@ -14,7 +14,7 @@ from ..entity import Entity
 class CloudPcConnection(Entity, Parsable):
     # The display name of the cloud PC connection. Required. Read-only.
     display_name: Optional[str] = None
-    # The health status of the cloud PC connection. Possible values are: pending, running, passed, failed, unknownFutureValue.  Required. Read-only.
+    # The health status of the cloud PC connection. The possible values are: pending, running, passed, failed, unknownFutureValue.  Required. Read-only.
     health_check_status: Optional[str] = None
     # Date and time the entity was last updated in the multi-tenant management platform. Required. Read-only.
     last_refreshed_date_time: Optional[datetime.datetime] = None

@@ -38,7 +38,7 @@ class MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTi
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters]] = None) -> Optional[EntitiesSummariesWithStartDateTimeWithEndDateTimeGetResponse]:
         """
-        Get the number of users, devices, and workloads per traffic type in a specified time period.
+        Get the number of users, devices, and workloads per traffic type in a specified time period as logged in Global Secure Access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EntitiesSummariesWithStartDateTimeWithEndDateTimeGetResponse]
         Find more info here: https://learn.microsoft.com/graph/api/networkaccess-reports-entitiessummaries?view=graph-rest-beta
@@ -59,7 +59,7 @@ class MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTi
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get the number of users, devices, and workloads per traffic type in a specified time period.
+        Get the number of users, devices, and workloads per traffic type in a specified time period as logged in Global Secure Access.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -81,7 +81,7 @@ class MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTi
     @dataclass
     class MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters():
         """
-        Get the number of users, devices, and workloads per traffic type in a specified time period.
+        Get the number of users, devices, and workloads per traffic type in a specified time period as logged in Global Secure Access.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

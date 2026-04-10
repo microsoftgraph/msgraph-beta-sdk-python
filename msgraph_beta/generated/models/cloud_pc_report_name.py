@@ -28,4 +28,6 @@ class CloudPcReportName(str, Enum):
     TroubleshootIssueCountReport = "troubleshootIssueCountReport",
     CloudPcInsightReport = "cloudPcInsightReport",
     RegionalInaccessibleCloudPcTrendReport = "regionalInaccessibleCloudPcTrendReport",
+    CloudPcUsageCategoryReport = "cloudPcUsageCategoryReport",
+    CloudPCInventoryReport = "cloudPCInventoryReport",
 

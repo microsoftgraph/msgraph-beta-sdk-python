@@ -1,6 +1,7 @@
 from enum import Enum
 
 class CloudPcRecommendationReportType(str, Enum):
-    CloudPcUsageCategoryReports = "cloudPcUsageCategoryReports",
+    CloudPcUsageCategoryReport = "cloudPcUsageCategoryReport",
     UnknownFutureValue = "unknownFutureValue",
+    CloudPcUsageCategoryReports = "cloudPcUsageCategoryReports",
 

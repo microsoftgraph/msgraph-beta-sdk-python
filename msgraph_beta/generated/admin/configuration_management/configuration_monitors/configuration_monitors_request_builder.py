@@ -49,9 +49,10 @@ class ConfigurationMonitorsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ConfigurationMonitorsRequestBuilderGetQueryParameters]] = None) -> Optional[ConfigurationMonitorCollectionResponse]:
         """
-        Get configurationMonitors from admin
+        Get a list of the configurationMonitor objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConfigurationMonitorCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/configurationmanagement-list-configurationmonitors?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class ConfigurationMonitorsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ConfigurationMonitor, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ConfigurationMonitor]:
         """
-        Create new navigation property to configurationMonitors for admin
+        Create a new configurationMonitor object that runs periodically in the background at a scheduled frequency.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConfigurationMonitor]
+        Find more info here: https://learn.microsoft.com/graph/api/configurationmanagement-post-configurationmonitors?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class ConfigurationMonitorsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ConfigurationMonitorsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get configurationMonitors from admin
+        Get a list of the configurationMonitor objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class ConfigurationMonitorsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ConfigurationMonitor, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to configurationMonitors for admin
+        Create a new configurationMonitor object that runs periodically in the background at a scheduled frequency.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class ConfigurationMonitorsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ConfigurationMonitorsRequestBuilderGetQueryParameters():
         """
-        Get configurationMonitors from admin
+        Get a list of the configurationMonitor objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

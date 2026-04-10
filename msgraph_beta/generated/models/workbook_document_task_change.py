@@ -33,7 +33,7 @@ class WorkbookDocumentTaskChange(Entity, Parsable):
     start_date_time: Optional[datetime.datetime] = None
     # The title of the task. Only present when the type property is setTitle. Nullable.
     title: Optional[str] = None
-    # The type of the change history. Possible values are: create, assign, unassign, unassignAll, setPriority, setTitle, setPercentComplete, setSchedule, remove, restore, undo.
+    # The type of the change history. The possible values are: create, assign, unassign, unassignAll, setPriority, setTitle, setPercentComplete, setSchedule, remove, restore, undo.
     type: Optional[str] = None
     # The ID of the workbookDocumentTaskChange that was undone for the undo change action. Only exists on an undo change history. Nullable.
     undo_change_id: Optional[str] = None

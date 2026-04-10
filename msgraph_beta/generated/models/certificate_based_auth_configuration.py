@@ -12,7 +12,7 @@ from .entity import Entity
 
 @dataclass
 class CertificateBasedAuthConfiguration(Entity, Parsable):
-    # Collection of certificate authorities which creates a trusted certificate chain.
+    # Collection of certificate authorities that creates a trusted certificate chain.
     certificate_authorities: Optional[list[CertificateAuthority]] = None
     # The OdataType property
     odata_type: Optional[str] = None

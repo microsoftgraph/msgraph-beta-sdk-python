@@ -16,6 +16,8 @@ from warnings import warn
 if TYPE_CHECKING:
     from ..models.identity_protection_root import IdentityProtectionRoot
     from ..models.o_data_errors.o_data_error import ODataError
+    from .agent_risk_detections.agent_risk_detections_request_builder import AgentRiskDetectionsRequestBuilder
+    from .risky_agents.risky_agents_request_builder import RiskyAgentsRequestBuilder
     from .risky_service_principals.risky_service_principals_request_builder import RiskyServicePrincipalsRequestBuilder
     from .risky_users.risky_users_request_builder import RiskyUsersRequestBuilder
     from .risk_detections.risk_detections_request_builder import RiskDetectionsRequestBuilder
@@ -114,6 +116,15 @@ class IdentityProtectionRequestBuilder(BaseRequestBuilder):
         return IdentityProtectionRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def agent_risk_detections(self) -> AgentRiskDetectionsRequestBuilder:
+        """
+        Provides operations to manage the agentRiskDetections property of the microsoft.graph.identityProtectionRoot entity.
+        """
+        from .agent_risk_detections.agent_risk_detections_request_builder import AgentRiskDetectionsRequestBuilder
+
+        return AgentRiskDetectionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def risk_detections(self) -> RiskDetectionsRequestBuilder:
         """
         Provides operations to manage the riskDetections property of the microsoft.graph.identityProtectionRoot entity.
@@ -121,6 +132,15 @@ class IdentityProtectionRequestBuilder(BaseRequestBuilder):
         from .risk_detections.risk_detections_request_builder import RiskDetectionsRequestBuilder
 
         return RiskDetectionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def risky_agents(self) -> RiskyAgentsRequestBuilder:
+        """
+        Provides operations to manage the riskyAgents property of the microsoft.graph.identityProtectionRoot entity.
+        """
+        from .risky_agents.risky_agents_request_builder import RiskyAgentsRequestBuilder
+
+        return RiskyAgentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def risky_service_principals(self) -> RiskyServicePrincipalsRequestBuilder:

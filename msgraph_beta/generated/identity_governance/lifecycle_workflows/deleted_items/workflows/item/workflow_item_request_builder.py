@@ -16,13 +16,17 @@ from warnings import warn
 if TYPE_CHECKING:
     from ......models.identity_governance.workflow import Workflow
     from ......models.o_data_errors.o_data_error import ODataError
+    from .administration_scope_targets.administration_scope_targets_request_builder import AdministrationScopeTargetsRequestBuilder
     from .created_by.created_by_request_builder import CreatedByRequestBuilder
     from .execution_scope.execution_scope_request_builder import ExecutionScopeRequestBuilder
     from .last_modified_by.last_modified_by_request_builder import LastModifiedByRequestBuilder
     from .microsoft_graph_identity_governance_activate.microsoft_graph_identity_governance_activate_request_builder import MicrosoftGraphIdentityGovernanceActivateRequestBuilder
     from .microsoft_graph_identity_governance_activate_with_scope.microsoft_graph_identity_governance_activate_with_scope_request_builder import MicrosoftGraphIdentityGovernanceActivateWithScopeRequestBuilder
     from .microsoft_graph_identity_governance_create_new_version.microsoft_graph_identity_governance_create_new_version_request_builder import MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder
+    from .microsoft_graph_identity_governance_preview_task_failures.microsoft_graph_identity_governance_preview_task_failures_request_builder import MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequestBuilder
+    from .microsoft_graph_identity_governance_preview_workflow.microsoft_graph_identity_governance_preview_workflow_request_builder import MicrosoftGraphIdentityGovernancePreviewWorkflowRequestBuilder
     from .microsoft_graph_identity_governance_restore.microsoft_graph_identity_governance_restore_request_builder import MicrosoftGraphIdentityGovernanceRestoreRequestBuilder
+    from .preview_scope.preview_scope_request_builder import PreviewScopeRequestBuilder
     from .runs.runs_request_builder import RunsRequestBuilder
     from .tasks.tasks_request_builder import TasksRequestBuilder
     from .task_reports.task_reports_request_builder import TaskReportsRequestBuilder
@@ -115,6 +119,15 @@ class WorkflowItemRequestBuilder(BaseRequestBuilder):
         return WorkflowItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def administration_scope_targets(self) -> AdministrationScopeTargetsRequestBuilder:
+        """
+        Provides operations to manage the administrationScopeTargets property of the microsoft.graph.identityGovernance.workflowBase entity.
+        """
+        from .administration_scope_targets.administration_scope_targets_request_builder import AdministrationScopeTargetsRequestBuilder
+
+        return AdministrationScopeTargetsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def created_by(self) -> CreatedByRequestBuilder:
         """
         Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.workflowBase entity.
@@ -169,6 +182,24 @@ class WorkflowItemRequestBuilder(BaseRequestBuilder):
         return MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_identity_governance_preview_task_failures(self) -> MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequestBuilder:
+        """
+        Provides operations to call the previewTaskFailures method.
+        """
+        from .microsoft_graph_identity_governance_preview_task_failures.microsoft_graph_identity_governance_preview_task_failures_request_builder import MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequestBuilder
+
+        return MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_identity_governance_preview_workflow(self) -> MicrosoftGraphIdentityGovernancePreviewWorkflowRequestBuilder:
+        """
+        Provides operations to call the previewWorkflow method.
+        """
+        from .microsoft_graph_identity_governance_preview_workflow.microsoft_graph_identity_governance_preview_workflow_request_builder import MicrosoftGraphIdentityGovernancePreviewWorkflowRequestBuilder
+
+        return MicrosoftGraphIdentityGovernancePreviewWorkflowRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def microsoft_graph_identity_governance_restore(self) -> MicrosoftGraphIdentityGovernanceRestoreRequestBuilder:
         """
         Provides operations to call the restore method.
@@ -176,6 +207,15 @@ class WorkflowItemRequestBuilder(BaseRequestBuilder):
         from .microsoft_graph_identity_governance_restore.microsoft_graph_identity_governance_restore_request_builder import MicrosoftGraphIdentityGovernanceRestoreRequestBuilder
 
         return MicrosoftGraphIdentityGovernanceRestoreRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def preview_scope(self) -> PreviewScopeRequestBuilder:
+        """
+        Provides operations to manage the previewScope property of the microsoft.graph.identityGovernance.workflow entity.
+        """
+        from .preview_scope.preview_scope_request_builder import PreviewScopeRequestBuilder
+
+        return PreviewScopeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def runs(self) -> RunsRequestBuilder:

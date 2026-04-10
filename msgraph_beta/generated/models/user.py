@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .access_review_instance import AccessReviewInstance
     from .adhoc_call import AdhocCall
+    from .agent_user import AgentUser
     from .agreement_acceptance import AgreementAcceptance
     from .approval import Approval
     from .app_consent_request import AppConsentRequest
@@ -37,6 +38,7 @@ if TYPE_CHECKING:
     from .event import Event
     from .extension import Extension
     from .group import Group
+    from .identity_governance_user_settings import IdentityGovernanceUserSettings
     from .inference_classification import InferenceClassification
     from .information_protection import InformationProtection
     from .item_insights import ItemInsights
@@ -96,7 +98,7 @@ class User(DirectoryObject, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.user"
     # A freeform text entry field for users to describe themselves. Returned only on $select.
     about_me: Optional[str] = None
-    # true if the account is enabled; otherwise, false. This property is required when a user is created. Supports $filter (eq, ne, not, and in).
+    # true if the account is enabled; otherwise, false. This property is required when creating the object. Supports $filter (eq, ne, not, and in).
     account_enabled: Optional[bool] = None
     # The user's activities across devices. Read-only. Nullable.
     activities: Optional[list[UserActivity]] = None
@@ -190,7 +192,7 @@ class User(DirectoryObject, Parsable):
     drive: Optional[Drive] = None
     # A collection of drives available for this user. Read-only.
     drives: Optional[list[Drive]] = None
-    # The employeeExperience property
+    # The employee experience resources for the user. Read-only. Nullable.
     employee_experience: Optional[EmployeeExperienceUser] = None
     # The date and time when the user was hired or will start work if there is a future hire. Supports $filter (eq, ne, not , ge, le, in).
     employee_hire_date: Optional[datetime.datetime] = None
@@ -220,6 +222,10 @@ class User(DirectoryObject, Parsable):
     hire_date: Optional[datetime.datetime] = None
     # Represents the identities that can be used to sign in to this user account. An identity can be provided by Microsoft (also known as a local account), by organizations, or by social identity providers such as Facebook, Google, and Microsoft and tied to a user account. It may contain multiple items with the same signInType value.  Supports $filter (eq) with limitations.
     identities: Optional[list[ObjectIdentity]] = None
+    # The identityGovernance property
+    identity_governance: Optional[IdentityGovernanceUserSettings] = None
+    # The object ID of the parent identity for agent users. Always null for regular user accounts. For agentUser resources, this property references the object ID of the associated agent identity.
+    identity_parent_id: Optional[str] = None
     # The instant message voice-over IP (VOIP) session initiation protocol (SIP) addresses for the user. Read-only. Supports $filter (eq, not, ge, le, startsWith).
     im_addresses: Optional[list[str]] = None
     # Relevance classification of the user's messages based on explicit designations that override inferred relevance or importance.
@@ -426,6 +432,15 @@ class User(DirectoryObject, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentUser".casefold():
+            from .agent_user import AgentUser
+
+            return AgentUser()
         return User()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -435,6 +450,7 @@ class User(DirectoryObject, Parsable):
         """
         from .access_review_instance import AccessReviewInstance
         from .adhoc_call import AdhocCall
+        from .agent_user import AgentUser
         from .agreement_acceptance import AgreementAcceptance
         from .approval import Approval
         from .app_consent_request import AppConsentRequest
@@ -464,6 +480,7 @@ class User(DirectoryObject, Parsable):
         from .event import Event
         from .extension import Extension
         from .group import Group
+        from .identity_governance_user_settings import IdentityGovernanceUserSettings
         from .inference_classification import InferenceClassification
         from .information_protection import InformationProtection
         from .item_insights import ItemInsights
@@ -517,6 +534,7 @@ class User(DirectoryObject, Parsable):
 
         from .access_review_instance import AccessReviewInstance
         from .adhoc_call import AdhocCall
+        from .agent_user import AgentUser
         from .agreement_acceptance import AgreementAcceptance
         from .approval import Approval
         from .app_consent_request import AppConsentRequest
@@ -546,6 +564,7 @@ class User(DirectoryObject, Parsable):
         from .event import Event
         from .extension import Extension
         from .group import Group
+        from .identity_governance_user_settings import IdentityGovernanceUserSettings
         from .inference_classification import InferenceClassification
         from .information_protection import InformationProtection
         from .item_insights import ItemInsights
@@ -661,6 +680,8 @@ class User(DirectoryObject, Parsable):
             "givenName": lambda n : setattr(self, 'given_name', n.get_str_value()),
             "hireDate": lambda n : setattr(self, 'hire_date', n.get_datetime_value()),
             "identities": lambda n : setattr(self, 'identities', n.get_collection_of_object_values(ObjectIdentity)),
+            "identityGovernance": lambda n : setattr(self, 'identity_governance', n.get_object_value(IdentityGovernanceUserSettings)),
+            "identityParentId": lambda n : setattr(self, 'identity_parent_id', n.get_str_value()),
             "imAddresses": lambda n : setattr(self, 'im_addresses', n.get_collection_of_primitive_values(str)),
             "inferenceClassification": lambda n : setattr(self, 'inference_classification', n.get_object_value(InferenceClassification)),
             "infoCatalogs": lambda n : setattr(self, 'info_catalogs', n.get_collection_of_primitive_values(str)),
@@ -836,6 +857,8 @@ class User(DirectoryObject, Parsable):
         writer.write_str_value("givenName", self.given_name)
         writer.write_datetime_value("hireDate", self.hire_date)
         writer.write_collection_of_object_values("identities", self.identities)
+        writer.write_object_value("identityGovernance", self.identity_governance)
+        writer.write_str_value("identityParentId", self.identity_parent_id)
         writer.write_collection_of_primitive_values("imAddresses", self.im_addresses)
         writer.write_object_value("inferenceClassification", self.inference_classification)
         writer.write_collection_of_primitive_values("infoCatalogs", self.info_catalogs)

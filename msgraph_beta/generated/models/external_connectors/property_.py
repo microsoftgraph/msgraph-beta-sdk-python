@@ -17,9 +17,11 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # A set of aliases or friendly names for the property. Maximum 32 characters. Only alphanumeric characters allowed. For example, each string might not contain control characters, whitespace, or any of the following: :, ;, ,, (, ), [, ], {, }, %, $, +, !, *, =, &, ?, @, #, /, ~, ', ', <, >, `, ^. Optional.
+    # A set of aliases or friendly names for the property. Maximum 32 characters. Only alphanumeric characters allowed. For example, each string might not contain control characters, whitespace, or any of the following special characters: :, ;, ,, (, ), [, ], {, }, %, $, +, !, *, =, &, ?, @, #, /, ~, ', ', <, >, `, ^. Optional.
     aliases: Optional[list[str]] = None
-    # Specifies if the property will be matched exactly for queries. Exact matching can only be set to true for non-searchable properties of type string or stringCollection. Optional.
+    # The description property
+    description: Optional[str] = None
+    # Specifies if the property will be matched exactly for queries. Exact matching can only be set to true for nonsearchable properties of type string or stringCollection. Optional.
     is_exact_match_required: Optional[bool] = None
     # Specifies if the property is queryable. Queryable properties can be used in Keyword Query Language (KQL) queries. Optional.
     is_queryable: Optional[bool] = None
@@ -27,11 +29,11 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
     is_refinable: Optional[bool] = None
     # Specifies if the property is retrievable. Retrievable properties are returned in the result set when items are returned by the search API. Retrievable properties are also available to add to the display template used to render search results. Optional.
     is_retrievable: Optional[bool] = None
-    # Specifies if the property is searchable. Only properties of type string or stringCollection can be searchable. Non-searchable properties aren't added to the search index. Optional.
+    # Specifies if the property is searchable. Only properties of type string or stringCollection can be searchable. Nonsearchable properties aren't added to the search index. Optional.
     is_searchable: Optional[bool] = None
-    # Specifies one or more well-known tags added against a property. Labels help Microsoft Search understand the semantics of the data in the connection. Adding appropriate labels would result in an enhanced search experience (for example, better relevance). Optional.The possible values are: title, url, createdBy, lastModifiedBy, authors, createdDateTime, lastModifiedDateTime, fileName, fileExtension, unknownFutureValue, containerName, containerUrl, iconUrl. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: containerName, containerUrl, iconUrl.
+    # Specifies one or more well-known tags added against a property. Labels help Microsoft Search understand the semantics of the data in the connection. Adding appropriate labels would result in an enhanced search experience (for example, better relevance). Optional.. The possible values are: title, url, createdBy, lastModifiedBy, authors, createdDateTime, lastModifiedDateTime, fileName, fileExtension, unknownFutureValue, containerName, containerUrl, iconUrl, assignedTo, dueDate, closedDate, closedBy, reportedBy, sprintName, severity, state, priority, secondaryId, itemParentId, parentUrl, tags, itemType, itemPath, numReactions. Use the Prefer: include-unknown-enum-members request header to retrieve additional values defined in this evolvable enum.For people connectors you can include : personEmails, personAddresses, personAnniversaries, personName, personNote, personPhones, personCurrentPosition, personWebAccounts, personWebSite, personSkills, personProjects, personAccount, personAwards, personCertifications, personAssistants, personColleagues, personManager, personAlternateContacts, personEmergencyContacts.
     labels: Optional[list[Label]] = None
-    # The name of the property. Maximum 32 characters. Only alphanumeric characters allowed. For example, the property name may not contain control characters, whitespace, or any of the following: :, ;, ,, (, ), [, ], {, }, %, $, +, !, *, =, &, ?, @, #, /, ~, ', ', <, >, `, ^.  Required.
+    # The name of the property. Maximum 32 characters. Only alphanumeric characters allowed. For example, the property name may not contain control characters, whitespace, or any of the following special characters: :, ;, ,, (, ), [, ], {, }, %, $, +, !, *, =, &, ?, @, #, /, ~, ', ', <, >, `, ^.  Required.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -66,6 +68,7 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "aliases": lambda n : setattr(self, 'aliases', n.get_collection_of_primitive_values(str)),
+            "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "isExactMatchRequired": lambda n : setattr(self, 'is_exact_match_required', n.get_bool_value()),
             "isQueryable": lambda n : setattr(self, 'is_queryable', n.get_bool_value()),
             "isRefinable": lambda n : setattr(self, 'is_refinable', n.get_bool_value()),
@@ -88,6 +91,7 @@ class Property_(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_collection_of_primitive_values("aliases", self.aliases)
+        writer.write_str_value("description", self.description)
         writer.write_bool_value("isExactMatchRequired", self.is_exact_match_required)
         writer.write_bool_value("isQueryable", self.is_queryable)
         writer.write_bool_value("isRefinable", self.is_refinable)

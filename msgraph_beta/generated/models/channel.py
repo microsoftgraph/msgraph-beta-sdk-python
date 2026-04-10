@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .conversation_member import ConversationMember
     from .drive_item import DriveItem
     from .entity import Entity
+    from .migration_mode import MigrationMode
     from .shared_with_channel_team_info import SharedWithChannelTeamInfo
     from .teams_app import TeamsApp
     from .teams_channel_planner import TeamsChannelPlanner
@@ -33,7 +34,7 @@ class Channel(Entity, Parsable):
     display_name: Optional[str] = None
     # The email address for sending messages to the channel. Read-only.
     email: Optional[str] = None
-    # The enabledApps property
+    # A collection of enabled apps in the channel.
     enabled_apps: Optional[list[TeamsApp]] = None
     # Metadata for the location where the channel's files are stored.
     files_folder: Optional[DriveItem] = None
@@ -41,18 +42,22 @@ class Channel(Entity, Parsable):
     is_archived: Optional[bool] = None
     # Indicates whether the channel should be marked as recommended for all members of the team to show in their channel list. Note: All recommended channels automatically show in the channels list for education and frontline worker users. The property can only be set programmatically via the Create team method. The default value is false.
     is_favorite_by_default: Optional[bool] = None
-    # The layoutType property
+    # The layout type of the channel. Can be set during creation and can be updated. The possible values are: post, chat, unknownFutureValue. The default value is post. Channels with post layout use traditional post-reply conversation format, while channels with chat layout provide a chat-like threading experience similar to group chats.
     layout_type: Optional[ChannelLayoutType] = None
     # A collection of membership records associated with the channel.
     members: Optional[list[ConversationMember]] = None
-    # The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. Use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: shared.
+    # The type of the channel. Can be set during creation and can't be changed. The possible values are: standard, private, unknownFutureValue, shared. The default value is standard. Use the Prefer: include-unknown-enum-members request header to get the following members in this evolvable enum: shared.
     membership_type: Optional[ChannelMembershipType] = None
     # A collection of all the messages in the channel. Nullable.
     messages: Optional[list[ChatMessage]] = None
+    # Indicates whether a channel is in migration mode. This value is null for channels that never entered migration mode. The possible values are: inProgress, completed, unknownFutureValue.
+    migration_mode: Optional[MigrationMode] = None
     # Settings to configure channel moderation to control who can start new posts and reply to posts in that channel.
     moderation_settings: Optional[ChannelModerationSettings] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Timestamp of the original creation time for the channel. The value is null if the channel never entered migration mode.
+    original_created_date_time: Optional[datetime.datetime] = None
     # Selective Planner services available to this channel. Currently, only shared channels are supported. Read-only. Nullable.
     planner: Optional[TeamsChannelPlanner] = None
     # A collection of teams with which a channel is shared.
@@ -90,6 +95,7 @@ class Channel(Entity, Parsable):
         from .conversation_member import ConversationMember
         from .drive_item import DriveItem
         from .entity import Entity
+        from .migration_mode import MigrationMode
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
         from .teams_app import TeamsApp
         from .teams_channel_planner import TeamsChannelPlanner
@@ -103,6 +109,7 @@ class Channel(Entity, Parsable):
         from .conversation_member import ConversationMember
         from .drive_item import DriveItem
         from .entity import Entity
+        from .migration_mode import MigrationMode
         from .shared_with_channel_team_info import SharedWithChannelTeamInfo
         from .teams_app import TeamsApp
         from .teams_channel_planner import TeamsChannelPlanner
@@ -122,7 +129,9 @@ class Channel(Entity, Parsable):
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(ConversationMember)),
             "membershipType": lambda n : setattr(self, 'membership_type', n.get_enum_value(ChannelMembershipType)),
             "messages": lambda n : setattr(self, 'messages', n.get_collection_of_object_values(ChatMessage)),
+            "migrationMode": lambda n : setattr(self, 'migration_mode', n.get_enum_value(MigrationMode)),
             "moderationSettings": lambda n : setattr(self, 'moderation_settings', n.get_object_value(ChannelModerationSettings)),
+            "originalCreatedDateTime": lambda n : setattr(self, 'original_created_date_time', n.get_datetime_value()),
             "planner": lambda n : setattr(self, 'planner', n.get_object_value(TeamsChannelPlanner)),
             "sharedWithTeams": lambda n : setattr(self, 'shared_with_teams', n.get_collection_of_object_values(SharedWithChannelTeamInfo)),
             "summary": lambda n : setattr(self, 'summary', n.get_object_value(ChannelSummary)),
@@ -156,7 +165,9 @@ class Channel(Entity, Parsable):
         writer.write_collection_of_object_values("members", self.members)
         writer.write_enum_value("membershipType", self.membership_type)
         writer.write_collection_of_object_values("messages", self.messages)
+        writer.write_enum_value("migrationMode", self.migration_mode)
         writer.write_object_value("moderationSettings", self.moderation_settings)
+        writer.write_datetime_value("originalCreatedDateTime", self.original_created_date_time)
         writer.write_object_value("planner", self.planner)
         writer.write_collection_of_object_values("sharedWithTeams", self.shared_with_teams)
         writer.write_object_value("summary", self.summary)

@@ -39,7 +39,7 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
         param custom_data_provided_resource_upload_session_id: The unique identifier of customDataProvidedResourceUploadSession
         Returns: CustomDataProvidedResourceUploadSessionItemRequestBuilder
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         if custom_data_provided_resource_upload_session_id is None:
             raise TypeError("custom_data_provided_resource_upload_session_id cannot be null.")
         from .item.custom_data_provided_resource_upload_session_item_request_builder import CustomDataProvidedResourceUploadSessionItemRequestBuilder
@@ -50,11 +50,11 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UploadSessionsRequestBuilderGetQueryParameters]] = None) -> Optional[CustomDataProvidedResourceUploadSessionCollectionResponse]:
         """
-        Get uploadSessions from identityGovernance
+        Read the properties and relationships of a customDataProvidedResourceUploadSession object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomDataProvidedResourceUploadSessionCollectionResponse]
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -71,12 +71,13 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CustomDataProvidedResourceUploadSession, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CustomDataProvidedResourceUploadSession]:
         """
-        Create new navigation property to uploadSessions for identityGovernance
+        Create a new customDataProvidedResourceUploadSession object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomDataProvidedResourceUploadSession]
+        Find more info here: https://learn.microsoft.com/graph/api/customdataprovidedresource-post-uploadsessions?view=graph-rest-beta
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -95,11 +96,11 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UploadSessionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get uploadSessions from identityGovernance
+        Read the properties and relationships of a customDataProvidedResourceUploadSession object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -107,12 +108,12 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CustomDataProvidedResourceUploadSession, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to uploadSessions for identityGovernance
+        Create a new customDataProvidedResourceUploadSession object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -127,7 +128,7 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: UploadSessionsRequestBuilder
         """
-        warn("This API is for private preview. as of 2025-07/PrivatePreview:uploadSessions on 2025-07-31 and will be removed 2026-07-31", DeprecationWarning)
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return UploadSessionsRequestBuilder(self.request_adapter, raw_url)
@@ -144,7 +145,7 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UploadSessionsRequestBuilderGetQueryParameters():
         """
-        Get uploadSessions from identityGovernance
+        Read the properties and relationships of a customDataProvidedResourceUploadSession object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

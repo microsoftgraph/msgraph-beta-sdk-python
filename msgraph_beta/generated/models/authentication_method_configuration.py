@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .sms_authentication_method_configuration import SmsAuthenticationMethodConfiguration
     from .software_oath_authentication_method_configuration import SoftwareOathAuthenticationMethodConfiguration
     from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
+    from .verifiable_credentials_authentication_method_configuration import VerifiableCredentialsAuthenticationMethodConfiguration
     from .voice_authentication_method_configuration import VoiceAuthenticationMethodConfiguration
     from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
 
@@ -28,7 +29,7 @@ class AuthenticationMethodConfiguration(Entity, Parsable):
     exclude_targets: Optional[list[ExcludeTarget]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The state of the policy. Possible values are: enabled, disabled.
+    # The state of the policy. The possible values are: enabled, disabled.
     state: Optional[AuthenticationMethodState] = None
     
     @staticmethod
@@ -81,6 +82,10 @@ class AuthenticationMethodConfiguration(Entity, Parsable):
             from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
 
             return TemporaryAccessPassAuthenticationMethodConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.verifiableCredentialsAuthenticationMethodConfiguration".casefold():
+            from .verifiable_credentials_authentication_method_configuration import VerifiableCredentialsAuthenticationMethodConfiguration
+
+            return VerifiableCredentialsAuthenticationMethodConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.voiceAuthenticationMethodConfiguration".casefold():
             from .voice_authentication_method_configuration import VoiceAuthenticationMethodConfiguration
 
@@ -108,6 +113,7 @@ class AuthenticationMethodConfiguration(Entity, Parsable):
         from .sms_authentication_method_configuration import SmsAuthenticationMethodConfiguration
         from .software_oath_authentication_method_configuration import SoftwareOathAuthenticationMethodConfiguration
         from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
+        from .verifiable_credentials_authentication_method_configuration import VerifiableCredentialsAuthenticationMethodConfiguration
         from .voice_authentication_method_configuration import VoiceAuthenticationMethodConfiguration
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
 
@@ -123,6 +129,7 @@ class AuthenticationMethodConfiguration(Entity, Parsable):
         from .sms_authentication_method_configuration import SmsAuthenticationMethodConfiguration
         from .software_oath_authentication_method_configuration import SoftwareOathAuthenticationMethodConfiguration
         from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
+        from .verifiable_credentials_authentication_method_configuration import VerifiableCredentialsAuthenticationMethodConfiguration
         from .voice_authentication_method_configuration import VoiceAuthenticationMethodConfiguration
         from .x509_certificate_authentication_method_configuration import X509CertificateAuthenticationMethodConfiguration
 

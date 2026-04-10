@@ -6,6 +6,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .agent_risk_detection import AgentRiskDetection
+    from .risky_agent import RiskyAgent
     from .risky_service_principal import RiskyServicePrincipal
     from .risky_user import RiskyUser
     from .risk_detection import RiskDetection
@@ -18,10 +20,14 @@ class IdentityProtectionRoot(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The agentRiskDetections property
+    agent_risk_detections: Optional[list[AgentRiskDetection]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Risk detection in Microsoft Entra ID Protection and the associated information about the detection.
     risk_detections: Optional[list[RiskDetection]] = None
+    # The riskyAgents property
+    risky_agents: Optional[list[RiskyAgent]] = None
     # Microsoft Entra service principals that are at risk.
     risky_service_principals: Optional[list[RiskyServicePrincipal]] = None
     # Users that are flagged as at-risk by Microsoft Entra ID Protection.
@@ -45,19 +51,25 @@ class IdentityProtectionRoot(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .agent_risk_detection import AgentRiskDetection
+        from .risky_agent import RiskyAgent
         from .risky_service_principal import RiskyServicePrincipal
         from .risky_user import RiskyUser
         from .risk_detection import RiskDetection
         from .service_principal_risk_detection import ServicePrincipalRiskDetection
 
+        from .agent_risk_detection import AgentRiskDetection
+        from .risky_agent import RiskyAgent
         from .risky_service_principal import RiskyServicePrincipal
         from .risky_user import RiskyUser
         from .risk_detection import RiskDetection
         from .service_principal_risk_detection import ServicePrincipalRiskDetection
 
         fields: dict[str, Callable[[Any], None]] = {
+            "agentRiskDetections": lambda n : setattr(self, 'agent_risk_detections', n.get_collection_of_object_values(AgentRiskDetection)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "riskDetections": lambda n : setattr(self, 'risk_detections', n.get_collection_of_object_values(RiskDetection)),
+            "riskyAgents": lambda n : setattr(self, 'risky_agents', n.get_collection_of_object_values(RiskyAgent)),
             "riskyServicePrincipals": lambda n : setattr(self, 'risky_service_principals', n.get_collection_of_object_values(RiskyServicePrincipal)),
             "riskyUsers": lambda n : setattr(self, 'risky_users', n.get_collection_of_object_values(RiskyUser)),
             "servicePrincipalRiskDetections": lambda n : setattr(self, 'service_principal_risk_detections', n.get_collection_of_object_values(ServicePrincipalRiskDetection)),
@@ -72,8 +84,10 @@ class IdentityProtectionRoot(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_collection_of_object_values("agentRiskDetections", self.agent_risk_detections)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("riskDetections", self.risk_detections)
+        writer.write_collection_of_object_values("riskyAgents", self.risky_agents)
         writer.write_collection_of_object_values("riskyServicePrincipals", self.risky_service_principals)
         writer.write_collection_of_object_values("riskyUsers", self.risky_users)
         writer.write_collection_of_object_values("servicePrincipalRiskDetections", self.service_principal_risk_detections)

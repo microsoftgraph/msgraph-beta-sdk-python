@@ -29,7 +29,9 @@ if TYPE_CHECKING:
     from .pinned_messages.pinned_messages_request_builder import PinnedMessagesRequestBuilder
     from .remove_all_access_for_user.remove_all_access_for_user_request_builder import RemoveAllAccessForUserRequestBuilder
     from .send_activity_notification.send_activity_notification_request_builder import SendActivityNotificationRequestBuilder
+    from .start_migration.start_migration_request_builder import StartMigrationRequestBuilder
     from .tabs.tabs_request_builder import TabsRequestBuilder
+    from .targeted_messages.targeted_messages_request_builder import TargetedMessagesRequestBuilder
     from .unhide_for_user.unhide_for_user_request_builder import UnhideForUserRequestBuilder
 
 class ChatItemRequestBuilder(BaseRequestBuilder):
@@ -274,6 +276,15 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
         return SendActivityNotificationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def start_migration(self) -> StartMigrationRequestBuilder:
+        """
+        Provides operations to call the startMigration method.
+        """
+        from .start_migration.start_migration_request_builder import StartMigrationRequestBuilder
+
+        return StartMigrationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def tabs(self) -> TabsRequestBuilder:
         """
         Provides operations to manage the tabs property of the microsoft.graph.chat entity.
@@ -281,6 +292,15 @@ class ChatItemRequestBuilder(BaseRequestBuilder):
         from .tabs.tabs_request_builder import TabsRequestBuilder
 
         return TabsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def targeted_messages(self) -> TargetedMessagesRequestBuilder:
+        """
+        Provides operations to manage the targetedMessages property of the microsoft.graph.chat entity.
+        """
+        from .targeted_messages.targeted_messages_request_builder import TargetedMessagesRequestBuilder
+
+        return TargetedMessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def unhide_for_user(self) -> UnhideForUserRequestBuilder:

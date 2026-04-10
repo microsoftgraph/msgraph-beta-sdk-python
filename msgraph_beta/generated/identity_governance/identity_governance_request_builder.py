@@ -18,6 +18,8 @@ if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from .access_reviews.access_reviews_request_builder import AccessReviewsRequestBuilder
     from .app_consent.app_consent_request_builder import AppConsentRequestBuilder
+    from .catalogs.catalogs_request_builder import CatalogsRequestBuilder
+    from .catalogs_with_unique_name.catalogs_with_unique_name_request_builder import CatalogsWithUniqueNameRequestBuilder
     from .entitlement_management.entitlement_management_request_builder import EntitlementManagementRequestBuilder
     from .lifecycle_workflows.lifecycle_workflows_request_builder import LifecycleWorkflowsRequestBuilder
     from .permissions_analytics.permissions_analytics_request_builder import PermissionsAnalyticsRequestBuilder
@@ -38,6 +40,19 @@ class IdentityGovernanceRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/identityGovernance{?%24expand,%24select}", path_parameters)
+    
+    def catalogs_with_unique_name(self,unique_name: str) -> CatalogsWithUniqueNameRequestBuilder:
+        """
+        Provides operations to manage the catalogs property of the microsoft.graph.identityGovernance entity.
+        param unique_name: Alternate key of accessPackageCatalog
+        Returns: CatalogsWithUniqueNameRequestBuilder
+        """
+        warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
+        if unique_name is None:
+            raise TypeError("unique_name cannot be null.")
+        from .catalogs_with_unique_name.catalogs_with_unique_name_request_builder import CatalogsWithUniqueNameRequestBuilder
+
+        return CatalogsWithUniqueNameRequestBuilder(self.request_adapter, self.path_parameters, unique_name)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[IdentityGovernanceRequestBuilderGetQueryParameters]] = None) -> Optional[IdentityGovernance]:
         """
@@ -135,6 +150,15 @@ class IdentityGovernanceRequestBuilder(BaseRequestBuilder):
         from .app_consent.app_consent_request_builder import AppConsentRequestBuilder
 
         return AppConsentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def catalogs(self) -> CatalogsRequestBuilder:
+        """
+        Provides operations to manage the catalogs property of the microsoft.graph.identityGovernance entity.
+        """
+        from .catalogs.catalogs_request_builder import CatalogsRequestBuilder
+
+        return CatalogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def entitlement_management(self) -> EntitlementManagementRequestBuilder:

@@ -13,4 +13,6 @@ class WorkplaceSensorType(str, Enum):
     Badge = "badge",
     # The unknown feature value.
     UnknownFutureValue = "unknownFutureValue",
+    # The Wifi sensor type.
+    Wifi = "wifi",
 

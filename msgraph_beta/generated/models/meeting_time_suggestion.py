@@ -30,7 +30,7 @@ class MeetingTimeSuggestion(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Order of meeting time suggestions sorted by their computed confidence value from high to low, then by chronology if there are suggestions with the same confidence.
     order: Optional[int] = None
-    # Availability of the meeting organizer for this meeting suggestion. Possible values are: free, tentative, busy, oof, workingElsewhere, unknown.
+    # Availability of the meeting organizer for this meeting suggestion. The possible values are: free, tentative, busy, oof, workingElsewhere, unknown.
     organizer_availability: Optional[FreeBusyStatus] = None
     # Reason for suggesting the meeting time.
     suggestion_reason: Optional[str] = None

@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from .connection_operation import ConnectionOperation
     from .connection_quota import ConnectionQuota
     from .connection_state import ConnectionState
+    from .content_category import ContentCategory
     from .content_experience_type import ContentExperienceType
     from .external_group import ExternalGroup
     from .external_item import ExternalItem
@@ -30,6 +31,8 @@ class ExternalConnection(Entity, Parsable):
     configuration: Optional[Configuration] = None
     # The Teams App ID. Optional.
     connector_id: Optional[str] = None
+    # The contentCategory property
+    content_category: Optional[ContentCategory] = None
     # Description of the connection displayed in the Microsoft 365 admin center. Optional.
     description: Optional[str] = None
     # The list of content experiences the connection will participate in. Possible values are search.
@@ -78,6 +81,7 @@ class ExternalConnection(Entity, Parsable):
         from .connection_operation import ConnectionOperation
         from .connection_quota import ConnectionQuota
         from .connection_state import ConnectionState
+        from .content_category import ContentCategory
         from .content_experience_type import ContentExperienceType
         from .external_group import ExternalGroup
         from .external_item import ExternalItem
@@ -91,6 +95,7 @@ class ExternalConnection(Entity, Parsable):
         from .connection_operation import ConnectionOperation
         from .connection_quota import ConnectionQuota
         from .connection_state import ConnectionState
+        from .content_category import ContentCategory
         from .content_experience_type import ContentExperienceType
         from .external_group import ExternalGroup
         from .external_item import ExternalItem
@@ -102,6 +107,7 @@ class ExternalConnection(Entity, Parsable):
             "complianceSettings": lambda n : setattr(self, 'compliance_settings', n.get_object_value(ComplianceSettings)),
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(Configuration)),
             "connectorId": lambda n : setattr(self, 'connector_id', n.get_str_value()),
+            "contentCategory": lambda n : setattr(self, 'content_category', n.get_enum_value(ContentCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "enabledContentExperiences": lambda n : setattr(self, 'enabled_content_experiences', n.get_collection_of_enum_values(ContentExperienceType)),
             "groups": lambda n : setattr(self, 'groups', n.get_collection_of_object_values(ExternalGroup)),
@@ -131,6 +137,7 @@ class ExternalConnection(Entity, Parsable):
         writer.write_object_value("complianceSettings", self.compliance_settings)
         writer.write_object_value("configuration", self.configuration)
         writer.write_str_value("connectorId", self.connector_id)
+        writer.write_enum_value("contentCategory", self.content_category)
         writer.write_str_value("description", self.description)
         writer.write_enum_value("enabledContentExperiences", self.enabled_content_experiences)
         writer.write_collection_of_object_values("groups", self.groups)
