@@ -22,7 +22,7 @@ class ProfileSource(Entity, Parsable):
     odata_type: Optional[str] = None
     # Profile source identifier used as an alternate key.
     source_id: Optional[str] = None
-    # Web URL of the profile source that directs users to the page view of profile data.
+    # Web URL of the profile source that directs users to the page view of the profile data.
     web_url: Optional[str] = None
     
     @staticmethod

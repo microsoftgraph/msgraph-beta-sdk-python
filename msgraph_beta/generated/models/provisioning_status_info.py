@@ -20,7 +20,7 @@ class ProvisioningStatusInfo(AdditionalDataHolder, BackedModel, Parsable):
     error_information: Optional[ProvisioningErrorInfo] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Possible values are: success, failure, skipped, warning, unknownFutureValue. Supports $filter (eq, contains).
+    # The possible values are: success, failure, skipped, warning, unknownFutureValue. Supports $filter (eq, contains).
     status: Optional[ProvisioningResult] = None
     
     @staticmethod

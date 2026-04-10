@@ -21,7 +21,7 @@ class BitlockerRecoveryKey(Entity, Parsable):
     key: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates the type of volume the BitLocker key is associated with. Possible values are: operatingSystemVolume, fixedDataVolume, removableDataVolume, unknownFutureValue.
+    # Indicates the type of volume the BitLocker key is associated with. The possible values are: operatingSystemVolume, fixedDataVolume, removableDataVolume, unknownFutureValue.
     volume_type: Optional[VolumeType] = None
     
     @staticmethod

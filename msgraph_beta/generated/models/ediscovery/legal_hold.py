@@ -39,7 +39,7 @@ class LegalHold(Entity, Parsable):
     odata_type: Optional[str] = None
     # Data source entity for SharePoint sites associated with the legal hold.
     site_sources: Optional[list[SiteSource]] = None
-    # The status of the legal hold. Possible values are: Pending, Error, Success, UnknownFutureValue.
+    # The status of the legal hold. The possible values are: Pending, Error, Success, UnknownFutureValue.
     status: Optional[LegalHoldStatus] = None
     # The unifiedGroupSources property
     unified_group_sources: Optional[list[UnifiedGroupSource]] = None

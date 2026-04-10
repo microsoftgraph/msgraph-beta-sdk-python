@@ -18,7 +18,7 @@ class AttendeeAvailability(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The email address and type of attendee - whether it's a person or a resource, and whether required or optional if it's a person.
     attendee: Optional[AttendeeBase] = None
-    # The availability status of the attendee. Possible values are: free, tentative, busy, oof, workingElsewhere, unknown.
+    # The availability status of the attendee. The possible values are: free, tentative, busy, oof, workingElsewhere, unknown.
     availability: Optional[FreeBusyStatus] = None
     # The OdataType property
     odata_type: Optional[str] = None

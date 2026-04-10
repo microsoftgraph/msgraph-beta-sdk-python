@@ -72,7 +72,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The scopeIds property
     scope_ids: Optional[list[str]] = None
-    # Specifies the type of cloud object the end user can access. Possible values are: cloudPc, cloudApp, unknownFutureValue. cloudPc indicates that the end user can access the entire desktop. cloudApp indicates that the end user can only access apps published under this provisioning policy. The type can't be changed once the provisioning policy is created. If not specified during creation, the default value is cloudPc. When cloudApp is selected, the provisioningType must be sharedByEntraGroup. Supports $filter, $select, $orderBy.
+    # Specifies the type of cloud object the end user can access. The possible values are: cloudPc, cloudApp, unknownFutureValue. cloudPc indicates that the end user can access the entire desktop. cloudApp indicates that the end user can only access apps published under this provisioning policy. The type can't be changed once the provisioning policy is created. If not specified during creation, the default value is cloudPc. When cloudApp is selected, the provisioningType must be sharedByEntraGroup. Supports $filter, $select, $orderBy.
     user_experience_type: Optional[CloudPcUserExperienceType] = None
     # Indicates specific settings that enable the persistence of user application settings between Cloud PC sessions. The default value is null. This feature is only available for Cloud PC provisioning policies of type sharedByEntraGroup. Supports $select.
     user_settings_persistence_configuration: Optional[CloudPcUserSettingsPersistenceConfiguration] = None

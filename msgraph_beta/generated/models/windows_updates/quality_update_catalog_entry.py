@@ -25,7 +25,7 @@ class QualityUpdateCatalogEntry(SoftwareUpdateCatalogEntry, Parsable):
     is_expeditable: Optional[bool] = None
     # The operating system product revisions that are released as part of this quality update.
     product_revisions: Optional[list[ProductRevision]] = None
-    # The publishing cadence of the quality update. Possible values are: monthly, outOfBand, unknownFutureValue. Read-only.
+    # The publishing cadence of the quality update. The possible values are: monthly, outOfBand, unknownFutureValue. Read-only.
     quality_update_cadence: Optional[QualityUpdateCadence] = None
     # The qualityUpdateClassification property
     quality_update_classification: Optional[QualityUpdateClassification] = None

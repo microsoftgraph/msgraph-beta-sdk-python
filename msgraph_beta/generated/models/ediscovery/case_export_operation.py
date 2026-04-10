@@ -20,9 +20,9 @@ class CaseExportOperation(CaseOperation, Parsable):
     azure_blob_token: Optional[str] = None
     # The description provided for the export.
     description: Optional[str] = None
-    # The options provided for the export. For more information, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
+    # The options provided for the export. For more information, see reviewSet: export. The possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
     export_options: Optional[ExportOptions] = None
-    # The options provided specify the structure of the export. For more information, see reviewSet: export. Possible values are: none, directory, pst.
+    # The options provided specify the structure of the export. For more information, see reviewSet: export. The possible values are: none, directory, pst.
     export_structure: Optional[ExportFileStructure] = None
     # The OdataType property
     odata_type: Optional[str] = None

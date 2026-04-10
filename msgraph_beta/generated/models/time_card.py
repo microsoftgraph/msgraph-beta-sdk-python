@@ -31,7 +31,7 @@ class TimeCard(ChangeTrackedEntity, Parsable):
     notes: Optional[ItemBody] = None
     # The original timeCardEntry of the timeCard, before user edits.
     original_entry: Optional[TimeCardEntry] = None
-    # The current state of the timeCard during its life cycle.Possible values are: clockedIn, onBreak, clockedOut, unknownFutureValue.
+    # The current state of the timeCard during its life cycle. The possible values are: clockedIn, onBreak, clockedOut, unknownFutureValue.
     state: Optional[TimeCardState] = None
     # User ID to which  the timeCard belongs.
     user_id: Optional[str] = None

@@ -14,9 +14,9 @@ from .share_point_migration_task_parameters import SharePointMigrationTaskParame
 class SharePointUserMigrationTaskParameters(SharePointMigrationTaskParameters, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.sharePointUserMigrationTaskParameters"
-    # The sourceUserIdentity property
+    # The source user in the source tenant, including the user object ID and the user principal name.
     source_user_identity: Optional[UserIdentity] = None
-    # The targetUserIdentity property
+    # The target user in the target tenant, including the user object ID and the user principal name.
     target_user_identity: Optional[UserIdentity] = None
     
     @staticmethod

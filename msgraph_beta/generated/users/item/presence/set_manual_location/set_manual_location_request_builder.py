@@ -32,7 +32,7 @@ class SetManualLocationRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: SetManualLocationPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Set the manual work location signal for a user. The explicit value chosen by a user (or an authorized client) overrides any automatically detected or scheduled working hours and location.
+        Set the manual work location signal for a user. The explicit value chosen by a user or an authorized client overrides any automatically detected or scheduled working hours and location.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -54,7 +54,7 @@ class SetManualLocationRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: SetManualLocationPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Set the manual work location signal for a user. The explicit value chosen by a user (or an authorized client) overrides any automatically detected or scheduled working hours and location.
+        Set the manual work location signal for a user. The explicit value chosen by a user or an authorized client overrides any automatically detected or scheduled working hours and location.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

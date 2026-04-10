@@ -20,7 +20,7 @@ class EducationStudent(AdditionalDataHolder, BackedModel, Parsable):
     birth_date: Optional[datetime.date] = None
     # ID of the student in the source system.
     external_id: Optional[str] = None
-    # Possible values are: female, male, other.
+    # The possible values are: female, male, other.
     gender: Optional[EducationGender] = None
     # Current grade level of the student.
     grade: Optional[str] = None

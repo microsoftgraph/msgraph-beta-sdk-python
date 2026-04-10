@@ -10,7 +10,6 @@ if TYPE_CHECKING:
     from .cloud_pc_device_image_os_status import CloudPcDeviceImageOsStatus
     from .cloud_pc_device_image_status import CloudPcDeviceImageStatus
     from .cloud_pc_device_image_status_details import CloudPcDeviceImageStatusDetails
-    from .cloud_pc_image_os_architecture_type import CloudPcImageOsArchitectureType
     from .entity import Entity
 
 from .entity import Entity
@@ -19,7 +18,7 @@ from .entity import Entity
 class CloudPcDeviceImage(Entity, Parsable):
     # The display name of the associated device image. The device image display name and the version are used to uniquely identify the Cloud PC device image. Read-only.
     display_name: Optional[str] = None
-    # The error code of the status of the image that indicates why the upload failed, if applicable. Possible values are: internalServerError, sourceImageNotFound, osVersionNotSupported, sourceImageInvalid, sourceImageNotGeneralized, unknownFutureValue, vmAlreadyAzureAdJoined, paidSourceImageNotSupport, sourceImageNotSupportCustomizeVMName, sourceImageSizeExceedsLimitation, sourceImageWithDataDiskNotSupported, sourceImageWithDiskEncryptionSetNotSupported, sourceImageWithAzureDiskEncryptionNotSupported. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: vmAlreadyAzureAdJoined, paidSourceImageNotSupport, sourceImageNotSupportCustomizeVMName, sourceImageSizeExceedsLimitation, sourceImageWithDataDiskNotSupported, sourceImageWithDiskEncryptionSetNotSupported, sourceImageWithAzureDiskEncryptionNotSupported. Read-only.
+    # The error code of the status of the image that indicates why the upload failed, if applicable. Possible values are: internalServerError, sourceImageNotFound, osVersionNotSupported, sourceImageInvalid, sourceImageNotGeneralized, unknownFutureValue, vmAlreadyAzureAdJoined, paidSourceImageNotSupport, sourceImageNotSupportCustomizeVMName, sourceImageSizeExceedsLimitation, sourceImageWithDataDiskNotSupported, sourceImageWithDiskEncryptionSetNotSupported, sourceImageWithAzureDiskEncryptionNotSupported. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: vmAlreadyAzureAdJoined, paidSourceImageNotSupport, sourceImageNotSupportCustomizeVMName, sourceImageSizeExceedsLimitation, sourceImageWithDataDiskNotSupported, sourceImageWithDiskEncryptionSetNotSupported, sourceImageWithAzureDiskEncryptionNotSupported, fSLogixInstalledSourceImageNotSupported, startMenuAppLimitExceeded. Read-only.
     error_code: Optional[CloudPcDeviceImageErrorCode] = None
     # The date when the image became unavailable. Read-only.
     expiration_date: Optional[datetime.date] = None
@@ -29,11 +28,9 @@ class CloudPcDeviceImage(Entity, Parsable):
     odata_type: Optional[str] = None
     # The operating system of the image. For example, Windows 11 Enterprise. Read-only.
     operating_system: Optional[str] = None
-    # The osArchitecture property
-    os_architecture: Optional[CloudPcImageOsArchitectureType] = None
     # The OS build version of the image. For example, 1909. Read-only.
     os_build_number: Optional[str] = None
-    # The OS status of this image. Possible values are: supported, supportedWithWarning, unknown, unknownFutureValue. The default value is unknown. Read-only.
+    # The OS status of this image. The possible values are: supported, supportedWithWarning, unknown, unknownFutureValue. The default value is unknown. Read-only.
     os_status: Optional[CloudPcDeviceImageOsStatus] = None
     # The operating system version of this image. For example, 10.0.22000.296. Read-only.
     os_version_number: Optional[str] = None
@@ -43,7 +40,7 @@ class CloudPcDeviceImage(Entity, Parsable):
     size_in_g_b: Optional[int] = None
     # The unique identifier (ID) of the source image resource on Azure. The required ID format is: '/subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}'. Read-only.
     source_image_resource_id: Optional[str] = None
-    # The status of the image on the Cloud PC. Possible values are: pending, ready, warning, failed, unknownFutureValue. Read-only.
+    # The status of the image on the Cloud PC. The possible values are: pending, ready, warning, failed, unknownFutureValue. Read-only.
     status: Optional[CloudPcDeviceImageStatus] = None
     # The details of the status of the image that indicates why the upload failed, if applicable. Possible values are: internalServerError, sourceImageNotFound, osVersionNotSupported, sourceImageInvalid, sourceImageNotGeneralized, unknownFutureValue, vmAlreadyAzureAdJoined, paidSourceImageNotSupport, sourceImageNotSupportCustomizeVMName, sourceImageSizeExceedsLimitation. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: vmAlreadyAzureAdJoined, paidSourceImageNotSupport, sourceImageNotSupportCustomizeVMName, sourceImageSizeExceedsLimitation. Read-only. The statusDetails property is deprecated and will stop returning data on January 31, 2024. Going forward, use the errorCode property.
     status_details: Optional[CloudPcDeviceImageStatusDetails] = None
@@ -70,14 +67,12 @@ class CloudPcDeviceImage(Entity, Parsable):
         from .cloud_pc_device_image_os_status import CloudPcDeviceImageOsStatus
         from .cloud_pc_device_image_status import CloudPcDeviceImageStatus
         from .cloud_pc_device_image_status_details import CloudPcDeviceImageStatusDetails
-        from .cloud_pc_image_os_architecture_type import CloudPcImageOsArchitectureType
         from .entity import Entity
 
         from .cloud_pc_device_image_error_code import CloudPcDeviceImageErrorCode
         from .cloud_pc_device_image_os_status import CloudPcDeviceImageOsStatus
         from .cloud_pc_device_image_status import CloudPcDeviceImageStatus
         from .cloud_pc_device_image_status_details import CloudPcDeviceImageStatusDetails
-        from .cloud_pc_image_os_architecture_type import CloudPcImageOsArchitectureType
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -86,7 +81,6 @@ class CloudPcDeviceImage(Entity, Parsable):
             "expirationDate": lambda n : setattr(self, 'expiration_date', n.get_date_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "operatingSystem": lambda n : setattr(self, 'operating_system', n.get_str_value()),
-            "osArchitecture": lambda n : setattr(self, 'os_architecture', n.get_enum_value(CloudPcImageOsArchitectureType)),
             "osBuildNumber": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
             "osStatus": lambda n : setattr(self, 'os_status', n.get_enum_value(CloudPcDeviceImageOsStatus)),
             "osVersionNumber": lambda n : setattr(self, 'os_version_number', n.get_str_value()),
@@ -115,7 +109,6 @@ class CloudPcDeviceImage(Entity, Parsable):
         writer.write_date_value("expirationDate", self.expiration_date)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("operatingSystem", self.operating_system)
-        writer.write_enum_value("osArchitecture", self.os_architecture)
         writer.write_str_value("osBuildNumber", self.os_build_number)
         writer.write_enum_value("osStatus", self.os_status)
         writer.write_str_value("osVersionNumber", self.os_version_number)

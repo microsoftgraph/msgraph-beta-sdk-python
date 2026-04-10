@@ -35,9 +35,10 @@ class GetBySourceGroupMailNicknameWithSourceGroupMailNicknameRequestBuilder(Base
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[SharePointMigrationTask]:
         """
-        Invoke function getBySourceGroupMailNickname
+        Get a sharePointMigrationTask that was previously created for a group, using the source group mail nickname. The returned sharePointMigrationTask object includes the source and target site URLs, migration status, optional timestamps (startedDateTime and finishedDateTime), and error details about issues during processing.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SharePointMigrationTask]
+        Find more info here: https://learn.microsoft.com/graph/api/sharepointmigrationtask-getbysourcegroupmailnickname?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -55,7 +56,7 @@ class GetBySourceGroupMailNicknameWithSourceGroupMailNicknameRequestBuilder(Base
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getBySourceGroupMailNickname
+        Get a sharePointMigrationTask that was previously created for a group, using the source group mail nickname. The returned sharePointMigrationTask object includes the source and target site URLs, migration status, optional timestamps (startedDateTime and finishedDateTime), and error details about issues during processing.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

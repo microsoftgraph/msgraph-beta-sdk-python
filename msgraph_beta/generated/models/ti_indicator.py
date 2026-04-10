@@ -16,7 +16,7 @@ from .entity import Entity
 
 @dataclass
 class TiIndicator(Entity, Parsable):
-    # The action to apply if the indicator is matched from within the targetProduct security tool. Possible values are: unknown, allow, block, alert. Required.
+    # The action to apply if the indicator is matched from within the targetProduct security tool. The possible values are: unknown, allow, block, alert. Required.
     action: Optional[TiAction] = None
     # The cyber threat intelligence name(s) for the parties responsible for the malicious activity covered by the threat indicator.
     activity_group_names: Optional[list[str]] = None
@@ -28,7 +28,7 @@ class TiIndicator(Entity, Parsable):
     confidence: Optional[int] = None
     # Brief description (100 characters or less) of the threat represented by the indicator. Required.
     description: Optional[str] = None
-    # The area of the Diamond Model in which this indicator exists. Possible values are: unknown, adversary, capability, infrastructure, victim.
+    # The area of the Diamond Model in which this indicator exists. The possible values are: unknown, adversary, capability, infrastructure, victim.
     diamond_model: Optional[DiamondModel] = None
     # The domainName property
     domain_name: Optional[str] = None
@@ -126,9 +126,9 @@ class TiIndicator(Entity, Parsable):
     tags: Optional[list[str]] = None
     # A string value representing a single security product to which the indicator should be applied. Acceptable values are: Azure Sentinel, Microsoft Defender ATP. Required
     target_product: Optional[str] = None
-    # Each indicator must have a valid Indicator Threat Type. Possible values are: Botnet, C2, CryptoMining, Darknet, DDoS, MaliciousUrl, Malware, Phishing, Proxy, PUA, WatchList. Required.
+    # Each indicator must have a valid Indicator Threat Type. The possible values are: Botnet, C2, CryptoMining, Darknet, DDoS, MaliciousUrl, Malware, Phishing, Proxy, PUA, WatchList. Required.
     threat_type: Optional[str] = None
-    # Traffic Light Protocol value for the indicator. Possible values are: unknown, white, green, amber, red. Required.
+    # Traffic Light Protocol value for the indicator. The possible values are: unknown, white, green, amber, red. Required.
     tlp_level: Optional[TlpLevel] = None
     # The url property
     url: Optional[str] = None

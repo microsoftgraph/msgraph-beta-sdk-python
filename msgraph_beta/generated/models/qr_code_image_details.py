@@ -17,7 +17,7 @@ class QrCodeImageDetails(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The binary representation of the QR code.
     binary_value: Optional[bytes] = None
-    # Specifies how much of the QRCode can be corrupted while still maintaining its readable. The possible values are: l  (Low), m (Medium), q (Quartile), h ( High), unknownFutureValue.
+    # Specifies how much of the QR code can be corrupted while still maintaining its readable. The possible values are: l  (Low), m (Medium), q (Quartile), h ( High), unknownFutureValue.
     error_correction_level: Optional[ErrorCorrectionLevel] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -16,7 +16,7 @@ class AggregatedPolicyCompliance(Entity, Parsable):
     compliance_policy_id: Optional[str] = None
     # Name of the device compliance policy. Optional. Read-only.
     compliance_policy_name: Optional[str] = None
-    # Platform for the device compliance policy. Possible values are: android, androidForWork, iOS, macOS, windowsPhone81, windows81AndLater, windows10AndLater, androidWorkProfile, androidAOSP, all. Optional. Read-only.
+    # Platform for the device compliance policy. The possible values are: android, androidForWork, iOS, macOS, windowsPhone81, windows81AndLater, windows10AndLater, androidWorkProfile, androidAOSP, all. Optional. Read-only.
     compliance_policy_platform: Optional[str] = None
     # The type of compliance policy. Optional. Read-only.
     compliance_policy_type: Optional[str] = None

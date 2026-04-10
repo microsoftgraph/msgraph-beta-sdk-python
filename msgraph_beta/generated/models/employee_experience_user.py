@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .engagement_role import EngagementRole
     from .entity import Entity
     from .learning_course_activity import LearningCourseActivity
+    from .storyline import Storyline
 
 from .entity import Entity
 
@@ -22,6 +23,8 @@ class EmployeeExperienceUser(Entity, Parsable):
     learning_course_activities: Optional[list[LearningCourseActivity]] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The storyline property
+    storyline: Optional[Storyline] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EmployeeExperienceUser:
@@ -42,14 +45,17 @@ class EmployeeExperienceUser(Entity, Parsable):
         from .engagement_role import EngagementRole
         from .entity import Entity
         from .learning_course_activity import LearningCourseActivity
+        from .storyline import Storyline
 
         from .engagement_role import EngagementRole
         from .entity import Entity
         from .learning_course_activity import LearningCourseActivity
+        from .storyline import Storyline
 
         fields: dict[str, Callable[[Any], None]] = {
             "assignedRoles": lambda n : setattr(self, 'assigned_roles', n.get_collection_of_object_values(EngagementRole)),
             "learningCourseActivities": lambda n : setattr(self, 'learning_course_activities', n.get_collection_of_object_values(LearningCourseActivity)),
+            "storyline": lambda n : setattr(self, 'storyline', n.get_object_value(Storyline)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,5 +72,6 @@ class EmployeeExperienceUser(Entity, Parsable):
         super().serialize(writer)
         writer.write_collection_of_object_values("assignedRoles", self.assigned_roles)
         writer.write_collection_of_object_values("learningCourseActivities", self.learning_course_activities)
+        writer.write_object_value("storyline", self.storyline)
     
 

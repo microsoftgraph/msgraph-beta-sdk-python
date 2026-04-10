@@ -27,7 +27,7 @@ class ProductRevision(Entity, Parsable):
     odata_type: Optional[str] = None
     # The osBuild property
     os_build: Optional[BuildVersionDetails] = None
-    # The product of the revision. Possible values are: Windows 10, Windows 11. Read-only.
+    # The product of the revision. The possible values are: Windows 10, Windows 11. Read-only.
     product: Optional[str] = None
     # The release date for the content. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     release_date_time: Optional[datetime.datetime] = None

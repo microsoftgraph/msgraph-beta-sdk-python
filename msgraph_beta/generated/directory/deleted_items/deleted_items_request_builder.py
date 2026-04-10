@@ -56,7 +56,7 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DeletedItemsRequestBuilderGetQueryParameters]] = None) -> Optional[DirectoryObjectCollectionResponse]:
         """
-        Recently deleted items. Read-only. Nullable.
+        Retrieve the properties of a recently deleted directory object from deleted items. The following types are supported:- administrativeUnit- application- agentIdentityBlueprint- agentIdentity- agentIdentityBlueprintPrincipal- agentUser- certificateBasedAuthPki- certificateAuthorityDetail- externalUserProfile- group- pendingExternalUserProfile- servicePrincipal- user
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DirectoryObjectCollectionResponse]
         """
@@ -76,7 +76,7 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeletedItemsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Recently deleted items. Read-only. Nullable.
+        Retrieve the properties of a recently deleted directory object from deleted items. The following types are supported:- administrativeUnit- application- agentIdentityBlueprint- agentIdentity- agentIdentityBlueprintPrincipal- agentUser- certificateBasedAuthPki- certificateAuthorityDetail- externalUserProfile- group- pendingExternalUserProfile- servicePrincipal- user
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -179,7 +179,7 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DeletedItemsRequestBuilderGetQueryParameters():
         """
-        Recently deleted items. Read-only. Nullable.
+        Retrieve the properties of a recently deleted directory object from deleted items. The following types are supported:- administrativeUnit- application- agentIdentityBlueprint- agentIdentity- agentIdentityBlueprintPrincipal- agentUser- certificateBasedAuthPki- certificateAuthorityDetail- externalUserProfile- group- pendingExternalUserProfile- servicePrincipal- user
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

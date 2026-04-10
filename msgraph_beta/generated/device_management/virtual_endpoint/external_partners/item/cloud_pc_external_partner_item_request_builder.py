@@ -16,6 +16,10 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.cloud_pc_external_partner import CloudPcExternalPartner
     from .....models.o_data_errors.o_data_error import ODataError
+    from .configure_agent.configure_agent_request_builder import ConfigureAgentRequestBuilder
+    from .deploy_agent.deploy_agent_request_builder import DeployAgentRequestBuilder
+    from .retrieve_action_reports.retrieve_action_reports_request_builder import RetrieveActionReportsRequestBuilder
+    from .retrieve_deploy_agent_action_resultsactivity_id_activity_id_cloud_pc_id_cloud_pc_id.retrieve_deploy_agent_action_resultsactivity_id_activity_id_cloud_pc_id_cloud_pc_id_request_builder import RetrieveDeployAgentActionResultsactivityIdActivityIdCloudPcIdCloudPcIdRequestBuilder
 
 class CloudPcExternalPartnerItemRequestBuilder(BaseRequestBuilder):
     """
@@ -139,6 +143,42 @@ class CloudPcExternalPartnerItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CloudPcExternalPartnerItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def configure_agent(self) -> ConfigureAgentRequestBuilder:
+        """
+        Provides operations to call the configureAgent method.
+        """
+        from .configure_agent.configure_agent_request_builder import ConfigureAgentRequestBuilder
+
+        return ConfigureAgentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def deploy_agent(self) -> DeployAgentRequestBuilder:
+        """
+        Provides operations to call the deployAgent method.
+        """
+        from .deploy_agent.deploy_agent_request_builder import DeployAgentRequestBuilder
+
+        return DeployAgentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_action_reports(self) -> RetrieveActionReportsRequestBuilder:
+        """
+        Provides operations to call the retrieveActionReports method.
+        """
+        from .retrieve_action_reports.retrieve_action_reports_request_builder import RetrieveActionReportsRequestBuilder
+
+        return RetrieveActionReportsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_deploy_agent_action_resultsactivity_id_activity_id_cloud_pc_id_cloud_pc_id(self) -> RetrieveDeployAgentActionResultsactivityIdActivityIdCloudPcIdCloudPcIdRequestBuilder:
+        """
+        Provides operations to call the retrieveDeployAgentActionResults method.
+        """
+        from .retrieve_deploy_agent_action_resultsactivity_id_activity_id_cloud_pc_id_cloud_pc_id.retrieve_deploy_agent_action_resultsactivity_id_activity_id_cloud_pc_id_cloud_pc_id_request_builder import RetrieveDeployAgentActionResultsactivityIdActivityIdCloudPcIdCloudPcIdRequestBuilder
+
+        return RetrieveDeployAgentActionResultsactivityIdActivityIdCloudPcIdCloudPcIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CloudPcExternalPartnerItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

@@ -15,7 +15,7 @@ class ConfigurationUri(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The single sign-on mode that the URI is configured for. Possible values are: saml, password.
+    # The single sign-on mode that the URI is configured for. The possible values are: saml, password.
     applies_to_single_sign_on_mode: Optional[str] = None
     # The various formats that the URI should follow.
     examples: Optional[list[str]] = None

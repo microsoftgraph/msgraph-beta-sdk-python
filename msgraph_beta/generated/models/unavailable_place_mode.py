@@ -13,7 +13,7 @@ from .place_mode import PlaceMode
 class UnavailablePlaceMode(PlaceMode, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.unavailablePlaceMode"
-    # Reason for marking a place unavailable.
+    # The reason a place is marked unavailable.
     reason: Optional[str] = None
     
     @staticmethod

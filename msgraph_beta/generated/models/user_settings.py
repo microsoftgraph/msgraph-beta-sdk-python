@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .user_insights_settings import UserInsightsSettings
     from .user_storage import UserStorage
     from .windows_setting import WindowsSetting
+    from .work_hours_and_locations_setting import WorkHoursAndLocationsSetting
 
 from .entity import Entity
 
@@ -38,6 +39,8 @@ class UserSettings(Entity, Parsable):
     storage: Optional[UserStorage] = None
     # The Windows settings of the user stored in the cloud.
     windows: Optional[list[WindowsSetting]] = None
+    # The user's settings for work hours and location preferences for scheduling and availability management.
+    work_hours_and_locations: Optional[WorkHoursAndLocationsSetting] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> UserSettings:
@@ -63,6 +66,7 @@ class UserSettings(Entity, Parsable):
         from .user_insights_settings import UserInsightsSettings
         from .user_storage import UserStorage
         from .windows_setting import WindowsSetting
+        from .work_hours_and_locations_setting import WorkHoursAndLocationsSetting
 
         from .contact_merge_suggestions import ContactMergeSuggestions
         from .entity import Entity
@@ -72,6 +76,7 @@ class UserSettings(Entity, Parsable):
         from .user_insights_settings import UserInsightsSettings
         from .user_storage import UserStorage
         from .windows_setting import WindowsSetting
+        from .work_hours_and_locations_setting import WorkHoursAndLocationsSetting
 
         fields: dict[str, Callable[[Any], None]] = {
             "contactMergeSuggestions": lambda n : setattr(self, 'contact_merge_suggestions', n.get_object_value(ContactMergeSuggestions)),
@@ -83,6 +88,7 @@ class UserSettings(Entity, Parsable):
             "shiftPreferences": lambda n : setattr(self, 'shift_preferences', n.get_object_value(ShiftPreferences)),
             "storage": lambda n : setattr(self, 'storage', n.get_object_value(UserStorage)),
             "windows": lambda n : setattr(self, 'windows', n.get_collection_of_object_values(WindowsSetting)),
+            "workHoursAndLocations": lambda n : setattr(self, 'work_hours_and_locations', n.get_object_value(WorkHoursAndLocationsSetting)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -106,5 +112,6 @@ class UserSettings(Entity, Parsable):
         writer.write_object_value("shiftPreferences", self.shift_preferences)
         writer.write_object_value("storage", self.storage)
         writer.write_collection_of_object_values("windows", self.windows)
+        writer.write_object_value("workHoursAndLocations", self.work_hours_and_locations)
     
 

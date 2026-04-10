@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .catalog.catalog_request_builder import CatalogRequestBuilder
     from .deployments.deployments_request_builder import DeploymentsRequestBuilder
     from .deployment_audiences.deployment_audiences_request_builder import DeploymentAudiencesRequestBuilder
+    from .policies.policies_request_builder import PoliciesRequestBuilder
     from .products.products_request_builder import ProductsRequestBuilder
     from .resource_connections.resource_connections_request_builder import ResourceConnectionsRequestBuilder
     from .updatable_assets.updatable_assets_request_builder import UpdatableAssetsRequestBuilder
@@ -171,6 +172,15 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         from .deployments.deployments_request_builder import DeploymentsRequestBuilder
 
         return DeploymentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def policies(self) -> PoliciesRequestBuilder:
+        """
+        Provides operations to manage the policies property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        from .policies.policies_request_builder import PoliciesRequestBuilder
+
+        return PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def products(self) -> ProductsRequestBuilder:

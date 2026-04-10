@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.cloud_pc_device_image import CloudPcDeviceImage
     from .....models.o_data_errors.o_data_error import ODataError
+    from .retry_upload.retry_upload_request_builder import RetryUploadRequestBuilder
     from .reupload.reupload_request_builder import ReuploadRequestBuilder
 
 class CloudPcDeviceImageItemRequestBuilder(BaseRequestBuilder):
@@ -140,6 +141,15 @@ class CloudPcDeviceImageItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CloudPcDeviceImageItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def retry_upload(self) -> RetryUploadRequestBuilder:
+        """
+        Provides operations to call the retryUpload method.
+        """
+        from .retry_upload.retry_upload_request_builder import RetryUploadRequestBuilder
+
+        return RetryUploadRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def reupload(self) -> ReuploadRequestBuilder:

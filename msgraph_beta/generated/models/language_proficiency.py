@@ -18,15 +18,15 @@ class LanguageProficiency(ItemFacet, Parsable):
     display_name: Optional[str] = None
     # The proficiency property
     proficiency: Optional[LanguageProficiencyLevel] = None
-    # Represents the users reading comprehension for the language represented by the object. Possible values are: elementary, conversational, limitedWorking, professionalWorking, fullProfessional, nativeOrBilingual, unknownFutureValue.
+    # Represents the users reading comprehension for the language represented by the object. The possible values are: elementary, conversational, limitedWorking, professionalWorking, fullProfessional, nativeOrBilingual, unknownFutureValue.
     reading: Optional[LanguageProficiencyLevel] = None
-    # Represents the users spoken proficiency for the language represented by the object. Possible values are: elementary, conversational, limitedWorking, professionalWorking, fullProfessional, nativeOrBilingual, unknownFutureValue.
+    # Represents the users spoken proficiency for the language represented by the object. The possible values are: elementary, conversational, limitedWorking, professionalWorking, fullProfessional, nativeOrBilingual, unknownFutureValue.
     spoken: Optional[LanguageProficiencyLevel] = None
     # Contains the four-character BCP47 name for the language (en-US, no-NB, en-AU).
     tag: Optional[str] = None
     # The thumbnailUrl property
     thumbnail_url: Optional[str] = None
-    # Represents the users written proficiency for the language represented by the object. Possible values are: elementary, conversational, limitedWorking, professionalWorking, fullProfessional, nativeOrBilingual, unknownFutureValue.
+    # Represents the users written proficiency for the language represented by the object. The possible values are: elementary, conversational, limitedWorking, professionalWorking, fullProfessional, nativeOrBilingual, unknownFutureValue.
     written: Optional[LanguageProficiencyLevel] = None
     
     @staticmethod

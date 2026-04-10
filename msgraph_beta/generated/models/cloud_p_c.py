@@ -74,7 +74,7 @@ class CloudPC(Entity, Parsable):
     odata_type: Optional[str] = None
     # The Azure network connection that is applied during the provisioning of Cloud PCs.
     on_premises_connection_name: Optional[str] = None
-    # The version of the operating system (OS) to provision on Cloud PCs. Possible values are: windows10, windows11, unknownFutureValue.
+    # The version of the operating system (OS) to provision on Cloud PCs. The possible values are: windows10, windows11, unknownFutureValue.
     os_version: Optional[CloudPcOperatingSystem] = None
     # The results of every partner agent's installation status on Cloud PC.
     partner_agent_install_results: Optional[list[CloudPcPartnerAgentInstallResult]] = None
@@ -88,7 +88,7 @@ class CloudPC(Entity, Parsable):
     provisioning_policy_id: Optional[str] = None
     # The provisioning policy that is applied during the provisioning of Cloud PCs.
     provisioning_policy_name: Optional[str] = None
-    # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup, reserve. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup, reserve. The default value is dedicated. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member.
+    # The type of licenses to be used when provisioning Cloud PCs using this policy. The possible values are: dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup, reserve. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup, reserve. The default value is dedicated. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member.
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The scopeIds property
     scope_ids: Optional[list[str]] = None
@@ -106,7 +106,7 @@ class CloudPC(Entity, Parsable):
     status_detail: Optional[CloudPcStatusDetail] = None
     # The details of the Cloud PC status. For example, { 'code': 'internalServerError', 'message': 'There was an error during the Cloud PC upgrade. Please contact support.', 'additionalInformation': null }. This property is deprecated and will no longer be supported effective August 31, 2024. Use statusDetail instead.
     status_details: Optional[CloudPcStatusDetails] = None
-    # The account type of the user on provisioned Cloud PCs. Possible values are: standardUser, administrator, unknownFutureValue.
+    # The account type of the user on provisioned Cloud PCs. The possible values are: standardUser, administrator, unknownFutureValue.
     user_account_type: Optional[CloudPcUserAccountType] = None
     # The user details (for example, ID and display name) for the user associated with a Reserve Cloud PC assignment. Read-only.
     user_detail: Optional[CloudPcEntraUserDetail] = None

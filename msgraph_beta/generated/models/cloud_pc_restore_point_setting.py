@@ -17,7 +17,7 @@ class CloudPcRestorePointSetting(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The time interval in hours to take snapshots (restore points) of a Cloud PC automatically. Possible values are 4, 6, 12, 16, and 24. The default frequency is 12 hours. The frequencyInHours property is deprecated and will stop returning data on January 31, 2024. Going forward, use the frequencyType property.
     frequency_in_hours: Optional[int] = None
-    # The time interval in hours to take snapshots (restore points) of a Cloud PC automatically. Possible values are: default, fourHours, sixHours, twelveHours, sixteenHours, twentyFourHours, unknownFutureValue. The default value is default that indicates that the time interval for automatic capturing of restore point snapshots is set to 12 hours.
+    # The time interval in hours to take snapshots (restore points) of a Cloud PC automatically. The possible values are: default, fourHours, sixHours, twelveHours, sixteenHours, twentyFourHours, unknownFutureValue. The default value is default that indicates that the time interval for automatic capturing of restore point snapshots is set to 12 hours.
     frequency_type: Optional[CloudPcRestorePointFrequencyType] = None
     # The OdataType property
     odata_type: Optional[str] = None

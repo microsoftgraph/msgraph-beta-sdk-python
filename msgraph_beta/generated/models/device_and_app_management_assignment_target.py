@@ -8,7 +8,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .all_devices_assignment_target import AllDevicesAssignmentTarget
     from .all_licensed_users_assignment_target import AllLicensedUsersAssignmentTarget
-    from .android_fota_deployment_assignment_target import AndroidFotaDeploymentAssignmentTarget
     from .configuration_manager_collection_assignment_target import ConfigurationManagerCollectionAssignmentTarget
     from .device_and_app_management_assignment_filter_type import DeviceAndAppManagementAssignmentFilterType
     from .exclusion_group_assignment_target import ExclusionGroupAssignmentTarget
@@ -53,10 +52,6 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, 
             from .all_licensed_users_assignment_target import AllLicensedUsersAssignmentTarget
 
             return AllLicensedUsersAssignmentTarget()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidFotaDeploymentAssignmentTarget".casefold():
-            from .android_fota_deployment_assignment_target import AndroidFotaDeploymentAssignmentTarget
-
-            return AndroidFotaDeploymentAssignmentTarget()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.configurationManagerCollectionAssignmentTarget".casefold():
             from .configuration_manager_collection_assignment_target import ConfigurationManagerCollectionAssignmentTarget
 
@@ -78,7 +73,6 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, 
         """
         from .all_devices_assignment_target import AllDevicesAssignmentTarget
         from .all_licensed_users_assignment_target import AllLicensedUsersAssignmentTarget
-        from .android_fota_deployment_assignment_target import AndroidFotaDeploymentAssignmentTarget
         from .configuration_manager_collection_assignment_target import ConfigurationManagerCollectionAssignmentTarget
         from .device_and_app_management_assignment_filter_type import DeviceAndAppManagementAssignmentFilterType
         from .exclusion_group_assignment_target import ExclusionGroupAssignmentTarget
@@ -86,7 +80,6 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, BackedModel, 
 
         from .all_devices_assignment_target import AllDevicesAssignmentTarget
         from .all_licensed_users_assignment_target import AllLicensedUsersAssignmentTarget
-        from .android_fota_deployment_assignment_target import AndroidFotaDeploymentAssignmentTarget
         from .configuration_manager_collection_assignment_target import ConfigurationManagerCollectionAssignmentTarget
         from .device_and_app_management_assignment_filter_type import DeviceAndAppManagementAssignmentFilterType
         from .exclusion_group_assignment_target import ExclusionGroupAssignmentTarget

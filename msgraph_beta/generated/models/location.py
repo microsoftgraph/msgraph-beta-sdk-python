@@ -27,7 +27,7 @@ class Location(AdditionalDataHolder, BackedModel, Parsable):
     display_name: Optional[str] = None
     # Optional email address of the location.
     location_email_address: Optional[str] = None
-    # The type of location. Possible values are: default, conferenceRoom, homeAddress, businessAddress,geoCoordinates, streetAddress, hotel, restaurant, localBusiness, postalAddress. Read-only.
+    # The type of location. The possible values are: default, conferenceRoom, homeAddress, businessAddress,geoCoordinates, streetAddress, hotel, restaurant, localBusiness, postalAddress. Read-only.
     location_type: Optional[LocationType] = None
     # Optional URI representing the location.
     location_uri: Optional[str] = None

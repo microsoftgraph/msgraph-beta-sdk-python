@@ -36,6 +36,7 @@ class ReuploadRequestBuilder(BaseRequestBuilder):
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/cloudpcdeviceimage-reupload?view=graph-rest-beta
         """
+        warn("The reupload is deprecated and will not be supported starting June 25, 2026. Please use retryUpload instead. as of 2026-01/reupload on 2026-01-09 and will be removed 2026-06-25", DeprecationWarning)
         request_info = self.to_post_request_information(
             request_configuration
         )
@@ -54,6 +55,7 @@ class ReuploadRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("The reupload is deprecated and will not be supported starting June 25, 2026. Please use retryUpload instead. as of 2026-01/reupload on 2026-01-09 and will be removed 2026-06-25", DeprecationWarning)
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -65,6 +67,7 @@ class ReuploadRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ReuploadRequestBuilder
         """
+        warn("The reupload is deprecated and will not be supported starting June 25, 2026. Please use retryUpload instead. as of 2026-01/reupload on 2026-01-09 and will be removed 2026-06-25", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ReuploadRequestBuilder(self.request_adapter, raw_url)

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
     from .password_credential import PasswordCredential
     from .segment_configuration import SegmentConfiguration
+    from .traffic_routing_method import TrafficRoutingMethod
     from .verified_custom_domain_certificates_metadata import VerifiedCustomDomainCertificatesMetadata
     from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
@@ -29,7 +30,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     application_server_timeout: Optional[str] = None
     # System-defined value that indicates whether this application is an application proxy configured application. The possible values are quickaccessapp and nonwebapp. Read-only.
     application_type: Optional[str] = None
-    # Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Pass through doesn't require authentication. Possible values are: passthru, aadPreAuthentication.
+    # Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Pass through doesn't require authentication. The possible values are: passthru, aadPreAuthentication.
     external_authentication_type: Optional[ExternalAuthenticationType] = None
     # The published external URL for the application. For example, https://intranet-contoso.msappproxy.net/.
     external_url: Optional[str] = None
@@ -65,6 +66,8 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     segments_configuration: Optional[SegmentConfiguration] = None
     # Represents the single sign-on configuration for the on-premises application.
     single_sign_on_settings: Optional[OnPremisesPublishingSingleSignOn] = None
+    # The trafficRoutingMethod property
+    traffic_routing_method: Optional[TrafficRoutingMethod] = None
     # Indicates whether the application should use alternateUrl instead of externalUrl.
     use_alternate_url_for_translation_and_redirect: Optional[bool] = None
     # Details of the certificate associated with the application when a custom domain is in use. null when using the default domain. Read-only.
@@ -103,6 +106,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
         from .password_credential import PasswordCredential
         from .segment_configuration import SegmentConfiguration
+        from .traffic_routing_method import TrafficRoutingMethod
         from .verified_custom_domain_certificates_metadata import VerifiedCustomDomainCertificatesMetadata
         from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
@@ -113,6 +117,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         from .on_premises_publishing_single_sign_on import OnPremisesPublishingSingleSignOn
         from .password_credential import PasswordCredential
         from .segment_configuration import SegmentConfiguration
+        from .traffic_routing_method import TrafficRoutingMethod
         from .verified_custom_domain_certificates_metadata import VerifiedCustomDomainCertificatesMetadata
         from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
@@ -138,6 +143,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
             "onPremisesApplicationSegments": lambda n : setattr(self, 'on_premises_application_segments', n.get_collection_of_object_values(OnPremisesApplicationSegment)),
             "segmentsConfiguration": lambda n : setattr(self, 'segments_configuration', n.get_object_value(SegmentConfiguration)),
             "singleSignOnSettings": lambda n : setattr(self, 'single_sign_on_settings', n.get_object_value(OnPremisesPublishingSingleSignOn)),
+            "trafficRoutingMethod": lambda n : setattr(self, 'traffic_routing_method', n.get_enum_value(TrafficRoutingMethod)),
             "useAlternateUrlForTranslationAndRedirect": lambda n : setattr(self, 'use_alternate_url_for_translation_and_redirect', n.get_bool_value()),
             "verifiedCustomDomainCertificatesMetadata": lambda n : setattr(self, 'verified_custom_domain_certificates_metadata', n.get_object_value(VerifiedCustomDomainCertificatesMetadata)),
             "verifiedCustomDomainKeyCredential": lambda n : setattr(self, 'verified_custom_domain_key_credential', n.get_object_value(KeyCredential)),
@@ -177,6 +183,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("onPremisesApplicationSegments", self.on_premises_application_segments)
         writer.write_object_value("segmentsConfiguration", self.segments_configuration)
         writer.write_object_value("singleSignOnSettings", self.single_sign_on_settings)
+        writer.write_enum_value("trafficRoutingMethod", self.traffic_routing_method)
         writer.write_bool_value("useAlternateUrlForTranslationAndRedirect", self.use_alternate_url_for_translation_and_redirect)
         writer.write_object_value("verifiedCustomDomainCertificatesMetadata", self.verified_custom_domain_certificates_metadata)
         writer.write_object_value("verifiedCustomDomainKeyCredential", self.verified_custom_domain_key_credential)

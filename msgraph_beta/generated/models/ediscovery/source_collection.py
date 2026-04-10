@@ -30,7 +30,7 @@ class SourceCollection(Entity, Parsable):
     created_date_time: Optional[datetime.datetime] = None
     # Custodian sources that are included in the sourceCollection.
     custodian_sources: Optional[list[DataSource]] = None
-    # When specified, the collection spans across a service for an entire workload. Possible values are: none, allTenantMailboxes, allTenantSites, allCaseCustodians, allCaseNoncustodialDataSources.
+    # When specified, the collection spans across a service for an entire workload. The possible values are: none, allTenantMailboxes, allTenantSites, allCaseCustodians, allCaseNoncustodialDataSources.
     data_source_scopes: Optional[DataSourceScopes] = None
     # The description of the sourceCollection.
     description: Optional[str] = None

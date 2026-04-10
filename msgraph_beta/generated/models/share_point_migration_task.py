@@ -17,15 +17,15 @@ from .entity import Entity
 class SharePointMigrationTask(Entity, Parsable):
     # The error property
     error: Optional[PublicError] = None
-    # The finishedDateTime property
+    # Date and time when the sharePointMigrationTask ended, if available. The task might complete successfully or fail, but it ends at that time. Read-only. Only on OneDrive and SharePoint. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     finished_date_time: Optional[datetime.datetime] = None
-    # The lastUpdatedDateTime property
+    # Date and time when the sharePointMigrationTask was last updated or processed, if available. Use this property to find tasks that stopped processing for a long time. Read-only. Optional. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The parameters property
     parameters: Optional[SharePointMigrationTaskParameters] = None
-    # The startedDateTime property
+    # Date and time when the sharePointMigrationTask started, if available. Read-only. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     started_date_time: Optional[datetime.datetime] = None
     # The status property
     status: Optional[SharePointMigrationTaskStatus] = None

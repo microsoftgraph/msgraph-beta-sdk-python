@@ -5,7 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .configuration_application import ConfigurationApplication
     from .configuration_baseline import ConfigurationBaseline
     from .configuration_drift import ConfigurationDrift
     from .configuration_monitor import ConfigurationMonitor
@@ -17,17 +16,15 @@ from .entity import Entity
 
 @dataclass
 class ConfigurationManagement(Entity, Parsable):
-    # The configurationApplications property
-    configuration_applications: Optional[list[ConfigurationApplication]] = None
-    # The configurationDrifts property
+    # A container for configuration drift resources.
     configuration_drifts: Optional[list[ConfigurationDrift]] = None
-    # The configurationMonitoringResults property
+    # A container for configuration monitoring results resources.
     configuration_monitoring_results: Optional[list[ConfigurationMonitoringResult]] = None
-    # The configurationMonitors property
+    # A container for configuration monitor resources.
     configuration_monitors: Optional[list[ConfigurationMonitor]] = None
-    # The configurationSnapshotJobs property
+    # A container for snapshot job resources.
     configuration_snapshot_jobs: Optional[list[ConfigurationSnapshotJob]] = None
-    # The configurationSnapshots property
+    # A container for configuration snapshot baselines.
     configuration_snapshots: Optional[list[ConfigurationBaseline]] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -48,7 +45,6 @@ class ConfigurationManagement(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .configuration_application import ConfigurationApplication
         from .configuration_baseline import ConfigurationBaseline
         from .configuration_drift import ConfigurationDrift
         from .configuration_monitor import ConfigurationMonitor
@@ -56,7 +52,6 @@ class ConfigurationManagement(Entity, Parsable):
         from .configuration_snapshot_job import ConfigurationSnapshotJob
         from .entity import Entity
 
-        from .configuration_application import ConfigurationApplication
         from .configuration_baseline import ConfigurationBaseline
         from .configuration_drift import ConfigurationDrift
         from .configuration_monitor import ConfigurationMonitor
@@ -65,7 +60,6 @@ class ConfigurationManagement(Entity, Parsable):
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
-            "configurationApplications": lambda n : setattr(self, 'configuration_applications', n.get_collection_of_object_values(ConfigurationApplication)),
             "configurationDrifts": lambda n : setattr(self, 'configuration_drifts', n.get_collection_of_object_values(ConfigurationDrift)),
             "configurationMonitoringResults": lambda n : setattr(self, 'configuration_monitoring_results', n.get_collection_of_object_values(ConfigurationMonitoringResult)),
             "configurationMonitors": lambda n : setattr(self, 'configuration_monitors', n.get_collection_of_object_values(ConfigurationMonitor)),
@@ -85,7 +79,6 @@ class ConfigurationManagement(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_collection_of_object_values("configurationApplications", self.configuration_applications)
         writer.write_collection_of_object_values("configurationDrifts", self.configuration_drifts)
         writer.write_collection_of_object_values("configurationMonitoringResults", self.configuration_monitoring_results)
         writer.write_collection_of_object_values("configurationMonitors", self.configuration_monitors)

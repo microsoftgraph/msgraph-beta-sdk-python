@@ -119,6 +119,7 @@ if TYPE_CHECKING:
     from ..restricted_apps_violation import RestrictedAppsViolation
     from ..role_definition import RoleDefinition
     from ..role_scope_tag import RoleScopeTag
+    from ..samsung_e_fota_firmware_version import SamsungEFotaFirmwareVersion
     from ..service_now_connection import ServiceNowConnection
     from ..software_update_status_summary import SoftwareUpdateStatusSummary
     from ..tenant_attach_r_b_a_c import TenantAttachRBAC
@@ -421,6 +422,8 @@ class DeviceManagement(Entity, Parsable):
     role_definitions: Optional[list[RoleDefinition]] = None
     # The Role Scope Tags.
     role_scope_tags: Optional[list[RoleScopeTag]] = None
+    # The collection of Samsung EFOTA firmware versions.
+    samsung_e_fota_firmware_versions: Optional[list[SamsungEFotaFirmwareVersion]] = None
     # A list of ServiceNowConnections
     service_now_connections: Optional[list[ServiceNowConnection]] = None
     # The device management intent setting definitions
@@ -702,6 +705,7 @@ class DeviceManagement(Entity, Parsable):
         from ..restricted_apps_violation import RestrictedAppsViolation
         from ..role_definition import RoleDefinition
         from ..role_scope_tag import RoleScopeTag
+        from ..samsung_e_fota_firmware_version import SamsungEFotaFirmwareVersion
         from ..service_now_connection import ServiceNowConnection
         from ..software_update_status_summary import SoftwareUpdateStatusSummary
         from ..tenant_attach_r_b_a_c import TenantAttachRBAC
@@ -880,6 +884,7 @@ class DeviceManagement(Entity, Parsable):
         from ..restricted_apps_violation import RestrictedAppsViolation
         from ..role_definition import RoleDefinition
         from ..role_scope_tag import RoleScopeTag
+        from ..samsung_e_fota_firmware_version import SamsungEFotaFirmwareVersion
         from ..service_now_connection import ServiceNowConnection
         from ..software_update_status_summary import SoftwareUpdateStatusSummary
         from ..tenant_attach_r_b_a_c import TenantAttachRBAC
@@ -1062,6 +1067,7 @@ class DeviceManagement(Entity, Parsable):
             "roleAssignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(DeviceAndAppManagementRoleAssignment)),
             "roleDefinitions": lambda n : setattr(self, 'role_definitions', n.get_collection_of_object_values(RoleDefinition)),
             "roleScopeTags": lambda n : setattr(self, 'role_scope_tags', n.get_collection_of_object_values(RoleScopeTag)),
+            "samsungEFotaFirmwareVersions": lambda n : setattr(self, 'samsung_e_fota_firmware_versions', n.get_collection_of_object_values(SamsungEFotaFirmwareVersion)),
             "serviceNowConnections": lambda n : setattr(self, 'service_now_connections', n.get_collection_of_object_values(ServiceNowConnection)),
             "settingDefinitions": lambda n : setattr(self, 'setting_definitions', n.get_collection_of_object_values(DeviceManagementSettingDefinition)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(DeviceManagementSettings)),
@@ -1264,6 +1270,7 @@ class DeviceManagement(Entity, Parsable):
         writer.write_collection_of_object_values("roleAssignments", self.role_assignments)
         writer.write_collection_of_object_values("roleDefinitions", self.role_definitions)
         writer.write_collection_of_object_values("roleScopeTags", self.role_scope_tags)
+        writer.write_collection_of_object_values("samsungEFotaFirmwareVersions", self.samsung_e_fota_firmware_versions)
         writer.write_collection_of_object_values("serviceNowConnections", self.service_now_connections)
         writer.write_collection_of_object_values("settingDefinitions", self.setting_definitions)
         writer.write_object_value("settings", self.settings)

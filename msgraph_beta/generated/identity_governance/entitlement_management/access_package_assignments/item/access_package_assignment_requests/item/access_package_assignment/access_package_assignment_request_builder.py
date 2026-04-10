@@ -32,7 +32,7 @@ class AccessPackageAssignmentRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AccessPackageAssignmentRequestBuilderGetQueryParameters]] = None) -> Optional[AccessPackageAssignment]:
         """
-        For a requestType of UserAdd or AdminAdd, an access package assignment requested to be created. For a requestType of UserRemove, AdminRemove, or SystemRemove, this property has the id property of an existing assignment to be removed. Supports $expand.
+        For a requestType of UserAdd or AdminAdd, an access package assignment requested to be created. For a requestType of UserRemove, AdminRemove, ApproverRemove, or SystemRemove, this property has the id property of an existing assignment to be removed. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageAssignment]
         """
@@ -53,7 +53,7 @@ class AccessPackageAssignmentRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AccessPackageAssignmentRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        For a requestType of UserAdd or AdminAdd, an access package assignment requested to be created. For a requestType of UserRemove, AdminRemove, or SystemRemove, this property has the id property of an existing assignment to be removed. Supports $expand.
+        For a requestType of UserAdd or AdminAdd, an access package assignment requested to be created. For a requestType of UserRemove, AdminRemove, ApproverRemove, or SystemRemove, this property has the id property of an existing assignment to be removed. Supports $expand.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +77,7 @@ class AccessPackageAssignmentRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AccessPackageAssignmentRequestBuilderGetQueryParameters():
         """
-        For a requestType of UserAdd or AdminAdd, an access package assignment requested to be created. For a requestType of UserRemove, AdminRemove, or SystemRemove, this property has the id property of an existing assignment to be removed. Supports $expand.
+        For a requestType of UserAdd or AdminAdd, an access package assignment requested to be created. For a requestType of UserRemove, AdminRemove, ApproverRemove, or SystemRemove, this property has the id property of an existing assignment to be removed. Supports $expand.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

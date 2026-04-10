@@ -20,7 +20,7 @@ class Operation(Entity, Parsable):
     last_action_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Possible values are: notStarted, running, completed, failed. Read-only.
+    # The possible values are: notStarted, running, completed, failed. Read-only.
     status: Optional[OperationStatus] = None
     
     @staticmethod

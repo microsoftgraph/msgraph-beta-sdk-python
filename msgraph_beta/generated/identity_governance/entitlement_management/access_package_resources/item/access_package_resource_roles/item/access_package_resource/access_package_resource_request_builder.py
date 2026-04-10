@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from ........models.o_data_errors.o_data_error import ODataError
     from .access_package_resource_environment.access_package_resource_environment_request_builder import AccessPackageResourceEnvironmentRequestBuilder
     from .access_package_resource_scopes.access_package_resource_scopes_request_builder import AccessPackageResourceScopesRequestBuilder
+    from .external_origin_resource_connector.external_origin_resource_connector_request_builder import ExternalOriginResourceConnectorRequestBuilder
     from .refresh.refresh_request_builder import RefreshRequestBuilder
     from .upload_sessions.upload_sessions_request_builder import UploadSessionsRequestBuilder
 
@@ -159,6 +160,15 @@ class AccessPackageResourceRequestBuilder(BaseRequestBuilder):
         from .access_package_resource_scopes.access_package_resource_scopes_request_builder import AccessPackageResourceScopesRequestBuilder
 
         return AccessPackageResourceScopesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def external_origin_resource_connector(self) -> ExternalOriginResourceConnectorRequestBuilder:
+        """
+        Provides operations to manage the externalOriginResourceConnector property of the microsoft.graph.accessPackageResource entity.
+        """
+        from .external_origin_resource_connector.external_origin_resource_connector_request_builder import ExternalOriginResourceConnectorRequestBuilder
+
+        return ExternalOriginResourceConnectorRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def refresh(self) -> RefreshRequestBuilder:

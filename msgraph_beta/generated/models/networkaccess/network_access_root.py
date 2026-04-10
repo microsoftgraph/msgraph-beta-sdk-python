@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .alert import Alert
+    from .cloud_firewall_policy import CloudFirewallPolicy
     from .connectivity import Connectivity
     from .filtering_policy import FilteringPolicy
     from .filtering_profile import FilteringProfile
@@ -26,6 +27,8 @@ from ..entity import Entity
 class NetworkAccessRoot(Entity, Parsable):
     # The alerts property
     alerts: Optional[list[Alert]] = None
+    # A collection of cloud firewall policies that define rules for managing network traffic through the Global Secure Access services.
+    cloud_firewall_policies: Optional[list[CloudFirewallPolicy]] = None
     # Connectivity represents all the connectivity components in Global Secure Access.
     connectivity: Optional[Connectivity] = None
     # A filtering policy defines the specific traffic that is allowed or blocked through the Global Secure Access services for a filtering profile.
@@ -71,6 +74,7 @@ class NetworkAccessRoot(Entity, Parsable):
         """
         from ..entity import Entity
         from .alert import Alert
+        from .cloud_firewall_policy import CloudFirewallPolicy
         from .connectivity import Connectivity
         from .filtering_policy import FilteringPolicy
         from .filtering_profile import FilteringProfile
@@ -86,6 +90,7 @@ class NetworkAccessRoot(Entity, Parsable):
 
         from ..entity import Entity
         from .alert import Alert
+        from .cloud_firewall_policy import CloudFirewallPolicy
         from .connectivity import Connectivity
         from .filtering_policy import FilteringPolicy
         from .filtering_profile import FilteringProfile
@@ -101,6 +106,7 @@ class NetworkAccessRoot(Entity, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(Alert)),
+            "cloudFirewallPolicies": lambda n : setattr(self, 'cloud_firewall_policies', n.get_collection_of_object_values(CloudFirewallPolicy)),
             "connectivity": lambda n : setattr(self, 'connectivity', n.get_object_value(Connectivity)),
             "filteringPolicies": lambda n : setattr(self, 'filtering_policies', n.get_collection_of_object_values(FilteringPolicy)),
             "filteringProfiles": lambda n : setattr(self, 'filtering_profiles', n.get_collection_of_object_values(FilteringProfile)),
@@ -128,6 +134,7 @@ class NetworkAccessRoot(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("alerts", self.alerts)
+        writer.write_collection_of_object_values("cloudFirewallPolicies", self.cloud_firewall_policies)
         writer.write_object_value("connectivity", self.connectivity)
         writer.write_collection_of_object_values("filteringPolicies", self.filtering_policies)
         writer.write_collection_of_object_values("filteringProfiles", self.filtering_profiles)

@@ -16,7 +16,7 @@ class InvitationParticipantInfo(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The type of endpoint. Possible values are: default, voicemail, skypeForBusiness, skypeForBusinessVoipPhone and unknownFutureValue.
+    # The type of endpoint. The possible values are: default, voicemail, skypeForBusiness, skypeForBusinessVoipPhone and unknownFutureValue.
     endpoint_type: Optional[EndpointType] = None
     # Optional. Whether to hide the participant from the roster.
     hidden: Optional[bool] = None
