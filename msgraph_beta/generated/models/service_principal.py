@@ -72,7 +72,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
     claims_mapping_policies: Optional[list[ClaimsMappingPolicy]] = None
     # A claims policy that allows application admins to customize the claims that will be emitted in tokens affected by this policy.
     claims_policy: Optional[CustomClaimsPolicy] = None
-    # The appId (called Application (client) ID on the Microsoft Entra admin center) of the application used to create the service principal. Set internally by Microsoft Entra ID. Read-only.
+    # The appId of the application that created this service principal. Set internally by Microsoft Entra ID. Read-only.
     created_by_app_id: Optional[str] = None
     # Directory objects created by this service principal. Read-only. Nullable.
     created_objects: Optional[list[DirectoryObject]] = None

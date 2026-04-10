@@ -12,7 +12,7 @@ class CrossTenantGroupSyncInbound(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The isSyncAllowed property
+    # Defines whether group objects should be synchronized from the partner tenant. false stops any current group synchronization from the source tenant to the target tenant. This property has no impact on existing groups that were synchronized.
     is_sync_allowed: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

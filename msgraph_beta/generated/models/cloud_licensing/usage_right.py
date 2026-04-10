@@ -7,12 +7,18 @@ from uuid import UUID
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .allotment import Allotment
+    from .assignment import Assignment
     from .service import Service
 
 from ..entity import Entity
 
 @dataclass
 class UsageRight(Entity, Parsable):
+    # The set of allotments associated with the assignments that combine to form this usageRight.
+    allotments: Optional[list[Allotment]] = None
+    # The set of assignments that combine to form this usageRight, including both direct assignments and assignments inherited through group membership.
+    assignments: Optional[list[Assignment]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Information about the services associated with the usageRight. Not nullable. Read-only. Supports $filter on the planId property.
@@ -39,12 +45,18 @@ class UsageRight(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .allotment import Allotment
+        from .assignment import Assignment
         from .service import Service
 
         from ..entity import Entity
+        from .allotment import Allotment
+        from .assignment import Assignment
         from .service import Service
 
         fields: dict[str, Callable[[Any], None]] = {
+            "allotments": lambda n : setattr(self, 'allotments', n.get_collection_of_object_values(Allotment)),
+            "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(Assignment)),
             "services": lambda n : setattr(self, 'services', n.get_collection_of_object_values(Service)),
             "skuId": lambda n : setattr(self, 'sku_id', n.get_uuid_value()),
             "skuPartNumber": lambda n : setattr(self, 'sku_part_number', n.get_str_value()),
@@ -62,6 +74,8 @@ class UsageRight(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("allotments", self.allotments)
+        writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_collection_of_object_values("services", self.services)
         writer.write_uuid_value("skuId", self.sku_id)
         writer.write_str_value("skuPartNumber", self.sku_part_number)

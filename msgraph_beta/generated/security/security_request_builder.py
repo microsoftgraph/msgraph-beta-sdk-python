@@ -49,6 +49,7 @@ if TYPE_CHECKING:
     from .triggers.triggers_request_builder import TriggersRequestBuilder
     from .trigger_types.trigger_types_request_builder import TriggerTypesRequestBuilder
     from .user_security_profiles.user_security_profiles_request_builder import UserSecurityProfilesRequestBuilder
+    from .zones.zones_request_builder import ZonesRequestBuilder
 
 class SecurityRequestBuilder(BaseRequestBuilder):
     """
@@ -438,6 +439,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .user_security_profiles.user_security_profiles_request_builder import UserSecurityProfilesRequestBuilder
 
         return UserSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def zones(self) -> ZonesRequestBuilder:
+        """
+        Provides operations to manage the zones property of the microsoft.graph.security entity.
+        """
+        from .zones.zones_request_builder import ZonesRequestBuilder
+
+        return ZonesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SecurityRequestBuilderGetQueryParameters():

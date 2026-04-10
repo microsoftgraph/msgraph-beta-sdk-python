@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .app_management_configuration import AppManagementConfiguration
     from .audiences_configuration import AudiencesConfiguration
     from .identifier_uri_configuration import IdentifierUriConfiguration
+    from .redirect_uri_configuration import RedirectUriConfiguration
 
 from .app_management_configuration import AppManagementConfiguration
 
@@ -19,6 +20,8 @@ class AppManagementApplicationConfiguration(AppManagementConfiguration, Parsable
     audiences: Optional[AudiencesConfiguration] = None
     # Configuration object for restrictions on identifierUris property for an application.
     identifier_uris: Optional[IdentifierUriConfiguration] = None
+    # The redirectUris property
+    redirect_uris: Optional[RedirectUriConfiguration] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AppManagementApplicationConfiguration:
@@ -39,14 +42,17 @@ class AppManagementApplicationConfiguration(AppManagementConfiguration, Parsable
         from .app_management_configuration import AppManagementConfiguration
         from .audiences_configuration import AudiencesConfiguration
         from .identifier_uri_configuration import IdentifierUriConfiguration
+        from .redirect_uri_configuration import RedirectUriConfiguration
 
         from .app_management_configuration import AppManagementConfiguration
         from .audiences_configuration import AudiencesConfiguration
         from .identifier_uri_configuration import IdentifierUriConfiguration
+        from .redirect_uri_configuration import RedirectUriConfiguration
 
         fields: dict[str, Callable[[Any], None]] = {
             "audiences": lambda n : setattr(self, 'audiences', n.get_object_value(AudiencesConfiguration)),
             "identifierUris": lambda n : setattr(self, 'identifier_uris', n.get_object_value(IdentifierUriConfiguration)),
+            "redirectUris": lambda n : setattr(self, 'redirect_uris', n.get_object_value(RedirectUriConfiguration)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,5 +69,6 @@ class AppManagementApplicationConfiguration(AppManagementConfiguration, Parsable
         super().serialize(writer)
         writer.write_object_value("audiences", self.audiences)
         writer.write_object_value("identifierUris", self.identifier_uris)
+        writer.write_object_value("redirectUris", self.redirect_uris)
     
 

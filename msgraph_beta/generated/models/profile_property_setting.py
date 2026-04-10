@@ -6,17 +6,14 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
-    from .organization_allowed_audiences import OrganizationAllowedAudiences
 
 from .entity import Entity
 
 @dataclass
 class ProfilePropertySetting(Entity, Parsable):
-    # A privacy setting that reflects the allowed audience for the configured property. The possible values are: me, organization, federatedOrganizations, everyone, unknownFutureValue.
-    allowed_audiences: Optional[OrganizationAllowedAudiences] = None
-    # Defines whether a user is allowed to override the tenant admin privacy setting.
-    is_user_override_for_audience_enabled: Optional[bool] = None
     # Name of the property-level setting.
+    display_name: Optional[str] = None
+    # Other name of the property-level setting. For backward compatibility.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -40,14 +37,11 @@ class ProfilePropertySetting(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
-        from .organization_allowed_audiences import OrganizationAllowedAudiences
 
         from .entity import Entity
-        from .organization_allowed_audiences import OrganizationAllowedAudiences
 
         fields: dict[str, Callable[[Any], None]] = {
-            "allowedAudiences": lambda n : setattr(self, 'allowed_audiences', n.get_enum_value(OrganizationAllowedAudiences)),
-            "isUserOverrideForAudienceEnabled": lambda n : setattr(self, 'is_user_override_for_audience_enabled', n.get_bool_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "prioritizedSourceUrls": lambda n : setattr(self, 'prioritized_source_urls', n.get_collection_of_primitive_values(str)),
         }
@@ -64,8 +58,7 @@ class ProfilePropertySetting(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_enum_value("allowedAudiences", self.allowed_audiences)
-        writer.write_bool_value("isUserOverrideForAudienceEnabled", self.is_user_override_for_audience_enabled)
+        writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("name", self.name)
         writer.write_collection_of_primitive_values("prioritizedSourceUrls", self.prioritized_source_urls)
     

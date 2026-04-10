@@ -16,18 +16,20 @@ from .entity import Entity
 
 @dataclass
 class BrowseSessionBase(Entity, Parsable):
-    # The backupSizeInBytes property
+    # The size of the backup in bytes.
     backup_size_in_bytes: Optional[str] = None
-    # The createdDateTime property
+    # The date and time when the browse session was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The error property
+    # Contains the error details if the browse session creation fails.
     error: Optional[PublicError] = None
-    # The expirationDateTime property
+    # The date and time after which the browse session is deleted automatically.
     expiration_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The restorePointDateTime property
+    # The date and time of the restore point on which the browse session is created.
     restore_point_date_time: Optional[datetime.datetime] = None
+    # The restorePointId property
+    restore_point_id: Optional[str] = None
     # The status property
     status: Optional[BrowseSessionStatus] = None
     
@@ -78,6 +80,7 @@ class BrowseSessionBase(Entity, Parsable):
             "error": lambda n : setattr(self, 'error', n.get_object_value(PublicError)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "restorePointDateTime": lambda n : setattr(self, 'restore_point_date_time', n.get_datetime_value()),
+            "restorePointId": lambda n : setattr(self, 'restore_point_id', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(BrowseSessionStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -98,6 +101,7 @@ class BrowseSessionBase(Entity, Parsable):
         writer.write_object_value("error", self.error)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_datetime_value("restorePointDateTime", self.restore_point_date_time)
+        writer.write_str_value("restorePointId", self.restore_point_id)
         writer.write_enum_value("status", self.status)
     
 

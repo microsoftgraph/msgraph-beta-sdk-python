@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ..models.admin import Admin
     from ..models.o_data_errors.o_data_error import ODataError
     from .apps_and_services.apps_and_services_request_builder import AppsAndServicesRequestBuilder
+    from .cloud_licensing.cloud_licensing_request_builder import CloudLicensingRequestBuilder
     from .configuration_management.configuration_management_request_builder import ConfigurationManagementRequestBuilder
     from .dynamics.dynamics_request_builder import DynamicsRequestBuilder
     from .edge.edge_request_builder import EdgeRequestBuilder
@@ -132,6 +133,15 @@ class AdminRequestBuilder(BaseRequestBuilder):
         from .apps_and_services.apps_and_services_request_builder import AppsAndServicesRequestBuilder
 
         return AppsAndServicesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def cloud_licensing(self) -> CloudLicensingRequestBuilder:
+        """
+        Provides operations to manage the cloudLicensing property of the microsoft.graph.admin entity.
+        """
+        from .cloud_licensing.cloud_licensing_request_builder import CloudLicensingRequestBuilder
+
+        return CloudLicensingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def configuration_management(self) -> ConfigurationManagementRequestBuilder:

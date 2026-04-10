@@ -18,17 +18,17 @@ class ExternalOriginResourceConnector(Entity, Parsable):
     connection_info: Optional[ConnectionInfo] = None
     # The connectorType property
     connector_type: Optional[ConnectorType] = None
-    # The createdBy property
+    # The identifier of the user or application that created the connector.
     created_by: Optional[str] = None
-    # The createdDateTime property
+    # The date and time when the connector was created.
     created_date_time: Optional[datetime.datetime] = None
-    # The description property
+    # A description of the connector.
     description: Optional[str] = None
-    # The displayName property
+    # The display name of the connector.
     display_name: Optional[str] = None
-    # The modifiedBy property
+    # The identifier of the user or application that last modified the connector.
     modified_by: Optional[str] = None
-    # The modifiedDateTime property
+    # The date and time when the connector was last modified.
     modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

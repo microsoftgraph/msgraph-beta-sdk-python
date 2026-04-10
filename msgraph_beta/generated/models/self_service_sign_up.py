@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .applied_authentication_event_listener import AppliedAuthenticationEventListener
     from .entity import Entity
+    from .fraud_protection_details import FraudProtectionDetails
     from .sign_up_identity import SignUpIdentity
     from .sign_up_stage import SignUpStage
     from .sign_up_status import SignUpStatus
@@ -26,6 +27,8 @@ class SelfServiceSignUp(Entity, Parsable):
     correlation_id: Optional[str] = None
     # Date and time (UTC) the sign-up was initiated. Example: midnight on Jan 1, 2014 is reported as 2014-01-01T00:00:00Z.  Supports $orderby, $filter (eq, le, and ge).
     created_date_time: Optional[datetime.datetime] = None
+    # The fraudProtectionDetails property
+    fraud_protection_details: Optional[FraudProtectionDetails] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Unique identifier for self-service sign-up user. Supports $filter (eq) on the signUpIdentifierType.
@@ -57,12 +60,14 @@ class SelfServiceSignUp(Entity, Parsable):
         """
         from .applied_authentication_event_listener import AppliedAuthenticationEventListener
         from .entity import Entity
+        from .fraud_protection_details import FraudProtectionDetails
         from .sign_up_identity import SignUpIdentity
         from .sign_up_stage import SignUpStage
         from .sign_up_status import SignUpStatus
 
         from .applied_authentication_event_listener import AppliedAuthenticationEventListener
         from .entity import Entity
+        from .fraud_protection_details import FraudProtectionDetails
         from .sign_up_identity import SignUpIdentity
         from .sign_up_stage import SignUpStage
         from .sign_up_status import SignUpStatus
@@ -73,6 +78,7 @@ class SelfServiceSignUp(Entity, Parsable):
             "appliedEventListeners": lambda n : setattr(self, 'applied_event_listeners', n.get_collection_of_object_values(AppliedAuthenticationEventListener)),
             "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "fraudProtectionDetails": lambda n : setattr(self, 'fraud_protection_details', n.get_object_value(FraudProtectionDetails)),
             "signUpIdentity": lambda n : setattr(self, 'sign_up_identity', n.get_object_value(SignUpIdentity)),
             "signUpIdentityProvider": lambda n : setattr(self, 'sign_up_identity_provider', n.get_str_value()),
             "signUpStage": lambda n : setattr(self, 'sign_up_stage', n.get_enum_value(SignUpStage)),
@@ -97,6 +103,7 @@ class SelfServiceSignUp(Entity, Parsable):
         writer.write_collection_of_object_values("appliedEventListeners", self.applied_event_listeners)
         writer.write_str_value("correlationId", self.correlation_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_object_value("fraudProtectionDetails", self.fraud_protection_details)
         writer.write_object_value("signUpIdentity", self.sign_up_identity)
         writer.write_str_value("signUpIdentityProvider", self.sign_up_identity_provider)
         writer.write_enum_value("signUpStage", self.sign_up_stage)

@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .migration_mode import MigrationMode
     from .pinned_chat_message_info import PinnedChatMessageInfo
     from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
+    from .targeted_chat_message import TargetedChatMessage
     from .teams_app_installation import TeamsAppInstallation
     from .teams_async_operation import TeamsAsyncOperation
     from .teams_tab import TeamsTab
@@ -59,6 +60,8 @@ class Chat(Entity, Parsable):
     pinned_messages: Optional[list[PinnedChatMessageInfo]] = None
     # A collection of all the tabs in the chat. Nullable.
     tabs: Optional[list[TeamsTab]] = None
+    # A collection of targeted messages in the chat that are visible only to specific users. Nullable.
+    targeted_messages: Optional[list[TargetedChatMessage]] = None
     # The identifier of the tenant in which the chat was created. Read-only.
     tenant_id: Optional[str] = None
     # (Optional) Subject or topic for the chat. Only available for group chats.
@@ -94,6 +97,7 @@ class Chat(Entity, Parsable):
         from .migration_mode import MigrationMode
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
+        from .targeted_chat_message import TargetedChatMessage
         from .teams_app_installation import TeamsAppInstallation
         from .teams_async_operation import TeamsAsyncOperation
         from .teams_tab import TeamsTab
@@ -109,6 +113,7 @@ class Chat(Entity, Parsable):
         from .migration_mode import MigrationMode
         from .pinned_chat_message_info import PinnedChatMessageInfo
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
+        from .targeted_chat_message import TargetedChatMessage
         from .teams_app_installation import TeamsAppInstallation
         from .teams_async_operation import TeamsAsyncOperation
         from .teams_tab import TeamsTab
@@ -131,6 +136,7 @@ class Chat(Entity, Parsable):
             "permissionGrants": lambda n : setattr(self, 'permission_grants', n.get_collection_of_object_values(ResourceSpecificPermissionGrant)),
             "pinnedMessages": lambda n : setattr(self, 'pinned_messages', n.get_collection_of_object_values(PinnedChatMessageInfo)),
             "tabs": lambda n : setattr(self, 'tabs', n.get_collection_of_object_values(TeamsTab)),
+            "targetedMessages": lambda n : setattr(self, 'targeted_messages', n.get_collection_of_object_values(TargetedChatMessage)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "topic": lambda n : setattr(self, 'topic', n.get_str_value()),
             "viewpoint": lambda n : setattr(self, 'viewpoint', n.get_object_value(ChatViewpoint)),
@@ -165,6 +171,7 @@ class Chat(Entity, Parsable):
         writer.write_collection_of_object_values("permissionGrants", self.permission_grants)
         writer.write_collection_of_object_values("pinnedMessages", self.pinned_messages)
         writer.write_collection_of_object_values("tabs", self.tabs)
+        writer.write_collection_of_object_values("targetedMessages", self.targeted_messages)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_str_value("topic", self.topic)
         writer.write_object_value("viewpoint", self.viewpoint)
