@@ -8,4 +8,5 @@ class LifecycleWorkflowProcessingStatus(str, Enum):
     Canceled = "canceled",
     Failed = "failed",
     UnknownFutureValue = "unknownFutureValue",
+    Canceling = "canceling",
 

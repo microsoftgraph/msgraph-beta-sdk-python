@@ -13,4 +13,6 @@ class CloudCertificationAuthorityStatus(str, Enum):
     SigningPending = "signingPending",
     # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
+    # Indicates certification authority has expired and cannot issue certificates until renewed and activated.
+    Expired = "expired",
 

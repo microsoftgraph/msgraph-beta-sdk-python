@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_certification_authority_leaf_certificate_status import CloudCertificationAuthorityLeafCertificateStatus
+    from .cloud_certification_authority_version import CloudCertificationAuthorityVersion
     from .entity import Entity
 
 from .entity import Entity
@@ -20,6 +21,10 @@ class CloudCertificationAuthorityLeafCertificate(Entity, Parsable):
     certificate_status: Optional[CloudCertificationAuthorityLeafCertificateStatus] = None
     # The URI of the certification authority that issued the certificate. Read-only.
     certification_authority_issuer_uri: Optional[str] = None
+    # The version number of the certification authority that issued this leaf certificate. Read-only.
+    certification_authority_version_number: Optional[int] = None
+    # The certification authority version that issued this leaf certificate. Read-only.
+    cloud_certification_authority_version: Optional[CloudCertificationAuthorityVersion] = None
     # URL to find the relevant Certificate Revocation List for this certificate. Read-only.
     crl_distribution_point_url: Optional[str] = None
     # The unique identifier of the managed device for which the certificate was created. This ID is assigned at device enrollment time. Read-only. Supports $select.
@@ -74,14 +79,18 @@ class CloudCertificationAuthorityLeafCertificate(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_certification_authority_leaf_certificate_status import CloudCertificationAuthorityLeafCertificateStatus
+        from .cloud_certification_authority_version import CloudCertificationAuthorityVersion
         from .entity import Entity
 
         from .cloud_certification_authority_leaf_certificate_status import CloudCertificationAuthorityLeafCertificateStatus
+        from .cloud_certification_authority_version import CloudCertificationAuthorityVersion
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
             "certificateStatus": lambda n : setattr(self, 'certificate_status', n.get_enum_value(CloudCertificationAuthorityLeafCertificateStatus)),
             "certificationAuthorityIssuerUri": lambda n : setattr(self, 'certification_authority_issuer_uri', n.get_str_value()),
+            "certificationAuthorityVersionNumber": lambda n : setattr(self, 'certification_authority_version_number', n.get_int_value()),
+            "cloudCertificationAuthorityVersion": lambda n : setattr(self, 'cloud_certification_authority_version', n.get_object_value(CloudCertificationAuthorityVersion)),
             "crlDistributionPointUrl": lambda n : setattr(self, 'crl_distribution_point_url', n.get_str_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
@@ -115,6 +124,8 @@ class CloudCertificationAuthorityLeafCertificate(Entity, Parsable):
         super().serialize(writer)
         writer.write_enum_value("certificateStatus", self.certificate_status)
         writer.write_str_value("certificationAuthorityIssuerUri", self.certification_authority_issuer_uri)
+        writer.write_int_value("certificationAuthorityVersionNumber", self.certification_authority_version_number)
+        writer.write_object_value("cloudCertificationAuthorityVersion", self.cloud_certification_authority_version)
         writer.write_str_value("crlDistributionPointUrl", self.crl_distribution_point_url)
         writer.write_str_value("deviceId", self.device_id)
         writer.write_str_value("deviceName", self.device_name)

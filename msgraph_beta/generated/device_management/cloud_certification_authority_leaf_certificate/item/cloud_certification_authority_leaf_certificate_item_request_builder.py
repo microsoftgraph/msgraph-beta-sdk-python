@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
     from ....models.o_data_errors.o_data_error import ODataError
+    from .cloud_certification_authority_version.cloud_certification_authority_version_request_builder import CloudCertificationAuthorityVersionRequestBuilder
 
 class CloudCertificationAuthorityLeafCertificateItemRequestBuilder(BaseRequestBuilder):
     """
@@ -137,6 +138,15 @@ class CloudCertificationAuthorityLeafCertificateItemRequestBuilder(BaseRequestBu
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CloudCertificationAuthorityLeafCertificateItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def cloud_certification_authority_version(self) -> CloudCertificationAuthorityVersionRequestBuilder:
+        """
+        Provides operations to manage the cloudCertificationAuthorityVersion property of the microsoft.graph.cloudCertificationAuthorityLeafCertificate entity.
+        """
+        from .cloud_certification_authority_version.cloud_certification_authority_version_request_builder import CloudCertificationAuthorityVersionRequestBuilder
+
+        return CloudCertificationAuthorityVersionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CloudCertificationAuthorityLeafCertificateItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

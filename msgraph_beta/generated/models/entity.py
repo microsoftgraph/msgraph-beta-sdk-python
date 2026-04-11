@@ -81,6 +81,7 @@ if TYPE_CHECKING:
     from .all_drives_backup import AllDrivesBackup
     from .all_mailboxes_backup import AllMailboxesBackup
     from .all_sites_backup import AllSitesBackup
+    from .android_app_configuration_schema import AndroidAppConfigurationSchema
     from .android_certificate_profile_base import AndroidCertificateProfileBase
     from .android_compliance_policy import AndroidCompliancePolicy
     from .android_custom_configuration import AndroidCustomConfiguration
@@ -341,6 +342,7 @@ if TYPE_CHECKING:
     from .cloud_app_security_profile import CloudAppSecurityProfile
     from .cloud_certification_authority import CloudCertificationAuthority
     from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
+    from .cloud_certification_authority_version import CloudCertificationAuthorityVersion
     from .cloud_clipboard_item import CloudClipboardItem
     from .cloud_clipboard_root import CloudClipboardRoot
     from .cloud_flare_web_application_firewall_provider import CloudFlareWebApplicationFirewallProvider
@@ -436,6 +438,7 @@ if TYPE_CHECKING:
     from .copilot_package import CopilotPackage
     from .copilot_package_detail import CopilotPackageDetail
     from .copilot_people_admin_setting import CopilotPeopleAdminSetting
+    from .copilot_policy_setting import CopilotPolicySetting
     from .copilot_report_root import CopilotReportRoot
     from .copilot_setting import CopilotSetting
     from .cors_configuration_v2 import CorsConfiguration_v2
@@ -1704,6 +1707,7 @@ if TYPE_CHECKING:
     from .security.sensor import Sensor
     from .security.sensor_candidate import SensorCandidate
     from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
+    from .security.sensor_migration import SensorMigration
     from .security.settings_container import SettingsContainer
     from .security.site_source import SiteSource
     from .security.ssl_certificate import SslCertificate
@@ -2648,6 +2652,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .all_sites_backup import AllSitesBackup
 
             return AllSitesBackup()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidAppConfigurationSchema".casefold():
+            from .android_app_configuration_schema import AndroidAppConfigurationSchema
+
+            return AndroidAppConfigurationSchema()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidCertificateProfileBase".casefold():
             from .android_certificate_profile_base import AndroidCertificateProfileBase
 
@@ -3691,6 +3699,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
 
             return CloudCertificationAuthorityLeafCertificate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudCertificationAuthorityVersion".casefold():
+            from .cloud_certification_authority_version import CloudCertificationAuthorityVersion
+
+            return CloudCertificationAuthorityVersion()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudClipboardItem".casefold():
             from .cloud_clipboard_item import CloudClipboardItem
 
@@ -4073,6 +4085,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .copilot_people_admin_setting import CopilotPeopleAdminSetting
 
             return CopilotPeopleAdminSetting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotPolicySetting".casefold():
+            from .copilot_policy_setting import CopilotPolicySetting
+
+            return CopilotPolicySetting()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.copilotReportRoot".casefold():
             from .copilot_report_root import CopilotReportRoot
 
@@ -9196,6 +9212,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
 
             return SensorCandidateActivationConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.sensorMigration".casefold():
+            from .security.sensor_migration import SensorMigration
+
+            return SensorMigration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.settingsContainer".casefold():
             from .security.settings_container import SettingsContainer
 
@@ -11749,6 +11769,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .all_drives_backup import AllDrivesBackup
         from .all_mailboxes_backup import AllMailboxesBackup
         from .all_sites_backup import AllSitesBackup
+        from .android_app_configuration_schema import AndroidAppConfigurationSchema
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_compliance_policy import AndroidCompliancePolicy
         from .android_custom_configuration import AndroidCustomConfiguration
@@ -12009,6 +12030,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_app_security_profile import CloudAppSecurityProfile
         from .cloud_certification_authority import CloudCertificationAuthority
         from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
+        from .cloud_certification_authority_version import CloudCertificationAuthorityVersion
         from .cloud_clipboard_item import CloudClipboardItem
         from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_flare_web_application_firewall_provider import CloudFlareWebApplicationFirewallProvider
@@ -12104,6 +12126,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_package import CopilotPackage
         from .copilot_package_detail import CopilotPackageDetail
         from .copilot_people_admin_setting import CopilotPeopleAdminSetting
+        from .copilot_policy_setting import CopilotPolicySetting
         from .copilot_report_root import CopilotReportRoot
         from .copilot_setting import CopilotSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
@@ -13372,6 +13395,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.sensor import Sensor
         from .security.sensor_candidate import SensorCandidate
         from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
+        from .security.sensor_migration import SensorMigration
         from .security.settings_container import SettingsContainer
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
@@ -14062,6 +14086,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .all_drives_backup import AllDrivesBackup
         from .all_mailboxes_backup import AllMailboxesBackup
         from .all_sites_backup import AllSitesBackup
+        from .android_app_configuration_schema import AndroidAppConfigurationSchema
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_compliance_policy import AndroidCompliancePolicy
         from .android_custom_configuration import AndroidCustomConfiguration
@@ -14322,6 +14347,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_app_security_profile import CloudAppSecurityProfile
         from .cloud_certification_authority import CloudCertificationAuthority
         from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
+        from .cloud_certification_authority_version import CloudCertificationAuthorityVersion
         from .cloud_clipboard_item import CloudClipboardItem
         from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_flare_web_application_firewall_provider import CloudFlareWebApplicationFirewallProvider
@@ -14417,6 +14443,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_package import CopilotPackage
         from .copilot_package_detail import CopilotPackageDetail
         from .copilot_people_admin_setting import CopilotPeopleAdminSetting
+        from .copilot_policy_setting import CopilotPolicySetting
         from .copilot_report_root import CopilotReportRoot
         from .copilot_setting import CopilotSetting
         from .cors_configuration_v2 import CorsConfiguration_v2
@@ -15685,6 +15712,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.sensor import Sensor
         from .security.sensor_candidate import SensorCandidate
         from .security.sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
+        from .security.sensor_migration import SensorMigration
         from .security.settings_container import SettingsContainer
         from .security.site_source import SiteSource
         from .security.ssl_certificate import SslCertificate
