@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .application_sign_in_detailed_summary.application_sign_in_detailed_summary_request_builder import ApplicationSignInDetailedSummaryRequestBuilder
     from .app_credential_sign_in_activities.app_credential_sign_in_activities_request_builder import AppCredentialSignInActivitiesRequestBuilder
     from .authentication_methods.authentication_methods_request_builder import AuthenticationMethodsRequestBuilder
+    from .azure_a_d_premium_license_insight.azure_a_d_premium_license_insight_request_builder import AzureADPremiumLicenseInsightRequestBuilder
     from .credential_user_registration_details.credential_user_registration_details_request_builder import CredentialUserRegistrationDetailsRequestBuilder
     from .daily_print_usage.daily_print_usage_request_builder import DailyPrintUsageRequestBuilder
     from .daily_print_usage_by_printer.daily_print_usage_by_printer_request_builder import DailyPrintUsageByPrinterRequestBuilder
@@ -1723,6 +1724,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .authentication_methods.authentication_methods_request_builder import AuthenticationMethodsRequestBuilder
 
         return AuthenticationMethodsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def azure_a_d_premium_license_insight(self) -> AzureADPremiumLicenseInsightRequestBuilder:
+        """
+        Provides operations to manage the azureADPremiumLicenseInsight property of the microsoft.graph.reportRoot entity.
+        """
+        from .azure_a_d_premium_license_insight.azure_a_d_premium_license_insight_request_builder import AzureADPremiumLicenseInsightRequestBuilder
+
+        return AzureADPremiumLicenseInsightRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def credential_user_registration_details(self) -> CredentialUserRegistrationDetailsRequestBuilder:

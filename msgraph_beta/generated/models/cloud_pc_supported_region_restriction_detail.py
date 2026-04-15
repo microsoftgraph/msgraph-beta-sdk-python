@@ -12,6 +12,8 @@ class CloudPcSupportedRegionRestrictionDetail(AdditionalDataHolder, BackedModel,
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The availabilityZoneRestricted property
+    availability_zone_restricted: Optional[bool] = None
     # Indicates that the region is restricted for Cloud PC CPU provisioning. True indicates that Cloud PC provisioning with CPU isn't available in this region. false indicates that it's available. The default value is false. Read-only.
     c_p_u_restricted: Optional[bool] = None
     # Indicates that the region is restricted for Cloud PC GPU provisioning. True indicates that Cloud PC provisioning with GPU isn't available in this region. false indicates that it's available. The default value is false. Read-only.
@@ -38,6 +40,7 @@ class CloudPcSupportedRegionRestrictionDetail(AdditionalDataHolder, BackedModel,
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         fields: dict[str, Callable[[Any], None]] = {
+            "availabilityZoneRestricted": lambda n : setattr(self, 'availability_zone_restricted', n.get_bool_value()),
             "cPURestricted": lambda n : setattr(self, 'c_p_u_restricted', n.get_bool_value()),
             "gPURestricted": lambda n : setattr(self, 'g_p_u_restricted', n.get_bool_value()),
             "nestedVirtualizationRestricted": lambda n : setattr(self, 'nested_virtualization_restricted', n.get_bool_value()),
@@ -53,6 +56,7 @@ class CloudPcSupportedRegionRestrictionDetail(AdditionalDataHolder, BackedModel,
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_bool_value("availabilityZoneRestricted", self.availability_zone_restricted)
         writer.write_bool_value("cPURestricted", self.c_p_u_restricted)
         writer.write_bool_value("gPURestricted", self.g_p_u_restricted)
         writer.write_bool_value("nestedVirtualizationRestricted", self.nested_virtualization_restricted)

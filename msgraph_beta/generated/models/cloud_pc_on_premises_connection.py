@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .cloud_pc_on_premises_connection_status import CloudPcOnPremisesConnectionStatus
     from .cloud_pc_on_premises_connection_status_detail import CloudPcOnPremisesConnectionStatusDetail
     from .cloud_pc_on_premises_connection_status_details import CloudPcOnPremisesConnectionStatusDetails
+    from .cloud_pc_on_premises_connection_subnet_ip_detail import CloudPcOnPremisesConnectionSubnetIpDetail
     from .cloud_pc_on_premises_connection_type import CloudPcOnPremisesConnectionType
     from .entity import Entity
 
@@ -52,6 +53,8 @@ class CloudPcOnPremisesConnection(Entity, Parsable):
     scope_ids: Optional[list[str]] = None
     # The ID of the target subnet. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkId}/subnets/{subnetName}.
     subnet_id: Optional[str] = None
+    # The subnetPrivateIpDetail property
+    subnet_private_ip_detail: Optional[CloudPcOnPremisesConnectionSubnetIpDetail] = None
     # The ID of the target Azure subscription associated with your tenant.
     subscription_id: Optional[str] = None
     # The name of the target Azure subscription. Read-only.
@@ -83,6 +86,7 @@ class CloudPcOnPremisesConnection(Entity, Parsable):
         from .cloud_pc_on_premises_connection_status import CloudPcOnPremisesConnectionStatus
         from .cloud_pc_on_premises_connection_status_detail import CloudPcOnPremisesConnectionStatusDetail
         from .cloud_pc_on_premises_connection_status_details import CloudPcOnPremisesConnectionStatusDetails
+        from .cloud_pc_on_premises_connection_subnet_ip_detail import CloudPcOnPremisesConnectionSubnetIpDetail
         from .cloud_pc_on_premises_connection_type import CloudPcOnPremisesConnectionType
         from .entity import Entity
 
@@ -90,6 +94,7 @@ class CloudPcOnPremisesConnection(Entity, Parsable):
         from .cloud_pc_on_premises_connection_status import CloudPcOnPremisesConnectionStatus
         from .cloud_pc_on_premises_connection_status_detail import CloudPcOnPremisesConnectionStatusDetail
         from .cloud_pc_on_premises_connection_status_details import CloudPcOnPremisesConnectionStatusDetails
+        from .cloud_pc_on_premises_connection_subnet_ip_detail import CloudPcOnPremisesConnectionSubnetIpDetail
         from .cloud_pc_on_premises_connection_type import CloudPcOnPremisesConnectionType
         from .entity import Entity
 
@@ -111,6 +116,7 @@ class CloudPcOnPremisesConnection(Entity, Parsable):
             "resourceGroupId": lambda n : setattr(self, 'resource_group_id', n.get_str_value()),
             "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
             "subnetId": lambda n : setattr(self, 'subnet_id', n.get_str_value()),
+            "subnetPrivateIpDetail": lambda n : setattr(self, 'subnet_private_ip_detail', n.get_object_value(CloudPcOnPremisesConnectionSubnetIpDetail)),
             "subscriptionId": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
             "subscriptionName": lambda n : setattr(self, 'subscription_name', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(CloudPcOnPremisesConnectionType)),
@@ -147,6 +153,7 @@ class CloudPcOnPremisesConnection(Entity, Parsable):
         writer.write_str_value("resourceGroupId", self.resource_group_id)
         writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
         writer.write_str_value("subnetId", self.subnet_id)
+        writer.write_object_value("subnetPrivateIpDetail", self.subnet_private_ip_detail)
         writer.write_str_value("subscriptionId", self.subscription_id)
         writer.write_str_value("subscriptionName", self.subscription_name)
         writer.write_enum_value("type", self.type)

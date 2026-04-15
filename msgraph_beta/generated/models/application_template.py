@@ -21,6 +21,8 @@ class ApplicationTemplate(Entity, Parsable):
     categories: Optional[list[str]] = None
     # The URIs required for the single sign-on configuration of a preintegrated application.
     configuration_uris: Optional[list[ConfigurationUri]] = None
+    # Deprecation date for this application. If specified, the application will be removed from the Microsoft Entra application gallery on this date.
+    deprecation_date: Optional[datetime.date] = None
     # A description of the application.
     description: Optional[str] = None
     # The name of the application. Supports $filter (contains).
@@ -85,6 +87,7 @@ class ApplicationTemplate(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "configurationUris": lambda n : setattr(self, 'configuration_uris', n.get_collection_of_object_values(ConfigurationUri)),
+            "deprecationDate": lambda n : setattr(self, 'deprecation_date', n.get_date_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "endpoints": lambda n : setattr(self, 'endpoints', n.get_collection_of_primitive_values(str)),
@@ -115,6 +118,7 @@ class ApplicationTemplate(Entity, Parsable):
         super().serialize(writer)
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_collection_of_object_values("configurationUris", self.configuration_uris)
+        writer.write_date_value("deprecationDate", self.deprecation_date)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_primitive_values("endpoints", self.endpoints)
