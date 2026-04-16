@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
     from .app_credential_sign_in_activity import AppCredentialSignInActivity
     from .authentication_methods_root import AuthenticationMethodsRoot
+    from .azure_a_d_premium_license_insight import AzureADPremiumLicenseInsight
     from .credential_user_registration_details import CredentialUserRegistrationDetails
     from .entity import Entity
     from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
@@ -32,6 +33,8 @@ class ReportRoot(Entity, Parsable):
     application_sign_in_detailed_summary: Optional[list[ApplicationSignInDetailedSummary]] = None
     # Container for navigation properties for Microsoft Entra authentication methods resources.
     authentication_methods: Optional[AuthenticationMethodsRoot] = None
+    # The azureADPremiumLicenseInsight property
+    azure_a_d_premium_license_insight: Optional[AzureADPremiumLicenseInsight] = None
     # Details of the usage of self-service password reset and multifactor authentication (MFA) for all registered users.
     credential_user_registration_details: Optional[list[CredentialUserRegistrationDetails]] = None
     # The dailyPrintUsage property
@@ -90,6 +93,7 @@ class ReportRoot(Entity, Parsable):
         from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
         from .app_credential_sign_in_activity import AppCredentialSignInActivity
         from .authentication_methods_root import AuthenticationMethodsRoot
+        from .azure_a_d_premium_license_insight import AzureADPremiumLicenseInsight
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .entity import Entity
         from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
@@ -107,6 +111,7 @@ class ReportRoot(Entity, Parsable):
         from .application_sign_in_detailed_summary import ApplicationSignInDetailedSummary
         from .app_credential_sign_in_activity import AppCredentialSignInActivity
         from .authentication_methods_root import AuthenticationMethodsRoot
+        from .azure_a_d_premium_license_insight import AzureADPremiumLicenseInsight
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .entity import Entity
         from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
@@ -125,6 +130,7 @@ class ReportRoot(Entity, Parsable):
             "appCredentialSignInActivities": lambda n : setattr(self, 'app_credential_sign_in_activities', n.get_collection_of_object_values(AppCredentialSignInActivity)),
             "applicationSignInDetailedSummary": lambda n : setattr(self, 'application_sign_in_detailed_summary', n.get_collection_of_object_values(ApplicationSignInDetailedSummary)),
             "authenticationMethods": lambda n : setattr(self, 'authentication_methods', n.get_object_value(AuthenticationMethodsRoot)),
+            "azureADPremiumLicenseInsight": lambda n : setattr(self, 'azure_a_d_premium_license_insight', n.get_object_value(AzureADPremiumLicenseInsight)),
             "credentialUserRegistrationDetails": lambda n : setattr(self, 'credential_user_registration_details', n.get_collection_of_object_values(CredentialUserRegistrationDetails)),
             "dailyPrintUsage": lambda n : setattr(self, 'daily_print_usage', n.get_collection_of_object_values(PrintUsage)),
             "dailyPrintUsageByPrinter": lambda n : setattr(self, 'daily_print_usage_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
@@ -160,6 +166,7 @@ class ReportRoot(Entity, Parsable):
         writer.write_collection_of_object_values("appCredentialSignInActivities", self.app_credential_sign_in_activities)
         writer.write_collection_of_object_values("applicationSignInDetailedSummary", self.application_sign_in_detailed_summary)
         writer.write_object_value("authenticationMethods", self.authentication_methods)
+        writer.write_object_value("azureADPremiumLicenseInsight", self.azure_a_d_premium_license_insight)
         writer.write_collection_of_object_values("credentialUserRegistrationDetails", self.credential_user_registration_details)
         writer.write_collection_of_object_values("dailyPrintUsage", self.daily_print_usage)
         writer.write_collection_of_object_values("dailyPrintUsageByPrinter", self.daily_print_usage_by_printer)

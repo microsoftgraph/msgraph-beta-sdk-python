@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .device_type import DeviceType
 
 from ..entity import Entity
 
@@ -22,6 +23,8 @@ class SensorCandidate(Entity, Parsable):
     odata_type: Optional[str] = None
     # The version of the Defender for Identity sensor client.  Supports $filter (eq).
     sense_client_version: Optional[str] = None
+    # The list of device types for the sensor. The possible values are: domainController, adfs, adcs, entraConnect unknownFutureValue. This flagged enumeration allows multiple members to be returned simultaneously.
+    sensor_types: Optional[list[DeviceType]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> SensorCandidate:
@@ -40,14 +43,17 @@ class SensorCandidate(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .device_type import DeviceType
 
         from ..entity import Entity
+        from .device_type import DeviceType
 
         fields: dict[str, Callable[[Any], None]] = {
             "computerDnsName": lambda n : setattr(self, 'computer_dns_name', n.get_str_value()),
             "domainName": lambda n : setattr(self, 'domain_name', n.get_str_value()),
             "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
             "senseClientVersion": lambda n : setattr(self, 'sense_client_version', n.get_str_value()),
+            "sensorTypes": lambda n : setattr(self, 'sensor_types', n.get_collection_of_enum_values(DeviceType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,5 +72,6 @@ class SensorCandidate(Entity, Parsable):
         writer.write_str_value("domainName", self.domain_name)
         writer.write_datetime_value("lastSeenDateTime", self.last_seen_date_time)
         writer.write_str_value("senseClientVersion", self.sense_client_version)
+        writer.write_collection_of_enum_values("sensorTypes", self.sensor_types)
     
 

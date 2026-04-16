@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ..models.device_management.device_management import DeviceManagement
     from ..models.o_data_errors.o_data_error import ODataError
     from .advanced_threat_protection_onboarding_state_summary.advanced_threat_protection_onboarding_state_summary_request_builder import AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder
+    from .android_app_configuration_schema.android_app_configuration_schema_request_builder import AndroidAppConfigurationSchemaRequestBuilder
     from .android_device_owner_enrollment_profiles.android_device_owner_enrollment_profiles_request_builder import AndroidDeviceOwnerEnrollmentProfilesRequestBuilder
     from .android_for_work_app_configuration_schemas.android_for_work_app_configuration_schemas_request_builder import AndroidForWorkAppConfigurationSchemasRequestBuilder
     from .android_for_work_enrollment_profiles.android_for_work_enrollment_profiles_request_builder import AndroidForWorkEnrollmentProfilesRequestBuilder
@@ -393,6 +394,15 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         from .advanced_threat_protection_onboarding_state_summary.advanced_threat_protection_onboarding_state_summary_request_builder import AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder
 
         return AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def android_app_configuration_schema(self) -> AndroidAppConfigurationSchemaRequestBuilder:
+        """
+        Provides operations to manage the androidAppConfigurationSchema property of the microsoft.graph.deviceManagement entity.
+        """
+        from .android_app_configuration_schema.android_app_configuration_schema_request_builder import AndroidAppConfigurationSchemaRequestBuilder
+
+        return AndroidAppConfigurationSchemaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def android_device_owner_enrollment_profiles(self) -> AndroidDeviceOwnerEnrollmentProfilesRequestBuilder:

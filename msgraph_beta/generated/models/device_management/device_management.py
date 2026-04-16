@@ -9,6 +9,7 @@ from uuid import UUID
 if TYPE_CHECKING:
     from ..admin_consent import AdminConsent
     from ..advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
+    from ..android_app_configuration_schema import AndroidAppConfigurationSchema
     from ..android_device_owner_enrollment_profile import AndroidDeviceOwnerEnrollmentProfile
     from ..android_for_work_app_configuration_schema import AndroidForWorkAppConfigurationSchema
     from ..android_for_work_enrollment_profile import AndroidForWorkEnrollmentProfile
@@ -196,6 +197,8 @@ class DeviceManagement(Entity, Parsable):
     admin_consent: Optional[AdminConsent] = None
     # The summary state of ATP onboarding state for this account.
     advanced_threat_protection_onboarding_state_summary: Optional[AdvancedThreatProtectionOnboardingStateSummary] = None
+    # Android App Configurations Schema entity.
+    android_app_configuration_schema: Optional[AndroidAppConfigurationSchema] = None
     # Android device owner enrollment profile entities.
     android_device_owner_enrollment_profiles: Optional[list[AndroidDeviceOwnerEnrollmentProfile]] = None
     # Android for Work app configuration schema entities.
@@ -595,6 +598,7 @@ class DeviceManagement(Entity, Parsable):
         """
         from ..admin_consent import AdminConsent
         from ..advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
+        from ..android_app_configuration_schema import AndroidAppConfigurationSchema
         from ..android_device_owner_enrollment_profile import AndroidDeviceOwnerEnrollmentProfile
         from ..android_for_work_app_configuration_schema import AndroidForWorkAppConfigurationSchema
         from ..android_for_work_enrollment_profile import AndroidForWorkEnrollmentProfile
@@ -774,6 +778,7 @@ class DeviceManagement(Entity, Parsable):
 
         from ..admin_consent import AdminConsent
         from ..advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
+        from ..android_app_configuration_schema import AndroidAppConfigurationSchema
         from ..android_device_owner_enrollment_profile import AndroidDeviceOwnerEnrollmentProfile
         from ..android_for_work_app_configuration_schema import AndroidForWorkAppConfigurationSchema
         from ..android_for_work_enrollment_profile import AndroidForWorkEnrollmentProfile
@@ -955,6 +960,7 @@ class DeviceManagement(Entity, Parsable):
             "accountMoveCompletionDateTime": lambda n : setattr(self, 'account_move_completion_date_time', n.get_datetime_value()),
             "adminConsent": lambda n : setattr(self, 'admin_consent', n.get_object_value(AdminConsent)),
             "advancedThreatProtectionOnboardingStateSummary": lambda n : setattr(self, 'advanced_threat_protection_onboarding_state_summary', n.get_object_value(AdvancedThreatProtectionOnboardingStateSummary)),
+            "androidAppConfigurationSchema": lambda n : setattr(self, 'android_app_configuration_schema', n.get_object_value(AndroidAppConfigurationSchema)),
             "androidDeviceOwnerEnrollmentProfiles": lambda n : setattr(self, 'android_device_owner_enrollment_profiles', n.get_collection_of_object_values(AndroidDeviceOwnerEnrollmentProfile)),
             "androidForWorkAppConfigurationSchemas": lambda n : setattr(self, 'android_for_work_app_configuration_schemas', n.get_collection_of_object_values(AndroidForWorkAppConfigurationSchema)),
             "androidForWorkEnrollmentProfiles": lambda n : setattr(self, 'android_for_work_enrollment_profiles', n.get_collection_of_object_values(AndroidForWorkEnrollmentProfile)),
@@ -1161,6 +1167,7 @@ class DeviceManagement(Entity, Parsable):
         writer.write_datetime_value("accountMoveCompletionDateTime", self.account_move_completion_date_time)
         writer.write_object_value("adminConsent", self.admin_consent)
         writer.write_object_value("advancedThreatProtectionOnboardingStateSummary", self.advanced_threat_protection_onboarding_state_summary)
+        writer.write_object_value("androidAppConfigurationSchema", self.android_app_configuration_schema)
         writer.write_collection_of_object_values("androidDeviceOwnerEnrollmentProfiles", self.android_device_owner_enrollment_profiles)
         writer.write_collection_of_object_values("androidForWorkAppConfigurationSchemas", self.android_for_work_app_configuration_schemas)
         writer.write_collection_of_object_values("androidForWorkEnrollmentProfiles", self.android_for_work_enrollment_profiles)

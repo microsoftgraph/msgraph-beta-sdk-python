@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .last_modified_by.last_modified_by_request_builder import LastModifiedByRequestBuilder
     from .microsoft_graph_identity_governance_activate.microsoft_graph_identity_governance_activate_request_builder import MicrosoftGraphIdentityGovernanceActivateRequestBuilder
     from .microsoft_graph_identity_governance_activate_with_scope.microsoft_graph_identity_governance_activate_with_scope_request_builder import MicrosoftGraphIdentityGovernanceActivateWithScopeRequestBuilder
+    from .microsoft_graph_identity_governance_cancel_processing.microsoft_graph_identity_governance_cancel_processing_request_builder import MicrosoftGraphIdentityGovernanceCancelProcessingRequestBuilder
     from .microsoft_graph_identity_governance_create_new_version.microsoft_graph_identity_governance_create_new_version_request_builder import MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder
     from .microsoft_graph_identity_governance_preview_task_failures.microsoft_graph_identity_governance_preview_task_failures_request_builder import MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequestBuilder
     from .microsoft_graph_identity_governance_preview_workflow.microsoft_graph_identity_governance_preview_workflow_request_builder import MicrosoftGraphIdentityGovernancePreviewWorkflowRequestBuilder
@@ -171,6 +172,15 @@ class WorkflowItemRequestBuilder(BaseRequestBuilder):
         from .microsoft_graph_identity_governance_activate_with_scope.microsoft_graph_identity_governance_activate_with_scope_request_builder import MicrosoftGraphIdentityGovernanceActivateWithScopeRequestBuilder
 
         return MicrosoftGraphIdentityGovernanceActivateWithScopeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_identity_governance_cancel_processing(self) -> MicrosoftGraphIdentityGovernanceCancelProcessingRequestBuilder:
+        """
+        Provides operations to call the cancelProcessing method.
+        """
+        from .microsoft_graph_identity_governance_cancel_processing.microsoft_graph_identity_governance_cancel_processing_request_builder import MicrosoftGraphIdentityGovernanceCancelProcessingRequestBuilder
+
+        return MicrosoftGraphIdentityGovernanceCancelProcessingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def microsoft_graph_identity_governance_create_new_version(self) -> MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder:
