@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MicrosoftFormsAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Microsoft Forms events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.microsoftFormsAuditRecord"
     

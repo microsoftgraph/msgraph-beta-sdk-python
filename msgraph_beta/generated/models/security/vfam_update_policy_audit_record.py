@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class VfamUpdatePolicyAuditRecord(AuditData, Parsable):
+    """
+    Audit data for VFAM Update Policy events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.vfamUpdatePolicyAuditRecord"
     

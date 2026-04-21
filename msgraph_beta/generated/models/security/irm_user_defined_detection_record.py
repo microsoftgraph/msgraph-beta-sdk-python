@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class IrmUserDefinedDetectionRecord(AuditData, Parsable):
+    """
+    Audit data for IRM User Defined Detection events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.irmUserDefinedDetectionRecord"
     

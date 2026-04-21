@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class UrbacRoleAuditRecord(AuditData, Parsable):
+    """
+    Audit data for URBAC Role events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.urbacRoleAuditRecord"
     

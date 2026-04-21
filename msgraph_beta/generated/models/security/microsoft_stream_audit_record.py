@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MicrosoftStreamAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Microsoft Stream events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.microsoftStreamAuditRecord"
     

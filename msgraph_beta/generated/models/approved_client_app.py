@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class ApprovedClientApp(Entity, Parsable):
-    # The displayName property
+    # Display name for the client application.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

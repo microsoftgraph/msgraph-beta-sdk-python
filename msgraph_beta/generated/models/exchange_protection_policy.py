@@ -5,6 +5,8 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .mailbox_exclusion_unit import MailboxExclusionUnit
+    from .mailbox_exclusion_units_bulk_addition_job import MailboxExclusionUnitsBulkAdditionJob
     from .mailbox_protection_rule import MailboxProtectionRule
     from .mailbox_protection_unit import MailboxProtectionUnit
     from .mailbox_protection_units_bulk_addition_job import MailboxProtectionUnitsBulkAdditionJob
@@ -16,6 +18,10 @@ from .protection_policy_base import ProtectionPolicyBase
 class ExchangeProtectionPolicy(ProtectionPolicyBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.exchangeProtectionPolicy"
+    # The mailboxExclusionUnits property
+    mailbox_exclusion_units: Optional[list[MailboxExclusionUnit]] = None
+    # The mailboxExclusionUnitsBulkAdditionJobs property
+    mailbox_exclusion_units_bulk_addition_jobs: Optional[list[MailboxExclusionUnitsBulkAdditionJob]] = None
     # The rules associated with the Exchange protection policy.
     mailbox_inclusion_rules: Optional[list[MailboxProtectionRule]] = None
     # The protection units (mailboxes) that are  protected under the Exchange protection policy.
@@ -39,17 +45,23 @@ class ExchangeProtectionPolicy(ProtectionPolicyBase, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .mailbox_exclusion_unit import MailboxExclusionUnit
+        from .mailbox_exclusion_units_bulk_addition_job import MailboxExclusionUnitsBulkAdditionJob
         from .mailbox_protection_rule import MailboxProtectionRule
         from .mailbox_protection_unit import MailboxProtectionUnit
         from .mailbox_protection_units_bulk_addition_job import MailboxProtectionUnitsBulkAdditionJob
         from .protection_policy_base import ProtectionPolicyBase
 
+        from .mailbox_exclusion_unit import MailboxExclusionUnit
+        from .mailbox_exclusion_units_bulk_addition_job import MailboxExclusionUnitsBulkAdditionJob
         from .mailbox_protection_rule import MailboxProtectionRule
         from .mailbox_protection_unit import MailboxProtectionUnit
         from .mailbox_protection_units_bulk_addition_job import MailboxProtectionUnitsBulkAdditionJob
         from .protection_policy_base import ProtectionPolicyBase
 
         fields: dict[str, Callable[[Any], None]] = {
+            "mailboxExclusionUnits": lambda n : setattr(self, 'mailbox_exclusion_units', n.get_collection_of_object_values(MailboxExclusionUnit)),
+            "mailboxExclusionUnitsBulkAdditionJobs": lambda n : setattr(self, 'mailbox_exclusion_units_bulk_addition_jobs', n.get_collection_of_object_values(MailboxExclusionUnitsBulkAdditionJob)),
             "mailboxInclusionRules": lambda n : setattr(self, 'mailbox_inclusion_rules', n.get_collection_of_object_values(MailboxProtectionRule)),
             "mailboxProtectionUnits": lambda n : setattr(self, 'mailbox_protection_units', n.get_collection_of_object_values(MailboxProtectionUnit)),
             "mailboxProtectionUnitsBulkAdditionJobs": lambda n : setattr(self, 'mailbox_protection_units_bulk_addition_jobs', n.get_collection_of_object_values(MailboxProtectionUnitsBulkAdditionJob)),
@@ -67,6 +79,8 @@ class ExchangeProtectionPolicy(ProtectionPolicyBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("mailboxExclusionUnits", self.mailbox_exclusion_units)
+        writer.write_collection_of_object_values("mailboxExclusionUnitsBulkAdditionJobs", self.mailbox_exclusion_units_bulk_addition_jobs)
         writer.write_collection_of_object_values("mailboxInclusionRules", self.mailbox_inclusion_rules)
         writer.write_collection_of_object_values("mailboxProtectionUnits", self.mailbox_protection_units)
         writer.write_collection_of_object_values("mailboxProtectionUnitsBulkAdditionJobs", self.mailbox_protection_units_bulk_addition_jobs)

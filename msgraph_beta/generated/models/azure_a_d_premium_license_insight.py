@@ -15,13 +15,13 @@ from .entity import Entity
 
 @dataclass
 class AzureADPremiumLicenseInsight(Entity, Parsable):
-    # The entitledP1LicenseCount property
+    # The number of Microsoft Entra ID P1 licenses entitled to the tenant.
     entitled_p1_license_count: Optional[int] = None
-    # The entitledP2LicenseCount property
+    # The number of Microsoft Entra ID P2 licenses entitled to the tenant.
     entitled_p2_license_count: Optional[int] = None
-    # The entitledTotalLicenseCount property
+    # The total number of Microsoft Entra ID premium licenses (P1 + P2) entitled to the tenant.
     entitled_total_license_count: Optional[int] = None
-    # The internetAccessFeatureUtilizations property
+    # The utilization data for Microsoft Entra Internet Access features.
     internet_access_feature_utilizations: Optional[InternetAccessFeatureUtilizations] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -29,7 +29,7 @@ class AzureADPremiumLicenseInsight(Entity, Parsable):
     p1_feature_utilizations: Optional[AzureADPremiumP1FeatureUtilizations] = None
     # The p2FeatureUtilizations property
     p2_feature_utilizations: Optional[AzureADPremiumP2FeatureUtilizations] = None
-    # The privateAccessFeatureUtilizations property
+    # The utilization data for Microsoft Entra Private Access features.
     private_access_feature_utilizations: Optional[PrivateAccessFeatureUtilizations] = None
     
     @staticmethod

@@ -17,10 +17,9 @@ if TYPE_CHECKING:
     from ...models.backup_restore_root import BackupRestoreRoot
     from ...models.o_data_errors.o_data_error import ODataError
     from .activity_logs.activity_logs_request_builder import ActivityLogsRequestBuilder
-    from .all_drives_backup.all_drives_backup_request_builder import AllDrivesBackupRequestBuilder
-    from .all_mailboxes_backup.all_mailboxes_backup_request_builder import AllMailboxesBackupRequestBuilder
-    from .all_sites_backup.all_sites_backup_request_builder import AllSitesBackupRequestBuilder
     from .browse_sessions.browse_sessions_request_builder import BrowseSessionsRequestBuilder
+    from .drive_exclusion_units.drive_exclusion_units_request_builder import DriveExclusionUnitsRequestBuilder
+    from .drive_exclusion_units_bulk_addition_jobs.drive_exclusion_units_bulk_addition_jobs_request_builder import DriveExclusionUnitsBulkAdditionJobsRequestBuilder
     from .drive_inclusion_rules.drive_inclusion_rules_request_builder import DriveInclusionRulesRequestBuilder
     from .drive_protection_units.drive_protection_units_request_builder import DriveProtectionUnitsRequestBuilder
     from .drive_protection_units_bulk_addition_jobs.drive_protection_units_bulk_addition_jobs_request_builder import DriveProtectionUnitsBulkAdditionJobsRequestBuilder
@@ -28,6 +27,9 @@ if TYPE_CHECKING:
     from .enable.enable_request_builder import EnableRequestBuilder
     from .exchange_protection_policies.exchange_protection_policies_request_builder import ExchangeProtectionPoliciesRequestBuilder
     from .exchange_restore_sessions.exchange_restore_sessions_request_builder import ExchangeRestoreSessionsRequestBuilder
+    from .exclusion_units.exclusion_units_request_builder import ExclusionUnitsRequestBuilder
+    from .mailbox_exclusion_units.mailbox_exclusion_units_request_builder import MailboxExclusionUnitsRequestBuilder
+    from .mailbox_exclusion_units_bulk_addition_jobs.mailbox_exclusion_units_bulk_addition_jobs_request_builder import MailboxExclusionUnitsBulkAdditionJobsRequestBuilder
     from .mailbox_inclusion_rules.mailbox_inclusion_rules_request_builder import MailboxInclusionRulesRequestBuilder
     from .mailbox_protection_units.mailbox_protection_units_request_builder import MailboxProtectionUnitsRequestBuilder
     from .mailbox_protection_units_bulk_addition_jobs.mailbox_protection_units_bulk_addition_jobs_request_builder import MailboxProtectionUnitsBulkAdditionJobsRequestBuilder
@@ -43,6 +45,8 @@ if TYPE_CHECKING:
     from .share_point_browse_sessions.share_point_browse_sessions_request_builder import SharePointBrowseSessionsRequestBuilder
     from .share_point_protection_policies.share_point_protection_policies_request_builder import SharePointProtectionPoliciesRequestBuilder
     from .share_point_restore_sessions.share_point_restore_sessions_request_builder import SharePointRestoreSessionsRequestBuilder
+    from .site_exclusion_units.site_exclusion_units_request_builder import SiteExclusionUnitsRequestBuilder
+    from .site_exclusion_units_bulk_addition_jobs.site_exclusion_units_bulk_addition_jobs_request_builder import SiteExclusionUnitsBulkAdditionJobsRequestBuilder
     from .site_inclusion_rules.site_inclusion_rules_request_builder import SiteInclusionRulesRequestBuilder
     from .site_protection_units.site_protection_units_request_builder import SiteProtectionUnitsRequestBuilder
     from .site_protection_units_bulk_addition_jobs.site_protection_units_bulk_addition_jobs_request_builder import SiteProtectionUnitsBulkAdditionJobsRequestBuilder
@@ -179,33 +183,6 @@ class BackupRestoreRequestBuilder(BaseRequestBuilder):
         return ActivityLogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def all_drives_backup(self) -> AllDrivesBackupRequestBuilder:
-        """
-        Provides operations to manage the allDrivesBackup property of the microsoft.graph.backupRestoreRoot entity.
-        """
-        from .all_drives_backup.all_drives_backup_request_builder import AllDrivesBackupRequestBuilder
-
-        return AllDrivesBackupRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def all_mailboxes_backup(self) -> AllMailboxesBackupRequestBuilder:
-        """
-        Provides operations to manage the allMailboxesBackup property of the microsoft.graph.backupRestoreRoot entity.
-        """
-        from .all_mailboxes_backup.all_mailboxes_backup_request_builder import AllMailboxesBackupRequestBuilder
-
-        return AllMailboxesBackupRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def all_sites_backup(self) -> AllSitesBackupRequestBuilder:
-        """
-        Provides operations to manage the allSitesBackup property of the microsoft.graph.backupRestoreRoot entity.
-        """
-        from .all_sites_backup.all_sites_backup_request_builder import AllSitesBackupRequestBuilder
-
-        return AllSitesBackupRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def browse_sessions(self) -> BrowseSessionsRequestBuilder:
         """
         Provides operations to manage the browseSessions property of the microsoft.graph.backupRestoreRoot entity.
@@ -213,6 +190,24 @@ class BackupRestoreRequestBuilder(BaseRequestBuilder):
         from .browse_sessions.browse_sessions_request_builder import BrowseSessionsRequestBuilder
 
         return BrowseSessionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def drive_exclusion_units(self) -> DriveExclusionUnitsRequestBuilder:
+        """
+        Provides operations to manage the driveExclusionUnits property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .drive_exclusion_units.drive_exclusion_units_request_builder import DriveExclusionUnitsRequestBuilder
+
+        return DriveExclusionUnitsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def drive_exclusion_units_bulk_addition_jobs(self) -> DriveExclusionUnitsBulkAdditionJobsRequestBuilder:
+        """
+        Provides operations to manage the driveExclusionUnitsBulkAdditionJobs property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .drive_exclusion_units_bulk_addition_jobs.drive_exclusion_units_bulk_addition_jobs_request_builder import DriveExclusionUnitsBulkAdditionJobsRequestBuilder
+
+        return DriveExclusionUnitsBulkAdditionJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def drive_inclusion_rules(self) -> DriveInclusionRulesRequestBuilder:
@@ -276,6 +271,33 @@ class BackupRestoreRequestBuilder(BaseRequestBuilder):
         from .exchange_restore_sessions.exchange_restore_sessions_request_builder import ExchangeRestoreSessionsRequestBuilder
 
         return ExchangeRestoreSessionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def exclusion_units(self) -> ExclusionUnitsRequestBuilder:
+        """
+        Provides operations to manage the exclusionUnits property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .exclusion_units.exclusion_units_request_builder import ExclusionUnitsRequestBuilder
+
+        return ExclusionUnitsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mailbox_exclusion_units(self) -> MailboxExclusionUnitsRequestBuilder:
+        """
+        Provides operations to manage the mailboxExclusionUnits property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .mailbox_exclusion_units.mailbox_exclusion_units_request_builder import MailboxExclusionUnitsRequestBuilder
+
+        return MailboxExclusionUnitsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mailbox_exclusion_units_bulk_addition_jobs(self) -> MailboxExclusionUnitsBulkAdditionJobsRequestBuilder:
+        """
+        Provides operations to manage the mailboxExclusionUnitsBulkAdditionJobs property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .mailbox_exclusion_units_bulk_addition_jobs.mailbox_exclusion_units_bulk_addition_jobs_request_builder import MailboxExclusionUnitsBulkAdditionJobsRequestBuilder
+
+        return MailboxExclusionUnitsBulkAdditionJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def mailbox_inclusion_rules(self) -> MailboxInclusionRulesRequestBuilder:
@@ -411,6 +433,24 @@ class BackupRestoreRequestBuilder(BaseRequestBuilder):
         from .share_point_restore_sessions.share_point_restore_sessions_request_builder import SharePointRestoreSessionsRequestBuilder
 
         return SharePointRestoreSessionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def site_exclusion_units(self) -> SiteExclusionUnitsRequestBuilder:
+        """
+        Provides operations to manage the siteExclusionUnits property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .site_exclusion_units.site_exclusion_units_request_builder import SiteExclusionUnitsRequestBuilder
+
+        return SiteExclusionUnitsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def site_exclusion_units_bulk_addition_jobs(self) -> SiteExclusionUnitsBulkAdditionJobsRequestBuilder:
+        """
+        Provides operations to manage the siteExclusionUnitsBulkAdditionJobs property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .site_exclusion_units_bulk_addition_jobs.site_exclusion_units_bulk_addition_jobs_request_builder import SiteExclusionUnitsBulkAdditionJobsRequestBuilder
+
+        return SiteExclusionUnitsBulkAdditionJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def site_inclusion_rules(self) -> SiteInclusionRulesRequestBuilder:

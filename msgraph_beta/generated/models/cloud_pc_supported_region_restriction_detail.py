@@ -12,7 +12,7 @@ class CloudPcSupportedRegionRestrictionDetail(AdditionalDataHolder, BackedModel,
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The availabilityZoneRestricted property
+    # Indicates that the region is restricted due to lack of availability zone support. When True, the region does not have availability zone infrastructure and is intended for disaster recovery scenarios only. When false, the region has full availability zone support. The default is false. Read-Only.
     availability_zone_restricted: Optional[bool] = None
     # Indicates that the region is restricted for Cloud PC CPU provisioning. True indicates that Cloud PC provisioning with CPU isn't available in this region. false indicates that it's available. The default value is false. Read-only.
     c_p_u_restricted: Optional[bool] = None

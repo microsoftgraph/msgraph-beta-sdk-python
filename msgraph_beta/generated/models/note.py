@@ -22,6 +22,8 @@ class Note(OutlookItem, Parsable):
     attachments: Optional[list[Attachment]] = None
     # The body property
     body: Optional[ItemBody] = None
+    # Auto-generated preview of the note body content (first ~255 characters). Read-only.
+    body_preview: Optional[str] = None
     # The extensions property
     extensions: Optional[list[Extension]] = None
     # The hasAttachments property
@@ -68,6 +70,7 @@ class Note(OutlookItem, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(Attachment)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(ItemBody)),
+            "bodyPreview": lambda n : setattr(self, 'body_preview', n.get_str_value()),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(Extension)),
             "hasAttachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
             "isDeleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
@@ -91,8 +94,6 @@ class Note(OutlookItem, Parsable):
         writer.write_collection_of_object_values("attachments", self.attachments)
         writer.write_object_value("body", self.body)
         writer.write_collection_of_object_values("extensions", self.extensions)
-        writer.write_bool_value("hasAttachments", self.has_attachments)
-        writer.write_bool_value("isDeleted", self.is_deleted)
         writer.write_collection_of_object_values("multiValueExtendedProperties", self.multi_value_extended_properties)
         writer.write_collection_of_object_values("singleValueExtendedProperties", self.single_value_extended_properties)
         writer.write_str_value("subject", self.subject)

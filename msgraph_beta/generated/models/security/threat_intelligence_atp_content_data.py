@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ThreatIntelligenceAtpContentData(AuditData, Parsable):
+    """
+    Audit data for Threat Intelligence Atp Content events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.threatIntelligenceAtpContentData"
     

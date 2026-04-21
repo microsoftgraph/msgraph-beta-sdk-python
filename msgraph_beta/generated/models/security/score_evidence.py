@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ScoreEvidence(AuditData, Parsable):
+    """
+    Audit data for Secure Score evidence events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.scoreEvidence"
     

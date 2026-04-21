@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class SkypeForBusinessCmdletsAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Skype for Business cmdlets events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.skypeForBusinessCmdletsAuditRecord"
     

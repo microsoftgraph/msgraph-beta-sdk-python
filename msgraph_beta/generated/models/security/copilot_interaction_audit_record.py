@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class CopilotInteractionAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Copilot Interaction events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.copilotInteractionAuditRecord"
     

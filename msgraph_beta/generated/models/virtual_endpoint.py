@@ -63,7 +63,7 @@ class VirtualEndpoint(Entity, Parsable):
     provisioning_policies: Optional[list[CloudPcProvisioningPolicy]] = None
     # Cloud PC-related reports. Read-only.
     report: Optional[CloudPcReport] = None
-    # Cloud PC-related reports.
+    # Cloud PC-related reports. Read-only.
     reports: Optional[CloudPcReports] = None
     # Cloud PC service plans.
     service_plans: Optional[list[CloudPcServicePlan]] = None

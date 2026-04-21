@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class M365ComplianceConnectorAuditRecord(AuditData, Parsable):
+    """
+    Audit data for M365 Compliance Connector events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.m365ComplianceConnectorAuditRecord"
     

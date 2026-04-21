@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MicrosoftTeamsAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Microsoft Teams events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.microsoftTeamsAuditRecord"
     

@@ -32,9 +32,10 @@ class ApprovedClientAppItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property approvedClientApps for servicePrincipals
+        Delete a approvedClientApp object for the remoteDesktopSecurityConfiguration object on a service principal.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/remotedesktopsecurityconfiguration-delete-approvedclientapps?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,9 +51,10 @@ class ApprovedClientAppItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ApprovedClientAppItemRequestBuilderGetQueryParameters]] = None) -> Optional[ApprovedClientApp]:
         """
-        Get approvedClientApps from servicePrincipals
+        Read the properties and relationships of a approvedClientApp object for the remoteDesktopSecurityConfiguration object on a servicePrincipal.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApprovedClientApp]
+        Find more info here: https://learn.microsoft.com/graph/api/approvedclientapp-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,10 +72,11 @@ class ApprovedClientAppItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: ApprovedClientApp, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ApprovedClientApp]:
         """
-        Update the navigation property approvedClientApps in servicePrincipals
+        Update the properties of an approvedClientApp object for a remotedesktopsecurityconfiguration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApprovedClientApp]
+        Find more info here: https://learn.microsoft.com/graph/api/approvedclientapp-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -93,7 +96,7 @@ class ApprovedClientAppItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property approvedClientApps for servicePrincipals
+        Delete a approvedClientApp object for the remoteDesktopSecurityConfiguration object on a service principal.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +107,7 @@ class ApprovedClientAppItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ApprovedClientAppItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get approvedClientApps from servicePrincipals
+        Read the properties and relationships of a approvedClientApp object for the remoteDesktopSecurityConfiguration object on a servicePrincipal.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +118,7 @@ class ApprovedClientAppItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: ApprovedClientApp, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property approvedClientApps in servicePrincipals
+        Update the properties of an approvedClientApp object for a remotedesktopsecurityconfiguration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,7 +151,7 @@ class ApprovedClientAppItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApprovedClientAppItemRequestBuilderGetQueryParameters():
         """
-        Get approvedClientApps from servicePrincipals
+        Read the properties and relationships of a approvedClientApp object for the remoteDesktopSecurityConfiguration object on a servicePrincipal.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

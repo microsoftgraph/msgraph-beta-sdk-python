@@ -50,9 +50,10 @@ class AzureADPremiumLicenseInsightRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AzureADPremiumLicenseInsightRequestBuilderGetQueryParameters]] = None) -> Optional[AzureADPremiumLicenseInsight]:
         """
-        Get azureADPremiumLicenseInsight from reports
+        Get the premium license utilization insight for the tenant. This API returns data about how many premium licenses are entitled and how the associated P1 and P2 features are being used. The calling tenant must have at least one Microsoft Entra ID P1 or P2 license. Tenants without a premium license receive a 403 Forbidden response with the missingLicense error code.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AzureADPremiumLicenseInsight]
+        Find more info here: https://learn.microsoft.com/graph/api/azureadpremiumlicenseinsight-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -104,7 +105,7 @@ class AzureADPremiumLicenseInsightRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AzureADPremiumLicenseInsightRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get azureADPremiumLicenseInsight from reports
+        Get the premium license utilization insight for the tenant. This API returns data about how many premium licenses are entitled and how the associated P1 and P2 features are being used. The calling tenant must have at least one Microsoft Entra ID P1 or P2 license. Tenants without a premium license receive a 403 Forbidden response with the missingLicense error code.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +149,7 @@ class AzureADPremiumLicenseInsightRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AzureADPremiumLicenseInsightRequestBuilderGetQueryParameters():
         """
-        Get azureADPremiumLicenseInsight from reports
+        Get the premium license utilization insight for the tenant. This API returns data about how many premium licenses are entitled and how the associated P1 and P2 features are being used. The calling tenant must have at least one Microsoft Entra ID P1 or P2 license. Tenants without a premium license receive a 403 Forbidden response with the missingLicense error code.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

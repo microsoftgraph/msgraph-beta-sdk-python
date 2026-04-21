@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class SharePointListOperationAuditRecord(AuditData, Parsable):
+    """
+    Audit data for SharePoint List Operation events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.sharePointListOperationAuditRecord"
     

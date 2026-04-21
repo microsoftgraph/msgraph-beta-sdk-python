@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class SkypeForBusinessPSTNUsageAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Skype for Business PSTN Usage events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.skypeForBusinessPSTNUsageAuditRecord"
     

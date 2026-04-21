@@ -49,9 +49,10 @@ class ApprovedClientAppsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ApprovedClientAppsRequestBuilderGetQueryParameters]] = None) -> Optional[ApprovedClientAppCollectionResponse]:
         """
-        Get approvedClientApps from servicePrincipals
+        Get a list of the approvedClientApp objects and their properties on the remoteDesktopSecurityConfiguration resource on a service principal.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApprovedClientAppCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/remotedesktopsecurityconfiguration-list-approvedclientapps?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class ApprovedClientAppsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ApprovedClientApp, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ApprovedClientApp]:
         """
-        Create new navigation property to approvedClientApps for servicePrincipals
+        Create a new approvedClientApp object for the remoteDesktopSecurityConfiguration object on a service principal. You can configure a maximum of 20 approved client apps.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApprovedClientApp]
+        Find more info here: https://learn.microsoft.com/graph/api/remotedesktopsecurityconfiguration-post-approvedclientapps?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class ApprovedClientAppsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ApprovedClientAppsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get approvedClientApps from servicePrincipals
+        Get a list of the approvedClientApp objects and their properties on the remoteDesktopSecurityConfiguration resource on a service principal.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class ApprovedClientAppsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ApprovedClientApp, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to approvedClientApps for servicePrincipals
+        Create a new approvedClientApp object for the remoteDesktopSecurityConfiguration object on a service principal. You can configure a maximum of 20 approved client apps.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class ApprovedClientAppsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApprovedClientAppsRequestBuilderGetQueryParameters():
         """
-        Get approvedClientApps from servicePrincipals
+        Get a list of the approvedClientApp objects and their properties on the remoteDesktopSecurityConfiguration resource on a service principal.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MipLabelAnalyticsAuditRecord(AuditData, Parsable):
+    """
+    Audit data for MIP Label Analytics events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.mipLabelAnalyticsAuditRecord"
     

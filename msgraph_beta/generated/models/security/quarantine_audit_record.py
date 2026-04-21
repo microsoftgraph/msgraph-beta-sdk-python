@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class QuarantineAuditRecord(AuditData, Parsable):
+    """
+    Audit data for quarantine events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.quarantineAuditRecord"
     

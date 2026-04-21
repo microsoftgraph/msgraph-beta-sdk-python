@@ -16,6 +16,8 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.exchange_protection_policy import ExchangeProtectionPolicy
     from .....models.o_data_errors.o_data_error import ODataError
+    from .mailbox_exclusion_units.mailbox_exclusion_units_request_builder import MailboxExclusionUnitsRequestBuilder
+    from .mailbox_exclusion_units_bulk_addition_jobs.mailbox_exclusion_units_bulk_addition_jobs_request_builder import MailboxExclusionUnitsBulkAdditionJobsRequestBuilder
     from .mailbox_inclusion_rules.mailbox_inclusion_rules_request_builder import MailboxInclusionRulesRequestBuilder
     from .mailbox_protection_units.mailbox_protection_units_request_builder import MailboxProtectionUnitsRequestBuilder
     from .mailbox_protection_units_bulk_addition_jobs.mailbox_protection_units_bulk_addition_jobs_request_builder import MailboxProtectionUnitsBulkAdditionJobsRequestBuilder
@@ -141,6 +143,24 @@ class ExchangeProtectionPolicyItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ExchangeProtectionPolicyItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def mailbox_exclusion_units(self) -> MailboxExclusionUnitsRequestBuilder:
+        """
+        Provides operations to manage the mailboxExclusionUnits property of the microsoft.graph.exchangeProtectionPolicy entity.
+        """
+        from .mailbox_exclusion_units.mailbox_exclusion_units_request_builder import MailboxExclusionUnitsRequestBuilder
+
+        return MailboxExclusionUnitsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def mailbox_exclusion_units_bulk_addition_jobs(self) -> MailboxExclusionUnitsBulkAdditionJobsRequestBuilder:
+        """
+        Provides operations to manage the mailboxExclusionUnitsBulkAdditionJobs property of the microsoft.graph.exchangeProtectionPolicy entity.
+        """
+        from .mailbox_exclusion_units_bulk_addition_jobs.mailbox_exclusion_units_bulk_addition_jobs_request_builder import MailboxExclusionUnitsBulkAdditionJobsRequestBuilder
+
+        return MailboxExclusionUnitsBulkAdditionJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def mailbox_inclusion_rules(self) -> MailboxInclusionRulesRequestBuilder:

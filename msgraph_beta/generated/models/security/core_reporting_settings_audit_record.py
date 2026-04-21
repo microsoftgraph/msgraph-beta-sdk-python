@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class CoreReportingSettingsAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Core Reporting Settings events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.coreReportingSettingsAuditRecord"
     

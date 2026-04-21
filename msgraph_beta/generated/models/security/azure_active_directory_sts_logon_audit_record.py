@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class AzureActiveDirectoryStsLogonAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Azure Active Directory STS Logon events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.azureActiveDirectoryStsLogonAuditRecord"
     

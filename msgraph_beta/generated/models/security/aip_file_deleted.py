@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class AipFileDeleted(AuditData, Parsable):
+    """
+    Audit data for AIP File Deleted events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.aipFileDeleted"
     

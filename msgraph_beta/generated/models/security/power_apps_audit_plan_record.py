@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class PowerAppsAuditPlanRecord(AuditData, Parsable):
+    """
+    Audit data for PowerApps Audit Plan events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.powerAppsAuditPlanRecord"
     

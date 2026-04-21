@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class KaizalaAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Microsoft Kaizala events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.kaizalaAuditRecord"
     

@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MipExactDataMatchAuditRecord(AuditData, Parsable):
+    """
+    Audit data for MIP Exact Data Match events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.mipExactDataMatchAuditRecord"
     

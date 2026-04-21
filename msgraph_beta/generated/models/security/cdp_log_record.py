@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class CdpLogRecord(AuditData, Parsable):
+    """
+    Audit data for CDP Log events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.cdpLogRecord"
     

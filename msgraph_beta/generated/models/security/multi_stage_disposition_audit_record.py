@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MultiStageDispositionAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Multi Stage Disposition events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.multiStageDispositionAuditRecord"
     

@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class UnifiedSimulationSummaryAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Unified Simulation Summary events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.unifiedSimulationSummaryAuditRecord"
     

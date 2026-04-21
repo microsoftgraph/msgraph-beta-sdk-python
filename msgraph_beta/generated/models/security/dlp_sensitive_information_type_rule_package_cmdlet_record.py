@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class DlpSensitiveInformationTypeRulePackageCmdletRecord(AuditData, Parsable):
+    """
+    Audit data for DLP Sensitive Information Type Rule Package cmdlet events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.dlpSensitiveInformationTypeRulePackageCmdletRecord"
     

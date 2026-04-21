@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class RetentionPolicyAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Retention Policy events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.retentionPolicyAuditRecord"
     

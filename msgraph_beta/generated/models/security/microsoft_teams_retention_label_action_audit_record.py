@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MicrosoftTeamsRetentionLabelActionAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Microsoft Teams Retention Label Action events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.microsoftTeamsRetentionLabelActionAuditRecord"
     

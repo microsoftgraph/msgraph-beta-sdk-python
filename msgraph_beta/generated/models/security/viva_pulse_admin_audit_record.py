@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class VivaPulseAdminAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Viva Pulse Admin events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.vivaPulseAdminAuditRecord"
     

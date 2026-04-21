@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class CdpResourceScopeChangeEventRecord(AuditData, Parsable):
+    """
+    Audit data for CDP Resource Scope Change Event events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.cdpResourceScopeChangeEventRecord"
     

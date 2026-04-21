@@ -12,7 +12,7 @@ class EducationalActivityDetail(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Shortened name of the degree or program (example: PhD, MBA)
+    # Shortened name of the degree or program, for example, PhD and MBA.
     abbreviation: Optional[str] = None
     # Extracurricular activities undertaken alongside the program.
     activities: Optional[list[str]] = None
@@ -22,11 +22,11 @@ class EducationalActivityDetail(AdditionalDataHolder, BackedModel, Parsable):
     description: Optional[str] = None
     # Long-form name of the program that the user provided.
     display_name: Optional[str] = None
-    # Majors and minors associated with the program. (if applicable)
+    # Majors and minors associated with the program, if applicable.
     fields_of_study: Optional[list[str]] = None
-    # The final grade, class, GPA, or score.
+    # The final grade, class, grade point average (GPA), or score.
     grade: Optional[str] = None
-    # More notes the user provided.
+    # More notes provided by the user.
     notes: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

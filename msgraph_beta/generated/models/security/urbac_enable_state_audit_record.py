@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class UrbacEnableStateAuditRecord(AuditData, Parsable):
+    """
+    Audit data for URBAC Enable State events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.urbacEnableStateAuditRecord"
     

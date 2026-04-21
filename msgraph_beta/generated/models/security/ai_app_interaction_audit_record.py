@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class AiAppInteractionAuditRecord(AuditData, Parsable):
+    """
+    Audit data for AI App Interaction events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.aiAppInteractionAuditRecord"
     

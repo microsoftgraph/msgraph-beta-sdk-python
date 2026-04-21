@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class RecordsManagementAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Records Management events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.recordsManagementAuditRecord"
     

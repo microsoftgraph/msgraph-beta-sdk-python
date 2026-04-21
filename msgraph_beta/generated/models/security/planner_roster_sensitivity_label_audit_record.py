@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class PlannerRosterSensitivityLabelAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Planner Roster Sensitivity Label events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.plannerRosterSensitivityLabelAuditRecord"
     

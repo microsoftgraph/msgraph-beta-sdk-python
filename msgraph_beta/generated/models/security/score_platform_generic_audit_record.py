@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ScorePlatformGenericAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Score Platform Generic events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.scorePlatformGenericAuditRecord"
     

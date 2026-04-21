@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class InformationBarrierPolicyApplicationAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Information Barrier Policy Application events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.informationBarrierPolicyApplicationAuditRecord"
     
