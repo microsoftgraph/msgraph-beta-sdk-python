@@ -49,9 +49,10 @@ class SectionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SectionsRequestBuilderGetQueryParameters]] = None) -> Optional[TeamworkSectionCollectionResponse]:
         """
-        User's teamwork sections for organizing chats and channels. The collection response may include @microsoft.graph.sectionsOrder and @microsoft.graph.sectionsVersion instance annotations for ordering and optimistic concurrency control.
+        Get the list of sections in a user's teamwork.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkSectionCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/userteamwork-list-sections?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class SectionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: TeamworkSection, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TeamworkSection]:
         """
-        Create new navigation property to sections for users
+        Create a new section in a user's teamwork.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkSection]
+        Find more info here: https://learn.microsoft.com/graph/api/userteamwork-post-sections?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class SectionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SectionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        User's teamwork sections for organizing chats and channels. The collection response may include @microsoft.graph.sectionsOrder and @microsoft.graph.sectionsVersion instance annotations for ordering and optimistic concurrency control.
+        Get the list of sections in a user's teamwork.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class SectionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: TeamworkSection, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to sections for users
+        Create a new section in a user's teamwork.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class SectionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SectionsRequestBuilderGetQueryParameters():
         """
-        User's teamwork sections for organizing chats and channels. The collection response may include @microsoft.graph.sectionsOrder and @microsoft.graph.sectionsVersion instance annotations for ordering and optimistic concurrency control.
+        Get the list of sections in a user's teamwork.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

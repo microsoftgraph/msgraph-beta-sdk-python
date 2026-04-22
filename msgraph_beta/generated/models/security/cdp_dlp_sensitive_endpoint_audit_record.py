@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class CdpDlpSensitiveEndpointAuditRecord(AuditData, Parsable):
+    """
+    Audit data for CDP DLP Sensitive Endpoint events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.cdpDlpSensitiveEndpointAuditRecord"
     

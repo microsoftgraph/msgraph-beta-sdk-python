@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class OmePortalAuditRecord(AuditData, Parsable):
+    """
+    Audit data for OME Portal events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.omePortalAuditRecord"
     

@@ -13,13 +13,13 @@ from .entity import Entity
 
 @dataclass
 class RemoteDesktopSecurityConfiguration(Entity, Parsable):
-    # The approvedClientApps property
+    # The collection of approved client apps that are associated with the RDS configuration. Supports $expand.
     approved_client_apps: Optional[list[ApprovedClientApp]] = None
     # Determines if Microsoft Entra ID RDS authentication protocol for RDP is enabled.
     is_remote_desktop_protocol_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The collection of target device groups that are associated with the RDS security configuration that will be enabled for SSO when a client connects to the target device over RDP using the new Microsoft Entra ID RDS authentication protocol. <br/<Supports $expand.
+    # The collection of target device groups that are associated with the RDS security configuration that will be enabled for SSO when a client connects to the target device over RDP using the new Microsoft Entra ID RDS authentication protocol.
     target_device_groups: Optional[list[TargetDeviceGroup]] = None
     
     @staticmethod

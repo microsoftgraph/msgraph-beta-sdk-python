@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ManagedServicesAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Managed Services events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.managedServicesAuditRecord"
     

@@ -33,10 +33,11 @@ class MoveRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: MovePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TeamworkSectionItem]:
         """
-        Invoke action move
+        Move an item from one user-defined section to another user-defined section in a user's teamwork. Each item can belong to only one section at a time. This action removes the item from its current section and adds it to the target section. Use this action instead of add when the item is already in a user-defined section.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkSectionItem]
+        Find more info here: https://learn.microsoft.com/graph/api/teamworksectionitem-move?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -56,7 +57,7 @@ class MoveRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: MovePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action move
+        Move an item from one user-defined section to another user-defined section in a user's teamwork. Each item can belong to only one section at a time. This action removes the item from its current section and adds it to the target section. Use this action instead of add when the item is already in a user-defined section.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

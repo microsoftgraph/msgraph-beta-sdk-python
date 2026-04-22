@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class HostedRpaAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Hosted RPA events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.hostedRpaAuditRecord"
     

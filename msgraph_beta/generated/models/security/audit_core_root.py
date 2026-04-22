@@ -12,6 +12,9 @@ from ..entity import Entity
 
 @dataclass
 class AuditCoreRoot(Entity, Parsable):
+    """
+    Root entity for the audit log API.
+    """
     # The OdataType property
     odata_type: Optional[str] = None
     # The queries property

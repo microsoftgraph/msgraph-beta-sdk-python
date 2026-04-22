@@ -49,9 +49,10 @@ class ItemsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ItemsRequestBuilderGetQueryParameters]] = None) -> Optional[TeamworkSectionItemCollectionResponse]:
         """
-        Get items from users
+        Get the list of items in a section of a user's teamwork.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkSectionItemCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/teamworksection-list-items?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class ItemsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: TeamworkSectionItem, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TeamworkSectionItem]:
         """
-        Create new navigation property to items for users
+        Add an item, such as a chat, channel, meeting, or community, to a user-defined section in a user's teamwork. Each item can belong to only one section at a time. You can only add items that are currently in a system-defined section. If the item is already in another user-defined section, use the move action to relocate it.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkSectionItem]
+        Find more info here: https://learn.microsoft.com/graph/api/teamworksection-post-items?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class ItemsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ItemsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get items from users
+        Get the list of items in a section of a user's teamwork.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class ItemsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: TeamworkSectionItem, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to items for users
+        Add an item, such as a chat, channel, meeting, or community, to a user-defined section in a user's teamwork. Each item can belong to only one section at a time. You can only add items that are currently in a system-defined section. If the item is already in another user-defined section, use the move action to relocate it.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class ItemsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ItemsRequestBuilderGetQueryParameters():
         """
-        Get items from users
+        Get the list of items in a section of a user's teamwork.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

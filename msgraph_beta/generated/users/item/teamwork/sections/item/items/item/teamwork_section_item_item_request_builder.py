@@ -33,9 +33,10 @@ class TeamworkSectionItemItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property items for users
+        Remove an item from a user-defined section in a user's teamwork. This API doesn't delete the underlying chat, channel, meeting, or community; it only removes the item from the user-defined section. The item is automatically moved back to its default system-defined section.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/teamworksectionitem-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,7 +52,7 @@ class TeamworkSectionItemItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TeamworkSectionItemItemRequestBuilderGetQueryParameters]] = None) -> Optional[TeamworkSectionItem]:
         """
-        Get items from users
+        The items (chats, channels, meetings, or communities) organized within the section.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkSectionItem]
         """
@@ -94,7 +95,7 @@ class TeamworkSectionItemItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property items for users
+        Remove an item from a user-defined section in a user's teamwork. This API doesn't delete the underlying chat, channel, meeting, or community; it only removes the item from the user-defined section. The item is automatically moved back to its default system-defined section.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +106,7 @@ class TeamworkSectionItemItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TeamworkSectionItemItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get items from users
+        The items (chats, channels, meetings, or communities) organized within the section.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +159,7 @@ class TeamworkSectionItemItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamworkSectionItemItemRequestBuilderGetQueryParameters():
         """
-        Get items from users
+        The items (chats, channels, meetings, or communities) organized within the section.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

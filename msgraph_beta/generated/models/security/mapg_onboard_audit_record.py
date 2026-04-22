@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MapgOnboardAuditRecord(AuditData, Parsable):
+    """
+    Audit data for MAPG Onboard events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.mapgOnboardAuditRecord"
     

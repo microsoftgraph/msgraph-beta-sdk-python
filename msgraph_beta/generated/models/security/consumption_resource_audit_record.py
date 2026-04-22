@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ConsumptionResourceAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Consumption Resource events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.consumptionResourceAuditRecord"
     

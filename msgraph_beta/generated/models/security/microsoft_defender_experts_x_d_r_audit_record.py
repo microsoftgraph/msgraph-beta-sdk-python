@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MicrosoftDefenderExpertsXDRAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Microsoft Defender Experts XDR events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.microsoftDefenderExpertsXDRAuditRecord"
     

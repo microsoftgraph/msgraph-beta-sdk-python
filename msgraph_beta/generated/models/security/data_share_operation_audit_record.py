@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class DataShareOperationAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Data Share Operation events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.dataShareOperationAuditRecord"
     

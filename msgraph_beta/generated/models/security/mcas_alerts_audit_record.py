@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class McasAlertsAuditRecord(AuditData, Parsable):
+    """
+    Audit data for MCAS Alerts events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.mcasAlertsAuditRecord"
     

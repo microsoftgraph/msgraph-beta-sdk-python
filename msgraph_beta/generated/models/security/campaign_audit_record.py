@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class CampaignAuditRecord(AuditData, Parsable):
+    """
+    Audit data for threat campaign events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.campaignAuditRecord"
     

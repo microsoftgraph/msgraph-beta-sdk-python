@@ -33,9 +33,10 @@ class TeamworkSectionItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property sections for users
+        Delete a user-defined section from a user's teamwork. System-defined sections can't be deleted.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/teamworksection-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,9 +52,10 @@ class TeamworkSectionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TeamworkSectionItemRequestBuilderGetQueryParameters]] = None) -> Optional[TeamworkSection]:
         """
-        User's teamwork sections for organizing chats and channels. The collection response may include @microsoft.graph.sectionsOrder and @microsoft.graph.sectionsVersion instance annotations for ordering and optimistic concurrency control.
+        Read the properties of a section in a user's teamwork.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkSection]
+        Find more info here: https://learn.microsoft.com/graph/api/teamworksection-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,10 +73,11 @@ class TeamworkSectionItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: TeamworkSection, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TeamworkSection]:
         """
-        Update the navigation property sections in users
+        Update the properties of a section in a user's teamwork. For system-defined sections, only the sortType property can be updated.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkSection]
+        Find more info here: https://learn.microsoft.com/graph/api/teamworksection-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -94,7 +97,7 @@ class TeamworkSectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property sections for users
+        Delete a user-defined section from a user's teamwork. System-defined sections can't be deleted.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +108,7 @@ class TeamworkSectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TeamworkSectionItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        User's teamwork sections for organizing chats and channels. The collection response may include @microsoft.graph.sectionsOrder and @microsoft.graph.sectionsVersion instance annotations for ordering and optimistic concurrency control.
+        Read the properties of a section in a user's teamwork.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +119,7 @@ class TeamworkSectionItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: TeamworkSection, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property sections in users
+        Update the properties of a section in a user's teamwork. For system-defined sections, only the sortType property can be updated.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -158,7 +161,7 @@ class TeamworkSectionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TeamworkSectionItemRequestBuilderGetQueryParameters():
         """
-        User's teamwork sections for organizing chats and channels. The collection response may include @microsoft.graph.sectionsOrder and @microsoft.graph.sectionsVersion instance annotations for ordering and optimistic concurrency control.
+        Read the properties of a section in a user's teamwork.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

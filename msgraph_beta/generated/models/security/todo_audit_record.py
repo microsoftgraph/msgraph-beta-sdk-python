@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class TodoAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Microsoft To Do events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.todoAuditRecord"
     

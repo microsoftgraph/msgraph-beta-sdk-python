@@ -13,11 +13,11 @@ from .entity import Entity
 
 @dataclass
 class TeamworkSectionItem(Entity, Parsable):
-    # The createdDateTime property
+    # Date and time when the item was added to the section. Read-only. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The itemType property
+    # The type of the item. The possible values are: chat, channel, meeting, community, unknownFutureValue. Read-only.
     item_type: Optional[SectionItemType] = None
-    # The lastModifiedDateTime property
+    # Date and time when the item was last modified. Read-only. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

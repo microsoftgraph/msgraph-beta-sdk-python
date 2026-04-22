@@ -15,15 +15,15 @@ class SectionDisplayIcon(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The contentUrl property
+    # The URL to a custom icon image. Applicable when iconType is custom.
     content_url: Optional[str] = None
-    # The displayName property
+    # The human-readable name of the icon.
     display_name: Optional[str] = None
-    # The iconType property
+    # The type of icon. Use an emoji character such as 👍 for an emoji icon, or custom for a custom image icon.
     icon_type: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The skinTone property
+    # The skin tone variant applied to the icon. Read-only. The possible values are: light, mediumLight, medium, mediumDark, dark, unknownFutureValue.
     skin_tone: Optional[SectionIconSkinTone] = None
     
     @staticmethod

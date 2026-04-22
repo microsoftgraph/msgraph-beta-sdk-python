@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class OwaGetAccessTokenForResourceAuditRecord(AuditData, Parsable):
+    """
+    Audit data for OWA Get Access Token For Resource events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.owaGetAccessTokenForResourceAuditRecord"
     

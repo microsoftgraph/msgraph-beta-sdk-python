@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class CdpColdCrawlStatusRecord(AuditData, Parsable):
+    """
+    Audit data for CDP Cold Crawl Status events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.cdpColdCrawlStatusRecord"
     

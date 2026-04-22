@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MicrosoftGraphDataConnectConsent(AuditData, Parsable):
+    """
+    Audit data for Microsoft Graph Data Connect Consent events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.microsoftGraphDataConnectConsent"
     

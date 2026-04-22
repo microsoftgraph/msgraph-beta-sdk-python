@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class HrSignalAuditRecord(AuditData, Parsable):
+    """
+    Audit data for HR Signal events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.hrSignalAuditRecord"
     

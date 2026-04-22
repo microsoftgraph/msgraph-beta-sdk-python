@@ -52,7 +52,7 @@ class Application(DirectoryObject, Parsable):
     app_management_policies: Optional[list[AppManagementPolicy]] = None
     # The collection of roles defined for the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.
     app_roles: Optional[list[AppRole]] = None
-    # The collection of breaking change behaviors related to token issuance that are configured for the application. Authentication behaviors are unset by default (null) and must be explicitly enabled or disabled. Nullable. Returned only on $select.  For more information about authentication behaviors, see Manage application authenticationBehaviors to avoid unverified use of email claims for user identification or authorization.
+    # The collection of breaking change behaviors related to token issuance that are configured for the application. Authentication behaviors are unset by default (null) and must be explicitly enabled or disabled. Nullable. Requires $select to retrieve.  For more information about authentication behaviors, see Manage application authenticationBehaviors to avoid unverified use of email claims for user identification or authorization.
     authentication_behaviors: Optional[AuthenticationBehaviors] = None
     # Specifies the certification status of the application.
     certification: Optional[Certification] = None
@@ -94,7 +94,7 @@ class Application(DirectoryObject, Parsable):
     key_credentials: Optional[list[KeyCredential]] = None
     # The main logo for the application. Not nullable.
     logo: Optional[bytes] = None
-    # A collection of application IDs for applications designated as managers of this application. Manager applications can create service principals for the applications they manage. Currently, only Microsoft first-party application IDs can be set as values. Maximum of 10 values. Not nullable. Read-only for third-party (3P) callers; writes by 3P callers are rejected with a 400 Bad Request error. Returned only on $select.
+    # A collection of application IDs for applications designated as managers of this application. Manager applications can create service principals for the applications they manage. Currently, only Microsoft first-party application IDs can be set as values. Maximum of 10 values. Not nullable. Read-only for third-party (3P) callers; writes by 3P callers are rejected with a 400 Bad Request error. Requires $select to retrieve.
     manager_applications: Optional[list[UUID]] = None
     # Specifies whether the Native Authentication APIs are enabled for the application. The possible values are: noneand all. Default is none. For more information, see Native Authentication.
     native_authentication_apis_enabled: Optional[NativeAuthenticationApisEnabled] = None

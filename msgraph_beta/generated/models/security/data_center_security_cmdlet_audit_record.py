@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class DataCenterSecurityCmdletAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Data Center Security cmdlet events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.dataCenterSecurityCmdletAuditRecord"
     

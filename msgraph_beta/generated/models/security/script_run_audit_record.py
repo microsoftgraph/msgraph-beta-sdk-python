@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ScriptRunAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Script Run events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.scriptRunAuditRecord"
     

@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class AipScannerDiscoverEvent(AuditData, Parsable):
+    """
+    Audit data for AIP Scanner Discover Event events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.aipScannerDiscoverEvent"
     

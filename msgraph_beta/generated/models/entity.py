@@ -63,6 +63,7 @@ if TYPE_CHECKING:
     from .agent_identity_blueprint import AgentIdentityBlueprint
     from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
     from .agent_instance import AgentInstance
+    from .agent_registration import AgentRegistration
     from .agent_risk_detection import AgentRiskDetection
     from .agent_user import AgentUser
     from .agreement import Agreement
@@ -79,9 +80,6 @@ if TYPE_CHECKING:
     from .alert import Alert
     from .allowed_data_location import AllowedDataLocation
     from .allowed_value import AllowedValue
-    from .all_drives_backup import AllDrivesBackup
-    from .all_mailboxes_backup import AllMailboxesBackup
-    from .all_sites_backup import AllSitesBackup
     from .android_app_configuration_schema import AndroidAppConfigurationSchema
     from .android_certificate_profile_base import AndroidCertificateProfileBase
     from .android_compliance_policy import AndroidCompliancePolicy
@@ -643,6 +641,8 @@ if TYPE_CHECKING:
     from .domain_dns_unavailable_record import DomainDnsUnavailableRecord
     from .domain_security_profile import DomainSecurityProfile
     from .drive import Drive
+    from .drive_exclusion_unit import DriveExclusionUnit
+    from .drive_exclusion_units_bulk_addition_job import DriveExclusionUnitsBulkAdditionJob
     from .drive_item import DriveItem
     from .drive_item_version import DriveItemVersion
     from .drive_protection_rule import DriveProtectionRule
@@ -760,6 +760,8 @@ if TYPE_CHECKING:
     from .exchange_protection_policy import ExchangeProtectionPolicy
     from .exchange_restore_session import ExchangeRestoreSession
     from .exchange_settings import ExchangeSettings
+    from .exclusion_unit_base import ExclusionUnitBase
+    from .exclusion_unit_bulk_addition_job import ExclusionUnitBulkAdditionJob
     from .extension import Extension
     from .extension_property import ExtensionProperty
     from .external import External
@@ -811,7 +813,6 @@ if TYPE_CHECKING:
     from .focus_activity_statistics import FocusActivityStatistics
     from .footprint_map import FootprintMap
     from .fraud_protection_provider import FraudProtectionProvider
-    from .full_service_backup_base import FullServiceBackupBase
     from .gcp_authorization_system import GcpAuthorizationSystem
     from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
     from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -1069,6 +1070,8 @@ if TYPE_CHECKING:
     from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
     from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
     from .mailbox import Mailbox
+    from .mailbox_exclusion_unit import MailboxExclusionUnit
+    from .mailbox_exclusion_units_bulk_addition_job import MailboxExclusionUnitsBulkAdditionJob
     from .mailbox_folder import MailboxFolder
     from .mailbox_item import MailboxItem
     from .mailbox_protection_rule import MailboxProtectionRule
@@ -1810,6 +1813,8 @@ if TYPE_CHECKING:
     from .single_value_extended_property import SingleValueExtendedProperty
     from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
     from .site import Site
+    from .site_exclusion_unit import SiteExclusionUnit
+    from .site_exclusion_units_bulk_addition_job import SiteExclusionUnitsBulkAdditionJob
     from .site_page import SitePage
     from .site_protection_rule import SiteProtectionRule
     from .site_protection_unit import SiteProtectionUnit
@@ -2579,6 +2584,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .agent_instance import AgentInstance
 
             return AgentInstance()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentRegistration".casefold():
+            from .agent_registration import AgentRegistration
+
+            return AgentRegistration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentRiskDetection".casefold():
             from .agent_risk_detection import AgentRiskDetection
 
@@ -2638,14 +2647,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.alert import Alert
 
             return Alert()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allDrivesBackup".casefold():
-            from .all_drives_backup import AllDrivesBackup
-
-            return AllDrivesBackup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allMailboxesBackup".casefold():
-            from .all_mailboxes_backup import AllMailboxesBackup
-
-            return AllMailboxesBackup()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.allowedDataLocation".casefold():
             from .allowed_data_location import AllowedDataLocation
 
@@ -2654,10 +2655,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .allowed_value import AllowedValue
 
             return AllowedValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allSitesBackup".casefold():
-            from .all_sites_backup import AllSitesBackup
-
-            return AllSitesBackup()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidAppConfigurationSchema".casefold():
             from .android_app_configuration_schema import AndroidAppConfigurationSchema
 
@@ -4908,6 +4905,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .drive import Drive
 
             return Drive()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.driveExclusionUnit".casefold():
+            from .drive_exclusion_unit import DriveExclusionUnit
+
+            return DriveExclusionUnit()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.driveExclusionUnitsBulkAdditionJob".casefold():
+            from .drive_exclusion_units_bulk_addition_job import DriveExclusionUnitsBulkAdditionJob
+
+            return DriveExclusionUnitsBulkAdditionJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.driveItem".casefold():
             from .drive_item import DriveItem
 
@@ -5388,6 +5393,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .exchange_settings import ExchangeSettings
 
             return ExchangeSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exclusionUnitBase".casefold():
+            from .exclusion_unit_base import ExclusionUnitBase
+
+            return ExclusionUnitBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exclusionUnitBulkAdditionJob".casefold():
+            from .exclusion_unit_bulk_addition_job import ExclusionUnitBulkAdditionJob
+
+            return ExclusionUnitBulkAdditionJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.extension".casefold():
             from .extension import Extension
 
@@ -5596,10 +5609,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .fraud_protection_provider import FraudProtectionProvider
 
             return FraudProtectionProvider()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.fullServiceBackupBase".casefold():
-            from .full_service_backup_base import FullServiceBackupBase
-
-            return FullServiceBackupBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpAuthorizationSystem".casefold():
             from .gcp_authorization_system import GcpAuthorizationSystem
 
@@ -6639,6 +6648,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .mailbox import Mailbox
 
             return Mailbox()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxExclusionUnit".casefold():
+            from .mailbox_exclusion_unit import MailboxExclusionUnit
+
+            return MailboxExclusionUnit()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxExclusionUnitsBulkAdditionJob".casefold():
+            from .mailbox_exclusion_units_bulk_addition_job import MailboxExclusionUnitsBulkAdditionJob
+
+            return MailboxExclusionUnitsBulkAdditionJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxFolder".casefold():
             from .mailbox_folder import MailboxFolder
 
@@ -9632,6 +9649,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .site import Site
 
             return Site()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.siteExclusionUnit".casefold():
+            from .site_exclusion_unit import SiteExclusionUnit
+
+            return SiteExclusionUnit()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.siteExclusionUnitsBulkAdditionJob".casefold():
+            from .site_exclusion_units_bulk_addition_job import SiteExclusionUnitsBulkAdditionJob
+
+            return SiteExclusionUnitsBulkAdditionJob()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sitePage".casefold():
             from .site_page import SitePage
 
@@ -11761,6 +11786,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .agent_identity_blueprint import AgentIdentityBlueprint
         from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
         from .agent_instance import AgentInstance
+        from .agent_registration import AgentRegistration
         from .agent_risk_detection import AgentRiskDetection
         from .agent_user import AgentUser
         from .agreement import Agreement
@@ -11777,9 +11803,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .alert import Alert
         from .allowed_data_location import AllowedDataLocation
         from .allowed_value import AllowedValue
-        from .all_drives_backup import AllDrivesBackup
-        from .all_mailboxes_backup import AllMailboxesBackup
-        from .all_sites_backup import AllSitesBackup
         from .android_app_configuration_schema import AndroidAppConfigurationSchema
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_compliance_policy import AndroidCompliancePolicy
@@ -12341,6 +12364,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .domain_dns_unavailable_record import DomainDnsUnavailableRecord
         from .domain_security_profile import DomainSecurityProfile
         from .drive import Drive
+        from .drive_exclusion_unit import DriveExclusionUnit
+        from .drive_exclusion_units_bulk_addition_job import DriveExclusionUnitsBulkAdditionJob
         from .drive_item import DriveItem
         from .drive_item_version import DriveItemVersion
         from .drive_protection_rule import DriveProtectionRule
@@ -12458,6 +12483,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .exchange_restore_session import ExchangeRestoreSession
         from .exchange_settings import ExchangeSettings
+        from .exclusion_unit_base import ExclusionUnitBase
+        from .exclusion_unit_bulk_addition_job import ExclusionUnitBulkAdditionJob
         from .extension import Extension
         from .extension_property import ExtensionProperty
         from .external import External
@@ -12509,7 +12536,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .focus_activity_statistics import FocusActivityStatistics
         from .footprint_map import FootprintMap
         from .fraud_protection_provider import FraudProtectionProvider
-        from .full_service_backup_base import FullServiceBackupBase
         from .gcp_authorization_system import GcpAuthorizationSystem
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
         from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -12767,6 +12793,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
         from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .mailbox import Mailbox
+        from .mailbox_exclusion_unit import MailboxExclusionUnit
+        from .mailbox_exclusion_units_bulk_addition_job import MailboxExclusionUnitsBulkAdditionJob
         from .mailbox_folder import MailboxFolder
         from .mailbox_item import MailboxItem
         from .mailbox_protection_rule import MailboxProtectionRule
@@ -13508,6 +13536,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .single_value_extended_property import SingleValueExtendedProperty
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
         from .site import Site
+        from .site_exclusion_unit import SiteExclusionUnit
+        from .site_exclusion_units_bulk_addition_job import SiteExclusionUnitsBulkAdditionJob
         from .site_page import SitePage
         from .site_protection_rule import SiteProtectionRule
         from .site_protection_unit import SiteProtectionUnit
@@ -14080,6 +14110,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .agent_identity_blueprint import AgentIdentityBlueprint
         from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
         from .agent_instance import AgentInstance
+        from .agent_registration import AgentRegistration
         from .agent_risk_detection import AgentRiskDetection
         from .agent_user import AgentUser
         from .agreement import Agreement
@@ -14096,9 +14127,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .alert import Alert
         from .allowed_data_location import AllowedDataLocation
         from .allowed_value import AllowedValue
-        from .all_drives_backup import AllDrivesBackup
-        from .all_mailboxes_backup import AllMailboxesBackup
-        from .all_sites_backup import AllSitesBackup
         from .android_app_configuration_schema import AndroidAppConfigurationSchema
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_compliance_policy import AndroidCompliancePolicy
@@ -14660,6 +14688,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .domain_dns_unavailable_record import DomainDnsUnavailableRecord
         from .domain_security_profile import DomainSecurityProfile
         from .drive import Drive
+        from .drive_exclusion_unit import DriveExclusionUnit
+        from .drive_exclusion_units_bulk_addition_job import DriveExclusionUnitsBulkAdditionJob
         from .drive_item import DriveItem
         from .drive_item_version import DriveItemVersion
         from .drive_protection_rule import DriveProtectionRule
@@ -14777,6 +14807,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .exchange_restore_session import ExchangeRestoreSession
         from .exchange_settings import ExchangeSettings
+        from .exclusion_unit_base import ExclusionUnitBase
+        from .exclusion_unit_bulk_addition_job import ExclusionUnitBulkAdditionJob
         from .extension import Extension
         from .extension_property import ExtensionProperty
         from .external import External
@@ -14828,7 +14860,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .focus_activity_statistics import FocusActivityStatistics
         from .footprint_map import FootprintMap
         from .fraud_protection_provider import FraudProtectionProvider
-        from .full_service_backup_base import FullServiceBackupBase
         from .gcp_authorization_system import GcpAuthorizationSystem
         from .gcp_authorization_system_resource import GcpAuthorizationSystemResource
         from .gcp_authorization_system_type_action import GcpAuthorizationSystemTypeAction
@@ -15086,6 +15117,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mac_o_s_wired_network_configuration import MacOSWiredNetworkConfiguration
         from .mac_o_s_wi_fi_configuration import MacOSWiFiConfiguration
         from .mailbox import Mailbox
+        from .mailbox_exclusion_unit import MailboxExclusionUnit
+        from .mailbox_exclusion_units_bulk_addition_job import MailboxExclusionUnitsBulkAdditionJob
         from .mailbox_folder import MailboxFolder
         from .mailbox_item import MailboxItem
         from .mailbox_protection_rule import MailboxProtectionRule
@@ -15827,6 +15860,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .single_value_extended_property import SingleValueExtendedProperty
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
         from .site import Site
+        from .site_exclusion_unit import SiteExclusionUnit
+        from .site_exclusion_units_bulk_addition_job import SiteExclusionUnitsBulkAdditionJob
         from .site_page import SitePage
         from .site_protection_rule import SiteProtectionRule
         from .site_protection_unit import SiteProtectionUnit

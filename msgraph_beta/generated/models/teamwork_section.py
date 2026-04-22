@@ -16,25 +16,25 @@ from .entity import Entity
 
 @dataclass
 class TeamworkSection(Entity, Parsable):
-    # The createdDateTime property
+    # Date and time when the section was created. Read-only. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The displayIcon property
+    # The icon displayed for the section.
     display_icon: Optional[SectionDisplayIcon] = None
-    # The displayName property
+    # The display name of the section. Required. Maximum length is 50 characters. Display names are case-sensitive and must be unique within a user's sections. The following names are reserved for system-defined sections and can't be used when creating a user-defined section: RecentChats, QuickViews, TeamsAndChannels, MutedChats, MeetingChats, EngageCommunities.
     display_name: Optional[str] = None
-    # The isExpanded property
+    # Indicates whether the section is expanded in the user interface. The default value is true.
     is_expanded: Optional[bool] = None
-    # The isHierarchicalViewEnabled property
+    # Indicates whether the hierarchical view is enabled for the section. Read-only.
     is_hierarchical_view_enabled: Optional[bool] = None
-    # The items property
+    # The items (chats, channels, meetings, or communities) organized within the section.
     items: Optional[list[TeamworkSectionItem]] = None
-    # The lastModifiedDateTime property
+    # Date and time when the section was last modified. Read-only. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sectionType property
+    # The type of the section. The possible values are: userDefined, systemDefined, unknownFutureValue. Read-only.
     section_type: Optional[SectionType] = None
-    # The sortType property
+    # The sort order of items in the section. The valid values depend on the sectionType. The possible values are: mostRecent, unreadThenMostRecent, nameAlphabetical, userDefinedCustomOrder, unknownFutureValue.
     sort_type: Optional[SectionSortType] = None
     
     @staticmethod

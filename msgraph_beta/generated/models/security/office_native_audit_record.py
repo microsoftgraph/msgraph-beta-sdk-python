@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class OfficeNativeAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Office Native events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.officeNativeAuditRecord"
     

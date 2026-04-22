@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class SecurityComplianceInsightsAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Security Compliance Insights events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.securityComplianceInsightsAuditRecord"
     

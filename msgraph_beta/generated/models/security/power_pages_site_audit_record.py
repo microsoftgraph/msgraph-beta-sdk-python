@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class PowerPagesSiteAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Power Pages Site events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.powerPagesSiteAuditRecord"
     

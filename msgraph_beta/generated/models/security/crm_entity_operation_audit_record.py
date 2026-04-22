@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class CrmEntityOperationAuditRecord(AuditData, Parsable):
+    """
+    Audit data for CRM Entity Operation events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.crmEntityOperationAuditRecord"
     

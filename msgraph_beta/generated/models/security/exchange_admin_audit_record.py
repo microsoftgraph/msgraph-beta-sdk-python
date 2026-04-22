@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ExchangeAdminAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Exchange Admin events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.exchangeAdminAuditRecord"
     

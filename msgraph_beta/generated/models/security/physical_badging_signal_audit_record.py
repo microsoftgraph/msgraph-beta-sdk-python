@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class PhysicalBadgingSignalAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Physical Badging Signal events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.physicalBadgingSignalAuditRecord"
     

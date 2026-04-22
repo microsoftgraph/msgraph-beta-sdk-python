@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class InsiderRiskScopedUsersRecord(AuditData, Parsable):
+    """
+    Audit data for Insider Risk Scoped Users events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.insiderRiskScopedUsersRecord"
     

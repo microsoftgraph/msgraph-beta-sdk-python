@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ThreatIntelligenceUrlClickData(AuditData, Parsable):
+    """
+    Audit data for Threat Intelligence Url Click events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.threatIntelligenceUrlClickData"
     

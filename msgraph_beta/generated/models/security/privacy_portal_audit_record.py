@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class PrivacyPortalAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Privacy Portal events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.privacyPortalAuditRecord"
     

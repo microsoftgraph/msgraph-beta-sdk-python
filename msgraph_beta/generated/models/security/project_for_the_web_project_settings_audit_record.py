@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ProjectForTheWebProjectSettingsAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Project for the Web Project Settings events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.projectForTheWebProjectSettingsAuditRecord"
     

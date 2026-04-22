@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ExchangeAggregatedMailboxAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Exchange Aggregated Mailbox events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.exchangeAggregatedMailboxAuditRecord"
     

@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class Microsoft365BackupRestoreTaskAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Microsoft365 Backup Restore Task events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.microsoft365BackupRestoreTaskAuditRecord"
     

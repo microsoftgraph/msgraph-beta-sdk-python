@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MyAnalyticsSettingsAuditRecord(AuditData, Parsable):
+    """
+    Audit data for My Analytics Settings events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.myAnalyticsSettingsAuditRecord"
     

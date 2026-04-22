@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class DefaultAuditData(AuditData, Parsable):
+    """
+    Default open-type audit data when no specific subtype applies.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.defaultAuditData"
     

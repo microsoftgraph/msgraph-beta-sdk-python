@@ -13,6 +13,8 @@ from .policy_link import PolicyLink
 class ForwardingPolicyLink(PolicyLink, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingPolicyLink"
+    # The priority property
+    priority: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ForwardingPolicyLink:
@@ -35,6 +37,7 @@ class ForwardingPolicyLink(PolicyLink, Parsable):
         from .policy_link import PolicyLink
 
         fields: dict[str, Callable[[Any], None]] = {
+            "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -49,5 +52,6 @@ class ForwardingPolicyLink(PolicyLink, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_int_value("priority", self.priority)
     
 

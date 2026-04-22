@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class CustomerKeyServiceEncryptionAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Customer Key Service Encryption events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.customerKeyServiceEncryptionAuditRecord"
     

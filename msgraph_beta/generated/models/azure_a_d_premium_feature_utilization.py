@@ -14,7 +14,7 @@ class AzureADPremiumFeatureUtilization(AdditionalDataHolder, BackedModel, Parsab
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The userCount property
+    # The number of users who have used this premium feature.
     user_count: Optional[int] = None
     
     @staticmethod

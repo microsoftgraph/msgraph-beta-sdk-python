@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class DataLakeExportOperationAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Data Lake Export Operation events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.dataLakeExportOperationAuditRecord"
     

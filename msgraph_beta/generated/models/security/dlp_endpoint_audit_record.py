@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class DlpEndpointAuditRecord(AuditData, Parsable):
+    """
+    Audit data for DLP Endpoint events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.dlpEndpointAuditRecord"
     

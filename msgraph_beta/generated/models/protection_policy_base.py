@@ -40,7 +40,7 @@ class ProtectionPolicyBase(Entity, Parsable):
     offboard_requested_date_time: Optional[datetime.datetime] = None
     # The protectionMode property
     protection_mode: Optional[BackupPolicyProtectionMode] = None
-    # The count of artifacts in the protection policy by status. Returned only on $select.
+    # The count of artifacts in the protection policy by status. Requires $select to retrieve.
     protection_policy_artifact_count: Optional[ProtectionPolicyArtifactCount] = None
     # Contains the retention setting details for the policy.
     retention_settings: Optional[list[RetentionSetting]] = None

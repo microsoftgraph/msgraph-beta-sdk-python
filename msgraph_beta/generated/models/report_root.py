@@ -33,7 +33,7 @@ class ReportRoot(Entity, Parsable):
     application_sign_in_detailed_summary: Optional[list[ApplicationSignInDetailedSummary]] = None
     # Container for navigation properties for Microsoft Entra authentication methods resources.
     authentication_methods: Optional[AuthenticationMethodsRoot] = None
-    # The azureADPremiumLicenseInsight property
+    # Provides insight into the Microsoft Entra ID P1 and P2 premium license utilization for the tenant.
     azure_a_d_premium_license_insight: Optional[AzureADPremiumLicenseInsight] = None
     # Details of the usage of self-service password reset and multifactor authentication (MFA) for all registered users.
     credential_user_registration_details: Optional[list[CredentialUserRegistrationDetails]] = None

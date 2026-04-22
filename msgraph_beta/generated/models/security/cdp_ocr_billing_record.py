@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class CdpOcrBillingRecord(AuditData, Parsable):
+    """
+    Audit data for CDP OCR Billing events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.cdpOcrBillingRecord"
     

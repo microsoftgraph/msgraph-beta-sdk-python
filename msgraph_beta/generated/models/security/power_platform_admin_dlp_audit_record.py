@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class PowerPlatformAdminDlpAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Power Platform Admin DLP events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.powerPlatformAdminDlpAuditRecord"
     

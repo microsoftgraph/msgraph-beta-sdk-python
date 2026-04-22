@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MsdeGeneralSettingsAuditRecord(AuditData, Parsable):
+    """
+    Audit data for MSDE General Settings events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.msdeGeneralSettingsAuditRecord"
     

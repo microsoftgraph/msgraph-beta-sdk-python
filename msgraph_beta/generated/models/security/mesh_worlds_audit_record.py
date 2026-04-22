@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MeshWorldsAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Mesh Worlds events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.meshWorldsAuditRecord"
     

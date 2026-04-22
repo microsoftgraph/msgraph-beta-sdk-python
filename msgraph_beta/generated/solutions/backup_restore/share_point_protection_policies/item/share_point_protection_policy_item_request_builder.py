@@ -16,6 +16,8 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .....models.share_point_protection_policy import SharePointProtectionPolicy
+    from .site_exclusion_units.site_exclusion_units_request_builder import SiteExclusionUnitsRequestBuilder
+    from .site_exclusion_units_bulk_addition_jobs.site_exclusion_units_bulk_addition_jobs_request_builder import SiteExclusionUnitsBulkAdditionJobsRequestBuilder
     from .site_inclusion_rules.site_inclusion_rules_request_builder import SiteInclusionRulesRequestBuilder
     from .site_protection_units.site_protection_units_request_builder import SiteProtectionUnitsRequestBuilder
     from .site_protection_units_bulk_addition_jobs.site_protection_units_bulk_addition_jobs_request_builder import SiteProtectionUnitsBulkAdditionJobsRequestBuilder
@@ -141,6 +143,24 @@ class SharePointProtectionPolicyItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SharePointProtectionPolicyItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def site_exclusion_units(self) -> SiteExclusionUnitsRequestBuilder:
+        """
+        Provides operations to manage the siteExclusionUnits property of the microsoft.graph.sharePointProtectionPolicy entity.
+        """
+        from .site_exclusion_units.site_exclusion_units_request_builder import SiteExclusionUnitsRequestBuilder
+
+        return SiteExclusionUnitsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def site_exclusion_units_bulk_addition_jobs(self) -> SiteExclusionUnitsBulkAdditionJobsRequestBuilder:
+        """
+        Provides operations to manage the siteExclusionUnitsBulkAdditionJobs property of the microsoft.graph.sharePointProtectionPolicy entity.
+        """
+        from .site_exclusion_units_bulk_addition_jobs.site_exclusion_units_bulk_addition_jobs_request_builder import SiteExclusionUnitsBulkAdditionJobsRequestBuilder
+
+        return SiteExclusionUnitsBulkAdditionJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def site_inclusion_rules(self) -> SiteInclusionRulesRequestBuilder:
