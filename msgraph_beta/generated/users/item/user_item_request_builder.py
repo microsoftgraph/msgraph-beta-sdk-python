@@ -36,6 +36,7 @@ if TYPE_CHECKING:
     from .check_member_groups.check_member_groups_request_builder import CheckMemberGroupsRequestBuilder
     from .check_member_objects.check_member_objects_request_builder import CheckMemberObjectsRequestBuilder
     from .cloud_clipboard.cloud_clipboard_request_builder import CloudClipboardRequestBuilder
+    from .cloud_pc_pools.cloud_pc_pools_request_builder import CloudPcPoolsRequestBuilder
     from .cloud_p_cs.cloud_p_cs_request_builder import CloudPCsRequestBuilder
     from .communications.communications_request_builder import CommunicationsRequestBuilder
     from .contacts.contacts_request_builder import ContactsRequestBuilder
@@ -519,6 +520,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .cloud_p_cs.cloud_p_cs_request_builder import CloudPCsRequestBuilder
 
         return CloudPCsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def cloud_pc_pools(self) -> CloudPcPoolsRequestBuilder:
+        """
+        Provides operations to manage the cloudPcPools property of the microsoft.graph.user entity.
+        """
+        from .cloud_pc_pools.cloud_pc_pools_request_builder import CloudPcPoolsRequestBuilder
+
+        return CloudPcPoolsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def communications(self) -> CommunicationsRequestBuilder:

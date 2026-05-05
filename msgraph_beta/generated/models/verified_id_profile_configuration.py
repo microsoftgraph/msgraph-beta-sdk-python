@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .claim_binding import ClaimBinding
     from .claim_binding_source import ClaimBindingSource
+    from .claim_validation import ClaimValidation
 
 @dataclass
 class VerifiedIdProfileConfiguration(AdditionalDataHolder, BackedModel, Parsable):
@@ -22,6 +23,8 @@ class VerifiedIdProfileConfiguration(AdditionalDataHolder, BackedModel, Parsable
     claim_binding_source: Optional[ClaimBindingSource] = None
     # Claim bindings from Verified ID to source attributes.
     claim_bindings: Optional[list[ClaimBinding]] = None
+    # The claimValidation property
+    claim_validation: Optional[ClaimValidation] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Verified ID type.
@@ -45,14 +48,17 @@ class VerifiedIdProfileConfiguration(AdditionalDataHolder, BackedModel, Parsable
         """
         from .claim_binding import ClaimBinding
         from .claim_binding_source import ClaimBindingSource
+        from .claim_validation import ClaimValidation
 
         from .claim_binding import ClaimBinding
         from .claim_binding_source import ClaimBindingSource
+        from .claim_validation import ClaimValidation
 
         fields: dict[str, Callable[[Any], None]] = {
             "acceptedIssuer": lambda n : setattr(self, 'accepted_issuer', n.get_str_value()),
             "claimBindingSource": lambda n : setattr(self, 'claim_binding_source', n.get_enum_value(ClaimBindingSource)),
             "claimBindings": lambda n : setattr(self, 'claim_bindings', n.get_collection_of_object_values(ClaimBinding)),
+            "claimValidation": lambda n : setattr(self, 'claim_validation', n.get_object_value(ClaimValidation)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
@@ -69,6 +75,7 @@ class VerifiedIdProfileConfiguration(AdditionalDataHolder, BackedModel, Parsable
         writer.write_str_value("acceptedIssuer", self.accepted_issuer)
         writer.write_enum_value("claimBindingSource", self.claim_binding_source)
         writer.write_collection_of_object_values("claimBindings", self.claim_bindings)
+        writer.write_object_value("claimValidation", self.claim_validation)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)

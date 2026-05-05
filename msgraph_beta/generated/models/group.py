@@ -134,7 +134,7 @@ class Group(DirectoryObject, Parsable):
     membership_rule_processing_status: Optional[MembershipRuleProcessingStatus] = None
     # Contains the on-premises domain FQDN, also called dnsDomainName synchronized from the on-premises directory. The property is only populated for customers synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect.Returned by default. Read-only.
     on_premises_domain_name: Optional[str] = None
-    # The onPremisesExtensionAttributes property
+    # Complex type containing extension attributes 1-15 for the group, synchronized from on-premises Active Directory. Returned only on $select. Supports $filter (eq, ne, not, in).
     on_premises_extension_attributes: Optional[OnPremisesExtensionAttributes] = None
     # Indicates the last time at which the group was synced with the on-premises directory.The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Read-only. Supports $filter (eq, ne, not, ge, le, in).
     on_premises_last_sync_date_time: Optional[datetime.datetime] = None
@@ -176,7 +176,7 @@ class Group(DirectoryObject, Parsable):
     renewed_date_time: Optional[datetime.datetime] = None
     # Specifies the group behaviors that can be set for a Microsoft 365 group during creation. This property can be set only as part of creation (POST). For the list of possible values, see Microsoft 365 group behaviors and provisioning options.
     resource_behavior_options: Optional[list[str]] = None
-    # Specifies the group resources that are associated with the Microsoft 365 group. The possible value is Team. For more information, see Microsoft 365 group behaviors and provisioning options. Returned by default. Supports $filter (eq, not, startsWith.
+    # Specifies the group resources that are associated with the Microsoft 365 group. The possible value is Team. For more information, see Microsoft 365 group behaviors and provisioning options. Returned by default. Supports $filter (eq, not, startsWith).
     resource_provisioning_options: Optional[list[str]] = None
     # Specifies whether the group is a security group. Required.Returned by default. Supports $filter (eq, ne, not, in).
     security_enabled: Optional[bool] = None

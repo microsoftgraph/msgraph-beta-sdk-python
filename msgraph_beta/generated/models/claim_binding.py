@@ -5,6 +5,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .match_confidence_level import MatchConfidenceLevel
+
 @dataclass
 class ClaimBinding(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -12,6 +15,8 @@ class ClaimBinding(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The matchConfidenceLevel property
+    match_confidence_level: Optional[MatchConfidenceLevel] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Source attribute value
@@ -35,7 +40,12 @@ class ClaimBinding(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .match_confidence_level import MatchConfidenceLevel
+
+        from .match_confidence_level import MatchConfidenceLevel
+
         fields: dict[str, Callable[[Any], None]] = {
+            "matchConfidenceLevel": lambda n : setattr(self, 'match_confidence_level', n.get_enum_value(MatchConfidenceLevel)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "sourceAttribute": lambda n : setattr(self, 'source_attribute', n.get_str_value()),
             "verifiedIdClaim": lambda n : setattr(self, 'verified_id_claim', n.get_str_value()),
@@ -50,6 +60,7 @@ class ClaimBinding(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("matchConfidenceLevel", self.match_confidence_level)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("sourceAttribute", self.source_attribute)
         writer.write_str_value("verifiedIdClaim", self.verified_id_claim)

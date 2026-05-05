@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .cloud_pc_managed_license import CloudPcManagedLicense
     from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
     from .cloud_pc_organization_settings import CloudPcOrganizationSettings
+    from .cloud_pc_pool import CloudPcPool
     from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
     from .cloud_pc_report import CloudPcReport
     from .cloud_pc_reports import CloudPcReports
@@ -39,6 +40,8 @@ class VirtualEndpoint(Entity, Parsable):
     cloud_apps: Optional[list[CloudPcCloudApp]] = None
     # Cloud managed virtual desktops.
     cloud_p_cs: Optional[list[CloudPC]] = None
+    # The cloudPcPools property
+    cloud_pc_pools: Optional[list[CloudPcPool]] = None
     # Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
     cross_cloud_government_organization_mapping: Optional[CloudPcCrossCloudGovernmentOrganizationMapping] = None
     # The image resource on Cloud PC.
@@ -102,6 +105,7 @@ class VirtualEndpoint(Entity, Parsable):
         from .cloud_pc_managed_license import CloudPcManagedLicense
         from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
+        from .cloud_pc_pool import CloudPcPool
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
         from .cloud_pc_report import CloudPcReport
         from .cloud_pc_reports import CloudPcReports
@@ -124,6 +128,7 @@ class VirtualEndpoint(Entity, Parsable):
         from .cloud_pc_managed_license import CloudPcManagedLicense
         from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
+        from .cloud_pc_pool import CloudPcPool
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
         from .cloud_pc_report import CloudPcReport
         from .cloud_pc_reports import CloudPcReports
@@ -139,6 +144,7 @@ class VirtualEndpoint(Entity, Parsable):
             "bulkActions": lambda n : setattr(self, 'bulk_actions', n.get_collection_of_object_values(CloudPcBulkAction)),
             "cloudApps": lambda n : setattr(self, 'cloud_apps', n.get_collection_of_object_values(CloudPcCloudApp)),
             "cloudPCs": lambda n : setattr(self, 'cloud_p_cs', n.get_collection_of_object_values(CloudPC)),
+            "cloudPcPools": lambda n : setattr(self, 'cloud_pc_pools', n.get_collection_of_object_values(CloudPcPool)),
             "crossCloudGovernmentOrganizationMapping": lambda n : setattr(self, 'cross_cloud_government_organization_mapping', n.get_object_value(CloudPcCrossCloudGovernmentOrganizationMapping)),
             "deviceImages": lambda n : setattr(self, 'device_images', n.get_collection_of_object_values(CloudPcDeviceImage)),
             "externalPartnerSettings": lambda n : setattr(self, 'external_partner_settings', n.get_collection_of_object_values(CloudPcExternalPartnerSetting)),
@@ -173,6 +179,7 @@ class VirtualEndpoint(Entity, Parsable):
         writer.write_collection_of_object_values("bulkActions", self.bulk_actions)
         writer.write_collection_of_object_values("cloudApps", self.cloud_apps)
         writer.write_collection_of_object_values("cloudPCs", self.cloud_p_cs)
+        writer.write_collection_of_object_values("cloudPcPools", self.cloud_pc_pools)
         writer.write_object_value("crossCloudGovernmentOrganizationMapping", self.cross_cloud_government_organization_mapping)
         writer.write_collection_of_object_values("deviceImages", self.device_images)
         writer.write_collection_of_object_values("externalPartnerSettings", self.external_partner_settings)

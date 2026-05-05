@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from ..entity import Entity
     from .filtering_profile import FilteringProfile
     from .forwarding_profile import ForwardingProfile
+    from .forwarding_profile_base import ForwardingProfileBase
     from .profile import Profile
     from .remote_network import RemoteNetwork
 
@@ -42,6 +43,10 @@ class BaseEntity(Entity, Parsable):
             from .forwarding_profile import ForwardingProfile
 
             return ForwardingProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfileBase".casefold():
+            from .forwarding_profile_base import ForwardingProfileBase
+
+            return ForwardingProfileBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.profile".casefold():
             from .profile import Profile
 
@@ -60,12 +65,14 @@ class BaseEntity(Entity, Parsable):
         from ..entity import Entity
         from .filtering_profile import FilteringProfile
         from .forwarding_profile import ForwardingProfile
+        from .forwarding_profile_base import ForwardingProfileBase
         from .profile import Profile
         from .remote_network import RemoteNetwork
 
         from ..entity import Entity
         from .filtering_profile import FilteringProfile
         from .forwarding_profile import ForwardingProfile
+        from .forwarding_profile_base import ForwardingProfileBase
         from .profile import Profile
         from .remote_network import RemoteNetwork
 

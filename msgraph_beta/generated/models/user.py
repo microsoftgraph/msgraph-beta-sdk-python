@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .chat import Chat
     from .cloud_clipboard_root import CloudClipboardRoot
     from .cloud_licensing.user_cloud_licensing import UserCloudLicensing
+    from .cloud_pc_pool import CloudPcPool
     from .cloud_p_c import CloudPC
     from .cloud_realtime_communication_info import CloudRealtimeCommunicationInfo
     from .contact import Contact
@@ -148,6 +149,8 @@ class User(DirectoryObject, Parsable):
     cloud_licensing: Optional[UserCloudLicensing] = None
     # The user's Cloud PCs. Read-only. Nullable.
     cloud_p_cs: Optional[list[CloudPC]] = None
+    # The cloudPcPools property
+    cloud_pc_pools: Optional[list[CloudPcPool]] = None
     # Microsoft realtime communication information related to the user.  Supports $filter (eq, ne,not).
     cloud_realtime_communication_info: Optional[CloudRealtimeCommunicationInfo] = None
     # The user's communications settings on Teams.
@@ -464,6 +467,7 @@ class User(DirectoryObject, Parsable):
         from .chat import Chat
         from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_licensing.user_cloud_licensing import UserCloudLicensing
+        from .cloud_pc_pool import CloudPcPool
         from .cloud_p_c import CloudPC
         from .cloud_realtime_communication_info import CloudRealtimeCommunicationInfo
         from .contact import Contact
@@ -548,6 +552,7 @@ class User(DirectoryObject, Parsable):
         from .chat import Chat
         from .cloud_clipboard_root import CloudClipboardRoot
         from .cloud_licensing.user_cloud_licensing import UserCloudLicensing
+        from .cloud_pc_pool import CloudPcPool
         from .cloud_p_c import CloudPC
         from .cloud_realtime_communication_info import CloudRealtimeCommunicationInfo
         from .contact import Contact
@@ -643,6 +648,7 @@ class User(DirectoryObject, Parsable):
             "cloudClipboard": lambda n : setattr(self, 'cloud_clipboard', n.get_object_value(CloudClipboardRoot)),
             "cloudLicensing": lambda n : setattr(self, 'cloud_licensing', n.get_object_value(UserCloudLicensing)),
             "cloudPCs": lambda n : setattr(self, 'cloud_p_cs', n.get_collection_of_object_values(CloudPC)),
+            "cloudPcPools": lambda n : setattr(self, 'cloud_pc_pools', n.get_collection_of_object_values(CloudPcPool)),
             "cloudRealtimeCommunicationInfo": lambda n : setattr(self, 'cloud_realtime_communication_info', n.get_object_value(CloudRealtimeCommunicationInfo)),
             "communications": lambda n : setattr(self, 'communications', n.get_object_value(UserCloudCommunication)),
             "companyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
@@ -820,6 +826,7 @@ class User(DirectoryObject, Parsable):
         writer.write_object_value("cloudClipboard", self.cloud_clipboard)
         writer.write_object_value("cloudLicensing", self.cloud_licensing)
         writer.write_collection_of_object_values("cloudPCs", self.cloud_p_cs)
+        writer.write_collection_of_object_values("cloudPcPools", self.cloud_pc_pools)
         writer.write_object_value("cloudRealtimeCommunicationInfo", self.cloud_realtime_communication_info)
         writer.write_object_value("communications", self.communications)
         writer.write_str_value("companyName", self.company_name)

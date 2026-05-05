@@ -18,23 +18,23 @@ from .outlook_item import OutlookItem
 class Note(OutlookItem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.note"
-    # The attachments property
+    # The file attachments for the note. Only inline image attachments (image/png, image/jpeg, image/gif, or image/bmp) are supported, with a maximum size of 3 MB per attachment. Use $expand to retrieve attachments.
     attachments: Optional[list[Attachment]] = None
-    # The body property
+    # The content of the note. Supports text or html content types.
     body: Optional[ItemBody] = None
-    # Auto-generated preview of the note body content (first ~255 characters). Read-only.
+    # Auto-generated preview of the note body content (first ~255 characters, plain text). Read-only.
     body_preview: Optional[str] = None
-    # The extensions property
+    # The collection of open extensions defined for the note.
     extensions: Optional[list[Extension]] = None
-    # The hasAttachments property
+    # Indicates whether the note has file attachments. Supports $filter (eq). Read-only.
     has_attachments: Optional[bool] = None
-    # The isDeleted property
+    # Indicates whether the note is soft-deleted. Read-only.
     is_deleted: Optional[bool] = None
-    # The multiValueExtendedProperties property
+    # The collection of multi-value extended properties defined for the note.
     multi_value_extended_properties: Optional[list[MultiValueLegacyExtendedProperty]] = None
-    # The singleValueExtendedProperties property
+    # The collection of single-value extended properties defined for the note.
     single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
-    # The subject property
+    # The title of the note. Supports $filter (eq, ne, startsWith) and $orderby.
     subject: Optional[str] = None
     
     @staticmethod
