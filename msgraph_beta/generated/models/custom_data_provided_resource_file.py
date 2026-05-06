@@ -12,13 +12,13 @@ from .entity import Entity
 
 @dataclass
 class CustomDataProvidedResourceFile(Entity, Parsable):
-    # Name of the file that was uploaded.
+    # Name of the uploaded file, including the file extension. Required.  Supports $filter (eq, ne)  and $orderby.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Size of the uploaded file in bytes.
+    # Size of the file in bytes. Read-only.  Supports $filter (eq, ne, gt, ge, lt, le) and $orderby.
     size: Optional[int] = None
-    # Time at which the file was uploaded.
+    # Timestamp when the file was uploaded. Read-only.  Supports $filter (eq, ne, gt, ge, lt, le) and $orderby.
     uploaded_date_time: Optional[datetime.datetime] = None
     
     @staticmethod

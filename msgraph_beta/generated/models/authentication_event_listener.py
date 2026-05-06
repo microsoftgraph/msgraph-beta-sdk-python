@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
     from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
     from .on_user_create_start_listener import OnUserCreateStartListener
+    from .on_verified_id_claim_validation_listener import OnVerifiedIdClaimValidationListener
 
 from .entity import Entity
 
@@ -92,6 +93,10 @@ class AuthenticationEventListener(Entity, Parsable):
             from .on_user_create_start_listener import OnUserCreateStartListener
 
             return OnUserCreateStartListener()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onVerifiedIdClaimValidationListener".casefold():
+            from .on_verified_id_claim_validation_listener import OnVerifiedIdClaimValidationListener
+
+            return OnVerifiedIdClaimValidationListener()
         return AuthenticationEventListener()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -112,6 +117,7 @@ class AuthenticationEventListener(Entity, Parsable):
         from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
+        from .on_verified_id_claim_validation_listener import OnVerifiedIdClaimValidationListener
 
         from .authentication_conditions import AuthenticationConditions
         from .entity import Entity
@@ -126,6 +132,7 @@ class AuthenticationEventListener(Entity, Parsable):
         from .on_phone_method_load_start_listener import OnPhoneMethodLoadStartListener
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
+        from .on_verified_id_claim_validation_listener import OnVerifiedIdClaimValidationListener
 
         fields: dict[str, Callable[[Any], None]] = {
             "authenticationEventsFlowId": lambda n : setattr(self, 'authentication_events_flow_id', n.get_str_value()),

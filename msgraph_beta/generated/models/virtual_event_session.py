@@ -16,6 +16,8 @@ from .online_meeting_base import OnlineMeetingBase
 class VirtualEventSession(OnlineMeetingBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.virtualEventSession"
+    # The capacity property
+    capacity: Optional[int] = None
     # The virtual event session end time.
     end_date_time: Optional[DateTimeTimeZone] = None
     # The presenters property
@@ -54,6 +56,7 @@ class VirtualEventSession(OnlineMeetingBase, Parsable):
         from .virtual_event_registration import VirtualEventRegistration
 
         fields: dict[str, Callable[[Any], None]] = {
+            "capacity": lambda n : setattr(self, 'capacity', n.get_int_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_object_value(DateTimeTimeZone)),
             "presenters": lambda n : setattr(self, 'presenters', n.get_collection_of_object_values(VirtualEventPresenter)),
             "registrations": lambda n : setattr(self, 'registrations', n.get_collection_of_object_values(VirtualEventRegistration)),
@@ -73,6 +76,7 @@ class VirtualEventSession(OnlineMeetingBase, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_int_value("capacity", self.capacity)
         writer.write_object_value("endDateTime", self.end_date_time)
         writer.write_collection_of_object_values("presenters", self.presenters)
         writer.write_collection_of_object_values("registrations", self.registrations)

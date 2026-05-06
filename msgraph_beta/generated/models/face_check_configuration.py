@@ -16,7 +16,7 @@ class FaceCheckConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     is_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sourcePhotoClaimName property
+    # Source of photo to validate Face Check against. Currently must always be portrait
     source_photo_claim_name: Optional[str] = None
     
     @staticmethod

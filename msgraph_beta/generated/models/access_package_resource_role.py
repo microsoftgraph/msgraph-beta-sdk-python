@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .access_package_resource import AccessPackageResource
     from .entity import Entity
+    from .role_type import RoleType
 
 from .entity import Entity
 
@@ -22,8 +23,10 @@ class AccessPackageResourceRole(Entity, Parsable):
     odata_type: Optional[str] = None
     # The unique identifier of the resource role in the origin system. For a SharePoint Online site, the originId is the sequence number of the role in the site.
     origin_id: Optional[str] = None
-    # The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
+    # The type of the resource in the origin system, such as SharePointOnline, AadApplication, AzureResources or AadGroup.
     origin_system: Optional[str] = None
+    # The role type for the Azure resource role. The possible values are: active, eligible, application, delegated, unknownFutureValue. The values active and eligible are only supported where originSystem is AzureResources while application and delegated aren't currently implemented.
+    type: Optional[RoleType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AccessPackageResourceRole:
@@ -43,9 +46,11 @@ class AccessPackageResourceRole(Entity, Parsable):
         """
         from .access_package_resource import AccessPackageResource
         from .entity import Entity
+        from .role_type import RoleType
 
         from .access_package_resource import AccessPackageResource
         from .entity import Entity
+        from .role_type import RoleType
 
         fields: dict[str, Callable[[Any], None]] = {
             "accessPackageResource": lambda n : setattr(self, 'access_package_resource', n.get_object_value(AccessPackageResource)),
@@ -53,6 +58,7 @@ class AccessPackageResourceRole(Entity, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "originId": lambda n : setattr(self, 'origin_id', n.get_str_value()),
             "originSystem": lambda n : setattr(self, 'origin_system', n.get_str_value()),
+            "type": lambda n : setattr(self, 'type', n.get_enum_value(RoleType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -72,5 +78,6 @@ class AccessPackageResourceRole(Entity, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("originId", self.origin_id)
         writer.write_str_value("originSystem", self.origin_system)
+        writer.write_enum_value("type", self.type)
     
 

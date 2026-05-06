@@ -15,9 +15,9 @@ class CloudPcOnPremisesConnectionSubnetIpDetail(AdditionalDataHolder, BackedMode
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The subnetAvailableIpCount property
+    # The number of available private IP addresses within the subnet.
     subnet_available_ip_count: Optional[int] = None
-    # The subnetAvailableIpCountLastSyncDateTime property
+    # Indicates the date and time at which the subnet available IP count was synced with Azure. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     subnet_available_ip_count_last_sync_date_time: Optional[datetime.datetime] = None
     
     @staticmethod

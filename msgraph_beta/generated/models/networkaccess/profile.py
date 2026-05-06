@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .base_entity import BaseEntity
     from .filtering_profile import FilteringProfile
     from .forwarding_profile import ForwardingProfile
+    from .forwarding_profile_base import ForwardingProfileBase
     from .policy_link import PolicyLink
     from .status import Status
 
@@ -51,6 +52,10 @@ class Profile(BaseEntity, Parsable):
             from .forwarding_profile import ForwardingProfile
 
             return ForwardingProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfileBase".casefold():
+            from .forwarding_profile_base import ForwardingProfileBase
+
+            return ForwardingProfileBase()
         return Profile()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -61,12 +66,14 @@ class Profile(BaseEntity, Parsable):
         from .base_entity import BaseEntity
         from .filtering_profile import FilteringProfile
         from .forwarding_profile import ForwardingProfile
+        from .forwarding_profile_base import ForwardingProfileBase
         from .policy_link import PolicyLink
         from .status import Status
 
         from .base_entity import BaseEntity
         from .filtering_profile import FilteringProfile
         from .forwarding_profile import ForwardingProfile
+        from .forwarding_profile_base import ForwardingProfileBase
         from .policy_link import PolicyLink
         from .status import Status
 

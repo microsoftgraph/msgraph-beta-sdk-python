@@ -32,10 +32,11 @@ class MicrosoftGraphIdentityGovernanceCancelProcessingRequestBuilder(BaseRequest
     
     async def post(self,body: CancelProcessingPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action cancelProcessing
+        Cancel one or more workflow runs that are currently in queued or inProgress status. Currently limited to canceling one run per request.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/identitygovernance-workflow-cancelprocessing?view=graph-rest-beta
         """
         warn(" as of 2025-11/PrivatePreview:cancelWorkflows on 2025-10-28 and will be removed 2026-10-28", DeprecationWarning)
         if body is None:
@@ -54,7 +55,7 @@ class MicrosoftGraphIdentityGovernanceCancelProcessingRequestBuilder(BaseRequest
     
     def to_post_request_information(self,body: CancelProcessingPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action cancelProcessing
+        Cancel one or more workflow runs that are currently in queued or inProgress status. Currently limited to canceling one run per request.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

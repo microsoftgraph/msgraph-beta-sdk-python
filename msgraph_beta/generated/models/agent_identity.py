@@ -6,7 +6,9 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .app_role_assignment import AppRoleAssignment
     from .directory_object import DirectoryObject
+    from .o_auth2_permission_grant import OAuth2PermissionGrant
     from .service_principal import ServicePrincipal
 
 from .service_principal import ServicePrincipal
@@ -19,6 +21,10 @@ class AgentIdentity(ServicePrincipal, Parsable):
     agent_identity_blueprint_id: Optional[str] = None
     # The date and time the agent identity was created. Read-only. Inherited from servicePrincipal.
     created_date_time: Optional[datetime.datetime] = None
+    # Application role assignments that this agent identity inherits from its parent Agent Identity Blueprint service principal. Read-only. Nullable.
+    inherited_app_role_assignments: Optional[list[AppRoleAssignment]] = None
+    # Delegated permission grants that this agent identity inherits from its parent Agent Identity Blueprint service principal. Read-only. Nullable.
+    inherited_oauth2_permission_grants: Optional[list[OAuth2PermissionGrant]] = None
     # The sponsors for this agent identity.
     sponsors: Optional[list[DirectoryObject]] = None
     
@@ -38,15 +44,21 @@ class AgentIdentity(ServicePrincipal, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .app_role_assignment import AppRoleAssignment
         from .directory_object import DirectoryObject
+        from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .service_principal import ServicePrincipal
 
+        from .app_role_assignment import AppRoleAssignment
         from .directory_object import DirectoryObject
+        from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .service_principal import ServicePrincipal
 
         fields: dict[str, Callable[[Any], None]] = {
             "agentIdentityBlueprintId": lambda n : setattr(self, 'agent_identity_blueprint_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "inheritedAppRoleAssignments": lambda n : setattr(self, 'inherited_app_role_assignments', n.get_collection_of_object_values(AppRoleAssignment)),
+            "inheritedOauth2PermissionGrants": lambda n : setattr(self, 'inherited_oauth2_permission_grants', n.get_collection_of_object_values(OAuth2PermissionGrant)),
             "sponsors": lambda n : setattr(self, 'sponsors', n.get_collection_of_object_values(DirectoryObject)),
         }
         super_fields = super().get_field_deserializers()
@@ -64,6 +76,8 @@ class AgentIdentity(ServicePrincipal, Parsable):
         super().serialize(writer)
         writer.write_str_value("agentIdentityBlueprintId", self.agent_identity_blueprint_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_collection_of_object_values("inheritedAppRoleAssignments", self.inherited_app_role_assignments)
+        writer.write_collection_of_object_values("inheritedOauth2PermissionGrants", self.inherited_oauth2_permission_grants)
         writer.write_collection_of_object_values("sponsors", self.sponsors)
     
 

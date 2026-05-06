@@ -32,7 +32,7 @@ class UpdateAdDomainPasswordRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: UpdateAdDomainPasswordPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Update the Active Directory domain password for a cloudPcOnPremisesConnection object. This API is supported when the type of the cloudPcOnPremisesConnection object is hybridAzureADJoin.
+        Update the Active Directory domain password for a successful cloudPcOnPremisesConnection. This API is supported when the type of the cloudPcOnPremisesConnection object is hybridAzureADJoin.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -54,7 +54,7 @@ class UpdateAdDomainPasswordRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: UpdateAdDomainPasswordPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the Active Directory domain password for a cloudPcOnPremisesConnection object. This API is supported when the type of the cloudPcOnPremisesConnection object is hybridAzureADJoin.
+        Update the Active Directory domain password for a successful cloudPcOnPremisesConnection. This API is supported when the type of the cloudPcOnPremisesConnection object is hybridAzureADJoin.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

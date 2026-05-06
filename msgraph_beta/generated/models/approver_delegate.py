@@ -7,7 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .request_schedule import RequestSchedule
-    from .subject_set import SubjectSet
+    from .user_set import UserSet
 
 @dataclass
 class ApproverDelegate(AdditionalDataHolder, BackedModel, Parsable):
@@ -17,7 +17,7 @@ class ApproverDelegate(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The delegate property
-    delegate: Optional[SubjectSet] = None
+    delegate: Optional[UserSet] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The schedule property
@@ -40,13 +40,13 @@ class ApproverDelegate(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .request_schedule import RequestSchedule
-        from .subject_set import SubjectSet
+        from .user_set import UserSet
 
         from .request_schedule import RequestSchedule
-        from .subject_set import SubjectSet
+        from .user_set import UserSet
 
         fields: dict[str, Callable[[Any], None]] = {
-            "delegate": lambda n : setattr(self, 'delegate', n.get_object_value(SubjectSet)),
+            "delegate": lambda n : setattr(self, 'delegate', n.get_object_value(UserSet)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(RequestSchedule)),
         }

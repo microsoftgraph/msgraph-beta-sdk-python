@@ -18,6 +18,8 @@ class VirtualEventTownhall(VirtualEvent, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.virtualEventTownhall"
     # The audience to whom the town hall is visible. The possible values are: everyone, organization, unknownFutureValue.
     audience: Optional[MeetingAudience] = None
+    # The capacity property
+    capacity: Optional[int] = None
     # Identity information of the coorganizers of the town hall.
     co_organizers: Optional[list[CommunicationsUserIdentity]] = None
     # The attendees invited to the town hall. The supported identities are: communicationsUserIdentity and communicationsGuestIdentity.
@@ -53,6 +55,7 @@ class VirtualEventTownhall(VirtualEvent, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "audience": lambda n : setattr(self, 'audience', n.get_enum_value(MeetingAudience)),
+            "capacity": lambda n : setattr(self, 'capacity', n.get_int_value()),
             "coOrganizers": lambda n : setattr(self, 'co_organizers', n.get_collection_of_object_values(CommunicationsUserIdentity)),
             "invitedAttendees": lambda n : setattr(self, 'invited_attendees', n.get_collection_of_object_values(Identity)),
             "isInviteOnly": lambda n : setattr(self, 'is_invite_only', n.get_bool_value()),
@@ -71,6 +74,7 @@ class VirtualEventTownhall(VirtualEvent, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("audience", self.audience)
+        writer.write_int_value("capacity", self.capacity)
         writer.write_collection_of_object_values("coOrganizers", self.co_organizers)
         writer.write_collection_of_object_values("invitedAttendees", self.invited_attendees)
         writer.write_bool_value("isInviteOnly", self.is_invite_only)

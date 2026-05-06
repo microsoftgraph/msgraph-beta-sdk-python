@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .........models.custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
     from .........models.o_data_errors.o_data_error import ODataError
+    from .files.files_request_builder import FilesRequestBuilder
     from .upload_file.upload_file_request_builder import UploadFileRequestBuilder
 
 class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuilder):
@@ -138,6 +139,15 @@ class CustomDataProvidedResourceUploadSessionItemRequestBuilder(BaseRequestBuild
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CustomDataProvidedResourceUploadSessionItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def files(self) -> FilesRequestBuilder:
+        """
+        Provides operations to manage the files property of the microsoft.graph.customDataProvidedResourceUploadSession entity.
+        """
+        from .files.files_request_builder import FilesRequestBuilder
+
+        return FilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def upload_file(self) -> UploadFileRequestBuilder:

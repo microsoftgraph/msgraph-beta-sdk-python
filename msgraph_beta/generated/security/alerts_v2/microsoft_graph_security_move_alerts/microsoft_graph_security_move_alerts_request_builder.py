@@ -33,7 +33,7 @@ class MicrosoftGraphSecurityMoveAlertsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: MoveAlertsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MergeResponse]:
         """
-        Move one or more alert resources to an existing incident.
+        Move one or more alert resources to a new or existing incident.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MergeResponse]
@@ -57,7 +57,7 @@ class MicrosoftGraphSecurityMoveAlertsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: MoveAlertsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Move one or more alert resources to an existing incident.
+        Move one or more alert resources to a new or existing incident.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

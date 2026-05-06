@@ -352,6 +352,8 @@ if TYPE_CHECKING:
     from .cloud_licensing.assignment_error import AssignmentError
     from .cloud_licensing.usage_right import UsageRight
     from .cloud_licensing.waiting_member import WaitingMember
+    from .cloud_pc_agent_pool import CloudPcAgentPool
+    from .cloud_pc_agent_pool_user_assignment import CloudPcAgentPoolUserAssignment
     from .cloud_pc_audit_event import CloudPcAuditEvent
     from .cloud_pc_bulk_action import CloudPcBulkAction
     from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
@@ -380,6 +382,8 @@ if TYPE_CHECKING:
     from .cloud_pc_managed_license import CloudPcManagedLicense
     from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
     from .cloud_pc_organization_settings import CloudPcOrganizationSettings
+    from .cloud_pc_pool import CloudPcPool
+    from .cloud_pc_pool_assignment import CloudPcPoolAssignment
     from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
     from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
     from .cloud_pc_report import CloudPcReport
@@ -447,8 +451,19 @@ if TYPE_CHECKING:
     from .credential_user_registration_details import CredentialUserRegistrationDetails
     from .cross_tenant_access_policy import CrossTenantAccessPolicy
     from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
+    from .cross_tenant_calendar_availability_basic import CrossTenantCalendarAvailabilityBasic
+    from .cross_tenant_calendar_availability_limited_details import CrossTenantCalendarAvailabilityLimitedDetails
+    from .cross_tenant_calendar_sharing_free_busy_detail import CrossTenantCalendarSharingFreeBusyDetail
+    from .cross_tenant_calendar_sharing_free_busy_reviewer import CrossTenantCalendarSharingFreeBusyReviewer
+    from .cross_tenant_calendar_sharing_free_busy_simple import CrossTenantCalendarSharingFreeBusySimple
+    from .cross_tenant_mail_tips_all import CrossTenantMailTipsAll
+    from .cross_tenant_mail_tips_limited import CrossTenantMailTipsLimited
+    from .cross_tenant_migration import CrossTenantMigration
     from .cross_tenant_migration_job import CrossTenantMigrationJob
     from .cross_tenant_migration_task import CrossTenantMigrationTask
+    from .cross_tenant_open_profile_card import CrossTenantOpenProfileCard
+    from .cross_tenant_places_desk_booking import CrossTenantPlacesDeskBooking
+    from .cross_tenant_places_room_booking import CrossTenantPlacesRoomBooking
     from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
     from .custom_app_scope import CustomAppScope
     from .custom_authentication_extension import CustomAuthenticationExtension
@@ -1040,6 +1055,7 @@ if TYPE_CHECKING:
     from .long_running_operation import LongRunningOperation
     from .lookup_result_row import LookupResultRow
     from .m365_apps_installation_options import M365AppsInstallationOptions
+    from .m365_capability_base import M365CapabilityBase
     from .mac_os_vpp_app import MacOsVppApp
     from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
     from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
@@ -1251,6 +1267,7 @@ if TYPE_CHECKING:
     from .networkaccess.forwarding_policy import ForwardingPolicy
     from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
     from .networkaccess.forwarding_profile import ForwardingProfile
+    from .networkaccess.forwarding_profile_base import ForwardingProfileBase
     from .networkaccess.forwarding_rule import ForwardingRule
     from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
     from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
@@ -1333,6 +1350,8 @@ if TYPE_CHECKING:
     from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
     from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
     from .on_user_create_start_listener import OnUserCreateStartListener
+    from .on_verified_id_claim_validation_custom_extension import OnVerifiedIdClaimValidationCustomExtension
+    from .on_verified_id_claim_validation_listener import OnVerifiedIdClaimValidationListener
     from .open_aws_security_group_finding import OpenAwsSecurityGroupFinding
     from .open_id_connect_identity_provider import OpenIdConnectIdentityProvider
     from .open_id_connect_provider import OpenIdConnectProvider
@@ -3751,6 +3770,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_p_c import CloudPC
 
             return CloudPC()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcAgentPool".casefold():
+            from .cloud_pc_agent_pool import CloudPcAgentPool
+
+            return CloudPcAgentPool()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcAgentPoolUserAssignment".casefold():
+            from .cloud_pc_agent_pool_user_assignment import CloudPcAgentPoolUserAssignment
+
+            return CloudPcAgentPoolUserAssignment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcAuditEvent".casefold():
             from .cloud_pc_audit_event import CloudPcAuditEvent
 
@@ -3867,6 +3894,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_organization_settings import CloudPcOrganizationSettings
 
             return CloudPcOrganizationSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcPool".casefold():
+            from .cloud_pc_pool import CloudPcPool
+
+            return CloudPcPool()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcPoolAssignment".casefold():
+            from .cloud_pc_pool_assignment import CloudPcPoolAssignment
+
+            return CloudPcPoolAssignment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcProvisioningPolicy".casefold():
             from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
 
@@ -4128,6 +4163,38 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
 
             return CrossTenantAccessPolicyConfigurationDefault()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantCalendarAvailabilityBasic".casefold():
+            from .cross_tenant_calendar_availability_basic import CrossTenantCalendarAvailabilityBasic
+
+            return CrossTenantCalendarAvailabilityBasic()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantCalendarAvailabilityLimitedDetails".casefold():
+            from .cross_tenant_calendar_availability_limited_details import CrossTenantCalendarAvailabilityLimitedDetails
+
+            return CrossTenantCalendarAvailabilityLimitedDetails()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantCalendarSharingFreeBusyDetail".casefold():
+            from .cross_tenant_calendar_sharing_free_busy_detail import CrossTenantCalendarSharingFreeBusyDetail
+
+            return CrossTenantCalendarSharingFreeBusyDetail()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantCalendarSharingFreeBusyReviewer".casefold():
+            from .cross_tenant_calendar_sharing_free_busy_reviewer import CrossTenantCalendarSharingFreeBusyReviewer
+
+            return CrossTenantCalendarSharingFreeBusyReviewer()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantCalendarSharingFreeBusySimple".casefold():
+            from .cross_tenant_calendar_sharing_free_busy_simple import CrossTenantCalendarSharingFreeBusySimple
+
+            return CrossTenantCalendarSharingFreeBusySimple()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantMailTipsAll".casefold():
+            from .cross_tenant_mail_tips_all import CrossTenantMailTipsAll
+
+            return CrossTenantMailTipsAll()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantMailTipsLimited".casefold():
+            from .cross_tenant_mail_tips_limited import CrossTenantMailTipsLimited
+
+            return CrossTenantMailTipsLimited()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantMigration".casefold():
+            from .cross_tenant_migration import CrossTenantMigration
+
+            return CrossTenantMigration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantMigrationJob".casefold():
             from .cross_tenant_migration_job import CrossTenantMigrationJob
 
@@ -4136,6 +4203,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cross_tenant_migration_task import CrossTenantMigrationTask
 
             return CrossTenantMigrationTask()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantOpenProfileCard".casefold():
+            from .cross_tenant_open_profile_card import CrossTenantOpenProfileCard
+
+            return CrossTenantOpenProfileCard()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantPlacesDeskBooking".casefold():
+            from .cross_tenant_places_desk_booking import CrossTenantPlacesDeskBooking
+
+            return CrossTenantPlacesDeskBooking()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.crossTenantPlacesRoomBooking".casefold():
+            from .cross_tenant_places_room_booking import CrossTenantPlacesRoomBooking
+
+            return CrossTenantPlacesRoomBooking()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.customAccessPackageWorkflowExtension".casefold():
             from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
 
@@ -6524,6 +6603,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .m365_apps_installation_options import M365AppsInstallationOptions
 
             return M365AppsInstallationOptions()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.m365CapabilityBase".casefold():
+            from .m365_capability_base import M365CapabilityBase
+
+            return M365CapabilityBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSCertificateProfileBase".casefold():
             from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
 
@@ -7375,6 +7458,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .networkaccess.forwarding_profile import ForwardingProfile
 
             return ForwardingProfile()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfileBase".casefold():
+            from .networkaccess.forwarding_profile_base import ForwardingProfileBase
+
+            return ForwardingProfileBase()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingRule".casefold():
             from .networkaccess.forwarding_rule import ForwardingRule
 
@@ -7709,6 +7796,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .on_user_create_start_listener import OnUserCreateStartListener
 
             return OnUserCreateStartListener()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onVerifiedIdClaimValidationCustomExtension".casefold():
+            from .on_verified_id_claim_validation_custom_extension import OnVerifiedIdClaimValidationCustomExtension
+
+            return OnVerifiedIdClaimValidationCustomExtension()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onVerifiedIdClaimValidationListener".casefold():
+            from .on_verified_id_claim_validation_listener import OnVerifiedIdClaimValidationListener
+
+            return OnVerifiedIdClaimValidationListener()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.openAwsSecurityGroupFinding".casefold():
             from .open_aws_security_group_finding import OpenAwsSecurityGroupFinding
 
@@ -12075,6 +12170,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_licensing.assignment_error import AssignmentError
         from .cloud_licensing.usage_right import UsageRight
         from .cloud_licensing.waiting_member import WaitingMember
+        from .cloud_pc_agent_pool import CloudPcAgentPool
+        from .cloud_pc_agent_pool_user_assignment import CloudPcAgentPoolUserAssignment
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
@@ -12103,6 +12200,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_managed_license import CloudPcManagedLicense
         from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
+        from .cloud_pc_pool import CloudPcPool
+        from .cloud_pc_pool_assignment import CloudPcPoolAssignment
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
         from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
         from .cloud_pc_report import CloudPcReport
@@ -12170,8 +12269,19 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
+        from .cross_tenant_calendar_availability_basic import CrossTenantCalendarAvailabilityBasic
+        from .cross_tenant_calendar_availability_limited_details import CrossTenantCalendarAvailabilityLimitedDetails
+        from .cross_tenant_calendar_sharing_free_busy_detail import CrossTenantCalendarSharingFreeBusyDetail
+        from .cross_tenant_calendar_sharing_free_busy_reviewer import CrossTenantCalendarSharingFreeBusyReviewer
+        from .cross_tenant_calendar_sharing_free_busy_simple import CrossTenantCalendarSharingFreeBusySimple
+        from .cross_tenant_mail_tips_all import CrossTenantMailTipsAll
+        from .cross_tenant_mail_tips_limited import CrossTenantMailTipsLimited
+        from .cross_tenant_migration import CrossTenantMigration
         from .cross_tenant_migration_job import CrossTenantMigrationJob
         from .cross_tenant_migration_task import CrossTenantMigrationTask
+        from .cross_tenant_open_profile_card import CrossTenantOpenProfileCard
+        from .cross_tenant_places_desk_booking import CrossTenantPlacesDeskBooking
+        from .cross_tenant_places_room_booking import CrossTenantPlacesRoomBooking
         from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
         from .custom_app_scope import CustomAppScope
         from .custom_authentication_extension import CustomAuthenticationExtension
@@ -12763,6 +12873,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .long_running_operation import LongRunningOperation
         from .lookup_result_row import LookupResultRow
         from .m365_apps_installation_options import M365AppsInstallationOptions
+        from .m365_capability_base import M365CapabilityBase
         from .mac_os_vpp_app import MacOsVppApp
         from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
@@ -12974,6 +13085,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.forwarding_policy import ForwardingPolicy
         from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
         from .networkaccess.forwarding_profile import ForwardingProfile
+        from .networkaccess.forwarding_profile_base import ForwardingProfileBase
         from .networkaccess.forwarding_rule import ForwardingRule
         from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
         from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
@@ -13056,6 +13168,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
+        from .on_verified_id_claim_validation_custom_extension import OnVerifiedIdClaimValidationCustomExtension
+        from .on_verified_id_claim_validation_listener import OnVerifiedIdClaimValidationListener
         from .open_aws_security_group_finding import OpenAwsSecurityGroupFinding
         from .open_id_connect_identity_provider import OpenIdConnectIdentityProvider
         from .open_id_connect_provider import OpenIdConnectProvider
@@ -14399,6 +14513,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_licensing.assignment_error import AssignmentError
         from .cloud_licensing.usage_right import UsageRight
         from .cloud_licensing.waiting_member import WaitingMember
+        from .cloud_pc_agent_pool import CloudPcAgentPool
+        from .cloud_pc_agent_pool_user_assignment import CloudPcAgentPoolUserAssignment
         from .cloud_pc_audit_event import CloudPcAuditEvent
         from .cloud_pc_bulk_action import CloudPcBulkAction
         from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
@@ -14427,6 +14543,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_managed_license import CloudPcManagedLicense
         from .cloud_pc_on_premises_connection import CloudPcOnPremisesConnection
         from .cloud_pc_organization_settings import CloudPcOrganizationSettings
+        from .cloud_pc_pool import CloudPcPool
+        from .cloud_pc_pool_assignment import CloudPcPoolAssignment
         from .cloud_pc_provisioning_policy import CloudPcProvisioningPolicy
         from .cloud_pc_provisioning_policy_assignment import CloudPcProvisioningPolicyAssignment
         from .cloud_pc_report import CloudPcReport
@@ -14494,8 +14612,19 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
+        from .cross_tenant_calendar_availability_basic import CrossTenantCalendarAvailabilityBasic
+        from .cross_tenant_calendar_availability_limited_details import CrossTenantCalendarAvailabilityLimitedDetails
+        from .cross_tenant_calendar_sharing_free_busy_detail import CrossTenantCalendarSharingFreeBusyDetail
+        from .cross_tenant_calendar_sharing_free_busy_reviewer import CrossTenantCalendarSharingFreeBusyReviewer
+        from .cross_tenant_calendar_sharing_free_busy_simple import CrossTenantCalendarSharingFreeBusySimple
+        from .cross_tenant_mail_tips_all import CrossTenantMailTipsAll
+        from .cross_tenant_mail_tips_limited import CrossTenantMailTipsLimited
+        from .cross_tenant_migration import CrossTenantMigration
         from .cross_tenant_migration_job import CrossTenantMigrationJob
         from .cross_tenant_migration_task import CrossTenantMigrationTask
+        from .cross_tenant_open_profile_card import CrossTenantOpenProfileCard
+        from .cross_tenant_places_desk_booking import CrossTenantPlacesDeskBooking
+        from .cross_tenant_places_room_booking import CrossTenantPlacesRoomBooking
         from .custom_access_package_workflow_extension import CustomAccessPackageWorkflowExtension
         from .custom_app_scope import CustomAppScope
         from .custom_authentication_extension import CustomAuthenticationExtension
@@ -15087,6 +15216,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .long_running_operation import LongRunningOperation
         from .lookup_result_row import LookupResultRow
         from .m365_apps_installation_options import M365AppsInstallationOptions
+        from .m365_capability_base import M365CapabilityBase
         from .mac_os_vpp_app import MacOsVppApp
         from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
         from .mac_o_s_certificate_profile_base import MacOSCertificateProfileBase
@@ -15298,6 +15428,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .networkaccess.forwarding_policy import ForwardingPolicy
         from .networkaccess.forwarding_policy_link import ForwardingPolicyLink
         from .networkaccess.forwarding_profile import ForwardingProfile
+        from .networkaccess.forwarding_profile_base import ForwardingProfileBase
         from .networkaccess.forwarding_rule import ForwardingRule
         from .networkaccess.fqdn_filtering_rule import FqdnFilteringRule
         from .networkaccess.internet_access_forwarding_rule import InternetAccessForwardingRule
@@ -15380,6 +15511,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .on_token_issuance_start_custom_extension import OnTokenIssuanceStartCustomExtension
         from .on_token_issuance_start_listener import OnTokenIssuanceStartListener
         from .on_user_create_start_listener import OnUserCreateStartListener
+        from .on_verified_id_claim_validation_custom_extension import OnVerifiedIdClaimValidationCustomExtension
+        from .on_verified_id_claim_validation_listener import OnVerifiedIdClaimValidationListener
         from .open_aws_security_group_finding import OpenAwsSecurityGroupFinding
         from .open_id_connect_identity_provider import OpenIdConnectIdentityProvider
         from .open_id_connect_provider import OpenIdConnectProvider

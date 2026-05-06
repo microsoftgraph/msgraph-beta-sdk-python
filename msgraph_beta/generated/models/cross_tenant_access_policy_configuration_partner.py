@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .cross_tenant_access_policy_tenant_restrictions import CrossTenantAccessPolicyTenantRestrictions
     from .cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
     from .inbound_outbound_policy_configuration import InboundOutboundPolicyConfiguration
+    from .m365_capability_base import M365CapabilityBase
     from .policy_deletable_item import PolicyDeletableItem
 
 from .policy_deletable_item import PolicyDeletableItem
@@ -33,7 +34,7 @@ class CrossTenantAccessPolicyConfigurationPartner(PolicyDeletableItem, Parsable)
     b2b_direct_connect_inbound: Optional[CrossTenantAccessPolicyB2BSetting] = None
     # Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Microsoft Entra B2B direct connect.
     b2b_direct_connect_outbound: Optional[CrossTenantAccessPolicyB2BSetting] = None
-    # The blockServiceProviderOutboundAccess property
+    # Specifies whether users can use granular delegated admin privileges (GDAP) to sign-in and access resources in other organizations. Default value is false.
     block_service_provider_outbound_access: Optional[bool] = None
     # Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multitenant organization by automating the creation, update, and deletion of users from one tenant to another.
     identity_synchronization: Optional[CrossTenantIdentitySyncPolicyPartner] = None
@@ -43,6 +44,8 @@ class CrossTenantAccessPolicyConfigurationPartner(PolicyDeletableItem, Parsable)
     is_in_multi_tenant_organization: Optional[bool] = None
     # Identifies whether the partner-specific configuration is a Cloud Service Provider for your organization.
     is_service_provider: Optional[bool] = None
+    # Defines the partner-specific Microsoft 365 cross-tenant capabilities for inbound access from the partner organization.
+    m365_capabilities: Optional[list[M365CapabilityBase]] = None
     # Defines your partner-specific configuration for inbound Microsoft 365 collaboration settings that determine which users from the partner organization can collaborate with your organization using Microsoft 365 apps.
     m365_collaboration_inbound: Optional[CrossTenantAccessPolicyM365CollaborationInboundSetting] = None
     # Defines your partner-specific configuration for outbound Microsoft 365 collaboration settings that determine which users in your organization can collaborate with the partner organization using Microsoft 365 apps.
@@ -76,6 +79,7 @@ class CrossTenantAccessPolicyConfigurationPartner(PolicyDeletableItem, Parsable)
         from .cross_tenant_access_policy_tenant_restrictions import CrossTenantAccessPolicyTenantRestrictions
         from .cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
         from .inbound_outbound_policy_configuration import InboundOutboundPolicyConfiguration
+        from .m365_capability_base import M365CapabilityBase
         from .policy_deletable_item import PolicyDeletableItem
 
         from .cross_tenant_access_policy_app_service_connect_setting import CrossTenantAccessPolicyAppServiceConnectSetting
@@ -86,6 +90,7 @@ class CrossTenantAccessPolicyConfigurationPartner(PolicyDeletableItem, Parsable)
         from .cross_tenant_access_policy_tenant_restrictions import CrossTenantAccessPolicyTenantRestrictions
         from .cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
         from .inbound_outbound_policy_configuration import InboundOutboundPolicyConfiguration
+        from .m365_capability_base import M365CapabilityBase
         from .policy_deletable_item import PolicyDeletableItem
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -100,6 +105,7 @@ class CrossTenantAccessPolicyConfigurationPartner(PolicyDeletableItem, Parsable)
             "inboundTrust": lambda n : setattr(self, 'inbound_trust', n.get_object_value(CrossTenantAccessPolicyInboundTrust)),
             "isInMultiTenantOrganization": lambda n : setattr(self, 'is_in_multi_tenant_organization', n.get_bool_value()),
             "isServiceProvider": lambda n : setattr(self, 'is_service_provider', n.get_bool_value()),
+            "m365Capabilities": lambda n : setattr(self, 'm365_capabilities', n.get_collection_of_object_values(M365CapabilityBase)),
             "m365CollaborationInbound": lambda n : setattr(self, 'm365_collaboration_inbound', n.get_object_value(CrossTenantAccessPolicyM365CollaborationInboundSetting)),
             "m365CollaborationOutbound": lambda n : setattr(self, 'm365_collaboration_outbound', n.get_object_value(CrossTenantAccessPolicyM365CollaborationOutboundSetting)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
@@ -129,6 +135,7 @@ class CrossTenantAccessPolicyConfigurationPartner(PolicyDeletableItem, Parsable)
         writer.write_object_value("inboundTrust", self.inbound_trust)
         writer.write_bool_value("isInMultiTenantOrganization", self.is_in_multi_tenant_organization)
         writer.write_bool_value("isServiceProvider", self.is_service_provider)
+        writer.write_collection_of_object_values("m365Capabilities", self.m365_capabilities)
         writer.write_object_value("m365CollaborationInbound", self.m365_collaboration_inbound)
         writer.write_object_value("m365CollaborationOutbound", self.m365_collaboration_outbound)
         writer.write_str_value("tenantId", self.tenant_id)

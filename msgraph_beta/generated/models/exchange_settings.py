@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class ExchangeSettings(Entity, Parsable):
-    # The inPlaceArchiveMailboxId property
+    # The unique identifier for the user's In-Place Archive mailbox.
     in_place_archive_mailbox_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

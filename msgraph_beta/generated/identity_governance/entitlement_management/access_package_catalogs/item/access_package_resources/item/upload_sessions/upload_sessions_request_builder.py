@@ -50,7 +50,7 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UploadSessionsRequestBuilderGetQueryParameters]] = None) -> Optional[CustomDataProvidedResourceUploadSessionCollectionResponse]:
         """
-        Read the properties and relationships of a customDataProvidedResourceUploadSession object.
+        Get uploadSessions from identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomDataProvidedResourceUploadSessionCollectionResponse]
         """
@@ -71,11 +71,10 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CustomDataProvidedResourceUploadSession, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CustomDataProvidedResourceUploadSession]:
         """
-        Create a new customDataProvidedResourceUploadSession object.
+        Create new navigation property to uploadSessions for identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomDataProvidedResourceUploadSession]
-        Find more info here: https://learn.microsoft.com/graph/api/customdataprovidedresource-post-uploadsessions?view=graph-rest-beta
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         if body is None:
@@ -96,7 +95,7 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UploadSessionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a customDataProvidedResourceUploadSession object.
+        Get uploadSessions from identityGovernance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +107,7 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CustomDataProvidedResourceUploadSession, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new customDataProvidedResourceUploadSession object.
+        Create new navigation property to uploadSessions for identityGovernance
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -145,7 +144,7 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UploadSessionsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a customDataProvidedResourceUploadSession object.
+        Get uploadSessions from identityGovernance
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

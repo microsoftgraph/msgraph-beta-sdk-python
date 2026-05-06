@@ -50,9 +50,10 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UploadSessionsRequestBuilderGetQueryParameters]] = None) -> Optional[CustomDataProvidedResourceUploadSessionCollectionResponse]:
         """
-        Get uploadSessions from identityGovernance
+        Get a list of the customDataProvidedResourceUploadSession objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomDataProvidedResourceUploadSessionCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/accesspackageresource-list-uploadsessions?view=graph-rest-beta
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         request_info = self.to_get_request_information(
@@ -71,10 +72,11 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CustomDataProvidedResourceUploadSession, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CustomDataProvidedResourceUploadSession]:
         """
-        Create new navigation property to uploadSessions for identityGovernance
+        Create a customDataProvidedResourceUploadSession object. Only one upload session is allowed per reference instance (for example, access review instance) and customDataProvidedResource pair. Once you create an upload session, upload files, and complete the session, the data is processed and you cannot create another upload session for that same pair. If you encounter errors with files uploaded or need to start fresh, you can delete the active upload session to create a new one.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomDataProvidedResourceUploadSession]
+        Find more info here: https://learn.microsoft.com/graph/api/customdataprovidedresource-post-uploadsessions?view=graph-rest-beta
         """
         warn(" as of 2022-10/PrivatePreview:MicrosofEntitlementManagementCustomextensions on 2023-03-01 and will be removed 2023-12-31", DeprecationWarning)
         if body is None:
@@ -95,7 +97,7 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UploadSessionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get uploadSessions from identityGovernance
+        Get a list of the customDataProvidedResourceUploadSession objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +109,7 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CustomDataProvidedResourceUploadSession, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to uploadSessions for identityGovernance
+        Create a customDataProvidedResourceUploadSession object. Only one upload session is allowed per reference instance (for example, access review instance) and customDataProvidedResource pair. Once you create an upload session, upload files, and complete the session, the data is processed and you cannot create another upload session for that same pair. If you encounter errors with files uploaded or need to start fresh, you can delete the active upload session to create a new one.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -144,7 +146,7 @@ class UploadSessionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UploadSessionsRequestBuilderGetQueryParameters():
         """
-        Get uploadSessions from identityGovernance
+        Get a list of the customDataProvidedResourceUploadSession objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

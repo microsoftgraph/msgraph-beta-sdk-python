@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .audit_events.audit_events_request_builder import AuditEventsRequestBuilder
     from .bulk_actions.bulk_actions_request_builder import BulkActionsRequestBuilder
     from .cloud_apps.cloud_apps_request_builder import CloudAppsRequestBuilder
+    from .cloud_pc_pools.cloud_pc_pools_request_builder import CloudPcPoolsRequestBuilder
     from .cloud_p_cs.cloud_p_cs_request_builder import CloudPCsRequestBuilder
     from .cross_cloud_government_organization_mapping.cross_cloud_government_organization_mapping_request_builder import CrossCloudGovernmentOrganizationMappingRequestBuilder
     from .device_images.device_images_request_builder import DeviceImagesRequestBuilder
@@ -210,6 +211,15 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         from .cloud_p_cs.cloud_p_cs_request_builder import CloudPCsRequestBuilder
 
         return CloudPCsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def cloud_pc_pools(self) -> CloudPcPoolsRequestBuilder:
+        """
+        Provides operations to manage the cloudPcPools property of the microsoft.graph.virtualEndpoint entity.
+        """
+        from .cloud_pc_pools.cloud_pc_pools_request_builder import CloudPcPoolsRequestBuilder
+
+        return CloudPcPoolsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def cross_cloud_government_organization_mapping(self) -> CrossCloudGovernmentOrganizationMappingRequestBuilder:
