@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class SharePointContentTypeOperationAuditRecord(AuditData, Parsable):
+    """
+    Audit data for SharePoint Content Type Operation events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.sharePointContentTypeOperationAuditRecord"
     

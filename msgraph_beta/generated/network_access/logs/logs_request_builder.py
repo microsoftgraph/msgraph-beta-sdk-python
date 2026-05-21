@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.networkaccess.logs import Logs
     from ...models.o_data_errors.o_data_error import ODataError
     from .connections.connections_request_builder import ConnectionsRequestBuilder
+    from .generative_a_i_insights.generative_a_i_insights_request_builder import GenerativeAIInsightsRequestBuilder
     from .remote_networks.remote_networks_request_builder import RemoteNetworksRequestBuilder
     from .traffic.traffic_request_builder import TrafficRequestBuilder
 
@@ -149,6 +150,15 @@ class LogsRequestBuilder(BaseRequestBuilder):
         from .connections.connections_request_builder import ConnectionsRequestBuilder
 
         return ConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def generative_a_i_insights(self) -> GenerativeAIInsightsRequestBuilder:
+        """
+        Provides operations to manage the generativeAIInsights property of the microsoft.graph.networkaccess.logs entity.
+        """
+        from .generative_a_i_insights.generative_a_i_insights_request_builder import GenerativeAIInsightsRequestBuilder
+
+        return GenerativeAIInsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def remote_networks(self) -> RemoteNetworksRequestBuilder:

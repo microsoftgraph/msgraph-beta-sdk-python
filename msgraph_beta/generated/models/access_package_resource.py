@@ -35,7 +35,7 @@ class AccessPackageResource(Entity, Parsable):
     description: Optional[str] = None
     # The display name of the resource, such as the application name, group name, or site name.
     display_name: Optional[str] = None
-    # The externalOriginResourceConnector property
+    # The connector that integrates with external origin systems to provision access to resources from those systems. Read-only. Nullable.
     external_origin_resource_connector: Optional[ExternalOriginResourceConnector] = None
     # True if the resource is not yet available for assignment. Read-only.
     is_pending_onboarding: Optional[bool] = None
@@ -43,7 +43,7 @@ class AccessPackageResource(Entity, Parsable):
     odata_type: Optional[str] = None
     # The unique identifier of the resource in the origin system. In the case of a Microsoft Entra group, originId is the identifier of the group. Supports $filter (eq).
     origin_id: Optional[str] = None
-    # The type of the resource in the origin system, such as SharePointOnline, AadApplication, AadGroup or CustomDataProvidedResource. Supports $filter (eq).
+    # The type of the resource in the origin system, such as SharePointOnline, AadApplication, AadGroup or CustomDataProvidedResource. Supports $filter and $expand (eq).
     origin_system: Optional[str] = None
     # The type of the resource, such as Application if it is a Microsoft Entra connected application, or SharePoint Online Site for a SharePoint Online site.
     resource_type: Optional[str] = None

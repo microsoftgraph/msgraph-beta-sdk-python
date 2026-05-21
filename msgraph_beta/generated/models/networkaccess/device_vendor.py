@@ -18,4 +18,10 @@ class DeviceVendor(str, Enum):
     Other = "other",
     CiscoCatalyst = "ciscoCatalyst",
     UnknownFutureValue = "unknownFutureValue",
+    Aviatrix = "aviatrix",
+    Netskope = "netskope",
+    Teridion = "teridion",
+    AristaNetworks = "aristaNetworks",
+    AristaVeloCloud = "aristaVeloCloud",
+    JuniperNetworks = "juniperNetworks",
 

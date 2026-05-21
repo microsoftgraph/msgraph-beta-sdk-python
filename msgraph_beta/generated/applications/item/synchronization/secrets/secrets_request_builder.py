@@ -39,6 +39,7 @@ class SecretsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecretsPutResponse]
         """
+        warn("Use connectivityParameters for oauth flows and scim endpoint connectivity. Use SynchronizationJobSettings for job-specific settings This property will be removed. as of 2026-02/SynchronizationSecret_Deprecation on 2026-02-06 and will be removed 2027-07-06", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_put_request_information(
@@ -62,6 +63,7 @@ class SecretsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Use connectivityParameters for oauth flows and scim endpoint connectivity. Use SynchronizationJobSettings for job-specific settings This property will be removed. as of 2026-02/SynchronizationSecret_Deprecation on 2026-02-06 and will be removed 2027-07-06", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PUT, self.url_template, self.path_parameters)
@@ -76,6 +78,7 @@ class SecretsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: SecretsRequestBuilder
         """
+        warn("Use connectivityParameters for oauth flows and scim endpoint connectivity. Use SynchronizationJobSettings for job-specific settings This property will be removed. as of 2026-02/SynchronizationSecret_Deprecation on 2026-02-06 and will be removed 2027-07-06", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SecretsRequestBuilder(self.request_adapter, raw_url)

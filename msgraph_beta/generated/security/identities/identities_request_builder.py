@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .sensors.sensors_request_builder import SensorsRequestBuilder
     from .sensor_candidates.sensor_candidates_request_builder import SensorCandidatesRequestBuilder
     from .sensor_candidate_activation_configuration.sensor_candidate_activation_configuration_request_builder import SensorCandidateActivationConfigurationRequestBuilder
+    from .sensor_migration.sensor_migration_request_builder import SensorMigrationRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
 
 class IdentitiesRequestBuilder(BaseRequestBuilder):
@@ -179,6 +180,15 @@ class IdentitiesRequestBuilder(BaseRequestBuilder):
         from .sensor_candidates.sensor_candidates_request_builder import SensorCandidatesRequestBuilder
 
         return SensorCandidatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sensor_migration(self) -> SensorMigrationRequestBuilder:
+        """
+        Provides operations to manage the sensorMigration property of the microsoft.graph.security.identityContainer entity.
+        """
+        from .sensor_migration.sensor_migration_request_builder import SensorMigrationRequestBuilder
+
+        return SensorMigrationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sensors(self) -> SensorsRequestBuilder:

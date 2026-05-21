@@ -16,18 +16,24 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.cloud_certification_authority import CloudCertificationAuthority
     from ....models.o_data_errors.o_data_error import ODataError
+    from .activate.activate_request_builder import ActivateRequestBuilder
+    from .active_version.active_version_request_builder import ActiveVersionRequestBuilder
     from .change_cloud_certification_authority_status.change_cloud_certification_authority_status_request_builder import ChangeCloudCertificationAuthorityStatusRequestBuilder
     from .cloud_certification_authority_leaf_certificate.cloud_certification_authority_leaf_certificate_request_builder import CloudCertificationAuthorityLeafCertificateRequestBuilder
     from .get_all_cloud_certification_authority.get_all_cloud_certification_authority_request_builder import GetAllCloudCertificationAuthorityRequestBuilder
     from .get_all_cloud_certification_authority_leaf_certificates.get_all_cloud_certification_authority_leaf_certificates_request_builder import GetAllCloudCertificationAuthorityLeafCertificatesRequestBuilder
     from .get_cloud_certification_authority.get_cloud_certification_authority_request_builder import GetCloudCertificationAuthorityRequestBuilder
+    from .get_cloud_certification_authority_version.get_cloud_certification_authority_version_request_builder import GetCloudCertificationAuthorityVersionRequestBuilder
+    from .get_cloud_certification_authority_versions.get_cloud_certification_authority_versions_request_builder import GetCloudCertificationAuthorityVersionsRequestBuilder
     from .patch_cloud_certification_authority.patch_cloud_certification_authority_request_builder import PatchCloudCertificationAuthorityRequestBuilder
     from .post_cloud_certification_authority.post_cloud_certification_authority_request_builder import PostCloudCertificationAuthorityRequestBuilder
+    from .renew.renew_request_builder import RenewRequestBuilder
     from .revoke_cloud_certification_authority_certificate.revoke_cloud_certification_authority_certificate_request_builder import RevokeCloudCertificationAuthorityCertificateRequestBuilder
     from .revoke_leaf_certificate.revoke_leaf_certificate_request_builder import RevokeLeafCertificateRequestBuilder
     from .revoke_leaf_certificate_by_serial_number.revoke_leaf_certificate_by_serial_number_request_builder import RevokeLeafCertificateBySerialNumberRequestBuilder
     from .search_cloud_certification_authority_leaf_certificate_by_serial_number.search_cloud_certification_authority_leaf_certificate_by_serial_number_request_builder import SearchCloudCertificationAuthorityLeafCertificateBySerialNumberRequestBuilder
     from .upload_externally_signed_certification_authority_certificate.upload_externally_signed_certification_authority_certificate_request_builder import UploadExternallySignedCertificationAuthorityCertificateRequestBuilder
+    from .versions.versions_request_builder import VersionsRequestBuilder
 
 class CloudCertificationAuthorityItemRequestBuilder(BaseRequestBuilder):
     """
@@ -151,6 +157,24 @@ class CloudCertificationAuthorityItemRequestBuilder(BaseRequestBuilder):
         return CloudCertificationAuthorityItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def activate(self) -> ActivateRequestBuilder:
+        """
+        Provides operations to call the activate method.
+        """
+        from .activate.activate_request_builder import ActivateRequestBuilder
+
+        return ActivateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def active_version(self) -> ActiveVersionRequestBuilder:
+        """
+        Provides operations to manage the activeVersion property of the microsoft.graph.cloudCertificationAuthority entity.
+        """
+        from .active_version.active_version_request_builder import ActiveVersionRequestBuilder
+
+        return ActiveVersionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def change_cloud_certification_authority_status(self) -> ChangeCloudCertificationAuthorityStatusRequestBuilder:
         """
         Provides operations to call the changeCloudCertificationAuthorityStatus method.
@@ -196,6 +220,24 @@ class CloudCertificationAuthorityItemRequestBuilder(BaseRequestBuilder):
         return GetCloudCertificationAuthorityRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def get_cloud_certification_authority_version(self) -> GetCloudCertificationAuthorityVersionRequestBuilder:
+        """
+        Provides operations to call the getCloudCertificationAuthorityVersion method.
+        """
+        from .get_cloud_certification_authority_version.get_cloud_certification_authority_version_request_builder import GetCloudCertificationAuthorityVersionRequestBuilder
+
+        return GetCloudCertificationAuthorityVersionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_cloud_certification_authority_versions(self) -> GetCloudCertificationAuthorityVersionsRequestBuilder:
+        """
+        Provides operations to call the getCloudCertificationAuthorityVersions method.
+        """
+        from .get_cloud_certification_authority_versions.get_cloud_certification_authority_versions_request_builder import GetCloudCertificationAuthorityVersionsRequestBuilder
+
+        return GetCloudCertificationAuthorityVersionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def patch_cloud_certification_authority(self) -> PatchCloudCertificationAuthorityRequestBuilder:
         """
         Provides operations to call the patchCloudCertificationAuthority method.
@@ -212,6 +254,15 @@ class CloudCertificationAuthorityItemRequestBuilder(BaseRequestBuilder):
         from .post_cloud_certification_authority.post_cloud_certification_authority_request_builder import PostCloudCertificationAuthorityRequestBuilder
 
         return PostCloudCertificationAuthorityRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def renew(self) -> RenewRequestBuilder:
+        """
+        Provides operations to call the renew method.
+        """
+        from .renew.renew_request_builder import RenewRequestBuilder
+
+        return RenewRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def revoke_cloud_certification_authority_certificate(self) -> RevokeCloudCertificationAuthorityCertificateRequestBuilder:
@@ -257,6 +308,15 @@ class CloudCertificationAuthorityItemRequestBuilder(BaseRequestBuilder):
         from .upload_externally_signed_certification_authority_certificate.upload_externally_signed_certification_authority_certificate_request_builder import UploadExternallySignedCertificationAuthorityCertificateRequestBuilder
 
         return UploadExternallySignedCertificationAuthorityCertificateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def versions(self) -> VersionsRequestBuilder:
+        """
+        Provides operations to manage the versions property of the microsoft.graph.cloudCertificationAuthority entity.
+        """
+        from .versions.versions_request_builder import VersionsRequestBuilder
+
+        return VersionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CloudCertificationAuthorityItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

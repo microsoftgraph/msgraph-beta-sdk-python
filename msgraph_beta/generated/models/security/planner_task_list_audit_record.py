@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class PlannerTaskListAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Planner Task List events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.plannerTaskListAuditRecord"
     

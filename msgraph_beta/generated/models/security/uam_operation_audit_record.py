@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class UamOperationAuditRecord(AuditData, Parsable):
+    """
+    Audit data for UAM Operation events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.uamOperationAuditRecord"
     

@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class PrivacyDataMinimizationRecord(AuditData, Parsable):
+    """
+    Audit data for Privacy Data Minimization events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.privacyDataMinimizationRecord"
     

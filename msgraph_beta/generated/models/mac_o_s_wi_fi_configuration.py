@@ -20,21 +20,21 @@ class MacOSWiFiConfiguration(DeviceConfiguration, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.macOSWiFiConfiguration"
-    # Connect automatically when this network is in range. Setting this to true will skip the user prompt and automatically connect the device to Wi-Fi network.
+    # Indicates whether to automatically connect to this network when it is in range of the device. When TRUE will skip the user prompt and automatically connect the device to Wi-Fi network. Default is false.
     connect_automatically: Optional[bool] = None
-    # Connect when the network is not broadcasting its name (SSID). When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.
+    # Indicates whether the device should connect to the network when it is not broadcasting its name (SSID). When TRUE, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices. Default is false.
     connect_when_network_name_is_hidden: Optional[bool] = None
-    # Indicates the deployment channel type used to deploy the configuration profile. Possible values are deviceChannel, userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
+    # Indicates the deployment channel type used to deploy the configuration profile. Once set, cannot be changed. Possible values are deviceChannel, and userChannel. Possible values are: deviceChannel, userChannel, unknownFutureValue.
     deployment_channel: Optional[AppleDeploymentChannel] = None
-    # Network Name
+    # Indicates the Wi-Fi configuration profile name. Used to identify the configuration profile.
     network_name: Optional[str] = None
     # This is the pre-shared key for WPA Personal Wi-Fi network.
     pre_shared_key: Optional[str] = None
-    # URL of the proxy server automatic configuration script when automatic configuration is selected. This URL is typically the location of PAC (Proxy Auto Configuration) file.
+    # Indicates URL of the proxy server automatic configuration (PAC) script when proxySettings is automatic. Used to find the location of PAC (Proxy Auto Configuration) file. Example: itproxy.contoso.com
     proxy_automatic_configuration_url: Optional[str] = None
-    # IP Address or DNS hostname of the proxy server when manual configuration is selected.
+    # Indicates IP Address or DNS hostname of the proxy server when manual configuration is selected. Used for proxy settings. Example: 10.0.0.2
     proxy_manual_address: Optional[str] = None
-    # Port of the proxy server when manual configuration is selected.
+    # Indicates the proxy server TCP port to use when proxySettings is manual. Used for proxy settings. Example: 8080
     proxy_manual_port: Optional[int] = None
     # Wi-Fi Proxy Settings.
     proxy_settings: Optional[WiFiProxySetting] = None

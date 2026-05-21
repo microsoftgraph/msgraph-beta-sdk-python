@@ -86,7 +86,6 @@ if TYPE_CHECKING:
     from .get_windows_quality_update_alert_summary_report.get_windows_quality_update_alert_summary_report_request_builder import GetWindowsQualityUpdateAlertSummaryReportRequestBuilder
     from .get_windows_update_alerts_per_policy_per_device_report.get_windows_update_alerts_per_policy_per_device_report_request_builder import GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
     from .get_windows_update_alert_summary_report.get_windows_update_alert_summary_report_request_builder import GetWindowsUpdateAlertSummaryReportRequestBuilder
-    from .get_zebra_fota_deployment_report.get_zebra_fota_deployment_report_request_builder import GetZebraFotaDeploymentReportRequestBuilder
     from .retrieve_android_work_profile_device_migration_statuses.retrieve_android_work_profile_device_migration_statuses_request_builder import RetrieveAndroidWorkProfileDeviceMigrationStatusesRequestBuilder
     from .retrieve_apple_device_o_s_update_status.retrieve_apple_device_o_s_update_status_request_builder import RetrieveAppleDeviceOSUpdateStatusRequestBuilder
     from .retrieve_apple_o_s_update_failures.retrieve_apple_o_s_update_failures_request_builder import RetrieveAppleOSUpdateFailuresRequestBuilder
@@ -847,15 +846,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_windows_update_alerts_per_policy_per_device_report.get_windows_update_alerts_per_policy_per_device_report_request_builder import GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
 
         return GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_zebra_fota_deployment_report(self) -> GetZebraFotaDeploymentReportRequestBuilder:
-        """
-        Provides operations to call the getZebraFotaDeploymentReport method.
-        """
-        from .get_zebra_fota_deployment_report.get_zebra_fota_deployment_report_request_builder import GetZebraFotaDeploymentReportRequestBuilder
-
-        return GetZebraFotaDeploymentReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_android_work_profile_device_migration_statuses(self) -> RetrieveAndroidWorkProfileDeviceMigrationStatusesRequestBuilder:

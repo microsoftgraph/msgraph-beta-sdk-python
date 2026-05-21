@@ -59,6 +59,8 @@ class DepMacOSEnrollmentProfile(DepEnrollmentBaseProfile, Parsable):
     set_primary_setup_account_as_regular_user: Optional[bool] = None
     # Indicates whether Setup Assistant will skip the user interface for primary account setup
     skip_primary_setup_account_creation: Optional[bool] = None
+    # Indicates whether Platform SSO is used as part of device enrollment during Setup Assistant. When TRUE, Platform SSO is used in device enrollment during Setup Assistant. When FALSE Platform SSO is not used in enrollment during Setup Assistant. Note: This value cannot be TRUE when configurationWebUrl is TRUE.
+    use_platform_s_s_o_during_setup_assistant: Optional[bool] = None
     # Indicates if zoom setup pane is disabled
     zoom_disabled: Optional[bool] = None
     
@@ -106,6 +108,7 @@ class DepMacOSEnrollmentProfile(DepEnrollmentBaseProfile, Parsable):
             "requestRequiresNetworkTether": lambda n : setattr(self, 'request_requires_network_tether', n.get_bool_value()),
             "setPrimarySetupAccountAsRegularUser": lambda n : setattr(self, 'set_primary_setup_account_as_regular_user', n.get_bool_value()),
             "skipPrimarySetupAccountCreation": lambda n : setattr(self, 'skip_primary_setup_account_creation', n.get_bool_value()),
+            "usePlatformSSODuringSetupAssistant": lambda n : setattr(self, 'use_platform_s_s_o_during_setup_assistant', n.get_bool_value()),
             "zoomDisabled": lambda n : setattr(self, 'zoom_disabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -142,6 +145,7 @@ class DepMacOSEnrollmentProfile(DepEnrollmentBaseProfile, Parsable):
         writer.write_bool_value("requestRequiresNetworkTether", self.request_requires_network_tether)
         writer.write_bool_value("setPrimarySetupAccountAsRegularUser", self.set_primary_setup_account_as_regular_user)
         writer.write_bool_value("skipPrimarySetupAccountCreation", self.skip_primary_setup_account_creation)
+        writer.write_bool_value("usePlatformSSODuringSetupAssistant", self.use_platform_s_s_o_during_setup_assistant)
         writer.write_bool_value("zoomDisabled", self.zoom_disabled)
     
 

@@ -9,5 +9,4 @@ class EnforcementResultStatus(str, Enum):
     OSOverride = "oSOverride",
     ProcessNonExistent = "processNonExistent",
     Other = "other",
-    UnknownFutureValue = "unknownFutureValue",
 

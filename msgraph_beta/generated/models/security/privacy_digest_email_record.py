@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class PrivacyDigestEmailRecord(AuditData, Parsable):
+    """
+    Audit data for Privacy Digest Email events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.privacyDigestEmailRecord"
     

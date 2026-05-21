@@ -37,6 +37,8 @@ class AndroidDeviceOwnerVpnConfiguration(VpnConfiguration, Parsable):
     derived_credential_settings: Optional[DeviceManagementDerivedCredentialSettings] = None
     # Identity certificate for client authentication when authentication method is certificate.
     identity_certificate: Optional[AndroidDeviceOwnerCertificateProfileBase] = None
+    # List of app package names that will be able to access the network directly when VPN is in lockdown mode but not connected.
+    lockdown_exclusion_list: Optional[list[str]] = None
     # Microsoft Tunnel site ID.
     microsoft_tunnel_site_id: Optional[str] = None
     # List of hosts to exclude using the proxy on connections for. These hosts can use wildcards such as .example.com.
@@ -90,6 +92,7 @@ class AndroidDeviceOwnerVpnConfiguration(VpnConfiguration, Parsable):
             "customKeyValueData": lambda n : setattr(self, 'custom_key_value_data', n.get_collection_of_object_values(KeyValuePair)),
             "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(DeviceManagementDerivedCredentialSettings)),
             "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(AndroidDeviceOwnerCertificateProfileBase)),
+            "lockdownExclusionList": lambda n : setattr(self, 'lockdown_exclusion_list', n.get_collection_of_primitive_values(str)),
             "microsoftTunnelSiteId": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
             "proxyExclusionList": lambda n : setattr(self, 'proxy_exclusion_list', n.get_collection_of_primitive_values(str)),
             "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(VpnProxyServer)),
@@ -116,6 +119,7 @@ class AndroidDeviceOwnerVpnConfiguration(VpnConfiguration, Parsable):
         writer.write_collection_of_object_values("customKeyValueData", self.custom_key_value_data)
         writer.write_object_value("derivedCredentialSettings", self.derived_credential_settings)
         writer.write_object_value("identityCertificate", self.identity_certificate)
+        writer.write_collection_of_primitive_values("lockdownExclusionList", self.lockdown_exclusion_list)
         writer.write_str_value("microsoftTunnelSiteId", self.microsoft_tunnel_site_id)
         writer.write_collection_of_primitive_values("proxyExclusionList", self.proxy_exclusion_list)
         writer.write_object_value("proxyServer", self.proxy_server)

@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class AirAdminActionInvestigationData(AuditData, Parsable):
+    """
+    Audit data for AIR Admin Action Investigation events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.airAdminActionInvestigationData"
     

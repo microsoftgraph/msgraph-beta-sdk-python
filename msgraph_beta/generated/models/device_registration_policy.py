@@ -19,9 +19,9 @@ class DeviceRegistrationPolicy(Entity, Parsable):
     azure_a_d_join: Optional[AzureADJoinPolicy] = None
     # Specifies the authorization policy for controlling registration of new devices using Microsoft Entra registered within your organization. Required. For more information, see What is a device identity?.
     azure_a_d_registration: Optional[AzureADRegistrationPolicy] = None
-    # The description of the device registration policy. It's always set to Tenant-wide policy that manages intial provisioning controls using quota restrictions, additional authentication and authorization checks. Read-only.
+    # The description of the device registration policy. Always set to Tenant-wide policy that manages intial provisioning controls using quota restrictions, additional authentication and authorization checks. Read-only.
     description: Optional[str] = None
-    # The name of the device registration policy. It's always set to Device Registration Policy. Read-only.
+    # The name of the device registration policy. Always set to Device Registration Policy. Read-only.
     display_name: Optional[str] = None
     # Specifies the setting for Local Admin Password Solution (LAPS) within your organization.
     local_admin_password: Optional[LocalAdminPasswordSettings] = None

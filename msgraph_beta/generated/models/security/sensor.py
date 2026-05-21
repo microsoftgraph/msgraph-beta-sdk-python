@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from ..entity import Entity
     from .deployment_status import DeploymentStatus
     from .health_issue import HealthIssue
+    from .migration_state import MigrationState
     from .sensor_health_status import SensorHealthStatus
     from .sensor_settings import SensorSettings
     from .sensor_type import SensorType
@@ -30,6 +31,8 @@ class Sensor(Entity, Parsable):
     health_issues: Optional[list[HealthIssue]] = None
     # The healthStatus property
     health_status: Optional[SensorHealthStatus] = None
+    # The migrationState property
+    migration_state: Optional[MigrationState] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # This field displays the count of health issues related to this sensor.
@@ -62,6 +65,7 @@ class Sensor(Entity, Parsable):
         from ..entity import Entity
         from .deployment_status import DeploymentStatus
         from .health_issue import HealthIssue
+        from .migration_state import MigrationState
         from .sensor_health_status import SensorHealthStatus
         from .sensor_settings import SensorSettings
         from .sensor_type import SensorType
@@ -70,6 +74,7 @@ class Sensor(Entity, Parsable):
         from ..entity import Entity
         from .deployment_status import DeploymentStatus
         from .health_issue import HealthIssue
+        from .migration_state import MigrationState
         from .sensor_health_status import SensorHealthStatus
         from .sensor_settings import SensorSettings
         from .sensor_type import SensorType
@@ -82,6 +87,7 @@ class Sensor(Entity, Parsable):
             "domainName": lambda n : setattr(self, 'domain_name', n.get_str_value()),
             "healthIssues": lambda n : setattr(self, 'health_issues', n.get_collection_of_object_values(HealthIssue)),
             "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(SensorHealthStatus)),
+            "migrationState": lambda n : setattr(self, 'migration_state', n.get_enum_value(MigrationState)),
             "openHealthIssuesCount": lambda n : setattr(self, 'open_health_issues_count', n.get_int_value()),
             "sensorType": lambda n : setattr(self, 'sensor_type', n.get_enum_value(SensorType)),
             "serviceStatus": lambda n : setattr(self, 'service_status', n.get_enum_value(ServiceStatus)),
@@ -107,6 +113,7 @@ class Sensor(Entity, Parsable):
         writer.write_str_value("domainName", self.domain_name)
         writer.write_collection_of_object_values("healthIssues", self.health_issues)
         writer.write_enum_value("healthStatus", self.health_status)
+        writer.write_enum_value("migrationState", self.migration_state)
         writer.write_int_value("openHealthIssuesCount", self.open_health_issues_count)
         writer.write_enum_value("sensorType", self.sensor_type)
         writer.write_enum_value("serviceStatus", self.service_status)

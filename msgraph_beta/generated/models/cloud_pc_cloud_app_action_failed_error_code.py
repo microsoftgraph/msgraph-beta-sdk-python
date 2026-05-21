@@ -6,4 +6,6 @@ class CloudPcCloudAppActionFailedErrorCode(str, Enum):
     InternalServerError = "internalServerError",
     AppDiscoveryFailed = "appDiscoveryFailed",
     UnknownFutureValue = "unknownFutureValue",
+    IconPathInvalid = "iconPathInvalid",
+    FilePathInvalid = "filePathInvalid",
 

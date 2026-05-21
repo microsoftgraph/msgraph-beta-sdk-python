@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .file_archive_status import FileArchiveStatus
     from .hashes import Hashes
 
 @dataclass
@@ -15,6 +16,8 @@ class File(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The archiveStatus property
+    archive_status: Optional[FileArchiveStatus] = None
     # Hashes of the file's binary content, if available. Read-only.
     hashes: Optional[Hashes] = None
     # The MIME type for the file. This is determined by logic on the server and might not be the value provided when the file was uploaded. Read-only.
@@ -40,11 +43,14 @@ class File(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .file_archive_status import FileArchiveStatus
         from .hashes import Hashes
 
+        from .file_archive_status import FileArchiveStatus
         from .hashes import Hashes
 
         fields: dict[str, Callable[[Any], None]] = {
+            "archiveStatus": lambda n : setattr(self, 'archive_status', n.get_enum_value(FileArchiveStatus)),
             "hashes": lambda n : setattr(self, 'hashes', n.get_object_value(Hashes)),
             "mimeType": lambda n : setattr(self, 'mime_type', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -60,6 +66,7 @@ class File(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_enum_value("archiveStatus", self.archive_status)
         writer.write_object_value("hashes", self.hashes)
         writer.write_str_value("mimeType", self.mime_type)
         writer.write_str_value("@odata.type", self.odata_type)

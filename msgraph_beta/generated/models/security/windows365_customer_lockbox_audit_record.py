@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class Windows365CustomerLockboxAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Windows365 Customer Lockbox events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.windows365CustomerLockboxAuditRecord"
     

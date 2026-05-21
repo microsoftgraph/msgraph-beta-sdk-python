@@ -37,4 +37,9 @@ class Region(str, Enum):
     FranceSouth = "franceSouth",
     IsraelCentral = "israelCentral",
     UnknownFutureValue = "unknownFutureValue",
+    TaiwanNorth = "taiwanNorth",
+    MexicoCentral = "mexicoCentral",
+    SpainCentral = "spainCentral",
+    JioIndiaCentral = "jioIndiaCentral",
+    BrazilSouthEast = "brazilSouthEast",
 

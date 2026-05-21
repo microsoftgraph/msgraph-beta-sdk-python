@@ -87,7 +87,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
     async def patch(self,body: Security, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Security]:
         """
         Update security
-        param body: The request body
+        param body: Security singleton providing access to audit log resources.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Security]
         """
@@ -121,7 +121,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
     def to_patch_request_information(self,body: Security, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update security
-        param body: The request body
+        param body: Security singleton providing access to audit log resources.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

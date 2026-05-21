@@ -18,21 +18,23 @@ from .outlook_item import OutlookItem
 class Note(OutlookItem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.note"
-    # The attachments property
+    # The file attachments for the note. Only inline image attachments (image/png, image/jpeg, image/gif, or image/bmp) are supported, with a maximum size of 3 MB per attachment. Use $expand to retrieve attachments.
     attachments: Optional[list[Attachment]] = None
-    # The body property
+    # The content of the note. Supports text or html content types.
     body: Optional[ItemBody] = None
-    # The extensions property
+    # Auto-generated preview of the note body content (first ~255 characters, plain text). Read-only.
+    body_preview: Optional[str] = None
+    # The collection of open extensions defined for the note.
     extensions: Optional[list[Extension]] = None
-    # The hasAttachments property
+    # Indicates whether the note has file attachments. Supports $filter (eq). Read-only.
     has_attachments: Optional[bool] = None
-    # The isDeleted property
+    # Indicates whether the note is soft-deleted. Read-only.
     is_deleted: Optional[bool] = None
-    # The multiValueExtendedProperties property
+    # The collection of multi-value extended properties defined for the note.
     multi_value_extended_properties: Optional[list[MultiValueLegacyExtendedProperty]] = None
-    # The singleValueExtendedProperties property
+    # The collection of single-value extended properties defined for the note.
     single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
-    # The subject property
+    # The title of the note. Supports $filter (eq, ne, startsWith) and $orderby.
     subject: Optional[str] = None
     
     @staticmethod
@@ -68,6 +70,7 @@ class Note(OutlookItem, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(Attachment)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(ItemBody)),
+            "bodyPreview": lambda n : setattr(self, 'body_preview', n.get_str_value()),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(Extension)),
             "hasAttachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
             "isDeleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
@@ -91,8 +94,6 @@ class Note(OutlookItem, Parsable):
         writer.write_collection_of_object_values("attachments", self.attachments)
         writer.write_object_value("body", self.body)
         writer.write_collection_of_object_values("extensions", self.extensions)
-        writer.write_bool_value("hasAttachments", self.has_attachments)
-        writer.write_bool_value("isDeleted", self.is_deleted)
         writer.write_collection_of_object_values("multiValueExtendedProperties", self.multi_value_extended_properties)
         writer.write_collection_of_object_values("singleValueExtendedProperties", self.single_value_extended_properties)
         writer.write_str_value("subject", self.subject)

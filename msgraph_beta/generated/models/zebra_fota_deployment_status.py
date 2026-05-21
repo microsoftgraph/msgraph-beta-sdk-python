@@ -26,7 +26,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable):
     complete_or_canceled_date_time: Optional[datetime.datetime] = None
     # An error code indicating the failure reason, when the deployment state is createFailed. Possible values: See zebraFotaErrorCode enum.
     error_code: Optional[ZebraFotaErrorCode] = None
-    # Date and time when the deployment status was updated from Zebra
+    #  Date and time when the deployment status was updated from Zebra
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -36,7 +36,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable):
     total_awaiting_install: Optional[int] = None
     # An integer that indicates the total number of devices where installation was canceled.
     total_canceled: Optional[int] = None
-    # An integer that indicates the total number of devices that have a job in the CREATED state. Typically indicates jobs that did not reach the devices.
+    # An integer that indicates the total number of devices that have a job in the CREATED state. Typically indicates jobs that did not reach the devices. 
     total_created: Optional[int] = None
     # An integer that indicates the total number of devices in the deployment.
     total_devices: Optional[int] = None
@@ -46,7 +46,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, BackedModel, Parsable):
     total_failed_download: Optional[int] = None
     # An integer that indicates the total number of devices that have failed to install the new OS file.
     total_failed_install: Optional[int] = None
-    # An integer that indicates the total number of devices that received the json and are scheduled.
+    # An integer that indicates the total number of devices that received the json and are scheduled. 
     total_scheduled: Optional[int] = None
     # An integer that indicates the total number of devices where installation was successful.
     total_succeeded_install: Optional[int] = None

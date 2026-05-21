@@ -72,11 +72,11 @@ class ServicePrincipal(DirectoryObject, Parsable):
     claims_mapping_policies: Optional[list[ClaimsMappingPolicy]] = None
     # A claims policy that allows application admins to customize the claims that will be emitted in tokens affected by this policy.
     claims_policy: Optional[CustomClaimsPolicy] = None
-    # The appId (called Application (client) ID on the Microsoft Entra admin center) of the application used to create the service principal. Set internally by Microsoft Entra ID. Read-only.
+    # The appId of the application that created this service principal. Set internally by Microsoft Entra ID. Read-only.
     created_by_app_id: Optional[str] = None
     # Directory objects created by this service principal. Read-only. Nullable.
     created_objects: Optional[list[DirectoryObject]] = None
-    # An open complex type that holds the value of a custom security attribute that is assigned to a directory object. Nullable. Returned only on $select. Supports $filter (eq, ne, not, startsWith). Filter value is case sensitive.To read this property, the calling app must be assigned the CustomSecAttributeAssignment.Read.All permission. To write this property, the calling app must be assigned the CustomSecAttributeAssignment.ReadWrite.All permissions. To read or write this property in delegated scenarios, the admin must be assigned the Attribute Assignment Administrator role.
+    # An open complex type that holds the value of a custom security attribute that is assigned to a directory object. Nullable. Requires $select to retrieve. Supports $filter (eq, ne, not, startsWith). Filter value is case sensitive.To read this property, the calling app must be assigned the CustomSecAttributeAssignment.Read.All permission. To write this property, the calling app must be assigned the CustomSecAttributeAssignment.ReadWrite.All permissions. To read or write this property in delegated scenarios, the admin must be assigned the Attribute Assignment Administrator role.
     custom_security_attributes: Optional[CustomSecurityAttributeValue] = None
     # The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.
     delegated_permission_classifications: Optional[list[DelegatedPermissionClassification]] = None

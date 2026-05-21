@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .sensor import Sensor
     from .sensor_candidate import SensorCandidate
     from .sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
+    from .sensor_migration import SensorMigration
     from .settings_container import SettingsContainer
 
 from ..entity import Entity
@@ -27,6 +28,8 @@ class IdentityContainer(Entity, Parsable):
     sensor_candidate_activation_configuration: Optional[SensorCandidateActivationConfiguration] = None
     # The sensorCandidates property
     sensor_candidates: Optional[list[SensorCandidate]] = None
+    # The sensorMigration property
+    sensor_migration: Optional[list[SensorMigration]] = None
     # Represents a customer's Microsoft Defender for Identity sensors.
     sensors: Optional[list[Sensor]] = None
     # Represents a container for security identities settings APIs.
@@ -54,6 +57,7 @@ class IdentityContainer(Entity, Parsable):
         from .sensor import Sensor
         from .sensor_candidate import SensorCandidate
         from .sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
+        from .sensor_migration import SensorMigration
         from .settings_container import SettingsContainer
 
         from ..entity import Entity
@@ -62,6 +66,7 @@ class IdentityContainer(Entity, Parsable):
         from .sensor import Sensor
         from .sensor_candidate import SensorCandidate
         from .sensor_candidate_activation_configuration import SensorCandidateActivationConfiguration
+        from .sensor_migration import SensorMigration
         from .settings_container import SettingsContainer
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -69,6 +74,7 @@ class IdentityContainer(Entity, Parsable):
             "identityAccounts": lambda n : setattr(self, 'identity_accounts', n.get_collection_of_object_values(IdentityAccounts)),
             "sensorCandidateActivationConfiguration": lambda n : setattr(self, 'sensor_candidate_activation_configuration', n.get_object_value(SensorCandidateActivationConfiguration)),
             "sensorCandidates": lambda n : setattr(self, 'sensor_candidates', n.get_collection_of_object_values(SensorCandidate)),
+            "sensorMigration": lambda n : setattr(self, 'sensor_migration', n.get_collection_of_object_values(SensorMigration)),
             "sensors": lambda n : setattr(self, 'sensors', n.get_collection_of_object_values(Sensor)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(SettingsContainer)),
         }
@@ -89,6 +95,7 @@ class IdentityContainer(Entity, Parsable):
         writer.write_collection_of_object_values("identityAccounts", self.identity_accounts)
         writer.write_object_value("sensorCandidateActivationConfiguration", self.sensor_candidate_activation_configuration)
         writer.write_collection_of_object_values("sensorCandidates", self.sensor_candidates)
+        writer.write_collection_of_object_values("sensorMigration", self.sensor_migration)
         writer.write_collection_of_object_values("sensors", self.sensors)
         writer.write_object_value("settings", self.settings)
     

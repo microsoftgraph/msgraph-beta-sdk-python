@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .artifact_restore_status import ArtifactRestoreStatus
+    from .destination_type import DestinationType
     from .entity import Entity
     from .granular_drive_restore_artifact import GranularDriveRestoreArtifact
     from .granular_site_restore_artifact import GranularSiteRestoreArtifact
@@ -19,6 +20,8 @@ class GranularRestoreArtifactBase(Entity, Parsable):
     browse_session_id: Optional[str] = None
     # Date time when the artifact's restoration completes.
     completion_date_time: Optional[datetime.datetime] = None
+    # The destinationType property
+    destination_type: Optional[DestinationType] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The restore point date time to which the artifact is restored.
@@ -66,11 +69,13 @@ class GranularRestoreArtifactBase(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .artifact_restore_status import ArtifactRestoreStatus
+        from .destination_type import DestinationType
         from .entity import Entity
         from .granular_drive_restore_artifact import GranularDriveRestoreArtifact
         from .granular_site_restore_artifact import GranularSiteRestoreArtifact
 
         from .artifact_restore_status import ArtifactRestoreStatus
+        from .destination_type import DestinationType
         from .entity import Entity
         from .granular_drive_restore_artifact import GranularDriveRestoreArtifact
         from .granular_site_restore_artifact import GranularSiteRestoreArtifact
@@ -78,6 +83,7 @@ class GranularRestoreArtifactBase(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "browseSessionId": lambda n : setattr(self, 'browse_session_id', n.get_str_value()),
             "completionDateTime": lambda n : setattr(self, 'completion_date_time', n.get_datetime_value()),
+            "destinationType": lambda n : setattr(self, 'destination_type', n.get_enum_value(DestinationType)),
             "restorePointDateTime": lambda n : setattr(self, 'restore_point_date_time', n.get_datetime_value()),
             "restoredItemKey": lambda n : setattr(self, 'restored_item_key', n.get_str_value()),
             "restoredItemPath": lambda n : setattr(self, 'restored_item_path', n.get_str_value()),
@@ -101,6 +107,7 @@ class GranularRestoreArtifactBase(Entity, Parsable):
         super().serialize(writer)
         writer.write_str_value("browseSessionId", self.browse_session_id)
         writer.write_datetime_value("completionDateTime", self.completion_date_time)
+        writer.write_enum_value("destinationType", self.destination_type)
         writer.write_datetime_value("restorePointDateTime", self.restore_point_date_time)
         writer.write_str_value("restoredItemKey", self.restored_item_key)
         writer.write_str_value("restoredItemPath", self.restored_item_path)

@@ -154,7 +154,7 @@ class ForwardingProfileItemRequestBuilder(BaseRequestBuilder):
     @property
     def service_principal(self) -> ServicePrincipalRequestBuilder:
         """
-        Provides operations to manage the servicePrincipal property of the microsoft.graph.networkaccess.forwardingProfile entity.
+        Provides operations to manage the servicePrincipal property of the microsoft.graph.networkaccess.forwardingProfileBase entity.
         """
         from .service_principal.service_principal_request_builder import ServicePrincipalRequestBuilder
 

@@ -5,6 +5,10 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .cloud_pc_automatic_discovered_app_detail import CloudPcAutomaticDiscoveredAppDetail
+    from .cloud_pc_file_path_app_detail import CloudPcFilePathAppDetail
+
 @dataclass
 class CloudPcCloudAppDetail(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -32,6 +36,19 @@ class CloudPcCloudAppDetail(AdditionalDataHolder, BackedModel, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcAutomaticDiscoveredAppDetail".casefold():
+            from .cloud_pc_automatic_discovered_app_detail import CloudPcAutomaticDiscoveredAppDetail
+
+            return CloudPcAutomaticDiscoveredAppDetail()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcFilePathAppDetail".casefold():
+            from .cloud_pc_file_path_app_detail import CloudPcFilePathAppDetail
+
+            return CloudPcFilePathAppDetail()
         return CloudPcCloudAppDetail()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -39,6 +56,12 @@ class CloudPcCloudAppDetail(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .cloud_pc_automatic_discovered_app_detail import CloudPcAutomaticDiscoveredAppDetail
+        from .cloud_pc_file_path_app_detail import CloudPcFilePathAppDetail
+
+        from .cloud_pc_automatic_discovered_app_detail import CloudPcAutomaticDiscoveredAppDetail
+        from .cloud_pc_file_path_app_detail import CloudPcFilePathAppDetail
+
         fields: dict[str, Callable[[Any], None]] = {
             "commandLineArguments": lambda n : setattr(self, 'command_line_arguments', n.get_str_value()),
             "filePath": lambda n : setattr(self, 'file_path', n.get_str_value()),

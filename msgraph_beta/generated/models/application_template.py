@@ -21,6 +21,8 @@ class ApplicationTemplate(Entity, Parsable):
     categories: Optional[list[str]] = None
     # The URIs required for the single sign-on configuration of a preintegrated application.
     configuration_uris: Optional[list[ConfigurationUri]] = None
+    # Deprecation date for this application. If specified, the application will be removed from the Microsoft Entra application gallery on this date.
+    deprecation_date: Optional[datetime.date] = None
     # A description of the application.
     description: Optional[str] = None
     # The name of the application. Supports $filter (contains).
@@ -31,6 +33,8 @@ class ApplicationTemplate(Entity, Parsable):
     home_page_url: Optional[str] = None
     # The informationalUrls property
     informational_urls: Optional[InformationalUrls] = None
+    # Indicates whether the application is integrated with Entra ID (for example, through single sign-on or user provisioning).
+    is_entra_integrated: Optional[bool] = None
     # The date and time when the data for the application was last updated, represented using ISO 8601 format and always in UTC time.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The URL to get the logo for this application.
@@ -83,11 +87,13 @@ class ApplicationTemplate(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "configurationUris": lambda n : setattr(self, 'configuration_uris', n.get_collection_of_object_values(ConfigurationUri)),
+            "deprecationDate": lambda n : setattr(self, 'deprecation_date', n.get_date_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "endpoints": lambda n : setattr(self, 'endpoints', n.get_collection_of_primitive_values(str)),
             "homePageUrl": lambda n : setattr(self, 'home_page_url', n.get_str_value()),
             "informationalUrls": lambda n : setattr(self, 'informational_urls', n.get_object_value(InformationalUrls)),
+            "isEntraIntegrated": lambda n : setattr(self, 'is_entra_integrated', n.get_bool_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "logoUrl": lambda n : setattr(self, 'logo_url', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
@@ -112,11 +118,13 @@ class ApplicationTemplate(Entity, Parsable):
         super().serialize(writer)
         writer.write_collection_of_primitive_values("categories", self.categories)
         writer.write_collection_of_object_values("configurationUris", self.configuration_uris)
+        writer.write_date_value("deprecationDate", self.deprecation_date)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_primitive_values("endpoints", self.endpoints)
         writer.write_str_value("homePageUrl", self.home_page_url)
         writer.write_object_value("informationalUrls", self.informational_urls)
+        writer.write_bool_value("isEntraIntegrated", self.is_entra_integrated)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("logoUrl", self.logo_url)
         writer.write_str_value("publisher", self.publisher)

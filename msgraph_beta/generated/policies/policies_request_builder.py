@@ -41,6 +41,7 @@ if TYPE_CHECKING:
     from .mobile_app_management_policies.mobile_app_management_policies_request_builder import MobileAppManagementPoliciesRequestBuilder
     from .mobile_device_management_policies.mobile_device_management_policies_request_builder import MobileDeviceManagementPoliciesRequestBuilder
     from .on_prem_authentication_policies.on_prem_authentication_policies_request_builder import OnPremAuthenticationPoliciesRequestBuilder
+    from .ownerless_group_policy.ownerless_group_policy_request_builder import OwnerlessGroupPolicyRequestBuilder
     from .permission_grant_policies.permission_grant_policies_request_builder import PermissionGrantPoliciesRequestBuilder
     from .permission_grant_pre_approval_policies.permission_grant_pre_approval_policies_request_builder import PermissionGrantPreApprovalPoliciesRequestBuilder
     from .role_management_policies.role_management_policies_request_builder import RoleManagementPoliciesRequestBuilder
@@ -365,6 +366,15 @@ class PoliciesRequestBuilder(BaseRequestBuilder):
         from .on_prem_authentication_policies.on_prem_authentication_policies_request_builder import OnPremAuthenticationPoliciesRequestBuilder
 
         return OnPremAuthenticationPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ownerless_group_policy(self) -> OwnerlessGroupPolicyRequestBuilder:
+        """
+        Provides operations to manage the ownerlessGroupPolicy property of the microsoft.graph.policyRoot entity.
+        """
+        from .ownerless_group_policy.ownerless_group_policy_request_builder import OwnerlessGroupPolicyRequestBuilder
+
+        return OwnerlessGroupPolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def permission_grant_policies(self) -> PermissionGrantPoliciesRequestBuilder:

@@ -42,6 +42,7 @@ if TYPE_CHECKING:
     from .win32_catalog_app import Win32CatalogApp
     from .win32_lob_app import Win32LobApp
     from .windows_app_x import WindowsAppX
+    from .windows_auto_update_catalog_app import WindowsAutoUpdateCatalogApp
     from .windows_microsoft_edge_app import WindowsMicrosoftEdgeApp
     from .windows_mobile_m_s_i import WindowsMobileMSI
     from .windows_phone81_app_x import WindowsPhone81AppX
@@ -241,6 +242,10 @@ class MobileApp(Entity, Parsable):
             from .windows_app_x import WindowsAppX
 
             return WindowsAppX()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsAutoUpdateCatalogApp".casefold():
+            from .windows_auto_update_catalog_app import WindowsAutoUpdateCatalogApp
+
+            return WindowsAutoUpdateCatalogApp()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsMicrosoftEdgeApp".casefold():
             from .windows_microsoft_edge_app import WindowsMicrosoftEdgeApp
 
@@ -324,6 +329,7 @@ class MobileApp(Entity, Parsable):
         from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
         from .windows_app_x import WindowsAppX
+        from .windows_auto_update_catalog_app import WindowsAutoUpdateCatalogApp
         from .windows_microsoft_edge_app import WindowsMicrosoftEdgeApp
         from .windows_mobile_m_s_i import WindowsMobileMSI
         from .windows_phone81_app_x import WindowsPhone81AppX
@@ -371,6 +377,7 @@ class MobileApp(Entity, Parsable):
         from .win32_catalog_app import Win32CatalogApp
         from .win32_lob_app import Win32LobApp
         from .windows_app_x import WindowsAppX
+        from .windows_auto_update_catalog_app import WindowsAutoUpdateCatalogApp
         from .windows_microsoft_edge_app import WindowsMicrosoftEdgeApp
         from .windows_mobile_m_s_i import WindowsMobileMSI
         from .windows_phone81_app_x import WindowsPhone81AppX

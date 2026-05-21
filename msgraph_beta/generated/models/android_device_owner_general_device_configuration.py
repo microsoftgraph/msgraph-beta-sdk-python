@@ -96,6 +96,8 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
     global_proxy: Optional[AndroidDeviceOwnerGlobalProxy] = None
     # Indicates whether or not google accounts will be blocked.
     google_accounts_blocked: Optional[bool] = None
+    # Exit code to allow a user to escape from Kiosk Mode when the device is in Kiosk Mode.
+    is_kiosk_mode_exit_code_set: Optional[bool] = None
     # Indicates whether a user can access the device's Settings app while in Kiosk Mode.
     kiosk_customization_device_settings_blocked: Optional[bool] = None
     # Whether the power menu is shown when a user long presses the Power button of a device in Kiosk Mode.
@@ -433,6 +435,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
             "factoryResetDeviceAdministratorEmails": lambda n : setattr(self, 'factory_reset_device_administrator_emails', n.get_collection_of_primitive_values(str)),
             "globalProxy": lambda n : setattr(self, 'global_proxy', n.get_object_value(AndroidDeviceOwnerGlobalProxy)),
             "googleAccountsBlocked": lambda n : setattr(self, 'google_accounts_blocked', n.get_bool_value()),
+            "isKioskModeExitCodeSet": lambda n : setattr(self, 'is_kiosk_mode_exit_code_set', n.get_bool_value()),
             "kioskCustomizationDeviceSettingsBlocked": lambda n : setattr(self, 'kiosk_customization_device_settings_blocked', n.get_bool_value()),
             "kioskCustomizationPowerButtonActionsBlocked": lambda n : setattr(self, 'kiosk_customization_power_button_actions_blocked', n.get_bool_value()),
             "kioskCustomizationStatusBar": lambda n : setattr(self, 'kiosk_customization_status_bar', n.get_enum_value(AndroidDeviceOwnerKioskCustomizationStatusBar)),
@@ -587,6 +590,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(DeviceConfiguration, Parsable
         writer.write_collection_of_primitive_values("factoryResetDeviceAdministratorEmails", self.factory_reset_device_administrator_emails)
         writer.write_object_value("globalProxy", self.global_proxy)
         writer.write_bool_value("googleAccountsBlocked", self.google_accounts_blocked)
+        writer.write_bool_value("isKioskModeExitCodeSet", self.is_kiosk_mode_exit_code_set)
         writer.write_bool_value("kioskCustomizationDeviceSettingsBlocked", self.kiosk_customization_device_settings_blocked)
         writer.write_bool_value("kioskCustomizationPowerButtonActionsBlocked", self.kiosk_customization_power_button_actions_blocked)
         writer.write_enum_value("kioskCustomizationStatusBar", self.kiosk_customization_status_bar)

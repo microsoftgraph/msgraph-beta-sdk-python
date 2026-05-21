@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .cloud_firewall_rule import CloudFirewallRule
     from .filtering_rule import FilteringRule
     from .forwarding_rule import ForwardingRule
     from .fqdn_filtering_rule import FqdnFilteringRule
@@ -40,6 +41,10 @@ class PolicyRule(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallRule".casefold():
+            from .cloud_firewall_rule import CloudFirewallRule
+
+            return CloudFirewallRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringRule".casefold():
             from .filtering_rule import FilteringRule
 
@@ -88,6 +93,7 @@ class PolicyRule(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .cloud_firewall_rule import CloudFirewallRule
         from .filtering_rule import FilteringRule
         from .forwarding_rule import ForwardingRule
         from .fqdn_filtering_rule import FqdnFilteringRule
@@ -100,6 +106,7 @@ class PolicyRule(Entity, Parsable):
         from .web_category_filtering_rule import WebCategoryFilteringRule
 
         from ..entity import Entity
+        from .cloud_firewall_rule import CloudFirewallRule
         from .filtering_rule import FilteringRule
         from .forwarding_rule import ForwardingRule
         from .fqdn_filtering_rule import FqdnFilteringRule

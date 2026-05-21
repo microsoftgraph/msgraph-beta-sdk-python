@@ -24,7 +24,7 @@ class CloudPcSupportedRegion(Entity, Parsable):
     odata_type: Optional[str] = None
     # The regionGroup property
     region_group: Optional[CloudPcRegionGroup] = None
-    # When the region isn't available, all region restrictions are set to true. These restrictions apply to three properties: cPURestricted, gPURestricted, and nestedVirtualizationRestricted. cPURestricted indicates whether the region is available for CPU, gPURestricted indicates whether the region is available for GPU, and nestedVirtualizationRestricted indicates whether the region is available for nested virtualization. Read-only.
+    # When the region isn't available, all region restrictions are set to true. These restrictions apply to four properties: cPURestricted, gPURestricted, nestedVirtualizationRestricted and availabilityZoneRestricted. cPURestricted indicates whether the region is available for CPU, gPURestricted indicates whether the region is available for GPU, nestedVirtualizationRestricted indicates whether the region is available for nested virtualization, and availabilityZoneRestricted indicates whether the region is available for availability zone support. Read-only.
     region_restriction_detail: Optional[CloudPcSupportedRegionRestrictionDetail] = None
     # The status of the supported region. The possible values are: available, restricted, unavailable, unknownFutureValue. Read-only.
     region_status: Optional[CloudPcSupportedRegionStatus] = None

@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .generate_encryption_public_key.generate_encryption_public_key_request_builder import GenerateEncryptionPublicKeyRequestBuilder
     from .get_encryption_public_key.get_encryption_public_key_request_builder import GetEncryptionPublicKeyRequestBuilder
     from .imported_apple_device_identities.imported_apple_device_identities_request_builder import ImportedAppleDeviceIdentitiesRequestBuilder
+    from .release_apple_devices.release_apple_devices_request_builder import ReleaseAppleDevicesRequestBuilder
     from .share_for_school_data_sync_service.share_for_school_data_sync_service_request_builder import ShareForSchoolDataSyncServiceRequestBuilder
     from .sync_with_apple_device_enrollment_program.sync_with_apple_device_enrollment_program_request_builder import SyncWithAppleDeviceEnrollmentProgramRequestBuilder
     from .unshare_for_school_data_sync_service.unshare_for_school_data_sync_service_request_builder import UnshareForSchoolDataSyncServiceRequestBuilder
@@ -221,6 +222,15 @@ class DepOnboardingSettingItemRequestBuilder(BaseRequestBuilder):
         from .imported_apple_device_identities.imported_apple_device_identities_request_builder import ImportedAppleDeviceIdentitiesRequestBuilder
 
         return ImportedAppleDeviceIdentitiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def release_apple_devices(self) -> ReleaseAppleDevicesRequestBuilder:
+        """
+        Provides operations to call the releaseAppleDevices method.
+        """
+        from .release_apple_devices.release_apple_devices_request_builder import ReleaseAppleDevicesRequestBuilder
+
+        return ReleaseAppleDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def share_for_school_data_sync_service(self) -> ShareForSchoolDataSyncServiceRequestBuilder:

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
     from .win32_lob_app_assignment_settings import Win32LobAppAssignmentSettings
     from .windows_app_x_app_assignment_settings import WindowsAppXAppAssignmentSettings
+    from .windows_auto_update_catalog_app_assignment_settings import WindowsAutoUpdateCatalogAppAssignmentSettings
     from .windows_universal_app_x_app_assignment_settings import WindowsUniversalAppXAppAssignmentSettings
     from .win_get_app_assignment_settings import WinGetAppAssignmentSettings
 
@@ -91,6 +92,10 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
             from .windows_app_x_app_assignment_settings import WindowsAppXAppAssignmentSettings
 
             return WindowsAppXAppAssignmentSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsAutoUpdateCatalogAppAssignmentSettings".casefold():
+            from .windows_auto_update_catalog_app_assignment_settings import WindowsAutoUpdateCatalogAppAssignmentSettings
+
+            return WindowsAutoUpdateCatalogAppAssignmentSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUniversalAppXAppAssignmentSettings".casefold():
             from .windows_universal_app_x_app_assignment_settings import WindowsUniversalAppXAppAssignmentSettings
 
@@ -117,6 +122,7 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
         from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
         from .win32_lob_app_assignment_settings import Win32LobAppAssignmentSettings
         from .windows_app_x_app_assignment_settings import WindowsAppXAppAssignmentSettings
+        from .windows_auto_update_catalog_app_assignment_settings import WindowsAutoUpdateCatalogAppAssignmentSettings
         from .windows_universal_app_x_app_assignment_settings import WindowsUniversalAppXAppAssignmentSettings
         from .win_get_app_assignment_settings import WinGetAppAssignmentSettings
 
@@ -131,6 +137,7 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
         from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
         from .win32_lob_app_assignment_settings import Win32LobAppAssignmentSettings
         from .windows_app_x_app_assignment_settings import WindowsAppXAppAssignmentSettings
+        from .windows_auto_update_catalog_app_assignment_settings import WindowsAutoUpdateCatalogAppAssignmentSettings
         from .windows_universal_app_x_app_assignment_settings import WindowsUniversalAppXAppAssignmentSettings
         from .win_get_app_assignment_settings import WinGetAppAssignmentSettings
 

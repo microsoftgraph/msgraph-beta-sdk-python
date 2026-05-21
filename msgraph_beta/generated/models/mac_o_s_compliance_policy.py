@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_compliance_policy import DeviceCompliancePolicy
+    from .device_compliance_policy_script import DeviceCompliancePolicyScript
     from .device_threat_protection_level import DeviceThreatProtectionLevel
     from .mac_o_s_gatekeeper_app_sources import MacOSGatekeeperAppSources
     from .required_password_type import RequiredPasswordType
@@ -21,6 +22,8 @@ class MacOSCompliancePolicy(DeviceCompliancePolicy, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.macOSCompliancePolicy"
     # Device threat protection levels for the Device Threat Protection API.
     advanced_threat_protection_required_security_level: Optional[DeviceThreatProtectionLevel] = None
+    # Custom compliance configuration for the policy (script identifier and rules content). When set, custom compliance rules are evaluated and the device is marked noncompliant when any rule evaluates to noncompliant. When not set, no custom compliance rules are evaluated. Default is null, when set to default it is not evaluated.
+    device_compliance_policy_script: Optional[DeviceCompliancePolicyScript] = None
     # Require that devices have enabled device threat protection.
     device_threat_protection_enabled: Optional[bool] = None
     # Device threat protection levels for the Device Threat Protection API.
@@ -79,17 +82,20 @@ class MacOSCompliancePolicy(DeviceCompliancePolicy, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_compliance_policy import DeviceCompliancePolicy
+        from .device_compliance_policy_script import DeviceCompliancePolicyScript
         from .device_threat_protection_level import DeviceThreatProtectionLevel
         from .mac_o_s_gatekeeper_app_sources import MacOSGatekeeperAppSources
         from .required_password_type import RequiredPasswordType
 
         from .device_compliance_policy import DeviceCompliancePolicy
+        from .device_compliance_policy_script import DeviceCompliancePolicyScript
         from .device_threat_protection_level import DeviceThreatProtectionLevel
         from .mac_o_s_gatekeeper_app_sources import MacOSGatekeeperAppSources
         from .required_password_type import RequiredPasswordType
 
         fields: dict[str, Callable[[Any], None]] = {
             "advancedThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(DeviceThreatProtectionLevel)),
+            "deviceCompliancePolicyScript": lambda n : setattr(self, 'device_compliance_policy_script', n.get_object_value(DeviceCompliancePolicyScript)),
             "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
             "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(DeviceThreatProtectionLevel)),
             "firewallBlockAllIncoming": lambda n : setattr(self, 'firewall_block_all_incoming', n.get_bool_value()),
@@ -125,6 +131,7 @@ class MacOSCompliancePolicy(DeviceCompliancePolicy, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("advancedThreatProtectionRequiredSecurityLevel", self.advanced_threat_protection_required_security_level)
+        writer.write_object_value("deviceCompliancePolicyScript", self.device_compliance_policy_script)
         writer.write_bool_value("deviceThreatProtectionEnabled", self.device_threat_protection_enabled)
         writer.write_enum_value("deviceThreatProtectionRequiredSecurityLevel", self.device_threat_protection_required_security_level)
         writer.write_bool_value("firewallBlockAllIncoming", self.firewall_block_all_incoming)

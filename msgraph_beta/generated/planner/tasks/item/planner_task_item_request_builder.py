@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .assigned_to_task_board_format.assigned_to_task_board_format_request_builder import AssignedToTaskBoardFormatRequestBuilder
     from .bucket_task_board_format.bucket_task_board_format_request_builder import BucketTaskBoardFormatRequestBuilder
     from .details.details_request_builder import DetailsRequestBuilder
+    from .messages.messages_request_builder import MessagesRequestBuilder
     from .progress_task_board_format.progress_task_board_format_request_builder import ProgressTaskBoardFormatRequestBuilder
 
 class PlannerTaskItemRequestBuilder(BaseRequestBuilder):
@@ -171,6 +172,15 @@ class PlannerTaskItemRequestBuilder(BaseRequestBuilder):
         from .details.details_request_builder import DetailsRequestBuilder
 
         return DetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def messages(self) -> MessagesRequestBuilder:
+        """
+        Provides operations to manage the messages property of the microsoft.graph.plannerTask entity.
+        """
+        from .messages.messages_request_builder import MessagesRequestBuilder
+
+        return MessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def progress_task_board_format(self) -> ProgressTaskBoardFormatRequestBuilder:

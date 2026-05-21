@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class LabelAnalyticsAggregateAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Label Analytics Aggregate events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.labelAnalyticsAggregateAuditRecord"
     

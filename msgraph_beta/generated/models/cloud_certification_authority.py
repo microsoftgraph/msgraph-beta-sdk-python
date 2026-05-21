@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
     from .cloud_certification_authority_status import CloudCertificationAuthorityStatus
     from .cloud_certification_authority_type import CloudCertificationAuthorityType
+    from .cloud_certification_authority_version import CloudCertificationAuthorityVersion
     from .entity import Entity
     from .extended_key_usage import ExtendedKeyUsage
 
@@ -22,6 +23,8 @@ class CloudCertificationAuthority(Entity, Parsable):
     """
     Entity that represents a collection of metadata of a cloud certification authority.
     """
+    # The currently active certification authority version. This navigation property provides direct access to the active version's details including certificate information, URLs, and validity periods. The active version is automatically included in the default response when retrieving a certification authority entity without requiring $expand. Read-only.
+    active_version: Optional[CloudCertificationAuthorityVersion] = None
     # The URL to download the certification authority certificate. Read-only.
     certificate_download_url: Optional[str] = None
     # Enum of possible cloud certification authority certificate cryptography and key size combinations.
@@ -34,7 +37,7 @@ class CloudCertificationAuthority(Entity, Parsable):
     certification_authority_issuer_id: Optional[str] = None
     # The URI of the issuing certification authority of a subordinate certification authority. Returns null if a root certification authority. Nullable. Read-only.
     certification_authority_issuer_uri: Optional[str] = None
-    # Enum type of possible certification authority statuses. These statuses indicate whether a certification authority is currently able to issue certificates or temporarily paused or permanently revoked.
+    # Enum type of possible certification authority statuses. These statuses indicate whether a certification authority is currently able to issue certificates, temporarily paused, pending signing, revoked, or expired.
     certification_authority_status: Optional[CloudCertificationAuthorityStatus] = None
     # Enum type of possible certificate hashing algorithms used by the certification authority to create certificates.
     cloud_certification_authority_hashing_algorithm: Optional[CloudCertificationAuthorityHashingAlgorithm] = None
@@ -94,6 +97,8 @@ class CloudCertificationAuthority(Entity, Parsable):
     validity_start_date_time: Optional[datetime.datetime] = None
     # The certification authority version, which is incremented each time the certification authority is renewed. Read-only.
     version_number: Optional[int] = None
+    # The collection of all certification authority versions, including active, staged, retired, and expired versions. This navigation property provides access to the full version history of the certification authority. Use $expand=versions to include this collection in the response. Read-only.
+    versions: Optional[list[CloudCertificationAuthorityVersion]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CloudCertificationAuthority:
@@ -117,6 +122,7 @@ class CloudCertificationAuthority(Entity, Parsable):
         from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
         from .cloud_certification_authority_status import CloudCertificationAuthorityStatus
         from .cloud_certification_authority_type import CloudCertificationAuthorityType
+        from .cloud_certification_authority_version import CloudCertificationAuthorityVersion
         from .entity import Entity
         from .extended_key_usage import ExtendedKeyUsage
 
@@ -126,10 +132,12 @@ class CloudCertificationAuthority(Entity, Parsable):
         from .cloud_certification_authority_leaf_certificate import CloudCertificationAuthorityLeafCertificate
         from .cloud_certification_authority_status import CloudCertificationAuthorityStatus
         from .cloud_certification_authority_type import CloudCertificationAuthorityType
+        from .cloud_certification_authority_version import CloudCertificationAuthorityVersion
         from .entity import Entity
         from .extended_key_usage import ExtendedKeyUsage
 
         fields: dict[str, Callable[[Any], None]] = {
+            "activeVersion": lambda n : setattr(self, 'active_version', n.get_object_value(CloudCertificationAuthorityVersion)),
             "certificateDownloadUrl": lambda n : setattr(self, 'certificate_download_url', n.get_str_value()),
             "certificateKeySize": lambda n : setattr(self, 'certificate_key_size', n.get_enum_value(CloudCertificationAuthorityCertificateKeySize)),
             "certificateRevocationListUrl": lambda n : setattr(self, 'certificate_revocation_list_url', n.get_str_value()),
@@ -165,6 +173,7 @@ class CloudCertificationAuthority(Entity, Parsable):
             "validityPeriodInYears": lambda n : setattr(self, 'validity_period_in_years', n.get_int_value()),
             "validityStartDateTime": lambda n : setattr(self, 'validity_start_date_time', n.get_datetime_value()),
             "versionNumber": lambda n : setattr(self, 'version_number', n.get_int_value()),
+            "versions": lambda n : setattr(self, 'versions', n.get_collection_of_object_values(CloudCertificationAuthorityVersion)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -179,6 +188,7 @@ class CloudCertificationAuthority(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("activeVersion", self.active_version)
         writer.write_str_value("certificateDownloadUrl", self.certificate_download_url)
         writer.write_enum_value("certificateKeySize", self.certificate_key_size)
         writer.write_str_value("certificateRevocationListUrl", self.certificate_revocation_list_url)
@@ -214,5 +224,6 @@ class CloudCertificationAuthority(Entity, Parsable):
         writer.write_int_value("validityPeriodInYears", self.validity_period_in_years)
         writer.write_datetime_value("validityStartDateTime", self.validity_start_date_time)
         writer.write_int_value("versionNumber", self.version_number)
+        writer.write_collection_of_object_values("versions", self.versions)
     
 

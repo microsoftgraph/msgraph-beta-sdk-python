@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class AadRiskDetectionAuditRecord(AuditData, Parsable):
+    """
+    Audit data for AAD Risk Detection events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.aadRiskDetectionAuditRecord"
     

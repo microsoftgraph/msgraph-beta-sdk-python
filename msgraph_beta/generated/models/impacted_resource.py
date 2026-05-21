@@ -25,7 +25,7 @@ class ImpactedResource(Entity, Parsable):
     # Name of the user or service that last updated the status.
     last_modified_by: Optional[str] = None
     # The date and time when the status was last updated.
-    last_modified_date_time: Optional[str] = None
+    last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The user responsible for maintaining the resource.
@@ -75,7 +75,7 @@ class ImpactedResource(Entity, Parsable):
             "apiUrl": lambda n : setattr(self, 'api_url', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_str_value()),
-            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "owner": lambda n : setattr(self, 'owner', n.get_str_value()),
             "portalUrl": lambda n : setattr(self, 'portal_url', n.get_str_value()),
             "postponeUntilDateTime": lambda n : setattr(self, 'postpone_until_date_time', n.get_datetime_value()),
@@ -103,7 +103,7 @@ class ImpactedResource(Entity, Parsable):
         writer.write_str_value("apiUrl", self.api_url)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("lastModifiedBy", self.last_modified_by)
-        writer.write_str_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("owner", self.owner)
         writer.write_str_value("portalUrl", self.portal_url)
         writer.write_datetime_value("postponeUntilDateTime", self.postpone_until_date_time)

@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class MicrosoftPurviewMetadataPolicyOperationRecord(AuditData, Parsable):
+    """
+    Audit data for Microsoft Purview Metadata Policy Operation events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.microsoftPurviewMetadataPolicyOperationRecord"
     

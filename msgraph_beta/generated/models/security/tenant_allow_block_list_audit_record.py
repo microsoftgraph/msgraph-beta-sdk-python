@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class TenantAllowBlockListAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Tenant Allow Block List events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.tenantAllowBlockListAuditRecord"
     

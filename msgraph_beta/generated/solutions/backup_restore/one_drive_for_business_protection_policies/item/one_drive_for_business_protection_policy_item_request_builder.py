@@ -16,6 +16,8 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.one_drive_for_business_protection_policy import OneDriveForBusinessProtectionPolicy
     from .....models.o_data_errors.o_data_error import ODataError
+    from .drive_exclusion_units.drive_exclusion_units_request_builder import DriveExclusionUnitsRequestBuilder
+    from .drive_exclusion_units_bulk_addition_jobs.drive_exclusion_units_bulk_addition_jobs_request_builder import DriveExclusionUnitsBulkAdditionJobsRequestBuilder
     from .drive_inclusion_rules.drive_inclusion_rules_request_builder import DriveInclusionRulesRequestBuilder
     from .drive_protection_units.drive_protection_units_request_builder import DriveProtectionUnitsRequestBuilder
     from .drive_protection_units_bulk_addition_jobs.drive_protection_units_bulk_addition_jobs_request_builder import DriveProtectionUnitsBulkAdditionJobsRequestBuilder
@@ -141,6 +143,24 @@ class OneDriveForBusinessProtectionPolicyItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return OneDriveForBusinessProtectionPolicyItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def drive_exclusion_units(self) -> DriveExclusionUnitsRequestBuilder:
+        """
+        Provides operations to manage the driveExclusionUnits property of the microsoft.graph.oneDriveForBusinessProtectionPolicy entity.
+        """
+        from .drive_exclusion_units.drive_exclusion_units_request_builder import DriveExclusionUnitsRequestBuilder
+
+        return DriveExclusionUnitsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def drive_exclusion_units_bulk_addition_jobs(self) -> DriveExclusionUnitsBulkAdditionJobsRequestBuilder:
+        """
+        Provides operations to manage the driveExclusionUnitsBulkAdditionJobs property of the microsoft.graph.oneDriveForBusinessProtectionPolicy entity.
+        """
+        from .drive_exclusion_units_bulk_addition_jobs.drive_exclusion_units_bulk_addition_jobs_request_builder import DriveExclusionUnitsBulkAdditionJobsRequestBuilder
+
+        return DriveExclusionUnitsBulkAdditionJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def drive_inclusion_rules(self) -> DriveInclusionRulesRequestBuilder:

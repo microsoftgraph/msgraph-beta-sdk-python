@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class UnifiedSimulationMatchedItemAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Unified Simulation Matched Item events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.unifiedSimulationMatchedItemAuditRecord"
     

@@ -44,7 +44,7 @@ class WindowsWifiConfiguration(DeviceConfiguration, Parsable):
     proxy_setting: Optional[WiFiProxySetting] = None
     # Specify the SSID of the wifi connection.
     ssid: Optional[str] = None
-    # Specify the Wifi Security Type. Possible values are: open, wpaPersonal, wpaEnterprise, wep, wpa2Personal, wpa2Enterprise.
+    # Specify the Wifi Security Type. Possible values are: open, wpaPersonal, wpaEnterprise, wep, wpa2Personal, wpa2Enterprise, unknownFutureValue, wpa3Personal.
     wifi_security_type: Optional[WiFiSecurityType] = None
     
     @staticmethod

@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .activities.activities_request_builder import ActivitiesRequestBuilder
     from .analytics.analytics_request_builder import AnalyticsRequestBuilder
+    from .archive.archive_request_builder import ArchiveRequestBuilder
     from .assign_sensitivity_label.assign_sensitivity_label_request_builder import AssignSensitivityLabelRequestBuilder
     from .checkin.checkin_request_builder import CheckinRequestBuilder
     from .checkout.checkout_request_builder import CheckoutRequestBuilder
@@ -46,6 +47,7 @@ if TYPE_CHECKING:
     from .search_with_q.search_with_q_request_builder import SearchWithQRequestBuilder
     from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
     from .thumbnails.thumbnails_request_builder import ThumbnailsRequestBuilder
+    from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
     from .unfollow.unfollow_request_builder import UnfollowRequestBuilder
     from .validate_permission.validate_permission_request_builder import ValidatePermissionRequestBuilder
     from .versions.versions_request_builder import VersionsRequestBuilder
@@ -231,6 +233,15 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
         from .analytics.analytics_request_builder import AnalyticsRequestBuilder
 
         return AnalyticsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def archive(self) -> ArchiveRequestBuilder:
+        """
+        Provides operations to call the archive method.
+        """
+        from .archive.archive_request_builder import ArchiveRequestBuilder
+
+        return ArchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def assign_sensitivity_label(self) -> AssignSensitivityLabelRequestBuilder:
@@ -456,6 +467,15 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
         from .thumbnails.thumbnails_request_builder import ThumbnailsRequestBuilder
 
         return ThumbnailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def unarchive(self) -> UnarchiveRequestBuilder:
+        """
+        Provides operations to call the unarchive method.
+        """
+        from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
+
+        return UnarchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def unfollow(self) -> UnfollowRequestBuilder:

@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     from .license_processing_state import LicenseProcessingState
     from .membership_rule_processing_status import MembershipRuleProcessingStatus
     from .onenote import Onenote
+    from .on_premises_extension_attributes import OnPremisesExtensionAttributes
     from .on_premises_provisioning_error import OnPremisesProvisioningError
     from .on_premises_sync_behavior import OnPremisesSyncBehavior
     from .planner_group import PlannerGroup
@@ -47,15 +48,15 @@ class Group(DirectoryObject, Parsable):
     accepted_senders: Optional[list[DirectoryObject]] = None
     # Indicates the type of access to the group. Possible values are none, private, secret, and public.
     access_type: Optional[GroupAccessType] = None
-    # Indicates if people external to the organization can send messages to the group. The default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+    # Indicates if people external to the organization can send messages to the group. The default value is false. Requires $select to retrieve. Supported only on the Get group API (GET /groups/{ID}).
     allow_external_senders: Optional[bool] = None
     # Represents the app roles a group has been granted for an application. Supports $expand.
     app_role_assignments: Optional[list[AppRoleAssignment]] = None
-    # The list of sensitivity label pairs (label ID, label name) associated with a Microsoft 365 group. Returned only on $select. This property can be updated only in delegated scenarios where the caller requires both the Microsoft Graph permission and a supported administrator role.
+    # The list of sensitivity label pairs (label ID, label name) associated with a Microsoft 365 group. Requires $select to retrieve. This property can be updated only in delegated scenarios where the caller requires both the Microsoft Graph permission and a supported administrator role.
     assigned_labels: Optional[list[AssignedLabel]] = None
-    # The licenses that are assigned to the group. Returned only on $select. Supports $filter (eq). Read-only.
+    # The licenses that are assigned to the group. Requires $select to retrieve. Supports $filter (eq). Read-only.
     assigned_licenses: Optional[list[AssignedLicense]] = None
-    # Indicates if new members added to the group are auto-subscribed to receive email notifications. You can set this property in a PATCH request for the group; don't set it in the initial POST request that creates the group. Default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+    # Indicates if new members added to the group are auto-subscribed to receive email notifications. You can set this property in a PATCH request for the group; don't set it in the initial POST request that creates the group. Default value is false. Requires $select to retrieve. Supported only on the Get group API (GET /groups/{ID}).
     auto_subscribe_new_members: Optional[bool] = None
     # The group's calendar. Read-only.
     calendar: Optional[Calendar] = None
@@ -95,9 +96,9 @@ class Group(DirectoryObject, Parsable):
     group_types: Optional[list[str]] = None
     # Indicates whether there are members in this group that have license errors from its group-based license assignment. This property is never returned on a GET operation. You can use it as a $filter argument to get groups that have members with license errors (that is, filter for this property being true).  Supports $filter (eq).
     has_members_with_license_errors: Optional[bool] = None
-    # true if the group isn't displayed in certain parts of the Outlook user interface: in the Address Book, in address lists for selecting message recipients, and in the Browse Groups dialog for searching groups; false otherwise. The default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+    # true if the group isn't displayed in certain parts of the Outlook user interface: in the Address Book, in address lists for selecting message recipients, and in the Browse Groups dialog for searching groups; false otherwise. The default value is false. Requires $select to retrieve. Supported only on the Get group API (GET /groups/{ID}).
     hide_from_address_lists: Optional[bool] = None
-    # true if the group isn't displayed in Outlook clients, such as Outlook for Windows and Outlook on the web, false otherwise. The default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+    # true if the group isn't displayed in Outlook clients, such as Outlook for Windows and Outlook on the web, false otherwise. The default value is false. Requires $select to retrieve. Supported only on the Get group API (GET /groups/{ID}).
     hide_from_outlook_clients: Optional[bool] = None
     # Identifies the info segments assigned to the group. Returned by default. Supports $filter (eq, not, ge, le, startsWith).
     info_catalogs: Optional[list[str]] = None
@@ -109,9 +110,9 @@ class Group(DirectoryObject, Parsable):
     is_favorite: Optional[bool] = None
     # Indicates whether the group is a member of a restricted management administrative unit. If not set, the default value is null and the default behavior is false. Read-only.  To manage a group member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
     is_management_restricted: Optional[bool] = None
-    # Indicates whether the signed-in user is subscribed to receive email conversations. The default value is true. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+    # Indicates whether the signed-in user is subscribed to receive email conversations. The default value is true. Requires $select to retrieve. Supported only on the Get group API (GET /groups/{ID}).
     is_subscribed_by_mail: Optional[bool] = None
-    # Indicates the status of the group license assignment to all group members. Possible values: QueuedForProcessing, ProcessingInProgress, and ProcessingComplete. Returned only on $select. Read-only.
+    # Indicates the status of the group license assignment to all group members. Possible values: QueuedForProcessing, ProcessingInProgress, and ProcessingComplete. Requires $select to retrieve. Read-only.
     license_processing_state: Optional[LicenseProcessingState] = None
     # The SMTP address for the group, for example, 'serviceadmins@contoso.com'. Returned by default. Read-only. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     mail: Optional[str] = None
@@ -129,10 +130,12 @@ class Group(DirectoryObject, Parsable):
     membership_rule: Optional[str] = None
     # Indicates whether the dynamic membership processing is on or paused. Possible values are On or Paused. Returned by default. Supports $filter (eq, ne, not, in).
     membership_rule_processing_state: Optional[str] = None
-    # Describes the processing status for rules-based dynamic groups. The property is null for non-rule-based dynamic groups or if the dynamic group processing has been paused. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}). Read-only.
+    # Describes the processing status for rules-based dynamic groups. The property is null for non-rule-based dynamic groups or if the dynamic group processing has been paused. Requires $select to retrieve. Supported only on the Get group API (GET /groups/{ID}). Read-only.
     membership_rule_processing_status: Optional[MembershipRuleProcessingStatus] = None
     # Contains the on-premises domain FQDN, also called dnsDomainName synchronized from the on-premises directory. The property is only populated for customers synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect.Returned by default. Read-only.
     on_premises_domain_name: Optional[str] = None
+    # Complex type containing extension attributes 1-15 for the group, synchronized from on-premises Active Directory. Returned only on $select. Supports $filter (eq, ne, not, in).
+    on_premises_extension_attributes: Optional[OnPremisesExtensionAttributes] = None
     # Indicates the last time at which the group was synced with the on-premises directory.The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Read-only. Supports $filter (eq, ne, not, ge, le, in).
     on_premises_last_sync_date_time: Optional[datetime.datetime] = None
     # Contains the on-premises netBios name synchronized from the on-premises directory. The property is only populated for customers synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect.Returned by default. Read-only.
@@ -173,7 +176,7 @@ class Group(DirectoryObject, Parsable):
     renewed_date_time: Optional[datetime.datetime] = None
     # Specifies the group behaviors that can be set for a Microsoft 365 group during creation. This property can be set only as part of creation (POST). For the list of possible values, see Microsoft 365 group behaviors and provisioning options.
     resource_behavior_options: Optional[list[str]] = None
-    # Specifies the group resources that are associated with the Microsoft 365 group. The possible value is Team. For more information, see Microsoft 365 group behaviors and provisioning options. Returned by default. Supports $filter (eq, not, startsWith.
+    # Specifies the group resources that are associated with the Microsoft 365 group. The possible value is Team. For more information, see Microsoft 365 group behaviors and provisioning options. Returned by default. Supports $filter (eq, not, startsWith).
     resource_provisioning_options: Optional[list[str]] = None
     # Specifies whether the group is a security group. Required.Returned by default. Supports $filter (eq, ne, not, in).
     security_enabled: Optional[bool] = None
@@ -197,15 +200,15 @@ class Group(DirectoryObject, Parsable):
     transitive_members: Optional[list[DirectoryObject]] = None
     # The unique identifier that can be assigned to a group and used as an alternate key. Immutable. Read-only.
     unique_name: Optional[str] = None
-    # Count of conversations delivered one or more new posts since the signed-in user's last visit to the group. This property is the same as unseenCount. Returned only on $select.
+    # Count of conversations delivered one or more new posts since the signed-in user's last visit to the group. This property is the same as unseenCount. Requires $select to retrieve.
     unseen_conversations_count: Optional[int] = None
-    # Count of conversations that have received new posts since the signed-in user last visited the group. This property is the same as unseenConversationsCount.Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+    # Count of conversations that have received new posts since the signed-in user last visited the group. This property is the same as unseenConversationsCount.Requires $select to retrieve. Supported only on the Get group API (GET /groups/{ID}).
     unseen_count: Optional[int] = None
-    # Count of new posts that have been delivered to the group's conversations since the signed-in user's last visit to the group. Returned only on $select.
+    # Count of new posts that have been delivered to the group's conversations since the signed-in user's last visit to the group. Requires $select to retrieve.
     unseen_messages_count: Optional[int] = None
     # Specifies the group join policy and group content visibility for groups. The possible values are: Private, Public, or HiddenMembership. HiddenMembership can be set only for Microsoft 365 groups when the groups are created. It can't be updated later. Other values of visibility can be updated after group creation. If visibility value isn't specified during group creation on Microsoft Graph, a security group is created as Private by default, and Microsoft 365 group is Public. Groups assignable to roles are always Private. To learn more, see group visibility options. Returned by default. Nullable.
     visibility: Optional[str] = None
-    # Indicates whether a welcome message is sent to new members when they are added to the group. The default value is true. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+    # Indicates whether a welcome message is sent to new members when they are added to the group. The default value is true. Requires $select to retrieve. Supported only on the Get group API (GET /groups/{ID}).
     welcome_message_enabled: Optional[bool] = None
     # Specifies whether or not a group is configured to write back group object properties to on-premises Active Directory. These properties are used when group writeback is configured in the Microsoft Entra Connect sync client.
     writeback_configuration: Optional[GroupWritebackConfiguration] = None
@@ -245,6 +248,7 @@ class Group(DirectoryObject, Parsable):
         from .license_processing_state import LicenseProcessingState
         from .membership_rule_processing_status import MembershipRuleProcessingStatus
         from .onenote import Onenote
+        from .on_premises_extension_attributes import OnPremisesExtensionAttributes
         from .on_premises_provisioning_error import OnPremisesProvisioningError
         from .on_premises_sync_behavior import OnPremisesSyncBehavior
         from .planner_group import PlannerGroup
@@ -273,6 +277,7 @@ class Group(DirectoryObject, Parsable):
         from .license_processing_state import LicenseProcessingState
         from .membership_rule_processing_status import MembershipRuleProcessingStatus
         from .onenote import Onenote
+        from .on_premises_extension_attributes import OnPremisesExtensionAttributes
         from .on_premises_provisioning_error import OnPremisesProvisioningError
         from .on_premises_sync_behavior import OnPremisesSyncBehavior
         from .planner_group import PlannerGroup
@@ -328,6 +333,7 @@ class Group(DirectoryObject, Parsable):
             "membershipRuleProcessingState": lambda n : setattr(self, 'membership_rule_processing_state', n.get_str_value()),
             "membershipRuleProcessingStatus": lambda n : setattr(self, 'membership_rule_processing_status', n.get_object_value(MembershipRuleProcessingStatus)),
             "onPremisesDomainName": lambda n : setattr(self, 'on_premises_domain_name', n.get_str_value()),
+            "onPremisesExtensionAttributes": lambda n : setattr(self, 'on_premises_extension_attributes', n.get_object_value(OnPremisesExtensionAttributes)),
             "onPremisesLastSyncDateTime": lambda n : setattr(self, 'on_premises_last_sync_date_time', n.get_datetime_value()),
             "onPremisesNetBiosName": lambda n : setattr(self, 'on_premises_net_bios_name', n.get_str_value()),
             "onPremisesProvisioningErrors": lambda n : setattr(self, 'on_premises_provisioning_errors', n.get_collection_of_object_values(OnPremisesProvisioningError)),
@@ -425,6 +431,7 @@ class Group(DirectoryObject, Parsable):
         writer.write_str_value("membershipRuleProcessingState", self.membership_rule_processing_state)
         writer.write_object_value("membershipRuleProcessingStatus", self.membership_rule_processing_status)
         writer.write_str_value("onPremisesDomainName", self.on_premises_domain_name)
+        writer.write_object_value("onPremisesExtensionAttributes", self.on_premises_extension_attributes)
         writer.write_datetime_value("onPremisesLastSyncDateTime", self.on_premises_last_sync_date_time)
         writer.write_str_value("onPremisesNetBiosName", self.on_premises_net_bios_name)
         writer.write_collection_of_object_values("onPremisesProvisioningErrors", self.on_premises_provisioning_errors)

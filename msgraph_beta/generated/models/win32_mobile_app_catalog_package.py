@@ -21,6 +21,8 @@ class Win32MobileAppCatalogPackage(MobileAppCatalogPackage, Parsable):
     applicable_architectures: Optional[WindowsArchitecture] = None
     # The product branch name, which is a specific subset of product functionality as defined by the publisher (example: "Fabrikam for Business (x64)"). A specific product will have one or more branchDisplayNames. Read-only. Supports $filter, $search, $select. This property is read-only.
     branch_display_name: Optional[str] = None
+    # The identifier of a specific branch irrespective of version, or other attributes. This id is associated with the branchDisplayName. Read-only. This property is read-only.
+    branch_id: Optional[str] = None
     # One or more locale(s) supported by the branch. Value is a two-letter ISO 639 language tags with optional two-letter subtags (example: en-US, ko, de, de-DE), or mul to indicate multi-language. Read-only. This property is read-only.
     locales: Optional[list[str]] = None
     # Indicates whether the package is capable to auto-update to latest when software/application updates are available. When TRUE, it indicates it is an auto-updating application. When FALSE, it indicates that it is not an auto-updating application. This property is read-only.
@@ -51,6 +53,7 @@ class Win32MobileAppCatalogPackage(MobileAppCatalogPackage, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_collection_of_enum_values(WindowsArchitecture)),
             "branchDisplayName": lambda n : setattr(self, 'branch_display_name', n.get_str_value()),
+            "branchId": lambda n : setattr(self, 'branch_id', n.get_str_value()),
             "locales": lambda n : setattr(self, 'locales', n.get_collection_of_primitive_values(str)),
             "packageAutoUpdateCapable": lambda n : setattr(self, 'package_auto_update_capable', n.get_bool_value()),
         }

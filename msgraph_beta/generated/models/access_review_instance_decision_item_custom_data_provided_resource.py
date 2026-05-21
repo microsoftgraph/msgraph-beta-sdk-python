@@ -13,6 +13,12 @@ from .access_review_instance_decision_item_resource import AccessReviewInstanceD
 class AccessReviewInstanceDecisionItemCustomDataProvidedResource(AccessReviewInstanceDecisionItemResource, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.accessReviewInstanceDecisionItemCustomDataProvidedResource"
+    # Custom data to include with the decision.
+    custom_data: Optional[str] = None
+    # The name of the scope for the decision.
+    scope_display_name: Optional[str] = None
+    # The id of the scope for the decision.
+    scope_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AccessReviewInstanceDecisionItemCustomDataProvidedResource:
@@ -35,6 +41,9 @@ class AccessReviewInstanceDecisionItemCustomDataProvidedResource(AccessReviewIns
         from .access_review_instance_decision_item_resource import AccessReviewInstanceDecisionItemResource
 
         fields: dict[str, Callable[[Any], None]] = {
+            "customData": lambda n : setattr(self, 'custom_data', n.get_str_value()),
+            "scopeDisplayName": lambda n : setattr(self, 'scope_display_name', n.get_str_value()),
+            "scopeId": lambda n : setattr(self, 'scope_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -49,5 +58,8 @@ class AccessReviewInstanceDecisionItemCustomDataProvidedResource(AccessReviewIns
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("customData", self.custom_data)
+        writer.write_str_value("scopeDisplayName", self.scope_display_name)
+        writer.write_str_value("scopeId", self.scope_id)
     
 

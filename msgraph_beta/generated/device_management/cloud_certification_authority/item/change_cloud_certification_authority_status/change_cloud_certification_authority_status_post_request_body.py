@@ -15,7 +15,7 @@ class ChangeCloudCertificationAuthorityStatusPostRequestBody(AdditionalDataHolde
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Enum type of possible certification authority statuses. These statuses indicate whether a certification authority is currently able to issue certificates or temporarily paused or permanently revoked.
+    # Enum type of possible certification authority statuses. These statuses indicate whether a certification authority is currently able to issue certificates, temporarily paused, pending signing, revoked, or expired.
     certification_authority_status: Optional[CloudCertificationAuthorityStatus] = None
     # The certificationAuthorityVersion property
     certification_authority_version: Optional[int] = None

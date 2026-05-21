@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 class ServicePrincipalRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the servicePrincipal property of the microsoft.graph.networkaccess.forwardingProfile entity.
+    Provides operations to manage the servicePrincipal property of the microsoft.graph.networkaccess.forwardingProfileBase entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """

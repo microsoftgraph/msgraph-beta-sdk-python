@@ -29,7 +29,7 @@ from .entity import Entity
 
 @dataclass
 class FileStorageContainer(Entity, Parsable):
-    # The archivalDetails property
+    # Archival details of the fileStorageContainer. Read-write.
     archival_details: Optional[SiteArchivalDetails] = None
     # Sensitivity label assigned to the fileStorageContainer. Read-write.
     assigned_sensitivity_label: Optional[AssignedLabel] = None

@@ -34,11 +34,13 @@ if TYPE_CHECKING:
     from .public_key_infrastructure.public_key_infrastructure_request_builder import PublicKeyInfrastructureRequestBuilder
     from .recommendations.recommendations_request_builder import RecommendationsRequestBuilder
     from .recommendation_configuration.recommendation_configuration_request_builder import RecommendationConfigurationRequestBuilder
+    from .recovery.recovery_request_builder import RecoveryRequestBuilder
     from .shared_email_domains.shared_email_domains_request_builder import SharedEmailDomainsRequestBuilder
     from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
     from .subscriptions_with_commerce_subscription_id.subscriptions_with_commerce_subscription_id_request_builder import SubscriptionsWithCommerceSubscriptionIdRequestBuilder
     from .subscriptions_with_ocp_subscription_id.subscriptions_with_ocp_subscription_id_request_builder import SubscriptionsWithOcpSubscriptionIdRequestBuilder
     from .templates.templates_request_builder import TemplatesRequestBuilder
+    from .tenant_governance.tenant_governance_request_builder import TenantGovernanceRequestBuilder
 
 class DirectoryRequestBuilder(BaseRequestBuilder):
     """
@@ -319,6 +321,15 @@ class DirectoryRequestBuilder(BaseRequestBuilder):
         return RecommendationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def recovery(self) -> RecoveryRequestBuilder:
+        """
+        Provides operations to manage the recovery property of the microsoft.graph.directory entity.
+        """
+        from .recovery.recovery_request_builder import RecoveryRequestBuilder
+
+        return RecoveryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def shared_email_domains(self) -> SharedEmailDomainsRequestBuilder:
         """
         Provides operations to manage the sharedEmailDomains property of the microsoft.graph.directory entity.
@@ -344,6 +355,15 @@ class DirectoryRequestBuilder(BaseRequestBuilder):
         from .templates.templates_request_builder import TemplatesRequestBuilder
 
         return TemplatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tenant_governance(self) -> TenantGovernanceRequestBuilder:
+        """
+        Provides operations to manage the tenantGovernance property of the microsoft.graph.directory entity.
+        """
+        from .tenant_governance.tenant_governance_request_builder import TenantGovernanceRequestBuilder
+
+        return TenantGovernanceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DirectoryRequestBuilderGetQueryParameters():

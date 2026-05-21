@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class UnifiedGroupAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Unified Group events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.unifiedGroupAuditRecord"
     

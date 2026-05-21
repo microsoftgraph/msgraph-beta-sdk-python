@@ -49,9 +49,10 @@ class ExternalOriginResourceConnectorsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ExternalOriginResourceConnectorsRequestBuilderGetQueryParameters]] = None) -> Optional[ExternalOriginResourceConnectorCollectionResponse]:
         """
-        Get externalOriginResourceConnectors from identityGovernance
+        Get a list of externalOriginResourceConnector objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalOriginResourceConnectorCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-externaloriginresourceconnectors?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class ExternalOriginResourceConnectorsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ExternalOriginResourceConnector, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ExternalOriginResourceConnector]:
         """
-        Create new navigation property to externalOriginResourceConnectors for identityGovernance
+        Creates a new externalOriginResourceConnector object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalOriginResourceConnector]
+        Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-post-externaloriginresourceconnectors?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class ExternalOriginResourceConnectorsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ExternalOriginResourceConnectorsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get externalOriginResourceConnectors from identityGovernance
+        Get a list of externalOriginResourceConnector objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class ExternalOriginResourceConnectorsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ExternalOriginResourceConnector, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to externalOriginResourceConnectors for identityGovernance
+        Creates a new externalOriginResourceConnector object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class ExternalOriginResourceConnectorsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExternalOriginResourceConnectorsRequestBuilderGetQueryParameters():
         """
-        Get externalOriginResourceConnectors from identityGovernance
+        Get a list of externalOriginResourceConnector objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

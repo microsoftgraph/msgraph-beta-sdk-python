@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .device_local_credential_info import DeviceLocalCredentialInfo
     from .directory_object import DirectoryObject
     from .entity import Entity
+    from .entra_recovery_services.recovery import Recovery
     from .external_user_profile import ExternalUserProfile
     from .feature_rollout_policy import FeatureRolloutPolicy
     from .identity_provider_base import IdentityProviderBase
@@ -27,6 +28,7 @@ if TYPE_CHECKING:
     from .recommendation_configuration import RecommendationConfiguration
     from .shared_email_domain import SharedEmailDomain
     from .template import Template
+    from .tenant_governance_services.tenant_governance import TenantGovernance
 
 from .entity import Entity
 
@@ -70,12 +72,16 @@ class Directory(Entity, Parsable):
     recommendation_configuration: Optional[RecommendationConfiguration] = None
     # List of recommended improvements to improve tenant posture.
     recommendations: Optional[list[Recommendation]] = None
+    # Represents the Entra backup and recovery service for the tenant.
+    recovery: Optional[Recovery] = None
     # The sharedEmailDomains property
     shared_email_domains: Optional[list[SharedEmailDomain]] = None
     # List of commercial subscriptions that an organization has.
     subscriptions: Optional[list[CompanySubscription]] = None
     # A container for templates, such as device templates used for onboarding devices in Microsoft Entra ID.
     templates: Optional[Template] = None
+    # Container for Microsoft Entra Tenant Governance capabilities.
+    tenant_governance: Optional[TenantGovernance] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Directory:
@@ -102,6 +108,7 @@ class Directory(Entity, Parsable):
         from .device_local_credential_info import DeviceLocalCredentialInfo
         from .directory_object import DirectoryObject
         from .entity import Entity
+        from .entra_recovery_services.recovery import Recovery
         from .external_user_profile import ExternalUserProfile
         from .feature_rollout_policy import FeatureRolloutPolicy
         from .identity_provider_base import IdentityProviderBase
@@ -115,6 +122,7 @@ class Directory(Entity, Parsable):
         from .recommendation_configuration import RecommendationConfiguration
         from .shared_email_domain import SharedEmailDomain
         from .template import Template
+        from .tenant_governance_services.tenant_governance import TenantGovernance
 
         from .administrative_unit import AdministrativeUnit
         from .attribute_set import AttributeSet
@@ -125,6 +133,7 @@ class Directory(Entity, Parsable):
         from .device_local_credential_info import DeviceLocalCredentialInfo
         from .directory_object import DirectoryObject
         from .entity import Entity
+        from .entra_recovery_services.recovery import Recovery
         from .external_user_profile import ExternalUserProfile
         from .feature_rollout_policy import FeatureRolloutPolicy
         from .identity_provider_base import IdentityProviderBase
@@ -138,6 +147,7 @@ class Directory(Entity, Parsable):
         from .recommendation_configuration import RecommendationConfiguration
         from .shared_email_domain import SharedEmailDomain
         from .template import Template
+        from .tenant_governance_services.tenant_governance import TenantGovernance
 
         fields: dict[str, Callable[[Any], None]] = {
             "administrativeUnits": lambda n : setattr(self, 'administrative_units', n.get_collection_of_object_values(AdministrativeUnit)),
@@ -158,9 +168,11 @@ class Directory(Entity, Parsable):
             "publicKeyInfrastructure": lambda n : setattr(self, 'public_key_infrastructure', n.get_object_value(PublicKeyInfrastructureRoot)),
             "recommendationConfiguration": lambda n : setattr(self, 'recommendation_configuration', n.get_object_value(RecommendationConfiguration)),
             "recommendations": lambda n : setattr(self, 'recommendations', n.get_collection_of_object_values(Recommendation)),
+            "recovery": lambda n : setattr(self, 'recovery', n.get_object_value(Recovery)),
             "sharedEmailDomains": lambda n : setattr(self, 'shared_email_domains', n.get_collection_of_object_values(SharedEmailDomain)),
             "subscriptions": lambda n : setattr(self, 'subscriptions', n.get_collection_of_object_values(CompanySubscription)),
             "templates": lambda n : setattr(self, 'templates', n.get_object_value(Template)),
+            "tenantGovernance": lambda n : setattr(self, 'tenant_governance', n.get_object_value(TenantGovernance)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -193,8 +205,10 @@ class Directory(Entity, Parsable):
         writer.write_object_value("publicKeyInfrastructure", self.public_key_infrastructure)
         writer.write_object_value("recommendationConfiguration", self.recommendation_configuration)
         writer.write_collection_of_object_values("recommendations", self.recommendations)
+        writer.write_object_value("recovery", self.recovery)
         writer.write_collection_of_object_values("sharedEmailDomains", self.shared_email_domains)
         writer.write_collection_of_object_values("subscriptions", self.subscriptions)
         writer.write_object_value("templates", self.templates)
+        writer.write_object_value("tenantGovernance", self.tenant_governance)
     
 

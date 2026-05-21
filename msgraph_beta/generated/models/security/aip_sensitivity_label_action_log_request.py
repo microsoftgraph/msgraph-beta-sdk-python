@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class AipSensitivityLabelActionLogRequest(AuditData, Parsable):
+    """
+    Audit data for AIP Sensitivity Label Action log request events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.aipSensitivityLabelActionLogRequest"
     

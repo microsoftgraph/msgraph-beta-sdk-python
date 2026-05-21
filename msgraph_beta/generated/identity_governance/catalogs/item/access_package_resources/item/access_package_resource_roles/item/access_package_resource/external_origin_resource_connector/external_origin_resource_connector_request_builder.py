@@ -32,7 +32,7 @@ class ExternalOriginResourceConnectorRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ExternalOriginResourceConnectorRequestBuilderGetQueryParameters]] = None) -> Optional[ExternalOriginResourceConnector]:
         """
-        Get externalOriginResourceConnector from identityGovernance
+        The connector that integrates with external origin systems to provision access to resources from those systems. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExternalOriginResourceConnector]
         """
@@ -53,7 +53,7 @@ class ExternalOriginResourceConnectorRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ExternalOriginResourceConnectorRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get externalOriginResourceConnector from identityGovernance
+        The connector that integrates with external origin systems to provision access to resources from those systems. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -77,7 +77,7 @@ class ExternalOriginResourceConnectorRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExternalOriginResourceConnectorRequestBuilderGetQueryParameters():
         """
-        Get externalOriginResourceConnector from identityGovernance
+        The connector that integrates with external origin systems to provision access to resources from those systems. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

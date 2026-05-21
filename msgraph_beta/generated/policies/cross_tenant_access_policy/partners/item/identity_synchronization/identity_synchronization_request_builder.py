@@ -33,7 +33,7 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete the user synchronization policy for a partner-specific configuration.
+        Delete the user and group synchronization policy for a partner-specific configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/crosstenantidentitysyncpolicypartner-delete?view=graph-rest-beta
@@ -52,7 +52,7 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[IdentitySynchronizationRequestBuilderGetQueryParameters]] = None) -> Optional[CrossTenantIdentitySyncPolicyPartner]:
         """
-        Get the user synchronization policy of a partner-specific configuration.
+        Get the user and group synchronization policy of a partner-specific configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantIdentitySyncPolicyPartner]
         Find more info here: https://learn.microsoft.com/graph/api/crosstenantidentitysyncpolicypartner-get?view=graph-rest-beta
@@ -73,7 +73,7 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     
     async def put(self,body: CrossTenantIdentitySyncPolicyPartner, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CrossTenantIdentitySyncPolicyPartner]:
         """
-        Create a cross-tenant user synchronization policy for a partner-specific configuration.
+        Create a cross-tenant user and optionally group synchronization policy for a partner-specific configuration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantIdentitySyncPolicyPartner]
@@ -97,7 +97,7 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete the user synchronization policy for a partner-specific configuration.
+        Delete the user and group synchronization policy for a partner-specific configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -108,7 +108,7 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[IdentitySynchronizationRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get the user synchronization policy of a partner-specific configuration.
+        Get the user and group synchronization policy of a partner-specific configuration.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,7 +119,7 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     
     def to_put_request_information(self,body: CrossTenantIdentitySyncPolicyPartner, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a cross-tenant user synchronization policy for a partner-specific configuration.
+        Create a cross-tenant user and optionally group synchronization policy for a partner-specific configuration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -161,7 +161,7 @@ class IdentitySynchronizationRequestBuilder(BaseRequestBuilder):
     @dataclass
     class IdentitySynchronizationRequestBuilderGetQueryParameters():
         """
-        Get the user synchronization policy of a partner-specific configuration.
+        Get the user and group synchronization policy of a partner-specific configuration.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

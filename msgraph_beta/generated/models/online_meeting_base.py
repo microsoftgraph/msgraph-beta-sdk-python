@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .audio_conferencing import AudioConferencing
     from .chat_info import ChatInfo
     from .chat_restrictions import ChatRestrictions
+    from .cloud_video_interop_info import CloudVideoInteropInfo
     from .entity import Entity
     from .item_body import ItemBody
     from .join_meeting_id_settings import JoinMeetingIdSettings
@@ -67,6 +68,8 @@ class OnlineMeetingBase(Entity, Parsable):
     chat_info: Optional[ChatInfo] = None
     # Specifies the configuration settings for meeting chat restrictions.
     chat_restrictions: Optional[ChatRestrictions] = None
+    # The cloudVideoInteropInfo property
+    cloud_video_interop_info: Optional[CloudVideoInteropInfo] = None
     # Indicates the date and time when the meeting resource expires. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     expiry_date_time: Optional[datetime.datetime] = None
     # Indicates whether end-to-end encryption (E2EE) is enabled for the online meeting.
@@ -133,6 +136,7 @@ class OnlineMeetingBase(Entity, Parsable):
         from .audio_conferencing import AudioConferencing
         from .chat_info import ChatInfo
         from .chat_restrictions import ChatRestrictions
+        from .cloud_video_interop_info import CloudVideoInteropInfo
         from .entity import Entity
         from .item_body import ItemBody
         from .join_meeting_id_settings import JoinMeetingIdSettings
@@ -152,6 +156,7 @@ class OnlineMeetingBase(Entity, Parsable):
         from .audio_conferencing import AudioConferencing
         from .chat_info import ChatInfo
         from .chat_restrictions import ChatRestrictions
+        from .cloud_video_interop_info import CloudVideoInteropInfo
         from .entity import Entity
         from .item_body import ItemBody
         from .join_meeting_id_settings import JoinMeetingIdSettings
@@ -187,6 +192,7 @@ class OnlineMeetingBase(Entity, Parsable):
             "audioConferencing": lambda n : setattr(self, 'audio_conferencing', n.get_object_value(AudioConferencing)),
             "chatInfo": lambda n : setattr(self, 'chat_info', n.get_object_value(ChatInfo)),
             "chatRestrictions": lambda n : setattr(self, 'chat_restrictions', n.get_object_value(ChatRestrictions)),
+            "cloudVideoInteropInfo": lambda n : setattr(self, 'cloud_video_interop_info', n.get_object_value(CloudVideoInteropInfo)),
             "expiryDateTime": lambda n : setattr(self, 'expiry_date_time', n.get_datetime_value()),
             "isEndToEndEncryptionEnabled": lambda n : setattr(self, 'is_end_to_end_encryption_enabled', n.get_bool_value()),
             "isEntryExitAnnounced": lambda n : setattr(self, 'is_entry_exit_announced', n.get_bool_value()),
@@ -235,6 +241,7 @@ class OnlineMeetingBase(Entity, Parsable):
         writer.write_object_value("audioConferencing", self.audio_conferencing)
         writer.write_object_value("chatInfo", self.chat_info)
         writer.write_object_value("chatRestrictions", self.chat_restrictions)
+        writer.write_object_value("cloudVideoInteropInfo", self.cloud_video_interop_info)
         writer.write_datetime_value("expiryDateTime", self.expiry_date_time)
         writer.write_bool_value("isEndToEndEncryptionEnabled", self.is_end_to_end_encryption_enabled)
         writer.write_bool_value("isEntryExitAnnounced", self.is_entry_exit_announced)

@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class AzureActiveDirectoryAuditRecord(AuditData, Parsable):
+    """
+    Audit data for Azure Active Directory events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.azureActiveDirectoryAuditRecord"
     

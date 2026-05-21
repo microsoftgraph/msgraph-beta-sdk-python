@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .assigned_roles.assigned_roles_request_builder import AssignedRolesRequestBuilder
     from .learning_course_activities.learning_course_activities_request_builder import LearningCourseActivitiesRequestBuilder
     from .learning_course_activities_with_externalcourse_activity_id.learning_course_activities_with_externalcourse_activity_id_request_builder import LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder
+    from .storyline.storyline_request_builder import StorylineRequestBuilder
 
 class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
     """
@@ -53,7 +54,7 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[EmployeeExperienceRequestBuilderGetQueryParameters]] = None) -> Optional[EmployeeExperienceUser]:
         """
-        Get employeeExperience from users
+        The employee experience resources for the user. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[EmployeeExperienceUser]
         """
@@ -119,7 +120,7 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[EmployeeExperienceRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get employeeExperience from users
+        The employee experience resources for the user. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -171,6 +172,15 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
 
         return LearningCourseActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def storyline(self) -> StorylineRequestBuilder:
+        """
+        Provides operations to manage the storyline property of the microsoft.graph.employeeExperienceUser entity.
+        """
+        from .storyline.storyline_request_builder import StorylineRequestBuilder
+
+        return StorylineRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class EmployeeExperienceRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
@@ -181,7 +191,7 @@ class EmployeeExperienceRequestBuilder(BaseRequestBuilder):
     @dataclass
     class EmployeeExperienceRequestBuilderGetQueryParameters():
         """
-        Get employeeExperience from users
+        The employee experience resources for the user. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .audit_events.audit_events_request_builder import AuditEventsRequestBuilder
     from .bulk_actions.bulk_actions_request_builder import BulkActionsRequestBuilder
     from .cloud_apps.cloud_apps_request_builder import CloudAppsRequestBuilder
+    from .cloud_pc_pools.cloud_pc_pools_request_builder import CloudPcPoolsRequestBuilder
     from .cloud_p_cs.cloud_p_cs_request_builder import CloudPCsRequestBuilder
     from .cross_cloud_government_organization_mapping.cross_cloud_government_organization_mapping_request_builder import CrossCloudGovernmentOrganizationMappingRequestBuilder
     from .device_images.device_images_request_builder import DeviceImagesRequestBuilder
@@ -29,10 +30,12 @@ if TYPE_CHECKING:
     from .get_effective_permissions.get_effective_permissions_request_builder import GetEffectivePermissionsRequestBuilder
     from .managed_licenses.managed_licenses_request_builder import ManagedLicensesRequestBuilder
     from .on_premises_connections.on_premises_connections_request_builder import OnPremisesConnectionsRequestBuilder
+    from .organization_action.organization_action_request_builder import OrganizationActionRequestBuilder
     from .organization_settings.organization_settings_request_builder import OrganizationSettingsRequestBuilder
     from .provisioning_policies.provisioning_policies_request_builder import ProvisioningPoliciesRequestBuilder
     from .report.report_request_builder import ReportRequestBuilder
     from .reports.reports_request_builder import ReportsRequestBuilder
+    from .retrieve_organization_action_detail_with_action_type.retrieve_organization_action_detail_with_action_type_request_builder import RetrieveOrganizationActionDetailWithActionTypeRequestBuilder
     from .retrieve_scoped_permissions.retrieve_scoped_permissions_request_builder import RetrieveScopedPermissionsRequestBuilder
     from .retrieve_tenant_encryption_setting.retrieve_tenant_encryption_setting_request_builder import RetrieveTenantEncryptionSettingRequestBuilder
     from .service_plans.service_plans_request_builder import ServicePlansRequestBuilder
@@ -113,6 +116,18 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         from ...models.virtual_endpoint import VirtualEndpoint
 
         return await self.request_adapter.send_async(request_info, VirtualEndpoint, error_mapping)
+    
+    def retrieve_organization_action_detail_with_action_type(self,action_type: str) -> RetrieveOrganizationActionDetailWithActionTypeRequestBuilder:
+        """
+        Provides operations to call the retrieveOrganizationActionDetail method.
+        param action_type: Usage: actionType='{actionType}'
+        Returns: RetrieveOrganizationActionDetailWithActionTypeRequestBuilder
+        """
+        if action_type is None:
+            raise TypeError("action_type cannot be null.")
+        from .retrieve_organization_action_detail_with_action_type.retrieve_organization_action_detail_with_action_type_request_builder import RetrieveOrganizationActionDetailWithActionTypeRequestBuilder
+
+        return RetrieveOrganizationActionDetailWithActionTypeRequestBuilder(self.request_adapter, self.path_parameters, action_type)
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
@@ -198,6 +213,15 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         return CloudPCsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def cloud_pc_pools(self) -> CloudPcPoolsRequestBuilder:
+        """
+        Provides operations to manage the cloudPcPools property of the microsoft.graph.virtualEndpoint entity.
+        """
+        from .cloud_pc_pools.cloud_pc_pools_request_builder import CloudPcPoolsRequestBuilder
+
+        return CloudPcPoolsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def cross_cloud_government_organization_mapping(self) -> CrossCloudGovernmentOrganizationMappingRequestBuilder:
         """
         Provides operations to manage the crossCloudGovernmentOrganizationMapping property of the microsoft.graph.virtualEndpoint entity.
@@ -277,6 +301,15 @@ class VirtualEndpointRequestBuilder(BaseRequestBuilder):
         from .on_premises_connections.on_premises_connections_request_builder import OnPremisesConnectionsRequestBuilder
 
         return OnPremisesConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def organization_action(self) -> OrganizationActionRequestBuilder:
+        """
+        Provides operations to call the organizationAction method.
+        """
+        from .organization_action.organization_action_request_builder import OrganizationActionRequestBuilder
+
+        return OrganizationActionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def organization_settings(self) -> OrganizationSettingsRequestBuilder:

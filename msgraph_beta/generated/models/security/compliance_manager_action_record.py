@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ComplianceManagerActionRecord(AuditData, Parsable):
+    """
+    Audit data for Compliance Manager Action events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.complianceManagerActionRecord"
     

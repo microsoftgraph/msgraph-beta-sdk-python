@@ -11,6 +11,9 @@ from .audit_data import AuditData
 
 @dataclass
 class ExchangeAggregatedOperationRecord(AuditData, Parsable):
+    """
+    Audit data for Exchange Aggregated Operation events.
+    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.exchangeAggregatedOperationRecord"
     
