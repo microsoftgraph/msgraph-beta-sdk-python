@@ -22,6 +22,9 @@ updates:
       flit:
         patterns:
           - "*flit*"
+      other-dependencies:
+        patterns:
+          - "*"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
