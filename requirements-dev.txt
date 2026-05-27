@@ -1,7 +1,7 @@
 aiohttp==3.13.5
 aiosignal==1.4.0
 anyio==4.13.0
-astroid==3.3.11
+astroid==4.1.2
 async-timeout==5.0.1
 attrs==26.1.0
 azure-core==1.41.0
@@ -54,7 +54,7 @@ platformdirs==4.9.6
 portalocker==2.10.1
 pycparser==3.0
 PyJWT==2.13.0
-pylint==3.3.9
+pylint==4.0.5
 pyproject_hooks==1.2.0
 python-dateutil==2.9.0.post0
 requests==2.34.2
