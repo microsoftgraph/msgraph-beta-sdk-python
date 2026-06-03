@@ -28,7 +28,7 @@ class ActivityRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/teamwork/devices/{teamworkDevice%2Did}/activity{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/teamwork/devices/{teamworkDevice%2Did}/activity", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """

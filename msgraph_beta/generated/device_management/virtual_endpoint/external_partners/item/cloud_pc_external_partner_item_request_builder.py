@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from .configure_agent.configure_agent_request_builder import ConfigureAgentRequestBuilder
     from .deploy_agent.deploy_agent_request_builder import DeployAgentRequestBuilder
     from .retrieve_action_reports.retrieve_action_reports_request_builder import RetrieveActionReportsRequestBuilder
-    from .retrieve_deploy_agent_action_resultsactivity_id_activity_id_cloud_pc_id_cloud_pc_id.retrieve_deploy_agent_action_resultsactivity_id_activity_id_cloud_pc_id_cloud_pc_id_request_builder import RetrieveDeployAgentActionResultsactivityIdActivityIdCloudPcIdCloudPcIdRequestBuilder
+    from .retrieve_deploy_agent_action_resultsactivity_id_activity_id_clo_c6f461a2.retrieve_deploy_agent_action_resultsactivity_id_activity_id_clo_aaebe13d import RetrieveDeployAgentActionResultsactivityIdActivityIdClo_aaebe13d
 
 class CloudPcExternalPartnerItemRequestBuilder(BaseRequestBuilder):
     """
@@ -32,7 +32,7 @@ class CloudPcExternalPartnerItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/externalPartners/{cloudPcExternalPartner%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/externalPartners/{cloudPcExternalPartner%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -172,13 +172,13 @@ class CloudPcExternalPartnerItemRequestBuilder(BaseRequestBuilder):
         return RetrieveActionReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def retrieve_deploy_agent_action_resultsactivity_id_activity_id_cloud_pc_id_cloud_pc_id(self) -> RetrieveDeployAgentActionResultsactivityIdActivityIdCloudPcIdCloudPcIdRequestBuilder:
+    def retrieve_deploy_agent_action_resultsactivity_id_activity_id_cloud_pc_id_cloud_pc_id(self) -> RetrieveDeployAgentActionResultsactivityIdActivityIdClo_aaebe13d:
         """
         Provides operations to call the retrieveDeployAgentActionResults method.
         """
-        from .retrieve_deploy_agent_action_resultsactivity_id_activity_id_cloud_pc_id_cloud_pc_id.retrieve_deploy_agent_action_resultsactivity_id_activity_id_cloud_pc_id_cloud_pc_id_request_builder import RetrieveDeployAgentActionResultsactivityIdActivityIdCloudPcIdCloudPcIdRequestBuilder
+        from .retrieve_deploy_agent_action_resultsactivity_id_activity_id_clo_c6f461a2.retrieve_deploy_agent_action_resultsactivity_id_activity_id_clo_aaebe13d import RetrieveDeployAgentActionResultsactivityIdActivityIdClo_aaebe13d
 
-        return RetrieveDeployAgentActionResultsactivityIdActivityIdCloudPcIdCloudPcIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return RetrieveDeployAgentActionResultsactivityIdActivityIdClo_aaebe13d(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CloudPcExternalPartnerItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

@@ -35,7 +35,7 @@ class AccessPackageCatalogItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/identityGovernance/catalogs/{accessPackageCatalog%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/catalogs/{accessPackageCatalog%2Did}", path_parameters)
     
     def access_packages_with_unique_name(self,unique_name: str) -> AccessPackagesWithUniqueNameRequestBuilder:
         """

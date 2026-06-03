@@ -15,10 +15,10 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.device_management_compliance_scheduled_action_for_rule import DeviceManagementComplianceScheduledActionForRule
-    from .....models.device_management_compliance_scheduled_action_for_rule_collection_response import DeviceManagementComplianceScheduledActionForRuleCollectionResponse
+    from .....models.device_management_compliance_scheduled_action_for_rule_collect_0fcf9923 import DeviceManagementComplianceScheduledActionForRuleCollect_0fcf9923
     from .....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
-    from .item.device_management_compliance_scheduled_action_for_rule_item_request_builder import DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder
+    from .item.device_management_compliance_scheduled_action_for_rule_item_req_0081baa3 import DeviceManagementComplianceScheduledActionForRuleItemReq_0081baa3
 
 class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
     """
@@ -31,27 +31,27 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/compliancePolicies/{deviceManagementCompliancePolicy%2Did}/scheduledActionsForRule{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
-    def by_device_management_compliance_scheduled_action_for_rule_id(self,device_management_compliance_scheduled_action_for_rule_id: str) -> DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder:
+    def by_device_management_compliance_scheduled_action_for_rule_id(self,device_management_compliance_scheduled_action_for_rule_id: str) -> DeviceManagementComplianceScheduledActionForRuleItemReq_0081baa3:
         """
         Provides operations to manage the scheduledActionsForRule property of the microsoft.graph.deviceManagementCompliancePolicy entity.
         param device_management_compliance_scheduled_action_for_rule_id: The unique identifier of deviceManagementComplianceScheduledActionForRule
-        Returns: DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder
+        Returns: DeviceManagementComplianceScheduledActionForRuleItemReq_0081baa3
         """
         if device_management_compliance_scheduled_action_for_rule_id is None:
             raise TypeError("device_management_compliance_scheduled_action_for_rule_id cannot be null.")
-        from .item.device_management_compliance_scheduled_action_for_rule_item_request_builder import DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder
+        from .item.device_management_compliance_scheduled_action_for_rule_item_req_0081baa3 import DeviceManagementComplianceScheduledActionForRuleItemReq_0081baa3
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementComplianceScheduledActionForRule%2Did"] = device_management_compliance_scheduled_action_for_rule_id
-        return DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return DeviceManagementComplianceScheduledActionForRuleItemReq_0081baa3(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[ScheduledActionsForRuleRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceManagementComplianceScheduledActionForRuleCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[ScheduledActionsForRuleRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceManagementComplianceScheduledActionForRuleCollect_0fcf9923]:
         """
         The list of scheduled action for this rule
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[DeviceManagementComplianceScheduledActionForRuleCollectionResponse]
+        Returns: Optional[DeviceManagementComplianceScheduledActionForRuleCollect_0fcf9923]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -63,9 +63,9 @@ class ScheduledActionsForRuleRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.device_management_compliance_scheduled_action_for_rule_collection_response import DeviceManagementComplianceScheduledActionForRuleCollectionResponse
+        from .....models.device_management_compliance_scheduled_action_for_rule_collect_0fcf9923 import DeviceManagementComplianceScheduledActionForRuleCollect_0fcf9923
 
-        return await self.request_adapter.send_async(request_info, DeviceManagementComplianceScheduledActionForRuleCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementComplianceScheduledActionForRuleCollect_0fcf9923, error_mapping)
     
     async def post(self,body: DeviceManagementComplianceScheduledActionForRule, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DeviceManagementComplianceScheduledActionForRule]:
         """

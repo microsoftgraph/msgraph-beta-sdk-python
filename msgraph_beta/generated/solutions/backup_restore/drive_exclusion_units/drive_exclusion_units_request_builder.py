@@ -31,7 +31,7 @@ class DriveExclusionUnitsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/driveExclusionUnits{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_drive_exclusion_unit_id(self,drive_exclusion_unit_id: str) -> DriveExclusionUnitItemRequestBuilder:
         """
@@ -49,7 +49,7 @@ class DriveExclusionUnitsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitsRequestBuilderGetQueryParameters]] = None) -> Optional[DriveExclusionUnitCollectionResponse]:
         """
-        Get driveExclusionUnits from solutions
+        The list of drive exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveExclusionUnitCollectionResponse]
         """
@@ -92,7 +92,7 @@ class DriveExclusionUnitsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get driveExclusionUnits from solutions
+        The list of drive exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class DriveExclusionUnitsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DriveExclusionUnitsRequestBuilderGetQueryParameters():
         """
-        Get driveExclusionUnits from solutions
+        The list of drive exclusion units in the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

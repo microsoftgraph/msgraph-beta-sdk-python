@@ -31,7 +31,7 @@ class MfaTelecomFraudRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/reports/userInsights/daily/mfaTelecomFraud{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_mfa_telecom_fraud_metric_id(self,mfa_telecom_fraud_metric_id: str) -> MfaTelecomFraudMetricItemRequestBuilder:
         """

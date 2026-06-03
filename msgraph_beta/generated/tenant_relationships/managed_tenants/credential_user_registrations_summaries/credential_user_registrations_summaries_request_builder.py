@@ -31,7 +31,7 @@ class CredentialUserRegistrationsSummariesRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/tenantRelationships/managedTenants/credentialUserRegistrationsSummaries{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_credential_user_registrations_summary_id(self,credential_user_registrations_summary_id: str) -> CredentialUserRegistrationsSummaryItemRequestBuilder:
         """

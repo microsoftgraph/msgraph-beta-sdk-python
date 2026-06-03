@@ -15,10 +15,10 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.device_management_intent_device_setting_state_summary import DeviceManagementIntentDeviceSettingStateSummary
-    from .....models.device_management_intent_device_setting_state_summary_collection_response import DeviceManagementIntentDeviceSettingStateSummaryCollectionResponse
+    from .....models.device_management_intent_device_setting_state_summary_collecti_6e7a63fe import DeviceManagementIntentDeviceSettingStateSummaryCollecti_6e7a63fe
     from .....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
-    from .item.device_management_intent_device_setting_state_summary_item_request_builder import DeviceManagementIntentDeviceSettingStateSummaryItemRequestBuilder
+    from .item.device_management_intent_device_setting_state_summary_item_requ_03bbc11a import DeviceManagementIntentDeviceSettingStateSummaryItemRequ_03bbc11a
 
 class DeviceSettingStateSummariesRequestBuilder(BaseRequestBuilder):
     """
@@ -31,27 +31,27 @@ class DeviceSettingStateSummariesRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/intents/{deviceManagementIntent%2Did}/deviceSettingStateSummaries{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
-    def by_device_management_intent_device_setting_state_summary_id(self,device_management_intent_device_setting_state_summary_id: str) -> DeviceManagementIntentDeviceSettingStateSummaryItemRequestBuilder:
+    def by_device_management_intent_device_setting_state_summary_id(self,device_management_intent_device_setting_state_summary_id: str) -> DeviceManagementIntentDeviceSettingStateSummaryItemRequ_03bbc11a:
         """
         Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceManagementIntent entity.
         param device_management_intent_device_setting_state_summary_id: The unique identifier of deviceManagementIntentDeviceSettingStateSummary
-        Returns: DeviceManagementIntentDeviceSettingStateSummaryItemRequestBuilder
+        Returns: DeviceManagementIntentDeviceSettingStateSummaryItemRequ_03bbc11a
         """
         if device_management_intent_device_setting_state_summary_id is None:
             raise TypeError("device_management_intent_device_setting_state_summary_id cannot be null.")
-        from .item.device_management_intent_device_setting_state_summary_item_request_builder import DeviceManagementIntentDeviceSettingStateSummaryItemRequestBuilder
+        from .item.device_management_intent_device_setting_state_summary_item_requ_03bbc11a import DeviceManagementIntentDeviceSettingStateSummaryItemRequ_03bbc11a
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementIntentDeviceSettingStateSummary%2Did"] = device_management_intent_device_setting_state_summary_id
-        return DeviceManagementIntentDeviceSettingStateSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return DeviceManagementIntentDeviceSettingStateSummaryItemRequ_03bbc11a(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[DeviceSettingStateSummariesRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceManagementIntentDeviceSettingStateSummaryCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[DeviceSettingStateSummariesRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceManagementIntentDeviceSettingStateSummaryCollecti_6e7a63fe]:
         """
         Collection of settings and their states and counts of devices that belong to corresponding state for all settings within the intent
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[DeviceManagementIntentDeviceSettingStateSummaryCollectionResponse]
+        Returns: Optional[DeviceManagementIntentDeviceSettingStateSummaryCollecti_6e7a63fe]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -63,9 +63,9 @@ class DeviceSettingStateSummariesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.device_management_intent_device_setting_state_summary_collection_response import DeviceManagementIntentDeviceSettingStateSummaryCollectionResponse
+        from .....models.device_management_intent_device_setting_state_summary_collecti_6e7a63fe import DeviceManagementIntentDeviceSettingStateSummaryCollecti_6e7a63fe
 
-        return await self.request_adapter.send_async(request_info, DeviceManagementIntentDeviceSettingStateSummaryCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementIntentDeviceSettingStateSummaryCollecti_6e7a63fe, error_mapping)
     
     async def post(self,body: DeviceManagementIntentDeviceSettingStateSummary, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DeviceManagementIntentDeviceSettingStateSummary]:
         """

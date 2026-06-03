@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from ....models.cross_tenant_access_policy_configuration_partner_collection_response import CrossTenantAccessPolicyConfigurationPartnerCollectionResponse
     from ....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
-    from .item.cross_tenant_access_policy_configuration_partner_tenant_item_request_builder import CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder
+    from .item.cross_tenant_access_policy_configuration_partner_tenant_item_re_81d401bf import CrossTenantAccessPolicyConfigurationPartnerTenantItemRe_81d401bf
 
 class CrossTenantPartnersRequestBuilder(BaseRequestBuilder):
     """
@@ -31,21 +31,21 @@ class CrossTenantPartnersRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/policies/deletedItems/crossTenantPartners{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
-    def by_cross_tenant_access_policy_configuration_partner_tenant_id(self,cross_tenant_access_policy_configuration_partner_tenant_id: str) -> CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder:
+    def by_cross_tenant_access_policy_configuration_partner_tenant_id(self,cross_tenant_access_policy_configuration_partner_tenant_id: str) -> CrossTenantAccessPolicyConfigurationPartnerTenantItemRe_81d401bf:
         """
         Provides operations to manage the crossTenantPartners property of the microsoft.graph.policyDeletableRoot entity.
         param cross_tenant_access_policy_configuration_partner_tenant_id: The unique identifier of crossTenantAccessPolicyConfigurationPartner
-        Returns: CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder
+        Returns: CrossTenantAccessPolicyConfigurationPartnerTenantItemRe_81d401bf
         """
         if cross_tenant_access_policy_configuration_partner_tenant_id is None:
             raise TypeError("cross_tenant_access_policy_configuration_partner_tenant_id cannot be null.")
-        from .item.cross_tenant_access_policy_configuration_partner_tenant_item_request_builder import CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder
+        from .item.cross_tenant_access_policy_configuration_partner_tenant_item_re_81d401bf import CrossTenantAccessPolicyConfigurationPartnerTenantItemRe_81d401bf
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["crossTenantAccessPolicyConfigurationPartner%2DtenantId"] = cross_tenant_access_policy_configuration_partner_tenant_id
-        return CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return CrossTenantAccessPolicyConfigurationPartnerTenantItemRe_81d401bf(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CrossTenantPartnersRequestBuilderGetQueryParameters]] = None) -> Optional[CrossTenantAccessPolicyConfigurationPartnerCollectionResponse]:
         """

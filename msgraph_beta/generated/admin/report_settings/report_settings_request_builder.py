@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.admin_report_settings import AdminReportSettings
     from ...models.o_data_errors.o_data_error import ODataError
+    from .share_point.share_point_request_builder import SharePointRequestBuilder
 
 class ReportSettingsRequestBuilder(BaseRequestBuilder):
     """
@@ -28,7 +29,7 @@ class ReportSettingsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/admin/reportSettings{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/admin/reportSettings", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -139,6 +140,15 @@ class ReportSettingsRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ReportSettingsRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def share_point(self) -> SharePointRequestBuilder:
+        """
+        Provides operations to manage the sharePoint property of the microsoft.graph.adminReportSettings entity.
+        """
+        from .share_point.share_point_request_builder import SharePointRequestBuilder
+
+        return SharePointRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ReportSettingsRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

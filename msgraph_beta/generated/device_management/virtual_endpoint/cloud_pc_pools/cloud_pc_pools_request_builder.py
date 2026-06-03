@@ -31,7 +31,7 @@ class CloudPcPoolsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/cloudPcPools{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_cloud_pc_pool_id(self,cloud_pc_pool_id: str) -> CloudPcPoolItemRequestBuilder:
         """
@@ -49,9 +49,10 @@ class CloudPcPoolsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CloudPcPoolsRequestBuilderGetQueryParameters]] = None) -> Optional[CloudPcPoolCollectionResponse]:
         """
-        Get cloudPcPools from deviceManagement
+        List the properties and relationships of the cloudPcPool objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcPoolCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-list-cloudpcpools?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class CloudPcPoolsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CloudPcPool, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcPool]:
         """
-        Create new navigation property to cloudPcPools for deviceManagement
+        Create a new cloudPcPool object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcPool]
+        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-post-cloudpcpools?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class CloudPcPoolsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CloudPcPoolsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get cloudPcPools from deviceManagement
+        List the properties and relationships of the cloudPcPool objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class CloudPcPoolsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CloudPcPool, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to cloudPcPools for deviceManagement
+        Create a new cloudPcPool object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class CloudPcPoolsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcPoolsRequestBuilderGetQueryParameters():
         """
-        Get cloudPcPools from deviceManagement
+        List the properties and relationships of the cloudPcPool objects.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

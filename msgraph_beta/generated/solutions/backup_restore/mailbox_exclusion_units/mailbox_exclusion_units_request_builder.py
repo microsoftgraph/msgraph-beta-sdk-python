@@ -31,7 +31,7 @@ class MailboxExclusionUnitsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/mailboxExclusionUnits{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_mailbox_exclusion_unit_id(self,mailbox_exclusion_unit_id: str) -> MailboxExclusionUnitItemRequestBuilder:
         """
@@ -49,7 +49,7 @@ class MailboxExclusionUnitsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MailboxExclusionUnitsRequestBuilderGetQueryParameters]] = None) -> Optional[MailboxExclusionUnitCollectionResponse]:
         """
-        Get mailboxExclusionUnits from solutions
+        The list of mailbox exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailboxExclusionUnitCollectionResponse]
         """
@@ -92,7 +92,7 @@ class MailboxExclusionUnitsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MailboxExclusionUnitsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get mailboxExclusionUnits from solutions
+        The list of mailbox exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class MailboxExclusionUnitsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MailboxExclusionUnitsRequestBuilderGetQueryParameters():
         """
-        Get mailboxExclusionUnits from solutions
+        The list of mailbox exclusion units in the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

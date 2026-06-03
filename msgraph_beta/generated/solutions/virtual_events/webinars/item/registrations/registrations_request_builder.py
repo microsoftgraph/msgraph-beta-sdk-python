@@ -31,7 +31,7 @@ class RegistrationsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}/registrations{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_virtual_event_registration_id(self,virtual_event_registration_id: str) -> VirtualEventRegistrationItemRequestBuilder:
         """
@@ -49,7 +49,7 @@ class RegistrationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RegistrationsRequestBuilderGetQueryParameters]] = None) -> Optional[VirtualEventRegistrationCollectionResponse]:
         """
-        Get a list of all registration records of a webinar.
+        Get a list of all registration records of a webinar or town hall.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventRegistrationCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/virtualeventregistration-list?view=graph-rest-beta
@@ -70,7 +70,7 @@ class RegistrationsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: VirtualEventRegistration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[VirtualEventRegistration]:
         """
-        Create a registration record for a registrant of a webinar. This method registers the person for the webinar. 
+        Create a registration record for a registrant of a webinar or town hall. This method registers the person for the webinar or town hall. 
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventRegistration]
@@ -94,7 +94,7 @@ class RegistrationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RegistrationsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of all registration records of a webinar.
+        Get a list of all registration records of a webinar or town hall.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class RegistrationsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: VirtualEventRegistration, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a registration record for a registrant of a webinar. This method registers the person for the webinar. 
+        Create a registration record for a registrant of a webinar or town hall. This method registers the person for the webinar or town hall. 
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +140,7 @@ class RegistrationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RegistrationsRequestBuilderGetQueryParameters():
         """
-        Get a list of all registration records of a webinar.
+        Get a list of all registration records of a webinar or town hall.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

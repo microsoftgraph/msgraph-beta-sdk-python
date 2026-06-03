@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from .execute_action.execute_action_request_builder import ExecuteActionRequestBuilder
     from .item.managed_device_item_request_builder import ManagedDeviceItemRequestBuilder
     from .move_devices_to_o_u.move_devices_to_o_u_request_builder import MoveDevicesToOURequestBuilder
-    from .retrieve_powerlift_app_diagnostics_details_with_user_principal_name.retrieve_powerlift_app_diagnostics_details_with_user_principal_name_request_builder import RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder
+    from .retrieve_powerlift_app_diagnostics_details_with_user_principal_name.retrieve_powerlift_app_diagnostics_details_with_user_principal_dd1e6da7 import RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipal_dd1e6da7
 
 class ManagedDevicesRequestBuilder(BaseRequestBuilder):
     """
@@ -37,7 +37,7 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/managedDevices{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def app_diagnostics_with_upn(self,upn: str) -> AppDiagnosticsWithUpnRequestBuilder:
         """
@@ -108,17 +108,17 @@ class ManagedDevicesRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ManagedDevice, error_mapping)
     
-    def retrieve_powerlift_app_diagnostics_details_with_user_principal_name(self,user_principal_name: str) -> RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder:
+    def retrieve_powerlift_app_diagnostics_details_with_user_principal_name(self,user_principal_name: str) -> RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipal_dd1e6da7:
         """
         Provides operations to call the retrievePowerliftAppDiagnosticsDetails method.
         param user_principal_name: Usage: userPrincipalName='{userPrincipalName}'
-        Returns: RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder
+        Returns: RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipal_dd1e6da7
         """
         if user_principal_name is None:
             raise TypeError("user_principal_name cannot be null.")
-        from .retrieve_powerlift_app_diagnostics_details_with_user_principal_name.retrieve_powerlift_app_diagnostics_details_with_user_principal_name_request_builder import RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder
+        from .retrieve_powerlift_app_diagnostics_details_with_user_principal_name.retrieve_powerlift_app_diagnostics_details_with_user_principal_dd1e6da7 import RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipal_dd1e6da7
 
-        return RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipalNameRequestBuilder(self.request_adapter, self.path_parameters, user_principal_name)
+        return RetrievePowerliftAppDiagnosticsDetailsWithUserPrincipal_dd1e6da7(self.request_adapter, self.path_parameters, user_principal_name)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ManagedDevicesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """

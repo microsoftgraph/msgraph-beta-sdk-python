@@ -18,9 +18,9 @@ from .protection_policy_base import ProtectionPolicyBase
 class SharePointProtectionPolicy(ProtectionPolicyBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.sharePointProtectionPolicy"
-    # The siteExclusionUnits property
+    # The site exclusion units associated with the SharePoint protection policy.
     site_exclusion_units: Optional[list[SiteExclusionUnit]] = None
-    # The siteExclusionUnitsBulkAdditionJobs property
+    # The list of bulk addition jobs for site exclusion units associated with the SharePoint protection policy.
     site_exclusion_units_bulk_addition_jobs: Optional[list[SiteExclusionUnitsBulkAdditionJob]] = None
     # The rules associated with the SharePoint Protection policy.
     site_inclusion_rules: Optional[list[SiteProtectionRule]] = None

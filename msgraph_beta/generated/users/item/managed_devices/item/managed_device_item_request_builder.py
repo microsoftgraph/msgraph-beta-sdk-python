@@ -49,7 +49,7 @@ if TYPE_CHECKING:
     from .recover_passcode.recover_passcode_request_builder import RecoverPasscodeRequestBuilder
     from .reenable.reenable_request_builder import ReenableRequestBuilder
     from .remote_lock.remote_lock_request_builder import RemoteLockRequestBuilder
-    from .remove_device_firmware_configuration_interface_management.remove_device_firmware_configuration_interface_management_request_builder import RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder
+    from .remove_device_firmware_configuration_interface_management.remove_device_firmware_configuration_interface_management_req_abf9bd5f import RemoveDeviceFirmwareConfigurationInterfaceManagementReq_abf9bd5f
     from .request_remote_assistance.request_remote_assistance_request_builder import RequestRemoteAssistanceRequestBuilder
     from .reset_passcode.reset_passcode_request_builder import ResetPasscodeRequestBuilder
     from .restore_managed_home_screen.restore_managed_home_screen_request_builder import RestoreManagedHomeScreenRequestBuilder
@@ -87,7 +87,7 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -495,13 +495,13 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         return RemoteLockRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_device_firmware_configuration_interface_management(self) -> RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder:
+    def remove_device_firmware_configuration_interface_management(self) -> RemoveDeviceFirmwareConfigurationInterfaceManagementReq_abf9bd5f:
         """
         Provides operations to call the removeDeviceFirmwareConfigurationInterfaceManagement method.
         """
-        from .remove_device_firmware_configuration_interface_management.remove_device_firmware_configuration_interface_management_request_builder import RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder
+        from .remove_device_firmware_configuration_interface_management.remove_device_firmware_configuration_interface_management_req_abf9bd5f import RemoveDeviceFirmwareConfigurationInterfaceManagementReq_abf9bd5f
 
-        return RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder(self.request_adapter, self.path_parameters)
+        return RemoveDeviceFirmwareConfigurationInterfaceManagementReq_abf9bd5f(self.request_adapter, self.path_parameters)
     
     @property
     def request_remote_assistance(self) -> RequestRemoteAssistanceRequestBuilder:

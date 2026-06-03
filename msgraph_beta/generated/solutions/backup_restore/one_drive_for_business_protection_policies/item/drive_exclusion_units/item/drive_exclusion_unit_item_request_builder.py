@@ -32,9 +32,10 @@ class DriveExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitItemRequestBuilderGetQueryParameters]] = None) -> Optional[DriveExclusionUnit]:
         """
-        Get driveExclusionUnits from solutions
+        Get a drive exclusion unit associated with a OneDrive for work or school protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveExclusionUnit]
+        Find more info here: https://learn.microsoft.com/graph/api/driveexclusionunit-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -52,7 +53,7 @@ class DriveExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get driveExclusionUnits from solutions
+        Get a drive exclusion unit associated with a OneDrive for work or school protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +75,7 @@ class DriveExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DriveExclusionUnitItemRequestBuilderGetQueryParameters():
         """
-        Get driveExclusionUnits from solutions
+        Get a drive exclusion unit associated with a OneDrive for work or school protection policy.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

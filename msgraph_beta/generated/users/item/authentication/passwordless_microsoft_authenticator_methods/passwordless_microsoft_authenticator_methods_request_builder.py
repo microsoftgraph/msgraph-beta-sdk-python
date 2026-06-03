@@ -15,9 +15,9 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .....models.passwordless_microsoft_authenticator_authentication_method_collection_response import PasswordlessMicrosoftAuthenticatorAuthenticationMethodCollectionResponse
+    from .....models.passwordless_microsoft_authenticator_authentication_method_c_7b744822 import PasswordlessMicrosoftAuthenticatorAuthenticationMethodC_7b744822
     from .count.count_request_builder import CountRequestBuilder
-    from .item.passwordless_microsoft_authenticator_authentication_method_item_request_builder import PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
+    from .item.passwordless_microsoft_authenticator_authentication_method_i_a9962b72 import PasswordlessMicrosoftAuthenticatorAuthenticationMethodI_a9962b72
 
 class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder):
     """
@@ -32,25 +32,25 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
         """
         super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}/authentication/passwordlessMicrosoftAuthenticatorMethods{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
-    def by_passwordless_microsoft_authenticator_authentication_method_id(self,passwordless_microsoft_authenticator_authentication_method_id: str) -> PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder:
+    def by_passwordless_microsoft_authenticator_authentication_method_id(self,passwordless_microsoft_authenticator_authentication_method_id: str) -> PasswordlessMicrosoftAuthenticatorAuthenticationMethodI_a9962b72:
         """
         Provides operations to manage the passwordlessMicrosoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
         param passwordless_microsoft_authenticator_authentication_method_id: The unique identifier of passwordlessMicrosoftAuthenticatorAuthenticationMethod
-        Returns: PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
+        Returns: PasswordlessMicrosoftAuthenticatorAuthenticationMethodI_a9962b72
         """
         if passwordless_microsoft_authenticator_authentication_method_id is None:
             raise TypeError("passwordless_microsoft_authenticator_authentication_method_id cannot be null.")
-        from .item.passwordless_microsoft_authenticator_authentication_method_item_request_builder import PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
+        from .item.passwordless_microsoft_authenticator_authentication_method_i_a9962b72 import PasswordlessMicrosoftAuthenticatorAuthenticationMethodI_a9962b72
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["passwordlessMicrosoftAuthenticatorAuthenticationMethod%2Did"] = passwordless_microsoft_authenticator_authentication_method_id
-        return PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return PasswordlessMicrosoftAuthenticatorAuthenticationMethodI_a9962b72(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[PasswordlessMicrosoftAuthenticatorMethodsRequestBuilderGetQueryParameters]] = None) -> Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[PasswordlessMicrosoftAuthenticatorMethodsRequestBuilderGetQueryParameters]] = None) -> Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodC_7b744822]:
         """
         Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodCollectionResponse]
+        Returns: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodC_7b744822]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -62,9 +62,9 @@ class PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(BaseRequestBuilder
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.passwordless_microsoft_authenticator_authentication_method_collection_response import PasswordlessMicrosoftAuthenticatorAuthenticationMethodCollectionResponse
+        from .....models.passwordless_microsoft_authenticator_authentication_method_c_7b744822 import PasswordlessMicrosoftAuthenticatorAuthenticationMethodC_7b744822
 
-        return await self.request_adapter.send_async(request_info, PasswordlessMicrosoftAuthenticatorAuthenticationMethodCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, PasswordlessMicrosoftAuthenticatorAuthenticationMethodC_7b744822, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PasswordlessMicrosoftAuthenticatorMethodsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """

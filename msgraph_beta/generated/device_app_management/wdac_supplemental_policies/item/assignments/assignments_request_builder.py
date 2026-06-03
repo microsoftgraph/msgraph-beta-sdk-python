@@ -16,9 +16,9 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .....models.windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
-    from .....models.windows_defender_application_control_supplemental_policy_assignment_collection_response import WindowsDefenderApplicationControlSupplementalPolicyAssignmentCollectionResponse
+    from .....models.windows_defender_application_control_supplemental_policy_assi_bcd43d2c import WindowsDefenderApplicationControlSupplementalPolicyAssi_bcd43d2c
     from .count.count_request_builder import CountRequestBuilder
-    from .item.windows_defender_application_control_supplemental_policy_assignment_item_request_builder import WindowsDefenderApplicationControlSupplementalPolicyAssignmentItemRequestBuilder
+    from .item.windows_defender_application_control_supplemental_policy_assi_f0ba402d import WindowsDefenderApplicationControlSupplementalPolicyAssi_f0ba402d
 
 class AssignmentsRequestBuilder(BaseRequestBuilder):
     """
@@ -31,27 +31,27 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/wdacSupplementalPolicies/{windowsDefenderApplicationControlSupplementalPolicy%2Did}/assignments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
-    def by_windows_defender_application_control_supplemental_policy_assignment_id(self,windows_defender_application_control_supplemental_policy_assignment_id: str) -> WindowsDefenderApplicationControlSupplementalPolicyAssignmentItemRequestBuilder:
+    def by_windows_defender_application_control_supplemental_policy_assignment_id(self,windows_defender_application_control_supplemental_policy_assignment_id: str) -> WindowsDefenderApplicationControlSupplementalPolicyAssi_f0ba402d:
         """
         Provides operations to manage the assignments property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicy entity.
         param windows_defender_application_control_supplemental_policy_assignment_id: The unique identifier of windowsDefenderApplicationControlSupplementalPolicyAssignment
-        Returns: WindowsDefenderApplicationControlSupplementalPolicyAssignmentItemRequestBuilder
+        Returns: WindowsDefenderApplicationControlSupplementalPolicyAssi_f0ba402d
         """
         if windows_defender_application_control_supplemental_policy_assignment_id is None:
             raise TypeError("windows_defender_application_control_supplemental_policy_assignment_id cannot be null.")
-        from .item.windows_defender_application_control_supplemental_policy_assignment_item_request_builder import WindowsDefenderApplicationControlSupplementalPolicyAssignmentItemRequestBuilder
+        from .item.windows_defender_application_control_supplemental_policy_assi_f0ba402d import WindowsDefenderApplicationControlSupplementalPolicyAssi_f0ba402d
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsDefenderApplicationControlSupplementalPolicyAssignment%2Did"] = windows_defender_application_control_supplemental_policy_assignment_id
-        return WindowsDefenderApplicationControlSupplementalPolicyAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return WindowsDefenderApplicationControlSupplementalPolicyAssi_f0ba402d(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[AssignmentsRequestBuilderGetQueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AssignmentsRequestBuilderGetQueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyAssi_bcd43d2c]:
         """
         The associated group assignments for the Windows Defender Application Control Supplemental Policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyAssignmentCollectionResponse]
+        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyAssi_bcd43d2c]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -63,9 +63,9 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.windows_defender_application_control_supplemental_policy_assignment_collection_response import WindowsDefenderApplicationControlSupplementalPolicyAssignmentCollectionResponse
+        from .....models.windows_defender_application_control_supplemental_policy_assi_bcd43d2c import WindowsDefenderApplicationControlSupplementalPolicyAssi_bcd43d2c
 
-        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyAssignmentCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyAssi_bcd43d2c, error_mapping)
     
     async def post(self,body: WindowsDefenderApplicationControlSupplementalPolicyAssignment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyAssignment]:
         """

@@ -28,7 +28,7 @@ class DriveExclusionUnitItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/driveExclusionUnits/{driveExclusionUnit%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/driveExclusionUnits/{driveExclusionUnit%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -50,7 +50,7 @@ class DriveExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitItemRequestBuilderGetQueryParameters]] = None) -> Optional[DriveExclusionUnit]:
         """
-        Get driveExclusionUnits from solutions
+        The list of drive exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveExclusionUnit]
         """
@@ -104,7 +104,7 @@ class DriveExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get driveExclusionUnits from solutions
+        The list of drive exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class DriveExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DriveExclusionUnitItemRequestBuilderGetQueryParameters():
         """
-        Get driveExclusionUnits from solutions
+        The list of drive exclusion units in the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

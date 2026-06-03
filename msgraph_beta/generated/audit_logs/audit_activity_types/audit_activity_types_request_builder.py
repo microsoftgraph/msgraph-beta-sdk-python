@@ -31,7 +31,7 @@ class AuditActivityTypesRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/auditLogs/auditActivityTypes{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_audit_activity_type_id(self,audit_activity_type_id: str) -> AuditActivityTypeItemRequestBuilder:
         """

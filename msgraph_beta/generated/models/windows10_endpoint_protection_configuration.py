@@ -34,7 +34,7 @@ if TYPE_CHECKING:
     from .folder_protection_type import FolderProtectionType
     from .lan_manager_authentication_level import LanManagerAuthenticationLevel
     from .local_security_options_administrator_elevation_prompt_behavior_type import LocalSecurityOptionsAdministratorElevationPromptBehaviorType
-    from .local_security_options_format_and_eject_of_removable_media_allowed_user_type import LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType
+    from .local_security_options_format_and_eject_of_removable_media_allow_b7ae6724 import LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllow_b7ae6724
     from .local_security_options_information_displayed_on_lock_screen_type import LocalSecurityOptionsInformationDisplayedOnLockScreenType
     from .local_security_options_information_shown_on_lock_screen_type import LocalSecurityOptionsInformationShownOnLockScreenType
     from .local_security_options_minimum_session_security import LocalSecurityOptionsMinimumSessionSecurity
@@ -395,7 +395,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
     # This security setting determines if, at the next password change, the LAN Manager (LM) hash value for the new password is stored. It’s not stored by default.
     local_security_options_do_not_store_l_a_n_manager_hash_value_on_next_password_change: Optional[bool] = None
     # Possible values for LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUser
-    local_security_options_format_and_eject_of_removable_media_allowed_user: Optional[LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType] = None
+    local_security_options_format_and_eject_of_removable_media_allowed_user: Optional[LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllow_b7ae6724] = None
     # Define a different account name to be associated with the security identifier (SID) for the account 'Guest'.
     local_security_options_guest_account_name: Optional[str] = None
     # Do not display the username of the last person who signed in on this device.
@@ -553,7 +553,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
         from .folder_protection_type import FolderProtectionType
         from .lan_manager_authentication_level import LanManagerAuthenticationLevel
         from .local_security_options_administrator_elevation_prompt_behavior_type import LocalSecurityOptionsAdministratorElevationPromptBehaviorType
-        from .local_security_options_format_and_eject_of_removable_media_allowed_user_type import LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType
+        from .local_security_options_format_and_eject_of_removable_media_allow_b7ae6724 import LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllow_b7ae6724
         from .local_security_options_information_displayed_on_lock_screen_type import LocalSecurityOptionsInformationDisplayedOnLockScreenType
         from .local_security_options_information_shown_on_lock_screen_type import LocalSecurityOptionsInformationShownOnLockScreenType
         from .local_security_options_minimum_session_security import LocalSecurityOptionsMinimumSessionSecurity
@@ -594,7 +594,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
         from .folder_protection_type import FolderProtectionType
         from .lan_manager_authentication_level import LanManagerAuthenticationLevel
         from .local_security_options_administrator_elevation_prompt_behavior_type import LocalSecurityOptionsAdministratorElevationPromptBehaviorType
-        from .local_security_options_format_and_eject_of_removable_media_allowed_user_type import LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType
+        from .local_security_options_format_and_eject_of_removable_media_allow_b7ae6724 import LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllow_b7ae6724
         from .local_security_options_information_displayed_on_lock_screen_type import LocalSecurityOptionsInformationDisplayedOnLockScreenType
         from .local_security_options_information_shown_on_lock_screen_type import LocalSecurityOptionsInformationShownOnLockScreenType
         from .local_security_options_minimum_session_security import LocalSecurityOptionsMinimumSessionSecurity
@@ -777,7 +777,7 @@ class Windows10EndpointProtectionConfiguration(DeviceConfiguration, Parsable):
             "localSecurityOptionsDoNotAllowAnonymousEnumerationOfSAMAccounts": lambda n : setattr(self, 'local_security_options_do_not_allow_anonymous_enumeration_of_s_a_m_accounts', n.get_bool_value()),
             "localSecurityOptionsDoNotRequireCtrlAltDel": lambda n : setattr(self, 'local_security_options_do_not_require_ctrl_alt_del', n.get_bool_value()),
             "localSecurityOptionsDoNotStoreLANManagerHashValueOnNextPasswordChange": lambda n : setattr(self, 'local_security_options_do_not_store_l_a_n_manager_hash_value_on_next_password_change', n.get_bool_value()),
-            "localSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUser": lambda n : setattr(self, 'local_security_options_format_and_eject_of_removable_media_allowed_user', n.get_enum_value(LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType)),
+            "localSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUser": lambda n : setattr(self, 'local_security_options_format_and_eject_of_removable_media_allowed_user', n.get_enum_value(LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllow_b7ae6724)),
             "localSecurityOptionsGuestAccountName": lambda n : setattr(self, 'local_security_options_guest_account_name', n.get_str_value()),
             "localSecurityOptionsHideLastSignedInUser": lambda n : setattr(self, 'local_security_options_hide_last_signed_in_user', n.get_bool_value()),
             "localSecurityOptionsHideUsernameAtSignIn": lambda n : setattr(self, 'local_security_options_hide_username_at_sign_in', n.get_bool_value()),

@@ -17,8 +17,8 @@ if TYPE_CHECKING:
     from ........models.cloud_p_c_user_settings_persistence_detail import CloudPCUserSettingsPersistenceDetail
     from ........models.o_data_errors.o_data_error import ODataError
     from .batch_cleanup_user_settings_persistence_profile.batch_cleanup_user_settings_persistence_profile_request_builder import BatchCleanupUserSettingsPersistenceProfileRequestBuilder
-    from .retrieve_user_settings_persistence_profiles_with_configuration_id.retrieve_user_settings_persistence_profiles_with_configuration_id_request_builder import RetrieveUserSettingsPersistenceProfilesWithConfigurationIdRequestBuilder
-    from .retrieve_user_settings_persistence_profile_usage_with_configuration_id.retrieve_user_settings_persistence_profile_usage_with_configuration_id_request_builder import RetrieveUserSettingsPersistenceProfileUsageWithConfigurationIdRequestBuilder
+    from .retrieve_user_settings_persistence_profiles_with_configuration_id.retrieve_user_settings_persistence_profiles_with_configuratio_aec17823 import RetrieveUserSettingsPersistenceProfilesWithConfiguratio_aec17823
+    from .retrieve_user_settings_persistence_profile_usage_with_configuration_id.retrieve_user_settings_persistence_profile_usage_with_configur_91ba7696 import RetrieveUserSettingsPersistenceProfileUsageWithConfigur_91ba7696
 
 class UserSettingsPersistenceDetailRequestBuilder(BaseRequestBuilder):
     """
@@ -31,7 +31,7 @@ class UserSettingsPersistenceDetailRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/provisioningPolicies/{cloudPcProvisioningPolicy%2Did}/assignments/{cloudPcProvisioningPolicyAssignment%2Did}/userSettingsPersistenceDetail{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/provisioningPolicies/{cloudPcProvisioningPolicy%2Did}/assignments/{cloudPcProvisioningPolicyAssignment%2Did}/userSettingsPersistenceDetail", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -94,29 +94,29 @@ class UserSettingsPersistenceDetailRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPCUserSettingsPersistenceDetail, error_mapping)
     
-    def retrieve_user_settings_persistence_profile_usage_with_configuration_id(self,configuration_id: str) -> RetrieveUserSettingsPersistenceProfileUsageWithConfigurationIdRequestBuilder:
+    def retrieve_user_settings_persistence_profile_usage_with_configuration_id(self,configuration_id: str) -> RetrieveUserSettingsPersistenceProfileUsageWithConfigur_91ba7696:
         """
         Provides operations to call the retrieveUserSettingsPersistenceProfileUsage method.
         param configuration_id: Usage: configurationId='{configurationId}'
-        Returns: RetrieveUserSettingsPersistenceProfileUsageWithConfigurationIdRequestBuilder
+        Returns: RetrieveUserSettingsPersistenceProfileUsageWithConfigur_91ba7696
         """
         if configuration_id is None:
             raise TypeError("configuration_id cannot be null.")
-        from .retrieve_user_settings_persistence_profile_usage_with_configuration_id.retrieve_user_settings_persistence_profile_usage_with_configuration_id_request_builder import RetrieveUserSettingsPersistenceProfileUsageWithConfigurationIdRequestBuilder
+        from .retrieve_user_settings_persistence_profile_usage_with_configuration_id.retrieve_user_settings_persistence_profile_usage_with_configur_91ba7696 import RetrieveUserSettingsPersistenceProfileUsageWithConfigur_91ba7696
 
-        return RetrieveUserSettingsPersistenceProfileUsageWithConfigurationIdRequestBuilder(self.request_adapter, self.path_parameters, configuration_id)
+        return RetrieveUserSettingsPersistenceProfileUsageWithConfigur_91ba7696(self.request_adapter, self.path_parameters, configuration_id)
     
-    def retrieve_user_settings_persistence_profiles_with_configuration_id(self,configuration_id: str) -> RetrieveUserSettingsPersistenceProfilesWithConfigurationIdRequestBuilder:
+    def retrieve_user_settings_persistence_profiles_with_configuration_id(self,configuration_id: str) -> RetrieveUserSettingsPersistenceProfilesWithConfiguratio_aec17823:
         """
         Provides operations to call the retrieveUserSettingsPersistenceProfiles method.
         param configuration_id: Usage: configurationId='{configurationId}'
-        Returns: RetrieveUserSettingsPersistenceProfilesWithConfigurationIdRequestBuilder
+        Returns: RetrieveUserSettingsPersistenceProfilesWithConfiguratio_aec17823
         """
         if configuration_id is None:
             raise TypeError("configuration_id cannot be null.")
-        from .retrieve_user_settings_persistence_profiles_with_configuration_id.retrieve_user_settings_persistence_profiles_with_configuration_id_request_builder import RetrieveUserSettingsPersistenceProfilesWithConfigurationIdRequestBuilder
+        from .retrieve_user_settings_persistence_profiles_with_configuration_id.retrieve_user_settings_persistence_profiles_with_configuratio_aec17823 import RetrieveUserSettingsPersistenceProfilesWithConfiguratio_aec17823
 
-        return RetrieveUserSettingsPersistenceProfilesWithConfigurationIdRequestBuilder(self.request_adapter, self.path_parameters, configuration_id)
+        return RetrieveUserSettingsPersistenceProfilesWithConfiguratio_aec17823(self.request_adapter, self.path_parameters, configuration_id)
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """

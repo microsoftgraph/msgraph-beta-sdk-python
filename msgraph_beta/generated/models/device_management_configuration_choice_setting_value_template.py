@@ -7,7 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_configuration_choice_setting_value_default_template import DeviceManagementConfigurationChoiceSettingValueDefaultTemplate
-    from .device_management_configuration_choice_setting_value_definition_template import DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate
+    from .device_management_configuration_choice_setting_value_definiti_ea7d9162 import DeviceManagementConfigurationChoiceSettingValueDefiniti_ea7d9162
 
 @dataclass
 class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHolder, BackedModel, Parsable):
@@ -24,9 +24,9 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
     # The OdataType property
     odata_type: Optional[str] = None
     # Recommended definition override.
-    recommended_value_definition: Optional[DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate] = None
+    recommended_value_definition: Optional[DeviceManagementConfigurationChoiceSettingValueDefiniti_ea7d9162] = None
     # Required definition override.
-    required_value_definition: Optional[DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate] = None
+    required_value_definition: Optional[DeviceManagementConfigurationChoiceSettingValueDefiniti_ea7d9162] = None
     # Setting Value Template Id
     setting_value_template_id: Optional[str] = None
     
@@ -47,16 +47,16 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_configuration_choice_setting_value_default_template import DeviceManagementConfigurationChoiceSettingValueDefaultTemplate
-        from .device_management_configuration_choice_setting_value_definition_template import DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate
+        from .device_management_configuration_choice_setting_value_definiti_ea7d9162 import DeviceManagementConfigurationChoiceSettingValueDefiniti_ea7d9162
 
         from .device_management_configuration_choice_setting_value_default_template import DeviceManagementConfigurationChoiceSettingValueDefaultTemplate
-        from .device_management_configuration_choice_setting_value_definition_template import DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate
+        from .device_management_configuration_choice_setting_value_definiti_ea7d9162 import DeviceManagementConfigurationChoiceSettingValueDefiniti_ea7d9162
 
         fields: dict[str, Callable[[Any], None]] = {
             "defaultValue": lambda n : setattr(self, 'default_value', n.get_object_value(DeviceManagementConfigurationChoiceSettingValueDefaultTemplate)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recommendedValueDefinition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate)),
-            "requiredValueDefinition": lambda n : setattr(self, 'required_value_definition', n.get_object_value(DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate)),
+            "recommendedValueDefinition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(DeviceManagementConfigurationChoiceSettingValueDefiniti_ea7d9162)),
+            "requiredValueDefinition": lambda n : setattr(self, 'required_value_definition', n.get_object_value(DeviceManagementConfigurationChoiceSettingValueDefiniti_ea7d9162)),
             "settingValueTemplateId": lambda n : setattr(self, 'setting_value_template_id', n.get_str_value()),
         }
         return fields

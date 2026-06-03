@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from .item.cloud_pc_cloud_app_item_request_builder import CloudPcCloudAppItemRequestBuilder
     from .publish.publish_request_builder import PublishRequestBuilder
     from .reset.reset_request_builder import ResetRequestBuilder
-    from .retrieve_discovered_apps_with_source_idprovisioning_policy_id_provisioning_policy_id.retrieve_discovered_apps_with_source_idprovisioning_policy_id_provisioning_policy_id_request_builder import RetrieveDiscoveredAppsWithSourceIdprovisioningPolicyIdProvisioningPolicyIdRequestBuilder
+    from .retrieve_discovered_apps_with_source_idprovisioning_policy_id_p_af50b6dd.retrieve_discovered_apps_with_source_idprovisioning_policy_id_p_7469a058 import RetrieveDiscoveredAppsWithSourceIdprovisioningPolicyIdP_7469a058
     from .unpublish.unpublish_request_builder import UnpublishRequestBuilder
 
 class CloudAppsRequestBuilder(BaseRequestBuilder):
@@ -35,7 +35,7 @@ class CloudAppsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/cloudApps{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_cloud_pc_cloud_app_id(self,cloud_pc_cloud_app_id: str) -> CloudPcCloudAppItemRequestBuilder:
         """
@@ -74,10 +74,11 @@ class CloudAppsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CloudPcCloudApp, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcCloudApp]:
         """
-        Create new navigation property to cloudApps for deviceManagement
+        Create a new cloudPcCloudApp object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcCloudApp]
+        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-post-cloudapps?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -95,17 +96,17 @@ class CloudAppsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudPcCloudApp, error_mapping)
     
-    def retrieve_discovered_apps_with_source_idprovisioning_policy_id_provisioning_policy_id(self,source_id: str) -> RetrieveDiscoveredAppsWithSourceIdprovisioningPolicyIdProvisioningPolicyIdRequestBuilder:
+    def retrieve_discovered_apps_with_source_idprovisioning_policy_id_provisioning_policy_id(self,source_id: str) -> RetrieveDiscoveredAppsWithSourceIdprovisioningPolicyIdP_7469a058:
         """
         Provides operations to call the retrieveDiscoveredApps method.
         param source_id: Usage: sourceId='{sourceId}'
-        Returns: RetrieveDiscoveredAppsWithSourceIdprovisioningPolicyIdProvisioningPolicyIdRequestBuilder
+        Returns: RetrieveDiscoveredAppsWithSourceIdprovisioningPolicyIdP_7469a058
         """
         if source_id is None:
             raise TypeError("source_id cannot be null.")
-        from .retrieve_discovered_apps_with_source_idprovisioning_policy_id_provisioning_policy_id.retrieve_discovered_apps_with_source_idprovisioning_policy_id_provisioning_policy_id_request_builder import RetrieveDiscoveredAppsWithSourceIdprovisioningPolicyIdProvisioningPolicyIdRequestBuilder
+        from .retrieve_discovered_apps_with_source_idprovisioning_policy_id_p_af50b6dd.retrieve_discovered_apps_with_source_idprovisioning_policy_id_p_7469a058 import RetrieveDiscoveredAppsWithSourceIdprovisioningPolicyIdP_7469a058
 
-        return RetrieveDiscoveredAppsWithSourceIdprovisioningPolicyIdProvisioningPolicyIdRequestBuilder(self.request_adapter, self.path_parameters, source_id)
+        return RetrieveDiscoveredAppsWithSourceIdprovisioningPolicyIdP_7469a058(self.request_adapter, self.path_parameters, source_id)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CloudAppsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
@@ -120,7 +121,7 @@ class CloudAppsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CloudPcCloudApp, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to cloudApps for deviceManagement
+        Create a new cloudPcCloudApp object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

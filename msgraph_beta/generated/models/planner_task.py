@@ -70,9 +70,9 @@ class PlannerTask(PlannerDelta, Parsable):
     is_on_my_day: Optional[bool] = None
     # Read-only. The date on which task is added to or removed from MyDay.
     is_on_my_day_last_modified_date: Optional[datetime.date] = None
-    # The lastModifiedBy property
+    # Read-only. User ID by which this is last modified.
     last_modified_by: Optional[IdentitySet] = None
-    # The lastModifiedDateTime property
+    # Read-only. Date and time at which this is last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     last_modified_date_time: Optional[datetime.datetime] = None
     # Read-only. Nullable. Chat messages associated with the task.
     messages: Optional[list[PlannerTaskChatMessage]] = None

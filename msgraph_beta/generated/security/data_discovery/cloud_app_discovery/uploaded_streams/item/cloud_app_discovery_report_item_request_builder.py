@@ -17,7 +17,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from ......models.security.cloud_app_discovery_report import CloudAppDiscoveryReport
-    from .microsoft_graph_security_aggregated_apps_details_with_period.microsoft_graph_security_aggregated_apps_details_with_period_request_builder import MicrosoftGraphSecurityAggregatedAppsDetailsWithPeriodRequestBuilder
+    from .microsoft_graph_security_aggregated_apps_details_with_period.microsoft_graph_security_aggregated_apps_details_with_period_re_e0d636f0 import MicrosoftGraphSecurityAggregatedAppsDetailsWithPeriodRe_e0d636f0
 
 class CloudAppDiscoveryReportItemRequestBuilder(BaseRequestBuilder):
     """
@@ -30,7 +30,7 @@ class CloudAppDiscoveryReportItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/security/dataDiscovery/cloudAppDiscovery/uploadedStreams/{cloudAppDiscoveryReport%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/security/dataDiscovery/cloudAppDiscovery/uploadedStreams/{cloudAppDiscoveryReport%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -70,17 +70,17 @@ class CloudAppDiscoveryReportItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, CloudAppDiscoveryReport, error_mapping)
     
-    def microsoft_graph_security_aggregated_apps_details_with_period(self,period: datetime.timedelta) -> MicrosoftGraphSecurityAggregatedAppsDetailsWithPeriodRequestBuilder:
+    def microsoft_graph_security_aggregated_apps_details_with_period(self,period: datetime.timedelta) -> MicrosoftGraphSecurityAggregatedAppsDetailsWithPeriodRe_e0d636f0:
         """
         Provides operations to call the aggregatedAppsDetails method.
         param period: Usage: period={period}
-        Returns: MicrosoftGraphSecurityAggregatedAppsDetailsWithPeriodRequestBuilder
+        Returns: MicrosoftGraphSecurityAggregatedAppsDetailsWithPeriodRe_e0d636f0
         """
         if period is None:
             raise TypeError("period cannot be null.")
-        from .microsoft_graph_security_aggregated_apps_details_with_period.microsoft_graph_security_aggregated_apps_details_with_period_request_builder import MicrosoftGraphSecurityAggregatedAppsDetailsWithPeriodRequestBuilder
+        from .microsoft_graph_security_aggregated_apps_details_with_period.microsoft_graph_security_aggregated_apps_details_with_period_re_e0d636f0 import MicrosoftGraphSecurityAggregatedAppsDetailsWithPeriodRe_e0d636f0
 
-        return MicrosoftGraphSecurityAggregatedAppsDetailsWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+        return MicrosoftGraphSecurityAggregatedAppsDetailsWithPeriodRe_e0d636f0(self.request_adapter, self.path_parameters, period)
     
     async def patch(self,body: CloudAppDiscoveryReport, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudAppDiscoveryReport]:
         """

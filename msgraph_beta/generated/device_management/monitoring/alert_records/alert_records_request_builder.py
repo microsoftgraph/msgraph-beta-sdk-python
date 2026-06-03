@@ -19,8 +19,8 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .item.alert_record_item_request_builder import AlertRecordItemRequestBuilder
-    from .microsoft_graph_device_management_change_alert_records_portal_notification_as_sent.microsoft_graph_device_management_change_alert_records_portal_notification_as_sent_request_builder import MicrosoftGraphDeviceManagementChangeAlertRecordsPortalNotificationAsSentRequestBuilder
-    from .microsoft_graph_device_management_get_portal_notifications.microsoft_graph_device_management_get_portal_notifications_request_builder import MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder
+    from .microsoft_graph_device_management_change_alert_records_portal_n_43d1221f.microsoft_graph_device_management_change_alert_records_portal_n_5b94bff7 import MicrosoftGraphDeviceManagementChangeAlertRecordsPortalN_5b94bff7
+    from .microsoft_graph_device_management_get_portal_notifications.microsoft_graph_device_management_get_portal_notifications_req_8191e564 import MicrosoftGraphDeviceManagementGetPortalNotificationsReq_8191e564
 
 class AlertRecordsRequestBuilder(BaseRequestBuilder):
     """
@@ -33,7 +33,7 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/monitoring/alertRecords{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_alert_record_id(self,alert_record_id: str) -> AlertRecordItemRequestBuilder:
         """
@@ -139,22 +139,22 @@ class AlertRecordsRequestBuilder(BaseRequestBuilder):
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_device_management_change_alert_records_portal_notification_as_sent(self) -> MicrosoftGraphDeviceManagementChangeAlertRecordsPortalNotificationAsSentRequestBuilder:
+    def microsoft_graph_device_management_change_alert_records_portal_notification_as_sent(self) -> MicrosoftGraphDeviceManagementChangeAlertRecordsPortalN_5b94bff7:
         """
         Provides operations to call the changeAlertRecordsPortalNotificationAsSent method.
         """
-        from .microsoft_graph_device_management_change_alert_records_portal_notification_as_sent.microsoft_graph_device_management_change_alert_records_portal_notification_as_sent_request_builder import MicrosoftGraphDeviceManagementChangeAlertRecordsPortalNotificationAsSentRequestBuilder
+        from .microsoft_graph_device_management_change_alert_records_portal_n_43d1221f.microsoft_graph_device_management_change_alert_records_portal_n_5b94bff7 import MicrosoftGraphDeviceManagementChangeAlertRecordsPortalN_5b94bff7
 
-        return MicrosoftGraphDeviceManagementChangeAlertRecordsPortalNotificationAsSentRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphDeviceManagementChangeAlertRecordsPortalN_5b94bff7(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_device_management_get_portal_notifications(self) -> MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder:
+    def microsoft_graph_device_management_get_portal_notifications(self) -> MicrosoftGraphDeviceManagementGetPortalNotificationsReq_8191e564:
         """
         Provides operations to call the getPortalNotifications method.
         """
-        from .microsoft_graph_device_management_get_portal_notifications.microsoft_graph_device_management_get_portal_notifications_request_builder import MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder
+        from .microsoft_graph_device_management_get_portal_notifications.microsoft_graph_device_management_get_portal_notifications_req_8191e564 import MicrosoftGraphDeviceManagementGetPortalNotificationsReq_8191e564
 
-        return MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphDeviceManagementGetPortalNotificationsReq_8191e564(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AlertRecordsRequestBuilderGetQueryParameters():

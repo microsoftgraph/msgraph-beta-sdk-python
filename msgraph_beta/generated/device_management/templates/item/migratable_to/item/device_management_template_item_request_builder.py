@@ -32,7 +32,7 @@ class DeviceManagementTemplateItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/migratableTo/{deviceManagementTemplate%2Did1}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/migratableTo/{deviceManagementTemplate%2Did1}", path_parameters)
     
     def compare_with_template_id(self,template_id: str) -> CompareWithTemplateIdRequestBuilder:
         """

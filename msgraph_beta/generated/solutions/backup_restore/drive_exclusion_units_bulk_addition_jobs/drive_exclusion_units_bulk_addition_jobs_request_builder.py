@@ -31,7 +31,7 @@ class DriveExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/driveExclusionUnitsBulkAdditionJobs{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_drive_exclusion_units_bulk_addition_job_id(self,drive_exclusion_units_bulk_addition_job_id: str) -> DriveExclusionUnitsBulkAdditionJobItemRequestBuilder:
         """
@@ -49,7 +49,7 @@ class DriveExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitsBulkAdditionJobsRequestBuilderGetQueryParameters]] = None) -> Optional[DriveExclusionUnitsBulkAdditionJobCollectionResponse]:
         """
-        Get driveExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for drive exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveExclusionUnitsBulkAdditionJobCollectionResponse]
         """
@@ -92,7 +92,7 @@ class DriveExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitsBulkAdditionJobsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get driveExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for drive exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class DriveExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DriveExclusionUnitsBulkAdditionJobsRequestBuilderGetQueryParameters():
         """
-        Get driveExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for drive exclusion units in the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

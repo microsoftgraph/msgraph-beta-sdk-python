@@ -31,7 +31,7 @@ class AssignmentFilterEvaluationStatusDetailsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/comanagedDevices/{managedDevice%2Did}/assignmentFilterEvaluationStatusDetails{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_assignment_filter_evaluation_status_details_id(self,assignment_filter_evaluation_status_details_id: str) -> AssignmentFilterEvaluationStatusDetailsItemRequestBuilder:
         """

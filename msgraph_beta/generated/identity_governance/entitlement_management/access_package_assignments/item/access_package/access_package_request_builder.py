@@ -37,7 +37,7 @@ class AccessPackageRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignments/{accessPackageAssignment%2Did}/accessPackage{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignments/{accessPackageAssignment%2Did}/accessPackage", path_parameters)
     
     def access_packages_incompatible_with_with_unique_name(self,unique_name: str) -> AccessPackagesIncompatibleWithWithUniqueNameRequestBuilder:
         """

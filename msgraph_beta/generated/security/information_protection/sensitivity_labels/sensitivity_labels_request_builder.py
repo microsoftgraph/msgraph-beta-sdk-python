@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from .count.count_request_builder import CountRequestBuilder
     from .item.sensitivity_label_item_request_builder import SensitivityLabelItemRequestBuilder
     from .microsoft_graph_security_evaluate_application.microsoft_graph_security_evaluate_application_request_builder import MicrosoftGraphSecurityEvaluateApplicationRequestBuilder
-    from .microsoft_graph_security_evaluate_classification_results.microsoft_graph_security_evaluate_classification_results_request_builder import MicrosoftGraphSecurityEvaluateClassificationResultsRequestBuilder
+    from .microsoft_graph_security_evaluate_classification_results.microsoft_graph_security_evaluate_classification_results_requ_fb04bbec import MicrosoftGraphSecurityEvaluateClassificationResultsRequ_fb04bbec
     from .microsoft_graph_security_evaluate_removal.microsoft_graph_security_evaluate_removal_request_builder import MicrosoftGraphSecurityEvaluateRemovalRequestBuilder
     from .microsoft_graph_security_extract_content_label.microsoft_graph_security_extract_content_label_request_builder import MicrosoftGraphSecurityExtractContentLabelRequestBuilder
 
@@ -35,7 +35,7 @@ class SensitivityLabelsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/security/informationProtection/sensitivityLabels{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_sensitivity_label_id(self,sensitivity_label_id: str) -> SensitivityLabelItemRequestBuilder:
         """
@@ -149,13 +149,13 @@ class SensitivityLabelsRequestBuilder(BaseRequestBuilder):
         return MicrosoftGraphSecurityEvaluateApplicationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_security_evaluate_classification_results(self) -> MicrosoftGraphSecurityEvaluateClassificationResultsRequestBuilder:
+    def microsoft_graph_security_evaluate_classification_results(self) -> MicrosoftGraphSecurityEvaluateClassificationResultsRequ_fb04bbec:
         """
         Provides operations to call the evaluateClassificationResults method.
         """
-        from .microsoft_graph_security_evaluate_classification_results.microsoft_graph_security_evaluate_classification_results_request_builder import MicrosoftGraphSecurityEvaluateClassificationResultsRequestBuilder
+        from .microsoft_graph_security_evaluate_classification_results.microsoft_graph_security_evaluate_classification_results_requ_fb04bbec import MicrosoftGraphSecurityEvaluateClassificationResultsRequ_fb04bbec
 
-        return MicrosoftGraphSecurityEvaluateClassificationResultsRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphSecurityEvaluateClassificationResultsRequ_fb04bbec(self.request_adapter, self.path_parameters)
     
     @property
     def microsoft_graph_security_evaluate_removal(self) -> MicrosoftGraphSecurityEvaluateRemovalRequestBuilder:

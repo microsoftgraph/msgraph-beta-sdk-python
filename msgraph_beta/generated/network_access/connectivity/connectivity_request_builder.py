@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from ...models.networkaccess.connectivity import Connectivity
     from ...models.o_data_errors.o_data_error import ODataError
     from .branches.branches_request_builder import BranchesRequestBuilder
-    from .microsoft_graph_networkaccess_get_web_category_by_url_with_url.microsoft_graph_networkaccess_get_web_category_by_url_with_url_request_builder import MicrosoftGraphNetworkaccessGetWebCategoryByUrlWithUrlRequestBuilder
+    from .microsoft_graph_networkaccess_get_web_category_by_url_with_url.microsoft_graph_networkaccess_get_web_category_by_url_with_url_re_738c2fcb import MicrosoftGraphNetworkaccessGetWebCategoryByUrlWithUrlRe_738c2fcb
     from .remote_networks.remote_networks_request_builder import RemoteNetworksRequestBuilder
 
 class ConnectivityRequestBuilder(BaseRequestBuilder):
@@ -31,7 +31,7 @@ class ConnectivityRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/networkAccess/connectivity{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/networkAccess/connectivity", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -71,17 +71,17 @@ class ConnectivityRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Connectivity, error_mapping)
     
-    def microsoft_graph_networkaccess_get_web_category_by_url_with_url(self,url: str) -> MicrosoftGraphNetworkaccessGetWebCategoryByUrlWithUrlRequestBuilder:
+    def microsoft_graph_networkaccess_get_web_category_by_url_with_url(self,url: str) -> MicrosoftGraphNetworkaccessGetWebCategoryByUrlWithUrlRe_738c2fcb:
         """
         Provides operations to call the getWebCategoryByUrl method.
         param url: Usage: url='{url}'
-        Returns: MicrosoftGraphNetworkaccessGetWebCategoryByUrlWithUrlRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessGetWebCategoryByUrlWithUrlRe_738c2fcb
         """
         if url is None:
             raise TypeError("url cannot be null.")
-        from .microsoft_graph_networkaccess_get_web_category_by_url_with_url.microsoft_graph_networkaccess_get_web_category_by_url_with_url_request_builder import MicrosoftGraphNetworkaccessGetWebCategoryByUrlWithUrlRequestBuilder
+        from .microsoft_graph_networkaccess_get_web_category_by_url_with_url.microsoft_graph_networkaccess_get_web_category_by_url_with_url_re_738c2fcb import MicrosoftGraphNetworkaccessGetWebCategoryByUrlWithUrlRe_738c2fcb
 
-        return MicrosoftGraphNetworkaccessGetWebCategoryByUrlWithUrlRequestBuilder(self.request_adapter, self.path_parameters, url)
+        return MicrosoftGraphNetworkaccessGetWebCategoryByUrlWithUrlRe_738c2fcb(self.request_adapter, self.path_parameters, url)
     
     async def patch(self,body: Connectivity, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Connectivity]:
         """

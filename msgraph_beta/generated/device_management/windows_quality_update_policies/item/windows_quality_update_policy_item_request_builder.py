@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from .assign.assign_request_builder import AssignRequestBuilder
     from .assignments.assignments_request_builder import AssignmentsRequestBuilder
     from .bulk_action.bulk_action_request_builder import BulkActionRequestBuilder
-    from .retrieve_windows_quality_update_catalog_item_details_with_ids.retrieve_windows_quality_update_catalog_item_details_with_ids_request_builder import RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRequestBuilder
+    from .retrieve_windows_quality_update_catalog_item_details_with_ids.retrieve_windows_quality_update_catalog_item_details_with_ids_re_d92dd7ca import RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRe_d92dd7ca
 
 class WindowsQualityUpdatePolicyItemRequestBuilder(BaseRequestBuilder):
     """
@@ -32,7 +32,7 @@ class WindowsQualityUpdatePolicyItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/windowsQualityUpdatePolicies/{windowsQualityUpdatePolicy%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/windowsQualityUpdatePolicies/{windowsQualityUpdatePolicy%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -95,17 +95,17 @@ class WindowsQualityUpdatePolicyItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, WindowsQualityUpdatePolicy, error_mapping)
     
-    def retrieve_windows_quality_update_catalog_item_details_with_ids(self,ids: str) -> RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRequestBuilder:
+    def retrieve_windows_quality_update_catalog_item_details_with_ids(self,ids: str) -> RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRe_d92dd7ca:
         """
         Provides operations to call the retrieveWindowsQualityUpdateCatalogItemDetails method.
         param ids: Usage: ids={ids}
-        Returns: RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRequestBuilder
+        Returns: RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRe_d92dd7ca
         """
         if ids is None:
             raise TypeError("ids cannot be null.")
-        from .retrieve_windows_quality_update_catalog_item_details_with_ids.retrieve_windows_quality_update_catalog_item_details_with_ids_request_builder import RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRequestBuilder
+        from .retrieve_windows_quality_update_catalog_item_details_with_ids.retrieve_windows_quality_update_catalog_item_details_with_ids_re_d92dd7ca import RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRe_d92dd7ca
 
-        return RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRequestBuilder(self.request_adapter, self.path_parameters, ids)
+        return RetrieveWindowsQualityUpdateCatalogItemDetailsWithIdsRe_d92dd7ca(self.request_adapter, self.path_parameters, ids)
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """

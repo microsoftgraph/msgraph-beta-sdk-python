@@ -19,9 +19,10 @@ if TYPE_CHECKING:
     from .all_members.all_members_request_builder import AllMembersRequestBuilder
     from .archive.archive_request_builder import ArchiveRequestBuilder
     from .complete_migration.complete_migration_request_builder import CompleteMigrationRequestBuilder
-    from .does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder import DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder
+    from .does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_princ_09968052.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_princ_40d13b0e import DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrinc_40d13b0e
     from .enabled_apps.enabled_apps_request_builder import EnabledAppsRequestBuilder
     from .files_folder.files_folder_request_builder import FilesFolderRequestBuilder
+    from .joined_users.joined_users_request_builder import JoinedUsersRequestBuilder
     from .members.members_request_builder import MembersRequestBuilder
     from .messages.messages_request_builder import MessagesRequestBuilder
     from .planner.planner_request_builder import PlannerRequestBuilder
@@ -43,7 +44,7 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/teamTemplateDefinition/{teamTemplateDefinition%2Did}/teamDefinition/primaryChannel{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/teamTemplateDefinition/{teamTemplateDefinition%2Did}/teamDefinition/primaryChannel", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -181,13 +182,13 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
         return CompleteMigrationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name(self) -> DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder:
+    def does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name(self) -> DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrinc_40d13b0e:
         """
         Provides operations to call the doesUserHaveAccess method.
         """
-        from .does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder import DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder
+        from .does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_princ_09968052.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_princ_40d13b0e import DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrinc_40d13b0e
 
-        return DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(self.request_adapter, self.path_parameters)
+        return DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrinc_40d13b0e(self.request_adapter, self.path_parameters)
     
     @property
     def enabled_apps(self) -> EnabledAppsRequestBuilder:
@@ -206,6 +207,15 @@ class PrimaryChannelRequestBuilder(BaseRequestBuilder):
         from .files_folder.files_folder_request_builder import FilesFolderRequestBuilder
 
         return FilesFolderRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def joined_users(self) -> JoinedUsersRequestBuilder:
+        """
+        Provides operations to manage the joinedUsers property of the microsoft.graph.channel entity.
+        """
+        from .joined_users.joined_users_request_builder import JoinedUsersRequestBuilder
+
+        return JoinedUsersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def members(self) -> MembersRequestBuilder:

@@ -31,7 +31,7 @@ class DefaultUserRoleOverridesRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/policies/authorizationPolicy/{authorizationPolicy%2Did}/defaultUserRoleOverrides{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_default_user_role_override_id(self,default_user_role_override_id: str) -> DefaultUserRoleOverrideItemRequestBuilder:
         """

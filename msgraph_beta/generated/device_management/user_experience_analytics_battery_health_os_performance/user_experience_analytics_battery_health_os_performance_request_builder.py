@@ -16,9 +16,9 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.user_experience_analytics_battery_health_os_performance import UserExperienceAnalyticsBatteryHealthOsPerformance
-    from ...models.user_experience_analytics_battery_health_os_performance_collection_response import UserExperienceAnalyticsBatteryHealthOsPerformanceCollectionResponse
+    from ...models.user_experience_analytics_battery_health_os_performance_collec_4e55f377 import UserExperienceAnalyticsBatteryHealthOsPerformanceCollec_4e55f377
     from .count.count_request_builder import CountRequestBuilder
-    from .item.user_experience_analytics_battery_health_os_performance_item_request_builder import UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilder
+    from .item.user_experience_analytics_battery_health_os_performance_item_re_313fb409 import UserExperienceAnalyticsBatteryHealthOsPerformanceItemRe_313fb409
 
 class UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilder(BaseRequestBuilder):
     """
@@ -31,27 +31,27 @@ class UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilder(BaseReques
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/userExperienceAnalyticsBatteryHealthOsPerformance{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
-    def by_user_experience_analytics_battery_health_os_performance_id(self,user_experience_analytics_battery_health_os_performance_id: str) -> UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilder:
+    def by_user_experience_analytics_battery_health_os_performance_id(self,user_experience_analytics_battery_health_os_performance_id: str) -> UserExperienceAnalyticsBatteryHealthOsPerformanceItemRe_313fb409:
         """
         Provides operations to manage the userExperienceAnalyticsBatteryHealthOsPerformance property of the microsoft.graph.deviceManagement entity.
         param user_experience_analytics_battery_health_os_performance_id: The unique identifier of userExperienceAnalyticsBatteryHealthOsPerformance
-        Returns: UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilder
+        Returns: UserExperienceAnalyticsBatteryHealthOsPerformanceItemRe_313fb409
         """
         if user_experience_analytics_battery_health_os_performance_id is None:
             raise TypeError("user_experience_analytics_battery_health_os_performance_id cannot be null.")
-        from .item.user_experience_analytics_battery_health_os_performance_item_request_builder import UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilder
+        from .item.user_experience_analytics_battery_health_os_performance_item_re_313fb409 import UserExperienceAnalyticsBatteryHealthOsPerformanceItemRe_313fb409
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userExperienceAnalyticsBatteryHealthOsPerformance%2Did"] = user_experience_analytics_battery_health_os_performance_id
-        return UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return UserExperienceAnalyticsBatteryHealthOsPerformanceItemRe_313fb409(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilderGetQueryParameters]] = None) -> Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilderGetQueryParameters]] = None) -> Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceCollec_4e55f377]:
         """
         User Experience Analytics Battery Health Os Performance
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceCollectionResponse]
+        Returns: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceCollec_4e55f377]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -63,9 +63,9 @@ class UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilder(BaseReques
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.user_experience_analytics_battery_health_os_performance_collection_response import UserExperienceAnalyticsBatteryHealthOsPerformanceCollectionResponse
+        from ...models.user_experience_analytics_battery_health_os_performance_collec_4e55f377 import UserExperienceAnalyticsBatteryHealthOsPerformanceCollec_4e55f377
 
-        return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsBatteryHealthOsPerformanceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, UserExperienceAnalyticsBatteryHealthOsPerformanceCollec_4e55f377, error_mapping)
     
     async def post(self,body: UserExperienceAnalyticsBatteryHealthOsPerformance, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[UserExperienceAnalyticsBatteryHealthOsPerformance]:
         """

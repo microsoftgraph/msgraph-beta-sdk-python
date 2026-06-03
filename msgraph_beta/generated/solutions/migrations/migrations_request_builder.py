@@ -30,7 +30,7 @@ class MigrationsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/migrations{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/solutions/migrations", path_parameters)
     
     def cross_tenant_migration_jobs_with_display_name(self,display_name: str) -> CrossTenantMigrationJobsWithDisplayNameRequestBuilder:
         """

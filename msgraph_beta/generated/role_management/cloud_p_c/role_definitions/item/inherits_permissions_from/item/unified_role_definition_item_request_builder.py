@@ -16,7 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
     from .......models.unified_role_definition import UnifiedRoleDefinition
-    from .assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id.assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder import AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder
+    from .assigned_principals_with_transitivedirectory_scope_type_direc_ac00e1fd.assigned_principals_with_transitivedirectory_scope_type_direc_c9177a9a import AssignedPrincipalsWithTransitivedirectoryScopeTypeDirec_c9177a9a
 
 class UnifiedRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
     """
@@ -29,7 +29,7 @@ class UnifiedRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/roleManagement/cloudPC/roleDefinitions/{unifiedRoleDefinition%2Did}/inheritsPermissionsFrom/{unifiedRoleDefinition%2Did1}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/roleManagement/cloudPC/roleDefinitions/{unifiedRoleDefinition%2Did}/inheritsPermissionsFrom/{unifiedRoleDefinition%2Did1}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -147,13 +147,13 @@ class UnifiedRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
         return UnifiedRoleDefinitionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id(self) -> AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder:
+    def assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id(self) -> AssignedPrincipalsWithTransitivedirectoryScopeTypeDirec_c9177a9a:
         """
         Provides operations to call the assignedPrincipals method.
         """
-        from .assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id.assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder import AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder
+        from .assigned_principals_with_transitivedirectory_scope_type_direc_ac00e1fd.assigned_principals_with_transitivedirectory_scope_type_direc_c9177a9a import AssignedPrincipalsWithTransitivedirectoryScopeTypeDirec_c9177a9a
 
-        return AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignedPrincipalsWithTransitivedirectoryScopeTypeDirec_c9177a9a(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UnifiedRoleDefinitionItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

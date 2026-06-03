@@ -31,7 +31,7 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/cloudPcPools/{cloudPcPool%2Did}/assignments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_cloud_pc_pool_assignment_id(self,cloud_pc_pool_assignment_id: str) -> CloudPcPoolAssignmentItemRequestBuilder:
         """
@@ -49,9 +49,10 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AssignmentsRequestBuilderGetQueryParameters]] = None) -> Optional[CloudPcPoolAssignmentCollectionResponse]:
         """
-        Get assignments from deviceManagement
+        List the assignments of a cloudPcPool.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcPoolAssignmentCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcpool-list-assignments?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CloudPcPoolAssignment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcPoolAssignment]:
         """
-        Create new navigation property to assignments for deviceManagement
+        Create a new cloudPcPoolAssignment for a cloudPcPool.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcPoolAssignment]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcpool-post-assignments?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AssignmentsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get assignments from deviceManagement
+        List the assignments of a cloudPcPool.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CloudPcPoolAssignment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to assignments for deviceManagement
+        Create a new cloudPcPoolAssignment for a cloudPcPool.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AssignmentsRequestBuilderGetQueryParameters():
         """
-        Get assignments from deviceManagement
+        List the assignments of a cloudPcPool.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

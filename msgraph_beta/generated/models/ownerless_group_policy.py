@@ -15,7 +15,7 @@ from .entity import Entity
 class OwnerlessGroupPolicy(Entity, Parsable):
     # The emailInfo property
     email_info: Optional[EmailDetails] = None
-    # The collection of IDs for groups to which the policy is enabled.
+    # The collection of IDs for groups to which the policy is enabled. If empty, the policy is enabled for all groups in the tenant.
     enabled_group_ids: Optional[list[str]] = None
     # Indicates whether the ownerless group policy is enabled in the tenant. Setting this property to false clears the values of all other policy parameters.
     is_enabled: Optional[bool] = None

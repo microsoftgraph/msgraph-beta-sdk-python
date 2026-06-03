@@ -7,7 +7,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aad_user_conversation_member import AadUserConversationMember
-    from .access_drift_report import AccessDriftReport
     from .access_package import AccessPackage
     from .access_package_assignment import AccessPackageAssignment
     from .access_package_assignment_policy import AccessPackageAssignmentPolicy
@@ -445,6 +444,7 @@ if TYPE_CHECKING:
     from .copilot_policy_setting import CopilotPolicySetting
     from .copilot_report_root import CopilotReportRoot
     from .copilot_setting import CopilotSetting
+    from .correlated_identity import CorrelatedIdentity
     from .cors_configuration_v2 import CorsConfiguration_v2
     from .credential_usage_summary import CredentialUsageSummary
     from .credential_user_registration_count import CredentialUserRegistrationCount
@@ -903,6 +903,7 @@ if TYPE_CHECKING:
     from .human_security_fraud_protection_provider import HumanSecurityFraudProtectionProvider
     from .identity_api_connector import IdentityApiConnector
     from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
+    from .identity_correlation import IdentityCorrelation
     from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
     from .identity_finding import IdentityFinding
     from .identity_governance.custom_task_extension import CustomTaskExtension
@@ -1590,7 +1591,7 @@ if TYPE_CHECKING:
     from .risky_user import RiskyUser
     from .risky_user_history_item import RiskyUserHistoryItem
     from .risk_detection import RiskDetection
-    from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+    from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
     from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
     from .role_assignment import RoleAssignment
     from .role_definition import RoleDefinition
@@ -1818,6 +1819,7 @@ if TYPE_CHECKING:
     from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
     from .share_point_migration_task import SharePointMigrationTask
     from .share_point_protection_policy import SharePointProtectionPolicy
+    from .share_point_report_settings import SharePointReportSettings
     from .share_point_restore_session import SharePointRestoreSession
     from .share_point_root import SharePointRoot
     from .share_point_user_identity_mapping import SharePointUserIdentityMapping
@@ -2054,8 +2056,8 @@ if TYPE_CHECKING:
     from .user_experience_analytics_anomaly_device import UserExperienceAnalyticsAnomalyDevice
     from .user_experience_analytics_app_health_application_performance import UserExperienceAnalyticsAppHealthApplicationPerformance
     from .user_experience_analytics_app_health_app_performance_by_app_version import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion
-    from .user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
-    from .user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
+    from .user_experience_analytics_app_health_app_performance_by_app_vers_2e6b881b import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b
+    from .user_experience_analytics_app_health_app_performance_by_app_vers_ba5b7522 import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522
     from .user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
     from .user_experience_analytics_app_health_device_model_performance import UserExperienceAnalyticsAppHealthDeviceModelPerformance
     from .user_experience_analytics_app_health_device_performance import UserExperienceAnalyticsAppHealthDevicePerformance
@@ -2130,6 +2132,7 @@ if TYPE_CHECKING:
     from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
     from .virtual_event_session import VirtualEventSession
     from .virtual_event_townhall import VirtualEventTownhall
+    from .virtual_event_townhall_registration_configuration import VirtualEventTownhallRegistrationConfiguration
     from .virtual_event_webinar import VirtualEventWebinar
     from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
     from .virtual_machine_details import VirtualMachineDetails
@@ -2193,8 +2196,8 @@ if TYPE_CHECKING:
     from .windows_defender_advanced_threat_protection_configuration import WindowsDefenderAdvancedThreatProtectionConfiguration
     from .windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
     from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
-    from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-    from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+    from .windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
+    from .windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
     from .windows_delivery_optimization_configuration import WindowsDeliveryOptimizationConfiguration
     from .windows_device_malware_state import WindowsDeviceMalwareState
     from .windows_domain_join_configuration import WindowsDomainJoinConfiguration
@@ -2379,10 +2382,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .aad_user_conversation_member import AadUserConversationMember
 
             return AadUserConversationMember()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessDriftReport".casefold():
-            from .access_drift_report import AccessDriftReport
-
-            return AccessDriftReport()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessPackage".casefold():
             from .access_package import AccessPackage
 
@@ -4139,6 +4138,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .copilot_setting import CopilotSetting
 
             return CopilotSetting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.correlatedIdentity".casefold():
+            from .correlated_identity import CorrelatedIdentity
+
+            return CorrelatedIdentity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.corsConfiguration_v2".casefold():
             from .cors_configuration_v2 import CorsConfiguration_v2
 
@@ -5993,6 +5996,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
 
             return IdentityBuiltInUserFlowAttribute()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityCorrelation".casefold():
+            from .identity_correlation import IdentityCorrelation
+
+            return IdentityCorrelation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityCustomUserFlowAttribute".casefold():
             from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
 
@@ -8770,9 +8777,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return RoleManagementAlert()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.rolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration".casefold():
-            from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+            from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
 
-            return RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration()
+            return RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.rolesAssignedOutsidePrivilegedIdentityManagementAlertIncident".casefold():
             from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
 
@@ -9684,6 +9691,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .share_point_protection_policy import SharePointProtectionPolicy
 
             return SharePointProtectionPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointReportSettings".casefold():
+            from .share_point_report_settings import SharePointReportSettings
+
+            return SharePointReportSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointRestoreSession".casefold():
             from .share_point_restore_session import SharePointRestoreSession
 
@@ -10638,13 +10649,13 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails".casefold():
-            from .user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
+            from .user_experience_analytics_app_health_app_performance_by_app_vers_ba5b7522 import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522
 
-            return UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails()
+            return UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId".casefold():
-            from .user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
+            from .user_experience_analytics_app_health_app_performance_by_app_vers_2e6b881b import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b
 
-            return UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId()
+            return UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userExperienceAnalyticsAppHealthAppPerformanceByOSVersion".casefold():
             from .user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
 
@@ -10941,6 +10952,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .virtual_event_townhall import VirtualEventTownhall
 
             return VirtualEventTownhall()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventTownhallRegistrationConfiguration".casefold():
+            from .virtual_event_townhall_registration_configuration import VirtualEventTownhallRegistrationConfiguration
+
+            return VirtualEventTownhallRegistrationConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventWebinar".casefold():
             from .virtual_event_webinar import VirtualEventWebinar
 
@@ -11194,13 +11209,13 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return WindowsDefenderApplicationControlSupplementalPolicyAssignment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsDefenderApplicationControlSupplementalPolicyDeploymentStatus".casefold():
-            from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
+            from .windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
 
-            return WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus()
+            return WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsDefenderApplicationControlSupplementalPolicyDeploymentSummary".casefold():
-            from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+            from .windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
 
-            return WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary()
+            return WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsDeliveryOptimizationConfiguration".casefold():
             from .windows_delivery_optimization_configuration import WindowsDeliveryOptimizationConfiguration
 
@@ -11825,7 +11840,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aad_user_conversation_member import AadUserConversationMember
-        from .access_drift_report import AccessDriftReport
         from .access_package import AccessPackage
         from .access_package_assignment import AccessPackageAssignment
         from .access_package_assignment_policy import AccessPackageAssignmentPolicy
@@ -12263,6 +12277,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_policy_setting import CopilotPolicySetting
         from .copilot_report_root import CopilotReportRoot
         from .copilot_setting import CopilotSetting
+        from .correlated_identity import CorrelatedIdentity
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .credential_usage_summary import CredentialUsageSummary
         from .credential_user_registration_count import CredentialUserRegistrationCount
@@ -12721,6 +12736,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .human_security_fraud_protection_provider import HumanSecurityFraudProtectionProvider
         from .identity_api_connector import IdentityApiConnector
         from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
+        from .identity_correlation import IdentityCorrelation
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
         from .identity_finding import IdentityFinding
         from .identity_governance.custom_task_extension import CustomTaskExtension
@@ -13408,7 +13424,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .risky_user import RiskyUser
         from .risky_user_history_item import RiskyUserHistoryItem
         from .risk_detection import RiskDetection
-        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+        from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
         from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
         from .role_assignment import RoleAssignment
         from .role_definition import RoleDefinition
@@ -13636,6 +13652,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
         from .share_point_migration_task import SharePointMigrationTask
         from .share_point_protection_policy import SharePointProtectionPolicy
+        from .share_point_report_settings import SharePointReportSettings
         from .share_point_restore_session import SharePointRestoreSession
         from .share_point_root import SharePointRoot
         from .share_point_user_identity_mapping import SharePointUserIdentityMapping
@@ -13872,8 +13889,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_experience_analytics_anomaly_device import UserExperienceAnalyticsAnomalyDevice
         from .user_experience_analytics_app_health_application_performance import UserExperienceAnalyticsAppHealthApplicationPerformance
         from .user_experience_analytics_app_health_app_performance_by_app_version import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion
-        from .user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
-        from .user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
+        from .user_experience_analytics_app_health_app_performance_by_app_vers_2e6b881b import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b
+        from .user_experience_analytics_app_health_app_performance_by_app_vers_ba5b7522 import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522
         from .user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
         from .user_experience_analytics_app_health_device_model_performance import UserExperienceAnalyticsAppHealthDeviceModelPerformance
         from .user_experience_analytics_app_health_device_performance import UserExperienceAnalyticsAppHealthDevicePerformance
@@ -13948,6 +13965,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
         from .virtual_event_session import VirtualEventSession
         from .virtual_event_townhall import VirtualEventTownhall
+        from .virtual_event_townhall_registration_configuration import VirtualEventTownhallRegistrationConfiguration
         from .virtual_event_webinar import VirtualEventWebinar
         from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
         from .virtual_machine_details import VirtualMachineDetails
@@ -14011,8 +14029,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_defender_advanced_threat_protection_configuration import WindowsDefenderAdvancedThreatProtectionConfiguration
         from .windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
         from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
-        from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-        from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+        from .windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
+        from .windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
         from .windows_delivery_optimization_configuration import WindowsDeliveryOptimizationConfiguration
         from .windows_device_malware_state import WindowsDeviceMalwareState
         from .windows_domain_join_configuration import WindowsDomainJoinConfiguration
@@ -14168,7 +14186,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .zebra_fota_deployment import ZebraFotaDeployment
 
         from .aad_user_conversation_member import AadUserConversationMember
-        from .access_drift_report import AccessDriftReport
         from .access_package import AccessPackage
         from .access_package_assignment import AccessPackageAssignment
         from .access_package_assignment_policy import AccessPackageAssignmentPolicy
@@ -14606,6 +14623,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_policy_setting import CopilotPolicySetting
         from .copilot_report_root import CopilotReportRoot
         from .copilot_setting import CopilotSetting
+        from .correlated_identity import CorrelatedIdentity
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .credential_usage_summary import CredentialUsageSummary
         from .credential_user_registration_count import CredentialUserRegistrationCount
@@ -15064,6 +15082,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .human_security_fraud_protection_provider import HumanSecurityFraudProtectionProvider
         from .identity_api_connector import IdentityApiConnector
         from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
+        from .identity_correlation import IdentityCorrelation
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
         from .identity_finding import IdentityFinding
         from .identity_governance.custom_task_extension import CustomTaskExtension
@@ -15751,7 +15770,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .risky_user import RiskyUser
         from .risky_user_history_item import RiskyUserHistoryItem
         from .risk_detection import RiskDetection
-        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+        from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
         from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
         from .role_assignment import RoleAssignment
         from .role_definition import RoleDefinition
@@ -15979,6 +15998,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
         from .share_point_migration_task import SharePointMigrationTask
         from .share_point_protection_policy import SharePointProtectionPolicy
+        from .share_point_report_settings import SharePointReportSettings
         from .share_point_restore_session import SharePointRestoreSession
         from .share_point_root import SharePointRoot
         from .share_point_user_identity_mapping import SharePointUserIdentityMapping
@@ -16215,8 +16235,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_experience_analytics_anomaly_device import UserExperienceAnalyticsAnomalyDevice
         from .user_experience_analytics_app_health_application_performance import UserExperienceAnalyticsAppHealthApplicationPerformance
         from .user_experience_analytics_app_health_app_performance_by_app_version import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion
-        from .user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
-        from .user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
+        from .user_experience_analytics_app_health_app_performance_by_app_vers_2e6b881b import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b
+        from .user_experience_analytics_app_health_app_performance_by_app_vers_ba5b7522 import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522
         from .user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
         from .user_experience_analytics_app_health_device_model_performance import UserExperienceAnalyticsAppHealthDeviceModelPerformance
         from .user_experience_analytics_app_health_device_performance import UserExperienceAnalyticsAppHealthDevicePerformance
@@ -16291,6 +16311,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
         from .virtual_event_session import VirtualEventSession
         from .virtual_event_townhall import VirtualEventTownhall
+        from .virtual_event_townhall_registration_configuration import VirtualEventTownhallRegistrationConfiguration
         from .virtual_event_webinar import VirtualEventWebinar
         from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
         from .virtual_machine_details import VirtualMachineDetails
@@ -16354,8 +16375,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_defender_advanced_threat_protection_configuration import WindowsDefenderAdvancedThreatProtectionConfiguration
         from .windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
         from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
-        from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-        from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+        from .windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
+        from .windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
         from .windows_delivery_optimization_configuration import WindowsDeliveryOptimizationConfiguration
         from .windows_device_malware_state import WindowsDeviceMalwareState
         from .windows_domain_join_configuration import WindowsDomainJoinConfiguration

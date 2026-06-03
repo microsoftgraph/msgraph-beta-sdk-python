@@ -28,7 +28,7 @@ class DataCollectionInfoRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/external/authorizationSystems/{authorizationSystem%2Did}/dataCollectionInfo{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/external/authorizationSystems/{authorizationSystem%2Did}/dataCollectionInfo", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """

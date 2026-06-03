@@ -150,7 +150,7 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/users/{user%2Did}", path_parameters)
     
     def app_role_assigned_resources_with_app_id(self,app_id: str) -> AppRoleAssignedResourcesWithAppIdRequestBuilder:
         """

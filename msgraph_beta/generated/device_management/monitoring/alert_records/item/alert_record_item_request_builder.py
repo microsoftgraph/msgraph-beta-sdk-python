@@ -16,7 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.device_management.alert_record import AlertRecord
     from .....models.o_data_errors.o_data_error import ODataError
-    from .microsoft_graph_device_management_set_portal_notification_as_sent.microsoft_graph_device_management_set_portal_notification_as_sent_request_builder import MicrosoftGraphDeviceManagementSetPortalNotificationAsSentRequestBuilder
+    from .microsoft_graph_device_management_set_portal_notification_as_sent.microsoft_graph_device_management_set_portal_notification_as_se_e2ad4c0f import MicrosoftGraphDeviceManagementSetPortalNotificationAsSe_e2ad4c0f
 
 class AlertRecordItemRequestBuilder(BaseRequestBuilder):
     """
@@ -29,7 +29,7 @@ class AlertRecordItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/monitoring/alertRecords/{alertRecord%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/monitoring/alertRecords/{alertRecord%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -141,13 +141,13 @@ class AlertRecordItemRequestBuilder(BaseRequestBuilder):
         return AlertRecordItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def microsoft_graph_device_management_set_portal_notification_as_sent(self) -> MicrosoftGraphDeviceManagementSetPortalNotificationAsSentRequestBuilder:
+    def microsoft_graph_device_management_set_portal_notification_as_sent(self) -> MicrosoftGraphDeviceManagementSetPortalNotificationAsSe_e2ad4c0f:
         """
         Provides operations to call the setPortalNotificationAsSent method.
         """
-        from .microsoft_graph_device_management_set_portal_notification_as_sent.microsoft_graph_device_management_set_portal_notification_as_sent_request_builder import MicrosoftGraphDeviceManagementSetPortalNotificationAsSentRequestBuilder
+        from .microsoft_graph_device_management_set_portal_notification_as_sent.microsoft_graph_device_management_set_portal_notification_as_se_e2ad4c0f import MicrosoftGraphDeviceManagementSetPortalNotificationAsSe_e2ad4c0f
 
-        return MicrosoftGraphDeviceManagementSetPortalNotificationAsSentRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphDeviceManagementSetPortalNotificationAsSe_e2ad4c0f(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AlertRecordItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

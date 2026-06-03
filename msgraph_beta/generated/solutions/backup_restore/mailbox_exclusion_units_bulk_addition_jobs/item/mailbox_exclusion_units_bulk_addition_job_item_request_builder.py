@@ -28,7 +28,7 @@ class MailboxExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder)
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/mailboxExclusionUnitsBulkAdditionJobs/{mailboxExclusionUnitsBulkAdditionJob%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/mailboxExclusionUnitsBulkAdditionJobs/{mailboxExclusionUnitsBulkAdditionJob%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -50,7 +50,7 @@ class MailboxExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MailboxExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters]] = None) -> Optional[MailboxExclusionUnitsBulkAdditionJob]:
         """
-        Get mailboxExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for mailbox exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailboxExclusionUnitsBulkAdditionJob]
         """
@@ -104,7 +104,7 @@ class MailboxExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MailboxExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get mailboxExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for mailbox exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class MailboxExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder)
     @dataclass
     class MailboxExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters():
         """
-        Get mailboxExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for mailbox exclusion units in the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
