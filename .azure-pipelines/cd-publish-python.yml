@@ -113,7 +113,7 @@ extends:
               runOnce:
                 deploy:
                   steps:
-                    - task: EsrpRelease@9
+                    - task: EsrpRelease@12
                       displayName: Publish msgraph-beta-sdk package via ESRP Release
                       inputs:
                         connectedservicename: Federated DevX ESRP Managed Identity Connection
