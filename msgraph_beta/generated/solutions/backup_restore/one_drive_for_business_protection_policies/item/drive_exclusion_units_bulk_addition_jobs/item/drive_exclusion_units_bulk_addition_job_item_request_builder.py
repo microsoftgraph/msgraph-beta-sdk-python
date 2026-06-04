@@ -32,9 +32,10 @@ class DriveExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters]] = None) -> Optional[DriveExclusionUnitsBulkAdditionJob]:
         """
-        Get driveExclusionUnitsBulkAdditionJobs from solutions
+        Get a drive exclusion units bulk addition job associated with a OneDrive for work or school protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveExclusionUnitsBulkAdditionJob]
+        Find more info here: https://learn.microsoft.com/graph/api/driveexclusionunitsbulkadditionjob-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -52,7 +53,7 @@ class DriveExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get driveExclusionUnitsBulkAdditionJobs from solutions
+        Get a drive exclusion units bulk addition job associated with a OneDrive for work or school protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +75,7 @@ class DriveExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DriveExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters():
         """
-        Get driveExclusionUnitsBulkAdditionJobs from solutions
+        Get a drive exclusion units bulk addition job associated with a OneDrive for work or school protection policy.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

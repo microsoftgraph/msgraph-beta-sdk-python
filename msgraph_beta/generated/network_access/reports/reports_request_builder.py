@@ -17,22 +17,22 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.networkaccess.reports import Reports
     from ...models.o_data_errors.o_data_error import ODataError
-    from .microsoft_graph_networkaccess_cross_tenant_access_report_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_cross_tenant_access_report_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessCrossTenantAccessReportWithStartDateTimeWithEndDateTimeRequestBuilder
-    from .microsoft_graph_networkaccess_destination_report_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_destination_report_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeRequestBuilder
-    from .microsoft_graph_networkaccess_device_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id.microsoft_graph_networkaccess_device_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id_request_builder import MicrosoftGraphNetworkaccessDeviceReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder
-    from .microsoft_graph_networkaccess_entities_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_entities_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
-    from .microsoft_graph_networkaccess_get_application_usage_analytics_with_start_date_time_with_end_date_time_with_aggregated_by.microsoft_graph_networkaccess_get_application_usage_analytics_with_start_date_time_with_end_date_time_with_aggregated_by_request_builder import MicrosoftGraphNetworkaccessGetApplicationUsageAnalyticsWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder
-    from .microsoft_graph_networkaccess_get_cloud_application_report_with_start_date_time_with_end_date_timeuser_id_user_id.microsoft_graph_networkaccess_get_cloud_application_report_with_start_date_time_with_end_date_timeuser_id_user_id_request_builder import MicrosoftGraphNetworkaccessGetCloudApplicationReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder
-    from .microsoft_graph_networkaccess_get_connection_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_get_connection_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessGetConnectionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
-    from .microsoft_graph_networkaccess_get_cross_tenant_summary_with_start_date_time_with_end_date_time_with_discovery_pivot_date_time.microsoft_graph_networkaccess_get_cross_tenant_summary_with_start_date_time_with_end_date_time_with_discovery_pivot_date_time_request_builder import MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithStartDateTimeWithEndDateTimeWithDiscoveryPivotDateTimeRequestBuilder
-    from .microsoft_graph_networkaccess_get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by.microsoft_graph_networkaccess_get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by_request_builder import MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder
-    from .microsoft_graph_networkaccess_get_device_usage_summary_with_start_date_time_with_end_date_time_with_activity_pivot_date_time.microsoft_graph_networkaccess_get_device_usage_summary_with_start_date_time_with_end_date_time_with_activity_pivot_date_time_request_builder import MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithStartDateTimeWithEndDateTimeWithActivityPivotDateTimeRequestBuilder
-    from .microsoft_graph_networkaccess_get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id.microsoft_graph_networkaccess_get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id_request_builder import MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder
-    from .microsoft_graph_networkaccess_get_enterprise_application_report_with_start_date_time_with_end_date_timeuser_id_user_id.microsoft_graph_networkaccess_get_enterprise_application_report_with_start_date_time_with_end_date_timeuser_id_user_id_request_builder import MicrosoftGraphNetworkaccessGetEnterpriseApplicationReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder
-    from .microsoft_graph_networkaccess_transaction_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_transaction_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
-    from .microsoft_graph_networkaccess_usage_profiling_with_start_date_time_with_end_date_time_with_aggregated_bydiscovered_application_segment_id_discovered_application_segment_id_application_id_application_id.microsoft_graph_networkaccess_usage_profiling_with_start_date_time_with_end_date_time_with_aggregated_bydiscovered_application_segment_id_discovered_application_segment_id_application_id_application_id_request_builder import MicrosoftGraphNetworkaccessUsageProfilingWithStartDateTimeWithEndDateTimeWithAggregatedBydiscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder
-    from .microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id.microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id_request_builder import MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder
-    from .microsoft_graph_networkaccess_web_category_report_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_web_category_report_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessWebCategoryReportWithStartDateTimeWithEndDateTimeRequestBuilder
+    from .microsoft_graph_networkaccess_cross_tenant_access_report_with_s_2c36c1b1.microsoft_graph_networkaccess_cross_tenant_access_report_with_s_74eb9b50 import MicrosoftGraphNetworkaccessCrossTenantAccessReportWithS_74eb9b50
+    from .microsoft_graph_networkaccess_destination_report_with_start_da_cc1b1768.microsoft_graph_networkaccess_destination_report_with_start_da_7ddfa63b import MicrosoftGraphNetworkaccessDestinationReportWithStartDa_7ddfa63b
+    from .microsoft_graph_networkaccess_device_report_with_start_date_tim_88652905.microsoft_graph_networkaccess_device_report_with_start_date_tim_06594dbd import MicrosoftGraphNetworkaccessDeviceReportWithStartDateTim_06594dbd
+    from .microsoft_graph_networkaccess_entities_summaries_with_start_da_9a0306bb.microsoft_graph_networkaccess_entities_summaries_with_start_da_b76b42e0 import MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDa_b76b42e0
+    from .microsoft_graph_networkaccess_get_application_usage_analytics_498a5660.microsoft_graph_networkaccess_get_application_usage_analytics_46cb0254 import MicrosoftGraphNetworkaccessGetApplicationUsageAnalytics_46cb0254
+    from .microsoft_graph_networkaccess_get_cloud_application_report_wit_b76c2738.microsoft_graph_networkaccess_get_cloud_application_report_wit_08376ab7 import MicrosoftGraphNetworkaccessGetCloudApplicationReportWit_08376ab7
+    from .microsoft_graph_networkaccess_get_connection_summaries_with_st_286f0b81.microsoft_graph_networkaccess_get_connection_summaries_with_st_6f553693 import MicrosoftGraphNetworkaccessGetConnectionSummariesWithSt_6f553693
+    from .microsoft_graph_networkaccess_get_cross_tenant_summary_with_sta_04bba7b0.microsoft_graph_networkaccess_get_cross_tenant_summary_with_sta_f8c194eb import MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithSta_f8c194eb
+    from .microsoft_graph_networkaccess_get_destination_summaries_with_s_790ff302.microsoft_graph_networkaccess_get_destination_summaries_with_s_f815467f import MicrosoftGraphNetworkaccessGetDestinationSummariesWithS_f815467f
+    from .microsoft_graph_networkaccess_get_device_usage_summary_with_sta_d5c8c2a7.microsoft_graph_networkaccess_get_device_usage_summary_with_sta_ba9070fc import MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithSta_ba9070fc
+    from .microsoft_graph_networkaccess_get_discovered_application_segm_bdf840c8.microsoft_graph_networkaccess_get_discovered_application_segm_18174033 import MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegm_18174033
+    from .microsoft_graph_networkaccess_get_enterprise_application_repo_7ee1907f.microsoft_graph_networkaccess_get_enterprise_application_repo_0f74db6c import MicrosoftGraphNetworkaccessGetEnterpriseApplicationRepo_0f74db6c
+    from .microsoft_graph_networkaccess_transaction_summaries_with_star_d11d4593.microsoft_graph_networkaccess_transaction_summaries_with_star_bb0f5d04 import MicrosoftGraphNetworkaccessTransactionSummariesWithStar_bb0f5d04
+    from .microsoft_graph_networkaccess_usage_profiling_with_start_date_t_c845ee52.microsoft_graph_networkaccess_usage_profiling_with_start_date_t_03bd8f28 import MicrosoftGraphNetworkaccessUsageProfilingWithStartDateT_03bd8f28
+    from .microsoft_graph_networkaccess_user_report_with_start_date_time_w_b974b70d.microsoft_graph_networkaccess_user_report_with_start_date_time_w_f71a8761 import MicrosoftGraphNetworkaccessUserReportWithStartDateTimeW_f71a8761
+    from .microsoft_graph_networkaccess_web_category_report_with_start_da_2064c19e.microsoft_graph_networkaccess_web_category_report_with_start_da_6cc93018 import MicrosoftGraphNetworkaccessWebCategoryReportWithStartDa_6cc93018
 
 class ReportsRequestBuilder(BaseRequestBuilder):
     """
@@ -45,7 +45,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/networkAccess/reports{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/networkAccess/reports", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -85,73 +85,73 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Reports, error_mapping)
     
-    def microsoft_graph_networkaccess_cross_tenant_access_report_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessCrossTenantAccessReportWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_cross_tenant_access_report_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessCrossTenantAccessReportWithS_74eb9b50:
         """
         Provides operations to call the crossTenantAccessReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessCrossTenantAccessReportWithStartDateTimeWithEndDateTimeRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessCrossTenantAccessReportWithS_74eb9b50
         """
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_cross_tenant_access_report_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_cross_tenant_access_report_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessCrossTenantAccessReportWithStartDateTimeWithEndDateTimeRequestBuilder
+        from .microsoft_graph_networkaccess_cross_tenant_access_report_with_s_2c36c1b1.microsoft_graph_networkaccess_cross_tenant_access_report_with_s_74eb9b50 import MicrosoftGraphNetworkaccessCrossTenantAccessReportWithS_74eb9b50
 
-        return MicrosoftGraphNetworkaccessCrossTenantAccessReportWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessCrossTenantAccessReportWithS_74eb9b50(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_destination_report_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_destination_report_with_start_date_time_with_end_date_timeai_agent_id_ai_agent_id_ai_agent_name_ai_agent_name(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessDestinationReportWithStartDa_7ddfa63b:
         """
         Provides operations to call the destinationReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessDestinationReportWithStartDa_7ddfa63b
         """
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_destination_report_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_destination_report_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeRequestBuilder
+        from .microsoft_graph_networkaccess_destination_report_with_start_da_cc1b1768.microsoft_graph_networkaccess_destination_report_with_start_da_7ddfa63b import MicrosoftGraphNetworkaccessDestinationReportWithStartDa_7ddfa63b
 
-        return MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessDestinationReportWithStartDa_7ddfa63b(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_device_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessDeviceReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder:
+    def microsoft_graph_networkaccess_device_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id_ai_agent_id_ai_agent_id_ai_agent_name_ai_agent_name_cloud_application_name_cloud_application_name_destination_url_destination_url(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessDeviceReportWithStartDateTim_06594dbd:
         """
         Provides operations to call the deviceReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessDeviceReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessDeviceReportWithStartDateTim_06594dbd
         """
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_device_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id.microsoft_graph_networkaccess_device_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id_request_builder import MicrosoftGraphNetworkaccessDeviceReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder
+        from .microsoft_graph_networkaccess_device_report_with_start_date_tim_88652905.microsoft_graph_networkaccess_device_report_with_start_date_tim_06594dbd import MicrosoftGraphNetworkaccessDeviceReportWithStartDateTim_06594dbd
 
-        return MicrosoftGraphNetworkaccessDeviceReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessDeviceReportWithStartDateTim_06594dbd(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_entities_summaries_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_entities_summaries_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDa_b76b42e0:
         """
         Provides operations to call the entitiesSummaries method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDa_b76b42e0
         """
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_entities_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_entities_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
+        from .microsoft_graph_networkaccess_entities_summaries_with_start_da_9a0306bb.microsoft_graph_networkaccess_entities_summaries_with_start_da_b76b42e0 import MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDa_b76b42e0
 
-        return MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessEntitiesSummariesWithStartDa_b76b42e0(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_application_usage_analytics_with_start_date_time_with_end_date_time_with_aggregated_by(self,aggregated_by: str, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetApplicationUsageAnalyticsWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder:
+    def microsoft_graph_networkaccess_get_application_usage_analytics_with_start_date_time_with_end_date_time_with_aggregated_by(self,aggregated_by: str, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetApplicationUsageAnalytics_46cb0254:
         """
         Provides operations to call the getApplicationUsageAnalytics method.
         param aggregated_by: Usage: aggregatedBy='{aggregatedBy}'
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessGetApplicationUsageAnalyticsWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessGetApplicationUsageAnalytics_46cb0254
         """
         if aggregated_by is None:
             raise TypeError("aggregated_by cannot be null.")
@@ -159,47 +159,47 @@ class ReportsRequestBuilder(BaseRequestBuilder):
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_get_application_usage_analytics_with_start_date_time_with_end_date_time_with_aggregated_by.microsoft_graph_networkaccess_get_application_usage_analytics_with_start_date_time_with_end_date_time_with_aggregated_by_request_builder import MicrosoftGraphNetworkaccessGetApplicationUsageAnalyticsWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder
+        from .microsoft_graph_networkaccess_get_application_usage_analytics_498a5660.microsoft_graph_networkaccess_get_application_usage_analytics_46cb0254 import MicrosoftGraphNetworkaccessGetApplicationUsageAnalytics_46cb0254
 
-        return MicrosoftGraphNetworkaccessGetApplicationUsageAnalyticsWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder(self.request_adapter, self.path_parameters, aggregated_by, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessGetApplicationUsageAnalytics_46cb0254(self.request_adapter, self.path_parameters, aggregated_by, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_cloud_application_report_with_start_date_time_with_end_date_timeuser_id_user_id(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetCloudApplicationReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder:
+    def microsoft_graph_networkaccess_get_cloud_application_report_with_start_date_time_with_end_date_timeuser_id_user_id(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetCloudApplicationReportWit_08376ab7:
         """
         Provides operations to call the getCloudApplicationReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessGetCloudApplicationReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessGetCloudApplicationReportWit_08376ab7
         """
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_get_cloud_application_report_with_start_date_time_with_end_date_timeuser_id_user_id.microsoft_graph_networkaccess_get_cloud_application_report_with_start_date_time_with_end_date_timeuser_id_user_id_request_builder import MicrosoftGraphNetworkaccessGetCloudApplicationReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder
+        from .microsoft_graph_networkaccess_get_cloud_application_report_wit_b76c2738.microsoft_graph_networkaccess_get_cloud_application_report_wit_08376ab7 import MicrosoftGraphNetworkaccessGetCloudApplicationReportWit_08376ab7
 
-        return MicrosoftGraphNetworkaccessGetCloudApplicationReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessGetCloudApplicationReportWit_08376ab7(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_connection_summaries_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetConnectionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_get_connection_summaries_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetConnectionSummariesWithSt_6f553693:
         """
         Provides operations to call the getConnectionSummaries method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessGetConnectionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessGetConnectionSummariesWithSt_6f553693
         """
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_get_connection_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_get_connection_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessGetConnectionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
+        from .microsoft_graph_networkaccess_get_connection_summaries_with_st_286f0b81.microsoft_graph_networkaccess_get_connection_summaries_with_st_6f553693 import MicrosoftGraphNetworkaccessGetConnectionSummariesWithSt_6f553693
 
-        return MicrosoftGraphNetworkaccessGetConnectionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessGetConnectionSummariesWithSt_6f553693(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_cross_tenant_summary_with_start_date_time_with_end_date_time_with_discovery_pivot_date_time(self,discovery_pivot_date_time: datetime.datetime, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithStartDateTimeWithEndDateTimeWithDiscoveryPivotDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_get_cross_tenant_summary_with_start_date_time_with_end_date_time_with_discovery_pivot_date_time(self,discovery_pivot_date_time: datetime.datetime, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithSta_f8c194eb:
         """
         Provides operations to call the getCrossTenantSummary method.
         param discovery_pivot_date_time: Usage: discoveryPivotDateTime={discoveryPivotDateTime}
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithStartDateTimeWithEndDateTimeWithDiscoveryPivotDateTimeRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithSta_f8c194eb
         """
         if discovery_pivot_date_time is None:
             raise TypeError("discovery_pivot_date_time cannot be null.")
@@ -207,17 +207,17 @@ class ReportsRequestBuilder(BaseRequestBuilder):
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_get_cross_tenant_summary_with_start_date_time_with_end_date_time_with_discovery_pivot_date_time.microsoft_graph_networkaccess_get_cross_tenant_summary_with_start_date_time_with_end_date_time_with_discovery_pivot_date_time_request_builder import MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithStartDateTimeWithEndDateTimeWithDiscoveryPivotDateTimeRequestBuilder
+        from .microsoft_graph_networkaccess_get_cross_tenant_summary_with_sta_04bba7b0.microsoft_graph_networkaccess_get_cross_tenant_summary_with_sta_f8c194eb import MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithSta_f8c194eb
 
-        return MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithStartDateTimeWithEndDateTimeWithDiscoveryPivotDateTimeRequestBuilder(self.request_adapter, self.path_parameters, discovery_pivot_date_time, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessGetCrossTenantSummaryWithSta_f8c194eb(self.request_adapter, self.path_parameters, discovery_pivot_date_time, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by(self,aggregated_by: str, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder:
+    def microsoft_graph_networkaccess_get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by(self,aggregated_by: str, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetDestinationSummariesWithS_f815467f:
         """
         Provides operations to call the getDestinationSummaries method.
         param aggregated_by: Usage: aggregatedBy='{aggregatedBy}'
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessGetDestinationSummariesWithS_f815467f
         """
         if aggregated_by is None:
             raise TypeError("aggregated_by cannot be null.")
@@ -225,17 +225,17 @@ class ReportsRequestBuilder(BaseRequestBuilder):
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by.microsoft_graph_networkaccess_get_destination_summaries_with_start_date_time_with_end_date_time_with_aggregated_by_request_builder import MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder
+        from .microsoft_graph_networkaccess_get_destination_summaries_with_s_790ff302.microsoft_graph_networkaccess_get_destination_summaries_with_s_f815467f import MicrosoftGraphNetworkaccessGetDestinationSummariesWithS_f815467f
 
-        return MicrosoftGraphNetworkaccessGetDestinationSummariesWithStartDateTimeWithEndDateTimeWithAggregatedByRequestBuilder(self.request_adapter, self.path_parameters, aggregated_by, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessGetDestinationSummariesWithS_f815467f(self.request_adapter, self.path_parameters, aggregated_by, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_device_usage_summary_with_start_date_time_with_end_date_time_with_activity_pivot_date_time(self,activity_pivot_date_time: datetime.datetime, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithStartDateTimeWithEndDateTimeWithActivityPivotDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_get_device_usage_summary_with_start_date_time_with_end_date_time_with_activity_pivot_date_time(self,activity_pivot_date_time: datetime.datetime, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithSta_ba9070fc:
         """
         Provides operations to call the getDeviceUsageSummary method.
         param activity_pivot_date_time: Usage: activityPivotDateTime={activityPivotDateTime}
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithStartDateTimeWithEndDateTimeWithActivityPivotDateTimeRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithSta_ba9070fc
         """
         if activity_pivot_date_time is None:
             raise TypeError("activity_pivot_date_time cannot be null.")
@@ -243,62 +243,62 @@ class ReportsRequestBuilder(BaseRequestBuilder):
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_get_device_usage_summary_with_start_date_time_with_end_date_time_with_activity_pivot_date_time.microsoft_graph_networkaccess_get_device_usage_summary_with_start_date_time_with_end_date_time_with_activity_pivot_date_time_request_builder import MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithStartDateTimeWithEndDateTimeWithActivityPivotDateTimeRequestBuilder
+        from .microsoft_graph_networkaccess_get_device_usage_summary_with_sta_d5c8c2a7.microsoft_graph_networkaccess_get_device_usage_summary_with_sta_ba9070fc import MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithSta_ba9070fc
 
-        return MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithStartDateTimeWithEndDateTimeWithActivityPivotDateTimeRequestBuilder(self.request_adapter, self.path_parameters, activity_pivot_date_time, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessGetDeviceUsageSummaryWithSta_ba9070fc(self.request_adapter, self.path_parameters, activity_pivot_date_time, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder:
+    def microsoft_graph_networkaccess_get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegm_18174033:
         """
         Provides operations to call the getDiscoveredApplicationSegmentReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegm_18174033
         """
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id.microsoft_graph_networkaccess_get_discovered_application_segment_report_with_start_date_time_with_end_date_timeuser_id_user_id_request_builder import MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder
+        from .microsoft_graph_networkaccess_get_discovered_application_segm_bdf840c8.microsoft_graph_networkaccess_get_discovered_application_segm_18174033 import MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegm_18174033
 
-        return MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegmentReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessGetDiscoveredApplicationSegm_18174033(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_get_enterprise_application_report_with_start_date_time_with_end_date_timeuser_id_user_id(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetEnterpriseApplicationReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder:
+    def microsoft_graph_networkaccess_get_enterprise_application_report_with_start_date_time_with_end_date_timeuser_id_user_id(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessGetEnterpriseApplicationRepo_0f74db6c:
         """
         Provides operations to call the getEnterpriseApplicationReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessGetEnterpriseApplicationReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessGetEnterpriseApplicationRepo_0f74db6c
         """
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_get_enterprise_application_report_with_start_date_time_with_end_date_timeuser_id_user_id.microsoft_graph_networkaccess_get_enterprise_application_report_with_start_date_time_with_end_date_timeuser_id_user_id_request_builder import MicrosoftGraphNetworkaccessGetEnterpriseApplicationReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder
+        from .microsoft_graph_networkaccess_get_enterprise_application_repo_7ee1907f.microsoft_graph_networkaccess_get_enterprise_application_repo_0f74db6c import MicrosoftGraphNetworkaccessGetEnterpriseApplicationRepo_0f74db6c
 
-        return MicrosoftGraphNetworkaccessGetEnterpriseApplicationReportWithStartDateTimeWithEndDateTimeuserIdUserIdRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessGetEnterpriseApplicationRepo_0f74db6c(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_transaction_summaries_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_transaction_summaries_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessTransactionSummariesWithStar_bb0f5d04:
         """
         Provides operations to call the transactionSummaries method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessTransactionSummariesWithStar_bb0f5d04
         """
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_transaction_summaries_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_transaction_summaries_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder
+        from .microsoft_graph_networkaccess_transaction_summaries_with_star_d11d4593.microsoft_graph_networkaccess_transaction_summaries_with_star_bb0f5d04 import MicrosoftGraphNetworkaccessTransactionSummariesWithStar_bb0f5d04
 
-        return MicrosoftGraphNetworkaccessTransactionSummariesWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessTransactionSummariesWithStar_bb0f5d04(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_usage_profiling_with_start_date_time_with_end_date_time_with_aggregated_bydiscovered_application_segment_id_discovered_application_segment_id_application_id_application_id(self,aggregated_by: str, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessUsageProfilingWithStartDateTimeWithEndDateTimeWithAggregatedBydiscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder:
+    def microsoft_graph_networkaccess_usage_profiling_with_start_date_time_with_end_date_time_with_aggregated_bydiscovered_application_segment_id_discovered_application_segment_id_application_id_application_id(self,aggregated_by: str, end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessUsageProfilingWithStartDateT_03bd8f28:
         """
         Provides operations to call the usageProfiling method.
         param aggregated_by: Usage: aggregatedBy='{aggregatedBy}'
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessUsageProfilingWithStartDateTimeWithEndDateTimeWithAggregatedBydiscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessUsageProfilingWithStartDateT_03bd8f28
         """
         if aggregated_by is None:
             raise TypeError("aggregated_by cannot be null.")
@@ -306,39 +306,39 @@ class ReportsRequestBuilder(BaseRequestBuilder):
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_usage_profiling_with_start_date_time_with_end_date_time_with_aggregated_bydiscovered_application_segment_id_discovered_application_segment_id_application_id_application_id.microsoft_graph_networkaccess_usage_profiling_with_start_date_time_with_end_date_time_with_aggregated_bydiscovered_application_segment_id_discovered_application_segment_id_application_id_application_id_request_builder import MicrosoftGraphNetworkaccessUsageProfilingWithStartDateTimeWithEndDateTimeWithAggregatedBydiscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder
+        from .microsoft_graph_networkaccess_usage_profiling_with_start_date_t_c845ee52.microsoft_graph_networkaccess_usage_profiling_with_start_date_t_03bd8f28 import MicrosoftGraphNetworkaccessUsageProfilingWithStartDateT_03bd8f28
 
-        return MicrosoftGraphNetworkaccessUsageProfilingWithStartDateTimeWithEndDateTimeWithAggregatedBydiscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder(self.request_adapter, self.path_parameters, aggregated_by, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessUsageProfilingWithStartDateT_03bd8f28(self.request_adapter, self.path_parameters, aggregated_by, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder:
+    def microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id_ai_agent_id_ai_agent_id_ai_agent_name_ai_agent_name_cloud_application_name_cloud_application_name_destination_url_destination_url(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessUserReportWithStartDateTimeW_f71a8761:
         """
         Provides operations to call the userReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessUserReportWithStartDateTimeW_f71a8761
         """
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id.microsoft_graph_networkaccess_user_report_with_start_date_time_with_end_date_timediscovered_application_segment_id_discovered_application_segment_id_application_id_application_id_request_builder import MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder
+        from .microsoft_graph_networkaccess_user_report_with_start_date_time_w_b974b70d.microsoft_graph_networkaccess_user_report_with_start_date_time_w_f71a8761 import MicrosoftGraphNetworkaccessUserReportWithStartDateTimeW_f71a8761
 
-        return MicrosoftGraphNetworkaccessUserReportWithStartDateTimeWithEndDateTimediscoveredApplicationSegmentIdDiscoveredApplicationSegmentIdApplicationIdApplicationIdRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessUserReportWithStartDateTimeW_f71a8761(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
-    def microsoft_graph_networkaccess_web_category_report_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessWebCategoryReportWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_networkaccess_web_category_report_with_start_date_time_with_end_date_time(self,end_date_time: datetime.datetime, start_date_time: datetime.datetime) -> MicrosoftGraphNetworkaccessWebCategoryReportWithStartDa_6cc93018:
         """
         Provides operations to call the webCategoryReport method.
         param end_date_time: Usage: endDateTime={endDateTime}
         param start_date_time: Usage: startDateTime={startDateTime}
-        Returns: MicrosoftGraphNetworkaccessWebCategoryReportWithStartDateTimeWithEndDateTimeRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessWebCategoryReportWithStartDa_6cc93018
         """
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
             raise TypeError("start_date_time cannot be null.")
-        from .microsoft_graph_networkaccess_web_category_report_with_start_date_time_with_end_date_time.microsoft_graph_networkaccess_web_category_report_with_start_date_time_with_end_date_time_request_builder import MicrosoftGraphNetworkaccessWebCategoryReportWithStartDateTimeWithEndDateTimeRequestBuilder
+        from .microsoft_graph_networkaccess_web_category_report_with_start_da_2064c19e.microsoft_graph_networkaccess_web_category_report_with_start_da_6cc93018 import MicrosoftGraphNetworkaccessWebCategoryReportWithStartDa_6cc93018
 
-        return MicrosoftGraphNetworkaccessWebCategoryReportWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
+        return MicrosoftGraphNetworkaccessWebCategoryReportWithStartDa_6cc93018(self.request_adapter, self.path_parameters, end_date_time, start_date_time)
     
     async def patch(self,body: Reports, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Reports]:
         """
@@ -380,7 +380,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/networkAccess/reports{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info

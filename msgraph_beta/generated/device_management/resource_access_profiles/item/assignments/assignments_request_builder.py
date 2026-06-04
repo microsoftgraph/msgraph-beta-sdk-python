@@ -15,10 +15,10 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.device_management_resource_access_profile_assignment import DeviceManagementResourceAccessProfileAssignment
-    from .....models.device_management_resource_access_profile_assignment_collection_response import DeviceManagementResourceAccessProfileAssignmentCollectionResponse
+    from .....models.device_management_resource_access_profile_assignment_collecti_c42feb94 import DeviceManagementResourceAccessProfileAssignmentCollecti_c42feb94
     from .....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
-    from .item.device_management_resource_access_profile_assignment_item_request_builder import DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder
+    from .item.device_management_resource_access_profile_assignment_item_requ_909d4c28 import DeviceManagementResourceAccessProfileAssignmentItemRequ_909d4c28
 
 class AssignmentsRequestBuilder(BaseRequestBuilder):
     """
@@ -31,27 +31,27 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/resourceAccessProfiles/{deviceManagementResourceAccessProfileBase%2Did}/assignments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
-    def by_device_management_resource_access_profile_assignment_id(self,device_management_resource_access_profile_assignment_id: str) -> DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder:
+    def by_device_management_resource_access_profile_assignment_id(self,device_management_resource_access_profile_assignment_id: str) -> DeviceManagementResourceAccessProfileAssignmentItemRequ_909d4c28:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceManagementResourceAccessProfileBase entity.
         param device_management_resource_access_profile_assignment_id: The unique identifier of deviceManagementResourceAccessProfileAssignment
-        Returns: DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder
+        Returns: DeviceManagementResourceAccessProfileAssignmentItemRequ_909d4c28
         """
         if device_management_resource_access_profile_assignment_id is None:
             raise TypeError("device_management_resource_access_profile_assignment_id cannot be null.")
-        from .item.device_management_resource_access_profile_assignment_item_request_builder import DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder
+        from .item.device_management_resource_access_profile_assignment_item_requ_909d4c28 import DeviceManagementResourceAccessProfileAssignmentItemRequ_909d4c28
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementResourceAccessProfileAssignment%2Did"] = device_management_resource_access_profile_assignment_id
-        return DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return DeviceManagementResourceAccessProfileAssignmentItemRequ_909d4c28(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[AssignmentsRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceManagementResourceAccessProfileAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[AssignmentsRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceManagementResourceAccessProfileAssignmentCollecti_c42feb94]:
         """
         The list of assignments for the device configuration profile.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[DeviceManagementResourceAccessProfileAssignmentCollectionResponse]
+        Returns: Optional[DeviceManagementResourceAccessProfileAssignmentCollecti_c42feb94]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -63,9 +63,9 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.device_management_resource_access_profile_assignment_collection_response import DeviceManagementResourceAccessProfileAssignmentCollectionResponse
+        from .....models.device_management_resource_access_profile_assignment_collecti_c42feb94 import DeviceManagementResourceAccessProfileAssignmentCollecti_c42feb94
 
-        return await self.request_adapter.send_async(request_info, DeviceManagementResourceAccessProfileAssignmentCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DeviceManagementResourceAccessProfileAssignmentCollecti_c42feb94, error_mapping)
     
     async def post(self,body: DeviceManagementResourceAccessProfileAssignment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DeviceManagementResourceAccessProfileAssignment]:
         """
@@ -96,7 +96,7 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/deviceManagement/resourceAccessProfiles/{deviceManagementResourceAccessProfileBase%2Did}/assignments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
@@ -110,7 +110,7 @@ class AssignmentsRequestBuilder(BaseRequestBuilder):
         """
         if body is None:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.POST, '{+baseurl}/deviceManagement/resourceAccessProfiles/{deviceManagementResourceAccessProfileBase%2Did}/assignments', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)

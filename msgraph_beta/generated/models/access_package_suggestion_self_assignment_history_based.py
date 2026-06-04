@@ -16,8 +16,8 @@ class AccessPackageSuggestionSelfAssignmentHistoryBased(AccessPackageSuggestionR
     odata_type: Optional[str] = "#microsoft.graph.accessPackageSuggestionSelfAssignmentHistoryBased"
     # The date and time when the user was last assigned to this access package. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     last_assignment_date_time: Optional[datetime.datetime] = None
-    # The pastAssigmentCount property
-    past_assigment_count: Optional[int] = None
+    # The number of times the user has been assigned to this access package in the past. Read-only.
+    past_assignment_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AccessPackageSuggestionSelfAssignmentHistoryBased:
@@ -41,7 +41,7 @@ class AccessPackageSuggestionSelfAssignmentHistoryBased(AccessPackageSuggestionR
 
         fields: dict[str, Callable[[Any], None]] = {
             "lastAssignmentDateTime": lambda n : setattr(self, 'last_assignment_date_time', n.get_datetime_value()),
-            "pastAssigmentCount": lambda n : setattr(self, 'past_assigment_count', n.get_int_value()),
+            "pastAssignmentCount": lambda n : setattr(self, 'past_assignment_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -57,6 +57,6 @@ class AccessPackageSuggestionSelfAssignmentHistoryBased(AccessPackageSuggestionR
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_datetime_value("lastAssignmentDateTime", self.last_assignment_date_time)
-        writer.write_int_value("pastAssigmentCount", self.past_assigment_count)
+        writer.write_int_value("pastAssignmentCount", self.past_assignment_count)
     
 

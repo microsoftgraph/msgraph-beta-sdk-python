@@ -28,7 +28,7 @@ class ControlConfigurationItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/controlConfigurations/{controlConfiguration%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/entitlementManagement/controlConfigurations/{controlConfiguration%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -113,7 +113,7 @@ class ControlConfigurationItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("Controls configurations preview. as of PrivatePreview:ControlConfigurations on 2024-09-27 and will be removed 2025-09-27", DeprecationWarning)
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/identityGovernance/entitlementManagement/controlConfigurations/{controlConfiguration%2Did}{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info

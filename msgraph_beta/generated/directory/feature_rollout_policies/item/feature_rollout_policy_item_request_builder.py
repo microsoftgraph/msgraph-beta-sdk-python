@@ -29,7 +29,7 @@ class FeatureRolloutPolicyItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/directory/featureRolloutPolicies/{featureRolloutPolicy%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/directory/featureRolloutPolicies/{featureRolloutPolicy%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -114,7 +114,7 @@ class FeatureRolloutPolicyItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("Feature Rollout Policies have been grouped with other policies under /policies. The existing /directory/featureRolloutPolicies is deprecated and will stop returning data on 06/30/2021. Please use /policies/featureRolloutPolicies. as of 2021-01/DirectoryFeatureRolloutPolicies on 2021-03-05 and will be removed 2021-06-30", DeprecationWarning)
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/directory/featureRolloutPolicies/{featureRolloutPolicy%2Did}{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info

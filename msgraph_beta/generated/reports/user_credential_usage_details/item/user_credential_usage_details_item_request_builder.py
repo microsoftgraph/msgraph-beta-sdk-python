@@ -28,7 +28,7 @@ class UserCredentialUsageDetailsItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/reports/userCredentialUsageDetails/{userCredentialUsageDetails%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/reports/userCredentialUsageDetails/{userCredentialUsageDetails%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -113,7 +113,7 @@ class UserCredentialUsageDetailsItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("The Reporting userCredentialUsageDetails API is deprecated and will stop returning data on June 30, 2025. Please use the new userEventsSummary API. as of 2023-06/credentialUserRegistrationDetails on 2023-06-21 and will be removed 2024-06-30", DeprecationWarning)
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/reports/userCredentialUsageDetails/{userCredentialUsageDetails%2Did}{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info

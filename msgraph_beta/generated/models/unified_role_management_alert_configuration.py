@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from .invalid_license_alert_configuration import InvalidLicenseAlertConfiguration
     from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
     from .redundant_assignment_alert_configuration import RedundantAssignmentAlertConfiguration
-    from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+    from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
     from .sequential_activation_renewals_alert_configuration import SequentialActivationRenewalsAlertConfiguration
     from .stale_sign_in_alert_configuration import StaleSignInAlertConfiguration
     from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
@@ -59,9 +59,9 @@ class UnifiedRoleManagementAlertConfiguration(Entity, Parsable):
 
             return RedundantAssignmentAlertConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.rolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration".casefold():
-            from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+            from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
 
-            return RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration()
+            return RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sequentialActivationRenewalsAlertConfiguration".casefold():
             from .sequential_activation_renewals_alert_configuration import SequentialActivationRenewalsAlertConfiguration
 
@@ -85,7 +85,7 @@ class UnifiedRoleManagementAlertConfiguration(Entity, Parsable):
         from .invalid_license_alert_configuration import InvalidLicenseAlertConfiguration
         from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
         from .redundant_assignment_alert_configuration import RedundantAssignmentAlertConfiguration
-        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+        from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
         from .sequential_activation_renewals_alert_configuration import SequentialActivationRenewalsAlertConfiguration
         from .stale_sign_in_alert_configuration import StaleSignInAlertConfiguration
         from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
@@ -95,7 +95,7 @@ class UnifiedRoleManagementAlertConfiguration(Entity, Parsable):
         from .invalid_license_alert_configuration import InvalidLicenseAlertConfiguration
         from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
         from .redundant_assignment_alert_configuration import RedundantAssignmentAlertConfiguration
-        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+        from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
         from .sequential_activation_renewals_alert_configuration import SequentialActivationRenewalsAlertConfiguration
         from .stale_sign_in_alert_configuration import StaleSignInAlertConfiguration
         from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration

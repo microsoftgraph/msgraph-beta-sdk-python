@@ -15,10 +15,10 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .....models.windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-    from .....models.windows_defender_application_control_supplemental_policy_deployment_status_collection_response import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollectionResponse
+    from .....models.windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
+    from .....models.windows_defender_application_control_supplemental_policy_depl_3b8c58ee import WindowsDefenderApplicationControlSupplementalPolicyDepl_3b8c58ee
     from .count.count_request_builder import CountRequestBuilder
-    from .item.windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder
+    from .item.windows_defender_application_control_supplemental_policy_depl_051f2aac import WindowsDefenderApplicationControlSupplementalPolicyDepl_051f2aac
 
 class DeviceStatusesRequestBuilder(BaseRequestBuilder):
     """
@@ -31,27 +31,27 @@ class DeviceStatusesRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/wdacSupplementalPolicies/{windowsDefenderApplicationControlSupplementalPolicy%2Did}/deviceStatuses{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
-    def by_windows_defender_application_control_supplemental_policy_deployment_status_id(self,windows_defender_application_control_supplemental_policy_deployment_status_id: str) -> WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder:
+    def by_windows_defender_application_control_supplemental_policy_deployment_status_id(self,windows_defender_application_control_supplemental_policy_deployment_status_id: str) -> WindowsDefenderApplicationControlSupplementalPolicyDepl_051f2aac:
         """
         Provides operations to manage the deviceStatuses property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicy entity.
         param windows_defender_application_control_supplemental_policy_deployment_status_id: The unique identifier of windowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-        Returns: WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder
+        Returns: WindowsDefenderApplicationControlSupplementalPolicyDepl_051f2aac
         """
         if windows_defender_application_control_supplemental_policy_deployment_status_id is None:
             raise TypeError("windows_defender_application_control_supplemental_policy_deployment_status_id cannot be null.")
-        from .item.windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder
+        from .item.windows_defender_application_control_supplemental_policy_depl_051f2aac import WindowsDefenderApplicationControlSupplementalPolicyDepl_051f2aac
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsDefenderApplicationControlSupplementalPolicyDeploymentStatus%2Did"] = windows_defender_application_control_supplemental_policy_deployment_status_id
-        return WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return WindowsDefenderApplicationControlSupplementalPolicyDepl_051f2aac(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[DeviceStatusesRequestBuilderGetQueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[DeviceStatusesRequestBuilderGetQueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyDepl_3b8c58ee]:
         """
         The list of device deployment states for this WindowsDefenderApplicationControl supplemental policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollectionResponse]
+        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyDepl_3b8c58ee]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -63,16 +63,16 @@ class DeviceStatusesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.windows_defender_application_control_supplemental_policy_deployment_status_collection_response import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollectionResponse
+        from .....models.windows_defender_application_control_supplemental_policy_depl_3b8c58ee import WindowsDefenderApplicationControlSupplementalPolicyDepl_3b8c58ee
 
-        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyDepl_3b8c58ee, error_mapping)
     
-    async def post(self,body: WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus]:
+    async def post(self,body: WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6]:
         """
         Create new navigation property to deviceStatuses for deviceAppManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus]
+        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6]
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -86,9 +86,9 @@ class DeviceStatusesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
+        from .....models.windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
 
-        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DeviceStatusesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
@@ -96,12 +96,12 @@ class DeviceStatusesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/deviceAppManagement/wdacSupplementalPolicies/{windowsDefenderApplicationControlSupplementalPolicy%2Did}/deviceStatuses{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_post_request_information(self,body: WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create new navigation property to deviceStatuses for deviceAppManagement
         param body: The request body
@@ -110,7 +110,7 @@ class DeviceStatusesRequestBuilder(BaseRequestBuilder):
         """
         if body is None:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.POST, '{+baseurl}/deviceAppManagement/wdacSupplementalPolicies/{windowsDefenderApplicationControlSupplementalPolicy%2Did}/deviceStatuses', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)

@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
     from .ip_security_profiles.ip_security_profiles_request_builder import IpSecurityProfilesRequestBuilder
     from .labels.labels_request_builder import LabelsRequestBuilder
+    from .microsoft_graph_security_get_hunting_schema.microsoft_graph_security_get_hunting_schema_request_builder import MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder
     from .microsoft_graph_security_run_hunting_query.microsoft_graph_security_run_hunting_query_request_builder import MicrosoftGraphSecurityRunHuntingQueryRequestBuilder
     from .partner.partner_request_builder import PartnerRequestBuilder
     from .provider_tenant_settings.provider_tenant_settings_request_builder import ProviderTenantSettingsRequestBuilder
@@ -62,7 +63,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/security{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SecurityRequestBuilderGetQueryParameters]] = None) -> Optional[Security]:
         """
@@ -113,7 +114,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/security{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
@@ -127,7 +128,7 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         """
         if body is None:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, '{+baseurl}/security', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
@@ -304,6 +305,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .labels.labels_request_builder import LabelsRequestBuilder
 
         return LabelsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_security_get_hunting_schema(self) -> MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder:
+        """
+        Provides operations to call the getHuntingSchema method.
+        """
+        from .microsoft_graph_security_get_hunting_schema.microsoft_graph_security_get_hunting_schema_request_builder import MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder
+
+        return MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def microsoft_graph_security_run_hunting_query(self) -> MicrosoftGraphSecurityRunHuntingQueryRequestBuilder:

@@ -13,7 +13,7 @@ from .exclusion_unit_bulk_addition_job import ExclusionUnitBulkAdditionJob
 class DriveExclusionUnitsBulkAdditionJob(ExclusionUnitBulkAdditionJob, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.driveExclusionUnitsBulkAdditionJob"
-    # The drives property
+    # The email addresses or user principal names of the users whose OneDrive drives are to be added as exclusion units to the protection policy.
     drives: Optional[list[str]] = None
     
     @staticmethod

@@ -16,7 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .....models.unified_role_definition import UnifiedRoleDefinition
-    from .assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id.assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder import AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder
+    from .assigned_principals_with_transitivedirectory_scope_type_direc_ac00e1fd.assigned_principals_with_transitivedirectory_scope_type_direc_c9177a9a import AssignedPrincipalsWithTransitivedirectoryScopeTypeDirec_c9177a9a
     from .inherits_permissions_from.inherits_permissions_from_request_builder import InheritsPermissionsFromRequestBuilder
 
 class UnifiedRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
@@ -30,7 +30,7 @@ class UnifiedRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/roleManagement/entitlementManagement/roleDefinitions/{unifiedRoleDefinition%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/roleManagement/entitlementManagement/roleDefinitions/{unifiedRoleDefinition%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -116,7 +116,7 @@ class UnifiedRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("This version is being deprecated and is scheduled for removal on 2025-12-01.Please migrate to the latest version before the removal date. as of 2025-01/PrivatePreview:microsoft.applicationAuthorization on 2025-01-01 and will be removed 2025-12-01", DeprecationWarning)
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/roleManagement/entitlementManagement/roleDefinitions/{unifiedRoleDefinition%2Did}{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
@@ -149,13 +149,13 @@ class UnifiedRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
         return UnifiedRoleDefinitionItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id(self) -> AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder:
+    def assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id(self) -> AssignedPrincipalsWithTransitivedirectoryScopeTypeDirec_c9177a9a:
         """
         Provides operations to call the assignedPrincipals method.
         """
-        from .assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id.assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder import AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder
+        from .assigned_principals_with_transitivedirectory_scope_type_direc_ac00e1fd.assigned_principals_with_transitivedirectory_scope_type_direc_c9177a9a import AssignedPrincipalsWithTransitivedirectoryScopeTypeDirec_c9177a9a
 
-        return AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return AssignedPrincipalsWithTransitivedirectoryScopeTypeDirec_c9177a9a(self.request_adapter, self.path_parameters)
     
     @property
     def inherits_permissions_from(self) -> InheritsPermissionsFromRequestBuilder:

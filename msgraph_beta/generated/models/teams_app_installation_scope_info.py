@@ -20,7 +20,7 @@ class TeamsAppInstallationScopeInfo(AdditionalDataHolder, BackedModel, Parsable)
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The scope property
+    # The scope in which the Teams app is installed. The possible values are: team, groupChat, personal, unknownFutureValue.
     scope: Optional[TeamsAppInstallationScopes] = None
     
     @staticmethod

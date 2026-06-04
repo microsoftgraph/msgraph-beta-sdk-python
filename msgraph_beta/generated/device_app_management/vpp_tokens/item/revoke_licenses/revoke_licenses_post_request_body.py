@@ -13,9 +13,9 @@ class RevokeLicensesPostRequestBody(AdditionalDataHolder, BackedModel, Parsable)
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The notifyManagedDevices property
-    notify_managed_devices: Optional[bool] = None
+    notify_managed_devices: Optional[bool] = False
     # The revokeUntrackedLicenses property
-    revoke_untracked_licenses: Optional[bool] = None
+    revoke_untracked_licenses: Optional[bool] = False
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RevokeLicensesPostRequestBody:

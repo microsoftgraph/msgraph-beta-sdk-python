@@ -29,13 +29,14 @@ class CloudPcPoolItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/cloudPcPools/{cloudPcPool%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/virtualEndpoint/cloudPcPools/{cloudPcPool%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property cloudPcPools for deviceManagement
+        Delete a cloudPcPool object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcpool-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,9 +52,10 @@ class CloudPcPoolItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CloudPcPoolItemRequestBuilderGetQueryParameters]] = None) -> Optional[CloudPcPool]:
         """
-        Get cloudPcPools from deviceManagement
+        Read the properties and relationships of a cloudPcPool object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcPool]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcpool-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,10 +73,11 @@ class CloudPcPoolItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: CloudPcPool, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcPool]:
         """
-        Update the navigation property cloudPcPools in deviceManagement
+        Update the properties of a cloudPcPool object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcPool]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcpool-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -94,7 +97,7 @@ class CloudPcPoolItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property cloudPcPools for deviceManagement
+        Delete a cloudPcPool object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,18 +108,18 @@ class CloudPcPoolItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CloudPcPoolItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get cloudPcPools from deviceManagement
+        Read the properties and relationships of a cloudPcPool object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/deviceManagement/virtualEndpoint/cloudPcPools/{cloudPcPool%2Did}{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
     def to_patch_request_information(self,body: CloudPcPool, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property cloudPcPools in deviceManagement
+        Update the properties of a cloudPcPool object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -158,7 +161,7 @@ class CloudPcPoolItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcPoolItemRequestBuilderGetQueryParameters():
         """
-        Get cloudPcPools from deviceManagement
+        Read the properties and relationships of a cloudPcPool object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

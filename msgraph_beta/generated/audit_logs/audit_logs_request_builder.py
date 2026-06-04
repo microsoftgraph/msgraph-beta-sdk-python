@@ -21,8 +21,8 @@ if TYPE_CHECKING:
     from .directory_audits.directory_audits_request_builder import DirectoryAuditsRequestBuilder
     from .directory_provisioning.directory_provisioning_request_builder import DirectoryProvisioningRequestBuilder
     from .get_summarized_m_s_i_sign_ins_with_aggregation_window.get_summarized_m_s_i_sign_ins_with_aggregation_window_request_builder import GetSummarizedMSISignInsWithAggregationWindowRequestBuilder
-    from .get_summarized_non_interactive_sign_ins_with_aggregation_window.get_summarized_non_interactive_sign_ins_with_aggregation_window_request_builder import GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder
-    from .get_summarized_service_principal_sign_ins_with_aggregation_window.get_summarized_service_principal_sign_ins_with_aggregation_window_request_builder import GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder
+    from .get_summarized_non_interactive_sign_ins_with_aggregation_window.get_summarized_non_interactive_sign_ins_with_aggregation_window_0c89c0fa import GetSummarizedNonInteractiveSignInsWithAggregationWindow_0c89c0fa
+    from .get_summarized_service_principal_sign_ins_with_aggregation_window.get_summarized_service_principal_sign_ins_with_aggregation_wind_b32fa68a import GetSummarizedServicePrincipalSignInsWithAggregationWind_b32fa68a
     from .provisioning.provisioning_request_builder import ProvisioningRequestBuilder
     from .sign_ins.sign_ins_request_builder import SignInsRequestBuilder
     from .sign_in_events_app_summary.sign_in_events_app_summary_request_builder import SignInEventsAppSummaryRequestBuilder
@@ -40,7 +40,7 @@ class AuditLogsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/auditLogs{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AuditLogsRequestBuilderGetQueryParameters]] = None) -> Optional[AuditLogRoot]:
         """
@@ -74,29 +74,29 @@ class AuditLogsRequestBuilder(BaseRequestBuilder):
 
         return GetSummarizedMSISignInsWithAggregationWindowRequestBuilder(self.request_adapter, self.path_parameters, aggregation_window)
     
-    def get_summarized_non_interactive_sign_ins_with_aggregation_window(self,aggregation_window: str) -> GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder:
+    def get_summarized_non_interactive_sign_ins_with_aggregation_window(self,aggregation_window: str) -> GetSummarizedNonInteractiveSignInsWithAggregationWindow_0c89c0fa:
         """
         Provides operations to call the getSummarizedNonInteractiveSignIns method.
         param aggregation_window: Usage: aggregationWindow='{aggregationWindow}'
-        Returns: GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder
+        Returns: GetSummarizedNonInteractiveSignInsWithAggregationWindow_0c89c0fa
         """
         if aggregation_window is None:
             raise TypeError("aggregation_window cannot be null.")
-        from .get_summarized_non_interactive_sign_ins_with_aggregation_window.get_summarized_non_interactive_sign_ins_with_aggregation_window_request_builder import GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder
+        from .get_summarized_non_interactive_sign_ins_with_aggregation_window.get_summarized_non_interactive_sign_ins_with_aggregation_window_0c89c0fa import GetSummarizedNonInteractiveSignInsWithAggregationWindow_0c89c0fa
 
-        return GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder(self.request_adapter, self.path_parameters, aggregation_window)
+        return GetSummarizedNonInteractiveSignInsWithAggregationWindow_0c89c0fa(self.request_adapter, self.path_parameters, aggregation_window)
     
-    def get_summarized_service_principal_sign_ins_with_aggregation_window(self,aggregation_window: str) -> GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder:
+    def get_summarized_service_principal_sign_ins_with_aggregation_window(self,aggregation_window: str) -> GetSummarizedServicePrincipalSignInsWithAggregationWind_b32fa68a:
         """
         Provides operations to call the getSummarizedServicePrincipalSignIns method.
         param aggregation_window: Usage: aggregationWindow='{aggregationWindow}'
-        Returns: GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder
+        Returns: GetSummarizedServicePrincipalSignInsWithAggregationWind_b32fa68a
         """
         if aggregation_window is None:
             raise TypeError("aggregation_window cannot be null.")
-        from .get_summarized_service_principal_sign_ins_with_aggregation_window.get_summarized_service_principal_sign_ins_with_aggregation_window_request_builder import GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder
+        from .get_summarized_service_principal_sign_ins_with_aggregation_window.get_summarized_service_principal_sign_ins_with_aggregation_wind_b32fa68a import GetSummarizedServicePrincipalSignInsWithAggregationWind_b32fa68a
 
-        return GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder(self.request_adapter, self.path_parameters, aggregation_window)
+        return GetSummarizedServicePrincipalSignInsWithAggregationWind_b32fa68a(self.request_adapter, self.path_parameters, aggregation_window)
     
     async def patch(self,body: AuditLogRoot, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AuditLogRoot]:
         """
@@ -127,7 +127,7 @@ class AuditLogsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/auditLogs{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
@@ -141,7 +141,7 @@ class AuditLogsRequestBuilder(BaseRequestBuilder):
         """
         if body is None:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.PATCH, '{+baseurl}/auditLogs', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)

@@ -32,9 +32,10 @@ class SiteExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SiteExclusionUnitItemRequestBuilderGetQueryParameters]] = None) -> Optional[SiteExclusionUnit]:
         """
-        Get siteExclusionUnits from solutions
+        Get a site exclusion unit associated with a SharePoint protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteExclusionUnit]
+        Find more info here: https://learn.microsoft.com/graph/api/siteexclusionunit-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -52,7 +53,7 @@ class SiteExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SiteExclusionUnitItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get siteExclusionUnits from solutions
+        Get a site exclusion unit associated with a SharePoint protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +75,7 @@ class SiteExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SiteExclusionUnitItemRequestBuilderGetQueryParameters():
         """
-        Get siteExclusionUnits from solutions
+        Get a site exclusion unit associated with a SharePoint protection policy.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

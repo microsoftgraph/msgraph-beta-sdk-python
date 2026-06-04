@@ -14,11 +14,11 @@ from .exclusion_unit_base import ExclusionUnitBase
 class MailboxExclusionUnit(ExclusionUnitBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.mailboxExclusionUnit"
-    # The directoryObjectId property
+    # The unique identifier of the directory object (user) associated with the mailbox.
     directory_object_id: Optional[str] = None
-    # The displayName property
+    # The display name of the mailbox.
     display_name: Optional[str] = None
-    # The email property
+    # The email address of the mailbox.
     email: Optional[str] = None
     # The mailboxType property
     mailbox_type: Optional[MailboxType] = None

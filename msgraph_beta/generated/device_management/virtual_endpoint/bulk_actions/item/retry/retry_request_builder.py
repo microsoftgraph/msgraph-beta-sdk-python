@@ -32,10 +32,11 @@ class RetryRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: RetryPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action retry
+        Retry a cloudPcBulkAction object with selected Cloud PCs.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcbulkaction-retry?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -53,7 +54,7 @@ class RetryRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: RetryPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action retry
+        Retry a cloudPcBulkAction object with selected Cloud PCs.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

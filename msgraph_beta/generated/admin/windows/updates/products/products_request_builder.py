@@ -19,8 +19,8 @@ if TYPE_CHECKING:
     from .....models.windows_updates.product_collection_response import ProductCollectionResponse
     from .count.count_request_builder import CountRequestBuilder
     from .item.product_item_request_builder import ProductItemRequestBuilder
-    from .microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d.microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d_request_builder import MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogIDRequestBuilder
-    from .microsoft_graph_windows_updates_find_by_kb_number_with_kb_number.microsoft_graph_windows_updates_find_by_kb_number_with_kb_number_request_builder import MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder
+    from .microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d.microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_0a172f28 import MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogI_0a172f28
+    from .microsoft_graph_windows_updates_find_by_kb_number_with_kb_number.microsoft_graph_windows_updates_find_by_kb_number_with_kb_number_r_ea5669b7 import MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberR_ea5669b7
 
 class ProductsRequestBuilder(BaseRequestBuilder):
     """
@@ -33,7 +33,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/products{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_product_id(self,product_id: str) -> ProductItemRequestBuilder:
         """
@@ -69,29 +69,29 @@ class ProductsRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, ProductCollectionResponse, error_mapping)
     
-    def microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d(self,catalog_i_d: str) -> MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogIDRequestBuilder:
+    def microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d(self,catalog_i_d: str) -> MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogI_0a172f28:
         """
         Provides operations to call the findByCatalogId method.
         param catalog_i_d: Usage: catalogID='{catalogID}'
-        Returns: MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogIDRequestBuilder
+        Returns: MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogI_0a172f28
         """
         if catalog_i_d is None:
             raise TypeError("catalog_i_d cannot be null.")
-        from .microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d.microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d_request_builder import MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogIDRequestBuilder
+        from .microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_d.microsoft_graph_windows_updates_find_by_catalog_id_with_catalog_i_0a172f28 import MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogI_0a172f28
 
-        return MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogIDRequestBuilder(self.request_adapter, self.path_parameters, catalog_i_d)
+        return MicrosoftGraphWindowsUpdatesFindByCatalogIdWithCatalogI_0a172f28(self.request_adapter, self.path_parameters, catalog_i_d)
     
-    def microsoft_graph_windows_updates_find_by_kb_number_with_kb_number(self,kb_number: int) -> MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder:
+    def microsoft_graph_windows_updates_find_by_kb_number_with_kb_number(self,kb_number: int) -> MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberR_ea5669b7:
         """
         Provides operations to call the findByKbNumber method.
         param kb_number: Usage: kbNumber={kbNumber}
-        Returns: MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder
+        Returns: MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberR_ea5669b7
         """
         if kb_number is None:
             raise TypeError("kb_number cannot be null.")
-        from .microsoft_graph_windows_updates_find_by_kb_number_with_kb_number.microsoft_graph_windows_updates_find_by_kb_number_with_kb_number_request_builder import MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder
+        from .microsoft_graph_windows_updates_find_by_kb_number_with_kb_number.microsoft_graph_windows_updates_find_by_kb_number_with_kb_number_r_ea5669b7 import MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberR_ea5669b7
 
-        return MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberRequestBuilder(self.request_adapter, self.path_parameters, kb_number)
+        return MicrosoftGraphWindowsUpdatesFindByKbNumberWithKbNumberR_ea5669b7(self.request_adapter, self.path_parameters, kb_number)
     
     async def post(self,body: Product, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Product]:
         """
@@ -122,7 +122,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/admin/windows/updates/products{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
@@ -136,7 +136,7 @@ class ProductsRequestBuilder(BaseRequestBuilder):
         """
         if body is None:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.POST, '{+baseurl}/admin/windows/updates/products', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)

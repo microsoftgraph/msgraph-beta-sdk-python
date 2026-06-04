@@ -28,7 +28,7 @@ class SiteExclusionUnitItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/siteExclusionUnits/{siteExclusionUnit%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/siteExclusionUnits/{siteExclusionUnit%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -50,7 +50,7 @@ class SiteExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SiteExclusionUnitItemRequestBuilderGetQueryParameters]] = None) -> Optional[SiteExclusionUnit]:
         """
-        Get siteExclusionUnits from solutions
+        The list of site exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteExclusionUnit]
         """
@@ -104,11 +104,11 @@ class SiteExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SiteExclusionUnitItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get siteExclusionUnits from solutions
+        The list of site exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/solutions/backupRestore/siteExclusionUnits/{siteExclusionUnit%2Did}{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
@@ -148,7 +148,7 @@ class SiteExclusionUnitItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SiteExclusionUnitItemRequestBuilderGetQueryParameters():
         """
-        Get siteExclusionUnits from solutions
+        The list of site exclusion units in the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -31,8 +31,8 @@ if TYPE_CHECKING:
     from .revoke_cloud_certification_authority_certificate.revoke_cloud_certification_authority_certificate_request_builder import RevokeCloudCertificationAuthorityCertificateRequestBuilder
     from .revoke_leaf_certificate.revoke_leaf_certificate_request_builder import RevokeLeafCertificateRequestBuilder
     from .revoke_leaf_certificate_by_serial_number.revoke_leaf_certificate_by_serial_number_request_builder import RevokeLeafCertificateBySerialNumberRequestBuilder
-    from .search_cloud_certification_authority_leaf_certificate_by_serial_number.search_cloud_certification_authority_leaf_certificate_by_serial_number_request_builder import SearchCloudCertificationAuthorityLeafCertificateBySerialNumberRequestBuilder
-    from .upload_externally_signed_certification_authority_certificate.upload_externally_signed_certification_authority_certificate_request_builder import UploadExternallySignedCertificationAuthorityCertificateRequestBuilder
+    from .search_cloud_certification_authority_leaf_certificate_by_serial_number.search_cloud_certification_authority_leaf_certificate_by_seria_1a22156b import SearchCloudCertificationAuthorityLeafCertificateBySeria_1a22156b
+    from .upload_externally_signed_certification_authority_certificate.upload_externally_signed_certification_authority_certificate_fa0c0209 import UploadExternallySignedCertificationAuthorityCertificate_fa0c0209
     from .versions.versions_request_builder import VersionsRequestBuilder
 
 class CloudCertificationAuthorityItemRequestBuilder(BaseRequestBuilder):
@@ -46,7 +46,7 @@ class CloudCertificationAuthorityItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceManagement/cloudCertificationAuthority/{cloudCertificationAuthority%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/deviceManagement/cloudCertificationAuthority/{cloudCertificationAuthority%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -126,7 +126,7 @@ class CloudCertificationAuthorityItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/deviceManagement/cloudCertificationAuthority/{cloudCertificationAuthority%2Did}{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
@@ -292,22 +292,22 @@ class CloudCertificationAuthorityItemRequestBuilder(BaseRequestBuilder):
         return RevokeLeafCertificateBySerialNumberRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def search_cloud_certification_authority_leaf_certificate_by_serial_number(self) -> SearchCloudCertificationAuthorityLeafCertificateBySerialNumberRequestBuilder:
+    def search_cloud_certification_authority_leaf_certificate_by_serial_number(self) -> SearchCloudCertificationAuthorityLeafCertificateBySeria_1a22156b:
         """
         Provides operations to call the searchCloudCertificationAuthorityLeafCertificateBySerialNumber method.
         """
-        from .search_cloud_certification_authority_leaf_certificate_by_serial_number.search_cloud_certification_authority_leaf_certificate_by_serial_number_request_builder import SearchCloudCertificationAuthorityLeafCertificateBySerialNumberRequestBuilder
+        from .search_cloud_certification_authority_leaf_certificate_by_serial_number.search_cloud_certification_authority_leaf_certificate_by_seria_1a22156b import SearchCloudCertificationAuthorityLeafCertificateBySeria_1a22156b
 
-        return SearchCloudCertificationAuthorityLeafCertificateBySerialNumberRequestBuilder(self.request_adapter, self.path_parameters)
+        return SearchCloudCertificationAuthorityLeafCertificateBySeria_1a22156b(self.request_adapter, self.path_parameters)
     
     @property
-    def upload_externally_signed_certification_authority_certificate(self) -> UploadExternallySignedCertificationAuthorityCertificateRequestBuilder:
+    def upload_externally_signed_certification_authority_certificate(self) -> UploadExternallySignedCertificationAuthorityCertificate_fa0c0209:
         """
         Provides operations to call the uploadExternallySignedCertificationAuthorityCertificate method.
         """
-        from .upload_externally_signed_certification_authority_certificate.upload_externally_signed_certification_authority_certificate_request_builder import UploadExternallySignedCertificationAuthorityCertificateRequestBuilder
+        from .upload_externally_signed_certification_authority_certificate.upload_externally_signed_certification_authority_certificate_fa0c0209 import UploadExternallySignedCertificationAuthorityCertificate_fa0c0209
 
-        return UploadExternallySignedCertificationAuthorityCertificateRequestBuilder(self.request_adapter, self.path_parameters)
+        return UploadExternallySignedCertificationAuthorityCertificate_fa0c0209(self.request_adapter, self.path_parameters)
     
     @property
     def versions(self) -> VersionsRequestBuilder:

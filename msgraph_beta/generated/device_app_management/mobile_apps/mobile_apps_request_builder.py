@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from ...models.mobile_app import MobileApp
     from ...models.mobile_app_collection_response import MobileAppCollectionResponse
     from ...models.o_data_errors.o_data_error import ODataError
-    from .convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id.convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id_request_builder import ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder
+    from .convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id.convert_from_mobile_app_catalog_package_with_mobile_app_catalog_p_bc00b82f import ConvertFromMobileAppCatalogPackageWithMobileAppCatalogP_bc00b82f
     from .count.count_request_builder import CountRequestBuilder
     from .graph_android_for_work_app.graph_android_for_work_app_request_builder import GraphAndroidForWorkAppRequestBuilder
     from .graph_android_lob_app.graph_android_lob_app_request_builder import GraphAndroidLobAppRequestBuilder
@@ -55,7 +55,7 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/mobileApps{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
     def by_mobile_app_id(self,mobile_app_id: str) -> MobileAppItemRequestBuilder:
         """
@@ -71,17 +71,17 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["mobileApp%2Did"] = mobile_app_id
         return MobileAppItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id(self,mobile_app_catalog_package_id: str) -> ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder:
+    def convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id(self,mobile_app_catalog_package_id: str) -> ConvertFromMobileAppCatalogPackageWithMobileAppCatalogP_bc00b82f:
         """
         Provides operations to call the convertFromMobileAppCatalogPackage method.
         param mobile_app_catalog_package_id: Usage: mobileAppCatalogPackageId='{mobileAppCatalogPackageId}'
-        Returns: ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder
+        Returns: ConvertFromMobileAppCatalogPackageWithMobileAppCatalogP_bc00b82f
         """
         if mobile_app_catalog_package_id is None:
             raise TypeError("mobile_app_catalog_package_id cannot be null.")
-        from .convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id.convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id_request_builder import ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder
+        from .convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id.convert_from_mobile_app_catalog_package_with_mobile_app_catalog_p_bc00b82f import ConvertFromMobileAppCatalogPackageWithMobileAppCatalogP_bc00b82f
 
-        return ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder(self.request_adapter, self.path_parameters, mobile_app_catalog_package_id)
+        return ConvertFromMobileAppCatalogPackageWithMobileAppCatalogP_bc00b82f(self.request_adapter, self.path_parameters, mobile_app_catalog_package_id)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MobileAppsRequestBuilderGetQueryParameters]] = None) -> Optional[MobileAppCollectionResponse]:
         """
@@ -132,7 +132,7 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/deviceAppManagement/mobileApps{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
@@ -146,7 +146,7 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         """
         if body is None:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.POST, '{+baseurl}/deviceAppManagement/mobileApps', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)

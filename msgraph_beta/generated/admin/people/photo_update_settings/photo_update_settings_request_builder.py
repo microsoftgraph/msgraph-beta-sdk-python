@@ -28,14 +28,13 @@ class PhotoUpdateSettingsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/admin/people/photoUpdateSettings{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/admin/people/photoUpdateSettings", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a photoUpdateSettings object.
+        Delete navigation property photoUpdateSettings for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/peopleadminsettings-delete-photoupdatesettings?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,10 +50,10 @@ class PhotoUpdateSettingsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PhotoUpdateSettingsRequestBuilderGetQueryParameters]] = None) -> Optional[PhotoUpdateSettings]:
         """
-        Read the properties and relationships of a photoUpdateSettings object.
+        Get the properties of a photoUpdateSettings object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PhotoUpdateSettings]
-        Find more info here: https://learn.microsoft.com/graph/api/photoupdatesettings-get?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/peopleadminsettings-list-photoupdatesettings?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -96,7 +95,7 @@ class PhotoUpdateSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a photoUpdateSettings object.
+        Delete navigation property photoUpdateSettings for admin
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,11 +106,11 @@ class PhotoUpdateSettingsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PhotoUpdateSettingsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a photoUpdateSettings object.
+        Get the properties of a photoUpdateSettings object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/admin/people/photoUpdateSettings{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
@@ -151,7 +150,7 @@ class PhotoUpdateSettingsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PhotoUpdateSettingsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a photoUpdateSettings object.
+        Get the properties of a photoUpdateSettings object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

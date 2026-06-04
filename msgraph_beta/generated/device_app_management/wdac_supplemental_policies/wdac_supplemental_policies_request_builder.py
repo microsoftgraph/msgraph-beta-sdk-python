@@ -16,9 +16,9 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
-    from ...models.windows_defender_application_control_supplemental_policy_collection_response import WindowsDefenderApplicationControlSupplementalPolicyCollectionResponse
+    from ...models.windows_defender_application_control_supplemental_policy_coll_dbd9b171 import WindowsDefenderApplicationControlSupplementalPolicyColl_dbd9b171
     from .count.count_request_builder import CountRequestBuilder
-    from .item.windows_defender_application_control_supplemental_policy_item_request_builder import WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder
+    from .item.windows_defender_application_control_supplemental_policy_item_56d8edc3 import WindowsDefenderApplicationControlSupplementalPolicyItem_56d8edc3
 
 class WdacSupplementalPoliciesRequestBuilder(BaseRequestBuilder):
     """
@@ -31,27 +31,27 @@ class WdacSupplementalPoliciesRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/deviceAppManagement/wdacSupplementalPolicies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
+        super().__init__(request_adapter, "", path_parameters)
     
-    def by_windows_defender_application_control_supplemental_policy_id(self,windows_defender_application_control_supplemental_policy_id: str) -> WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder:
+    def by_windows_defender_application_control_supplemental_policy_id(self,windows_defender_application_control_supplemental_policy_id: str) -> WindowsDefenderApplicationControlSupplementalPolicyItem_56d8edc3:
         """
         Provides operations to manage the wdacSupplementalPolicies property of the microsoft.graph.deviceAppManagement entity.
         param windows_defender_application_control_supplemental_policy_id: The unique identifier of windowsDefenderApplicationControlSupplementalPolicy
-        Returns: WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder
+        Returns: WindowsDefenderApplicationControlSupplementalPolicyItem_56d8edc3
         """
         if windows_defender_application_control_supplemental_policy_id is None:
             raise TypeError("windows_defender_application_control_supplemental_policy_id cannot be null.")
-        from .item.windows_defender_application_control_supplemental_policy_item_request_builder import WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder
+        from .item.windows_defender_application_control_supplemental_policy_item_56d8edc3 import WindowsDefenderApplicationControlSupplementalPolicyItem_56d8edc3
 
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsDefenderApplicationControlSupplementalPolicy%2Did"] = windows_defender_application_control_supplemental_policy_id
-        return WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
+        return WindowsDefenderApplicationControlSupplementalPolicyItem_56d8edc3(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[WdacSupplementalPoliciesRequestBuilderGetQueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[WdacSupplementalPoliciesRequestBuilderGetQueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyColl_dbd9b171]:
         """
         The collection of Windows Defender Application Control Supplemental Policies.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyCollectionResponse]
+        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyColl_dbd9b171]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -63,9 +63,9 @@ class WdacSupplementalPoliciesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.windows_defender_application_control_supplemental_policy_collection_response import WindowsDefenderApplicationControlSupplementalPolicyCollectionResponse
+        from ...models.windows_defender_application_control_supplemental_policy_coll_dbd9b171 import WindowsDefenderApplicationControlSupplementalPolicyColl_dbd9b171
 
-        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyColl_dbd9b171, error_mapping)
     
     async def post(self,body: WindowsDefenderApplicationControlSupplementalPolicy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicy]:
         """
@@ -96,7 +96,7 @@ class WdacSupplementalPoliciesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/deviceAppManagement/wdacSupplementalPolicies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
@@ -110,7 +110,7 @@ class WdacSupplementalPoliciesRequestBuilder(BaseRequestBuilder):
         """
         if body is None:
             raise TypeError("body cannot be null.")
-        request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.POST, '{+baseurl}/deviceAppManagement/wdacSupplementalPolicies', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)

@@ -30,7 +30,7 @@ class MigrationsRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/migrations{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/solutions/migrations", path_parameters)
     
     def cross_tenant_migration_jobs_with_display_name(self,display_name: str) -> CrossTenantMigrationJobsWithDisplayNameRequestBuilder:
         """
@@ -128,7 +128,7 @@ class MigrationsRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/solutions/migrations{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info

@@ -28,7 +28,7 @@ class SiteExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/siteExclusionUnitsBulkAdditionJobs/{siteExclusionUnitsBulkAdditionJob%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/solutions/backupRestore/siteExclusionUnitsBulkAdditionJobs/{siteExclusionUnitsBulkAdditionJob%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -50,7 +50,7 @@ class SiteExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SiteExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters]] = None) -> Optional[SiteExclusionUnitsBulkAdditionJob]:
         """
-        Get siteExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for site exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteExclusionUnitsBulkAdditionJob]
         """
@@ -104,11 +104,11 @@ class SiteExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SiteExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get siteExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for site exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/solutions/backupRestore/siteExclusionUnitsBulkAdditionJobs/{siteExclusionUnitsBulkAdditionJob%2Did}{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
@@ -148,7 +148,7 @@ class SiteExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SiteExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters():
         """
-        Get siteExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for site exclusion units in the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

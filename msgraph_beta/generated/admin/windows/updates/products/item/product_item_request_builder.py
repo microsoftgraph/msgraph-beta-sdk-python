@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from ......models.windows_updates.product import Product
     from .editions.editions_request_builder import EditionsRequestBuilder
     from .known_issues.known_issues_request_builder import KnownIssuesRequestBuilder
-    from .microsoft_graph_windows_updates_get_known_issues_by_time_range_with_days_in_past_with_include_all_active.microsoft_graph_windows_updates_get_known_issues_by_time_range_with_days_in_past_with_include_all_active_request_builder import MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilder
+    from .microsoft_graph_windows_updates_get_known_issues_by_time_range_wi_b9906865.microsoft_graph_windows_updates_get_known_issues_by_time_range_wi_8adb2905 import MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWi_8adb2905
     from .revisions.revisions_request_builder import RevisionsRequestBuilder
 
 class ProductItemRequestBuilder(BaseRequestBuilder):
@@ -32,7 +32,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/products/{product%2Did}{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/admin/windows/updates/products/{product%2Did}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -72,17 +72,17 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, Product, error_mapping)
     
-    def microsoft_graph_windows_updates_get_known_issues_by_time_range_with_days_in_past_with_include_all_active(self,days_in_past: int) -> MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilder:
+    def microsoft_graph_windows_updates_get_known_issues_by_time_range_with_days_in_past_with_include_all_active(self,days_in_past: int) -> MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWi_8adb2905:
         """
         Provides operations to call the getKnownIssuesByTimeRange method.
         param days_in_past: Usage: daysInPast={daysInPast}
-        Returns: MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilder
+        Returns: MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWi_8adb2905
         """
         if days_in_past is None:
             raise TypeError("days_in_past cannot be null.")
-        from .microsoft_graph_windows_updates_get_known_issues_by_time_range_with_days_in_past_with_include_all_active.microsoft_graph_windows_updates_get_known_issues_by_time_range_with_days_in_past_with_include_all_active_request_builder import MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilder
+        from .microsoft_graph_windows_updates_get_known_issues_by_time_range_wi_b9906865.microsoft_graph_windows_updates_get_known_issues_by_time_range_wi_8adb2905 import MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWi_8adb2905
 
-        return MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWithDaysInPastWithIncludeAllActiveRequestBuilder(self.request_adapter, self.path_parameters, days_in_past)
+        return MicrosoftGraphWindowsUpdatesGetKnownIssuesByTimeRangeWi_8adb2905(self.request_adapter, self.path_parameters, days_in_past)
     
     async def patch(self,body: Product, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Product]:
         """
@@ -124,7 +124,7 @@ class ProductItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/admin/windows/updates/products/{product%2Did}{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info

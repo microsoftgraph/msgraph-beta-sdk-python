@@ -29,7 +29,7 @@ class TracingRequestBuilder(BaseRequestBuilder):
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/admin/exchange/tracing{?%24expand,%24select}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/admin/exchange/tracing", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -114,7 +114,7 @@ class TracingRequestBuilder(BaseRequestBuilder):
         Returns: RequestInformation
         """
         warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
-        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info = RequestInformation(Method.GET, '{+baseurl}/admin/exchange/tracing{?%24expand,%24select}', self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
         return request_info
