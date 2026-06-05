@@ -20,7 +20,7 @@ class GranularRestoreArtifactBase(Entity, Parsable):
     browse_session_id: Optional[str] = None
     # Date time when the artifact's restoration completes.
     completion_date_time: Optional[datetime.datetime] = None
-    # The destinationType property
+    # The restoration destination. The possible values are: new, inPlace, unknownFutureValue.
     destination_type: Optional[DestinationType] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -30,7 +30,7 @@ class GranularRestoreArtifactBase(Entity, Parsable):
     restored_item_key: Optional[str] = None
     # The path of the restored artifact. It's the path of the folder where all the artifacts are restored within a granular restore session.
     restored_item_path: Optional[str] = None
-    # The web url of the restord artifact.
+    # The web url of the restored artifact.
     restored_item_web_url: Optional[str] = None
     # The start time of the restoration.
     start_date_time: Optional[datetime.datetime] = None

@@ -90,7 +90,7 @@ class CloudPC(Entity, Parsable):
     provisioning_policy_name: Optional[str] = None
     # The type of licenses to be used when provisioning Cloud PCs using this policy. The possible values are: dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup, reserve. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup, reserve. The default value is dedicated. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member.
     provisioning_type: Optional[CloudPcProvisioningType] = None
-    # The scopeIds property
+    # The scope IDs of the corresponding permission. Currently, it's the Intune scope tag ID. Read-only.
     scope_ids: Optional[list[str]] = None
     # The service plan ID of the Cloud PC.
     service_plan_id: Optional[str] = None

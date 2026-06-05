@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from .microsoft_graph_identity_governance_activate_with_scope.microsoft_graph_identity_governance_activate_with_scope_request_builder import MicrosoftGraphIdentityGovernanceActivateWithScopeRequestBuilder
     from .microsoft_graph_identity_governance_cancel_processing.microsoft_graph_identity_governance_cancel_processing_request_builder import MicrosoftGraphIdentityGovernanceCancelProcessingRequestBuilder
     from .microsoft_graph_identity_governance_create_new_version.microsoft_graph_identity_governance_create_new_version_request_builder import MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder
-    from .microsoft_graph_identity_governance_preview_task_failures.microsoft_graph_identity_governance_preview_task_failures_request_builder import MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequestBuilder
+    from .microsoft_graph_identity_governance_preview_task_failures.microsoft_graph_identity_governance_preview_task_failures_requ_71c2adef import MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequ_71c2adef
     from .microsoft_graph_identity_governance_preview_workflow.microsoft_graph_identity_governance_preview_workflow_request_builder import MicrosoftGraphIdentityGovernancePreviewWorkflowRequestBuilder
     from .microsoft_graph_identity_governance_restore.microsoft_graph_identity_governance_restore_request_builder import MicrosoftGraphIdentityGovernanceRestoreRequestBuilder
     from .preview_scope.preview_scope_request_builder import PreviewScopeRequestBuilder
@@ -231,13 +231,13 @@ class WorkflowItemRequestBuilder(BaseRequestBuilder):
         return MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_identity_governance_preview_task_failures(self) -> MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequestBuilder:
+    def microsoft_graph_identity_governance_preview_task_failures(self) -> MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequ_71c2adef:
         """
         Provides operations to call the previewTaskFailures method.
         """
-        from .microsoft_graph_identity_governance_preview_task_failures.microsoft_graph_identity_governance_preview_task_failures_request_builder import MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequestBuilder
+        from .microsoft_graph_identity_governance_preview_task_failures.microsoft_graph_identity_governance_preview_task_failures_requ_71c2adef import MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequ_71c2adef
 
-        return MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphIdentityGovernancePreviewTaskFailuresRequ_71c2adef(self.request_adapter, self.path_parameters)
     
     @property
     def microsoft_graph_identity_governance_preview_workflow(self) -> MicrosoftGraphIdentityGovernancePreviewWorkflowRequestBuilder:

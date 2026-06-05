@@ -18,7 +18,7 @@ class FindMeetingLocationsPostRequestBody(AdditionalDataHolder, BackedModel, Par
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The allowFreeOnly property
-    allow_free_only: Optional[bool] = None
+    allow_free_only: Optional[bool] = False
     # The attendees property
     attendees: Optional[list[AttendeeBase]] = None
     # The maxCandidates property

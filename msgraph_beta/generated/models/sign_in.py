@@ -51,7 +51,7 @@ class SignIn(Entity, Parsable):
     app_id: Optional[str] = None
     # The identifier of the tenant that owns the client application.  Supports $filter (eq).
     app_owner_tenant_id: Optional[str] = None
-    # Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the app token was bound to the device.
+    # Deprecated. Use tokenProtectionStatusDetails instead. Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the app token was bound to the device.
     app_token_protection_status: Optional[TokenProtectionStatus] = None
     # A list of conditional access policies that the corresponding sign-in activity triggers. Apps need more Conditional Access-related privileges to read the details of this property. For more information, see Permissions for viewing applied conditional access (CA) policies in sign-ins.
     applied_conditional_access_policies: Optional[list[AppliedConditionalAccessPolicy]] = None
@@ -83,6 +83,8 @@ class SignIn(Entity, Parsable):
     client_app_used: Optional[str] = None
     # Describes the credential type that a user client or service principal provided to Microsoft Entra ID to authenticate itself. You can review this property to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
     client_credential_type: Optional[ClientCredentialType] = None
+    # The clientSessionId property
+    client_session_id: Optional[str] = None
     # A list that indicates the audience that Conditional Access evaluated during a sign-in event.  Supports $filter (eq).
     conditional_access_audiences: Optional[list[str]] = None
     # The status of the conditional access policy triggered. Possible values: success, failure, notApplied, or unknownFutureValue.  Supports $filter (eq).
@@ -173,7 +175,7 @@ class SignIn(Entity, Parsable):
     sign_in_identifier: Optional[str] = None
     # The type of sign in identifier. The possible values are: userPrincipalName, phoneNumber, proxyAddress, qrCode, onPremisesUserPrincipalName, unknownFutureValue.
     sign_in_identifier_type: Optional[SignInIdentifierType] = None
-    # Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the signin token was bound to the device or not. The possible values are: none, bound, unbound, unknownFutureValue.
+    # Deprecated. Use tokenProtectionStatusDetails instead. Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the sign-in token was bound to the device. The possible values are: none, bound, unbound, unknownFutureValue.
     sign_in_token_protection_status: Optional[TokenProtectionStatus] = None
     # The sign-in status. Includes the error code and description of the error (for a sign-in failure).  Supports $filter (eq) on errorCode property.
     status: Optional[SignInStatus] = None
@@ -181,7 +183,7 @@ class SignIn(Entity, Parsable):
     token_issuer_name: Optional[str] = None
     # The type of identity provider. The possible values are: AzureAD, ADFederationServices, UnknownFutureValue, AzureADBackupAuth, ADFederationServicesMFAAdapter, NPSExtension. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: AzureADBackupAuth , ADFederationServicesMFAAdapter , NPSExtension.
     token_issuer_type: Optional[TokenIssuerType] = None
-    # The tokenProtectionStatusDetails property
+    # The status of the token protection for a request in the sign-in logs. For more information, see Conditional Access: Token Protection.
     token_protection_status_details: Optional[TokenProtectionStatusDetails] = None
     # A unique base64-encoded request identifier used to track tokens issued by Microsoft Entra ID as they're redeemed at resource providers.
     unique_token_identifier: Optional[str] = None
@@ -299,6 +301,7 @@ class SignIn(Entity, Parsable):
             "azureResourceId": lambda n : setattr(self, 'azure_resource_id', n.get_str_value()),
             "clientAppUsed": lambda n : setattr(self, 'client_app_used', n.get_str_value()),
             "clientCredentialType": lambda n : setattr(self, 'client_credential_type', n.get_enum_value(ClientCredentialType)),
+            "clientSessionId": lambda n : setattr(self, 'client_session_id', n.get_str_value()),
             "conditionalAccessAudiences": lambda n : setattr(self, 'conditional_access_audiences', n.get_collection_of_primitive_values(str)),
             "conditionalAccessStatus": lambda n : setattr(self, 'conditional_access_status', n.get_enum_value(ConditionalAccessStatus)),
             "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
@@ -388,6 +391,7 @@ class SignIn(Entity, Parsable):
         writer.write_str_value("azureResourceId", self.azure_resource_id)
         writer.write_str_value("clientAppUsed", self.client_app_used)
         writer.write_enum_value("clientCredentialType", self.client_credential_type)
+        writer.write_str_value("clientSessionId", self.client_session_id)
         writer.write_collection_of_primitive_values("conditionalAccessAudiences", self.conditional_access_audiences)
         writer.write_enum_value("conditionalAccessStatus", self.conditional_access_status)
         writer.write_str_value("correlationId", self.correlation_id)

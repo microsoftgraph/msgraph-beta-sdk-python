@@ -15,10 +15,10 @@ class SetScheduledRetireStatePostRequestBody(AdditionalDataHolder, BackedModel, 
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The scopedToAllDevices property
+    scoped_to_all_devices: Optional[bool] = False
     # The managedDeviceIds property
     managed_device_ids: Optional[list[str]] = None
-    # The scopedToAllDevices property
-    scoped_to_all_devices: Optional[bool] = None
     # Cancel or confirm scheduled retire 
     state: Optional[ScheduledRetireState] = None
     

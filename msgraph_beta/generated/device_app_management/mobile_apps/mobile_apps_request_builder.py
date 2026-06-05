@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from ...models.mobile_app import MobileApp
     from ...models.mobile_app_collection_response import MobileAppCollectionResponse
     from ...models.o_data_errors.o_data_error import ODataError
-    from .convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id.convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id_request_builder import ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder
+    from .convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id.convert_from_mobile_app_catalog_package_with_mobile_app_catalog_p_bc00b82f import ConvertFromMobileAppCatalogPackageWithMobileAppCatalogP_bc00b82f
     from .count.count_request_builder import CountRequestBuilder
     from .graph_android_for_work_app.graph_android_for_work_app_request_builder import GraphAndroidForWorkAppRequestBuilder
     from .graph_android_lob_app.graph_android_lob_app_request_builder import GraphAndroidLobAppRequestBuilder
@@ -71,17 +71,17 @@ class MobileAppsRequestBuilder(BaseRequestBuilder):
         url_tpl_params["mobileApp%2Did"] = mobile_app_id
         return MobileAppItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id(self,mobile_app_catalog_package_id: str) -> ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder:
+    def convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id(self,mobile_app_catalog_package_id: str) -> ConvertFromMobileAppCatalogPackageWithMobileAppCatalogP_bc00b82f:
         """
         Provides operations to call the convertFromMobileAppCatalogPackage method.
         param mobile_app_catalog_package_id: Usage: mobileAppCatalogPackageId='{mobileAppCatalogPackageId}'
-        Returns: ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder
+        Returns: ConvertFromMobileAppCatalogPackageWithMobileAppCatalogP_bc00b82f
         """
         if mobile_app_catalog_package_id is None:
             raise TypeError("mobile_app_catalog_package_id cannot be null.")
-        from .convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id.convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id_request_builder import ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder
+        from .convert_from_mobile_app_catalog_package_with_mobile_app_catalog_package_id.convert_from_mobile_app_catalog_package_with_mobile_app_catalog_p_bc00b82f import ConvertFromMobileAppCatalogPackageWithMobileAppCatalogP_bc00b82f
 
-        return ConvertFromMobileAppCatalogPackageWithMobileAppCatalogPackageIdRequestBuilder(self.request_adapter, self.path_parameters, mobile_app_catalog_package_id)
+        return ConvertFromMobileAppCatalogPackageWithMobileAppCatalogP_bc00b82f(self.request_adapter, self.path_parameters, mobile_app_catalog_package_id)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MobileAppsRequestBuilderGetQueryParameters]] = None) -> Optional[MobileAppCollectionResponse]:
         """

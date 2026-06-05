@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .device_management_configuration_string_setting_value_constant_default_template import DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate
+    from .device_management_configuration_string_setting_value_constant_a54093e9 import DeviceManagementConfigurationStringSettingValueConstant_a54093e9
 
 @dataclass
 class DeviceManagementConfigurationStringSettingValueDefaultTemplate(AdditionalDataHolder, BackedModel, Parsable):
@@ -36,9 +36,9 @@ class DeviceManagementConfigurationStringSettingValueDefaultTemplate(AdditionalD
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationStringSettingValueConstantDefaultTemplate".casefold():
-            from .device_management_configuration_string_setting_value_constant_default_template import DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate
+            from .device_management_configuration_string_setting_value_constant_a54093e9 import DeviceManagementConfigurationStringSettingValueConstant_a54093e9
 
-            return DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate()
+            return DeviceManagementConfigurationStringSettingValueConstant_a54093e9()
         return DeviceManagementConfigurationStringSettingValueDefaultTemplate()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -46,9 +46,9 @@ class DeviceManagementConfigurationStringSettingValueDefaultTemplate(AdditionalD
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .device_management_configuration_string_setting_value_constant_default_template import DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate
+        from .device_management_configuration_string_setting_value_constant_a54093e9 import DeviceManagementConfigurationStringSettingValueConstant_a54093e9
 
-        from .device_management_configuration_string_setting_value_constant_default_template import DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate
+        from .device_management_configuration_string_setting_value_constant_a54093e9 import DeviceManagementConfigurationStringSettingValueConstant_a54093e9
 
         fields: dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

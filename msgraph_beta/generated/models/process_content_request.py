@@ -21,7 +21,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The activityMetadata property
     activity_metadata: Optional[ActivityMetadata] = None
-    # A collection of content entries to be processed. Each entry contains the content itself and its metadata. Use conversation metadata for content like prompts and responses and file metadata for files. Required.
+    # A collection of content entries to be processed. Each entry contains the content itself and its metadata. Use conversation metadata for content like prompts and responses, file metadata for files, and content activity metadata for enforcement result status entries. Required.
     content_entries: Optional[list[ProcessContentMetadataBase]] = None
     # The deviceMetadata property
     device_metadata: Optional[DeviceMetadata] = None

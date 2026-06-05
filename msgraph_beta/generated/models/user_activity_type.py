@@ -5,5 +5,6 @@ class UserActivityType(str, Enum):
     UploadFile = "uploadFile",
     DownloadText = "downloadText",
     DownloadFile = "downloadFile",
+    CopyToClipboard = "copyToClipboard",
     UnknownFutureValue = "unknownFutureValue",
 

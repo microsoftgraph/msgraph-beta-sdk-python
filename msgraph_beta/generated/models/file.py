@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .file_archive_status import FileArchiveStatus
     from .hashes import Hashes
+    from .lock_info import LockInfo
 
 @dataclass
 class File(AdditionalDataHolder, BackedModel, Parsable):
@@ -20,6 +21,8 @@ class File(AdditionalDataHolder, BackedModel, Parsable):
     archive_status: Optional[FileArchiveStatus] = None
     # Hashes of the file's binary content, if available. Read-only.
     hashes: Optional[Hashes] = None
+    # The lockInfo property
+    lock_info: Optional[LockInfo] = None
     # The MIME type for the file. This is determined by logic on the server and might not be the value provided when the file was uploaded. Read-only.
     mime_type: Optional[str] = None
     # The OdataType property
@@ -45,13 +48,16 @@ class File(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .file_archive_status import FileArchiveStatus
         from .hashes import Hashes
+        from .lock_info import LockInfo
 
         from .file_archive_status import FileArchiveStatus
         from .hashes import Hashes
+        from .lock_info import LockInfo
 
         fields: dict[str, Callable[[Any], None]] = {
             "archiveStatus": lambda n : setattr(self, 'archive_status', n.get_enum_value(FileArchiveStatus)),
             "hashes": lambda n : setattr(self, 'hashes', n.get_object_value(Hashes)),
+            "lockInfo": lambda n : setattr(self, 'lock_info', n.get_object_value(LockInfo)),
             "mimeType": lambda n : setattr(self, 'mime_type', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "processingMetadata": lambda n : setattr(self, 'processing_metadata', n.get_bool_value()),
@@ -68,6 +74,7 @@ class File(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("archiveStatus", self.archive_status)
         writer.write_object_value("hashes", self.hashes)
+        writer.write_object_value("lockInfo", self.lock_info)
         writer.write_str_value("mimeType", self.mime_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bool_value("processingMetadata", self.processing_metadata)
