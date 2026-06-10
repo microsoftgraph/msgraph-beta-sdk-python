@@ -5,6 +5,12 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "msgraph-beta-sdk"
+
+# Pin metadata to 2.3 until ESRP Release supports License-Expression over the 
+# deprecated License field. Update License to License-Expression when unpinning 
+# metadata version.
+metadata-version = 2.3
+
 # The SDK version
 # x-release-please-start-version
 version = "1.59.0"
