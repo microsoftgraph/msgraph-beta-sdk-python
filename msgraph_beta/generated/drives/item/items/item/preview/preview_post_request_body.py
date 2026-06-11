@@ -13,9 +13,9 @@ class PreviewPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The allowEdit property
-    allow_edit: Optional[bool] = None
+    allow_edit: Optional[bool] = False
     # The chromeless property
-    chromeless: Optional[bool] = None
+    chromeless: Optional[bool] = False
     # The page property
     page: Optional[str] = None
     # The viewer property

@@ -48,7 +48,7 @@ if TYPE_CHECKING:
     from .get_devices_without_compliance_policy_report.get_devices_without_compliance_policy_report_request_builder import GetDevicesWithoutCompliancePolicyReportRequestBuilder
     from .get_device_configuration_policy_settings_summary_report.get_device_configuration_policy_settings_summary_report_request_builder import GetDeviceConfigurationPolicySettingsSummaryReportRequestBuilder
     from .get_device_configuration_policy_status_summary.get_device_configuration_policy_status_summary_request_builder import GetDeviceConfigurationPolicyStatusSummaryRequestBuilder
-    from .get_device_management_intent_per_setting_contributing_profiles.get_device_management_intent_per_setting_contributing_profiles_request_builder import GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder
+    from .get_device_management_intent_per_setting_contributing_profiles.get_device_management_intent_per_setting_contributing_profiles_0f5720ea import GetDeviceManagementIntentPerSettingContributingProfiles_0f5720ea
     from .get_device_management_intent_settings_report.get_device_management_intent_settings_report_request_builder import GetDeviceManagementIntentSettingsReportRequestBuilder
     from .get_device_non_compliance_report.get_device_non_compliance_report_request_builder import GetDeviceNonComplianceReportRequestBuilder
     from .get_device_policies_compliance_report.get_device_policies_compliance_report_request_builder import GetDevicePoliciesComplianceReportRequestBuilder
@@ -56,7 +56,7 @@ if TYPE_CHECKING:
     from .get_device_status_by_compliace_policy_report.get_device_status_by_compliace_policy_report_request_builder import GetDeviceStatusByCompliacePolicyReportRequestBuilder
     from .get_device_status_by_compliance_policy_setting_report.get_device_status_by_compliance_policy_setting_report_request_builder import GetDeviceStatusByCompliancePolicySettingReportRequestBuilder
     from .get_device_status_summary_by_compliace_policy_report.get_device_status_summary_by_compliace_policy_report_request_builder import GetDeviceStatusSummaryByCompliacePolicyReportRequestBuilder
-    from .get_device_status_summary_by_compliance_policy_settings_report.get_device_status_summary_by_compliance_policy_settings_report_request_builder import GetDeviceStatusSummaryByCompliancePolicySettingsReportRequestBuilder
+    from .get_device_status_summary_by_compliance_policy_settings_report.get_device_status_summary_by_compliance_policy_settings_report_r_42144a17 import GetDeviceStatusSummaryByCompliancePolicySettingsReportR_42144a17
     from .get_encryption_report_for_devices.get_encryption_report_for_devices_request_builder import GetEncryptionReportForDevicesRequestBuilder
     from .get_enrollment_configuration_policies_by_device.get_enrollment_configuration_policies_by_device_request_builder import GetEnrollmentConfigurationPoliciesByDeviceRequestBuilder
     from .get_failed_mobile_apps_report.get_failed_mobile_apps_report_request_builder import GetFailedMobileAppsReportRequestBuilder
@@ -64,8 +64,8 @@ if TYPE_CHECKING:
     from .get_group_policy_settings_device_settings_report.get_group_policy_settings_device_settings_report_request_builder import GetGroupPolicySettingsDeviceSettingsReportRequestBuilder
     from .get_historical_report.get_historical_report_request_builder import GetHistoricalReportRequestBuilder
     from .get_malware_summary_report.get_malware_summary_report_request_builder import GetMalwareSummaryReportRequestBuilder
-    from .get_mobile_application_management_app_configuration_report.get_mobile_application_management_app_configuration_report_request_builder import GetMobileApplicationManagementAppConfigurationReportRequestBuilder
-    from .get_mobile_application_management_app_registration_summary_report.get_mobile_application_management_app_registration_summary_report_request_builder import GetMobileApplicationManagementAppRegistrationSummaryReportRequestBuilder
+    from .get_mobile_application_management_app_configuration_report.get_mobile_application_management_app_configuration_report_req_bcc872f3 import GetMobileApplicationManagementAppConfigurationReportReq_bcc872f3
+    from .get_mobile_application_management_app_registration_summary_report.get_mobile_application_management_app_registration_summary_rep_fa50c4b5 import GetMobileApplicationManagementAppRegistrationSummaryRep_fa50c4b5
     from .get_noncompliant_devices_and_settings_report.get_noncompliant_devices_and_settings_report_request_builder import GetNoncompliantDevicesAndSettingsReportRequestBuilder
     from .get_policy_non_compliance_metadata.get_policy_non_compliance_metadata_request_builder import GetPolicyNonComplianceMetadataRequestBuilder
     from .get_policy_non_compliance_report.get_policy_non_compliance_report_request_builder import GetPolicyNonComplianceReportRequestBuilder
@@ -80,9 +80,9 @@ if TYPE_CHECKING:
     from .get_unhealthy_firewall_report.get_unhealthy_firewall_report_request_builder import GetUnhealthyFirewallReportRequestBuilder
     from .get_unhealthy_firewall_summary_report.get_unhealthy_firewall_summary_report_request_builder import GetUnhealthyFirewallSummaryReportRequestBuilder
     from .get_user_install_status_report.get_user_install_status_report_request_builder import GetUserInstallStatusReportRequestBuilder
-    from .get_windows_driver_update_alerts_per_policy_per_device_report.get_windows_driver_update_alerts_per_policy_per_device_report_request_builder import GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
+    from .get_windows_driver_update_alerts_per_policy_per_device_report.get_windows_driver_update_alerts_per_policy_per_device_report_req_6fe65ded import GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportReq_6fe65ded
     from .get_windows_driver_update_alert_summary_report.get_windows_driver_update_alert_summary_report_request_builder import GetWindowsDriverUpdateAlertSummaryReportRequestBuilder
-    from .get_windows_quality_update_alerts_per_policy_per_device_report.get_windows_quality_update_alerts_per_policy_per_device_report_request_builder import GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
+    from .get_windows_quality_update_alerts_per_policy_per_device_report.get_windows_quality_update_alerts_per_policy_per_device_report_re_ae0faab0 import GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRe_ae0faab0
     from .get_windows_quality_update_alert_summary_report.get_windows_quality_update_alert_summary_report_request_builder import GetWindowsQualityUpdateAlertSummaryReportRequestBuilder
     from .get_windows_update_alerts_per_policy_per_device_report.get_windows_update_alerts_per_policy_per_device_report_request_builder import GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
     from .get_windows_update_alert_summary_report.get_windows_update_alert_summary_report_request_builder import GetWindowsUpdateAlertSummaryReportRequestBuilder
@@ -479,13 +479,13 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetDeviceConfigurationPolicyStatusSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_device_management_intent_per_setting_contributing_profiles(self) -> GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder:
+    def get_device_management_intent_per_setting_contributing_profiles(self) -> GetDeviceManagementIntentPerSettingContributingProfiles_0f5720ea:
         """
         Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.
         """
-        from .get_device_management_intent_per_setting_contributing_profiles.get_device_management_intent_per_setting_contributing_profiles_request_builder import GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder
+        from .get_device_management_intent_per_setting_contributing_profiles.get_device_management_intent_per_setting_contributing_profiles_0f5720ea import GetDeviceManagementIntentPerSettingContributingProfiles_0f5720ea
 
-        return GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetDeviceManagementIntentPerSettingContributingProfiles_0f5720ea(self.request_adapter, self.path_parameters)
     
     @property
     def get_device_management_intent_settings_report(self) -> GetDeviceManagementIntentSettingsReportRequestBuilder:
@@ -551,13 +551,13 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetDeviceStatusSummaryByCompliacePolicyReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_device_status_summary_by_compliance_policy_settings_report(self) -> GetDeviceStatusSummaryByCompliancePolicySettingsReportRequestBuilder:
+    def get_device_status_summary_by_compliance_policy_settings_report(self) -> GetDeviceStatusSummaryByCompliancePolicySettingsReportR_42144a17:
         """
         Provides operations to call the getDeviceStatusSummaryByCompliancePolicySettingsReport method.
         """
-        from .get_device_status_summary_by_compliance_policy_settings_report.get_device_status_summary_by_compliance_policy_settings_report_request_builder import GetDeviceStatusSummaryByCompliancePolicySettingsReportRequestBuilder
+        from .get_device_status_summary_by_compliance_policy_settings_report.get_device_status_summary_by_compliance_policy_settings_report_r_42144a17 import GetDeviceStatusSummaryByCompliancePolicySettingsReportR_42144a17
 
-        return GetDeviceStatusSummaryByCompliancePolicySettingsReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetDeviceStatusSummaryByCompliancePolicySettingsReportR_42144a17(self.request_adapter, self.path_parameters)
     
     @property
     def get_devices_status_by_policy_platform_compliance_report(self) -> GetDevicesStatusByPolicyPlatformComplianceReportRequestBuilder:
@@ -650,22 +650,22 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetMalwareSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_mobile_application_management_app_configuration_report(self) -> GetMobileApplicationManagementAppConfigurationReportRequestBuilder:
+    def get_mobile_application_management_app_configuration_report(self) -> GetMobileApplicationManagementAppConfigurationReportReq_bcc872f3:
         """
         Provides operations to call the getMobileApplicationManagementAppConfigurationReport method.
         """
-        from .get_mobile_application_management_app_configuration_report.get_mobile_application_management_app_configuration_report_request_builder import GetMobileApplicationManagementAppConfigurationReportRequestBuilder
+        from .get_mobile_application_management_app_configuration_report.get_mobile_application_management_app_configuration_report_req_bcc872f3 import GetMobileApplicationManagementAppConfigurationReportReq_bcc872f3
 
-        return GetMobileApplicationManagementAppConfigurationReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetMobileApplicationManagementAppConfigurationReportReq_bcc872f3(self.request_adapter, self.path_parameters)
     
     @property
-    def get_mobile_application_management_app_registration_summary_report(self) -> GetMobileApplicationManagementAppRegistrationSummaryReportRequestBuilder:
+    def get_mobile_application_management_app_registration_summary_report(self) -> GetMobileApplicationManagementAppRegistrationSummaryRep_fa50c4b5:
         """
         Provides operations to call the getMobileApplicationManagementAppRegistrationSummaryReport method.
         """
-        from .get_mobile_application_management_app_registration_summary_report.get_mobile_application_management_app_registration_summary_report_request_builder import GetMobileApplicationManagementAppRegistrationSummaryReportRequestBuilder
+        from .get_mobile_application_management_app_registration_summary_report.get_mobile_application_management_app_registration_summary_rep_fa50c4b5 import GetMobileApplicationManagementAppRegistrationSummaryRep_fa50c4b5
 
-        return GetMobileApplicationManagementAppRegistrationSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetMobileApplicationManagementAppRegistrationSummaryRep_fa50c4b5(self.request_adapter, self.path_parameters)
     
     @property
     def get_noncompliant_devices_and_settings_report(self) -> GetNoncompliantDevicesAndSettingsReportRequestBuilder:
@@ -803,13 +803,13 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetWindowsDriverUpdateAlertSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_windows_driver_update_alerts_per_policy_per_device_report(self) -> GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:
+    def get_windows_driver_update_alerts_per_policy_per_device_report(self) -> GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportReq_6fe65ded:
         """
         Provides operations to call the getWindowsDriverUpdateAlertsPerPolicyPerDeviceReport method.
         """
-        from .get_windows_driver_update_alerts_per_policy_per_device_report.get_windows_driver_update_alerts_per_policy_per_device_report_request_builder import GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
+        from .get_windows_driver_update_alerts_per_policy_per_device_report.get_windows_driver_update_alerts_per_policy_per_device_report_req_6fe65ded import GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportReq_6fe65ded
 
-        return GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetWindowsDriverUpdateAlertsPerPolicyPerDeviceReportReq_6fe65ded(self.request_adapter, self.path_parameters)
     
     @property
     def get_windows_quality_update_alert_summary_report(self) -> GetWindowsQualityUpdateAlertSummaryReportRequestBuilder:
@@ -821,13 +821,13 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return GetWindowsQualityUpdateAlertSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_windows_quality_update_alerts_per_policy_per_device_report(self) -> GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:
+    def get_windows_quality_update_alerts_per_policy_per_device_report(self) -> GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRe_ae0faab0:
         """
         Provides operations to call the getWindowsQualityUpdateAlertsPerPolicyPerDeviceReport method.
         """
-        from .get_windows_quality_update_alerts_per_policy_per_device_report.get_windows_quality_update_alerts_per_policy_per_device_report_request_builder import GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder
+        from .get_windows_quality_update_alerts_per_policy_per_device_report.get_windows_quality_update_alerts_per_policy_per_device_report_re_ae0faab0 import GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRe_ae0faab0
 
-        return GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRe_ae0faab0(self.request_adapter, self.path_parameters)
     
     @property
     def get_windows_update_alert_summary_report(self) -> GetWindowsUpdateAlertSummaryReportRequestBuilder:

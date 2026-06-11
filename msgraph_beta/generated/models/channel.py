@@ -42,6 +42,8 @@ class Channel(Entity, Parsable):
     is_archived: Optional[bool] = None
     # Indicates whether the channel should be marked as recommended for all members of the team to show in their channel list. Note: All recommended channels automatically show in the channels list for education and frontline worker users. The property can only be set programmatically via the Create team method. The default value is false.
     is_favorite_by_default: Optional[bool] = None
+    # The joinedUsers property
+    joined_users: Optional[list[ConversationMember]] = None
     # The layout type of the channel. It can be set during creation and updated later. The possible values are: post, chat, unknownFutureValue. The default value is post. Channels with the post layout use a traditional post‑reply conversation format, and channels with the chat layout provide a chat‑like threading experience similar to group chats.
     layout_type: Optional[ChannelLayoutType] = None
     # A collection of membership records associated with the channel.
@@ -125,6 +127,7 @@ class Channel(Entity, Parsable):
             "filesFolder": lambda n : setattr(self, 'files_folder', n.get_object_value(DriveItem)),
             "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
             "isFavoriteByDefault": lambda n : setattr(self, 'is_favorite_by_default', n.get_bool_value()),
+            "joinedUsers": lambda n : setattr(self, 'joined_users', n.get_collection_of_object_values(ConversationMember)),
             "layoutType": lambda n : setattr(self, 'layout_type', n.get_enum_value(ChannelLayoutType)),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(ConversationMember)),
             "membershipType": lambda n : setattr(self, 'membership_type', n.get_enum_value(ChannelMembershipType)),
@@ -161,6 +164,7 @@ class Channel(Entity, Parsable):
         writer.write_object_value("filesFolder", self.files_folder)
         writer.write_bool_value("isArchived", self.is_archived)
         writer.write_bool_value("isFavoriteByDefault", self.is_favorite_by_default)
+        writer.write_collection_of_object_values("joinedUsers", self.joined_users)
         writer.write_enum_value("layoutType", self.layout_type)
         writer.write_collection_of_object_values("members", self.members)
         writer.write_enum_value("membershipType", self.membership_type)

@@ -5,4 +5,5 @@ class AgentIdentityType(str, Enum):
     AgentUser = "agentUser",
     UnknownFutureValue = "unknownFutureValue",
     AgentIdentityBlueprintPrincipal = "agentIdentityBlueprintPrincipal",
+    User = "user",
 

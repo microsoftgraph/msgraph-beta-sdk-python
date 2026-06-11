@@ -50,7 +50,7 @@ class DriveExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters]] = None) -> Optional[DriveExclusionUnitsBulkAdditionJob]:
         """
-        Get driveExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for drive exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DriveExclusionUnitsBulkAdditionJob]
         """
@@ -104,7 +104,7 @@ class DriveExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DriveExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get driveExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for drive exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class DriveExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DriveExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters():
         """
-        Get driveExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for drive exclusion units in the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

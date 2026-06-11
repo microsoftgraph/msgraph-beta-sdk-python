@@ -20,7 +20,7 @@ class TeamsAppInstallation(Entity, Parsable):
     consented_permission_set: Optional[TeamsAppPermissionSet] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The scopeInfo property
+    # The details of the scope in which the app is installed.
     scope_info: Optional[TeamsAppInstallationScopeInfo] = None
     # The app that is installed.
     teams_app: Optional[TeamsApp] = None

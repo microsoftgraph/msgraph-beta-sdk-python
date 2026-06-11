@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from .....models.managed_tenants.tenant import Tenant
     from .....models.o_data_errors.o_data_error import ODataError
     from .microsoft_graph_managed_tenants_offboard_tenant.microsoft_graph_managed_tenants_offboard_tenant_request_builder import MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder
-    from .microsoft_graph_managed_tenants_reset_tenant_onboarding_status.microsoft_graph_managed_tenants_reset_tenant_onboarding_status_request_builder import MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder
+    from .microsoft_graph_managed_tenants_reset_tenant_onboarding_status.microsoft_graph_managed_tenants_reset_tenant_onboarding_status_bec559ea import MicrosoftGraphManagedTenantsResetTenantOnboardingStatus_bec559ea
 
 class TenantItemRequestBuilder(BaseRequestBuilder):
     """
@@ -151,13 +151,13 @@ class TenantItemRequestBuilder(BaseRequestBuilder):
         return MicrosoftGraphManagedTenantsOffboardTenantRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_managed_tenants_reset_tenant_onboarding_status(self) -> MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder:
+    def microsoft_graph_managed_tenants_reset_tenant_onboarding_status(self) -> MicrosoftGraphManagedTenantsResetTenantOnboardingStatus_bec559ea:
         """
         Provides operations to call the resetTenantOnboardingStatus method.
         """
-        from .microsoft_graph_managed_tenants_reset_tenant_onboarding_status.microsoft_graph_managed_tenants_reset_tenant_onboarding_status_request_builder import MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder
+        from .microsoft_graph_managed_tenants_reset_tenant_onboarding_status.microsoft_graph_managed_tenants_reset_tenant_onboarding_status_bec559ea import MicrosoftGraphManagedTenantsResetTenantOnboardingStatus_bec559ea
 
-        return MicrosoftGraphManagedTenantsResetTenantOnboardingStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphManagedTenantsResetTenantOnboardingStatus_bec559ea(self.request_adapter, self.path_parameters)
     
     @dataclass
     class TenantItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

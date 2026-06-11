@@ -59,6 +59,8 @@ class CloudCertificationAuthority(Entity, Parsable):
     e_tag: Optional[str] = None
     # The certificate extended key usages, which specify the usage capabilities of the certificate. Read-only.
     extended_key_usages: Optional[list[ExtendedKeyUsage]] = None
+    # The geographic region where a cloud certification authority (CA) is hosted. Read-only.
+    geographic_region: Optional[str] = None
     # The issuerCommonName property
     issuer_common_name: Optional[str] = None
     # Enum type of possible key platforms used by the certification authority.
@@ -155,6 +157,7 @@ class CloudCertificationAuthority(Entity, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "eTag": lambda n : setattr(self, 'e_tag', n.get_str_value()),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(ExtendedKeyUsage)),
+            "geographicRegion": lambda n : setattr(self, 'geographic_region', n.get_str_value()),
             "issuerCommonName": lambda n : setattr(self, 'issuer_common_name', n.get_str_value()),
             "keyPlatform": lambda n : setattr(self, 'key_platform', n.get_enum_value(CloudCertificationAuthorityKeyPlatformType)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
@@ -206,6 +209,7 @@ class CloudCertificationAuthority(Entity, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("eTag", self.e_tag)
         writer.write_collection_of_object_values("extendedKeyUsages", self.extended_key_usages)
+        writer.write_str_value("geographicRegion", self.geographic_region)
         writer.write_str_value("issuerCommonName", self.issuer_common_name)
         writer.write_enum_value("keyPlatform", self.key_platform)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)

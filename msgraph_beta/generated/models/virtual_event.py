@@ -33,6 +33,8 @@ class VirtualEvent(Entity, Parsable):
     external_event_information: Optional[list[VirtualEventExternalInformation]] = None
     # The isRegistrationEnabled property
     is_registration_enabled: Optional[bool] = None
+    # The isRegistrationRequired property
+    is_registration_required: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The virtual event presenters.
@@ -106,6 +108,7 @@ class VirtualEvent(Entity, Parsable):
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_object_value(DateTimeTimeZone)),
             "externalEventInformation": lambda n : setattr(self, 'external_event_information', n.get_collection_of_object_values(VirtualEventExternalInformation)),
             "isRegistrationEnabled": lambda n : setattr(self, 'is_registration_enabled', n.get_bool_value()),
+            "isRegistrationRequired": lambda n : setattr(self, 'is_registration_required', n.get_bool_value()),
             "presenters": lambda n : setattr(self, 'presenters', n.get_collection_of_object_values(VirtualEventPresenter)),
             "sessions": lambda n : setattr(self, 'sessions', n.get_collection_of_object_values(VirtualEventSession)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(VirtualEventSettings)),
@@ -131,6 +134,7 @@ class VirtualEvent(Entity, Parsable):
         writer.write_object_value("endDateTime", self.end_date_time)
         writer.write_collection_of_object_values("externalEventInformation", self.external_event_information)
         writer.write_bool_value("isRegistrationEnabled", self.is_registration_enabled)
+        writer.write_bool_value("isRegistrationRequired", self.is_registration_required)
         writer.write_collection_of_object_values("presenters", self.presenters)
         writer.write_collection_of_object_values("sessions", self.sessions)
         writer.write_object_value("settings", self.settings)

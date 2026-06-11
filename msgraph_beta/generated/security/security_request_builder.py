@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
     from .ip_security_profiles.ip_security_profiles_request_builder import IpSecurityProfilesRequestBuilder
     from .labels.labels_request_builder import LabelsRequestBuilder
+    from .microsoft_graph_security_get_hunting_schema.microsoft_graph_security_get_hunting_schema_request_builder import MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder
     from .microsoft_graph_security_run_hunting_query.microsoft_graph_security_run_hunting_query_request_builder import MicrosoftGraphSecurityRunHuntingQueryRequestBuilder
     from .partner.partner_request_builder import PartnerRequestBuilder
     from .provider_tenant_settings.provider_tenant_settings_request_builder import ProviderTenantSettingsRequestBuilder
@@ -304,6 +305,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .labels.labels_request_builder import LabelsRequestBuilder
 
         return LabelsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_security_get_hunting_schema(self) -> MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder:
+        """
+        Provides operations to call the getHuntingSchema method.
+        """
+        from .microsoft_graph_security_get_hunting_schema.microsoft_graph_security_get_hunting_schema_request_builder import MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder
+
+        return MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def microsoft_graph_security_run_hunting_query(self) -> MicrosoftGraphSecurityRunHuntingQueryRequestBuilder:

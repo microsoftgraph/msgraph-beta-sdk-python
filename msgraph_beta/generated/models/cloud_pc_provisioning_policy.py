@@ -28,9 +28,9 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
     alternate_resource_url: Optional[str] = None
     # A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Microsoft Entra ID that have provisioning policy assigned. Returned only on $expand. For an example about how to get the assignments relationship, see Get cloudPcProvisioningPolicy.
     assignments: Optional[list[CloudPcProvisioningPolicyAssignment]] = None
-    # Indicates the Windows Autopatch settings for Cloud PCs using this provisioning policy. The settings take effect when the tenant enrolls in Autopatch and the managedType of the microsoftManagedDesktop property is set as starterManaged. Supports $select.
+    # Indicates the Windows Autopatch settings for Cloud PCs using this provisioning policy. The settings take effect when the tenant enrolls in Autopatch and the managedType of the microsoftManagedDesktop property is set as starterManaged. When you create or update a provisioning policy with autopatch, you must use a delegated token and the signed-in user must have the Intune Administrator role. Supports $select.
     autopatch: Optional[CloudPcProvisioningPolicyAutopatch] = None
-    # The specific settings for Windows Autopilot that enable Windows 365 customers to experience it on Cloud PC. Supports $select.
+    # The specific settings for Windows Autopilot that enable Windows 365 customers to experience it on Cloud PC. When you create or update a provisioning policy with autopilotConfiguration, use the required Microsoft Graph permissions listed on the corresponding create and update API pages. In delegated scenarios, the signed-in user must also have the Microsoft.Intune/DeviceConfigurations/Assign Intune RBAC permission. Supports $select.
     autopilot_configuration: Optional[CloudPcAutopilotConfiguration] = None
     # The display name of the Cloud PC group that the Cloud PCs reside in. Read-only.
     cloud_pc_group_display_name: Optional[str] = None
@@ -70,7 +70,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
     odata_type: Optional[str] = None
     # Specifies the type of licenses to be used when provisioning Cloud PCs using this policy. The possible values are dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup, reserve. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup, reserve. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member. For example, a dedicated service plan can be assigned to only one user and provision only one Cloud PC. The shared and sharedByUser plans require customers to purchase a shared service plan. Each shared license purchased can enable up to three Cloud PCs, with only one user signed in at a time. The sharedByEntraGroup plan also requires the purchase of a shared service plan. Each shared license under this plan can enable one Cloud PC, which is shared for the group according to the assignments of this policy. By default, the license type is dedicated if the provisioningType isn't specified when you create the cloudPcProvisioningPolicy. You can't change this property after the cloudPcProvisioningPolicy is created.
     provisioning_type: Optional[CloudPcProvisioningType] = None
-    # The scopeIds property
+    # The list of scope tag IDs for this resource. Read-only.
     scope_ids: Optional[list[str]] = None
     # Specifies the type of cloud object the end user can access. The possible values are: cloudPc, cloudApp, unknownFutureValue. cloudPc indicates that the end user can access the entire desktop. cloudApp indicates that the end user can only access apps published under this provisioning policy. The type can't be changed once the provisioning policy is created. If not specified during creation, the default value is cloudPc. When cloudApp is selected, the provisioningType must be sharedByEntraGroup. Supports $filter, $select, $orderBy.
     user_experience_type: Optional[CloudPcUserExperienceType] = None

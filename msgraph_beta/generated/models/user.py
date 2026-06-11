@@ -149,7 +149,7 @@ class User(DirectoryObject, Parsable):
     cloud_licensing: Optional[UserCloudLicensing] = None
     # The user's Cloud PCs. Read-only. Nullable.
     cloud_p_cs: Optional[list[CloudPC]] = None
-    # The cloudPcPools property
+    # The user's Cloud PC pools. Read-only. Nullable.
     cloud_pc_pools: Optional[list[CloudPcPool]] = None
     # Microsoft realtime communication information related to the user.  Supports $filter (eq, ne,not).
     cloud_realtime_communication_info: Optional[CloudRealtimeCommunicationInfo] = None
@@ -225,7 +225,7 @@ class User(DirectoryObject, Parsable):
     hire_date: Optional[datetime.datetime] = None
     # Represents the identities that can be used to sign in to this user account. An identity can be provided by Microsoft (also known as a local account), by organizations, or by social identity providers such as Facebook, Google, and Microsoft and tied to a user account. It may contain multiple items with the same signInType value.  Supports $filter (eq) with limitations.
     identities: Optional[list[ObjectIdentity]] = None
-    # The identityGovernance property
+    # The identity governance settings for the user, including the approver delegate configuration. Nullable. Returned only on $select. Supports $expand.
     identity_governance: Optional[IdentityGovernanceUserSettings] = None
     # The object ID of the parent identity for agent users. Always null for regular user accounts. For agentUser resources, this property references the object ID of the associated agent identity.
     identity_parent_id: Optional[str] = None
@@ -247,7 +247,7 @@ class User(DirectoryObject, Parsable):
     is_license_reconciliation_needed: Optional[bool] = None
     # true if the user is a member of a restricted management administrative unit. If not set, the default value is null and the default behavior is false. Read-only.  To manage a user who is a member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
     is_management_restricted: Optional[bool] = None
-    # Do not use – reserved for future use.
+    # Do not use. Reserved for future use.
     is_resource_account: Optional[bool] = None
     # The user's job title. Maximum length is 128 characters. Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values).
     job_title: Optional[str] = None

@@ -34,7 +34,7 @@ class CloudPcDeviceImage(Entity, Parsable):
     os_status: Optional[CloudPcDeviceImageOsStatus] = None
     # The operating system version of this image. For example, 10.0.22000.296. Read-only.
     os_version_number: Optional[str] = None
-    # The scopeIds property
+    # The scope IDs of the corresponding permission. Currently, it's the Intune scope tag ID. Read-only.
     scope_ids: Optional[list[str]] = None
     # The size of the image in GB. For example, 64. Read-only.
     size_in_g_b: Optional[int] = None
