@@ -12,10 +12,10 @@
 name: "CodeQL"
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    paths:
+      - "msgraph_beta/**"
   schedule:
     - cron: '1 * * * 1'
 
