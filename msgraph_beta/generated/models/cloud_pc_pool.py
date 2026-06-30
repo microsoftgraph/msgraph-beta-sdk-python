@@ -17,19 +17,19 @@ from .entity import Entity
 
 @dataclass
 class CloudPcPool(Entity, Parsable):
-    # The assignments property
+    # The collection of assignments that grant user or service principal identities access to this pool.
     assignments: Optional[list[CloudPcPoolAssignment]] = None
     # The capabilities property
     capabilities: Optional[CloudPcPoolCapabilityConfiguration] = None
     # The cloudPcConfiguration property
     cloud_pc_configuration: Optional[CloudPcConfiguration] = None
-    # The createdDateTime property
+    # The date and time when the pool was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2026 is 2026-01-01T00:00:00Z. Read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # The description property
+    # The description of the pool. The maximum length is 512 characters.
     description: Optional[str] = None
-    # The displayName property
+    # The display name of the pool. The name is unique across Cloud PC pools in an organization. The maximum length is 60 characters.
     display_name: Optional[str] = None
-    # The lastModifiedDateTime property
+    # The date and time when the pool was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2026 is 2026-01-01T00:00:00Z. Read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The networkConfiguration property
     network_configuration: Optional[CloudPcNetworkConfiguration] = None

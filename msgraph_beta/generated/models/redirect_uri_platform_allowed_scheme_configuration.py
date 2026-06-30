@@ -12,7 +12,7 @@ class RedirectUriPlatformAllowedSchemeConfiguration(AdditionalDataHolder, Backed
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The allowedSchemes property
+    # Collection of URI schemes that are allowed for this specific platform. Schemes refer to URI schemes as defined in RFC 3986 §3.1. The value '*' can be used to allow any scheme for this platform.
     allowed_schemes: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

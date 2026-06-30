@@ -49,10 +49,14 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
     enable_per_app: Optional[bool] = None
     # Send all network traffic through VPN.
     enable_split_tunneling: Optional[bool] = None
+    # Indicates whether local network traffic is excluded from the VPN tunnel. When TRUE, local network traffic bypasses the VPN tunnel. Default value is null. Only takes effect when includeAllNetworks is TRUE or enforceVpnRouting is TRUE. Not applicable when enablePerApp is TRUE.
+    exclude_local_networks: Optional[bool] = None
     # Domains that are accessed through the public internet instead of through VPN, even when per-app VPN is activated
     excluded_domains: Optional[list[str]] = None
     # Identifier provided by VPN vendor when connection type is set to Custom VPN. For example: Cisco AnyConnect uses an identifier of the form com.cisco.anyconnect.applevpn.plugin
     identifier: Optional[str] = None
+    # Indicates whether most network traffic is routed through the VPN tunnel. When TRUE, most network traffic is sent through the VPN tunnel. Default value is null. Not applicable when enablePerApp is TRUE.
+    include_all_networks: Optional[bool] = None
     # Login group or domain when connection type is set to Dell SonicWALL Mobile Connection.
     login_group_or_domain: Optional[str] = None
     # On-Demand Rules. This collection can contain a maximum of 500 elements.
@@ -143,8 +147,10 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
             "disconnectOnIdleTimerInSeconds": lambda n : setattr(self, 'disconnect_on_idle_timer_in_seconds', n.get_int_value()),
             "enablePerApp": lambda n : setattr(self, 'enable_per_app', n.get_bool_value()),
             "enableSplitTunneling": lambda n : setattr(self, 'enable_split_tunneling', n.get_bool_value()),
+            "excludeLocalNetworks": lambda n : setattr(self, 'exclude_local_networks', n.get_bool_value()),
             "excludedDomains": lambda n : setattr(self, 'excluded_domains', n.get_collection_of_primitive_values(str)),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
+            "includeAllNetworks": lambda n : setattr(self, 'include_all_networks', n.get_bool_value()),
             "loginGroupOrDomain": lambda n : setattr(self, 'login_group_or_domain', n.get_str_value()),
             "onDemandRules": lambda n : setattr(self, 'on_demand_rules', n.get_collection_of_object_values(VpnOnDemandRule)),
             "optInToDeviceIdSharing": lambda n : setattr(self, 'opt_in_to_device_id_sharing', n.get_bool_value()),
@@ -179,8 +185,10 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
         writer.write_int_value("disconnectOnIdleTimerInSeconds", self.disconnect_on_idle_timer_in_seconds)
         writer.write_bool_value("enablePerApp", self.enable_per_app)
         writer.write_bool_value("enableSplitTunneling", self.enable_split_tunneling)
+        writer.write_bool_value("excludeLocalNetworks", self.exclude_local_networks)
         writer.write_collection_of_primitive_values("excludedDomains", self.excluded_domains)
         writer.write_str_value("identifier", self.identifier)
+        writer.write_bool_value("includeAllNetworks", self.include_all_networks)
         writer.write_str_value("loginGroupOrDomain", self.login_group_or_domain)
         writer.write_collection_of_object_values("onDemandRules", self.on_demand_rules)
         writer.write_bool_value("optInToDeviceIdSharing", self.opt_in_to_device_id_sharing)

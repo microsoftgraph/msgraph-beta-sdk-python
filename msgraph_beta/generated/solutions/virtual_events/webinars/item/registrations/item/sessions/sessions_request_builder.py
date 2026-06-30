@@ -48,7 +48,7 @@ class SessionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SessionsRequestBuilderGetQueryParameters]] = None) -> Optional[VirtualEventSessionCollectionResponse]:
         """
-        Get a list of sessions that a registrant registered for in a webinar.
+        Get a list of sessions that a registrant registered for in a webinar or town hall.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventSessionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/virtualeventregistration-list-sessions?view=graph-rest-beta
@@ -69,7 +69,7 @@ class SessionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SessionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of sessions that a registrant registered for in a webinar.
+        Get a list of sessions that a registrant registered for in a webinar or town hall.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -100,7 +100,7 @@ class SessionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SessionsRequestBuilderGetQueryParameters():
         """
-        Get a list of sessions that a registrant registered for in a webinar.
+        Get a list of sessions that a registrant registered for in a webinar or town hall.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

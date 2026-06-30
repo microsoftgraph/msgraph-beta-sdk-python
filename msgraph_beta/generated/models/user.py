@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     from .device_key import DeviceKey
     from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
     from .directory_object import DirectoryObject
+    from .distribution_list import DistributionList
     from .drive import Drive
     from .employee_experience_user import EmployeeExperienceUser
     from .employee_org_data import EmployeeOrgData
@@ -149,7 +150,7 @@ class User(DirectoryObject, Parsable):
     cloud_licensing: Optional[UserCloudLicensing] = None
     # The user's Cloud PCs. Read-only. Nullable.
     cloud_p_cs: Optional[list[CloudPC]] = None
-    # The cloudPcPools property
+    # The user's Cloud PC pools. Read-only. Nullable.
     cloud_pc_pools: Optional[list[CloudPcPool]] = None
     # Microsoft realtime communication information related to the user.  Supports $filter (eq, ne,not).
     cloud_realtime_communication_info: Optional[CloudRealtimeCommunicationInfo] = None
@@ -191,6 +192,8 @@ class User(DirectoryObject, Parsable):
     direct_reports: Optional[list[DirectoryObject]] = None
     # The name displayed in the address book for the user. This value is usually the combination of the user's first name, middle initial, and last name. This property is required when a user is created, and it cannot be cleared during updates. Maximum length is 256 characters. Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values), $orderby, and $search.
     display_name: Optional[str] = None
+    # The personal distribution lists in the user's mailbox. Read-only. Nullable.
+    distribution_lists: Optional[list[DistributionList]] = None
     # The user's OneDrive. Read-only.
     drive: Optional[Drive] = None
     # A collection of drives available for this user. Read-only.
@@ -225,7 +228,7 @@ class User(DirectoryObject, Parsable):
     hire_date: Optional[datetime.datetime] = None
     # Represents the identities that can be used to sign in to this user account. An identity can be provided by Microsoft (also known as a local account), by organizations, or by social identity providers such as Facebook, Google, and Microsoft and tied to a user account. It may contain multiple items with the same signInType value.  Supports $filter (eq) with limitations.
     identities: Optional[list[ObjectIdentity]] = None
-    # The identityGovernance property
+    # The identity governance settings for the user, including the approver delegate configuration. Nullable. Returned only on $select. Supports $expand.
     identity_governance: Optional[IdentityGovernanceUserSettings] = None
     # The object ID of the parent identity for agent users. Always null for regular user accounts. For agentUser resources, this property references the object ID of the associated agent identity.
     identity_parent_id: Optional[str] = None
@@ -247,7 +250,7 @@ class User(DirectoryObject, Parsable):
     is_license_reconciliation_needed: Optional[bool] = None
     # true if the user is a member of a restricted management administrative unit. If not set, the default value is null and the default behavior is false. Read-only.  To manage a user who is a member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
     is_management_restricted: Optional[bool] = None
-    # Do not use – reserved for future use.
+    # Do not use. Reserved for future use.
     is_resource_account: Optional[bool] = None
     # The user's job title. Maximum length is 128 characters. Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values).
     job_title: Optional[str] = None
@@ -478,6 +481,7 @@ class User(DirectoryObject, Parsable):
         from .device_key import DeviceKey
         from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
         from .directory_object import DirectoryObject
+        from .distribution_list import DistributionList
         from .drive import Drive
         from .employee_experience_user import EmployeeExperienceUser
         from .employee_org_data import EmployeeOrgData
@@ -563,6 +567,7 @@ class User(DirectoryObject, Parsable):
         from .device_key import DeviceKey
         from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
         from .directory_object import DirectoryObject
+        from .distribution_list import DistributionList
         from .drive import Drive
         from .employee_experience_user import EmployeeExperienceUser
         from .employee_org_data import EmployeeOrgData
@@ -669,6 +674,7 @@ class User(DirectoryObject, Parsable):
             "devices": lambda n : setattr(self, 'devices', n.get_collection_of_object_values(Device)),
             "directReports": lambda n : setattr(self, 'direct_reports', n.get_collection_of_object_values(DirectoryObject)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "distributionLists": lambda n : setattr(self, 'distribution_lists', n.get_collection_of_object_values(DistributionList)),
             "drive": lambda n : setattr(self, 'drive', n.get_object_value(Drive)),
             "drives": lambda n : setattr(self, 'drives', n.get_collection_of_object_values(Drive)),
             "employeeExperience": lambda n : setattr(self, 'employee_experience', n.get_object_value(EmployeeExperienceUser)),
@@ -847,6 +853,7 @@ class User(DirectoryObject, Parsable):
         writer.write_collection_of_object_values("devices", self.devices)
         writer.write_collection_of_object_values("directReports", self.direct_reports)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_collection_of_object_values("distributionLists", self.distribution_lists)
         writer.write_object_value("drive", self.drive)
         writer.write_collection_of_object_values("drives", self.drives)
         writer.write_object_value("employeeExperience", self.employee_experience)

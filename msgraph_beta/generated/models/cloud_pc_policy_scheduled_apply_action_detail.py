@@ -16,6 +16,8 @@ class CloudPcPolicyScheduledApplyActionDetail(Entity, Parsable):
     cron_schedule_expression: Optional[str] = None
     # Indicates IT Admins can set an end date to define the last scheduler run before this time. If not set, the scheduler runs continuously. There is no time zone information at this time; it needs to be coordinated with timezone, for example, '2025-02-01 00:00:00' with 'China Standard Time' means the scheduling rule takes effect before Feb 01 2025 00:00:00 GMT+0800 (China Standard Time).
     end_date_time: Optional[str] = None
+    # Indicates whether active Cloud PC sessions are forcibly signed out when reprovisioning begins. When true, connected users are immediately signed out and reprovisioning starts right away; reservePercentage must be set to 0 when this property is true, otherwise the request fails. When false, reprovisioning waits until the user disconnects. The default value is false. Optional. Frontline shared only.
+    is_force_user_logoff_enabled: Optional[bool] = None
     # Indicates IT Admins can see when the next automatic regular apply is executed. It needs to be coordinated with timezone, for example, '2025-01-01 00:00:00' with 'China Standard Time' means the next task executes at Jan 01 2025 00:00:00 GMT+0800 (China Standard Time). Read-Only.
     next_run_date_time: Optional[str] = None
     # The OdataType property
@@ -52,6 +54,7 @@ class CloudPcPolicyScheduledApplyActionDetail(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "cronScheduleExpression": lambda n : setattr(self, 'cron_schedule_expression', n.get_str_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_str_value()),
+            "isForceUserLogoffEnabled": lambda n : setattr(self, 'is_force_user_logoff_enabled', n.get_bool_value()),
             "nextRunDateTime": lambda n : setattr(self, 'next_run_date_time', n.get_str_value()),
             "reservePercentage": lambda n : setattr(self, 'reserve_percentage', n.get_int_value()),
             "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_str_value()),
@@ -72,6 +75,7 @@ class CloudPcPolicyScheduledApplyActionDetail(Entity, Parsable):
         super().serialize(writer)
         writer.write_str_value("cronScheduleExpression", self.cron_schedule_expression)
         writer.write_str_value("endDateTime", self.end_date_time)
+        writer.write_bool_value("isForceUserLogoffEnabled", self.is_force_user_logoff_enabled)
         writer.write_str_value("nextRunDateTime", self.next_run_date_time)
         writer.write_int_value("reservePercentage", self.reserve_percentage)
         writer.write_str_value("startDateTime", self.start_date_time)

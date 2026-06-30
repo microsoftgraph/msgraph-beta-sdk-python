@@ -16,11 +16,11 @@ from ..entity import Entity
 
 @dataclass
 class SensorMigration(Entity, Parsable):
-    # The createdDateTime property
+    # The date and time the sensor was created.
     created_date_time: Optional[datetime.datetime] = None
-    # The displayName property
+    # The display name of the sensor.
     display_name: Optional[str] = None
-    # The domainName property
+    # The fully qualified domain name (FQDN) of the domain controller where the sensor is installed.
     domain_name: Optional[str] = None
     # The healthStatus property
     health_status: Optional[SensorHealthStatus] = None
@@ -32,7 +32,7 @@ class SensorMigration(Entity, Parsable):
     sensor_type: Optional[SensorType] = None
     # The serviceStatus property
     service_status: Optional[ServiceStatus] = None
-    # The version property
+    # The version number of the sensor software.
     version: Optional[str] = None
     
     @staticmethod

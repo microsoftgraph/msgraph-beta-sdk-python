@@ -12,7 +12,7 @@ class RedirectUriPlatformBlockedDomainConfiguration(AdditionalDataHolder, Backed
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The blockedDomains property
+    # Collection of domain names that are blocked for this specific platform. Domain validation follows RFC 3986 (URI syntax, section 3.2.2 for the host component). Domain matching is case-insensitive and exact; wildcards are not supported.
     blocked_domains: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

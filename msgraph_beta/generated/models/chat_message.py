@@ -35,7 +35,7 @@ class ChatMessage(Entity, Parsable):
     chat_id: Optional[str] = None
     # Timestamp of when the chat message was created.
     created_date_time: Optional[datetime.datetime] = None
-    # Read only. Timestamp at which the chat message was deleted, or null if not deleted.
+    # Read-only. Timestamp at which the chat message was deleted, or null if not deleted.
     deleted_date_time: Optional[datetime.datetime] = None
     # Read-only. Version number of the chat message.
     etag: Optional[str] = None
@@ -47,9 +47,9 @@ class ChatMessage(Entity, Parsable):
     hosted_contents: Optional[list[ChatMessageHostedContent]] = None
     # The importance property
     importance: Optional[ChatMessageImportance] = None
-    # Read only. Timestamp when edits to the chat message were made. Triggers an 'Edited' flag in the Teams UI. If no edits are made the value is null.
+    # Read-only. Timestamp when edits to the chat message were made. Triggers an 'Edited' flag in the Teams UI. If no edits are made the value is null.
     last_edited_date_time: Optional[datetime.datetime] = None
-    # Read only. Timestamp when the chat message is created (initial setting) or modified, including when a reaction is added or removed.
+    # Read-only. Timestamp when the chat message is created (initial setting) or modified, including when a reaction is added or removed.
     last_modified_date_time: Optional[datetime.datetime] = None
     # Locale of the chat message set by the client. Always set to en-us.
     locale: Optional[str] = None

@@ -42,6 +42,8 @@ class MacOSWiFiConfiguration(DeviceConfiguration, Parsable):
     ssid: Optional[str] = None
     # Wi-Fi Security Types.
     wi_fi_security_type: Optional[WiFiSecurityType] = None
+    # Indicates whether devices connecting with this Wi-Fi profile must use their physical MAC address instead of a randomized MAC address. When TRUE, it uses the actual Wi-Fi MAC address. When FALSE, it enables the MAC address randomization. Applies to macOS 15 and later. Default is false.
+    wifi_require_physical_mac_address_enabled: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MacOSWiFiConfiguration:
@@ -92,6 +94,7 @@ class MacOSWiFiConfiguration(DeviceConfiguration, Parsable):
             "proxySettings": lambda n : setattr(self, 'proxy_settings', n.get_enum_value(WiFiProxySetting)),
             "ssid": lambda n : setattr(self, 'ssid', n.get_str_value()),
             "wiFiSecurityType": lambda n : setattr(self, 'wi_fi_security_type', n.get_enum_value(WiFiSecurityType)),
+            "wifiRequirePhysicalMacAddressEnabled": lambda n : setattr(self, 'wifi_require_physical_mac_address_enabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -117,5 +120,6 @@ class MacOSWiFiConfiguration(DeviceConfiguration, Parsable):
         writer.write_enum_value("proxySettings", self.proxy_settings)
         writer.write_str_value("ssid", self.ssid)
         writer.write_enum_value("wiFiSecurityType", self.wi_fi_security_type)
+        writer.write_bool_value("wifiRequirePhysicalMacAddressEnabled", self.wifi_require_physical_mac_address_enabled)
     
 

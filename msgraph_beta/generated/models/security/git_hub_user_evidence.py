@@ -13,15 +13,15 @@ from .alert_evidence import AlertEvidence
 class GitHubUserEvidence(AlertEvidence, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.gitHubUserEvidence"
-    # The email property
+    # The email address of the user account.
     email: Optional[str] = None
-    # The login property
+    # User's login (GitHub handle).
     login: Optional[str] = None
-    # The name property
+    # User's name.
     name: Optional[str] = None
-    # The userId property
+    # The unique and immutable ID of the user account.
     user_id: Optional[str] = None
-    # The webUrl property
+    # The URL of the user's profile web page, for example, https://github.com/my-login.
     web_url: Optional[str] = None
     
     @staticmethod

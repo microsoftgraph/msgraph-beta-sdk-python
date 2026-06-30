@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .access_review_scope import AccessReviewScope
     from .access_review_stage import AccessReviewStage
     from .entity import Entity
+    from .user_identity import UserIdentity
 
 from .entity import Entity
 
@@ -25,6 +26,8 @@ class AccessReviewInstance(Entity, Parsable):
     decisions: Optional[list[AccessReviewInstanceDecisionItem]] = None
     # There's exactly one accessReviewScheduleDefinition associated with each instance. It's the parent schedule for the instance, where instances are created for each recurrence of a review definition and each group selected to review by the definition.
     definition: Optional[AccessReviewScheduleDefinition] = None
+    # The identities of users who delegated this review instance to the current reviewer. Null if the instance wasn't delegated. Only returned via filterByCurrentUser when explicitly requested via $select. Read-only.
+    delegated_by: Optional[list[UserIdentity]] = None
     # DateTime when review instance is scheduled to end. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $select. Read-only.
     end_date_time: Optional[datetime.datetime] = None
     # Collection of errors in an access review instance lifecycle. Read-only.
@@ -68,6 +71,7 @@ class AccessReviewInstance(Entity, Parsable):
         from .access_review_scope import AccessReviewScope
         from .access_review_stage import AccessReviewStage
         from .entity import Entity
+        from .user_identity import UserIdentity
 
         from .access_review_error import AccessReviewError
         from .access_review_instance_decision_item import AccessReviewInstanceDecisionItem
@@ -77,11 +81,13 @@ class AccessReviewInstance(Entity, Parsable):
         from .access_review_scope import AccessReviewScope
         from .access_review_stage import AccessReviewStage
         from .entity import Entity
+        from .user_identity import UserIdentity
 
         fields: dict[str, Callable[[Any], None]] = {
             "contactedReviewers": lambda n : setattr(self, 'contacted_reviewers', n.get_collection_of_object_values(AccessReviewReviewer)),
             "decisions": lambda n : setattr(self, 'decisions', n.get_collection_of_object_values(AccessReviewInstanceDecisionItem)),
             "definition": lambda n : setattr(self, 'definition', n.get_object_value(AccessReviewScheduleDefinition)),
+            "delegatedBy": lambda n : setattr(self, 'delegated_by', n.get_collection_of_object_values(UserIdentity)),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_object_values(AccessReviewError)),
             "fallbackReviewers": lambda n : setattr(self, 'fallback_reviewers', n.get_collection_of_object_values(AccessReviewReviewerScope)),
@@ -107,6 +113,7 @@ class AccessReviewInstance(Entity, Parsable):
         writer.write_collection_of_object_values("contactedReviewers", self.contacted_reviewers)
         writer.write_collection_of_object_values("decisions", self.decisions)
         writer.write_object_value("definition", self.definition)
+        writer.write_collection_of_object_values("delegatedBy", self.delegated_by)
         writer.write_datetime_value("endDateTime", self.end_date_time)
         writer.write_collection_of_object_values("errors", self.errors)
         writer.write_collection_of_object_values("fallbackReviewers", self.fallback_reviewers)

@@ -9,4 +9,6 @@ class TlsCertificateStatus(str, Enum):
     Expired = "expired",
     Enabled = "enabled",
     Disabled = "disabled",
+    Creating = "creating",
+    Revoked = "revoked",
 

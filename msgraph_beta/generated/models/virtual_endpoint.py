@@ -40,7 +40,7 @@ class VirtualEndpoint(Entity, Parsable):
     cloud_apps: Optional[list[CloudPcCloudApp]] = None
     # Cloud managed virtual desktops.
     cloud_p_cs: Optional[list[CloudPC]] = None
-    # The cloudPcPools property
+    # The Cloud PC pools managed by the virtual endpoint.
     cloud_pc_pools: Optional[list[CloudPcPool]] = None
     # Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
     cross_cloud_government_organization_mapping: Optional[CloudPcCrossCloudGovernmentOrganizationMapping] = None

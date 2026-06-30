@@ -33,11 +33,10 @@ class ValidateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ValidatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CrossTenantMigrationJob]:
         """
-        Validate the configuration of a crossTenantMigrationJob. This function doesn't migrate any content, but goes through validation for the specified workloads to find any errors or misconfigurations that would affect an actual migration job. 
+        Invoke action validate
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantMigrationJob]
-        Find more info here: https://learn.microsoft.com/graph/api/crosstenantmigrationjob-validate?view=graph-rest-beta
         """
         warn(" as of 2025-07/PrivatePreview:CrossTenantContentMigrationAPI on 2025-07-09 and will be removed 2026-07-09", DeprecationWarning)
         if body is None:
@@ -58,7 +57,7 @@ class ValidateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ValidatePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Validate the configuration of a crossTenantMigrationJob. This function doesn't migrate any content, but goes through validation for the specified workloads to find any errors or misconfigurations that would affect an actual migration job. 
+        Invoke action validate
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

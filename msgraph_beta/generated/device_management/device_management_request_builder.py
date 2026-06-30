@@ -58,7 +58,7 @@ if TYPE_CHECKING:
     from .device_compliance_policy_setting_state_summaries.device_compliance_policy_setting_state_summaries_request_builder import DeviceCompliancePolicySettingStateSummariesRequestBuilder
     from .device_compliance_scripts.device_compliance_scripts_request_builder import DeviceComplianceScriptsRequestBuilder
     from .device_configurations.device_configurations_request_builder import DeviceConfigurationsRequestBuilder
-    from .device_configurations_all_managed_device_certificate_states.device_configurations_all_managed_device_certificate_states_request_builder import DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder
+    from .device_configurations_all_managed_device_certificate_states.device_configurations_all_managed_device_certificate_states_re_d8a714a9 import DeviceConfigurationsAllManagedDeviceCertificateStatesRe_d8a714a9
     from .device_configuration_conflict_summary.device_configuration_conflict_summary_request_builder import DeviceConfigurationConflictSummaryRequestBuilder
     from .device_configuration_device_state_summaries.device_configuration_device_state_summaries_request_builder import DeviceConfigurationDeviceStateSummariesRequestBuilder
     from .device_configuration_restricted_apps_violations.device_configuration_restricted_apps_violations_request_builder import DeviceConfigurationRestrictedAppsViolationsRequestBuilder
@@ -147,25 +147,25 @@ if TYPE_CHECKING:
     from .terms_and_conditions.terms_and_conditions_request_builder import TermsAndConditionsRequestBuilder
     from .troubleshooting_events.troubleshooting_events_request_builder import TroubleshootingEventsRequestBuilder
     from .user_experience_analytics_anomaly.user_experience_analytics_anomaly_request_builder import UserExperienceAnalyticsAnomalyRequestBuilder
-    from .user_experience_analytics_anomaly_correlation_group_overview.user_experience_analytics_anomaly_correlation_group_overview_request_builder import UserExperienceAnalyticsAnomalyCorrelationGroupOverviewRequestBuilder
+    from .user_experience_analytics_anomaly_correlation_group_overview.user_experience_analytics_anomaly_correlation_group_overview_r_71683ae6 import UserExperienceAnalyticsAnomalyCorrelationGroupOverviewR_71683ae6
     from .user_experience_analytics_anomaly_device.user_experience_analytics_anomaly_device_request_builder import UserExperienceAnalyticsAnomalyDeviceRequestBuilder
-    from .user_experience_analytics_app_health_application_performance.user_experience_analytics_app_health_application_performance_request_builder import UserExperienceAnalyticsAppHealthApplicationPerformanceRequestBuilder
-    from .user_experience_analytics_app_health_application_performance_by_app_version.user_experience_analytics_app_health_application_performance_by_app_version_request_builder import UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestBuilder
-    from .user_experience_analytics_app_health_application_performance_by_app_version_details.user_experience_analytics_app_health_application_performance_by_app_version_details_request_builder import UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsRequestBuilder
-    from .user_experience_analytics_app_health_application_performance_by_app_version_device_id.user_experience_analytics_app_health_application_performance_by_app_version_device_id_request_builder import UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdRequestBuilder
-    from .user_experience_analytics_app_health_application_performance_by_o_s_version.user_experience_analytics_app_health_application_performance_by_o_s_version_request_builder import UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionRequestBuilder
-    from .user_experience_analytics_app_health_device_model_performance.user_experience_analytics_app_health_device_model_performance_request_builder import UserExperienceAnalyticsAppHealthDeviceModelPerformanceRequestBuilder
+    from .user_experience_analytics_app_health_application_performance.user_experience_analytics_app_health_application_performance_r_639a6000 import UserExperienceAnalyticsAppHealthApplicationPerformanceR_639a6000
+    from .user_experience_analytics_app_health_application_performance_b_2c7136c4.user_experience_analytics_app_health_application_performance_b_70be83d2 import UserExperienceAnalyticsAppHealthApplicationPerformanceB_70be83d2
+    from .user_experience_analytics_app_health_application_performance_b_3fa78c7f.user_experience_analytics_app_health_application_performance_b_b0ce4c31 import UserExperienceAnalyticsAppHealthApplicationPerformanceB_b0ce4c31
+    from .user_experience_analytics_app_health_application_performance_b_764bd61c.user_experience_analytics_app_health_application_performance_b_899202bd import UserExperienceAnalyticsAppHealthApplicationPerformanceB_899202bd
+    from .user_experience_analytics_app_health_application_performance_b_76e0e2cf.user_experience_analytics_app_health_application_performance_b_73937166 import UserExperienceAnalyticsAppHealthApplicationPerformanceB_73937166
+    from .user_experience_analytics_app_health_device_model_performance.user_experience_analytics_app_health_device_model_performance_r_4dcbff66 import UserExperienceAnalyticsAppHealthDeviceModelPerformanceR_4dcbff66
     from .user_experience_analytics_app_health_device_performance.user_experience_analytics_app_health_device_performance_request_builder import UserExperienceAnalyticsAppHealthDevicePerformanceRequestBuilder
-    from .user_experience_analytics_app_health_device_performance_details.user_experience_analytics_app_health_device_performance_details_request_builder import UserExperienceAnalyticsAppHealthDevicePerformanceDetailsRequestBuilder
+    from .user_experience_analytics_app_health_device_performance_details.user_experience_analytics_app_health_device_performance_detail_4ca850b6 import UserExperienceAnalyticsAppHealthDevicePerformanceDetail_4ca850b6
     from .user_experience_analytics_app_health_overview.user_experience_analytics_app_health_overview_request_builder import UserExperienceAnalyticsAppHealthOverviewRequestBuilder
-    from .user_experience_analytics_app_health_o_s_version_performance.user_experience_analytics_app_health_o_s_version_performance_request_builder import UserExperienceAnalyticsAppHealthOSVersionPerformanceRequestBuilder
+    from .user_experience_analytics_app_health_o_s_version_performance.user_experience_analytics_app_health_o_s_version_performance_req_fdb3de6d import UserExperienceAnalyticsAppHealthOSVersionPerformanceReq_fdb3de6d
     from .user_experience_analytics_baselines.user_experience_analytics_baselines_request_builder import UserExperienceAnalyticsBaselinesRequestBuilder
     from .user_experience_analytics_battery_health_app_impact.user_experience_analytics_battery_health_app_impact_request_builder import UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilder
-    from .user_experience_analytics_battery_health_capacity_details.user_experience_analytics_battery_health_capacity_details_request_builder import UserExperienceAnalyticsBatteryHealthCapacityDetailsRequestBuilder
-    from .user_experience_analytics_battery_health_device_app_impact.user_experience_analytics_battery_health_device_app_impact_request_builder import UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilder
-    from .user_experience_analytics_battery_health_device_performance.user_experience_analytics_battery_health_device_performance_request_builder import UserExperienceAnalyticsBatteryHealthDevicePerformanceRequestBuilder
-    from .user_experience_analytics_battery_health_device_runtime_history.user_experience_analytics_battery_health_device_runtime_history_request_builder import UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder
-    from .user_experience_analytics_battery_health_model_performance.user_experience_analytics_battery_health_model_performance_request_builder import UserExperienceAnalyticsBatteryHealthModelPerformanceRequestBuilder
+    from .user_experience_analytics_battery_health_capacity_details.user_experience_analytics_battery_health_capacity_details_requ_64948acf import UserExperienceAnalyticsBatteryHealthCapacityDetailsRequ_64948acf
+    from .user_experience_analytics_battery_health_device_app_impact.user_experience_analytics_battery_health_device_app_impact_requ_fbd82418 import UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequ_fbd82418
+    from .user_experience_analytics_battery_health_device_performance.user_experience_analytics_battery_health_device_performance_re_cfe5ecff import UserExperienceAnalyticsBatteryHealthDevicePerformanceRe_cfe5ecff
+    from .user_experience_analytics_battery_health_device_runtime_history.user_experience_analytics_battery_health_device_runtime_histor_0792f10d import UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistor_0792f10d
+    from .user_experience_analytics_battery_health_model_performance.user_experience_analytics_battery_health_model_performance_req_280ce9aa import UserExperienceAnalyticsBatteryHealthModelPerformanceReq_280ce9aa
     from .user_experience_analytics_battery_health_os_performance.user_experience_analytics_battery_health_os_performance_request_builder import UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilder
     from .user_experience_analytics_battery_health_runtime_details.user_experience_analytics_battery_health_runtime_details_request_builder import UserExperienceAnalyticsBatteryHealthRuntimeDetailsRequestBuilder
     from .user_experience_analytics_categories.user_experience_analytics_categories_request_builder import UserExperienceAnalyticsCategoriesRequestBuilder
@@ -177,7 +177,7 @@ if TYPE_CHECKING:
     from .user_experience_analytics_device_scores.user_experience_analytics_device_scores_request_builder import UserExperienceAnalyticsDeviceScoresRequestBuilder
     from .user_experience_analytics_device_startup_history.user_experience_analytics_device_startup_history_request_builder import UserExperienceAnalyticsDeviceStartupHistoryRequestBuilder
     from .user_experience_analytics_device_startup_processes.user_experience_analytics_device_startup_processes_request_builder import UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder
-    from .user_experience_analytics_device_startup_process_performance.user_experience_analytics_device_startup_process_performance_request_builder import UserExperienceAnalyticsDeviceStartupProcessPerformanceRequestBuilder
+    from .user_experience_analytics_device_startup_process_performance.user_experience_analytics_device_startup_process_performance_r_4c8ce676 import UserExperienceAnalyticsDeviceStartupProcessPerformanceR_4c8ce676
     from .user_experience_analytics_device_timeline_event.user_experience_analytics_device_timeline_event_request_builder import UserExperienceAnalyticsDeviceTimelineEventRequestBuilder
     from .user_experience_analytics_impacting_process.user_experience_analytics_impacting_process_request_builder import UserExperienceAnalyticsImpactingProcessRequestBuilder
     from .user_experience_analytics_metric_history.user_experience_analytics_metric_history_request_builder import UserExperienceAnalyticsMetricHistoryRequestBuilder
@@ -188,10 +188,10 @@ if TYPE_CHECKING:
     from .user_experience_analytics_resource_performance.user_experience_analytics_resource_performance_request_builder import UserExperienceAnalyticsResourcePerformanceRequestBuilder
     from .user_experience_analytics_score_history.user_experience_analytics_score_history_request_builder import UserExperienceAnalyticsScoreHistoryRequestBuilder
     from .user_experience_analytics_summarized_device_scopes.user_experience_analytics_summarized_device_scopes_request_builder import UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder
-    from .user_experience_analytics_summarize_work_from_anywhere_devices.user_experience_analytics_summarize_work_from_anywhere_devices_request_builder import UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder
-    from .user_experience_analytics_work_from_anywhere_hardware_readiness_metric.user_experience_analytics_work_from_anywhere_hardware_readiness_metric_request_builder import UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder
+    from .user_experience_analytics_summarize_work_from_anywhere_devices.user_experience_analytics_summarize_work_from_anywhere_devices_2417dbae import UserExperienceAnalyticsSummarizeWorkFromAnywhereDevices_2417dbae
+    from .user_experience_analytics_work_from_anywhere_hardware_readiness_metric.user_experience_analytics_work_from_anywhere_hardware_readines_08ab2d74 import UserExperienceAnalyticsWorkFromAnywhereHardwareReadines_08ab2d74
     from .user_experience_analytics_work_from_anywhere_metrics.user_experience_analytics_work_from_anywhere_metrics_request_builder import UserExperienceAnalyticsWorkFromAnywhereMetricsRequestBuilder
-    from .user_experience_analytics_work_from_anywhere_model_performance.user_experience_analytics_work_from_anywhere_model_performance_request_builder import UserExperienceAnalyticsWorkFromAnywhereModelPerformanceRequestBuilder
+    from .user_experience_analytics_work_from_anywhere_model_performance.user_experience_analytics_work_from_anywhere_model_performance_95ddf1fd import UserExperienceAnalyticsWorkFromAnywhereModelPerformance_95ddf1fd
     from .user_pfx_certificates.user_pfx_certificates_request_builder import UserPfxCertificatesRequestBuilder
     from .verify_windows_enrollment_auto_discovery_with_domain_name.verify_windows_enrollment_auto_discovery_with_domain_name_request_builder import VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder
     from .virtual_endpoint.virtual_endpoint_request_builder import VirtualEndpointRequestBuilder
@@ -201,7 +201,7 @@ if TYPE_CHECKING:
     from .windows_driver_update_profiles.windows_driver_update_profiles_request_builder import WindowsDriverUpdateProfilesRequestBuilder
     from .windows_feature_update_profiles.windows_feature_update_profiles_request_builder import WindowsFeatureUpdateProfilesRequestBuilder
     from .windows_information_protection_app_learning_summaries.windows_information_protection_app_learning_summaries_request_builder import WindowsInformationProtectionAppLearningSummariesRequestBuilder
-    from .windows_information_protection_network_learning_summaries.windows_information_protection_network_learning_summaries_request_builder import WindowsInformationProtectionNetworkLearningSummariesRequestBuilder
+    from .windows_information_protection_network_learning_summaries.windows_information_protection_network_learning_summaries_req_49622581 import WindowsInformationProtectionNetworkLearningSummariesReq_49622581
     from .windows_malware_information.windows_malware_information_request_builder import WindowsMalwareInformationRequestBuilder
     from .windows_quality_update_policies.windows_quality_update_policies_request_builder import WindowsQualityUpdatePoliciesRequestBuilder
     from .windows_quality_update_profiles.windows_quality_update_profiles_request_builder import WindowsQualityUpdateProfilesRequestBuilder
@@ -801,13 +801,13 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return DeviceConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device_configurations_all_managed_device_certificate_states(self) -> DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder:
+    def device_configurations_all_managed_device_certificate_states(self) -> DeviceConfigurationsAllManagedDeviceCertificateStatesRe_d8a714a9:
         """
         Provides operations to manage the deviceConfigurationsAllManagedDeviceCertificateStates property of the microsoft.graph.deviceManagement entity.
         """
-        from .device_configurations_all_managed_device_certificate_states.device_configurations_all_managed_device_certificate_states_request_builder import DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder
+        from .device_configurations_all_managed_device_certificate_states.device_configurations_all_managed_device_certificate_states_re_d8a714a9 import DeviceConfigurationsAllManagedDeviceCertificateStatesRe_d8a714a9
 
-        return DeviceConfigurationsAllManagedDeviceCertificateStatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return DeviceConfigurationsAllManagedDeviceCertificateStatesRe_d8a714a9(self.request_adapter, self.path_parameters)
     
     @property
     def device_custom_attribute_shell_scripts(self) -> DeviceCustomAttributeShellScriptsRequestBuilder:
@@ -1512,13 +1512,13 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return UserExperienceAnalyticsAnomalyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_anomaly_correlation_group_overview(self) -> UserExperienceAnalyticsAnomalyCorrelationGroupOverviewRequestBuilder:
+    def user_experience_analytics_anomaly_correlation_group_overview(self) -> UserExperienceAnalyticsAnomalyCorrelationGroupOverviewR_71683ae6:
         """
         Provides operations to manage the userExperienceAnalyticsAnomalyCorrelationGroupOverview property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_anomaly_correlation_group_overview.user_experience_analytics_anomaly_correlation_group_overview_request_builder import UserExperienceAnalyticsAnomalyCorrelationGroupOverviewRequestBuilder
+        from .user_experience_analytics_anomaly_correlation_group_overview.user_experience_analytics_anomaly_correlation_group_overview_r_71683ae6 import UserExperienceAnalyticsAnomalyCorrelationGroupOverviewR_71683ae6
 
-        return UserExperienceAnalyticsAnomalyCorrelationGroupOverviewRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsAnomalyCorrelationGroupOverviewR_71683ae6(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_anomaly_device(self) -> UserExperienceAnalyticsAnomalyDeviceRequestBuilder:
@@ -1530,58 +1530,58 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return UserExperienceAnalyticsAnomalyDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_app_health_application_performance(self) -> UserExperienceAnalyticsAppHealthApplicationPerformanceRequestBuilder:
+    def user_experience_analytics_app_health_application_performance(self) -> UserExperienceAnalyticsAppHealthApplicationPerformanceR_639a6000:
         """
         Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformance property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_app_health_application_performance.user_experience_analytics_app_health_application_performance_request_builder import UserExperienceAnalyticsAppHealthApplicationPerformanceRequestBuilder
+        from .user_experience_analytics_app_health_application_performance.user_experience_analytics_app_health_application_performance_r_639a6000 import UserExperienceAnalyticsAppHealthApplicationPerformanceR_639a6000
 
-        return UserExperienceAnalyticsAppHealthApplicationPerformanceRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsAppHealthApplicationPerformanceR_639a6000(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_app_health_application_performance_by_app_version(self) -> UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestBuilder:
+    def user_experience_analytics_app_health_application_performance_by_app_version(self) -> UserExperienceAnalyticsAppHealthApplicationPerformanceB_70be83d2:
         """
         Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersion property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_app_health_application_performance_by_app_version.user_experience_analytics_app_health_application_performance_by_app_version_request_builder import UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestBuilder
+        from .user_experience_analytics_app_health_application_performance_b_2c7136c4.user_experience_analytics_app_health_application_performance_b_70be83d2 import UserExperienceAnalyticsAppHealthApplicationPerformanceB_70be83d2
 
-        return UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsAppHealthApplicationPerformanceB_70be83d2(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_app_health_application_performance_by_app_version_details(self) -> UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsRequestBuilder:
+    def user_experience_analytics_app_health_application_performance_by_app_version_details(self) -> UserExperienceAnalyticsAppHealthApplicationPerformanceB_73937166:
         """
         Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_app_health_application_performance_by_app_version_details.user_experience_analytics_app_health_application_performance_by_app_version_details_request_builder import UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsRequestBuilder
+        from .user_experience_analytics_app_health_application_performance_b_76e0e2cf.user_experience_analytics_app_health_application_performance_b_73937166 import UserExperienceAnalyticsAppHealthApplicationPerformanceB_73937166
 
-        return UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsAppHealthApplicationPerformanceB_73937166(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_app_health_application_performance_by_app_version_device_id(self) -> UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdRequestBuilder:
+    def user_experience_analytics_app_health_application_performance_by_app_version_device_id(self) -> UserExperienceAnalyticsAppHealthApplicationPerformanceB_b0ce4c31:
         """
         Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_app_health_application_performance_by_app_version_device_id.user_experience_analytics_app_health_application_performance_by_app_version_device_id_request_builder import UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdRequestBuilder
+        from .user_experience_analytics_app_health_application_performance_b_3fa78c7f.user_experience_analytics_app_health_application_performance_b_b0ce4c31 import UserExperienceAnalyticsAppHealthApplicationPerformanceB_b0ce4c31
 
-        return UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsAppHealthApplicationPerformanceB_b0ce4c31(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_app_health_application_performance_by_o_s_version(self) -> UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionRequestBuilder:
+    def user_experience_analytics_app_health_application_performance_by_o_s_version(self) -> UserExperienceAnalyticsAppHealthApplicationPerformanceB_899202bd:
         """
         Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_app_health_application_performance_by_o_s_version.user_experience_analytics_app_health_application_performance_by_o_s_version_request_builder import UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionRequestBuilder
+        from .user_experience_analytics_app_health_application_performance_b_764bd61c.user_experience_analytics_app_health_application_performance_b_899202bd import UserExperienceAnalyticsAppHealthApplicationPerformanceB_899202bd
 
-        return UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsAppHealthApplicationPerformanceB_899202bd(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_app_health_device_model_performance(self) -> UserExperienceAnalyticsAppHealthDeviceModelPerformanceRequestBuilder:
+    def user_experience_analytics_app_health_device_model_performance(self) -> UserExperienceAnalyticsAppHealthDeviceModelPerformanceR_4dcbff66:
         """
         Provides operations to manage the userExperienceAnalyticsAppHealthDeviceModelPerformance property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_app_health_device_model_performance.user_experience_analytics_app_health_device_model_performance_request_builder import UserExperienceAnalyticsAppHealthDeviceModelPerformanceRequestBuilder
+        from .user_experience_analytics_app_health_device_model_performance.user_experience_analytics_app_health_device_model_performance_r_4dcbff66 import UserExperienceAnalyticsAppHealthDeviceModelPerformanceR_4dcbff66
 
-        return UserExperienceAnalyticsAppHealthDeviceModelPerformanceRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsAppHealthDeviceModelPerformanceR_4dcbff66(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_app_health_device_performance(self) -> UserExperienceAnalyticsAppHealthDevicePerformanceRequestBuilder:
@@ -1593,22 +1593,22 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return UserExperienceAnalyticsAppHealthDevicePerformanceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_app_health_device_performance_details(self) -> UserExperienceAnalyticsAppHealthDevicePerformanceDetailsRequestBuilder:
+    def user_experience_analytics_app_health_device_performance_details(self) -> UserExperienceAnalyticsAppHealthDevicePerformanceDetail_4ca850b6:
         """
         Provides operations to manage the userExperienceAnalyticsAppHealthDevicePerformanceDetails property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_app_health_device_performance_details.user_experience_analytics_app_health_device_performance_details_request_builder import UserExperienceAnalyticsAppHealthDevicePerformanceDetailsRequestBuilder
+        from .user_experience_analytics_app_health_device_performance_details.user_experience_analytics_app_health_device_performance_detail_4ca850b6 import UserExperienceAnalyticsAppHealthDevicePerformanceDetail_4ca850b6
 
-        return UserExperienceAnalyticsAppHealthDevicePerformanceDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsAppHealthDevicePerformanceDetail_4ca850b6(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_app_health_o_s_version_performance(self) -> UserExperienceAnalyticsAppHealthOSVersionPerformanceRequestBuilder:
+    def user_experience_analytics_app_health_o_s_version_performance(self) -> UserExperienceAnalyticsAppHealthOSVersionPerformanceReq_fdb3de6d:
         """
         Provides operations to manage the userExperienceAnalyticsAppHealthOSVersionPerformance property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_app_health_o_s_version_performance.user_experience_analytics_app_health_o_s_version_performance_request_builder import UserExperienceAnalyticsAppHealthOSVersionPerformanceRequestBuilder
+        from .user_experience_analytics_app_health_o_s_version_performance.user_experience_analytics_app_health_o_s_version_performance_req_fdb3de6d import UserExperienceAnalyticsAppHealthOSVersionPerformanceReq_fdb3de6d
 
-        return UserExperienceAnalyticsAppHealthOSVersionPerformanceRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsAppHealthOSVersionPerformanceReq_fdb3de6d(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_app_health_overview(self) -> UserExperienceAnalyticsAppHealthOverviewRequestBuilder:
@@ -1638,49 +1638,49 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_battery_health_capacity_details(self) -> UserExperienceAnalyticsBatteryHealthCapacityDetailsRequestBuilder:
+    def user_experience_analytics_battery_health_capacity_details(self) -> UserExperienceAnalyticsBatteryHealthCapacityDetailsRequ_64948acf:
         """
         Provides operations to manage the userExperienceAnalyticsBatteryHealthCapacityDetails property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_battery_health_capacity_details.user_experience_analytics_battery_health_capacity_details_request_builder import UserExperienceAnalyticsBatteryHealthCapacityDetailsRequestBuilder
+        from .user_experience_analytics_battery_health_capacity_details.user_experience_analytics_battery_health_capacity_details_requ_64948acf import UserExperienceAnalyticsBatteryHealthCapacityDetailsRequ_64948acf
 
-        return UserExperienceAnalyticsBatteryHealthCapacityDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsBatteryHealthCapacityDetailsRequ_64948acf(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_battery_health_device_app_impact(self) -> UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilder:
+    def user_experience_analytics_battery_health_device_app_impact(self) -> UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequ_fbd82418:
         """
         Provides operations to manage the userExperienceAnalyticsBatteryHealthDeviceAppImpact property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_battery_health_device_app_impact.user_experience_analytics_battery_health_device_app_impact_request_builder import UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilder
+        from .user_experience_analytics_battery_health_device_app_impact.user_experience_analytics_battery_health_device_app_impact_requ_fbd82418 import UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequ_fbd82418
 
-        return UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequ_fbd82418(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_battery_health_device_performance(self) -> UserExperienceAnalyticsBatteryHealthDevicePerformanceRequestBuilder:
+    def user_experience_analytics_battery_health_device_performance(self) -> UserExperienceAnalyticsBatteryHealthDevicePerformanceRe_cfe5ecff:
         """
         Provides operations to manage the userExperienceAnalyticsBatteryHealthDevicePerformance property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_battery_health_device_performance.user_experience_analytics_battery_health_device_performance_request_builder import UserExperienceAnalyticsBatteryHealthDevicePerformanceRequestBuilder
+        from .user_experience_analytics_battery_health_device_performance.user_experience_analytics_battery_health_device_performance_re_cfe5ecff import UserExperienceAnalyticsBatteryHealthDevicePerformanceRe_cfe5ecff
 
-        return UserExperienceAnalyticsBatteryHealthDevicePerformanceRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsBatteryHealthDevicePerformanceRe_cfe5ecff(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_battery_health_device_runtime_history(self) -> UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder:
+    def user_experience_analytics_battery_health_device_runtime_history(self) -> UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistor_0792f10d:
         """
         Provides operations to manage the userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_battery_health_device_runtime_history.user_experience_analytics_battery_health_device_runtime_history_request_builder import UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder
+        from .user_experience_analytics_battery_health_device_runtime_history.user_experience_analytics_battery_health_device_runtime_histor_0792f10d import UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistor_0792f10d
 
-        return UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistor_0792f10d(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_battery_health_model_performance(self) -> UserExperienceAnalyticsBatteryHealthModelPerformanceRequestBuilder:
+    def user_experience_analytics_battery_health_model_performance(self) -> UserExperienceAnalyticsBatteryHealthModelPerformanceReq_280ce9aa:
         """
         Provides operations to manage the userExperienceAnalyticsBatteryHealthModelPerformance property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_battery_health_model_performance.user_experience_analytics_battery_health_model_performance_request_builder import UserExperienceAnalyticsBatteryHealthModelPerformanceRequestBuilder
+        from .user_experience_analytics_battery_health_model_performance.user_experience_analytics_battery_health_model_performance_req_280ce9aa import UserExperienceAnalyticsBatteryHealthModelPerformanceReq_280ce9aa
 
-        return UserExperienceAnalyticsBatteryHealthModelPerformanceRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsBatteryHealthModelPerformanceReq_280ce9aa(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_battery_health_os_performance(self) -> UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilder:
@@ -1764,13 +1764,13 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return UserExperienceAnalyticsDeviceStartupHistoryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_device_startup_process_performance(self) -> UserExperienceAnalyticsDeviceStartupProcessPerformanceRequestBuilder:
+    def user_experience_analytics_device_startup_process_performance(self) -> UserExperienceAnalyticsDeviceStartupProcessPerformanceR_4c8ce676:
         """
         Provides operations to manage the userExperienceAnalyticsDeviceStartupProcessPerformance property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_device_startup_process_performance.user_experience_analytics_device_startup_process_performance_request_builder import UserExperienceAnalyticsDeviceStartupProcessPerformanceRequestBuilder
+        from .user_experience_analytics_device_startup_process_performance.user_experience_analytics_device_startup_process_performance_r_4c8ce676 import UserExperienceAnalyticsDeviceStartupProcessPerformanceR_4c8ce676
 
-        return UserExperienceAnalyticsDeviceStartupProcessPerformanceRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsDeviceStartupProcessPerformanceR_4c8ce676(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_device_startup_processes(self) -> UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder:
@@ -1872,13 +1872,13 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return UserExperienceAnalyticsScoreHistoryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_summarize_work_from_anywhere_devices(self) -> UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder:
+    def user_experience_analytics_summarize_work_from_anywhere_devices(self) -> UserExperienceAnalyticsSummarizeWorkFromAnywhereDevices_2417dbae:
         """
         Provides operations to call the userExperienceAnalyticsSummarizeWorkFromAnywhereDevices method.
         """
-        from .user_experience_analytics_summarize_work_from_anywhere_devices.user_experience_analytics_summarize_work_from_anywhere_devices_request_builder import UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder
+        from .user_experience_analytics_summarize_work_from_anywhere_devices.user_experience_analytics_summarize_work_from_anywhere_devices_2417dbae import UserExperienceAnalyticsSummarizeWorkFromAnywhereDevices_2417dbae
 
-        return UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsSummarizeWorkFromAnywhereDevices_2417dbae(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_summarized_device_scopes(self) -> UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder:
@@ -1890,13 +1890,13 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_work_from_anywhere_hardware_readiness_metric(self) -> UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder:
+    def user_experience_analytics_work_from_anywhere_hardware_readiness_metric(self) -> UserExperienceAnalyticsWorkFromAnywhereHardwareReadines_08ab2d74:
         """
         Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_work_from_anywhere_hardware_readiness_metric.user_experience_analytics_work_from_anywhere_hardware_readiness_metric_request_builder import UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder
+        from .user_experience_analytics_work_from_anywhere_hardware_readiness_metric.user_experience_analytics_work_from_anywhere_hardware_readines_08ab2d74 import UserExperienceAnalyticsWorkFromAnywhereHardwareReadines_08ab2d74
 
-        return UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsWorkFromAnywhereHardwareReadines_08ab2d74(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_work_from_anywhere_metrics(self) -> UserExperienceAnalyticsWorkFromAnywhereMetricsRequestBuilder:
@@ -1908,13 +1908,13 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return UserExperienceAnalyticsWorkFromAnywhereMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_work_from_anywhere_model_performance(self) -> UserExperienceAnalyticsWorkFromAnywhereModelPerformanceRequestBuilder:
+    def user_experience_analytics_work_from_anywhere_model_performance(self) -> UserExperienceAnalyticsWorkFromAnywhereModelPerformance_95ddf1fd:
         """
         Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereModelPerformance property of the microsoft.graph.deviceManagement entity.
         """
-        from .user_experience_analytics_work_from_anywhere_model_performance.user_experience_analytics_work_from_anywhere_model_performance_request_builder import UserExperienceAnalyticsWorkFromAnywhereModelPerformanceRequestBuilder
+        from .user_experience_analytics_work_from_anywhere_model_performance.user_experience_analytics_work_from_anywhere_model_performance_95ddf1fd import UserExperienceAnalyticsWorkFromAnywhereModelPerformance_95ddf1fd
 
-        return UserExperienceAnalyticsWorkFromAnywhereModelPerformanceRequestBuilder(self.request_adapter, self.path_parameters)
+        return UserExperienceAnalyticsWorkFromAnywhereModelPerformance_95ddf1fd(self.request_adapter, self.path_parameters)
     
     @property
     def user_pfx_certificates(self) -> UserPfxCertificatesRequestBuilder:
@@ -1989,13 +1989,13 @@ class DeviceManagementRequestBuilder(BaseRequestBuilder):
         return WindowsInformationProtectionAppLearningSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_information_protection_network_learning_summaries(self) -> WindowsInformationProtectionNetworkLearningSummariesRequestBuilder:
+    def windows_information_protection_network_learning_summaries(self) -> WindowsInformationProtectionNetworkLearningSummariesReq_49622581:
         """
         Provides operations to manage the windowsInformationProtectionNetworkLearningSummaries property of the microsoft.graph.deviceManagement entity.
         """
-        from .windows_information_protection_network_learning_summaries.windows_information_protection_network_learning_summaries_request_builder import WindowsInformationProtectionNetworkLearningSummariesRequestBuilder
+        from .windows_information_protection_network_learning_summaries.windows_information_protection_network_learning_summaries_req_49622581 import WindowsInformationProtectionNetworkLearningSummariesReq_49622581
 
-        return WindowsInformationProtectionNetworkLearningSummariesRequestBuilder(self.request_adapter, self.path_parameters)
+        return WindowsInformationProtectionNetworkLearningSummariesReq_49622581(self.request_adapter, self.path_parameters)
     
     @property
     def windows_malware_information(self) -> WindowsMalwareInformationRequestBuilder:

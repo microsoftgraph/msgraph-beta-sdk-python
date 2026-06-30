@@ -1,0 +1,186 @@
+from __future__ import annotations
+import datetime
+from collections.abc import Callable
+from dataclasses import dataclass, field
+from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
+from typing import Any, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from .identity_set import IdentitySet
+    from .planner_applied_categories import PlannerAppliedCategories
+    from .planner_archival_info import PlannerArchivalInfo
+    from .planner_assignments import PlannerAssignments
+    from .planner_preview_type import PlannerPreviewType
+    from .planner_task_completion_requirements import PlannerTaskCompletionRequirements
+    from .planner_task_creation import PlannerTaskCreation
+    from .planner_task_details_data import PlannerTaskDetailsData
+    from .planner_task_recurrence import PlannerTaskRecurrence
+
+@dataclass
+class PlannerTaskData(AdditionalDataHolder, BackedModel, Parsable):
+    # Stores model information.
+    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
+
+    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    additional_data: dict[str, Any] = field(default_factory=dict)
+    # The activeChecklistItemCount property
+    active_checklist_item_count: Optional[int] = None
+    # The appliedCategories property
+    applied_categories: Optional[PlannerAppliedCategories] = None
+    # The archivalInfo property
+    archival_info: Optional[PlannerArchivalInfo] = None
+    # The assignments property
+    assignments: Optional[PlannerAssignments] = None
+    # The bucketId property
+    bucket_id: Optional[str] = None
+    # The checklistItemCount property
+    checklist_item_count: Optional[int] = None
+    # The completedBy property
+    completed_by: Optional[IdentitySet] = None
+    # The completedDateTime property
+    completed_date_time: Optional[datetime.datetime] = None
+    # The conversationThreadId property
+    conversation_thread_id: Optional[str] = None
+    # The createdBy property
+    created_by: Optional[IdentitySet] = None
+    # The createdDateTime property
+    created_date_time: Optional[datetime.datetime] = None
+    # The creationSource property
+    creation_source: Optional[PlannerTaskCreation] = None
+    # The details property
+    details: Optional[PlannerTaskDetailsData] = None
+    # The dueDateTime property
+    due_date_time: Optional[datetime.datetime] = None
+    # The hasChat property
+    has_chat: Optional[bool] = None
+    # The hasDescription property
+    has_description: Optional[bool] = None
+    # The isArchived property
+    is_archived: Optional[bool] = None
+    # The OdataType property
+    odata_type: Optional[str] = None
+    # The orderHint property
+    order_hint: Optional[str] = None
+    # The percentComplete property
+    percent_complete: Optional[int] = None
+    # The previewType property
+    preview_type: Optional[PlannerPreviewType] = None
+    # The priority property
+    priority: Optional[int] = None
+    # The recurrence property
+    recurrence: Optional[PlannerTaskRecurrence] = None
+    # The referenceCount property
+    reference_count: Optional[int] = None
+    # The specifiedCompletionRequirements property
+    specified_completion_requirements: Optional[PlannerTaskCompletionRequirements] = None
+    # The startDateTime property
+    start_date_time: Optional[datetime.datetime] = None
+    # The title property
+    title: Optional[str] = None
+    
+    @staticmethod
+    def create_from_discriminator_value(parse_node: ParseNode) -> PlannerTaskData:
+        """
+        Creates a new instance of the appropriate class based on discriminator value
+        param parse_node: The parse node to use to read the discriminator value and create the object
+        Returns: PlannerTaskData
+        """
+        if parse_node is None:
+            raise TypeError("parse_node cannot be null.")
+        return PlannerTaskData()
+    
+    def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
+        """
+        The deserialization information for the current model
+        Returns: dict[str, Callable[[ParseNode], None]]
+        """
+        from .identity_set import IdentitySet
+        from .planner_applied_categories import PlannerAppliedCategories
+        from .planner_archival_info import PlannerArchivalInfo
+        from .planner_assignments import PlannerAssignments
+        from .planner_preview_type import PlannerPreviewType
+        from .planner_task_completion_requirements import PlannerTaskCompletionRequirements
+        from .planner_task_creation import PlannerTaskCreation
+        from .planner_task_details_data import PlannerTaskDetailsData
+        from .planner_task_recurrence import PlannerTaskRecurrence
+
+        from .identity_set import IdentitySet
+        from .planner_applied_categories import PlannerAppliedCategories
+        from .planner_archival_info import PlannerArchivalInfo
+        from .planner_assignments import PlannerAssignments
+        from .planner_preview_type import PlannerPreviewType
+        from .planner_task_completion_requirements import PlannerTaskCompletionRequirements
+        from .planner_task_creation import PlannerTaskCreation
+        from .planner_task_details_data import PlannerTaskDetailsData
+        from .planner_task_recurrence import PlannerTaskRecurrence
+
+        fields: dict[str, Callable[[Any], None]] = {
+            "activeChecklistItemCount": lambda n : setattr(self, 'active_checklist_item_count', n.get_int_value()),
+            "appliedCategories": lambda n : setattr(self, 'applied_categories', n.get_object_value(PlannerAppliedCategories)),
+            "archivalInfo": lambda n : setattr(self, 'archival_info', n.get_object_value(PlannerArchivalInfo)),
+            "assignments": lambda n : setattr(self, 'assignments', n.get_object_value(PlannerAssignments)),
+            "bucketId": lambda n : setattr(self, 'bucket_id', n.get_str_value()),
+            "checklistItemCount": lambda n : setattr(self, 'checklist_item_count', n.get_int_value()),
+            "completedBy": lambda n : setattr(self, 'completed_by', n.get_object_value(IdentitySet)),
+            "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
+            "conversationThreadId": lambda n : setattr(self, 'conversation_thread_id', n.get_str_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "creationSource": lambda n : setattr(self, 'creation_source', n.get_object_value(PlannerTaskCreation)),
+            "details": lambda n : setattr(self, 'details', n.get_object_value(PlannerTaskDetailsData)),
+            "dueDateTime": lambda n : setattr(self, 'due_date_time', n.get_datetime_value()),
+            "hasChat": lambda n : setattr(self, 'has_chat', n.get_bool_value()),
+            "hasDescription": lambda n : setattr(self, 'has_description', n.get_bool_value()),
+            "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "orderHint": lambda n : setattr(self, 'order_hint', n.get_str_value()),
+            "percentComplete": lambda n : setattr(self, 'percent_complete', n.get_int_value()),
+            "previewType": lambda n : setattr(self, 'preview_type', n.get_enum_value(PlannerPreviewType)),
+            "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
+            "recurrence": lambda n : setattr(self, 'recurrence', n.get_object_value(PlannerTaskRecurrence)),
+            "referenceCount": lambda n : setattr(self, 'reference_count', n.get_int_value()),
+            "specifiedCompletionRequirements": lambda n : setattr(self, 'specified_completion_requirements', n.get_collection_of_enum_values(PlannerTaskCompletionRequirements)),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "title": lambda n : setattr(self, 'title', n.get_str_value()),
+        }
+        return fields
+    
+    def serialize(self,writer: SerializationWriter) -> None:
+        """
+        Serializes information the current object
+        param writer: Serialization writer to use to serialize this model
+        Returns: None
+        """
+        if writer is None:
+            raise TypeError("writer cannot be null.")
+        writer.write_int_value("activeChecklistItemCount", self.active_checklist_item_count)
+        writer.write_object_value("appliedCategories", self.applied_categories)
+        writer.write_object_value("archivalInfo", self.archival_info)
+        writer.write_object_value("assignments", self.assignments)
+        writer.write_str_value("bucketId", self.bucket_id)
+        writer.write_int_value("checklistItemCount", self.checklist_item_count)
+        writer.write_object_value("completedBy", self.completed_by)
+        writer.write_datetime_value("completedDateTime", self.completed_date_time)
+        writer.write_str_value("conversationThreadId", self.conversation_thread_id)
+        writer.write_object_value("createdBy", self.created_by)
+        writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_object_value("creationSource", self.creation_source)
+        writer.write_object_value("details", self.details)
+        writer.write_datetime_value("dueDateTime", self.due_date_time)
+        writer.write_bool_value("hasChat", self.has_chat)
+        writer.write_bool_value("hasDescription", self.has_description)
+        writer.write_bool_value("isArchived", self.is_archived)
+        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("orderHint", self.order_hint)
+        writer.write_int_value("percentComplete", self.percent_complete)
+        writer.write_enum_value("previewType", self.preview_type)
+        writer.write_int_value("priority", self.priority)
+        writer.write_object_value("recurrence", self.recurrence)
+        writer.write_int_value("referenceCount", self.reference_count)
+        writer.write_enum_value("specifiedCompletionRequirements", self.specified_completion_requirements)
+        writer.write_datetime_value("startDateTime", self.start_date_time)
+        writer.write_str_value("title", self.title)
+        writer.write_additional_data_value(self.additional_data)
+    
+

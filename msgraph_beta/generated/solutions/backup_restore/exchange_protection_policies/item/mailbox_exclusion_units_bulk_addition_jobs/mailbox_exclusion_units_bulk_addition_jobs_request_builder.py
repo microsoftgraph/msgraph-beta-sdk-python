@@ -48,9 +48,10 @@ class MailboxExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MailboxExclusionUnitsBulkAdditionJobsRequestBuilderGetQueryParameters]] = None) -> Optional[MailboxExclusionUnitsBulkAdditionJobCollectionResponse]:
         """
-        Get mailboxExclusionUnitsBulkAdditionJobs from solutions
+        Get a list of mailbox exclusion units bulk addition jobs associated with an Exchange protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailboxExclusionUnitsBulkAdditionJobCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/exchangeprotectionpolicy-list-mailboxexclusionunitsbulkadditionjobs?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,7 +69,7 @@ class MailboxExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MailboxExclusionUnitsBulkAdditionJobsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get mailboxExclusionUnitsBulkAdditionJobs from solutions
+        Get a list of mailbox exclusion units bulk addition jobs associated with an Exchange protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +100,7 @@ class MailboxExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MailboxExclusionUnitsBulkAdditionJobsRequestBuilderGetQueryParameters():
         """
-        Get mailboxExclusionUnitsBulkAdditionJobs from solutions
+        Get a list of mailbox exclusion units bulk addition jobs associated with an Exchange protection policy.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -21,8 +21,8 @@ if TYPE_CHECKING:
     from .directory_audits.directory_audits_request_builder import DirectoryAuditsRequestBuilder
     from .directory_provisioning.directory_provisioning_request_builder import DirectoryProvisioningRequestBuilder
     from .get_summarized_m_s_i_sign_ins_with_aggregation_window.get_summarized_m_s_i_sign_ins_with_aggregation_window_request_builder import GetSummarizedMSISignInsWithAggregationWindowRequestBuilder
-    from .get_summarized_non_interactive_sign_ins_with_aggregation_window.get_summarized_non_interactive_sign_ins_with_aggregation_window_request_builder import GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder
-    from .get_summarized_service_principal_sign_ins_with_aggregation_window.get_summarized_service_principal_sign_ins_with_aggregation_window_request_builder import GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder
+    from .get_summarized_non_interactive_sign_ins_with_aggregation_window.get_summarized_non_interactive_sign_ins_with_aggregation_window_0c89c0fa import GetSummarizedNonInteractiveSignInsWithAggregationWindow_0c89c0fa
+    from .get_summarized_service_principal_sign_ins_with_aggregation_window.get_summarized_service_principal_sign_ins_with_aggregation_wind_b32fa68a import GetSummarizedServicePrincipalSignInsWithAggregationWind_b32fa68a
     from .provisioning.provisioning_request_builder import ProvisioningRequestBuilder
     from .sign_ins.sign_ins_request_builder import SignInsRequestBuilder
     from .sign_in_events_app_summary.sign_in_events_app_summary_request_builder import SignInEventsAppSummaryRequestBuilder
@@ -74,29 +74,29 @@ class AuditLogsRequestBuilder(BaseRequestBuilder):
 
         return GetSummarizedMSISignInsWithAggregationWindowRequestBuilder(self.request_adapter, self.path_parameters, aggregation_window)
     
-    def get_summarized_non_interactive_sign_ins_with_aggregation_window(self,aggregation_window: str) -> GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder:
+    def get_summarized_non_interactive_sign_ins_with_aggregation_window(self,aggregation_window: str) -> GetSummarizedNonInteractiveSignInsWithAggregationWindow_0c89c0fa:
         """
         Provides operations to call the getSummarizedNonInteractiveSignIns method.
         param aggregation_window: Usage: aggregationWindow='{aggregationWindow}'
-        Returns: GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder
+        Returns: GetSummarizedNonInteractiveSignInsWithAggregationWindow_0c89c0fa
         """
         if aggregation_window is None:
             raise TypeError("aggregation_window cannot be null.")
-        from .get_summarized_non_interactive_sign_ins_with_aggregation_window.get_summarized_non_interactive_sign_ins_with_aggregation_window_request_builder import GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder
+        from .get_summarized_non_interactive_sign_ins_with_aggregation_window.get_summarized_non_interactive_sign_ins_with_aggregation_window_0c89c0fa import GetSummarizedNonInteractiveSignInsWithAggregationWindow_0c89c0fa
 
-        return GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder(self.request_adapter, self.path_parameters, aggregation_window)
+        return GetSummarizedNonInteractiveSignInsWithAggregationWindow_0c89c0fa(self.request_adapter, self.path_parameters, aggregation_window)
     
-    def get_summarized_service_principal_sign_ins_with_aggregation_window(self,aggregation_window: str) -> GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder:
+    def get_summarized_service_principal_sign_ins_with_aggregation_window(self,aggregation_window: str) -> GetSummarizedServicePrincipalSignInsWithAggregationWind_b32fa68a:
         """
         Provides operations to call the getSummarizedServicePrincipalSignIns method.
         param aggregation_window: Usage: aggregationWindow='{aggregationWindow}'
-        Returns: GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder
+        Returns: GetSummarizedServicePrincipalSignInsWithAggregationWind_b32fa68a
         """
         if aggregation_window is None:
             raise TypeError("aggregation_window cannot be null.")
-        from .get_summarized_service_principal_sign_ins_with_aggregation_window.get_summarized_service_principal_sign_ins_with_aggregation_window_request_builder import GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder
+        from .get_summarized_service_principal_sign_ins_with_aggregation_window.get_summarized_service_principal_sign_ins_with_aggregation_wind_b32fa68a import GetSummarizedServicePrincipalSignInsWithAggregationWind_b32fa68a
 
-        return GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder(self.request_adapter, self.path_parameters, aggregation_window)
+        return GetSummarizedServicePrincipalSignInsWithAggregationWind_b32fa68a(self.request_adapter, self.path_parameters, aggregation_window)
     
     async def patch(self,body: AuditLogRoot, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[AuditLogRoot]:
         """

@@ -12,9 +12,9 @@ class CloudPcAgentPoolSessionUsage(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The activeSessionsCount property
+    # The number of active sessions in the pool. Read-only.
     active_sessions_count: Optional[int] = None
-    # The availableSessionsCount property
+    # The number of available sessions in the pool. Read-only.
     available_sessions_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .managed_identity import ManagedIdentity
     from .sign_in_status import SignInStatus
+    from .token_issuer_type import TokenIssuerType
 
 from .entity import Entity
 
@@ -48,6 +49,8 @@ class SummarizedSignIn(Entity, Parsable):
     status: Optional[SignInStatus] = None
     # The tenant identifier of the user initiating the sign-in. Supports $filter (eq).
     tenant_id: Optional[str] = None
+    # The tokenIssuerType property
+    token_issuer_type: Optional[TokenIssuerType] = None
     # User principal name of the user that initiated the sign-in. This value is always in lowercase. For guest users whose values in the user object typically contain #EXT# before the domain part, this property stores the value in both lowercase and the 'true' format. For example, while the user object stores AdeleVance_fabrikam.com#EXT#@contoso.com, the sign-in logs store adelevance@fabrikam.com. Supports $filter (eq).
     user_principal_name: Optional[str] = None
     
@@ -72,12 +75,14 @@ class SummarizedSignIn(Entity, Parsable):
         from .entity import Entity
         from .managed_identity import ManagedIdentity
         from .sign_in_status import SignInStatus
+        from .token_issuer_type import TokenIssuerType
 
         from .agentic.agent_sign_in import AgentSignIn
         from .conditional_access_status import ConditionalAccessStatus
         from .entity import Entity
         from .managed_identity import ManagedIdentity
         from .sign_in_status import SignInStatus
+        from .token_issuer_type import TokenIssuerType
 
         fields: dict[str, Callable[[Any], None]] = {
             "agent": lambda n : setattr(self, 'agent', n.get_object_value(AgentSignIn)),
@@ -95,6 +100,7 @@ class SummarizedSignIn(Entity, Parsable):
             "signInCount": lambda n : setattr(self, 'sign_in_count', n.get_int_value()),
             "status": lambda n : setattr(self, 'status', n.get_object_value(SignInStatus)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tokenIssuerType": lambda n : setattr(self, 'token_issuer_type', n.get_enum_value(TokenIssuerType)),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -125,6 +131,7 @@ class SummarizedSignIn(Entity, Parsable):
         writer.write_int_value("signInCount", self.sign_in_count)
         writer.write_object_value("status", self.status)
         writer.write_str_value("tenantId", self.tenant_id)
+        writer.write_enum_value("tokenIssuerType", self.token_issuer_type)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
     
 

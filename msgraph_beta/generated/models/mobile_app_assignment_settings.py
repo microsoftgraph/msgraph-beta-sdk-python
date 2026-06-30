@@ -8,9 +8,12 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .android_managed_store_app_assignment_settings import AndroidManagedStoreAppAssignmentSettings
     from .ios_ddm_lob_app_assignment_settings import IosDdmLobAppAssignmentSettings
+    from .ios_ddm_store_app_assignment_settings import IosDdmStoreAppAssignmentSettings
+    from .ios_ddm_vpp_app_assignment_settings import IosDdmVppAppAssignmentSettings
     from .ios_lob_app_assignment_settings import IosLobAppAssignmentSettings
     from .ios_store_app_assignment_settings import IosStoreAppAssignmentSettings
     from .ios_vpp_app_assignment_settings import IosVppAppAssignmentSettings
+    from .mac_os_ddm_vpp_app_assignment_settings import MacOsDdmVppAppAssignmentSettings
     from .mac_os_lob_app_assignment_settings import MacOsLobAppAssignmentSettings
     from .mac_os_vpp_app_assignment_settings import MacOsVppAppAssignmentSettings
     from .microsoft_store_for_business_app_assignment_settings import MicrosoftStoreForBusinessAppAssignmentSettings
@@ -56,6 +59,14 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
             from .ios_ddm_lob_app_assignment_settings import IosDdmLobAppAssignmentSettings
 
             return IosDdmLobAppAssignmentSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosDdmStoreAppAssignmentSettings".casefold():
+            from .ios_ddm_store_app_assignment_settings import IosDdmStoreAppAssignmentSettings
+
+            return IosDdmStoreAppAssignmentSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosDdmVppAppAssignmentSettings".casefold():
+            from .ios_ddm_vpp_app_assignment_settings import IosDdmVppAppAssignmentSettings
+
+            return IosDdmVppAppAssignmentSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosLobAppAssignmentSettings".casefold():
             from .ios_lob_app_assignment_settings import IosLobAppAssignmentSettings
 
@@ -68,6 +79,10 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
             from .ios_vpp_app_assignment_settings import IosVppAppAssignmentSettings
 
             return IosVppAppAssignmentSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOsDdmVppAppAssignmentSettings".casefold():
+            from .mac_os_ddm_vpp_app_assignment_settings import MacOsDdmVppAppAssignmentSettings
+
+            return MacOsDdmVppAppAssignmentSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOsLobAppAssignmentSettings".casefold():
             from .mac_os_lob_app_assignment_settings import MacOsLobAppAssignmentSettings
 
@@ -113,9 +128,12 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .android_managed_store_app_assignment_settings import AndroidManagedStoreAppAssignmentSettings
         from .ios_ddm_lob_app_assignment_settings import IosDdmLobAppAssignmentSettings
+        from .ios_ddm_store_app_assignment_settings import IosDdmStoreAppAssignmentSettings
+        from .ios_ddm_vpp_app_assignment_settings import IosDdmVppAppAssignmentSettings
         from .ios_lob_app_assignment_settings import IosLobAppAssignmentSettings
         from .ios_store_app_assignment_settings import IosStoreAppAssignmentSettings
         from .ios_vpp_app_assignment_settings import IosVppAppAssignmentSettings
+        from .mac_os_ddm_vpp_app_assignment_settings import MacOsDdmVppAppAssignmentSettings
         from .mac_os_lob_app_assignment_settings import MacOsLobAppAssignmentSettings
         from .mac_os_vpp_app_assignment_settings import MacOsVppAppAssignmentSettings
         from .microsoft_store_for_business_app_assignment_settings import MicrosoftStoreForBusinessAppAssignmentSettings
@@ -128,9 +146,12 @@ class MobileAppAssignmentSettings(AdditionalDataHolder, BackedModel, Parsable):
 
         from .android_managed_store_app_assignment_settings import AndroidManagedStoreAppAssignmentSettings
         from .ios_ddm_lob_app_assignment_settings import IosDdmLobAppAssignmentSettings
+        from .ios_ddm_store_app_assignment_settings import IosDdmStoreAppAssignmentSettings
+        from .ios_ddm_vpp_app_assignment_settings import IosDdmVppAppAssignmentSettings
         from .ios_lob_app_assignment_settings import IosLobAppAssignmentSettings
         from .ios_store_app_assignment_settings import IosStoreAppAssignmentSettings
         from .ios_vpp_app_assignment_settings import IosVppAppAssignmentSettings
+        from .mac_os_ddm_vpp_app_assignment_settings import MacOsDdmVppAppAssignmentSettings
         from .mac_os_lob_app_assignment_settings import MacOsLobAppAssignmentSettings
         from .mac_os_vpp_app_assignment_settings import MacOsVppAppAssignmentSettings
         from .microsoft_store_for_business_app_assignment_settings import MicrosoftStoreForBusinessAppAssignmentSettings

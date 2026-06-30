@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .detection_source import DetectionSource
     from .dictionary import Dictionary
     from .investigation_state import InvestigationState
+    from .manual_alert import ManualAlert
     from .service_source import ServiceSource
 
 from ..entity import Entity
@@ -32,9 +33,9 @@ class Alert(Entity, Parsable):
     alert_web_url: Optional[str] = None
     # Owner of the alert, or null if no owner is assigned.
     assigned_to: Optional[str] = None
-    # The categories property
+    # The attack kill-chain categories that the alert belongs to. Aligned with the MITRE ATT&CK framework.
     categories: Optional[list[str]] = None
-    # The attack kill-chain category that the alert belongs to. Aligned with the MITRE ATT&CK framework.
+    # The attack kill-chain category that the alert belongs to. Aligned with the MITRE ATT&CK framework. This property is in the process of being deprecated. Use the categories property instead.
     category: Optional[str] = None
     # Specifies whether the alert represents a true threat. The possible values are: unknown, falsePositive, truePositive, informationalExpectedActivity, unknownFutureValue.
     classification: Optional[AlertClassification] = None
@@ -104,6 +105,15 @@ class Alert(Entity, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.manualAlert".casefold():
+            from .manual_alert import ManualAlert
+
+            return ManualAlert()
         return Alert()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -121,6 +131,7 @@ class Alert(Entity, Parsable):
         from .detection_source import DetectionSource
         from .dictionary import Dictionary
         from .investigation_state import InvestigationState
+        from .manual_alert import ManualAlert
         from .service_source import ServiceSource
 
         from ..entity import Entity
@@ -133,6 +144,7 @@ class Alert(Entity, Parsable):
         from .detection_source import DetectionSource
         from .dictionary import Dictionary
         from .investigation_state import InvestigationState
+        from .manual_alert import ManualAlert
         from .service_source import ServiceSource
 
         fields: dict[str, Callable[[Any], None]] = {

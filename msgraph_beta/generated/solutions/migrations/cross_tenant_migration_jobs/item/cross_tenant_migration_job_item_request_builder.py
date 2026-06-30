@@ -17,7 +17,9 @@ if TYPE_CHECKING:
     from .....models.cross_tenant_migration_job import CrossTenantMigrationJob
     from .....models.o_data_errors.o_data_error import ODataError
     from .cancel.cancel_request_builder import CancelRequestBuilder
+    from .migrate.migrate_request_builder import MigrateRequestBuilder
     from .users.users_request_builder import UsersRequestBuilder
+    from .validate.validate_request_builder import ValidateRequestBuilder
 
 class CrossTenantMigrationJobItemRequestBuilder(BaseRequestBuilder):
     """
@@ -159,6 +161,15 @@ class CrossTenantMigrationJobItemRequestBuilder(BaseRequestBuilder):
         return CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def migrate(self) -> MigrateRequestBuilder:
+        """
+        Provides operations to call the migrate method.
+        """
+        from .migrate.migrate_request_builder import MigrateRequestBuilder
+
+        return MigrateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def users(self) -> UsersRequestBuilder:
         """
         Provides operations to manage the users property of the microsoft.graph.crossTenantMigrationJob entity.
@@ -166,6 +177,15 @@ class CrossTenantMigrationJobItemRequestBuilder(BaseRequestBuilder):
         from .users.users_request_builder import UsersRequestBuilder
 
         return UsersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def validate(self) -> ValidateRequestBuilder:
+        """
+        Provides operations to call the validate method.
+        """
+        from .validate.validate_request_builder import ValidateRequestBuilder
+
+        return ValidateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CrossTenantMigrationJobItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

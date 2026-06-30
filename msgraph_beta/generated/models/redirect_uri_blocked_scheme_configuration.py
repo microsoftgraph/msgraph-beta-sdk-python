@@ -18,25 +18,25 @@ class RedirectUriBlockedSchemeConfiguration(AdditionalDataHolder, BackedModel, P
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The blockedSchemes property
+    # Collection of URI schemes that are blocked globally across all platforms. Schemes refer to URI schemes as defined in RFC 3986 §3.1.
     blocked_schemes: Optional[list[str]] = None
-    # The excludeActors property
+    # Applications or service principals that are exempt from this restriction.
     exclude_actors: Optional[AppManagementPolicyActorExemptions] = None
-    # The exemptFormats property
+    # Collection of URI patterns that are exempt from the blocked scheme restrictions. Patterns must follow specific validation rules for standard URI formats or URN formats.
     exempt_formats: Optional[list[str]] = None
-    # The isStateSetByMicrosoft property
+    # Indicates whether the restriction state was set by Microsoft.
     is_state_set_by_microsoft: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The publicClient property
+    # Platform-specific blocked scheme configuration for public client applications (native/mobile apps).
     public_client: Optional[RedirectUriPlatformBlockedSchemeConfiguration] = None
-    # The restrictForAppsCreatedAfterDateTime property
+    # Date and time when this restriction starts applying to newly created applications. Applications created before this date are not affected.
     restrict_for_apps_created_after_date_time: Optional[datetime.datetime] = None
-    # The spa property
+    # Platform-specific blocked scheme configuration for single-page applications (SPAs).
     spa: Optional[RedirectUriPlatformBlockedSchemeConfiguration] = None
     # The state property
     state: Optional[AppManagementRestrictionState] = None
-    # The web property
+    # Platform-specific blocked scheme configuration for web applications.
     web: Optional[RedirectUriPlatformBlockedSchemeConfiguration] = None
     
     @staticmethod

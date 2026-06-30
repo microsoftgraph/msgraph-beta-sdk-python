@@ -73,7 +73,7 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CrossTenantMigrationJob, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CrossTenantMigrationJob]:
         """
-        Create a new crossTenantMigrationJob.
+        Create a new crossTenantMigrationJob. A job defines the migration batch but doesn't start validation or migration. After you create the job, call validate to verify tenant and resource configuration, then call migrate to begin the actual migration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantMigrationJob]
@@ -110,7 +110,7 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CrossTenantMigrationJob, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new crossTenantMigrationJob.
+        Create a new crossTenantMigrationJob. A job defines the migration batch but doesn't start validation or migration. After you create the job, call validate to verify tenant and resource configuration, then call migrate to begin the actual migration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

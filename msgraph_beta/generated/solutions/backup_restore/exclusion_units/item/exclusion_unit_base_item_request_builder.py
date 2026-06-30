@@ -32,7 +32,7 @@ class ExclusionUnitBaseItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ExclusionUnitBaseItemRequestBuilderGetQueryParameters]] = None) -> Optional[ExclusionUnitBase]:
         """
-        Get exclusionUnits from solutions
+        The list of exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExclusionUnitBase]
         """
@@ -52,7 +52,7 @@ class ExclusionUnitBaseItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ExclusionUnitBaseItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get exclusionUnits from solutions
+        The list of exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class ExclusionUnitBaseItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ExclusionUnitBaseItemRequestBuilderGetQueryParameters():
         """
-        Get exclusionUnits from solutions
+        The list of exclusion units in the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

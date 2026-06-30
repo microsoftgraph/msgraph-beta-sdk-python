@@ -12,9 +12,11 @@ if TYPE_CHECKING:
     from .country_named_location import CountryNamedLocation
     from .cross_tenant_access_policy_configuration_partner import CrossTenantAccessPolicyConfigurationPartner
     from .cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
+    from .delegated_admin_service_provider_constraints import DelegatedAdminServiceProviderConstraints
     from .ip_named_location import IpNamedLocation
     from .named_location import NamedLocation
     from .private_link_named_location import PrivateLinkNamedLocation
+    from .service_provider_constraints import ServiceProviderConstraints
     from .service_tag_named_location import ServiceTagNamedLocation
     from .what_if_analysis_result import WhatIfAnalysisResult
 
@@ -64,6 +66,10 @@ class PolicyDeletableItem(AdditionalDataHolder, BackedModel, Parsable):
             from .cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
 
             return CrossTenantIdentitySyncPolicyPartner()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.delegatedAdminServiceProviderConstraints".casefold():
+            from .delegated_admin_service_provider_constraints import DelegatedAdminServiceProviderConstraints
+
+            return DelegatedAdminServiceProviderConstraints()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.ipNamedLocation".casefold():
             from .ip_named_location import IpNamedLocation
 
@@ -76,6 +82,10 @@ class PolicyDeletableItem(AdditionalDataHolder, BackedModel, Parsable):
             from .private_link_named_location import PrivateLinkNamedLocation
 
             return PrivateLinkNamedLocation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceProviderConstraints".casefold():
+            from .service_provider_constraints import ServiceProviderConstraints
+
+            return ServiceProviderConstraints()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceTagNamedLocation".casefold():
             from .service_tag_named_location import ServiceTagNamedLocation
 
@@ -96,9 +106,11 @@ class PolicyDeletableItem(AdditionalDataHolder, BackedModel, Parsable):
         from .country_named_location import CountryNamedLocation
         from .cross_tenant_access_policy_configuration_partner import CrossTenantAccessPolicyConfigurationPartner
         from .cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
+        from .delegated_admin_service_provider_constraints import DelegatedAdminServiceProviderConstraints
         from .ip_named_location import IpNamedLocation
         from .named_location import NamedLocation
         from .private_link_named_location import PrivateLinkNamedLocation
+        from .service_provider_constraints import ServiceProviderConstraints
         from .service_tag_named_location import ServiceTagNamedLocation
         from .what_if_analysis_result import WhatIfAnalysisResult
 
@@ -107,9 +119,11 @@ class PolicyDeletableItem(AdditionalDataHolder, BackedModel, Parsable):
         from .country_named_location import CountryNamedLocation
         from .cross_tenant_access_policy_configuration_partner import CrossTenantAccessPolicyConfigurationPartner
         from .cross_tenant_identity_sync_policy_partner import CrossTenantIdentitySyncPolicyPartner
+        from .delegated_admin_service_provider_constraints import DelegatedAdminServiceProviderConstraints
         from .ip_named_location import IpNamedLocation
         from .named_location import NamedLocation
         from .private_link_named_location import PrivateLinkNamedLocation
+        from .service_provider_constraints import ServiceProviderConstraints
         from .service_tag_named_location import ServiceTagNamedLocation
         from .what_if_analysis_result import WhatIfAnalysisResult
 

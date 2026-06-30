@@ -18,7 +18,7 @@ class CloudPcAgentPool(CloudPcPool, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.cloudPcAgentPool"
     # The billingConfiguration property
     billing_configuration: Optional[CloudPcAgentPoolBillingConfiguration] = None
-    # The poolUrl property
+    # The endpoint URL used to check out and check in agent sessions. This value becomes available after the pool reaches the active status. Read-only.
     pool_url: Optional[str] = None
     # The scalingPolicy property
     scaling_policy: Optional[CloudPcAgentPoolScalingPolicy] = None

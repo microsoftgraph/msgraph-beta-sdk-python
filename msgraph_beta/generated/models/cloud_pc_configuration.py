@@ -15,15 +15,15 @@ class CloudPcConfiguration(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The imageDisplayName property
+    # The display name of the image. Read-only.
     image_display_name: Optional[str] = None
-    # The imageId property
+    # The unique identifier of the operating system image used for provisioning new Cloud PCs. The format for a gallery type image is: {publisherNameofferNameskuName}.
     image_id: Optional[str] = None
     # The imageType property
     image_type: Optional[CloudPcProvisioningPolicyImageType] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The osLocale property
+    # The operating system locale for the Cloud PC.
     os_locale: Optional[str] = None
     
     @staticmethod
