@@ -12,10 +12,10 @@ class MigrateToTemplatePostRequestBody(AdditionalDataHolder, BackedModel, Parsab
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The preserveCustomValues property
+    preserve_custom_values: Optional[bool] = False
     # The newTemplateId property
     new_template_id: Optional[str] = None
-    # The preserveCustomValues property
-    preserve_custom_values: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> MigrateToTemplatePostRequestBody:

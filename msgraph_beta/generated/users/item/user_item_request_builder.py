@@ -50,6 +50,7 @@ if TYPE_CHECKING:
     from .device_enrollment_configurations.device_enrollment_configurations_request_builder import DeviceEnrollmentConfigurationsRequestBuilder
     from .device_management_troubleshooting_events.device_management_troubleshooting_events_request_builder import DeviceManagementTroubleshootingEventsRequestBuilder
     from .direct_reports.direct_reports_request_builder import DirectReportsRequestBuilder
+    from .distribution_lists.distribution_lists_request_builder import DistributionListsRequestBuilder
     from .drive.drive_request_builder import DriveRequestBuilder
     from .drives.drives_request_builder import DrivesRequestBuilder
     from .employee_experience.employee_experience_request_builder import EmployeeExperienceRequestBuilder
@@ -628,6 +629,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .direct_reports.direct_reports_request_builder import DirectReportsRequestBuilder
 
         return DirectReportsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def distribution_lists(self) -> DistributionListsRequestBuilder:
+        """
+        Provides operations to manage the distributionLists property of the microsoft.graph.user entity.
+        """
+        from .distribution_lists.distribution_lists_request_builder import DistributionListsRequestBuilder
+
+        return DistributionListsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def drive(self) -> DriveRequestBuilder:

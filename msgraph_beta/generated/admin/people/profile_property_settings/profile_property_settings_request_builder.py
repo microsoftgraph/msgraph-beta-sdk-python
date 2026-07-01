@@ -49,7 +49,7 @@ class ProfilePropertySettingsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ProfilePropertySettingsRequestBuilderGetQueryParameters]] = None) -> Optional[ProfilePropertySettingCollectionResponse]:
         """
-        Get a collection of profilePropertySetting objects that define the configuration for user profile properties in an organization. The id property identifies each resource object uniquely.
+        Get a collection of profilePropertySetting objects that define the configuration for user profile property settings in an organization. The id property identifies each resource object uniquely.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProfilePropertySettingCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/peopleadminsettings-list-profilepropertysettings?view=graph-rest-beta
@@ -94,7 +94,7 @@ class ProfilePropertySettingsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ProfilePropertySettingsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a collection of profilePropertySetting objects that define the configuration for user profile properties in an organization. The id property identifies each resource object uniquely.
+        Get a collection of profilePropertySetting objects that define the configuration for user profile property settings in an organization. The id property identifies each resource object uniquely.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -140,7 +140,7 @@ class ProfilePropertySettingsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProfilePropertySettingsRequestBuilderGetQueryParameters():
         """
-        Get a collection of profilePropertySetting objects that define the configuration for user profile properties in an organization. The id property identifies each resource object uniquely.
+        Get a collection of profilePropertySetting objects that define the configuration for user profile property settings in an organization. The id property identifies each resource object uniquely.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

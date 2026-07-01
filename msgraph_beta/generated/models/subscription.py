@@ -44,6 +44,12 @@ class Subscription(Entity, Parsable):
     odata_type: Optional[str] = None
     # Required. Specifies the resource that is monitored for changes. Don't include the base URL (https://graph.microsoft.com/beta/). See the possible resource path values for each supported resource.
     resource: Optional[str] = None
+    # The vapidPublicKey property
+    vapid_public_key: Optional[str] = None
+    # The webPushEncryptionP256dhPublicKey property
+    web_push_encryption_p256dh_public_key: Optional[str] = None
+    # The webPushEncryptionSecret property
+    web_push_encryption_secret: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Subscription:
@@ -81,6 +87,9 @@ class Subscription(Entity, Parsable):
             "notificationUrl": lambda n : setattr(self, 'notification_url', n.get_str_value()),
             "notificationUrlAppId": lambda n : setattr(self, 'notification_url_app_id', n.get_str_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_str_value()),
+            "vapidPublicKey": lambda n : setattr(self, 'vapid_public_key', n.get_str_value()),
+            "webPushEncryptionP256dhPublicKey": lambda n : setattr(self, 'web_push_encryption_p256dh_public_key', n.get_str_value()),
+            "webPushEncryptionSecret": lambda n : setattr(self, 'web_push_encryption_secret', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -110,5 +119,8 @@ class Subscription(Entity, Parsable):
         writer.write_str_value("notificationUrl", self.notification_url)
         writer.write_str_value("notificationUrlAppId", self.notification_url_app_id)
         writer.write_str_value("resource", self.resource)
+        writer.write_str_value("vapidPublicKey", self.vapid_public_key)
+        writer.write_str_value("webPushEncryptionP256dhPublicKey", self.web_push_encryption_p256dh_public_key)
+        writer.write_str_value("webPushEncryptionSecret", self.web_push_encryption_secret)
     
 

@@ -6,7 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_management_configuration_integer_setting_value_default_template import DeviceManagementConfigurationIntegerSettingValueDefaultTemplate
-    from .device_management_configuration_integer_setting_value_definition_template import DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate
+    from .device_management_configuration_integer_setting_value_definit_8cf5f357 import DeviceManagementConfigurationIntegerSettingValueDefinit_8cf5f357
     from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
 
 from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
@@ -21,9 +21,9 @@ class DeviceManagementConfigurationIntegerSettingValueTemplate(DeviceManagementC
     # Integer Setting Value Default Template.
     default_value: Optional[DeviceManagementConfigurationIntegerSettingValueDefaultTemplate] = None
     # Recommended value definition.
-    recommended_value_definition: Optional[DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate] = None
+    recommended_value_definition: Optional[DeviceManagementConfigurationIntegerSettingValueDefinit_8cf5f357] = None
     # Required value definition.
-    required_value_definition: Optional[DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate] = None
+    required_value_definition: Optional[DeviceManagementConfigurationIntegerSettingValueDefinit_8cf5f357] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceManagementConfigurationIntegerSettingValueTemplate:
@@ -42,17 +42,17 @@ class DeviceManagementConfigurationIntegerSettingValueTemplate(DeviceManagementC
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_management_configuration_integer_setting_value_default_template import DeviceManagementConfigurationIntegerSettingValueDefaultTemplate
-        from .device_management_configuration_integer_setting_value_definition_template import DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate
+        from .device_management_configuration_integer_setting_value_definit_8cf5f357 import DeviceManagementConfigurationIntegerSettingValueDefinit_8cf5f357
         from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
 
         from .device_management_configuration_integer_setting_value_default_template import DeviceManagementConfigurationIntegerSettingValueDefaultTemplate
-        from .device_management_configuration_integer_setting_value_definition_template import DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate
+        from .device_management_configuration_integer_setting_value_definit_8cf5f357 import DeviceManagementConfigurationIntegerSettingValueDefinit_8cf5f357
         from .device_management_configuration_simple_setting_value_template import DeviceManagementConfigurationSimpleSettingValueTemplate
 
         fields: dict[str, Callable[[Any], None]] = {
             "defaultValue": lambda n : setattr(self, 'default_value', n.get_object_value(DeviceManagementConfigurationIntegerSettingValueDefaultTemplate)),
-            "recommendedValueDefinition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate)),
-            "requiredValueDefinition": lambda n : setattr(self, 'required_value_definition', n.get_object_value(DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate)),
+            "recommendedValueDefinition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(DeviceManagementConfigurationIntegerSettingValueDefinit_8cf5f357)),
+            "requiredValueDefinition": lambda n : setattr(self, 'required_value_definition', n.get_object_value(DeviceManagementConfigurationIntegerSettingValueDefinit_8cf5f357)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

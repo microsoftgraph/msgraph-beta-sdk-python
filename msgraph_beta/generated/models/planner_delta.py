@@ -10,12 +10,14 @@ if TYPE_CHECKING:
     from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
     from .planner_bucket import PlannerBucket
     from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
+    from .planner_history_item import PlannerHistoryItem
     from .planner_plan import PlannerPlan
     from .planner_plan_details import PlannerPlanDetails
     from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
     from .planner_task import PlannerTask
     from .planner_task_details import PlannerTaskDetails
     from .planner_user import PlannerUser
+    from .task_history_item import TaskHistoryItem
 
 from .entity import Entity
 
@@ -54,6 +56,10 @@ class PlannerDelta(Entity, Parsable):
             from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
 
             return PlannerBucketTaskBoardTaskFormat()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerHistoryItem".casefold():
+            from .planner_history_item import PlannerHistoryItem
+
+            return PlannerHistoryItem()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerPlan".casefold():
             from .planner_plan import PlannerPlan
 
@@ -78,6 +84,10 @@ class PlannerDelta(Entity, Parsable):
             from .planner_user import PlannerUser
 
             return PlannerUser()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.taskHistoryItem".casefold():
+            from .task_history_item import TaskHistoryItem
+
+            return TaskHistoryItem()
         return PlannerDelta()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -90,24 +100,28 @@ class PlannerDelta(Entity, Parsable):
         from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
         from .planner_bucket import PlannerBucket
         from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
+        from .planner_history_item import PlannerHistoryItem
         from .planner_plan import PlannerPlan
         from .planner_plan_details import PlannerPlanDetails
         from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
         from .planner_task import PlannerTask
         from .planner_task_details import PlannerTaskDetails
         from .planner_user import PlannerUser
+        from .task_history_item import TaskHistoryItem
 
         from .business_scenario_task import BusinessScenarioTask
         from .entity import Entity
         from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
         from .planner_bucket import PlannerBucket
         from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
+        from .planner_history_item import PlannerHistoryItem
         from .planner_plan import PlannerPlan
         from .planner_plan_details import PlannerPlanDetails
         from .planner_progress_task_board_task_format import PlannerProgressTaskBoardTaskFormat
         from .planner_task import PlannerTask
         from .planner_task_details import PlannerTaskDetails
         from .planner_user import PlannerUser
+        from .task_history_item import TaskHistoryItem
 
         fields: dict[str, Callable[[Any], None]] = {
         }

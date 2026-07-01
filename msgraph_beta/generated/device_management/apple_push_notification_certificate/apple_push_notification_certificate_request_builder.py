@@ -16,8 +16,8 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.apple_push_notification_certificate import ApplePushNotificationCertificate
     from ...models.o_data_errors.o_data_error import ODataError
-    from .download_apple_push_notification_certificate_signing_request.download_apple_push_notification_certificate_signing_request_request_builder import DownloadApplePushNotificationCertificateSigningRequestRequestBuilder
-    from .generate_apple_push_notification_certificate_signing_request.generate_apple_push_notification_certificate_signing_request_request_builder import GenerateApplePushNotificationCertificateSigningRequestRequestBuilder
+    from .download_apple_push_notification_certificate_signing_request.download_apple_push_notification_certificate_signing_request_r_030b19cc import DownloadApplePushNotificationCertificateSigningRequestR_030b19cc
+    from .generate_apple_push_notification_certificate_signing_request.generate_apple_push_notification_certificate_signing_request_r_6d3c8f87 import GenerateApplePushNotificationCertificateSigningRequestR_6d3c8f87
 
 class ApplePushNotificationCertificateRequestBuilder(BaseRequestBuilder):
     """
@@ -141,22 +141,22 @@ class ApplePushNotificationCertificateRequestBuilder(BaseRequestBuilder):
         return ApplePushNotificationCertificateRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def download_apple_push_notification_certificate_signing_request(self) -> DownloadApplePushNotificationCertificateSigningRequestRequestBuilder:
+    def download_apple_push_notification_certificate_signing_request(self) -> DownloadApplePushNotificationCertificateSigningRequestR_030b19cc:
         """
         Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.
         """
-        from .download_apple_push_notification_certificate_signing_request.download_apple_push_notification_certificate_signing_request_request_builder import DownloadApplePushNotificationCertificateSigningRequestRequestBuilder
+        from .download_apple_push_notification_certificate_signing_request.download_apple_push_notification_certificate_signing_request_r_030b19cc import DownloadApplePushNotificationCertificateSigningRequestR_030b19cc
 
-        return DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(self.request_adapter, self.path_parameters)
+        return DownloadApplePushNotificationCertificateSigningRequestR_030b19cc(self.request_adapter, self.path_parameters)
     
     @property
-    def generate_apple_push_notification_certificate_signing_request(self) -> GenerateApplePushNotificationCertificateSigningRequestRequestBuilder:
+    def generate_apple_push_notification_certificate_signing_request(self) -> GenerateApplePushNotificationCertificateSigningRequestR_6d3c8f87:
         """
         Provides operations to call the generateApplePushNotificationCertificateSigningRequest method.
         """
-        from .generate_apple_push_notification_certificate_signing_request.generate_apple_push_notification_certificate_signing_request_request_builder import GenerateApplePushNotificationCertificateSigningRequestRequestBuilder
+        from .generate_apple_push_notification_certificate_signing_request.generate_apple_push_notification_certificate_signing_request_r_6d3c8f87 import GenerateApplePushNotificationCertificateSigningRequestR_6d3c8f87
 
-        return GenerateApplePushNotificationCertificateSigningRequestRequestBuilder(self.request_adapter, self.path_parameters)
+        return GenerateApplePushNotificationCertificateSigningRequestR_6d3c8f87(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ApplePushNotificationCertificateRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

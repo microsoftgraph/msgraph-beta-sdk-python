@@ -7,4 +7,5 @@ class AuthenticationEventType(str, Enum):
     AttributeCollectionStart = "attributeCollectionStart",
     AttributeCollectionSubmit = "attributeCollectionSubmit",
     EmailOtpSend = "emailOtpSend",
+    PasswordSubmit = "passwordSubmit",
 

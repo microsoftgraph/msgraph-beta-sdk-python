@@ -62,7 +62,7 @@ class InstancesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[InstancesRequestBuilderGetQueryParameters]] = None) -> Optional[AccessReviewInstanceCollectionResponse]:
         """
-        Retrieve the accessReviewInstance objects for a specific accessReviewScheduleDefinition. A list of zero or more accessReviewInstance objects are returned, including all of their nested properties. Returned objects do not include associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
+        Retrieve the accessReviewInstance objects for a specific accessReviewScheduleDefinition. A list of zero or more accessReviewInstance objects are returned, including all of their nested properties. Returned objects don't include associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewInstanceCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-beta
@@ -106,7 +106,7 @@ class InstancesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[InstancesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve the accessReviewInstance objects for a specific accessReviewScheduleDefinition. A list of zero or more accessReviewInstance objects are returned, including all of their nested properties. Returned objects do not include associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
+        Retrieve the accessReviewInstance objects for a specific accessReviewScheduleDefinition. A list of zero or more accessReviewInstance objects are returned, including all of their nested properties. Returned objects don't include associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class InstancesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class InstancesRequestBuilderGetQueryParameters():
         """
-        Retrieve the accessReviewInstance objects for a specific accessReviewScheduleDefinition. A list of zero or more accessReviewInstance objects are returned, including all of their nested properties. Returned objects do not include associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
+        Retrieve the accessReviewInstance objects for a specific accessReviewScheduleDefinition. A list of zero or more accessReviewInstance objects are returned, including all of their nested properties. Returned objects don't include associated accessReviewInstanceDecisionItems. To retrieve the decisions on the instance, use List accessReviewInstanceDecisionItem.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

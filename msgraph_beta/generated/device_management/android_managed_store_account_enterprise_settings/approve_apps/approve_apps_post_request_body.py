@@ -13,7 +13,7 @@ class ApproveAppsPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The approveAllPermissions property
-    approve_all_permissions: Optional[bool] = None
+    approve_all_permissions: Optional[bool] = False
     # The packageIds property
     package_ids: Optional[list[str]] = None
     

@@ -17,7 +17,7 @@ class CloudPcMicrosoftHostedNetworkConfiguration(CloudPcNetworkConfiguration, Pa
     odata_type: Optional[str] = "#microsoft.graph.cloudPcMicrosoftHostedNetworkConfiguration"
     # The geographicLocationType property
     geographic_location_type: Optional[CloudPcGeographicLocationType] = None
-    # The regionGroups property
+    # The region group configurations for the network.
     region_groups: Optional[list[CloudPcRegionGroupConfiguration]] = None
     
     @staticmethod

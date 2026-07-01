@@ -7,6 +7,6 @@ class MicrosoftTunnelLogCollectionStatus(str, Enum):
     Completed = "completed",
     # Indicates that the log collection has failed
     Failed = "failed",
-    # Evolvable enumeration sentinel value. Do not use.
+    # Placeholder value for future expansion enums
     UnknownFutureValue = "unknownFutureValue",
 

@@ -22,7 +22,7 @@ class TranslationPreferences(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The user's preferred translation behavior.Returned by default. Not nullable.
     translation_behavior: Optional[TranslationBehavior] = None
-    # The list of languages the user does not need translated. This is computed from the authoringLanguages collection in regionalAndLanguageSettings, and the languageOverrides collection in translationPreferences. The list specifies neutral culture values that include the language code without any country or region association. For example, it would specify 'fr' for the neutral French culture, but not 'fr-FR' for the French culture in France. Returned by default. Read only.
+    # The list of languages the user does not need translated. This is computed from the authoringLanguages collection in regionalAndLanguageSettings, and the languageOverrides collection in translationPreferences. The list specifies neutral culture values that include the language code without any country or region association. For example, it would specify 'fr' for the neutral French culture, but not 'fr-FR' for the French culture in France. Returned by default. Read-only.
     untranslated_languages: Optional[list[str]] = None
     
     @staticmethod

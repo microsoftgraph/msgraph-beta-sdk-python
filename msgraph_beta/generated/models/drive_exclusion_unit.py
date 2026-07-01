@@ -13,11 +13,11 @@ from .exclusion_unit_base import ExclusionUnitBase
 class DriveExclusionUnit(ExclusionUnitBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.driveExclusionUnit"
-    # The directoryObjectId property
+    # The unique identifier of the directory object (user) associated with the drive.
     directory_object_id: Optional[str] = None
-    # The displayName property
+    # The display name of the user associated with the drive.
     display_name: Optional[str] = None
-    # The email property
+    # The email address of the user associated with the drive.
     email: Optional[str] = None
     
     @staticmethod

@@ -19,7 +19,7 @@ class CloudPcRegionGroupConfiguration(AdditionalDataHolder, BackedModel, Parsabl
     odata_type: Optional[str] = None
     # The regionGroup property
     region_group: Optional[CloudPcRegionGroup] = None
-    # The regions property
+    # The list of region names within the region group. The default value is automatic.
     regions: Optional[list[str]] = None
     
     @staticmethod

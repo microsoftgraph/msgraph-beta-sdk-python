@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .win32_lob_app_file_system_rule import Win32LobAppFileSystemRule
     from .win32_lob_app_power_shell_script_rule import Win32LobAppPowerShellScriptRule
+    from .win32_lob_app_process_rule import Win32LobAppProcessRule
     from .win32_lob_app_product_code_rule import Win32LobAppProductCodeRule
     from .win32_lob_app_registry_rule import Win32LobAppRegistryRule
     from .win32_lob_app_rule_type import Win32LobAppRuleType
@@ -49,6 +50,10 @@ class Win32LobAppRule(AdditionalDataHolder, BackedModel, Parsable):
             from .win32_lob_app_power_shell_script_rule import Win32LobAppPowerShellScriptRule
 
             return Win32LobAppPowerShellScriptRule()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppProcessRule".casefold():
+            from .win32_lob_app_process_rule import Win32LobAppProcessRule
+
+            return Win32LobAppProcessRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppProductCodeRule".casefold():
             from .win32_lob_app_product_code_rule import Win32LobAppProductCodeRule
 
@@ -66,12 +71,14 @@ class Win32LobAppRule(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .win32_lob_app_file_system_rule import Win32LobAppFileSystemRule
         from .win32_lob_app_power_shell_script_rule import Win32LobAppPowerShellScriptRule
+        from .win32_lob_app_process_rule import Win32LobAppProcessRule
         from .win32_lob_app_product_code_rule import Win32LobAppProductCodeRule
         from .win32_lob_app_registry_rule import Win32LobAppRegistryRule
         from .win32_lob_app_rule_type import Win32LobAppRuleType
 
         from .win32_lob_app_file_system_rule import Win32LobAppFileSystemRule
         from .win32_lob_app_power_shell_script_rule import Win32LobAppPowerShellScriptRule
+        from .win32_lob_app_process_rule import Win32LobAppProcessRule
         from .win32_lob_app_product_code_rule import Win32LobAppProductCodeRule
         from .win32_lob_app_registry_rule import Win32LobAppRegistryRule
         from .win32_lob_app_rule_type import Win32LobAppRuleType

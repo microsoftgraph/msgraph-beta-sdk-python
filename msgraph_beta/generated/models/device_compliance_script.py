@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .device_compliance_script_device_state import DeviceComplianceScriptDeviceState
+    from .device_compliance_script_platform_type import DeviceComplianceScriptPlatformType
     from .device_compliance_script_run_summary import DeviceComplianceScriptRunSummary
     from .device_health_script_assignment import DeviceHealthScriptAssignment
     from .entity import Entity
@@ -37,6 +38,8 @@ class DeviceComplianceScript(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Indicates the operating system platform type that this compliance script targets.
+    platform: Optional[DeviceComplianceScriptPlatformType] = None
     # Name of the device compliance script publisher
     publisher: Optional[str] = None
     # List of Scope Tag IDs for the device compliance script
@@ -67,12 +70,14 @@ class DeviceComplianceScript(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .device_compliance_script_device_state import DeviceComplianceScriptDeviceState
+        from .device_compliance_script_platform_type import DeviceComplianceScriptPlatformType
         from .device_compliance_script_run_summary import DeviceComplianceScriptRunSummary
         from .device_health_script_assignment import DeviceHealthScriptAssignment
         from .entity import Entity
         from .run_as_account_type import RunAsAccountType
 
         from .device_compliance_script_device_state import DeviceComplianceScriptDeviceState
+        from .device_compliance_script_platform_type import DeviceComplianceScriptPlatformType
         from .device_compliance_script_run_summary import DeviceComplianceScriptRunSummary
         from .device_health_script_assignment import DeviceHealthScriptAssignment
         from .entity import Entity
@@ -87,6 +92,7 @@ class DeviceComplianceScript(Entity, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "enforceSignatureCheck": lambda n : setattr(self, 'enforce_signature_check', n.get_bool_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "platform": lambda n : setattr(self, 'platform', n.get_enum_value(DeviceComplianceScriptPlatformType)),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "runAsAccount": lambda n : setattr(self, 'run_as_account', n.get_enum_value(RunAsAccountType)),
@@ -113,6 +119,7 @@ class DeviceComplianceScript(Entity, Parsable):
         writer.write_collection_of_object_values("deviceRunStates", self.device_run_states)
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("enforceSignatureCheck", self.enforce_signature_check)
+        writer.write_enum_value("platform", self.platform)
         writer.write_str_value("publisher", self.publisher)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
         writer.write_enum_value("runAsAccount", self.run_as_account)

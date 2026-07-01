@@ -16,9 +16,9 @@ class ClockOutPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The atApprovedLocation property
-    at_approved_location: Optional[bool] = None
+    at_approved_location: Optional[bool] = False
     # The isAtApprovedLocation property
-    is_at_approved_location: Optional[bool] = None
+    is_at_approved_location: Optional[bool] = False
     # The notes property
     notes: Optional[ItemBody] = None
     

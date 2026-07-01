@@ -34,6 +34,8 @@ if TYPE_CHECKING:
     from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
     from .ip_security_profiles.ip_security_profiles_request_builder import IpSecurityProfilesRequestBuilder
     from .labels.labels_request_builder import LabelsRequestBuilder
+    from .microsoft_graph_security_get_hunting_schema.microsoft_graph_security_get_hunting_schema_request_builder import MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder
+    from .microsoft_graph_security_get_run_hunting_query_with_querytimesp_b8f2ec68.microsoft_graph_security_get_run_hunting_query_with_querytimesp_0505dfd4 import MicrosoftGraphSecurityGetRunHuntingQueryWithQuerytimesp_0505dfd4
     from .microsoft_graph_security_run_hunting_query.microsoft_graph_security_run_hunting_query_request_builder import MicrosoftGraphSecurityRunHuntingQueryRequestBuilder
     from .partner.partner_request_builder import PartnerRequestBuilder
     from .provider_tenant_settings.provider_tenant_settings_request_builder import ProviderTenantSettingsRequestBuilder
@@ -83,6 +85,18 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from ..models.security.security import Security
 
         return await self.request_adapter.send_async(request_info, Security, error_mapping)
+    
+    def microsoft_graph_security_get_run_hunting_query_with_querytimespan_timespan_with_workspace_id(self,query: str) -> MicrosoftGraphSecurityGetRunHuntingQueryWithQuerytimesp_0505dfd4:
+        """
+        Provides operations to call the getRunHuntingQuery method.
+        param query: Usage: query='{query}'
+        Returns: MicrosoftGraphSecurityGetRunHuntingQueryWithQuerytimesp_0505dfd4
+        """
+        if query is None:
+            raise TypeError("query cannot be null.")
+        from .microsoft_graph_security_get_run_hunting_query_with_querytimesp_b8f2ec68.microsoft_graph_security_get_run_hunting_query_with_querytimesp_0505dfd4 import MicrosoftGraphSecurityGetRunHuntingQueryWithQuerytimesp_0505dfd4
+
+        return MicrosoftGraphSecurityGetRunHuntingQueryWithQuerytimesp_0505dfd4(self.request_adapter, self.path_parameters, query)
     
     async def patch(self,body: Security, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Security]:
         """
@@ -304,6 +318,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .labels.labels_request_builder import LabelsRequestBuilder
 
         return LabelsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_security_get_hunting_schema(self) -> MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder:
+        """
+        Provides operations to call the getHuntingSchema method.
+        """
+        from .microsoft_graph_security_get_hunting_schema.microsoft_graph_security_get_hunting_schema_request_builder import MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder
+
+        return MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def microsoft_graph_security_run_hunting_query(self) -> MicrosoftGraphSecurityRunHuntingQueryRequestBuilder:

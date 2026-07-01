@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from .count.count_request_builder import CountRequestBuilder
     from .item.related_tenant_item_request_builder import RelatedTenantItemRequestBuilder
     from .microsoft_graph_tenant_governance_services_refresh.microsoft_graph_tenant_governance_services_refresh_request_builder import MicrosoftGraphTenantGovernanceServicesRefreshRequestBuilder
-    from .microsoft_graph_tenant_governance_services_refresh_status.microsoft_graph_tenant_governance_services_refresh_status_request_builder import MicrosoftGraphTenantGovernanceServicesRefreshStatusRequestBuilder
+    from .microsoft_graph_tenant_governance_services_refresh_status.microsoft_graph_tenant_governance_services_refresh_status_requ_f386b52a import MicrosoftGraphTenantGovernanceServicesRefreshStatusRequ_f386b52a
 
 class RelatedTenantsRequestBuilder(BaseRequestBuilder):
     """
@@ -148,13 +148,13 @@ class RelatedTenantsRequestBuilder(BaseRequestBuilder):
         return MicrosoftGraphTenantGovernanceServicesRefreshRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_tenant_governance_services_refresh_status(self) -> MicrosoftGraphTenantGovernanceServicesRefreshStatusRequestBuilder:
+    def microsoft_graph_tenant_governance_services_refresh_status(self) -> MicrosoftGraphTenantGovernanceServicesRefreshStatusRequ_f386b52a:
         """
         Provides operations to call the refreshStatus method.
         """
-        from .microsoft_graph_tenant_governance_services_refresh_status.microsoft_graph_tenant_governance_services_refresh_status_request_builder import MicrosoftGraphTenantGovernanceServicesRefreshStatusRequestBuilder
+        from .microsoft_graph_tenant_governance_services_refresh_status.microsoft_graph_tenant_governance_services_refresh_status_requ_f386b52a import MicrosoftGraphTenantGovernanceServicesRefreshStatusRequ_f386b52a
 
-        return MicrosoftGraphTenantGovernanceServicesRefreshStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphTenantGovernanceServicesRefreshStatusRequ_f386b52a(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RelatedTenantsRequestBuilderGetQueryParameters():

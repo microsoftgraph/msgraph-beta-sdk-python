@@ -32,6 +32,8 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
     apply_result: Optional[str] = None
     # Result of the review. Possible values: Approve, Deny, NotReviewed, or DontKnow. Supports $select, $orderby, and $filter (eq only).
     decision: Optional[str] = None
+    # The identities of users who delegated this decision item to the current reviewer. Null if the item wasn't delegated. A collection because multiple reviewers can delegate to the same user. Only returned via filterByCurrentUser when explicitly requested via $select. Read-only.
+    delegated_by: Optional[list[UserIdentity]] = None
     # Insights are recommendations to reviewers on whether to approve or deny a decision. There can be multiple insights associated with an accessReviewInstanceDecisionItem.
     insights: Optional[list[GovernanceInsight]] = None
     # There's exactly one accessReviewInstance associated with each decision. The instance is the parent of the decision item, representing the recurrence of the access review the decision is made on.
@@ -104,6 +106,7 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
             "applyDescription": lambda n : setattr(self, 'apply_description', n.get_str_value()),
             "applyResult": lambda n : setattr(self, 'apply_result', n.get_str_value()),
             "decision": lambda n : setattr(self, 'decision', n.get_str_value()),
+            "delegatedBy": lambda n : setattr(self, 'delegated_by', n.get_collection_of_object_values(UserIdentity)),
             "insights": lambda n : setattr(self, 'insights', n.get_collection_of_object_values(GovernanceInsight)),
             "instance": lambda n : setattr(self, 'instance', n.get_object_value(AccessReviewInstance)),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
@@ -137,6 +140,7 @@ class AccessReviewInstanceDecisionItem(Entity, Parsable):
         writer.write_str_value("applyDescription", self.apply_description)
         writer.write_str_value("applyResult", self.apply_result)
         writer.write_str_value("decision", self.decision)
+        writer.write_collection_of_object_values("delegatedBy", self.delegated_by)
         writer.write_collection_of_object_values("insights", self.insights)
         writer.write_object_value("instance", self.instance)
         writer.write_str_value("justification", self.justification)

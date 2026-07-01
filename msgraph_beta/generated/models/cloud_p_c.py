@@ -38,7 +38,7 @@ class CloudPC(Entity, Parsable):
     aad_device_id: Optional[str] = None
     # The allotment name divides tenant licenses into smaller batches or groups that help restrict the number of licenses available for use in a specific assignment. When the provisioningType is dedicated, the allotment name is null. Read-only.
     allotment_display_name: Optional[str] = None
-    # The connection setting of the Cloud PC. Possible values: enableSingleSignOn. Read Only.
+    # The connection setting of the Cloud PC. Possible values: enableSingleSignOn. Read-only.
     connection_setting: Optional[CloudPcConnectionSetting] = None
     # The connection settings of the Cloud PC. Possible values: enableSingleSignOn. Read-only. This property is deprecated and stopped retuning data on August 31, 2024. Going forward, use the connectionSetting property.
     connection_settings: Optional[CloudPcConnectionSettings] = None
@@ -60,6 +60,8 @@ class CloudPC(Entity, Parsable):
     group_detail: Optional[CloudPcEntraGroupDetail] = None
     # Name of the OS image that's on the Cloud PC.
     image_display_name: Optional[str] = None
+    # The isDisasterRecoveryActive property
+    is_disaster_recovery_active: Optional[bool] = None
     # The last login result of the Cloud PC. For example, { 'time': '2014-01-01T00:00:00Z'}.
     last_login_result: Optional[CloudPcLoginResult] = None
     # The last modified date and time of the Cloud PC. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z.
@@ -90,7 +92,7 @@ class CloudPC(Entity, Parsable):
     provisioning_policy_name: Optional[str] = None
     # The type of licenses to be used when provisioning Cloud PCs using this policy. The possible values are: dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup, reserve. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup, reserve. The default value is dedicated. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member.
     provisioning_type: Optional[CloudPcProvisioningType] = None
-    # The scopeIds property
+    # The scope IDs of the corresponding permission. Currently, it's the Intune scope tag ID. Read-only.
     scope_ids: Optional[list[str]] = None
     # The service plan ID of the Cloud PC.
     service_plan_id: Optional[str] = None
@@ -193,6 +195,7 @@ class CloudPC(Entity, Parsable):
             "gracePeriodEndDateTime": lambda n : setattr(self, 'grace_period_end_date_time', n.get_datetime_value()),
             "groupDetail": lambda n : setattr(self, 'group_detail', n.get_object_value(CloudPcEntraGroupDetail)),
             "imageDisplayName": lambda n : setattr(self, 'image_display_name', n.get_str_value()),
+            "isDisasterRecoveryActive": lambda n : setattr(self, 'is_disaster_recovery_active', n.get_bool_value()),
             "lastLoginResult": lambda n : setattr(self, 'last_login_result', n.get_object_value(CloudPcLoginResult)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "lastRemoteActionResult": lambda n : setattr(self, 'last_remote_action_result', n.get_object_value(CloudPcRemoteActionResult)),
@@ -246,6 +249,7 @@ class CloudPC(Entity, Parsable):
         writer.write_datetime_value("gracePeriodEndDateTime", self.grace_period_end_date_time)
         writer.write_object_value("groupDetail", self.group_detail)
         writer.write_str_value("imageDisplayName", self.image_display_name)
+        writer.write_bool_value("isDisasterRecoveryActive", self.is_disaster_recovery_active)
         writer.write_object_value("lastLoginResult", self.last_login_result)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_object_value("lastRemoteActionResult", self.last_remote_action_result)

@@ -38,9 +38,9 @@ class ProtectionPolicyBase(Entity, Parsable):
     odata_type: Optional[str] = None
     # The date and time when offboarding was requested for the protection policy. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     offboard_requested_date_time: Optional[datetime.datetime] = None
-    # The protectionMode property
+    # The backup mode for the protection policy. The possible values are: standard, fullServiceBackup, unknownFutureValue. When set to fullServiceBackup, the entire workload is backed up and specific items can be excluded using exclusion units. When set to standard, only the items explicitly added as protection units are backed up.
     protection_mode: Optional[BackupPolicyProtectionMode] = None
-    # The count of artifacts in the protection policy by status. Requires $select to retrieve.
+    # The count of artifacts in the protection policy by status. Returned only on $select.
     protection_policy_artifact_count: Optional[ProtectionPolicyArtifactCount] = None
     # Contains the retention setting details for the policy.
     retention_settings: Optional[list[RetentionSetting]] = None

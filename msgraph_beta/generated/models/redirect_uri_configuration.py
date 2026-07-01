@@ -21,15 +21,15 @@ class RedirectUriConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The uriWithBlockedDomain property
+    # Configuration that specifies blocked domains for redirect URIs with global and platform-specific settings.
     uri_with_blocked_domain: Optional[RedirectUriBlockedDomainConfiguration] = None
-    # The uriWithBlockedScheme property
+    # Configuration that specifies blocked URI schemes for redirect URIs with global and platform-specific settings and exempt format patterns.
     uri_with_blocked_scheme: Optional[RedirectUriBlockedSchemeConfiguration] = None
-    # The uriWithWildcard property
+    # Configuration that controls the use of wildcard patterns in redirect URIs with configurable exceptions.
     uri_with_wildcard: Optional[RedirectUriWildcardConfiguration] = None
-    # The uriWithoutAllowedDomain property
+    # Configuration that specifies allowed domains for redirect URIs with global and platform-specific settings.
     uri_without_allowed_domain: Optional[RedirectUriAllowedDomainConfiguration] = None
-    # The uriWithoutAllowedScheme property
+    # Configuration that specifies allowed URI schemes for redirect URIs with global and platform-specific settings.
     uri_without_allowed_scheme: Optional[RedirectUriAllowedSchemeConfiguration] = None
     
     @staticmethod

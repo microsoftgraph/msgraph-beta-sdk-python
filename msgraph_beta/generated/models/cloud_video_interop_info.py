@@ -12,13 +12,13 @@ class CloudVideoInteropInfo(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The moreInfoWebUrl property
+    # Provides other video teleconferencing (VTC) dial-in options. Read-only.
     more_info_web_url: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The tenantKey property
+    # The tenant key that is used to dial into the interactive voice response (IVR) of the partner CVI service.
     tenant_key: Optional[str] = None
-    # The videoTeleconferenceId property
+    # The video teleconferencing ID. Read-only.
     video_teleconference_id: Optional[str] = None
     
     @staticmethod
