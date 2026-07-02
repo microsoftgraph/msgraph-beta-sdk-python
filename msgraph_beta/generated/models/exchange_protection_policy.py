@@ -18,9 +18,9 @@ from .protection_policy_base import ProtectionPolicyBase
 class ExchangeProtectionPolicy(ProtectionPolicyBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.exchangeProtectionPolicy"
-    # The mailboxExclusionUnits property
+    # The mailbox exclusion units associated with the Exchange protection policy.
     mailbox_exclusion_units: Optional[list[MailboxExclusionUnit]] = None
-    # The mailboxExclusionUnitsBulkAdditionJobs property
+    # The list of bulk addition jobs for mailbox exclusion units associated with the Exchange protection policy.
     mailbox_exclusion_units_bulk_addition_jobs: Optional[list[MailboxExclusionUnitsBulkAdditionJob]] = None
     # The rules associated with the Exchange protection policy.
     mailbox_inclusion_rules: Optional[list[MailboxProtectionRule]] = None

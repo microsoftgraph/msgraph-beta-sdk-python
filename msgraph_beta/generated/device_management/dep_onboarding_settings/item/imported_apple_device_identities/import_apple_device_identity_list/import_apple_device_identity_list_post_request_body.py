@@ -15,10 +15,10 @@ class ImportAppleDeviceIdentityListPostRequestBody(AdditionalDataHolder, BackedM
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The overwriteImportedDeviceIdentities property
+    overwrite_imported_device_identities: Optional[bool] = False
     # The importedAppleDeviceIdentities property
     imported_apple_device_identities: Optional[list[ImportedAppleDeviceIdentity]] = None
-    # The overwriteImportedDeviceIdentities property
-    overwrite_imported_device_identities: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ImportAppleDeviceIdentityListPostRequestBody:

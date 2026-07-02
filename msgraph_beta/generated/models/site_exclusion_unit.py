@@ -13,11 +13,11 @@ from .exclusion_unit_base import ExclusionUnitBase
 class SiteExclusionUnit(ExclusionUnitBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.siteExclusionUnit"
-    # The siteId property
+    # The unique identifier of the SharePoint site.
     site_id: Optional[str] = None
-    # The siteName property
+    # The display name of the SharePoint site.
     site_name: Optional[str] = None
-    # The siteWebUrl property
+    # The URL of the SharePoint site.
     site_web_url: Optional[str] = None
     
     @staticmethod

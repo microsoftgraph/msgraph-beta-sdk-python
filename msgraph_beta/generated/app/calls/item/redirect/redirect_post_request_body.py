@@ -16,12 +16,12 @@ class RedirectPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The maskCallee property
+    mask_callee: Optional[bool] = False
+    # The maskCaller property
+    mask_caller: Optional[bool] = False
     # The callbackUri property
     callback_uri: Optional[str] = None
-    # The maskCallee property
-    mask_callee: Optional[bool] = None
-    # The maskCaller property
-    mask_caller: Optional[bool] = None
     # The targetDisposition property
     target_disposition: Optional[CallDisposition] = None
     # The targets property

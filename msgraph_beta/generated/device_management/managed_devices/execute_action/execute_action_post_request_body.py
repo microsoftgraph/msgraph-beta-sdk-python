@@ -15,6 +15,12 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The keepEnrollmentData property
+    keep_enrollment_data: Optional[bool] = False
+    # The keepUserData property
+    keep_user_data: Optional[bool] = False
+    # The persistEsimDataPlan property
+    persist_esim_data_plan: Optional[bool] = False
     # The actionName property
     action_name: Optional[ManagedDeviceRemoteAction] = None
     # The carrierUrl property
@@ -25,18 +31,12 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     device_ids: Optional[list[str]] = None
     # The deviceName property
     device_name: Optional[str] = None
-    # The keepEnrollmentData property
-    keep_enrollment_data: Optional[bool] = None
-    # The keepUserData property
-    keep_user_data: Optional[bool] = None
     # The notificationBody property
     notification_body: Optional[str] = None
     # The notificationTitle property
     notification_title: Optional[str] = None
     # The organizationalUnitPath property
     organizational_unit_path: Optional[str] = None
-    # The persistEsimDataPlan property
-    persist_esim_data_plan: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ExecuteActionPostRequestBody:

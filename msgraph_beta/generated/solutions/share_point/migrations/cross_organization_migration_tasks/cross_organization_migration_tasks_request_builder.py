@@ -18,9 +18,9 @@ if TYPE_CHECKING:
     from .....models.share_point_migration_task import SharePointMigrationTask
     from .....models.share_point_migration_task_collection_response import SharePointMigrationTaskCollectionResponse
     from .count.count_request_builder import CountRequestBuilder
-    from .get_by_source_group_mail_nickname_with_source_group_mail_nickname.get_by_source_group_mail_nickname_with_source_group_mail_nickname_request_builder import GetBySourceGroupMailNicknameWithSourceGroupMailNicknameRequestBuilder
+    from .get_by_source_group_mail_nickname_with_source_group_mail_nickname.get_by_source_group_mail_nickname_with_source_group_mail_nickname_7ae2e2d4 import GetBySourceGroupMailNicknameWithSourceGroupMailNickname_7ae2e2d4
     from .get_by_source_site_url_with_source_site_url.get_by_source_site_url_with_source_site_url_request_builder import GetBySourceSiteUrlWithSourceSiteUrlRequestBuilder
-    from .get_by_source_user_principal_name_with_source_principal_name.get_by_source_user_principal_name_with_source_principal_name_request_builder import GetBySourceUserPrincipalNameWithSourcePrincipalNameRequestBuilder
+    from .get_by_source_user_principal_name_with_source_principal_name.get_by_source_user_principal_name_with_source_principal_name_requ_31d27436 import GetBySourceUserPrincipalNameWithSourcePrincipalNameRequ_31d27436
     from .item.share_point_migration_task_item_request_builder import SharePointMigrationTaskItemRequestBuilder
 
 class CrossOrganizationMigrationTasksRequestBuilder(BaseRequestBuilder):
@@ -70,17 +70,17 @@ class CrossOrganizationMigrationTasksRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, SharePointMigrationTaskCollectionResponse, error_mapping)
     
-    def get_by_source_group_mail_nickname_with_source_group_mail_nickname(self,source_group_mail_nickname: str) -> GetBySourceGroupMailNicknameWithSourceGroupMailNicknameRequestBuilder:
+    def get_by_source_group_mail_nickname_with_source_group_mail_nickname(self,source_group_mail_nickname: str) -> GetBySourceGroupMailNicknameWithSourceGroupMailNickname_7ae2e2d4:
         """
         Provides operations to call the getBySourceGroupMailNickname method.
         param source_group_mail_nickname: Usage: sourceGroupMailNickname='{sourceGroupMailNickname}'
-        Returns: GetBySourceGroupMailNicknameWithSourceGroupMailNicknameRequestBuilder
+        Returns: GetBySourceGroupMailNicknameWithSourceGroupMailNickname_7ae2e2d4
         """
         if source_group_mail_nickname is None:
             raise TypeError("source_group_mail_nickname cannot be null.")
-        from .get_by_source_group_mail_nickname_with_source_group_mail_nickname.get_by_source_group_mail_nickname_with_source_group_mail_nickname_request_builder import GetBySourceGroupMailNicknameWithSourceGroupMailNicknameRequestBuilder
+        from .get_by_source_group_mail_nickname_with_source_group_mail_nickname.get_by_source_group_mail_nickname_with_source_group_mail_nickname_7ae2e2d4 import GetBySourceGroupMailNicknameWithSourceGroupMailNickname_7ae2e2d4
 
-        return GetBySourceGroupMailNicknameWithSourceGroupMailNicknameRequestBuilder(self.request_adapter, self.path_parameters, source_group_mail_nickname)
+        return GetBySourceGroupMailNicknameWithSourceGroupMailNickname_7ae2e2d4(self.request_adapter, self.path_parameters, source_group_mail_nickname)
     
     def get_by_source_site_url_with_source_site_url(self,source_site_url: str) -> GetBySourceSiteUrlWithSourceSiteUrlRequestBuilder:
         """
@@ -94,17 +94,17 @@ class CrossOrganizationMigrationTasksRequestBuilder(BaseRequestBuilder):
 
         return GetBySourceSiteUrlWithSourceSiteUrlRequestBuilder(self.request_adapter, self.path_parameters, source_site_url)
     
-    def get_by_source_user_principal_name_with_source_principal_name(self,source_principal_name: str) -> GetBySourceUserPrincipalNameWithSourcePrincipalNameRequestBuilder:
+    def get_by_source_user_principal_name_with_source_principal_name(self,source_principal_name: str) -> GetBySourceUserPrincipalNameWithSourcePrincipalNameRequ_31d27436:
         """
         Provides operations to call the getBySourceUserPrincipalName method.
         param source_principal_name: Usage: sourcePrincipalName='{sourcePrincipalName}'
-        Returns: GetBySourceUserPrincipalNameWithSourcePrincipalNameRequestBuilder
+        Returns: GetBySourceUserPrincipalNameWithSourcePrincipalNameRequ_31d27436
         """
         if source_principal_name is None:
             raise TypeError("source_principal_name cannot be null.")
-        from .get_by_source_user_principal_name_with_source_principal_name.get_by_source_user_principal_name_with_source_principal_name_request_builder import GetBySourceUserPrincipalNameWithSourcePrincipalNameRequestBuilder
+        from .get_by_source_user_principal_name_with_source_principal_name.get_by_source_user_principal_name_with_source_principal_name_requ_31d27436 import GetBySourceUserPrincipalNameWithSourcePrincipalNameRequ_31d27436
 
-        return GetBySourceUserPrincipalNameWithSourcePrincipalNameRequestBuilder(self.request_adapter, self.path_parameters, source_principal_name)
+        return GetBySourceUserPrincipalNameWithSourcePrincipalNameRequ_31d27436(self.request_adapter, self.path_parameters, source_principal_name)
     
     async def post(self,body: SharePointMigrationTask, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[SharePointMigrationTask]:
         """

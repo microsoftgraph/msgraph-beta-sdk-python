@@ -15,10 +15,10 @@ class PlayPromptPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The loop property
+    loop: Optional[bool] = False
     # The clientContext property
     client_context: Optional[str] = None
-    # The loop property
-    loop: Optional[bool] = None
     # The prompts property
     prompts: Optional[list[Prompt]] = None
     

@@ -17,6 +17,8 @@ class RemediatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The remediateSendersCopy property
+    remediate_senders_copy: Optional[bool] = False
     # The action property
     action: Optional[RemediationAction] = None
     # The analyzedEmails property
@@ -25,8 +27,6 @@ class RemediatePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     description: Optional[str] = None
     # The displayName property
     display_name: Optional[str] = None
-    # The remediateSendersCopy property
-    remediate_senders_copy: Optional[bool] = None
     # The severity property
     severity: Optional[RemediationSeverity] = None
     

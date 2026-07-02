@@ -27,10 +27,16 @@ class AgentRiskDetection(Entity, Parsable):
     agent_id: Optional[str] = None
     # The identifier of the blueprint associated with the agent. Nullable.
     blueprint_id: Optional[str] = None
+    # The clientSessionId property
+    client_session_id: Optional[str] = None
     # Date and time that the risk was detected. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $filter (eq, le, and ge).
     detected_date_time: Optional[datetime.datetime] = None
     # The detectionTimingType property
     detection_timing_type: Optional[RiskDetectionTimingType] = None
+    # The displayName property
+    display_name: Optional[str] = None
+    # The identityId property
+    identity_id: Optional[str] = None
     # The identityType property
     identity_type: Optional[AgentIdentityType] = None
     # Date and time that the risk detection was last updated.  Supports $filter (eq, le, and ge).
@@ -47,6 +53,12 @@ class AgentRiskDetection(Entity, Parsable):
     risk_level: Optional[RiskLevel] = None
     # The riskState property
     risk_state: Optional[RiskState] = None
+    # The signInClientDisplayName property
+    sign_in_client_display_name: Optional[str] = None
+    # The signInCorrelationId property
+    sign_in_correlation_id: Optional[str] = None
+    # The signInRequestId property
+    sign_in_request_id: Optional[str] = None
     # The source system that generated the risk detection. Nullable.
     source: Optional[str] = None
     
@@ -86,8 +98,11 @@ class AgentRiskDetection(Entity, Parsable):
             "agentDisplayName": lambda n : setattr(self, 'agent_display_name', n.get_str_value()),
             "agentId": lambda n : setattr(self, 'agent_id', n.get_str_value()),
             "blueprintId": lambda n : setattr(self, 'blueprint_id', n.get_str_value()),
+            "clientSessionId": lambda n : setattr(self, 'client_session_id', n.get_str_value()),
             "detectedDateTime": lambda n : setattr(self, 'detected_date_time', n.get_datetime_value()),
             "detectionTimingType": lambda n : setattr(self, 'detection_timing_type', n.get_enum_value(RiskDetectionTimingType)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "identityId": lambda n : setattr(self, 'identity_id', n.get_str_value()),
             "identityType": lambda n : setattr(self, 'identity_type', n.get_enum_value(AgentIdentityType)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "riskDetail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(RiskDetail)),
@@ -95,6 +110,9 @@ class AgentRiskDetection(Entity, Parsable):
             "riskEvidence": lambda n : setattr(self, 'risk_evidence', n.get_str_value()),
             "riskLevel": lambda n : setattr(self, 'risk_level', n.get_enum_value(RiskLevel)),
             "riskState": lambda n : setattr(self, 'risk_state', n.get_enum_value(RiskState)),
+            "signInClientDisplayName": lambda n : setattr(self, 'sign_in_client_display_name', n.get_str_value()),
+            "signInCorrelationId": lambda n : setattr(self, 'sign_in_correlation_id', n.get_str_value()),
+            "signInRequestId": lambda n : setattr(self, 'sign_in_request_id', n.get_str_value()),
             "source": lambda n : setattr(self, 'source', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -115,8 +133,11 @@ class AgentRiskDetection(Entity, Parsable):
         writer.write_str_value("agentDisplayName", self.agent_display_name)
         writer.write_str_value("agentId", self.agent_id)
         writer.write_str_value("blueprintId", self.blueprint_id)
+        writer.write_str_value("clientSessionId", self.client_session_id)
         writer.write_datetime_value("detectedDateTime", self.detected_date_time)
         writer.write_enum_value("detectionTimingType", self.detection_timing_type)
+        writer.write_str_value("displayName", self.display_name)
+        writer.write_str_value("identityId", self.identity_id)
         writer.write_enum_value("identityType", self.identity_type)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_enum_value("riskDetail", self.risk_detail)
@@ -124,6 +145,9 @@ class AgentRiskDetection(Entity, Parsable):
         writer.write_str_value("riskEvidence", self.risk_evidence)
         writer.write_enum_value("riskLevel", self.risk_level)
         writer.write_enum_value("riskState", self.risk_state)
+        writer.write_str_value("signInClientDisplayName", self.sign_in_client_display_name)
+        writer.write_str_value("signInCorrelationId", self.sign_in_correlation_id)
+        writer.write_str_value("signInRequestId", self.sign_in_request_id)
         writer.write_str_value("source", self.source)
     
 

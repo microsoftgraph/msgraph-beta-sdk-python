@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .cloud_pc_provisioning_policy_autopatch import CloudPcProvisioningPolicyAutopatch
     from .cloud_pc_provisioning_policy_image_type import CloudPcProvisioningPolicyImageType
     from .cloud_pc_provisioning_type import CloudPcProvisioningType
+    from .cloud_pc_snapshot_reset_mode import CloudPcSnapshotResetMode
     from .cloud_pc_user_experience_type import CloudPcUserExperienceType
     from .cloud_pc_user_settings_persistence_configuration import CloudPcUserSettingsPersistenceConfiguration
     from .cloud_pc_windows_setting import CloudPcWindowsSetting
@@ -28,9 +29,9 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
     alternate_resource_url: Optional[str] = None
     # A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Microsoft Entra ID that have provisioning policy assigned. Returned only on $expand. For an example about how to get the assignments relationship, see Get cloudPcProvisioningPolicy.
     assignments: Optional[list[CloudPcProvisioningPolicyAssignment]] = None
-    # Indicates the Windows Autopatch settings for Cloud PCs using this provisioning policy. The settings take effect when the tenant enrolls in Autopatch and the managedType of the microsoftManagedDesktop property is set as starterManaged. Supports $select.
+    # Indicates the Windows Autopatch settings for Cloud PCs using this provisioning policy. The settings take effect when the tenant enrolls in Autopatch and the managedType of the microsoftManagedDesktop property is set as starterManaged. When you create or update a provisioning policy with autopatch, you must use a delegated token and the signed-in user must have the Intune Administrator role. Supports $select.
     autopatch: Optional[CloudPcProvisioningPolicyAutopatch] = None
-    # The specific settings for Windows Autopilot that enable Windows 365 customers to experience it on Cloud PC. Supports $select.
+    # The specific settings for Windows Autopilot that enable Windows 365 customers to experience it on Cloud PC. When you create or update a provisioning policy with autopilotConfiguration, use the required Microsoft Graph permissions listed on the corresponding create and update API pages. In delegated scenarios, the signed-in user must also have the Microsoft.Intune/DeviceConfigurations/Assign Intune RBAC permission. Supports $select.
     autopilot_configuration: Optional[CloudPcAutopilotConfiguration] = None
     # The display name of the Cloud PC group that the Cloud PCs reside in. Read-only.
     cloud_pc_group_display_name: Optional[str] = None
@@ -70,8 +71,10 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
     odata_type: Optional[str] = None
     # Specifies the type of licenses to be used when provisioning Cloud PCs using this policy. The possible values are dedicated, shared, unknownFutureValue, sharedByUser, sharedByEntraGroup, reserve. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: sharedByUser, sharedByEntraGroup, reserve. The shared member is deprecated and will stop returning on April 30, 2027; going forward, use the sharedByUser member. For example, a dedicated service plan can be assigned to only one user and provision only one Cloud PC. The shared and sharedByUser plans require customers to purchase a shared service plan. Each shared license purchased can enable up to three Cloud PCs, with only one user signed in at a time. The sharedByEntraGroup plan also requires the purchase of a shared service plan. Each shared license under this plan can enable one Cloud PC, which is shared for the group according to the assignments of this policy. By default, the license type is dedicated if the provisioningType isn't specified when you create the cloudPcProvisioningPolicy. You can't change this property after the cloudPcProvisioningPolicy is created.
     provisioning_type: Optional[CloudPcProvisioningType] = None
-    # The scopeIds property
+    # The list of scope tag IDs for this resource. Read-only.
     scope_ids: Optional[list[str]] = None
+    # The snapshotResetMode property
+    snapshot_reset_mode: Optional[CloudPcSnapshotResetMode] = None
     # Specifies the type of cloud object the end user can access. The possible values are: cloudPc, cloudApp, unknownFutureValue. cloudPc indicates that the end user can access the entire desktop. cloudApp indicates that the end user can only access apps published under this provisioning policy. The type can't be changed once the provisioning policy is created. If not specified during creation, the default value is cloudPc. When cloudApp is selected, the provisioningType must be sharedByEntraGroup. Supports $filter, $select, $orderBy.
     user_experience_type: Optional[CloudPcUserExperienceType] = None
     # Indicates specific settings that enable the persistence of user application settings between Cloud PC sessions. The default value is null. This feature is only available for Cloud PC provisioning policies of type sharedByEntraGroup. Supports $select.
@@ -104,6 +107,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
         from .cloud_pc_provisioning_policy_autopatch import CloudPcProvisioningPolicyAutopatch
         from .cloud_pc_provisioning_policy_image_type import CloudPcProvisioningPolicyImageType
         from .cloud_pc_provisioning_type import CloudPcProvisioningType
+        from .cloud_pc_snapshot_reset_mode import CloudPcSnapshotResetMode
         from .cloud_pc_user_experience_type import CloudPcUserExperienceType
         from .cloud_pc_user_settings_persistence_configuration import CloudPcUserSettingsPersistenceConfiguration
         from .cloud_pc_windows_setting import CloudPcWindowsSetting
@@ -118,6 +122,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
         from .cloud_pc_provisioning_policy_autopatch import CloudPcProvisioningPolicyAutopatch
         from .cloud_pc_provisioning_policy_image_type import CloudPcProvisioningPolicyImageType
         from .cloud_pc_provisioning_type import CloudPcProvisioningType
+        from .cloud_pc_snapshot_reset_mode import CloudPcSnapshotResetMode
         from .cloud_pc_user_experience_type import CloudPcUserExperienceType
         from .cloud_pc_user_settings_persistence_configuration import CloudPcUserSettingsPersistenceConfiguration
         from .cloud_pc_windows_setting import CloudPcWindowsSetting
@@ -149,6 +154,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
             "microsoftManagedDesktop": lambda n : setattr(self, 'microsoft_managed_desktop', n.get_object_value(MicrosoftManagedDesktop)),
             "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
             "scopeIds": lambda n : setattr(self, 'scope_ids', n.get_collection_of_primitive_values(str)),
+            "snapshotResetMode": lambda n : setattr(self, 'snapshot_reset_mode', n.get_enum_value(CloudPcSnapshotResetMode)),
             "userExperienceType": lambda n : setattr(self, 'user_experience_type', n.get_enum_value(CloudPcUserExperienceType)),
             "userSettingsPersistenceConfiguration": lambda n : setattr(self, 'user_settings_persistence_configuration', n.get_object_value(CloudPcUserSettingsPersistenceConfiguration)),
             "windowsSetting": lambda n : setattr(self, 'windows_setting', n.get_object_value(CloudPcWindowsSetting)),
@@ -190,6 +196,7 @@ class CloudPcProvisioningPolicy(Entity, Parsable):
         writer.write_object_value("microsoftManagedDesktop", self.microsoft_managed_desktop)
         writer.write_enum_value("provisioningType", self.provisioning_type)
         writer.write_collection_of_primitive_values("scopeIds", self.scope_ids)
+        writer.write_enum_value("snapshotResetMode", self.snapshot_reset_mode)
         writer.write_enum_value("userExperienceType", self.user_experience_type)
         writer.write_object_value("userSettingsPersistenceConfiguration", self.user_settings_persistence_configuration)
         writer.write_object_value("windowsSetting", self.windows_setting)

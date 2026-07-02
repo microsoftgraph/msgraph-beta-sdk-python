@@ -16,7 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from ....models.tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
-    from .microsoft_graph_tenant_governance_services_enable_related_tenants.microsoft_graph_tenant_governance_services_enable_related_tenants_request_builder import MicrosoftGraphTenantGovernanceServicesEnableRelatedTenantsRequestBuilder
+    from .microsoft_graph_tenant_governance_services_enable_related_tenants.microsoft_graph_tenant_governance_services_enable_related_tena_9dd95bab import MicrosoftGraphTenantGovernanceServicesEnableRelatedTena_9dd95bab
 
 class SettingsRequestBuilder(BaseRequestBuilder):
     """
@@ -142,13 +142,13 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         return SettingsRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def microsoft_graph_tenant_governance_services_enable_related_tenants(self) -> MicrosoftGraphTenantGovernanceServicesEnableRelatedTenantsRequestBuilder:
+    def microsoft_graph_tenant_governance_services_enable_related_tenants(self) -> MicrosoftGraphTenantGovernanceServicesEnableRelatedTena_9dd95bab:
         """
         Provides operations to call the enableRelatedTenants method.
         """
-        from .microsoft_graph_tenant_governance_services_enable_related_tenants.microsoft_graph_tenant_governance_services_enable_related_tenants_request_builder import MicrosoftGraphTenantGovernanceServicesEnableRelatedTenantsRequestBuilder
+        from .microsoft_graph_tenant_governance_services_enable_related_tenants.microsoft_graph_tenant_governance_services_enable_related_tena_9dd95bab import MicrosoftGraphTenantGovernanceServicesEnableRelatedTena_9dd95bab
 
-        return MicrosoftGraphTenantGovernanceServicesEnableRelatedTenantsRequestBuilder(self.request_adapter, self.path_parameters)
+        return MicrosoftGraphTenantGovernanceServicesEnableRelatedTena_9dd95bab(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SettingsRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

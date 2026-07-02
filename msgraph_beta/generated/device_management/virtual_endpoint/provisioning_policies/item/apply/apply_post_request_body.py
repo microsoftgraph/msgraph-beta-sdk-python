@@ -15,6 +15,8 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The isForceUserLogoffEnabled property
+    is_force_user_logoff_enabled: Optional[bool] = False
     # The policySettings property
     policy_settings: Optional[CloudPcPolicySettingType] = None
     # The reservePercentage property
@@ -41,6 +43,7 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         from ......models.cloud_pc_policy_setting_type import CloudPcPolicySettingType
 
         fields: dict[str, Callable[[Any], None]] = {
+            "isForceUserLogoffEnabled": lambda n : setattr(self, 'is_force_user_logoff_enabled', n.get_bool_value()),
             "policySettings": lambda n : setattr(self, 'policy_settings', n.get_collection_of_enum_values(CloudPcPolicySettingType)),
             "reservePercentage": lambda n : setattr(self, 'reserve_percentage', n.get_int_value()),
         }
@@ -54,6 +57,7 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_bool_value("isForceUserLogoffEnabled", self.is_force_user_logoff_enabled)
         writer.write_enum_value("policySettings", self.policy_settings)
         writer.write_int_value("reservePercentage", self.reserve_percentage)
         writer.write_additional_data_value(self.additional_data)

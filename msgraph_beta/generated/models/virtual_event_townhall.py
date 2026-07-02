@@ -9,6 +9,8 @@ if TYPE_CHECKING:
     from .identity import Identity
     from .meeting_audience import MeetingAudience
     from .virtual_event import VirtualEvent
+    from .virtual_event_registration import VirtualEventRegistration
+    from .virtual_event_townhall_registration_configuration import VirtualEventTownhallRegistrationConfiguration
 
 from .virtual_event import VirtualEvent
 
@@ -26,6 +28,10 @@ class VirtualEventTownhall(VirtualEvent, Parsable):
     invited_attendees: Optional[list[Identity]] = None
     # Indicates whether the town hall is only open to invited people and groups within your organization. The isInviteOnly property can only be true if the value of the audience property is set to organization.
     is_invite_only: Optional[bool] = None
+    # Registration configuration of the town hall.
+    registration_configuration: Optional[VirtualEventTownhallRegistrationConfiguration] = None
+    # Registration records of the town hall.
+    registrations: Optional[list[VirtualEventRegistration]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> VirtualEventTownhall:
@@ -47,11 +53,15 @@ class VirtualEventTownhall(VirtualEvent, Parsable):
         from .identity import Identity
         from .meeting_audience import MeetingAudience
         from .virtual_event import VirtualEvent
+        from .virtual_event_registration import VirtualEventRegistration
+        from .virtual_event_townhall_registration_configuration import VirtualEventTownhallRegistrationConfiguration
 
         from .communications_user_identity import CommunicationsUserIdentity
         from .identity import Identity
         from .meeting_audience import MeetingAudience
         from .virtual_event import VirtualEvent
+        from .virtual_event_registration import VirtualEventRegistration
+        from .virtual_event_townhall_registration_configuration import VirtualEventTownhallRegistrationConfiguration
 
         fields: dict[str, Callable[[Any], None]] = {
             "audience": lambda n : setattr(self, 'audience', n.get_enum_value(MeetingAudience)),
@@ -59,6 +69,8 @@ class VirtualEventTownhall(VirtualEvent, Parsable):
             "coOrganizers": lambda n : setattr(self, 'co_organizers', n.get_collection_of_object_values(CommunicationsUserIdentity)),
             "invitedAttendees": lambda n : setattr(self, 'invited_attendees', n.get_collection_of_object_values(Identity)),
             "isInviteOnly": lambda n : setattr(self, 'is_invite_only', n.get_bool_value()),
+            "registrationConfiguration": lambda n : setattr(self, 'registration_configuration', n.get_object_value(VirtualEventTownhallRegistrationConfiguration)),
+            "registrations": lambda n : setattr(self, 'registrations', n.get_collection_of_object_values(VirtualEventRegistration)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -78,5 +90,7 @@ class VirtualEventTownhall(VirtualEvent, Parsable):
         writer.write_collection_of_object_values("coOrganizers", self.co_organizers)
         writer.write_collection_of_object_values("invitedAttendees", self.invited_attendees)
         writer.write_bool_value("isInviteOnly", self.is_invite_only)
+        writer.write_object_value("registrationConfiguration", self.registration_configuration)
+        writer.write_collection_of_object_values("registrations", self.registrations)
     
 

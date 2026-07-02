@@ -18,6 +18,8 @@ class DelegatedAdministrationRoleAssignment(AdditionalDataHolder, BackedModel, P
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The group property
     group: Optional[Group] = None
+    # The display name of the security group referenced by the group navigation property. Server-populated and read-only; returns null if the referenced group has been deleted.
+    group_display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # A collection of role templates that define the roles to be assigned to the group in the governed tenant.
@@ -47,6 +49,7 @@ class DelegatedAdministrationRoleAssignment(AdditionalDataHolder, BackedModel, P
 
         fields: dict[str, Callable[[Any], None]] = {
             "group": lambda n : setattr(self, 'group', n.get_object_value(Group)),
+            "groupDisplayName": lambda n : setattr(self, 'group_display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "roleTemplates": lambda n : setattr(self, 'role_templates', n.get_collection_of_object_values(RoleTemplate)),
         }
@@ -61,6 +64,7 @@ class DelegatedAdministrationRoleAssignment(AdditionalDataHolder, BackedModel, P
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("group", self.group)
+        writer.write_str_value("groupDisplayName", self.group_display_name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("roleTemplates", self.role_templates)
         writer.write_additional_data_value(self.additional_data)

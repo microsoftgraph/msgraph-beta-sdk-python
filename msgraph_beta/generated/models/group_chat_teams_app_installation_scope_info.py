@@ -13,7 +13,7 @@ from .teams_app_installation_scope_info import TeamsAppInstallationScopeInfo
 class GroupChatTeamsAppInstallationScopeInfo(TeamsAppInstallationScopeInfo, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.groupChatTeamsAppInstallationScopeInfo"
-    # The chatId property
+    # The ID of the chat where the Teams app is installed.
     chat_id: Optional[str] = None
     
     @staticmethod

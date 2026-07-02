@@ -32,7 +32,7 @@ class AcquireAccessTokenRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: AcquireAccessTokenPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Acquire an OAuth Access token to authorize the Microsoft Entra provisioning service to provision users into an application.
+        Acquire an OAuth access token from the synchronization resource to authorize the Microsoft Entra provisioning service to provision users into an application.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
@@ -55,7 +55,7 @@ class AcquireAccessTokenRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: AcquireAccessTokenPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Acquire an OAuth Access token to authorize the Microsoft Entra provisioning service to provision users into an application.
+        Acquire an OAuth access token from the synchronization resource to authorize the Microsoft Entra provisioning service to provision users into an application.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

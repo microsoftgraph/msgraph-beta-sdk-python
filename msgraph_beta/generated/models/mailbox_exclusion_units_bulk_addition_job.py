@@ -13,7 +13,7 @@ from .exclusion_unit_bulk_addition_job import ExclusionUnitBulkAdditionJob
 class MailboxExclusionUnitsBulkAdditionJob(ExclusionUnitBulkAdditionJob, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.mailboxExclusionUnitsBulkAdditionJob"
-    # The mailboxes property
+    # The email addresses of the mailboxes to be added as exclusion units to the protection policy.
     mailboxes: Optional[list[str]] = None
     
     @staticmethod

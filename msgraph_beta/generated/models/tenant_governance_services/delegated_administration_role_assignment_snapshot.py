@@ -15,6 +15,8 @@ class DelegatedAdministrationRoleAssignmentSnapshot(AdditionalDataHolder, Backed
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The display name of the security group identified by groupId at the time the snapshot was created. Read-only.
+    group_display_name: Optional[str] = None
     # The object ID of the role-assignable security group in the governing tenant that will be assigned the specified roles.
     group_id: Optional[str] = None
     # The OdataType property
@@ -43,6 +45,7 @@ class DelegatedAdministrationRoleAssignmentSnapshot(AdditionalDataHolder, Backed
         from .role_template import RoleTemplate
 
         fields: dict[str, Callable[[Any], None]] = {
+            "groupDisplayName": lambda n : setattr(self, 'group_display_name', n.get_str_value()),
             "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "roleTemplates": lambda n : setattr(self, 'role_templates', n.get_collection_of_object_values(RoleTemplate)),
@@ -57,6 +60,7 @@ class DelegatedAdministrationRoleAssignmentSnapshot(AdditionalDataHolder, Backed
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_str_value("groupDisplayName", self.group_display_name)
         writer.write_str_value("groupId", self.group_id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("roleTemplates", self.role_templates)

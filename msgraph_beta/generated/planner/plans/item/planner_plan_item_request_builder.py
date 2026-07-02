@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .buckets.buckets_request_builder import BucketsRequestBuilder
     from .details.details_request_builder import DetailsRequestBuilder
     from .get_usage_rights.get_usage_rights_request_builder import GetUsageRightsRequestBuilder
+    from .history_items.history_items_request_builder import HistoryItemsRequestBuilder
     from .move_to_container.move_to_container_request_builder import MoveToContainerRequestBuilder
     from .tasks.tasks_request_builder import TasksRequestBuilder
     from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
@@ -183,6 +184,15 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         from .get_usage_rights.get_usage_rights_request_builder import GetUsageRightsRequestBuilder
 
         return GetUsageRightsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def history_items(self) -> HistoryItemsRequestBuilder:
+        """
+        Provides operations to manage the historyItems property of the microsoft.graph.plannerPlan entity.
+        """
+        from .history_items.history_items_request_builder import HistoryItemsRequestBuilder
+
+        return HistoryItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def move_to_container(self) -> MoveToContainerRequestBuilder:

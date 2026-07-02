@@ -20,7 +20,7 @@ class AppManagementApplicationConfiguration(AppManagementConfiguration, Parsable
     audiences: Optional[AudiencesConfiguration] = None
     # Configuration object for restrictions on identifierUris property for an application.
     identifier_uris: Optional[IdentifierUriConfiguration] = None
-    # The redirectUris property
+    # Configuration object for redirect URI validation rules and restrictions for an application.
     redirect_uris: Optional[RedirectUriConfiguration] = None
     
     @staticmethod

@@ -18,17 +18,17 @@ from .entity import Entity
 
 @dataclass
 class ExclusionUnitBulkAdditionJob(Entity, Parsable):
-    # The createdBy property
+    # The identity of the person who created the bulk addition job.
     created_by: Optional[IdentitySet] = None
-    # The createdDateTime property
+    # The date and time when the bulk addition job was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The displayName property
+    # The display name of the bulk addition job.
     display_name: Optional[str] = None
-    # The error property
+    # Contains error details if the bulk addition job failed.
     error: Optional[PublicError] = None
-    # The lastModifiedBy property
+    # The identity of the person who last modified the bulk addition job.
     last_modified_by: Optional[IdentitySet] = None
-    # The lastModifiedDateTime property
+    # The date and time when the bulk addition job was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

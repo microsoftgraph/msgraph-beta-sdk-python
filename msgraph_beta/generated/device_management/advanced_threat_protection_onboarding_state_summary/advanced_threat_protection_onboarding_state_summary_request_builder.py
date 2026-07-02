@@ -16,7 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
     from ...models.o_data_errors.o_data_error import ODataError
-    from .advanced_threat_protection_onboarding_device_setting_states.advanced_threat_protection_onboarding_device_setting_states_request_builder import AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder
+    from .advanced_threat_protection_onboarding_device_setting_states.advanced_threat_protection_onboarding_device_setting_states_re_23f016bc import AdvancedThreatProtectionOnboardingDeviceSettingStatesRe_23f016bc
 
 class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(BaseRequestBuilder):
     """
@@ -140,13 +140,13 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(BaseRequestBu
         return AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def advanced_threat_protection_onboarding_device_setting_states(self) -> AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder:
+    def advanced_threat_protection_onboarding_device_setting_states(self) -> AdvancedThreatProtectionOnboardingDeviceSettingStatesRe_23f016bc:
         """
         Provides operations to manage the advancedThreatProtectionOnboardingDeviceSettingStates property of the microsoft.graph.advancedThreatProtectionOnboardingStateSummary entity.
         """
-        from .advanced_threat_protection_onboarding_device_setting_states.advanced_threat_protection_onboarding_device_setting_states_request_builder import AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder
+        from .advanced_threat_protection_onboarding_device_setting_states.advanced_threat_protection_onboarding_device_setting_states_re_23f016bc import AdvancedThreatProtectionOnboardingDeviceSettingStatesRe_23f016bc
 
-        return AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder(self.request_adapter, self.path_parameters)
+        return AdvancedThreatProtectionOnboardingDeviceSettingStatesRe_23f016bc(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

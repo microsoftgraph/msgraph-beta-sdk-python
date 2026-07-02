@@ -15,13 +15,13 @@ class UpdateManagementEnrollment(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The driver property
+    # Information about the enrollment state of the device in driver update management.
     driver: Optional[UpdateCategoryEnrollmentInformation] = None
-    # The feature property
+    # Information about the enrollment state of the device in feature update management.
     feature: Optional[UpdateCategoryEnrollmentInformation] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The quality property
+    # Information about the enrollment state of the device in quality update management.
     quality: Optional[UpdateCategoryEnrollmentInformation] = None
     
     @staticmethod

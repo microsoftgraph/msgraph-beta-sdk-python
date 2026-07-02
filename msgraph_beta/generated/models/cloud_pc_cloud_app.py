@@ -15,7 +15,7 @@ from .entity import Entity
 
 @dataclass
 class CloudPcCloudApp(Entity, Parsable):
-    # The error code if publishing, unpublishing, or resetting a cloud app fails. The possible values are: cloudAppQuotaExceeded, cloudPcLicenseNotFound, internalServerError, appDiscoveryFailed, unknownFutureValue. The default value is null. Supports $filter, $select, $orderBy. Read-only.
+    # The error code if publishing, unpublishing, or resetting a cloud app fails. The possible values are: cloudAppQuotaExceeded, cloudPcLicenseNotFound, internalServerError, appDiscoveryFailed, unknownFutureValue, iconPathInvalid, filePathInvalid. Use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: iconPathInvalid, filePathInvalid. The default value is null. Supports $filter, $select, $orderBy. Read-only.
     action_failed_error_code: Optional[CloudPcCloudAppActionFailedErrorCode] = None
     # The error message when the IT admin failed to publish, unpublish, update, or reset a cloud app. For example: 'Publish failed because it exceeds the 500 cloud apps limitation under the policy. You need to unpublish some cloud apps under this policy in order to publish this cloud app again.' Read-only.
     action_failed_error_message: Optional[str] = None
@@ -37,7 +37,7 @@ class CloudPcCloudApp(Entity, Parsable):
     last_published_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The ID of the provisioning policy associated with this cloud app. For example, 96133506-c05b-4dbb-a150-ed4adc59895f. Supports $filter, $select, and $orderBy. Read-only. Required.
+    # The ID of the provisioning policy associated with this cloud app. For example, 96133506-c05b-4dbb-a150-ed4adc59895f. Supports $filter, $select, and $orderBy. Required.
     provisioning_policy_id: Optional[str] = None
     # The list of scope tag IDs for this cloud app. Inherited from the provisioning policy when the app is created or updated. Read-only.
     scope_ids: Optional[list[str]] = None

@@ -17,7 +17,7 @@ from .entity import Entity
 
 @dataclass
 class ApplicationTemplate(Entity, Parsable):
-    # The list of categories for the application. Supported values can be: Collaboration, Business Management, Consumer, Content management, CRM, Data services, Developer services, E-commerce, Education, ERP, Finance, Health, Human resources, IT infrastructure, Mail, Management, Marketing, Media, Productivity, Project management, Telecommunications, Tools, Travel, and Web design & hosting.  Supports $filter (contains).
+    # The list of categories for the application. To get the full list of supported values, use the applicationTemplate: categories function. Supports $filter (contains).
     categories: Optional[list[str]] = None
     # The URIs required for the single sign-on configuration of a preintegrated application.
     configuration_uris: Optional[list[ConfigurationUri]] = None

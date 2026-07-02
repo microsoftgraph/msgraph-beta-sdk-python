@@ -50,7 +50,7 @@ class SiteExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SiteExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters]] = None) -> Optional[SiteExclusionUnitsBulkAdditionJob]:
         """
-        Get siteExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for site exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteExclusionUnitsBulkAdditionJob]
         """
@@ -104,7 +104,7 @@ class SiteExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SiteExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get siteExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for site exclusion units in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class SiteExclusionUnitsBulkAdditionJobItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SiteExclusionUnitsBulkAdditionJobItemRequestBuilderGetQueryParameters():
         """
-        Get siteExclusionUnitsBulkAdditionJobs from solutions
+        The list of bulk addition jobs for site exclusion units in the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

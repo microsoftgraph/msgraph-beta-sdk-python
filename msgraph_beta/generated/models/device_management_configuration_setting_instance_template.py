@@ -6,11 +6,11 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .device_management_configuration_choice_setting_collection_instance_template import DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate
+    from .device_management_configuration_choice_setting_collection_ins_548e14e3 import DeviceManagementConfigurationChoiceSettingCollectionIns_548e14e3
     from .device_management_configuration_choice_setting_instance_template import DeviceManagementConfigurationChoiceSettingInstanceTemplate
-    from .device_management_configuration_group_setting_collection_instance_template import DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate
+    from .device_management_configuration_group_setting_collection_inst_d212f703 import DeviceManagementConfigurationGroupSettingCollectionInst_d212f703
     from .device_management_configuration_group_setting_instance_template import DeviceManagementConfigurationGroupSettingInstanceTemplate
-    from .device_management_configuration_simple_setting_collection_instance_template import DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate
+    from .device_management_configuration_simple_setting_collection_ins_1c50c385 import DeviceManagementConfigurationSimpleSettingCollectionIns_1c50c385
     from .device_management_configuration_simple_setting_instance_template import DeviceManagementConfigurationSimpleSettingInstanceTemplate
 
 @dataclass
@@ -47,25 +47,25 @@ class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder,
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstanceTemplate".casefold():
-            from .device_management_configuration_choice_setting_collection_instance_template import DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate
+            from .device_management_configuration_choice_setting_collection_ins_548e14e3 import DeviceManagementConfigurationChoiceSettingCollectionIns_548e14e3
 
-            return DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate()
+            return DeviceManagementConfigurationChoiceSettingCollectionIns_548e14e3()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstanceTemplate".casefold():
             from .device_management_configuration_choice_setting_instance_template import DeviceManagementConfigurationChoiceSettingInstanceTemplate
 
             return DeviceManagementConfigurationChoiceSettingInstanceTemplate()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstanceTemplate".casefold():
-            from .device_management_configuration_group_setting_collection_instance_template import DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate
+            from .device_management_configuration_group_setting_collection_inst_d212f703 import DeviceManagementConfigurationGroupSettingCollectionInst_d212f703
 
-            return DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate()
+            return DeviceManagementConfigurationGroupSettingCollectionInst_d212f703()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingInstanceTemplate".casefold():
             from .device_management_configuration_group_setting_instance_template import DeviceManagementConfigurationGroupSettingInstanceTemplate
 
             return DeviceManagementConfigurationGroupSettingInstanceTemplate()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstanceTemplate".casefold():
-            from .device_management_configuration_simple_setting_collection_instance_template import DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate
+            from .device_management_configuration_simple_setting_collection_ins_1c50c385 import DeviceManagementConfigurationSimpleSettingCollectionIns_1c50c385
 
-            return DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate()
+            return DeviceManagementConfigurationSimpleSettingCollectionIns_1c50c385()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstanceTemplate".casefold():
             from .device_management_configuration_simple_setting_instance_template import DeviceManagementConfigurationSimpleSettingInstanceTemplate
 
@@ -77,18 +77,18 @@ class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder,
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .device_management_configuration_choice_setting_collection_instance_template import DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate
+        from .device_management_configuration_choice_setting_collection_ins_548e14e3 import DeviceManagementConfigurationChoiceSettingCollectionIns_548e14e3
         from .device_management_configuration_choice_setting_instance_template import DeviceManagementConfigurationChoiceSettingInstanceTemplate
-        from .device_management_configuration_group_setting_collection_instance_template import DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate
+        from .device_management_configuration_group_setting_collection_inst_d212f703 import DeviceManagementConfigurationGroupSettingCollectionInst_d212f703
         from .device_management_configuration_group_setting_instance_template import DeviceManagementConfigurationGroupSettingInstanceTemplate
-        from .device_management_configuration_simple_setting_collection_instance_template import DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate
+        from .device_management_configuration_simple_setting_collection_ins_1c50c385 import DeviceManagementConfigurationSimpleSettingCollectionIns_1c50c385
         from .device_management_configuration_simple_setting_instance_template import DeviceManagementConfigurationSimpleSettingInstanceTemplate
 
-        from .device_management_configuration_choice_setting_collection_instance_template import DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate
+        from .device_management_configuration_choice_setting_collection_ins_548e14e3 import DeviceManagementConfigurationChoiceSettingCollectionIns_548e14e3
         from .device_management_configuration_choice_setting_instance_template import DeviceManagementConfigurationChoiceSettingInstanceTemplate
-        from .device_management_configuration_group_setting_collection_instance_template import DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate
+        from .device_management_configuration_group_setting_collection_inst_d212f703 import DeviceManagementConfigurationGroupSettingCollectionInst_d212f703
         from .device_management_configuration_group_setting_instance_template import DeviceManagementConfigurationGroupSettingInstanceTemplate
-        from .device_management_configuration_simple_setting_collection_instance_template import DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate
+        from .device_management_configuration_simple_setting_collection_ins_1c50c385 import DeviceManagementConfigurationSimpleSettingCollectionIns_1c50c385
         from .device_management_configuration_simple_setting_instance_template import DeviceManagementConfigurationSimpleSettingInstanceTemplate
 
         fields: dict[str, Callable[[Any], None]] = {

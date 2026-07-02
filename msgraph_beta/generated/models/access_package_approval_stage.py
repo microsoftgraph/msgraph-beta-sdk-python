@@ -23,7 +23,7 @@ class AccessPackageApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
     duration_before_automatic_denial: Optional[datetime.timedelta] = None
     # If escalation is required, the time a request can be pending a response from a primary approver.
     duration_before_escalation: Optional[datetime.timedelta] = None
-    # If escalation is enabled and the primary approvers don't respond before the escalation time, the escalationApprovers are the users who will be asked to approve requests.
+    # If escalation is enabled and the primary approvers do not respond before the escalation time, the escalationApprovers are the users who are asked to approve requests.
     escalation_approvers: Optional[list[SubjectSet]] = None
     # The subjects, typically users, who are the fallback escalation approvers.
     fallback_escalation_approvers: Optional[list[SubjectSet]] = None
@@ -35,7 +35,7 @@ class AccessPackageApprovalStage(AdditionalDataHolder, BackedModel, Parsable):
     is_escalation_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The subjects, typically users, who will be asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors, externalSponsors, or targetUserSponsors.
+    # The subjects, typically users, who are asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors, externalSponsors, or targetUserSponsors.
     primary_approvers: Optional[list[SubjectSet]] = None
     
     @staticmethod

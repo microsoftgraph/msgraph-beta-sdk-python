@@ -12,7 +12,7 @@ from ..entity import Entity
 
 @dataclass
 class RulesRoot(Entity, Parsable):
-    # The detectionRules property
+    # The custom detection rules configured for the tenant.
     detection_rules: Optional[list[DetectionRule]] = None
     # The OdataType property
     odata_type: Optional[str] = None

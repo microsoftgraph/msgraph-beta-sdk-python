@@ -5,4 +5,5 @@ class GroupAccessType(str, Enum):
     Private = "private",
     Secret = "secret",
     Public = "public",
+    UnknownFutureValue = "unknownFutureValue",
 

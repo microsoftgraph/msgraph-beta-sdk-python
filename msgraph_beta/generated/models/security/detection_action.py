@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .alert_template import AlertTemplate
+    from .automated_action_set import AutomatedActionSet
     from .organizational_scope import OrganizationalScope
     from .response_action import ResponseAction
 
@@ -19,11 +20,13 @@ class DetectionAction(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The alertTemplate property
     alert_template: Optional[AlertTemplate] = None
+    # The set of automated actions to run against entities that match the detection. Replaces the deprecated responseActions property.
+    automated_actions: Optional[AutomatedActionSet] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Groups to which the custom detection rule applies.
+    # The set of groups (for example, device groups) to which the parent custom detection rule applies.
     organizational_scope: Optional[OrganizationalScope] = None
-    # Actions taken on impacted assets as set in the custom detection rule.
+    # Actions taken on impacted assets as set in the custom detection rule. Deprecated. Use automatedActions instead. This property will be removed from this resource on 2026-10-01.
     response_actions: Optional[list[ResponseAction]] = None
     
     @staticmethod
@@ -43,15 +46,18 @@ class DetectionAction(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .alert_template import AlertTemplate
+        from .automated_action_set import AutomatedActionSet
         from .organizational_scope import OrganizationalScope
         from .response_action import ResponseAction
 
         from .alert_template import AlertTemplate
+        from .automated_action_set import AutomatedActionSet
         from .organizational_scope import OrganizationalScope
         from .response_action import ResponseAction
 
         fields: dict[str, Callable[[Any], None]] = {
             "alertTemplate": lambda n : setattr(self, 'alert_template', n.get_object_value(AlertTemplate)),
+            "automatedActions": lambda n : setattr(self, 'automated_actions', n.get_object_value(AutomatedActionSet)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "organizationalScope": lambda n : setattr(self, 'organizational_scope', n.get_object_value(OrganizationalScope)),
             "responseActions": lambda n : setattr(self, 'response_actions', n.get_collection_of_object_values(ResponseAction)),
@@ -67,6 +73,7 @@ class DetectionAction(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_object_value("alertTemplate", self.alert_template)
+        writer.write_object_value("automatedActions", self.automated_actions)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("organizationalScope", self.organizational_scope)
         writer.write_collection_of_object_values("responseActions", self.response_actions)

@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .deleted_teams.deleted_teams_request_builder import DeletedTeamsRequestBuilder
     from .determine_if_interaction_is_allowed.determine_if_interaction_is_allowed_request_builder import DetermineIfInteractionIsAllowedRequestBuilder
     from .devices.devices_request_builder import DevicesRequestBuilder
+    from .messaging.messaging_request_builder import MessagingRequestBuilder
     from .send_activity_notification_to_recipients.send_activity_notification_to_recipients_request_builder import SendActivityNotificationToRecipientsRequestBuilder
     from .teams_app_settings.teams_app_settings_request_builder import TeamsAppSettingsRequestBuilder
     from .team_templates.team_templates_request_builder import TeamTemplatesRequestBuilder
@@ -153,6 +154,15 @@ class TeamworkRequestBuilder(BaseRequestBuilder):
         from .devices.devices_request_builder import DevicesRequestBuilder
 
         return DevicesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def messaging(self) -> MessagingRequestBuilder:
+        """
+        Provides operations to manage the messaging property of the microsoft.graph.teamwork entity.
+        """
+        from .messaging.messaging_request_builder import MessagingRequestBuilder
+
+        return MessagingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def send_activity_notification_to_recipients(self) -> SendActivityNotificationToRecipientsRequestBuilder:

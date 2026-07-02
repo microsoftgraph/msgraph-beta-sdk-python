@@ -13,7 +13,7 @@ from .cloud_pc_pool_capability_configuration import CloudPcPoolCapabilityConfigu
 class CloudPcAgentPoolCapabilityConfiguration(CloudPcPoolCapabilityConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcAgentPoolCapabilityConfiguration"
-    # The enableSingleSignOn property
+    # When true, provisioned Cloud PCs support single sign-on, allowing users to authenticate with password-less options (such as FIDO2 keys) via Microsoft Entra ID. Default value is false.
     enable_single_sign_on: Optional[bool] = None
     
     @staticmethod
