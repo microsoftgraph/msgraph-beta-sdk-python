@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     from .device_key import DeviceKey
     from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
     from .directory_object import DirectoryObject
+    from .distribution_list import DistributionList
     from .drive import Drive
     from .employee_experience_user import EmployeeExperienceUser
     from .employee_org_data import EmployeeOrgData
@@ -99,7 +100,7 @@ class User(DirectoryObject, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.user"
     # A freeform text entry field for users to describe themselves. Requires $select to retrieve.
     about_me: Optional[str] = None
-    # true if the account is enabled; otherwise, false. This property is required when creating the object. Supports $filter (eq, ne, not, and in).
+    # true if the account is enabled; otherwise, false. This property is required when creating the object. Supports $filter (eq, ne, not, and in). This property is subject to sensitive action restrictions; only specific privileged administrator roles can update it.
     account_enabled: Optional[bool] = None
     # The user's activities across devices. Read-only. Nullable.
     activities: Optional[list[UserActivity]] = None
@@ -129,7 +130,7 @@ class User(DirectoryObject, Parsable):
     authorization_info: Optional[AuthorizationInfo] = None
     # The birthday of the user. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z Requires $select to retrieve.
     birthday: Optional[datetime.datetime] = None
-    # The telephone numbers for the user. Only one number can be set for this property. Read-only for users synced from on-premises directory. Supports $filter (eq, not, ge, le, startsWith).
+    # The telephone numbers for the user. Only one number can be set for this property. Read-only for users synced from on-premises directory. Supports $filter (eq, not, ge, le, startsWith). This property is subject to sensitive action restrictions; only specific privileged administrator roles can update it.
     business_phones: Optional[list[str]] = None
     # The user's primary calendar. Read-only.
     calendar: Optional[Calendar] = None
@@ -149,7 +150,7 @@ class User(DirectoryObject, Parsable):
     cloud_licensing: Optional[UserCloudLicensing] = None
     # The user's Cloud PCs. Read-only. Nullable.
     cloud_p_cs: Optional[list[CloudPC]] = None
-    # The cloudPcPools property
+    # The user's Cloud PC pools. Read-only. Nullable.
     cloud_pc_pools: Optional[list[CloudPcPool]] = None
     # Microsoft realtime communication information related to the user.  Supports $filter (eq, ne,not).
     cloud_realtime_communication_info: Optional[CloudRealtimeCommunicationInfo] = None
@@ -191,6 +192,8 @@ class User(DirectoryObject, Parsable):
     direct_reports: Optional[list[DirectoryObject]] = None
     # The name displayed in the address book for the user. This value is usually the combination of the user's first name, middle initial, and last name. This property is required when a user is created, and it cannot be cleared during updates. Maximum length is 256 characters. Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values), $orderby, and $search.
     display_name: Optional[str] = None
+    # The personal distribution lists in the user's mailbox. Read-only. Nullable.
+    distribution_lists: Optional[list[DistributionList]] = None
     # The user's OneDrive. Read-only.
     drive: Optional[Drive] = None
     # A collection of drives available for this user. Read-only.
@@ -225,7 +228,7 @@ class User(DirectoryObject, Parsable):
     hire_date: Optional[datetime.datetime] = None
     # Represents the identities that can be used to sign in to this user account. An identity can be provided by Microsoft (also known as a local account), by organizations, or by social identity providers such as Facebook, Google, and Microsoft and tied to a user account. It may contain multiple items with the same signInType value.  Supports $filter (eq) with limitations.
     identities: Optional[list[ObjectIdentity]] = None
-    # The identityGovernance property
+    # The identity governance settings for the user, including the approver delegate configuration. Nullable. Returned only on $select. Supports $expand.
     identity_governance: Optional[IdentityGovernanceUserSettings] = None
     # The object ID of the parent identity for agent users. Always null for regular user accounts. For agentUser resources, this property references the object ID of the associated agent identity.
     identity_parent_id: Optional[str] = None
@@ -247,7 +250,7 @@ class User(DirectoryObject, Parsable):
     is_license_reconciliation_needed: Optional[bool] = None
     # true if the user is a member of a restricted management administrative unit. If not set, the default value is null and the default behavior is false. Read-only.  To manage a user who is a member of a restricted management administrative unit, the administrator or calling app must be assigned a Microsoft Entra role at the scope of the restricted management administrative unit.
     is_management_restricted: Optional[bool] = None
-    # Do not use – reserved for future use.
+    # Do not use. Reserved for future use.
     is_resource_account: Optional[bool] = None
     # The user's job title. Maximum length is 128 characters. Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values).
     job_title: Optional[str] = None
@@ -287,7 +290,7 @@ class User(DirectoryObject, Parsable):
     mobile_app_intent_and_states: Optional[list[MobileAppIntentAndState]] = None
     # The list of mobile app troubleshooting events for this user.
     mobile_app_troubleshooting_events: Optional[list[MobileAppTroubleshootingEvent]] = None
-    # The primary cellular telephone number for the user. Read-only for users synced from the on-premises directory.  Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values) and $search.
+    # The primary cellular telephone number for the user. Read-only for users synced from the on-premises directory.  Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values) and $search. This property is subject to sensitive action restrictions; only specific privileged administrator roles can update it.
     mobile_phone: Optional[str] = None
     # The URL for the user's site. Requires $select to retrieve.
     my_site: Optional[str] = None
@@ -303,7 +306,7 @@ class User(DirectoryObject, Parsable):
     on_premises_domain_name: Optional[str] = None
     # Contains extensionAttributes1-15 for the user. These extension attributes are also known as Exchange custom attributes 1-15. Each attribute can store up to 1024 characters. For an onPremisesSyncEnabled user, the source of authority for this set of properties is the on-premises and is read-only. For a cloud-only user (where onPremisesSyncEnabled is false), these properties can be set during the creation or update of a user object.  For a cloud-only user previously synced from on-premises Active Directory, these properties are read-only in Microsoft Graph but can be fully managed through the Exchange Admin Center or the Exchange Online V2 module in PowerShell. Supports $filter (eq, ne, not, in).
     on_premises_extension_attributes: Optional[OnPremisesExtensionAttributes] = None
-    # This property associates an on-premises Active Directory user account to their Microsoft Entra user object. This property must be specified when creating a new user account in the Graph if you're using a federated domain for the user's userPrincipalName (UPN) property. Note: The $ and _ characters can't be used when specifying this property. Supports $filter (eq, ne, not, ge, le, in).
+    # This property associates an on-premises Active Directory user account to their Microsoft Entra user object. This property must be specified when creating a new user account in the Graph if you're using a federated domain for the user's userPrincipalName (UPN) property. Note: The $ and _ characters can't be used when specifying this property. Supports $filter (eq, ne, not, ge, le, in). This property is subject to sensitive action restrictions; only specific privileged administrator roles can update it.
     on_premises_immutable_id: Optional[str] = None
     # Indicates the last time at which the object was synced with the on-premises directory; for example: '2013-02-16T03:04:54Z'. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, in).
     on_premises_last_sync_date_time: Optional[datetime.datetime] = None
@@ -325,7 +328,7 @@ class User(DirectoryObject, Parsable):
     onenote: Optional[Onenote] = None
     # Information about a meeting, including the URL used to join a meeting, the attendees list, and the description.
     online_meetings: Optional[list[OnlineMeeting]] = None
-    # A list of additional email addresses for the user; for example: ['bob@contoso.com', 'Robert@fabrikam.com']. Can store up to 250 values, each with a limit of 250 characters. NOTE: This property can't contain accent characters.Supports $filter (eq, not, ge, le, in, startsWith, endsWith, /$count eq 0, /$count ne 0).
+    # A list of additional email addresses for the user; for example: ['bob@contoso.com', 'Robert@fabrikam.com']. Can store up to 250 values, each with a limit of 250 characters. NOTE: This property can't contain accent characters.Supports $filter (eq, not, ge, le, in, startsWith, endsWith, /$count eq 0, /$count ne 0). This property is subject to sensitive action restrictions; only specific privileged administrator roles can update it.
     other_mails: Optional[list[str]] = None
     # Selective Outlook services available to the user. Read-only. Nullable.
     outlook: Optional[OutlookUser] = None
@@ -335,7 +338,7 @@ class User(DirectoryObject, Parsable):
     owned_objects: Optional[list[DirectoryObject]] = None
     # Specifies password policies for the user. This value is an enumeration with one possible value being DisableStrongPassword, which allows weaker passwords than the default policy to be specified. DisablePasswordExpiration can also be specified. The two may be specified together; for example: DisablePasswordExpiration, DisableStrongPassword. For more information on the default password policies, see Microsoft Entra password policies. Supports $filter (ne, not, and eq on null values).
     password_policies: Optional[str] = None
-    # Specifies the password profile for the user. The profile contains the user's password. This property is required when a user is created. The password in the profile must satisfy minimum requirements as specified by the passwordPolicies property. By default, a strong password is required. Supports $filter (eq, ne, not, in, and eq on null values).  User-PasswordProfile.ReadWrite.All is the least privileged permission to update this property.  In delegated scenarios, the User Administrator Microsoft Entra role is the least privileged admin role supported to update this property for nonadmin users. Privileged Authentication Administrator is the least privileged role that's allowed to update this property for all administrators in the tenant. In general, the signed-in user must have a higher privileged administrator role as indicated in Who can reset passwords.  In app-only scenarios, the calling app must be assigned a supported permission and at least the User Administrator Microsoft Entra role.
+    # Specifies the password profile for the user. The profile contains the user's password. This property is required when a user is created. The password in the profile must satisfy minimum requirements as specified by the passwordPolicies property. By default, a strong password is required. Supports $filter (eq, ne, not, in, and eq on null values).  User-PasswordProfile.ReadWrite.All is the least privileged permission to update this property.  In delegated scenarios, the User Administrator Microsoft Entra role is the least privileged admin role supported to update this property for nonadmin users. Privileged Authentication Administrator is the least privileged role that's allowed to update this property for all administrators in the tenant. In general, the signed-in user must have a higher privileged administrator role as indicated in Who can reset passwords.  In app-only scenarios, the calling app must be assigned a supported permission and at least the User Administrator Microsoft Entra role.This property is also subject to sensitive action restrictions.
     password_profile: Optional[PasswordProfile] = None
     # A list for users to enumerate their past projects. Requires $select to retrieve.
     past_projects: Optional[list[str]] = None
@@ -417,7 +420,7 @@ class User(DirectoryObject, Parsable):
     usage_location: Optional[str] = None
     # Represents the usage rights a user has been granted.
     usage_rights: Optional[list[UsageRight]] = None
-    # The user principal name (UPN) of the user. The UPN is an Internet-style sign-in name for the user based on the Internet standard RFC 822. By convention, this should map to the user's email name. The general format is alias@domain, where the domain must be present in the tenant's verified domain collection. This property is required when a user is created. The verified domains for the tenant can be accessed from the verifiedDomains property of organization.NOTE: This property can't contain accent characters. Only the following characters are allowed A - Z, a - z, 0 - 9, ' . - _ ! # ^ ~. For the complete list of allowed characters, see username policies. Supports $filter (eq, ne, not, ge, le, in, startsWith, endsWith) and $orderby.
+    # The user principal name (UPN) of the user. The UPN is an Internet-style sign-in name for the user based on the Internet standard RFC 822. By convention, this should map to the user's email name. The general format is alias@domain, where the domain must be present in the tenant's verified domain collection. This property is required when a user is created. The verified domains for the tenant can be accessed from the verifiedDomains property of organization.NOTE: This property can't contain accent characters. Only the following characters are allowed A - Z, a - z, 0 - 9, ' . - _ ! # ^ ~. For the complete list of allowed characters, see username policies. Supports $filter (eq, ne, not, ge, le, in, startsWith, endsWith) and $orderby. This property is subject to sensitive action restrictions; only specific privileged administrator roles can update it.
     user_principal_name: Optional[str] = None
     # A String value that can be used to classify user types in your directory. The possible values are Member and Guest. Supports $filter (eq, ne, not, in, and eq on null values). NOTE: For more information about the permissions for member and guest users, see What are the default user permissions in Microsoft Entra ID?
     user_type: Optional[str] = None
@@ -478,6 +481,7 @@ class User(DirectoryObject, Parsable):
         from .device_key import DeviceKey
         from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
         from .directory_object import DirectoryObject
+        from .distribution_list import DistributionList
         from .drive import Drive
         from .employee_experience_user import EmployeeExperienceUser
         from .employee_org_data import EmployeeOrgData
@@ -563,6 +567,7 @@ class User(DirectoryObject, Parsable):
         from .device_key import DeviceKey
         from .device_management_troubleshooting_event import DeviceManagementTroubleshootingEvent
         from .directory_object import DirectoryObject
+        from .distribution_list import DistributionList
         from .drive import Drive
         from .employee_experience_user import EmployeeExperienceUser
         from .employee_org_data import EmployeeOrgData
@@ -669,6 +674,7 @@ class User(DirectoryObject, Parsable):
             "devices": lambda n : setattr(self, 'devices', n.get_collection_of_object_values(Device)),
             "directReports": lambda n : setattr(self, 'direct_reports', n.get_collection_of_object_values(DirectoryObject)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "distributionLists": lambda n : setattr(self, 'distribution_lists', n.get_collection_of_object_values(DistributionList)),
             "drive": lambda n : setattr(self, 'drive', n.get_object_value(Drive)),
             "drives": lambda n : setattr(self, 'drives', n.get_collection_of_object_values(Drive)),
             "employeeExperience": lambda n : setattr(self, 'employee_experience', n.get_object_value(EmployeeExperienceUser)),
@@ -847,6 +853,7 @@ class User(DirectoryObject, Parsable):
         writer.write_collection_of_object_values("devices", self.devices)
         writer.write_collection_of_object_values("directReports", self.direct_reports)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_collection_of_object_values("distributionLists", self.distribution_lists)
         writer.write_object_value("drive", self.drive)
         writer.write_collection_of_object_values("drives", self.drives)
         writer.write_object_value("employeeExperience", self.employee_experience)

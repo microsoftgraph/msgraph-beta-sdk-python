@@ -9,4 +9,6 @@ class AospDeviceOwnerWiFiSecurityType(str, Enum):
     WpaPersonal = "wpaPersonal",
     # WPA-Enterprise/WPA2-Enterprise. Must use AOSPDeviceOwnerEnterpriseWifiConfiguration type to configure enterprise options.
     WpaEnterprise = "wpaEnterprise",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

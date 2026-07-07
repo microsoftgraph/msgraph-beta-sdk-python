@@ -16,7 +16,7 @@ from .online_meeting_base import OnlineMeetingBase
 class VirtualEventSession(OnlineMeetingBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.virtualEventSession"
-    # The capacity property
+    # Represents the expected number of attendees for town hall session.
     capacity: Optional[int] = None
     # The virtual event session end time.
     end_date_time: Optional[DateTimeTimeZone] = None

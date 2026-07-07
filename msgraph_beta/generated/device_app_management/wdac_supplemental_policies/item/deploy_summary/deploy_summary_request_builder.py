@@ -15,7 +15,7 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .....models.windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+    from .....models.windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
 
 class DeploySummaryRequestBuilder(BaseRequestBuilder):
     """
@@ -48,11 +48,11 @@ class DeploySummaryRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[DeploySummaryRequestBuilderGetQueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[DeploySummaryRequestBuilderGetQueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552]:
         """
         WindowsDefenderApplicationControl supplemental policy deployment summary.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary]
+        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -64,16 +64,16 @@ class DeploySummaryRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+        from .....models.windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
 
-        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552, error_mapping)
     
-    async def patch(self,body: WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary]:
+    async def patch(self,body: WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552]:
         """
         Update the navigation property deploySummary in deviceAppManagement
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary]
+        Returns: Optional[WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552]
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -87,9 +87,9 @@ class DeploySummaryRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+        from .....models.windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
 
-        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary, error_mapping)
+        return await self.request_adapter.send_async(request_info, WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
@@ -113,7 +113,7 @@ class DeploySummaryRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_patch_request_information(self,body: WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update the navigation property deploySummary in deviceAppManagement
         param body: The request body

@@ -49,7 +49,7 @@ class CloudPcPoolsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CloudPcPoolsRequestBuilderGetQueryParameters]] = None) -> Optional[CloudPcPoolCollectionResponse]:
         """
-        Get cloudPcPools from users
+        The user's Cloud PC pools. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcPoolCollectionResponse]
         """
@@ -92,7 +92,7 @@ class CloudPcPoolsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CloudPcPoolsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get cloudPcPools from users
+        The user's Cloud PC pools. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class CloudPcPoolsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcPoolsRequestBuilderGetQueryParameters():
         """
-        Get cloudPcPools from users
+        The user's Cloud PC pools. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

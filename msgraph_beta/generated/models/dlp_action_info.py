@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .block_access_action import BlockAccessAction
     from .dlp_action import DlpAction
     from .notify_user_action import NotifyUserAction
+    from .policy_tip_action import PolicyTipAction
     from .restrict_access_action import RestrictAccessAction
     from .restrict_access_action_base import RestrictAccessActionBase
 
@@ -46,6 +47,10 @@ class DlpActionInfo(AdditionalDataHolder, BackedModel, Parsable):
             from .notify_user_action import NotifyUserAction
 
             return NotifyUserAction()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyTipAction".casefold():
+            from .policy_tip_action import PolicyTipAction
+
+            return PolicyTipAction()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.restrictAccessAction".casefold():
             from .restrict_access_action import RestrictAccessAction
 
@@ -64,12 +69,14 @@ class DlpActionInfo(AdditionalDataHolder, BackedModel, Parsable):
         from .block_access_action import BlockAccessAction
         from .dlp_action import DlpAction
         from .notify_user_action import NotifyUserAction
+        from .policy_tip_action import PolicyTipAction
         from .restrict_access_action import RestrictAccessAction
         from .restrict_access_action_base import RestrictAccessActionBase
 
         from .block_access_action import BlockAccessAction
         from .dlp_action import DlpAction
         from .notify_user_action import NotifyUserAction
+        from .policy_tip_action import PolicyTipAction
         from .restrict_access_action import RestrictAccessAction
         from .restrict_access_action_base import RestrictAccessActionBase
 

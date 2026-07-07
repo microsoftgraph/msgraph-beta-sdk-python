@@ -9,4 +9,5 @@ class LifecycleWorkflowProcessingStatus(str, Enum):
     Failed = "failed",
     UnknownFutureValue = "unknownFutureValue",
     Canceling = "canceling",
+    Quarantined = "quarantined",
 

@@ -8,8 +8,8 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
-    from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-    from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+    from .windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
+    from .windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
 
 from .entity import Entity
 
@@ -24,11 +24,11 @@ class WindowsDefenderApplicationControlSupplementalPolicy(Entity, Parsable):
     # Indicates the created date and time when the Windows Defender Application Control Supplemental Policy was uploaded.
     creation_date_time: Optional[datetime.datetime] = None
     # WindowsDefenderApplicationControl supplemental policy deployment summary.
-    deploy_summary: Optional[WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary] = None
+    deploy_summary: Optional[WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552] = None
     # The description of the Windows Defender Application Control Supplemental Policy.
     description: Optional[str] = None
     # The list of device deployment states for this WindowsDefenderApplicationControl supplemental policy.
-    device_statuses: Optional[list[WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus]] = None
+    device_statuses: Optional[list[WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6]] = None
     # The display name of the Windows Defender Application Control Supplemental Policy.
     display_name: Optional[str] = None
     # Indicates the last modified date and time of the Windows Defender Application Control Supplemental Policy.
@@ -58,22 +58,22 @@ class WindowsDefenderApplicationControlSupplementalPolicy(Entity, Parsable):
         """
         from .entity import Entity
         from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
-        from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-        from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+        from .windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
+        from .windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
 
         from .entity import Entity
         from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
-        from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-        from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+        from .windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
+        from .windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
 
         fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(WindowsDefenderApplicationControlSupplementalPolicyAssignment)),
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
             "contentFileName": lambda n : setattr(self, 'content_file_name', n.get_str_value()),
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
-            "deploySummary": lambda n : setattr(self, 'deploy_summary', n.get_object_value(WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary)),
+            "deploySummary": lambda n : setattr(self, 'deploy_summary', n.get_object_value(WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "deviceStatuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus)),
+            "deviceStatuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),

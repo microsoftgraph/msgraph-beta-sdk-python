@@ -7,7 +7,6 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aad_user_conversation_member import AadUserConversationMember
-    from .access_drift_report import AccessDriftReport
     from .access_package import AccessPackage
     from .access_package_assignment import AccessPackageAssignment
     from .access_package_assignment_policy import AccessPackageAssignmentPolicy
@@ -54,6 +53,8 @@ if TYPE_CHECKING:
     from .admin_todo import AdminTodo
     from .admin_windows import AdminWindows
     from .admin_windows_updates import AdminWindowsUpdates
+    from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
+    from .admit_from_lobby_operation import AdmitFromLobbyOperation
     from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
     from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
     from .agent import Agent
@@ -445,6 +446,7 @@ if TYPE_CHECKING:
     from .copilot_policy_setting import CopilotPolicySetting
     from .copilot_report_root import CopilotReportRoot
     from .copilot_setting import CopilotSetting
+    from .correlated_identity import CorrelatedIdentity
     from .cors_configuration_v2 import CorsConfiguration_v2
     from .credential_usage_summary import CredentialUsageSummary
     from .credential_user_registration_count import CredentialUserRegistrationCount
@@ -470,6 +472,7 @@ if TYPE_CHECKING:
     from .custom_callout_extension import CustomCalloutExtension
     from .custom_claims_policy import CustomClaimsPolicy
     from .custom_data_provided_resource import CustomDataProvidedResource
+    from .custom_data_provided_resource_access_review_upload_session import CustomDataProvidedResourceAccessReviewUploadSession
     from .custom_data_provided_resource_file import CustomDataProvidedResourceFile
     from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
     from .custom_extension_handler import CustomExtensionHandler
@@ -641,6 +644,8 @@ if TYPE_CHECKING:
     from .directory_role_template import DirectoryRoleTemplate
     from .directory_setting import DirectorySetting
     from .directory_setting_template import DirectorySettingTemplate
+    from .distribution_list import DistributionList
+    from .distribution_list_member import DistributionListMember
     from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
     from .document import Document
     from .document_comment import DocumentComment
@@ -852,6 +857,7 @@ if TYPE_CHECKING:
     from .granular_restore_artifact_base import GranularRestoreArtifactBase
     from .granular_site_restore_artifact import GranularSiteRestoreArtifact
     from .group import Group
+    from .group_analytics import GroupAnalytics
     from .group_lifecycle_policy import GroupLifecyclePolicy
     from .group_policy_category import GroupPolicyCategory
     from .group_policy_configuration import GroupPolicyConfiguration
@@ -901,8 +907,10 @@ if TYPE_CHECKING:
     from .horizontal_section_column import HorizontalSectionColumn
     from .host_security_profile import HostSecurityProfile
     from .human_security_fraud_protection_provider import HumanSecurityFraudProtectionProvider
+    from .identity_analytics_root import IdentityAnalyticsRoot
     from .identity_api_connector import IdentityApiConnector
     from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
+    from .identity_correlation import IdentityCorrelation
     from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
     from .identity_finding import IdentityFinding
     from .identity_governance.custom_task_extension import CustomTaskExtension
@@ -910,6 +918,7 @@ if TYPE_CHECKING:
     from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
     from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
     from .identity_governance.run import Run
+    from .identity_governance.subject_processing_result import SubjectProcessingResult
     from .identity_governance.task import Task
     from .identity_governance.task_definition import TaskDefinition
     from .identity_governance.task_processing_result import TaskProcessingResult
@@ -1452,6 +1461,7 @@ if TYPE_CHECKING:
     from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
     from .planner_delta import PlannerDelta
     from .planner_group import PlannerGroup
+    from .planner_history_item import PlannerHistoryItem
     from .planner_plan import PlannerPlan
     from .planner_plan_configuration import PlannerPlanConfiguration
     from .planner_plan_configuration_localization import PlannerPlanConfigurationLocalization
@@ -1568,6 +1578,7 @@ if TYPE_CHECKING:
     from .remote_assistance_partner import RemoteAssistancePartner
     from .remote_assistance_settings import RemoteAssistanceSettings
     from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
+    from .remove_from_lobby_operation import RemoveFromLobbyOperation
     from .reports_root import ReportsRoot
     from .report_root import ReportRoot
     from .request import Request
@@ -1590,7 +1601,7 @@ if TYPE_CHECKING:
     from .risky_user import RiskyUser
     from .risky_user_history_item import RiskyUserHistoryItem
     from .risk_detection import RiskDetection
-    from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+    from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
     from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
     from .role_assignment import RoleAssignment
     from .role_definition import RoleDefinition
@@ -1713,10 +1724,10 @@ if TYPE_CHECKING:
     from .security.intelligence_profile_indicator import IntelligenceProfileIndicator
     from .security.ip_address import IpAddress
     from .security.labels_root import LabelsRoot
+    from .security.manual_alert import ManualAlert
     from .security.network_adapter import NetworkAdapter
     from .security.passive_dns_record import PassiveDnsRecord
     from .security.policy_base import PolicyBase
-    from .security.protection_rule import ProtectionRule
     from .security.retention_event import RetentionEvent
     from .security.retention_event_type import RetentionEventType
     from .security.retention_label import RetentionLabel
@@ -1818,6 +1829,7 @@ if TYPE_CHECKING:
     from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
     from .share_point_migration_task import SharePointMigrationTask
     from .share_point_protection_policy import SharePointProtectionPolicy
+    from .share_point_report_settings import SharePointReportSettings
     from .share_point_restore_session import SharePointRestoreSession
     from .share_point_root import SharePointRoot
     from .share_point_user_identity_mapping import SharePointUserIdentityMapping
@@ -1891,6 +1903,7 @@ if TYPE_CHECKING:
     from .targeted_managed_app_protection import TargetedManagedAppProtection
     from .target_device_group import TargetDeviceGroup
     from .task_file_attachment import TaskFileAttachment
+    from .task_history_item import TaskHistoryItem
     from .tax_group import TaxGroup
     from .team import Team
     from .teams_administration.number_assignment import NumberAssignment
@@ -1919,6 +1932,7 @@ if TYPE_CHECKING:
     from .teamwork_device_health import TeamworkDeviceHealth
     from .teamwork_device_operation import TeamworkDeviceOperation
     from .teamwork_hosted_content import TeamworkHostedContent
+    from .teamwork_messaging import TeamworkMessaging
     from .teamwork_peripheral import TeamworkPeripheral
     from .teamwork_section import TeamworkSection
     from .teamwork_section_item import TeamworkSectionItem
@@ -2054,8 +2068,8 @@ if TYPE_CHECKING:
     from .user_experience_analytics_anomaly_device import UserExperienceAnalyticsAnomalyDevice
     from .user_experience_analytics_app_health_application_performance import UserExperienceAnalyticsAppHealthApplicationPerformance
     from .user_experience_analytics_app_health_app_performance_by_app_version import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion
-    from .user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
-    from .user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
+    from .user_experience_analytics_app_health_app_performance_by_app_vers_2e6b881b import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b
+    from .user_experience_analytics_app_health_app_performance_by_app_vers_ba5b7522 import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522
     from .user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
     from .user_experience_analytics_app_health_device_model_performance import UserExperienceAnalyticsAppHealthDeviceModelPerformance
     from .user_experience_analytics_app_health_device_performance import UserExperienceAnalyticsAppHealthDevicePerformance
@@ -2130,6 +2144,7 @@ if TYPE_CHECKING:
     from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
     from .virtual_event_session import VirtualEventSession
     from .virtual_event_townhall import VirtualEventTownhall
+    from .virtual_event_townhall_registration_configuration import VirtualEventTownhallRegistrationConfiguration
     from .virtual_event_webinar import VirtualEventWebinar
     from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
     from .virtual_machine_details import VirtualMachineDetails
@@ -2193,8 +2208,8 @@ if TYPE_CHECKING:
     from .windows_defender_advanced_threat_protection_configuration import WindowsDefenderAdvancedThreatProtectionConfiguration
     from .windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
     from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
-    from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-    from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+    from .windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
+    from .windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
     from .windows_delivery_optimization_configuration import WindowsDeliveryOptimizationConfiguration
     from .windows_device_malware_state import WindowsDeviceMalwareState
     from .windows_domain_join_configuration import WindowsDomainJoinConfiguration
@@ -2379,10 +2394,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .aad_user_conversation_member import AadUserConversationMember
 
             return AadUserConversationMember()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessDriftReport".casefold():
-            from .access_drift_report import AccessDriftReport
-
-            return AccessDriftReport()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessPackage".casefold():
             from .access_package import AccessPackage
 
@@ -2567,6 +2578,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .admin_windows_updates import AdminWindowsUpdates
 
             return AdminWindowsUpdates()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.admitAllFromLobbyOperation".casefold():
+            from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
+
+            return AdmitAllFromLobbyOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.admitFromLobbyOperation".casefold():
+            from .admit_from_lobby_operation import AdmitFromLobbyOperation
+
+            return AdmitFromLobbyOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.advancedThreatProtectionOnboardingDeviceSettingState".casefold():
             from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
 
@@ -4139,6 +4158,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .copilot_setting import CopilotSetting
 
             return CopilotSetting()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.correlatedIdentity".casefold():
+            from .correlated_identity import CorrelatedIdentity
+
+            return CorrelatedIdentity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.corsConfiguration_v2".casefold():
             from .cors_configuration_v2 import CorsConfiguration_v2
 
@@ -4239,6 +4262,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .custom_data_provided_resource import CustomDataProvidedResource
 
             return CustomDataProvidedResource()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.customDataProvidedResourceAccessReviewUploadSession".casefold():
+            from .custom_data_provided_resource_access_review_upload_session import CustomDataProvidedResourceAccessReviewUploadSession
+
+            return CustomDataProvidedResourceAccessReviewUploadSession()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.customDataProvidedResourceFile".casefold():
             from .custom_data_provided_resource_file import CustomDataProvidedResourceFile
 
@@ -4924,6 +4951,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .directory_setting_template import DirectorySettingTemplate
 
             return DirectorySettingTemplate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.distributionList".casefold():
+            from .distribution_list import DistributionList
+
+            return DistributionList()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.distributionListMember".casefold():
+            from .distribution_list_member import DistributionListMember
+
+            return DistributionListMember()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.dlpEvaluatePoliciesJobResponse".casefold():
             from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
 
@@ -5786,6 +5821,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .term_store.group import Group
 
             return Group()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupAnalytics".casefold():
+            from .group_analytics import GroupAnalytics
+
+            return GroupAnalytics()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupLifecyclePolicy".casefold():
             from .group_lifecycle_policy import GroupLifecyclePolicy
 
@@ -5985,6 +6024,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .human_security_fraud_protection_provider import HumanSecurityFraudProtectionProvider
 
             return HumanSecurityFraudProtectionProvider()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityAnalyticsRoot".casefold():
+            from .identity_analytics_root import IdentityAnalyticsRoot
+
+            return IdentityAnalyticsRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityApiConnector".casefold():
             from .identity_api_connector import IdentityApiConnector
 
@@ -5993,6 +6036,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
 
             return IdentityBuiltInUserFlowAttribute()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityCorrelation".casefold():
+            from .identity_correlation import IdentityCorrelation
+
+            return IdentityCorrelation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityCustomUserFlowAttribute".casefold():
             from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
 
@@ -6021,6 +6068,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_governance.run import Run
 
             return Run()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.subjectProcessingResult".casefold():
+            from .identity_governance.subject_processing_result import SubjectProcessingResult
+
+            return SubjectProcessingResult()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.task".casefold():
             from .identity_governance.task import Task
 
@@ -8203,6 +8254,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .planner_group import PlannerGroup
 
             return PlannerGroup()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerHistoryItem".casefold():
+            from .planner_history_item import PlannerHistoryItem
+
+            return PlannerHistoryItem()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerPlan".casefold():
             from .planner_plan import PlannerPlan
 
@@ -8669,6 +8724,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
 
             return RemoteDesktopSecurityConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.removeFromLobbyOperation".casefold():
+            from .remove_from_lobby_operation import RemoveFromLobbyOperation
+
+            return RemoveFromLobbyOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.reportRoot".casefold():
             from .report_root import ReportRoot
 
@@ -8770,9 +8829,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return RoleManagementAlert()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.rolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration".casefold():
-            from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+            from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
 
-            return RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration()
+            return RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.rolesAssignedOutsidePrivilegedIdentityManagementAlertIncident".casefold():
             from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
 
@@ -9258,6 +9317,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.labels_root import LabelsRoot
 
             return LabelsRoot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.manualAlert".casefold():
+            from .security.manual_alert import ManualAlert
+
+            return ManualAlert()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.networkAdapter".casefold():
             from .security.network_adapter import NetworkAdapter
 
@@ -9271,10 +9334,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.policy_base import PolicyBase
 
             return PolicyBase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.protectionRule".casefold():
-            from .security.protection_rule import ProtectionRule
-
-            return ProtectionRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.retentionEvent".casefold():
             from .security.retention_event import RetentionEvent
 
@@ -9684,6 +9743,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .share_point_protection_policy import SharePointProtectionPolicy
 
             return SharePointProtectionPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointReportSettings".casefold():
+            from .share_point_report_settings import SharePointReportSettings
+
+            return SharePointReportSettings()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointRestoreSession".casefold():
             from .share_point_restore_session import SharePointRestoreSession
 
@@ -9980,6 +10043,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .task_file_attachment import TaskFileAttachment
 
             return TaskFileAttachment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.taskHistoryItem".casefold():
+            from .task_history_item import TaskHistoryItem
+
+            return TaskHistoryItem()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.taxGroup".casefold():
             from .tax_group import TaxGroup
 
@@ -10104,6 +10171,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .teamwork_hosted_content import TeamworkHostedContent
 
             return TeamworkHostedContent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamworkMessaging".casefold():
+            from .teamwork_messaging import TeamworkMessaging
+
+            return TeamworkMessaging()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamworkPeripheral".casefold():
             from .teamwork_peripheral import TeamworkPeripheral
 
@@ -10638,13 +10709,13 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails".casefold():
-            from .user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
+            from .user_experience_analytics_app_health_app_performance_by_app_vers_ba5b7522 import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522
 
-            return UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails()
+            return UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId".casefold():
-            from .user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
+            from .user_experience_analytics_app_health_app_performance_by_app_vers_2e6b881b import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b
 
-            return UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId()
+            return UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.userExperienceAnalyticsAppHealthAppPerformanceByOSVersion".casefold():
             from .user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
 
@@ -10941,6 +11012,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .virtual_event_townhall import VirtualEventTownhall
 
             return VirtualEventTownhall()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventTownhallRegistrationConfiguration".casefold():
+            from .virtual_event_townhall_registration_configuration import VirtualEventTownhallRegistrationConfiguration
+
+            return VirtualEventTownhallRegistrationConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.virtualEventWebinar".casefold():
             from .virtual_event_webinar import VirtualEventWebinar
 
@@ -11194,13 +11269,13 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return WindowsDefenderApplicationControlSupplementalPolicyAssignment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsDefenderApplicationControlSupplementalPolicyDeploymentStatus".casefold():
-            from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
+            from .windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
 
-            return WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus()
+            return WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsDefenderApplicationControlSupplementalPolicyDeploymentSummary".casefold():
-            from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+            from .windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
 
-            return WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary()
+            return WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsDeliveryOptimizationConfiguration".casefold():
             from .windows_delivery_optimization_configuration import WindowsDeliveryOptimizationConfiguration
 
@@ -11825,7 +11900,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aad_user_conversation_member import AadUserConversationMember
-        from .access_drift_report import AccessDriftReport
         from .access_package import AccessPackage
         from .access_package_assignment import AccessPackageAssignment
         from .access_package_assignment_policy import AccessPackageAssignmentPolicy
@@ -11872,6 +11946,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
         from .admin_windows_updates import AdminWindowsUpdates
+        from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
+        from .admit_from_lobby_operation import AdmitFromLobbyOperation
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
         from .agent import Agent
@@ -12263,6 +12339,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_policy_setting import CopilotPolicySetting
         from .copilot_report_root import CopilotReportRoot
         from .copilot_setting import CopilotSetting
+        from .correlated_identity import CorrelatedIdentity
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .credential_usage_summary import CredentialUsageSummary
         from .credential_user_registration_count import CredentialUserRegistrationCount
@@ -12288,6 +12365,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_callout_extension import CustomCalloutExtension
         from .custom_claims_policy import CustomClaimsPolicy
         from .custom_data_provided_resource import CustomDataProvidedResource
+        from .custom_data_provided_resource_access_review_upload_session import CustomDataProvidedResourceAccessReviewUploadSession
         from .custom_data_provided_resource_file import CustomDataProvidedResourceFile
         from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .custom_extension_handler import CustomExtensionHandler
@@ -12459,6 +12537,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .directory_role_template import DirectoryRoleTemplate
         from .directory_setting import DirectorySetting
         from .directory_setting_template import DirectorySettingTemplate
+        from .distribution_list import DistributionList
+        from .distribution_list_member import DistributionListMember
         from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
         from .document import Document
         from .document_comment import DocumentComment
@@ -12670,6 +12750,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .granular_restore_artifact_base import GranularRestoreArtifactBase
         from .granular_site_restore_artifact import GranularSiteRestoreArtifact
         from .group import Group
+        from .group_analytics import GroupAnalytics
         from .group_lifecycle_policy import GroupLifecyclePolicy
         from .group_policy_category import GroupPolicyCategory
         from .group_policy_configuration import GroupPolicyConfiguration
@@ -12719,8 +12800,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .horizontal_section_column import HorizontalSectionColumn
         from .host_security_profile import HostSecurityProfile
         from .human_security_fraud_protection_provider import HumanSecurityFraudProtectionProvider
+        from .identity_analytics_root import IdentityAnalyticsRoot
         from .identity_api_connector import IdentityApiConnector
         from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
+        from .identity_correlation import IdentityCorrelation
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
         from .identity_finding import IdentityFinding
         from .identity_governance.custom_task_extension import CustomTaskExtension
@@ -12728,6 +12811,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
         from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
         from .identity_governance.run import Run
+        from .identity_governance.subject_processing_result import SubjectProcessingResult
         from .identity_governance.task import Task
         from .identity_governance.task_definition import TaskDefinition
         from .identity_governance.task_processing_result import TaskProcessingResult
@@ -13270,6 +13354,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
         from .planner_delta import PlannerDelta
         from .planner_group import PlannerGroup
+        from .planner_history_item import PlannerHistoryItem
         from .planner_plan import PlannerPlan
         from .planner_plan_configuration import PlannerPlanConfiguration
         from .planner_plan_configuration_localization import PlannerPlanConfigurationLocalization
@@ -13386,6 +13471,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .remote_assistance_partner import RemoteAssistancePartner
         from .remote_assistance_settings import RemoteAssistanceSettings
         from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
+        from .remove_from_lobby_operation import RemoveFromLobbyOperation
         from .reports_root import ReportsRoot
         from .report_root import ReportRoot
         from .request import Request
@@ -13408,7 +13494,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .risky_user import RiskyUser
         from .risky_user_history_item import RiskyUserHistoryItem
         from .risk_detection import RiskDetection
-        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+        from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
         from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
         from .role_assignment import RoleAssignment
         from .role_definition import RoleDefinition
@@ -13531,10 +13617,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.intelligence_profile_indicator import IntelligenceProfileIndicator
         from .security.ip_address import IpAddress
         from .security.labels_root import LabelsRoot
+        from .security.manual_alert import ManualAlert
         from .security.network_adapter import NetworkAdapter
         from .security.passive_dns_record import PassiveDnsRecord
         from .security.policy_base import PolicyBase
-        from .security.protection_rule import ProtectionRule
         from .security.retention_event import RetentionEvent
         from .security.retention_event_type import RetentionEventType
         from .security.retention_label import RetentionLabel
@@ -13636,6 +13722,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
         from .share_point_migration_task import SharePointMigrationTask
         from .share_point_protection_policy import SharePointProtectionPolicy
+        from .share_point_report_settings import SharePointReportSettings
         from .share_point_restore_session import SharePointRestoreSession
         from .share_point_root import SharePointRoot
         from .share_point_user_identity_mapping import SharePointUserIdentityMapping
@@ -13709,6 +13796,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .targeted_managed_app_protection import TargetedManagedAppProtection
         from .target_device_group import TargetDeviceGroup
         from .task_file_attachment import TaskFileAttachment
+        from .task_history_item import TaskHistoryItem
         from .tax_group import TaxGroup
         from .team import Team
         from .teams_administration.number_assignment import NumberAssignment
@@ -13737,6 +13825,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teamwork_device_health import TeamworkDeviceHealth
         from .teamwork_device_operation import TeamworkDeviceOperation
         from .teamwork_hosted_content import TeamworkHostedContent
+        from .teamwork_messaging import TeamworkMessaging
         from .teamwork_peripheral import TeamworkPeripheral
         from .teamwork_section import TeamworkSection
         from .teamwork_section_item import TeamworkSectionItem
@@ -13872,8 +13961,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_experience_analytics_anomaly_device import UserExperienceAnalyticsAnomalyDevice
         from .user_experience_analytics_app_health_application_performance import UserExperienceAnalyticsAppHealthApplicationPerformance
         from .user_experience_analytics_app_health_app_performance_by_app_version import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion
-        from .user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
-        from .user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
+        from .user_experience_analytics_app_health_app_performance_by_app_vers_2e6b881b import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b
+        from .user_experience_analytics_app_health_app_performance_by_app_vers_ba5b7522 import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522
         from .user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
         from .user_experience_analytics_app_health_device_model_performance import UserExperienceAnalyticsAppHealthDeviceModelPerformance
         from .user_experience_analytics_app_health_device_performance import UserExperienceAnalyticsAppHealthDevicePerformance
@@ -13948,6 +14037,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
         from .virtual_event_session import VirtualEventSession
         from .virtual_event_townhall import VirtualEventTownhall
+        from .virtual_event_townhall_registration_configuration import VirtualEventTownhallRegistrationConfiguration
         from .virtual_event_webinar import VirtualEventWebinar
         from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
         from .virtual_machine_details import VirtualMachineDetails
@@ -14011,8 +14101,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_defender_advanced_threat_protection_configuration import WindowsDefenderAdvancedThreatProtectionConfiguration
         from .windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
         from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
-        from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-        from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+        from .windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
+        from .windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
         from .windows_delivery_optimization_configuration import WindowsDeliveryOptimizationConfiguration
         from .windows_device_malware_state import WindowsDeviceMalwareState
         from .windows_domain_join_configuration import WindowsDomainJoinConfiguration
@@ -14168,7 +14258,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .zebra_fota_deployment import ZebraFotaDeployment
 
         from .aad_user_conversation_member import AadUserConversationMember
-        from .access_drift_report import AccessDriftReport
         from .access_package import AccessPackage
         from .access_package_assignment import AccessPackageAssignment
         from .access_package_assignment_policy import AccessPackageAssignmentPolicy
@@ -14215,6 +14304,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
         from .admin_windows_updates import AdminWindowsUpdates
+        from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
+        from .admit_from_lobby_operation import AdmitFromLobbyOperation
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
         from .agent import Agent
@@ -14606,6 +14697,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .copilot_policy_setting import CopilotPolicySetting
         from .copilot_report_root import CopilotReportRoot
         from .copilot_setting import CopilotSetting
+        from .correlated_identity import CorrelatedIdentity
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .credential_usage_summary import CredentialUsageSummary
         from .credential_user_registration_count import CredentialUserRegistrationCount
@@ -14631,6 +14723,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_callout_extension import CustomCalloutExtension
         from .custom_claims_policy import CustomClaimsPolicy
         from .custom_data_provided_resource import CustomDataProvidedResource
+        from .custom_data_provided_resource_access_review_upload_session import CustomDataProvidedResourceAccessReviewUploadSession
         from .custom_data_provided_resource_file import CustomDataProvidedResourceFile
         from .custom_data_provided_resource_upload_session import CustomDataProvidedResourceUploadSession
         from .custom_extension_handler import CustomExtensionHandler
@@ -14802,6 +14895,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .directory_role_template import DirectoryRoleTemplate
         from .directory_setting import DirectorySetting
         from .directory_setting_template import DirectorySettingTemplate
+        from .distribution_list import DistributionList
+        from .distribution_list_member import DistributionListMember
         from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
         from .document import Document
         from .document_comment import DocumentComment
@@ -15013,6 +15108,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .granular_restore_artifact_base import GranularRestoreArtifactBase
         from .granular_site_restore_artifact import GranularSiteRestoreArtifact
         from .group import Group
+        from .group_analytics import GroupAnalytics
         from .group_lifecycle_policy import GroupLifecyclePolicy
         from .group_policy_category import GroupPolicyCategory
         from .group_policy_configuration import GroupPolicyConfiguration
@@ -15062,8 +15158,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .horizontal_section_column import HorizontalSectionColumn
         from .host_security_profile import HostSecurityProfile
         from .human_security_fraud_protection_provider import HumanSecurityFraudProtectionProvider
+        from .identity_analytics_root import IdentityAnalyticsRoot
         from .identity_api_connector import IdentityApiConnector
         from .identity_built_in_user_flow_attribute import IdentityBuiltInUserFlowAttribute
+        from .identity_correlation import IdentityCorrelation
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
         from .identity_finding import IdentityFinding
         from .identity_governance.custom_task_extension import CustomTaskExtension
@@ -15071,6 +15169,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
         from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
         from .identity_governance.run import Run
+        from .identity_governance.subject_processing_result import SubjectProcessingResult
         from .identity_governance.task import Task
         from .identity_governance.task_definition import TaskDefinition
         from .identity_governance.task_processing_result import TaskProcessingResult
@@ -15613,6 +15712,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
         from .planner_delta import PlannerDelta
         from .planner_group import PlannerGroup
+        from .planner_history_item import PlannerHistoryItem
         from .planner_plan import PlannerPlan
         from .planner_plan_configuration import PlannerPlanConfiguration
         from .planner_plan_configuration_localization import PlannerPlanConfigurationLocalization
@@ -15729,6 +15829,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .remote_assistance_partner import RemoteAssistancePartner
         from .remote_assistance_settings import RemoteAssistanceSettings
         from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
+        from .remove_from_lobby_operation import RemoveFromLobbyOperation
         from .reports_root import ReportsRoot
         from .report_root import ReportRoot
         from .request import Request
@@ -15751,7 +15852,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .risky_user import RiskyUser
         from .risky_user_history_item import RiskyUserHistoryItem
         from .risk_detection import RiskDetection
-        from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
+        from .roles_assigned_outside_privileged_identity_management_alert_co_5cc28e38 import RolesAssignedOutsidePrivilegedIdentityManagementAlertCo_5cc28e38
         from .roles_assigned_outside_privileged_identity_management_alert_incident import RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
         from .role_assignment import RoleAssignment
         from .role_definition import RoleDefinition
@@ -15874,10 +15975,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.intelligence_profile_indicator import IntelligenceProfileIndicator
         from .security.ip_address import IpAddress
         from .security.labels_root import LabelsRoot
+        from .security.manual_alert import ManualAlert
         from .security.network_adapter import NetworkAdapter
         from .security.passive_dns_record import PassiveDnsRecord
         from .security.policy_base import PolicyBase
-        from .security.protection_rule import ProtectionRule
         from .security.retention_event import RetentionEvent
         from .security.retention_event_type import RetentionEventType
         from .security.retention_label import RetentionLabel
@@ -15979,6 +16080,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .share_point_migration_job_start_event import SharePointMigrationJobStartEvent
         from .share_point_migration_task import SharePointMigrationTask
         from .share_point_protection_policy import SharePointProtectionPolicy
+        from .share_point_report_settings import SharePointReportSettings
         from .share_point_restore_session import SharePointRestoreSession
         from .share_point_root import SharePointRoot
         from .share_point_user_identity_mapping import SharePointUserIdentityMapping
@@ -16052,6 +16154,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .targeted_managed_app_protection import TargetedManagedAppProtection
         from .target_device_group import TargetDeviceGroup
         from .task_file_attachment import TaskFileAttachment
+        from .task_history_item import TaskHistoryItem
         from .tax_group import TaxGroup
         from .team import Team
         from .teams_administration.number_assignment import NumberAssignment
@@ -16080,6 +16183,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teamwork_device_health import TeamworkDeviceHealth
         from .teamwork_device_operation import TeamworkDeviceOperation
         from .teamwork_hosted_content import TeamworkHostedContent
+        from .teamwork_messaging import TeamworkMessaging
         from .teamwork_peripheral import TeamworkPeripheral
         from .teamwork_section import TeamworkSection
         from .teamwork_section_item import TeamworkSectionItem
@@ -16215,8 +16319,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .user_experience_analytics_anomaly_device import UserExperienceAnalyticsAnomalyDevice
         from .user_experience_analytics_app_health_application_performance import UserExperienceAnalyticsAppHealthApplicationPerformance
         from .user_experience_analytics_app_health_app_performance_by_app_version import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion
-        from .user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
-        from .user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
+        from .user_experience_analytics_app_health_app_performance_by_app_vers_2e6b881b import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b
+        from .user_experience_analytics_app_health_app_performance_by_app_vers_ba5b7522 import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522
         from .user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
         from .user_experience_analytics_app_health_device_model_performance import UserExperienceAnalyticsAppHealthDeviceModelPerformance
         from .user_experience_analytics_app_health_device_performance import UserExperienceAnalyticsAppHealthDevicePerformance
@@ -16291,6 +16395,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .virtual_event_registration_question_base import VirtualEventRegistrationQuestionBase
         from .virtual_event_session import VirtualEventSession
         from .virtual_event_townhall import VirtualEventTownhall
+        from .virtual_event_townhall_registration_configuration import VirtualEventTownhallRegistrationConfiguration
         from .virtual_event_webinar import VirtualEventWebinar
         from .virtual_event_webinar_registration_configuration import VirtualEventWebinarRegistrationConfiguration
         from .virtual_machine_details import VirtualMachineDetails
@@ -16354,8 +16459,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .windows_defender_advanced_threat_protection_configuration import WindowsDefenderAdvancedThreatProtectionConfiguration
         from .windows_defender_application_control_supplemental_policy import WindowsDefenderApplicationControlSupplementalPolicy
         from .windows_defender_application_control_supplemental_policy_assignment import WindowsDefenderApplicationControlSupplementalPolicyAssignment
-        from .windows_defender_application_control_supplemental_policy_deployment_status import WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus
-        from .windows_defender_application_control_supplemental_policy_deployment_summary import WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary
+        from .windows_defender_application_control_supplemental_policy_depl_1d9b5ab6 import WindowsDefenderApplicationControlSupplementalPolicyDepl_1d9b5ab6
+        from .windows_defender_application_control_supplemental_policy_depl_9bac1552 import WindowsDefenderApplicationControlSupplementalPolicyDepl_9bac1552
         from .windows_delivery_optimization_configuration import WindowsDeliveryOptimizationConfiguration
         from .windows_device_malware_state import WindowsDeviceMalwareState
         from .windows_domain_join_configuration import WindowsDomainJoinConfiguration

@@ -14,6 +14,8 @@ from .authentication_method_configuration import AuthenticationMethodConfigurati
 class VoiceAuthenticationMethodConfiguration(AuthenticationMethodConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.voiceAuthenticationMethodConfiguration"
+    # The phone number used as the caller ID when voice call authentication is initiated.
+    caller_id_number: Optional[str] = None
     # A collection of groups that are enabled to use the authentication method. Expanded by default.
     include_targets: Optional[list[VoiceAuthenticationMethodTarget]] = None
     # true if users can register office phones, otherwise, false.
@@ -42,6 +44,7 @@ class VoiceAuthenticationMethodConfiguration(AuthenticationMethodConfiguration, 
         from .voice_authentication_method_target import VoiceAuthenticationMethodTarget
 
         fields: dict[str, Callable[[Any], None]] = {
+            "callerIdNumber": lambda n : setattr(self, 'caller_id_number', n.get_str_value()),
             "includeTargets": lambda n : setattr(self, 'include_targets', n.get_collection_of_object_values(VoiceAuthenticationMethodTarget)),
             "isOfficePhoneAllowed": lambda n : setattr(self, 'is_office_phone_allowed', n.get_bool_value()),
         }
@@ -58,6 +61,7 @@ class VoiceAuthenticationMethodConfiguration(AuthenticationMethodConfiguration, 
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("callerIdNumber", self.caller_id_number)
         writer.write_collection_of_object_values("includeTargets", self.include_targets)
         writer.write_bool_value("isOfficePhoneAllowed", self.is_office_phone_allowed)
     

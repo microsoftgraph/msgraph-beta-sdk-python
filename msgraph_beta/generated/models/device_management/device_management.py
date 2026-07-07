@@ -131,8 +131,8 @@ if TYPE_CHECKING:
     from ..user_experience_analytics_anomaly_severity_overview import UserExperienceAnalyticsAnomalySeverityOverview
     from ..user_experience_analytics_app_health_application_performance import UserExperienceAnalyticsAppHealthApplicationPerformance
     from ..user_experience_analytics_app_health_app_performance_by_app_version import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion
-    from ..user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
-    from ..user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
+    from ..user_experience_analytics_app_health_app_performance_by_app_vers_2e6b881b import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b
+    from ..user_experience_analytics_app_health_app_performance_by_app_vers_ba5b7522 import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522
     from ..user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
     from ..user_experience_analytics_app_health_device_model_performance import UserExperienceAnalyticsAppHealthDeviceModelPerformance
     from ..user_experience_analytics_app_health_device_performance import UserExperienceAnalyticsAppHealthDevicePerformance
@@ -409,7 +409,7 @@ class DeviceManagement(Entity, Parsable):
     remote_assistance_partners: Optional[list[RemoteAssistancePartner]] = None
     # The remote assistance settings singleton
     remote_assistance_settings: Optional[RemoteAssistanceSettings] = None
-    # The reports property
+    # Reports singleton
     reports: Optional[DeviceManagementReports] = None
     # Collection of resource access settings associated with account.
     resource_access_profiles: Optional[list[DeviceManagementResourceAccessProfileBase]] = None
@@ -466,9 +466,9 @@ class DeviceManagement(Entity, Parsable):
     # User experience analytics appHealth Application Performance by App Version
     user_experience_analytics_app_health_application_performance_by_app_version: Optional[list[UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion]] = None
     # User experience analytics appHealth Application Performance by App Version details
-    user_experience_analytics_app_health_application_performance_by_app_version_details: Optional[list[UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails]] = None
+    user_experience_analytics_app_health_application_performance_by_app_version_details: Optional[list[UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522]] = None
     # User experience analytics appHealth Application Performance by App Version Device Id
-    user_experience_analytics_app_health_application_performance_by_app_version_device_id: Optional[list[UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId]] = None
+    user_experience_analytics_app_health_application_performance_by_app_version_device_id: Optional[list[UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b]] = None
     # User experience analytics appHealth Application Performance by OS Version
     user_experience_analytics_app_health_application_performance_by_o_s_version: Optional[list[UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion]] = None
     # User experience analytics appHealth Model Performance
@@ -720,8 +720,8 @@ class DeviceManagement(Entity, Parsable):
         from ..user_experience_analytics_anomaly_severity_overview import UserExperienceAnalyticsAnomalySeverityOverview
         from ..user_experience_analytics_app_health_application_performance import UserExperienceAnalyticsAppHealthApplicationPerformance
         from ..user_experience_analytics_app_health_app_performance_by_app_version import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion
-        from ..user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
-        from ..user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
+        from ..user_experience_analytics_app_health_app_performance_by_app_vers_2e6b881b import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b
+        from ..user_experience_analytics_app_health_app_performance_by_app_vers_ba5b7522 import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522
         from ..user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
         from ..user_experience_analytics_app_health_device_model_performance import UserExperienceAnalyticsAppHealthDeviceModelPerformance
         from ..user_experience_analytics_app_health_device_performance import UserExperienceAnalyticsAppHealthDevicePerformance
@@ -900,8 +900,8 @@ class DeviceManagement(Entity, Parsable):
         from ..user_experience_analytics_anomaly_severity_overview import UserExperienceAnalyticsAnomalySeverityOverview
         from ..user_experience_analytics_app_health_application_performance import UserExperienceAnalyticsAppHealthApplicationPerformance
         from ..user_experience_analytics_app_health_app_performance_by_app_version import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion
-        from ..user_experience_analytics_app_health_app_performance_by_app_version_details import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails
-        from ..user_experience_analytics_app_health_app_performance_by_app_version_device_id import UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
+        from ..user_experience_analytics_app_health_app_performance_by_app_vers_2e6b881b import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b
+        from ..user_experience_analytics_app_health_app_performance_by_app_vers_ba5b7522 import UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522
         from ..user_experience_analytics_app_health_app_performance_by_o_s_version import UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion
         from ..user_experience_analytics_app_health_device_model_performance import UserExperienceAnalyticsAppHealthDeviceModelPerformance
         from ..user_experience_analytics_app_health_device_performance import UserExperienceAnalyticsAppHealthDevicePerformance
@@ -1093,8 +1093,8 @@ class DeviceManagement(Entity, Parsable):
             "userExperienceAnalyticsAnomalySeverityOverview": lambda n : setattr(self, 'user_experience_analytics_anomaly_severity_overview', n.get_object_value(UserExperienceAnalyticsAnomalySeverityOverview)),
             "userExperienceAnalyticsAppHealthApplicationPerformance": lambda n : setattr(self, 'user_experience_analytics_app_health_application_performance', n.get_collection_of_object_values(UserExperienceAnalyticsAppHealthApplicationPerformance)),
             "userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersion": lambda n : setattr(self, 'user_experience_analytics_app_health_application_performance_by_app_version', n.get_collection_of_object_values(UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion)),
-            "userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails": lambda n : setattr(self, 'user_experience_analytics_app_health_application_performance_by_app_version_details', n.get_collection_of_object_values(UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails)),
-            "userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId": lambda n : setattr(self, 'user_experience_analytics_app_health_application_performance_by_app_version_device_id', n.get_collection_of_object_values(UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId)),
+            "userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails": lambda n : setattr(self, 'user_experience_analytics_app_health_application_performance_by_app_version_details', n.get_collection_of_object_values(UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_ba5b7522)),
+            "userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId": lambda n : setattr(self, 'user_experience_analytics_app_health_application_performance_by_app_version_device_id', n.get_collection_of_object_values(UserExperienceAnalyticsAppHealthAppPerformanceByAppVers_2e6b881b)),
             "userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion": lambda n : setattr(self, 'user_experience_analytics_app_health_application_performance_by_o_s_version', n.get_collection_of_object_values(UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion)),
             "userExperienceAnalyticsAppHealthDeviceModelPerformance": lambda n : setattr(self, 'user_experience_analytics_app_health_device_model_performance', n.get_collection_of_object_values(UserExperienceAnalyticsAppHealthDeviceModelPerformance)),
             "userExperienceAnalyticsAppHealthDevicePerformance": lambda n : setattr(self, 'user_experience_analytics_app_health_device_performance', n.get_collection_of_object_values(UserExperienceAnalyticsAppHealthDevicePerformance)),

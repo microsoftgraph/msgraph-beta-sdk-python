@@ -6,7 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .device_management_configuration_integer_setting_value_constant_default_template import DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate
+    from .device_management_configuration_integer_setting_value_constan_9c422b3e import DeviceManagementConfigurationIntegerSettingValueConstan_9c422b3e
 
 @dataclass
 class DeviceManagementConfigurationIntegerSettingValueDefaultTemplate(AdditionalDataHolder, BackedModel, Parsable):
@@ -36,9 +36,9 @@ class DeviceManagementConfigurationIntegerSettingValueDefaultTemplate(Additional
         except AttributeError:
             mapping_value = None
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate".casefold():
-            from .device_management_configuration_integer_setting_value_constant_default_template import DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate
+            from .device_management_configuration_integer_setting_value_constan_9c422b3e import DeviceManagementConfigurationIntegerSettingValueConstan_9c422b3e
 
-            return DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate()
+            return DeviceManagementConfigurationIntegerSettingValueConstan_9c422b3e()
         return DeviceManagementConfigurationIntegerSettingValueDefaultTemplate()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -46,9 +46,9 @@ class DeviceManagementConfigurationIntegerSettingValueDefaultTemplate(Additional
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .device_management_configuration_integer_setting_value_constant_default_template import DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate
+        from .device_management_configuration_integer_setting_value_constan_9c422b3e import DeviceManagementConfigurationIntegerSettingValueConstan_9c422b3e
 
-        from .device_management_configuration_integer_setting_value_constant_default_template import DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate
+        from .device_management_configuration_integer_setting_value_constan_9c422b3e import DeviceManagementConfigurationIntegerSettingValueConstan_9c422b3e
 
         fields: dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

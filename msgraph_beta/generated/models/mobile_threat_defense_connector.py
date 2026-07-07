@@ -30,6 +30,8 @@ class MobileThreatDefenseConnector(Entity, Parsable):
     android_enabled: Optional[bool] = None
     # When TRUE, inidicates that data from the Mobile Threat Defense partner can be used during Mobile Application Management (MAM) evaluations for Android devices. When FALSE, inidicates that data from the Mobile Threat Defense partner should not be used during Mobile Application Management (MAM) evaluations for Android devices. Only one partner per platform may be enabled for Mobile Application Management (MAM) evaluation. Default value is FALSE.
     android_mobile_application_management_enabled: Optional[bool] = None
+    # When TRUE, indicates that the Mobile Threat Defense partner is granted the Mobile Threat Defense role on enrolled Android Corporate Owned Business Only and Corporate Owned Personally Enabled devices. When FALSE, indicates that the Mobile Threat Defense partner is not granted the Mobile Threat Defense role. Default value is FALSE.
+    grant_mobile_threat_defense_partner_role: Optional[bool] = None
     # When TRUE, indicates that Intune must receive data from the Mobile Threat Defense partner prior to marking a device compliant. When FALSE, indicates that Intune may not recieve data from Mobile Threat Defense partner prior to making device compliant. Default value is FALSE.
     ios_device_blocked_on_missing_partner_data: Optional[bool] = None
     # When TRUE, indicates that data from the Mobile Threat Defense partner will be used during compliance evaluations for iOS devices. When FALSE, indicates that data from the Mobile Threat Defense partner will not be used during compliance evaluations for iOS devices. Default value is FALSE.
@@ -38,6 +40,8 @@ class MobileThreatDefenseConnector(Entity, Parsable):
     ios_mobile_application_management_enabled: Optional[bool] = None
     # DateTime of last Heartbeat recieved from the Mobile Threat Defense partner
     last_heartbeat_date_time: Optional[datetime.datetime] = None
+    # When TRUE, indicates that the Mobile Threat Defense partner will be automatically launched during Android Corporate Owned Business Only and Corporate Owned Personally Enabled device setup. When FALSE, indicates that the Mobile Threat Defense partner will not be automatically launched during setup. Default value is FALSE.
+    launch_mobile_threat_defense_partner_on_setup_enabled: Optional[bool] = None
     # When TRUE, indicates that Intune must receive data from the Mobile Threat Defense partner prior to marking a Mac device compliant. When FALSE, indicates that Intune may mark a Mac device compliant prior to receiving data from the Mobile Threat Defense partner. Default value is FALSE.
     mac_device_blocked_on_missing_partner_data: Optional[bool] = None
     # When TRUE, indicates that data from the Mobile Threat Defense partner will be used during compliance evaluations for Mac devices. When FALSE, indicates that data from the Mobile Threat Defense partner will not be used during compliance evaluations for Mac devices. Default value is FALSE.
@@ -89,10 +93,12 @@ class MobileThreatDefenseConnector(Entity, Parsable):
             "androidDeviceBlockedOnMissingPartnerData": lambda n : setattr(self, 'android_device_blocked_on_missing_partner_data', n.get_bool_value()),
             "androidEnabled": lambda n : setattr(self, 'android_enabled', n.get_bool_value()),
             "androidMobileApplicationManagementEnabled": lambda n : setattr(self, 'android_mobile_application_management_enabled', n.get_bool_value()),
+            "grantMobileThreatDefensePartnerRole": lambda n : setattr(self, 'grant_mobile_threat_defense_partner_role', n.get_bool_value()),
             "iosDeviceBlockedOnMissingPartnerData": lambda n : setattr(self, 'ios_device_blocked_on_missing_partner_data', n.get_bool_value()),
             "iosEnabled": lambda n : setattr(self, 'ios_enabled', n.get_bool_value()),
             "iosMobileApplicationManagementEnabled": lambda n : setattr(self, 'ios_mobile_application_management_enabled', n.get_bool_value()),
             "lastHeartbeatDateTime": lambda n : setattr(self, 'last_heartbeat_date_time', n.get_datetime_value()),
+            "launchMobileThreatDefensePartnerOnSetupEnabled": lambda n : setattr(self, 'launch_mobile_threat_defense_partner_on_setup_enabled', n.get_bool_value()),
             "macDeviceBlockedOnMissingPartnerData": lambda n : setattr(self, 'mac_device_blocked_on_missing_partner_data', n.get_bool_value()),
             "macEnabled": lambda n : setattr(self, 'mac_enabled', n.get_bool_value()),
             "microsoftDefenderForEndpointAttachEnabled": lambda n : setattr(self, 'microsoft_defender_for_endpoint_attach_enabled', n.get_bool_value()),
@@ -123,10 +129,12 @@ class MobileThreatDefenseConnector(Entity, Parsable):
         writer.write_bool_value("androidDeviceBlockedOnMissingPartnerData", self.android_device_blocked_on_missing_partner_data)
         writer.write_bool_value("androidEnabled", self.android_enabled)
         writer.write_bool_value("androidMobileApplicationManagementEnabled", self.android_mobile_application_management_enabled)
+        writer.write_bool_value("grantMobileThreatDefensePartnerRole", self.grant_mobile_threat_defense_partner_role)
         writer.write_bool_value("iosDeviceBlockedOnMissingPartnerData", self.ios_device_blocked_on_missing_partner_data)
         writer.write_bool_value("iosEnabled", self.ios_enabled)
         writer.write_bool_value("iosMobileApplicationManagementEnabled", self.ios_mobile_application_management_enabled)
         writer.write_datetime_value("lastHeartbeatDateTime", self.last_heartbeat_date_time)
+        writer.write_bool_value("launchMobileThreatDefensePartnerOnSetupEnabled", self.launch_mobile_threat_defense_partner_on_setup_enabled)
         writer.write_bool_value("macDeviceBlockedOnMissingPartnerData", self.mac_device_blocked_on_missing_partner_data)
         writer.write_bool_value("macEnabled", self.mac_enabled)
         writer.write_bool_value("microsoftDefenderForEndpointAttachEnabled", self.microsoft_defender_for_endpoint_attach_enabled)

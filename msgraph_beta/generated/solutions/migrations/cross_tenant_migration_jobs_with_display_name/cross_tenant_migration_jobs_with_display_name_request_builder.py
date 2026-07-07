@@ -17,6 +17,8 @@ if TYPE_CHECKING:
     from ....models.cross_tenant_migration_job import CrossTenantMigrationJob
     from ....models.o_data_errors.o_data_error import ODataError
     from .cancel.cancel_request_builder import CancelRequestBuilder
+    from .migrate.migrate_request_builder import MigrateRequestBuilder
+    from .validate.validate_request_builder import ValidateRequestBuilder
 
 class CrossTenantMigrationJobsWithDisplayNameRequestBuilder(BaseRequestBuilder):
     """
@@ -159,6 +161,24 @@ class CrossTenantMigrationJobsWithDisplayNameRequestBuilder(BaseRequestBuilder):
         from .cancel.cancel_request_builder import CancelRequestBuilder
 
         return CancelRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def migrate(self) -> MigrateRequestBuilder:
+        """
+        Provides operations to call the migrate method.
+        """
+        from .migrate.migrate_request_builder import MigrateRequestBuilder
+
+        return MigrateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def validate(self) -> ValidateRequestBuilder:
+        """
+        Provides operations to call the validate method.
+        """
+        from .validate.validate_request_builder import ValidateRequestBuilder
+
+        return ValidateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CrossTenantMigrationJobsWithDisplayNameRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

@@ -25,6 +25,8 @@ class Allotment(Entity, Parsable):
     assignments: Optional[list[Assignment]] = None
     # The number of licenses that are currently consumed by assignments from this allotment. Not nullable. Read-only.
     consumed_units: Optional[int] = None
+    # The externalServiceIdentifier property
+    external_service_identifier: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The list of services that might be enabled or disabled for assignments from this allotment. Not nullable. Read-only.
@@ -73,6 +75,7 @@ class Allotment(Entity, Parsable):
             "assignableTo": lambda n : setattr(self, 'assignable_to', n.get_collection_of_enum_values(AssigneeTypes)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(Assignment)),
             "consumedUnits": lambda n : setattr(self, 'consumed_units', n.get_int_value()),
+            "externalServiceIdentifier": lambda n : setattr(self, 'external_service_identifier', n.get_str_value()),
             "services": lambda n : setattr(self, 'services', n.get_collection_of_object_values(Service)),
             "skuId": lambda n : setattr(self, 'sku_id', n.get_uuid_value()),
             "skuPartNumber": lambda n : setattr(self, 'sku_part_number', n.get_str_value()),
@@ -96,6 +99,7 @@ class Allotment(Entity, Parsable):
         writer.write_enum_value("assignableTo", self.assignable_to)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_int_value("consumedUnits", self.consumed_units)
+        writer.write_str_value("externalServiceIdentifier", self.external_service_identifier)
         writer.write_collection_of_object_values("services", self.services)
         writer.write_uuid_value("skuId", self.sku_id)
         writer.write_str_value("skuPartNumber", self.sku_part_number)

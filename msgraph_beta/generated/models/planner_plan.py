@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .planner_archival_info import PlannerArchivalInfo
     from .planner_bucket import PlannerBucket
     from .planner_delta import PlannerDelta
+    from .planner_history_item import PlannerHistoryItem
     from .planner_plan_container import PlannerPlanContainer
     from .planner_plan_context_collection import PlannerPlanContextCollection
     from .planner_plan_creation import PlannerPlanCreation
@@ -40,6 +41,8 @@ class PlannerPlan(PlannerDelta, Parsable):
     creation_source: Optional[PlannerPlanCreation] = None
     # Extra details about the plan. Read-only. Nullable.
     details: Optional[PlannerPlanDetails] = None
+    # The historyItems property
+    history_items: Optional[list[PlannerHistoryItem]] = None
     # Read-only. If set to true, the plan is archived. An archived plan is read-only.
     is_archived: Optional[bool] = None
     # The OdataType property
@@ -74,6 +77,7 @@ class PlannerPlan(PlannerDelta, Parsable):
         from .planner_archival_info import PlannerArchivalInfo
         from .planner_bucket import PlannerBucket
         from .planner_delta import PlannerDelta
+        from .planner_history_item import PlannerHistoryItem
         from .planner_plan_container import PlannerPlanContainer
         from .planner_plan_context_collection import PlannerPlanContextCollection
         from .planner_plan_creation import PlannerPlanCreation
@@ -86,6 +90,7 @@ class PlannerPlan(PlannerDelta, Parsable):
         from .planner_archival_info import PlannerArchivalInfo
         from .planner_bucket import PlannerBucket
         from .planner_delta import PlannerDelta
+        from .planner_history_item import PlannerHistoryItem
         from .planner_plan_container import PlannerPlanContainer
         from .planner_plan_context_collection import PlannerPlanContextCollection
         from .planner_plan_creation import PlannerPlanCreation
@@ -103,6 +108,7 @@ class PlannerPlan(PlannerDelta, Parsable):
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "creationSource": lambda n : setattr(self, 'creation_source', n.get_object_value(PlannerPlanCreation)),
             "details": lambda n : setattr(self, 'details', n.get_object_value(PlannerPlanDetails)),
+            "historyItems": lambda n : setattr(self, 'history_items', n.get_collection_of_object_values(PlannerHistoryItem)),
             "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
             "owner": lambda n : setattr(self, 'owner', n.get_str_value()),
             "sharedWithContainers": lambda n : setattr(self, 'shared_with_containers', n.get_collection_of_object_values(PlannerSharedWithContainer)),
@@ -131,6 +137,7 @@ class PlannerPlan(PlannerDelta, Parsable):
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("creationSource", self.creation_source)
         writer.write_object_value("details", self.details)
+        writer.write_collection_of_object_values("historyItems", self.history_items)
         writer.write_bool_value("isArchived", self.is_archived)
         writer.write_str_value("owner", self.owner)
         writer.write_collection_of_object_values("sharedWithContainers", self.shared_with_containers)

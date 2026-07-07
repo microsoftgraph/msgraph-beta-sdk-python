@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ..models.application_template_collection_response import ApplicationTemplateCollectionResponse
     from ..models.o_data_errors.o_data_error import ODataError
+    from .categories.categories_request_builder import CategoriesRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .item.application_template_item_request_builder import ApplicationTemplateItemRequestBuilder
 
@@ -87,6 +88,15 @@ class ApplicationTemplatesRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ApplicationTemplatesRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def categories(self) -> CategoriesRequestBuilder:
+        """
+        Provides operations to call the categories method.
+        """
+        from .categories.categories_request_builder import CategoriesRequestBuilder
+
+        return CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def count(self) -> CountRequestBuilder:

@@ -51,7 +51,7 @@ class RulesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RulesRequestBuilderGetQueryParameters]] = None) -> Optional[RulesRoot]:
         """
-        Get rules from security
+        Container for the security rules configured in Microsoft Defender XDR, including custom detection rules.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RulesRoot]
         """
@@ -105,7 +105,7 @@ class RulesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RulesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get rules from security
+        Container for the security rules configured in Microsoft Defender XDR, including custom detection rules.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +158,7 @@ class RulesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RulesRequestBuilderGetQueryParameters():
         """
-        Get rules from security
+        Container for the security rules configured in Microsoft Defender XDR, including custom detection rules.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

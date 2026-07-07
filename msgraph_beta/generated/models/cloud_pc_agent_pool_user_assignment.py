@@ -13,7 +13,7 @@ from .cloud_pc_pool_assignment import CloudPcPoolAssignment
 class CloudPcAgentPoolUserAssignment(CloudPcPoolAssignment, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcAgentPoolUserAssignment"
-    # The userPrincipalId property
+    # The unique identifier of the user principal.
     user_principal_id: Optional[str] = None
     
     @staticmethod

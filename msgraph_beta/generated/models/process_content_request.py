@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .activity_metadata import ActivityMetadata
+    from .context_metadata import ContextMetadata
     from .device_metadata import DeviceMetadata
     from .integrated_application_metadata import IntegratedApplicationMetadata
     from .process_content_metadata_base import ProcessContentMetadataBase
@@ -21,8 +22,10 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The activityMetadata property
     activity_metadata: Optional[ActivityMetadata] = None
-    # A collection of content entries to be processed. Each entry contains the content itself and its metadata. Use conversation metadata for content like prompts and responses and file metadata for files. Required.
+    # A collection of content entries to be processed. Each entry contains the content itself and its metadata. Use conversation metadata for content like prompts and responses, file metadata for files, and content activity metadata for enforcement result status entries. Required.
     content_entries: Optional[list[ProcessContentMetadataBase]] = None
+    # The contextMetadata property
+    context_metadata: Optional[ContextMetadata] = None
     # The deviceMetadata property
     device_metadata: Optional[DeviceMetadata] = None
     # The integratedAppMetadata property
@@ -49,12 +52,14 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .activity_metadata import ActivityMetadata
+        from .context_metadata import ContextMetadata
         from .device_metadata import DeviceMetadata
         from .integrated_application_metadata import IntegratedApplicationMetadata
         from .process_content_metadata_base import ProcessContentMetadataBase
         from .protected_application_metadata import ProtectedApplicationMetadata
 
         from .activity_metadata import ActivityMetadata
+        from .context_metadata import ContextMetadata
         from .device_metadata import DeviceMetadata
         from .integrated_application_metadata import IntegratedApplicationMetadata
         from .process_content_metadata_base import ProcessContentMetadataBase
@@ -63,6 +68,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "activityMetadata": lambda n : setattr(self, 'activity_metadata', n.get_object_value(ActivityMetadata)),
             "contentEntries": lambda n : setattr(self, 'content_entries', n.get_collection_of_object_values(ProcessContentMetadataBase)),
+            "contextMetadata": lambda n : setattr(self, 'context_metadata', n.get_object_value(ContextMetadata)),
             "deviceMetadata": lambda n : setattr(self, 'device_metadata', n.get_object_value(DeviceMetadata)),
             "integratedAppMetadata": lambda n : setattr(self, 'integrated_app_metadata', n.get_object_value(IntegratedApplicationMetadata)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -80,6 +86,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_object_value("activityMetadata", self.activity_metadata)
         writer.write_collection_of_object_values("contentEntries", self.content_entries)
+        writer.write_object_value("contextMetadata", self.context_metadata)
         writer.write_object_value("deviceMetadata", self.device_metadata)
         writer.write_object_value("integratedAppMetadata", self.integrated_app_metadata)
         writer.write_str_value("@odata.type", self.odata_type)

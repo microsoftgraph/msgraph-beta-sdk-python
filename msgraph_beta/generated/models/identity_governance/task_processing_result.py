@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from ..user import User
     from .lifecycle_workflow_processing_status import LifecycleWorkflowProcessingStatus
     from .task import Task
+    from .workflow_subject import WorkflowSubject
 
 from ..entity import Entity
 
@@ -19,20 +20,22 @@ class TaskProcessingResult(Entity, Parsable):
     completed_date_time: Optional[datetime.datetime] = None
     # The date time when the taskProcessingResult was created.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
     created_date_time: Optional[datetime.datetime] = None
-    # Describes why the taskProcessingResult has failed.
+    # Describes why the taskProcessingResult failed.
     failure_reason: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The processingInfo property
+    # Additional human-readable context about the task processing outcome. This property contains information about edge cases where the task completed successfully but the expected action wasn't performed because the target was already in the desired state, such as when the user was already a member of the specified group. Returns null when no additional context is needed. Nullable.
     processing_info: Optional[str] = None
     # The processingStatus property
     processing_status: Optional[LifecycleWorkflowProcessingStatus] = None
-    # The date time when taskProcessingResult execution started. Value is null if task execution has not yet started.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+    # The date time when taskProcessingResult execution started. Value is null if task execution hasn't started yet.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
     started_date_time: Optional[datetime.datetime] = None
     # The subject property
     subject: Optional[User] = None
     # The task property
     task: Optional[Task] = None
+    # The workflow subject associated with this task processing result. Populated for extensibility and provisioning workflows.
+    workflow_subject: Optional[WorkflowSubject] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TaskProcessingResult:
@@ -54,11 +57,13 @@ class TaskProcessingResult(Entity, Parsable):
         from ..user import User
         from .lifecycle_workflow_processing_status import LifecycleWorkflowProcessingStatus
         from .task import Task
+        from .workflow_subject import WorkflowSubject
 
         from ..entity import Entity
         from ..user import User
         from .lifecycle_workflow_processing_status import LifecycleWorkflowProcessingStatus
         from .task import Task
+        from .workflow_subject import WorkflowSubject
 
         fields: dict[str, Callable[[Any], None]] = {
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
@@ -69,6 +74,7 @@ class TaskProcessingResult(Entity, Parsable):
             "startedDateTime": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_object_value(User)),
             "task": lambda n : setattr(self, 'task', n.get_object_value(Task)),
+            "workflowSubject": lambda n : setattr(self, 'workflow_subject', n.get_object_value(WorkflowSubject)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -91,5 +97,6 @@ class TaskProcessingResult(Entity, Parsable):
         writer.write_datetime_value("startedDateTime", self.started_date_time)
         writer.write_object_value("subject", self.subject)
         writer.write_object_value("task", self.task)
+        writer.write_object_value("workflowSubject", self.workflow_subject)
     
 

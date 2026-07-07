@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .teams_app_settings import TeamsAppSettings
     from .teamwork_device import TeamworkDevice
+    from .teamwork_messaging import TeamworkMessaging
     from .team_template import TeamTemplate
     from .workforce_integration import WorkforceIntegration
 
@@ -25,6 +26,8 @@ class Teamwork(Entity, Parsable):
     devices: Optional[list[TeamworkDevice]] = None
     # Indicates whether Microsoft Teams is enabled for the organization.
     is_teams_enabled: Optional[bool] = None
+    # The messaging property
+    messaging: Optional[TeamworkMessaging] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Represents the region of the organization or the tenant. The region value can be any region supported by the Teams payload. The possible values are: Americas, Europe and MiddleEast, Asia Pacific, UAE, Australia, Brazil, Canada, Switzerland, Germany, France, India, Japan, South Korea, Norway, Singapore, United Kingdom, South Africa, Sweden, Qatar, Poland, Italy, Israel, Spain, Mexico, USGov Community Cloud, USGov Community Cloud High, USGov Department of Defense, and China.
@@ -57,6 +60,7 @@ class Teamwork(Entity, Parsable):
         from .entity import Entity
         from .teams_app_settings import TeamsAppSettings
         from .teamwork_device import TeamworkDevice
+        from .teamwork_messaging import TeamworkMessaging
         from .team_template import TeamTemplate
         from .workforce_integration import WorkforceIntegration
 
@@ -65,6 +69,7 @@ class Teamwork(Entity, Parsable):
         from .entity import Entity
         from .teams_app_settings import TeamsAppSettings
         from .teamwork_device import TeamworkDevice
+        from .teamwork_messaging import TeamworkMessaging
         from .team_template import TeamTemplate
         from .workforce_integration import WorkforceIntegration
 
@@ -73,6 +78,7 @@ class Teamwork(Entity, Parsable):
             "deletedTeams": lambda n : setattr(self, 'deleted_teams', n.get_collection_of_object_values(DeletedTeam)),
             "devices": lambda n : setattr(self, 'devices', n.get_collection_of_object_values(TeamworkDevice)),
             "isTeamsEnabled": lambda n : setattr(self, 'is_teams_enabled', n.get_bool_value()),
+            "messaging": lambda n : setattr(self, 'messaging', n.get_object_value(TeamworkMessaging)),
             "region": lambda n : setattr(self, 'region', n.get_str_value()),
             "teamTemplates": lambda n : setattr(self, 'team_templates', n.get_collection_of_object_values(TeamTemplate)),
             "teamsAppSettings": lambda n : setattr(self, 'teams_app_settings', n.get_object_value(TeamsAppSettings)),
@@ -95,6 +101,7 @@ class Teamwork(Entity, Parsable):
         writer.write_collection_of_object_values("deletedTeams", self.deleted_teams)
         writer.write_collection_of_object_values("devices", self.devices)
         writer.write_bool_value("isTeamsEnabled", self.is_teams_enabled)
+        writer.write_object_value("messaging", self.messaging)
         writer.write_str_value("region", self.region)
         writer.write_collection_of_object_values("teamTemplates", self.team_templates)
         writer.write_object_value("teamsAppSettings", self.teams_app_settings)

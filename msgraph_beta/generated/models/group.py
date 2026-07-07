@@ -39,9 +39,6 @@ from .directory_object import DirectoryObject
 
 @dataclass
 class Group(DirectoryObject, Parsable):
-    """
-    Represents a Microsoft Entra group.
-    """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.group"
     # The list of users or groups allowed to create posts or calendar events in this group. If this list is non-empty, then only users or groups listed here can post.

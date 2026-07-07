@@ -12,10 +12,10 @@ class ApplyPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The includeAllUsers property
+    include_all_users: Optional[bool] = False
     # The excludeGroups property
     exclude_groups: Optional[list[str]] = None
-    # The includeAllUsers property
-    include_all_users: Optional[bool] = None
     # The includeGroups property
     include_groups: Optional[list[str]] = None
     # The managementTemplateId property

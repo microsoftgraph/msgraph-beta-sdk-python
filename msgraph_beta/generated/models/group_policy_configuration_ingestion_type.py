@@ -9,6 +9,6 @@ class GroupPolicyConfigurationIngestionType(str, Enum):
     BuiltIn = "builtIn",
     # Indicated atleast 1 tenant admin & system ingested definitions configured for this policy
     Mixed = "mixed",
-    # Evolvable enumeration sentinel value. Do not use.
+    # Unknown future enum value
     UnknownFutureValue = "unknownFutureValue",
 

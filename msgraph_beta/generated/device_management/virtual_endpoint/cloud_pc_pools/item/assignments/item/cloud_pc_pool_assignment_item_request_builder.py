@@ -32,9 +32,10 @@ class CloudPcPoolAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property assignments for deviceManagement
+        Delete a cloudPcPoolAssignment object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcpoolassignment-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,9 +51,10 @@ class CloudPcPoolAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CloudPcPoolAssignmentItemRequestBuilderGetQueryParameters]] = None) -> Optional[CloudPcPoolAssignment]:
         """
-        Get assignments from deviceManagement
+        Read the properties of a cloudPcPoolAssignment object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcPoolAssignment]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcpoolassignment-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -93,7 +95,7 @@ class CloudPcPoolAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property assignments for deviceManagement
+        Delete a cloudPcPoolAssignment object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +106,7 @@ class CloudPcPoolAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CloudPcPoolAssignmentItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get assignments from deviceManagement
+        Read the properties of a cloudPcPoolAssignment object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +150,7 @@ class CloudPcPoolAssignmentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CloudPcPoolAssignmentItemRequestBuilderGetQueryParameters():
         """
-        Get assignments from deviceManagement
+        Read the properties of a cloudPcPoolAssignment object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

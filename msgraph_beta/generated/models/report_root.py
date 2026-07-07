@@ -12,6 +12,8 @@ if TYPE_CHECKING:
     from .credential_user_registration_details import CredentialUserRegistrationDetails
     from .entity import Entity
     from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
+    from .identity_analytics_root import IdentityAnalyticsRoot
+    from .identity_correlation import IdentityCorrelation
     from .partners.partners import Partners
     from .print_usage import PrintUsage
     from .print_usage_by_printer import PrintUsageByPrinter
@@ -35,6 +37,8 @@ class ReportRoot(Entity, Parsable):
     authentication_methods: Optional[AuthenticationMethodsRoot] = None
     # Provides insight into the Microsoft Entra ID P1 and P2 premium license utilization for the tenant.
     azure_a_d_premium_license_insight: Optional[AzureADPremiumLicenseInsight] = None
+    # The identity correlation reports in the tenant.
+    correlations: Optional[list[IdentityCorrelation]] = None
     # Details of the usage of self-service password reset and multifactor authentication (MFA) for all registered users.
     credential_user_registration_details: Optional[list[CredentialUserRegistrationDetails]] = None
     # The dailyPrintUsage property
@@ -49,6 +53,8 @@ class ReportRoot(Entity, Parsable):
     daily_print_usage_summaries_by_user: Optional[list[PrintUsageByUser]] = None
     # Reports for Microsoft Entra Health Monitoring.
     health_monitoring: Optional[HealthMonitoringRoot] = None
+    # Microsoft Entra identity analytics for the tenant, including its groups.
+    identity_analytics: Optional[IdentityAnalyticsRoot] = None
     # Retrieve a list of monthly print usage summaries, grouped by printer.
     monthly_print_usage_by_printer: Optional[list[PrintUsageByPrinter]] = None
     # Retrieve a list of monthly print usage summaries, grouped by user.
@@ -97,6 +103,8 @@ class ReportRoot(Entity, Parsable):
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .entity import Entity
         from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
+        from .identity_analytics_root import IdentityAnalyticsRoot
+        from .identity_correlation import IdentityCorrelation
         from .partners.partners import Partners
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
@@ -115,6 +123,8 @@ class ReportRoot(Entity, Parsable):
         from .credential_user_registration_details import CredentialUserRegistrationDetails
         from .entity import Entity
         from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
+        from .identity_analytics_root import IdentityAnalyticsRoot
+        from .identity_correlation import IdentityCorrelation
         from .partners.partners import Partners
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
@@ -131,6 +141,7 @@ class ReportRoot(Entity, Parsable):
             "applicationSignInDetailedSummary": lambda n : setattr(self, 'application_sign_in_detailed_summary', n.get_collection_of_object_values(ApplicationSignInDetailedSummary)),
             "authenticationMethods": lambda n : setattr(self, 'authentication_methods', n.get_object_value(AuthenticationMethodsRoot)),
             "azureADPremiumLicenseInsight": lambda n : setattr(self, 'azure_a_d_premium_license_insight', n.get_object_value(AzureADPremiumLicenseInsight)),
+            "correlations": lambda n : setattr(self, 'correlations', n.get_collection_of_object_values(IdentityCorrelation)),
             "credentialUserRegistrationDetails": lambda n : setattr(self, 'credential_user_registration_details', n.get_collection_of_object_values(CredentialUserRegistrationDetails)),
             "dailyPrintUsage": lambda n : setattr(self, 'daily_print_usage', n.get_collection_of_object_values(PrintUsage)),
             "dailyPrintUsageByPrinter": lambda n : setattr(self, 'daily_print_usage_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
@@ -138,6 +149,7 @@ class ReportRoot(Entity, Parsable):
             "dailyPrintUsageSummariesByPrinter": lambda n : setattr(self, 'daily_print_usage_summaries_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
             "dailyPrintUsageSummariesByUser": lambda n : setattr(self, 'daily_print_usage_summaries_by_user', n.get_collection_of_object_values(PrintUsageByUser)),
             "healthMonitoring": lambda n : setattr(self, 'health_monitoring', n.get_object_value(HealthMonitoringRoot)),
+            "identityAnalytics": lambda n : setattr(self, 'identity_analytics', n.get_object_value(IdentityAnalyticsRoot)),
             "monthlyPrintUsageByPrinter": lambda n : setattr(self, 'monthly_print_usage_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
             "monthlyPrintUsageByUser": lambda n : setattr(self, 'monthly_print_usage_by_user', n.get_collection_of_object_values(PrintUsageByUser)),
             "monthlyPrintUsageSummariesByPrinter": lambda n : setattr(self, 'monthly_print_usage_summaries_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
@@ -167,6 +179,7 @@ class ReportRoot(Entity, Parsable):
         writer.write_collection_of_object_values("applicationSignInDetailedSummary", self.application_sign_in_detailed_summary)
         writer.write_object_value("authenticationMethods", self.authentication_methods)
         writer.write_object_value("azureADPremiumLicenseInsight", self.azure_a_d_premium_license_insight)
+        writer.write_collection_of_object_values("correlations", self.correlations)
         writer.write_collection_of_object_values("credentialUserRegistrationDetails", self.credential_user_registration_details)
         writer.write_collection_of_object_values("dailyPrintUsage", self.daily_print_usage)
         writer.write_collection_of_object_values("dailyPrintUsageByPrinter", self.daily_print_usage_by_printer)
@@ -174,6 +187,7 @@ class ReportRoot(Entity, Parsable):
         writer.write_collection_of_object_values("dailyPrintUsageSummariesByPrinter", self.daily_print_usage_summaries_by_printer)
         writer.write_collection_of_object_values("dailyPrintUsageSummariesByUser", self.daily_print_usage_summaries_by_user)
         writer.write_object_value("healthMonitoring", self.health_monitoring)
+        writer.write_object_value("identityAnalytics", self.identity_analytics)
         writer.write_collection_of_object_values("monthlyPrintUsageByPrinter", self.monthly_print_usage_by_printer)
         writer.write_collection_of_object_values("monthlyPrintUsageByUser", self.monthly_print_usage_by_user)
         writer.write_collection_of_object_values("monthlyPrintUsageSummariesByPrinter", self.monthly_print_usage_summaries_by_printer)
