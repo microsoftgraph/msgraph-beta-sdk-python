@@ -50,7 +50,7 @@ class SensorMigrationItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SensorMigrationItemRequestBuilderGetQueryParameters]] = None) -> Optional[SensorMigration]:
         """
-        Get sensorMigration from security
+        Represents Microsoft Defender for Identity sensors that can be migrated to the unified security portal.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SensorMigration]
         """
@@ -104,7 +104,7 @@ class SensorMigrationItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SensorMigrationItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get sensorMigration from security
+        Represents Microsoft Defender for Identity sensors that can be migrated to the unified security portal.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class SensorMigrationItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SensorMigrationItemRequestBuilderGetQueryParameters():
         """
-        Get sensorMigration from security
+        Represents Microsoft Defender for Identity sensors that can be migrated to the unified security portal.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

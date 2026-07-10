@@ -19,6 +19,8 @@ class ExpeditedWindowsQualityUpdateSettings(AdditionalDataHolder, BackedModel, P
     days_until_forced_reboot: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The unique identifier for the quality update catalog item targeted by the expedite.
+    quality_update_catalog_item_id: Optional[str] = None
     # The release date to identify a quality update.
     quality_update_release: Optional[str] = None
     
@@ -41,6 +43,7 @@ class ExpeditedWindowsQualityUpdateSettings(AdditionalDataHolder, BackedModel, P
         fields: dict[str, Callable[[Any], None]] = {
             "daysUntilForcedReboot": lambda n : setattr(self, 'days_until_forced_reboot', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "qualityUpdateCatalogItemId": lambda n : setattr(self, 'quality_update_catalog_item_id', n.get_str_value()),
             "qualityUpdateRelease": lambda n : setattr(self, 'quality_update_release', n.get_str_value()),
         }
         return fields
@@ -55,6 +58,7 @@ class ExpeditedWindowsQualityUpdateSettings(AdditionalDataHolder, BackedModel, P
             raise TypeError("writer cannot be null.")
         writer.write_int_value("daysUntilForcedReboot", self.days_until_forced_reboot)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("qualityUpdateCatalogItemId", self.quality_update_catalog_item_id)
         writer.write_str_value("qualityUpdateRelease", self.quality_update_release)
         writer.write_additional_data_value(self.additional_data)
     

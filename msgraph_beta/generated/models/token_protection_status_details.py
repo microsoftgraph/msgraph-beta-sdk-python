@@ -17,9 +17,9 @@ class TokenProtectionStatusDetails(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The signInSessionStatus property
+    # The token protection status of the sign-in session. The possible values are: none, bound, unbound, unknownFutureValue.
     sign_in_session_status: Optional[TokenProtectionStatus] = None
-    # The signInSessionStatusCode property
+    # Additional information about the status.
     sign_in_session_status_code: Optional[int] = None
     
     @staticmethod

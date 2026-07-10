@@ -23,7 +23,7 @@ class CustomAppManagementApplicationConfiguration(AdditionalDataHolder, BackedMo
     identifier_uris: Optional[IdentifierUriConfiguration] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The redirectUris property
+    # Configuration for redirect URI validation rules and restrictions.
     redirect_uris: Optional[RedirectUriConfiguration] = None
     
     @staticmethod

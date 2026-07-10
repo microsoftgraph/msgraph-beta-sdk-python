@@ -5,6 +5,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .service_principal_lock_scope import ServicePrincipalLockScope
+
 @dataclass
 class ServicePrincipalLockConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -18,6 +21,8 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, BackedModel, Parsa
     credentials_with_usage_sign: Optional[bool] = None
     # Locks the keyCredentials and passwordCredentials properties for modification where credential usage type is Verify. This locks OAuth service principals.
     credentials_with_usage_verify: Optional[bool] = None
+    # The enforcementScope property
+    enforcement_scope: Optional[ServicePrincipalLockScope] = None
     # Enables or disables service principal lock configuration. To allow the sensitive properties to be updated, update this property to false to disable the lock on the service principal.
     is_enabled: Optional[bool] = None
     # The OdataType property
@@ -41,10 +46,15 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, BackedModel, Parsa
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .service_principal_lock_scope import ServicePrincipalLockScope
+
+        from .service_principal_lock_scope import ServicePrincipalLockScope
+
         fields: dict[str, Callable[[Any], None]] = {
             "allProperties": lambda n : setattr(self, 'all_properties', n.get_bool_value()),
             "credentialsWithUsageSign": lambda n : setattr(self, 'credentials_with_usage_sign', n.get_bool_value()),
             "credentialsWithUsageVerify": lambda n : setattr(self, 'credentials_with_usage_verify', n.get_bool_value()),
+            "enforcementScope": lambda n : setattr(self, 'enforcement_scope', n.get_enum_value(ServicePrincipalLockScope)),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "tokenEncryptionKeyId": lambda n : setattr(self, 'token_encryption_key_id', n.get_bool_value()),
@@ -62,6 +72,7 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, BackedModel, Parsa
         writer.write_bool_value("allProperties", self.all_properties)
         writer.write_bool_value("credentialsWithUsageSign", self.credentials_with_usage_sign)
         writer.write_bool_value("credentialsWithUsageVerify", self.credentials_with_usage_verify)
+        writer.write_enum_value("enforcementScope", self.enforcement_scope)
         writer.write_bool_value("isEnabled", self.is_enabled)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bool_value("tokenEncryptionKeyId", self.token_encryption_key_id)

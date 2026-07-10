@@ -62,7 +62,7 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DefinitionsRequestBuilderGetQueryParameters]] = None) -> Optional[AccessReviewScheduleDefinitionCollectionResponse]:
         """
-        Retrieve the accessReviewScheduleDefinition objects. A list of zero or more accessReviewScheduleDefinition objects are returned, including all of their nested properties, for each access review series created. This does not include the associated accessReviewInstance objects.
+        Retrieve the accessReviewScheduleDefinition objects. A list of zero or more accessReviewScheduleDefinition objects are returned, including all of their nested properties, for each access review series created. This doesn't include the associated accessReviewInstance objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessReviewScheduleDefinitionCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/accessreviewset-list-definitions?view=graph-rest-beta
@@ -107,7 +107,7 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DefinitionsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Retrieve the accessReviewScheduleDefinition objects. A list of zero or more accessReviewScheduleDefinition objects are returned, including all of their nested properties, for each access review series created. This does not include the associated accessReviewInstance objects.
+        Retrieve the accessReviewScheduleDefinition objects. A list of zero or more accessReviewScheduleDefinition objects are returned, including all of their nested properties, for each access review series created. This doesn't include the associated accessReviewInstance objects.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +153,7 @@ class DefinitionsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DefinitionsRequestBuilderGetQueryParameters():
         """
-        Retrieve the accessReviewScheduleDefinition objects. A list of zero or more accessReviewScheduleDefinition objects are returned, including all of their nested properties, for each access review series created. This does not include the associated accessReviewInstance objects.
+        Retrieve the accessReviewScheduleDefinition objects. A list of zero or more accessReviewScheduleDefinition objects are returned, including all of their nested properties, for each access review series created. This doesn't include the associated accessReviewInstance objects.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

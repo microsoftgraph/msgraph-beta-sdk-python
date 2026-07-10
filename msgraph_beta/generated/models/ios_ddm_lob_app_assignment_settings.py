@@ -20,8 +20,16 @@ class IosDdmLobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
     associated_domains: Optional[list[str]] = None
     # When true, the system allows direct downloads for the AssociatedDomains. When false, the system will not allow direct downloads for the AssociatedDomains. Default is false.
     associated_domains_direct_download_allowed: Optional[bool] = None
+    # The cellularSliceConfigurationId property
+    cellular_slice_configuration_id: Optional[str] = None
+    # The contentFilterConfigurationId property
+    content_filter_configuration_id: Optional[str] = None
+    # The dnsProxyConfigurationId property
+    dns_proxy_configuration_id: Optional[str] = None
     # When true, indicates that the app should not be backed up to iCloud. When false, indicates that the app may be backed up to iCloud. Default is false.
     prevent_managed_app_backup: Optional[bool] = None
+    # The relayConfigurationId property
+    relay_configuration_id: Optional[str] = None
     # When true, the device locks its screen after every transaction that requires a customer’s card PIN. When false, the user can choose the behavior. Default value is false.
     tap_to_pay_screen_lock_enabled: Optional[bool] = None
     # The unique identifier of the relay to associate with the app.
@@ -50,7 +58,11 @@ class IosDdmLobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "associatedDomains": lambda n : setattr(self, 'associated_domains', n.get_collection_of_primitive_values(str)),
             "associatedDomainsDirectDownloadAllowed": lambda n : setattr(self, 'associated_domains_direct_download_allowed', n.get_bool_value()),
+            "cellularSliceConfigurationId": lambda n : setattr(self, 'cellular_slice_configuration_id', n.get_str_value()),
+            "contentFilterConfigurationId": lambda n : setattr(self, 'content_filter_configuration_id', n.get_str_value()),
+            "dnsProxyConfigurationId": lambda n : setattr(self, 'dns_proxy_configuration_id', n.get_str_value()),
             "preventManagedAppBackup": lambda n : setattr(self, 'prevent_managed_app_backup', n.get_bool_value()),
+            "relayConfigurationId": lambda n : setattr(self, 'relay_configuration_id', n.get_str_value()),
             "tapToPayScreenLockEnabled": lambda n : setattr(self, 'tap_to_pay_screen_lock_enabled', n.get_bool_value()),
             "vpnConfigurationId": lambda n : setattr(self, 'vpn_configuration_id', n.get_str_value()),
         }
@@ -69,7 +81,11 @@ class IosDdmLobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
         super().serialize(writer)
         writer.write_collection_of_primitive_values("associatedDomains", self.associated_domains)
         writer.write_bool_value("associatedDomainsDirectDownloadAllowed", self.associated_domains_direct_download_allowed)
+        writer.write_str_value("cellularSliceConfigurationId", self.cellular_slice_configuration_id)
+        writer.write_str_value("contentFilterConfigurationId", self.content_filter_configuration_id)
+        writer.write_str_value("dnsProxyConfigurationId", self.dns_proxy_configuration_id)
         writer.write_bool_value("preventManagedAppBackup", self.prevent_managed_app_backup)
+        writer.write_str_value("relayConfigurationId", self.relay_configuration_id)
         writer.write_bool_value("tapToPayScreenLockEnabled", self.tap_to_pay_screen_lock_enabled)
         writer.write_str_value("vpnConfigurationId", self.vpn_configuration_id)
     

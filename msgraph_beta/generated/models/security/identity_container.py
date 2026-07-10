@@ -28,7 +28,7 @@ class IdentityContainer(Entity, Parsable):
     sensor_candidate_activation_configuration: Optional[SensorCandidateActivationConfiguration] = None
     # The sensorCandidates property
     sensor_candidates: Optional[list[SensorCandidate]] = None
-    # The sensorMigration property
+    # Represents Microsoft Defender for Identity sensors that can be migrated to the unified security portal.
     sensor_migration: Optional[list[SensorMigration]] = None
     # Represents a customer's Microsoft Defender for Identity sensors.
     sensors: Optional[list[Sensor]] = None

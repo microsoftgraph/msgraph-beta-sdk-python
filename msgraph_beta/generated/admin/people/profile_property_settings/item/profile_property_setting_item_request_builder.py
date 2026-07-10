@@ -32,7 +32,7 @@ class ProfilePropertySettingItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a profilePropertySetting object.
+        Delete a profilePropertySetting object. You shouldn't delete a profilePropertySetting that includes a source precedence configuration. Instead, patch it to a default state that contains only the Microsoft Entra ID source reference. This delete operation is supported but fails unless the prioritizedSourceUrls property contains only the Entra ID source reference.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/profilepropertysetting-delete?view=graph-rest-beta
@@ -96,7 +96,7 @@ class ProfilePropertySettingItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a profilePropertySetting object.
+        Delete a profilePropertySetting object. You shouldn't delete a profilePropertySetting that includes a source precedence configuration. Instead, patch it to a default state that contains only the Microsoft Entra ID source reference. This delete operation is supported but fails unless the prioritizedSourceUrls property contains only the Entra ID source reference.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

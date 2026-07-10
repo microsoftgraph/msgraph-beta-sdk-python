@@ -18,23 +18,23 @@ class RedirectUriAllowedDomainConfiguration(AdditionalDataHolder, BackedModel, P
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The allowedDomains property
+    # Collection of domain names that are allowed globally across all platforms. Domain validation follows RFC 3986 (URI syntax, section 3.2.2 for the host component). Domain matching is case-insensitive and exact; wildcards are not supported.
     allowed_domains: Optional[list[str]] = None
-    # The excludeActors property
+    # Applications or service principals that are exempt from this restriction.
     exclude_actors: Optional[AppManagementPolicyActorExemptions] = None
-    # The isStateSetByMicrosoft property
+    # Indicates whether the restriction state was set by Microsoft.
     is_state_set_by_microsoft: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The publicClient property
+    # Platform-specific allowed domain configuration for public client applications (native/mobile apps).
     public_client: Optional[RedirectUriPlatformAllowedDomainConfiguration] = None
-    # The restrictForAppsCreatedAfterDateTime property
+    # Date and time when this restriction starts applying to newly created applications. Applications created before this date are not affected.
     restrict_for_apps_created_after_date_time: Optional[datetime.datetime] = None
-    # The spa property
+    # Platform-specific allowed domain configuration for single-page applications (SPAs).
     spa: Optional[RedirectUriPlatformAllowedDomainConfiguration] = None
     # The state property
     state: Optional[AppManagementRestrictionState] = None
-    # The web property
+    # Platform-specific allowed domain configuration for web applications.
     web: Optional[RedirectUriPlatformAllowedDomainConfiguration] = None
     
     @staticmethod

@@ -12,9 +12,9 @@ class RedirectUriPlatformBlockedSchemeConfiguration(AdditionalDataHolder, Backed
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The blockedSchemes property
+    # Collection of URI schemes that are blocked for this specific platform. Schemes refer to URI schemes as defined in RFC 3986 §3.1.
     blocked_schemes: Optional[list[str]] = None
-    # The exemptFormats property
+    # Collection of URI patterns that are exempt from the blocked scheme restrictions for this platform. Patterns must follow specific validation rules for standard URI formats or URN formats.
     exempt_formats: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

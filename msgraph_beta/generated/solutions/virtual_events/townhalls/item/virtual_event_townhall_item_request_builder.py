@@ -17,6 +17,10 @@ if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .....models.virtual_event_townhall import VirtualEventTownhall
     from .presenters.presenters_request_builder import PresentersRequestBuilder
+    from .registrations.registrations_request_builder import RegistrationsRequestBuilder
+    from .registrations_with_email.registrations_with_email_request_builder import RegistrationsWithEmailRequestBuilder
+    from .registrations_with_user_id.registrations_with_user_id_request_builder import RegistrationsWithUserIdRequestBuilder
+    from .registration_configuration.registration_configuration_request_builder import RegistrationConfigurationRequestBuilder
     from .sessions.sessions_request_builder import SessionsRequestBuilder
     from .sessions_with_join_web_url.sessions_with_join_web_url_request_builder import SessionsWithJoinWebUrlRequestBuilder
 
@@ -96,6 +100,30 @@ class VirtualEventTownhallItemRequestBuilder(BaseRequestBuilder):
 
         return await self.request_adapter.send_async(request_info, VirtualEventTownhall, error_mapping)
     
+    def registrations_with_email(self,email: str) -> RegistrationsWithEmailRequestBuilder:
+        """
+        Provides operations to manage the registrations property of the microsoft.graph.virtualEventTownhall entity.
+        param email: Alternate key of virtualEventRegistration
+        Returns: RegistrationsWithEmailRequestBuilder
+        """
+        if email is None:
+            raise TypeError("email cannot be null.")
+        from .registrations_with_email.registrations_with_email_request_builder import RegistrationsWithEmailRequestBuilder
+
+        return RegistrationsWithEmailRequestBuilder(self.request_adapter, self.path_parameters, email)
+    
+    def registrations_with_user_id(self,user_id: str) -> RegistrationsWithUserIdRequestBuilder:
+        """
+        Provides operations to manage the registrations property of the microsoft.graph.virtualEventTownhall entity.
+        param user_id: Alternate key of virtualEventRegistration
+        Returns: RegistrationsWithUserIdRequestBuilder
+        """
+        if user_id is None:
+            raise TypeError("user_id cannot be null.")
+        from .registrations_with_user_id.registrations_with_user_id_request_builder import RegistrationsWithUserIdRequestBuilder
+
+        return RegistrationsWithUserIdRequestBuilder(self.request_adapter, self.path_parameters, user_id)
+    
     def sessions_with_join_web_url(self,join_web_url: str) -> SessionsWithJoinWebUrlRequestBuilder:
         """
         Provides operations to manage the sessions property of the microsoft.graph.virtualEvent entity.
@@ -163,6 +191,24 @@ class VirtualEventTownhallItemRequestBuilder(BaseRequestBuilder):
         from .presenters.presenters_request_builder import PresentersRequestBuilder
 
         return PresentersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def registration_configuration(self) -> RegistrationConfigurationRequestBuilder:
+        """
+        Provides operations to manage the registrationConfiguration property of the microsoft.graph.virtualEventTownhall entity.
+        """
+        from .registration_configuration.registration_configuration_request_builder import RegistrationConfigurationRequestBuilder
+
+        return RegistrationConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def registrations(self) -> RegistrationsRequestBuilder:
+        """
+        Provides operations to manage the registrations property of the microsoft.graph.virtualEventTownhall entity.
+        """
+        from .registrations.registrations_request_builder import RegistrationsRequestBuilder
+
+        return RegistrationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sessions(self) -> SessionsRequestBuilder:

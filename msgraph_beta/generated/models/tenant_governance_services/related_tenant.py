@@ -26,6 +26,8 @@ class RelatedTenant(Entity, Parsable):
     billing_metrics: Optional[BillingMetrics] = None
     # The date and time when the related tenant was discovered. The timestamp type represents date and time information using ISO 8601 format and is always in UTC.
     created_date_time: Optional[datetime.datetime] = None
+    # Indicates whether this tenant is a Microsoft infrastructure tenant.
+    is_microsoft_infrastructure: Optional[bool] = None
     # Multi-tenant application usage metrics for this related tenant. Expanded by default.
     multi_tenant_application_metrics: Optional[MultiTenantApplicationMetrics] = None
     # The OdataType property
@@ -65,6 +67,7 @@ class RelatedTenant(Entity, Parsable):
             "b2BSignInActivityMetrics": lambda n : setattr(self, 'b2_b_sign_in_activity_metrics', n.get_object_value(B2BSignInActivityMetrics)),
             "billingMetrics": lambda n : setattr(self, 'billing_metrics', n.get_object_value(BillingMetrics)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "isMicrosoftInfrastructure": lambda n : setattr(self, 'is_microsoft_infrastructure', n.get_bool_value()),
             "multiTenantApplicationMetrics": lambda n : setattr(self, 'multi_tenant_application_metrics', n.get_object_value(MultiTenantApplicationMetrics)),
         }
         super_fields = super().get_field_deserializers()

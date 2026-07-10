@@ -13,7 +13,7 @@ class QueryCondition(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Timestamp of when the query in the custom detection rule was last updated.
+    # Timestamp of when the query in the custom detection rule was last updated. Deprecated. This property will be removed from this resource on 2026-10-01.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

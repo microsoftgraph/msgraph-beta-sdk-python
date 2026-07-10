@@ -12,9 +12,9 @@ class CloudPcAgentPoolScalingPolicy(AdditionalDataHolder, BackedModel, Parsable)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The maximumCount property
+    # The maximum number of Cloud PCs in the pool. The valid values are 1 to 900, and must be greater than or equal to minimumCount.
     maximum_count: Optional[int] = None
-    # The minimumCount property
+    # The minimum number of Cloud PCs in the pool. The valid values are 0 to 900, and must be less than or equal to maximumCount.
     minimum_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None

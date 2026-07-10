@@ -19,6 +19,8 @@ class UsageRight(Entity, Parsable):
     allotments: Optional[list[Allotment]] = None
     # The set of assignments that combine to form this usageRight, including both direct assignments and assignments inherited through group membership.
     assignments: Optional[list[Assignment]] = None
+    # The externalServiceIdentifier property
+    external_service_identifier: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Information about the services associated with the usageRight. Not nullable. Read-only. Supports $filter on the planId property.
@@ -57,6 +59,7 @@ class UsageRight(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "allotments": lambda n : setattr(self, 'allotments', n.get_collection_of_object_values(Allotment)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(Assignment)),
+            "externalServiceIdentifier": lambda n : setattr(self, 'external_service_identifier', n.get_str_value()),
             "services": lambda n : setattr(self, 'services', n.get_collection_of_object_values(Service)),
             "skuId": lambda n : setattr(self, 'sku_id', n.get_uuid_value()),
             "skuPartNumber": lambda n : setattr(self, 'sku_part_number', n.get_str_value()),
@@ -76,6 +79,7 @@ class UsageRight(Entity, Parsable):
         super().serialize(writer)
         writer.write_collection_of_object_values("allotments", self.allotments)
         writer.write_collection_of_object_values("assignments", self.assignments)
+        writer.write_str_value("externalServiceIdentifier", self.external_service_identifier)
         writer.write_collection_of_object_values("services", self.services)
         writer.write_uuid_value("skuId", self.sku_id)
         writer.write_str_value("skuPartNumber", self.sku_part_number)

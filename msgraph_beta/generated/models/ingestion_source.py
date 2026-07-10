@@ -7,6 +7,6 @@ class IngestionSource(str, Enum):
     Custom = "custom",
     # Indicates the category is ingested through system ingestion process
     BuiltIn = "builtIn",
-    # Evolvable enumeration sentinel value. Do not use.
+    # Unknown future enum value
     UnknownFutureValue = "unknownFutureValue",
 

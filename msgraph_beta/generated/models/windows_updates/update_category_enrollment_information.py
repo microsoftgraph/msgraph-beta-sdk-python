@@ -18,7 +18,7 @@ class UpdateCategoryEnrollmentInformation(AdditionalDataHolder, BackedModel, Par
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The enrollmentState property
     enrollment_state: Optional[EnrollmentState] = None
-    # The lastModifiedDateTime property
+    # The date and time when the enrollmentState was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z. Read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

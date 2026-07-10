@@ -19,7 +19,6 @@ if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
     from .item.cross_tenant_migration_job_item_request_builder import CrossTenantMigrationJobItemRequestBuilder
-    from .validate.validate_request_builder import ValidateRequestBuilder
 
 class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
     """
@@ -73,7 +72,7 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CrossTenantMigrationJob, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CrossTenantMigrationJob]:
         """
-        Create a new crossTenantMigrationJob.
+        Create a new crossTenantMigrationJob. A job defines the migration batch but doesn't start validation or migration. After you create the job, call validate to verify tenant and resource configuration, then call migrate to begin the actual migration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantMigrationJob]
@@ -110,7 +109,7 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CrossTenantMigrationJob, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new crossTenantMigrationJob.
+        Create a new crossTenantMigrationJob. A job defines the migration batch but doesn't start validation or migration. After you create the job, call validate to verify tenant and resource configuration, then call migrate to begin the actual migration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -143,15 +142,6 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def validate(self) -> ValidateRequestBuilder:
-        """
-        Provides operations to call the validate method.
-        """
-        from .validate.validate_request_builder import ValidateRequestBuilder
-
-        return ValidateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CrossTenantMigrationJobsRequestBuilderGetQueryParameters():

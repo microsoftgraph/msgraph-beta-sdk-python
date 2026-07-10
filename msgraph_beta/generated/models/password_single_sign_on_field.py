@@ -14,7 +14,7 @@ class PasswordSingleSignOnField(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Title/label override for customization.
     customized_label: Optional[str] = None
-    # Label that would be used if no customizedLabel is provided. Read only.
+    # Label that would be used if no customizedLabel is provided. Read-only.
     default_label: Optional[str] = None
     # Id used to identity the field type. This is an internal ID and possible values are param1, param2, paramuserName, parampassword.
     field_id: Optional[str] = None

@@ -7,11 +7,10 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_package_assignment_request_callback_data import AccessPackageAssignmentRequestCallbackData
-    from .access_review_data_upload_trigger_callback_data import AccessReviewDataUploadTriggerCallbackData
-    from .access_review_resource_data_upload_session_context_data import AccessReviewResourceDataUploadSessionContextData
     from .assignment_request_approval_stage_callback_data import AssignmentRequestApprovalStageCallbackData
     from .identity_governance.custom_task_extension_callback_data import CustomTaskExtensionCallbackData
     from .identity_governance.custom_task_extension_callout_data import CustomTaskExtensionCalloutData
+    from .identity_governance.custom_task_extension_response_data import CustomTaskExtensionResponseData
 
 @dataclass
 class CustomExtensionData(AdditionalDataHolder, BackedModel, Parsable):
@@ -41,14 +40,6 @@ class CustomExtensionData(AdditionalDataHolder, BackedModel, Parsable):
             from .access_package_assignment_request_callback_data import AccessPackageAssignmentRequestCallbackData
 
             return AccessPackageAssignmentRequestCallbackData()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewDataUploadTriggerCallbackData".casefold():
-            from .access_review_data_upload_trigger_callback_data import AccessReviewDataUploadTriggerCallbackData
-
-            return AccessReviewDataUploadTriggerCallbackData()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewResourceDataUploadSessionContextData".casefold():
-            from .access_review_resource_data_upload_session_context_data import AccessReviewResourceDataUploadSessionContextData
-
-            return AccessReviewResourceDataUploadSessionContextData()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.assignmentRequestApprovalStageCallbackData".casefold():
             from .assignment_request_approval_stage_callback_data import AssignmentRequestApprovalStageCallbackData
 
@@ -61,6 +52,10 @@ class CustomExtensionData(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_governance.custom_task_extension_callout_data import CustomTaskExtensionCalloutData
 
             return CustomTaskExtensionCalloutData()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.customTaskExtensionResponseData".casefold():
+            from .identity_governance.custom_task_extension_response_data import CustomTaskExtensionResponseData
+
+            return CustomTaskExtensionResponseData()
         return CustomExtensionData()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -69,18 +64,16 @@ class CustomExtensionData(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_package_assignment_request_callback_data import AccessPackageAssignmentRequestCallbackData
-        from .access_review_data_upload_trigger_callback_data import AccessReviewDataUploadTriggerCallbackData
-        from .access_review_resource_data_upload_session_context_data import AccessReviewResourceDataUploadSessionContextData
         from .assignment_request_approval_stage_callback_data import AssignmentRequestApprovalStageCallbackData
         from .identity_governance.custom_task_extension_callback_data import CustomTaskExtensionCallbackData
         from .identity_governance.custom_task_extension_callout_data import CustomTaskExtensionCalloutData
+        from .identity_governance.custom_task_extension_response_data import CustomTaskExtensionResponseData
 
         from .access_package_assignment_request_callback_data import AccessPackageAssignmentRequestCallbackData
-        from .access_review_data_upload_trigger_callback_data import AccessReviewDataUploadTriggerCallbackData
-        from .access_review_resource_data_upload_session_context_data import AccessReviewResourceDataUploadSessionContextData
         from .assignment_request_approval_stage_callback_data import AssignmentRequestApprovalStageCallbackData
         from .identity_governance.custom_task_extension_callback_data import CustomTaskExtensionCallbackData
         from .identity_governance.custom_task_extension_callout_data import CustomTaskExtensionCalloutData
+        from .identity_governance.custom_task_extension_response_data import CustomTaskExtensionResponseData
 
         fields: dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

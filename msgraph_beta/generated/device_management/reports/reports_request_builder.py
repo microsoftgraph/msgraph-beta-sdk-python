@@ -129,7 +129,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ReportsRequestBuilderGetQueryParameters]] = None) -> Optional[DeviceManagementReports]:
         """
-        Get reports from deviceManagement
+        Reports singleton
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DeviceManagementReports]
         """
@@ -183,7 +183,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ReportsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get reports from deviceManagement
+        Reports singleton
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -938,7 +938,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ReportsRequestBuilderGetQueryParameters():
         """
-        Get reports from deviceManagement
+        Reports singleton
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

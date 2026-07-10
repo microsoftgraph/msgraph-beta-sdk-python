@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .restorable_artifact import RestorableArtifact
+    from .restore_search_artifact_query_expression import RestoreSearchArtifactQueryExpression
 
 @dataclass
 class ArtifactQuery(AdditionalDataHolder, BackedModel, Parsable):
@@ -19,8 +20,10 @@ class ArtifactQuery(AdditionalDataHolder, BackedModel, Parsable):
     artifact_type: Optional[RestorableArtifact] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Specifies criteria to retrieve artifacts.
+    # Deprecated. Going forward, use the structuredQueryExpression property instead. Specifies criteria to retrieve artifacts.
     query_expression: Optional[str] = None
+    # Contains a structured query expression for searching artifacts.
+    structured_query_expression: Optional[RestoreSearchArtifactQueryExpression] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ArtifactQuery:
@@ -39,13 +42,16 @@ class ArtifactQuery(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .restorable_artifact import RestorableArtifact
+        from .restore_search_artifact_query_expression import RestoreSearchArtifactQueryExpression
 
         from .restorable_artifact import RestorableArtifact
+        from .restore_search_artifact_query_expression import RestoreSearchArtifactQueryExpression
 
         fields: dict[str, Callable[[Any], None]] = {
             "artifactType": lambda n : setattr(self, 'artifact_type', n.get_enum_value(RestorableArtifact)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "queryExpression": lambda n : setattr(self, 'query_expression', n.get_str_value()),
+            "structuredQueryExpression": lambda n : setattr(self, 'structured_query_expression', n.get_object_value(RestoreSearchArtifactQueryExpression)),
         }
         return fields
     
@@ -60,6 +66,7 @@ class ArtifactQuery(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_enum_value("artifactType", self.artifact_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("queryExpression", self.query_expression)
+        writer.write_object_value("structuredQueryExpression", self.structured_query_expression)
         writer.write_additional_data_value(self.additional_data)
     
 

@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .acl import Acl
     from .entity import Entity
     from .external_item_content import ExternalItemContent
+    from .external_item_information_protection_label import ExternalItemInformationProtectionLabel
     from .properties import Properties
 
 from .entity import Entity
@@ -18,6 +19,8 @@ class ExternalItem(Entity, Parsable):
     acl: Optional[list[Acl]] = None
     # The content property
     content: Optional[ExternalItemContent] = None
+    # The informationProtectionLabel property
+    information_protection_label: Optional[ExternalItemInformationProtectionLabel] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The properties property
@@ -42,16 +45,19 @@ class ExternalItem(Entity, Parsable):
         from .acl import Acl
         from .entity import Entity
         from .external_item_content import ExternalItemContent
+        from .external_item_information_protection_label import ExternalItemInformationProtectionLabel
         from .properties import Properties
 
         from .acl import Acl
         from .entity import Entity
         from .external_item_content import ExternalItemContent
+        from .external_item_information_protection_label import ExternalItemInformationProtectionLabel
         from .properties import Properties
 
         fields: dict[str, Callable[[Any], None]] = {
             "acl": lambda n : setattr(self, 'acl', n.get_collection_of_object_values(Acl)),
             "content": lambda n : setattr(self, 'content', n.get_object_value(ExternalItemContent)),
+            "informationProtectionLabel": lambda n : setattr(self, 'information_protection_label', n.get_object_value(ExternalItemInformationProtectionLabel)),
             "properties": lambda n : setattr(self, 'properties', n.get_object_value(Properties)),
         }
         super_fields = super().get_field_deserializers()
@@ -69,6 +75,7 @@ class ExternalItem(Entity, Parsable):
         super().serialize(writer)
         writer.write_collection_of_object_values("acl", self.acl)
         writer.write_object_value("content", self.content)
+        writer.write_object_value("informationProtectionLabel", self.information_protection_label)
         writer.write_object_value("properties", self.properties)
     
 

@@ -19,7 +19,7 @@ class IdentifierUriConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     non_default_uri_addition: Optional[IdentifierUriRestriction] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Block new identifier URIs for applications, unless they contain a unique tenant identifier like the tenant ID, appId (client ID), or verified domain. For example, api://{tenatId}/string, api://{appId}/string, {scheme}://string/{tenantId}, {scheme}://string/{appId}, https://{verified-domain.com}/path, {scheme}://{subdomain}.{verified-domain.com}/path.
+    # Block new identifier URIs for applications, unless they contain a unique tenant identifier like the tenant ID, appId (client ID), or verified domain. For example, api://{tenantId}/string, api://{appId}/string, {scheme}://string/{tenantId}, {scheme}://string/{appId}, https://{verified-domain.com}/path, {scheme}://{subdomain}.{verified-domain.com}/path.
     uri_addition_without_unique_tenant_identifier: Optional[IdentifierUriRestriction] = None
     
     @staticmethod

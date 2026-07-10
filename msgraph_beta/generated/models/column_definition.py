@@ -57,7 +57,7 @@ class ColumnDefinition(Entity, Parsable):
     hidden: Optional[bool] = None
     # This column stores hyperlink or picture values.
     hyperlink_or_picture: Optional[HyperlinkOrPictureColumn] = None
-    # Specifies whether the column values can used for sorting and searching.
+    # Specifies whether the column values can be used for sorting and searching.
     indexed: Optional[bool] = None
     # Indicates whether this column can be deleted.
     is_deletable: Optional[bool] = None
@@ -65,6 +65,8 @@ class ColumnDefinition(Entity, Parsable):
     is_reorderable: Optional[bool] = None
     # Specifies whether the column can be changed.
     is_sealed: Optional[bool] = None
+    # Specifies whether the column values can be used for searching. Currently supported only for columns in a fileStorageContainer.
+    is_searchable: Optional[bool] = None
     # This column's data is looked up from another source in the site.
     lookup: Optional[LookupColumn] = None
     # The API-facing name of the column as it appears in the fields on a listItem. For the user-facing name, see displayName.
@@ -171,6 +173,7 @@ class ColumnDefinition(Entity, Parsable):
             "isDeletable": lambda n : setattr(self, 'is_deletable', n.get_bool_value()),
             "isReorderable": lambda n : setattr(self, 'is_reorderable', n.get_bool_value()),
             "isSealed": lambda n : setattr(self, 'is_sealed', n.get_bool_value()),
+            "isSearchable": lambda n : setattr(self, 'is_searchable', n.get_bool_value()),
             "lookup": lambda n : setattr(self, 'lookup', n.get_object_value(LookupColumn)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "number": lambda n : setattr(self, 'number', n.get_object_value(NumberColumn)),
@@ -217,6 +220,7 @@ class ColumnDefinition(Entity, Parsable):
         writer.write_bool_value("isDeletable", self.is_deletable)
         writer.write_bool_value("isReorderable", self.is_reorderable)
         writer.write_bool_value("isSealed", self.is_sealed)
+        writer.write_bool_value("isSearchable", self.is_searchable)
         writer.write_object_value("lookup", self.lookup)
         writer.write_str_value("name", self.name)
         writer.write_object_value("number", self.number)

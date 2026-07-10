@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .....models.participant import Participant
     from .....models.participant_collection_response import ParticipantCollectionResponse
+    from .admit_all_from_lobby.admit_all_from_lobby_request_builder import AdmitAllFromLobbyRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .invite.invite_request_builder import InviteRequestBuilder
     from .item.participant_item_request_builder import ParticipantItemRequestBuilder
@@ -128,6 +129,15 @@ class ParticipantsRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ParticipantsRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def admit_all_from_lobby(self) -> AdmitAllFromLobbyRequestBuilder:
+        """
+        Provides operations to call the admitAllFromLobby method.
+        """
+        from .admit_all_from_lobby.admit_all_from_lobby_request_builder import AdmitAllFromLobbyRequestBuilder
+
+        return AdmitAllFromLobbyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def count(self) -> CountRequestBuilder:

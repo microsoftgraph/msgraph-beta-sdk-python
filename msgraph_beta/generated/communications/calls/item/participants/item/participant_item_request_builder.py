@@ -16,7 +16,9 @@ from warnings import warn
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from ......models.participant import Participant
+    from .admit_from_lobby.admit_from_lobby_request_builder import AdmitFromLobbyRequestBuilder
     from .mute.mute_request_builder import MuteRequestBuilder
+    from .remove_from_lobby.remove_from_lobby_request_builder import RemoveFromLobbyRequestBuilder
     from .start_hold_music.start_hold_music_request_builder import StartHoldMusicRequestBuilder
     from .stop_hold_music.stop_hold_music_request_builder import StopHoldMusicRequestBuilder
 
@@ -144,6 +146,15 @@ class ParticipantItemRequestBuilder(BaseRequestBuilder):
         return ParticipantItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def admit_from_lobby(self) -> AdmitFromLobbyRequestBuilder:
+        """
+        Provides operations to call the admitFromLobby method.
+        """
+        from .admit_from_lobby.admit_from_lobby_request_builder import AdmitFromLobbyRequestBuilder
+
+        return AdmitFromLobbyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def mute(self) -> MuteRequestBuilder:
         """
         Provides operations to call the mute method.
@@ -151,6 +162,15 @@ class ParticipantItemRequestBuilder(BaseRequestBuilder):
         from .mute.mute_request_builder import MuteRequestBuilder
 
         return MuteRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def remove_from_lobby(self) -> RemoveFromLobbyRequestBuilder:
+        """
+        Provides operations to call the removeFromLobby method.
+        """
+        from .remove_from_lobby.remove_from_lobby_request_builder import RemoveFromLobbyRequestBuilder
+
+        return RemoveFromLobbyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def start_hold_music(self) -> StartHoldMusicRequestBuilder:
