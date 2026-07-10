@@ -74,10 +74,11 @@ class CloudAppsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CloudPcCloudApp, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcCloudApp]:
         """
-        Create new navigation property to cloudApps for deviceManagement
+        Create a new cloudPcCloudApp object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcCloudApp]
+        Find more info here: https://learn.microsoft.com/graph/api/virtualendpoint-post-cloudapps?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -120,7 +121,7 @@ class CloudAppsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CloudPcCloudApp, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to cloudApps for deviceManagement
+        Create a new cloudPcCloudApp object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -14,9 +14,6 @@ from .entity import Entity
 
 @dataclass
 class EmployeeExperienceUser(Entity, Parsable):
-    """
-    Represents a container that exposes navigation properties for employee experience user resources.
-    """
     # Represents the collection of Viva Engage roles assigned to a user.
     assigned_roles: Optional[list[EngagementRole]] = None
     # The learningCourseActivities property

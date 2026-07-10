@@ -15,9 +15,11 @@ class OrganizationalScope(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # List of device groups to which the custom detection rule applies.
+    device_groups: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # List of groups to which the custom detection rule applies.
+    # List of groups to which the custom detection rule applies. Deprecated. Use deviceGroups instead. This property will be removed from this resource on October 1, 2026.
     scope_names: Optional[list[str]] = None
     # The scopeType property
     scope_type: Optional[ScopeType] = None
@@ -43,6 +45,7 @@ class OrganizationalScope(AdditionalDataHolder, BackedModel, Parsable):
         from .scope_type import ScopeType
 
         fields: dict[str, Callable[[Any], None]] = {
+            "deviceGroups": lambda n : setattr(self, 'device_groups', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "scopeNames": lambda n : setattr(self, 'scope_names', n.get_collection_of_primitive_values(str)),
             "scopeType": lambda n : setattr(self, 'scope_type', n.get_enum_value(ScopeType)),
@@ -57,6 +60,7 @@ class OrganizationalScope(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_collection_of_primitive_values("deviceGroups", self.device_groups)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_primitive_values("scopeNames", self.scope_names)
         writer.write_enum_value("scopeType", self.scope_type)

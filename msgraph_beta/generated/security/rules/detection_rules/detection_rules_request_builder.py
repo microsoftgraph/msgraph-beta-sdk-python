@@ -49,10 +49,10 @@ class DetectionRulesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[DetectionRulesRequestBuilderGetQueryParameters]] = None) -> Optional[DetectionRuleCollectionResponse]:
         """
-        Get a list of custom detection rules.With custom detections, you can proactively monitor for and respond to various events and system states, including suspected breach activity and misconfigured assets in their organization network.Custom detection rules, which are written in Kusto query language (KQL), automatically trigger alerts and response actions once there are events matching their KQL queries.
+        Get a list of detectionRule objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DetectionRuleCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/security-detectionrule-list?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/security-rulesroot-list-detectionrules?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,10 +70,11 @@ class DetectionRulesRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: DetectionRule, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[DetectionRule]:
         """
-        Create new navigation property to detectionRules for security
+        Create a new detectionRule object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[DetectionRule]
+        Find more info here: https://learn.microsoft.com/graph/api/security-rulesroot-post-detectionrules?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -93,7 +94,7 @@ class DetectionRulesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[DetectionRulesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of custom detection rules.With custom detections, you can proactively monitor for and respond to various events and system states, including suspected breach activity and misconfigured assets in their organization network.Custom detection rules, which are written in Kusto query language (KQL), automatically trigger alerts and response actions once there are events matching their KQL queries.
+        Get a list of detectionRule objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +105,7 @@ class DetectionRulesRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: DetectionRule, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to detectionRules for security
+        Create a new detectionRule object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -139,7 +140,7 @@ class DetectionRulesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class DetectionRulesRequestBuilderGetQueryParameters():
         """
-        Get a list of custom detection rules.With custom detections, you can proactively monitor for and respond to various events and system states, including suspected breach activity and misconfigured assets in their organization network.Custom detection rules, which are written in Kusto query language (KQL), automatically trigger alerts and response actions once there are events matching their KQL queries.
+        Get a list of detectionRule objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

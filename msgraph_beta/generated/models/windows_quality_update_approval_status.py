@@ -7,6 +7,6 @@ class WindowsQualityUpdateApprovalStatus(str, Enum):
     Approved = "approved",
     # suspended for corresponding catalog item
     Suspended = "suspended",
-    # Evolvable enumeration sentinel value. Do not use.
+    # Evolvable enumeration sentinel value. Do not use
     UnknownFutureValue = "unknownFutureValue",
 

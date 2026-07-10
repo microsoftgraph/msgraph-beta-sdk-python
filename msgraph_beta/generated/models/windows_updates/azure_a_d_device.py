@@ -15,9 +15,9 @@ from .updatable_asset import UpdatableAsset
 class AzureADDevice(UpdatableAsset, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsUpdates.azureADDevice"
-    # The enrollment property
+    # Specifies the update management enrollment for the device. Read-only. Returned by default.
     enrollment: Optional[UpdateManagementEnrollment] = None
-    # Specifies any errors that prevent the device from being enrolled in update management or receving deployed content. Read-only. Returned by default.
+    # Specifies any errors that prevent the device from being enrolled in update management or receiving deployed content. Read-only. Returned by default.
     errors: Optional[list[UpdatableAssetError]] = None
     
     @staticmethod

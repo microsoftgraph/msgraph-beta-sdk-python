@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .app_credential_sign_in_activities.app_credential_sign_in_activities_request_builder import AppCredentialSignInActivitiesRequestBuilder
     from .authentication_methods.authentication_methods_request_builder import AuthenticationMethodsRequestBuilder
     from .azure_a_d_premium_license_insight.azure_a_d_premium_license_insight_request_builder import AzureADPremiumLicenseInsightRequestBuilder
+    from .correlations.correlations_request_builder import CorrelationsRequestBuilder
     from .credential_user_registration_details.credential_user_registration_details_request_builder import CredentialUserRegistrationDetailsRequestBuilder
     from .daily_print_usage.daily_print_usage_request_builder import DailyPrintUsageRequestBuilder
     from .daily_print_usage_by_printer.daily_print_usage_by_printer_request_builder import DailyPrintUsageByPrinterRequestBuilder
@@ -150,6 +151,7 @@ if TYPE_CHECKING:
     from .get_yammer_groups_activity_detail_with_period.get_yammer_groups_activity_detail_with_period_request_builder import GetYammerGroupsActivityDetailWithPeriodRequestBuilder
     from .get_yammer_groups_activity_group_counts_with_period.get_yammer_groups_activity_group_counts_with_period_request_builder import GetYammerGroupsActivityGroupCountsWithPeriodRequestBuilder
     from .health_monitoring.health_monitoring_request_builder import HealthMonitoringRequestBuilder
+    from .identity_analytics.identity_analytics_request_builder import IdentityAnalyticsRequestBuilder
     from .managed_device_enrollment_abandonment_details_with_skip_with_top_with_filter_with_skip_token.managed_device_enrollment_abandonment_details_with_skip_with_top_with_filter_with_skip_token_request_builder import ManagedDeviceEnrollmentAbandonmentDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder
     from .managed_device_enrollment_abandonment_summary_with_skip_with_top_with_filter_with_skip_token.managed_device_enrollment_abandonment_summary_with_skip_with_top_with_filter_with_skip_token_request_builder import ManagedDeviceEnrollmentAbandonmentSummaryWithSkipWithTopWithFilterWithSkipTokenRequestBuilder
     from .managed_device_enrollment_failure_details.managed_device_enrollment_failure_details_request_builder import ManagedDeviceEnrollmentFailureDetailsRequestBuilder
@@ -1735,6 +1737,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         return AzureADPremiumLicenseInsightRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def correlations(self) -> CorrelationsRequestBuilder:
+        """
+        Provides operations to manage the correlations property of the microsoft.graph.reportRoot entity.
+        """
+        from .correlations.correlations_request_builder import CorrelationsRequestBuilder
+
+        return CorrelationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def credential_user_registration_details(self) -> CredentialUserRegistrationDetailsRequestBuilder:
         """
         Provides operations to manage the credentialUserRegistrationDetails property of the microsoft.graph.reportRoot entity.
@@ -1886,6 +1897,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .health_monitoring.health_monitoring_request_builder import HealthMonitoringRequestBuilder
 
         return HealthMonitoringRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def identity_analytics(self) -> IdentityAnalyticsRequestBuilder:
+        """
+        Provides operations to manage the identityAnalytics property of the microsoft.graph.reportRoot entity.
+        """
+        from .identity_analytics.identity_analytics_request_builder import IdentityAnalyticsRequestBuilder
+
+        return IdentityAnalyticsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def managed_device_enrollment_failure_details(self) -> ManagedDeviceEnrollmentFailureDetailsRequestBuilder:

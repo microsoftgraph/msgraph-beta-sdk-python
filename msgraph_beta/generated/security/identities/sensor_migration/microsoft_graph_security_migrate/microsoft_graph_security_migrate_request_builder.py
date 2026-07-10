@@ -33,10 +33,11 @@ class MicrosoftGraphSecurityMigrateRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: MigratePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[MigrateSensorsResult]:
         """
-        Invoke action migrate
+        Migrate the specified sensors to the unified security portal. This action initiates the migration process for one or more Microsoft Defender for Identity sensors.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MigrateSensorsResult]
+        Find more info here: https://learn.microsoft.com/graph/api/security-sensormigration-migrate?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -56,7 +57,7 @@ class MicrosoftGraphSecurityMigrateRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: MigratePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action migrate
+        Migrate the specified sensors to the unified security portal. This action initiates the migration process for one or more Microsoft Defender for Identity sensors.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

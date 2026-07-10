@@ -71,10 +71,11 @@ class Alerts_v2RequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Alert, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Alert]:
         """
-        Create new navigation property to alerts_v2 for security
+        Create a manual security alert in Microsoft 365 Defender with specified entities and metadata. When the alert is created, the backend automatically creates a new incident to contain the alert, or links the alert to an existing incident if linkToIncident is specified.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Alert]
+        Find more info here: https://learn.microsoft.com/graph/api/security-alert-post-manualalert?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -105,7 +106,7 @@ class Alerts_v2RequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Alert, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to alerts_v2 for security
+        Create a manual security alert in Microsoft 365 Defender with specified entities and metadata. When the alert is created, the backend automatically creates a new incident to contain the alert, or links the alert to an existing incident if linkToIncident is specified.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

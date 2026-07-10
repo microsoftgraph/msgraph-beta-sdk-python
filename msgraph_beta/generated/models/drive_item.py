@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .item_analytics import ItemAnalytics
     from .item_retention_label import ItemRetentionLabel
     from .list_item import ListItem
+    from .lock_info import LockInfo
     from .malware import Malware
     from .media import Media
     from .package import Package
@@ -78,6 +79,8 @@ class DriveItem(BaseItem, Parsable):
     list_item: Optional[ListItem] = None
     # Location metadata, if the item has location data. Read-only.
     location: Optional[GeoCoordinates] = None
+    # Lock metadata for the item, including the lock type, when it was created, when it expires, and which users currently hold the lock. Read-only.
+    lock_info: Optional[LockInfo] = None
     # Malware metadata, if the item was detected to contain malware. Read-only.
     malware: Optional[Malware] = None
     # Information about the media (audio or video) item. Read-write. Only on OneDrive for Business and SharePoint.
@@ -158,6 +161,7 @@ class DriveItem(BaseItem, Parsable):
         from .item_analytics import ItemAnalytics
         from .item_retention_label import ItemRetentionLabel
         from .list_item import ListItem
+        from .lock_info import LockInfo
         from .malware import Malware
         from .media import Media
         from .package import Package
@@ -193,6 +197,7 @@ class DriveItem(BaseItem, Parsable):
         from .item_analytics import ItemAnalytics
         from .item_retention_label import ItemRetentionLabel
         from .list_item import ListItem
+        from .lock_info import LockInfo
         from .malware import Malware
         from .media import Media
         from .package import Package
@@ -228,6 +233,7 @@ class DriveItem(BaseItem, Parsable):
             "image": lambda n : setattr(self, 'image', n.get_object_value(Image)),
             "listItem": lambda n : setattr(self, 'list_item', n.get_object_value(ListItem)),
             "location": lambda n : setattr(self, 'location', n.get_object_value(GeoCoordinates)),
+            "lockInfo": lambda n : setattr(self, 'lock_info', n.get_object_value(LockInfo)),
             "malware": lambda n : setattr(self, 'malware', n.get_object_value(Malware)),
             "media": lambda n : setattr(self, 'media', n.get_object_value(Media)),
             "package": lambda n : setattr(self, 'package', n.get_object_value(Package)),
@@ -281,6 +287,7 @@ class DriveItem(BaseItem, Parsable):
         writer.write_object_value("image", self.image)
         writer.write_object_value("listItem", self.list_item)
         writer.write_object_value("location", self.location)
+        writer.write_object_value("lockInfo", self.lock_info)
         writer.write_object_value("malware", self.malware)
         writer.write_object_value("media", self.media)
         writer.write_object_value("package", self.package)

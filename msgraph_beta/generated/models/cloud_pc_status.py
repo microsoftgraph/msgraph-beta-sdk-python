@@ -18,4 +18,6 @@ class CloudPcStatus(str, Enum):
     ModifyingSingleSignOn = "modifyingSingleSignOn",
     RefreshPolicyConfiguration = "refreshPolicyConfiguration",
     Preparing = "preparing",
+    FailoverInProgress = "failoverInProgress",
+    FailbackInProgress = "failbackInProgress",
 

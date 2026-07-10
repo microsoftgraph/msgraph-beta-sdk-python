@@ -5,7 +5,7 @@ class SnapshotJobStatus(str, Enum):
     Running = "running",
     Succeeded = "succeeded",
     Failed = "failed",
+    PartiallySuccessful = "partiallySuccessful",
     # A marker value for members added after the release of this API.
     UnknownFutureValue = "unknownFutureValue",
-    PartiallySuccessful = "partiallySuccessful",
 

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .protection_source import ProtectionSource
     from .protection_unit_status import ProtectionUnitStatus
     from .public_error import PublicError
+    from .retention_period_change import RetentionPeriodChange
     from .site_protection_unit import SiteProtectionUnit
 
 from .entity import Entity
@@ -37,6 +38,8 @@ class ProtectionUnitBase(Entity, Parsable):
     odata_type: Optional[str] = None
     # The time when protection unit offboard was requested.
     offboard_requested_date_time: Optional[datetime.datetime] = None
+    # The pendingRetentionPeriodChange property
+    pending_retention_period_change: Optional[RetentionPeriodChange] = None
     # The unique identifier of the protection policy based on which protection unit was created.
     policy_id: Optional[str] = None
     # The protectionSources property
@@ -84,6 +87,7 @@ class ProtectionUnitBase(Entity, Parsable):
         from .protection_source import ProtectionSource
         from .protection_unit_status import ProtectionUnitStatus
         from .public_error import PublicError
+        from .retention_period_change import RetentionPeriodChange
         from .site_protection_unit import SiteProtectionUnit
 
         from .drive_protection_unit import DriveProtectionUnit
@@ -93,6 +97,7 @@ class ProtectionUnitBase(Entity, Parsable):
         from .protection_source import ProtectionSource
         from .protection_unit_status import ProtectionUnitStatus
         from .public_error import PublicError
+        from .retention_period_change import RetentionPeriodChange
         from .site_protection_unit import SiteProtectionUnit
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -104,6 +109,7 @@ class ProtectionUnitBase(Entity, Parsable):
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "offboardRequestedDateTime": lambda n : setattr(self, 'offboard_requested_date_time', n.get_datetime_value()),
+            "pendingRetentionPeriodChange": lambda n : setattr(self, 'pending_retention_period_change', n.get_object_value(RetentionPeriodChange)),
             "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
             "protectionSources": lambda n : setattr(self, 'protection_sources', n.get_collection_of_enum_values(ProtectionSource)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(ProtectionUnitStatus)),

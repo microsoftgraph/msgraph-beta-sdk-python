@@ -6,20 +6,18 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .dlp_action_info import DlpActionInfo
+    from .policy_tip_action import PolicyTipAction
 
-from .dlp_action_info import DlpActionInfo
+from .policy_tip_action import PolicyTipAction
 
 @dataclass
-class NotifyUserAction(DlpActionInfo, Parsable):
+class NotifyUserAction(PolicyTipAction, Parsable):
     # Timestamp when the notification action configuration was last modified.
     action_last_modified_date_time: Optional[datetime.datetime] = None
     # The body text of the email notification sent to users.
     email_text: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The text of the policy tip displayed to the user within the application (For example, Outlook, Word).
-    policy_tip: Optional[str] = None
     # List of email addresses or user identifiers designated to receive the notification email. Can include sender, owner, manager, etc.
     recipients: Optional[list[str]] = None
     
@@ -39,14 +37,13 @@ class NotifyUserAction(DlpActionInfo, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .dlp_action_info import DlpActionInfo
+        from .policy_tip_action import PolicyTipAction
 
-        from .dlp_action_info import DlpActionInfo
+        from .policy_tip_action import PolicyTipAction
 
         fields: dict[str, Callable[[Any], None]] = {
             "actionLastModifiedDateTime": lambda n : setattr(self, 'action_last_modified_date_time', n.get_datetime_value()),
             "emailText": lambda n : setattr(self, 'email_text', n.get_str_value()),
-            "policyTip": lambda n : setattr(self, 'policy_tip', n.get_str_value()),
             "recipients": lambda n : setattr(self, 'recipients', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
@@ -64,7 +61,6 @@ class NotifyUserAction(DlpActionInfo, Parsable):
         super().serialize(writer)
         writer.write_datetime_value("actionLastModifiedDateTime", self.action_last_modified_date_time)
         writer.write_str_value("emailText", self.email_text)
-        writer.write_str_value("policyTip", self.policy_tip)
         writer.write_collection_of_primitive_values("recipients", self.recipients)
     
 

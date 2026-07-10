@@ -409,7 +409,7 @@ class DeviceManagement(Entity, Parsable):
     remote_assistance_partners: Optional[list[RemoteAssistancePartner]] = None
     # The remote assistance settings singleton
     remote_assistance_settings: Optional[RemoteAssistanceSettings] = None
-    # The reports property
+    # Reports singleton
     reports: Optional[DeviceManagementReports] = None
     # Collection of resource access settings associated with account.
     resource_access_profiles: Optional[list[DeviceManagementResourceAccessProfileBase]] = None

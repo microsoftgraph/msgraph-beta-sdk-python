@@ -28,7 +28,7 @@ class AccessPackageResourceRequest(Entity, Parsable):
     justification: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The outcome of whether the service was able to add the resource to the catalog. The value is Delivered if the resource was added or removed. Read-Only.
+    # The outcome of whether the service was able to add the resource to the catalog. The value is Delivered if the resource was added or removed. Read-only.
     request_state: Optional[str] = None
     # The requestStatus property
     request_status: Optional[str] = None

@@ -48,9 +48,10 @@ class SiteExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[SiteExclusionUnitsBulkAdditionJobsRequestBuilderGetQueryParameters]] = None) -> Optional[SiteExclusionUnitsBulkAdditionJobCollectionResponse]:
         """
-        Get siteExclusionUnitsBulkAdditionJobs from solutions
+        Get a list of site exclusion units bulk addition jobs associated with a SharePoint protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SiteExclusionUnitsBulkAdditionJobCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/sharepointprotectionpolicy-list-siteexclusionunitsbulkadditionjobs?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -68,7 +69,7 @@ class SiteExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[SiteExclusionUnitsBulkAdditionJobsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get siteExclusionUnitsBulkAdditionJobs from solutions
+        Get a list of site exclusion units bulk addition jobs associated with a SharePoint protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +100,7 @@ class SiteExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class SiteExclusionUnitsBulkAdditionJobsRequestBuilderGetQueryParameters():
         """
-        Get siteExclusionUnitsBulkAdditionJobs from solutions
+        Get a list of site exclusion units bulk addition jobs associated with a SharePoint protection policy.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

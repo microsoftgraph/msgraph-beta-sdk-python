@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .share_point_report_settings import SharePointReportSettings
 
 from .entity import Entity
 
@@ -15,6 +16,8 @@ class AdminReportSettings(Entity, Parsable):
     display_concealed_names: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # A container for SharePoint-specific report settings. Access the SharePoint API usage report metrics through the operations defined on the sharePointReportSettings resource type.
+    share_point: Optional[SharePointReportSettings] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AdminReportSettings:
@@ -33,11 +36,14 @@ class AdminReportSettings(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .share_point_report_settings import SharePointReportSettings
 
         from .entity import Entity
+        from .share_point_report_settings import SharePointReportSettings
 
         fields: dict[str, Callable[[Any], None]] = {
             "displayConcealedNames": lambda n : setattr(self, 'display_concealed_names', n.get_bool_value()),
+            "sharePoint": lambda n : setattr(self, 'share_point', n.get_object_value(SharePointReportSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,5 +59,6 @@ class AdminReportSettings(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_bool_value("displayConcealedNames", self.display_concealed_names)
+        writer.write_object_value("sharePoint", self.share_point)
     
 

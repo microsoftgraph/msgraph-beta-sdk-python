@@ -18,6 +18,8 @@ class DeviceCompliancePolicyScript(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Json of the rules.
     rules_content: Optional[bytes] = None
+    # Indicates the interval, in minutes, at which the custom compliance script is evaluated on the device. Allowed range from 1 to 480. Nullable.
+    run_interval_in_minutes: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> DeviceCompliancePolicyScript:
@@ -39,6 +41,7 @@ class DeviceCompliancePolicyScript(AdditionalDataHolder, BackedModel, Parsable):
             "deviceComplianceScriptId": lambda n : setattr(self, 'device_compliance_script_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "rulesContent": lambda n : setattr(self, 'rules_content', n.get_bytes_value()),
+            "runIntervalInMinutes": lambda n : setattr(self, 'run_interval_in_minutes', n.get_int_value()),
         }
         return fields
     
@@ -53,6 +56,7 @@ class DeviceCompliancePolicyScript(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("deviceComplianceScriptId", self.device_compliance_script_id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bytes_value("rulesContent", self.rules_content)
+        writer.write_int_value("runIntervalInMinutes", self.run_interval_in_minutes)
         writer.write_additional_data_value(self.additional_data)
     
 

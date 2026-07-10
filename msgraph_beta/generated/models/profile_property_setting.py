@@ -11,13 +11,13 @@ from .entity import Entity
 
 @dataclass
 class ProfilePropertySetting(Entity, Parsable):
-    # Name of the property-level setting.
+    # Name of the property associated with this setting.
     display_name: Optional[str] = None
     # Other name of the property-level setting. For backward compatibility.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # A collection of prioritized profile source URLs ordered by data precedence within an organization.
+    # A collection of prioritized profile source URLs ordered by data precedence within an organization. For details, see Manage profile source precedence in Microsoft 365.
     prioritized_source_urls: Optional[list[str]] = None
     
     @staticmethod

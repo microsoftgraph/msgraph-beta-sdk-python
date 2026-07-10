@@ -30,7 +30,7 @@ class Workspace(Place, Parsable):
     mode: Optional[PlaceMode] = None
     # A short, friendly name for the workspace, often used for easier identification or display in the UI.
     nickname: Optional[str] = None
-    # An alternative immutable unique identifier of the workspace. Read-only.
+    # The placeId property
     place_id: Optional[str] = None
     
     @staticmethod

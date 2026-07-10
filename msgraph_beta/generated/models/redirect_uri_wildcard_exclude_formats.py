@@ -12,9 +12,9 @@ class RedirectUriWildcardExcludeFormats(AdditionalDataHolder, BackedModel, Parsa
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The excludeWildcardsInPath property
+    # When true, blocks the use of wildcards in the path portion of redirect URIs. When false, allows wildcards in paths.
     exclude_wildcards_in_path: Optional[bool] = None
-    # The excludeWildcardsInPathWithDomains property
+    # Collection of domain names where wildcards in the path portion of redirect URIs are blocked. Accepts only valid host names (no wildcards) as defined in RFC 3986 §3.2.2. For example, login.microsoft.com or contoso.com.
     exclude_wildcards_in_path_with_domains: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

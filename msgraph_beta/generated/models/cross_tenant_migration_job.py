@@ -16,37 +16,37 @@ from .entity import Entity
 
 @dataclass
 class CrossTenantMigrationJob(Entity, Parsable):
-    # DateTime after which the migration should be performed
+    # Date and time after which the migration should be performed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     complete_after_date_time: Optional[datetime.datetime] = None
-    # ID of the user that created the job
+    # User principal name (UPN) of the user who created the job. Read-only.
     created_by: Optional[str] = None
-    # When the job what created
+    # When the job was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z. Read-only.
     created_date_time: Optional[datetime.datetime] = None
-    # Display name of the job. Must be unique per tenant
+    # Display name of the job. Must be unique per tenant.
     display_name: Optional[str] = None
-    # Settings to use for migration of Exchange workload
+    # Settings to use for migration of Exchange workload. Nullable.
     exchange_settings: Optional[ExchangeOnlineCrossTenantMigrationSettings] = None
     # The jobType property
     job_type: Optional[CrossTenantMigrationJobType] = None
-    # When this migration job was last updated
+    # When this migration job was last updated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z. Read-only.
     last_updated_date_time: Optional[datetime.datetime] = None
-    # Status message of the migration job
+    # Status message of the migration job. Nullable. Read-only.
     message: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Type of resource being migrated. Only Users is currently supported
+    # Type of resource being migrated. Only Users is currently supported.
     resource_type: Optional[str] = None
-    # IDs (GUID) of the resources being migrated with the migration job
+    # IDs (GUID) of the resources that are migrated with the migration job.
     resources: Optional[list[str]] = None
-    # ID (GUID) of the tenant that content is being migrated from
+    # ID (GUID) of the tenant that content is migrated from.
     source_tenant_id: Optional[str] = None
     # The status property
     status: Optional[CrossTenantMigrationJobStatus] = None
-    # ID of the tenant that content is being migrated to
+    # ID of the tenant that content is migrated to. Read-only.
     target_tenant_id: Optional[str] = None
-    # Details and status of the users being migrated in this migration job
+    # Details and status of the users migrated in this migration job.
     users: Optional[list[CrossTenantMigrationTask]] = None
-    # Workloads to migrate. Supported workloads are Teams, Exchange, and ODSP (OneDrive/SharePoint)
+    # Workloads to migrate. Supported workloads are Teams, Exchange, and ODSP (OneDrive/SharePoint).
     workloads: Optional[list[str]] = None
     
     @staticmethod

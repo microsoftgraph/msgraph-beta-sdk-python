@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .apple_device_delivery_protocol import AppleDeviceDeliveryProtocol
     from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
     from .mac_os_vpp_app_revoke_licenses_action_result import MacOsVppAppRevokeLicensesActionResult
     from .mobile_app import MobileApp
@@ -23,6 +24,8 @@ class MacOsVppApp(MobileApp, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.macOsVppApp"
     # The store URL.
     app_store_url: Optional[str] = None
+    # Enum of the supported types of Apple delivery protocols, representing the available protocols to deliver payloads to Apple devices
+    apple_device_app_delivery_protocol_type: Optional[AppleDeviceDeliveryProtocol] = None
     # The licenses assigned to this app.
     assigned_licenses: Optional[list[MacOsVppAppAssignedLicense]] = None
     # The Identity Name.
@@ -64,12 +67,14 @@ class MacOsVppApp(MobileApp, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .apple_device_delivery_protocol import AppleDeviceDeliveryProtocol
         from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
         from .mac_os_vpp_app_revoke_licenses_action_result import MacOsVppAppRevokeLicensesActionResult
         from .mobile_app import MobileApp
         from .vpp_licensing_type import VppLicensingType
         from .vpp_token_account_type import VppTokenAccountType
 
+        from .apple_device_delivery_protocol import AppleDeviceDeliveryProtocol
         from .mac_os_vpp_app_assigned_license import MacOsVppAppAssignedLicense
         from .mac_os_vpp_app_revoke_licenses_action_result import MacOsVppAppRevokeLicensesActionResult
         from .mobile_app import MobileApp
@@ -78,6 +83,7 @@ class MacOsVppApp(MobileApp, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
+            "appleDeviceAppDeliveryProtocolType": lambda n : setattr(self, 'apple_device_app_delivery_protocol_type', n.get_enum_value(AppleDeviceDeliveryProtocol)),
             "assignedLicenses": lambda n : setattr(self, 'assigned_licenses', n.get_collection_of_object_values(MacOsVppAppAssignedLicense)),
             "bundleId": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
             "licensingType": lambda n : setattr(self, 'licensing_type', n.get_object_value(VppLicensingType)),
@@ -105,6 +111,7 @@ class MacOsVppApp(MobileApp, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("appStoreUrl", self.app_store_url)
+        writer.write_enum_value("appleDeviceAppDeliveryProtocolType", self.apple_device_app_delivery_protocol_type)
         writer.write_collection_of_object_values("assignedLicenses", self.assigned_licenses)
         writer.write_str_value("bundleId", self.bundle_id)
         writer.write_object_value("licensingType", self.licensing_type)

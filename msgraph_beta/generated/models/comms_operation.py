@@ -6,6 +6,8 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .add_large_gallery_view_operation import AddLargeGalleryViewOperation
+    from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
+    from .admit_from_lobby_operation import AdmitFromLobbyOperation
     from .cancel_media_processing_operation import CancelMediaProcessingOperation
     from .entity import Entity
     from .invite_participants_operation import InviteParticipantsOperation
@@ -14,6 +16,7 @@ if TYPE_CHECKING:
     from .operation_status import OperationStatus
     from .play_prompt_operation import PlayPromptOperation
     from .record_operation import RecordOperation
+    from .remove_from_lobby_operation import RemoveFromLobbyOperation
     from .result_info import ResultInfo
     from .send_dtmf_tones_operation import SendDtmfTonesOperation
     from .start_hold_music_operation import StartHoldMusicOperation
@@ -57,6 +60,14 @@ class CommsOperation(Entity, Parsable):
             from .add_large_gallery_view_operation import AddLargeGalleryViewOperation
 
             return AddLargeGalleryViewOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.admitAllFromLobbyOperation".casefold():
+            from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
+
+            return AdmitAllFromLobbyOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.admitFromLobbyOperation".casefold():
+            from .admit_from_lobby_operation import AdmitFromLobbyOperation
+
+            return AdmitFromLobbyOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.cancelMediaProcessingOperation".casefold():
             from .cancel_media_processing_operation import CancelMediaProcessingOperation
 
@@ -81,6 +92,10 @@ class CommsOperation(Entity, Parsable):
             from .record_operation import RecordOperation
 
             return RecordOperation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.removeFromLobbyOperation".casefold():
+            from .remove_from_lobby_operation import RemoveFromLobbyOperation
+
+            return RemoveFromLobbyOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.sendDtmfTonesOperation".casefold():
             from .send_dtmf_tones_operation import SendDtmfTonesOperation
 
@@ -129,6 +144,8 @@ class CommsOperation(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .add_large_gallery_view_operation import AddLargeGalleryViewOperation
+        from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
+        from .admit_from_lobby_operation import AdmitFromLobbyOperation
         from .cancel_media_processing_operation import CancelMediaProcessingOperation
         from .entity import Entity
         from .invite_participants_operation import InviteParticipantsOperation
@@ -137,6 +154,7 @@ class CommsOperation(Entity, Parsable):
         from .operation_status import OperationStatus
         from .play_prompt_operation import PlayPromptOperation
         from .record_operation import RecordOperation
+        from .remove_from_lobby_operation import RemoveFromLobbyOperation
         from .result_info import ResultInfo
         from .send_dtmf_tones_operation import SendDtmfTonesOperation
         from .start_hold_music_operation import StartHoldMusicOperation
@@ -150,6 +168,8 @@ class CommsOperation(Entity, Parsable):
         from .update_recording_status_operation import UpdateRecordingStatusOperation
 
         from .add_large_gallery_view_operation import AddLargeGalleryViewOperation
+        from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
+        from .admit_from_lobby_operation import AdmitFromLobbyOperation
         from .cancel_media_processing_operation import CancelMediaProcessingOperation
         from .entity import Entity
         from .invite_participants_operation import InviteParticipantsOperation
@@ -158,6 +178,7 @@ class CommsOperation(Entity, Parsable):
         from .operation_status import OperationStatus
         from .play_prompt_operation import PlayPromptOperation
         from .record_operation import RecordOperation
+        from .remove_from_lobby_operation import RemoveFromLobbyOperation
         from .result_info import ResultInfo
         from .send_dtmf_tones_operation import SendDtmfTonesOperation
         from .start_hold_music_operation import StartHoldMusicOperation

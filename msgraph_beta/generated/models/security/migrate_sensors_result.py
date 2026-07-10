@@ -12,11 +12,11 @@ class MigrateSensorsResult(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The failedMigrationSensorIds property
+    # The collection of sensor IDs that failed to migrate.
     failed_migration_sensor_ids: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The successfulMigrationSensorIds property
+    # The collection of sensor IDs that were successfully migrated.
     successful_migration_sensor_ids: Optional[list[str]] = None
     
     @staticmethod

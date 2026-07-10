@@ -49,9 +49,9 @@ class BackupRestoreRoot(Entity, Parsable):
     activity_logs: Optional[list[ActivityLogBase]] = None
     # The list of browse sessions in the tenant.
     browse_sessions: Optional[list[BrowseSessionBase]] = None
-    # The driveExclusionUnits property
+    # The list of drive exclusion units in the tenant.
     drive_exclusion_units: Optional[list[DriveExclusionUnit]] = None
-    # The driveExclusionUnitsBulkAdditionJobs property
+    # The list of bulk addition jobs for drive exclusion units in the tenant.
     drive_exclusion_units_bulk_addition_jobs: Optional[list[DriveExclusionUnitsBulkAdditionJob]] = None
     # The list of drive inclusion rules applied to the tenant.
     drive_inclusion_rules: Optional[list[DriveProtectionRule]] = None
@@ -65,11 +65,11 @@ class BackupRestoreRoot(Entity, Parsable):
     exchange_protection_policies: Optional[list[ExchangeProtectionPolicy]] = None
     # The list of Exchange restore sessions available in the tenant.
     exchange_restore_sessions: Optional[list[ExchangeRestoreSession]] = None
-    # The exclusionUnits property
+    # The list of exclusion units in the tenant.
     exclusion_units: Optional[list[ExclusionUnitBase]] = None
-    # The mailboxExclusionUnits property
+    # The list of mailbox exclusion units in the tenant.
     mailbox_exclusion_units: Optional[list[MailboxExclusionUnit]] = None
-    # The mailboxExclusionUnitsBulkAdditionJobs property
+    # The list of bulk addition jobs for mailbox exclusion units in the tenant.
     mailbox_exclusion_units_bulk_addition_jobs: Optional[list[MailboxExclusionUnitsBulkAdditionJob]] = None
     # The list of mailbox inclusion rules applied to the tenant.
     mailbox_inclusion_rules: Optional[list[MailboxProtectionRule]] = None
@@ -79,7 +79,7 @@ class BackupRestoreRoot(Entity, Parsable):
     mailbox_protection_units_bulk_addition_jobs: Optional[list[MailboxProtectionUnitsBulkAdditionJob]] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The list of onedriveforbusiness browse sessions in the tenant.
+    # The list of OneDrive for work or school browse sessions in the tenant.
     one_drive_for_business_browse_sessions: Optional[list[OneDriveForBusinessBrowseSession]] = None
     # The list of OneDrive for Business protection policies in the tenant.
     one_drive_for_business_protection_policies: Optional[list[OneDriveForBusinessProtectionPolicy]] = None
@@ -99,15 +99,15 @@ class BackupRestoreRoot(Entity, Parsable):
     service_apps: Optional[list[ServiceApp]] = None
     # Represents the tenant-level status of the Backup Storage service.
     service_status: Optional[ServiceStatus] = None
-    # The list of sharepoint browse sessions in the tenant.
+    # The list of SharePoint browse sessions in the tenant.
     share_point_browse_sessions: Optional[list[SharePointBrowseSession]] = None
     # The list of SharePoint protection policies in the tenant.
     share_point_protection_policies: Optional[list[SharePointProtectionPolicy]] = None
     # The list of SharePoint restore sessions available in the tenant.
     share_point_restore_sessions: Optional[list[SharePointRestoreSession]] = None
-    # The siteExclusionUnits property
+    # The list of site exclusion units in the tenant.
     site_exclusion_units: Optional[list[SiteExclusionUnit]] = None
-    # The siteExclusionUnitsBulkAdditionJobs property
+    # The list of bulk addition jobs for site exclusion units in the tenant.
     site_exclusion_units_bulk_addition_jobs: Optional[list[SiteExclusionUnitsBulkAdditionJob]] = None
     # The list of site inclusion rules applied to the tenant.
     site_inclusion_rules: Optional[list[SiteProtectionRule]] = None

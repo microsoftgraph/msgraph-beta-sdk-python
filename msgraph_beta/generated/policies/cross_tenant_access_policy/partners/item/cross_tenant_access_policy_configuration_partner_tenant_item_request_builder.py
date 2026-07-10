@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .identity_synchronization.identity_synchronization_request_builder import IdentitySynchronizationRequestBuilder
     from .m365_capabilities.m365_capabilities_request_builder import M365CapabilitiesRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
+    from .service_provider_constraints.service_provider_constraints_request_builder import ServiceProviderConstraintsRequestBuilder
 
 class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(BaseRequestBuilder):
     """
@@ -170,6 +171,15 @@ class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(BaseRe
         from .restore.restore_request_builder import RestoreRequestBuilder
 
         return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def service_provider_constraints(self) -> ServiceProviderConstraintsRequestBuilder:
+        """
+        Provides operations to manage the serviceProviderConstraints property of the microsoft.graph.crossTenantAccessPolicyConfigurationPartner entity.
+        """
+        from .service_provider_constraints.service_provider_constraints_request_builder import ServiceProviderConstraintsRequestBuilder
+
+        return ServiceProviderConstraintsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

@@ -13,7 +13,7 @@ from .teams_app_installation_scope_info import TeamsAppInstallationScopeInfo
 class TeamTeamsAppInstallationScopeInfo(TeamsAppInstallationScopeInfo, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.teamTeamsAppInstallationScopeInfo"
-    # The teamId property
+    # The ID of the team where the Teams app is installed.
     team_id: Optional[str] = None
     
     @staticmethod

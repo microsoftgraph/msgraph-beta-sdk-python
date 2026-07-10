@@ -13,7 +13,7 @@ from .policy_link import PolicyLink
 class ForwardingPolicyLink(PolicyLink, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.networkaccess.forwardingPolicyLink"
-    # The priority property
+    # Priority of the policy within the forwarding profile.
     priority: Optional[int] = None
     
     @staticmethod

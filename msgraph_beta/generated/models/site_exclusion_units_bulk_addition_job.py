@@ -13,7 +13,7 @@ from .exclusion_unit_bulk_addition_job import ExclusionUnitBulkAdditionJob
 class SiteExclusionUnitsBulkAdditionJob(ExclusionUnitBulkAdditionJob, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.siteExclusionUnitsBulkAdditionJob"
-    # The siteWebUrls property
+    # The URLs of SharePoint sites to be added as exclusion units to the protection policy.
     site_web_urls: Optional[list[str]] = None
     
     @staticmethod

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .granular_drive_restore_artifact import GranularDriveRestoreArtifact
     from .granular_site_restore_artifact import GranularSiteRestoreArtifact
+    from .public_error import PublicError
 
 from .entity import Entity
 
@@ -20,8 +21,10 @@ class GranularRestoreArtifactBase(Entity, Parsable):
     browse_session_id: Optional[str] = None
     # Date time when the artifact's restoration completes.
     completion_date_time: Optional[datetime.datetime] = None
-    # The destinationType property
+    # The restoration destination. The possible values are: new, inPlace, unknownFutureValue.
     destination_type: Optional[DestinationType] = None
+    # Contains error details if the restoration fails or completes with an error.
+    error: Optional[PublicError] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The restore point date time to which the artifact is restored.
@@ -30,7 +33,7 @@ class GranularRestoreArtifactBase(Entity, Parsable):
     restored_item_key: Optional[str] = None
     # The path of the restored artifact. It's the path of the folder where all the artifacts are restored within a granular restore session.
     restored_item_path: Optional[str] = None
-    # The web url of the restord artifact.
+    # The web url of the restored artifact.
     restored_item_web_url: Optional[str] = None
     # The start time of the restoration.
     start_date_time: Optional[datetime.datetime] = None
@@ -73,17 +76,20 @@ class GranularRestoreArtifactBase(Entity, Parsable):
         from .entity import Entity
         from .granular_drive_restore_artifact import GranularDriveRestoreArtifact
         from .granular_site_restore_artifact import GranularSiteRestoreArtifact
+        from .public_error import PublicError
 
         from .artifact_restore_status import ArtifactRestoreStatus
         from .destination_type import DestinationType
         from .entity import Entity
         from .granular_drive_restore_artifact import GranularDriveRestoreArtifact
         from .granular_site_restore_artifact import GranularSiteRestoreArtifact
+        from .public_error import PublicError
 
         fields: dict[str, Callable[[Any], None]] = {
             "browseSessionId": lambda n : setattr(self, 'browse_session_id', n.get_str_value()),
             "completionDateTime": lambda n : setattr(self, 'completion_date_time', n.get_datetime_value()),
             "destinationType": lambda n : setattr(self, 'destination_type', n.get_enum_value(DestinationType)),
+            "error": lambda n : setattr(self, 'error', n.get_object_value(PublicError)),
             "restorePointDateTime": lambda n : setattr(self, 'restore_point_date_time', n.get_datetime_value()),
             "restoredItemKey": lambda n : setattr(self, 'restored_item_key', n.get_str_value()),
             "restoredItemPath": lambda n : setattr(self, 'restored_item_path', n.get_str_value()),
@@ -108,6 +114,7 @@ class GranularRestoreArtifactBase(Entity, Parsable):
         writer.write_str_value("browseSessionId", self.browse_session_id)
         writer.write_datetime_value("completionDateTime", self.completion_date_time)
         writer.write_enum_value("destinationType", self.destination_type)
+        writer.write_object_value("error", self.error)
         writer.write_datetime_value("restorePointDateTime", self.restore_point_date_time)
         writer.write_str_value("restoredItemKey", self.restored_item_key)
         writer.write_str_value("restoredItemPath", self.restored_item_path)
