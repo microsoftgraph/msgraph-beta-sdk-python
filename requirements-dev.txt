@@ -6,7 +6,7 @@ async-timeout==5.0.1
 attrs==26.1.0
 azure-core==1.41.0
 azure-identity==1.25.3
-build==1.5.0
+build==1.5.1
 bumpver==2026.1132
 certifi==2026.6.17
 cffi==2.1.0
