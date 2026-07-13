@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.60.0](https://github.com/microsoftgraph/msgraph-beta-sdk-python/compare/v1.59.0...v1.60.0) (2026-07-13)
+
+
+### Features
+
+* add Python 3.14 support ([f7193ba](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/f7193ba3c744ad66a67cea4df39a05c9420e54cd))
+* drop Python 3.9 support ([e346676](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/e346676fc9c9b9ab45eae7619afc7181cf087ad3))
+* drop Python 3.9 support and add Python 3.14 support ([f7d8f73](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/f7d8f73cb88505c7fb0f90e3f42facf1521b2afa))
+* **generation:** update request builders and models ([a351215](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/a351215ab47d78ed00c0b3f8dfc3f125f088956d))
+* **pipeline:** add Azure Pipelines configuration for building and publishing library ([ab52708](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/ab527084dbcc7a496be214c0fb3ddc19d87b88a2))
+* **pipeline:** add Azure Pipelines configuration for building and publishing library ([578181e](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/578181eeb88634584af2bec50ff1f7fe3ffb8432))
+
+
+### Bug Fixes
+
+* Update owners and approvers in deployment YAML ([723c344](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/723c344567047844d87f175a25bf2d6cac24d973))
+* update package owners and approvers in Azure Pipelines configuration ([65ec2de](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/65ec2de7abadcadc5d96f2832fbcd088845a2e43))
+
 ## [1.59.0](https://github.com/microsoftgraph/msgraph-beta-sdk-python/compare/v1.58.0...v1.59.0) (2026-05-06)
 
 
