@@ -8,7 +8,7 @@ name = "msgraph-beta-sdk"
 
 # The SDK version
 # x-release-please-start-version
-version = "1.60.0"
+version = "1.60.1"
 # x-release-please-end
 authors = [{name = "Microsoft", email = "graphtooling+python@microsoft.com"}]
 description = "The Microsoft Graph Beta Python SDK"

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.60.1](https://github.com/microsoftgraph/msgraph-beta-sdk-python/compare/v1.60.0...v1.60.1) (2026-07-14)
+
+
+### Bug Fixes
+
+* **deps:** bump msgraph-core floor to &gt;=1.5.1 ([7c7343b](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/7c7343b2eacff7419ddc959b584012fb1679832d))
+* **deps:** bump msgraph-core floor to &gt;=1.5.1 ([51b7064](https://github.com/microsoftgraph/msgraph-beta-sdk-python/commit/51b706478488e868191c16e504c3d3facdbc7ceb))
+
 ## [1.60.0](https://github.com/microsoftgraph/msgraph-beta-sdk-python/compare/v1.59.0...v1.60.0) (2026-07-13)
 
 
