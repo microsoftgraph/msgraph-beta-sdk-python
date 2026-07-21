@@ -18,6 +18,8 @@ if TYPE_CHECKING:
     from ....models.file_storage_container_collection_response import FileStorageContainerCollectionResponse
     from ....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
+    from .get_by_user_with_user_principal_name.get_by_user_with_user_principal_name_request_builder import GetByUserWithUserPrincipalNameRequestBuilder
+    from .get_by_user_with_user_principal_name_with_role.get_by_user_with_user_principal_name_with_role_request_builder import GetByUserWithUserPrincipalNameWithRoleRequestBuilder
     from .item.file_storage_container_item_request_builder import FileStorageContainerItemRequestBuilder
 
 class DeletedContainersRequestBuilder(BaseRequestBuilder):
@@ -66,6 +68,33 @@ class DeletedContainersRequestBuilder(BaseRequestBuilder):
         from ....models.file_storage_container_collection_response import FileStorageContainerCollectionResponse
 
         return await self.request_adapter.send_async(request_info, FileStorageContainerCollectionResponse, error_mapping)
+    
+    def get_by_user_with_user_principal_name(self,user_principal_name: str) -> GetByUserWithUserPrincipalNameRequestBuilder:
+        """
+        Provides operations to call the getByUser method.
+        param user_principal_name: Usage: userPrincipalName='{userPrincipalName}'
+        Returns: GetByUserWithUserPrincipalNameRequestBuilder
+        """
+        if user_principal_name is None:
+            raise TypeError("user_principal_name cannot be null.")
+        from .get_by_user_with_user_principal_name.get_by_user_with_user_principal_name_request_builder import GetByUserWithUserPrincipalNameRequestBuilder
+
+        return GetByUserWithUserPrincipalNameRequestBuilder(self.request_adapter, self.path_parameters, user_principal_name)
+    
+    def get_by_user_with_user_principal_name_with_role(self,role: str, user_principal_name: str) -> GetByUserWithUserPrincipalNameWithRoleRequestBuilder:
+        """
+        Provides operations to call the getByUser method.
+        param role: Usage: role='{role}'
+        param user_principal_name: Usage: userPrincipalName='{userPrincipalName}'
+        Returns: GetByUserWithUserPrincipalNameWithRoleRequestBuilder
+        """
+        if role is None:
+            raise TypeError("role cannot be null.")
+        if user_principal_name is None:
+            raise TypeError("user_principal_name cannot be null.")
+        from .get_by_user_with_user_principal_name_with_role.get_by_user_with_user_principal_name_with_role_request_builder import GetByUserWithUserPrincipalNameWithRoleRequestBuilder
+
+        return GetByUserWithUserPrincipalNameWithRoleRequestBuilder(self.request_adapter, self.path_parameters, role, user_principal_name)
     
     async def post(self,body: FileStorageContainer, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[FileStorageContainer]:
         """

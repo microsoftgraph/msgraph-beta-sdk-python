@@ -41,7 +41,7 @@ class PlannerPlan(PlannerDelta, Parsable):
     creation_source: Optional[PlannerPlanCreation] = None
     # Extra details about the plan. Read-only. Nullable.
     details: Optional[PlannerPlanDetails] = None
-    # The historyItems property
+    # Collection of history items for entities in the plan. Read-only. Nullable.
     history_items: Optional[list[PlannerHistoryItem]] = None
     # Read-only. If set to true, the plan is archived. An archived plan is read-only.
     is_archived: Optional[bool] = None

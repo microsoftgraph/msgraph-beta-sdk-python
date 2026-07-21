@@ -14,7 +14,7 @@ class ExternalItemInformationProtectionLabel(AdditionalDataHolder, BackedModel, 
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sensitivityLabelId property
+    # The GUID of the Purview sensitivity label. To get the label GUID, use the Get sensitivityLabel API or the Get-Label PowerShell command.
     sensitivity_label_id: Optional[str] = None
     
     @staticmethod

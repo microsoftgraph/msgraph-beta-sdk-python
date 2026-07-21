@@ -49,7 +49,7 @@ class HistoryItemsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[HistoryItemsRequestBuilderGetQueryParameters]] = None) -> Optional[PlannerHistoryItemCollectionResponse]:
         """
-        Get historyItems from teamwork
+        Collection of history items for entities in the plan. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerHistoryItemCollectionResponse]
         """
@@ -92,7 +92,7 @@ class HistoryItemsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[HistoryItemsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get historyItems from teamwork
+        Collection of history items for entities in the plan. Read-only. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class HistoryItemsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class HistoryItemsRequestBuilderGetQueryParameters():
         """
-        Get historyItems from teamwork
+        Collection of history items for entities in the plan. Read-only. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

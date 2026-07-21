@@ -16,19 +16,19 @@ from .planner_delta import PlannerDelta
 
 @dataclass
 class PlannerHistoryItem(PlannerDelta, Parsable):
-    # The actor property
+    # The identity of the user or application that performed the change.
     actor: Optional[IdentitySet] = None
-    # The entityId property
+    # The ID of the entity that was changed.
     entity_id: Optional[str] = None
     # The entityType property
     entity_type: Optional[HistoryEntityType] = None
     # The eventType property
     event_type: Optional[HistoryEventType] = None
-    # The occurredDateTime property
+    # The date and time when the change occurred. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     occurred_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The planId property
+    # The ID of the plan that contains the changed entity.
     plan_id: Optional[str] = None
     
     @staticmethod

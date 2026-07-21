@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .attack_simulation.attack_simulation_request_builder import AttackSimulationRequestBuilder
     from .audit_log.audit_log_request_builder import AuditLogRequestBuilder
     from .cases.cases_request_builder import CasesRequestBuilder
+    from .case_management.case_management_request_builder import CaseManagementRequestBuilder
     from .cloud_app_security_profiles.cloud_app_security_profiles_request_builder import CloudAppSecurityProfilesRequestBuilder
     from .collaboration.collaboration_request_builder import CollaborationRequestBuilder
     from .data_discovery.data_discovery_request_builder import DataDiscoveryRequestBuilder
@@ -192,6 +193,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .audit_log.audit_log_request_builder import AuditLogRequestBuilder
 
         return AuditLogRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def case_management(self) -> CaseManagementRequestBuilder:
+        """
+        Provides operations to manage the caseManagement property of the microsoft.graph.security entity.
+        """
+        from .case_management.case_management_request_builder import CaseManagementRequestBuilder
+
+        return CaseManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def cases(self) -> CasesRequestBuilder:

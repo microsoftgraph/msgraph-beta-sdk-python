@@ -49,7 +49,7 @@ class ApiUsageReportMetricsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ApiUsageReportMetricsRequestBuilderGetQueryParameters]] = None) -> Optional[ApiUsageReportEnablementStatusCollectionResponse]:
         """
-        Get the list of SharePoint API usage report metrics and their enablement status for the tenant. Currently, only the EgressReport metric is supported.
+        Get the list of SharePoint API usage report metrics and their enablement status for the tenant. The supported metrics are egressReport and throttlingReport.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApiUsageReportEnablementStatusCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/sharepointreportsettings-list-apiusagereportmetrics?view=graph-rest-beta
@@ -93,7 +93,7 @@ class ApiUsageReportMetricsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ApiUsageReportMetricsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get the list of SharePoint API usage report metrics and their enablement status for the tenant. Currently, only the EgressReport metric is supported.
+        Get the list of SharePoint API usage report metrics and their enablement status for the tenant. The supported metrics are egressReport and throttlingReport.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +139,7 @@ class ApiUsageReportMetricsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApiUsageReportMetricsRequestBuilderGetQueryParameters():
         """
-        Get the list of SharePoint API usage report metrics and their enablement status for the tenant. Currently, only the EgressReport metric is supported.
+        Get the list of SharePoint API usage report metrics and their enablement status for the tenant. The supported metrics are egressReport and throttlingReport.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -15,7 +15,7 @@ class ApiUsageReportEnablementStatus(AdditionalDataHolder, BackedModel, Parsable
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The name of the API usage report metric. Currently, only EgressReport is supported.
+    # The name of the API usage report metric. The supported values are: egressReport, throttlingReport.
     metric: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

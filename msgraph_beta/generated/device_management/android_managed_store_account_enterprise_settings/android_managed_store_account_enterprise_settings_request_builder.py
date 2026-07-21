@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .approve_apps.approve_apps_request_builder import ApproveAppsRequestBuilder
     from .complete_signup.complete_signup_request_builder import CompleteSignupRequestBuilder
     from .create_google_play_web_token.create_google_play_web_token_request_builder import CreateGooglePlayWebTokenRequestBuilder
+    from .create_zero_touch_web_token.create_zero_touch_web_token_request_builder import CreateZeroTouchWebTokenRequestBuilder
     from .request_enterprise_upgrade_url.request_enterprise_upgrade_url_request_builder import RequestEnterpriseUpgradeUrlRequestBuilder
     from .request_signup_url.request_signup_url_request_builder import RequestSignupUrlRequestBuilder
     from .retrieve_store_layout.retrieve_store_layout_request_builder import RetrieveStoreLayoutRequestBuilder
@@ -184,6 +185,15 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder(BaseRequestBuil
         from .create_google_play_web_token.create_google_play_web_token_request_builder import CreateGooglePlayWebTokenRequestBuilder
 
         return CreateGooglePlayWebTokenRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def create_zero_touch_web_token(self) -> CreateZeroTouchWebTokenRequestBuilder:
+        """
+        Provides operations to call the createZeroTouchWebToken method.
+        """
+        from .create_zero_touch_web_token.create_zero_touch_web_token_request_builder import CreateZeroTouchWebTokenRequestBuilder
+
+        return CreateZeroTouchWebTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def request_enterprise_upgrade_url(self) -> RequestEnterpriseUpgradeUrlRequestBuilder:

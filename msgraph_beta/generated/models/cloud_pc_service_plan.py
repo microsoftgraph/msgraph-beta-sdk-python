@@ -22,7 +22,7 @@ class CloudPcServicePlan(Entity, Parsable):
     provisioning_type: Optional[CloudPcProvisioningType] = None
     # The size of the RAM in GB. Read-only.
     ram_in_g_b: Optional[int] = None
-    # The size of the OS Disk in GB. Read-only.
+    # The size of the operating system disk in GB. Read-only.
     storage_in_g_b: Optional[int] = None
     # The supportedSolution property
     supported_solution: Optional[CloudPcManagementService] = None

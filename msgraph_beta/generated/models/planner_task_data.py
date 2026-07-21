@@ -24,59 +24,59 @@ class PlannerTaskData(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The activeChecklistItemCount property
+    # The number of incomplete checklist items whose value is set to false.
     active_checklist_item_count: Optional[int] = None
-    # The appliedCategories property
+    # The categories to which the task is applied.
     applied_categories: Optional[PlannerAppliedCategories] = None
-    # The archivalInfo property
+    # Information about who archived or unarchived the task and why.
     archival_info: Optional[PlannerArchivalInfo] = None
-    # The assignments property
+    # The set of assignees the task is assigned to.
     assignments: Optional[PlannerAssignments] = None
-    # The bucketId property
+    # Bucket ID to which the task belongs. The bucket needs to be in the same plan as the task.
     bucket_id: Optional[str] = None
-    # The checklistItemCount property
+    # The number of checklist items that are present on the task.
     checklist_item_count: Optional[int] = None
-    # The completedBy property
+    # The identity of the user that completed the task.
     completed_by: Optional[IdentitySet] = None
-    # The completedDateTime property
+    # The date and time at which the percentComplete of the task is set to 100. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     completed_date_time: Optional[datetime.datetime] = None
-    # The conversationThreadId property
+    # The thread ID of the conversation on the task that corresponds to the ID of the conversation thread object created in the group.
     conversation_thread_id: Optional[str] = None
-    # The createdBy property
+    # The identity of the user who created the task.
     created_by: Optional[IdentitySet] = None
-    # The createdDateTime property
+    # The date and time at which the task was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The creationSource property
+    # Information about the origin of the task.
     creation_source: Optional[PlannerTaskCreation] = None
-    # The details property
+    # Additional details about the task.
     details: Optional[PlannerTaskDetailsData] = None
-    # The dueDateTime property
+    # The date and time at which the task is due. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     due_date_time: Optional[datetime.datetime] = None
-    # The hasChat property
+    # Set to true if the task has a chat associated with it; otherwise, false.
     has_chat: Optional[bool] = None
-    # The hasDescription property
+    # Set to true if the details object of the task has a nonempty description; otherwise, false.
     has_description: Optional[bool] = None
-    # The isArchived property
+    # Set to true if the task is archived; otherwise, false.
     is_archived: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The orderHint property
+    # Hint used to order items of this type in a list view.
     order_hint: Optional[str] = None
-    # The percentComplete property
+    # Percentage of task completion. When set to 100, the task is considered completed.
     percent_complete: Optional[int] = None
     # The previewType property
     preview_type: Optional[PlannerPreviewType] = None
-    # The priority property
+    # The priority of the task. Valid values are between 0 and 10, inclusive. Larger values indicate lower priority. For example, 0 has the highest priority and 10 has the lowest priority.
     priority: Optional[int] = None
-    # The recurrence property
+    # Defines active or inactive recurrence for the task. A null value indicates that the recurrence was never defined for the task.
     recurrence: Optional[PlannerTaskRecurrence] = None
-    # The referenceCount property
+    # Number of external references that exist on the task.
     reference_count: Optional[int] = None
     # The specifiedCompletionRequirements property
     specified_completion_requirements: Optional[PlannerTaskCompletionRequirements] = None
-    # The startDateTime property
+    # The date and time at which the task starts. The date and time information uses ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2021 is 2021-01-01T00:00:00Z.
     start_date_time: Optional[datetime.datetime] = None
-    # The title property
+    # Title of the task.
     title: Optional[str] = None
     
     @staticmethod

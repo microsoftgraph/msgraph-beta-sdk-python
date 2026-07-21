@@ -39,9 +39,11 @@ if TYPE_CHECKING:
     from .invite.invite_request_builder import InviteRequestBuilder
     from .last_modified_by_user.last_modified_by_user_request_builder import LastModifiedByUserRequestBuilder
     from .list_item.list_item_request_builder import ListItemRequestBuilder
+    from .lock.lock_request_builder import LockRequestBuilder
     from .permanent_delete.permanent_delete_request_builder import PermanentDeleteRequestBuilder
     from .permissions.permissions_request_builder import PermissionsRequestBuilder
     from .preview.preview_request_builder import PreviewRequestBuilder
+    from .release_lock.release_lock_request_builder import ReleaseLockRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
     from .retention_label.retention_label_request_builder import RetentionLabelRequestBuilder
     from .search_with_q.search_with_q_request_builder import SearchWithQRequestBuilder
@@ -406,6 +408,15 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
         return ListItemRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def lock(self) -> LockRequestBuilder:
+        """
+        Provides operations to call the lock method.
+        """
+        from .lock.lock_request_builder import LockRequestBuilder
+
+        return LockRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def permanent_delete(self) -> PermanentDeleteRequestBuilder:
         """
         Provides operations to call the permanentDelete method.
@@ -431,6 +442,15 @@ class DriveItemItemRequestBuilder(BaseRequestBuilder):
         from .preview.preview_request_builder import PreviewRequestBuilder
 
         return PreviewRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def release_lock(self) -> ReleaseLockRequestBuilder:
+        """
+        Provides operations to call the releaseLock method.
+        """
+        from .release_lock.release_lock_request_builder import ReleaseLockRequestBuilder
+
+        return ReleaseLockRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def restore(self) -> RestoreRequestBuilder:

@@ -1649,6 +1649,21 @@ if TYPE_CHECKING:
     from .security.auto_auditing_configuration import AutoAuditingConfiguration
     from .security.case import Case
     from .security.cases_root import CasesRoot
+    from .security.case_management.activity import Activity
+    from .security.case_management.attachment import Attachment
+    from .security.case_management.audit_log import AuditLog
+    from .security.case_management.case import Case
+    from .security.case_management.case_management_entity import CaseManagementEntity
+    from .security.case_management.comment import Comment
+    from .security.case_management.exposure_case import ExposureCase
+    from .security.case_management.generic_case import GenericCase
+    from .security.case_management.incident_case import IncidentCase
+    from .security.case_management.incident_relation import IncidentRelation
+    from .security.case_management.recommendation_relation import RecommendationRelation
+    from .security.case_management.relation import Relation
+    from .security.case_management.task import Task
+    from .security.case_management.workspace_indicator_relation import WorkspaceIndicatorRelation
+    from .security.case_management_root import CaseManagementRoot
     from .security.case_operation import CaseOperation
     from .security.category_template import CategoryTemplate
     from .security.citation_template import CitationTemplate
@@ -3155,6 +3170,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return AssociatedTeamInfo()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.attachment".casefold():
             from .attachment import Attachment
+            from .security.case_management.attachment import Attachment
 
             return Attachment()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.attachmentBase".casefold():
@@ -5078,6 +5094,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.case".casefold():
             from .ediscovery.case import Case
             from .security.case import Case
+            from .security.case_management.case import Case
 
             return Case()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.caseExportOperation".casefold():
@@ -6074,6 +6091,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return SubjectProcessingResult()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.task".casefold():
             from .identity_governance.task import Task
+            from .security.case_management.task import Task
 
             return Task()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.taskDefinition".casefold():
@@ -9007,8 +9025,74 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.case".casefold():
             from .ediscovery.case import Case
             from .security.case import Case
+            from .security.case_management.case import Case
 
             return Case()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.activity".casefold():
+            from .security.case_management.activity import Activity
+
+            return Activity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.attachment".casefold():
+            from .attachment import Attachment
+            from .security.case_management.attachment import Attachment
+
+            return Attachment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.auditLog".casefold():
+            from .security.case_management.audit_log import AuditLog
+
+            return AuditLog()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.case".casefold():
+            from .ediscovery.case import Case
+            from .security.case import Case
+            from .security.case_management.case import Case
+
+            return Case()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.caseManagementEntity".casefold():
+            from .security.case_management.case_management_entity import CaseManagementEntity
+
+            return CaseManagementEntity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.comment".casefold():
+            from .security.case_management.comment import Comment
+
+            return Comment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.exposureCase".casefold():
+            from .security.case_management.exposure_case import ExposureCase
+
+            return ExposureCase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.genericCase".casefold():
+            from .security.case_management.generic_case import GenericCase
+
+            return GenericCase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.incidentCase".casefold():
+            from .security.case_management.incident_case import IncidentCase
+
+            return IncidentCase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.incidentRelation".casefold():
+            from .security.case_management.incident_relation import IncidentRelation
+
+            return IncidentRelation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.recommendationRelation".casefold():
+            from .security.case_management.recommendation_relation import RecommendationRelation
+
+            return RecommendationRelation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.relation".casefold():
+            from .security.case_management.relation import Relation
+            from .term_store.relation import Relation
+
+            return Relation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.task".casefold():
+            from .identity_governance.task import Task
+            from .security.case_management.task import Task
+
+            return Task()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.workspaceIndicatorRelation".casefold():
+            from .security.case_management.workspace_indicator_relation import WorkspaceIndicatorRelation
+
+            return WorkspaceIndicatorRelation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagementRoot".casefold():
+            from .security.case_management_root import CaseManagementRoot
+
+            return CaseManagementRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseOperation".casefold():
             from .ediscovery.case_operation import CaseOperation
             from .security.case_operation import CaseOperation
@@ -10359,6 +10443,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return Group()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.termStore.relation".casefold():
+            from .security.case_management.relation import Relation
             from .term_store.relation import Relation
 
             return Relation()
@@ -13542,6 +13627,21 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.auto_auditing_configuration import AutoAuditingConfiguration
         from .security.case import Case
         from .security.cases_root import CasesRoot
+        from .security.case_management.activity import Activity
+        from .security.case_management.attachment import Attachment
+        from .security.case_management.audit_log import AuditLog
+        from .security.case_management.case import Case
+        from .security.case_management.case_management_entity import CaseManagementEntity
+        from .security.case_management.comment import Comment
+        from .security.case_management.exposure_case import ExposureCase
+        from .security.case_management.generic_case import GenericCase
+        from .security.case_management.incident_case import IncidentCase
+        from .security.case_management.incident_relation import IncidentRelation
+        from .security.case_management.recommendation_relation import RecommendationRelation
+        from .security.case_management.relation import Relation
+        from .security.case_management.task import Task
+        from .security.case_management.workspace_indicator_relation import WorkspaceIndicatorRelation
+        from .security.case_management_root import CaseManagementRoot
         from .security.case_operation import CaseOperation
         from .security.category_template import CategoryTemplate
         from .security.citation_template import CitationTemplate
@@ -15900,6 +16000,21 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.auto_auditing_configuration import AutoAuditingConfiguration
         from .security.case import Case
         from .security.cases_root import CasesRoot
+        from .security.case_management.activity import Activity
+        from .security.case_management.attachment import Attachment
+        from .security.case_management.audit_log import AuditLog
+        from .security.case_management.case import Case
+        from .security.case_management.case_management_entity import CaseManagementEntity
+        from .security.case_management.comment import Comment
+        from .security.case_management.exposure_case import ExposureCase
+        from .security.case_management.generic_case import GenericCase
+        from .security.case_management.incident_case import IncidentCase
+        from .security.case_management.incident_relation import IncidentRelation
+        from .security.case_management.recommendation_relation import RecommendationRelation
+        from .security.case_management.relation import Relation
+        from .security.case_management.task import Task
+        from .security.case_management.workspace_indicator_relation import WorkspaceIndicatorRelation
+        from .security.case_management_root import CaseManagementRoot
         from .security.case_operation import CaseOperation
         from .security.category_template import CategoryTemplate
         from .security.citation_template import CitationTemplate

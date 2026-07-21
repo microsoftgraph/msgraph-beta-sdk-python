@@ -22,7 +22,7 @@ class ExternalItem(Entity, Parsable):
     activities: Optional[list[ExternalActivity]] = None
     # A plain-text representation of the contents of the item. The text in this property is full-text indexed. Optional.
     content: Optional[ExternalItemContent] = None
-    # The informationProtectionLabel property
+    # Specifies the Microsoft Purview sensitivity label for the item. Set the sensitivityLabelId property to the GUID of a Purview sensitivity label. The service then applies the label rules to the item. To get the label GUID, use the Get sensitivityLabel API or the Get-Label PowerShell command. Optional.
     information_protection_label: Optional[ExternalItemInformationProtectionLabel] = None
     # The OdataType property
     odata_type: Optional[str] = None
