@@ -64,6 +64,8 @@ class CloudPC(Entity, Parsable):
     is_disaster_recovery_active: Optional[bool] = None
     # The last login result of the Cloud PC. For example, { 'time': '2014-01-01T00:00:00Z'}.
     last_login_result: Optional[CloudPcLoginResult] = None
+    # The date and time when the user last logged off from the Cloud PC session. Returns null if the user has never established a session or if a session is currently active. The timestamp is shown in ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Returned only when explicitly selected with $select.
+    last_logoff_date_time: Optional[datetime.datetime] = None
     # The last modified date and time of the Cloud PC. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The last remote action result of the enterprise Cloud PCs. The supported remote actions are: Reboot, Rename, Reprovision, Restore, Troubleshoot.
@@ -197,6 +199,7 @@ class CloudPC(Entity, Parsable):
             "imageDisplayName": lambda n : setattr(self, 'image_display_name', n.get_str_value()),
             "isDisasterRecoveryActive": lambda n : setattr(self, 'is_disaster_recovery_active', n.get_bool_value()),
             "lastLoginResult": lambda n : setattr(self, 'last_login_result', n.get_object_value(CloudPcLoginResult)),
+            "lastLogoffDateTime": lambda n : setattr(self, 'last_logoff_date_time', n.get_datetime_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "lastRemoteActionResult": lambda n : setattr(self, 'last_remote_action_result', n.get_object_value(CloudPcRemoteActionResult)),
             "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
@@ -251,6 +254,7 @@ class CloudPC(Entity, Parsable):
         writer.write_str_value("imageDisplayName", self.image_display_name)
         writer.write_bool_value("isDisasterRecoveryActive", self.is_disaster_recovery_active)
         writer.write_object_value("lastLoginResult", self.last_login_result)
+        writer.write_datetime_value("lastLogoffDateTime", self.last_logoff_date_time)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_object_value("lastRemoteActionResult", self.last_remote_action_result)
         writer.write_str_value("managedDeviceId", self.managed_device_id)

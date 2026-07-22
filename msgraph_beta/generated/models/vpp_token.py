@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .apple_device_delivery_protocol import AppleDeviceDeliveryProtocol
     from .entity import Entity
     from .vpp_token_account_type import VppTokenAccountType
     from .vpp_token_action_result import VppTokenActionResult
@@ -19,6 +20,8 @@ class VppToken(Entity, Parsable):
     """
     You purchase multiple licenses for iOS apps through the Apple Volume Purchase Program for Business or Education. This involves setting up an Apple VPP account from the Apple website and uploading the Apple VPP Business or Education token to Intune. You can then synchronize your volume purchase information with Intune and track your volume-purchased app use. You can upload multiple Apple VPP Business or Education tokens.
     """
+    # Enum of the supported types of Apple delivery protocols, representing the available protocols to deliver payloads to Apple devices
+    apple_device_app_delivery_protocol_type: Optional[AppleDeviceDeliveryProtocol] = None
     # The apple Id associated with the given Apple Volume Purchase Program Token.
     apple_id: Optional[str] = None
     # Whether or not apps for the VPP token will be automatically updated.
@@ -72,12 +75,14 @@ class VppToken(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .apple_device_delivery_protocol import AppleDeviceDeliveryProtocol
         from .entity import Entity
         from .vpp_token_account_type import VppTokenAccountType
         from .vpp_token_action_result import VppTokenActionResult
         from .vpp_token_state import VppTokenState
         from .vpp_token_sync_status import VppTokenSyncStatus
 
+        from .apple_device_delivery_protocol import AppleDeviceDeliveryProtocol
         from .entity import Entity
         from .vpp_token_account_type import VppTokenAccountType
         from .vpp_token_action_result import VppTokenActionResult
@@ -85,6 +90,7 @@ class VppToken(Entity, Parsable):
         from .vpp_token_sync_status import VppTokenSyncStatus
 
         fields: dict[str, Callable[[Any], None]] = {
+            "appleDeviceAppDeliveryProtocolType": lambda n : setattr(self, 'apple_device_app_delivery_protocol_type', n.get_enum_value(AppleDeviceDeliveryProtocol)),
             "appleId": lambda n : setattr(self, 'apple_id', n.get_str_value()),
             "automaticallyUpdateApps": lambda n : setattr(self, 'automatically_update_apps', n.get_bool_value()),
             "claimTokenManagementFromExternalMdm": lambda n : setattr(self, 'claim_token_management_from_external_mdm', n.get_bool_value()),
@@ -116,6 +122,7 @@ class VppToken(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_enum_value("appleDeviceAppDeliveryProtocolType", self.apple_device_app_delivery_protocol_type)
         writer.write_str_value("appleId", self.apple_id)
         writer.write_bool_value("automaticallyUpdateApps", self.automatically_update_apps)
         writer.write_bool_value("claimTokenManagementFromExternalMdm", self.claim_token_management_from_external_mdm)

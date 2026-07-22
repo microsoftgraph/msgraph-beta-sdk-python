@@ -21,23 +21,23 @@ class PlannerTaskDetailsData(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The approvalAttachment property
+    # Detailed information about the approval that is attached to the task.
     approval_attachment: Optional[PlannerBaseApprovalAttachment] = None
-    # The checklist property
+    # The collection of checklist items on the task.
     checklist: Optional[PlannerChecklistItems] = None
-    # The completionRequirements property
+    # Contains detailed information about requirements on the task.
     completion_requirements: Optional[PlannerTaskCompletionRequirementDetails] = None
-    # The description property
+    # Description of the task.
     description: Optional[str] = None
-    # The forms property
+    # The collection of forms associated with the task.
     forms: Optional[PlannerFormsDictionary] = None
-    # The notes property
+    # Rich text description of the task for use by applications that support HTML content.
     notes: Optional[ItemBody] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The previewType property
     preview_type: Optional[PlannerPreviewType] = None
-    # The references property
+    # The collection of references on the task.
     references: Optional[PlannerExternalReferences] = None
     
     @staticmethod

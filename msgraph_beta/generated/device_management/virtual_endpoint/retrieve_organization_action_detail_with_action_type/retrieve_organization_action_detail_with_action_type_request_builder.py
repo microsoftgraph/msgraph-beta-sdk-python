@@ -35,9 +35,10 @@ class RetrieveOrganizationActionDetailWithActionTypeRequestBuilder(BaseRequestBu
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcOrganizationActionDetail]:
         """
-        Invoke function retrieveOrganizationActionDetail
+        Retrieve the details of a cloudPcOrganizationActionDetail.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcOrganizationActionDetail]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-retrieveorganizationactiondetail?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -55,7 +56,7 @@ class RetrieveOrganizationActionDetailWithActionTypeRequestBuilder(BaseRequestBu
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function retrieveOrganizationActionDetail
+        Retrieve the details of a cloudPcOrganizationActionDetail.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

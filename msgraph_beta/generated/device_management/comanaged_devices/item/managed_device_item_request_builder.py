@@ -35,6 +35,7 @@ if TYPE_CHECKING:
     from .enroll_now_action.enroll_now_action_request_builder import EnrollNowActionRequestBuilder
     from .get_file_vault_key.get_file_vault_key_request_builder import GetFileVaultKeyRequestBuilder
     from .get_non_compliant_settings.get_non_compliant_settings_request_builder import GetNonCompliantSettingsRequestBuilder
+    from .get_sync_status.get_sync_status_request_builder import GetSyncStatusRequestBuilder
     from .initiate_device_attestation.initiate_device_attestation_request_builder import InitiateDeviceAttestationRequestBuilder
     from .initiate_mobile_device_management_key_recovery.initiate_mobile_device_management_key_recovery_request_builder import InitiateMobileDeviceManagementKeyRecoveryRequestBuilder
     from .initiate_on_demand_proactive_remediation.initiate_on_demand_proactive_remediation_request_builder import InitiateOnDemandProactiveRemediationRequestBuilder
@@ -49,6 +50,7 @@ if TYPE_CHECKING:
     from .recover_passcode.recover_passcode_request_builder import RecoverPasscodeRequestBuilder
     from .reenable.reenable_request_builder import ReenableRequestBuilder
     from .remote_lock.remote_lock_request_builder import RemoteLockRequestBuilder
+    from .remove_device_esim.remove_device_esim_request_builder import RemoveDeviceEsimRequestBuilder
     from .remove_device_firmware_configuration_interface_management.remove_device_firmware_configuration_interface_management_request_builder import RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder
     from .request_remote_assistance.request_remote_assistance_request_builder import RequestRemoteAssistanceRequestBuilder
     from .reset_passcode.reset_passcode_request_builder import ResetPasscodeRequestBuilder
@@ -369,6 +371,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         return GetNonCompliantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def get_sync_status(self) -> GetSyncStatusRequestBuilder:
+        """
+        Provides operations to call the getSyncStatus method.
+        """
+        from .get_sync_status.get_sync_status_request_builder import GetSyncStatusRequestBuilder
+
+        return GetSyncStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def initiate_device_attestation(self) -> InitiateDeviceAttestationRequestBuilder:
         """
         Provides operations to call the initiateDeviceAttestation method.
@@ -493,6 +504,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .remote_lock.remote_lock_request_builder import RemoteLockRequestBuilder
 
         return RemoteLockRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def remove_device_esim(self) -> RemoveDeviceEsimRequestBuilder:
+        """
+        Provides operations to call the removeDeviceEsim method.
+        """
+        from .remove_device_esim.remove_device_esim_request_builder import RemoveDeviceEsimRequestBuilder
+
+        return RemoveDeviceEsimRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def remove_device_firmware_configuration_interface_management(self) -> RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder:

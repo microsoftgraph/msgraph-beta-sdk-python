@@ -33,10 +33,11 @@ class OrganizationActionRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: OrganizationActionPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CloudPcOrganizationActionDetail]:
         """
-        Invoke action organizationAction
+        Trigger a Cloud PC organization action.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CloudPcOrganizationActionDetail]
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpc-organizationaction?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -56,7 +57,7 @@ class OrganizationActionRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: OrganizationActionPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action organizationAction
+        Trigger a Cloud PC organization action.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

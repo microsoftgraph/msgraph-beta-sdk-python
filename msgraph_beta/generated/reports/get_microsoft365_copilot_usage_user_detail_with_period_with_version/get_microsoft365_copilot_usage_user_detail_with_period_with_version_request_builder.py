@@ -16,28 +16,30 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
 
-class GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder(BaseRequestBuilder):
+class GetMicrosoft365CopilotUsageUserDetailWithPeriodWithVersionRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to call the getMicrosoft365CopilotUserCountTrend method.
+    Provides operations to call the getMicrosoft365CopilotUsageUserDetail method.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]], period: Optional[str] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]], period: Optional[str] = None, version: Optional[str] = None) -> None:
         """
-        Instantiates a new GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder and sets the default values.
+        Instantiates a new GetMicrosoft365CopilotUsageUserDetailWithPeriodWithVersionRequestBuilder and sets the default values.
         param path_parameters: The raw url or the url-template parameters for the request.
         param period: Usage: period='{period}'
         param request_adapter: The request adapter to use to execute the requests.
+        param version: Usage: version='{version}'
         Returns: None
         """
         if isinstance(path_parameters, dict):
             path_parameters['period'] = period
-        super().__init__(request_adapter, "{+baseurl}/reports/getMicrosoft365CopilotUserCountTrend(period='{period}')", path_parameters)
+            path_parameters['version'] = version
+        super().__init__(request_adapter, "{+baseurl}/reports/getMicrosoft365CopilotUsageUserDetail(period='{period}',version='{version}')", path_parameters)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
-        Get the trend in the daily number of active and enabled users of Microsoft 365 Copilot for a specified time period.
+        Get the most recent activity data for enabled users of Microsoft 365 Copilot apps.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
-        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getmicrosoft365copilotusercounttrend?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/reportroot-getmicrosoft365copilotusageuserdetail?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -53,7 +55,7 @@ class GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder(BaseRequestBu
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Get the trend in the daily number of active and enabled users of Microsoft 365 Copilot for a specified time period.
+        Get the most recent activity data for enabled users of Microsoft 365 Copilot apps.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -62,18 +64,18 @@ class GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder(BaseRequestBu
         request_info.headers.try_add("Accept", "application/octet-stream, application/json")
         return request_info
     
-    def with_url(self,raw_url: str) -> GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder:
+    def with_url(self,raw_url: str) -> GetMicrosoft365CopilotUsageUserDetailWithPeriodWithVersionRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder
+        Returns: GetMicrosoft365CopilotUsageUserDetailWithPeriodWithVersionRequestBuilder
         """
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
-        return GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilder(self.request_adapter, raw_url)
+        return GetMicrosoft365CopilotUsageUserDetailWithPeriodWithVersionRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class GetMicrosoft365CopilotUserCountTrendWithPeriodRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class GetMicrosoft365CopilotUsageUserDetailWithPeriodWithVersionRequestBuilderGetRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

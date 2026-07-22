@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .family_member_storage_quota import FamilyMemberStorageQuota
     from .service_storage_quota_breakdown import ServiceStorageQuotaBreakdown
 
 from .entity import Entity
@@ -14,6 +15,10 @@ from .entity import Entity
 class UnifiedStorageQuota(Entity, Parsable):
     # The deleted property
     deleted: Optional[int] = None
+    # The familyMembersUsage property
+    family_members_usage: Optional[list[FamilyMemberStorageQuota]] = None
+    # The isPooledStorageEnabled property
+    is_pooled_storage_enabled: Optional[bool] = None
     # A URL that can be used in a browser to manage the breakdown. Read-only.
     manage_web_url: Optional[str] = None
     # The OdataType property
@@ -46,13 +51,17 @@ class UnifiedStorageQuota(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .family_member_storage_quota import FamilyMemberStorageQuota
         from .service_storage_quota_breakdown import ServiceStorageQuotaBreakdown
 
         from .entity import Entity
+        from .family_member_storage_quota import FamilyMemberStorageQuota
         from .service_storage_quota_breakdown import ServiceStorageQuotaBreakdown
 
         fields: dict[str, Callable[[Any], None]] = {
             "deleted": lambda n : setattr(self, 'deleted', n.get_int_value()),
+            "familyMembersUsage": lambda n : setattr(self, 'family_members_usage', n.get_collection_of_object_values(FamilyMemberStorageQuota)),
+            "isPooledStorageEnabled": lambda n : setattr(self, 'is_pooled_storage_enabled', n.get_bool_value()),
             "manageWebUrl": lambda n : setattr(self, 'manage_web_url', n.get_str_value()),
             "remaining": lambda n : setattr(self, 'remaining', n.get_int_value()),
             "services": lambda n : setattr(self, 'services', n.get_collection_of_object_values(ServiceStorageQuotaBreakdown)),
@@ -74,6 +83,8 @@ class UnifiedStorageQuota(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_int_value("deleted", self.deleted)
+        writer.write_collection_of_object_values("familyMembersUsage", self.family_members_usage)
+        writer.write_bool_value("isPooledStorageEnabled", self.is_pooled_storage_enabled)
         writer.write_str_value("manageWebUrl", self.manage_web_url)
         writer.write_int_value("remaining", self.remaining)
         writer.write_collection_of_object_values("services", self.services)

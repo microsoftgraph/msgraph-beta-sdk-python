@@ -14,9 +14,9 @@ from .planner_history_item import PlannerHistoryItem
 class TaskHistoryItem(PlannerHistoryItem, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.taskHistoryItem"
-    # The newData property
+    # A snapshot of the task state after the change. This property is null for deletion events.
     new_data: Optional[PlannerTaskData] = None
-    # The oldData property
+    # A snapshot of the task state before the change. This property is null for creation and undeletion events.
     old_data: Optional[PlannerTaskData] = None
     
     @staticmethod
