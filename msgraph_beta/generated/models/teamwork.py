@@ -26,7 +26,7 @@ class Teamwork(Entity, Parsable):
     devices: Optional[list[TeamworkDevice]] = None
     # Indicates whether Microsoft Teams is enabled for the organization.
     is_teams_enabled: Optional[bool] = None
-    # The messaging property
+    # The messaging functionality, including custom emojis.
     messaging: Optional[TeamworkMessaging] = None
     # The OdataType property
     odata_type: Optional[str] = None

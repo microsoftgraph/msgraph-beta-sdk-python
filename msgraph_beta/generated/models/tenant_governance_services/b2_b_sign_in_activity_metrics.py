@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .action_step import ActionStep
     from .b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
     from .b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
 
@@ -15,6 +16,8 @@ from ..entity import Entity
 class B2BSignInActivityMetrics(Entity, Parsable):
     # The initial property
     initial: Optional[B2BSignInActivityMetricsInitial] = None
+    # Ordered drill-in guidance for investigating sign-in user and application counts. This collection is returned only when explicitly requested by using a nested $expand query parameter, for example $expand=b2BSignInActivityMetrics($expand=investigationHints).
+    investigation_hints: Optional[list[ActionStep]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The recent property
@@ -37,15 +40,18 @@ class B2BSignInActivityMetrics(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .action_step import ActionStep
         from .b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
         from .b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
 
         from ..entity import Entity
+        from .action_step import ActionStep
         from .b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
         from .b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
 
         fields: dict[str, Callable[[Any], None]] = {
             "initial": lambda n : setattr(self, 'initial', n.get_object_value(B2BSignInActivityMetricsInitial)),
+            "investigationHints": lambda n : setattr(self, 'investigation_hints', n.get_collection_of_object_values(ActionStep)),
             "recent": lambda n : setattr(self, 'recent', n.get_object_value(B2BSignInActivityMetricsRecent)),
         }
         super_fields = super().get_field_deserializers()
@@ -62,6 +68,7 @@ class B2BSignInActivityMetrics(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("initial", self.initial)
+        writer.write_collection_of_object_values("investigationHints", self.investigation_hints)
         writer.write_object_value("recent", self.recent)
     
 

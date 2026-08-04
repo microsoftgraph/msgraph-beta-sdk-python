@@ -28,6 +28,7 @@ if TYPE_CHECKING:
     from .recycle_bin.recycle_bin_request_builder import RecycleBinRequestBuilder
     from .restore.restore_request_builder import RestoreRequestBuilder
     from .share_point_groups.share_point_groups_request_builder import SharePointGroupsRequestBuilder
+    from .transfer_principal_ownership.transfer_principal_ownership_request_builder import TransferPrincipalOwnershipRequestBuilder
     from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
     from .unlock.unlock_request_builder import UnlockRequestBuilder
 
@@ -260,6 +261,15 @@ class FileStorageContainerItemRequestBuilder(BaseRequestBuilder):
         from .share_point_groups.share_point_groups_request_builder import SharePointGroupsRequestBuilder
 
         return SharePointGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def transfer_principal_ownership(self) -> TransferPrincipalOwnershipRequestBuilder:
+        """
+        Provides operations to call the transferPrincipalOwnership method.
+        """
+        from .transfer_principal_ownership.transfer_principal_ownership_request_builder import TransferPrincipalOwnershipRequestBuilder
+
+        return TransferPrincipalOwnershipRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def unarchive(self) -> UnarchiveRequestBuilder:

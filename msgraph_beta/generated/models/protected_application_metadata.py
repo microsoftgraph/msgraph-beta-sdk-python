@@ -16,6 +16,8 @@ class ProtectedApplicationMetadata(IntegratedApplicationMetadata, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.protectedApplicationMetadata"
     # The client (application) ID of the Microsoft Entra application. Required.
     application_location: Optional[PolicyLocation] = None
+    # The sourceLocation property
+    source_location: Optional[PolicyLocation] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ProtectedApplicationMetadata:
@@ -41,6 +43,7 @@ class ProtectedApplicationMetadata(IntegratedApplicationMetadata, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "applicationLocation": lambda n : setattr(self, 'application_location', n.get_object_value(PolicyLocation)),
+            "sourceLocation": lambda n : setattr(self, 'source_location', n.get_object_value(PolicyLocation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,5 +59,6 @@ class ProtectedApplicationMetadata(IntegratedApplicationMetadata, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("applicationLocation", self.application_location)
+        writer.write_object_value("sourceLocation", self.source_location)
     
 

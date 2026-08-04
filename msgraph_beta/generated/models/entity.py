@@ -645,7 +645,6 @@ if TYPE_CHECKING:
     from .directory_setting import DirectorySetting
     from .directory_setting_template import DirectorySettingTemplate
     from .distribution_list import DistributionList
-    from .distribution_list_member import DistributionListMember
     from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
     from .document import Document
     from .document_comment import DocumentComment
@@ -1205,6 +1204,7 @@ if TYPE_CHECKING:
     from .mfa_user_count_metric import MfaUserCountMetric
     from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
     from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
+    from .microsoft_apps_file_storage_container_usage import MicrosoftAppsFileStorageContainerUsage
     from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
     from .microsoft_authenticator_authentication_method_configuration import MicrosoftAuthenticatorAuthenticationMethodConfiguration
     from .microsoft_authenticator_authentication_method_target import MicrosoftAuthenticatorAuthenticationMethodTarget
@@ -1578,6 +1578,7 @@ if TYPE_CHECKING:
     from .remote_assistance_partner import RemoteAssistancePartner
     from .remote_assistance_settings import RemoteAssistanceSettings
     from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
+    from .remote_tenant_group import RemoteTenantGroup
     from .remove_from_lobby_operation import RemoveFromLobbyOperation
     from .reports_root import ReportsRoot
     from .report_root import ReportRoot
@@ -1654,13 +1655,20 @@ if TYPE_CHECKING:
     from .security.case_management.audit_log import AuditLog
     from .security.case_management.case import Case
     from .security.case_management.case_management_entity import CaseManagementEntity
+    from .security.case_management.case_type_configuration import CaseTypeConfiguration
     from .security.case_management.comment import Comment
+    from .security.case_management.custom_field_definition import CustomFieldDefinition
+    from .security.case_management.date_time_custom_field_definition import DateTimeCustomFieldDefinition
     from .security.case_management.exposure_case import ExposureCase
     from .security.case_management.generic_case import GenericCase
     from .security.case_management.incident_case import IncidentCase
     from .security.case_management.incident_relation import IncidentRelation
+    from .security.case_management.number_custom_field_definition import NumberCustomFieldDefinition
+    from .security.case_management.options_custom_field_definition import OptionsCustomFieldDefinition
     from .security.case_management.recommendation_relation import RecommendationRelation
     from .security.case_management.relation import Relation
+    from .security.case_management.status_definition import StatusDefinition
+    from .security.case_management.string_custom_field_definition import StringCustomFieldDefinition
     from .security.case_management.task import Task
     from .security.case_management.workspace_indicator_relation import WorkspaceIndicatorRelation
     from .security.case_management_root import CaseManagementRoot
@@ -2054,6 +2062,7 @@ if TYPE_CHECKING:
     from .unified_role_management_policy_rule import UnifiedRoleManagementPolicyRule
     from .unified_role_schedule_base import UnifiedRoleScheduleBase
     from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
+    from .unified_root import UnifiedRoot
     from .unified_storage_quota import UnifiedStorageQuota
     from .unit_map import UnitMap
     from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
@@ -4971,10 +4980,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .distribution_list import DistributionList
 
             return DistributionList()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.distributionListMember".casefold():
-            from .distribution_list_member import DistributionListMember
-
-            return DistributionListMember()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.dlpEvaluatePoliciesJobResponse".casefold():
             from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
 
@@ -7240,6 +7245,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
 
             return MicrosoftApplicationDataAccessSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.microsoftAppsFileStorageContainerUsage".casefold():
+            from .microsoft_apps_file_storage_container_usage import MicrosoftAppsFileStorageContainerUsage
+
+            return MicrosoftAppsFileStorageContainerUsage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod".casefold():
             from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
 
@@ -8742,6 +8751,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
 
             return RemoteDesktopSecurityConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.remoteTenantGroup".casefold():
+            from .remote_tenant_group import RemoteTenantGroup
+
+            return RemoteTenantGroup()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.removeFromLobbyOperation".casefold():
             from .remove_from_lobby_operation import RemoveFromLobbyOperation
 
@@ -9051,10 +9064,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.case_management.case_management_entity import CaseManagementEntity
 
             return CaseManagementEntity()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.caseTypeConfiguration".casefold():
+            from .security.case_management.case_type_configuration import CaseTypeConfiguration
+
+            return CaseTypeConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.comment".casefold():
             from .security.case_management.comment import Comment
 
             return Comment()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.customFieldDefinition".casefold():
+            from .security.case_management.custom_field_definition import CustomFieldDefinition
+
+            return CustomFieldDefinition()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.dateTimeCustomFieldDefinition".casefold():
+            from .security.case_management.date_time_custom_field_definition import DateTimeCustomFieldDefinition
+
+            return DateTimeCustomFieldDefinition()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.exposureCase".casefold():
             from .security.case_management.exposure_case import ExposureCase
 
@@ -9071,6 +9096,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.case_management.incident_relation import IncidentRelation
 
             return IncidentRelation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.numberCustomFieldDefinition".casefold():
+            from .security.case_management.number_custom_field_definition import NumberCustomFieldDefinition
+
+            return NumberCustomFieldDefinition()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.optionsCustomFieldDefinition".casefold():
+            from .security.case_management.options_custom_field_definition import OptionsCustomFieldDefinition
+
+            return OptionsCustomFieldDefinition()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.recommendationRelation".casefold():
             from .security.case_management.recommendation_relation import RecommendationRelation
 
@@ -9080,6 +9113,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .term_store.relation import Relation
 
             return Relation()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.statusDefinition".casefold():
+            from .security.case_management.status_definition import StatusDefinition
+
+            return StatusDefinition()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.stringCustomFieldDefinition".casefold():
+            from .security.case_management.string_custom_field_definition import StringCustomFieldDefinition
+
+            return StringCustomFieldDefinition()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.task".casefold():
             from .identity_governance.task import Task
             from .security.case_management.task import Task
@@ -10675,6 +10716,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
 
             return UnifiedRoleScheduleInstanceBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unifiedRoot".casefold():
+            from .unified_root import UnifiedRoot
+
+            return UnifiedRoot()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.unifiedStorageQuota".casefold():
             from .unified_storage_quota import UnifiedStorageQuota
 
@@ -12623,7 +12668,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .directory_setting import DirectorySetting
         from .directory_setting_template import DirectorySettingTemplate
         from .distribution_list import DistributionList
-        from .distribution_list_member import DistributionListMember
         from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
         from .document import Document
         from .document_comment import DocumentComment
@@ -13183,6 +13227,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mfa_user_count_metric import MfaUserCountMetric
         from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
+        from .microsoft_apps_file_storage_container_usage import MicrosoftAppsFileStorageContainerUsage
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
         from .microsoft_authenticator_authentication_method_configuration import MicrosoftAuthenticatorAuthenticationMethodConfiguration
         from .microsoft_authenticator_authentication_method_target import MicrosoftAuthenticatorAuthenticationMethodTarget
@@ -13556,6 +13601,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .remote_assistance_partner import RemoteAssistancePartner
         from .remote_assistance_settings import RemoteAssistanceSettings
         from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
+        from .remote_tenant_group import RemoteTenantGroup
         from .remove_from_lobby_operation import RemoveFromLobbyOperation
         from .reports_root import ReportsRoot
         from .report_root import ReportRoot
@@ -13632,13 +13678,20 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.case_management.audit_log import AuditLog
         from .security.case_management.case import Case
         from .security.case_management.case_management_entity import CaseManagementEntity
+        from .security.case_management.case_type_configuration import CaseTypeConfiguration
         from .security.case_management.comment import Comment
+        from .security.case_management.custom_field_definition import CustomFieldDefinition
+        from .security.case_management.date_time_custom_field_definition import DateTimeCustomFieldDefinition
         from .security.case_management.exposure_case import ExposureCase
         from .security.case_management.generic_case import GenericCase
         from .security.case_management.incident_case import IncidentCase
         from .security.case_management.incident_relation import IncidentRelation
+        from .security.case_management.number_custom_field_definition import NumberCustomFieldDefinition
+        from .security.case_management.options_custom_field_definition import OptionsCustomFieldDefinition
         from .security.case_management.recommendation_relation import RecommendationRelation
         from .security.case_management.relation import Relation
+        from .security.case_management.status_definition import StatusDefinition
+        from .security.case_management.string_custom_field_definition import StringCustomFieldDefinition
         from .security.case_management.task import Task
         from .security.case_management.workspace_indicator_relation import WorkspaceIndicatorRelation
         from .security.case_management_root import CaseManagementRoot
@@ -14032,6 +14085,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .unified_role_management_policy_rule import UnifiedRoleManagementPolicyRule
         from .unified_role_schedule_base import UnifiedRoleScheduleBase
         from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
+        from .unified_root import UnifiedRoot
         from .unified_storage_quota import UnifiedStorageQuota
         from .unit_map import UnitMap
         from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
@@ -14996,7 +15050,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .directory_setting import DirectorySetting
         from .directory_setting_template import DirectorySettingTemplate
         from .distribution_list import DistributionList
-        from .distribution_list_member import DistributionListMember
         from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
         from .document import Document
         from .document_comment import DocumentComment
@@ -15556,6 +15609,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .mfa_user_count_metric import MfaUserCountMetric
         from .microsoft_account_user_conversation_member import MicrosoftAccountUserConversationMember
         from .microsoft_application_data_access_settings import MicrosoftApplicationDataAccessSettings
+        from .microsoft_apps_file_storage_container_usage import MicrosoftAppsFileStorageContainerUsage
         from .microsoft_authenticator_authentication_method import MicrosoftAuthenticatorAuthenticationMethod
         from .microsoft_authenticator_authentication_method_configuration import MicrosoftAuthenticatorAuthenticationMethodConfiguration
         from .microsoft_authenticator_authentication_method_target import MicrosoftAuthenticatorAuthenticationMethodTarget
@@ -15929,6 +15983,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .remote_assistance_partner import RemoteAssistancePartner
         from .remote_assistance_settings import RemoteAssistanceSettings
         from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
+        from .remote_tenant_group import RemoteTenantGroup
         from .remove_from_lobby_operation import RemoveFromLobbyOperation
         from .reports_root import ReportsRoot
         from .report_root import ReportRoot
@@ -16005,13 +16060,20 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.case_management.audit_log import AuditLog
         from .security.case_management.case import Case
         from .security.case_management.case_management_entity import CaseManagementEntity
+        from .security.case_management.case_type_configuration import CaseTypeConfiguration
         from .security.case_management.comment import Comment
+        from .security.case_management.custom_field_definition import CustomFieldDefinition
+        from .security.case_management.date_time_custom_field_definition import DateTimeCustomFieldDefinition
         from .security.case_management.exposure_case import ExposureCase
         from .security.case_management.generic_case import GenericCase
         from .security.case_management.incident_case import IncidentCase
         from .security.case_management.incident_relation import IncidentRelation
+        from .security.case_management.number_custom_field_definition import NumberCustomFieldDefinition
+        from .security.case_management.options_custom_field_definition import OptionsCustomFieldDefinition
         from .security.case_management.recommendation_relation import RecommendationRelation
         from .security.case_management.relation import Relation
+        from .security.case_management.status_definition import StatusDefinition
+        from .security.case_management.string_custom_field_definition import StringCustomFieldDefinition
         from .security.case_management.task import Task
         from .security.case_management.workspace_indicator_relation import WorkspaceIndicatorRelation
         from .security.case_management_root import CaseManagementRoot
@@ -16405,6 +16467,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .unified_role_management_policy_rule import UnifiedRoleManagementPolicyRule
         from .unified_role_schedule_base import UnifiedRoleScheduleBase
         from .unified_role_schedule_instance_base import UnifiedRoleScheduleInstanceBase
+        from .unified_root import UnifiedRoot
         from .unified_storage_quota import UnifiedStorageQuota
         from .unit_map import UnitMap
         from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask

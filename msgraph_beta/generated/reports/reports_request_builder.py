@@ -62,9 +62,9 @@ if TYPE_CHECKING:
     from .get_mailbox_usage_mailbox_counts_with_period.get_mailbox_usage_mailbox_counts_with_period_request_builder import GetMailboxUsageMailboxCountsWithPeriodRequestBuilder
     from .get_mailbox_usage_quota_status_mailbox_counts_with_period.get_mailbox_usage_quota_status_mailbox_counts_with_period_request_builder import GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder
     from .get_mailbox_usage_storage_with_period.get_mailbox_usage_storage_with_period_request_builder import GetMailboxUsageStorageWithPeriodRequestBuilder
-    from .get_microsoft365_copilot_usage_user_detail_with_period_with_version.get_microsoft365_copilot_usage_user_detail_with_period_with_version_request_builder import GetMicrosoft365CopilotUsageUserDetailWithPeriodWithVersionRequestBuilder
-    from .get_microsoft365_copilot_user_count_summary_with_period_with_version.get_microsoft365_copilot_user_count_summary_with_period_with_version_request_builder import GetMicrosoft365CopilotUserCountSummaryWithPeriodWithVersionRequestBuilder
-    from .get_microsoft365_copilot_user_count_trend_with_period_with_version.get_microsoft365_copilot_user_count_trend_with_period_with_version_request_builder import GetMicrosoft365CopilotUserCountTrendWithPeriodWithVersionRequestBuilder
+    from .get_microsoft365_copilot_usage_user_detail_with_periodversion_version.get_microsoft365_copilot_usage_user_detail_with_periodversion_version_request_builder import GetMicrosoft365CopilotUsageUserDetailWithPeriodversionVersionRequestBuilder
+    from .get_microsoft365_copilot_user_count_summary_with_periodversion_version.get_microsoft365_copilot_user_count_summary_with_periodversion_version_request_builder import GetMicrosoft365CopilotUserCountSummaryWithPeriodversionVersionRequestBuilder
+    from .get_microsoft365_copilot_user_count_trend_with_periodversion_version.get_microsoft365_copilot_user_count_trend_with_periodversion_version_request_builder import GetMicrosoft365CopilotUserCountTrendWithPeriodversionVersionRequestBuilder
     from .get_office365_activations_user_counts.get_office365_activations_user_counts_request_builder import GetOffice365ActivationsUserCountsRequestBuilder
     from .get_office365_activations_user_detail.get_office365_activations_user_detail_request_builder import GetOffice365ActivationsUserDetailRequestBuilder
     from .get_office365_activation_counts.get_office365_activation_counts_request_builder import GetOffice365ActivationCountsRequestBuilder
@@ -94,6 +94,10 @@ if TYPE_CHECKING:
     from .get_share_point_activity_user_counts_with_period.get_share_point_activity_user_counts_with_period_request_builder import GetSharePointActivityUserCountsWithPeriodRequestBuilder
     from .get_share_point_activity_user_detail_with_date.get_share_point_activity_user_detail_with_date_request_builder import GetSharePointActivityUserDetailWithDateRequestBuilder
     from .get_share_point_activity_user_detail_with_period.get_share_point_activity_user_detail_with_period_request_builder import GetSharePointActivityUserDetailWithPeriodRequestBuilder
+    from .get_share_point_api_usage_with_datereport_type_report_type.get_share_point_api_usage_with_datereport_type_report_type_request_builder import GetSharePointApiUsageWithDatereportTypeReportTypeRequestBuilder
+    from .get_share_point_api_usage_with_date_with_app_idreport_type_report_type.get_share_point_api_usage_with_date_with_app_idreport_type_report_type_request_builder import GetSharePointApiUsageWithDateWithAppIdreportTypeReportTypeRequestBuilder
+    from .get_share_point_api_usage_with_periodreport_type_report_type.get_share_point_api_usage_with_periodreport_type_report_type_request_builder import GetSharePointApiUsageWithPeriodreportTypeReportTypeRequestBuilder
+    from .get_share_point_api_usage_with_period_with_app_idreport_type_report_type.get_share_point_api_usage_with_period_with_app_idreport_type_report_type_request_builder import GetSharePointApiUsageWithPeriodWithAppIdreportTypeReportTypeRequestBuilder
     from .get_share_point_site_usage_detail_with_date.get_share_point_site_usage_detail_with_date_request_builder import GetSharePointSiteUsageDetailWithDateRequestBuilder
     from .get_share_point_site_usage_detail_with_period.get_share_point_site_usage_detail_with_period_request_builder import GetSharePointSiteUsageDetailWithPeriodRequestBuilder
     from .get_share_point_site_usage_file_counts_with_period.get_share_point_site_usage_file_counts_with_period_request_builder import GetSharePointSiteUsageFileCountsWithPeriodRequestBuilder
@@ -159,6 +163,7 @@ if TYPE_CHECKING:
     from .managed_device_enrollment_failure_trends.managed_device_enrollment_failure_trends_request_builder import ManagedDeviceEnrollmentFailureTrendsRequestBuilder
     from .managed_device_enrollment_top_failures.managed_device_enrollment_top_failures_request_builder import ManagedDeviceEnrollmentTopFailuresRequestBuilder
     from .managed_device_enrollment_top_failures_with_period.managed_device_enrollment_top_failures_with_period_request_builder import ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder
+    from .microsoft_apps_file_storage_container_usage_summary.microsoft_apps_file_storage_container_usage_summary_request_builder import MicrosoftAppsFileStorageContainerUsageSummaryRequestBuilder
     from .monthly_print_usage_by_printer.monthly_print_usage_by_printer_request_builder import MonthlyPrintUsageByPrinterRequestBuilder
     from .monthly_print_usage_by_user.monthly_print_usage_by_user_request_builder import MonthlyPrintUsageByUserRequestBuilder
     from .monthly_print_usage_summaries_by_printer.monthly_print_usage_summaries_by_printer_request_builder import MonthlyPrintUsageSummariesByPrinterRequestBuilder
@@ -534,50 +539,41 @@ class ReportsRequestBuilder(BaseRequestBuilder):
 
         return GetMailboxUsageStorageWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
     
-    def get_microsoft365_copilot_usage_user_detail_with_period_with_version(self,period: str, version: str) -> GetMicrosoft365CopilotUsageUserDetailWithPeriodWithVersionRequestBuilder:
+    def get_microsoft365_copilot_usage_user_detail_with_periodversion_version(self,period: str) -> GetMicrosoft365CopilotUsageUserDetailWithPeriodversionVersionRequestBuilder:
         """
         Provides operations to call the getMicrosoft365CopilotUsageUserDetail method.
         param period: Usage: period='{period}'
-        param version: Usage: version='{version}'
-        Returns: GetMicrosoft365CopilotUsageUserDetailWithPeriodWithVersionRequestBuilder
+        Returns: GetMicrosoft365CopilotUsageUserDetailWithPeriodversionVersionRequestBuilder
         """
         if period is None:
             raise TypeError("period cannot be null.")
-        if version is None:
-            raise TypeError("version cannot be null.")
-        from .get_microsoft365_copilot_usage_user_detail_with_period_with_version.get_microsoft365_copilot_usage_user_detail_with_period_with_version_request_builder import GetMicrosoft365CopilotUsageUserDetailWithPeriodWithVersionRequestBuilder
+        from .get_microsoft365_copilot_usage_user_detail_with_periodversion_version.get_microsoft365_copilot_usage_user_detail_with_periodversion_version_request_builder import GetMicrosoft365CopilotUsageUserDetailWithPeriodversionVersionRequestBuilder
 
-        return GetMicrosoft365CopilotUsageUserDetailWithPeriodWithVersionRequestBuilder(self.request_adapter, self.path_parameters, period, version)
+        return GetMicrosoft365CopilotUsageUserDetailWithPeriodversionVersionRequestBuilder(self.request_adapter, self.path_parameters, period)
     
-    def get_microsoft365_copilot_user_count_summary_with_period_with_version(self,period: str, version: str) -> GetMicrosoft365CopilotUserCountSummaryWithPeriodWithVersionRequestBuilder:
+    def get_microsoft365_copilot_user_count_summary_with_periodversion_version(self,period: str) -> GetMicrosoft365CopilotUserCountSummaryWithPeriodversionVersionRequestBuilder:
         """
         Provides operations to call the getMicrosoft365CopilotUserCountSummary method.
         param period: Usage: period='{period}'
-        param version: Usage: version='{version}'
-        Returns: GetMicrosoft365CopilotUserCountSummaryWithPeriodWithVersionRequestBuilder
+        Returns: GetMicrosoft365CopilotUserCountSummaryWithPeriodversionVersionRequestBuilder
         """
         if period is None:
             raise TypeError("period cannot be null.")
-        if version is None:
-            raise TypeError("version cannot be null.")
-        from .get_microsoft365_copilot_user_count_summary_with_period_with_version.get_microsoft365_copilot_user_count_summary_with_period_with_version_request_builder import GetMicrosoft365CopilotUserCountSummaryWithPeriodWithVersionRequestBuilder
+        from .get_microsoft365_copilot_user_count_summary_with_periodversion_version.get_microsoft365_copilot_user_count_summary_with_periodversion_version_request_builder import GetMicrosoft365CopilotUserCountSummaryWithPeriodversionVersionRequestBuilder
 
-        return GetMicrosoft365CopilotUserCountSummaryWithPeriodWithVersionRequestBuilder(self.request_adapter, self.path_parameters, period, version)
+        return GetMicrosoft365CopilotUserCountSummaryWithPeriodversionVersionRequestBuilder(self.request_adapter, self.path_parameters, period)
     
-    def get_microsoft365_copilot_user_count_trend_with_period_with_version(self,period: str, version: str) -> GetMicrosoft365CopilotUserCountTrendWithPeriodWithVersionRequestBuilder:
+    def get_microsoft365_copilot_user_count_trend_with_periodversion_version(self,period: str) -> GetMicrosoft365CopilotUserCountTrendWithPeriodversionVersionRequestBuilder:
         """
         Provides operations to call the getMicrosoft365CopilotUserCountTrend method.
         param period: Usage: period='{period}'
-        param version: Usage: version='{version}'
-        Returns: GetMicrosoft365CopilotUserCountTrendWithPeriodWithVersionRequestBuilder
+        Returns: GetMicrosoft365CopilotUserCountTrendWithPeriodversionVersionRequestBuilder
         """
         if period is None:
             raise TypeError("period cannot be null.")
-        if version is None:
-            raise TypeError("version cannot be null.")
-        from .get_microsoft365_copilot_user_count_trend_with_period_with_version.get_microsoft365_copilot_user_count_trend_with_period_with_version_request_builder import GetMicrosoft365CopilotUserCountTrendWithPeriodWithVersionRequestBuilder
+        from .get_microsoft365_copilot_user_count_trend_with_periodversion_version.get_microsoft365_copilot_user_count_trend_with_periodversion_version_request_builder import GetMicrosoft365CopilotUserCountTrendWithPeriodversionVersionRequestBuilder
 
-        return GetMicrosoft365CopilotUserCountTrendWithPeriodWithVersionRequestBuilder(self.request_adapter, self.path_parameters, period, version)
+        return GetMicrosoft365CopilotUserCountTrendWithPeriodversionVersionRequestBuilder(self.request_adapter, self.path_parameters, period)
     
     def get_office365_active_user_counts_with_period(self,period: str) -> GetOffice365ActiveUserCountsWithPeriodRequestBuilder:
         """
@@ -896,6 +892,60 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_share_point_activity_user_detail_with_period.get_share_point_activity_user_detail_with_period_request_builder import GetSharePointActivityUserDetailWithPeriodRequestBuilder
 
         return GetSharePointActivityUserDetailWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
+    def get_share_point_api_usage_with_date_with_app_idreport_type_report_type(self,app_id: str, date: datetime.datetime) -> GetSharePointApiUsageWithDateWithAppIdreportTypeReportTypeRequestBuilder:
+        """
+        Provides operations to call the getSharePointApiUsage method.
+        param app_id: Usage: appId='{appId}'
+        param date: Usage: date={date}
+        Returns: GetSharePointApiUsageWithDateWithAppIdreportTypeReportTypeRequestBuilder
+        """
+        if app_id is None:
+            raise TypeError("app_id cannot be null.")
+        if date is None:
+            raise TypeError("date cannot be null.")
+        from .get_share_point_api_usage_with_date_with_app_idreport_type_report_type.get_share_point_api_usage_with_date_with_app_idreport_type_report_type_request_builder import GetSharePointApiUsageWithDateWithAppIdreportTypeReportTypeRequestBuilder
+
+        return GetSharePointApiUsageWithDateWithAppIdreportTypeReportTypeRequestBuilder(self.request_adapter, self.path_parameters, app_id, date)
+    
+    def get_share_point_api_usage_with_datereport_type_report_type(self,date: datetime.datetime) -> GetSharePointApiUsageWithDatereportTypeReportTypeRequestBuilder:
+        """
+        Provides operations to call the getSharePointApiUsage method.
+        param date: Usage: date={date}
+        Returns: GetSharePointApiUsageWithDatereportTypeReportTypeRequestBuilder
+        """
+        if date is None:
+            raise TypeError("date cannot be null.")
+        from .get_share_point_api_usage_with_datereport_type_report_type.get_share_point_api_usage_with_datereport_type_report_type_request_builder import GetSharePointApiUsageWithDatereportTypeReportTypeRequestBuilder
+
+        return GetSharePointApiUsageWithDatereportTypeReportTypeRequestBuilder(self.request_adapter, self.path_parameters, date)
+    
+    def get_share_point_api_usage_with_period_with_app_idreport_type_report_type(self,app_id: str, period: str) -> GetSharePointApiUsageWithPeriodWithAppIdreportTypeReportTypeRequestBuilder:
+        """
+        Provides operations to call the getSharePointApiUsage method.
+        param app_id: Usage: appId='{appId}'
+        param period: Usage: period='{period}'
+        Returns: GetSharePointApiUsageWithPeriodWithAppIdreportTypeReportTypeRequestBuilder
+        """
+        if app_id is None:
+            raise TypeError("app_id cannot be null.")
+        if period is None:
+            raise TypeError("period cannot be null.")
+        from .get_share_point_api_usage_with_period_with_app_idreport_type_report_type.get_share_point_api_usage_with_period_with_app_idreport_type_report_type_request_builder import GetSharePointApiUsageWithPeriodWithAppIdreportTypeReportTypeRequestBuilder
+
+        return GetSharePointApiUsageWithPeriodWithAppIdreportTypeReportTypeRequestBuilder(self.request_adapter, self.path_parameters, app_id, period)
+    
+    def get_share_point_api_usage_with_periodreport_type_report_type(self,period: str) -> GetSharePointApiUsageWithPeriodreportTypeReportTypeRequestBuilder:
+        """
+        Provides operations to call the getSharePointApiUsage method.
+        param period: Usage: period='{period}'
+        Returns: GetSharePointApiUsageWithPeriodreportTypeReportTypeRequestBuilder
+        """
+        if period is None:
+            raise TypeError("period cannot be null.")
+        from .get_share_point_api_usage_with_periodreport_type_report_type.get_share_point_api_usage_with_periodreport_type_report_type_request_builder import GetSharePointApiUsageWithPeriodreportTypeReportTypeRequestBuilder
+
+        return GetSharePointApiUsageWithPeriodreportTypeReportTypeRequestBuilder(self.request_adapter, self.path_parameters, period)
     
     def get_share_point_site_usage_detail_with_date(self,date: datetime.date) -> GetSharePointSiteUsageDetailWithDateRequestBuilder:
         """
@@ -1942,6 +1992,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .managed_device_enrollment_top_failures.managed_device_enrollment_top_failures_request_builder import ManagedDeviceEnrollmentTopFailuresRequestBuilder
 
         return ManagedDeviceEnrollmentTopFailuresRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_apps_file_storage_container_usage_summary(self) -> MicrosoftAppsFileStorageContainerUsageSummaryRequestBuilder:
+        """
+        Provides operations to manage the microsoftAppsFileStorageContainerUsageSummary property of the microsoft.graph.reportRoot entity.
+        """
+        from .microsoft_apps_file_storage_container_usage_summary.microsoft_apps_file_storage_container_usage_summary_request_builder import MicrosoftAppsFileStorageContainerUsageSummaryRequestBuilder
+
+        return MicrosoftAppsFileStorageContainerUsageSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def monthly_print_usage_by_printer(self) -> MonthlyPrintUsageByPrinterRequestBuilder:

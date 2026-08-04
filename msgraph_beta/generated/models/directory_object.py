@@ -50,6 +50,7 @@ if TYPE_CHECKING:
     from .permission_grant_policy import PermissionGrantPolicy
     from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
     from .policy_base import PolicyBase
+    from .remote_tenant_group import RemoteTenantGroup
     from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
     from .service_principal import ServicePrincipal
     from .service_principal_creation_policy import ServicePrincipalCreationPolicy
@@ -257,6 +258,10 @@ class DirectoryObject(Entity, Parsable):
             from .policy_base import PolicyBase
 
             return PolicyBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.remoteTenantGroup".casefold():
+            from .remote_tenant_group import RemoteTenantGroup
+
+            return RemoteTenantGroup()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.resourceSpecificPermissionGrant".casefold():
             from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
 
@@ -352,6 +357,7 @@ class DirectoryObject(Entity, Parsable):
         from .permission_grant_policy import PermissionGrantPolicy
         from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .policy_base import PolicyBase
+        from .remote_tenant_group import RemoteTenantGroup
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .service_principal import ServicePrincipal
         from .service_principal_creation_policy import ServicePrincipalCreationPolicy
@@ -408,6 +414,7 @@ class DirectoryObject(Entity, Parsable):
         from .permission_grant_policy import PermissionGrantPolicy
         from .permission_grant_pre_approval_policy import PermissionGrantPreApprovalPolicy
         from .policy_base import PolicyBase
+        from .remote_tenant_group import RemoteTenantGroup
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .service_principal import ServicePrincipal
         from .service_principal_creation_policy import ServicePrincipalCreationPolicy

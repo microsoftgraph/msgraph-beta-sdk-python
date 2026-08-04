@@ -7,11 +7,14 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .case_management.case import Case
+    from .case_management.case_type_configuration import CaseTypeConfiguration
 
 from ..entity import Entity
 
 @dataclass
 class CaseManagementRoot(Entity, Parsable):
+    # The collection of case type configurations that define the statuses and custom fields available for each case type. Read-only. Supports $select, $count, and $expand of the statuses and customFields relationships.
+    case_type_configurations: Optional[list[CaseTypeConfiguration]] = None
     # The collection of security cases managed through the case management entry point. Supports $filter, $orderby, $select, $top, $skip, and $count.
     cases: Optional[list[Case]] = None
     # The OdataType property
@@ -35,11 +38,14 @@ class CaseManagementRoot(Entity, Parsable):
         """
         from ..entity import Entity
         from .case_management.case import Case
+        from .case_management.case_type_configuration import CaseTypeConfiguration
 
         from ..entity import Entity
         from .case_management.case import Case
+        from .case_management.case_type_configuration import CaseTypeConfiguration
 
         fields: dict[str, Callable[[Any], None]] = {
+            "caseTypeConfigurations": lambda n : setattr(self, 'case_type_configurations', n.get_collection_of_object_values(CaseTypeConfiguration)),
             "cases": lambda n : setattr(self, 'cases', n.get_collection_of_object_values(Case)),
         }
         super_fields = super().get_field_deserializers()
@@ -55,6 +61,7 @@ class CaseManagementRoot(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("caseTypeConfigurations", self.case_type_configurations)
         writer.write_collection_of_object_values("cases", self.cases)
     
 

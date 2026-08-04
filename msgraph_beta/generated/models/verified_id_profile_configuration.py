@@ -17,17 +17,17 @@ class VerifiedIdProfileConfiguration(AdditionalDataHolder, BackedModel, Parsable
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Trusted Verified ID issuer.
+    # Trusted Verified ID issuer. Required.
     accepted_issuer: Optional[str] = None
     # The claimBindingSource property
     claim_binding_source: Optional[ClaimBindingSource] = None
-    # Claim bindings from Verified ID to source attributes.
+    # Claim bindings from Verified ID to source attributes. Required.
     claim_bindings: Optional[list[ClaimBinding]] = None
     # The claimValidation property
     claim_validation: Optional[ClaimValidation] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Verified ID type.
+    # Verified ID type. Required.
     type: Optional[str] = None
     
     @staticmethod

@@ -32,7 +32,7 @@ class VerifiedIdProfile(Entity, Parsable):
     state: Optional[VerifiedIdProfileState] = None
     # The verifiedIdProfileConfiguration property
     verified_id_profile_configuration: Optional[VerifiedIdProfileConfiguration] = None
-    # Collection defining the usage purpose for the profile. The possible values are: recovery, onboarding, all, unknownFutureValue. Required.
+    # Collection defining the usage purpose for the profile. The possible values are: recovery, onboarding, all, unknownFutureValue, verification. Use the Prefer: include-unknown-enum-members request header to get the following value from this evolvable enum: verification. Required.
     verified_id_usage_configurations: Optional[list[VerifiedIdUsageConfiguration]] = None
     # Decentralized Identifier (DID) string that represents the verifier in the verifiable credential exchange. Required.
     verifier_did: Optional[str] = None

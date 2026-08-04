@@ -12,7 +12,7 @@ from .entity import Entity
 
 @dataclass
 class TeamworkMessaging(Entity, Parsable):
-    # The customEmojis property
+    # The collection of custom emojis available in organization messaging.
     custom_emojis: Optional[list[TeamworkCustomEmoji]] = None
     # The OdataType property
     odata_type: Optional[str] = None

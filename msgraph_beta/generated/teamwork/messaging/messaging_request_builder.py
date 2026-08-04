@@ -51,7 +51,7 @@ class MessagingRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MessagingRequestBuilderGetQueryParameters]] = None) -> Optional[TeamworkMessaging]:
         """
-        Get messaging from teamwork
+        The messaging functionality, including custom emojis.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkMessaging]
         """
@@ -105,7 +105,7 @@ class MessagingRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MessagingRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get messaging from teamwork
+        The messaging functionality, including custom emojis.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -158,7 +158,7 @@ class MessagingRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MessagingRequestBuilderGetQueryParameters():
         """
-        Get messaging from teamwork
+        The messaging functionality, including custom emojis.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

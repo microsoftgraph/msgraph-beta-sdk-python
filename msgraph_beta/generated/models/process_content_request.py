@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .activity_metadata import ActivityMetadata
     from .context_metadata import ContextMetadata
     from .device_metadata import DeviceMetadata
+    from .evaluation_scope import EvaluationScope
     from .integrated_application_metadata import IntegratedApplicationMetadata
     from .process_content_metadata_base import ProcessContentMetadataBase
     from .protected_application_metadata import ProtectedApplicationMetadata
@@ -28,6 +29,8 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
     context_metadata: Optional[ContextMetadata] = None
     # The deviceMetadata property
     device_metadata: Optional[DeviceMetadata] = None
+    # The evaluationScope property
+    evaluation_scope: Optional[EvaluationScope] = None
     # The integratedAppMetadata property
     integrated_app_metadata: Optional[IntegratedApplicationMetadata] = None
     # The OdataType property
@@ -54,6 +57,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
         from .activity_metadata import ActivityMetadata
         from .context_metadata import ContextMetadata
         from .device_metadata import DeviceMetadata
+        from .evaluation_scope import EvaluationScope
         from .integrated_application_metadata import IntegratedApplicationMetadata
         from .process_content_metadata_base import ProcessContentMetadataBase
         from .protected_application_metadata import ProtectedApplicationMetadata
@@ -61,6 +65,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
         from .activity_metadata import ActivityMetadata
         from .context_metadata import ContextMetadata
         from .device_metadata import DeviceMetadata
+        from .evaluation_scope import EvaluationScope
         from .integrated_application_metadata import IntegratedApplicationMetadata
         from .process_content_metadata_base import ProcessContentMetadataBase
         from .protected_application_metadata import ProtectedApplicationMetadata
@@ -70,6 +75,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
             "contentEntries": lambda n : setattr(self, 'content_entries', n.get_collection_of_object_values(ProcessContentMetadataBase)),
             "contextMetadata": lambda n : setattr(self, 'context_metadata', n.get_object_value(ContextMetadata)),
             "deviceMetadata": lambda n : setattr(self, 'device_metadata', n.get_object_value(DeviceMetadata)),
+            "evaluationScope": lambda n : setattr(self, 'evaluation_scope', n.get_object_value(EvaluationScope)),
             "integratedAppMetadata": lambda n : setattr(self, 'integrated_app_metadata', n.get_object_value(IntegratedApplicationMetadata)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "protectedAppMetadata": lambda n : setattr(self, 'protected_app_metadata', n.get_object_value(ProtectedApplicationMetadata)),
@@ -88,6 +94,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("contentEntries", self.content_entries)
         writer.write_object_value("contextMetadata", self.context_metadata)
         writer.write_object_value("deviceMetadata", self.device_metadata)
+        writer.write_object_value("evaluationScope", self.evaluation_scope)
         writer.write_object_value("integratedAppMetadata", self.integrated_app_metadata)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("protectedAppMetadata", self.protected_app_metadata)

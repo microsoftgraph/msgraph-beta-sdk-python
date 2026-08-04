@@ -12,11 +12,11 @@ class FaceCheckConfiguration(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Defines if Face Check is required. Currently must always be true.
+    # Indicates whether Face Check is required. Currently must be true.
     is_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Source of photo to validate Face Check against. Currently must always be portrait
+    # The source claim name for the photo used to validate Face Check. Currently must be portrait.
     source_photo_claim_name: Optional[str] = None
     
     @staticmethod

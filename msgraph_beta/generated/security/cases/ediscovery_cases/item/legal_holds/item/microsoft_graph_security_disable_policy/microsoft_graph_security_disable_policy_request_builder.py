@@ -31,9 +31,10 @@ class MicrosoftGraphSecurityDisablePolicyRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Invoke action disablePolicy
+        Disable an eDiscovery hold policy (legal hold) to release the hold across all the data sources included in the policy in a single operation. This operation runs asynchronously. To track completion, get the ediscoveryHoldPolicy and review its isEnabled and errors properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/security-ediscoveryholdpolicy-disablepolicy?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class MicrosoftGraphSecurityDisablePolicyRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action disablePolicy
+        Disable an eDiscovery hold policy (legal hold) to release the hold across all the data sources included in the policy in a single operation. This operation runs asynchronously. To track completion, get the ediscoveryHoldPolicy and review its isEnabled and errors properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

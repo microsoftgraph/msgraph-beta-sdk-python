@@ -26,7 +26,7 @@ class RelatedTenant(Entity, Parsable):
     billing_metrics: Optional[BillingMetrics] = None
     # The date and time when the related tenant was discovered. The timestamp type represents date and time information using ISO 8601 format and is always in UTC.
     created_date_time: Optional[datetime.datetime] = None
-    # Indicates whether this tenant is a Microsoft infrastructure tenant.
+    # Indicates whether the related tenant is a Microsoft infrastructure tenant. Read-only.
     is_microsoft_infrastructure: Optional[bool] = None
     # Multi-tenant application usage metrics for this related tenant. Expanded by default.
     multi_tenant_application_metrics: Optional[MultiTenantApplicationMetrics] = None

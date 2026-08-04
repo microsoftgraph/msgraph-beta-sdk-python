@@ -17,7 +17,7 @@ class M365CapabilityResourceScope(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The ID of the resource to modify (a user or group ID).
+    # The ID of the resource to modify. The value is either All, to apply the capability to all resources of the type specified by resourceType (all users or all groups), or the GUID of a specific user or group.
     resource_id: Optional[str] = None
     # The resourceType property
     resource_type: Optional[M365ResourceType] = None

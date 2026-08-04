@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_review_instance_decision_item_access_package_assignment_policy_resource import AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource
+    from .access_review_instance_decision_item_access_package_resource import AccessReviewInstanceDecisionItemAccessPackageResource
     from .access_review_instance_decision_item_azure_role_resource import AccessReviewInstanceDecisionItemAzureRoleResource
     from .access_review_instance_decision_item_custom_data_provided_resource import AccessReviewInstanceDecisionItemCustomDataProvidedResource
     from .access_review_instance_decision_item_service_principal_resource import AccessReviewInstanceDecisionItemServicePrincipalResource
@@ -26,7 +27,7 @@ class AccessReviewInstanceDecisionItemResource(AdditionalDataHolder, BackedModel
     id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Type of resource. Types include: Group, ServicePrincipal, DirectoryRole, AzureRole, AccessPackageAssignmentPolicy, and CustomDataProvidedResource.
+    # Type of resource. Types include: Group, ServicePrincipal, DirectoryRole, AzureRole, AccessPackage, AccessPackageAssignmentPolicy, and CustomDataProvidedResource.
     type: Optional[str] = None
     
     @staticmethod
@@ -47,6 +48,10 @@ class AccessReviewInstanceDecisionItemResource(AdditionalDataHolder, BackedModel
             from .access_review_instance_decision_item_access_package_assignment_policy_resource import AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource
 
             return AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewInstanceDecisionItemAccessPackageResource".casefold():
+            from .access_review_instance_decision_item_access_package_resource import AccessReviewInstanceDecisionItemAccessPackageResource
+
+            return AccessReviewInstanceDecisionItemAccessPackageResource()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewInstanceDecisionItemAzureRoleResource".casefold():
             from .access_review_instance_decision_item_azure_role_resource import AccessReviewInstanceDecisionItemAzureRoleResource
 
@@ -67,11 +72,13 @@ class AccessReviewInstanceDecisionItemResource(AdditionalDataHolder, BackedModel
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_review_instance_decision_item_access_package_assignment_policy_resource import AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource
+        from .access_review_instance_decision_item_access_package_resource import AccessReviewInstanceDecisionItemAccessPackageResource
         from .access_review_instance_decision_item_azure_role_resource import AccessReviewInstanceDecisionItemAzureRoleResource
         from .access_review_instance_decision_item_custom_data_provided_resource import AccessReviewInstanceDecisionItemCustomDataProvidedResource
         from .access_review_instance_decision_item_service_principal_resource import AccessReviewInstanceDecisionItemServicePrincipalResource
 
         from .access_review_instance_decision_item_access_package_assignment_policy_resource import AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource
+        from .access_review_instance_decision_item_access_package_resource import AccessReviewInstanceDecisionItemAccessPackageResource
         from .access_review_instance_decision_item_azure_role_resource import AccessReviewInstanceDecisionItemAzureRoleResource
         from .access_review_instance_decision_item_custom_data_provided_resource import AccessReviewInstanceDecisionItemCustomDataProvidedResource
         from .access_review_instance_decision_item_service_principal_resource import AccessReviewInstanceDecisionItemServicePrincipalResource

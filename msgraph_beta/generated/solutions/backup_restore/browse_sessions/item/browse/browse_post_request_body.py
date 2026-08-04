@@ -16,6 +16,8 @@ class BrowsePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The optimizedBrowse property
+    optimized_browse: Optional[bool] = False
     # The browseLocationItemKey property
     browse_location_item_key: Optional[str] = None
     # The browseResourceType property
@@ -51,6 +53,7 @@ class BrowsePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             "browseLocationItemKey": lambda n : setattr(self, 'browse_location_item_key', n.get_str_value()),
             "browseResourceType": lambda n : setattr(self, 'browse_resource_type', n.get_enum_value(BrowsableResourceType)),
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
+            "optimizedBrowse": lambda n : setattr(self, 'optimized_browse', n.get_bool_value()),
             "orderBy": lambda n : setattr(self, 'order_by', n.get_enum_value(BrowseQueryOrder)),
         }
         return fields
@@ -66,6 +69,7 @@ class BrowsePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("browseLocationItemKey", self.browse_location_item_key)
         writer.write_enum_value("browseResourceType", self.browse_resource_type)
         writer.write_str_value("filter", self.filter)
+        writer.write_bool_value("optimizedBrowse", self.optimized_browse)
         writer.write_enum_value("orderBy", self.order_by)
         writer.write_additional_data_value(self.additional_data)
     

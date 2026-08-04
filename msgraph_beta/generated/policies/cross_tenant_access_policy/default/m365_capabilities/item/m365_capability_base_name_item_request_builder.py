@@ -70,10 +70,11 @@ class M365CapabilityBaseNameItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: M365CapabilityBase, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[M365CapabilityBase]:
         """
-        Update the navigation property m365Capabilities in policies
+        Update an existing Microsoft 365 cross-tenant capability for the default cross-tenant access policy.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[M365CapabilityBase]
+        Find more info here: https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-update-m365capabilities?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -115,7 +116,7 @@ class M365CapabilityBaseNameItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: M365CapabilityBase, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property m365Capabilities in policies
+        Update an existing Microsoft 365 cross-tenant capability for the default cross-tenant access policy.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

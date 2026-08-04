@@ -6,18 +6,18 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .chat_message_body import ChatMessageBody
     from .chat_message_from_identity_set import ChatMessageFromIdentitySet
     from .chat_message_type import ChatMessageType
     from .entity import Entity
     from .event_message_detail import EventMessageDetail
-    from .item_body import ItemBody
 
 from .entity import Entity
 
 @dataclass
 class ChatMessageInfo(Entity, Parsable):
     # Body of the chatMessage. This will still contain markers for @mentions and attachments even though the object doesn't return @mentions and attachments.
-    body: Optional[ItemBody] = None
+    body: Optional[ChatMessageBody] = None
     # Date time object representing the time at which message was created.
     created_date_time: Optional[datetime.datetime] = None
     # Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property is set to systemEventMessage.
@@ -47,20 +47,20 @@ class ChatMessageInfo(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .chat_message_body import ChatMessageBody
         from .chat_message_from_identity_set import ChatMessageFromIdentitySet
         from .chat_message_type import ChatMessageType
         from .entity import Entity
         from .event_message_detail import EventMessageDetail
-        from .item_body import ItemBody
 
+        from .chat_message_body import ChatMessageBody
         from .chat_message_from_identity_set import ChatMessageFromIdentitySet
         from .chat_message_type import ChatMessageType
         from .entity import Entity
         from .event_message_detail import EventMessageDetail
-        from .item_body import ItemBody
 
         fields: dict[str, Callable[[Any], None]] = {
-            "body": lambda n : setattr(self, 'body', n.get_object_value(ItemBody)),
+            "body": lambda n : setattr(self, 'body', n.get_object_value(ChatMessageBody)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "eventDetail": lambda n : setattr(self, 'event_detail', n.get_object_value(EventMessageDetail)),
             "from": lambda n : setattr(self, 'from_', n.get_object_value(ChatMessageFromIdentitySet)),
