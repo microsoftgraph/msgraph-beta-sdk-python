@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .policy_location_application import PolicyLocationApplication
     from .policy_location_domain import PolicyLocationDomain
+    from .policy_location_tool import PolicyLocationTool
     from .policy_location_url import PolicyLocationUrl
 
 @dataclass
@@ -44,6 +45,10 @@ class PolicyLocation(AdditionalDataHolder, BackedModel, Parsable):
             from .policy_location_domain import PolicyLocationDomain
 
             return PolicyLocationDomain()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyLocationTool".casefold():
+            from .policy_location_tool import PolicyLocationTool
+
+            return PolicyLocationTool()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyLocationUrl".casefold():
             from .policy_location_url import PolicyLocationUrl
 
@@ -57,10 +62,12 @@ class PolicyLocation(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .policy_location_application import PolicyLocationApplication
         from .policy_location_domain import PolicyLocationDomain
+        from .policy_location_tool import PolicyLocationTool
         from .policy_location_url import PolicyLocationUrl
 
         from .policy_location_application import PolicyLocationApplication
         from .policy_location_domain import PolicyLocationDomain
+        from .policy_location_tool import PolicyLocationTool
         from .policy_location_url import PolicyLocationUrl
 
         fields: dict[str, Callable[[Any], None]] = {

@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .history_definitions.history_definitions_request_builder import HistoryDefinitionsRequestBuilder
     from .instances.instances_request_builder import InstancesRequestBuilder
     from .policy.policy_request_builder import PolicyRequestBuilder
+    from .unified.unified_request_builder import UnifiedRequestBuilder
 
 class AccessReviewsRequestBuilder(BaseRequestBuilder):
     """
@@ -187,6 +188,15 @@ class AccessReviewsRequestBuilder(BaseRequestBuilder):
         from .policy.policy_request_builder import PolicyRequestBuilder
 
         return PolicyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def unified(self) -> UnifiedRequestBuilder:
+        """
+        Provides operations to manage the unified property of the microsoft.graph.accessReviewSet entity.
+        """
+        from .unified.unified_request_builder import UnifiedRequestBuilder
+
+        return UnifiedRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AccessReviewsRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

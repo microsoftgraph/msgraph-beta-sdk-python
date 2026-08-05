@@ -16,13 +16,13 @@ class TeamworkCustomEmoji(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The contentBytes property
+    # The base64-encoded image content of the emoji. Supported formats include PNG and GIF.
     content_bytes: Optional[str] = None
     # The createdBy property
     created_by: Optional[CustomEmojiFromIdentitySet] = None
-    # The createdDateTime property
+    # The date and time when the emoji was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The displayName property
+    # The unique display name of the custom emoji. Key. Must be unique and must not conflict with existing emoji names.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

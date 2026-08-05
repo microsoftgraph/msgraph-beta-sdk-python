@@ -21,9 +21,9 @@ class AgentRiskDetection(Entity, Parsable):
     activity_date_time: Optional[datetime.datetime] = None
     # Additional information associated with the risk detection.
     additional_info: Optional[str] = None
-    # Name of the agent.  Supports $filter (eq, startsWith).
+    # Name of the agent. Deprecated. Use displayName instead. This property will be removed after 2027-04-28.  Supports $filter (eq, startsWith).
     agent_display_name: Optional[str] = None
-    # The unique identifier for the agent. This is equivalent to 'id' to the specific agent type. See riskyAgentIdentity, riskyAgentIdentityBlueprintPrincipal, and riskyAgentUser.  Supports $filter (eq, startsWith).
+    # The unique identifier for the agent. Deprecated. Use identityId instead. This property will be removed after 2027-04-28. See riskyAgentIdentity, riskyAgentIdentityBlueprintPrincipal, and riskyAgentUser.  Supports $filter (eq, startsWith).
     agent_id: Optional[str] = None
     # The identifier of the blueprint associated with the agent. Nullable.
     blueprint_id: Optional[str] = None
@@ -33,9 +33,9 @@ class AgentRiskDetection(Entity, Parsable):
     detected_date_time: Optional[datetime.datetime] = None
     # The detectionTimingType property
     detection_timing_type: Optional[RiskDetectionTimingType] = None
-    # The displayName property
+    # Human-readable name of the identity associated with this risk detection.  Supports $filter (eq, startsWith).
     display_name: Optional[str] = None
-    # The identityId property
+    # Unique identifier of the identity associated with this risk detection.  Supports $filter (eq, startsWith).
     identity_id: Optional[str] = None
     # The identityType property
     identity_type: Optional[AgentIdentityType] = None

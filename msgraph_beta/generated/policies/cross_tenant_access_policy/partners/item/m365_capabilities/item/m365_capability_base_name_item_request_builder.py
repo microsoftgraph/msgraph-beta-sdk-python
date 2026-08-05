@@ -32,9 +32,10 @@ class M365CapabilityBaseNameItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property m365Capabilities for policies
+        Delete a Microsoft 365 cross-tenant capability from a partner organization in the cross-tenant access policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-delete-m365capabilities?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -70,10 +71,11 @@ class M365CapabilityBaseNameItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: M365CapabilityBase, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[M365CapabilityBase]:
         """
-        Update the navigation property m365Capabilities in policies
+        Update an existing Microsoft 365 cross-tenant capability for a partner organization in the cross-tenant access policy.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[M365CapabilityBase]
+        Find more info here: https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-update-m365capabilities?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -93,7 +95,7 @@ class M365CapabilityBaseNameItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property m365Capabilities for policies
+        Delete a Microsoft 365 cross-tenant capability from a partner organization in the cross-tenant access policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +117,7 @@ class M365CapabilityBaseNameItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: M365CapabilityBase, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property m365Capabilities in policies
+        Update an existing Microsoft 365 cross-tenant capability for a partner organization in the cross-tenant access policy.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

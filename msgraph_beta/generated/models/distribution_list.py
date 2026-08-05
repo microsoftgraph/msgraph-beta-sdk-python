@@ -5,7 +5,6 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .distribution_list_member import DistributionListMember
     from .member import Member
     from .outlook_item import OutlookItem
     from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
@@ -18,8 +17,6 @@ class DistributionList(OutlookItem, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.distributionList"
     # The display name of the distribution list.
     display_name: Optional[str] = None
-    # The expanded members of the distribution list. Each member contains detailed information including resolved email addresses. Read-only.
-    distribution_list_members: Optional[list[DistributionListMember]] = None
     # The list of members in the distribution list. Not returned by default; use $select=members to include.
     members: Optional[list[Member]] = None
     # The notes property
@@ -45,19 +42,16 @@ class DistributionList(OutlookItem, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .distribution_list_member import DistributionListMember
         from .member import Member
         from .outlook_item import OutlookItem
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
-        from .distribution_list_member import DistributionListMember
         from .member import Member
         from .outlook_item import OutlookItem
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
         fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "distributionListMembers": lambda n : setattr(self, 'distribution_list_members', n.get_collection_of_object_values(DistributionListMember)),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(Member)),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
             "personIdentifier": lambda n : setattr(self, 'person_identifier', n.get_str_value()),
@@ -77,7 +71,6 @@ class DistributionList(OutlookItem, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_collection_of_object_values("distributionListMembers", self.distribution_list_members)
         writer.write_collection_of_object_values("members", self.members)
         writer.write_str_value("notes", self.notes)
         writer.write_str_value("personIdentifier", self.person_identifier)

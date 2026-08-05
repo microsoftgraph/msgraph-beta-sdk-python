@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .....models.device_metadata import DeviceMetadata
+    from .....models.evaluation_scope import EvaluationScope
     from .....models.integrated_application_metadata import IntegratedApplicationMetadata
     from .....models.policy_location import PolicyLocation
     from .....models.policy_pivot_property import PolicyPivotProperty
@@ -23,6 +24,8 @@ class ComputePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     activities: Optional[UserActivityTypes] = None
     # The deviceMetadata property
     device_metadata: Optional[DeviceMetadata] = None
+    # The evaluationScope property
+    evaluation_scope: Optional[EvaluationScope] = None
     # The integratedAppMetadata property
     integrated_app_metadata: Optional[IntegratedApplicationMetadata] = None
     # The locations property
@@ -47,12 +50,14 @@ class ComputePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .....models.device_metadata import DeviceMetadata
+        from .....models.evaluation_scope import EvaluationScope
         from .....models.integrated_application_metadata import IntegratedApplicationMetadata
         from .....models.policy_location import PolicyLocation
         from .....models.policy_pivot_property import PolicyPivotProperty
         from .....models.user_activity_types import UserActivityTypes
 
         from .....models.device_metadata import DeviceMetadata
+        from .....models.evaluation_scope import EvaluationScope
         from .....models.integrated_application_metadata import IntegratedApplicationMetadata
         from .....models.policy_location import PolicyLocation
         from .....models.policy_pivot_property import PolicyPivotProperty
@@ -61,6 +66,7 @@ class ComputePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "activities": lambda n : setattr(self, 'activities', n.get_collection_of_enum_values(UserActivityTypes)),
             "deviceMetadata": lambda n : setattr(self, 'device_metadata', n.get_object_value(DeviceMetadata)),
+            "evaluationScope": lambda n : setattr(self, 'evaluation_scope', n.get_object_value(EvaluationScope)),
             "integratedAppMetadata": lambda n : setattr(self, 'integrated_app_metadata', n.get_object_value(IntegratedApplicationMetadata)),
             "locations": lambda n : setattr(self, 'locations', n.get_collection_of_object_values(PolicyLocation)),
             "pivotOn": lambda n : setattr(self, 'pivot_on', n.get_enum_value(PolicyPivotProperty)),
@@ -77,6 +83,7 @@ class ComputePostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("activities", self.activities)
         writer.write_object_value("deviceMetadata", self.device_metadata)
+        writer.write_object_value("evaluationScope", self.evaluation_scope)
         writer.write_object_value("integratedAppMetadata", self.integrated_app_metadata)
         writer.write_collection_of_object_values("locations", self.locations)
         writer.write_enum_value("pivotOn", self.pivot_on)

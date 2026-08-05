@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .access_review_policy import AccessReviewPolicy
     from .access_review_schedule_definition import AccessReviewScheduleDefinition
     from .entity import Entity
+    from .unified_root import UnifiedRoot
 
 from .entity import Entity
 
@@ -28,6 +29,8 @@ class AccessReviewSet(Entity, Parsable):
     odata_type: Optional[str] = None
     # Resource that enables administrators to manage directory-level access review policies in their tenant.
     policy: Optional[AccessReviewPolicy] = None
+    # Entry point for the unified (vNext) access reviews API surface. Requests under this path are routed to the vNext service through the dedicated accessReviews/unified path segment.
+    unified: Optional[UnifiedRoot] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> AccessReviewSet:
@@ -51,6 +54,7 @@ class AccessReviewSet(Entity, Parsable):
         from .access_review_policy import AccessReviewPolicy
         from .access_review_schedule_definition import AccessReviewScheduleDefinition
         from .entity import Entity
+        from .unified_root import UnifiedRoot
 
         from .access_review_history_definition import AccessReviewHistoryDefinition
         from .access_review_instance import AccessReviewInstance
@@ -58,6 +62,7 @@ class AccessReviewSet(Entity, Parsable):
         from .access_review_policy import AccessReviewPolicy
         from .access_review_schedule_definition import AccessReviewScheduleDefinition
         from .entity import Entity
+        from .unified_root import UnifiedRoot
 
         fields: dict[str, Callable[[Any], None]] = {
             "decisions": lambda n : setattr(self, 'decisions', n.get_collection_of_object_values(AccessReviewInstanceDecisionItem)),
@@ -65,6 +70,7 @@ class AccessReviewSet(Entity, Parsable):
             "historyDefinitions": lambda n : setattr(self, 'history_definitions', n.get_collection_of_object_values(AccessReviewHistoryDefinition)),
             "instances": lambda n : setattr(self, 'instances', n.get_collection_of_object_values(AccessReviewInstance)),
             "policy": lambda n : setattr(self, 'policy', n.get_object_value(AccessReviewPolicy)),
+            "unified": lambda n : setattr(self, 'unified', n.get_object_value(UnifiedRoot)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,5 +90,6 @@ class AccessReviewSet(Entity, Parsable):
         writer.write_collection_of_object_values("historyDefinitions", self.history_definitions)
         writer.write_collection_of_object_values("instances", self.instances)
         writer.write_object_value("policy", self.policy)
+        writer.write_object_value("unified", self.unified)
     
 

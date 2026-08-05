@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
     from .recommendation import Recommendation
     from .recommendation_configuration import RecommendationConfiguration
+    from .remote_tenant_group import RemoteTenantGroup
     from .shared_email_domain import SharedEmailDomain
     from .template import Template
     from .tenant_governance_services.tenant_governance import TenantGovernance
@@ -74,6 +75,8 @@ class Directory(Entity, Parsable):
     recommendations: Optional[list[Recommendation]] = None
     # Represents the Entra backup and recovery service for the tenant.
     recovery: Optional[Recovery] = None
+    # Collection of groups in remote Microsoft Entra tenants that are available in the directory.
+    remote_tenant_groups: Optional[list[RemoteTenantGroup]] = None
     # The sharedEmailDomains property
     shared_email_domains: Optional[list[SharedEmailDomain]] = None
     # List of commercial subscriptions that an organization has.
@@ -120,6 +123,7 @@ class Directory(Entity, Parsable):
         from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .recommendation import Recommendation
         from .recommendation_configuration import RecommendationConfiguration
+        from .remote_tenant_group import RemoteTenantGroup
         from .shared_email_domain import SharedEmailDomain
         from .template import Template
         from .tenant_governance_services.tenant_governance import TenantGovernance
@@ -145,6 +149,7 @@ class Directory(Entity, Parsable):
         from .public_key_infrastructure_root import PublicKeyInfrastructureRoot
         from .recommendation import Recommendation
         from .recommendation_configuration import RecommendationConfiguration
+        from .remote_tenant_group import RemoteTenantGroup
         from .shared_email_domain import SharedEmailDomain
         from .template import Template
         from .tenant_governance_services.tenant_governance import TenantGovernance
@@ -169,6 +174,7 @@ class Directory(Entity, Parsable):
             "recommendationConfiguration": lambda n : setattr(self, 'recommendation_configuration', n.get_object_value(RecommendationConfiguration)),
             "recommendations": lambda n : setattr(self, 'recommendations', n.get_collection_of_object_values(Recommendation)),
             "recovery": lambda n : setattr(self, 'recovery', n.get_object_value(Recovery)),
+            "remoteTenantGroups": lambda n : setattr(self, 'remote_tenant_groups', n.get_collection_of_object_values(RemoteTenantGroup)),
             "sharedEmailDomains": lambda n : setattr(self, 'shared_email_domains', n.get_collection_of_object_values(SharedEmailDomain)),
             "subscriptions": lambda n : setattr(self, 'subscriptions', n.get_collection_of_object_values(CompanySubscription)),
             "templates": lambda n : setattr(self, 'templates', n.get_object_value(Template)),
@@ -206,6 +212,7 @@ class Directory(Entity, Parsable):
         writer.write_object_value("recommendationConfiguration", self.recommendation_configuration)
         writer.write_collection_of_object_values("recommendations", self.recommendations)
         writer.write_object_value("recovery", self.recovery)
+        writer.write_collection_of_object_values("remoteTenantGroups", self.remote_tenant_groups)
         writer.write_collection_of_object_values("sharedEmailDomains", self.shared_email_domains)
         writer.write_collection_of_object_values("subscriptions", self.subscriptions)
         writer.write_object_value("templates", self.templates)

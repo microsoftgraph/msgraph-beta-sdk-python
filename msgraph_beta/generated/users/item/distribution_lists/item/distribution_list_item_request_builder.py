@@ -18,7 +18,6 @@ if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .add_members.add_members_request_builder import AddMembersRequestBuilder
     from .delete_members.delete_members_request_builder import DeleteMembersRequestBuilder
-    from .distribution_list_members.distribution_list_members_request_builder import DistributionListMembersRequestBuilder
 
 class DistributionListItemRequestBuilder(BaseRequestBuilder):
     """
@@ -158,15 +157,6 @@ class DistributionListItemRequestBuilder(BaseRequestBuilder):
         from .delete_members.delete_members_request_builder import DeleteMembersRequestBuilder
 
         return DeleteMembersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def distribution_list_members(self) -> DistributionListMembersRequestBuilder:
-        """
-        Provides operations to manage the distributionListMembers property of the microsoft.graph.distributionList entity.
-        """
-        from .distribution_list_members.distribution_list_members_request_builder import DistributionListMembersRequestBuilder
-
-        return DistributionListMembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DistributionListItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

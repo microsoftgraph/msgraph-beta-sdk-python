@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .action_step import ActionStep
     from .b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
     from .b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
 
@@ -15,6 +16,8 @@ from ..entity import Entity
 class B2bRegistrationMetrics(Entity, Parsable):
     # The initial property
     initial: Optional[B2BRegistrationMetricsInitial] = None
+    # Ordered drill-in guidance for investigating B2B registration metrics. This collection is returned only when explicitly requested by using a nested $expand query parameter, for example $expand=b2BRegistrationMetrics($expand=investigationHints).
+    investigation_hints: Optional[list[ActionStep]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The recent property
@@ -37,15 +40,18 @@ class B2bRegistrationMetrics(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .action_step import ActionStep
         from .b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
         from .b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
 
         from ..entity import Entity
+        from .action_step import ActionStep
         from .b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
         from .b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
 
         fields: dict[str, Callable[[Any], None]] = {
             "initial": lambda n : setattr(self, 'initial', n.get_object_value(B2BRegistrationMetricsInitial)),
+            "investigationHints": lambda n : setattr(self, 'investigation_hints', n.get_collection_of_object_values(ActionStep)),
             "recent": lambda n : setattr(self, 'recent', n.get_object_value(B2BRegistrationMetricsRecent)),
         }
         super_fields = super().get_field_deserializers()
@@ -62,6 +68,7 @@ class B2bRegistrationMetrics(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("initial", self.initial)
+        writer.write_collection_of_object_values("investigationHints", self.investigation_hints)
         writer.write_object_value("recent", self.recent)
     
 

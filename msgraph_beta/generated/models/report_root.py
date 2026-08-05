@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
     from .identity_analytics_root import IdentityAnalyticsRoot
     from .identity_correlation import IdentityCorrelation
+    from .microsoft_apps_file_storage_container_usage import MicrosoftAppsFileStorageContainerUsage
     from .partners.partners import Partners
     from .print_usage import PrintUsage
     from .print_usage_by_printer import PrintUsageByPrinter
@@ -55,6 +56,8 @@ class ReportRoot(Entity, Parsable):
     health_monitoring: Optional[HealthMonitoringRoot] = None
     # Microsoft Entra identity analytics for the tenant, including its groups.
     identity_analytics: Optional[IdentityAnalyticsRoot] = None
+    # The microsoftAppsFileStorageContainerUsageSummary property
+    microsoft_apps_file_storage_container_usage_summary: Optional[MicrosoftAppsFileStorageContainerUsage] = None
     # Retrieve a list of monthly print usage summaries, grouped by printer.
     monthly_print_usage_by_printer: Optional[list[PrintUsageByPrinter]] = None
     # Retrieve a list of monthly print usage summaries, grouped by user.
@@ -105,6 +108,7 @@ class ReportRoot(Entity, Parsable):
         from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
         from .identity_analytics_root import IdentityAnalyticsRoot
         from .identity_correlation import IdentityCorrelation
+        from .microsoft_apps_file_storage_container_usage import MicrosoftAppsFileStorageContainerUsage
         from .partners.partners import Partners
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
@@ -125,6 +129,7 @@ class ReportRoot(Entity, Parsable):
         from .health_monitoring.health_monitoring_root import HealthMonitoringRoot
         from .identity_analytics_root import IdentityAnalyticsRoot
         from .identity_correlation import IdentityCorrelation
+        from .microsoft_apps_file_storage_container_usage import MicrosoftAppsFileStorageContainerUsage
         from .partners.partners import Partners
         from .print_usage import PrintUsage
         from .print_usage_by_printer import PrintUsageByPrinter
@@ -150,6 +155,7 @@ class ReportRoot(Entity, Parsable):
             "dailyPrintUsageSummariesByUser": lambda n : setattr(self, 'daily_print_usage_summaries_by_user', n.get_collection_of_object_values(PrintUsageByUser)),
             "healthMonitoring": lambda n : setattr(self, 'health_monitoring', n.get_object_value(HealthMonitoringRoot)),
             "identityAnalytics": lambda n : setattr(self, 'identity_analytics', n.get_object_value(IdentityAnalyticsRoot)),
+            "microsoftAppsFileStorageContainerUsageSummary": lambda n : setattr(self, 'microsoft_apps_file_storage_container_usage_summary', n.get_object_value(MicrosoftAppsFileStorageContainerUsage)),
             "monthlyPrintUsageByPrinter": lambda n : setattr(self, 'monthly_print_usage_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
             "monthlyPrintUsageByUser": lambda n : setattr(self, 'monthly_print_usage_by_user', n.get_collection_of_object_values(PrintUsageByUser)),
             "monthlyPrintUsageSummariesByPrinter": lambda n : setattr(self, 'monthly_print_usage_summaries_by_printer', n.get_collection_of_object_values(PrintUsageByPrinter)),
@@ -188,6 +194,7 @@ class ReportRoot(Entity, Parsable):
         writer.write_collection_of_object_values("dailyPrintUsageSummariesByUser", self.daily_print_usage_summaries_by_user)
         writer.write_object_value("healthMonitoring", self.health_monitoring)
         writer.write_object_value("identityAnalytics", self.identity_analytics)
+        writer.write_object_value("microsoftAppsFileStorageContainerUsageSummary", self.microsoft_apps_file_storage_container_usage_summary)
         writer.write_collection_of_object_values("monthlyPrintUsageByPrinter", self.monthly_print_usage_by_printer)
         writer.write_collection_of_object_values("monthlyPrintUsageByUser", self.monthly_print_usage_by_user)
         writer.write_collection_of_object_values("monthlyPrintUsageSummariesByPrinter", self.monthly_print_usage_summaries_by_printer)

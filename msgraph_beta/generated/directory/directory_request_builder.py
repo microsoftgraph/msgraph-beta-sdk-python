@@ -35,6 +35,7 @@ if TYPE_CHECKING:
     from .recommendations.recommendations_request_builder import RecommendationsRequestBuilder
     from .recommendation_configuration.recommendation_configuration_request_builder import RecommendationConfigurationRequestBuilder
     from .recovery.recovery_request_builder import RecoveryRequestBuilder
+    from .remote_tenant_groups.remote_tenant_groups_request_builder import RemoteTenantGroupsRequestBuilder
     from .shared_email_domains.shared_email_domains_request_builder import SharedEmailDomainsRequestBuilder
     from .subscriptions.subscriptions_request_builder import SubscriptionsRequestBuilder
     from .subscriptions_with_commerce_subscription_id.subscriptions_with_commerce_subscription_id_request_builder import SubscriptionsWithCommerceSubscriptionIdRequestBuilder
@@ -328,6 +329,15 @@ class DirectoryRequestBuilder(BaseRequestBuilder):
         from .recovery.recovery_request_builder import RecoveryRequestBuilder
 
         return RecoveryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def remote_tenant_groups(self) -> RemoteTenantGroupsRequestBuilder:
+        """
+        Provides operations to manage the remoteTenantGroups property of the microsoft.graph.directory entity.
+        """
+        from .remote_tenant_groups.remote_tenant_groups_request_builder import RemoteTenantGroupsRequestBuilder
+
+        return RemoteTenantGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def shared_email_domains(self) -> SharedEmailDomainsRequestBuilder:

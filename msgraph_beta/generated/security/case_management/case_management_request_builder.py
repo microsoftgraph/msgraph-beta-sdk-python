@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.security.case_management_root import CaseManagementRoot
     from .cases.cases_request_builder import CasesRequestBuilder
+    from .case_type_configurations.case_type_configurations_request_builder import CaseTypeConfigurationsRequestBuilder
 
 class CaseManagementRequestBuilder(BaseRequestBuilder):
     """
@@ -138,6 +139,15 @@ class CaseManagementRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CaseManagementRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def case_type_configurations(self) -> CaseTypeConfigurationsRequestBuilder:
+        """
+        Provides operations to manage the caseTypeConfigurations property of the microsoft.graph.security.caseManagementRoot entity.
+        """
+        from .case_type_configurations.case_type_configurations_request_builder import CaseTypeConfigurationsRequestBuilder
+
+        return CaseTypeConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def cases(self) -> CasesRequestBuilder:

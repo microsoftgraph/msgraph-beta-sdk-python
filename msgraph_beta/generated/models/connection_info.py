@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .external_sap_ac_connection_info import ExternalSapAcConnectionInfo
     from .external_token_based_sap_iag_connection_info import ExternalTokenBasedSapIagConnectionInfo
 
 @dataclass
@@ -34,6 +35,10 @@ class ConnectionInfo(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalSapAcConnectionInfo".casefold():
+            from .external_sap_ac_connection_info import ExternalSapAcConnectionInfo
+
+            return ExternalSapAcConnectionInfo()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalTokenBasedSapIagConnectionInfo".casefold():
             from .external_token_based_sap_iag_connection_info import ExternalTokenBasedSapIagConnectionInfo
 
@@ -45,8 +50,10 @@ class ConnectionInfo(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .external_sap_ac_connection_info import ExternalSapAcConnectionInfo
         from .external_token_based_sap_iag_connection_info import ExternalTokenBasedSapIagConnectionInfo
 
+        from .external_sap_ac_connection_info import ExternalSapAcConnectionInfo
         from .external_token_based_sap_iag_connection_info import ExternalTokenBasedSapIagConnectionInfo
 
         fields: dict[str, Callable[[Any], None]] = {

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .participant_info import ParticipantInfo
     from .recording_info import RecordingInfo
     from .removed_state import RemovedState
+    from .synthetic_media_detection_info import SyntheticMediaDetectionInfo
 
 from .entity import Entity
 
@@ -40,6 +41,8 @@ class Participant(Entity, Parsable):
     restricted_experience: Optional[OnlineMeetingRestricted] = None
     # Indicates the roster sequence number the participant was last updated in.
     roster_sequence_number: Optional[int] = None
+    # The syntheticMediaDetection property
+    synthetic_media_detection: Optional[SyntheticMediaDetectionInfo] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Participant:
@@ -63,6 +66,7 @@ class Participant(Entity, Parsable):
         from .participant_info import ParticipantInfo
         from .recording_info import RecordingInfo
         from .removed_state import RemovedState
+        from .synthetic_media_detection_info import SyntheticMediaDetectionInfo
 
         from .entity import Entity
         from .media_stream import MediaStream
@@ -70,6 +74,7 @@ class Participant(Entity, Parsable):
         from .participant_info import ParticipantInfo
         from .recording_info import RecordingInfo
         from .removed_state import RemovedState
+        from .synthetic_media_detection_info import SyntheticMediaDetectionInfo
 
         fields: dict[str, Callable[[Any], None]] = {
             "info": lambda n : setattr(self, 'info', n.get_object_value(ParticipantInfo)),
@@ -83,6 +88,7 @@ class Participant(Entity, Parsable):
             "removedState": lambda n : setattr(self, 'removed_state', n.get_object_value(RemovedState)),
             "restrictedExperience": lambda n : setattr(self, 'restricted_experience', n.get_object_value(OnlineMeetingRestricted)),
             "rosterSequenceNumber": lambda n : setattr(self, 'roster_sequence_number', n.get_int_value()),
+            "syntheticMediaDetection": lambda n : setattr(self, 'synthetic_media_detection', n.get_object_value(SyntheticMediaDetectionInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -108,5 +114,6 @@ class Participant(Entity, Parsable):
         writer.write_object_value("removedState", self.removed_state)
         writer.write_object_value("restrictedExperience", self.restricted_experience)
         writer.write_int_value("rosterSequenceNumber", self.roster_sequence_number)
+        writer.write_object_value("syntheticMediaDetection", self.synthetic_media_detection)
     
 

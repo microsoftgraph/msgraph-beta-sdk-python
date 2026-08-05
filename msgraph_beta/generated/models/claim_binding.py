@@ -19,9 +19,9 @@ class ClaimBinding(AdditionalDataHolder, BackedModel, Parsable):
     match_confidence_level: Optional[MatchConfidenceLevel] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Source attribute value
+    # The source attribute from the directory or credential.
     source_attribute: Optional[str] = None
-    # Entra ID attribute value
+    # The claim name in the verified ID credential.
     verified_id_claim: Optional[str] = None
     
     @staticmethod

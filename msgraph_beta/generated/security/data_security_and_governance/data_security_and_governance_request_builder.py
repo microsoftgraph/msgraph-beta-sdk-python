@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.tenant_data_security_and_governance import TenantDataSecurityAndGovernance
     from .policy_files.policy_files_request_builder import PolicyFilesRequestBuilder
+    from .process_content.process_content_request_builder import ProcessContentRequestBuilder
     from .process_content_async.process_content_async_request_builder import ProcessContentAsyncRequestBuilder
     from .protection_scopes.protection_scopes_request_builder import ProtectionScopesRequestBuilder
     from .sensitivity_labels.sensitivity_labels_request_builder import SensitivityLabelsRequestBuilder
@@ -150,6 +151,15 @@ class DataSecurityAndGovernanceRequestBuilder(BaseRequestBuilder):
         from .policy_files.policy_files_request_builder import PolicyFilesRequestBuilder
 
         return PolicyFilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def process_content(self) -> ProcessContentRequestBuilder:
+        """
+        Provides operations to call the processContent method.
+        """
+        from .process_content.process_content_request_builder import ProcessContentRequestBuilder
+
+        return ProcessContentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def process_content_async(self) -> ProcessContentAsyncRequestBuilder:

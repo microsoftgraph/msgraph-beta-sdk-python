@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .admit_from_lobby.admit_from_lobby_request_builder import AdmitFromLobbyRequestBuilder
     from .mute.mute_request_builder import MuteRequestBuilder
     from .remove_from_lobby.remove_from_lobby_request_builder import RemoveFromLobbyRequestBuilder
+    from .report_synthetic_media.report_synthetic_media_request_builder import ReportSyntheticMediaRequestBuilder
     from .start_hold_music.start_hold_music_request_builder import StartHoldMusicRequestBuilder
     from .stop_hold_music.stop_hold_music_request_builder import StopHoldMusicRequestBuilder
 
@@ -171,6 +172,15 @@ class ParticipantItemRequestBuilder(BaseRequestBuilder):
         from .remove_from_lobby.remove_from_lobby_request_builder import RemoveFromLobbyRequestBuilder
 
         return RemoveFromLobbyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def report_synthetic_media(self) -> ReportSyntheticMediaRequestBuilder:
+        """
+        Provides operations to call the reportSyntheticMedia method.
+        """
+        from .report_synthetic_media.report_synthetic_media_request_builder import ReportSyntheticMediaRequestBuilder
+
+        return ReportSyntheticMediaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def start_hold_music(self) -> StartHoldMusicRequestBuilder:

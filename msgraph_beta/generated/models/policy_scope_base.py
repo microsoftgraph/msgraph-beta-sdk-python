@@ -24,6 +24,8 @@ class PolicyScopeBase(AdditionalDataHolder, BackedModel, Parsable):
     activities: Optional[UserActivityTypes] = None
     # The executionMode property
     execution_mode: Optional[ExecutionMode] = None
+    # The locationExclusions property
+    location_exclusions: Optional[list[PolicyLocation]] = None
     # The locations (like domains or URLs) to be protected. Required.
     locations: Optional[list[PolicyLocation]] = None
     # The OdataType property
@@ -77,6 +79,7 @@ class PolicyScopeBase(AdditionalDataHolder, BackedModel, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "activities": lambda n : setattr(self, 'activities', n.get_collection_of_enum_values(UserActivityTypes)),
             "executionMode": lambda n : setattr(self, 'execution_mode', n.get_enum_value(ExecutionMode)),
+            "locationExclusions": lambda n : setattr(self, 'location_exclusions', n.get_collection_of_object_values(PolicyLocation)),
             "locations": lambda n : setattr(self, 'locations', n.get_collection_of_object_values(PolicyLocation)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyActions": lambda n : setattr(self, 'policy_actions', n.get_collection_of_object_values(DlpActionInfo)),
@@ -93,6 +96,7 @@ class PolicyScopeBase(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("activities", self.activities)
         writer.write_enum_value("executionMode", self.execution_mode)
+        writer.write_collection_of_object_values("locationExclusions", self.location_exclusions)
         writer.write_collection_of_object_values("locations", self.locations)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("policyActions", self.policy_actions)

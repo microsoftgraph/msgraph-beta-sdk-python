@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .channel_identity import ChannelIdentity
     from .chat_message_attachment import ChatMessageAttachment
+    from .chat_message_body import ChatMessageBody
     from .chat_message_from_identity_set import ChatMessageFromIdentitySet
     from .chat_message_history_item import ChatMessageHistoryItem
     from .chat_message_hosted_content import ChatMessageHostedContent
@@ -18,7 +19,6 @@ if TYPE_CHECKING:
     from .chat_message_type import ChatMessageType
     from .entity import Entity
     from .event_message_detail import EventMessageDetail
-    from .item_body import ItemBody
     from .targeted_chat_message import TargetedChatMessage
 
 from .entity import Entity
@@ -28,7 +28,7 @@ class ChatMessage(Entity, Parsable):
     # References to attached objects like files, tabs, meetings etc.
     attachments: Optional[list[ChatMessageAttachment]] = None
     # The body property
-    body: Optional[ItemBody] = None
+    body: Optional[ChatMessageBody] = None
     # If the message was sent in a channel, represents identity of the channel.
     channel_identity: Optional[ChannelIdentity] = None
     # If the message was sent in a chat, represents the identity of the chat.
@@ -105,6 +105,7 @@ class ChatMessage(Entity, Parsable):
         """
         from .channel_identity import ChannelIdentity
         from .chat_message_attachment import ChatMessageAttachment
+        from .chat_message_body import ChatMessageBody
         from .chat_message_from_identity_set import ChatMessageFromIdentitySet
         from .chat_message_history_item import ChatMessageHistoryItem
         from .chat_message_hosted_content import ChatMessageHostedContent
@@ -115,11 +116,11 @@ class ChatMessage(Entity, Parsable):
         from .chat_message_type import ChatMessageType
         from .entity import Entity
         from .event_message_detail import EventMessageDetail
-        from .item_body import ItemBody
         from .targeted_chat_message import TargetedChatMessage
 
         from .channel_identity import ChannelIdentity
         from .chat_message_attachment import ChatMessageAttachment
+        from .chat_message_body import ChatMessageBody
         from .chat_message_from_identity_set import ChatMessageFromIdentitySet
         from .chat_message_history_item import ChatMessageHistoryItem
         from .chat_message_hosted_content import ChatMessageHostedContent
@@ -130,12 +131,11 @@ class ChatMessage(Entity, Parsable):
         from .chat_message_type import ChatMessageType
         from .entity import Entity
         from .event_message_detail import EventMessageDetail
-        from .item_body import ItemBody
         from .targeted_chat_message import TargetedChatMessage
 
         fields: dict[str, Callable[[Any], None]] = {
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(ChatMessageAttachment)),
-            "body": lambda n : setattr(self, 'body', n.get_object_value(ItemBody)),
+            "body": lambda n : setattr(self, 'body', n.get_object_value(ChatMessageBody)),
             "channelIdentity": lambda n : setattr(self, 'channel_identity', n.get_object_value(ChannelIdentity)),
             "chatId": lambda n : setattr(self, 'chat_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
