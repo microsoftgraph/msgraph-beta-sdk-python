@@ -41,7 +41,7 @@ class Participant(Entity, Parsable):
     restricted_experience: Optional[OnlineMeetingRestricted] = None
     # Indicates the roster sequence number the participant was last updated in.
     roster_sequence_number: Optional[int] = None
-    # The syntheticMediaDetection property
+    # The latest synthetic media detection result reported for this participant by an in-call detection bot. Nullable. Set to null when no detection is reported. Populated asynchronously after a successful call to reportSyntheticMedia.
     synthetic_media_detection: Optional[SyntheticMediaDetectionInfo] = None
     
     @staticmethod

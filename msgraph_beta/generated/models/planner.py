@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .planner_bucket import PlannerBucket
+    from .planner_goal import PlannerGoal
     from .planner_plan import PlannerPlan
     from .planner_roster import PlannerRoster
     from .planner_task import PlannerTask
@@ -17,6 +18,8 @@ from .entity import Entity
 class Planner(Entity, Parsable):
     # Read-only. Nullable. Returns a collection of the specified buckets
     buckets: Optional[list[PlannerBucket]] = None
+    # Read-only. Nullable. Returns a collection of the specified goals
+    goals: Optional[list[PlannerGoal]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Read-only. Nullable. Returns a collection of the specified plans
@@ -44,18 +47,21 @@ class Planner(Entity, Parsable):
         """
         from .entity import Entity
         from .planner_bucket import PlannerBucket
+        from .planner_goal import PlannerGoal
         from .planner_plan import PlannerPlan
         from .planner_roster import PlannerRoster
         from .planner_task import PlannerTask
 
         from .entity import Entity
         from .planner_bucket import PlannerBucket
+        from .planner_goal import PlannerGoal
         from .planner_plan import PlannerPlan
         from .planner_roster import PlannerRoster
         from .planner_task import PlannerTask
 
         fields: dict[str, Callable[[Any], None]] = {
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_object_values(PlannerBucket)),
+            "goals": lambda n : setattr(self, 'goals', n.get_collection_of_object_values(PlannerGoal)),
             "plans": lambda n : setattr(self, 'plans', n.get_collection_of_object_values(PlannerPlan)),
             "rosters": lambda n : setattr(self, 'rosters', n.get_collection_of_object_values(PlannerRoster)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(PlannerTask)),
@@ -74,6 +80,7 @@ class Planner(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("buckets", self.buckets)
+        writer.write_collection_of_object_values("goals", self.goals)
         writer.write_collection_of_object_values("plans", self.plans)
         writer.write_collection_of_object_values("rosters", self.rosters)
         writer.write_collection_of_object_values("tasks", self.tasks)

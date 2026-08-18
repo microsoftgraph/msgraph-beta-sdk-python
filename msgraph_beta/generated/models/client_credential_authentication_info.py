@@ -13,11 +13,11 @@ from .authentication_info import AuthenticationInfo
 class ClientCredentialAuthenticationInfo(AuthenticationInfo, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.clientCredentialAuthenticationInfo"
-    # The accessTokenUrl property
+    # The URL endpoint used to obtain access tokens for authentication with the external system.
     access_token_url: Optional[str] = None
-    # The clientId property
+    # The client identifier used for authentication with the external system.
     client_id: Optional[str] = None
-    # The secretName property
+    # The name of the secret in Azure Key Vault that contains the client secret.
     secret_name: Optional[str] = None
     
     @staticmethod

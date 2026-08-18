@@ -19,7 +19,7 @@ class FileStorageContainerTypeSettings(AdditionalDataHolder, BackedModel, Parsab
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Contains agent-related settings. Optional
     agent: Optional[FileStorageContainerTypeAgentSettings] = None
-    # A comma-separated list of settings that can be overridden in the consuming tenant. The possible values are: urlTemplate, isDiscoverabilityEnabled, isSearchEnabled, isItemVersioningEnabled, itemMajorVersionLimit, maxStoragePerContainerInBytes, unknownFutureValue.
+    # A comma-separated list of settings that can be overridden in the consuming tenant. The possible values are: urlTemplate, isDiscoverabilityEnabled, isSearchEnabled, isItemVersioningEnabled, itemMajorVersionLimit, maxStoragePerContainerInBytes, unknownFutureValue, isOfficeRestricted.
     consuming_tenant_overridables: Optional[FileStorageContainerTypeSettingsOverride] = None
     # Indicates whether items from containers are surfaced in experiences such as My Activity or Microsoft 365.
     is_discoverability_enabled: Optional[bool] = None

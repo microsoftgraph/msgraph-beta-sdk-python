@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
     from .planner_bucket import PlannerBucket
     from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
+    from .planner_goal import PlannerGoal
     from .planner_history_item import PlannerHistoryItem
     from .planner_plan import PlannerPlan
     from .planner_plan_details import PlannerPlanDetails
@@ -56,6 +57,10 @@ class PlannerDelta(Entity, Parsable):
             from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
 
             return PlannerBucketTaskBoardTaskFormat()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerGoal".casefold():
+            from .planner_goal import PlannerGoal
+
+            return PlannerGoal()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerHistoryItem".casefold():
             from .planner_history_item import PlannerHistoryItem
 
@@ -100,6 +105,7 @@ class PlannerDelta(Entity, Parsable):
         from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
         from .planner_bucket import PlannerBucket
         from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
+        from .planner_goal import PlannerGoal
         from .planner_history_item import PlannerHistoryItem
         from .planner_plan import PlannerPlan
         from .planner_plan_details import PlannerPlanDetails
@@ -114,6 +120,7 @@ class PlannerDelta(Entity, Parsable):
         from .planner_assigned_to_task_board_task_format import PlannerAssignedToTaskBoardTaskFormat
         from .planner_bucket import PlannerBucket
         from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
+        from .planner_goal import PlannerGoal
         from .planner_history_item import PlannerHistoryItem
         from .planner_plan import PlannerPlan
         from .planner_plan_details import PlannerPlanDetails

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .claim_binding import ClaimBinding
     from .claim_binding_source import ClaimBindingSource
     from .claim_validation import ClaimValidation
+    from .verified_id_method_type import VerifiedIdMethodType
 
 @dataclass
 class VerifiedIdProfileConfiguration(AdditionalDataHolder, BackedModel, Parsable):
@@ -25,6 +26,10 @@ class VerifiedIdProfileConfiguration(AdditionalDataHolder, BackedModel, Parsable
     claim_bindings: Optional[list[ClaimBinding]] = None
     # The claimValidation property
     claim_validation: Optional[ClaimValidation] = None
+    # The URL where the credential issuer's manifest can be found. The manifest defines the credential schema and issuer details. Optional.
+    manifest_url: Optional[str] = None
+    # The methodType property
+    method_type: Optional[VerifiedIdMethodType] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Verified ID type. Required.
@@ -49,16 +54,20 @@ class VerifiedIdProfileConfiguration(AdditionalDataHolder, BackedModel, Parsable
         from .claim_binding import ClaimBinding
         from .claim_binding_source import ClaimBindingSource
         from .claim_validation import ClaimValidation
+        from .verified_id_method_type import VerifiedIdMethodType
 
         from .claim_binding import ClaimBinding
         from .claim_binding_source import ClaimBindingSource
         from .claim_validation import ClaimValidation
+        from .verified_id_method_type import VerifiedIdMethodType
 
         fields: dict[str, Callable[[Any], None]] = {
             "acceptedIssuer": lambda n : setattr(self, 'accepted_issuer', n.get_str_value()),
             "claimBindingSource": lambda n : setattr(self, 'claim_binding_source', n.get_enum_value(ClaimBindingSource)),
             "claimBindings": lambda n : setattr(self, 'claim_bindings', n.get_collection_of_object_values(ClaimBinding)),
             "claimValidation": lambda n : setattr(self, 'claim_validation', n.get_object_value(ClaimValidation)),
+            "manifestUrl": lambda n : setattr(self, 'manifest_url', n.get_str_value()),
+            "methodType": lambda n : setattr(self, 'method_type', n.get_enum_value(VerifiedIdMethodType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
@@ -76,6 +85,8 @@ class VerifiedIdProfileConfiguration(AdditionalDataHolder, BackedModel, Parsable
         writer.write_enum_value("claimBindingSource", self.claim_binding_source)
         writer.write_collection_of_object_values("claimBindings", self.claim_bindings)
         writer.write_object_value("claimValidation", self.claim_validation)
+        writer.write_str_value("manifestUrl", self.manifest_url)
+        writer.write_enum_value("methodType", self.method_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)

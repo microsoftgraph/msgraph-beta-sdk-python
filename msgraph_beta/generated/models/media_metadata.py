@@ -18,23 +18,23 @@ class MediaMetadata(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The audioMetadata property
+    # Audio-specific encoding details. Nullable. Set when the analyzed content is audio or multimodal.
     audio_metadata: Optional[AudioMetadata] = None
-    # The byteSize property
+    # Size of the content in bytes. Set this value to 0 for live streams where the total size is unknown; for recorded files, specify the actual size.
     byte_size: Optional[int] = None
-    # The duration property
+    # Duration of the analyzed content in whole seconds. Sub-second or millisecond windows are rounded to the nearest second. For a continuous live stream, set this value to the length of the analysis window.
     duration: Optional[int] = None
-    # The isRealTime property
+    # Indicates whether the analysis was performed in real time on a live stream.
     is_real_time: Optional[bool] = None
-    # The mimeType property
+    # MIME type of the analyzed content. Common values for Teams media include audio/pcm, video/mp4, and video/h264.
     mime_type: Optional[str] = None
     # The modality property
     modality: Optional[ContentModality] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The streamingMetadata property
+    # Network and real-time streaming quality metrics. Nullable. Set when the analyzed content was streamed in real time.
     streaming_metadata: Optional[StreamingMetadata] = None
-    # The videoMetadata property
+    # Video-specific encoding and quality details. Nullable. Set when the analyzed content is video or multimodal.
     video_metadata: Optional[VideoMetadata] = None
     
     @staticmethod

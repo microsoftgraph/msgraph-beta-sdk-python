@@ -8,8 +8,10 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .entity import Entity
     from .face_check_configuration import FaceCheckConfiguration
+    from .mobile_drivers_license_configuration import MobileDriversLicenseConfiguration
     from .verified_id_profile_configuration import VerifiedIdProfileConfiguration
     from .verified_id_profile_state import VerifiedIdProfileState
+    from .verified_id_self_service_issuance import VerifiedIdSelfServiceIssuance
     from .verified_id_usage_configuration import VerifiedIdUsageConfiguration
 
 from .entity import Entity
@@ -22,12 +24,16 @@ class VerifiedIdProfile(Entity, Parsable):
     face_check_configuration: Optional[FaceCheckConfiguration] = None
     # DateTime the profile was last modified. Optional.
     last_modified_date_time: Optional[datetime.datetime] = None
+    # Configuration for accepting mobile driver's licenses. Optional.
+    mobile_drivers_license_configuration: Optional[MobileDriversLicenseConfiguration] = None
     # Display name for the verified ID profile. Required.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Defines profile processing priority if multiple profiles are configured. Optional.
     priority: Optional[int] = None
+    # Configuration for self-service issuance. Optional.
+    self_service_issuance: Optional[VerifiedIdSelfServiceIssuance] = None
     # The state property
     state: Optional[VerifiedIdProfileState] = None
     # The verifiedIdProfileConfiguration property
@@ -55,22 +61,28 @@ class VerifiedIdProfile(Entity, Parsable):
         """
         from .entity import Entity
         from .face_check_configuration import FaceCheckConfiguration
+        from .mobile_drivers_license_configuration import MobileDriversLicenseConfiguration
         from .verified_id_profile_configuration import VerifiedIdProfileConfiguration
         from .verified_id_profile_state import VerifiedIdProfileState
+        from .verified_id_self_service_issuance import VerifiedIdSelfServiceIssuance
         from .verified_id_usage_configuration import VerifiedIdUsageConfiguration
 
         from .entity import Entity
         from .face_check_configuration import FaceCheckConfiguration
+        from .mobile_drivers_license_configuration import MobileDriversLicenseConfiguration
         from .verified_id_profile_configuration import VerifiedIdProfileConfiguration
         from .verified_id_profile_state import VerifiedIdProfileState
+        from .verified_id_self_service_issuance import VerifiedIdSelfServiceIssuance
         from .verified_id_usage_configuration import VerifiedIdUsageConfiguration
 
         fields: dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "faceCheckConfiguration": lambda n : setattr(self, 'face_check_configuration', n.get_object_value(FaceCheckConfiguration)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "mobileDriversLicenseConfiguration": lambda n : setattr(self, 'mobile_drivers_license_configuration', n.get_object_value(MobileDriversLicenseConfiguration)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
+            "selfServiceIssuance": lambda n : setattr(self, 'self_service_issuance', n.get_object_value(VerifiedIdSelfServiceIssuance)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(VerifiedIdProfileState)),
             "verifiedIdProfileConfiguration": lambda n : setattr(self, 'verified_id_profile_configuration', n.get_object_value(VerifiedIdProfileConfiguration)),
             "verifiedIdUsageConfigurations": lambda n : setattr(self, 'verified_id_usage_configurations', n.get_collection_of_object_values(VerifiedIdUsageConfiguration)),
@@ -92,8 +104,10 @@ class VerifiedIdProfile(Entity, Parsable):
         writer.write_str_value("description", self.description)
         writer.write_object_value("faceCheckConfiguration", self.face_check_configuration)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_object_value("mobileDriversLicenseConfiguration", self.mobile_drivers_license_configuration)
         writer.write_str_value("name", self.name)
         writer.write_int_value("priority", self.priority)
+        writer.write_object_value("selfServiceIssuance", self.self_service_issuance)
         writer.write_enum_value("state", self.state)
         writer.write_object_value("verifiedIdProfileConfiguration", self.verified_id_profile_configuration)
         writer.write_collection_of_object_values("verifiedIdUsageConfigurations", self.verified_id_usage_configurations)

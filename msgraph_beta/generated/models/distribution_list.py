@@ -17,13 +17,13 @@ class DistributionList(OutlookItem, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.distributionList"
     # The display name of the distribution list.
     display_name: Optional[str] = None
-    # The list of members in the distribution list. Not returned by default; use $select=members to include.
+    # The members property
     members: Optional[list[Member]] = None
-    # The notes property
+    # Notes about the distribution list.
     notes: Optional[str] = None
-    # The personIdentifier property
+    # The unique identifier of the distribution list in the mailbox. Read-only.
     person_identifier: Optional[str] = None
-    # The singleValueExtendedProperties property
+    # The collection of single-value extended properties defined for the distribution list. Read-only.
     single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
     
     @staticmethod

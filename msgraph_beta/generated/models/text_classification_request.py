@@ -14,19 +14,19 @@ from .entity import Entity
 
 @dataclass
 class TextClassificationRequest(Entity, Parsable):
-    # The contentMetaData property
+    # Metadata that describes the content being classified.
     content_meta_data: Optional[ClassificationRequestContentMetaData] = None
-    # The fileExtension property
+    # The file extension of the content being classified.
     file_extension: Optional[str] = None
-    # The matchTolerancesToInclude property
+    # The match tolerance levels to include in the classification results. The possible values are: exact, near.
     match_tolerances_to_include: Optional[MlClassificationMatchTolerance] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The scopesToRun property
+    # The document scopes over which to run classification. The possible values are: fullDocument, partialDocument.
     scopes_to_run: Optional[SensitiveTypeScope] = None
-    # The sensitiveTypeIds property
+    # The identifiers of the sensitive information types to evaluate against the text.
     sensitive_type_ids: Optional[list[str]] = None
-    # The text property
+    # The text to classify.
     text: Optional[str] = None
     
     @staticmethod
