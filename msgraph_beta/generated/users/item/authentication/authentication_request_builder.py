@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from .platform_credential_methods.platform_credential_methods_request_builder import PlatformCredentialMethodsRequestBuilder
     from .qr_code_pin_method.qr_code_pin_method_request_builder import QrCodePinMethodRequestBuilder
     from .requirements.requirements_request_builder import RequirementsRequestBuilder
+    from .resource_account_key_authentication_methods.resource_account_key_authentication_methods_request_builder import ResourceAccountKeyAuthenticationMethodsRequestBuilder
     from .sign_in_preferences.sign_in_preferences_request_builder import SignInPreferencesRequestBuilder
     from .software_oath_methods.software_oath_methods_request_builder import SoftwareOathMethodsRequestBuilder
     from .temporary_access_pass_methods.temporary_access_pass_methods_request_builder import TemporaryAccessPassMethodsRequestBuilder
@@ -271,6 +272,15 @@ class AuthenticationRequestBuilder(BaseRequestBuilder):
         from .requirements.requirements_request_builder import RequirementsRequestBuilder
 
         return RequirementsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def resource_account_key_authentication_methods(self) -> ResourceAccountKeyAuthenticationMethodsRequestBuilder:
+        """
+        Provides operations to manage the resourceAccountKeyAuthenticationMethods property of the microsoft.graph.authentication entity.
+        """
+        from .resource_account_key_authentication_methods.resource_account_key_authentication_methods_request_builder import ResourceAccountKeyAuthenticationMethodsRequestBuilder
+
+        return ResourceAccountKeyAuthenticationMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sign_in_preferences(self) -> SignInPreferencesRequestBuilder:

@@ -15,17 +15,17 @@ class Member(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The ID of the referenced contact, if applicable. Optional.
+    # The contactId property
     contact_id: Optional[str] = None
     # The display name of the member. Optional.
     display_name: Optional[str] = None
-    # The email address or routing key of the member. Required.
+    # The email address or routing key of the member. Optional.
     key: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The recipientType property
     recipient_type: Optional[RecipientType] = None
-    # The routing type for the member, for example, SMTP. Optional.
+    # The routingType property
     routing_type: Optional[str] = None
     
     @staticmethod

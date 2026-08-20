@@ -13,7 +13,7 @@ from .workflow_execution_trigger import WorkflowExecutionTrigger
 class GuestSponsorTrigger(WorkflowExecutionTrigger, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.identityGovernance.guestSponsorTrigger"
-    # The minimumRequiredSponsors property
+    # The minimum number of sponsors required for a guest user. When a guest has fewer sponsors than this value, the workflow is triggered.
     minimum_required_sponsors: Optional[int] = None
     
     @staticmethod

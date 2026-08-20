@@ -5,4 +5,5 @@ class VerifiedIdUsageConfigurationPurpose(str, Enum):
     Onboarding = "onboarding",
     All = "all",
     UnknownFutureValue = "unknownFutureValue",
+    Verification = "verification",
 

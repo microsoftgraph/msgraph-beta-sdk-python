@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from ..models.planner import Planner
     from .buckets.buckets_request_builder import BucketsRequestBuilder
+    from .goals.goals_request_builder import GoalsRequestBuilder
     from .plans.plans_request_builder import PlansRequestBuilder
     from .rosters.rosters_request_builder import RostersRequestBuilder
     from .tasks.tasks_request_builder import TasksRequestBuilder
@@ -121,6 +122,15 @@ class PlannerRequestBuilder(BaseRequestBuilder):
         from .buckets.buckets_request_builder import BucketsRequestBuilder
 
         return BucketsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def goals(self) -> GoalsRequestBuilder:
+        """
+        Provides operations to manage the goals property of the microsoft.graph.planner entity.
+        """
+        from .goals.goals_request_builder import GoalsRequestBuilder
+
+        return GoalsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def plans(self) -> PlansRequestBuilder:

@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .phone_authentication_method import PhoneAuthenticationMethod
     from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
     from .qr_code_pin_authentication_method import QrCodePinAuthenticationMethod
+    from .resource_account_key_authentication_method import ResourceAccountKeyAuthenticationMethod
     from .sign_in_preferences import SignInPreferences
     from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
     from .strong_authentication_requirements import StrongAuthenticationRequirements
@@ -56,6 +57,8 @@ class Authentication(Entity, Parsable):
     qr_code_pin_method: Optional[QrCodePinAuthenticationMethod] = None
     # The settings and preferences for per-user Microsoft Entra multifactor authentication.
     requirements: Optional[StrongAuthenticationRequirements] = None
+    # Represents the resource account key credentials registered to a user for authentication on shared devices.
+    resource_account_key_authentication_methods: Optional[list[ResourceAccountKeyAuthenticationMethod]] = None
     # The settings and preferences for the sign-in experience of a user. Use this property to configure the user's default multifactor authentication (MFA) method.
     sign_in_preferences: Optional[SignInPreferences] = None
     # The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.
@@ -94,6 +97,7 @@ class Authentication(Entity, Parsable):
         from .phone_authentication_method import PhoneAuthenticationMethod
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .qr_code_pin_authentication_method import QrCodePinAuthenticationMethod
+        from .resource_account_key_authentication_method import ResourceAccountKeyAuthenticationMethod
         from .sign_in_preferences import SignInPreferences
         from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
         from .strong_authentication_requirements import StrongAuthenticationRequirements
@@ -113,6 +117,7 @@ class Authentication(Entity, Parsable):
         from .phone_authentication_method import PhoneAuthenticationMethod
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
         from .qr_code_pin_authentication_method import QrCodePinAuthenticationMethod
+        from .resource_account_key_authentication_method import ResourceAccountKeyAuthenticationMethod
         from .sign_in_preferences import SignInPreferences
         from .software_oath_authentication_method import SoftwareOathAuthenticationMethod
         from .strong_authentication_requirements import StrongAuthenticationRequirements
@@ -133,6 +138,7 @@ class Authentication(Entity, Parsable):
             "platformCredentialMethods": lambda n : setattr(self, 'platform_credential_methods', n.get_collection_of_object_values(PlatformCredentialAuthenticationMethod)),
             "qrCodePinMethod": lambda n : setattr(self, 'qr_code_pin_method', n.get_object_value(QrCodePinAuthenticationMethod)),
             "requirements": lambda n : setattr(self, 'requirements', n.get_object_value(StrongAuthenticationRequirements)),
+            "resourceAccountKeyAuthenticationMethods": lambda n : setattr(self, 'resource_account_key_authentication_methods', n.get_collection_of_object_values(ResourceAccountKeyAuthenticationMethod)),
             "signInPreferences": lambda n : setattr(self, 'sign_in_preferences', n.get_object_value(SignInPreferences)),
             "softwareOathMethods": lambda n : setattr(self, 'software_oath_methods', n.get_collection_of_object_values(SoftwareOathAuthenticationMethod)),
             "temporaryAccessPassMethods": lambda n : setattr(self, 'temporary_access_pass_methods', n.get_collection_of_object_values(TemporaryAccessPassAuthenticationMethod)),
@@ -164,6 +170,7 @@ class Authentication(Entity, Parsable):
         writer.write_collection_of_object_values("platformCredentialMethods", self.platform_credential_methods)
         writer.write_object_value("qrCodePinMethod", self.qr_code_pin_method)
         writer.write_object_value("requirements", self.requirements)
+        writer.write_collection_of_object_values("resourceAccountKeyAuthenticationMethods", self.resource_account_key_authentication_methods)
         writer.write_object_value("signInPreferences", self.sign_in_preferences)
         writer.write_collection_of_object_values("softwareOathMethods", self.software_oath_methods)
         writer.write_collection_of_object_values("temporaryAccessPassMethods", self.temporary_access_pass_methods)

@@ -12,13 +12,13 @@ class AudioMetadata(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The bitDepth property
+    # Bit depth of the audio samples (for example, 16, 24).
     bit_depth: Optional[int] = None
-    # The channels property
+    # Number of audio channels (for example, 1 for mono, 2 for stereo).
     channels: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The sampleRateHz property
+    # Sample rate in Hertz (for example, 16000, 48000).
     sample_rate_hz: Optional[int] = None
     
     @staticmethod

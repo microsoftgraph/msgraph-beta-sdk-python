@@ -16,15 +16,15 @@ class ExternalSapAcConnectionInfo(ConnectionInfo, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.externalSapAcConnectionInfo"
     # The authenticationInfo property
     authentication_info: Optional[AuthenticationInfo] = None
-    # The keyVaultName property
+    # The name of the Azure Key Vault that stores the credentials used for authentication.
     key_vault_name: Optional[str] = None
-    # The resourceGroup property
+    # The Azure resource group that contains the Key Vault.
     resource_group: Optional[str] = None
-    # The subscriptionId property
+    # The Azure subscription ID that contains the Key Vault.
     subscription_id: Optional[str] = None
-    # The systemId property
+    # The identifier of the target SAP AC system.
     system_id: Optional[str] = None
-    # The userIdentifier property
+    # The user identifier used to connect to the SAP AC system.
     user_identifier: Optional[str] = None
     
     @staticmethod

@@ -1460,6 +1460,7 @@ if TYPE_CHECKING:
     from .planner_bucket import PlannerBucket
     from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
     from .planner_delta import PlannerDelta
+    from .planner_goal import PlannerGoal
     from .planner_group import PlannerGroup
     from .planner_history_item import PlannerHistoryItem
     from .planner_plan import PlannerPlan
@@ -1584,6 +1585,7 @@ if TYPE_CHECKING:
     from .report_root import ReportRoot
     from .request import Request
     from .reseller_delegated_admin_relationship import ResellerDelegatedAdminRelationship
+    from .resource_account_key_authentication_method import ResourceAccountKeyAuthenticationMethod
     from .resource_operation import ResourceOperation
     from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
     from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
@@ -8277,6 +8279,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .planner_delta import PlannerDelta
 
             return PlannerDelta()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerGoal".casefold():
+            from .planner_goal import PlannerGoal
+
+            return PlannerGoal()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerGroup".casefold():
             from .planner_group import PlannerGroup
 
@@ -8775,6 +8781,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .reseller_delegated_admin_relationship import ResellerDelegatedAdminRelationship
 
             return ResellerDelegatedAdminRelationship()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.resourceAccountKeyAuthenticationMethod".casefold():
+            from .resource_account_key_authentication_method import ResourceAccountKeyAuthenticationMethod
+
+            return ResourceAccountKeyAuthenticationMethod()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.resourceOperation".casefold():
             from .resource_operation import ResourceOperation
 
@@ -13483,6 +13493,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .planner_bucket import PlannerBucket
         from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
         from .planner_delta import PlannerDelta
+        from .planner_goal import PlannerGoal
         from .planner_group import PlannerGroup
         from .planner_history_item import PlannerHistoryItem
         from .planner_plan import PlannerPlan
@@ -13607,6 +13618,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .report_root import ReportRoot
         from .request import Request
         from .reseller_delegated_admin_relationship import ResellerDelegatedAdminRelationship
+        from .resource_account_key_authentication_method import ResourceAccountKeyAuthenticationMethod
         from .resource_operation import ResourceOperation
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
@@ -15865,6 +15877,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .planner_bucket import PlannerBucket
         from .planner_bucket_task_board_task_format import PlannerBucketTaskBoardTaskFormat
         from .planner_delta import PlannerDelta
+        from .planner_goal import PlannerGoal
         from .planner_group import PlannerGroup
         from .planner_history_item import PlannerHistoryItem
         from .planner_plan import PlannerPlan
@@ -15989,6 +16002,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .report_root import ReportRoot
         from .request import Request
         from .reseller_delegated_admin_relationship import ResellerDelegatedAdminRelationship
+        from .resource_account_key_authentication_method import ResourceAccountKeyAuthenticationMethod
         from .resource_operation import ResourceOperation
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase

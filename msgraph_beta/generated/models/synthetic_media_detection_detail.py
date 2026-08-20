@@ -16,13 +16,13 @@ class SyntheticMediaDetectionDetail(AdditionalDataHolder, BackedModel, Parsable)
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The confidence property
+    # Confidence score for this specific detection, expressed as a value between 0.0 and 1.0.
     confidence: Optional[float] = None
     # The modality property
     modality: Optional[ContentModality] = None
-    # The modelName property
+    # Name of the detection model used (for example, DeepfakeDetector-v2, VoiceAuthenticator-v1).
     model_name: Optional[str] = None
-    # The modelTasks property
+    # Detection tasks that the model performed. This value is free-form text. The bot can specify any task names that describe its analysis. Common examples include faceSwap, lipSync, and voiceClone.
     model_tasks: Optional[list[str]] = None
     # The OdataType property
     odata_type: Optional[str] = None

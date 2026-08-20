@@ -12,11 +12,11 @@ class StreamingMetadata(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The frameDropRate property
+    # Percentage of frames dropped during streaming, expressed as a value between 0.0 and 1.0.
     frame_drop_rate: Optional[float] = None
-    # The latencyMs property
+    # Network latency in milliseconds.
     latency_ms: Optional[int] = None
-    # The networkJitterMs property
+    # Network jitter in milliseconds.
     network_jitter_ms: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
