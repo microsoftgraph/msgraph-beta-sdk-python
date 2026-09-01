@@ -38,6 +38,7 @@ class MailboxProtectionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
         param mailbox_protection_units_bulk_addition_job_id: The unique identifier of mailboxProtectionUnitsBulkAdditionJob
         Returns: MailboxProtectionUnitsBulkAdditionJobItemRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if mailbox_protection_units_bulk_addition_job_id is None:
             raise TypeError("mailbox_protection_units_bulk_addition_job_id cannot be null.")
         from .item.mailbox_protection_units_bulk_addition_job_item_request_builder import MailboxProtectionUnitsBulkAdditionJobItemRequestBuilder
@@ -53,6 +54,7 @@ class MailboxProtectionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[MailboxProtectionUnitsBulkAdditionJobCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/exchangeprotectionpolicy-list-mailboxprotectionunitsbulkadditionjobs?view=graph-rest-beta
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -73,6 +75,7 @@ class MailboxProtectionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -84,6 +87,7 @@ class MailboxProtectionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MailboxProtectionUnitsBulkAdditionJobsRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MailboxProtectionUnitsBulkAdditionJobsRequestBuilder(self.request_adapter, raw_url)

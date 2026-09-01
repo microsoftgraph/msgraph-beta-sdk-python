@@ -8,4 +8,8 @@ class AlertType(str, Enum):
     UnknownFutureValue = "unknownFutureValue",
     ConditionalAccessBlockedSignIn = "conditionalAccessBlockedSignIn",
     SamlSignInFailure = "samlSignInFailure",
+    InternetAppBlockedByPolicy = "internetAppBlockedByPolicy",
+    PrivateAppBlockedByConnector = "privateAppBlockedByConnector",
+    RemoteNetworkTunnelConnectivity = "remoteNetworkTunnelConnectivity",
+    RemoteNetworkBgpConnectivity = "remoteNetworkBgpConnectivity",
 

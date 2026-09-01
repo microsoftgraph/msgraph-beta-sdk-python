@@ -14,13 +14,13 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
+    from .....models.governance_request import GovernanceRequest
     from .....models.o_data_errors.o_data_error import ODataError
-    from .....models.tenant_governance_services.governance_request import GovernanceRequest
     from .governance_policy_template.governance_policy_template_request_builder import GovernancePolicyTemplateRequestBuilder
 
 class GovernanceRequestItemRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the governanceRequests property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+    Provides operations to manage the governanceRequests property of the microsoft.graph.tenantGovernance entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -66,7 +66,7 @@ class GovernanceRequestItemRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.tenant_governance_services.governance_request import GovernanceRequest
+        from .....models.governance_request import GovernanceRequest
 
         return await self.request_adapter.send_async(request_info, GovernanceRequest, error_mapping)
     
@@ -90,7 +90,7 @@ class GovernanceRequestItemRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.tenant_governance_services.governance_request import GovernanceRequest
+        from .....models.governance_request import GovernanceRequest
 
         return await self.request_adapter.send_async(request_info, GovernanceRequest, error_mapping)
     
@@ -144,7 +144,7 @@ class GovernanceRequestItemRequestBuilder(BaseRequestBuilder):
     @property
     def governance_policy_template(self) -> GovernancePolicyTemplateRequestBuilder:
         """
-        Provides operations to manage the governancePolicyTemplate property of the microsoft.graph.tenantGovernanceServices.governanceRequest entity.
+        Provides operations to manage the governancePolicyTemplate property of the microsoft.graph.governanceRequest entity.
         """
         from .governance_policy_template.governance_policy_template_request_builder import GovernancePolicyTemplateRequestBuilder
 

@@ -41,6 +41,8 @@ class FileStorageContainer(Entity, Parsable):
     created_date_time: Optional[datetime.datetime] = None
     # Custom property collection for the fileStorageContainer. Read-write.
     custom_properties: Optional[FileStorageContainerCustomPropertyDictionary] = None
+    # The geographic location of the data for multi-geo tenants. This property is only returned when explicitly selected by using $select. Read-only.
+    data_location_code: Optional[str] = None
     # Provides a user-visible description of the fileStorageContainer. Read-write.
     description: Optional[str] = None
     # The display name of the fileStorageContainer. Read-write.
@@ -135,6 +137,7 @@ class FileStorageContainer(Entity, Parsable):
             "containerTypeId": lambda n : setattr(self, 'container_type_id', n.get_uuid_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "customProperties": lambda n : setattr(self, 'custom_properties', n.get_object_value(FileStorageContainerCustomPropertyDictionary)),
+            "dataLocationCode": lambda n : setattr(self, 'data_location_code', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "drive": lambda n : setattr(self, 'drive', n.get_object_value(Drive)),
@@ -171,6 +174,7 @@ class FileStorageContainer(Entity, Parsable):
         writer.write_uuid_value("containerTypeId", self.container_type_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("customProperties", self.custom_properties)
+        writer.write_str_value("dataLocationCode", self.data_location_code)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("drive", self.drive)

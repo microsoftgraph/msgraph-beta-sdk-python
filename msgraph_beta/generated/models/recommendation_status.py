@@ -11,4 +11,5 @@ class RecommendationStatus(str, Enum):
     ThirdParty = "thirdParty",
     Planned = "planned",
     AlternateMitigation = "alternateMitigation",
+    NeedsMoreAction = "needsMoreAction",
 

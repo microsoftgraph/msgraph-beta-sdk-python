@@ -17,17 +17,17 @@ from .case_management_entity import CaseManagementEntity
 class Task(CaseManagementEntity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.caseManagement.task"
-    # The user assigned to the task.
+    # The user assigned to the task. Supports $filter.
     assigned_to: Optional[str] = None
     # The category property
     category: Optional[CaseTaskCategory] = None
-    # Notes recorded when the task is completed.
+    # Notes recorded when the task is completed. Supports $filter.
     closing_notes: Optional[str] = None
-    # The description of the task.
+    # The description of the task. Supports $filter.
     description: Optional[str] = None
-    # The title of the task.
+    # The title of the task. Supports $filter.
     display_name: Optional[str] = None
-    # The target completion date and time for the task.
+    # The target completion date and time for the task. Supports $filter.
     due_date_time: Optional[datetime.datetime] = None
     # The priority property
     priority: Optional[CaseTaskPriority] = None

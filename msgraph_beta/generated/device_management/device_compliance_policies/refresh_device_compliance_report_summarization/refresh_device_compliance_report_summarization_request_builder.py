@@ -35,6 +35,7 @@ class RefreshDeviceComplianceReportSummarizationRequestBuilder(BaseRequestBuilde
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
+        warn("This action is deprecated and will be removed on July 7, 2026. This API is obsolete and should be removed from client code; no replacement is needed as the current reporting architecture continuously aggregates compliance data. as of 2026-04/Rv1MigrationDeprecation on 2026-04-03 and will be removed 2026-07-07", DeprecationWarning)
         request_info = self.to_post_request_information(
             request_configuration
         )
@@ -53,6 +54,7 @@ class RefreshDeviceComplianceReportSummarizationRequestBuilder(BaseRequestBuilde
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("This action is deprecated and will be removed on July 7, 2026. This API is obsolete and should be removed from client code; no replacement is needed as the current reporting architecture continuously aggregates compliance data. as of 2026-04/Rv1MigrationDeprecation on 2026-04-03 and will be removed 2026-07-07", DeprecationWarning)
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -64,6 +66,7 @@ class RefreshDeviceComplianceReportSummarizationRequestBuilder(BaseRequestBuilde
         param raw_url: The raw URL to use for the request builder.
         Returns: RefreshDeviceComplianceReportSummarizationRequestBuilder
         """
+        warn("This action is deprecated and will be removed on July 7, 2026. This API is obsolete and should be removed from client code; no replacement is needed as the current reporting architecture continuously aggregates compliance data. as of 2026-04/Rv1MigrationDeprecation on 2026-04-03 and will be removed 2026-07-07", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return RefreshDeviceComplianceReportSummarizationRequestBuilder(self.request_adapter, raw_url)

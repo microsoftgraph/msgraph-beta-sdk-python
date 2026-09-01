@@ -15,18 +15,16 @@ class Member(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The contactId property
-    contact_id: Optional[str] = None
     # The display name of the member. Optional.
     display_name: Optional[str] = None
     # The email address or routing key of the member. Optional.
     key: Optional[str] = None
+    # A unique identifier system-generated for contact, privateDL, and mailbox members. Optional.
+    member_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The recipientType property
-    recipient_type: Optional[RecipientType] = None
-    # The routingType property
-    routing_type: Optional[str] = None
+    # The type property
+    type: Optional[RecipientType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> Member:
@@ -49,12 +47,11 @@ class Member(AdditionalDataHolder, BackedModel, Parsable):
         from .recipient_type import RecipientType
 
         fields: dict[str, Callable[[Any], None]] = {
-            "contactId": lambda n : setattr(self, 'contact_id', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "key": lambda n : setattr(self, 'key', n.get_str_value()),
+            "memberId": lambda n : setattr(self, 'member_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recipientType": lambda n : setattr(self, 'recipient_type', n.get_enum_value(RecipientType)),
-            "routingType": lambda n : setattr(self, 'routing_type', n.get_str_value()),
+            "type": lambda n : setattr(self, 'type', n.get_enum_value(RecipientType)),
         }
         return fields
     
@@ -66,12 +63,11 @@ class Member(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_str_value("contactId", self.contact_id)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("key", self.key)
+        writer.write_str_value("memberId", self.member_id)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_enum_value("recipientType", self.recipient_type)
-        writer.write_str_value("routingType", self.routing_type)
+        writer.write_enum_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)
     
 

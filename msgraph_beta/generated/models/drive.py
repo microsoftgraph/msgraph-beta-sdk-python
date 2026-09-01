@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .base_item import BaseItem
     from .drive_item import DriveItem
+    from .drive_settings import DriveSettings
     from .identity_set import IdentitySet
     from .item_activity_o_l_d import ItemActivityOLD
     from .list_ import List_
@@ -38,6 +39,8 @@ class Drive(BaseItem, Parsable):
     quota: Optional[Quota] = None
     # The root folder of the drive. Read-only.
     root: Optional[DriveItem] = None
+    # The settings associated with the drive. Read-only. This property isn't returned by default and must be selected using the $select query parameter.
+    settings: Optional[DriveSettings] = None
     # The sharePointIds property
     share_point_ids: Optional[SharepointIds] = None
     # Collection of common folders available in OneDrive. Read-only. Nullable.
@@ -63,6 +66,7 @@ class Drive(BaseItem, Parsable):
         """
         from .base_item import BaseItem
         from .drive_item import DriveItem
+        from .drive_settings import DriveSettings
         from .identity_set import IdentitySet
         from .item_activity_o_l_d import ItemActivityOLD
         from .list_ import List_
@@ -72,6 +76,7 @@ class Drive(BaseItem, Parsable):
 
         from .base_item import BaseItem
         from .drive_item import DriveItem
+        from .drive_settings import DriveSettings
         from .identity_set import IdentitySet
         from .item_activity_o_l_d import ItemActivityOLD
         from .list_ import List_
@@ -89,6 +94,7 @@ class Drive(BaseItem, Parsable):
             "owner": lambda n : setattr(self, 'owner', n.get_object_value(IdentitySet)),
             "quota": lambda n : setattr(self, 'quota', n.get_object_value(Quota)),
             "root": lambda n : setattr(self, 'root', n.get_object_value(DriveItem)),
+            "settings": lambda n : setattr(self, 'settings', n.get_object_value(DriveSettings)),
             "sharePointIds": lambda n : setattr(self, 'share_point_ids', n.get_object_value(SharepointIds)),
             "special": lambda n : setattr(self, 'special', n.get_collection_of_object_values(DriveItem)),
             "system": lambda n : setattr(self, 'system', n.get_object_value(SystemFacet)),
@@ -115,6 +121,7 @@ class Drive(BaseItem, Parsable):
         writer.write_object_value("owner", self.owner)
         writer.write_object_value("quota", self.quota)
         writer.write_object_value("root", self.root)
+        writer.write_object_value("settings", self.settings)
         writer.write_object_value("sharePointIds", self.share_point_ids)
         writer.write_collection_of_object_values("special", self.special)
         writer.write_object_value("system", self.system)

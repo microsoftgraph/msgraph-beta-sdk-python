@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from .count.count_request_builder import CountRequestBuilder
     from .delta.delta_request_builder import DeltaRequestBuilder
     from .item.device_item_request_builder import DeviceItemRequestBuilder
+    from .provision.provision_request_builder import ProvisionRequestBuilder
 
 class DevicesRequestBuilder(BaseRequestBuilder):
     """
@@ -144,6 +145,15 @@ class DevicesRequestBuilder(BaseRequestBuilder):
         from .delta.delta_request_builder import DeltaRequestBuilder
 
         return DeltaRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def provision(self) -> ProvisionRequestBuilder:
+        """
+        Provides operations to call the provision method.
+        """
+        from .provision.provision_request_builder import ProvisionRequestBuilder
+
+        return ProvisionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class DevicesRequestBuilderGetQueryParameters():

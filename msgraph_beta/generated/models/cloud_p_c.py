@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
     from .cloud_pc_power_state import CloudPcPowerState
     from .cloud_pc_product_type import CloudPcProductType
+    from .cloud_pc_provisioning_configuration import CloudPcProvisioningConfiguration
     from .cloud_pc_provisioning_type import CloudPcProvisioningType
     from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
     from .cloud_pc_service_plan_type import CloudPcServicePlanType
@@ -88,6 +89,8 @@ class CloudPC(Entity, Parsable):
     product_type: Optional[CloudPcProductType] = None
     # The latest provisioned date and time, automatically generated and assigned during the initial provisioning or any subsequent reprovisioning of the Cloud PC. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     provisioned_date_time: Optional[datetime.datetime] = None
+    # The provisioningConfiguration property
+    provisioning_configuration: Optional[CloudPcProvisioningConfiguration] = None
     # The provisioning policy ID of the Cloud PC.
     provisioning_policy_id: Optional[str] = None
     # The provisioning policy that is applied during the provisioning of Cloud PCs.
@@ -148,6 +151,7 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
         from .cloud_pc_power_state import CloudPcPowerState
         from .cloud_pc_product_type import CloudPcProductType
+        from .cloud_pc_provisioning_configuration import CloudPcProvisioningConfiguration
         from .cloud_pc_provisioning_type import CloudPcProvisioningType
         from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
         from .cloud_pc_service_plan_type import CloudPcServicePlanType
@@ -172,6 +176,7 @@ class CloudPC(Entity, Parsable):
         from .cloud_pc_partner_agent_install_result import CloudPcPartnerAgentInstallResult
         from .cloud_pc_power_state import CloudPcPowerState
         from .cloud_pc_product_type import CloudPcProductType
+        from .cloud_pc_provisioning_configuration import CloudPcProvisioningConfiguration
         from .cloud_pc_provisioning_type import CloudPcProvisioningType
         from .cloud_pc_remote_action_result import CloudPcRemoteActionResult
         from .cloud_pc_service_plan_type import CloudPcServicePlanType
@@ -210,6 +215,7 @@ class CloudPC(Entity, Parsable):
             "powerState": lambda n : setattr(self, 'power_state', n.get_enum_value(CloudPcPowerState)),
             "productType": lambda n : setattr(self, 'product_type', n.get_enum_value(CloudPcProductType)),
             "provisionedDateTime": lambda n : setattr(self, 'provisioned_date_time', n.get_datetime_value()),
+            "provisioningConfiguration": lambda n : setattr(self, 'provisioning_configuration', n.get_object_value(CloudPcProvisioningConfiguration)),
             "provisioningPolicyId": lambda n : setattr(self, 'provisioning_policy_id', n.get_str_value()),
             "provisioningPolicyName": lambda n : setattr(self, 'provisioning_policy_name', n.get_str_value()),
             "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(CloudPcProvisioningType)),
@@ -265,6 +271,7 @@ class CloudPC(Entity, Parsable):
         writer.write_enum_value("powerState", self.power_state)
         writer.write_enum_value("productType", self.product_type)
         writer.write_datetime_value("provisionedDateTime", self.provisioned_date_time)
+        writer.write_object_value("provisioningConfiguration", self.provisioning_configuration)
         writer.write_str_value("provisioningPolicyId", self.provisioning_policy_id)
         writer.write_str_value("provisioningPolicyName", self.provisioning_policy_name)
         writer.write_enum_value("provisioningType", self.provisioning_type)

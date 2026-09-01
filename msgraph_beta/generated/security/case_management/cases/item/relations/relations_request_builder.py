@@ -49,7 +49,7 @@ class RelationsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RelationsRequestBuilderGetQueryParameters]] = None) -> Optional[RelationCollectionResponse]:
         """
-        Get a list of external resource relation objects for a case.
+        Get a list of external resource relation objects for a case. Each relation is an incidentRelation, recommendationRelation, or workspaceIndicatorRelation, identified by @odata.type.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RelationCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/security-casemanagement-case-list-relations?view=graph-rest-beta
@@ -70,7 +70,7 @@ class RelationsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Relation, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Relation]:
         """
-        Create an external resource relation for a case.
+        Create a concrete external resource relation for a case.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Relation]
@@ -94,7 +94,7 @@ class RelationsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RelationsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of external resource relation objects for a case.
+        Get a list of external resource relation objects for a case. Each relation is an incidentRelation, recommendationRelation, or workspaceIndicatorRelation, identified by @odata.type.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class RelationsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Relation, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create an external resource relation for a case.
+        Create a concrete external resource relation for a case.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +140,7 @@ class RelationsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RelationsRequestBuilderGetQueryParameters():
         """
-        Get a list of external resource relation objects for a case.
+        Get a list of external resource relation objects for a case. Each relation is an incidentRelation, recommendationRelation, or workspaceIndicatorRelation, identified by @odata.type.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

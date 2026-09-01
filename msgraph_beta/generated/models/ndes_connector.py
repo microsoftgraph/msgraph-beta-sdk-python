@@ -6,7 +6,9 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .connector_health_check import ConnectorHealthCheck
     from .entity import Entity
+    from .ndes_connector_health_status import NdesConnectorHealthStatus
     from .ndes_connector_state import NdesConnectorState
 
 from .entity import Entity
@@ -22,6 +24,10 @@ class NdesConnector(Entity, Parsable):
     display_name: Optional[str] = None
     # Timestamp when on-prem certificate connector was enrolled in Intune.
     enrolled_date_time: Optional[datetime.datetime] = None
+    # The collection of individual health check results for this connector. Each entry represents an independent health metric with its current status. Empty when the connector is disconnected or when health has not been evaluated yet. Read-only.
+    health_checks: Optional[list[ConnectorHealthCheck]] = None
+    # The overall health status of the connector, representing the worst status across all individual health checks. This value is pre-computed on each connector upload and may be overridden to disconnected at read time if the connector has not connected recently. Read-only.
+    health_status: Optional[NdesConnectorHealthStatus] = None
     # Last connection time for the Ndes Connector
     last_connection_date_time: Optional[datetime.datetime] = None
     # Name of the machine running on-prem certificate connector service.
@@ -49,16 +55,22 @@ class NdesConnector(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .connector_health_check import ConnectorHealthCheck
         from .entity import Entity
+        from .ndes_connector_health_status import NdesConnectorHealthStatus
         from .ndes_connector_state import NdesConnectorState
 
+        from .connector_health_check import ConnectorHealthCheck
         from .entity import Entity
+        from .ndes_connector_health_status import NdesConnectorHealthStatus
         from .ndes_connector_state import NdesConnectorState
 
         fields: dict[str, Callable[[Any], None]] = {
             "connectorVersion": lambda n : setattr(self, 'connector_version', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "enrolledDateTime": lambda n : setattr(self, 'enrolled_date_time', n.get_datetime_value()),
+            "healthChecks": lambda n : setattr(self, 'health_checks', n.get_collection_of_object_values(ConnectorHealthCheck)),
+            "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(NdesConnectorHealthStatus)),
             "lastConnectionDateTime": lambda n : setattr(self, 'last_connection_date_time', n.get_datetime_value()),
             "machineName": lambda n : setattr(self, 'machine_name', n.get_str_value()),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),

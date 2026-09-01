@@ -14,12 +14,12 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
+    from ......models.multi_tenant_application_metrics import MultiTenantApplicationMetrics
     from ......models.o_data_errors.o_data_error import ODataError
-    from ......models.tenant_governance_services.multi_tenant_application_metrics import MultiTenantApplicationMetrics
 
 class MultiTenantApplicationMetricsRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the multiTenantApplicationMetrics property of the microsoft.graph.tenantGovernanceServices.relatedTenant entity.
+    Provides operations to manage the multiTenantApplicationMetrics property of the microsoft.graph.relatedTenant entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -32,7 +32,7 @@ class MultiTenantApplicationMetricsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[MultiTenantApplicationMetricsRequestBuilderGetQueryParameters]] = None) -> Optional[MultiTenantApplicationMetrics]:
         """
-        Multi-tenant application usage metrics for this related tenant. Expanded by default.
+        Get multiTenantApplicationMetrics from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MultiTenantApplicationMetrics]
         """
@@ -46,13 +46,13 @@ class MultiTenantApplicationMetricsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.tenant_governance_services.multi_tenant_application_metrics import MultiTenantApplicationMetrics
+        from ......models.multi_tenant_application_metrics import MultiTenantApplicationMetrics
 
         return await self.request_adapter.send_async(request_info, MultiTenantApplicationMetrics, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MultiTenantApplicationMetricsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Multi-tenant application usage metrics for this related tenant. Expanded by default.
+        Get multiTenantApplicationMetrics from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class MultiTenantApplicationMetricsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class MultiTenantApplicationMetricsRequestBuilderGetQueryParameters():
         """
-        Multi-tenant application usage metrics for this related tenant. Expanded by default.
+        Get multiTenantApplicationMetrics from directory
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

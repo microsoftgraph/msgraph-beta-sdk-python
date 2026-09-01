@@ -38,6 +38,7 @@ class ExclusionUnitsRequestBuilder(BaseRequestBuilder):
         param exclusion_unit_base_id: The unique identifier of exclusionUnitBase
         Returns: ExclusionUnitBaseItemRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if exclusion_unit_base_id is None:
             raise TypeError("exclusion_unit_base_id cannot be null.")
         from .item.exclusion_unit_base_item_request_builder import ExclusionUnitBaseItemRequestBuilder
@@ -52,6 +53,7 @@ class ExclusionUnitsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ExclusionUnitBaseCollectionResponse]
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -72,6 +74,7 @@ class ExclusionUnitsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -83,6 +86,7 @@ class ExclusionUnitsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ExclusionUnitsRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ExclusionUnitsRequestBuilder(self.request_adapter, raw_url)

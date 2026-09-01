@@ -15,15 +15,15 @@ from .case_management_entity import CaseManagementEntity
 class Attachment(CaseManagementEntity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.caseManagement.attachment"
-    # The binary content stream for the attachment.
+    # The binary content stream for the attachment. Use the Upload content and Download content methods to access it.
     content: Optional[bytes] = None
     # The description of the attachment.
     description: Optional[str] = None
     # The display name of the attachment.
     display_name: Optional[str] = None
-    # The file extension of the attachment.
+    # The file extension of the attachment. The service normalizes the value to include a leading period.
     file_extension: Optional[str] = None
-    # The size of the attachment in bytes.
+    # The size of the attachment in bytes. The maximum file size is 100 MB.
     file_size: Optional[int] = None
     # The origin reference for the attachment.
     origin: Optional[AttachmentOrigin] = None

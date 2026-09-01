@@ -14,12 +14,12 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
+    from .....models.governance_relationship import GovernanceRelationship
     from .....models.o_data_errors.o_data_error import ODataError
-    from .....models.tenant_governance_services.governance_relationship import GovernanceRelationship
 
 class GovernanceRelationshipItemRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the governanceRelationships property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+    Provides operations to manage the governanceRelationships property of the microsoft.graph.tenantGovernance entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -65,7 +65,7 @@ class GovernanceRelationshipItemRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.tenant_governance_services.governance_relationship import GovernanceRelationship
+        from .....models.governance_relationship import GovernanceRelationship
 
         return await self.request_adapter.send_async(request_info, GovernanceRelationship, error_mapping)
     
@@ -89,7 +89,7 @@ class GovernanceRelationshipItemRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.tenant_governance_services.governance_relationship import GovernanceRelationship
+        from .....models.governance_relationship import GovernanceRelationship
 
         return await self.request_adapter.send_async(request_info, GovernanceRelationship, error_mapping)
     

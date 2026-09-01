@@ -38,6 +38,7 @@ class UpdatePasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-updatepasswordsinglesignoncredentials?view=graph-rest-beta
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -59,6 +60,7 @@ class UpdatePasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -73,6 +75,7 @@ class UpdatePasswordSingleSignOnCredentialsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: UpdatePasswordSingleSignOnCredentialsRequestBuilder
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return UpdatePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, raw_url)

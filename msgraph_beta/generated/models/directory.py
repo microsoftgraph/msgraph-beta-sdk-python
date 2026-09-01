@@ -29,7 +29,7 @@ if TYPE_CHECKING:
     from .remote_tenant_group import RemoteTenantGroup
     from .shared_email_domain import SharedEmailDomain
     from .template import Template
-    from .tenant_governance_services.tenant_governance import TenantGovernance
+    from .tenant_governance import TenantGovernance
 
 from .entity import Entity
 
@@ -126,7 +126,7 @@ class Directory(Entity, Parsable):
         from .remote_tenant_group import RemoteTenantGroup
         from .shared_email_domain import SharedEmailDomain
         from .template import Template
-        from .tenant_governance_services.tenant_governance import TenantGovernance
+        from .tenant_governance import TenantGovernance
 
         from .administrative_unit import AdministrativeUnit
         from .attribute_set import AttributeSet
@@ -152,7 +152,7 @@ class Directory(Entity, Parsable):
         from .remote_tenant_group import RemoteTenantGroup
         from .shared_email_domain import SharedEmailDomain
         from .template import Template
-        from .tenant_governance_services.tenant_governance import TenantGovernance
+        from .tenant_governance import TenantGovernance
 
         fields: dict[str, Callable[[Any], None]] = {
             "administrativeUnits": lambda n : setattr(self, 'administrative_units', n.get_collection_of_object_values(AdministrativeUnit)),

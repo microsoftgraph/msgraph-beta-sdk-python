@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .agent_identity_type import AgentIdentityType
     from .entity import Entity
+    from .risky_agent_discovered_agent_identity import RiskyAgentDiscoveredAgentIdentity
     from .risky_agent_identity import RiskyAgentIdentity
     from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
     from .risky_agent_user import RiskyAgentUser
@@ -56,6 +57,10 @@ class RiskyAgent(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgentDiscoveredAgentIdentity".casefold():
+            from .risky_agent_discovered_agent_identity import RiskyAgentDiscoveredAgentIdentity
+
+            return RiskyAgentDiscoveredAgentIdentity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgentIdentity".casefold():
             from .risky_agent_identity import RiskyAgentIdentity
 
@@ -77,6 +82,7 @@ class RiskyAgent(Entity, Parsable):
         """
         from .agent_identity_type import AgentIdentityType
         from .entity import Entity
+        from .risky_agent_discovered_agent_identity import RiskyAgentDiscoveredAgentIdentity
         from .risky_agent_identity import RiskyAgentIdentity
         from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
         from .risky_agent_user import RiskyAgentUser
@@ -86,6 +92,7 @@ class RiskyAgent(Entity, Parsable):
 
         from .agent_identity_type import AgentIdentityType
         from .entity import Entity
+        from .risky_agent_discovered_agent_identity import RiskyAgentDiscoveredAgentIdentity
         from .risky_agent_identity import RiskyAgentIdentity
         from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
         from .risky_agent_user import RiskyAgentUser

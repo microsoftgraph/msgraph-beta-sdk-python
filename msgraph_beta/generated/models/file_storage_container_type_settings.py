@@ -6,7 +6,6 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .file_storage_container_type_agent_settings import FileStorageContainerTypeAgentSettings
     from .file_storage_container_type_settings_override import FileStorageContainerTypeSettingsOverride
     from .sharing_capabilities import SharingCapabilities
 
@@ -17,14 +16,14 @@ class FileStorageContainerTypeSettings(AdditionalDataHolder, BackedModel, Parsab
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Contains agent-related settings. Optional
-    agent: Optional[FileStorageContainerTypeAgentSettings] = None
     # A comma-separated list of settings that can be overridden in the consuming tenant. The possible values are: urlTemplate, isDiscoverabilityEnabled, isSearchEnabled, isItemVersioningEnabled, itemMajorVersionLimit, maxStoragePerContainerInBytes, unknownFutureValue, isOfficeRestricted.
     consuming_tenant_overridables: Optional[FileStorageContainerTypeSettingsOverride] = None
     # Indicates whether items from containers are surfaced in experiences such as My Activity or Microsoft 365.
     is_discoverability_enabled: Optional[bool] = None
     # Indicates whether item versioning is enabled.
     is_item_versioning_enabled: Optional[bool] = None
+    # Indicates whether Office apps (Word, Excel, and PowerPoint) for desktop and web are restricted for containers of this container type.
+    is_office_restricted: Optional[bool] = None
     # Indicates whether search is enabled.
     is_search_enabled: Optional[bool] = None
     # Only the manager and owner can share files in the container if restricted sharing is enabled.
@@ -56,19 +55,17 @@ class FileStorageContainerTypeSettings(AdditionalDataHolder, BackedModel, Parsab
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .file_storage_container_type_agent_settings import FileStorageContainerTypeAgentSettings
         from .file_storage_container_type_settings_override import FileStorageContainerTypeSettingsOverride
         from .sharing_capabilities import SharingCapabilities
 
-        from .file_storage_container_type_agent_settings import FileStorageContainerTypeAgentSettings
         from .file_storage_container_type_settings_override import FileStorageContainerTypeSettingsOverride
         from .sharing_capabilities import SharingCapabilities
 
         fields: dict[str, Callable[[Any], None]] = {
-            "agent": lambda n : setattr(self, 'agent', n.get_object_value(FileStorageContainerTypeAgentSettings)),
             "consumingTenantOverridables": lambda n : setattr(self, 'consuming_tenant_overridables', n.get_collection_of_enum_values(FileStorageContainerTypeSettingsOverride)),
             "isDiscoverabilityEnabled": lambda n : setattr(self, 'is_discoverability_enabled', n.get_bool_value()),
             "isItemVersioningEnabled": lambda n : setattr(self, 'is_item_versioning_enabled', n.get_bool_value()),
+            "isOfficeRestricted": lambda n : setattr(self, 'is_office_restricted', n.get_bool_value()),
             "isSearchEnabled": lambda n : setattr(self, 'is_search_enabled', n.get_bool_value()),
             "isSharingRestricted": lambda n : setattr(self, 'is_sharing_restricted', n.get_bool_value()),
             "itemMajorVersionLimit": lambda n : setattr(self, 'item_major_version_limit', n.get_int_value()),
@@ -87,10 +84,10 @@ class FileStorageContainerTypeSettings(AdditionalDataHolder, BackedModel, Parsab
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_object_value("agent", self.agent)
         writer.write_enum_value("consumingTenantOverridables", self.consuming_tenant_overridables)
         writer.write_bool_value("isDiscoverabilityEnabled", self.is_discoverability_enabled)
         writer.write_bool_value("isItemVersioningEnabled", self.is_item_versioning_enabled)
+        writer.write_bool_value("isOfficeRestricted", self.is_office_restricted)
         writer.write_bool_value("isSearchEnabled", self.is_search_enabled)
         writer.write_bool_value("isSharingRestricted", self.is_sharing_restricted)
         writer.write_int_value("itemMajorVersionLimit", self.item_major_version_limit)

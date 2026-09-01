@@ -20,75 +20,75 @@ from .case import Case
 class IncidentCase(Case, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.caseManagement.incidentCase"
-    # The list of AI agent identifiers associated with the incident.
+    # The list of AI agent identifiers associated with the incident. Supports $filter.
     ai_agent_ids: Optional[list[str]] = None
-    # A summary of alert counts grouped by severity and status.
+    # A summary of alert counts grouped by severity and status. Supports $filter.
     alert_counts: Optional[AlertCounts] = None
-    # The list of alert policy identifiers associated with the incident.
+    # The list of alert policy identifiers associated with the incident. Supports $filter.
     alert_policy_ids: Optional[list[str]] = None
-    # The user assigned to investigate the incident case.
+    # The user assigned to investigate the incident case. Supports $filter and $orderby.
     assigned_to: Optional[str] = None
-    # The list of threat identifiers associated with the incident.
+    # The list of threat identifiers associated with the incident. Supports $filter.
     associated_threat_ids: Optional[list[str]] = None
-    # The incident categories.
+    # The incident categories. Supports $filter.
     categories: Optional[list[str]] = None
     # The classification property
     classification: Optional[IncidentClassification] = None
-    # The cloud scopes associated with the incident.
+    # The cloud scopes associated with the incident. Supports $filter.
     cloud_scopes: Optional[list[str]] = None
-    # The data sensitivity labels associated with the incident.
+    # The data sensitivity labels associated with the incident. Supports $filter.
     data_sensitivity_labels: Optional[list[str]] = None
-    # The data streams associated with the incident.
+    # The data streams associated with the incident. Supports $filter.
     data_streams: Optional[list[str]] = None
-    # The detection sources that identified the incident.
+    # The detection sources that identified the incident. Supports $filter.
     detection_sources: Optional[list[str]] = None
     # The determination property
     determination: Optional[IncidentDetermination] = None
-    # The target completion date and time for the incident case.
+    # The target completion date and time for the incident case. Supports $filter.
     due_date_time: Optional[datetime.datetime] = None
-    # The email notification recipients for the incident case.
+    # The email notification recipients for the incident case. Supports $filter.
     email_notification_recipients: Optional[list[str]] = None
-    # The date and time of the first event in the incident.
+    # The date and time of the first event in the incident. Supports $filter.
     first_event_time: Optional[datetime.datetime] = None
-    # A summary of impacted asset counts for the incident.
+    # A summary of impacted asset counts for the incident. Supports $filter.
     impacted_assets: Optional[ImpactedAssetsCounts] = None
-    # The Microsoft Security incident identifier.
+    # The Microsoft Security incident identifier. Supports $filter.
     incident_id: Optional[int] = None
-    # The URL for the incident in the Microsoft Defender portal.
+    # The URL for the incident in the Microsoft Defender portal. Supports $filter.
     incident_web_url: Optional[str] = None
-    # A summary of investigation details associated with the incident.
+    # A summary of investigation details associated with the incident. Supports $filter.
     investigation: Optional[Investigation] = None
-    # The list of investigation identifiers associated with the incident.
+    # The list of investigation identifiers associated with the incident. Supports $filter.
     investigation_ids: Optional[list[str]] = None
-    # The list of investigation states associated with the incident.
+    # The list of investigation states associated with the incident. Supports $filter.
     investigation_states: Optional[list[str]] = None
-    # The date and time of the most recent event in the incident.
+    # The date and time of the most recent event in the incident. Supports $filter.
     last_event_time: Optional[datetime.datetime] = None
-    # The list of machine group identifiers associated with the incident.
+    # The list of machine group identifiers associated with the incident. Supports $filter.
     machine_group_ids: Optional[list[str]] = None
-    # The operating system platforms associated with the incident.
+    # The operating system platforms associated with the incident. Supports $filter.
     os_platforms: Optional[list[str]] = None
-    # The policy names associated with the incident.
+    # The policy names associated with the incident. Supports $filter.
     policy_names: Optional[list[str]] = None
-    # The priority score assigned to the incident.
+    # The priority score assigned to the incident. Supports $filter.
     priority_score: Optional[int] = None
-    # The product names associated with the incident.
+    # The product names associated with the incident. Supports $filter.
     product_names: Optional[list[str]] = None
-    # The case identifier to which this case redirects when merged.
+    # The redirectCaseId property
     redirect_case_id: Optional[int] = None
-    # The incident identifier to which this incident redirects when merged.
+    # The redirectIncidentId property
     redirect_incident_id: Optional[int] = None
-    # The service sources associated with the incident.
+    # The service sources associated with the incident. Supports $filter.
     service_sources: Optional[list[str]] = None
     # The severity property
     severity: Optional[IncidentSeverity] = None
-    # A summary of the incident.
+    # A summary of the incident. Supports $filter.
     summary: Optional[str] = None
-    # The system tags associated with the incident.
+    # The system tags associated with the incident. Supports $filter.
     system_tags: Optional[list[str]] = None
-    # The top risk score associated with the incident.
+    # The top risk score associated with the incident. Supports $filter.
     top_risk_score: Optional[int] = None
-    # The list of workspace identifiers associated with the incident.
+    # The list of workspace identifiers associated with the incident. Supports $filter.
     workspace_ids: Optional[list[str]] = None
     
     @staticmethod

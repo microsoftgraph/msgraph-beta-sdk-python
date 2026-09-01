@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ......models.sensitivity_label_assignment_method import SensitivityLabelAssignmentMethod
+    from ......models.user_identity import UserIdentity
 
 @dataclass
 class AssignSensitivityLabelPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
@@ -15,6 +16,8 @@ class AssignSensitivityLabelPostRequestBody(AdditionalDataHolder, BackedModel, P
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The appliedByUser property
+    applied_by_user: Optional[UserIdentity] = None
     # The assignmentMethod property
     assignment_method: Optional[SensitivityLabelAssignmentMethod] = None
     # The justificationText property
@@ -39,10 +42,13 @@ class AssignSensitivityLabelPostRequestBody(AdditionalDataHolder, BackedModel, P
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ......models.sensitivity_label_assignment_method import SensitivityLabelAssignmentMethod
+        from ......models.user_identity import UserIdentity
 
         from ......models.sensitivity_label_assignment_method import SensitivityLabelAssignmentMethod
+        from ......models.user_identity import UserIdentity
 
         fields: dict[str, Callable[[Any], None]] = {
+            "appliedByUser": lambda n : setattr(self, 'applied_by_user', n.get_object_value(UserIdentity)),
             "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(SensitivityLabelAssignmentMethod)),
             "justificationText": lambda n : setattr(self, 'justification_text', n.get_str_value()),
             "sensitivityLabelId": lambda n : setattr(self, 'sensitivity_label_id', n.get_str_value()),
@@ -57,6 +63,7 @@ class AssignSensitivityLabelPostRequestBody(AdditionalDataHolder, BackedModel, P
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_object_value("appliedByUser", self.applied_by_user)
         writer.write_enum_value("assignmentMethod", self.assignment_method)
         writer.write_str_value("justificationText", self.justification_text)
         writer.write_str_value("sensitivityLabelId", self.sensitivity_label_id)

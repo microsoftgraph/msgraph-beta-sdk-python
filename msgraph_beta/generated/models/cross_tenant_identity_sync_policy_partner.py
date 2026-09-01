@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cross_tenant_group_sync_inbound import CrossTenantGroupSyncInbound
+    from .cross_tenant_role_enabled_group_sync_inbound import CrossTenantRoleEnabledGroupSyncInbound
     from .cross_tenant_user_sync_inbound import CrossTenantUserSyncInbound
     from .policy_deletable_item import PolicyDeletableItem
 
@@ -21,6 +22,8 @@ class CrossTenantIdentitySyncPolicyPartner(PolicyDeletableItem, Parsable):
     external_cloud_authorized_application_id: Optional[str] = None
     # Defines whether groups can be synchronized from a partner tenant.
     group_sync_inbound: Optional[CrossTenantGroupSyncInbound] = None
+    # The roleEnabledGroupSyncInbound property
+    role_enabled_group_sync_inbound: Optional[CrossTenantRoleEnabledGroupSyncInbound] = None
     # Tenant identifier for the partner Microsoft Entra organization. Key. Read-only.
     tenant_id: Optional[str] = None
     # Defines whether users can be synchronized from the partner tenant.
@@ -43,10 +46,12 @@ class CrossTenantIdentitySyncPolicyPartner(PolicyDeletableItem, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cross_tenant_group_sync_inbound import CrossTenantGroupSyncInbound
+        from .cross_tenant_role_enabled_group_sync_inbound import CrossTenantRoleEnabledGroupSyncInbound
         from .cross_tenant_user_sync_inbound import CrossTenantUserSyncInbound
         from .policy_deletable_item import PolicyDeletableItem
 
         from .cross_tenant_group_sync_inbound import CrossTenantGroupSyncInbound
+        from .cross_tenant_role_enabled_group_sync_inbound import CrossTenantRoleEnabledGroupSyncInbound
         from .cross_tenant_user_sync_inbound import CrossTenantUserSyncInbound
         from .policy_deletable_item import PolicyDeletableItem
 
@@ -54,6 +59,7 @@ class CrossTenantIdentitySyncPolicyPartner(PolicyDeletableItem, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "externalCloudAuthorizedApplicationId": lambda n : setattr(self, 'external_cloud_authorized_application_id', n.get_str_value()),
             "groupSyncInbound": lambda n : setattr(self, 'group_sync_inbound', n.get_object_value(CrossTenantGroupSyncInbound)),
+            "roleEnabledGroupSyncInbound": lambda n : setattr(self, 'role_enabled_group_sync_inbound', n.get_object_value(CrossTenantRoleEnabledGroupSyncInbound)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "userSyncInbound": lambda n : setattr(self, 'user_sync_inbound', n.get_object_value(CrossTenantUserSyncInbound)),
         }
@@ -73,6 +79,7 @@ class CrossTenantIdentitySyncPolicyPartner(PolicyDeletableItem, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("externalCloudAuthorizedApplicationId", self.external_cloud_authorized_application_id)
         writer.write_object_value("groupSyncInbound", self.group_sync_inbound)
+        writer.write_object_value("roleEnabledGroupSyncInbound", self.role_enabled_group_sync_inbound)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_object_value("userSyncInbound", self.user_sync_inbound)
     

@@ -38,6 +38,7 @@ class DriveExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
         param drive_exclusion_units_bulk_addition_job_id: The unique identifier of driveExclusionUnitsBulkAdditionJob
         Returns: DriveExclusionUnitsBulkAdditionJobItemRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if drive_exclusion_units_bulk_addition_job_id is None:
             raise TypeError("drive_exclusion_units_bulk_addition_job_id cannot be null.")
         from .item.drive_exclusion_units_bulk_addition_job_item_request_builder import DriveExclusionUnitsBulkAdditionJobItemRequestBuilder
@@ -53,6 +54,7 @@ class DriveExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[DriveExclusionUnitsBulkAdditionJobCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/onedriveforbusinessprotectionpolicy-list-driveexclusionunitsbulkadditionjobs?view=graph-rest-beta
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -73,6 +75,7 @@ class DriveExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -84,6 +87,7 @@ class DriveExclusionUnitsBulkAdditionJobsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: DriveExclusionUnitsBulkAdditionJobsRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DriveExclusionUnitsBulkAdditionJobsRequestBuilder(self.request_adapter, raw_url)

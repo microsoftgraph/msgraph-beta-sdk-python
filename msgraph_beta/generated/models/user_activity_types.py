@@ -11,4 +11,5 @@ class UserActivityTypes(str, Enum):
     PasteFromClipboard = "pasteFromClipboard",
     Print = "print",
     AccessDebugTools = "accessDebugTools",
+    ContentFiltering = "contentFiltering",
 

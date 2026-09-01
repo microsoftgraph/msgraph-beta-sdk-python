@@ -39,6 +39,7 @@ class SettingStatesRequestBuilder(BaseRequestBuilder):
         param security_baseline_setting_state_id: The unique identifier of securityBaselineSettingState
         Returns: SecurityBaselineSettingStateItemRequestBuilder
         """
+        warn("This API is deprecated and will stop returning data on July 7, 2026. Use POST /deviceManagement/reports/getConfigurationSettingsReport instead. as of 2026-04/Rv1MigrationDeprecation on 2026-04-03 and will be removed 2026-07-07", DeprecationWarning)
         if security_baseline_setting_state_id is None:
             raise TypeError("security_baseline_setting_state_id cannot be null.")
         from .item.security_baseline_setting_state_item_request_builder import SecurityBaselineSettingStateItemRequestBuilder
@@ -53,6 +54,7 @@ class SettingStatesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecurityBaselineSettingStateCollectionResponse]
         """
+        warn("This API is deprecated and will stop returning data on July 7, 2026. Use POST /deviceManagement/reports/getConfigurationSettingsReport instead. as of 2026-04/Rv1MigrationDeprecation on 2026-04-03 and will be removed 2026-07-07", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -74,6 +76,7 @@ class SettingStatesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[SecurityBaselineSettingState]
         """
+        warn("This API is deprecated and will stop returning data on July 7, 2026. Use POST /deviceManagement/reports/getConfigurationSettingsReport instead. as of 2026-04/Rv1MigrationDeprecation on 2026-04-03 and will be removed 2026-07-07", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -96,6 +99,7 @@ class SettingStatesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("This API is deprecated and will stop returning data on July 7, 2026. Use POST /deviceManagement/reports/getConfigurationSettingsReport instead. as of 2026-04/Rv1MigrationDeprecation on 2026-04-03 and will be removed 2026-07-07", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -108,6 +112,7 @@ class SettingStatesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("This API is deprecated and will stop returning data on July 7, 2026. Use POST /deviceManagement/reports/getConfigurationSettingsReport instead. as of 2026-04/Rv1MigrationDeprecation on 2026-04-03 and will be removed 2026-07-07", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -122,6 +127,7 @@ class SettingStatesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: SettingStatesRequestBuilder
         """
+        warn("This API is deprecated and will stop returning data on July 7, 2026. Use POST /deviceManagement/reports/getConfigurationSettingsReport instead. as of 2026-04/Rv1MigrationDeprecation on 2026-04-03 and will be removed 2026-07-07", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SettingStatesRequestBuilder(self.request_adapter, raw_url)

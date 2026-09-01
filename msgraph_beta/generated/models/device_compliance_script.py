@@ -38,7 +38,7 @@ class DeviceComplianceScript(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Indicates the operating system platform type that this compliance script targets.
+    # Indicates the device platform on which the device compliance script will be executed. Possible values are: windows10AndLater (default), linux. The default value is windows10AndLater.
     platform: Optional[DeviceComplianceScriptPlatformType] = None
     # Name of the device compliance script publisher
     publisher: Optional[str] = None

@@ -1,4 +1,5 @@
 from __future__ import annotations
+import datetime
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
@@ -13,6 +14,8 @@ from .entity import Entity
 class RecommendationConfiguration(Entity, Parsable):
     # Indicates whether notifications for recommendations are enabled.
     is_notification_enabled: Optional[bool] = None
+    # The lastRefreshedDateTime property
+    last_refreshed_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -38,6 +41,7 @@ class RecommendationConfiguration(Entity, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "isNotificationEnabled": lambda n : setattr(self, 'is_notification_enabled', n.get_bool_value()),
+            "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

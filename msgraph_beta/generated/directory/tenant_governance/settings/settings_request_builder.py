@@ -15,12 +15,12 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from ....models.tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
-    from .microsoft_graph_tenant_governance_services_enable_related_tenants.microsoft_graph_tenant_governance_services_enable_related_tenants_request_builder import MicrosoftGraphTenantGovernanceServicesEnableRelatedTenantsRequestBuilder
+    from ....models.tenant_governance_setting import TenantGovernanceSetting
+    from .enable_related_tenants.enable_related_tenants_request_builder import EnableRelatedTenantsRequestBuilder
 
 class SettingsRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the settings property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+    Provides operations to manage the settings property of the microsoft.graph.tenantGovernance entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -66,7 +66,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
+        from ....models.tenant_governance_setting import TenantGovernanceSetting
 
         return await self.request_adapter.send_async(request_info, TenantGovernanceSetting, error_mapping)
     
@@ -90,7 +90,7 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
+        from ....models.tenant_governance_setting import TenantGovernanceSetting
 
         return await self.request_adapter.send_async(request_info, TenantGovernanceSetting, error_mapping)
     
@@ -142,13 +142,13 @@ class SettingsRequestBuilder(BaseRequestBuilder):
         return SettingsRequestBuilder(self.request_adapter, raw_url)
     
     @property
-    def microsoft_graph_tenant_governance_services_enable_related_tenants(self) -> MicrosoftGraphTenantGovernanceServicesEnableRelatedTenantsRequestBuilder:
+    def enable_related_tenants(self) -> EnableRelatedTenantsRequestBuilder:
         """
         Provides operations to call the enableRelatedTenants method.
         """
-        from .microsoft_graph_tenant_governance_services_enable_related_tenants.microsoft_graph_tenant_governance_services_enable_related_tenants_request_builder import MicrosoftGraphTenantGovernanceServicesEnableRelatedTenantsRequestBuilder
+        from .enable_related_tenants.enable_related_tenants_request_builder import EnableRelatedTenantsRequestBuilder
 
-        return MicrosoftGraphTenantGovernanceServicesEnableRelatedTenantsRequestBuilder(self.request_adapter, self.path_parameters)
+        return EnableRelatedTenantsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SettingsRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

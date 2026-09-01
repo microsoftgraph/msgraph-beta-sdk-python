@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .....models.teamwork_section_collection_response import TeamworkSectionCollectionResponse
     from .count.count_request_builder import CountRequestBuilder
     from .item.teamwork_section_item_request_builder import TeamworkSectionItemRequestBuilder
+    from .reorder.reorder_request_builder import ReorderRequestBuilder
 
 class SectionsRequestBuilder(BaseRequestBuilder):
     """
@@ -136,6 +137,15 @@ class SectionsRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def reorder(self) -> ReorderRequestBuilder:
+        """
+        Provides operations to call the reorder method.
+        """
+        from .reorder.reorder_request_builder import ReorderRequestBuilder
+
+        return ReorderRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class SectionsRequestBuilderGetQueryParameters():

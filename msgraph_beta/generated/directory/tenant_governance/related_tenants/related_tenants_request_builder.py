@@ -15,16 +15,16 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from ....models.tenant_governance_services.related_tenant import RelatedTenant
-    from ....models.tenant_governance_services.related_tenant_collection_response import RelatedTenantCollectionResponse
+    from ....models.related_tenant import RelatedTenant
+    from ....models.related_tenant_collection_response import RelatedTenantCollectionResponse
     from .count.count_request_builder import CountRequestBuilder
     from .item.related_tenant_item_request_builder import RelatedTenantItemRequestBuilder
-    from .microsoft_graph_tenant_governance_services_refresh.microsoft_graph_tenant_governance_services_refresh_request_builder import MicrosoftGraphTenantGovernanceServicesRefreshRequestBuilder
-    from .microsoft_graph_tenant_governance_services_refresh_status.microsoft_graph_tenant_governance_services_refresh_status_request_builder import MicrosoftGraphTenantGovernanceServicesRefreshStatusRequestBuilder
+    from .refresh.refresh_request_builder import RefreshRequestBuilder
+    from .refresh_status.refresh_status_request_builder import RefreshStatusRequestBuilder
 
 class RelatedTenantsRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the relatedTenants property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+    Provides operations to manage the relatedTenants property of the microsoft.graph.tenantGovernance entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -37,7 +37,7 @@ class RelatedTenantsRequestBuilder(BaseRequestBuilder):
     
     def by_related_tenant_id(self,related_tenant_id: str) -> RelatedTenantItemRequestBuilder:
         """
-        Provides operations to manage the relatedTenants property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+        Provides operations to manage the relatedTenants property of the microsoft.graph.tenantGovernance entity.
         param related_tenant_id: The unique identifier of relatedTenant
         Returns: RelatedTenantItemRequestBuilder
         """
@@ -66,7 +66,7 @@ class RelatedTenantsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.tenant_governance_services.related_tenant_collection_response import RelatedTenantCollectionResponse
+        from ....models.related_tenant_collection_response import RelatedTenantCollectionResponse
 
         return await self.request_adapter.send_async(request_info, RelatedTenantCollectionResponse, error_mapping)
     
@@ -89,7 +89,7 @@ class RelatedTenantsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.tenant_governance_services.related_tenant import RelatedTenant
+        from ....models.related_tenant import RelatedTenant
 
         return await self.request_adapter.send_async(request_info, RelatedTenant, error_mapping)
     
@@ -139,22 +139,22 @@ class RelatedTenantsRequestBuilder(BaseRequestBuilder):
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_tenant_governance_services_refresh(self) -> MicrosoftGraphTenantGovernanceServicesRefreshRequestBuilder:
+    def refresh(self) -> RefreshRequestBuilder:
         """
         Provides operations to call the refresh method.
         """
-        from .microsoft_graph_tenant_governance_services_refresh.microsoft_graph_tenant_governance_services_refresh_request_builder import MicrosoftGraphTenantGovernanceServicesRefreshRequestBuilder
+        from .refresh.refresh_request_builder import RefreshRequestBuilder
 
-        return MicrosoftGraphTenantGovernanceServicesRefreshRequestBuilder(self.request_adapter, self.path_parameters)
+        return RefreshRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def microsoft_graph_tenant_governance_services_refresh_status(self) -> MicrosoftGraphTenantGovernanceServicesRefreshStatusRequestBuilder:
+    def refresh_status(self) -> RefreshStatusRequestBuilder:
         """
         Provides operations to call the refreshStatus method.
         """
-        from .microsoft_graph_tenant_governance_services_refresh_status.microsoft_graph_tenant_governance_services_refresh_status_request_builder import MicrosoftGraphTenantGovernanceServicesRefreshStatusRequestBuilder
+        from .refresh_status.refresh_status_request_builder import RefreshStatusRequestBuilder
 
-        return MicrosoftGraphTenantGovernanceServicesRefreshStatusRequestBuilder(self.request_adapter, self.path_parameters)
+        return RefreshStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class RelatedTenantsRequestBuilderGetQueryParameters():

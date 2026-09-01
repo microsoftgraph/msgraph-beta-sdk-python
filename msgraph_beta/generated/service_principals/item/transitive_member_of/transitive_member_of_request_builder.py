@@ -41,6 +41,7 @@ class TransitiveMemberOfRequestBuilder(BaseRequestBuilder):
         param directory_object_id: The unique identifier of directoryObject
         Returns: DirectoryObjectItemRequestBuilder
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         if directory_object_id is None:
             raise TypeError("directory_object_id cannot be null.")
         from .item.directory_object_item_request_builder import DirectoryObjectItemRequestBuilder
@@ -56,6 +57,7 @@ class TransitiveMemberOfRequestBuilder(BaseRequestBuilder):
         Returns: Optional[DirectoryObjectCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-beta
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -76,6 +78,7 @@ class TransitiveMemberOfRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -87,6 +90,7 @@ class TransitiveMemberOfRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: TransitiveMemberOfRequestBuilder
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return TransitiveMemberOfRequestBuilder(self.request_adapter, raw_url)

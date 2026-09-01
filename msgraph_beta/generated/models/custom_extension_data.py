@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .identity_governance.custom_task_extension_callback_data import CustomTaskExtensionCallbackData
     from .identity_governance.custom_task_extension_callout_data import CustomTaskExtensionCalloutData
     from .identity_governance.custom_task_extension_response_data import CustomTaskExtensionResponseData
+    from .sap_assignment_request_callback_data import SapAssignmentRequestCallbackData
 
 @dataclass
 class CustomExtensionData(AdditionalDataHolder, BackedModel, Parsable):
@@ -56,6 +57,10 @@ class CustomExtensionData(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_governance.custom_task_extension_response_data import CustomTaskExtensionResponseData
 
             return CustomTaskExtensionResponseData()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sapAssignmentRequestCallbackData".casefold():
+            from .sap_assignment_request_callback_data import SapAssignmentRequestCallbackData
+
+            return SapAssignmentRequestCallbackData()
         return CustomExtensionData()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -68,12 +73,14 @@ class CustomExtensionData(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_governance.custom_task_extension_callback_data import CustomTaskExtensionCallbackData
         from .identity_governance.custom_task_extension_callout_data import CustomTaskExtensionCalloutData
         from .identity_governance.custom_task_extension_response_data import CustomTaskExtensionResponseData
+        from .sap_assignment_request_callback_data import SapAssignmentRequestCallbackData
 
         from .access_package_assignment_request_callback_data import AccessPackageAssignmentRequestCallbackData
         from .assignment_request_approval_stage_callback_data import AssignmentRequestApprovalStageCallbackData
         from .identity_governance.custom_task_extension_callback_data import CustomTaskExtensionCallbackData
         from .identity_governance.custom_task_extension_callout_data import CustomTaskExtensionCalloutData
         from .identity_governance.custom_task_extension_response_data import CustomTaskExtensionResponseData
+        from .sap_assignment_request_callback_data import SapAssignmentRequestCallbackData
 
         fields: dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

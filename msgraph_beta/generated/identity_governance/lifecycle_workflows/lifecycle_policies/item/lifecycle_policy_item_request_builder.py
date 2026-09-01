@@ -1,0 +1,198 @@
+from __future__ import annotations
+from collections.abc import Callable
+from dataclasses import dataclass, field
+from kiota_abstractions.base_request_builder import BaseRequestBuilder
+from kiota_abstractions.base_request_configuration import RequestConfiguration
+from kiota_abstractions.default_query_parameters import QueryParameters
+from kiota_abstractions.get_path_parameters import get_path_parameters
+from kiota_abstractions.method import Method
+from kiota_abstractions.request_adapter import RequestAdapter
+from kiota_abstractions.request_information import RequestInformation
+from kiota_abstractions.request_option import RequestOption
+from kiota_abstractions.serialization import Parsable, ParsableFactory
+from typing import Any, Optional, TYPE_CHECKING, Union
+from warnings import warn
+
+if TYPE_CHECKING:
+    from .....models.identity_governance.lifecycle_policy import LifecyclePolicy
+    from .....models.o_data_errors.o_data_error import ODataError
+    from .created_by.created_by_request_builder import CreatedByRequestBuilder
+    from .last_modified_by.last_modified_by_request_builder import LastModifiedByRequestBuilder
+    from .microsoft_graph_identity_governance_restore.microsoft_graph_identity_governance_restore_request_builder import MicrosoftGraphIdentityGovernanceRestoreRequestBuilder
+    from .rules.rules_request_builder import RulesRequestBuilder
+    from .versions.versions_request_builder import VersionsRequestBuilder
+
+class LifecyclePolicyItemRequestBuilder(BaseRequestBuilder):
+    """
+    Provides operations to manage the lifecyclePolicies property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+    """
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
+        """
+        Instantiates a new LifecyclePolicyItemRequestBuilder and sets the default values.
+        param path_parameters: The raw url or the url-template parameters for the request.
+        param request_adapter: The request adapter to use to execute the requests.
+        Returns: None
+        """
+        super().__init__(request_adapter, "{+baseurl}/identityGovernance/lifecycleWorkflows/lifecyclePolicies/{lifecyclePolicy%2Did}{?%24expand,%24select}", path_parameters)
+    
+    async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
+        """
+        Delete navigation property lifecyclePolicies for identityGovernance
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: None
+        """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
+        request_info = self.to_delete_request_information(
+            request_configuration
+        )
+        from .....models.o_data_errors.o_data_error import ODataError
+
+        error_mapping: dict[str, type[ParsableFactory]] = {
+            "XXX": ODataError,
+        }
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+    
+    async def get(self,request_configuration: Optional[RequestConfiguration[LifecyclePolicyItemRequestBuilderGetQueryParameters]] = None) -> Optional[LifecyclePolicy]:
+        """
+        Get lifecyclePolicies from identityGovernance
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[LifecyclePolicy]
+        """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
+        request_info = self.to_get_request_information(
+            request_configuration
+        )
+        from .....models.o_data_errors.o_data_error import ODataError
+
+        error_mapping: dict[str, type[ParsableFactory]] = {
+            "XXX": ODataError,
+        }
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        from .....models.identity_governance.lifecycle_policy import LifecyclePolicy
+
+        return await self.request_adapter.send_async(request_info, LifecyclePolicy, error_mapping)
+    
+    def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+        """
+        Delete navigation property lifecyclePolicies for identityGovernance
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
+        request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
+        request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
+        return request_info
+    
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[LifecyclePolicyItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
+        """
+        Get lifecyclePolicies from identityGovernance
+        param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
+        request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
+        request_info.configure(request_configuration)
+        request_info.headers.try_add("Accept", "application/json")
+        return request_info
+    
+    def with_url(self,raw_url: str) -> LifecyclePolicyItemRequestBuilder:
+        """
+        Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+        param raw_url: The raw URL to use for the request builder.
+        Returns: LifecyclePolicyItemRequestBuilder
+        """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
+        if raw_url is None:
+            raise TypeError("raw_url cannot be null.")
+        return LifecyclePolicyItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def created_by(self) -> CreatedByRequestBuilder:
+        """
+        Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.lifecyclePolicy entity.
+        """
+        from .created_by.created_by_request_builder import CreatedByRequestBuilder
+
+        return CreatedByRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def last_modified_by(self) -> LastModifiedByRequestBuilder:
+        """
+        Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.lifecyclePolicy entity.
+        """
+        from .last_modified_by.last_modified_by_request_builder import LastModifiedByRequestBuilder
+
+        return LastModifiedByRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_identity_governance_restore(self) -> MicrosoftGraphIdentityGovernanceRestoreRequestBuilder:
+        """
+        Provides operations to call the restore method.
+        """
+        from .microsoft_graph_identity_governance_restore.microsoft_graph_identity_governance_restore_request_builder import MicrosoftGraphIdentityGovernanceRestoreRequestBuilder
+
+        return MicrosoftGraphIdentityGovernanceRestoreRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def rules(self) -> RulesRequestBuilder:
+        """
+        Provides operations to manage the rules property of the microsoft.graph.identityGovernance.lifecyclePolicy entity.
+        """
+        from .rules.rules_request_builder import RulesRequestBuilder
+
+        return RulesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def versions(self) -> VersionsRequestBuilder:
+        """
+        Provides operations to manage the versions property of the microsoft.graph.identityGovernance.lifecyclePolicy entity.
+        """
+        from .versions.versions_request_builder import VersionsRequestBuilder
+
+        return VersionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @dataclass
+    class LifecyclePolicyItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+    @dataclass
+    class LifecyclePolicyItemRequestBuilderGetQueryParameters():
+        """
+        Get lifecyclePolicies from identityGovernance
+        """
+        def get_query_parameter(self,original_name: str) -> str:
+            """
+            Maps the query parameters names to their encoded names for the URI template parsing.
+            param original_name: The original query parameter name in the class.
+            Returns: str
+            """
+            if original_name is None:
+                raise TypeError("original_name cannot be null.")
+            if original_name == "expand":
+                return "%24expand"
+            if original_name == "select":
+                return "%24select"
+            return original_name
+        
+        # Expand related entities
+        expand: Optional[list[str]] = None
+
+        # Select properties to be returned
+        select: Optional[list[str]] = None
+
+    
+    @dataclass
+    class LifecyclePolicyItemRequestBuilderGetRequestConfiguration(RequestConfiguration[LifecyclePolicyItemRequestBuilderGetQueryParameters]):
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
+    
+

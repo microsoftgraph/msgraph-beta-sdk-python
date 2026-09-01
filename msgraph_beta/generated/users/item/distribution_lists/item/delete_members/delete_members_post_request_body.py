@@ -15,7 +15,7 @@ class DeleteMembersPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The members property
+    # The Members property
     members: Optional[list[Member]] = None
     
     @staticmethod
@@ -39,7 +39,7 @@ class DeleteMembersPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         from ......models.member import Member
 
         fields: dict[str, Callable[[Any], None]] = {
-            "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(Member)),
+            "Members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(Member)),
         }
         return fields
     
@@ -51,7 +51,7 @@ class DeleteMembersPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
-        writer.write_collection_of_object_values("members", self.members)
+        writer.write_collection_of_object_values("Members", self.members)
         writer.write_additional_data_value(self.additional_data)
     
 

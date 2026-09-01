@@ -39,6 +39,7 @@ class ExternalOriginResourceConnectorsRequestBuilder(BaseRequestBuilder):
         param external_origin_resource_connector_id: The unique identifier of externalOriginResourceConnector
         Returns: ExternalOriginResourceConnectorItemRequestBuilder
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if external_origin_resource_connector_id is None:
             raise TypeError("external_origin_resource_connector_id cannot be null.")
         from .item.external_origin_resource_connector_item_request_builder import ExternalOriginResourceConnectorItemRequestBuilder
@@ -54,6 +55,7 @@ class ExternalOriginResourceConnectorsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[ExternalOriginResourceConnectorCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-list-externaloriginresourceconnectors?view=graph-rest-beta
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -76,6 +78,7 @@ class ExternalOriginResourceConnectorsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[ExternalOriginResourceConnector]
         Find more info here: https://learn.microsoft.com/graph/api/entitlementmanagement-post-externaloriginresourceconnectors?view=graph-rest-beta
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -98,6 +101,7 @@ class ExternalOriginResourceConnectorsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -110,6 +114,7 @@ class ExternalOriginResourceConnectorsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -124,6 +129,7 @@ class ExternalOriginResourceConnectorsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ExternalOriginResourceConnectorsRequestBuilder
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ExternalOriginResourceConnectorsRequestBuilder(self.request_adapter, raw_url)

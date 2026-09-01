@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .activate_device_esim.activate_device_esim_request_builder import ActivateDeviceEsimRequestBuilder
     from .assignment_filter_evaluation_status_details.assignment_filter_evaluation_status_details_request_builder import AssignmentFilterEvaluationStatusDetailsRequestBuilder
     from .bypass_activation_lock.bypass_activation_lock_request_builder import BypassActivationLockRequestBuilder
+    from .cancel_enhanced_log_collection.cancel_enhanced_log_collection_request_builder import CancelEnhancedLogCollectionRequestBuilder
     from .change_assignments.change_assignments_request_builder import ChangeAssignmentsRequestBuilder
     from .clean_windows_device.clean_windows_device_request_builder import CleanWindowsDeviceRequestBuilder
     from .create_device_log_collection_request.create_device_log_collection_request_request_builder import CreateDeviceLogCollectionRequestRequestBuilder
@@ -71,6 +72,7 @@ if TYPE_CHECKING:
     from .suspend_managed_home_screen.suspend_managed_home_screen_request_builder import SuspendManagedHomeScreenRequestBuilder
     from .sync_device.sync_device_request_builder import SyncDeviceRequestBuilder
     from .trigger_configuration_manager_action.trigger_configuration_manager_action_request_builder import TriggerConfigurationManagerActionRequestBuilder
+    from .trigger_enhanced_log_collection.trigger_enhanced_log_collection_request_builder import TriggerEnhancedLogCollectionRequestBuilder
     from .update_windows_device_account.update_windows_device_account_request_builder import UpdateWindowsDeviceAccountRequestBuilder
     from .users.users_request_builder import UsersRequestBuilder
     from .windows_defender_scan.windows_defender_scan_request_builder import WindowsDefenderScanRequestBuilder
@@ -225,6 +227,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .bypass_activation_lock.bypass_activation_lock_request_builder import BypassActivationLockRequestBuilder
 
         return BypassActivationLockRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def cancel_enhanced_log_collection(self) -> CancelEnhancedLogCollectionRequestBuilder:
+        """
+        Provides operations to call the cancelEnhancedLogCollection method.
+        """
+        from .cancel_enhanced_log_collection.cancel_enhanced_log_collection_request_builder import CancelEnhancedLogCollectionRequestBuilder
+
+        return CancelEnhancedLogCollectionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def change_assignments(self) -> ChangeAssignmentsRequestBuilder:
@@ -693,6 +704,15 @@ class ManagedDeviceItemRequestBuilder(BaseRequestBuilder):
         from .trigger_configuration_manager_action.trigger_configuration_manager_action_request_builder import TriggerConfigurationManagerActionRequestBuilder
 
         return TriggerConfigurationManagerActionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def trigger_enhanced_log_collection(self) -> TriggerEnhancedLogCollectionRequestBuilder:
+        """
+        Provides operations to call the triggerEnhancedLogCollection method.
+        """
+        from .trigger_enhanced_log_collection.trigger_enhanced_log_collection_request_builder import TriggerEnhancedLogCollectionRequestBuilder
+
+        return TriggerEnhancedLogCollectionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def update_windows_device_account(self) -> UpdateWindowsDeviceAccountRequestBuilder:

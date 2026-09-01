@@ -15,7 +15,7 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
-    from ...models.tenant_governance_services.tenant_governance import TenantGovernance
+    from ...models.tenant_governance import TenantGovernance
     from .governance_invitations.governance_invitations_request_builder import GovernanceInvitationsRequestBuilder
     from .governance_policy_templates.governance_policy_templates_request_builder import GovernancePolicyTemplatesRequestBuilder
     from .governance_relationships.governance_relationships_request_builder import GovernanceRelationshipsRequestBuilder
@@ -70,7 +70,7 @@ class TenantGovernanceRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.tenant_governance_services.tenant_governance import TenantGovernance
+        from ...models.tenant_governance import TenantGovernance
 
         return await self.request_adapter.send_async(request_info, TenantGovernance, error_mapping)
     
@@ -93,7 +93,7 @@ class TenantGovernanceRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ...models.tenant_governance_services.tenant_governance import TenantGovernance
+        from ...models.tenant_governance import TenantGovernance
 
         return await self.request_adapter.send_async(request_info, TenantGovernance, error_mapping)
     
@@ -147,7 +147,7 @@ class TenantGovernanceRequestBuilder(BaseRequestBuilder):
     @property
     def governance_invitations(self) -> GovernanceInvitationsRequestBuilder:
         """
-        Provides operations to manage the governanceInvitations property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+        Provides operations to manage the governanceInvitations property of the microsoft.graph.tenantGovernance entity.
         """
         from .governance_invitations.governance_invitations_request_builder import GovernanceInvitationsRequestBuilder
 
@@ -156,7 +156,7 @@ class TenantGovernanceRequestBuilder(BaseRequestBuilder):
     @property
     def governance_policy_templates(self) -> GovernancePolicyTemplatesRequestBuilder:
         """
-        Provides operations to manage the governancePolicyTemplates property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+        Provides operations to manage the governancePolicyTemplates property of the microsoft.graph.tenantGovernance entity.
         """
         from .governance_policy_templates.governance_policy_templates_request_builder import GovernancePolicyTemplatesRequestBuilder
 
@@ -165,7 +165,7 @@ class TenantGovernanceRequestBuilder(BaseRequestBuilder):
     @property
     def governance_relationships(self) -> GovernanceRelationshipsRequestBuilder:
         """
-        Provides operations to manage the governanceRelationships property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+        Provides operations to manage the governanceRelationships property of the microsoft.graph.tenantGovernance entity.
         """
         from .governance_relationships.governance_relationships_request_builder import GovernanceRelationshipsRequestBuilder
 
@@ -174,7 +174,7 @@ class TenantGovernanceRequestBuilder(BaseRequestBuilder):
     @property
     def governance_requests(self) -> GovernanceRequestsRequestBuilder:
         """
-        Provides operations to manage the governanceRequests property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+        Provides operations to manage the governanceRequests property of the microsoft.graph.tenantGovernance entity.
         """
         from .governance_requests.governance_requests_request_builder import GovernanceRequestsRequestBuilder
 
@@ -183,7 +183,7 @@ class TenantGovernanceRequestBuilder(BaseRequestBuilder):
     @property
     def related_tenants(self) -> RelatedTenantsRequestBuilder:
         """
-        Provides operations to manage the relatedTenants property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+        Provides operations to manage the relatedTenants property of the microsoft.graph.tenantGovernance entity.
         """
         from .related_tenants.related_tenants_request_builder import RelatedTenantsRequestBuilder
 
@@ -192,7 +192,7 @@ class TenantGovernanceRequestBuilder(BaseRequestBuilder):
     @property
     def settings(self) -> SettingsRequestBuilder:
         """
-        Provides operations to manage the settings property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+        Provides operations to manage the settings property of the microsoft.graph.tenantGovernance entity.
         """
         from .settings.settings_request_builder import SettingsRequestBuilder
 

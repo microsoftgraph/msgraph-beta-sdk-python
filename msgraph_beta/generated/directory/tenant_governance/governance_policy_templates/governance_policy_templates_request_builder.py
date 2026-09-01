@@ -15,14 +15,14 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from ....models.tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
-    from ....models.tenant_governance_services.governance_policy_template_collection_response import GovernancePolicyTemplateCollectionResponse
+    from ....models.tenant_governance_policy_template import TenantGovernancePolicyTemplate
+    from ....models.tenant_governance_policy_template_collection_response import TenantGovernancePolicyTemplateCollectionResponse
     from .count.count_request_builder import CountRequestBuilder
-    from .item.governance_policy_template_item_request_builder import GovernancePolicyTemplateItemRequestBuilder
+    from .item.tenant_governance_policy_template_item_request_builder import TenantGovernancePolicyTemplateItemRequestBuilder
 
 class GovernancePolicyTemplatesRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the governancePolicyTemplates property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+    Provides operations to manage the governancePolicyTemplates property of the microsoft.graph.tenantGovernance entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -33,25 +33,25 @@ class GovernancePolicyTemplatesRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/directory/tenantGovernance/governancePolicyTemplates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
-    def by_governance_policy_template_id(self,governance_policy_template_id: str) -> GovernancePolicyTemplateItemRequestBuilder:
+    def by_tenant_governance_policy_template_id(self,tenant_governance_policy_template_id: str) -> TenantGovernancePolicyTemplateItemRequestBuilder:
         """
-        Provides operations to manage the governancePolicyTemplates property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
-        param governance_policy_template_id: The unique identifier of governancePolicyTemplate
-        Returns: GovernancePolicyTemplateItemRequestBuilder
+        Provides operations to manage the governancePolicyTemplates property of the microsoft.graph.tenantGovernance entity.
+        param tenant_governance_policy_template_id: The unique identifier of tenantGovernancePolicyTemplate
+        Returns: TenantGovernancePolicyTemplateItemRequestBuilder
         """
-        if governance_policy_template_id is None:
-            raise TypeError("governance_policy_template_id cannot be null.")
-        from .item.governance_policy_template_item_request_builder import GovernancePolicyTemplateItemRequestBuilder
+        if tenant_governance_policy_template_id is None:
+            raise TypeError("tenant_governance_policy_template_id cannot be null.")
+        from .item.tenant_governance_policy_template_item_request_builder import TenantGovernancePolicyTemplateItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["governancePolicyTemplate%2Did"] = governance_policy_template_id
-        return GovernancePolicyTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
+        url_tpl_params["tenantGovernancePolicyTemplate%2Did"] = tenant_governance_policy_template_id
+        return TenantGovernancePolicyTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[GovernancePolicyTemplatesRequestBuilderGetQueryParameters]] = None) -> Optional[GovernancePolicyTemplateCollectionResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[GovernancePolicyTemplatesRequestBuilderGetQueryParameters]] = None) -> Optional[TenantGovernancePolicyTemplateCollectionResponse]:
         """
         Get a list of the governancePolicyTemplate objects and their properties. Policy templates define the configuration that is applied when establishing governance relationships.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GovernancePolicyTemplateCollectionResponse]
+        Returns: Optional[TenantGovernancePolicyTemplateCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/tenantgovernanceservices-list-governancepolicytemplates?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
@@ -64,16 +64,16 @@ class GovernancePolicyTemplatesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.tenant_governance_services.governance_policy_template_collection_response import GovernancePolicyTemplateCollectionResponse
+        from ....models.tenant_governance_policy_template_collection_response import TenantGovernancePolicyTemplateCollectionResponse
 
-        return await self.request_adapter.send_async(request_info, GovernancePolicyTemplateCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, TenantGovernancePolicyTemplateCollectionResponse, error_mapping)
     
-    async def post(self,body: GovernancePolicyTemplate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[GovernancePolicyTemplate]:
+    async def post(self,body: TenantGovernancePolicyTemplate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TenantGovernancePolicyTemplate]:
         """
         Create a new governancePolicyTemplate that defines the configuration for establishing governance relationships, including role assignments and applications to provision.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GovernancePolicyTemplate]
+        Returns: Optional[TenantGovernancePolicyTemplate]
         Find more info here: https://learn.microsoft.com/graph/api/tenantgovernanceservices-post-governancepolicytemplates?view=graph-rest-beta
         """
         if body is None:
@@ -88,9 +88,9 @@ class GovernancePolicyTemplatesRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
+        from ....models.tenant_governance_policy_template import TenantGovernancePolicyTemplate
 
-        return await self.request_adapter.send_async(request_info, GovernancePolicyTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, TenantGovernancePolicyTemplate, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GovernancePolicyTemplatesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
@@ -103,7 +103,7 @@ class GovernancePolicyTemplatesRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_post_request_information(self,body: GovernancePolicyTemplate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
+    def to_post_request_information(self,body: TenantGovernancePolicyTemplate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Create a new governancePolicyTemplate that defines the configuration for establishing governance relationships, including role assignments and applications to provision.
         param body: The request body

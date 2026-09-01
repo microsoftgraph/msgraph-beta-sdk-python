@@ -13,7 +13,7 @@ from .activity import Activity
 class Comment(Activity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.caseManagement.comment"
-    # The comment body.
+    # The comment body. Supports $filter.
     message: Optional[str] = None
     
     @staticmethod

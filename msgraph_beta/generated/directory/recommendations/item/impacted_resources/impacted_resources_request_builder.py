@@ -17,8 +17,10 @@ if TYPE_CHECKING:
     from .....models.impacted_resource import ImpactedResource
     from .....models.impacted_resource_collection_response import ImpactedResourceCollectionResponse
     from .....models.o_data_errors.o_data_error import ODataError
+    from .add_tag.add_tag_request_builder import AddTagRequestBuilder
     from .count.count_request_builder import CountRequestBuilder
     from .item.impacted_resource_item_request_builder import ImpactedResourceItemRequestBuilder
+    from .remove_tag.remove_tag_request_builder import RemoveTagRequestBuilder
 
 class ImpactedResourcesRequestBuilder(BaseRequestBuilder):
     """
@@ -128,6 +130,15 @@ class ImpactedResourcesRequestBuilder(BaseRequestBuilder):
         return ImpactedResourcesRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def add_tag(self) -> AddTagRequestBuilder:
+        """
+        Provides operations to call the addTag method.
+        """
+        from .add_tag.add_tag_request_builder import AddTagRequestBuilder
+
+        return AddTagRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def count(self) -> CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -135,6 +146,15 @@ class ImpactedResourcesRequestBuilder(BaseRequestBuilder):
         from .count.count_request_builder import CountRequestBuilder
 
         return CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def remove_tag(self) -> RemoveTagRequestBuilder:
+        """
+        Provides operations to call the removeTag method.
+        """
+        from .remove_tag.remove_tag_request_builder import RemoveTagRequestBuilder
+
+        return RemoveTagRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ImpactedResourcesRequestBuilderGetQueryParameters():

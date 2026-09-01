@@ -14,12 +14,12 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
+    from ......models.billing_metrics import BillingMetrics
     from ......models.o_data_errors.o_data_error import ODataError
-    from ......models.tenant_governance_services.billing_metrics import BillingMetrics
 
 class BillingMetricsRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the billingMetrics property of the microsoft.graph.tenantGovernanceServices.relatedTenant entity.
+    Provides operations to manage the billingMetrics property of the microsoft.graph.relatedTenant entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -32,7 +32,7 @@ class BillingMetricsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[BillingMetricsRequestBuilderGetQueryParameters]] = None) -> Optional[BillingMetrics]:
         """
-        Billing metrics for this related tenant. Expanded by default.
+        Get billingMetrics from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BillingMetrics]
         """
@@ -46,13 +46,13 @@ class BillingMetricsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.tenant_governance_services.billing_metrics import BillingMetrics
+        from ......models.billing_metrics import BillingMetrics
 
         return await self.request_adapter.send_async(request_info, BillingMetrics, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[BillingMetricsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Billing metrics for this related tenant. Expanded by default.
+        Get billingMetrics from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class BillingMetricsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BillingMetricsRequestBuilderGetQueryParameters():
         """
-        Billing metrics for this related tenant. Expanded by default.
+        Get billingMetrics from directory
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .classification_request_content_meta_data import ClassificationRequestContentMetaData
+    from .embedding_input import EmbeddingInput
     from .entity import Entity
     from .ml_classification_match_tolerance import MlClassificationMatchTolerance
     from .sensitive_type_scope import SensitiveTypeScope
@@ -16,6 +17,8 @@ from .entity import Entity
 class TextClassificationRequest(Entity, Parsable):
     # Metadata that describes the content being classified.
     content_meta_data: Optional[ClassificationRequestContentMetaData] = None
+    # Optional caller-supplied precomputed embeddings for the text, so the service can skip recomputing them. Embeddings for models outside the allow-list are rejected with a 400.
+    embeddings: Optional[list[EmbeddingInput]] = None
     # The file extension of the content being classified.
     file_extension: Optional[str] = None
     # The match tolerance levels to include in the classification results. The possible values are: exact, near.
@@ -46,17 +49,20 @@ class TextClassificationRequest(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .classification_request_content_meta_data import ClassificationRequestContentMetaData
+        from .embedding_input import EmbeddingInput
         from .entity import Entity
         from .ml_classification_match_tolerance import MlClassificationMatchTolerance
         from .sensitive_type_scope import SensitiveTypeScope
 
         from .classification_request_content_meta_data import ClassificationRequestContentMetaData
+        from .embedding_input import EmbeddingInput
         from .entity import Entity
         from .ml_classification_match_tolerance import MlClassificationMatchTolerance
         from .sensitive_type_scope import SensitiveTypeScope
 
         fields: dict[str, Callable[[Any], None]] = {
             "contentMetaData": lambda n : setattr(self, 'content_meta_data', n.get_object_value(ClassificationRequestContentMetaData)),
+            "embeddings": lambda n : setattr(self, 'embeddings', n.get_collection_of_object_values(EmbeddingInput)),
             "fileExtension": lambda n : setattr(self, 'file_extension', n.get_str_value()),
             "matchTolerancesToInclude": lambda n : setattr(self, 'match_tolerances_to_include', n.get_collection_of_enum_values(MlClassificationMatchTolerance)),
             "scopesToRun": lambda n : setattr(self, 'scopes_to_run', n.get_collection_of_enum_values(SensitiveTypeScope)),
@@ -77,6 +83,7 @@ class TextClassificationRequest(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("contentMetaData", self.content_meta_data)
+        writer.write_collection_of_object_values("embeddings", self.embeddings)
         writer.write_str_value("fileExtension", self.file_extension)
         writer.write_enum_value("matchTolerancesToInclude", self.match_tolerances_to_include)
         writer.write_enum_value("scopesToRun", self.scopes_to_run)
