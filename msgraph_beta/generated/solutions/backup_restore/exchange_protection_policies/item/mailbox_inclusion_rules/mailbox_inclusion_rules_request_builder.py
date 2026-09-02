@@ -38,6 +38,7 @@ class MailboxInclusionRulesRequestBuilder(BaseRequestBuilder):
         param mailbox_protection_rule_id: The unique identifier of mailboxProtectionRule
         Returns: MailboxProtectionRuleItemRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if mailbox_protection_rule_id is None:
             raise TypeError("mailbox_protection_rule_id cannot be null.")
         from .item.mailbox_protection_rule_item_request_builder import MailboxProtectionRuleItemRequestBuilder
@@ -53,6 +54,7 @@ class MailboxInclusionRulesRequestBuilder(BaseRequestBuilder):
         Returns: Optional[MailboxProtectionRuleCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/exchangeprotectionpolicy-list-mailboxinclusionrules?view=graph-rest-beta
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -73,6 +75,7 @@ class MailboxInclusionRulesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -84,6 +87,7 @@ class MailboxInclusionRulesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MailboxInclusionRulesRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MailboxInclusionRulesRequestBuilder(self.request_adapter, raw_url)

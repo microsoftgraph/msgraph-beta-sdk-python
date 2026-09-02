@@ -36,7 +36,9 @@ if TYPE_CHECKING:
     from .get_password_single_sign_on_credentials.get_password_single_sign_on_credentials_request_builder import GetPasswordSingleSignOnCredentialsRequestBuilder
     from .home_realm_discovery_policies.home_realm_discovery_policies_request_builder import HomeRealmDiscoveryPoliciesRequestBuilder
     from .license_details.license_details_request_builder import LicenseDetailsRequestBuilder
+    from .lifecycle.lifecycle_request_builder import LifecycleRequestBuilder
     from .member_of.member_of_request_builder import MemberOfRequestBuilder
+    from .microsoft_graph_identity_governance_attest.microsoft_graph_identity_governance_attest_request_builder import MicrosoftGraphIdentityGovernanceAttestRequestBuilder
     from .oauth2_permission_grants.oauth2_permission_grants_request_builder import Oauth2PermissionGrantsRequestBuilder
     from .owned_objects.owned_objects_request_builder import OwnedObjectsRequestBuilder
     from .owners.owners_request_builder import OwnersRequestBuilder
@@ -69,6 +71,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-delete?view=graph-rest-beta
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -87,6 +90,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         param name: Alternate key of federatedIdentityCredential
         Returns: FederatedIdentityCredentialsWithNameRequestBuilder
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         if name is None:
             raise TypeError("name cannot be null.")
         from .federated_identity_credentials_with_name.federated_identity_credentials_with_name_request_builder import FederatedIdentityCredentialsWithNameRequestBuilder
@@ -100,6 +104,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[ServicePrincipal]
         Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-beta
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -122,6 +127,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[ServicePrincipal]
         Find more info here: https://learn.microsoft.com/graph/api/serviceprincipal-upsert?view=graph-rest-beta
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -144,6 +150,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -155,6 +162,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -167,6 +175,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -181,6 +190,7 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ServicePrincipalItemRequestBuilder
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ServicePrincipalItemRequestBuilder(self.request_adapter, raw_url)
@@ -357,6 +367,15 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         return LicenseDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def lifecycle(self) -> LifecycleRequestBuilder:
+        """
+        Provides operations to manage the lifecycle property of the microsoft.graph.servicePrincipal entity.
+        """
+        from .lifecycle.lifecycle_request_builder import LifecycleRequestBuilder
+
+        return LifecycleRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def member_of(self) -> MemberOfRequestBuilder:
         """
         Provides operations to manage the memberOf property of the microsoft.graph.servicePrincipal entity.
@@ -364,6 +383,15 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         from .member_of.member_of_request_builder import MemberOfRequestBuilder
 
         return MemberOfRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_identity_governance_attest(self) -> MicrosoftGraphIdentityGovernanceAttestRequestBuilder:
+        """
+        Provides operations to call the attest method.
+        """
+        from .microsoft_graph_identity_governance_attest.microsoft_graph_identity_governance_attest_request_builder import MicrosoftGraphIdentityGovernanceAttestRequestBuilder
+
+        return MicrosoftGraphIdentityGovernanceAttestRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def oauth2_permission_grants(self) -> Oauth2PermissionGrantsRequestBuilder:

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from ..entity import Entity
     from .lifecycle_workflow_processing_status import LifecycleWorkflowProcessingStatus
     from .run import Run
+    from .subject_type import SubjectType
     from .task_processing_result import TaskProcessingResult
     from .workflow_execution_type import WorkflowExecutionType
     from .workflow_subject import WorkflowSubject
@@ -33,6 +34,8 @@ class SubjectProcessingResult(Entity, Parsable):
     started_date_time: Optional[datetime.datetime] = None
     # The subject property
     subject: Optional[WorkflowSubject] = None
+    # The subjectType property
+    subject_type: Optional[SubjectType] = None
     # The task-level processing results for this subject. Read-only.
     task_processing_results: Optional[list[TaskProcessingResult]] = None
     # The total number of tasks in the workflow. Read-only.
@@ -63,6 +66,7 @@ class SubjectProcessingResult(Entity, Parsable):
         from ..entity import Entity
         from .lifecycle_workflow_processing_status import LifecycleWorkflowProcessingStatus
         from .run import Run
+        from .subject_type import SubjectType
         from .task_processing_result import TaskProcessingResult
         from .workflow_execution_type import WorkflowExecutionType
         from .workflow_subject import WorkflowSubject
@@ -70,6 +74,7 @@ class SubjectProcessingResult(Entity, Parsable):
         from ..entity import Entity
         from .lifecycle_workflow_processing_status import LifecycleWorkflowProcessingStatus
         from .run import Run
+        from .subject_type import SubjectType
         from .task_processing_result import TaskProcessingResult
         from .workflow_execution_type import WorkflowExecutionType
         from .workflow_subject import WorkflowSubject
@@ -82,6 +87,7 @@ class SubjectProcessingResult(Entity, Parsable):
             "scheduledDateTime": lambda n : setattr(self, 'scheduled_date_time', n.get_datetime_value()),
             "startedDateTime": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_object_value(WorkflowSubject)),
+            "subjectType": lambda n : setattr(self, 'subject_type', n.get_collection_of_enum_values(SubjectType)),
             "taskProcessingResults": lambda n : setattr(self, 'task_processing_results', n.get_collection_of_object_values(TaskProcessingResult)),
             "totalTasksCount": lambda n : setattr(self, 'total_tasks_count', n.get_int_value()),
             "totalUnprocessedTasksCount": lambda n : setattr(self, 'total_unprocessed_tasks_count', n.get_int_value()),
@@ -108,6 +114,7 @@ class SubjectProcessingResult(Entity, Parsable):
         writer.write_datetime_value("scheduledDateTime", self.scheduled_date_time)
         writer.write_datetime_value("startedDateTime", self.started_date_time)
         writer.write_object_value("subject", self.subject)
+        writer.write_enum_value("subjectType", self.subject_type)
         writer.write_collection_of_object_values("taskProcessingResults", self.task_processing_results)
         writer.write_int_value("totalTasksCount", self.total_tasks_count)
         writer.write_int_value("totalUnprocessedTasksCount", self.total_unprocessed_tasks_count)

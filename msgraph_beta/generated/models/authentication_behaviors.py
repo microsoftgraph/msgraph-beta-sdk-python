@@ -14,6 +14,8 @@ class AuthenticationBehaviors(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # If false, allows the app to have extended access to Azure AD Graph until August 31, 2025 when Azure AD Graph is fully retired. For more information on Azure AD retirement updates, see June 2024 update on Azure AD Graph API retirement.
     block_azure_a_d_graph_access: Optional[bool] = None
+    # Indicates whether Cross-Origin-Opener-Policy (COOP) headers are enforced on browser-based authentication responses for the application. Set to true to enable enforcement, false to temporarily suppress enforcement, or null to use the service default. For how-to guidance, see Control Cross-Origin-Opener-Policy enforcement.
+    coop_enforcement: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # If true, removes the email claim from tokens sent to an application when the email address's domain can't be verified.
@@ -39,6 +41,7 @@ class AuthenticationBehaviors(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: dict[str, Callable[[Any], None]] = {
             "blockAzureADGraphAccess": lambda n : setattr(self, 'block_azure_a_d_graph_access', n.get_bool_value()),
+            "coopEnforcement": lambda n : setattr(self, 'coop_enforcement', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "removeUnverifiedEmailClaim": lambda n : setattr(self, 'remove_unverified_email_claim', n.get_bool_value()),
             "requireClientServicePrincipal": lambda n : setattr(self, 'require_client_service_principal', n.get_bool_value()),
@@ -54,6 +57,7 @@ class AuthenticationBehaviors(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("blockAzureADGraphAccess", self.block_azure_a_d_graph_access)
+        writer.write_bool_value("coopEnforcement", self.coop_enforcement)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bool_value("removeUnverifiedEmailClaim", self.remove_unverified_email_claim)
         writer.write_bool_value("requireClientServicePrincipal", self.require_client_service_principal)

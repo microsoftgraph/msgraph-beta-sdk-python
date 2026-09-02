@@ -41,6 +41,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
         param virtual_event_townhall_id: The unique identifier of virtualEventTownhall
         Returns: VirtualEventTownhallItemRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if virtual_event_townhall_id is None:
             raise TypeError("virtual_event_townhall_id cannot be null.")
         from .item.virtual_event_townhall_item_request_builder import VirtualEventTownhallItemRequestBuilder
@@ -55,6 +56,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[VirtualEventTownhallCollectionResponse]
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -76,6 +78,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
         param user_id: Usage: userId='{userId}'
         Returns: GetByUserIdAndRoleWithUserIdWithRoleRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if role is None:
             raise TypeError("role cannot be null.")
         if user_id is None:
@@ -90,6 +93,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
         param role: Usage: role='{role}'
         Returns: GetByUserRoleWithRoleRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if role is None:
             raise TypeError("role cannot be null.")
         from .get_by_user_role_with_role.get_by_user_role_with_role_request_builder import GetByUserRoleWithRoleRequestBuilder
@@ -104,6 +108,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[VirtualEventTownhall]
         Find more info here: https://learn.microsoft.com/graph/api/virtualeventsroot-post-townhalls?view=graph-rest-beta
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -126,6 +131,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -138,6 +144,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -152,6 +159,7 @@ class TownhallsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: TownhallsRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return TownhallsRequestBuilder(self.request_adapter, raw_url)

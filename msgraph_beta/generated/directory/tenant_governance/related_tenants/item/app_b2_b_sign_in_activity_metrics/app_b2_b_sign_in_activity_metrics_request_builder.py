@@ -14,12 +14,12 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
+    from ......models.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
     from ......models.o_data_errors.o_data_error import ODataError
-    from ......models.tenant_governance_services.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
 
 class AppB2BSignInActivityMetricsRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the appB2BSignInActivityMetrics property of the microsoft.graph.tenantGovernanceServices.relatedTenant entity.
+    Provides operations to manage the appB2BSignInActivityMetrics property of the microsoft.graph.relatedTenant entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -32,7 +32,7 @@ class AppB2BSignInActivityMetricsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[AppB2BSignInActivityMetricsRequestBuilderGetQueryParameters]] = None) -> Optional[B2BSignInActivityMetrics]:
         """
-        B2B sign-in activity metrics for this related tenant. Expanded by default.
+        Get appB2BSignInActivityMetrics from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2BSignInActivityMetrics]
         """
@@ -46,13 +46,13 @@ class AppB2BSignInActivityMetricsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.tenant_governance_services.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
+        from ......models.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
 
         return await self.request_adapter.send_async(request_info, B2BSignInActivityMetrics, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[AppB2BSignInActivityMetricsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        B2B sign-in activity metrics for this related tenant. Expanded by default.
+        Get appB2BSignInActivityMetrics from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class AppB2BSignInActivityMetricsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class AppB2BSignInActivityMetricsRequestBuilderGetQueryParameters():
         """
-        B2B sign-in activity metrics for this related tenant. Expanded by default.
+        Get appB2BSignInActivityMetrics from directory
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

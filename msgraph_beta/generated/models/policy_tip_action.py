@@ -12,9 +12,9 @@ from .dlp_action_info import DlpActionInfo
 
 @dataclass
 class PolicyTipAction(DlpActionInfo, Parsable):
-    # The complianceUrl property
+    # A URL that points users to additional compliance guidance or remediation details for the policy tip.
     compliance_url: Optional[str] = None
-    # The matchedConditionsDescription property
+    # A user-friendly summary of the matched DLP conditions that triggered the policy tip.
     matched_conditions_description: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

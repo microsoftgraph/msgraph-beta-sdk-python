@@ -19,6 +19,8 @@ if TYPE_CHECKING:
     from .custom_task_extensions.custom_task_extensions_request_builder import CustomTaskExtensionsRequestBuilder
     from .deleted_items.deleted_items_request_builder import DeletedItemsRequestBuilder
     from .insights.insights_request_builder import InsightsRequestBuilder
+    from .lifecycle_policies.lifecycle_policies_request_builder import LifecyclePoliciesRequestBuilder
+    from .lifecycle_policy_priority_configurations.lifecycle_policy_priority_configurations_request_builder import LifecyclePolicyPriorityConfigurationsRequestBuilder
     from .settings.settings_request_builder import SettingsRequestBuilder
     from .task_definitions.task_definitions_request_builder import TaskDefinitionsRequestBuilder
     from .workflows.workflows_request_builder import WorkflowsRequestBuilder
@@ -43,6 +45,7 @@ class LifecycleWorkflowsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -61,6 +64,7 @@ class LifecycleWorkflowsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LifecycleWorkflowsContainer]
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -82,6 +86,7 @@ class LifecycleWorkflowsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LifecycleWorkflowsContainer]
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -104,6 +109,7 @@ class LifecycleWorkflowsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -115,6 +121,7 @@ class LifecycleWorkflowsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -127,6 +134,7 @@ class LifecycleWorkflowsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -141,6 +149,7 @@ class LifecycleWorkflowsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: LifecycleWorkflowsRequestBuilder
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return LifecycleWorkflowsRequestBuilder(self.request_adapter, raw_url)
@@ -171,6 +180,24 @@ class LifecycleWorkflowsRequestBuilder(BaseRequestBuilder):
         from .insights.insights_request_builder import InsightsRequestBuilder
 
         return InsightsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def lifecycle_policies(self) -> LifecyclePoliciesRequestBuilder:
+        """
+        Provides operations to manage the lifecyclePolicies property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        """
+        from .lifecycle_policies.lifecycle_policies_request_builder import LifecyclePoliciesRequestBuilder
+
+        return LifecyclePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def lifecycle_policy_priority_configurations(self) -> LifecyclePolicyPriorityConfigurationsRequestBuilder:
+        """
+        Provides operations to manage the lifecyclePolicyPriorityConfigurations property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        """
+        from .lifecycle_policy_priority_configurations.lifecycle_policy_priority_configurations_request_builder import LifecyclePolicyPriorityConfigurationsRequestBuilder
+
+        return LifecyclePolicyPriorityConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def settings(self) -> SettingsRequestBuilder:

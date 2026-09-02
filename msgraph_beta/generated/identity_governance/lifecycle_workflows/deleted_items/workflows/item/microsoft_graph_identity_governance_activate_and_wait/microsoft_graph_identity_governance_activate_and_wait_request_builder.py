@@ -39,6 +39,7 @@ class MicrosoftGraphIdentityGovernanceActivateAndWaitRequestBuilder(BaseRequestB
         Returns: Optional[AwaitedWorkflowProcessingResult]
         Find more info here: https://learn.microsoft.com/graph/api/identitygovernance-workflow-activateandwait?view=graph-rest-beta
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -62,6 +63,7 @@ class MicrosoftGraphIdentityGovernanceActivateAndWaitRequestBuilder(BaseRequestB
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -76,6 +78,7 @@ class MicrosoftGraphIdentityGovernanceActivateAndWaitRequestBuilder(BaseRequestB
         param raw_url: The raw URL to use for the request builder.
         Returns: MicrosoftGraphIdentityGovernanceActivateAndWaitRequestBuilder
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MicrosoftGraphIdentityGovernanceActivateAndWaitRequestBuilder(self.request_adapter, raw_url)

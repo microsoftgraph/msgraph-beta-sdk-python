@@ -25,13 +25,13 @@ class Case(CaseManagementEntity, Parsable):
     activities: Optional[list[Activity]] = None
     # Evidence files and metadata associated with the case. Supports $expand.
     attachments: Optional[list[Attachment]] = None
-    # Tenant-defined custom field values keyed by custom field identifier.
+    # Tenant-defined custom field values keyed by the exact displayName of each custom field definition. The property and its dynamic fields don't support $filter.
     custom_fields: Optional[CustomFieldValues] = None
-    # The display name of the case. Supports $filter (eq, ne) and $orderby.
+    # The display name of the case. Supports $filter and $orderby.
     display_name: Optional[str] = None
     # Links from the case to related security resources. Supports $expand.
     relations: Optional[list[Relation]] = None
-    # The lifecycle status of the case, such as open, in progress, or closed. Supports $filter (eq, ne) and $orderby.
+    # The tenant-defined lifecycle status of the case. Use a displayName value returned in the status tree by List statuses from /security/caseManagement/caseTypeConfigurations/genericCase/statuses or /security/caseManagement/caseTypeConfigurations/incidentCase/statuses, depending on the case type. Supports $filter (eq).
     status: Optional[str] = None
     # Tasks used to track work required to resolve the case. Supports $expand.
     tasks: Optional[list[Task]] = None

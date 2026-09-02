@@ -10,6 +10,8 @@ if TYPE_CHECKING:
     from .custom_task_extension import CustomTaskExtension
     from .insights import Insights
     from .lifecycle_management_settings import LifecycleManagementSettings
+    from .lifecycle_policy import LifecyclePolicy
+    from .lifecycle_policy_priority_configuration import LifecyclePolicyPriorityConfiguration
     from .task_definition import TaskDefinition
     from .workflow import Workflow
     from .workflow_template import WorkflowTemplate
@@ -24,6 +26,10 @@ class LifecycleWorkflowsContainer(Entity, Parsable):
     deleted_items: Optional[DeletedItemContainer] = None
     # The insight container holding workflow insight summaries for a tenant.
     insights: Optional[Insights] = None
+    # The lifecyclePolicies property
+    lifecycle_policies: Optional[list[LifecyclePolicy]] = None
+    # The lifecyclePolicyPriorityConfigurations property
+    lifecycle_policy_priority_configurations: Optional[list[LifecyclePolicyPriorityConfiguration]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The settings property
@@ -56,6 +62,8 @@ class LifecycleWorkflowsContainer(Entity, Parsable):
         from .custom_task_extension import CustomTaskExtension
         from .insights import Insights
         from .lifecycle_management_settings import LifecycleManagementSettings
+        from .lifecycle_policy import LifecyclePolicy
+        from .lifecycle_policy_priority_configuration import LifecyclePolicyPriorityConfiguration
         from .task_definition import TaskDefinition
         from .workflow import Workflow
         from .workflow_template import WorkflowTemplate
@@ -65,6 +73,8 @@ class LifecycleWorkflowsContainer(Entity, Parsable):
         from .custom_task_extension import CustomTaskExtension
         from .insights import Insights
         from .lifecycle_management_settings import LifecycleManagementSettings
+        from .lifecycle_policy import LifecyclePolicy
+        from .lifecycle_policy_priority_configuration import LifecyclePolicyPriorityConfiguration
         from .task_definition import TaskDefinition
         from .workflow import Workflow
         from .workflow_template import WorkflowTemplate
@@ -73,6 +83,8 @@ class LifecycleWorkflowsContainer(Entity, Parsable):
             "customTaskExtensions": lambda n : setattr(self, 'custom_task_extensions', n.get_collection_of_object_values(CustomTaskExtension)),
             "deletedItems": lambda n : setattr(self, 'deleted_items', n.get_object_value(DeletedItemContainer)),
             "insights": lambda n : setattr(self, 'insights', n.get_object_value(Insights)),
+            "lifecyclePolicies": lambda n : setattr(self, 'lifecycle_policies', n.get_collection_of_object_values(LifecyclePolicy)),
+            "lifecyclePolicyPriorityConfigurations": lambda n : setattr(self, 'lifecycle_policy_priority_configurations', n.get_collection_of_object_values(LifecyclePolicyPriorityConfiguration)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(LifecycleManagementSettings)),
             "taskDefinitions": lambda n : setattr(self, 'task_definitions', n.get_collection_of_object_values(TaskDefinition)),
             "workflowTemplates": lambda n : setattr(self, 'workflow_templates', n.get_collection_of_object_values(WorkflowTemplate)),
@@ -94,6 +106,8 @@ class LifecycleWorkflowsContainer(Entity, Parsable):
         writer.write_collection_of_object_values("customTaskExtensions", self.custom_task_extensions)
         writer.write_object_value("deletedItems", self.deleted_items)
         writer.write_object_value("insights", self.insights)
+        writer.write_collection_of_object_values("lifecyclePolicies", self.lifecycle_policies)
+        writer.write_collection_of_object_values("lifecyclePolicyPriorityConfigurations", self.lifecycle_policy_priority_configurations)
         writer.write_object_value("settings", self.settings)
         writer.write_collection_of_object_values("taskDefinitions", self.task_definitions)
         writer.write_collection_of_object_values("workflowTemplates", self.workflow_templates)

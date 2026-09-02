@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .mobile_app_content_file_upload_error_code import MobileAppContentFileUploadErrorCode
     from .mobile_app_content_file_upload_state import MobileAppContentFileUploadState
 
 from .entity import Entity
@@ -38,6 +39,8 @@ class MobileAppContentFile(Entity, Parsable):
     size: Optional[int] = None
     # Indicates the size of the file after encryption, in bytes.
     size_encrypted: Optional[int] = None
+    # Indicates optional error details when uploadState is indicating an error. For example, when uploadState has commitFileFailed value, this field may have the error code of apkIsInvalid. Read-only.
+    upload_error_code: Optional[MobileAppContentFileUploadErrorCode] = None
     # Contains properties for upload request states.
     upload_state: Optional[MobileAppContentFileUploadState] = None
     
@@ -58,9 +61,11 @@ class MobileAppContentFile(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .mobile_app_content_file_upload_error_code import MobileAppContentFileUploadErrorCode
         from .mobile_app_content_file_upload_state import MobileAppContentFileUploadState
 
         from .entity import Entity
+        from .mobile_app_content_file_upload_error_code import MobileAppContentFileUploadErrorCode
         from .mobile_app_content_file_upload_state import MobileAppContentFileUploadState
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -74,6 +79,7 @@ class MobileAppContentFile(Entity, Parsable):
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "size": lambda n : setattr(self, 'size', n.get_int_value()),
             "sizeEncrypted": lambda n : setattr(self, 'size_encrypted', n.get_int_value()),
+            "uploadErrorCode": lambda n : setattr(self, 'upload_error_code', n.get_enum_value(MobileAppContentFileUploadErrorCode)),
             "uploadState": lambda n : setattr(self, 'upload_state', n.get_enum_value(MobileAppContentFileUploadState)),
         }
         super_fields = super().get_field_deserializers()

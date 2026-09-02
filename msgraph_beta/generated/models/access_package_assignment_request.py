@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .access_package import AccessPackage
     from .access_package_answer import AccessPackageAnswer
     from .access_package_assignment import AccessPackageAssignment
+    from .access_package_assignment_request_parameters import AccessPackageAssignmentRequestParameters
     from .access_package_subject import AccessPackageSubject
     from .custom_extension_callout_instance import CustomExtensionCalloutInstance
     from .custom_extension_handler_instance import CustomExtensionHandlerInstance
@@ -45,6 +46,8 @@ class AccessPackageAssignmentRequest(Entity, Parsable):
     justification: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Additional parameters that control how the request is processed, such as bypassing the approval requirement configured on the access package policy.
+    parameters: Optional[AccessPackageAssignmentRequestParameters] = None
     # One of PendingApproval, Canceled,  Denied, Delivering, Delivered, PartiallyDelivered, DeliveryFailed, Submitted, or Scheduled. Read-only.
     request_state: Optional[str] = None
     # More information on the request processing status. Read-only.
@@ -77,6 +80,7 @@ class AccessPackageAssignmentRequest(Entity, Parsable):
         from .access_package import AccessPackage
         from .access_package_answer import AccessPackageAnswer
         from .access_package_assignment import AccessPackageAssignment
+        from .access_package_assignment_request_parameters import AccessPackageAssignmentRequestParameters
         from .access_package_subject import AccessPackageSubject
         from .custom_extension_callout_instance import CustomExtensionCalloutInstance
         from .custom_extension_handler_instance import CustomExtensionHandlerInstance
@@ -88,6 +92,7 @@ class AccessPackageAssignmentRequest(Entity, Parsable):
         from .access_package import AccessPackage
         from .access_package_answer import AccessPackageAnswer
         from .access_package_assignment import AccessPackageAssignment
+        from .access_package_assignment_request_parameters import AccessPackageAssignmentRequestParameters
         from .access_package_subject import AccessPackageSubject
         from .custom_extension_callout_instance import CustomExtensionCalloutInstance
         from .custom_extension_handler_instance import CustomExtensionHandlerInstance
@@ -108,6 +113,7 @@ class AccessPackageAssignmentRequest(Entity, Parsable):
             "history": lambda n : setattr(self, 'history', n.get_collection_of_object_values(RequestActivity)),
             "isValidationOnly": lambda n : setattr(self, 'is_validation_only', n.get_bool_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
+            "parameters": lambda n : setattr(self, 'parameters', n.get_object_value(AccessPackageAssignmentRequestParameters)),
             "requestState": lambda n : setattr(self, 'request_state', n.get_str_value()),
             "requestStatus": lambda n : setattr(self, 'request_status', n.get_str_value()),
             "requestType": lambda n : setattr(self, 'request_type', n.get_str_value()),
@@ -139,6 +145,7 @@ class AccessPackageAssignmentRequest(Entity, Parsable):
         writer.write_collection_of_object_values("history", self.history)
         writer.write_bool_value("isValidationOnly", self.is_validation_only)
         writer.write_str_value("justification", self.justification)
+        writer.write_object_value("parameters", self.parameters)
         writer.write_str_value("requestState", self.request_state)
         writer.write_str_value("requestStatus", self.request_status)
         writer.write_str_value("requestType", self.request_type)

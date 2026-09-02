@@ -39,6 +39,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         param booking_business_id: The unique identifier of bookingBusiness
         Returns: BookingBusinessItemRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if booking_business_id is None:
             raise TypeError("booking_business_id cannot be null.")
         from .item.booking_business_item_request_builder import BookingBusinessItemRequestBuilder
@@ -53,6 +54,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingBusinessCollectionResponse]
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -74,6 +76,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BookingBusiness]
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -96,6 +99,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -108,6 +112,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -122,6 +127,7 @@ class BookingBusinessesRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: BookingBusinessesRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return BookingBusinessesRequestBuilder(self.request_adapter, raw_url)

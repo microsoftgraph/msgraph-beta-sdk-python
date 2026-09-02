@@ -16,10 +16,16 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.impacted_resource import ImpactedResource
     from ....models.o_data_errors.o_data_error import ODataError
+    from .accept_risk.accept_risk_request_builder import AcceptRiskRequestBuilder
+    from .add_tag.add_tag_request_builder import AddTagRequestBuilder
+    from .apply_alternate_mitigation.apply_alternate_mitigation_request_builder import ApplyAlternateMitigationRequestBuilder
     from .complete.complete_request_builder import CompleteRequestBuilder
     from .dismiss.dismiss_request_builder import DismissRequestBuilder
+    from .mark_planned.mark_planned_request_builder import MarkPlannedRequestBuilder
     from .postpone.postpone_request_builder import PostponeRequestBuilder
     from .reactivate.reactivate_request_builder import ReactivateRequestBuilder
+    from .remove_tag.remove_tag_request_builder import RemoveTagRequestBuilder
+    from .tags.tags_request_builder import TagsRequestBuilder
 
 class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
     """
@@ -143,6 +149,33 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
         return ImpactedResourceItemRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def accept_risk(self) -> AcceptRiskRequestBuilder:
+        """
+        Provides operations to call the acceptRisk method.
+        """
+        from .accept_risk.accept_risk_request_builder import AcceptRiskRequestBuilder
+
+        return AcceptRiskRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def add_tag(self) -> AddTagRequestBuilder:
+        """
+        Provides operations to call the addTag method.
+        """
+        from .add_tag.add_tag_request_builder import AddTagRequestBuilder
+
+        return AddTagRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def apply_alternate_mitigation(self) -> ApplyAlternateMitigationRequestBuilder:
+        """
+        Provides operations to call the applyAlternateMitigation method.
+        """
+        from .apply_alternate_mitigation.apply_alternate_mitigation_request_builder import ApplyAlternateMitigationRequestBuilder
+
+        return ApplyAlternateMitigationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def complete(self) -> CompleteRequestBuilder:
         """
         Provides operations to call the complete method.
@@ -161,6 +194,15 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
         return DismissRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def mark_planned(self) -> MarkPlannedRequestBuilder:
+        """
+        Provides operations to call the markPlanned method.
+        """
+        from .mark_planned.mark_planned_request_builder import MarkPlannedRequestBuilder
+
+        return MarkPlannedRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def postpone(self) -> PostponeRequestBuilder:
         """
         Provides operations to call the postpone method.
@@ -177,6 +219,24 @@ class ImpactedResourceItemRequestBuilder(BaseRequestBuilder):
         from .reactivate.reactivate_request_builder import ReactivateRequestBuilder
 
         return ReactivateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def remove_tag(self) -> RemoveTagRequestBuilder:
+        """
+        Provides operations to call the removeTag method.
+        """
+        from .remove_tag.remove_tag_request_builder import RemoveTagRequestBuilder
+
+        return RemoveTagRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tags(self) -> TagsRequestBuilder:
+        """
+        Provides operations to manage the tags property of the microsoft.graph.impactedResource entity.
+        """
+        from .tags.tags_request_builder import TagsRequestBuilder
+
+        return TagsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ImpactedResourceItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

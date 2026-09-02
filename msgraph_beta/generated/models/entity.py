@@ -60,6 +60,7 @@ if TYPE_CHECKING:
     from .agent import Agent
     from .agent_card_manifest import AgentCardManifest
     from .agent_collection import AgentCollection
+    from .agent_communication_configuration import AgentCommunicationConfiguration
     from .agent_identity import AgentIdentity
     from .agent_identity_blueprint import AgentIdentityBlueprint
     from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
@@ -266,9 +267,17 @@ if TYPE_CHECKING:
     from .azure_service_principal import AzureServicePrincipal
     from .azure_user import AzureUser
     from .b2b_management_policy import B2bManagementPolicy
+    from .b2b_registration_metrics import B2bRegistrationMetrics
     from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
     from .b2c_identity_user_flow import B2cIdentityUserFlow
     from .b2x_identity_user_flow import B2xIdentityUserFlow
+    from .b2_b_registration_metrics_base import B2BRegistrationMetricsBase
+    from .b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
+    from .b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
+    from .b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
+    from .b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
+    from .b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
+    from .b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
     from .backup_policy_activity_log import BackupPolicyActivityLog
     from .backup_report import BackupReport
     from .backup_restore_root import BackupRestoreRoot
@@ -276,6 +285,10 @@ if TYPE_CHECKING:
     from .base_item_version import BaseItemVersion
     from .base_map_feature import BaseMapFeature
     from .base_site_page import BaseSitePage
+    from .billing_metrics import BillingMetrics
+    from .billing_metrics_base import BillingMetricsBase
+    from .billing_metrics_initial import BillingMetricsInitial
+    from .billing_metrics_recent import BillingMetricsRecent
     from .bitlocker import Bitlocker
     from .bitlocker_recovery_key import BitlockerRecoveryKey
     from .booking_appointment import BookingAppointment
@@ -517,7 +530,6 @@ if TYPE_CHECKING:
     from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
     from .device_and_app_management_role_assignment import DeviceAndAppManagementRoleAssignment
     from .device_and_app_management_role_definition import DeviceAndAppManagementRoleDefinition
-    from .device_app_management import DeviceAppManagement
     from .device_app_management_task import DeviceAppManagementTask
     from .device_category import DeviceCategory
     from .device_comanagement_authority_configuration import DeviceComanagementAuthorityConfiguration
@@ -645,6 +657,7 @@ if TYPE_CHECKING:
     from .directory_setting import DirectorySetting
     from .directory_setting_template import DirectorySettingTemplate
     from .distribution_list import DistributionList
+    from .distribution_list_member import DistributionListMember
     from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
     from .document import Document
     from .document_comment import DocumentComment
@@ -844,7 +857,10 @@ if TYPE_CHECKING:
     from .goals import Goals
     from .goals_export_job import GoalsExportJob
     from .governance_insight import GovernanceInsight
+    from .governance_invitation import GovernanceInvitation
     from .governance_policy_template import GovernancePolicyTemplate
+    from .governance_relationship import GovernanceRelationship
+    from .governance_request import GovernanceRequest
     from .governance_resource import GovernanceResource
     from .governance_role_assignment import GovernanceRoleAssignment
     from .governance_role_assignment_request import GovernanceRoleAssignmentRequest
@@ -912,11 +928,22 @@ if TYPE_CHECKING:
     from .identity_correlation import IdentityCorrelation
     from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
     from .identity_finding import IdentityFinding
+    from .identity_governance.agent_identity_lifecycle import AgentIdentityLifecycle
+    from .identity_governance.agent_identity_lifecycle_policy import AgentIdentityLifecyclePolicy
+    from .identity_governance.attestation_compliance_issue import AttestationComplianceIssue
+    from .identity_governance.compliance_issue import ComplianceIssue
     from .identity_governance.custom_task_extension import CustomTaskExtension
+    from .identity_governance.identity_lifecycle import IdentityLifecycle
+    from .identity_governance.inactivity_rule import InactivityRule
     from .identity_governance.insights import Insights
     from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
+    from .identity_governance.lifecycle_policy import LifecyclePolicy
+    from .identity_governance.lifecycle_policy_priority_configuration import LifecyclePolicyPriorityConfiguration
+    from .identity_governance.lifecycle_policy_rule import LifecyclePolicyRule
     from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
+    from .identity_governance.periodic_attestation_rule import PeriodicAttestationRule
     from .identity_governance.run import Run
+    from .identity_governance.sponsor_presence_rule import SponsorPresenceRule
     from .identity_governance.subject_processing_result import SubjectProcessingResult
     from .identity_governance.task import Task
     from .identity_governance.task_definition import TaskDefinition
@@ -1242,6 +1269,10 @@ if TYPE_CHECKING:
     from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
     from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
     from .multi_activity_subscription import MultiActivitySubscription
+    from .multi_tenant_application_metrics import MultiTenantApplicationMetrics
+    from .multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
+    from .multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
+    from .multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
     from .multi_tenant_organization import MultiTenantOrganization
     from .multi_tenant_organization_identity_sync_policy_template import MultiTenantOrganizationIdentitySyncPolicyTemplate
     from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
@@ -1566,6 +1597,7 @@ if TYPE_CHECKING:
     from .recommendation import Recommendation
     from .recommendation_base import RecommendationBase
     from .recommendation_configuration import RecommendationConfiguration
+    from .recommendation_tag import RecommendationTag
     from .record_operation import RecordOperation
     from .recycle_bin import RecycleBin
     from .recycle_bin_item import RecycleBinItem
@@ -1574,6 +1606,8 @@ if TYPE_CHECKING:
     from .reference_attachment import ReferenceAttachment
     from .reflect_check_in_response import ReflectCheckInResponse
     from .regional_and_language_settings import RegionalAndLanguageSettings
+    from .related_tenant import RelatedTenant
+    from .related_tenants_refresh_request import RelatedTenantsRefreshRequest
     from .relying_party_detailed_summary import RelyingPartyDetailedSummary
     from .remote_action_audit import RemoteActionAudit
     from .remote_assistance_partner import RemoteAssistancePartner
@@ -1596,6 +1630,7 @@ if TYPE_CHECKING:
     from .restricted_apps_violation import RestrictedAppsViolation
     from .rich_long_running_operation import RichLongRunningOperation
     from .risky_agent import RiskyAgent
+    from .risky_agent_discovered_agent_identity import RiskyAgentDiscoveredAgentIdentity
     from .risky_agent_identity import RiskyAgentIdentity
     from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
     from .risky_agent_user import RiskyAgentUser
@@ -1972,31 +2007,9 @@ if TYPE_CHECKING:
     from .tenant_app_management_policy import TenantAppManagementPolicy
     from .tenant_attach_r_b_a_c import TenantAttachRBAC
     from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
-    from .tenant_governance_services.b2b_registration_metrics import B2bRegistrationMetrics
-    from .tenant_governance_services.b2_b_registration_metrics_base import B2BRegistrationMetricsBase
-    from .tenant_governance_services.b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
-    from .tenant_governance_services.b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
-    from .tenant_governance_services.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
-    from .tenant_governance_services.b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
-    from .tenant_governance_services.b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
-    from .tenant_governance_services.b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
-    from .tenant_governance_services.billing_metrics import BillingMetrics
-    from .tenant_governance_services.billing_metrics_base import BillingMetricsBase
-    from .tenant_governance_services.billing_metrics_initial import BillingMetricsInitial
-    from .tenant_governance_services.billing_metrics_recent import BillingMetricsRecent
-    from .tenant_governance_services.governance_invitation import GovernanceInvitation
-    from .tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
-    from .tenant_governance_services.governance_relationship import GovernanceRelationship
-    from .tenant_governance_services.governance_request import GovernanceRequest
-    from .tenant_governance_services.long_running_operation import LongRunningOperation
-    from .tenant_governance_services.multi_tenant_application_metrics import MultiTenantApplicationMetrics
-    from .tenant_governance_services.multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
-    from .tenant_governance_services.multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
-    from .tenant_governance_services.multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
-    from .tenant_governance_services.related_tenant import RelatedTenant
-    from .tenant_governance_services.related_tenants_refresh_request import RelatedTenantsRefreshRequest
-    from .tenant_governance_services.tenant_governance import TenantGovernance
-    from .tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
+    from .tenant_governance import TenantGovernance
+    from .tenant_governance_policy_template import TenantGovernancePolicyTemplate
+    from .tenant_governance_setting import TenantGovernanceSetting
     from .tenant_protection_scope_container import TenantProtectionScopeContainer
     from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
     from .tenant_setup_info import TenantSetupInfo
@@ -2632,6 +2645,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .agent_collection import AgentCollection
 
             return AgentCollection()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentCommunicationConfiguration".casefold():
+            from .agent_communication_configuration import AgentCommunicationConfiguration
+
+            return AgentCommunicationConfiguration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentIdentity".casefold():
             from .agent_identity import AgentIdentity
 
@@ -3461,6 +3478,38 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .b2b_management_policy import B2bManagementPolicy
 
             return B2bManagementPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2bRegistrationMetrics".casefold():
+            from .b2b_registration_metrics import B2bRegistrationMetrics
+
+            return B2bRegistrationMetrics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2BRegistrationMetricsBase".casefold():
+            from .b2_b_registration_metrics_base import B2BRegistrationMetricsBase
+
+            return B2BRegistrationMetricsBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2BRegistrationMetricsInitial".casefold():
+            from .b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
+
+            return B2BRegistrationMetricsInitial()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2BRegistrationMetricsRecent".casefold():
+            from .b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
+
+            return B2BRegistrationMetricsRecent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2BSignInActivityMetrics".casefold():
+            from .b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
+
+            return B2BSignInActivityMetrics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2BSignInActivityMetricsBase".casefold():
+            from .b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
+
+            return B2BSignInActivityMetricsBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2BSignInActivityMetricsInitial".casefold():
+            from .b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
+
+            return B2BSignInActivityMetricsInitial()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2BSignInActivityMetricsRecent".casefold():
+            from .b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
+
+            return B2BSignInActivityMetricsRecent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2cAuthenticationMethodsPolicy".casefold():
             from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
 
@@ -3501,6 +3550,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .base_site_page import BaseSitePage
 
             return BaseSitePage()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.billingMetrics".casefold():
+            from .billing_metrics import BillingMetrics
+
+            return BillingMetrics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.billingMetricsBase".casefold():
+            from .billing_metrics_base import BillingMetricsBase
+
+            return BillingMetricsBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.billingMetricsInitial".casefold():
+            from .billing_metrics_initial import BillingMetricsInitial
+
+            return BillingMetricsInitial()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.billingMetricsRecent".casefold():
+            from .billing_metrics_recent import BillingMetricsRecent
+
+            return BillingMetricsRecent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.bitlocker".casefold():
             from .bitlocker import Bitlocker
 
@@ -4469,10 +4534,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .device_and_app_management_role_definition import DeviceAndAppManagementRoleDefinition
 
             return DeviceAndAppManagementRoleDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceAppManagement".casefold():
-            from .device_app_management import DeviceAppManagement
-
-            return DeviceAppManagement()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceAppManagementTask".casefold():
             from .device_app_management_task import DeviceAppManagementTask
 
@@ -4982,6 +5043,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .distribution_list import DistributionList
 
             return DistributionList()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.distributionListMember".casefold():
+            from .distribution_list_member import DistributionListMember
+
+            return DistributionListMember()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.dlpEvaluatePoliciesJobResponse".casefold():
             from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
 
@@ -5795,11 +5860,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .governance_insight import GovernanceInsight
 
             return GovernanceInsight()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.governanceInvitation".casefold():
+            from .governance_invitation import GovernanceInvitation
+
+            return GovernanceInvitation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.governancePolicyTemplate".casefold():
             from .governance_policy_template import GovernancePolicyTemplate
-            from .tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
 
             return GovernancePolicyTemplate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.governanceRelationship".casefold():
+            from .governance_relationship import GovernanceRelationship
+
+            return GovernanceRelationship()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.governanceRequest".casefold():
+            from .governance_request import GovernanceRequest
+
+            return GovernanceRequest()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.governanceResource".casefold():
             from .governance_resource import GovernanceResource
 
@@ -6072,10 +6148,34 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_finding import IdentityFinding
 
             return IdentityFinding()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.agentIdentityLifecycle".casefold():
+            from .identity_governance.agent_identity_lifecycle import AgentIdentityLifecycle
+
+            return AgentIdentityLifecycle()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.agentIdentityLifecyclePolicy".casefold():
+            from .identity_governance.agent_identity_lifecycle_policy import AgentIdentityLifecyclePolicy
+
+            return AgentIdentityLifecyclePolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.attestationComplianceIssue".casefold():
+            from .identity_governance.attestation_compliance_issue import AttestationComplianceIssue
+
+            return AttestationComplianceIssue()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.complianceIssue".casefold():
+            from .identity_governance.compliance_issue import ComplianceIssue
+
+            return ComplianceIssue()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.customTaskExtension".casefold():
             from .identity_governance.custom_task_extension import CustomTaskExtension
 
             return CustomTaskExtension()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.identityLifecycle".casefold():
+            from .identity_governance.identity_lifecycle import IdentityLifecycle
+
+            return IdentityLifecycle()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.inactivityRule".casefold():
+            from .identity_governance.inactivity_rule import InactivityRule
+
+            return InactivityRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.insights".casefold():
             from .identity_governance.insights import Insights
 
@@ -6084,14 +6184,34 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
 
             return LifecycleManagementSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecyclePolicy".casefold():
+            from .identity_governance.lifecycle_policy import LifecyclePolicy
+
+            return LifecyclePolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecyclePolicyPriorityConfiguration".casefold():
+            from .identity_governance.lifecycle_policy_priority_configuration import LifecyclePolicyPriorityConfiguration
+
+            return LifecyclePolicyPriorityConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecyclePolicyRule".casefold():
+            from .identity_governance.lifecycle_policy_rule import LifecyclePolicyRule
+
+            return LifecyclePolicyRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecycleWorkflowsContainer".casefold():
             from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
 
             return LifecycleWorkflowsContainer()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.periodicAttestationRule".casefold():
+            from .identity_governance.periodic_attestation_rule import PeriodicAttestationRule
+
+            return PeriodicAttestationRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.run".casefold():
             from .identity_governance.run import Run
 
             return Run()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.sponsorPresenceRule".casefold():
+            from .identity_governance.sponsor_presence_rule import SponsorPresenceRule
+
+            return SponsorPresenceRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.subjectProcessingResult".casefold():
             from .identity_governance.subject_processing_result import SubjectProcessingResult
 
@@ -6668,7 +6788,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             return LoginPage()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.longRunningOperation".casefold():
             from .long_running_operation import LongRunningOperation
-            from .tenant_governance_services.long_running_operation import LongRunningOperation
 
             return LongRunningOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.lookupResultRow".casefold():
@@ -7399,6 +7518,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .multi_activity_subscription import MultiActivitySubscription
 
             return MultiActivitySubscription()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.multiTenantApplicationMetrics".casefold():
+            from .multi_tenant_application_metrics import MultiTenantApplicationMetrics
+
+            return MultiTenantApplicationMetrics()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.multiTenantApplicationMetricsBase".casefold():
+            from .multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
+
+            return MultiTenantApplicationMetricsBase()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.multiTenantApplicationMetricsInitial".casefold():
+            from .multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
+
+            return MultiTenantApplicationMetricsInitial()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.multiTenantApplicationMetricsRecent".casefold():
+            from .multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
+
+            return MultiTenantApplicationMetricsRecent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.multiTenantOrganization".casefold():
             from .multi_tenant_organization import MultiTenantOrganization
 
@@ -8705,6 +8840,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .recommendation_configuration import RecommendationConfiguration
 
             return RecommendationConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.recommendationTag".casefold():
+            from .recommendation_tag import RecommendationTag
+
+            return RecommendationTag()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.recordOperation".casefold():
             from .record_operation import RecordOperation
 
@@ -8737,6 +8876,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .regional_and_language_settings import RegionalAndLanguageSettings
 
             return RegionalAndLanguageSettings()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.relatedTenant".casefold():
+            from .related_tenant import RelatedTenant
+
+            return RelatedTenant()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.relatedTenantsRefreshRequest".casefold():
+            from .related_tenants_refresh_request import RelatedTenantsRefreshRequest
+
+            return RelatedTenantsRefreshRequest()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.relyingPartyDetailedSummary".casefold():
             from .relying_party_detailed_summary import RelyingPartyDetailedSummary
 
@@ -8829,6 +8976,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .risky_agent import RiskyAgent
 
             return RiskyAgent()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgentDiscoveredAgentIdentity".casefold():
+            from .risky_agent_discovered_agent_identity import RiskyAgentDiscoveredAgentIdentity
+
+            return RiskyAgentDiscoveredAgentIdentity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgentIdentity".casefold():
             from .risky_agent_identity import RiskyAgentIdentity
 
@@ -10354,106 +10505,16 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
 
             return TenantDataSecurityAndGovernance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2bRegistrationMetrics".casefold():
-            from .tenant_governance_services.b2b_registration_metrics import B2bRegistrationMetrics
-
-            return B2bRegistrationMetrics()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BRegistrationMetricsBase".casefold():
-            from .tenant_governance_services.b2_b_registration_metrics_base import B2BRegistrationMetricsBase
-
-            return B2BRegistrationMetricsBase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BRegistrationMetricsInitial".casefold():
-            from .tenant_governance_services.b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
-
-            return B2BRegistrationMetricsInitial()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BRegistrationMetricsRecent".casefold():
-            from .tenant_governance_services.b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
-
-            return B2BRegistrationMetricsRecent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BSignInActivityMetrics".casefold():
-            from .tenant_governance_services.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
-
-            return B2BSignInActivityMetrics()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BSignInActivityMetricsBase".casefold():
-            from .tenant_governance_services.b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
-
-            return B2BSignInActivityMetricsBase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BSignInActivityMetricsInitial".casefold():
-            from .tenant_governance_services.b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
-
-            return B2BSignInActivityMetricsInitial()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.b2BSignInActivityMetricsRecent".casefold():
-            from .tenant_governance_services.b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
-
-            return B2BSignInActivityMetricsRecent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.billingMetrics".casefold():
-            from .tenant_governance_services.billing_metrics import BillingMetrics
-
-            return BillingMetrics()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.billingMetricsBase".casefold():
-            from .tenant_governance_services.billing_metrics_base import BillingMetricsBase
-
-            return BillingMetricsBase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.billingMetricsInitial".casefold():
-            from .tenant_governance_services.billing_metrics_initial import BillingMetricsInitial
-
-            return BillingMetricsInitial()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.billingMetricsRecent".casefold():
-            from .tenant_governance_services.billing_metrics_recent import BillingMetricsRecent
-
-            return BillingMetricsRecent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.governanceInvitation".casefold():
-            from .tenant_governance_services.governance_invitation import GovernanceInvitation
-
-            return GovernanceInvitation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.governancePolicyTemplate".casefold():
-            from .governance_policy_template import GovernancePolicyTemplate
-            from .tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
-
-            return GovernancePolicyTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.governanceRelationship".casefold():
-            from .tenant_governance_services.governance_relationship import GovernanceRelationship
-
-            return GovernanceRelationship()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.governanceRequest".casefold():
-            from .tenant_governance_services.governance_request import GovernanceRequest
-
-            return GovernanceRequest()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.longRunningOperation".casefold():
-            from .long_running_operation import LongRunningOperation
-            from .tenant_governance_services.long_running_operation import LongRunningOperation
-
-            return LongRunningOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.multiTenantApplicationMetrics".casefold():
-            from .tenant_governance_services.multi_tenant_application_metrics import MultiTenantApplicationMetrics
-
-            return MultiTenantApplicationMetrics()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.multiTenantApplicationMetricsBase".casefold():
-            from .tenant_governance_services.multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
-
-            return MultiTenantApplicationMetricsBase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.multiTenantApplicationMetricsInitial".casefold():
-            from .tenant_governance_services.multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
-
-            return MultiTenantApplicationMetricsInitial()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.multiTenantApplicationMetricsRecent".casefold():
-            from .tenant_governance_services.multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
-
-            return MultiTenantApplicationMetricsRecent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.relatedTenant".casefold():
-            from .tenant_governance_services.related_tenant import RelatedTenant
-
-            return RelatedTenant()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.relatedTenantsRefreshRequest".casefold():
-            from .tenant_governance_services.related_tenants_refresh_request import RelatedTenantsRefreshRequest
-
-            return RelatedTenantsRefreshRequest()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.tenantGovernance".casefold():
-            from .tenant_governance_services.tenant_governance import TenantGovernance
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernance".casefold():
+            from .tenant_governance import TenantGovernance
 
             return TenantGovernance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceServices.tenantGovernanceSetting".casefold():
-            from .tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernancePolicyTemplate".casefold():
+            from .tenant_governance_policy_template import TenantGovernancePolicyTemplate
+
+            return TenantGovernancePolicyTemplate()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantGovernanceSetting".casefold():
+            from .tenant_governance_setting import TenantGovernanceSetting
 
             return TenantGovernanceSetting()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantProtectionScopeContainer".casefold():
@@ -12093,6 +12154,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .agent import Agent
         from .agent_card_manifest import AgentCardManifest
         from .agent_collection import AgentCollection
+        from .agent_communication_configuration import AgentCommunicationConfiguration
         from .agent_identity import AgentIdentity
         from .agent_identity_blueprint import AgentIdentityBlueprint
         from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
@@ -12299,9 +12361,17 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .azure_service_principal import AzureServicePrincipal
         from .azure_user import AzureUser
         from .b2b_management_policy import B2bManagementPolicy
+        from .b2b_registration_metrics import B2bRegistrationMetrics
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
+        from .b2_b_registration_metrics_base import B2BRegistrationMetricsBase
+        from .b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
+        from .b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
+        from .b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
+        from .b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
+        from .b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
+        from .b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
         from .backup_policy_activity_log import BackupPolicyActivityLog
         from .backup_report import BackupReport
         from .backup_restore_root import BackupRestoreRoot
@@ -12309,6 +12379,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .base_item_version import BaseItemVersion
         from .base_map_feature import BaseMapFeature
         from .base_site_page import BaseSitePage
+        from .billing_metrics import BillingMetrics
+        from .billing_metrics_base import BillingMetricsBase
+        from .billing_metrics_initial import BillingMetricsInitial
+        from .billing_metrics_recent import BillingMetricsRecent
         from .bitlocker import Bitlocker
         from .bitlocker_recovery_key import BitlockerRecoveryKey
         from .booking_appointment import BookingAppointment
@@ -12550,7 +12624,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
         from .device_and_app_management_role_assignment import DeviceAndAppManagementRoleAssignment
         from .device_and_app_management_role_definition import DeviceAndAppManagementRoleDefinition
-        from .device_app_management import DeviceAppManagement
         from .device_app_management_task import DeviceAppManagementTask
         from .device_category import DeviceCategory
         from .device_comanagement_authority_configuration import DeviceComanagementAuthorityConfiguration
@@ -12678,6 +12751,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .directory_setting import DirectorySetting
         from .directory_setting_template import DirectorySettingTemplate
         from .distribution_list import DistributionList
+        from .distribution_list_member import DistributionListMember
         from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
         from .document import Document
         from .document_comment import DocumentComment
@@ -12877,7 +12951,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .goals import Goals
         from .goals_export_job import GoalsExportJob
         from .governance_insight import GovernanceInsight
+        from .governance_invitation import GovernanceInvitation
         from .governance_policy_template import GovernancePolicyTemplate
+        from .governance_relationship import GovernanceRelationship
+        from .governance_request import GovernanceRequest
         from .governance_resource import GovernanceResource
         from .governance_role_assignment import GovernanceRoleAssignment
         from .governance_role_assignment_request import GovernanceRoleAssignmentRequest
@@ -12945,11 +13022,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_correlation import IdentityCorrelation
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
         from .identity_finding import IdentityFinding
+        from .identity_governance.agent_identity_lifecycle import AgentIdentityLifecycle
+        from .identity_governance.agent_identity_lifecycle_policy import AgentIdentityLifecyclePolicy
+        from .identity_governance.attestation_compliance_issue import AttestationComplianceIssue
+        from .identity_governance.compliance_issue import ComplianceIssue
         from .identity_governance.custom_task_extension import CustomTaskExtension
+        from .identity_governance.identity_lifecycle import IdentityLifecycle
+        from .identity_governance.inactivity_rule import InactivityRule
         from .identity_governance.insights import Insights
         from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
+        from .identity_governance.lifecycle_policy import LifecyclePolicy
+        from .identity_governance.lifecycle_policy_priority_configuration import LifecyclePolicyPriorityConfiguration
+        from .identity_governance.lifecycle_policy_rule import LifecyclePolicyRule
         from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
+        from .identity_governance.periodic_attestation_rule import PeriodicAttestationRule
         from .identity_governance.run import Run
+        from .identity_governance.sponsor_presence_rule import SponsorPresenceRule
         from .identity_governance.subject_processing_result import SubjectProcessingResult
         from .identity_governance.task import Task
         from .identity_governance.task_definition import TaskDefinition
@@ -13275,6 +13363,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
         from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
         from .multi_activity_subscription import MultiActivitySubscription
+        from .multi_tenant_application_metrics import MultiTenantApplicationMetrics
+        from .multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
+        from .multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
+        from .multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
         from .multi_tenant_organization import MultiTenantOrganization
         from .multi_tenant_organization_identity_sync_policy_template import MultiTenantOrganizationIdentitySyncPolicyTemplate
         from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
@@ -13599,6 +13691,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .recommendation import Recommendation
         from .recommendation_base import RecommendationBase
         from .recommendation_configuration import RecommendationConfiguration
+        from .recommendation_tag import RecommendationTag
         from .record_operation import RecordOperation
         from .recycle_bin import RecycleBin
         from .recycle_bin_item import RecycleBinItem
@@ -13607,6 +13700,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .reference_attachment import ReferenceAttachment
         from .reflect_check_in_response import ReflectCheckInResponse
         from .regional_and_language_settings import RegionalAndLanguageSettings
+        from .related_tenant import RelatedTenant
+        from .related_tenants_refresh_request import RelatedTenantsRefreshRequest
         from .relying_party_detailed_summary import RelyingPartyDetailedSummary
         from .remote_action_audit import RemoteActionAudit
         from .remote_assistance_partner import RemoteAssistancePartner
@@ -13629,6 +13724,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .restricted_apps_violation import RestrictedAppsViolation
         from .rich_long_running_operation import RichLongRunningOperation
         from .risky_agent import RiskyAgent
+        from .risky_agent_discovered_agent_identity import RiskyAgentDiscoveredAgentIdentity
         from .risky_agent_identity import RiskyAgentIdentity
         from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
         from .risky_agent_user import RiskyAgentUser
@@ -14005,31 +14101,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .tenant_attach_r_b_a_c import TenantAttachRBAC
         from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
-        from .tenant_governance_services.b2b_registration_metrics import B2bRegistrationMetrics
-        from .tenant_governance_services.b2_b_registration_metrics_base import B2BRegistrationMetricsBase
-        from .tenant_governance_services.b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
-        from .tenant_governance_services.b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
-        from .tenant_governance_services.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
-        from .tenant_governance_services.b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
-        from .tenant_governance_services.b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
-        from .tenant_governance_services.b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
-        from .tenant_governance_services.billing_metrics import BillingMetrics
-        from .tenant_governance_services.billing_metrics_base import BillingMetricsBase
-        from .tenant_governance_services.billing_metrics_initial import BillingMetricsInitial
-        from .tenant_governance_services.billing_metrics_recent import BillingMetricsRecent
-        from .tenant_governance_services.governance_invitation import GovernanceInvitation
-        from .tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
-        from .tenant_governance_services.governance_relationship import GovernanceRelationship
-        from .tenant_governance_services.governance_request import GovernanceRequest
-        from .tenant_governance_services.long_running_operation import LongRunningOperation
-        from .tenant_governance_services.multi_tenant_application_metrics import MultiTenantApplicationMetrics
-        from .tenant_governance_services.multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
-        from .tenant_governance_services.multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
-        from .tenant_governance_services.multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
-        from .tenant_governance_services.related_tenant import RelatedTenant
-        from .tenant_governance_services.related_tenants_refresh_request import RelatedTenantsRefreshRequest
-        from .tenant_governance_services.tenant_governance import TenantGovernance
-        from .tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
+        from .tenant_governance import TenantGovernance
+        from .tenant_governance_policy_template import TenantGovernancePolicyTemplate
+        from .tenant_governance_setting import TenantGovernanceSetting
         from .tenant_protection_scope_container import TenantProtectionScopeContainer
         from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
         from .tenant_setup_info import TenantSetupInfo
@@ -14477,6 +14551,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .agent import Agent
         from .agent_card_manifest import AgentCardManifest
         from .agent_collection import AgentCollection
+        from .agent_communication_configuration import AgentCommunicationConfiguration
         from .agent_identity import AgentIdentity
         from .agent_identity_blueprint import AgentIdentityBlueprint
         from .agent_identity_blueprint_principal import AgentIdentityBlueprintPrincipal
@@ -14683,9 +14758,17 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .azure_service_principal import AzureServicePrincipal
         from .azure_user import AzureUser
         from .b2b_management_policy import B2bManagementPolicy
+        from .b2b_registration_metrics import B2bRegistrationMetrics
         from .b2c_authentication_methods_policy import B2cAuthenticationMethodsPolicy
         from .b2c_identity_user_flow import B2cIdentityUserFlow
         from .b2x_identity_user_flow import B2xIdentityUserFlow
+        from .b2_b_registration_metrics_base import B2BRegistrationMetricsBase
+        from .b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
+        from .b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
+        from .b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
+        from .b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
+        from .b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
+        from .b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
         from .backup_policy_activity_log import BackupPolicyActivityLog
         from .backup_report import BackupReport
         from .backup_restore_root import BackupRestoreRoot
@@ -14693,6 +14776,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .base_item_version import BaseItemVersion
         from .base_map_feature import BaseMapFeature
         from .base_site_page import BaseSitePage
+        from .billing_metrics import BillingMetrics
+        from .billing_metrics_base import BillingMetricsBase
+        from .billing_metrics_initial import BillingMetricsInitial
+        from .billing_metrics_recent import BillingMetricsRecent
         from .bitlocker import Bitlocker
         from .bitlocker_recovery_key import BitlockerRecoveryKey
         from .booking_appointment import BookingAppointment
@@ -14934,7 +15021,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .device_and_app_management_assignment_filter import DeviceAndAppManagementAssignmentFilter
         from .device_and_app_management_role_assignment import DeviceAndAppManagementRoleAssignment
         from .device_and_app_management_role_definition import DeviceAndAppManagementRoleDefinition
-        from .device_app_management import DeviceAppManagement
         from .device_app_management_task import DeviceAppManagementTask
         from .device_category import DeviceCategory
         from .device_comanagement_authority_configuration import DeviceComanagementAuthorityConfiguration
@@ -15062,6 +15148,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .directory_setting import DirectorySetting
         from .directory_setting_template import DirectorySettingTemplate
         from .distribution_list import DistributionList
+        from .distribution_list_member import DistributionListMember
         from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
         from .document import Document
         from .document_comment import DocumentComment
@@ -15261,7 +15348,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .goals import Goals
         from .goals_export_job import GoalsExportJob
         from .governance_insight import GovernanceInsight
+        from .governance_invitation import GovernanceInvitation
         from .governance_policy_template import GovernancePolicyTemplate
+        from .governance_relationship import GovernanceRelationship
+        from .governance_request import GovernanceRequest
         from .governance_resource import GovernanceResource
         from .governance_role_assignment import GovernanceRoleAssignment
         from .governance_role_assignment_request import GovernanceRoleAssignmentRequest
@@ -15329,11 +15419,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_correlation import IdentityCorrelation
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
         from .identity_finding import IdentityFinding
+        from .identity_governance.agent_identity_lifecycle import AgentIdentityLifecycle
+        from .identity_governance.agent_identity_lifecycle_policy import AgentIdentityLifecyclePolicy
+        from .identity_governance.attestation_compliance_issue import AttestationComplianceIssue
+        from .identity_governance.compliance_issue import ComplianceIssue
         from .identity_governance.custom_task_extension import CustomTaskExtension
+        from .identity_governance.identity_lifecycle import IdentityLifecycle
+        from .identity_governance.inactivity_rule import InactivityRule
         from .identity_governance.insights import Insights
         from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
+        from .identity_governance.lifecycle_policy import LifecyclePolicy
+        from .identity_governance.lifecycle_policy_priority_configuration import LifecyclePolicyPriorityConfiguration
+        from .identity_governance.lifecycle_policy_rule import LifecyclePolicyRule
         from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
+        from .identity_governance.periodic_attestation_rule import PeriodicAttestationRule
         from .identity_governance.run import Run
+        from .identity_governance.sponsor_presence_rule import SponsorPresenceRule
         from .identity_governance.subject_processing_result import SubjectProcessingResult
         from .identity_governance.task import Task
         from .identity_governance.task_definition import TaskDefinition
@@ -15659,6 +15760,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .monthly_inactive_users_metric import MonthlyInactiveUsersMetric
         from .monthly_user_insight_metrics_root import MonthlyUserInsightMetricsRoot
         from .multi_activity_subscription import MultiActivitySubscription
+        from .multi_tenant_application_metrics import MultiTenantApplicationMetrics
+        from .multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
+        from .multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
+        from .multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
         from .multi_tenant_organization import MultiTenantOrganization
         from .multi_tenant_organization_identity_sync_policy_template import MultiTenantOrganizationIdentitySyncPolicyTemplate
         from .multi_tenant_organization_join_request_record import MultiTenantOrganizationJoinRequestRecord
@@ -15983,6 +16088,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .recommendation import Recommendation
         from .recommendation_base import RecommendationBase
         from .recommendation_configuration import RecommendationConfiguration
+        from .recommendation_tag import RecommendationTag
         from .record_operation import RecordOperation
         from .recycle_bin import RecycleBin
         from .recycle_bin_item import RecycleBinItem
@@ -15991,6 +16097,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .reference_attachment import ReferenceAttachment
         from .reflect_check_in_response import ReflectCheckInResponse
         from .regional_and_language_settings import RegionalAndLanguageSettings
+        from .related_tenant import RelatedTenant
+        from .related_tenants_refresh_request import RelatedTenantsRefreshRequest
         from .relying_party_detailed_summary import RelyingPartyDetailedSummary
         from .remote_action_audit import RemoteActionAudit
         from .remote_assistance_partner import RemoteAssistancePartner
@@ -16013,6 +16121,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .restricted_apps_violation import RestrictedAppsViolation
         from .rich_long_running_operation import RichLongRunningOperation
         from .risky_agent import RiskyAgent
+        from .risky_agent_discovered_agent_identity import RiskyAgentDiscoveredAgentIdentity
         from .risky_agent_identity import RiskyAgentIdentity
         from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
         from .risky_agent_user import RiskyAgentUser
@@ -16389,31 +16498,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .tenant_attach_r_b_a_c import TenantAttachRBAC
         from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
-        from .tenant_governance_services.b2b_registration_metrics import B2bRegistrationMetrics
-        from .tenant_governance_services.b2_b_registration_metrics_base import B2BRegistrationMetricsBase
-        from .tenant_governance_services.b2_b_registration_metrics_initial import B2BRegistrationMetricsInitial
-        from .tenant_governance_services.b2_b_registration_metrics_recent import B2BRegistrationMetricsRecent
-        from .tenant_governance_services.b2_b_sign_in_activity_metrics import B2BSignInActivityMetrics
-        from .tenant_governance_services.b2_b_sign_in_activity_metrics_base import B2BSignInActivityMetricsBase
-        from .tenant_governance_services.b2_b_sign_in_activity_metrics_initial import B2BSignInActivityMetricsInitial
-        from .tenant_governance_services.b2_b_sign_in_activity_metrics_recent import B2BSignInActivityMetricsRecent
-        from .tenant_governance_services.billing_metrics import BillingMetrics
-        from .tenant_governance_services.billing_metrics_base import BillingMetricsBase
-        from .tenant_governance_services.billing_metrics_initial import BillingMetricsInitial
-        from .tenant_governance_services.billing_metrics_recent import BillingMetricsRecent
-        from .tenant_governance_services.governance_invitation import GovernanceInvitation
-        from .tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
-        from .tenant_governance_services.governance_relationship import GovernanceRelationship
-        from .tenant_governance_services.governance_request import GovernanceRequest
-        from .tenant_governance_services.long_running_operation import LongRunningOperation
-        from .tenant_governance_services.multi_tenant_application_metrics import MultiTenantApplicationMetrics
-        from .tenant_governance_services.multi_tenant_application_metrics_base import MultiTenantApplicationMetricsBase
-        from .tenant_governance_services.multi_tenant_application_metrics_initial import MultiTenantApplicationMetricsInitial
-        from .tenant_governance_services.multi_tenant_application_metrics_recent import MultiTenantApplicationMetricsRecent
-        from .tenant_governance_services.related_tenant import RelatedTenant
-        from .tenant_governance_services.related_tenants_refresh_request import RelatedTenantsRefreshRequest
-        from .tenant_governance_services.tenant_governance import TenantGovernance
-        from .tenant_governance_services.tenant_governance_setting import TenantGovernanceSetting
+        from .tenant_governance import TenantGovernance
+        from .tenant_governance_policy_template import TenantGovernancePolicyTemplate
+        from .tenant_governance_setting import TenantGovernanceSetting
         from .tenant_protection_scope_container import TenantProtectionScopeContainer
         from .tenant_relationship_access_policy_base import TenantRelationshipAccessPolicyBase
         from .tenant_setup_info import TenantSetupInfo

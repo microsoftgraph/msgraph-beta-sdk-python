@@ -9,4 +9,5 @@ class RequiredLicenses(str, Enum):
     MicrosoftEntraWorkloadId = "microsoftEntraWorkloadId",
     UnknownFutureValue = "unknownFutureValue",
     Aatp = "aatp",
+    MicrosoftEntraSuite = "microsoftEntraSuite",
 

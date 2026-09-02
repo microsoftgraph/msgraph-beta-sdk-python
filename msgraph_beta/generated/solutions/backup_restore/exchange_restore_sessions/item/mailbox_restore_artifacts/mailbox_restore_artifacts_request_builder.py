@@ -39,6 +39,7 @@ class MailboxRestoreArtifactsRequestBuilder(BaseRequestBuilder):
         param mailbox_restore_artifact_id: The unique identifier of mailboxRestoreArtifact
         Returns: MailboxRestoreArtifactItemRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if mailbox_restore_artifact_id is None:
             raise TypeError("mailbox_restore_artifact_id cannot be null.")
         from .item.mailbox_restore_artifact_item_request_builder import MailboxRestoreArtifactItemRequestBuilder
@@ -54,6 +55,7 @@ class MailboxRestoreArtifactsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[MailboxRestoreArtifactCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/exchangerestoresession-list-mailboxrestoreartifacts?view=graph-rest-beta
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -75,6 +77,7 @@ class MailboxRestoreArtifactsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[MailboxRestoreArtifact]
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -97,6 +100,7 @@ class MailboxRestoreArtifactsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -109,6 +113,7 @@ class MailboxRestoreArtifactsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -123,6 +128,7 @@ class MailboxRestoreArtifactsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MailboxRestoreArtifactsRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MailboxRestoreArtifactsRequestBuilder(self.request_adapter, raw_url)

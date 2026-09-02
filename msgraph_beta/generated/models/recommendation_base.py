@@ -9,11 +9,14 @@ if TYPE_CHECKING:
     from .action_step import ActionStep
     from .entity import Entity
     from .impacted_resource import ImpactedResource
+    from .nist_classification import NistClassification
     from .recommendation import Recommendation
     from .recommendation_category import RecommendationCategory
+    from .recommendation_category_group import RecommendationCategoryGroup
     from .recommendation_feature_areas import RecommendationFeatureAreas
     from .recommendation_priority import RecommendationPriority
     from .recommendation_status import RecommendationStatus
+    from .recommendation_tag import RecommendationTag
     from .recommendation_type import RecommendationType
     from .required_licenses import RequiredLicenses
 
@@ -27,12 +30,20 @@ class RecommendationBase(Entity, Parsable):
     benefits: Optional[str] = None
     # The category property
     category: Optional[RecommendationCategory] = None
+    # The categoryGroup property
+    category_group: Optional[RecommendationCategoryGroup] = None
+    # The completedBySystemDateTime property
+    completed_by_system_date_time: Optional[datetime.datetime] = None
+    # The completedByUserDateTime property
+    completed_by_user_date_time: Optional[datetime.datetime] = None
     # The date and time when the recommendation was detected as applicable to your directory.
     created_date_time: Optional[datetime.datetime] = None
     # The number of points the tenant has attained. Only applies to recommendations with category set to identitySecureScore.
     current_score: Optional[float] = None
     # The title of the recommendation.
     display_name: Optional[str] = None
+    # The failedReviewDateTime property
+    failed_review_date_time: Optional[datetime.datetime] = None
     # The directory feature that the recommendation is related to.
     feature_areas: Optional[list[RecommendationFeatureAreas]] = None
     # The future date and time when a recommendation should be completed.
@@ -51,6 +62,10 @@ class RecommendationBase(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The maximum number of points attainable. Only applies to recommendations with category set to identitySecureScore.
     max_score: Optional[float] = None
+    # The needsMoreActionResourceCount property
+    needs_more_action_resource_count: Optional[int] = None
+    # The nistClassifications property
+    nist_classifications: Optional[list[NistClassification]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The future date and time when the status of a postponed recommendation will be active again.
@@ -61,12 +76,18 @@ class RecommendationBase(Entity, Parsable):
     recommendation_type: Optional[RecommendationType] = None
     # The current release type of the recommendation. The possible values are: preview, generallyAvailable, unknownFutureValue.
     release_type: Optional[str] = None
+    # The remediatedDateTime property
+    remediated_date_time: Optional[datetime.datetime] = None
     # Description of the impact on users of the remediation. Only applies to recommendations with category set to identitySecureScore.
     remediation_impact: Optional[str] = None
     # The required licenses to view the recommendation. The possible values are: notApplicable, microsoftEntraIdFree, microsoftEntraIdP1, microsoftEntraIdP2, microsoftEntraIdGovernance, microsoftEntraWorkloadId, unknownFutureValue, aatp. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: aatp.
     required_licenses: Optional[RequiredLicenses] = None
     # The status property
     status: Optional[RecommendationStatus] = None
+    # The statusModifiedDateTime property
+    status_modified_date_time: Optional[datetime.datetime] = None
+    # The tags property
+    tags: Optional[list[RecommendationTag]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RecommendationBase:
@@ -96,22 +117,28 @@ class RecommendationBase(Entity, Parsable):
         from .action_step import ActionStep
         from .entity import Entity
         from .impacted_resource import ImpactedResource
+        from .nist_classification import NistClassification
         from .recommendation import Recommendation
         from .recommendation_category import RecommendationCategory
+        from .recommendation_category_group import RecommendationCategoryGroup
         from .recommendation_feature_areas import RecommendationFeatureAreas
         from .recommendation_priority import RecommendationPriority
         from .recommendation_status import RecommendationStatus
+        from .recommendation_tag import RecommendationTag
         from .recommendation_type import RecommendationType
         from .required_licenses import RequiredLicenses
 
         from .action_step import ActionStep
         from .entity import Entity
         from .impacted_resource import ImpactedResource
+        from .nist_classification import NistClassification
         from .recommendation import Recommendation
         from .recommendation_category import RecommendationCategory
+        from .recommendation_category_group import RecommendationCategoryGroup
         from .recommendation_feature_areas import RecommendationFeatureAreas
         from .recommendation_priority import RecommendationPriority
         from .recommendation_status import RecommendationStatus
+        from .recommendation_tag import RecommendationTag
         from .recommendation_type import RecommendationType
         from .required_licenses import RequiredLicenses
 
@@ -119,9 +146,13 @@ class RecommendationBase(Entity, Parsable):
             "actionSteps": lambda n : setattr(self, 'action_steps', n.get_collection_of_object_values(ActionStep)),
             "benefits": lambda n : setattr(self, 'benefits', n.get_str_value()),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(RecommendationCategory)),
+            "categoryGroup": lambda n : setattr(self, 'category_group', n.get_enum_value(RecommendationCategoryGroup)),
+            "completedBySystemDateTime": lambda n : setattr(self, 'completed_by_system_date_time', n.get_datetime_value()),
+            "completedByUserDateTime": lambda n : setattr(self, 'completed_by_user_date_time', n.get_datetime_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "currentScore": lambda n : setattr(self, 'current_score', n.get_float_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "failedReviewDateTime": lambda n : setattr(self, 'failed_review_date_time', n.get_datetime_value()),
             "featureAreas": lambda n : setattr(self, 'feature_areas', n.get_collection_of_enum_values(RecommendationFeatureAreas)),
             "impactStartDateTime": lambda n : setattr(self, 'impact_start_date_time', n.get_datetime_value()),
             "impactType": lambda n : setattr(self, 'impact_type', n.get_str_value()),
@@ -131,13 +162,18 @@ class RecommendationBase(Entity, Parsable):
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "maxScore": lambda n : setattr(self, 'max_score', n.get_float_value()),
+            "needsMoreActionResourceCount": lambda n : setattr(self, 'needs_more_action_resource_count', n.get_int_value()),
+            "nistClassifications": lambda n : setattr(self, 'nist_classifications', n.get_collection_of_object_values(NistClassification)),
             "postponeUntilDateTime": lambda n : setattr(self, 'postpone_until_date_time', n.get_datetime_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_enum_value(RecommendationPriority)),
             "recommendationType": lambda n : setattr(self, 'recommendation_type', n.get_enum_value(RecommendationType)),
             "releaseType": lambda n : setattr(self, 'release_type', n.get_str_value()),
+            "remediatedDateTime": lambda n : setattr(self, 'remediated_date_time', n.get_datetime_value()),
             "remediationImpact": lambda n : setattr(self, 'remediation_impact', n.get_str_value()),
             "requiredLicenses": lambda n : setattr(self, 'required_licenses', n.get_enum_value(RequiredLicenses)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(RecommendationStatus)),
+            "statusModifiedDateTime": lambda n : setattr(self, 'status_modified_date_time', n.get_datetime_value()),
+            "tags": lambda n : setattr(self, 'tags', n.get_collection_of_object_values(RecommendationTag)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -155,9 +191,13 @@ class RecommendationBase(Entity, Parsable):
         writer.write_collection_of_object_values("actionSteps", self.action_steps)
         writer.write_str_value("benefits", self.benefits)
         writer.write_enum_value("category", self.category)
+        writer.write_enum_value("categoryGroup", self.category_group)
+        writer.write_datetime_value("completedBySystemDateTime", self.completed_by_system_date_time)
+        writer.write_datetime_value("completedByUserDateTime", self.completed_by_user_date_time)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_float_value("currentScore", self.current_score)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_datetime_value("failedReviewDateTime", self.failed_review_date_time)
         writer.write_collection_of_enum_values("featureAreas", self.feature_areas)
         writer.write_datetime_value("impactStartDateTime", self.impact_start_date_time)
         writer.write_str_value("impactType", self.impact_type)
@@ -167,12 +207,17 @@ class RecommendationBase(Entity, Parsable):
         writer.write_str_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_float_value("maxScore", self.max_score)
+        writer.write_int_value("needsMoreActionResourceCount", self.needs_more_action_resource_count)
+        writer.write_collection_of_object_values("nistClassifications", self.nist_classifications)
         writer.write_datetime_value("postponeUntilDateTime", self.postpone_until_date_time)
         writer.write_enum_value("priority", self.priority)
         writer.write_enum_value("recommendationType", self.recommendation_type)
         writer.write_str_value("releaseType", self.release_type)
+        writer.write_datetime_value("remediatedDateTime", self.remediated_date_time)
         writer.write_str_value("remediationImpact", self.remediation_impact)
         writer.write_enum_value("requiredLicenses", self.required_licenses)
         writer.write_enum_value("status", self.status)
+        writer.write_datetime_value("statusModifiedDateTime", self.status_modified_date_time)
+        writer.write_collection_of_object_values("tags", self.tags)
     
 

@@ -6,8 +6,11 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .identity_governance.all_excluding_groups_subject_set import AllExcludingGroupsSubjectSet
+    from .identity_governance.all_excluding_specific_objects_subject_set import AllExcludingSpecificObjectsSubjectSet
     from .identity_governance.group_based_subject_set import GroupBasedSubjectSet
     from .identity_governance.rule_based_subject_set import RuleBasedSubjectSet
+    from .identity_governance.selected_objects_subject_set import SelectedObjectsSubjectSet
 
 @dataclass
 class SubjectSet(AdditionalDataHolder, BackedModel, Parsable):
@@ -33,6 +36,14 @@ class SubjectSet(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.allExcludingGroupsSubjectSet".casefold():
+            from .identity_governance.all_excluding_groups_subject_set import AllExcludingGroupsSubjectSet
+
+            return AllExcludingGroupsSubjectSet()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.allExcludingSpecificObjectsSubjectSet".casefold():
+            from .identity_governance.all_excluding_specific_objects_subject_set import AllExcludingSpecificObjectsSubjectSet
+
+            return AllExcludingSpecificObjectsSubjectSet()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.groupBasedSubjectSet".casefold():
             from .identity_governance.group_based_subject_set import GroupBasedSubjectSet
 
@@ -41,6 +52,10 @@ class SubjectSet(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_governance.rule_based_subject_set import RuleBasedSubjectSet
 
             return RuleBasedSubjectSet()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.selectedObjectsSubjectSet".casefold():
+            from .identity_governance.selected_objects_subject_set import SelectedObjectsSubjectSet
+
+            return SelectedObjectsSubjectSet()
         return SubjectSet()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -48,11 +63,17 @@ class SubjectSet(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .identity_governance.all_excluding_groups_subject_set import AllExcludingGroupsSubjectSet
+        from .identity_governance.all_excluding_specific_objects_subject_set import AllExcludingSpecificObjectsSubjectSet
         from .identity_governance.group_based_subject_set import GroupBasedSubjectSet
         from .identity_governance.rule_based_subject_set import RuleBasedSubjectSet
+        from .identity_governance.selected_objects_subject_set import SelectedObjectsSubjectSet
 
+        from .identity_governance.all_excluding_groups_subject_set import AllExcludingGroupsSubjectSet
+        from .identity_governance.all_excluding_specific_objects_subject_set import AllExcludingSpecificObjectsSubjectSet
         from .identity_governance.group_based_subject_set import GroupBasedSubjectSet
         from .identity_governance.rule_based_subject_set import RuleBasedSubjectSet
+        from .identity_governance.selected_objects_subject_set import SelectedObjectsSubjectSet
 
         fields: dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

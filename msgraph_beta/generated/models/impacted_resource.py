@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .entity import Entity
     from .key_value import KeyValue
     from .recommendation_status import RecommendationStatus
+    from .recommendation_tag import RecommendationTag
 
 from .entity import Entity
 
@@ -44,6 +45,8 @@ class ImpactedResource(Entity, Parsable):
     status: Optional[RecommendationStatus] = None
     # The related unique identifier, depending on the resourceType. For example, this property is set to the applicationId if the resourceType is an application.
     subject_id: Optional[str] = None
+    # The tags property
+    tags: Optional[list[RecommendationTag]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ImpactedResource:
@@ -64,10 +67,12 @@ class ImpactedResource(Entity, Parsable):
         from .entity import Entity
         from .key_value import KeyValue
         from .recommendation_status import RecommendationStatus
+        from .recommendation_tag import RecommendationTag
 
         from .entity import Entity
         from .key_value import KeyValue
         from .recommendation_status import RecommendationStatus
+        from .recommendation_tag import RecommendationTag
 
         fields: dict[str, Callable[[Any], None]] = {
             "addedDateTime": lambda n : setattr(self, 'added_date_time', n.get_datetime_value()),
@@ -84,6 +89,7 @@ class ImpactedResource(Entity, Parsable):
             "resourceType": lambda n : setattr(self, 'resource_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(RecommendationStatus)),
             "subjectId": lambda n : setattr(self, 'subject_id', n.get_str_value()),
+            "tags": lambda n : setattr(self, 'tags', n.get_collection_of_object_values(RecommendationTag)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -112,5 +118,6 @@ class ImpactedResource(Entity, Parsable):
         writer.write_str_value("resourceType", self.resource_type)
         writer.write_enum_value("status", self.status)
         writer.write_str_value("subjectId", self.subject_id)
+        writer.write_collection_of_object_values("tags", self.tags)
     
 

@@ -17,17 +17,17 @@ class BrowseQueryResponseItem(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The createdBy property
+    # The identity of the user or application that created the item. Returned only when type is file or folder.
     created_by: Optional[IdentitySet] = None
-    # The createdDateTime property
+    # The date and time when the item was created. Returned only when type is file or folder. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
     # Unique identifier of the returned item.
     item_key: Optional[str] = None
     # The count of items present within the items; for example, the count of files in a folder.
     items_count: Optional[int] = None
-    # The lastModifiedBy property
+    # The identity of the user or application that last modified the item. Returned only when type is file or folder.
     last_modified_by: Optional[IdentitySet] = None
-    # The lastModifiedDateTime property
+    # The date and time when the item was last modified. Returned only when type is file or folder. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The name of the item.
     name: Optional[str] = None

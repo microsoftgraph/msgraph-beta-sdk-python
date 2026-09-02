@@ -38,6 +38,7 @@ class AccessPackagesIncompatibleWithRequestBuilder(BaseRequestBuilder):
         param access_package_id: The unique identifier of accessPackage
         Returns: AccessPackageItemRequestBuilder
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if access_package_id is None:
             raise TypeError("access_package_id cannot be null.")
         from .item.access_package_item_request_builder import AccessPackageItemRequestBuilder
@@ -52,6 +53,7 @@ class AccessPackagesIncompatibleWithRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[AccessPackageCollectionResponse]
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -72,6 +74,7 @@ class AccessPackagesIncompatibleWithRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -83,6 +86,7 @@ class AccessPackagesIncompatibleWithRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AccessPackagesIncompatibleWithRequestBuilder
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AccessPackagesIncompatibleWithRequestBuilder(self.request_adapter, raw_url)

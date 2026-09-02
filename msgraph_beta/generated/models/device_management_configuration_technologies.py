@@ -35,4 +35,6 @@ class DeviceManagementConfigurationTechnologies(str, Enum):
     WindowsOsRecovery = "windowsOsRecovery",
     # Indicates the settings that can be deployed through the Android channel.
     Android = "android",
+    # Setting can be deployed through the Intune Open Extensibility channel for scenarios such as Windows Recovery Environment (WinRE) configuration policies.
+    IntuneOpenExtensibility = "intuneOpenExtensibility",
 

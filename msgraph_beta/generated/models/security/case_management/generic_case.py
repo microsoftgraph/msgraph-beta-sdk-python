@@ -14,15 +14,15 @@ from .case import Case
 class GenericCase(Case, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.caseManagement.genericCase"
-    # The user assigned to the generic case.
+    # The user assigned to the generic case. Supports $filter and $orderby.
     assigned_to: Optional[str] = None
-    # Notes recorded when the generic case is closed.
+    # Notes recorded when the generic case is closed. Supports $filter.
     closing_notes: Optional[str] = None
-    # The description of the generic case.
+    # The description of the generic case. Supports $filter.
     description: Optional[str] = None
-    # The target completion date and time for the generic case.
+    # The target completion date and time for the generic case. Supports $filter.
     due_date_time: Optional[datetime.datetime] = None
-    # The priority assigned to the generic case.
+    # The priority assigned to the generic case. Possible values are: veryLow, low, medium, high, and critical. Supports $filter.
     priority: Optional[str] = None
     
     @staticmethod

@@ -38,6 +38,7 @@ class BrowseSessionBaseItemRequestBuilder(BaseRequestBuilder):
         param next_fetch_token: Usage: nextFetchToken='{nextFetchToken}'
         Returns: BrowseWithNextFetchTokenRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if next_fetch_token is None:
             raise TypeError("next_fetch_token cannot be null.")
         from .browse_with_next_fetch_token.browse_with_next_fetch_token_request_builder import BrowseWithNextFetchTokenRequestBuilder
@@ -50,6 +51,7 @@ class BrowseSessionBaseItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -68,6 +70,7 @@ class BrowseSessionBaseItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BrowseSessionBase]
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -89,6 +92,7 @@ class BrowseSessionBaseItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BrowseSessionBase]
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -111,6 +115,7 @@ class BrowseSessionBaseItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -122,6 +127,7 @@ class BrowseSessionBaseItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -134,6 +140,7 @@ class BrowseSessionBaseItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -148,6 +155,7 @@ class BrowseSessionBaseItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: BrowseSessionBaseItemRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return BrowseSessionBaseItemRequestBuilder(self.request_adapter, raw_url)

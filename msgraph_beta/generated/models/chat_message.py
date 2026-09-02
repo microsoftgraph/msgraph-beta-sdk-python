@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .channel_identity import ChannelIdentity
     from .chat_message_attachment import ChatMessageAttachment
     from .chat_message_body import ChatMessageBody
+    from .chat_message_citation import ChatMessageCitation
     from .chat_message_from_identity_set import ChatMessageFromIdentitySet
     from .chat_message_history_item import ChatMessageHistoryItem
     from .chat_message_hosted_content import ChatMessageHostedContent
@@ -33,6 +34,8 @@ class ChatMessage(Entity, Parsable):
     channel_identity: Optional[ChannelIdentity] = None
     # If the message was sent in a chat, represents the identity of the chat.
     chat_id: Optional[str] = None
+    # Read-only. Inline citations that reference external sources cited in the message. Citations are system-generated for bot messages and appear as a typed collection.
+    citations: Optional[list[ChatMessageCitation]] = None
     # Timestamp of when the chat message was created.
     created_date_time: Optional[datetime.datetime] = None
     # Read-only. Timestamp at which the chat message was deleted, or null if not deleted.
@@ -43,6 +46,8 @@ class ChatMessage(Entity, Parsable):
     event_detail: Optional[EventMessageDetail] = None
     # Details of the sender of the chat message. Can only be set during migration.
     from_: Optional[ChatMessageFromIdentitySet] = None
+    # The hasReplies property
+    has_replies: Optional[bool] = None
     # Content in a message hosted by Microsoft Teams - for example, images or code snippets.
     hosted_contents: Optional[list[ChatMessageHostedContent]] = None
     # The importance property
@@ -106,6 +111,7 @@ class ChatMessage(Entity, Parsable):
         from .channel_identity import ChannelIdentity
         from .chat_message_attachment import ChatMessageAttachment
         from .chat_message_body import ChatMessageBody
+        from .chat_message_citation import ChatMessageCitation
         from .chat_message_from_identity_set import ChatMessageFromIdentitySet
         from .chat_message_history_item import ChatMessageHistoryItem
         from .chat_message_hosted_content import ChatMessageHostedContent
@@ -121,6 +127,7 @@ class ChatMessage(Entity, Parsable):
         from .channel_identity import ChannelIdentity
         from .chat_message_attachment import ChatMessageAttachment
         from .chat_message_body import ChatMessageBody
+        from .chat_message_citation import ChatMessageCitation
         from .chat_message_from_identity_set import ChatMessageFromIdentitySet
         from .chat_message_history_item import ChatMessageHistoryItem
         from .chat_message_hosted_content import ChatMessageHostedContent
@@ -138,11 +145,13 @@ class ChatMessage(Entity, Parsable):
             "body": lambda n : setattr(self, 'body', n.get_object_value(ChatMessageBody)),
             "channelIdentity": lambda n : setattr(self, 'channel_identity', n.get_object_value(ChannelIdentity)),
             "chatId": lambda n : setattr(self, 'chat_id', n.get_str_value()),
+            "citations": lambda n : setattr(self, 'citations', n.get_collection_of_object_values(ChatMessageCitation)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deletedDateTime": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
             "etag": lambda n : setattr(self, 'etag', n.get_str_value()),
             "eventDetail": lambda n : setattr(self, 'event_detail', n.get_object_value(EventMessageDetail)),
             "from": lambda n : setattr(self, 'from_', n.get_object_value(ChatMessageFromIdentitySet)),
+            "hasReplies": lambda n : setattr(self, 'has_replies', n.get_bool_value()),
             "hostedContents": lambda n : setattr(self, 'hosted_contents', n.get_collection_of_object_values(ChatMessageHostedContent)),
             "importance": lambda n : setattr(self, 'importance', n.get_enum_value(ChatMessageImportance)),
             "lastEditedDateTime": lambda n : setattr(self, 'last_edited_date_time', n.get_datetime_value()),
@@ -177,11 +186,13 @@ class ChatMessage(Entity, Parsable):
         writer.write_object_value("body", self.body)
         writer.write_object_value("channelIdentity", self.channel_identity)
         writer.write_str_value("chatId", self.chat_id)
+        writer.write_collection_of_object_values("citations", self.citations)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("deletedDateTime", self.deleted_date_time)
         writer.write_str_value("etag", self.etag)
         writer.write_object_value("eventDetail", self.event_detail)
         writer.write_object_value("from", self.from_)
+        writer.write_bool_value("hasReplies", self.has_replies)
         writer.write_collection_of_object_values("hostedContents", self.hosted_contents)
         writer.write_enum_value("importance", self.importance)
         writer.write_datetime_value("lastEditedDateTime", self.last_edited_date_time)

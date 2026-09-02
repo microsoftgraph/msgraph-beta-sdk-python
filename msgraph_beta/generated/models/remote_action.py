@@ -83,4 +83,8 @@ class RemoteAction(str, Enum):
     SuspendManagedHomeScreen = "suspendManagedHomeScreen",
     # Indicates remote device action to restore the Managed Home Screen kiosk app.
     RestoreManagedHomeScreen = "restoreManagedHomeScreen",
+    # Indicates remote device action to trigger an AppleCare-authorized enhanced log collection session on a supervised Apple device.
+    TriggerEnhancedLogCollection = "triggerEnhancedLogCollection",
+    # Indicates remote device action to cancel an in-progress enhanced log collection session on a supervised Apple device.
+    CancelEnhancedLogCollection = "cancelEnhancedLogCollection",
 

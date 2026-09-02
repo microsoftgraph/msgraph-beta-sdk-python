@@ -3,6 +3,7 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
 if TYPE_CHECKING:
     from .mobile_app_assignment_settings import MobileAppAssignmentSettings
@@ -24,6 +25,8 @@ class IosDdmLobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
     cellular_slice_configuration_id: Optional[str] = None
     # The contentFilterConfigurationId property
     content_filter_configuration_id: Optional[str] = None
+    # The unique identifier of the DDM app configuration to associate with the app.
+    ddm_app_config_id: Optional[UUID] = None
     # The dnsProxyConfigurationId property
     dns_proxy_configuration_id: Optional[str] = None
     # When true, indicates that the app should not be backed up to iCloud. When false, indicates that the app may be backed up to iCloud. Default is false.
@@ -60,6 +63,7 @@ class IosDdmLobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
             "associatedDomainsDirectDownloadAllowed": lambda n : setattr(self, 'associated_domains_direct_download_allowed', n.get_bool_value()),
             "cellularSliceConfigurationId": lambda n : setattr(self, 'cellular_slice_configuration_id', n.get_str_value()),
             "contentFilterConfigurationId": lambda n : setattr(self, 'content_filter_configuration_id', n.get_str_value()),
+            "ddmAppConfigId": lambda n : setattr(self, 'ddm_app_config_id', n.get_uuid_value()),
             "dnsProxyConfigurationId": lambda n : setattr(self, 'dns_proxy_configuration_id', n.get_str_value()),
             "preventManagedAppBackup": lambda n : setattr(self, 'prevent_managed_app_backup', n.get_bool_value()),
             "relayConfigurationId": lambda n : setattr(self, 'relay_configuration_id', n.get_str_value()),
@@ -83,6 +87,7 @@ class IosDdmLobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
         writer.write_bool_value("associatedDomainsDirectDownloadAllowed", self.associated_domains_direct_download_allowed)
         writer.write_str_value("cellularSliceConfigurationId", self.cellular_slice_configuration_id)
         writer.write_str_value("contentFilterConfigurationId", self.content_filter_configuration_id)
+        writer.write_uuid_value("ddmAppConfigId", self.ddm_app_config_id)
         writer.write_str_value("dnsProxyConfigurationId", self.dns_proxy_configuration_id)
         writer.write_bool_value("preventManagedAppBackup", self.prevent_managed_app_backup)
         writer.write_str_value("relayConfigurationId", self.relay_configuration_id)

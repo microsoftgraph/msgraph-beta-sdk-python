@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
     from .windows_managed_app_clipboard_sharing_level import WindowsManagedAppClipboardSharingLevel
     from .windows_managed_app_data_transfer_level import WindowsManagedAppDataTransferLevel
+    from .windows_managed_app_data_transfer_locations import WindowsManagedAppDataTransferLocations
 
 from .managed_app_policy import ManagedAppPolicy
 
@@ -24,10 +25,14 @@ class WindowsManagedAppProtection(ManagedAppPolicy, Parsable):
     """
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.windowsManagedAppProtection"
+    # Windows MAM data transfer locations
+    allowed_inbound_data_transfer_source_apps: Optional[WindowsManagedAppDataTransferLocations] = None
     # Data can be transferred from/to these classes of apps
     allowed_inbound_data_transfer_sources: Optional[WindowsManagedAppDataTransferLevel] = None
     # Represents the level to which the device's clipboard may be shared between apps
     allowed_outbound_clipboard_sharing_level: Optional[WindowsManagedAppClipboardSharingLevel] = None
+    # Windows MAM data transfer locations
+    allowed_outbound_data_transfer_destination_apps: Optional[WindowsManagedAppDataTransferLocations] = None
     # Data can be transferred from/to these classes of apps
     allowed_outbound_data_transfer_destinations: Optional[WindowsManagedAppDataTransferLevel] = None
     # If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Some possible values are block or wipe. If this property is not set, no action will be taken. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
@@ -99,6 +104,7 @@ class WindowsManagedAppProtection(ManagedAppPolicy, Parsable):
         from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
         from .windows_managed_app_clipboard_sharing_level import WindowsManagedAppClipboardSharingLevel
         from .windows_managed_app_data_transfer_level import WindowsManagedAppDataTransferLevel
+        from .windows_managed_app_data_transfer_locations import WindowsManagedAppDataTransferLocations
 
         from .managed_app_device_threat_level import ManagedAppDeviceThreatLevel
         from .managed_app_policy import ManagedAppPolicy
@@ -108,10 +114,13 @@ class WindowsManagedAppProtection(ManagedAppPolicy, Parsable):
         from .targeted_managed_app_policy_assignment import TargetedManagedAppPolicyAssignment
         from .windows_managed_app_clipboard_sharing_level import WindowsManagedAppClipboardSharingLevel
         from .windows_managed_app_data_transfer_level import WindowsManagedAppDataTransferLevel
+        from .windows_managed_app_data_transfer_locations import WindowsManagedAppDataTransferLocations
 
         fields: dict[str, Callable[[Any], None]] = {
+            "allowedInboundDataTransferSourceApps": lambda n : setattr(self, 'allowed_inbound_data_transfer_source_apps', n.get_collection_of_enum_values(WindowsManagedAppDataTransferLocations)),
             "allowedInboundDataTransferSources": lambda n : setattr(self, 'allowed_inbound_data_transfer_sources', n.get_enum_value(WindowsManagedAppDataTransferLevel)),
             "allowedOutboundClipboardSharingLevel": lambda n : setattr(self, 'allowed_outbound_clipboard_sharing_level', n.get_enum_value(WindowsManagedAppClipboardSharingLevel)),
+            "allowedOutboundDataTransferDestinationApps": lambda n : setattr(self, 'allowed_outbound_data_transfer_destination_apps', n.get_collection_of_enum_values(WindowsManagedAppDataTransferLocations)),
             "allowedOutboundDataTransferDestinations": lambda n : setattr(self, 'allowed_outbound_data_transfer_destinations', n.get_enum_value(WindowsManagedAppDataTransferLevel)),
             "appActionIfUnableToAuthenticateUser": lambda n : setattr(self, 'app_action_if_unable_to_authenticate_user', n.get_enum_value(ManagedAppRemediationAction)),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(ManagedMobileApp)),
@@ -149,8 +158,10 @@ class WindowsManagedAppProtection(ManagedAppPolicy, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_enum_value("allowedInboundDataTransferSourceApps", self.allowed_inbound_data_transfer_source_apps)
         writer.write_enum_value("allowedInboundDataTransferSources", self.allowed_inbound_data_transfer_sources)
         writer.write_enum_value("allowedOutboundClipboardSharingLevel", self.allowed_outbound_clipboard_sharing_level)
+        writer.write_enum_value("allowedOutboundDataTransferDestinationApps", self.allowed_outbound_data_transfer_destination_apps)
         writer.write_enum_value("allowedOutboundDataTransferDestinations", self.allowed_outbound_data_transfer_destinations)
         writer.write_enum_value("appActionIfUnableToAuthenticateUser", self.app_action_if_unable_to_authenticate_user)
         writer.write_collection_of_object_values("apps", self.apps)

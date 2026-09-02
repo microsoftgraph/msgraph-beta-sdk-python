@@ -35,6 +35,7 @@ class CountRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[int]
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -53,6 +54,7 @@ class CountRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "text/plain;q=0.9")
@@ -64,6 +66,7 @@ class CountRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CountRequestBuilder
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CountRequestBuilder(self.request_adapter, raw_url)

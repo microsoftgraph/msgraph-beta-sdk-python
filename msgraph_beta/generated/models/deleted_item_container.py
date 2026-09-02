@@ -6,12 +6,15 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .identity_governance.lifecycle_policy import LifecyclePolicy
     from .identity_governance.workflow import Workflow
 
 from .entity import Entity
 
 @dataclass
 class DeletedItemContainer(Entity, Parsable):
+    # The lifecyclePolicies property
+    lifecycle_policies: Optional[list[LifecyclePolicy]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Deleted workflows that end up in the deletedItemsContainer.
@@ -34,12 +37,15 @@ class DeletedItemContainer(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .identity_governance.lifecycle_policy import LifecyclePolicy
         from .identity_governance.workflow import Workflow
 
         from .entity import Entity
+        from .identity_governance.lifecycle_policy import LifecyclePolicy
         from .identity_governance.workflow import Workflow
 
         fields: dict[str, Callable[[Any], None]] = {
+            "lifecyclePolicies": lambda n : setattr(self, 'lifecycle_policies', n.get_collection_of_object_values(LifecyclePolicy)),
             "workflows": lambda n : setattr(self, 'workflows', n.get_collection_of_object_values(Workflow)),
         }
         super_fields = super().get_field_deserializers()
@@ -55,6 +61,7 @@ class DeletedItemContainer(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_collection_of_object_values("lifecyclePolicies", self.lifecycle_policies)
         writer.write_collection_of_object_values("workflows", self.workflows)
     
 

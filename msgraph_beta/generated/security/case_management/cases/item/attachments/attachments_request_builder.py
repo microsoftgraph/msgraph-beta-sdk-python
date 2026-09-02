@@ -70,7 +70,7 @@ class AttachmentsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Attachment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Attachment]:
         """
-        Create an attachment for a case.
+        Create attachment metadata for a case. This method doesn't upload the file content. After creating the attachment, use Upload attachment content.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Attachment]
@@ -105,7 +105,7 @@ class AttachmentsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Attachment, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create an attachment for a case.
+        Create attachment metadata for a case. This method doesn't upload the file content. After creating the attachment, use Upload attachment content.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

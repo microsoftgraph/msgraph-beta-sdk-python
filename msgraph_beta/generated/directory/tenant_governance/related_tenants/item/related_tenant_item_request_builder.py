@@ -15,7 +15,7 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
-    from .....models.tenant_governance_services.related_tenant import RelatedTenant
+    from .....models.related_tenant import RelatedTenant
     from .app_b2_b_sign_in_activity_metrics.app_b2_b_sign_in_activity_metrics_request_builder import AppB2BSignInActivityMetricsRequestBuilder
     from .b2_b_registration_metrics.b2_b_registration_metrics_request_builder import B2BRegistrationMetricsRequestBuilder
     from .b2_b_sign_in_activity_metrics.b2_b_sign_in_activity_metrics_request_builder import B2BSignInActivityMetricsRequestBuilder
@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 
 class RelatedTenantItemRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the relatedTenants property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+    Provides operations to manage the relatedTenants property of the microsoft.graph.tenantGovernance entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -70,7 +70,7 @@ class RelatedTenantItemRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.tenant_governance_services.related_tenant import RelatedTenant
+        from .....models.related_tenant import RelatedTenant
 
         return await self.request_adapter.send_async(request_info, RelatedTenant, error_mapping)
     
@@ -93,7 +93,7 @@ class RelatedTenantItemRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.tenant_governance_services.related_tenant import RelatedTenant
+        from .....models.related_tenant import RelatedTenant
 
         return await self.request_adapter.send_async(request_info, RelatedTenant, error_mapping)
     
@@ -147,7 +147,7 @@ class RelatedTenantItemRequestBuilder(BaseRequestBuilder):
     @property
     def app_b2_b_sign_in_activity_metrics(self) -> AppB2BSignInActivityMetricsRequestBuilder:
         """
-        Provides operations to manage the appB2BSignInActivityMetrics property of the microsoft.graph.tenantGovernanceServices.relatedTenant entity.
+        Provides operations to manage the appB2BSignInActivityMetrics property of the microsoft.graph.relatedTenant entity.
         """
         from .app_b2_b_sign_in_activity_metrics.app_b2_b_sign_in_activity_metrics_request_builder import AppB2BSignInActivityMetricsRequestBuilder
 
@@ -156,7 +156,7 @@ class RelatedTenantItemRequestBuilder(BaseRequestBuilder):
     @property
     def b2_b_registration_metrics(self) -> B2BRegistrationMetricsRequestBuilder:
         """
-        Provides operations to manage the b2BRegistrationMetrics property of the microsoft.graph.tenantGovernanceServices.relatedTenant entity.
+        Provides operations to manage the b2BRegistrationMetrics property of the microsoft.graph.relatedTenant entity.
         """
         from .b2_b_registration_metrics.b2_b_registration_metrics_request_builder import B2BRegistrationMetricsRequestBuilder
 
@@ -165,7 +165,7 @@ class RelatedTenantItemRequestBuilder(BaseRequestBuilder):
     @property
     def b2_b_sign_in_activity_metrics(self) -> B2BSignInActivityMetricsRequestBuilder:
         """
-        Provides operations to manage the b2BSignInActivityMetrics property of the microsoft.graph.tenantGovernanceServices.relatedTenant entity.
+        Provides operations to manage the b2BSignInActivityMetrics property of the microsoft.graph.relatedTenant entity.
         """
         from .b2_b_sign_in_activity_metrics.b2_b_sign_in_activity_metrics_request_builder import B2BSignInActivityMetricsRequestBuilder
 
@@ -174,7 +174,7 @@ class RelatedTenantItemRequestBuilder(BaseRequestBuilder):
     @property
     def billing_metrics(self) -> BillingMetricsRequestBuilder:
         """
-        Provides operations to manage the billingMetrics property of the microsoft.graph.tenantGovernanceServices.relatedTenant entity.
+        Provides operations to manage the billingMetrics property of the microsoft.graph.relatedTenant entity.
         """
         from .billing_metrics.billing_metrics_request_builder import BillingMetricsRequestBuilder
 
@@ -183,7 +183,7 @@ class RelatedTenantItemRequestBuilder(BaseRequestBuilder):
     @property
     def multi_tenant_application_metrics(self) -> MultiTenantApplicationMetricsRequestBuilder:
         """
-        Provides operations to manage the multiTenantApplicationMetrics property of the microsoft.graph.tenantGovernanceServices.relatedTenant entity.
+        Provides operations to manage the multiTenantApplicationMetrics property of the microsoft.graph.relatedTenant entity.
         """
         from .multi_tenant_application_metrics.multi_tenant_application_metrics_request_builder import MultiTenantApplicationMetricsRequestBuilder
 

@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .agent_communication_configuration import AgentCommunicationConfiguration
     from .application import Application
     from .directory_object import DirectoryObject
     from .inheritable_permission import InheritablePermission
@@ -15,6 +16,8 @@ from .application import Application
 class AgentIdentityBlueprint(Application, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.agentIdentityBlueprint"
+    # The default communication configuration for agent identities created from this agent identity blueprint. Agent identities inherit this configuration unless they define their own override.
+    communication_configuration: Optional[AgentCommunicationConfiguration] = None
     # Defines scopes of a resource application that may be automatically granted to agent identities without additional consent.
     inheritable_permissions: Optional[list[InheritablePermission]] = None
     # The sponsors for this agent identity blueprint. Sponsors are users or groups who can authorize and manage the lifecycle of agent identity instances. Required during the create operation.
@@ -36,15 +39,18 @@ class AgentIdentityBlueprint(Application, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .agent_communication_configuration import AgentCommunicationConfiguration
         from .application import Application
         from .directory_object import DirectoryObject
         from .inheritable_permission import InheritablePermission
 
+        from .agent_communication_configuration import AgentCommunicationConfiguration
         from .application import Application
         from .directory_object import DirectoryObject
         from .inheritable_permission import InheritablePermission
 
         fields: dict[str, Callable[[Any], None]] = {
+            "communicationConfiguration": lambda n : setattr(self, 'communication_configuration', n.get_object_value(AgentCommunicationConfiguration)),
             "inheritablePermissions": lambda n : setattr(self, 'inheritable_permissions', n.get_collection_of_object_values(InheritablePermission)),
             "sponsors": lambda n : setattr(self, 'sponsors', n.get_collection_of_object_values(DirectoryObject)),
         }
@@ -61,6 +67,7 @@ class AgentIdentityBlueprint(Application, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("communicationConfiguration", self.communication_configuration)
         writer.write_collection_of_object_values("inheritablePermissions", self.inheritable_permissions)
         writer.write_collection_of_object_values("sponsors", self.sponsors)
     

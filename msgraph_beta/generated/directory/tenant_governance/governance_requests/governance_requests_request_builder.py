@@ -14,15 +14,15 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
+    from ....models.governance_request import GovernanceRequest
+    from ....models.governance_request_collection_response import GovernanceRequestCollectionResponse
     from ....models.o_data_errors.o_data_error import ODataError
-    from ....models.tenant_governance_services.governance_request import GovernanceRequest
-    from ....models.tenant_governance_services.governance_request_collection_response import GovernanceRequestCollectionResponse
     from .count.count_request_builder import CountRequestBuilder
     from .item.governance_request_item_request_builder import GovernanceRequestItemRequestBuilder
 
 class GovernanceRequestsRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the governanceRequests property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+    Provides operations to manage the governanceRequests property of the microsoft.graph.tenantGovernance entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -35,7 +35,7 @@ class GovernanceRequestsRequestBuilder(BaseRequestBuilder):
     
     def by_governance_request_id(self,governance_request_id: str) -> GovernanceRequestItemRequestBuilder:
         """
-        Provides operations to manage the governanceRequests property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+        Provides operations to manage the governanceRequests property of the microsoft.graph.tenantGovernance entity.
         param governance_request_id: The unique identifier of governanceRequest
         Returns: GovernanceRequestItemRequestBuilder
         """
@@ -64,7 +64,7 @@ class GovernanceRequestsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.tenant_governance_services.governance_request_collection_response import GovernanceRequestCollectionResponse
+        from ....models.governance_request_collection_response import GovernanceRequestCollectionResponse
 
         return await self.request_adapter.send_async(request_info, GovernanceRequestCollectionResponse, error_mapping)
     
@@ -88,7 +88,7 @@ class GovernanceRequestsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ....models.tenant_governance_services.governance_request import GovernanceRequest
+        from ....models.governance_request import GovernanceRequest
 
         return await self.request_adapter.send_async(request_info, GovernanceRequest, error_mapping)
     

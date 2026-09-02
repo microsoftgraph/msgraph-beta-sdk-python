@@ -39,6 +39,7 @@ class RestoreSessionsRequestBuilder(BaseRequestBuilder):
         param restore_session_base_id: The unique identifier of restoreSessionBase
         Returns: RestoreSessionBaseItemRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if restore_session_base_id is None:
             raise TypeError("restore_session_base_id cannot be null.")
         from .item.restore_session_base_item_request_builder import RestoreSessionBaseItemRequestBuilder
@@ -54,6 +55,7 @@ class RestoreSessionsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[RestoreSessionBaseCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/backuprestoreroot-list-restoresessions?view=graph-rest-beta
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -75,6 +77,7 @@ class RestoreSessionsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RestoreSessionBase]
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -97,6 +100,7 @@ class RestoreSessionsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -109,6 +113,7 @@ class RestoreSessionsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -123,6 +128,7 @@ class RestoreSessionsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: RestoreSessionsRequestBuilder
         """
+        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return RestoreSessionsRequestBuilder(self.request_adapter, raw_url)

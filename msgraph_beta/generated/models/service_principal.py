@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from .endpoint import Endpoint
     from .federated_identity_credential import FederatedIdentityCredential
     from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
+    from .identity_governance.identity_lifecycle import IdentityLifecycle
     from .informational_url import InformationalUrl
     from .key_credential import KeyCredential
     from .license_details import LicenseDetails
@@ -104,6 +105,8 @@ class ServicePrincipal(DirectoryObject, Parsable):
     key_credentials: Optional[list[KeyCredential]] = None
     # The licenseDetails property
     license_details: Optional[list[LicenseDetails]] = None
+    # The lifecycle property
+    lifecycle: Optional[IdentityLifecycle] = None
     # Specifies the URL where the service provider redirects the user to Microsoft Entra ID to authenticate. Microsoft Entra ID uses the URL to launch the application from Microsoft 365 or the Microsoft Entra My Apps. When blank, Microsoft Entra ID performs IdP-initiated sign-on for applications configured with SAML-based single sign-on. The user launches the application from Microsoft 365, the Microsoft Entra My Apps, or the Microsoft Entra SSO URL.
     login_url: Optional[str] = None
     # Specifies the URL that the Microsoft's authorization service uses to sign out a user using OpenId Connect front-channel, back-channel, or SAML sign out protocols.
@@ -208,6 +211,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
         from .endpoint import Endpoint
         from .federated_identity_credential import FederatedIdentityCredential
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
+        from .identity_governance.identity_lifecycle import IdentityLifecycle
         from .informational_url import InformationalUrl
         from .key_credential import KeyCredential
         from .license_details import LicenseDetails
@@ -237,6 +241,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
         from .endpoint import Endpoint
         from .federated_identity_credential import FederatedIdentityCredential
         from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
+        from .identity_governance.identity_lifecycle import IdentityLifecycle
         from .informational_url import InformationalUrl
         from .key_credential import KeyCredential
         from .license_details import LicenseDetails
@@ -284,6 +289,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
             "isDisabled": lambda n : setattr(self, 'is_disabled', n.get_bool_value()),
             "keyCredentials": lambda n : setattr(self, 'key_credentials', n.get_collection_of_object_values(KeyCredential)),
             "licenseDetails": lambda n : setattr(self, 'license_details', n.get_collection_of_object_values(LicenseDetails)),
+            "lifecycle": lambda n : setattr(self, 'lifecycle', n.get_object_value(IdentityLifecycle)),
             "loginUrl": lambda n : setattr(self, 'login_url', n.get_str_value()),
             "logoutUrl": lambda n : setattr(self, 'logout_url', n.get_str_value()),
             "memberOf": lambda n : setattr(self, 'member_of', n.get_collection_of_object_values(DirectoryObject)),
@@ -359,6 +365,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
         writer.write_bool_value("isDisabled", self.is_disabled)
         writer.write_collection_of_object_values("keyCredentials", self.key_credentials)
         writer.write_collection_of_object_values("licenseDetails", self.license_details)
+        writer.write_object_value("lifecycle", self.lifecycle)
         writer.write_str_value("loginUrl", self.login_url)
         writer.write_str_value("logoutUrl", self.logout_url)
         writer.write_collection_of_object_values("memberOf", self.member_of)

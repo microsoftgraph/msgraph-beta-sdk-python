@@ -14,12 +14,12 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
+    from .....models.governance_invitation import GovernanceInvitation
     from .....models.o_data_errors.o_data_error import ODataError
-    from .....models.tenant_governance_services.governance_invitation import GovernanceInvitation
 
 class GovernanceInvitationItemRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the governanceInvitations property of the microsoft.graph.tenantGovernanceServices.tenantGovernance entity.
+    Provides operations to manage the governanceInvitations property of the microsoft.graph.tenantGovernance entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -66,7 +66,7 @@ class GovernanceInvitationItemRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.tenant_governance_services.governance_invitation import GovernanceInvitation
+        from .....models.governance_invitation import GovernanceInvitation
 
         return await self.request_adapter.send_async(request_info, GovernanceInvitation, error_mapping)
     
@@ -89,7 +89,7 @@ class GovernanceInvitationItemRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.tenant_governance_services.governance_invitation import GovernanceInvitation
+        from .....models.governance_invitation import GovernanceInvitation
 
         return await self.request_adapter.send_async(request_info, GovernanceInvitation, error_mapping)
     

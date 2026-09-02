@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .directory_object_workflow_subject import DirectoryObjectWorkflowSubject
     from .provisioning_object_workflow_subject import ProvisioningObjectWorkflowSubject
 
 @dataclass
@@ -32,6 +33,10 @@ class WorkflowSubject(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.directoryObjectWorkflowSubject".casefold():
+            from .directory_object_workflow_subject import DirectoryObjectWorkflowSubject
+
+            return DirectoryObjectWorkflowSubject()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.provisioningObjectWorkflowSubject".casefold():
             from .provisioning_object_workflow_subject import ProvisioningObjectWorkflowSubject
 
@@ -43,8 +48,10 @@ class WorkflowSubject(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .directory_object_workflow_subject import DirectoryObjectWorkflowSubject
         from .provisioning_object_workflow_subject import ProvisioningObjectWorkflowSubject
 
+        from .directory_object_workflow_subject import DirectoryObjectWorkflowSubject
         from .provisioning_object_workflow_subject import ProvisioningObjectWorkflowSubject
 
         fields: dict[str, Callable[[Any], None]] = {

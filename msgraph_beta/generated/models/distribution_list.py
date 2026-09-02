@@ -5,7 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
-    from .member import Member
+    from .distribution_list_member import DistributionListMember
     from .outlook_item import OutlookItem
     from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
@@ -17,8 +17,8 @@ class DistributionList(OutlookItem, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.distributionList"
     # The display name of the distribution list.
     display_name: Optional[str] = None
-    # The members property
-    members: Optional[list[Member]] = None
+    # The members of the distribution list. Not returned by default; use $expand=members to include. Read-only.
+    members: Optional[list[DistributionListMember]] = None
     # Notes about the distribution list.
     notes: Optional[str] = None
     # The unique identifier of the distribution list in the mailbox. Read-only.
@@ -42,17 +42,17 @@ class DistributionList(OutlookItem, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
-        from .member import Member
+        from .distribution_list_member import DistributionListMember
         from .outlook_item import OutlookItem
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
-        from .member import Member
+        from .distribution_list_member import DistributionListMember
         from .outlook_item import OutlookItem
         from .single_value_legacy_extended_property import SingleValueLegacyExtendedProperty
 
         fields: dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(Member)),
+            "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(DistributionListMember)),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
             "personIdentifier": lambda n : setattr(self, 'person_identifier', n.get_str_value()),
             "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(SingleValueLegacyExtendedProperty)),

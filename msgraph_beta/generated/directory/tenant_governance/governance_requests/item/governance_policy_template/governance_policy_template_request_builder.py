@@ -15,11 +15,11 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
-    from ......models.tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
+    from ......models.tenant_governance_policy_template import TenantGovernancePolicyTemplate
 
 class GovernancePolicyTemplateRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the governancePolicyTemplate property of the microsoft.graph.tenantGovernanceServices.governanceRequest entity.
+    Provides operations to manage the governancePolicyTemplate property of the microsoft.graph.governanceRequest entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -30,11 +30,11 @@ class GovernancePolicyTemplateRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/directory/tenantGovernance/governanceRequests/{governanceRequest%2Did}/governancePolicyTemplate{?%24expand,%24select}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[GovernancePolicyTemplateRequestBuilderGetQueryParameters]] = None) -> Optional[GovernancePolicyTemplate]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[GovernancePolicyTemplateRequestBuilderGetQueryParameters]] = None) -> Optional[TenantGovernancePolicyTemplate]:
         """
-        The governance policy template associated with this request.
+        Get governancePolicyTemplate from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[GovernancePolicyTemplate]
+        Returns: Optional[TenantGovernancePolicyTemplate]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -46,13 +46,13 @@ class GovernancePolicyTemplateRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.tenant_governance_services.governance_policy_template import GovernancePolicyTemplate
+        from ......models.tenant_governance_policy_template import TenantGovernancePolicyTemplate
 
-        return await self.request_adapter.send_async(request_info, GovernancePolicyTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, TenantGovernancePolicyTemplate, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GovernancePolicyTemplateRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The governance policy template associated with this request.
+        Get governancePolicyTemplate from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class GovernancePolicyTemplateRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GovernancePolicyTemplateRequestBuilderGetQueryParameters():
         """
-        The governance policy template associated with this request.
+        Get governancePolicyTemplate from directory
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

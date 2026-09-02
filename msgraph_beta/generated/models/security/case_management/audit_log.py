@@ -20,7 +20,7 @@ class AuditLog(Activity, Parsable):
     action: Optional[AuditAction] = None
     # The target resource details for the audit activity.
     details: Optional[ActivityResourceDetails] = None
-    # The collection of property changes recorded in the audit log.
+    # The collection of property changes recorded in the audit log. Supports $filter.
     modified_properties: Optional[list[ModifiedProperty]] = None
     
     @staticmethod

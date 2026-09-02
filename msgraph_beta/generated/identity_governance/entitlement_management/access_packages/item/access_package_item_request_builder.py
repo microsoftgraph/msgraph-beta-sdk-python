@@ -45,6 +45,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         param unique_name: Alternate key of accessPackage
         Returns: AccessPackagesIncompatibleWithWithUniqueNameRequestBuilder
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if unique_name is None:
             raise TypeError("unique_name cannot be null.")
         from .access_packages_incompatible_with_with_unique_name.access_packages_incompatible_with_with_unique_name_request_builder import AccessPackagesIncompatibleWithWithUniqueNameRequestBuilder
@@ -58,6 +59,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/accesspackage-delete?view=graph-rest-beta
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -77,6 +79,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[AccessPackage]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackage-get?view=graph-rest-beta
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -99,6 +102,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[AccessPackage]
         Find more info here: https://learn.microsoft.com/graph/api/accesspackage-update?view=graph-rest-beta
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -121,6 +125,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -132,6 +137,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -144,6 +150,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -158,6 +165,7 @@ class AccessPackageItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: AccessPackageItemRequestBuilder
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AccessPackageItemRequestBuilder(self.request_adapter, raw_url)

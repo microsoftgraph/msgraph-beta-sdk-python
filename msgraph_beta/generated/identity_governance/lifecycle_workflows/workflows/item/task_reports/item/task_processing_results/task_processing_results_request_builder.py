@@ -38,6 +38,7 @@ class TaskProcessingResultsRequestBuilder(BaseRequestBuilder):
         param task_processing_result_id: The unique identifier of taskProcessingResult
         Returns: TaskProcessingResultItemRequestBuilder
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if task_processing_result_id is None:
             raise TypeError("task_processing_result_id cannot be null.")
         from .item.task_processing_result_item_request_builder import TaskProcessingResultItemRequestBuilder
@@ -53,6 +54,7 @@ class TaskProcessingResultsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[TaskProcessingResultCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/identitygovernance-taskreport-list-taskprocessingresults?view=graph-rest-beta
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -73,6 +75,7 @@ class TaskProcessingResultsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -84,6 +87,7 @@ class TaskProcessingResultsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: TaskProcessingResultsRequestBuilder
         """
+        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return TaskProcessingResultsRequestBuilder(self.request_adapter, raw_url)

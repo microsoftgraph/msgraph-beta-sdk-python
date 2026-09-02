@@ -65,6 +65,8 @@ class ResultantAppStateDetail(str, Enum):
     UntargetedSupersedingAppsDetected = "untargetedSupersedingAppsDetected",
     # App was removed in order to install a superseding app.
     AppRemovedBySupersedence = "appRemovedBySupersedence",
+    # App cannot be installed. One or more of the application's dependencies are in use.
+    DependencyAppInUse = "dependencyAppInUse",
     # Application failed to uninstall. See error code property for more details.
     SeeUninstallErrorCode = "seeUninstallErrorCode",
     # Device must be rebooted to complete installation of the application.
@@ -73,4 +75,10 @@ class ResultantAppStateDetail(str, Enum):
     InstallingDependencies = "installingDependencies",
     # Application content was downloaded to the device.
     ContentDownloaded = "contentDownloaded",
+    # App enforcement is pending because the app is currently in use.
+    InUse = "inUse",
+    # App enforcement was deferred by the user because the app is currently in use.
+    Deferred = "deferred",
+    # App enforcement was automatically deferred because the app is currently in use and a user response was not available.
+    AutoDeferred = "autoDeferred",
 

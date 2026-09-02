@@ -14,6 +14,7 @@ from kiota_serialization_multipart.multipart_serialization_writer_factory import
 from kiota_serialization_text.text_parse_node_factory import TextParseNodeFactory
 from kiota_serialization_text.text_serialization_writer_factory import TextSerializationWriterFactory
 from typing import Any, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .access_reviews.access_reviews_request_builder import AccessReviewsRequestBuilder
@@ -235,6 +236,7 @@ class BaseGraphServiceClient(BaseRequestBuilder):
         param app_id: Alternate key of servicePrincipal
         Returns: ServicePrincipalsWithAppIdRequestBuilder
         """
+        warn("Private preview for correlations report as of 2025-08/correlations on 2025-08-01 and will be removed 2026-08-01", DeprecationWarning)
         if app_id is None:
             raise TypeError("app_id cannot be null.")
         from .service_principals_with_app_id.service_principals_with_app_id_request_builder import ServicePrincipalsWithAppIdRequestBuilder

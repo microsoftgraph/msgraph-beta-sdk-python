@@ -37,6 +37,8 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
     app_action_if_android_safety_net_apps_verification_failed: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_android_safety_net_device_attestation_failed: Optional[ManagedAppRemediationAction] = None
+    # Defines a managed app behavior, either warn, block, or wipe, if Developer Options are enabled on the Android device. If the admin does not set this action, the default is null, which indicates this setting is not configured.
+    app_action_if_developer_options_enabled: Optional[ManagedAppRemediationAction] = None
     # An admin initiated action to be applied on a managed app.
     app_action_if_device_lock_not_set: Optional[ManagedAppRemediationAction] = None
     # If the device does not have a passcode of high complexity or higher, trigger the stored action. Possible values are: block, wipe, warn, blockWhenSettingIsSupported.
@@ -156,6 +158,7 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
             "appActionIfAndroidDeviceModelNotAllowed": lambda n : setattr(self, 'app_action_if_android_device_model_not_allowed', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfAndroidSafetyNetAppsVerificationFailed": lambda n : setattr(self, 'app_action_if_android_safety_net_apps_verification_failed', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfAndroidSafetyNetDeviceAttestationFailed": lambda n : setattr(self, 'app_action_if_android_safety_net_device_attestation_failed', n.get_enum_value(ManagedAppRemediationAction)),
+            "appActionIfDeveloperOptionsEnabled": lambda n : setattr(self, 'app_action_if_developer_options_enabled', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfDeviceLockNotSet": lambda n : setattr(self, 'app_action_if_device_lock_not_set', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfDevicePasscodeComplexityLessThanHigh": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_high', n.get_enum_value(ManagedAppRemediationAction)),
             "appActionIfDevicePasscodeComplexityLessThanLow": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_low', n.get_enum_value(ManagedAppRemediationAction)),
@@ -215,6 +218,7 @@ class AndroidManagedAppProtection(TargetedManagedAppProtection, Parsable):
         writer.write_enum_value("appActionIfAndroidDeviceModelNotAllowed", self.app_action_if_android_device_model_not_allowed)
         writer.write_enum_value("appActionIfAndroidSafetyNetAppsVerificationFailed", self.app_action_if_android_safety_net_apps_verification_failed)
         writer.write_enum_value("appActionIfAndroidSafetyNetDeviceAttestationFailed", self.app_action_if_android_safety_net_device_attestation_failed)
+        writer.write_enum_value("appActionIfDeveloperOptionsEnabled", self.app_action_if_developer_options_enabled)
         writer.write_enum_value("appActionIfDeviceLockNotSet", self.app_action_if_device_lock_not_set)
         writer.write_enum_value("appActionIfDevicePasscodeComplexityLessThanHigh", self.app_action_if_device_passcode_complexity_less_than_high)
         writer.write_enum_value("appActionIfDevicePasscodeComplexityLessThanLow", self.app_action_if_device_passcode_complexity_less_than_low)

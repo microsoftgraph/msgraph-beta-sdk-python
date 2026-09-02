@@ -32,7 +32,7 @@ class RestoreRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CrossTenantAccessPolicyConfigurationPartner]:
         """
-        Restore a deleted crossTenantAccessPolicyConfigurationPartner object. 
+        Restore a deleted crossTenantAccessPolicyConfigurationPartner object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantAccessPolicyConfigurationPartner]
         Find more info here: https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-restore?view=graph-rest-beta
@@ -53,7 +53,7 @@ class RestoreRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Restore a deleted crossTenantAccessPolicyConfigurationPartner object. 
+        Restore a deleted crossTenantAccessPolicyConfigurationPartner object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

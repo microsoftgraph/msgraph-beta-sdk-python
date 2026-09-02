@@ -14,12 +14,12 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
+    from ......models.b2b_registration_metrics import B2bRegistrationMetrics
     from ......models.o_data_errors.o_data_error import ODataError
-    from ......models.tenant_governance_services.b2b_registration_metrics import B2bRegistrationMetrics
 
 class B2BRegistrationMetricsRequestBuilder(BaseRequestBuilder):
     """
-    Provides operations to manage the b2BRegistrationMetrics property of the microsoft.graph.tenantGovernanceServices.relatedTenant entity.
+    Provides operations to manage the b2BRegistrationMetrics property of the microsoft.graph.relatedTenant entity.
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
         """
@@ -32,7 +32,7 @@ class B2BRegistrationMetricsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[B2BRegistrationMetricsRequestBuilderGetQueryParameters]] = None) -> Optional[B2bRegistrationMetrics]:
         """
-        B2B registration metrics for this related tenant. Expanded by default.
+        Get b2BRegistrationMetrics from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[B2bRegistrationMetrics]
         """
@@ -46,13 +46,13 @@ class B2BRegistrationMetricsRequestBuilder(BaseRequestBuilder):
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from ......models.tenant_governance_services.b2b_registration_metrics import B2bRegistrationMetrics
+        from ......models.b2b_registration_metrics import B2bRegistrationMetrics
 
         return await self.request_adapter.send_async(request_info, B2bRegistrationMetrics, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[B2BRegistrationMetricsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        B2B registration metrics for this related tenant. Expanded by default.
+        Get b2BRegistrationMetrics from directory
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class B2BRegistrationMetricsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class B2BRegistrationMetricsRequestBuilderGetQueryParameters():
         """
-        B2B registration metrics for this related tenant. Expanded by default.
+        Get b2BRegistrationMetrics from directory
         """
         def get_query_parameter(self,original_name: str) -> str:
             """
