@@ -20,7 +20,7 @@ class RestorePoint(Entity, Parsable):
     odata_type: Optional[str] = None
     # Date time when the restore point was created.
     protection_date_time: Optional[datetime.datetime] = None
-    # The site, drive, or mailbox units that are protected under a protection policy.
+    # The site, drive, or mailbox unit protected under a protection policy. Supports $expand and $filter on protectionUnit/policyId using the eq operator.
     protection_unit: Optional[ProtectionUnitBase] = None
     # The type of the restore point. The possible values are: none, fastRestore, unknownFutureValue, includeNewerItems. Use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: includeNewerItems.
     tags: Optional[RestorePointTags] = None

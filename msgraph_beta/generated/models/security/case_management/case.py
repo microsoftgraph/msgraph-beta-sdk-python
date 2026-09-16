@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .activity import Activity
     from .attachment import Attachment
     from .case_management_entity import CaseManagementEntity
+    from .case_sla_policy_entry import CaseSlaPolicyEntry
     from .custom_field_values import CustomFieldValues
     from .exposure_case import ExposureCase
     from .generic_case import GenericCase
@@ -31,6 +32,8 @@ class Case(CaseManagementEntity, Parsable):
     display_name: Optional[str] = None
     # Links from the case to related security resources. Supports $expand.
     relations: Optional[list[Relation]] = None
+    # A denormalized, read-only collection of SLA (service level agreement) policy status entries for the case. Each entry represents one SLA policy applied to the case, including its current status and breach target time. Computed by the service; any value supplied in a create or update request is silently ignored. Supports $filter using the any() lambda operator only, for example, $filter=slaPolicies/any(p: p/status eq 'breached'). The all() lambda operator and other collection functions aren't supported. Doesn't support $orderby.
+    sla_policies: Optional[list[CaseSlaPolicyEntry]] = None
     # The tenant-defined lifecycle status of the case. Use a displayName value returned in the status tree by List statuses from /security/caseManagement/caseTypeConfigurations/genericCase/statuses or /security/caseManagement/caseTypeConfigurations/incidentCase/statuses, depending on the case type. Supports $filter (eq).
     status: Optional[str] = None
     # Tasks used to track work required to resolve the case. Supports $expand.
@@ -72,6 +75,7 @@ class Case(CaseManagementEntity, Parsable):
         from .activity import Activity
         from .attachment import Attachment
         from .case_management_entity import CaseManagementEntity
+        from .case_sla_policy_entry import CaseSlaPolicyEntry
         from .custom_field_values import CustomFieldValues
         from .exposure_case import ExposureCase
         from .generic_case import GenericCase
@@ -82,6 +86,7 @@ class Case(CaseManagementEntity, Parsable):
         from .activity import Activity
         from .attachment import Attachment
         from .case_management_entity import CaseManagementEntity
+        from .case_sla_policy_entry import CaseSlaPolicyEntry
         from .custom_field_values import CustomFieldValues
         from .exposure_case import ExposureCase
         from .generic_case import GenericCase
@@ -95,6 +100,7 @@ class Case(CaseManagementEntity, Parsable):
             "customFields": lambda n : setattr(self, 'custom_fields', n.get_object_value(CustomFieldValues)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "relations": lambda n : setattr(self, 'relations', n.get_collection_of_object_values(Relation)),
+            "slaPolicies": lambda n : setattr(self, 'sla_policies', n.get_collection_of_object_values(CaseSlaPolicyEntry)),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(Task)),
         }

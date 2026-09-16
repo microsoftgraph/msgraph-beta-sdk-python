@@ -157,6 +157,8 @@ class SignIn(Entity, Parsable):
     risk_level_during_sign_in: Optional[RiskLevel] = None
     # The risk state of a risky user, sign-in, or a risk event. Possible values: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, or unknownFutureValue.  Supports $filter (eq).
     risk_state: Optional[RiskState] = None
+    # The rootActorId property
+    root_actor_id: Optional[str] = None
     # The unique identifier of the key credential used by the service principal to authenticate.
     service_principal_credential_key_id: Optional[str] = None
     # The certificate thumbprint of the certificate used by the service principal to authenticate.
@@ -337,6 +339,7 @@ class SignIn(Entity, Parsable):
             "riskLevelAggregated": lambda n : setattr(self, 'risk_level_aggregated', n.get_enum_value(RiskLevel)),
             "riskLevelDuringSignIn": lambda n : setattr(self, 'risk_level_during_sign_in', n.get_enum_value(RiskLevel)),
             "riskState": lambda n : setattr(self, 'risk_state', n.get_enum_value(RiskState)),
+            "rootActorId": lambda n : setattr(self, 'root_actor_id', n.get_str_value()),
             "servicePrincipalCredentialKeyId": lambda n : setattr(self, 'service_principal_credential_key_id', n.get_str_value()),
             "servicePrincipalCredentialThumbprint": lambda n : setattr(self, 'service_principal_credential_thumbprint', n.get_str_value()),
             "servicePrincipalId": lambda n : setattr(self, 'service_principal_id', n.get_str_value()),
@@ -427,6 +430,7 @@ class SignIn(Entity, Parsable):
         writer.write_enum_value("riskLevelAggregated", self.risk_level_aggregated)
         writer.write_enum_value("riskLevelDuringSignIn", self.risk_level_during_sign_in)
         writer.write_enum_value("riskState", self.risk_state)
+        writer.write_str_value("rootActorId", self.root_actor_id)
         writer.write_str_value("servicePrincipalCredentialKeyId", self.service_principal_credential_key_id)
         writer.write_str_value("servicePrincipalCredentialThumbprint", self.service_principal_credential_thumbprint)
         writer.write_str_value("servicePrincipalId", self.service_principal_id)

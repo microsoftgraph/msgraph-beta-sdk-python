@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .partner_tenant_type import PartnerTenantType
     from .privacy_profile import PrivacyProfile
     from .provisioned_plan import ProvisionedPlan
+    from .resource_quota import ResourceQuota
     from .verified_domain import VerifiedDomain
 
 from .directory_object import DirectoryObject
@@ -77,6 +78,8 @@ class Organization(DirectoryObject, Parsable):
     privacy_profile: Optional[PrivacyProfile] = None
     # Not nullable.
     provisioned_plans: Optional[list[ProvisionedPlan]] = None
+    # The resourceQuotas property
+    resource_quotas: Optional[list[ResourceQuota]] = None
     # Not nullable.
     security_compliance_notification_mails: Optional[list[str]] = None
     # Not nullable.
@@ -123,6 +126,7 @@ class Organization(DirectoryObject, Parsable):
         from .partner_tenant_type import PartnerTenantType
         from .privacy_profile import PrivacyProfile
         from .provisioned_plan import ProvisionedPlan
+        from .resource_quota import ResourceQuota
         from .verified_domain import VerifiedDomain
 
         from .assigned_plan import AssignedPlan
@@ -138,6 +142,7 @@ class Organization(DirectoryObject, Parsable):
         from .partner_tenant_type import PartnerTenantType
         from .privacy_profile import PrivacyProfile
         from .provisioned_plan import ProvisionedPlan
+        from .resource_quota import ResourceQuota
         from .verified_domain import VerifiedDomain
 
         fields: dict[str, Callable[[Any], None]] = {
@@ -166,6 +171,7 @@ class Organization(DirectoryObject, Parsable):
             "preferredLanguage": lambda n : setattr(self, 'preferred_language', n.get_str_value()),
             "privacyProfile": lambda n : setattr(self, 'privacy_profile', n.get_object_value(PrivacyProfile)),
             "provisionedPlans": lambda n : setattr(self, 'provisioned_plans', n.get_collection_of_object_values(ProvisionedPlan)),
+            "resourceQuotas": lambda n : setattr(self, 'resource_quotas', n.get_collection_of_object_values(ResourceQuota)),
             "securityComplianceNotificationMails": lambda n : setattr(self, 'security_compliance_notification_mails', n.get_collection_of_primitive_values(str)),
             "securityComplianceNotificationPhones": lambda n : setattr(self, 'security_compliance_notification_phones', n.get_collection_of_primitive_values(str)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(OrganizationSettings)),
@@ -213,6 +219,7 @@ class Organization(DirectoryObject, Parsable):
         writer.write_str_value("preferredLanguage", self.preferred_language)
         writer.write_object_value("privacyProfile", self.privacy_profile)
         writer.write_collection_of_object_values("provisionedPlans", self.provisioned_plans)
+        writer.write_collection_of_object_values("resourceQuotas", self.resource_quotas)
         writer.write_collection_of_primitive_values("securityComplianceNotificationMails", self.security_compliance_notification_mails)
         writer.write_collection_of_primitive_values("securityComplianceNotificationPhones", self.security_compliance_notification_phones)
         writer.write_object_value("settings", self.settings)

@@ -15,11 +15,11 @@ class BackupPolicyReport(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The backupPolicyId property
+    # The ID of the backup policy.
     backup_policy_id: Optional[str] = None
     # The countStatistics property
     count_statistics: Optional[BackupCountStatistics] = None
-    # The displayName property
+    # The display name of the backup policy.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

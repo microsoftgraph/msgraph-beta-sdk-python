@@ -61,7 +61,7 @@ class CloudPC(Entity, Parsable):
     group_detail: Optional[CloudPcEntraGroupDetail] = None
     # Name of the OS image that's on the Cloud PC.
     image_display_name: Optional[str] = None
-    # The isDisasterRecoveryActive property
+    # Indicates whether the Cloud PC currently runs in its disaster recovery region after a failover event. true if the Cloud PC is currently running in its disaster recovery region; otherwise, false. Read-only.
     is_disaster_recovery_active: Optional[bool] = None
     # The last login result of the Cloud PC. For example, { 'time': '2014-01-01T00:00:00Z'}.
     last_login_result: Optional[CloudPcLoginResult] = None
@@ -89,7 +89,7 @@ class CloudPC(Entity, Parsable):
     product_type: Optional[CloudPcProductType] = None
     # The latest provisioned date and time, automatically generated and assigned during the initial provisioning or any subsequent reprovisioning of the Cloud PC. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     provisioned_date_time: Optional[datetime.datetime] = None
-    # The provisioningConfiguration property
+    # The policy-derived configuration of the Cloud PC. Contains properties inherited from the provisioning policy that were applied during the most recent provisioning or reprovisioning. Returned only when explicitly selected with $select. Read-only.
     provisioning_configuration: Optional[CloudPcProvisioningConfiguration] = None
     # The provisioning policy ID of the Cloud PC.
     provisioning_policy_id: Optional[str] = None

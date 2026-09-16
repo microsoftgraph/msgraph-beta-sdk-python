@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .sensitivity_label_info import SensitivityLabelInfo
 
 @dataclass
 class SearchHit(AdditionalDataHolder, BackedModel, Parsable):
@@ -21,7 +22,7 @@ class SearchHit(AdditionalDataHolder, BackedModel, Parsable):
     hit_id: Optional[str] = None
     # The id property
     id: Optional[str] = None
-    # Indicates whether the current result is collapses when the collapseProperties property in the searchRequest is used.
+    # Indicates whether the current result is collapsed when the collapseProperties property in the searchRequest is used.
     is_collapsed: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -29,12 +30,14 @@ class SearchHit(AdditionalDataHolder, BackedModel, Parsable):
     rank: Optional[int] = None
     # The resource property
     resource: Optional[Entity] = None
-    # ID of the result template for rendering the search result. This ID must map to a display layout in the resultTemplates dictionary, included in the searchresponse as well.
+    # ID of the result template for rendering the search result. This ID must map to a display layout in the resultTemplates dictionary, included in the searchResponse as well.
     result_template_id: Optional[str] = None
     # The score property
     score: Optional[int] = None
     # The summary property
     search_hit_summary: Optional[str] = None
+    # The sensitivity label applied to the search result resource, or null if the resource has no sensitivity label.
+    sensitivity_label: Optional[SensitivityLabelInfo] = None
     # The source property
     source: Optional[Entity] = None
     # A summary of the result, if a summary is available.
@@ -57,8 +60,10 @@ class SearchHit(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .sensitivity_label_info import SensitivityLabelInfo
 
         from .entity import Entity
+        from .sensitivity_label_info import SensitivityLabelInfo
 
         fields: dict[str, Callable[[Any], None]] = {
             "contentSource": lambda n : setattr(self, 'content_source', n.get_str_value()),
@@ -71,6 +76,7 @@ class SearchHit(AdditionalDataHolder, BackedModel, Parsable):
             "resultTemplateId": lambda n : setattr(self, 'result_template_id', n.get_str_value()),
             "_score": lambda n : setattr(self, 'score', n.get_int_value()),
             "_summary": lambda n : setattr(self, 'search_hit_summary', n.get_str_value()),
+            "sensitivityLabel": lambda n : setattr(self, 'sensitivity_label', n.get_object_value(SensitivityLabelInfo)),
             "_source": lambda n : setattr(self, 'source', n.get_object_value(Entity)),
             "summary": lambda n : setattr(self, 'summary', n.get_str_value()),
         }
@@ -94,6 +100,7 @@ class SearchHit(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("resultTemplateId", self.result_template_id)
         writer.write_int_value("_score", self.score)
         writer.write_str_value("_summary", self.search_hit_summary)
+        writer.write_object_value("sensitivityLabel", self.sensitivity_label)
         writer.write_object_value("_source", self.source)
         writer.write_str_value("summary", self.summary)
         writer.write_additional_data_value(self.additional_data)

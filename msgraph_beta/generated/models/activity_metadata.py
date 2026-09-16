@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .interaction_participant import InteractionParticipant
     from .user_activity_type import UserActivityType
 
 @dataclass
@@ -19,6 +20,8 @@ class ActivityMetadata(AdditionalDataHolder, BackedModel, Parsable):
     activity: Optional[UserActivityType] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The participants property
+    participants: Optional[list[InteractionParticipant]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> ActivityMetadata:
@@ -36,13 +39,16 @@ class ActivityMetadata(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .interaction_participant import InteractionParticipant
         from .user_activity_type import UserActivityType
 
+        from .interaction_participant import InteractionParticipant
         from .user_activity_type import UserActivityType
 
         fields: dict[str, Callable[[Any], None]] = {
             "activity": lambda n : setattr(self, 'activity', n.get_enum_value(UserActivityType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "participants": lambda n : setattr(self, 'participants', n.get_collection_of_object_values(InteractionParticipant)),
         }
         return fields
     
@@ -56,6 +62,7 @@ class ActivityMetadata(AdditionalDataHolder, BackedModel, Parsable):
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("activity", self.activity)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_collection_of_object_values("participants", self.participants)
         writer.write_additional_data_value(self.additional_data)
     
 

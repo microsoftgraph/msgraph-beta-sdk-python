@@ -24,7 +24,7 @@ class PolicyScopeBase(AdditionalDataHolder, BackedModel, Parsable):
     activities: Optional[UserActivityTypes] = None
     # The executionMode property
     execution_mode: Optional[ExecutionMode] = None
-    # The locationExclusions property
+    # Locations excluded from the policy scope. When specified, the effective scope is the set of locations in locations minus the locations in locationExclusions. Required.
     location_exclusions: Optional[list[PolicyLocation]] = None
     # The locations (like domains or URLs) to be protected. Required.
     locations: Optional[list[PolicyLocation]] = None
