@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .android_aosp_referenced_app import AndroidAospReferencedApp
     from .android_for_work_app import AndroidForWorkApp
     from .android_lob_app import AndroidLobApp
     from .android_managed_store_app import AndroidManagedStoreApp
@@ -122,6 +123,10 @@ class MobileApp(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidAospReferencedApp".casefold():
+            from .android_aosp_referenced_app import AndroidAospReferencedApp
+
+            return AndroidAospReferencedApp()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidForWorkApp".casefold():
             from .android_for_work_app import AndroidForWorkApp
 
@@ -293,6 +298,7 @@ class MobileApp(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .android_aosp_referenced_app import AndroidAospReferencedApp
         from .android_for_work_app import AndroidForWorkApp
         from .android_lob_app import AndroidLobApp
         from .android_managed_store_app import AndroidManagedStoreApp
@@ -341,6 +347,7 @@ class MobileApp(Entity, Parsable):
         from .windows_web_app import WindowsWebApp
         from .win_get_app import WinGetApp
 
+        from .android_aosp_referenced_app import AndroidAospReferencedApp
         from .android_for_work_app import AndroidForWorkApp
         from .android_lob_app import AndroidLobApp
         from .android_managed_store_app import AndroidManagedStoreApp

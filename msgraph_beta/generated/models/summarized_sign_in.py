@@ -39,6 +39,8 @@ class SummarizedSignIn(Entity, Parsable):
     resource_display_name: Optional[str] = None
     # The application identifier of the resource application that the user signed in to. Supports $filter (eq).
     resource_id: Optional[str] = None
+    # The rootActorId property
+    root_actor_id: Optional[str] = None
     # The application identifier of the specific service principal instance of the application identifier used for sign-in. This field is populated when you're signing in using an application and is different than the appId property. Supports $filter (eq).
     service_principal_id: Optional[str] = None
     # The application name used for sign-in. This field is populated when you're signing in using an application. Supports $filter (eq, startswith).
@@ -95,6 +97,7 @@ class SummarizedSignIn(Entity, Parsable):
             "managedServiceIdentity": lambda n : setattr(self, 'managed_service_identity', n.get_object_value(ManagedIdentity)),
             "resourceDisplayName": lambda n : setattr(self, 'resource_display_name', n.get_str_value()),
             "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
+            "rootActorId": lambda n : setattr(self, 'root_actor_id', n.get_str_value()),
             "servicePrincipalId": lambda n : setattr(self, 'service_principal_id', n.get_str_value()),
             "servicePrincipalName": lambda n : setattr(self, 'service_principal_name', n.get_str_value()),
             "signInCount": lambda n : setattr(self, 'sign_in_count', n.get_int_value()),
@@ -126,6 +129,7 @@ class SummarizedSignIn(Entity, Parsable):
         writer.write_object_value("managedServiceIdentity", self.managed_service_identity)
         writer.write_str_value("resourceDisplayName", self.resource_display_name)
         writer.write_str_value("resourceId", self.resource_id)
+        writer.write_str_value("rootActorId", self.root_actor_id)
         writer.write_str_value("servicePrincipalId", self.service_principal_id)
         writer.write_str_value("servicePrincipalName", self.service_principal_name)
         writer.write_int_value("signInCount", self.sign_in_count)

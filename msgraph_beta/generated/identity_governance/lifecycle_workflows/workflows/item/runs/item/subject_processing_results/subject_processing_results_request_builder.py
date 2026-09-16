@@ -40,7 +40,6 @@ class SubjectProcessingResultsRequestBuilder(BaseRequestBuilder):
         param subject_processing_result_id: The unique identifier of subjectProcessingResult
         Returns: SubjectProcessingResultItemRequestBuilder
         """
-        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if subject_processing_result_id is None:
             raise TypeError("subject_processing_result_id cannot be null.")
         from .item.subject_processing_result_item_request_builder import SubjectProcessingResultItemRequestBuilder
@@ -56,7 +55,6 @@ class SubjectProcessingResultsRequestBuilder(BaseRequestBuilder):
         Returns: Optional[SubjectProcessingResultCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/identitygovernance-run-list-subjectprocessingresults?view=graph-rest-beta
         """
-        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -78,7 +76,6 @@ class SubjectProcessingResultsRequestBuilder(BaseRequestBuilder):
         param start_date_time: Usage: startDateTime={startDateTime}
         Returns: MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
         """
-        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if end_date_time is None:
             raise TypeError("end_date_time cannot be null.")
         if start_date_time is None:
@@ -93,7 +90,6 @@ class SubjectProcessingResultsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -105,7 +101,6 @@ class SubjectProcessingResultsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: SubjectProcessingResultsRequestBuilder
         """
-        warn(" as of 2022-02/PrivatePreview:groupPeerOutlierInsights on 2021-10-21 and will be removed 2022-02-18", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SubjectProcessingResultsRequestBuilder(self.request_adapter, raw_url)

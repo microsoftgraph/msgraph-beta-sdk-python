@@ -11,6 +11,7 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.serialization import Parsable, ParsableFactory
 from typing import Any, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 from warnings import warn
 
 if TYPE_CHECKING:
@@ -18,6 +19,8 @@ if TYPE_CHECKING:
     from ....models.file_storage_container_collection_response import FileStorageContainerCollectionResponse
     from ....models.o_data_errors.o_data_error import ODataError
     from .count.count_request_builder import CountRequestBuilder
+    from .get_by_user_with_user_object_id.get_by_user_with_user_object_id_request_builder import GetByUserWithUserObjectIdRequestBuilder
+    from .get_by_user_with_user_object_id_with_role.get_by_user_with_user_object_id_with_role_request_builder import GetByUserWithUserObjectIdWithRoleRequestBuilder
     from .get_by_user_with_user_principal_name.get_by_user_with_user_principal_name_request_builder import GetByUserWithUserPrincipalNameRequestBuilder
     from .get_by_user_with_user_principal_name_with_role.get_by_user_with_user_principal_name_with_role_request_builder import GetByUserWithUserPrincipalNameWithRoleRequestBuilder
     from .item.file_storage_container_item_request_builder import FileStorageContainerItemRequestBuilder
@@ -68,6 +71,33 @@ class DeletedContainersRequestBuilder(BaseRequestBuilder):
         from ....models.file_storage_container_collection_response import FileStorageContainerCollectionResponse
 
         return await self.request_adapter.send_async(request_info, FileStorageContainerCollectionResponse, error_mapping)
+    
+    def get_by_user_with_user_object_id(self,user_object_id: UUID) -> GetByUserWithUserObjectIdRequestBuilder:
+        """
+        Provides operations to call the getByUser method.
+        param user_object_id: Usage: userObjectId={userObjectId}
+        Returns: GetByUserWithUserObjectIdRequestBuilder
+        """
+        if user_object_id is None:
+            raise TypeError("user_object_id cannot be null.")
+        from .get_by_user_with_user_object_id.get_by_user_with_user_object_id_request_builder import GetByUserWithUserObjectIdRequestBuilder
+
+        return GetByUserWithUserObjectIdRequestBuilder(self.request_adapter, self.path_parameters, user_object_id)
+    
+    def get_by_user_with_user_object_id_with_role(self,role: str, user_object_id: UUID) -> GetByUserWithUserObjectIdWithRoleRequestBuilder:
+        """
+        Provides operations to call the getByUser method.
+        param role: Usage: role='{role}'
+        param user_object_id: Usage: userObjectId={userObjectId}
+        Returns: GetByUserWithUserObjectIdWithRoleRequestBuilder
+        """
+        if role is None:
+            raise TypeError("role cannot be null.")
+        if user_object_id is None:
+            raise TypeError("user_object_id cannot be null.")
+        from .get_by_user_with_user_object_id_with_role.get_by_user_with_user_object_id_with_role_request_builder import GetByUserWithUserObjectIdWithRoleRequestBuilder
+
+        return GetByUserWithUserObjectIdWithRoleRequestBuilder(self.request_adapter, self.path_parameters, role, user_object_id)
     
     def get_by_user_with_user_principal_name(self,user_principal_name: str) -> GetByUserWithUserPrincipalNameRequestBuilder:
         """

@@ -32,11 +32,10 @@ class ProtectionUnitRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ProtectionUnitRequestBuilderGetQueryParameters]] = None) -> Optional[ProtectionUnitBase]:
         """
-        The site, drive, or mailbox units that are protected under a protection policy.
+        The site, drive, or mailbox unit protected under a protection policy. Supports $expand and $filter on protectionUnit/policyId using the eq operator.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProtectionUnitBase]
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -53,11 +52,10 @@ class ProtectionUnitRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ProtectionUnitRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The site, drive, or mailbox units that are protected under a protection policy.
+        The site, drive, or mailbox unit protected under a protection policy. Supports $expand and $filter on protectionUnit/policyId using the eq operator.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -69,7 +67,6 @@ class ProtectionUnitRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ProtectionUnitRequestBuilder
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ProtectionUnitRequestBuilder(self.request_adapter, raw_url)
@@ -77,7 +74,7 @@ class ProtectionUnitRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ProtectionUnitRequestBuilderGetQueryParameters():
         """
-        The site, drive, or mailbox units that are protected under a protection policy.
+        The site, drive, or mailbox unit protected under a protection policy. Supports $expand and $filter on protectionUnit/policyId using the eq operator.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

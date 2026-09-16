@@ -37,4 +37,6 @@ class DeviceManagementConfigurationTemplateFamily(str, Enum):
     CompanyPortal = "companyPortal",
     # Windows Recovery and Remediation Configuration Policy
     WindowsRecoveryAndRemediationConfiguration = "windowsRecoveryAndRemediationConfiguration",
+    # Indicates Template Family for Maintenance Windows templates
+    MaintenanceWindows = "maintenanceWindows",
 

@@ -7,6 +7,9 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .aad_user_conversation_member import AadUserConversationMember
+    from .access_drift_detail import AccessDriftDetail
+    from .access_drift_report import AccessDriftReport
+    from .access_drift_summary import AccessDriftSummary
     from .access_package import AccessPackage
     from .access_package_assignment import AccessPackageAssignment
     from .access_package_assignment_policy import AccessPackageAssignmentPolicy
@@ -53,8 +56,6 @@ if TYPE_CHECKING:
     from .admin_todo import AdminTodo
     from .admin_windows import AdminWindows
     from .admin_windows_updates import AdminWindowsUpdates
-    from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
-    from .admit_from_lobby_operation import AdmitFromLobbyOperation
     from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
     from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
     from .agent import Agent
@@ -82,6 +83,7 @@ if TYPE_CHECKING:
     from .alert import Alert
     from .allowed_data_location import AllowedDataLocation
     from .allowed_value import AllowedValue
+    from .android_aosp_referenced_app import AndroidAospReferencedApp
     from .android_app_configuration_schema import AndroidAppConfigurationSchema
     from .android_certificate_profile_base import AndroidCertificateProfileBase
     from .android_compliance_policy import AndroidCompliancePolicy
@@ -152,6 +154,9 @@ if TYPE_CHECKING:
     from .android_work_profile_trusted_root_certificate import AndroidWorkProfileTrustedRootCertificate
     from .android_work_profile_vpn_configuration import AndroidWorkProfileVpnConfiguration
     from .android_work_profile_wi_fi_configuration import AndroidWorkProfileWiFiConfiguration
+    from .anonymous_calendar_sharing_free_busy_detail import AnonymousCalendarSharingFreeBusyDetail
+    from .anonymous_calendar_sharing_free_busy_reviewer import AnonymousCalendarSharingFreeBusyReviewer
+    from .anonymous_calendar_sharing_free_busy_simple import AnonymousCalendarSharingFreeBusySimple
     from .anonymous_guest_conversation_member import AnonymousGuestConversationMember
     from .aosp_device_owner_certificate_profile_base import AospDeviceOwnerCertificateProfileBase
     from .aosp_device_owner_compliance_policy import AospDeviceOwnerCompliancePolicy
@@ -219,13 +224,11 @@ if TYPE_CHECKING:
     from .authentication_flows_policy import AuthenticationFlowsPolicy
     from .authentication_listener import AuthenticationListener
     from .authentication_method import AuthenticationMethod
-    from .authentication_methods_policy import AuthenticationMethodsPolicy
     from .authentication_methods_root import AuthenticationMethodsRoot
     from .authentication_method_configuration import AuthenticationMethodConfiguration
     from .authentication_method_device import AuthenticationMethodDevice
     from .authentication_method_mode_detail import AuthenticationMethodModeDetail
     from .authentication_method_target import AuthenticationMethodTarget
-    from .authentication_strength_policy import AuthenticationStrengthPolicy
     from .authentication_strength_root import AuthenticationStrengthRoot
     from .authored_note import AuthoredNote
     from .authorization_policy import AuthorizationPolicy
@@ -767,6 +770,7 @@ if TYPE_CHECKING:
     from .entitlement_management import EntitlementManagement
     from .entitlement_management_settings import EntitlementManagementSettings
     from .entra import Entra
+    from .entra_access_drift_detail import EntraAccessDriftDetail
     from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
     from .entra_recovery_services.recovery import Recovery
     from .entra_recovery_services.recovery_change_object_base import RecoveryChangeObjectBase
@@ -928,22 +932,11 @@ if TYPE_CHECKING:
     from .identity_correlation import IdentityCorrelation
     from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
     from .identity_finding import IdentityFinding
-    from .identity_governance.agent_identity_lifecycle import AgentIdentityLifecycle
-    from .identity_governance.agent_identity_lifecycle_policy import AgentIdentityLifecyclePolicy
-    from .identity_governance.attestation_compliance_issue import AttestationComplianceIssue
-    from .identity_governance.compliance_issue import ComplianceIssue
     from .identity_governance.custom_task_extension import CustomTaskExtension
-    from .identity_governance.identity_lifecycle import IdentityLifecycle
-    from .identity_governance.inactivity_rule import InactivityRule
     from .identity_governance.insights import Insights
     from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
-    from .identity_governance.lifecycle_policy import LifecyclePolicy
-    from .identity_governance.lifecycle_policy_priority_configuration import LifecyclePolicyPriorityConfiguration
-    from .identity_governance.lifecycle_policy_rule import LifecyclePolicyRule
     from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
-    from .identity_governance.periodic_attestation_rule import PeriodicAttestationRule
     from .identity_governance.run import Run
-    from .identity_governance.sponsor_presence_rule import SponsorPresenceRule
     from .identity_governance.subject_processing_result import SubjectProcessingResult
     from .identity_governance.task import Task
     from .identity_governance.task_definition import TaskDefinition
@@ -1614,7 +1607,6 @@ if TYPE_CHECKING:
     from .remote_assistance_settings import RemoteAssistanceSettings
     from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
     from .remote_tenant_group import RemoteTenantGroup
-    from .remove_from_lobby_operation import RemoveFromLobbyOperation
     from .reports_root import ReportsRoot
     from .report_root import ReportRoot
     from .request import Request
@@ -2004,6 +1996,7 @@ if TYPE_CHECKING:
     from .template import Template
     from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
     from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
+    from .tenant_activities_container import TenantActivitiesContainer
     from .tenant_app_management_policy import TenantAppManagementPolicy
     from .tenant_attach_r_b_a_c import TenantAttachRBAC
     from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
@@ -2433,6 +2426,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .aad_user_conversation_member import AadUserConversationMember
 
             return AadUserConversationMember()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessDriftDetail".casefold():
+            from .access_drift_detail import AccessDriftDetail
+
+            return AccessDriftDetail()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessDriftReport".casefold():
+            from .access_drift_report import AccessDriftReport
+
+            return AccessDriftReport()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessDriftSummary".casefold():
+            from .access_drift_summary import AccessDriftSummary
+
+            return AccessDriftSummary()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessPackage".casefold():
             from .access_package import AccessPackage
 
@@ -2617,14 +2622,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .admin_windows_updates import AdminWindowsUpdates
 
             return AdminWindowsUpdates()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.admitAllFromLobbyOperation".casefold():
-            from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
-
-            return AdmitAllFromLobbyOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.admitFromLobbyOperation".casefold():
-            from .admit_from_lobby_operation import AdmitFromLobbyOperation
-
-            return AdmitFromLobbyOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.advancedThreatProtectionOnboardingDeviceSettingState".casefold():
             from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
 
@@ -2736,6 +2733,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .allowed_value import AllowedValue
 
             return AllowedValue()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidAospReferencedApp".casefold():
+            from .android_aosp_referenced_app import AndroidAospReferencedApp
+
+            return AndroidAospReferencedApp()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidAppConfigurationSchema".casefold():
             from .android_app_configuration_schema import AndroidAppConfigurationSchema
 
@@ -3016,6 +3017,18 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .android_work_profile_wi_fi_configuration import AndroidWorkProfileWiFiConfiguration
 
             return AndroidWorkProfileWiFiConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.anonymousCalendarSharingFreeBusyDetail".casefold():
+            from .anonymous_calendar_sharing_free_busy_detail import AnonymousCalendarSharingFreeBusyDetail
+
+            return AnonymousCalendarSharingFreeBusyDetail()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.anonymousCalendarSharingFreeBusyReviewer".casefold():
+            from .anonymous_calendar_sharing_free_busy_reviewer import AnonymousCalendarSharingFreeBusyReviewer
+
+            return AnonymousCalendarSharingFreeBusyReviewer()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.anonymousCalendarSharingFreeBusySimple".casefold():
+            from .anonymous_calendar_sharing_free_busy_simple import AnonymousCalendarSharingFreeBusySimple
+
+            return AnonymousCalendarSharingFreeBusySimple()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.anonymousGuestConversationMember".casefold():
             from .anonymous_guest_conversation_member import AnonymousGuestConversationMember
 
@@ -3294,10 +3307,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .authentication_method_mode_detail import AuthenticationMethodModeDetail
 
             return AuthenticationMethodModeDetail()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationMethodsPolicy".casefold():
-            from .authentication_methods_policy import AuthenticationMethodsPolicy
-
-            return AuthenticationMethodsPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationMethodsRoot".casefold():
             from .authentication_methods_root import AuthenticationMethodsRoot
 
@@ -3310,10 +3319,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .authentications_metric import AuthenticationsMetric
 
             return AuthenticationsMetric()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationStrengthPolicy".casefold():
-            from .authentication_strength_policy import AuthenticationStrengthPolicy
-
-            return AuthenticationStrengthPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationStrengthRoot".casefold():
             from .authentication_strength_root import AuthenticationStrengthRoot
 
@@ -5496,6 +5501,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .entra import Entra
 
             return Entra()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraAccessDriftDetail".casefold():
+            from .entra_access_drift_detail import EntraAccessDriftDetail
+
+            return EntraAccessDriftDetail()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraIdProtectionRiskyUserApproval".casefold():
             from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
 
@@ -6148,34 +6157,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_finding import IdentityFinding
 
             return IdentityFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.agentIdentityLifecycle".casefold():
-            from .identity_governance.agent_identity_lifecycle import AgentIdentityLifecycle
-
-            return AgentIdentityLifecycle()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.agentIdentityLifecyclePolicy".casefold():
-            from .identity_governance.agent_identity_lifecycle_policy import AgentIdentityLifecyclePolicy
-
-            return AgentIdentityLifecyclePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.attestationComplianceIssue".casefold():
-            from .identity_governance.attestation_compliance_issue import AttestationComplianceIssue
-
-            return AttestationComplianceIssue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.complianceIssue".casefold():
-            from .identity_governance.compliance_issue import ComplianceIssue
-
-            return ComplianceIssue()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.customTaskExtension".casefold():
             from .identity_governance.custom_task_extension import CustomTaskExtension
 
             return CustomTaskExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.identityLifecycle".casefold():
-            from .identity_governance.identity_lifecycle import IdentityLifecycle
-
-            return IdentityLifecycle()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.inactivityRule".casefold():
-            from .identity_governance.inactivity_rule import InactivityRule
-
-            return InactivityRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.insights".casefold():
             from .identity_governance.insights import Insights
 
@@ -6184,34 +6169,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
 
             return LifecycleManagementSettings()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecyclePolicy".casefold():
-            from .identity_governance.lifecycle_policy import LifecyclePolicy
-
-            return LifecyclePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecyclePolicyPriorityConfiguration".casefold():
-            from .identity_governance.lifecycle_policy_priority_configuration import LifecyclePolicyPriorityConfiguration
-
-            return LifecyclePolicyPriorityConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecyclePolicyRule".casefold():
-            from .identity_governance.lifecycle_policy_rule import LifecyclePolicyRule
-
-            return LifecyclePolicyRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecycleWorkflowsContainer".casefold():
             from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
 
             return LifecycleWorkflowsContainer()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.periodicAttestationRule".casefold():
-            from .identity_governance.periodic_attestation_rule import PeriodicAttestationRule
-
-            return PeriodicAttestationRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.run".casefold():
             from .identity_governance.run import Run
 
             return Run()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.sponsorPresenceRule".casefold():
-            from .identity_governance.sponsor_presence_rule import SponsorPresenceRule
-
-            return SponsorPresenceRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.subjectProcessingResult".casefold():
             from .identity_governance.subject_processing_result import SubjectProcessingResult
 
@@ -8908,10 +8873,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .remote_tenant_group import RemoteTenantGroup
 
             return RemoteTenantGroup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.removeFromLobbyOperation".casefold():
-            from .remove_from_lobby_operation import RemoveFromLobbyOperation
-
-            return RemoveFromLobbyOperation()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.reportRoot".casefold():
             from .report_root import ReportRoot
 
@@ -10493,6 +10454,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
 
             return TemporaryAccessPassAuthenticationMethodConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantActivitiesContainer".casefold():
+            from .tenant_activities_container import TenantActivitiesContainer
+
+            return TenantActivitiesContainer()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.tenantAppManagementPolicy".casefold():
             from .tenant_app_management_policy import TenantAppManagementPolicy
 
@@ -12101,6 +12066,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .aad_user_conversation_member import AadUserConversationMember
+        from .access_drift_detail import AccessDriftDetail
+        from .access_drift_report import AccessDriftReport
+        from .access_drift_summary import AccessDriftSummary
         from .access_package import AccessPackage
         from .access_package_assignment import AccessPackageAssignment
         from .access_package_assignment_policy import AccessPackageAssignmentPolicy
@@ -12147,8 +12115,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
         from .admin_windows_updates import AdminWindowsUpdates
-        from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
-        from .admit_from_lobby_operation import AdmitFromLobbyOperation
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
         from .agent import Agent
@@ -12176,6 +12142,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .alert import Alert
         from .allowed_data_location import AllowedDataLocation
         from .allowed_value import AllowedValue
+        from .android_aosp_referenced_app import AndroidAospReferencedApp
         from .android_app_configuration_schema import AndroidAppConfigurationSchema
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_compliance_policy import AndroidCompliancePolicy
@@ -12246,6 +12213,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .android_work_profile_trusted_root_certificate import AndroidWorkProfileTrustedRootCertificate
         from .android_work_profile_vpn_configuration import AndroidWorkProfileVpnConfiguration
         from .android_work_profile_wi_fi_configuration import AndroidWorkProfileWiFiConfiguration
+        from .anonymous_calendar_sharing_free_busy_detail import AnonymousCalendarSharingFreeBusyDetail
+        from .anonymous_calendar_sharing_free_busy_reviewer import AnonymousCalendarSharingFreeBusyReviewer
+        from .anonymous_calendar_sharing_free_busy_simple import AnonymousCalendarSharingFreeBusySimple
         from .anonymous_guest_conversation_member import AnonymousGuestConversationMember
         from .aosp_device_owner_certificate_profile_base import AospDeviceOwnerCertificateProfileBase
         from .aosp_device_owner_compliance_policy import AospDeviceOwnerCompliancePolicy
@@ -12313,13 +12283,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .authentication_flows_policy import AuthenticationFlowsPolicy
         from .authentication_listener import AuthenticationListener
         from .authentication_method import AuthenticationMethod
-        from .authentication_methods_policy import AuthenticationMethodsPolicy
         from .authentication_methods_root import AuthenticationMethodsRoot
         from .authentication_method_configuration import AuthenticationMethodConfiguration
         from .authentication_method_device import AuthenticationMethodDevice
         from .authentication_method_mode_detail import AuthenticationMethodModeDetail
         from .authentication_method_target import AuthenticationMethodTarget
-        from .authentication_strength_policy import AuthenticationStrengthPolicy
         from .authentication_strength_root import AuthenticationStrengthRoot
         from .authored_note import AuthoredNote
         from .authorization_policy import AuthorizationPolicy
@@ -12861,6 +12829,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .entitlement_management import EntitlementManagement
         from .entitlement_management_settings import EntitlementManagementSettings
         from .entra import Entra
+        from .entra_access_drift_detail import EntraAccessDriftDetail
         from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
         from .entra_recovery_services.recovery import Recovery
         from .entra_recovery_services.recovery_change_object_base import RecoveryChangeObjectBase
@@ -13022,22 +12991,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_correlation import IdentityCorrelation
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
         from .identity_finding import IdentityFinding
-        from .identity_governance.agent_identity_lifecycle import AgentIdentityLifecycle
-        from .identity_governance.agent_identity_lifecycle_policy import AgentIdentityLifecyclePolicy
-        from .identity_governance.attestation_compliance_issue import AttestationComplianceIssue
-        from .identity_governance.compliance_issue import ComplianceIssue
         from .identity_governance.custom_task_extension import CustomTaskExtension
-        from .identity_governance.identity_lifecycle import IdentityLifecycle
-        from .identity_governance.inactivity_rule import InactivityRule
         from .identity_governance.insights import Insights
         from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
-        from .identity_governance.lifecycle_policy import LifecyclePolicy
-        from .identity_governance.lifecycle_policy_priority_configuration import LifecyclePolicyPriorityConfiguration
-        from .identity_governance.lifecycle_policy_rule import LifecyclePolicyRule
         from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
-        from .identity_governance.periodic_attestation_rule import PeriodicAttestationRule
         from .identity_governance.run import Run
-        from .identity_governance.sponsor_presence_rule import SponsorPresenceRule
         from .identity_governance.subject_processing_result import SubjectProcessingResult
         from .identity_governance.task import Task
         from .identity_governance.task_definition import TaskDefinition
@@ -13708,7 +13666,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .remote_assistance_settings import RemoteAssistanceSettings
         from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
         from .remote_tenant_group import RemoteTenantGroup
-        from .remove_from_lobby_operation import RemoveFromLobbyOperation
         from .reports_root import ReportsRoot
         from .report_root import ReportRoot
         from .request import Request
@@ -14098,6 +14055,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .template import Template
         from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
         from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
+        from .tenant_activities_container import TenantActivitiesContainer
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .tenant_attach_r_b_a_c import TenantAttachRBAC
         from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance
@@ -14498,6 +14456,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .zebra_fota_deployment import ZebraFotaDeployment
 
         from .aad_user_conversation_member import AadUserConversationMember
+        from .access_drift_detail import AccessDriftDetail
+        from .access_drift_report import AccessDriftReport
+        from .access_drift_summary import AccessDriftSummary
         from .access_package import AccessPackage
         from .access_package_assignment import AccessPackageAssignment
         from .access_package_assignment_policy import AccessPackageAssignmentPolicy
@@ -14544,8 +14505,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .admin_todo import AdminTodo
         from .admin_windows import AdminWindows
         from .admin_windows_updates import AdminWindowsUpdates
-        from .admit_all_from_lobby_operation import AdmitAllFromLobbyOperation
-        from .admit_from_lobby_operation import AdmitFromLobbyOperation
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
         from .agent import Agent
@@ -14573,6 +14532,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .alert import Alert
         from .allowed_data_location import AllowedDataLocation
         from .allowed_value import AllowedValue
+        from .android_aosp_referenced_app import AndroidAospReferencedApp
         from .android_app_configuration_schema import AndroidAppConfigurationSchema
         from .android_certificate_profile_base import AndroidCertificateProfileBase
         from .android_compliance_policy import AndroidCompliancePolicy
@@ -14643,6 +14603,9 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .android_work_profile_trusted_root_certificate import AndroidWorkProfileTrustedRootCertificate
         from .android_work_profile_vpn_configuration import AndroidWorkProfileVpnConfiguration
         from .android_work_profile_wi_fi_configuration import AndroidWorkProfileWiFiConfiguration
+        from .anonymous_calendar_sharing_free_busy_detail import AnonymousCalendarSharingFreeBusyDetail
+        from .anonymous_calendar_sharing_free_busy_reviewer import AnonymousCalendarSharingFreeBusyReviewer
+        from .anonymous_calendar_sharing_free_busy_simple import AnonymousCalendarSharingFreeBusySimple
         from .anonymous_guest_conversation_member import AnonymousGuestConversationMember
         from .aosp_device_owner_certificate_profile_base import AospDeviceOwnerCertificateProfileBase
         from .aosp_device_owner_compliance_policy import AospDeviceOwnerCompliancePolicy
@@ -14710,13 +14673,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .authentication_flows_policy import AuthenticationFlowsPolicy
         from .authentication_listener import AuthenticationListener
         from .authentication_method import AuthenticationMethod
-        from .authentication_methods_policy import AuthenticationMethodsPolicy
         from .authentication_methods_root import AuthenticationMethodsRoot
         from .authentication_method_configuration import AuthenticationMethodConfiguration
         from .authentication_method_device import AuthenticationMethodDevice
         from .authentication_method_mode_detail import AuthenticationMethodModeDetail
         from .authentication_method_target import AuthenticationMethodTarget
-        from .authentication_strength_policy import AuthenticationStrengthPolicy
         from .authentication_strength_root import AuthenticationStrengthRoot
         from .authored_note import AuthoredNote
         from .authorization_policy import AuthorizationPolicy
@@ -15258,6 +15219,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .entitlement_management import EntitlementManagement
         from .entitlement_management_settings import EntitlementManagementSettings
         from .entra import Entra
+        from .entra_access_drift_detail import EntraAccessDriftDetail
         from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
         from .entra_recovery_services.recovery import Recovery
         from .entra_recovery_services.recovery_change_object_base import RecoveryChangeObjectBase
@@ -15419,22 +15381,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_correlation import IdentityCorrelation
         from .identity_custom_user_flow_attribute import IdentityCustomUserFlowAttribute
         from .identity_finding import IdentityFinding
-        from .identity_governance.agent_identity_lifecycle import AgentIdentityLifecycle
-        from .identity_governance.agent_identity_lifecycle_policy import AgentIdentityLifecyclePolicy
-        from .identity_governance.attestation_compliance_issue import AttestationComplianceIssue
-        from .identity_governance.compliance_issue import ComplianceIssue
         from .identity_governance.custom_task_extension import CustomTaskExtension
-        from .identity_governance.identity_lifecycle import IdentityLifecycle
-        from .identity_governance.inactivity_rule import InactivityRule
         from .identity_governance.insights import Insights
         from .identity_governance.lifecycle_management_settings import LifecycleManagementSettings
-        from .identity_governance.lifecycle_policy import LifecyclePolicy
-        from .identity_governance.lifecycle_policy_priority_configuration import LifecyclePolicyPriorityConfiguration
-        from .identity_governance.lifecycle_policy_rule import LifecyclePolicyRule
         from .identity_governance.lifecycle_workflows_container import LifecycleWorkflowsContainer
-        from .identity_governance.periodic_attestation_rule import PeriodicAttestationRule
         from .identity_governance.run import Run
-        from .identity_governance.sponsor_presence_rule import SponsorPresenceRule
         from .identity_governance.subject_processing_result import SubjectProcessingResult
         from .identity_governance.task import Task
         from .identity_governance.task_definition import TaskDefinition
@@ -16105,7 +16056,6 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .remote_assistance_settings import RemoteAssistanceSettings
         from .remote_desktop_security_configuration import RemoteDesktopSecurityConfiguration
         from .remote_tenant_group import RemoteTenantGroup
-        from .remove_from_lobby_operation import RemoveFromLobbyOperation
         from .reports_root import ReportsRoot
         from .report_root import ReportRoot
         from .request import Request
@@ -16495,6 +16445,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .template import Template
         from .temporary_access_pass_authentication_method import TemporaryAccessPassAuthenticationMethod
         from .temporary_access_pass_authentication_method_configuration import TemporaryAccessPassAuthenticationMethodConfiguration
+        from .tenant_activities_container import TenantActivitiesContainer
         from .tenant_app_management_policy import TenantAppManagementPolicy
         from .tenant_attach_r_b_a_c import TenantAttachRBAC
         from .tenant_data_security_and_governance import TenantDataSecurityAndGovernance

@@ -37,7 +37,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -52,11 +51,10 @@ class ReportsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ReportsRequestBuilderGetQueryParameters]] = None) -> Optional[BackupReport]:
         """
-        Get reports from solutions
+        Report corresponding to a protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BackupReport]
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -77,7 +75,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param policy_id: Usage: policyId='{policyId}'
         Returns: GetStatisticsByPolicyWithPolicyIdRequestBuilder
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if policy_id is None:
             raise TypeError("policy_id cannot be null.")
         from .get_statistics_by_policy_with_policy_id.get_statistics_by_policy_with_policy_id_request_builder import GetStatisticsByPolicyWithPolicyIdRequestBuilder
@@ -91,7 +88,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BackupReport]
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -114,7 +110,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -122,11 +117,10 @@ class ReportsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ReportsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get reports from solutions
+        Report corresponding to a protection policy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -139,7 +133,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -154,7 +147,6 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: ReportsRequestBuilder
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return ReportsRequestBuilder(self.request_adapter, raw_url)
@@ -169,7 +161,7 @@ class ReportsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ReportsRequestBuilderGetQueryParameters():
         """
-        Get reports from solutions
+        Report corresponding to a protection policy.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

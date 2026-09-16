@@ -8,28 +8,30 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
     from .authentication_method_configuration import AuthenticationMethodConfiguration
-    from .entity import Entity
     from .microsoft_authenticator_platform_settings import MicrosoftAuthenticatorPlatformSettings
+    from .policy_deletable_item import PolicyDeletableItem
     from .registration_enforcement import RegistrationEnforcement
     from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
     from .system_credential_preferences import SystemCredentialPreferences
 
-from .entity import Entity
+from .policy_deletable_item import PolicyDeletableItem
 
 @dataclass
-class AuthenticationMethodsPolicy(Entity, Parsable):
+class AuthenticationMethodsPolicy(PolicyDeletableItem, Parsable):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.authenticationMethodsPolicy"
     # Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
     authentication_method_configurations: Optional[list[AuthenticationMethodConfiguration]] = None
     # A description of the policy.
     description: Optional[str] = None
     # The name of the policy.
     display_name: Optional[str] = None
+    # The id property
+    id: Optional[str] = None
     # The date and time of the last update to the policy.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The microsoftAuthenticatorPlatformSettings property
     microsoft_authenticator_platform_settings: Optional[MicrosoftAuthenticatorPlatformSettings] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     # The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authentication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Don't use.
     policy_migration_state: Optional[AuthenticationMethodsPolicyMigrationState] = None
     # The version of the policy in use.
@@ -61,16 +63,16 @@ class AuthenticationMethodsPolicy(Entity, Parsable):
         """
         from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
         from .authentication_method_configuration import AuthenticationMethodConfiguration
-        from .entity import Entity
         from .microsoft_authenticator_platform_settings import MicrosoftAuthenticatorPlatformSettings
+        from .policy_deletable_item import PolicyDeletableItem
         from .registration_enforcement import RegistrationEnforcement
         from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
         from .system_credential_preferences import SystemCredentialPreferences
 
         from .authentication_methods_policy_migration_state import AuthenticationMethodsPolicyMigrationState
         from .authentication_method_configuration import AuthenticationMethodConfiguration
-        from .entity import Entity
         from .microsoft_authenticator_platform_settings import MicrosoftAuthenticatorPlatformSettings
+        from .policy_deletable_item import PolicyDeletableItem
         from .registration_enforcement import RegistrationEnforcement
         from .report_suspicious_activity_settings import ReportSuspiciousActivitySettings
         from .system_credential_preferences import SystemCredentialPreferences
@@ -79,6 +81,7 @@ class AuthenticationMethodsPolicy(Entity, Parsable):
             "authenticationMethodConfigurations": lambda n : setattr(self, 'authentication_method_configurations', n.get_collection_of_object_values(AuthenticationMethodConfiguration)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "microsoftAuthenticatorPlatformSettings": lambda n : setattr(self, 'microsoft_authenticator_platform_settings', n.get_object_value(MicrosoftAuthenticatorPlatformSettings)),
             "policyMigrationState": lambda n : setattr(self, 'policy_migration_state', n.get_enum_value(AuthenticationMethodsPolicyMigrationState)),
@@ -104,6 +107,7 @@ class AuthenticationMethodsPolicy(Entity, Parsable):
         writer.write_collection_of_object_values("authenticationMethodConfigurations", self.authentication_method_configurations)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_str_value("id", self.id)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_object_value("microsoftAuthenticatorPlatformSettings", self.microsoft_authenticator_platform_settings)
         writer.write_enum_value("policyMigrationState", self.policy_migration_state)

@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .guest_sponsor_trigger import GuestSponsorTrigger
     from .membership_change_trigger import MembershipChangeTrigger
     from .time_based_attribute_trigger import TimeBasedAttributeTrigger
+    from .time_based_attribute_trigger_v2 import TimeBasedAttributeTriggerV2
     from .user_inactivity_trigger import UserInactivityTrigger
 
 @dataclass
@@ -52,6 +53,10 @@ class WorkflowExecutionTrigger(AdditionalDataHolder, BackedModel, Parsable):
             from .time_based_attribute_trigger import TimeBasedAttributeTrigger
 
             return TimeBasedAttributeTrigger()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.timeBasedAttributeTriggerV2".casefold():
+            from .time_based_attribute_trigger_v2 import TimeBasedAttributeTriggerV2
+
+            return TimeBasedAttributeTriggerV2()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.userInactivityTrigger".casefold():
             from .user_inactivity_trigger import UserInactivityTrigger
 
@@ -67,12 +72,14 @@ class WorkflowExecutionTrigger(AdditionalDataHolder, BackedModel, Parsable):
         from .guest_sponsor_trigger import GuestSponsorTrigger
         from .membership_change_trigger import MembershipChangeTrigger
         from .time_based_attribute_trigger import TimeBasedAttributeTrigger
+        from .time_based_attribute_trigger_v2 import TimeBasedAttributeTriggerV2
         from .user_inactivity_trigger import UserInactivityTrigger
 
         from .attribute_change_trigger import AttributeChangeTrigger
         from .guest_sponsor_trigger import GuestSponsorTrigger
         from .membership_change_trigger import MembershipChangeTrigger
         from .time_based_attribute_trigger import TimeBasedAttributeTrigger
+        from .time_based_attribute_trigger_v2 import TimeBasedAttributeTriggerV2
         from .user_inactivity_trigger import UserInactivityTrigger
 
         fields: dict[str, Callable[[Any], None]] = {

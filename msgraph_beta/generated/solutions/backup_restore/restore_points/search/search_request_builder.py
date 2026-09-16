@@ -33,13 +33,12 @@ class SearchRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: SearchPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[RestorePointSearchResponse]:
         """
-        Search for the restorePoint objects associated with a protectionUnit.
+        Search for the restorePoint objects associated with a protectionUnit. Optionally provide policyId to scope the search to a protection policy and validate that the specified protection units belong to that policy.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RestorePointSearchResponse]
         Find more info here: https://learn.microsoft.com/graph/api/restorepoint-search?view=graph-rest-beta
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -58,12 +57,11 @@ class SearchRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: SearchPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Search for the restorePoint objects associated with a protectionUnit.
+        Search for the restorePoint objects associated with a protectionUnit. Optionally provide policyId to scope the search to a protection policy and validate that the specified protection units belong to that policy.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -78,7 +76,6 @@ class SearchRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: SearchRequestBuilder
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return SearchRequestBuilder(self.request_adapter, raw_url)

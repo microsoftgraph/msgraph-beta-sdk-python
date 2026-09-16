@@ -15,27 +15,27 @@ from .entity import Entity
 
 @dataclass
 class SensitiveType(Entity, Parsable):
-    # The classificationMethod property
+    # The classification method. The possible values are: patternMatch, exactDataMatch, fingerprint, machineLearning, privacyDataMatch, aiPowered, unknownFutureValue. privacyDataMatch performs privacy data matching based on tenant data. aiPowered performs AI-powered classification and can benefit from supported caller-supplied embeddings. unknownFutureValue is an evolvable enumeration sentinel value. Don't use it.
     classification_method: Optional[ClassificationMethod] = None
-    # The description property
+    # The description of the sensitive information type.
     description: Optional[str] = None
-    # The lastModifiedDateTime property
+    # The date and time when the sensitive information type was last modified.
     last_modified_date_time: Optional[datetime.datetime] = None
-    # The name property
+    # The name of the sensitive information type.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The publisherName property
+    # The name of the publisher.
     publisher_name: Optional[str] = None
-    # The rulePackageId property
+    # The identifier of the rule package.
     rule_package_id: Optional[str] = None
-    # The rulePackageType property
+    # The type of the rule package.
     rule_package_type: Optional[str] = None
-    # The scope property
+    # The scope of the sensitive information type. The possible values are: fullDocument, partialDocument.
     scope: Optional[SensitiveTypeScope] = None
-    # The sensitiveTypeSource property
+    # The source of sensitive type. The possible values are: outOfBox, tenant.
     sensitive_type_source: Optional[SensitiveTypeSource] = None
-    # The state property
+    # The state of the sensitive information type.
     state: Optional[str] = None
     
     @staticmethod

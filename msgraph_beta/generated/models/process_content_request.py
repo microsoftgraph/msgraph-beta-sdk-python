@@ -29,7 +29,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
     context_metadata: Optional[ContextMetadata] = None
     # The deviceMetadata property
     device_metadata: Optional[DeviceMetadata] = None
-    # The evaluationScope property
+    # Specifies the evaluation context for the request. Optional generally; required for the tenant-scoped processContent action, where type must be agent. When omitted from other actions, the request uses the default tenant evaluation context.
     evaluation_scope: Optional[EvaluationScope] = None
     # The integratedAppMetadata property
     integrated_app_metadata: Optional[IntegratedApplicationMetadata] = None

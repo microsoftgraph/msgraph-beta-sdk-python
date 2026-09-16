@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .policy_location import PolicyLocation
+    from .policy_location_agent import PolicyLocationAgent
 
 from .policy_location import PolicyLocation
 
@@ -23,6 +24,15 @@ class PolicyLocationApplication(PolicyLocation, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.policyLocationAgent".casefold():
+            from .policy_location_agent import PolicyLocationAgent
+
+            return PolicyLocationAgent()
         return PolicyLocationApplication()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -31,8 +41,10 @@ class PolicyLocationApplication(PolicyLocation, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .policy_location import PolicyLocation
+        from .policy_location_agent import PolicyLocationAgent
 
         from .policy_location import PolicyLocation
+        from .policy_location_agent import PolicyLocationAgent
 
         fields: dict[str, Callable[[Any], None]] = {
         }

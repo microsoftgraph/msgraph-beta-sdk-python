@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.tenant_data_security_and_governance import TenantDataSecurityAndGovernance
+    from .activities.activities_request_builder import ActivitiesRequestBuilder
     from .policy_files.policy_files_request_builder import PolicyFilesRequestBuilder
     from .process_content.process_content_request_builder import ProcessContentRequestBuilder
     from .process_content_async.process_content_async_request_builder import ProcessContentAsyncRequestBuilder
@@ -142,6 +143,15 @@ class DataSecurityAndGovernanceRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DataSecurityAndGovernanceRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def activities(self) -> ActivitiesRequestBuilder:
+        """
+        Provides operations to manage the activities property of the microsoft.graph.tenantDataSecurityAndGovernance entity.
+        """
+        from .activities.activities_request_builder import ActivitiesRequestBuilder
+
+        return ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def policy_files(self) -> PolicyFilesRequestBuilder:

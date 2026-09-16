@@ -7,6 +7,8 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .authentication_methods_policy import AuthenticationMethodsPolicy
+    from .authentication_strength_policy import AuthenticationStrengthPolicy
     from .compliant_network_named_location import CompliantNetworkNamedLocation
     from .conditional_access_policy import ConditionalAccessPolicy
     from .country_named_location import CountryNamedLocation
@@ -46,6 +48,14 @@ class PolicyDeletableItem(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationMethodsPolicy".casefold():
+            from .authentication_methods_policy import AuthenticationMethodsPolicy
+
+            return AuthenticationMethodsPolicy()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.authenticationStrengthPolicy".casefold():
+            from .authentication_strength_policy import AuthenticationStrengthPolicy
+
+            return AuthenticationStrengthPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.compliantNetworkNamedLocation".casefold():
             from .compliant_network_named_location import CompliantNetworkNamedLocation
 
@@ -101,6 +111,8 @@ class PolicyDeletableItem(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .authentication_methods_policy import AuthenticationMethodsPolicy
+        from .authentication_strength_policy import AuthenticationStrengthPolicy
         from .compliant_network_named_location import CompliantNetworkNamedLocation
         from .conditional_access_policy import ConditionalAccessPolicy
         from .country_named_location import CountryNamedLocation
@@ -114,6 +126,8 @@ class PolicyDeletableItem(AdditionalDataHolder, BackedModel, Parsable):
         from .service_tag_named_location import ServiceTagNamedLocation
         from .what_if_analysis_result import WhatIfAnalysisResult
 
+        from .authentication_methods_policy import AuthenticationMethodsPolicy
+        from .authentication_strength_policy import AuthenticationStrengthPolicy
         from .compliant_network_named_location import CompliantNetworkNamedLocation
         from .conditional_access_policy import ConditionalAccessPolicy
         from .country_named_location import CountryNamedLocation

@@ -53,7 +53,7 @@ class NetworkRequestBuilder(BaseRequestBuilder):
     async def patch(self,body: Network, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Network]:
         """
         Update network
-        param body: Singleton for network operations on Microsoft Graph.
+        param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Network]
         """
@@ -87,7 +87,7 @@ class NetworkRequestBuilder(BaseRequestBuilder):
     def to_patch_request_information(self,body: Network, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
         Update network
-        param body: Singleton for network operations on Microsoft Graph.
+        param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

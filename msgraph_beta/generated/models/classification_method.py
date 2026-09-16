@@ -5,4 +5,7 @@ class ClassificationMethod(str, Enum):
     ExactDataMatch = "exactDataMatch",
     Fingerprint = "fingerprint",
     MachineLearning = "machineLearning",
+    PrivacyDataMatch = "privacyDataMatch",
+    AiPowered = "aiPowered",
+    UnknownFutureValue = "unknownFutureValue",
 

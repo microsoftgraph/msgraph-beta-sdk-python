@@ -5,6 +5,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from .chunk_offsets import ChunkOffsets
+
 @dataclass
 class EmbeddingInput(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -12,6 +15,8 @@ class EmbeddingInput(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # Optional offset metadata for the text chunks that produced this embedding data. The starts property is required when chunkOffsets is present. When lengths is also present, the decoded element counts must match and pair by index.
+    chunk_offsets: Optional[ChunkOffsets] = None
     # The embedding vectors the model produced for the text, encoded as a base64 string of little-endian 32-bit floats. Every vector the model emitted (for example, one per text chunk) is concatenated in order; each contributes exactly the modelType's embedding dimension worth of float components, so the decoded length must be a whole multiple of that dimension.
     data: Optional[str] = None
     # The embedding model identifier drawn from the service allow-list (for example: text-embedding-3-small-512). Unique (case-insensitive) within the embeddings collection; entries whose modelType is outside the allow-list are rejected with a 400.
@@ -35,7 +40,12 @@ class EmbeddingInput(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .chunk_offsets import ChunkOffsets
+
+        from .chunk_offsets import ChunkOffsets
+
         fields: dict[str, Callable[[Any], None]] = {
+            "chunkOffsets": lambda n : setattr(self, 'chunk_offsets', n.get_object_value(ChunkOffsets)),
             "data": lambda n : setattr(self, 'data', n.get_str_value()),
             "modelType": lambda n : setattr(self, 'model_type', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -50,6 +60,7 @@ class EmbeddingInput(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_object_value("chunkOffsets", self.chunk_offsets)
         writer.write_str_value("data", self.data)
         writer.write_str_value("modelType", self.model_type)
         writer.write_str_value("@odata.type", self.odata_type)
