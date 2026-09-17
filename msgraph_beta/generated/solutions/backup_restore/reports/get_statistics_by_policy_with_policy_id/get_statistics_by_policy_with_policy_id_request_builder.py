@@ -35,11 +35,11 @@ class GetStatisticsByPolicyWithPolicyIdRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[BackupPolicyReport]:
         """
-        Invoke function getStatisticsByPolicy
+        Get the statistics that correspond to the specified policy ID of a backupPolicyReport.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BackupPolicyReport]
+        Find more info here: https://learn.microsoft.com/graph/api/backupreport-getstatisticsbypolicy?view=graph-rest-beta
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -56,11 +56,10 @@ class GetStatisticsByPolicyWithPolicyIdRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke function getStatisticsByPolicy
+        Get the statistics that correspond to the specified policy ID of a backupPolicyReport.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -72,7 +71,6 @@ class GetStatisticsByPolicyWithPolicyIdRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: GetStatisticsByPolicyWithPolicyIdRequestBuilder
         """
-        warn(" as of 2023-03/PrivatePreview:responderForm on 2025-06-17 and will be removed 2025-12-17", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return GetStatisticsByPolicyWithPolicyIdRequestBuilder(self.request_adapter, raw_url)

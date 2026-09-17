@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .data_security_and_governance import DataSecurityAndGovernance
     from .policy_file import PolicyFile
+    from .tenant_activities_container import TenantActivitiesContainer
     from .tenant_protection_scope_container import TenantProtectionScopeContainer
 
 from .data_security_and_governance import DataSecurityAndGovernance
@@ -15,6 +16,8 @@ from .data_security_and_governance import DataSecurityAndGovernance
 class TenantDataSecurityAndGovernance(DataSecurityAndGovernance, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.tenantDataSecurityAndGovernance"
+    # The activities property
+    activities: Optional[TenantActivitiesContainer] = None
     # The policyFiles property
     policy_files: Optional[list[PolicyFile]] = None
     # The protectionScopes property
@@ -38,13 +41,16 @@ class TenantDataSecurityAndGovernance(DataSecurityAndGovernance, Parsable):
         """
         from .data_security_and_governance import DataSecurityAndGovernance
         from .policy_file import PolicyFile
+        from .tenant_activities_container import TenantActivitiesContainer
         from .tenant_protection_scope_container import TenantProtectionScopeContainer
 
         from .data_security_and_governance import DataSecurityAndGovernance
         from .policy_file import PolicyFile
+        from .tenant_activities_container import TenantActivitiesContainer
         from .tenant_protection_scope_container import TenantProtectionScopeContainer
 
         fields: dict[str, Callable[[Any], None]] = {
+            "activities": lambda n : setattr(self, 'activities', n.get_object_value(TenantActivitiesContainer)),
             "policyFiles": lambda n : setattr(self, 'policy_files', n.get_collection_of_object_values(PolicyFile)),
             "protectionScopes": lambda n : setattr(self, 'protection_scopes', n.get_object_value(TenantProtectionScopeContainer)),
         }
@@ -61,6 +67,7 @@ class TenantDataSecurityAndGovernance(DataSecurityAndGovernance, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("activities", self.activities)
         writer.write_collection_of_object_values("policyFiles", self.policy_files)
         writer.write_object_value("protectionScopes", self.protection_scopes)
     

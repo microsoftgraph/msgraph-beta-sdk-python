@@ -34,6 +34,8 @@ class RestoreSessionBase(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The identifier of the protection policy that scopes the restore session. When supplied during create or update, the service validates that the referenced protection units belong to the specified policy.
+    policy_id: Optional[str] = None
     # Indicates whether the restore session was created normally or by a bulk job.
     restore_job_type: Optional[RestoreJobType] = None
     # The number of metadata artifacts that belong to this restore session.
@@ -101,6 +103,7 @@ class RestoreSessionBase(Entity, Parsable):
             "error": lambda n : setattr(self, 'error', n.get_object_value(PublicError)),
             "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(IdentitySet)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
             "restoreJobType": lambda n : setattr(self, 'restore_job_type', n.get_enum_value(RestoreJobType)),
             "restoreSessionArtifactCount": lambda n : setattr(self, 'restore_session_artifact_count', n.get_object_value(RestoreSessionArtifactCount)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(RestoreSessionStatus)),
@@ -124,6 +127,7 @@ class RestoreSessionBase(Entity, Parsable):
         writer.write_object_value("error", self.error)
         writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_str_value("policyId", self.policy_id)
         writer.write_enum_value("restoreJobType", self.restore_job_type)
         writer.write_object_value("restoreSessionArtifactCount", self.restore_session_artifact_count)
         writer.write_enum_value("status", self.status)

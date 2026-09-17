@@ -35,10 +35,9 @@ class GetByUserWithUserPrincipalNameRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[GetByUserWithUserPrincipalNameRequestBuilderGetQueryParameters]] = None) -> Optional[GetByUserWithUserPrincipalNameGetResponse]:
         """
-        Get a list of fileStorageContainer objects that are owned by a user (either as owner or as principalOwner). You can also filter the results to only list containers for which the user is the principalOwner.
+        Invoke function getByUser
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[GetByUserWithUserPrincipalNameGetResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/filestoragecontainer-getbyuser?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -56,7 +55,7 @@ class GetByUserWithUserPrincipalNameRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[GetByUserWithUserPrincipalNameRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of fileStorageContainer objects that are owned by a user (either as owner or as principalOwner). You can also filter the results to only list containers for which the user is the principalOwner.
+        Invoke function getByUser
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -78,7 +77,7 @@ class GetByUserWithUserPrincipalNameRequestBuilder(BaseRequestBuilder):
     @dataclass
     class GetByUserWithUserPrincipalNameRequestBuilderGetQueryParameters():
         """
-        Get a list of fileStorageContainer objects that are owned by a user (either as owner or as principalOwner). You can also filter the results to only list containers for which the user is the principalOwner.
+        Invoke function getByUser
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

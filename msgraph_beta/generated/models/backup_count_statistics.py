@@ -13,27 +13,27 @@ class BackupCountStatistics(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The lastComputedDateTime property
+    # The date and time when this metric was calculated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     last_computed_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The offboardRequested property
+    # The count of artifacts in offboardRequested state. This metric captures artifacts in protection‑unit–level offboarding and artifacts offboarded due to an unhealthy billing profile.
     offboard_requested: Optional[int] = None
-    # The protectedCompleted property
+    # The count of artifacts in protected state.
     protected_completed: Optional[int] = None
-    # The protectedFailed property
+    # The count of artifacts whose protection was attempted but failed. These artifacts typically have unprotected as their status.
     protected_failed: Optional[int] = None
-    # The protectedInProgress property
+    # The count of artifacts whose protection attempt is currently in progress. This metric applies to artifacts for which the process to start or resume taking backups is still required.
     protected_in_progress: Optional[int] = None
-    # The removed property
+    # The count of artifacts not associated with any policy. This property is always null for a policy-level report. Nullable.
     removed: Optional[int] = None
-    # The total property
+    # The count of artifacts in the specified entity. The currently supported entity is a backup policy.
     total: Optional[int] = None
-    # The unprotectedCompleted property
+    # The count of artifacts that are no longer actively protected. These artifacts have historical restore points, but no new backups are being taken.
     unprotected_completed: Optional[int] = None
-    # The unprotectedFailed property
+    # The count of artifacts for which unprotection was attempted but didn't complete. These artifacts are typically in the protected state.
     unprotected_failed: Optional[int] = None
-    # The unprotectedInProgress property
+    # The count of artifacts for which unprotection is currently in progress.
     unprotected_in_progress: Optional[int] = None
     
     @staticmethod

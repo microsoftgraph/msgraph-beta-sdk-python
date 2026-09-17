@@ -50,8 +50,26 @@ class MobileThreatDefenseConnector(Entity, Parsable):
     microsoft_defender_for_endpoint_attach_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The display name of the Mobile Threat Defense partner. This is a read-only property determined by the partner metadata.
+    partner_display_name: Optional[str] = None
+    # The minimum Android version supported by the Mobile Threat Defense partner.
+    partner_minimum_supported_android_version: Optional[str] = None
+    # The minimum iOS version supported by the Mobile Threat Defense partner.
+    partner_minimum_supported_ios_version: Optional[str] = None
+    # The minimum macOS version supported by the Mobile Threat Defense partner.
+    partner_minimum_supported_mac_version: Optional[str] = None
+    # The minimum Windows version supported by the Mobile Threat Defense partner.
+    partner_minimum_supported_windows_version: Optional[str] = None
     # Partner state of this tenant.
     partner_state: Optional[MobileThreatPartnerTenantState] = None
+    # When TRUE, indicates that the Mobile Threat Defense partner supports Android Mobile Application Management.
+    partner_supports_android_mam: Optional[bool] = None
+    # When TRUE, indicates that the Mobile Threat Defense partner supports iOS certificate sync.
+    partner_supports_ios_certificate_sync: Optional[bool] = None
+    # When TRUE, indicates that the Mobile Threat Defense partner supports iOS Mobile Application Management.
+    partner_supports_ios_mam: Optional[bool] = None
+    # When TRUE, indicates that the Mobile Threat Defense partner supports Windows Mobile Application Management.
+    partner_supports_windows_mam: Optional[bool] = None
     # Indicates the number of days without receiving a heartbeat from a Mobile Threat Defense partner before the partner is marked as unresponsive. Intune will the ignore the data from this Mobile Threat Defense Partner for next compliance calculation.
     partner_unresponsiveness_threshold_in_days: Optional[int] = None
     # When TRUE, indicates that Intune will mark devices noncompliant on enabled platforms that do not meet the minimum version requirements of the Mobile Threat Defense partner. When FALSE, indicates that Intune will not mark devices noncompliant on enabled platforms that do not meet the minimum version requirements of the Mobile Threat Defense partner. Default value is FALSE.
@@ -102,7 +120,16 @@ class MobileThreatDefenseConnector(Entity, Parsable):
             "macDeviceBlockedOnMissingPartnerData": lambda n : setattr(self, 'mac_device_blocked_on_missing_partner_data', n.get_bool_value()),
             "macEnabled": lambda n : setattr(self, 'mac_enabled', n.get_bool_value()),
             "microsoftDefenderForEndpointAttachEnabled": lambda n : setattr(self, 'microsoft_defender_for_endpoint_attach_enabled', n.get_bool_value()),
+            "partnerDisplayName": lambda n : setattr(self, 'partner_display_name', n.get_str_value()),
+            "partnerMinimumSupportedAndroidVersion": lambda n : setattr(self, 'partner_minimum_supported_android_version', n.get_str_value()),
+            "partnerMinimumSupportedIosVersion": lambda n : setattr(self, 'partner_minimum_supported_ios_version', n.get_str_value()),
+            "partnerMinimumSupportedMacVersion": lambda n : setattr(self, 'partner_minimum_supported_mac_version', n.get_str_value()),
+            "partnerMinimumSupportedWindowsVersion": lambda n : setattr(self, 'partner_minimum_supported_windows_version', n.get_str_value()),
             "partnerState": lambda n : setattr(self, 'partner_state', n.get_enum_value(MobileThreatPartnerTenantState)),
+            "partnerSupportsAndroidMam": lambda n : setattr(self, 'partner_supports_android_mam', n.get_bool_value()),
+            "partnerSupportsIosCertificateSync": lambda n : setattr(self, 'partner_supports_ios_certificate_sync', n.get_bool_value()),
+            "partnerSupportsIosMam": lambda n : setattr(self, 'partner_supports_ios_mam', n.get_bool_value()),
+            "partnerSupportsWindowsMam": lambda n : setattr(self, 'partner_supports_windows_mam', n.get_bool_value()),
             "partnerUnresponsivenessThresholdInDays": lambda n : setattr(self, 'partner_unresponsiveness_threshold_in_days', n.get_int_value()),
             "partnerUnsupportedOsVersionBlocked": lambda n : setattr(self, 'partner_unsupported_os_version_blocked', n.get_bool_value()),
             "windowsDeviceBlockedOnMissingPartnerData": lambda n : setattr(self, 'windows_device_blocked_on_missing_partner_data', n.get_bool_value()),
@@ -138,7 +165,16 @@ class MobileThreatDefenseConnector(Entity, Parsable):
         writer.write_bool_value("macDeviceBlockedOnMissingPartnerData", self.mac_device_blocked_on_missing_partner_data)
         writer.write_bool_value("macEnabled", self.mac_enabled)
         writer.write_bool_value("microsoftDefenderForEndpointAttachEnabled", self.microsoft_defender_for_endpoint_attach_enabled)
+        writer.write_str_value("partnerDisplayName", self.partner_display_name)
+        writer.write_str_value("partnerMinimumSupportedAndroidVersion", self.partner_minimum_supported_android_version)
+        writer.write_str_value("partnerMinimumSupportedIosVersion", self.partner_minimum_supported_ios_version)
+        writer.write_str_value("partnerMinimumSupportedMacVersion", self.partner_minimum_supported_mac_version)
+        writer.write_str_value("partnerMinimumSupportedWindowsVersion", self.partner_minimum_supported_windows_version)
         writer.write_enum_value("partnerState", self.partner_state)
+        writer.write_bool_value("partnerSupportsAndroidMam", self.partner_supports_android_mam)
+        writer.write_bool_value("partnerSupportsIosCertificateSync", self.partner_supports_ios_certificate_sync)
+        writer.write_bool_value("partnerSupportsIosMam", self.partner_supports_ios_mam)
+        writer.write_bool_value("partnerSupportsWindowsMam", self.partner_supports_windows_mam)
         writer.write_int_value("partnerUnresponsivenessThresholdInDays", self.partner_unresponsiveness_threshold_in_days)
         writer.write_bool_value("partnerUnsupportedOsVersionBlocked", self.partner_unsupported_os_version_blocked)
         writer.write_bool_value("windowsDeviceBlockedOnMissingPartnerData", self.windows_device_blocked_on_missing_partner_data)

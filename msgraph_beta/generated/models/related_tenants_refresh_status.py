@@ -1,4 +1,5 @@
 from __future__ import annotations
+import datetime
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
@@ -14,10 +15,10 @@ class RelatedTenantsRefreshStatus(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The isFirstRefresh property
     is_first_refresh: Optional[bool] = None
+    # The mostRecentRefreshDateTime property
+    most_recent_refresh_date_time: Optional[datetime.datetime] = None
     # The mostRecentRefreshRequestStatus property
     most_recent_refresh_request_status: Optional[str] = None
-    # The mostRecentRefreshTime property
-    most_recent_refresh_time: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
     
@@ -39,8 +40,8 @@ class RelatedTenantsRefreshStatus(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: dict[str, Callable[[Any], None]] = {
             "isFirstRefresh": lambda n : setattr(self, 'is_first_refresh', n.get_bool_value()),
+            "mostRecentRefreshDateTime": lambda n : setattr(self, 'most_recent_refresh_date_time', n.get_datetime_value()),
             "mostRecentRefreshRequestStatus": lambda n : setattr(self, 'most_recent_refresh_request_status', n.get_str_value()),
-            "mostRecentRefreshTime": lambda n : setattr(self, 'most_recent_refresh_time', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -54,8 +55,8 @@ class RelatedTenantsRefreshStatus(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_bool_value("isFirstRefresh", self.is_first_refresh)
+        writer.write_datetime_value("mostRecentRefreshDateTime", self.most_recent_refresh_date_time)
         writer.write_str_value("mostRecentRefreshRequestStatus", self.most_recent_refresh_request_status)
-        writer.write_str_value("mostRecentRefreshTime", self.most_recent_refresh_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

@@ -89,7 +89,7 @@ class BackupRestoreRoot(Entity, Parsable):
     protection_policies: Optional[list[ProtectionPolicyBase]] = None
     # List of protection units in the tenant.
     protection_units: Optional[list[ProtectionUnitBase]] = None
-    # The reports property
+    # Report corresponding to a protection policy.
     reports: Optional[BackupReport] = None
     # List of restore points in the tenant.
     restore_points: Optional[list[RestorePoint]] = None

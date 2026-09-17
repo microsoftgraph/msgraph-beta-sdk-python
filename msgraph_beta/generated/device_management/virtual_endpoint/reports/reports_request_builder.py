@@ -30,6 +30,7 @@ if TYPE_CHECKING:
     from .get_remote_connection_historical_reports.get_remote_connection_historical_reports_request_builder import GetRemoteConnectionHistoricalReportsRequestBuilder
     from .get_total_aggregated_remote_connection_reports.get_total_aggregated_remote_connection_reports_request_builder import GetTotalAggregatedRemoteConnectionReportsRequestBuilder
     from .retrieve_bulk_action_status_report.retrieve_bulk_action_status_report_request_builder import RetrieveBulkActionStatusReportRequestBuilder
+    from .retrieve_cloud_pc_performance_metrics_report.retrieve_cloud_pc_performance_metrics_report_request_builder import RetrieveCloudPcPerformanceMetricsReportRequestBuilder
     from .retrieve_cloud_pc_recommendation_reports.retrieve_cloud_pc_recommendation_reports_request_builder import RetrieveCloudPcRecommendationReportsRequestBuilder
     from .retrieve_cloud_pc_tenant_metrics_report.retrieve_cloud_pc_tenant_metrics_report_request_builder import RetrieveCloudPcTenantMetricsReportRequestBuilder
     from .retrieve_cloud_pc_troubleshoot_reports.retrieve_cloud_pc_troubleshoot_reports_request_builder import RetrieveCloudPcTroubleshootReportsRequestBuilder
@@ -289,6 +290,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .retrieve_bulk_action_status_report.retrieve_bulk_action_status_report_request_builder import RetrieveBulkActionStatusReportRequestBuilder
 
         return RetrieveBulkActionStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_cloud_pc_performance_metrics_report(self) -> RetrieveCloudPcPerformanceMetricsReportRequestBuilder:
+        """
+        Provides operations to call the retrieveCloudPcPerformanceMetricsReport method.
+        """
+        from .retrieve_cloud_pc_performance_metrics_report.retrieve_cloud_pc_performance_metrics_report_request_builder import RetrieveCloudPcPerformanceMetricsReportRequestBuilder
+
+        return RetrieveCloudPcPerformanceMetricsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def retrieve_cloud_pc_recommendation_reports(self) -> RetrieveCloudPcRecommendationReportsRequestBuilder:
