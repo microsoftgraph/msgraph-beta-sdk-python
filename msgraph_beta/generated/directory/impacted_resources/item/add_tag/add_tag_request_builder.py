@@ -33,10 +33,11 @@ class AddTagRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: AddTagPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[RecommendationTag]:
         """
-        Invoke action addTag
+        Add a user-defined tag to an impactedResource object. To add the same tag to multiple impacted resources in a single request, use the addTag action on the impactedResources collection.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RecommendationTag]
+        Find more info here: https://learn.microsoft.com/graph/api/impactedresource-addtag?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -56,7 +57,7 @@ class AddTagRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: AddTagPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action addTag
+        Add a user-defined tag to an impactedResource object. To add the same tag to multiple impacted resources in a single request, use the addTag action on the impactedResources collection.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

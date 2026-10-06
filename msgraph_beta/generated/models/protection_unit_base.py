@@ -36,9 +36,9 @@ class ProtectionUnitBase(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The time when protection unit offboard was requested.
+    # The time when protection unit offboard was requested. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     offboard_requested_date_time: Optional[datetime.datetime] = None
-    # The pendingRetentionPeriodChange property
+    # The retention period change to be applied to the protection unit.
     pending_retention_period_change: Optional[RetentionPeriodChange] = None
     # The unique identifier of the protection policy based on which protection unit was created.
     policy_id: Optional[str] = None

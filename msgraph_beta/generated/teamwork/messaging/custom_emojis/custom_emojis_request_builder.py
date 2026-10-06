@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from ....models.teamwork_custom_emoji import TeamworkCustomEmoji
     from ....models.teamwork_custom_emoji_collection_response import TeamworkCustomEmojiCollectionResponse
     from .count.count_request_builder import CountRequestBuilder
-    from .item.teamwork_custom_emoji_display_name_item_request_builder import TeamworkCustomEmojiDisplayNameItemRequestBuilder
+    from .item.teamwork_custom_emoji_item_request_builder import TeamworkCustomEmojiItemRequestBuilder
 
 class CustomEmojisRequestBuilder(BaseRequestBuilder):
     """
@@ -33,19 +33,19 @@ class CustomEmojisRequestBuilder(BaseRequestBuilder):
         """
         super().__init__(request_adapter, "{+baseurl}/teamwork/messaging/customEmojis{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", path_parameters)
     
-    def by_teamwork_custom_emoji_display_name(self,teamwork_custom_emoji_display_name: str) -> TeamworkCustomEmojiDisplayNameItemRequestBuilder:
+    def by_teamwork_custom_emoji_id(self,teamwork_custom_emoji_id: str) -> TeamworkCustomEmojiItemRequestBuilder:
         """
         Provides operations to manage the customEmojis property of the microsoft.graph.teamworkMessaging entity.
-        param teamwork_custom_emoji_display_name: The unique identifier of teamworkCustomEmoji
-        Returns: TeamworkCustomEmojiDisplayNameItemRequestBuilder
+        param teamwork_custom_emoji_id: The unique identifier of teamworkCustomEmoji
+        Returns: TeamworkCustomEmojiItemRequestBuilder
         """
-        if teamwork_custom_emoji_display_name is None:
-            raise TypeError("teamwork_custom_emoji_display_name cannot be null.")
-        from .item.teamwork_custom_emoji_display_name_item_request_builder import TeamworkCustomEmojiDisplayNameItemRequestBuilder
+        if teamwork_custom_emoji_id is None:
+            raise TypeError("teamwork_custom_emoji_id cannot be null.")
+        from .item.teamwork_custom_emoji_item_request_builder import TeamworkCustomEmojiItemRequestBuilder
 
         url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["teamworkCustomEmoji%2DdisplayName"] = teamwork_custom_emoji_display_name
-        return TeamworkCustomEmojiDisplayNameItemRequestBuilder(self.request_adapter, url_tpl_params)
+        url_tpl_params["teamworkCustomEmoji%2Did"] = teamwork_custom_emoji_id
+        return TeamworkCustomEmojiItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CustomEmojisRequestBuilderGetQueryParameters]] = None) -> Optional[TeamworkCustomEmojiCollectionResponse]:
         """

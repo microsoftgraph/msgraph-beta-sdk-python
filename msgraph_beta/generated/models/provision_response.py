@@ -12,9 +12,9 @@ class ProvisionResponse(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The challenge property
+    # The cryptographic challenge that the device uses to complete its registration with the directory.
     challenge: Optional[str] = None
-    # The deviceId property
+    # The unique identifier of the provisioned device.
     device_id: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

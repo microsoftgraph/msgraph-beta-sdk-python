@@ -13,6 +13,8 @@ from .drift_identity_info import DriftIdentityInfo
 class EntraDriftIdentityInfo(DriftIdentityInfo, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.entraDriftIdentityInfo"
+    # The identityType property
+    identity_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> EntraDriftIdentityInfo:
@@ -35,6 +37,7 @@ class EntraDriftIdentityInfo(DriftIdentityInfo, Parsable):
         from .drift_identity_info import DriftIdentityInfo
 
         fields: dict[str, Callable[[Any], None]] = {
+            "identityType": lambda n : setattr(self, 'identity_type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -49,5 +52,6 @@ class EntraDriftIdentityInfo(DriftIdentityInfo, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_str_value("identityType", self.identity_type)
     
 

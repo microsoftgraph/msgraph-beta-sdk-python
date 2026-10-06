@@ -23,4 +23,6 @@ class RiskDetail(str, Enum):
     AdminConfirmedAgentCompromised = "adminConfirmedAgentCompromised",
     AdminDismissedRiskForAgent = "adminDismissedRiskForAgent",
     MicrosoftRevokedSessions = "microsoftRevokedSessions",
+    AiElevatedAccountRisk = "aiElevatedAccountRisk",
+    UserPassedVerifiedIdDrivenByRiskBasedPolicy = "userPassedVerifiedIdDrivenByRiskBasedPolicy",
 

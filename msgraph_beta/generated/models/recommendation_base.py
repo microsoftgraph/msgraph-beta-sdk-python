@@ -32,9 +32,9 @@ class RecommendationBase(Entity, Parsable):
     category: Optional[RecommendationCategory] = None
     # The categoryGroup property
     category_group: Optional[RecommendationCategoryGroup] = None
-    # The completedBySystemDateTime property
+    # The date and time when the recommendations service verified that the recommendation was fully remediated and set its status to completedBySystem. Is null if the recommendation wasn't completed by the system. Supports $filter.
     completed_by_system_date_time: Optional[datetime.datetime] = None
-    # The completedByUserDateTime property
+    # The date and time when the recommendation was marked as completed by the user for the current review cycle, including when the value is rolled up from all impacted resources being marked as completed by the user. Is null if the recommendation wasn't completed by a user in the current cycle. Supports $filter.
     completed_by_user_date_time: Optional[datetime.datetime] = None
     # The date and time when the recommendation was detected as applicable to your directory.
     created_date_time: Optional[datetime.datetime] = None
@@ -42,7 +42,7 @@ class RecommendationBase(Entity, Parsable):
     current_score: Optional[float] = None
     # The title of the recommendation.
     display_name: Optional[str] = None
-    # The failedReviewDateTime property
+    # The date and time when the recommendations service most recently verified that one or more impacted resources the user marked as completed are still impacted, moving them to needsMoreAction. Is cleared when the reviewed resources are remediated, so it's mutually exclusive with remediatedDateTime. Is null when no user-reviewed resource is currently failing verification. Supports $filter.
     failed_review_date_time: Optional[datetime.datetime] = None
     # The directory feature that the recommendation is related to.
     feature_areas: Optional[list[RecommendationFeatureAreas]] = None
@@ -62,9 +62,9 @@ class RecommendationBase(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The maximum number of points attainable. Only applies to recommendations with category set to identitySecureScore.
     max_score: Optional[float] = None
-    # The needsMoreActionResourceCount property
+    # The number of impacted resources that the user marked as completed and that the recommendations service subsequently verified are still impacted (moved to needsMoreAction). This value is greater than zero exactly when failedReviewDateTime is set. Is null when the recommendation doesn't participate in the review lifecycle.
     needs_more_action_resource_count: Optional[int] = None
-    # The nistClassifications property
+    # The NIST Cybersecurity Framework (CSF) 2.0 categories that the recommendation maps to. Read-only.
     nist_classifications: Optional[list[NistClassification]] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -76,17 +76,17 @@ class RecommendationBase(Entity, Parsable):
     recommendation_type: Optional[RecommendationType] = None
     # The current release type of the recommendation. The possible values are: preview, generallyAvailable, unknownFutureValue.
     release_type: Optional[str] = None
-    # The remediatedDateTime property
+    # The date and time when the recommendations service verified that the impacted resources the user marked as completed were remediated, meaning the user-reviewed resources reached completedBySystem. Is superseded by failedReviewDateTime if a reviewed resource subsequently fails verification. Is null if the system hasn't verified a user-driven remediation in the current cycle. Supports $filter.
     remediated_date_time: Optional[datetime.datetime] = None
     # Description of the impact on users of the remediation. Only applies to recommendations with category set to identitySecureScore.
     remediation_impact: Optional[str] = None
-    # The required licenses to view the recommendation. The possible values are: notApplicable, microsoftEntraIdFree, microsoftEntraIdP1, microsoftEntraIdP2, microsoftEntraIdGovernance, microsoftEntraWorkloadId, unknownFutureValue, aatp. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: aatp.
+    # The required licenses to view the recommendation. The possible values are: notApplicable, microsoftEntraIdFree, microsoftEntraIdP1, microsoftEntraIdP2, microsoftEntraIdGovernance, microsoftEntraWorkloadId, unknownFutureValue, aatp, microsoftEntraSuite. Use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: aatp, microsoftEntraSuite.
     required_licenses: Optional[RequiredLicenses] = None
     # The status property
     status: Optional[RecommendationStatus] = None
-    # The statusModifiedDateTime property
+    # The date and time when the recommendation's status last changed, for example from active to completedByUser, dismissed, postponed, or needsMoreAction. Unlike lastModifiedDateTime, this value isn't updated when only the recommendation's insight data changes while the status stays the same. Is null until the recommendation's status changes for the first time. Supports $filter.
     status_modified_date_time: Optional[datetime.datetime] = None
-    # The tags property
+    # The user-defined free-form labels applied to the recommendation. The collection isn't directly writable; tags are created and removed through the addTag and removeTag actions.
     tags: Optional[list[RecommendationTag]] = None
     
     @staticmethod

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ...models.o_data_errors.o_data_error import ODataError
     from ...models.teamwork_messaging import TeamworkMessaging
     from .custom_emojis.custom_emojis_request_builder import CustomEmojisRequestBuilder
+    from .custom_emojis_with_display_name.custom_emojis_with_display_name_request_builder import CustomEmojisWithDisplayNameRequestBuilder
 
 class MessagingRequestBuilder(BaseRequestBuilder):
     """
@@ -30,6 +31,18 @@ class MessagingRequestBuilder(BaseRequestBuilder):
         Returns: None
         """
         super().__init__(request_adapter, "{+baseurl}/teamwork/messaging{?%24expand,%24select}", path_parameters)
+    
+    def custom_emojis_with_display_name(self,display_name: str) -> CustomEmojisWithDisplayNameRequestBuilder:
+        """
+        Provides operations to manage the customEmojis property of the microsoft.graph.teamworkMessaging entity.
+        param display_name: Alternate key of teamworkCustomEmoji
+        Returns: CustomEmojisWithDisplayNameRequestBuilder
+        """
+        if display_name is None:
+            raise TypeError("display_name cannot be null.")
+        from .custom_emojis_with_display_name.custom_emojis_with_display_name_request_builder import CustomEmojisWithDisplayNameRequestBuilder
+
+        return CustomEmojisWithDisplayNameRequestBuilder(self.request_adapter, self.path_parameters, display_name)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """

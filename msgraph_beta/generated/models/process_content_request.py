@@ -23,7 +23,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The activityMetadata property
     activity_metadata: Optional[ActivityMetadata] = None
-    # A collection of content entries to be processed. Each entry contains the content itself and its metadata. Use conversation metadata for content like prompts and responses, file metadata for files, and content activity metadata for enforcement result status entries. Required.
+    # A collection of content entries to be processed. Each entry contains the content itself and its metadata. Use conversation metadata for content like prompts and responses and file metadata for files. For the ContentActivity API only, use content activity metadata for DLP enforcement results or evaluation incomplete activity metadata when policy evaluation couldn't be completed. The ContentActivity-specific types aren't supported by the processContent or processContentAsync APIs. Required.
     content_entries: Optional[list[ProcessContentMetadataBase]] = None
     # The contextMetadata property
     context_metadata: Optional[ContextMetadata] = None

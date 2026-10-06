@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .alternative_security_id import AlternativeSecurityId
+    from .cloud_licensing.device_cloud_licensing import DeviceCloudLicensing
     from .command import Command
     from .device_template import DeviceTemplate
     from .directory_object import DirectoryObject
@@ -28,6 +29,8 @@ class Device(DirectoryObject, Parsable):
     alternative_security_ids: Optional[list[AlternativeSecurityId]] = None
     # The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderby.
     approximate_last_sign_in_date_time: Optional[datetime.datetime] = None
+    # The cloud licensing relationships for this device, including assignments, usage rights, and waiting members.
+    cloud_licensing: Optional[DeviceCloudLicensing] = None
     # Set of commands sent to this device.
     commands: Optional[list[Command]] = None
     # The timestamp when the device is no longer deemed compliant. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
@@ -130,6 +133,7 @@ class Device(DirectoryObject, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .alternative_security_id import AlternativeSecurityId
+        from .cloud_licensing.device_cloud_licensing import DeviceCloudLicensing
         from .command import Command
         from .device_template import DeviceTemplate
         from .directory_object import DirectoryObject
@@ -138,6 +142,7 @@ class Device(DirectoryObject, Parsable):
         from .usage_right import UsageRight
 
         from .alternative_security_id import AlternativeSecurityId
+        from .cloud_licensing.device_cloud_licensing import DeviceCloudLicensing
         from .command import Command
         from .device_template import DeviceTemplate
         from .directory_object import DirectoryObject
@@ -150,6 +155,7 @@ class Device(DirectoryObject, Parsable):
             "alternativeNames": lambda n : setattr(self, 'alternative_names', n.get_collection_of_primitive_values(str)),
             "alternativeSecurityIds": lambda n : setattr(self, 'alternative_security_ids', n.get_collection_of_object_values(AlternativeSecurityId)),
             "approximateLastSignInDateTime": lambda n : setattr(self, 'approximate_last_sign_in_date_time', n.get_datetime_value()),
+            "cloudLicensing": lambda n : setattr(self, 'cloud_licensing', n.get_object_value(DeviceCloudLicensing)),
             "commands": lambda n : setattr(self, 'commands', n.get_collection_of_object_values(Command)),
             "complianceExpirationDateTime": lambda n : setattr(self, 'compliance_expiration_date_time', n.get_datetime_value()),
             "deviceCategory": lambda n : setattr(self, 'device_category', n.get_str_value()),
@@ -210,6 +216,7 @@ class Device(DirectoryObject, Parsable):
         writer.write_collection_of_primitive_values("alternativeNames", self.alternative_names)
         writer.write_collection_of_object_values("alternativeSecurityIds", self.alternative_security_ids)
         writer.write_datetime_value("approximateLastSignInDateTime", self.approximate_last_sign_in_date_time)
+        writer.write_object_value("cloudLicensing", self.cloud_licensing)
         writer.write_collection_of_object_values("commands", self.commands)
         writer.write_datetime_value("complianceExpirationDateTime", self.compliance_expiration_date_time)
         writer.write_str_value("deviceCategory", self.device_category)

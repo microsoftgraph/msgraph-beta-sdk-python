@@ -1978,6 +1978,7 @@ if TYPE_CHECKING:
     from .teams_template import TeamsTemplate
     from .teamwork import Teamwork
     from .teamwork_bot import TeamworkBot
+    from .teamwork_custom_emoji import TeamworkCustomEmoji
     from .teamwork_device import TeamworkDevice
     from .teamwork_device_activity import TeamworkDeviceActivity
     from .teamwork_device_configuration import TeamworkDeviceConfiguration
@@ -10394,6 +10395,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .teamwork_bot import TeamworkBot
 
             return TeamworkBot()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamworkCustomEmoji".casefold():
+            from .teamwork_custom_emoji import TeamworkCustomEmoji
+
+            return TeamworkCustomEmoji()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamworkDevice".casefold():
             from .teamwork_device import TeamworkDevice
 
@@ -14037,6 +14042,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_template import TeamsTemplate
         from .teamwork import Teamwork
         from .teamwork_bot import TeamworkBot
+        from .teamwork_custom_emoji import TeamworkCustomEmoji
         from .teamwork_device import TeamworkDevice
         from .teamwork_device_activity import TeamworkDeviceActivity
         from .teamwork_device_configuration import TeamworkDeviceConfiguration
@@ -16427,6 +16433,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_template import TeamsTemplate
         from .teamwork import Teamwork
         from .teamwork_bot import TeamworkBot
+        from .teamwork_custom_emoji import TeamworkCustomEmoji
         from .teamwork_device import TeamworkDevice
         from .teamwork_device_activity import TeamworkDeviceActivity
         from .teamwork_device_configuration import TeamworkDeviceConfiguration

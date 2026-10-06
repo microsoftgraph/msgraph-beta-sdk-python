@@ -13,11 +13,11 @@ class RelatedTenantsRefreshStatus(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The isFirstRefresh property
+    # Describes whether the related tenants refresh was the initial aggregation done by our service or not.
     is_first_refresh: Optional[bool] = None
     # The mostRecentRefreshDateTime property
     most_recent_refresh_date_time: Optional[datetime.datetime] = None
-    # The mostRecentRefreshRequestStatus property
+    # The status of the refresh operation
     most_recent_refresh_request_status: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

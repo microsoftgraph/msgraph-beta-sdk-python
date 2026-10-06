@@ -11,7 +11,7 @@ from .entity import Entity
 
 @dataclass
 class RecommendationTag(Entity, Parsable):
-    # The displayName property
+    # The free-form label text. All characters and Unicode (all languages) are supported.
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

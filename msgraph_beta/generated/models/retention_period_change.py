@@ -16,13 +16,13 @@ class RetentionPeriodChange(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The effectiveFromDateTime property
+    # The date and time from which the retention period change takes effect. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2026, is 2026-01-01T00:00:00Z.
     effective_from_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # The status property
     status: Optional[RetentionPeriodChangeStatus] = None
-    # The targetRetentionPeriodInDays property
+    # Specifies the retention period, in days, that applies after the change is completed.
     target_retention_period_in_days: Optional[int] = None
     
     @staticmethod

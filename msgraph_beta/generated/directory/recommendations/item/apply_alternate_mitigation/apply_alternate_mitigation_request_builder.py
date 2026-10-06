@@ -32,9 +32,10 @@ class ApplyAlternateMitigationRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Recommendation]:
         """
-        Invoke action applyAlternateMitigation
+        Apply an alternate mitigation for a recommendation object and update its status to alternateMitigation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Recommendation]
+        Find more info here: https://learn.microsoft.com/graph/api/recommendation-applyalternatemitigation?view=graph-rest-beta
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -52,7 +53,7 @@ class ApplyAlternateMitigationRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action applyAlternateMitigation
+        Apply an alternate mitigation for a recommendation object and update its status to alternateMitigation.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """

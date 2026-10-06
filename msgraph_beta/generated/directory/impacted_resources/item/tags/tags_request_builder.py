@@ -49,7 +49,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TagsRequestBuilderGetQueryParameters]] = None) -> Optional[RecommendationTagCollectionResponse]:
         """
-        Get tags from directory
+        The user-defined free-form labels applied to the impactedResource. The collection isn't directly writable; tags are created and removed through the addTag and removeTag actions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RecommendationTagCollectionResponse]
         """
@@ -92,7 +92,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TagsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get tags from directory
+        The user-defined free-form labels applied to the impactedResource. The collection isn't directly writable; tags are created and removed through the addTag and removeTag actions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class TagsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TagsRequestBuilderGetQueryParameters():
         """
-        Get tags from directory
+        The user-defined free-form labels applied to the impactedResource. The collection isn't directly writable; tags are created and removed through the addTag and removeTag actions.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

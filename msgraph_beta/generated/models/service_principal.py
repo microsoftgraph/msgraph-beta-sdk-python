@@ -64,7 +64,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
     app_role_assignment_required: Optional[bool] = None
     # App role assignment for another app or service, granted to this service principal. Supports $expand.
     app_role_assignments: Optional[list[AppRoleAssignment]] = None
-    # The roles exposed by the application, which this service principal represents. For more information, see the appRoles property definition on the application entity. Not nullable.
+    # The roles exposed by the application, which this service principal represents. For more information, see the appRoles property definition on the application entity. Not nullable. App roles and exposed delegated permission scopes (publishedPermissionScopes) share a default limit of 700 permission definitions per service principal, including definitions inherited from the application and definitions added directly to the service principal. Enabled and disabled definitions both count. This limit counts definitions, not app role assignments. For counting rules, behavior for existing objects above the limit, and design guidance, see App role limits.
     app_roles: Optional[list[AppRole]] = None
     # Unique identifier of the applicationTemplate. Supports $filter (eq, not, ne). Read-only. null if the app wasn't created from an application template.
     application_template_id: Optional[str] = None
@@ -132,7 +132,7 @@ class ServicePrincipal(DirectoryObject, Parsable):
     preferred_token_signing_key_end_date_time: Optional[datetime.datetime] = None
     # This property can be used on SAML applications (apps that have preferredSingleSignOnMode set to saml) to control which certificate is used to sign the SAML responses. For applications that aren't SAML, don't write or otherwise rely on this property.
     preferred_token_signing_key_thumbprint: Optional[str] = None
-    # The delegated permissions exposed by the application. For more information, see the oauth2PermissionScopes property on the application entity's api property. Not nullable. Note: This property is named oauth2PermissionScopes in v1.0.
+    # The delegated permissions exposed by the application. For more information, see the oauth2PermissionScopes property on the application entity's api property. Not nullable. Note: This property is named oauth2PermissionScopes in v1.0. These scopes and appRoles share a default limit of 700 permission definitions per service principal. Enabled and disabled definitions both count. For counting rules, behavior for existing objects above the limit, and design guidance, see App role limits.
     published_permission_scopes: Optional[list[PermissionScope]] = None
     # The name of the Microsoft Entra tenant that published the application.
     publisher_name: Optional[str] = None

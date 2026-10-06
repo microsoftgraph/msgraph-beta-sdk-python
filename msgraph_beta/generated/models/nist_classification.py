@@ -12,13 +12,13 @@ class NistClassification(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The category property
+    # The NIST CSF 2.0 category name, for example Adverse Event Analysis.
     category: Optional[str] = None
-    # The description property
+    # A description of the NIST CSF 2.0 category.
     description: Optional[str] = None
-    # The function property
+    # The NIST CSF 2.0 function, for example Detect (DE).
     function: Optional[str] = None
-    # The name property
+    # The NIST CSF 2.0 category identifier, for example DE.AE.
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

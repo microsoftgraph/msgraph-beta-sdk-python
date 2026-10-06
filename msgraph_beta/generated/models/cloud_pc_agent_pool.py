@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .cloud_pc_agent_pool_billing_configuration import CloudPcAgentPoolBillingConfiguration
+    from .cloud_pc_agent_pool_capability_configuration import CloudPcAgentPoolCapabilityConfiguration
     from .cloud_pc_agent_pool_scaling_policy import CloudPcAgentPoolScalingPolicy
     from .cloud_pc_agent_pool_session_usage import CloudPcAgentPoolSessionUsage
     from .cloud_pc_pool import CloudPcPool
@@ -18,6 +19,8 @@ class CloudPcAgentPool(CloudPcPool, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.cloudPcAgentPool"
     # The billingConfiguration property
     billing_configuration: Optional[CloudPcAgentPoolBillingConfiguration] = None
+    # The capabilities property
+    capabilities: Optional[CloudPcAgentPoolCapabilityConfiguration] = None
     # The endpoint URL used to check out and check in agent sessions. This value becomes available after the pool reaches the active status. Read-only.
     pool_url: Optional[str] = None
     # The scalingPolicy property
@@ -42,17 +45,20 @@ class CloudPcAgentPool(CloudPcPool, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .cloud_pc_agent_pool_billing_configuration import CloudPcAgentPoolBillingConfiguration
+        from .cloud_pc_agent_pool_capability_configuration import CloudPcAgentPoolCapabilityConfiguration
         from .cloud_pc_agent_pool_scaling_policy import CloudPcAgentPoolScalingPolicy
         from .cloud_pc_agent_pool_session_usage import CloudPcAgentPoolSessionUsage
         from .cloud_pc_pool import CloudPcPool
 
         from .cloud_pc_agent_pool_billing_configuration import CloudPcAgentPoolBillingConfiguration
+        from .cloud_pc_agent_pool_capability_configuration import CloudPcAgentPoolCapabilityConfiguration
         from .cloud_pc_agent_pool_scaling_policy import CloudPcAgentPoolScalingPolicy
         from .cloud_pc_agent_pool_session_usage import CloudPcAgentPoolSessionUsage
         from .cloud_pc_pool import CloudPcPool
 
         fields: dict[str, Callable[[Any], None]] = {
             "billingConfiguration": lambda n : setattr(self, 'billing_configuration', n.get_object_value(CloudPcAgentPoolBillingConfiguration)),
+            "capabilities": lambda n : setattr(self, 'capabilities', n.get_object_value(CloudPcAgentPoolCapabilityConfiguration)),
             "poolUrl": lambda n : setattr(self, 'pool_url', n.get_str_value()),
             "scalingPolicy": lambda n : setattr(self, 'scaling_policy', n.get_object_value(CloudPcAgentPoolScalingPolicy)),
             "sessionUsage": lambda n : setattr(self, 'session_usage', n.get_object_value(CloudPcAgentPoolSessionUsage)),
@@ -71,6 +77,7 @@ class CloudPcAgentPool(CloudPcPool, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("billingConfiguration", self.billing_configuration)
+        writer.write_object_value("capabilities", self.capabilities)
         writer.write_str_value("poolUrl", self.pool_url)
         writer.write_object_value("scalingPolicy", self.scaling_policy)
         writer.write_object_value("sessionUsage", self.session_usage)

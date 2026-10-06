@@ -50,7 +50,7 @@ class RecommendationTagItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RecommendationTagItemRequestBuilderGetQueryParameters]] = None) -> Optional[RecommendationTag]:
         """
-        Get tags from directory
+        The user-defined free-form labels applied to the impactedResource. The collection isn't directly writable; tags are created and removed through the addTag and removeTag actions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RecommendationTag]
         """
@@ -104,7 +104,7 @@ class RecommendationTagItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RecommendationTagItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get tags from directory
+        The user-defined free-form labels applied to the impactedResource. The collection isn't directly writable; tags are created and removed through the addTag and removeTag actions.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class RecommendationTagItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RecommendationTagItemRequestBuilderGetQueryParameters():
         """
-        Get tags from directory
+        The user-defined free-form labels applied to the impactedResource. The collection isn't directly writable; tags are created and removed through the addTag and removeTag actions.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -2,20 +2,17 @@ from __future__ import annotations
 import datetime
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_emoji_from_identity_set import CustomEmojiFromIdentitySet
+    from .entity import Entity
+
+from .entity import Entity
 
 @dataclass
-class TeamworkCustomEmoji(AdditionalDataHolder, BackedModel, Parsable):
-    # Stores model information.
-    backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
-
-    # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additional_data: dict[str, Any] = field(default_factory=dict)
+class TeamworkCustomEmoji(Entity, Parsable):
     # The base64-encoded image content of the emoji. Supported formats include PNG and GIF.
     content_bytes: Optional[str] = None
     # The createdBy property
@@ -44,16 +41,19 @@ class TeamworkCustomEmoji(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_emoji_from_identity_set import CustomEmojiFromIdentitySet
+        from .entity import Entity
 
         from .custom_emoji_from_identity_set import CustomEmojiFromIdentitySet
+        from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
             "contentBytes": lambda n : setattr(self, 'content_bytes', n.get_str_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(CustomEmojiFromIdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
+        super_fields = super().get_field_deserializers()
+        fields.update(super_fields)
         return fields
     
     def serialize(self,writer: SerializationWriter) -> None:
@@ -64,11 +64,10 @@ class TeamworkCustomEmoji(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        super().serialize(writer)
         writer.write_str_value("contentBytes", self.content_bytes)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_additional_data_value(self.additional_data)
     
 
