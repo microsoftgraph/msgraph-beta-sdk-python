@@ -14,21 +14,24 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 from warnings import warn
 
 if TYPE_CHECKING:
-    from .....models.o_data_errors.o_data_error import ODataError
-    from .....models.teamwork_custom_emoji import TeamworkCustomEmoji
+    from ....models.o_data_errors.o_data_error import ODataError
+    from ....models.teamwork_custom_emoji import TeamworkCustomEmoji
 
-class TeamworkCustomEmojiDisplayNameItemRequestBuilder(BaseRequestBuilder):
+class CustomEmojisWithDisplayNameRequestBuilder(BaseRequestBuilder):
     """
     Provides operations to manage the customEmojis property of the microsoft.graph.teamworkMessaging entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]]) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]], display_name: Optional[str] = None) -> None:
         """
-        Instantiates a new TeamworkCustomEmojiDisplayNameItemRequestBuilder and sets the default values.
+        Instantiates a new CustomEmojisWithDisplayNameRequestBuilder and sets the default values.
+        param display_name: Alternate key of teamworkCustomEmoji
         param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
         Returns: None
         """
-        super().__init__(request_adapter, "{+baseurl}/teamwork/messaging/customEmojis/{teamworkCustomEmoji%2DdisplayName}{?%24expand,%24select}", path_parameters)
+        if isinstance(path_parameters, dict):
+            path_parameters['displayName'] = display_name
+        super().__init__(request_adapter, "{+baseurl}/teamwork/messaging/customEmojis(displayName='{displayName}'){?%24expand,%24select}", path_parameters)
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
@@ -39,7 +42,7 @@ class TeamworkCustomEmojiDisplayNameItemRequestBuilder(BaseRequestBuilder):
         request_info = self.to_delete_request_information(
             request_configuration
         )
-        from .....models.o_data_errors.o_data_error import ODataError
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
@@ -48,7 +51,7 @@ class TeamworkCustomEmojiDisplayNameItemRequestBuilder(BaseRequestBuilder):
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[TeamworkCustomEmojiDisplayNameItemRequestBuilderGetQueryParameters]] = None) -> Optional[TeamworkCustomEmoji]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[CustomEmojisWithDisplayNameRequestBuilderGetQueryParameters]] = None) -> Optional[TeamworkCustomEmoji]:
         """
         The collection of custom emojis available in organization messaging.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -57,14 +60,14 @@ class TeamworkCustomEmojiDisplayNameItemRequestBuilder(BaseRequestBuilder):
         request_info = self.to_get_request_information(
             request_configuration
         )
-        from .....models.o_data_errors.o_data_error import ODataError
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.teamwork_custom_emoji import TeamworkCustomEmoji
+        from ....models.teamwork_custom_emoji import TeamworkCustomEmoji
 
         return await self.request_adapter.send_async(request_info, TeamworkCustomEmoji, error_mapping)
     
@@ -80,14 +83,14 @@ class TeamworkCustomEmojiDisplayNameItemRequestBuilder(BaseRequestBuilder):
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
-        from .....models.o_data_errors.o_data_error import ODataError
+        from ....models.o_data_errors.o_data_error import ODataError
 
         error_mapping: dict[str, type[ParsableFactory]] = {
             "XXX": ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .....models.teamwork_custom_emoji import TeamworkCustomEmoji
+        from ....models.teamwork_custom_emoji import TeamworkCustomEmoji
 
         return await self.request_adapter.send_async(request_info, TeamworkCustomEmoji, error_mapping)
     
@@ -102,7 +105,7 @@ class TeamworkCustomEmojiDisplayNameItemRequestBuilder(BaseRequestBuilder):
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TeamworkCustomEmojiDisplayNameItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CustomEmojisWithDisplayNameRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         The collection of custom emojis available in organization messaging.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -128,25 +131,25 @@ class TeamworkCustomEmojiDisplayNameItemRequestBuilder(BaseRequestBuilder):
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def with_url(self,raw_url: str) -> TeamworkCustomEmojiDisplayNameItemRequestBuilder:
+    def with_url(self,raw_url: str) -> CustomEmojisWithDisplayNameRequestBuilder:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: TeamworkCustomEmojiDisplayNameItemRequestBuilder
+        Returns: CustomEmojisWithDisplayNameRequestBuilder
         """
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
-        return TeamworkCustomEmojiDisplayNameItemRequestBuilder(self.request_adapter, raw_url)
+        return CustomEmojisWithDisplayNameRequestBuilder(self.request_adapter, raw_url)
     
     @dataclass
-    class TeamworkCustomEmojiDisplayNameItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class CustomEmojisWithDisplayNameRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
     @dataclass
-    class TeamworkCustomEmojiDisplayNameItemRequestBuilderGetQueryParameters():
+    class CustomEmojisWithDisplayNameRequestBuilderGetQueryParameters():
         """
         The collection of custom emojis available in organization messaging.
         """
@@ -172,14 +175,14 @@ class TeamworkCustomEmojiDisplayNameItemRequestBuilder(BaseRequestBuilder):
 
     
     @dataclass
-    class TeamworkCustomEmojiDisplayNameItemRequestBuilderGetRequestConfiguration(RequestConfiguration[TeamworkCustomEmojiDisplayNameItemRequestBuilderGetQueryParameters]):
+    class CustomEmojisWithDisplayNameRequestBuilderGetRequestConfiguration(RequestConfiguration[CustomEmojisWithDisplayNameRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         warn("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.", DeprecationWarning)
     
     @dataclass
-    class TeamworkCustomEmojiDisplayNameItemRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
+    class CustomEmojisWithDisplayNameRequestBuilderPatchRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

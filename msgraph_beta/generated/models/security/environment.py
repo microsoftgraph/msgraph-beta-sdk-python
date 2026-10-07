@@ -12,7 +12,10 @@ from ..entity import Entity
 
 @dataclass
 class Environment(Entity, Parsable):
-    # The kind property
+    """
+    Represents a single cloud environment onboarded for security posture management.
+    """
+    # The kind of cloud environment onboarded to security posture management.
     kind: Optional[EnvironmentKind] = None
     # The OdataType property
     odata_type: Optional[str] = None

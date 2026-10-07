@@ -164,7 +164,7 @@ class User(DirectoryObject, Parsable):
     contact_folders: Optional[list[ContactFolder]] = None
     # The user's contacts. Read-only. Nullable.
     contacts: Optional[list[Contact]] = None
-    # The country or region where the user is located; for example, US or UK. Maximum length is 128 characters. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
+    # The ISO 3166-1 alpha-2 location code associated with the user; for example, US or GB. The property name is part of the Microsoft Graph API contract. Maximum length is 128 characters. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     country: Optional[str] = None
     # The date and time the user was created in ISO 8601 format and UTC. The value cannot be modified and is automatically populated when the entity is created. Nullable. For on-premises users, the value represents when they were first created in Microsoft Entra ID. Property is null for some users created before June 2018 and on-premises users synced to Microsoft Entra ID before June 2018. Read-only. Supports $filter (eq, ne, not , ge, le, in).
     created_date_time: Optional[datetime.datetime] = None
@@ -418,7 +418,7 @@ class User(DirectoryObject, Parsable):
     transitive_member_of: Optional[list[DirectoryObject]] = None
     # The transitive reports for a user. Read-only.
     transitive_reports: Optional[list[DirectoryObject]] = None
-    # A two-letter country code (ISO standard 3166). Required for users that are assigned licenses due to legal requirements to check for availability of services in countries.  Examples include: US, JP, and GB. Not nullable. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
+    # A two-letter country/region code (ISO standard 3166). Required for users that are assigned licenses due to legal requirements to check for availability of services in countries/regions. Examples include: US, JP, and GB. Not nullable. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     usage_location: Optional[str] = None
     # Represents the usage rights a user has been granted.
     usage_rights: Optional[list[UsageRight]] = None

@@ -15,13 +15,13 @@ class InvestigationActionStep(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The actionUrl property
+    # The follow-on API reference for the step, containing the URL template and a machine-readable execution directive that a client uses to retrieve the drill-in data.
     action_url: Optional[InvestigationActionUrl] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The stepNumber property
+    # The one-based order, as a string, in which the step should be evaluated by a client. Steps are intended to be run in ascending stepNumber order because later steps can depend on the output of earlier steps. This value is the key of the resource.
     step_number: Optional[str] = None
-    # The text property
+    # Human-readable guidance that explains what the step does and why it's useful for investigating the related metric.
     text: Optional[str] = None
     
     @staticmethod

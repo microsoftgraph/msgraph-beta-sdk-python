@@ -32,7 +32,7 @@ class TenantGovernancePolicyTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a governancePolicyTemplate object. You can't delete the default template or templates currently used by active relationships.
+        Delete a tenantGovernancePolicyTemplate object. You can't delete the default template or templates currently used by active relationships.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/tenantgovernanceservices-delete-governancepolicytemplates?view=graph-rest-beta
@@ -51,7 +51,7 @@ class TenantGovernancePolicyTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TenantGovernancePolicyTemplateItemRequestBuilderGetQueryParameters]] = None) -> Optional[TenantGovernancePolicyTemplate]:
         """
-        Read the properties of a governancePolicyTemplate object.
+        Read the properties of a tenantGovernancePolicyTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantGovernancePolicyTemplate]
         Find more info here: https://learn.microsoft.com/graph/api/tenantgovernanceservices-governancepolicytemplate-get?view=graph-rest-beta
@@ -72,7 +72,7 @@ class TenantGovernancePolicyTemplateItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: TenantGovernancePolicyTemplate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TenantGovernancePolicyTemplate]:
         """
-        Update the properties of a governancePolicyTemplate object.
+        Update the properties of a tenantGovernancePolicyTemplate object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TenantGovernancePolicyTemplate]
@@ -96,7 +96,7 @@ class TenantGovernancePolicyTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a governancePolicyTemplate object. You can't delete the default template or templates currently used by active relationships.
+        Delete a tenantGovernancePolicyTemplate object. You can't delete the default template or templates currently used by active relationships.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +107,7 @@ class TenantGovernancePolicyTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TenantGovernancePolicyTemplateItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties of a governancePolicyTemplate object.
+        Read the properties of a tenantGovernancePolicyTemplate object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +118,7 @@ class TenantGovernancePolicyTemplateItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: TenantGovernancePolicyTemplate, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a governancePolicyTemplate object.
+        Update the properties of a tenantGovernancePolicyTemplate object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -151,7 +151,7 @@ class TenantGovernancePolicyTemplateItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TenantGovernancePolicyTemplateItemRequestBuilderGetQueryParameters():
         """
-        Read the properties of a governancePolicyTemplate object.
+        Read the properties of a tenantGovernancePolicyTemplate object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -14,7 +14,7 @@ from .entity import Entity
 class RecommendationConfiguration(Entity, Parsable):
     # Indicates whether notifications for recommendations are enabled.
     is_notification_enabled: Optional[bool] = None
-    # The lastRefreshedDateTime property
+    # The date and time of the most recent refresh cycle in which every pipeline that populates Microsoft Entra recommendations completed successfully for the tenant's region. The value advances only when all contributing pipelines succeed and remains at the last fully successful cycle if any contributing pipeline is unhealthy. A successful refresh doesn't imply that any individual recommendation changed. Is null when no fully successful refresh has been recorded yet. Read-only.
     last_refreshed_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

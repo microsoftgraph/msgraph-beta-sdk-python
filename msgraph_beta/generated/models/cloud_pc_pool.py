@@ -10,7 +10,6 @@ if TYPE_CHECKING:
     from .cloud_pc_configuration import CloudPcConfiguration
     from .cloud_pc_network_configuration import CloudPcNetworkConfiguration
     from .cloud_pc_pool_assignment import CloudPcPoolAssignment
-    from .cloud_pc_pool_capability_configuration import CloudPcPoolCapabilityConfiguration
     from .entity import Entity
 
 from .entity import Entity
@@ -19,8 +18,6 @@ from .entity import Entity
 class CloudPcPool(Entity, Parsable):
     # The collection of assignments that grant user or service principal identities access to this pool.
     assignments: Optional[list[CloudPcPoolAssignment]] = None
-    # The capabilities property
-    capabilities: Optional[CloudPcPoolCapabilityConfiguration] = None
     # The cloudPcConfiguration property
     cloud_pc_configuration: Optional[CloudPcConfiguration] = None
     # The date and time when the pool was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2026 is 2026-01-01T00:00:00Z. Read-only.
@@ -65,19 +62,16 @@ class CloudPcPool(Entity, Parsable):
         from .cloud_pc_configuration import CloudPcConfiguration
         from .cloud_pc_network_configuration import CloudPcNetworkConfiguration
         from .cloud_pc_pool_assignment import CloudPcPoolAssignment
-        from .cloud_pc_pool_capability_configuration import CloudPcPoolCapabilityConfiguration
         from .entity import Entity
 
         from .cloud_pc_agent_pool import CloudPcAgentPool
         from .cloud_pc_configuration import CloudPcConfiguration
         from .cloud_pc_network_configuration import CloudPcNetworkConfiguration
         from .cloud_pc_pool_assignment import CloudPcPoolAssignment
-        from .cloud_pc_pool_capability_configuration import CloudPcPoolCapabilityConfiguration
         from .entity import Entity
 
         fields: dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(CloudPcPoolAssignment)),
-            "capabilities": lambda n : setattr(self, 'capabilities', n.get_object_value(CloudPcPoolCapabilityConfiguration)),
             "cloudPcConfiguration": lambda n : setattr(self, 'cloud_pc_configuration', n.get_object_value(CloudPcConfiguration)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -99,7 +93,6 @@ class CloudPcPool(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("assignments", self.assignments)
-        writer.write_object_value("capabilities", self.capabilities)
         writer.write_object_value("cloudPcConfiguration", self.cloud_pc_configuration)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)

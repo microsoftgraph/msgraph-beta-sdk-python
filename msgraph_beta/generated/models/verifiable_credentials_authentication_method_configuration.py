@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .authentication_method_configuration import AuthenticationMethodConfiguration
+    from .identity_verification_events_configuration import IdentityVerificationEventsConfiguration
     from .verifiable_credential_authentication_method_target import VerifiableCredentialAuthenticationMethodTarget
 
 from .authentication_method_configuration import AuthenticationMethodConfiguration
@@ -14,6 +15,8 @@ from .authentication_method_configuration import AuthenticationMethodConfigurati
 class VerifiableCredentialsAuthenticationMethodConfiguration(AuthenticationMethodConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.verifiableCredentialsAuthenticationMethodConfiguration"
+    # The identityVerificationEventsConfiguration property
+    identity_verification_events_configuration: Optional[IdentityVerificationEventsConfiguration] = None
     # A collection of groups that are enabled to use the authentication method.
     include_targets: Optional[list[VerifiableCredentialAuthenticationMethodTarget]] = None
     
@@ -34,12 +37,15 @@ class VerifiableCredentialsAuthenticationMethodConfiguration(AuthenticationMetho
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .identity_verification_events_configuration import IdentityVerificationEventsConfiguration
         from .verifiable_credential_authentication_method_target import VerifiableCredentialAuthenticationMethodTarget
 
         from .authentication_method_configuration import AuthenticationMethodConfiguration
+        from .identity_verification_events_configuration import IdentityVerificationEventsConfiguration
         from .verifiable_credential_authentication_method_target import VerifiableCredentialAuthenticationMethodTarget
 
         fields: dict[str, Callable[[Any], None]] = {
+            "identityVerificationEventsConfiguration": lambda n : setattr(self, 'identity_verification_events_configuration', n.get_object_value(IdentityVerificationEventsConfiguration)),
             "includeTargets": lambda n : setattr(self, 'include_targets', n.get_collection_of_object_values(VerifiableCredentialAuthenticationMethodTarget)),
         }
         super_fields = super().get_field_deserializers()
@@ -55,6 +61,7 @@ class VerifiableCredentialsAuthenticationMethodConfiguration(AuthenticationMetho
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_object_value("identityVerificationEventsConfiguration", self.identity_verification_events_configuration)
         writer.write_collection_of_object_values("includeTargets", self.include_targets)
     
 

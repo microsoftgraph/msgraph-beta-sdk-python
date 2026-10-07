@@ -21,8 +21,8 @@ class DistributionList(OutlookItem, Parsable):
     members: Optional[list[DistributionListMember]] = None
     # Notes about the distribution list.
     notes: Optional[str] = None
-    # The unique identifier of the distribution list in the mailbox. Read-only.
-    person_identifier: Optional[str] = None
+    # The personId property
+    person_id: Optional[str] = None
     # The collection of single-value extended properties defined for the distribution list. Read-only.
     single_value_extended_properties: Optional[list[SingleValueLegacyExtendedProperty]] = None
     
@@ -54,7 +54,7 @@ class DistributionList(OutlookItem, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(DistributionListMember)),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
-            "personIdentifier": lambda n : setattr(self, 'person_identifier', n.get_str_value()),
+            "personId": lambda n : setattr(self, 'person_id', n.get_str_value()),
             "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(SingleValueLegacyExtendedProperty)),
         }
         super_fields = super().get_field_deserializers()
@@ -73,7 +73,7 @@ class DistributionList(OutlookItem, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("members", self.members)
         writer.write_str_value("notes", self.notes)
-        writer.write_str_value("personIdentifier", self.person_identifier)
+        writer.write_str_value("personId", self.person_id)
         writer.write_collection_of_object_values("singleValueExtendedProperties", self.single_value_extended_properties)
     
 

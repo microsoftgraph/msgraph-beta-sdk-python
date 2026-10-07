@@ -33,10 +33,11 @@ class ProvisionRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ProvisionPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ProvisionResponse]:
         """
-        Invoke action provision
+        Provision a device on behalf of an approved Virtual Desktop Infrastructure (VDI) provider. This action wraps the Zero Touch Deployment (ZTD) protocol to create a device in a pending state in the customer's directory. The device can't be used for authentication until it completes its registration. The created device is stamped with a system label that identifies the approved VDI provider. Only VDI applications on Microsoft's approved list of VDI providers can successfully call this action. Calls from other applications are blocked even when the application is granted the required permission.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProvisionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/device-provision?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -56,7 +57,7 @@ class ProvisionRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ProvisionPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action provision
+        Provision a device on behalf of an approved Virtual Desktop Infrastructure (VDI) provider. This action wraps the Zero Touch Deployment (ZTD) protocol to create a device in a pending state in the customer's directory. The device can't be used for authentication until it completes its registration. The created device is stamped with a system label that identifies the approved VDI provider. Only VDI applications on Microsoft's approved list of VDI providers can successfully call this action. Calls from other applications are blocked even when the application is granted the required permission.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

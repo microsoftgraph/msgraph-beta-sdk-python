@@ -16,7 +16,7 @@ from .entity import Entity
 class B2bRegistrationMetrics(Entity, Parsable):
     # The initial property
     initial: Optional[B2BRegistrationMetricsInitial] = None
-    # The investigationHints property
+    # Ordered drill-in guidance for investigating B2B registration metrics. This collection is returned only when explicitly requested by using a nested $expand query parameter, for example $expand=b2BRegistrationMetrics($expand=investigationHints).
     investigation_hints: Optional[list[InvestigationActionStep]] = None
     # The OdataType property
     odata_type: Optional[str] = None

@@ -16,7 +16,7 @@ from .entity import Entity
 class B2BSignInActivityMetrics(Entity, Parsable):
     # The initial property
     initial: Optional[B2BSignInActivityMetricsInitial] = None
-    # The investigationHints property
+    # Ordered drill-in guidance for investigating sign-in user and application counts. This collection is returned only when explicitly requested by using a nested $expand query parameter, for example $expand=b2BSignInActivityMetrics($expand=investigationHints).
     investigation_hints: Optional[list[InvestigationActionStep]] = None
     # The OdataType property
     odata_type: Optional[str] = None

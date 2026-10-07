@@ -36,6 +36,7 @@ if TYPE_CHECKING:
     from .ip_security_profiles.ip_security_profiles_request_builder import IpSecurityProfilesRequestBuilder
     from .labels.labels_request_builder import LabelsRequestBuilder
     from .microsoft_graph_security_get_hunting_schema.microsoft_graph_security_get_hunting_schema_request_builder import MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder
+    from .microsoft_graph_security_get_hunting_schema_tables_with_workspace_id.microsoft_graph_security_get_hunting_schema_tables_with_workspace_id_request_builder import MicrosoftGraphSecurityGetHuntingSchemaTablesWithWorkspaceIdRequestBuilder
     from .microsoft_graph_security_get_run_hunting_query_with_querytimespan_timespan_with_workspace_id.microsoft_graph_security_get_run_hunting_query_with_querytimespan_timespan_with_workspace_id_request_builder import MicrosoftGraphSecurityGetRunHuntingQueryWithQuerytimespanTimespanWithWorkspaceIdRequestBuilder
     from .microsoft_graph_security_run_hunting_query.microsoft_graph_security_run_hunting_query_request_builder import MicrosoftGraphSecurityRunHuntingQueryRequestBuilder
     from .partner.partner_request_builder import PartnerRequestBuilder
@@ -337,6 +338,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .microsoft_graph_security_get_hunting_schema.microsoft_graph_security_get_hunting_schema_request_builder import MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder
 
         return MicrosoftGraphSecurityGetHuntingSchemaRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_security_get_hunting_schema_tables_with_workspace_id(self) -> MicrosoftGraphSecurityGetHuntingSchemaTablesWithWorkspaceIdRequestBuilder:
+        """
+        Provides operations to call the getHuntingSchemaTables method.
+        """
+        from .microsoft_graph_security_get_hunting_schema_tables_with_workspace_id.microsoft_graph_security_get_hunting_schema_tables_with_workspace_id_request_builder import MicrosoftGraphSecurityGetHuntingSchemaTablesWithWorkspaceIdRequestBuilder
+
+        return MicrosoftGraphSecurityGetHuntingSchemaTablesWithWorkspaceIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def microsoft_graph_security_run_hunting_query(self) -> MicrosoftGraphSecurityRunHuntingQueryRequestBuilder:

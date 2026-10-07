@@ -20,6 +20,8 @@ class AuditLogQuery(Entity, Parsable):
     """
     # The administrative units tagged to an audit log record.
     administrative_unit_id_filters: Optional[list[str]] = None
+    # The approximate number of records retrieved by the query. This value can be higher or lower than recordCountLimit due to distributed counting. Read-only.
+    approximate_returned_record_count: Optional[int] = None
     # The display name of the saved audit log query.
     display_name: Optional[str] = None
     # The end date of the date range in the query.
@@ -28,6 +30,8 @@ class AuditLogQuery(Entity, Parsable):
     filter_start_date_time: Optional[datetime.datetime] = None
     # The IP address of the device that was used when the activity was logged.
     ip_address_filters: Optional[list[str]] = None
+    # Indicates whether the query exceeded the per-search record-count limit. The default value is false. A value of true is authoritative and isn't derived from approximateReturnedRecordCount. Read-only.
+    is_record_count_limit_exceeded: Optional[bool] = None
     # Free text field to search non-indexed properties of the audit log.
     keyword_filter: Optional[str] = None
     # For SharePoint and OneDrive for Business activity, the full path name of the file or folder accessed by the user. For Exchange admin audit logging, the name of the object that was modified by the cmdlet.
@@ -36,6 +40,8 @@ class AuditLogQuery(Entity, Parsable):
     odata_type: Optional[str] = None
     # The name of the user or admin activity. For a description of the most common operations/activities, see Search the audit log in the Office 365 Protection Center.
     operation_filters: Optional[list[str]] = None
+    # The record-count threshold used to limit query result retrieval. Read-only.
+    record_count_limit: Optional[int] = None
     # The type of operation indicated by the record. For the list of member values, see auditLogRecordType.
     record_type_filters: Optional[list[AuditLogRecordType]] = None
     # An individual audit log record.
@@ -75,13 +81,16 @@ class AuditLogQuery(Entity, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "administrativeUnitIdFilters": lambda n : setattr(self, 'administrative_unit_id_filters', n.get_collection_of_primitive_values(str)),
+            "approximateReturnedRecordCount": lambda n : setattr(self, 'approximate_returned_record_count', n.get_int_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "filterEndDateTime": lambda n : setattr(self, 'filter_end_date_time', n.get_datetime_value()),
             "filterStartDateTime": lambda n : setattr(self, 'filter_start_date_time', n.get_datetime_value()),
             "ipAddressFilters": lambda n : setattr(self, 'ip_address_filters', n.get_collection_of_primitive_values(str)),
+            "isRecordCountLimitExceeded": lambda n : setattr(self, 'is_record_count_limit_exceeded', n.get_bool_value()),
             "keywordFilter": lambda n : setattr(self, 'keyword_filter', n.get_str_value()),
             "objectIdFilters": lambda n : setattr(self, 'object_id_filters', n.get_collection_of_primitive_values(str)),
             "operationFilters": lambda n : setattr(self, 'operation_filters', n.get_collection_of_primitive_values(str)),
+            "recordCountLimit": lambda n : setattr(self, 'record_count_limit', n.get_int_value()),
             "recordTypeFilters": lambda n : setattr(self, 'record_type_filters', n.get_collection_of_enum_values(AuditLogRecordType)),
             "records": lambda n : setattr(self, 'records', n.get_collection_of_object_values(AuditLogRecord)),
             "serviceFilters": lambda n : setattr(self, 'service_filters', n.get_collection_of_primitive_values(str)),

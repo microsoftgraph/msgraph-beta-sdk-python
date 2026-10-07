@@ -14,6 +14,9 @@ from ..entity import Entity
 
 @dataclass
 class Zone(Entity, Parsable):
+    """
+    A security zone grouping cloud environments under a common posture boundary.
+    """
     # Environment count summaries by type. Read-only. Supports $filter (eq) on the kind property. For example, $filter=aggregations/any(a: a/kind eq 'azureSubscription').
     aggregations: Optional[list[AggregatedEnvironment]] = None
     # Creation metadata, including user and timestamp. Supports $orderby (dateTime property only). Supports $filter (ge, le, gt, lt) on the dateTime property. For example, $filter=created/dateTime ge 2023-01-01T00:00:00Z.

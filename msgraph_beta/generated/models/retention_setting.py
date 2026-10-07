@@ -17,7 +17,7 @@ class RetentionSetting(AdditionalDataHolder, BackedModel, Parsable):
     interval: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The period of time to retain the protected data for a single Microsoft 365 service.
+    # The period of time to retain the protected data for a single Microsoft 365 service. The possible values are: P90D, P180D, P365D, P730D, P1095D, P1460D, P1825D, P2190D, P2555D, P2920D, P3285D, and P3650D. Other values aren't supported.
     period: Optional[datetime.timedelta] = None
     
     @staticmethod

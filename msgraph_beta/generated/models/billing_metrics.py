@@ -16,7 +16,7 @@ from .entity import Entity
 class BillingMetrics(Entity, Parsable):
     # The initial property
     initial: Optional[BillingMetricsInitial] = None
-    # The investigationHints property
+    # Ordered drill-in guidance for investigating billing relationship counts. This collection is returned only when explicitly requested by using a nested $expand query parameter, for example $expand=billingMetrics($expand=investigationHints).
     investigation_hints: Optional[list[InvestigationActionStep]] = None
     # The OdataType property
     odata_type: Optional[str] = None

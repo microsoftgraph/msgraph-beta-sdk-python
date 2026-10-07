@@ -13,8 +13,6 @@ from .cloud_pc_pool_capability_configuration import CloudPcPoolCapabilityConfigu
 class CloudPcAgentPoolCapabilityConfiguration(CloudPcPoolCapabilityConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.cloudPcAgentPoolCapabilityConfiguration"
-    # When true, provisioned Cloud PCs support single sign-on, allowing users to authenticate with password-less options (such as FIDO2 keys) via Microsoft Entra ID. Default value is false.
-    enable_single_sign_on: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> CloudPcAgentPoolCapabilityConfiguration:
@@ -37,7 +35,6 @@ class CloudPcAgentPoolCapabilityConfiguration(CloudPcPoolCapabilityConfiguration
         from .cloud_pc_pool_capability_configuration import CloudPcPoolCapabilityConfiguration
 
         fields: dict[str, Callable[[Any], None]] = {
-            "enableSingleSignOn": lambda n : setattr(self, 'enable_single_sign_on', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,6 +49,5 @@ class CloudPcAgentPoolCapabilityConfiguration(CloudPcPoolCapabilityConfiguration
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_bool_value("enableSingleSignOn", self.enable_single_sign_on)
     
 

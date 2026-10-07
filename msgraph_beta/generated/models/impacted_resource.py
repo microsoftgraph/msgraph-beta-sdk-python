@@ -45,7 +45,7 @@ class ImpactedResource(Entity, Parsable):
     status: Optional[RecommendationStatus] = None
     # The related unique identifier, depending on the resourceType. For example, this property is set to the applicationId if the resourceType is an application.
     subject_id: Optional[str] = None
-    # The tags property
+    # The user-defined free-form labels applied to the impactedResource. The collection isn't directly writable; tags are created and removed through the addTag and removeTag actions.
     tags: Optional[list[RecommendationTag]] = None
     
     @staticmethod

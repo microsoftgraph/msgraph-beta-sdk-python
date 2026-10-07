@@ -33,10 +33,11 @@ class RemoveTagRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: RemoveTagPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Recommendation]:
         """
-        Invoke action removeTag
+        Remove a user-defined tag from a recommendation object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Recommendation]
+        Find more info here: https://learn.microsoft.com/graph/api/recommendation-removetag?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -56,7 +57,7 @@ class RemoveTagRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: RemoveTagPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action removeTag
+        Remove a user-defined tag from a recommendation object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

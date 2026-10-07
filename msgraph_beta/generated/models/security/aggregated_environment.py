@@ -7,6 +7,9 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 @dataclass
 class AggregatedEnvironment(AdditionalDataHolder, BackedModel, Parsable):
+    """
+    Aggregated count of environments of a given kind within a zone.
+    """
     # Stores model information.
     backing_store: BackingStore = field(default_factory=BackingStoreFactorySingleton(backing_store_factory=None).backing_store_factory.create_backing_store, repr=False)
 

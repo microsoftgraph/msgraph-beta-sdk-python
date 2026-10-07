@@ -32,10 +32,11 @@ class RetrieveCloudPcPerformanceMetricsReportRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: RetrieveCloudPcPerformanceMetricsReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[bytes]:
         """
-        Invoke action retrieveCloudPcPerformanceMetricsReport
+        Get VM-level utilization and performance metrics for a specific Cloud PC from the cloudPcReports resource, including CPU, memory, and network metrics. The metrics are returned as flattened time-series data. This API supports only Windows 365 Enterprise Cloud PCs and Windows 365 Frontline Cloud PCs in dedicated mode.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: bytes
+        Find more info here: https://learn.microsoft.com/graph/api/cloudpcreports-retrievecloudpcperformancemetricsreport?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -53,7 +54,7 @@ class RetrieveCloudPcPerformanceMetricsReportRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: RetrieveCloudPcPerformanceMetricsReportPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action retrieveCloudPcPerformanceMetricsReport
+        Get VM-level utilization and performance metrics for a specific Cloud PC from the cloudPcReports resource, including CPU, memory, and network metrics. The metrics are returned as flattened time-series data. This API supports only Windows 365 Enterprise Cloud PCs and Windows 365 Frontline Cloud PCs in dedicated mode.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

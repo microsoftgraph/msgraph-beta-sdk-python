@@ -16,7 +16,7 @@ from .entity import Entity
 class MultiTenantApplicationMetrics(Entity, Parsable):
     # The initial property
     initial: Optional[MultiTenantApplicationMetricsInitial] = None
-    # The investigationHints property
+    # Ordered drill-in guidance for investigating multitenant application counts. This collection is returned only when explicitly requested by using a nested $expand query parameter, for example $expand=multiTenantApplicationMetrics($expand=investigationHints).
     investigation_hints: Optional[list[InvestigationActionStep]] = None
     # The OdataType property
     odata_type: Optional[str] = None

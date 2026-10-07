@@ -39,7 +39,6 @@ class MailboxFolderItemRequestBuilder(BaseRequestBuilder):
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/mailbox-delete-folders?view=graph-rest-beta
         """
-        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -59,7 +58,6 @@ class MailboxFolderItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[MailboxFolder]
         Find more info here: https://learn.microsoft.com/graph/api/mailboxfolder-get?view=graph-rest-beta
         """
-        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -82,7 +80,6 @@ class MailboxFolderItemRequestBuilder(BaseRequestBuilder):
         Returns: Optional[MailboxFolder]
         Find more info here: https://learn.microsoft.com/graph/api/mailboxfolder-update?view=graph-rest-beta
         """
-        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -105,7 +102,6 @@ class MailboxFolderItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -117,7 +113,6 @@ class MailboxFolderItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -130,7 +125,6 @@ class MailboxFolderItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -145,7 +139,6 @@ class MailboxFolderItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: MailboxFolderItemRequestBuilder
         """
-        warn("Private preview for Import Export APIs as of 2021-08/PrivatePreview:importExport on 2021-08-19 and will be removed 2021-11-15", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return MailboxFolderItemRequestBuilder(self.request_adapter, raw_url)
