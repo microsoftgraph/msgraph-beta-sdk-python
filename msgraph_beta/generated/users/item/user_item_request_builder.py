@@ -84,6 +84,7 @@ if TYPE_CHECKING:
     from .joined_groups.joined_groups_request_builder import JoinedGroupsRequestBuilder
     from .joined_teams.joined_teams_request_builder import JoinedTeamsRequestBuilder
     from .license_details.license_details_request_builder import LicenseDetailsRequestBuilder
+    from .lifecycle.lifecycle_request_builder import LifecycleRequestBuilder
     from .mailbox_settings.mailbox_settings_request_builder import MailboxSettingsRequestBuilder
     from .mail_folders.mail_folders_request_builder import MailFoldersRequestBuilder
     from .managed_app_log_collection_requests.managed_app_log_collection_requests_request_builder import ManagedAppLogCollectionRequestsRequestBuilder
@@ -92,6 +93,9 @@ if TYPE_CHECKING:
     from .manager.manager_request_builder import ManagerRequestBuilder
     from .member_of.member_of_request_builder import MemberOfRequestBuilder
     from .messages.messages_request_builder import MessagesRequestBuilder
+    from .microsoft_graph_identity_governance_add_self_as_sponsor.microsoft_graph_identity_governance_add_self_as_sponsor_request_builder import MicrosoftGraphIdentityGovernanceAddSelfAsSponsorRequestBuilder
+    from .microsoft_graph_identity_governance_attest.microsoft_graph_identity_governance_attest_request_builder import MicrosoftGraphIdentityGovernanceAttestRequestBuilder
+    from .microsoft_graph_identity_governance_remove_self_as_sponsor.microsoft_graph_identity_governance_remove_self_as_sponsor_request_builder import MicrosoftGraphIdentityGovernanceRemoveSelfAsSponsorRequestBuilder
     from .mobile_app_intent_and_states.mobile_app_intent_and_states_request_builder import MobileAppIntentAndStatesRequestBuilder
     from .mobile_app_troubleshooting_events.mobile_app_troubleshooting_events_request_builder import MobileAppTroubleshootingEventsRequestBuilder
     from .notifications.notifications_request_builder import NotificationsRequestBuilder
@@ -920,6 +924,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         return LicenseDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def lifecycle(self) -> LifecycleRequestBuilder:
+        """
+        Provides operations to manage the lifecycle property of the microsoft.graph.user entity.
+        """
+        from .lifecycle.lifecycle_request_builder import LifecycleRequestBuilder
+
+        return LifecycleRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def mail_folders(self) -> MailFoldersRequestBuilder:
         """
         Provides operations to manage the mailFolders property of the microsoft.graph.user entity.
@@ -990,6 +1003,33 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .messages.messages_request_builder import MessagesRequestBuilder
 
         return MessagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_identity_governance_add_self_as_sponsor(self) -> MicrosoftGraphIdentityGovernanceAddSelfAsSponsorRequestBuilder:
+        """
+        Provides operations to call the addSelfAsSponsor method.
+        """
+        from .microsoft_graph_identity_governance_add_self_as_sponsor.microsoft_graph_identity_governance_add_self_as_sponsor_request_builder import MicrosoftGraphIdentityGovernanceAddSelfAsSponsorRequestBuilder
+
+        return MicrosoftGraphIdentityGovernanceAddSelfAsSponsorRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_identity_governance_attest(self) -> MicrosoftGraphIdentityGovernanceAttestRequestBuilder:
+        """
+        Provides operations to call the attest method.
+        """
+        from .microsoft_graph_identity_governance_attest.microsoft_graph_identity_governance_attest_request_builder import MicrosoftGraphIdentityGovernanceAttestRequestBuilder
+
+        return MicrosoftGraphIdentityGovernanceAttestRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_identity_governance_remove_self_as_sponsor(self) -> MicrosoftGraphIdentityGovernanceRemoveSelfAsSponsorRequestBuilder:
+        """
+        Provides operations to call the removeSelfAsSponsor method.
+        """
+        from .microsoft_graph_identity_governance_remove_self_as_sponsor.microsoft_graph_identity_governance_remove_self_as_sponsor_request_builder import MicrosoftGraphIdentityGovernanceRemoveSelfAsSponsorRequestBuilder
+
+        return MicrosoftGraphIdentityGovernanceRemoveSelfAsSponsorRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def mobile_app_intent_and_states(self) -> MobileAppIntentAndStatesRequestBuilder:

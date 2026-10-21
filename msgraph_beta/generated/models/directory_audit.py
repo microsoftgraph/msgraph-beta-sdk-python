@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .app_management_audit import AppManagementAudit
     from .audit_activity_initiator import AuditActivityInitiator
     from .audit_activity_performer import AuditActivityPerformer
     from .entity import Entity
@@ -55,6 +56,15 @@ class DirectoryAudit(Entity, Parsable):
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
+        try:
+            child_node = parse_node.get_child_node("@odata.type")
+            mapping_value = child_node.get_str_value() if child_node else None
+        except AttributeError:
+            mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appManagementAudit".casefold():
+            from .app_management_audit import AppManagementAudit
+
+            return AppManagementAudit()
         return DirectoryAudit()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -62,6 +72,7 @@ class DirectoryAudit(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .app_management_audit import AppManagementAudit
         from .audit_activity_initiator import AuditActivityInitiator
         from .audit_activity_performer import AuditActivityPerformer
         from .entity import Entity
@@ -69,6 +80,7 @@ class DirectoryAudit(Entity, Parsable):
         from .operation_result import OperationResult
         from .target_resource import TargetResource
 
+        from .app_management_audit import AppManagementAudit
         from .audit_activity_initiator import AuditActivityInitiator
         from .audit_activity_performer import AuditActivityPerformer
         from .entity import Entity

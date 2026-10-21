@@ -13,9 +13,9 @@ from .entity import Entity
 
 @dataclass
 class AccessDriftReport(Entity, Parsable):
-    # The downloadUri property
+    # The time-limited SAS URI for downloading the report file. This property is populated only in the response of the generateDownloadUri action.
     download_uri: Optional[str] = None
-    # The expiresAt property
+    # The date and time when the download URI expires. This property is populated only in the response of the generateDownloadUri action.
     expires_at: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None

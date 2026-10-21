@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
     from .email_notifications_setting import EmailNotificationsSetting
     from .entity import Entity
+    from .entra_protection_policy import EntraProtectionPolicy
     from .exchange_protection_policy import ExchangeProtectionPolicy
     from .exchange_restore_session import ExchangeRestoreSession
     from .exclusion_unit_base import ExclusionUnitBase
@@ -45,7 +46,7 @@ from .entity import Entity
 
 @dataclass
 class BackupRestoreRoot(Entity, Parsable):
-    # The activityLogs property
+    # The list of activity logs in the tenant.
     activity_logs: Optional[list[ActivityLogBase]] = None
     # The list of browse sessions in the tenant.
     browse_sessions: Optional[list[BrowseSessionBase]] = None
@@ -61,6 +62,8 @@ class BackupRestoreRoot(Entity, Parsable):
     drive_protection_units_bulk_addition_jobs: Optional[list[DriveProtectionUnitsBulkAdditionJob]] = None
     # The email notification settings in the tenant.
     email_notifications_setting: Optional[EmailNotificationsSetting] = None
+    # The entraProtectionPolicies property
+    entra_protection_policies: Optional[list[EntraProtectionPolicy]] = None
     # The list of Exchange protection policies in the tenant.
     exchange_protection_policies: Optional[list[ExchangeProtectionPolicy]] = None
     # The list of Exchange restore sessions available in the tenant.
@@ -142,6 +145,7 @@ class BackupRestoreRoot(Entity, Parsable):
         from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
         from .email_notifications_setting import EmailNotificationsSetting
         from .entity import Entity
+        from .entra_protection_policy import EntraProtectionPolicy
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .exchange_restore_session import ExchangeRestoreSession
         from .exclusion_unit_base import ExclusionUnitBase
@@ -178,6 +182,7 @@ class BackupRestoreRoot(Entity, Parsable):
         from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
         from .email_notifications_setting import EmailNotificationsSetting
         from .entity import Entity
+        from .entra_protection_policy import EntraProtectionPolicy
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .exchange_restore_session import ExchangeRestoreSession
         from .exclusion_unit_base import ExclusionUnitBase
@@ -213,6 +218,7 @@ class BackupRestoreRoot(Entity, Parsable):
             "driveProtectionUnits": lambda n : setattr(self, 'drive_protection_units', n.get_collection_of_object_values(DriveProtectionUnit)),
             "driveProtectionUnitsBulkAdditionJobs": lambda n : setattr(self, 'drive_protection_units_bulk_addition_jobs', n.get_collection_of_object_values(DriveProtectionUnitsBulkAdditionJob)),
             "emailNotificationsSetting": lambda n : setattr(self, 'email_notifications_setting', n.get_object_value(EmailNotificationsSetting)),
+            "entraProtectionPolicies": lambda n : setattr(self, 'entra_protection_policies', n.get_collection_of_object_values(EntraProtectionPolicy)),
             "exchangeProtectionPolicies": lambda n : setattr(self, 'exchange_protection_policies', n.get_collection_of_object_values(ExchangeProtectionPolicy)),
             "exchangeRestoreSessions": lambda n : setattr(self, 'exchange_restore_sessions', n.get_collection_of_object_values(ExchangeRestoreSession)),
             "exclusionUnits": lambda n : setattr(self, 'exclusion_units', n.get_collection_of_object_values(ExclusionUnitBase)),
@@ -261,6 +267,7 @@ class BackupRestoreRoot(Entity, Parsable):
         writer.write_collection_of_object_values("driveProtectionUnits", self.drive_protection_units)
         writer.write_collection_of_object_values("driveProtectionUnitsBulkAdditionJobs", self.drive_protection_units_bulk_addition_jobs)
         writer.write_object_value("emailNotificationsSetting", self.email_notifications_setting)
+        writer.write_collection_of_object_values("entraProtectionPolicies", self.entra_protection_policies)
         writer.write_collection_of_object_values("exchangeProtectionPolicies", self.exchange_protection_policies)
         writer.write_collection_of_object_values("exchangeRestoreSessions", self.exchange_restore_sessions)
         writer.write_collection_of_object_values("exclusionUnits", self.exclusion_units)

@@ -28,6 +28,8 @@ class X509CertificateAuthenticationMethodConfiguration(AuthenticationMethodConfi
     include_targets: Optional[list[AuthenticationMethodTarget]] = None
     # Determines whether issuer(CA) hints are sent back to the client side to filter the certificates shown in certificate picker.
     issuer_hints_configuration: Optional[X509CertificateIssuerHintsConfiguration] = None
+    # When set to true, Microsoft Entra ID matches the SID in the Security Identifier (SID) extension or the SAN URI SID value from the user's X.509 certificate to the user's on-premises SID attribute for hybrid users and cloud SID for cloud-only users. Certificate-based authentication fails if the values don't match. The value can't be null. The default value is false.
+    require_certificate_sid_alignment: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> X509CertificateAuthenticationMethodConfiguration:
@@ -65,6 +67,7 @@ class X509CertificateAuthenticationMethodConfiguration(AuthenticationMethodConfi
             "certificateUserBindings": lambda n : setattr(self, 'certificate_user_bindings', n.get_collection_of_object_values(X509CertificateUserBinding)),
             "includeTargets": lambda n : setattr(self, 'include_targets', n.get_collection_of_object_values(AuthenticationMethodTarget)),
             "issuerHintsConfiguration": lambda n : setattr(self, 'issuer_hints_configuration', n.get_object_value(X509CertificateIssuerHintsConfiguration)),
+            "requireCertificateSidAlignment": lambda n : setattr(self, 'require_certificate_sid_alignment', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,5 +87,6 @@ class X509CertificateAuthenticationMethodConfiguration(AuthenticationMethodConfi
         writer.write_collection_of_object_values("certificateUserBindings", self.certificate_user_bindings)
         writer.write_collection_of_object_values("includeTargets", self.include_targets)
         writer.write_object_value("issuerHintsConfiguration", self.issuer_hints_configuration)
+        writer.write_bool_value("requireCertificateSidAlignment", self.require_certificate_sid_alignment)
     
 

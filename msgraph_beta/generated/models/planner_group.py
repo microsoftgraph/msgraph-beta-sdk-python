@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .entity import Entity
+    from .plan import Plan
     from .planner_plan import PlannerPlan
 
 from .entity import Entity
@@ -16,6 +17,8 @@ class PlannerGroup(Entity, Parsable):
     odata_type: Optional[str] = None
     # Read-only. Nullable. Returns the plannerPlans owned by the group.
     plans: Optional[list[PlannerPlan]] = None
+    # Read-only. Nullable. The collection of Planner Graph V4 plans owned by the group.
+    plans_v2: Optional[list[Plan]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PlannerGroup:
@@ -34,13 +37,16 @@ class PlannerGroup(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .entity import Entity
+        from .plan import Plan
         from .planner_plan import PlannerPlan
 
         from .entity import Entity
+        from .plan import Plan
         from .planner_plan import PlannerPlan
 
         fields: dict[str, Callable[[Any], None]] = {
             "plans": lambda n : setattr(self, 'plans', n.get_collection_of_object_values(PlannerPlan)),
+            "plans_v2": lambda n : setattr(self, 'plans_v2', n.get_collection_of_object_values(Plan)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,5 +62,6 @@ class PlannerGroup(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_collection_of_object_values("plans", self.plans)
+        writer.write_collection_of_object_values("plans_v2", self.plans_v2)
     
 

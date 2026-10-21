@@ -20,9 +20,11 @@ if TYPE_CHECKING:
     from .favorite_plans.favorite_plans_request_builder import FavoritePlansRequestBuilder
     from .my_day_tasks.my_day_tasks_request_builder import MyDayTasksRequestBuilder
     from .plans.plans_request_builder import PlansRequestBuilder
+    from .plans_v2.plans_v2_request_builder import Plans_v2RequestBuilder
     from .recent_plans.recent_plans_request_builder import RecentPlansRequestBuilder
     from .roster_plans.roster_plans_request_builder import RosterPlansRequestBuilder
     from .tasks.tasks_request_builder import TasksRequestBuilder
+    from .tasks_v2.tasks_v2_request_builder import Tasks_v2RequestBuilder
 
 class PlannerRequestBuilder(BaseRequestBuilder):
     """
@@ -182,6 +184,15 @@ class PlannerRequestBuilder(BaseRequestBuilder):
         return PlansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def plans_v2(self) -> Plans_v2RequestBuilder:
+        """
+        Provides operations to manage the plans_v2 property of the microsoft.graph.plannerUser entity.
+        """
+        from .plans_v2.plans_v2_request_builder import Plans_v2RequestBuilder
+
+        return Plans_v2RequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def recent_plans(self) -> RecentPlansRequestBuilder:
         """
         Provides operations to manage the recentPlans property of the microsoft.graph.plannerUser entity.
@@ -207,6 +218,15 @@ class PlannerRequestBuilder(BaseRequestBuilder):
         from .tasks.tasks_request_builder import TasksRequestBuilder
 
         return TasksRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tasks_v2(self) -> Tasks_v2RequestBuilder:
+        """
+        Provides operations to manage the tasks_v2 property of the microsoft.graph.plannerUser entity.
+        """
+        from .tasks_v2.tasks_v2_request_builder import Tasks_v2RequestBuilder
+
+        return Tasks_v2RequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PlannerRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

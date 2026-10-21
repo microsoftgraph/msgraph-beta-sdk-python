@@ -50,7 +50,7 @@ class ActivityLogBaseItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ActivityLogBaseItemRequestBuilderGetQueryParameters]] = None) -> Optional[ActivityLogBase]:
         """
-        Get activityLogs from solutions
+        The list of activity logs in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ActivityLogBase]
         """
@@ -104,7 +104,7 @@ class ActivityLogBaseItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ActivityLogBaseItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get activityLogs from solutions
+        The list of activity logs in the tenant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class ActivityLogBaseItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ActivityLogBaseItemRequestBuilderGetQueryParameters():
         """
-        Get activityLogs from solutions
+        The list of activity logs in the tenant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

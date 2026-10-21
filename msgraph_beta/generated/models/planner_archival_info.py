@@ -16,8 +16,14 @@ class PlannerArchivalInfo(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # Read-only. Indicates whether the entity is archived.
+    is_archived: Optional[bool] = None
     # Read-only. Reason why the entity was archived or unarchived.
     justification: Optional[str] = None
+    # Read-only. Identity of the user who archived or unarchived the entity.
+    modified_by: Optional[IdentitySet] = None
+    # Read-only. Date and time at which the entity's archive status changed.
+    modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Read-only. Identity of the user who archived or unarchived the entity
@@ -46,7 +52,10 @@ class PlannerArchivalInfo(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_set import IdentitySet
 
         fields: dict[str, Callable[[Any], None]] = {
+            "isArchived": lambda n : setattr(self, 'is_archived', n.get_bool_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
+            "modifiedBy": lambda n : setattr(self, 'modified_by', n.get_object_value(IdentitySet)),
+            "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "statusChangedBy": lambda n : setattr(self, 'status_changed_by', n.get_object_value(IdentitySet)),
             "statusChangedDateTime": lambda n : setattr(self, 'status_changed_date_time', n.get_datetime_value()),
@@ -61,7 +70,10 @@ class PlannerArchivalInfo(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_bool_value("isArchived", self.is_archived)
         writer.write_str_value("justification", self.justification)
+        writer.write_object_value("modifiedBy", self.modified_by)
+        writer.write_datetime_value("modifiedDateTime", self.modified_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("statusChangedBy", self.status_changed_by)
         writer.write_datetime_value("statusChangedDateTime", self.status_changed_date_time)

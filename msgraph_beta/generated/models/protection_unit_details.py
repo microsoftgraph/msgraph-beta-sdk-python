@@ -12,19 +12,19 @@ class ProtectionUnitDetails(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The addedCount property
+    # The number of protection units that were successfully added to the backup policy.
     added_count: Optional[int] = None
-    # The backupConfigurationType property
+    # The type of backup configuration applied to the protection units.
     backup_configuration_type: Optional[str] = None
-    # The failedCount property
+    # The number of protection unit operations that failed during processing.
     failed_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The removedCount property
+    # The number of protection units that were successfully removed from the backup policy.
     removed_count: Optional[int] = None
-    # The requestedToAddCount property
+    # The number of protection units that were requested to be added to the backup policy.
     requested_to_add_count: Optional[int] = None
-    # The requestedToRemoveCount property
+    # The number of protection units that were requested to be removed from the backup policy.
     requested_to_remove_count: Optional[int] = None
     
     @staticmethod

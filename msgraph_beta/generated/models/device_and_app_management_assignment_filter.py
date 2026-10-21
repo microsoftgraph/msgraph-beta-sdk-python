@@ -6,6 +6,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .assignment_filter_evaluation_mode import AssignmentFilterEvaluationMode
     from .assignment_filter_management_type import AssignmentFilterManagementType
     from .device_platform_type import DevicePlatformType
     from .entity import Entity
@@ -27,6 +28,8 @@ class DeviceAndAppManagementAssignmentFilter(Entity, Parsable):
     description: Optional[str] = None
     # The name of the Assignment Filter.
     display_name: Optional[str] = None
+    # Represents the mode used by the service to evaluate an assignment filter.
+    evaluation_mode: Optional[AssignmentFilterEvaluationMode] = None
     # Last modified time of the Assignment Filter. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -65,12 +68,14 @@ class DeviceAndAppManagementAssignmentFilter(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .assignment_filter_evaluation_mode import AssignmentFilterEvaluationMode
         from .assignment_filter_management_type import AssignmentFilterManagementType
         from .device_platform_type import DevicePlatformType
         from .entity import Entity
         from .payload_by_filter import PayloadByFilter
         from .payload_compatible_assignment_filter import PayloadCompatibleAssignmentFilter
 
+        from .assignment_filter_evaluation_mode import AssignmentFilterEvaluationMode
         from .assignment_filter_management_type import AssignmentFilterManagementType
         from .device_platform_type import DevicePlatformType
         from .entity import Entity
@@ -82,6 +87,7 @@ class DeviceAndAppManagementAssignmentFilter(Entity, Parsable):
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "evaluationMode": lambda n : setattr(self, 'evaluation_mode', n.get_enum_value(AssignmentFilterEvaluationMode)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "payloads": lambda n : setattr(self, 'payloads', n.get_collection_of_object_values(PayloadByFilter)),
             "platform": lambda n : setattr(self, 'platform', n.get_enum_value(DevicePlatformType)),
@@ -105,6 +111,7 @@ class DeviceAndAppManagementAssignmentFilter(Entity, Parsable):
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_enum_value("evaluationMode", self.evaluation_mode)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_collection_of_object_values("payloads", self.payloads)
         writer.write_enum_value("platform", self.platform)

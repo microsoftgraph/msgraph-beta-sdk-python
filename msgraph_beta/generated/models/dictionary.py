@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .partner.security.additional_data_dictionary import AdditionalDataDictionary
     from .planner_forms_dictionary import PlannerFormsDictionary
     from .result_template_dictionary import ResultTemplateDictionary
+    from .security.workbook_content import WorkbookContent
     from .string_dictionary import StringDictionary
     from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
@@ -73,6 +74,10 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
             from .result_template_dictionary import ResultTemplateDictionary
 
             return ResultTemplateDictionary()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.workbookContent".casefold():
+            from .security.workbook_content import WorkbookContent
+
+            return WorkbookContent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.stringDictionary".casefold():
             from .string_dictionary import StringDictionary
 
@@ -96,6 +101,7 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
         from .partner.security.additional_data_dictionary import AdditionalDataDictionary
         from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
+        from .security.workbook_content import WorkbookContent
         from .string_dictionary import StringDictionary
         from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
@@ -107,6 +113,7 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
         from .partner.security.additional_data_dictionary import AdditionalDataDictionary
         from .planner_forms_dictionary import PlannerFormsDictionary
         from .result_template_dictionary import ResultTemplateDictionary
+        from .security.workbook_content import WorkbookContent
         from .string_dictionary import StringDictionary
         from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 

@@ -53,6 +53,7 @@ if TYPE_CHECKING:
     from .triggers.triggers_request_builder import TriggersRequestBuilder
     from .trigger_types.trigger_types_request_builder import TriggerTypesRequestBuilder
     from .user_security_profiles.user_security_profiles_request_builder import UserSecurityProfilesRequestBuilder
+    from .workbooks.workbooks_request_builder import WorkbooksRequestBuilder
     from .zones.zones_request_builder import ZonesRequestBuilder
 
 class SecurityRequestBuilder(BaseRequestBuilder):
@@ -482,6 +483,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .user_security_profiles.user_security_profiles_request_builder import UserSecurityProfilesRequestBuilder
 
         return UserSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def workbooks(self) -> WorkbooksRequestBuilder:
+        """
+        Provides operations to manage the workbooks property of the microsoft.graph.security entity.
+        """
+        from .workbooks.workbooks_request_builder import WorkbooksRequestBuilder
+
+        return WorkbooksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def zones(self) -> ZonesRequestBuilder:

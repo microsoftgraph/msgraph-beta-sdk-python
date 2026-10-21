@@ -19,8 +19,10 @@ if TYPE_CHECKING:
     from .buckets.buckets_request_builder import BucketsRequestBuilder
     from .goals.goals_request_builder import GoalsRequestBuilder
     from .plans.plans_request_builder import PlansRequestBuilder
+    from .plans_v2.plans_v2_request_builder import Plans_v2RequestBuilder
     from .rosters.rosters_request_builder import RostersRequestBuilder
     from .tasks.tasks_request_builder import TasksRequestBuilder
+    from .tasks_v2.tasks_v2_request_builder import Tasks_v2RequestBuilder
 
 class PlannerRequestBuilder(BaseRequestBuilder):
     """
@@ -37,9 +39,10 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PlannerRequestBuilderGetQueryParameters]] = None) -> Optional[Planner]:
         """
-        Get planner
+        Read the properties and relationships of planner object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Planner]
+        Find more info here: https://learn.microsoft.com/graph/api/planner-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -57,10 +60,11 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Planner, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Planner]:
         """
-        Update planner
+        Update the properties of a planner object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Planner]
+        Find more info here: https://learn.microsoft.com/graph/api/planner-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -80,7 +84,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PlannerRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get planner
+        Read the properties and relationships of planner object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -91,7 +95,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Planner, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update planner
+        Update the properties of a planner object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -142,6 +146,15 @@ class PlannerRequestBuilder(BaseRequestBuilder):
         return PlansRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def plans_v2(self) -> Plans_v2RequestBuilder:
+        """
+        Provides operations to manage the plans_v2 property of the microsoft.graph.planner entity.
+        """
+        from .plans_v2.plans_v2_request_builder import Plans_v2RequestBuilder
+
+        return Plans_v2RequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def rosters(self) -> RostersRequestBuilder:
         """
         Provides operations to manage the rosters property of the microsoft.graph.planner entity.
@@ -159,10 +172,19 @@ class PlannerRequestBuilder(BaseRequestBuilder):
 
         return TasksRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def tasks_v2(self) -> Tasks_v2RequestBuilder:
+        """
+        Provides operations to manage the tasks_v2 property of the microsoft.graph.planner entity.
+        """
+        from .tasks_v2.tasks_v2_request_builder import Tasks_v2RequestBuilder
+
+        return Tasks_v2RequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PlannerRequestBuilderGetQueryParameters():
         """
-        Get planner
+        Read the properties and relationships of planner object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

@@ -33,7 +33,7 @@ class RevokeGrantsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: RevokeGrantsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Permission]:
         """
-        Revoke access to a listItem or driveItem granted via a sharing link by removing the specified recipient from the link.
+        Revoke access to a listItem or driveItem granted via a sharing link by removing the specified driveRecipient entries from the link. Recipients who already redeemed the link and recipients who only received an invitation both lose access. Revoking a grant removes the recipient from this sharing link only; it doesn't remove any access the recipient has through a different sharing link, a direct grant, or membership in a group that has access.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Permission]
@@ -57,7 +57,7 @@ class RevokeGrantsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: RevokeGrantsPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Revoke access to a listItem or driveItem granted via a sharing link by removing the specified recipient from the link.
+        Revoke access to a listItem or driveItem granted via a sharing link by removing the specified driveRecipient entries from the link. Recipients who already redeemed the link and recipients who only received an invitation both lose access. Revoking a grant removes the recipient from this sharing link only; it doesn't remove any access the recipient has through a different sharing link, a direct grant, or membership in a group that has access.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -10,4 +10,7 @@ class PlannerContainerType(str, Enum):
     TeamsChannel = "teamsChannel",
     OnlineMeeting = "onlineMeeting",
     PlannerTask = "plannerTask",
+    OfficeDocument = "officeDocument",
+    Meeting = "meeting",
+    DataverseProject = "dataverseProject",
 

@@ -23,13 +23,13 @@ from .entity import Entity
 class ActivityLogBase(Entity, Parsable):
     # The activityType property
     activity_type: Optional[ActivityLogOperationType] = None
-    # The error property
+    # Contains error details if an error occurred while processing this activity.
     error: Optional[PublicError] = None
-    # The eventDateTime property
+    # Timestamp of activity completion.
     event_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The performedBy property
+    # The identity of the person who performed the activity.
     performed_by: Optional[str] = None
     # The resultStatus property
     result_status: Optional[ActivityLogResultStatus] = None

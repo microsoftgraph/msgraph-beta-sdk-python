@@ -12,11 +12,11 @@ from .access_drift_detail import AccessDriftDetail
 
 @dataclass
 class EntraAccessDriftDetail(AccessDriftDetail, Parsable):
-    # The accessPackage property
+    # The access package associated with this drift record.
     access_package: Optional[DriftAccessPackageInfo] = None
-    # The assignedRole property
+    # The role currently assigned to the identity on the resource.
     assigned_role: Optional[str] = None
-    # The expectedRole property
+    # The role expected based on the access package assignment.
     expected_role: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

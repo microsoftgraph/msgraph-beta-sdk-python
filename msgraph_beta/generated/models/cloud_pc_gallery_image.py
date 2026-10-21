@@ -21,25 +21,25 @@ class CloudPcGalleryImage(Entity, Parsable):
     expiration_date: Optional[datetime.date] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The offer name of this gallery image that is passed to ARM to retrieve the image resource. Read-only. The offer property is deprecated and will stop returning data on January 31, 2024. Going forward, use the offerName property.
+    # The offer name of this gallery image that is passed to ARM to retrieve the image resource. Read-only. The offer property is deprecated and will stop returning data on December 7, 2026. Going forward, use the offerName property.
     offer: Optional[str] = None
-    # The official display offer name of this gallery image. For example, Windows 11 Enterprise. The offerDisplayName property is deprecated and will stop returning data on January 31, 2024.
+    # The official display offer name of this gallery image. For example, Windows 11 Enterprise + Microsoft 365 Apps. The offerDisplayName property is deprecated and will stop returning data on December 7, 2026. Going forward, use the displayName property.
     offer_display_name: Optional[str] = None
     # The offer name of this gallery image that is passed to ARM to retrieve the image resource. Read-only.
     offer_name: Optional[str] = None
     # The operating system version of this gallery image. For example, 10.0.22000.296. Read-only.
     os_version_number: Optional[str] = None
-    # The publisher name of this gallery image that is passed to ARM to retrieve the image resource. Read-only. The publisher property is deprecated and will stop returning data on January 31, 2024. Going forward, use the publisherName property.
+    # The publisher name of this gallery image that is passed to ARM to retrieve the image resource. Read-only. The publisher property is deprecated and will stop returning data on December 7, 2026. Going forward, use the publisherName property.
     publisher: Optional[str] = None
     # The publisher name of this gallery image that is passed to ARM to retrieve the image resource. Read-only.
     publisher_name: Optional[str] = None
-    # The recommended Cloud PC SKU for this gallery image. Read-only. The recommendedSku property is deprecated and will stop returning data on January 31, 2024.
+    # The recommended Cloud PC SKU for this gallery image. Read-only. The recommendedSku property is deprecated and will stop returning data on December 7, 2026. No replacement is planned.
     recommended_sku: Optional[str] = None
     # Indicates the size of this image in gigabytes. For example, 64. Read-only.
     size_in_g_b: Optional[int] = None
-    # The SKU name of this image that is passed to ARM to retrieve the image resource. Read-only. The sku property is deprecated and will stop returning data on January 31, 2024. Going forward, use the skuName property.
+    # The SKU name of this image that is passed to ARM to retrieve the image resource. Read-only. The sku property is deprecated and will stop returning data on December 7, 2026. Going forward, use the skuName property.
     sku: Optional[str] = None
-    # The official display SKU name of this gallery image. For example, 2004. Read-only. The skuDisplayName property is deprecated and will stop returning data on January 31, 2024.
+    # The official display SKU name of this gallery image. For example, 22H2. Read-only. The skuDisplayName property is deprecated and will stop returning data on December 7, 2026. Going forward, use the displayName property.
     sku_display_name: Optional[str] = None
     # The SKU name of this image that is passed to ARM to retrieve the image resource. Read-only.
     sku_name: Optional[str] = None
