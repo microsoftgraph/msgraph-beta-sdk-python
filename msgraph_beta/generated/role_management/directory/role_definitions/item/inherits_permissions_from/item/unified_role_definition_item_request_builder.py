@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .......models.o_data_errors.o_data_error import ODataError
     from .......models.unified_role_definition import UnifiedRoleDefinition
     from .assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id.assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder import AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder
+    from .restore.restore_request_builder import RestoreRequestBuilder
 
 class UnifiedRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
     """
@@ -147,6 +148,15 @@ class UnifiedRoleDefinitionItemRequestBuilder(BaseRequestBuilder):
         from .assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id.assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder import AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder
 
         return AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def restore(self) -> RestoreRequestBuilder:
+        """
+        Provides operations to call the restore method.
+        """
+        from .restore.restore_request_builder import RestoreRequestBuilder
+
+        return RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UnifiedRoleDefinitionItemRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

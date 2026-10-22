@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .dlp_action_info import DlpActionInfo
     from .execution_mode import ExecutionMode
+    from .policy_configuration import PolicyConfiguration
     from .policy_location import PolicyLocation
     from .policy_tenant_scope import PolicyTenantScope
     from .policy_user_scope import PolicyUserScope
@@ -32,6 +33,8 @@ class PolicyScopeBase(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The enforcement actions to take if the policy conditions are met within this scope. Required.
     policy_actions: Optional[list[DlpActionInfo]] = None
+    # The effective configuration for policy evaluation scenarios. This property can be omitted or null when no configuration is available or applicable.
+    policy_configuration: Optional[PolicyConfiguration] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> PolicyScopeBase:
@@ -64,6 +67,7 @@ class PolicyScopeBase(AdditionalDataHolder, BackedModel, Parsable):
         """
         from .dlp_action_info import DlpActionInfo
         from .execution_mode import ExecutionMode
+        from .policy_configuration import PolicyConfiguration
         from .policy_location import PolicyLocation
         from .policy_tenant_scope import PolicyTenantScope
         from .policy_user_scope import PolicyUserScope
@@ -71,6 +75,7 @@ class PolicyScopeBase(AdditionalDataHolder, BackedModel, Parsable):
 
         from .dlp_action_info import DlpActionInfo
         from .execution_mode import ExecutionMode
+        from .policy_configuration import PolicyConfiguration
         from .policy_location import PolicyLocation
         from .policy_tenant_scope import PolicyTenantScope
         from .policy_user_scope import PolicyUserScope
@@ -83,6 +88,7 @@ class PolicyScopeBase(AdditionalDataHolder, BackedModel, Parsable):
             "locations": lambda n : setattr(self, 'locations', n.get_collection_of_object_values(PolicyLocation)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policyActions": lambda n : setattr(self, 'policy_actions', n.get_collection_of_object_values(DlpActionInfo)),
+            "policyConfiguration": lambda n : setattr(self, 'policy_configuration', n.get_object_value(PolicyConfiguration)),
         }
         return fields
     
@@ -100,6 +106,7 @@ class PolicyScopeBase(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("locations", self.locations)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("policyActions", self.policy_actions)
+        writer.write_object_value("policyConfiguration", self.policy_configuration)
         writer.write_additional_data_value(self.additional_data)
     
 

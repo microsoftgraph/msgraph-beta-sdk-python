@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .agent_communication_configuration import AgentCommunicationConfiguration
     from .app_role_assignment import AppRoleAssignment
     from .directory_object import DirectoryObject
+    from .lifecycle_policy_compliance_state import LifecyclePolicyComplianceState
     from .o_auth2_permission_grant import OAuth2PermissionGrant
     from .service_principal import ServicePrincipal
 
@@ -29,6 +30,14 @@ class AgentIdentity(ServicePrincipal, Parsable):
     inherited_app_role_assignments: Optional[list[AppRoleAssignment]] = None
     # Delegated permission grants that this agent identity inherits from its parent Agent Identity Blueprint service principal. Read-only. Nullable.
     inherited_oauth2_permission_grants: Optional[list[OAuth2PermissionGrant]] = None
+    # The lifecyclePolicyComplianceState property
+    lifecycle_policy_compliance_state: Optional[LifecyclePolicyComplianceState] = None
+    # The lifecyclePolicyComplianceStateLastModifiedDateTime property
+    lifecycle_policy_compliance_state_last_modified_date_time: Optional[datetime.datetime] = None
+    # The lifecyclePolicyComplianceStateReason property
+    lifecycle_policy_compliance_state_reason: Optional[str] = None
+    # The lifecyclePolicyNonComplianceDisablementDateTime property
+    lifecycle_policy_non_compliance_disablement_date_time: Optional[datetime.datetime] = None
     # The collection of application IDs designated as managers of this agent identity's backing agentIdentityBlueprint. Read-only; the value is server-managed and reflects the managerApplications of the backing agentIdentityBlueprint. To change the managers, an owner or administrator must update the managerApplications property on the backing agentIdentityBlueprint in the tenant where it's registered. For multitenant agent identity blueprints, admins in a tenant where the blueprint is only consumed can't make this change — they must ask an owner or administrator in the blueprint's home tenant. Not nullable. Returned only on $select.
     manager_applications: Optional[list[UUID]] = None
     # The sponsors for this agent identity.
@@ -53,12 +62,14 @@ class AgentIdentity(ServicePrincipal, Parsable):
         from .agent_communication_configuration import AgentCommunicationConfiguration
         from .app_role_assignment import AppRoleAssignment
         from .directory_object import DirectoryObject
+        from .lifecycle_policy_compliance_state import LifecyclePolicyComplianceState
         from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .service_principal import ServicePrincipal
 
         from .agent_communication_configuration import AgentCommunicationConfiguration
         from .app_role_assignment import AppRoleAssignment
         from .directory_object import DirectoryObject
+        from .lifecycle_policy_compliance_state import LifecyclePolicyComplianceState
         from .o_auth2_permission_grant import OAuth2PermissionGrant
         from .service_principal import ServicePrincipal
 
@@ -68,6 +79,10 @@ class AgentIdentity(ServicePrincipal, Parsable):
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "inheritedAppRoleAssignments": lambda n : setattr(self, 'inherited_app_role_assignments', n.get_collection_of_object_values(AppRoleAssignment)),
             "inheritedOauth2PermissionGrants": lambda n : setattr(self, 'inherited_oauth2_permission_grants', n.get_collection_of_object_values(OAuth2PermissionGrant)),
+            "lifecyclePolicyComplianceState": lambda n : setattr(self, 'lifecycle_policy_compliance_state', n.get_enum_value(LifecyclePolicyComplianceState)),
+            "lifecyclePolicyComplianceStateLastModifiedDateTime": lambda n : setattr(self, 'lifecycle_policy_compliance_state_last_modified_date_time', n.get_datetime_value()),
+            "lifecyclePolicyComplianceStateReason": lambda n : setattr(self, 'lifecycle_policy_compliance_state_reason', n.get_str_value()),
+            "lifecyclePolicyNonComplianceDisablementDateTime": lambda n : setattr(self, 'lifecycle_policy_non_compliance_disablement_date_time', n.get_datetime_value()),
             "managerApplications": lambda n : setattr(self, 'manager_applications', n.get_collection_of_primitive_values(UUID)),
             "sponsors": lambda n : setattr(self, 'sponsors', n.get_collection_of_object_values(DirectoryObject)),
         }
@@ -89,6 +104,10 @@ class AgentIdentity(ServicePrincipal, Parsable):
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_collection_of_object_values("inheritedAppRoleAssignments", self.inherited_app_role_assignments)
         writer.write_collection_of_object_values("inheritedOauth2PermissionGrants", self.inherited_oauth2_permission_grants)
+        writer.write_enum_value("lifecyclePolicyComplianceState", self.lifecycle_policy_compliance_state)
+        writer.write_datetime_value("lifecyclePolicyComplianceStateLastModifiedDateTime", self.lifecycle_policy_compliance_state_last_modified_date_time)
+        writer.write_str_value("lifecyclePolicyComplianceStateReason", self.lifecycle_policy_compliance_state_reason)
+        writer.write_datetime_value("lifecyclePolicyNonComplianceDisablementDateTime", self.lifecycle_policy_non_compliance_disablement_date_time)
         writer.write_collection_of_object_values("sponsors", self.sponsors)
     
 

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from ......models.teams_channel_planner import TeamsChannelPlanner
     from .plans.plans_request_builder import PlansRequestBuilder
+    from .plans_v2.plans_v2_request_builder import Plans_v2RequestBuilder
 
 class PlannerRequestBuilder(BaseRequestBuilder):
     """
@@ -33,9 +34,10 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property planner for teams
+        Delete a teamsChannelPlanner object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/channel-delete-planner?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,9 +53,10 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PlannerRequestBuilderGetQueryParameters]] = None) -> Optional[TeamsChannelPlanner]:
         """
-        Selective Planner services available to this channel. Currently, only shared channels are supported. Read-only. Nullable.
+        Read the properties and relationships of teamsChannelPlanner object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamsChannelPlanner]
+        Find more info here: https://learn.microsoft.com/graph/api/teamschannelplanner-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -71,10 +74,11 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: TeamsChannelPlanner, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TeamsChannelPlanner]:
         """
-        Update the navigation property planner in teams
+        Update the properties of a teamsChannelPlanner object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamsChannelPlanner]
+        Find more info here: https://learn.microsoft.com/graph/api/teamschannelplanner-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -94,7 +98,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property planner for teams
+        Delete a teamsChannelPlanner object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +109,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PlannerRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Selective Planner services available to this channel. Currently, only shared channels are supported. Read-only. Nullable.
+        Read the properties and relationships of teamsChannelPlanner object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -116,7 +120,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: TeamsChannelPlanner, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property planner in teams
+        Update the properties of a teamsChannelPlanner object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,6 +152,15 @@ class PlannerRequestBuilder(BaseRequestBuilder):
 
         return PlansRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def plans_v2(self) -> Plans_v2RequestBuilder:
+        """
+        Provides operations to manage the plans_v2 property of the microsoft.graph.teamsChannelPlanner entity.
+        """
+        from .plans_v2.plans_v2_request_builder import Plans_v2RequestBuilder
+
+        return Plans_v2RequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PlannerRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):
         """
@@ -158,7 +171,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlannerRequestBuilderGetQueryParameters():
         """
-        Selective Planner services available to this channel. Currently, only shared channels are supported. Read-only. Nullable.
+        Read the properties and relationships of teamsChannelPlanner object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

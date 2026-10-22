@@ -15,17 +15,17 @@ from .activity_log_base import ActivityLogBase
 class BackupPolicyActivityLog(ActivityLogBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.backupPolicyActivityLog"
-    # The oldPolicyName property
+    # The previous policy name, if applicable.
     old_policy_name: Optional[str] = None
-    # The policyId property
+    # The unique identifier of the protection policy associated with the activity log.
     policy_id: Optional[str] = None
-    # The policyName property
+    # Name of the protection policy.
     policy_name: Optional[str] = None
     # The policyStatus property
     policy_status: Optional[ProtectionPolicyStatus] = None
-    # The protectionUnitDetails property
+    # Contains Protection unit counts information.
     protection_unit_details: Optional[ProtectionUnitDetails] = None
-    # The retentionPeriod property
+    # The period of time to retain the protected data for a single Microsoft 365 service.
     retention_period: Optional[str] = None
     
     @staticmethod

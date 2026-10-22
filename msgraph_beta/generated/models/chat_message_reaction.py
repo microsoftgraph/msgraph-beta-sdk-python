@@ -24,6 +24,8 @@ class ChatMessageReaction(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # The hosted content URL for the custom reaction type.
     reaction_content_url: Optional[str] = None
+    # The service-issued identifier for a custom emoji reaction. The identifier is scoped to the tenant.
+    reaction_id: Optional[str] = None
     # The reaction type. Supported values include Unicode characters, custom, and some backward-compatible reaction types, such as like, angry, sad, laugh, heart, and surprised.
     reaction_type: Optional[str] = None
     # The user property
@@ -54,6 +56,7 @@ class ChatMessageReaction(AdditionalDataHolder, BackedModel, Parsable):
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reactionContentUrl": lambda n : setattr(self, 'reaction_content_url', n.get_str_value()),
+            "reactionId": lambda n : setattr(self, 'reaction_id', n.get_str_value()),
             "reactionType": lambda n : setattr(self, 'reaction_type', n.get_str_value()),
             "user": lambda n : setattr(self, 'user', n.get_object_value(ChatMessageReactionIdentitySet)),
         }
@@ -71,6 +74,7 @@ class ChatMessageReaction(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("reactionContentUrl", self.reaction_content_url)
+        writer.write_str_value("reactionId", self.reaction_id)
         writer.write_str_value("reactionType", self.reaction_type)
         writer.write_object_value("user", self.user)
         writer.write_additional_data_value(self.additional_data)

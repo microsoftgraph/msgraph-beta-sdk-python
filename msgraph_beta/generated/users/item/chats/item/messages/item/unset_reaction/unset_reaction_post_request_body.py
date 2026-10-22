@@ -12,6 +12,10 @@ class UnsetReactionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
+    # The displayName property
+    display_name: Optional[str] = None
+    # The reactionId property
+    reaction_id: Optional[str] = None
     # The reactionType property
     reaction_type: Optional[str] = None
     
@@ -32,6 +36,8 @@ class UnsetReactionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         fields: dict[str, Callable[[Any], None]] = {
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "reactionId": lambda n : setattr(self, 'reaction_id', n.get_str_value()),
             "reactionType": lambda n : setattr(self, 'reaction_type', n.get_str_value()),
         }
         return fields
@@ -44,6 +50,8 @@ class UnsetReactionPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
         """
         if writer is None:
             raise TypeError("writer cannot be null.")
+        writer.write_str_value("displayName", self.display_name)
+        writer.write_str_value("reactionId", self.reaction_id)
         writer.write_str_value("reactionType", self.reaction_type)
         writer.write_additional_data_value(self.additional_data)
     

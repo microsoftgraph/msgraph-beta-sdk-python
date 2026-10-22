@@ -12,13 +12,13 @@ class DriftCounts(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The missing property
+    # The number of assignments that are expected but not present on the resource.
     missing: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The total property
+    # The total number of unauthorized and missing access assignments.
     total: Optional[int] = None
-    # The unauthorized property
+    # The number of assignments that exist on the resource but are not expected.
     unauthorized: Optional[int] = None
     
     @staticmethod

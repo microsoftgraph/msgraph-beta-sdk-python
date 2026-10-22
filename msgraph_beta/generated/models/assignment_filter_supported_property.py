@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .assignment_filter_operator import AssignmentFilterOperator
+    from .assignment_filter_property_evaluation_source import AssignmentFilterPropertyEvaluationSource
 
 @dataclass
 class AssignmentFilterSupportedProperty(AdditionalDataHolder, BackedModel, Parsable):
@@ -20,6 +21,8 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, BackedModel, Parsa
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The data type of the property.
     data_type: Optional[str] = None
+    # Identifies the data source used to evaluate an assignment filter property.
+    evaluation_source: Optional[AssignmentFilterPropertyEvaluationSource] = None
     # Indicates whether the property is a collection type or not.
     is_collection: Optional[bool] = None
     # Name of the property.
@@ -50,11 +53,14 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, BackedModel, Parsa
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .assignment_filter_operator import AssignmentFilterOperator
+        from .assignment_filter_property_evaluation_source import AssignmentFilterPropertyEvaluationSource
 
         from .assignment_filter_operator import AssignmentFilterOperator
+        from .assignment_filter_property_evaluation_source import AssignmentFilterPropertyEvaluationSource
 
         fields: dict[str, Callable[[Any], None]] = {
             "dataType": lambda n : setattr(self, 'data_type', n.get_str_value()),
+            "evaluationSource": lambda n : setattr(self, 'evaluation_source', n.get_enum_value(AssignmentFilterPropertyEvaluationSource)),
             "isCollection": lambda n : setattr(self, 'is_collection', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -73,6 +79,7 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, BackedModel, Parsa
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("dataType", self.data_type)
+        writer.write_enum_value("evaluationSource", self.evaluation_source)
         writer.write_bool_value("isCollection", self.is_collection)
         writer.write_str_value("name", self.name)
         writer.write_str_value("@odata.type", self.odata_type)

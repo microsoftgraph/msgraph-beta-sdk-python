@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     from .drive_protection_units_bulk_addition_jobs.drive_protection_units_bulk_addition_jobs_request_builder import DriveProtectionUnitsBulkAdditionJobsRequestBuilder
     from .email_notifications_setting.email_notifications_setting_request_builder import EmailNotificationsSettingRequestBuilder
     from .enable.enable_request_builder import EnableRequestBuilder
+    from .entra_protection_policies.entra_protection_policies_request_builder import EntraProtectionPoliciesRequestBuilder
     from .exchange_protection_policies.exchange_protection_policies_request_builder import ExchangeProtectionPoliciesRequestBuilder
     from .exchange_restore_sessions.exchange_restore_sessions_request_builder import ExchangeRestoreSessionsRequestBuilder
     from .exclusion_units.exclusion_units_request_builder import ExclusionUnitsRequestBuilder
@@ -253,6 +254,15 @@ class BackupRestoreRequestBuilder(BaseRequestBuilder):
         from .enable.enable_request_builder import EnableRequestBuilder
 
         return EnableRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def entra_protection_policies(self) -> EntraProtectionPoliciesRequestBuilder:
+        """
+        Provides operations to manage the entraProtectionPolicies property of the microsoft.graph.backupRestoreRoot entity.
+        """
+        from .entra_protection_policies.entra_protection_policies_request_builder import EntraProtectionPoliciesRequestBuilder
+
+        return EntraProtectionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def exchange_protection_policies(self) -> ExchangeProtectionPoliciesRequestBuilder:

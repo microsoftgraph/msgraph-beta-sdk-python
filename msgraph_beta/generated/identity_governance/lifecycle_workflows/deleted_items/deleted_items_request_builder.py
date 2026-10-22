@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ....models.deleted_item_container import DeletedItemContainer
     from ....models.o_data_errors.o_data_error import ODataError
+    from .lifecycle_policies.lifecycle_policies_request_builder import LifecyclePoliciesRequestBuilder
     from .workflows.workflows_request_builder import WorkflowsRequestBuilder
 
 class DeletedItemsRequestBuilder(BaseRequestBuilder):
@@ -100,6 +101,15 @@ class DeletedItemsRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return DeletedItemsRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def lifecycle_policies(self) -> LifecyclePoliciesRequestBuilder:
+        """
+        Provides operations to manage the lifecyclePolicies property of the microsoft.graph.deletedItemContainer entity.
+        """
+        from .lifecycle_policies.lifecycle_policies_request_builder import LifecyclePoliciesRequestBuilder
+
+        return LifecyclePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def workflows(self) -> WorkflowsRequestBuilder:

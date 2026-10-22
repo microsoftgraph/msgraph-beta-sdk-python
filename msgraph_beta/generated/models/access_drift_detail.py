@@ -17,13 +17,13 @@ from .entity import Entity
 
 @dataclass
 class AccessDriftDetail(Entity, Parsable):
-    # The createdDateTime property
+    # The date and time when the drift record was created.
     created_date_time: Optional[datetime.datetime] = None
     # The driftSource property
     drift_source: Optional[AccessDriftSource] = None
     # The driftType property
     drift_type: Optional[AccessDriftType] = None
-    # The identities property
+    # The identities affected by this drift record.
     identities: Optional[list[DriftIdentityInfo]] = None
     # The OdataType property
     odata_type: Optional[str] = None

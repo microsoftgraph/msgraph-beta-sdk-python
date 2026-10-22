@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
     from .win32_lob_app_auto_update_settings import Win32LobAppAutoUpdateSettings
     from .win32_lob_app_delivery_optimization_priority import Win32LobAppDeliveryOptimizationPriority
+    from .win32_lob_app_in_use_settings import Win32LobAppInUseSettings
     from .win32_lob_app_notification import Win32LobAppNotification
     from .win32_lob_app_restart_settings import Win32LobAppRestartSettings
 
@@ -26,6 +27,8 @@ class Win32LobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
     auto_update_settings: Optional[Win32LobAppAutoUpdateSettings] = None
     # Contains value for delivery optimization priority.
     delivery_optimization_priority: Optional[Win32LobAppDeliveryOptimizationPriority] = None
+    # The in-use deferral and countdown settings for the associated app assignment. These settings are only applied when the app's `installExperience.inUseBehavior` is set to `terminateWithUserInteraction`. When `inUseBehavior` is set to any other value, this property is ignored.
+    in_use_settings: Optional[Win32LobAppInUseSettings] = None
     # The install time settings to apply for this app assignment.
     install_time_settings: Optional[MobileAppInstallTimeSettings] = None
     # Contains value for notification status.
@@ -63,6 +66,7 @@ class Win32LobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
         from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
         from .win32_lob_app_auto_update_settings import Win32LobAppAutoUpdateSettings
         from .win32_lob_app_delivery_optimization_priority import Win32LobAppDeliveryOptimizationPriority
+        from .win32_lob_app_in_use_settings import Win32LobAppInUseSettings
         from .win32_lob_app_notification import Win32LobAppNotification
         from .win32_lob_app_restart_settings import Win32LobAppRestartSettings
 
@@ -71,12 +75,14 @@ class Win32LobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
         from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
         from .win32_lob_app_auto_update_settings import Win32LobAppAutoUpdateSettings
         from .win32_lob_app_delivery_optimization_priority import Win32LobAppDeliveryOptimizationPriority
+        from .win32_lob_app_in_use_settings import Win32LobAppInUseSettings
         from .win32_lob_app_notification import Win32LobAppNotification
         from .win32_lob_app_restart_settings import Win32LobAppRestartSettings
 
         fields: dict[str, Callable[[Any], None]] = {
             "autoUpdateSettings": lambda n : setattr(self, 'auto_update_settings', n.get_object_value(Win32LobAppAutoUpdateSettings)),
             "deliveryOptimizationPriority": lambda n : setattr(self, 'delivery_optimization_priority', n.get_enum_value(Win32LobAppDeliveryOptimizationPriority)),
+            "inUseSettings": lambda n : setattr(self, 'in_use_settings', n.get_object_value(Win32LobAppInUseSettings)),
             "installTimeSettings": lambda n : setattr(self, 'install_time_settings', n.get_object_value(MobileAppInstallTimeSettings)),
             "notifications": lambda n : setattr(self, 'notifications', n.get_enum_value(Win32LobAppNotification)),
             "restartSettings": lambda n : setattr(self, 'restart_settings', n.get_object_value(Win32LobAppRestartSettings)),
@@ -96,6 +102,7 @@ class Win32LobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
         super().serialize(writer)
         writer.write_object_value("autoUpdateSettings", self.auto_update_settings)
         writer.write_enum_value("deliveryOptimizationPriority", self.delivery_optimization_priority)
+        writer.write_object_value("inUseSettings", self.in_use_settings)
         writer.write_object_value("installTimeSettings", self.install_time_settings)
         writer.write_enum_value("notifications", self.notifications)
         writer.write_object_value("restartSettings", self.restart_settings)

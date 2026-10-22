@@ -19,4 +19,6 @@ class OperationApprovalPolicyType(str, Enum):
     UnknownFutureValue = "unknownFutureValue",
     # Indicates that the configured policy type is for Tenant Configuration operations.
     TenantConfiguration = "tenantConfiguration",
+    # Indicates that the configured policy type is for a Device Deprovision Action.
+    DeviceDeprovision = "deviceDeprovision",
 

@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .content_activity_metadata import ContentActivityMetadata
     from .content_base import ContentBase
     from .content_category import ContentCategory
+    from .evaluation_incomplete_activity_metadata import EvaluationIncompleteActivityMetadata
     from .process_conversation_metadata import ProcessConversationMetadata
     from .process_file_metadata import ProcessFileMetadata
 
@@ -61,6 +62,10 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
             from .content_activity_metadata import ContentActivityMetadata
 
             return ContentActivityMetadata()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.evaluationIncompleteActivityMetadata".casefold():
+            from .evaluation_incomplete_activity_metadata import EvaluationIncompleteActivityMetadata
+
+            return EvaluationIncompleteActivityMetadata()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.processConversationMetadata".casefold():
             from .process_conversation_metadata import ProcessConversationMetadata
 
@@ -79,12 +84,14 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
         from .content_activity_metadata import ContentActivityMetadata
         from .content_base import ContentBase
         from .content_category import ContentCategory
+        from .evaluation_incomplete_activity_metadata import EvaluationIncompleteActivityMetadata
         from .process_conversation_metadata import ProcessConversationMetadata
         from .process_file_metadata import ProcessFileMetadata
 
         from .content_activity_metadata import ContentActivityMetadata
         from .content_base import ContentBase
         from .content_category import ContentCategory
+        from .evaluation_incomplete_activity_metadata import EvaluationIncompleteActivityMetadata
         from .process_conversation_metadata import ProcessConversationMetadata
         from .process_file_metadata import ProcessFileMetadata
 

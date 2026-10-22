@@ -8,6 +8,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .backup_policy_protection_mode import BackupPolicyProtectionMode
     from .entity import Entity
+    from .entra_protection_policy import EntraProtectionPolicy
     from .exchange_protection_policy import ExchangeProtectionPolicy
     from .identity_set import IdentitySet
     from .one_drive_for_business_protection_policy import OneDriveForBusinessProtectionPolicy
@@ -61,6 +62,10 @@ class ProtectionPolicyBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraProtectionPolicy".casefold():
+            from .entra_protection_policy import EntraProtectionPolicy
+
+            return EntraProtectionPolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.exchangeProtectionPolicy".casefold():
             from .exchange_protection_policy import ExchangeProtectionPolicy
 
@@ -82,6 +87,7 @@ class ProtectionPolicyBase(Entity, Parsable):
         """
         from .backup_policy_protection_mode import BackupPolicyProtectionMode
         from .entity import Entity
+        from .entra_protection_policy import EntraProtectionPolicy
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .identity_set import IdentitySet
         from .one_drive_for_business_protection_policy import OneDriveForBusinessProtectionPolicy
@@ -92,6 +98,7 @@ class ProtectionPolicyBase(Entity, Parsable):
 
         from .backup_policy_protection_mode import BackupPolicyProtectionMode
         from .entity import Entity
+        from .entra_protection_policy import EntraProtectionPolicy
         from .exchange_protection_policy import ExchangeProtectionPolicy
         from .identity_set import IdentitySet
         from .one_drive_for_business_protection_policy import OneDriveForBusinessProtectionPolicy
