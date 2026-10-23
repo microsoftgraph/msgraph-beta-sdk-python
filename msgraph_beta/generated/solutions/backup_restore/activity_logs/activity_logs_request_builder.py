@@ -49,9 +49,10 @@ class ActivityLogsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ActivityLogsRequestBuilderGetQueryParameters]] = None) -> Optional[ActivityLogBaseCollectionResponse]:
         """
-        Get activityLogs from solutions
+        Get a list of activityLogBase objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ActivityLogBaseCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/backuprestoreroot-list-activitylogs?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -92,7 +93,7 @@ class ActivityLogsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ActivityLogsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get activityLogs from solutions
+        Get a list of activityLogBase objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class ActivityLogsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ActivityLogsRequestBuilderGetQueryParameters():
         """
-        Get activityLogs from solutions
+        Get a list of activityLogBase objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

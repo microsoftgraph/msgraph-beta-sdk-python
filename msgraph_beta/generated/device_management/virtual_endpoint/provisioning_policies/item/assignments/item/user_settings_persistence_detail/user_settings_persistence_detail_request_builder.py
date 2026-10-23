@@ -17,8 +17,11 @@ if TYPE_CHECKING:
     from ........models.cloud_p_c_user_settings_persistence_detail import CloudPCUserSettingsPersistenceDetail
     from ........models.o_data_errors.o_data_error import ODataError
     from .batch_cleanup_user_settings_persistence_profile.batch_cleanup_user_settings_persistence_profile_request_builder import BatchCleanupUserSettingsPersistenceProfileRequestBuilder
+    from .bulk_create_user_profile_snapshot.bulk_create_user_profile_snapshot_request_builder import BulkCreateUserProfileSnapshotRequestBuilder
+    from .bulk_export_user_profile_snapshot.bulk_export_user_profile_snapshot_request_builder import BulkExportUserProfileSnapshotRequestBuilder
     from .retrieve_user_settings_persistence_profiles_with_configuration_id.retrieve_user_settings_persistence_profiles_with_configuration_id_request_builder import RetrieveUserSettingsPersistenceProfilesWithConfigurationIdRequestBuilder
     from .retrieve_user_settings_persistence_profile_usage_with_configuration_id.retrieve_user_settings_persistence_profile_usage_with_configuration_id_request_builder import RetrieveUserSettingsPersistenceProfileUsageWithConfigurationIdRequestBuilder
+    from .user_profile_snapshots.user_profile_snapshots_request_builder import UserProfileSnapshotsRequestBuilder
 
 class UserSettingsPersistenceDetailRequestBuilder(BaseRequestBuilder):
     """
@@ -173,6 +176,33 @@ class UserSettingsPersistenceDetailRequestBuilder(BaseRequestBuilder):
         from .batch_cleanup_user_settings_persistence_profile.batch_cleanup_user_settings_persistence_profile_request_builder import BatchCleanupUserSettingsPersistenceProfileRequestBuilder
 
         return BatchCleanupUserSettingsPersistenceProfileRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def bulk_create_user_profile_snapshot(self) -> BulkCreateUserProfileSnapshotRequestBuilder:
+        """
+        Provides operations to call the bulkCreateUserProfileSnapshot method.
+        """
+        from .bulk_create_user_profile_snapshot.bulk_create_user_profile_snapshot_request_builder import BulkCreateUserProfileSnapshotRequestBuilder
+
+        return BulkCreateUserProfileSnapshotRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def bulk_export_user_profile_snapshot(self) -> BulkExportUserProfileSnapshotRequestBuilder:
+        """
+        Provides operations to call the bulkExportUserProfileSnapshot method.
+        """
+        from .bulk_export_user_profile_snapshot.bulk_export_user_profile_snapshot_request_builder import BulkExportUserProfileSnapshotRequestBuilder
+
+        return BulkExportUserProfileSnapshotRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_profile_snapshots(self) -> UserProfileSnapshotsRequestBuilder:
+        """
+        Provides operations to manage the userProfileSnapshots property of the microsoft.graph.cloudPCUserSettingsPersistenceDetail entity.
+        """
+        from .user_profile_snapshots.user_profile_snapshots_request_builder import UserProfileSnapshotsRequestBuilder
+
+        return UserProfileSnapshotsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class UserSettingsPersistenceDetailRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

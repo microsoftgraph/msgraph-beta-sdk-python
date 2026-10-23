@@ -13,7 +13,7 @@ from .drift_identity_info import DriftIdentityInfo
 class EntraDriftIdentityInfo(DriftIdentityInfo, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.entraDriftIdentityInfo"
-    # The identityType property
+    # The type of identity. The possible values are user and group.
     identity_type: Optional[str] = None
     
     @staticmethod

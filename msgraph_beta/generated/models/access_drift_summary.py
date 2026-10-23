@@ -16,9 +16,9 @@ from .entity import Entity
 
 @dataclass
 class AccessDriftSummary(Entity, Parsable):
-    # The createdDateTime property
+    # The date and time when the drift snapshot was created.
     created_date_time: Optional[datetime.datetime] = None
-    # The details property
+    # The collection of access drift details for this summary.
     details: Optional[list[AccessDriftDetail]] = None
     # The driftCounts property
     drift_counts: Optional[DriftCounts] = None

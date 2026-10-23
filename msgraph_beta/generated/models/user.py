@@ -40,6 +40,7 @@ if TYPE_CHECKING:
     from .event import Event
     from .extension import Extension
     from .group import Group
+    from .identity_governance.user_identity_lifecycle import UserIdentityLifecycle
     from .identity_governance_user_settings import IdentityGovernanceUserSettings
     from .inference_classification import InferenceClassification
     from .information_protection import InformationProtection
@@ -266,6 +267,8 @@ class User(DirectoryObject, Parsable):
     license_assignment_states: Optional[list[LicenseAssignmentState]] = None
     # The licenseDetails property
     license_details: Optional[list[LicenseDetails]] = None
+    # Lifecycle information for the user. Read-only.
+    lifecycle: Optional[UserIdentityLifecycle] = None
     # The SMTP address for the user, for example, admin@contoso.com. Changes to this property also update the user's proxyAddresses collection to include the value as an SMTP address. This property can't contain accent characters.  NOTE: We don't recommend updating this property for Azure AD B2C user profiles. Use the otherMails property instead.  Supports $filter (eq, ne, not, ge, le, in, startsWith, endsWith, and eq on null values).
     mail: Optional[str] = None
     # The user's mail folders. Read-only. Nullable.
@@ -490,6 +493,7 @@ class User(DirectoryObject, Parsable):
         from .event import Event
         from .extension import Extension
         from .group import Group
+        from .identity_governance.user_identity_lifecycle import UserIdentityLifecycle
         from .identity_governance_user_settings import IdentityGovernanceUserSettings
         from .inference_classification import InferenceClassification
         from .information_protection import InformationProtection
@@ -576,6 +580,7 @@ class User(DirectoryObject, Parsable):
         from .event import Event
         from .extension import Extension
         from .group import Group
+        from .identity_governance.user_identity_lifecycle import UserIdentityLifecycle
         from .identity_governance_user_settings import IdentityGovernanceUserSettings
         from .inference_classification import InferenceClassification
         from .information_protection import InformationProtection
@@ -713,6 +718,7 @@ class User(DirectoryObject, Parsable):
             "legalAgeGroupClassification": lambda n : setattr(self, 'legal_age_group_classification', n.get_str_value()),
             "licenseAssignmentStates": lambda n : setattr(self, 'license_assignment_states', n.get_collection_of_object_values(LicenseAssignmentState)),
             "licenseDetails": lambda n : setattr(self, 'license_details', n.get_collection_of_object_values(LicenseDetails)),
+            "lifecycle": lambda n : setattr(self, 'lifecycle', n.get_object_value(UserIdentityLifecycle)),
             "mail": lambda n : setattr(self, 'mail', n.get_str_value()),
             "mailFolders": lambda n : setattr(self, 'mail_folders', n.get_collection_of_object_values(MailFolder)),
             "mailNickname": lambda n : setattr(self, 'mail_nickname', n.get_str_value()),
@@ -893,6 +899,7 @@ class User(DirectoryObject, Parsable):
         writer.write_str_value("legalAgeGroupClassification", self.legal_age_group_classification)
         writer.write_collection_of_object_values("licenseAssignmentStates", self.license_assignment_states)
         writer.write_collection_of_object_values("licenseDetails", self.license_details)
+        writer.write_object_value("lifecycle", self.lifecycle)
         writer.write_str_value("mail", self.mail)
         writer.write_collection_of_object_values("mailFolders", self.mail_folders)
         writer.write_str_value("mailNickname", self.mail_nickname)

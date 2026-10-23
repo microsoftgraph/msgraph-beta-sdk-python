@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from ......models.teams_channel_planner import TeamsChannelPlanner
     from .plans.plans_request_builder import PlansRequestBuilder
+    from .plans_v2.plans_v2_request_builder import Plans_v2RequestBuilder
 
 class PlannerRequestBuilder(BaseRequestBuilder):
     """
@@ -147,6 +148,15 @@ class PlannerRequestBuilder(BaseRequestBuilder):
         from .plans.plans_request_builder import PlansRequestBuilder
 
         return PlansRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def plans_v2(self) -> Plans_v2RequestBuilder:
+        """
+        Provides operations to manage the plans_v2 property of the microsoft.graph.teamsChannelPlanner entity.
+        """
+        from .plans_v2.plans_v2_request_builder import Plans_v2RequestBuilder
+
+        return Plans_v2RequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class PlannerRequestBuilderDeleteRequestConfiguration(RequestConfiguration[QueryParameters]):

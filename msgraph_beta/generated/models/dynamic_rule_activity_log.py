@@ -14,11 +14,11 @@ from .activity_log_base import ActivityLogBase
 class DynamicRuleActivityLog(ActivityLogBase, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.dynamicRuleActivityLog"
-    # The policyId property
+    # The unique identifier of the protection policy associated with the activity log.
     policy_id: Optional[str] = None
-    # The policyName property
+    # Name of the protection policy.
     policy_name: Optional[str] = None
-    # The protectionUnitDetails property
+    # Contains Protection unit counts information.
     protection_unit_details: Optional[ProtectionUnitDetails] = None
     
     @staticmethod

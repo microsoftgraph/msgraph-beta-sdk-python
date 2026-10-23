@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .a365_ai_execute_tool import A365AiExecuteTool
+    from .a365_ai_guardrail import A365AiGuardrail
     from .a365_ai_inference_call import A365AiInferenceCall
     from .a365_ai_invoke_agent import A365AiInvokeAgent
     from .a365_ai_run_summary import A365AiRunSummary
@@ -26,6 +27,7 @@ if TYPE_CHECKING:
     from .air_manual_investigation_data import AirManualInvestigationData
     from .ai_app_interaction_audit_record import AiAppInteractionAuditRecord
     from .ai_execute_tool_audit_record import AiExecuteToolAuditRecord
+    from .ai_guardrail import AiGuardrail
     from .ai_interactions_change_notification_audit_record import AiInteractionsChangeNotificationAuditRecord
     from .ai_interactions_export_audit_record import AiInteractionsExportAuditRecord
     from .ai_interactions_subscription_audit_record import AiInteractionsSubscriptionAuditRecord
@@ -56,6 +58,9 @@ if TYPE_CHECKING:
     from .cdp_log_record import CdpLogRecord
     from .cdp_ocr_billing_record import CdpOcrBillingRecord
     from .cdp_resource_scope_change_event_record import CdpResourceScopeChangeEventRecord
+    from .cloud_security_connector import CloudSecurityConnector
+    from .cloud_security_enablement import CloudSecurityEnablement
+    from .cloud_security_management import CloudSecurityManagement
     from .cloud_update_device_config_audit_record import CloudUpdateDeviceConfigAuditRecord
     from .cloud_update_profile_config_audit_record import CloudUpdateProfileConfigAuditRecord
     from .cloud_update_tenant_config_audit_record import CloudUpdateTenantConfigAuditRecord
@@ -75,6 +80,8 @@ if TYPE_CHECKING:
     from .compliance_d_l_p_share_point_classification_audit_record import ComplianceDLPSharePointClassificationAuditRecord
     from .compliance_d_l_p_share_point_classification_cdp_record import ComplianceDLPSharePointClassificationCdpRecord
     from .compliance_d_l_p_share_point_classification_extended_audit_record import ComplianceDLPSharePointClassificationExtendedAuditRecord
+    from .compliance_endpoint_evaluation_incomplete import ComplianceEndpointEvaluationIncomplete
+    from .compliance_evaluation_incomplete import ComplianceEvaluationIncomplete
     from .compliance_exchange_ocr_audit_record import ComplianceExchangeOcrAuditRecord
     from .compliance_manager_action_record import ComplianceManagerActionRecord
     from .compliance_policy_grading_share_point_audit_record import CompliancePolicyGradingSharePointAuditRecord
@@ -98,6 +105,7 @@ if TYPE_CHECKING:
     from .critical_asset_management_classification_record import CriticalAssetManagementClassificationRecord
     from .crm_entity_operation_audit_record import CrmEntityOperationAuditRecord
     from .cross_tenant_access_policy_audit_record import CrossTenantAccessPolicyAuditRecord
+    from .csc_content_metadata import CscContentMetadata
     from .customer_key_service_encryption_audit_record import CustomerKeyServiceEncryptionAuditRecord
     from .data_center_security_cmdlet_audit_record import DataCenterSecurityCmdletAuditRecord
     from .data_governance_audit_record import DataGovernanceAuditRecord
@@ -106,7 +114,10 @@ if TYPE_CHECKING:
     from .data_security_investigation_audit_record import DataSecurityInvestigationAuditRecord
     from .data_share_operation_audit_record import DataShareOperationAuditRecord
     from .default_audit_data import DefaultAuditData
+    from .defender_automation_rule import DefenderAutomationRule
     from .defender_case_management_audit_record import DefenderCaseManagementAuditRecord
+    from .defender_generated_playbook import DefenderGeneratedPlaybook
+    from .defender_integration import DefenderIntegration
     from .defender_preview_features_record import DefenderPreviewFeaturesRecord
     from .defender_security_for_a_i_configuration_audit_record import DefenderSecurityForAIConfigurationAuditRecord
     from .deploy_feature_activity_record import DeployFeatureActivityRecord
@@ -121,7 +132,9 @@ if TYPE_CHECKING:
     from .dragon_copilot_admin_record import DragonCopilotAdminRecord
     from .dragon_copilot_clinical_data_record import DragonCopilotClinicalDataRecord
     from .dragon_copilot_session_record import DragonCopilotSessionRecord
+    from .dspm_admin_activity import DspmAdminActivity
     from .dynamics365_business_central_audit_record import Dynamics365BusinessCentralAuditRecord
+    from .ecs_content_metadata import EcsContentMetadata
     from .ehr_connector_audit_base_record import EhrConnectorAuditBaseRecord
     from .eop_submission_feed_entity_audit_record import EopSubmissionFeedEntityAuditRecord
     from .exchange_admin_audit_record import ExchangeAdminAuditRecord
@@ -131,6 +144,7 @@ if TYPE_CHECKING:
     from .exchange_mailbox_audit_record import ExchangeMailboxAuditRecord
     from .fabric_audit_record import FabricAuditRecord
     from .fabric_policy_record import FabricPolicyRecord
+    from .filtering_teams_message_file_info import FilteringTeamsMessageFileInfo
     from .healthcare_signal_record import HealthcareSignalRecord
     from .hosted_rpa_audit_record import HostedRpaAuditRecord
     from .hr_signal_audit_record import HrSignalAuditRecord
@@ -159,12 +173,14 @@ if TYPE_CHECKING:
     from .mapg_policy_audit_record import MapgPolicyAuditRecord
     from .mapg_remediation_audit_record import MapgRemediationAuditRecord
     from .mcas_alerts_audit_record import McasAlertsAuditRecord
+    from .mcs_raw_email_content_metadata import McsRawEmailContentMetadata
     from .mdatp_audit_record import MdatpAuditRecord
     from .mda_audit_record import MdaAuditRecord
     from .mda_data_security_signal_record import MdaDataSecuritySignalRecord
     from .mdc_events_record import MdcEventsRecord
     from .mdi_audit_record import MdiAuditRecord
     from .mesh_worlds_audit_record import MeshWorldsAuditRecord
+    from .mes_raw_email_content_metadata import MesRawEmailContentMetadata
     from .microsoft365_backup_backup_item_audit_record import Microsoft365BackupBackupItemAuditRecord
     from .microsoft365_backup_backup_policy_audit_record import Microsoft365BackupBackupPolicyAuditRecord
     from .microsoft365_backup_granular_browse_task_audit_record import Microsoft365BackupGranularBrowseTaskAuditRecord
@@ -182,11 +198,14 @@ if TYPE_CHECKING:
     from .microsoft_purview_policy_operation_record import MicrosoftPurviewPolicyOperationRecord
     from .microsoft_purview_privacy_audit_event import MicrosoftPurviewPrivacyAuditEvent
     from .microsoft_purview_unified_catalog_operation_record import MicrosoftPurviewUnifiedCatalogOperationRecord
+    from .microsoft_security_for_ai_configuration import MicrosoftSecurityForAiConfiguration
+    from .microsoft_security_for_ai_real_time_protection import MicrosoftSecurityForAiRealTimeProtection
     from .microsoft_stream_audit_record import MicrosoftStreamAuditRecord
     from .microsoft_teams_admin_audit_record import MicrosoftTeamsAdminAuditRecord
     from .microsoft_teams_analytics_audit_record import MicrosoftTeamsAnalyticsAuditRecord
     from .microsoft_teams_audit_record import MicrosoftTeamsAuditRecord
     from .microsoft_teams_device_audit_record import MicrosoftTeamsDeviceAuditRecord
+    from .microsoft_teams_move_messages import MicrosoftTeamsMoveMessages
     from .microsoft_teams_retention_label_action_audit_record import MicrosoftTeamsRetentionLabelActionAuditRecord
     from .microsoft_teams_sensitivity_label_action_audit_record import MicrosoftTeamsSensitivityLabelActionAuditRecord
     from .microsoft_teams_shifts_audit_record import MicrosoftTeamsShiftsAuditRecord
@@ -213,6 +232,7 @@ if TYPE_CHECKING:
     from .msde_roles_settings_audit_record import MsdeRolesSettingsAuditRecord
     from .msp_vector_search_content_metadata_audit_record import MspVectorSearchContentMetadataAuditRecord
     from .mstic_nation_state_notification_record import MsticNationStateNotificationRecord
+    from .mtp_content_metadata import MtpContentMetadata
     from .multi_stage_disposition_audit_record import MultiStageDispositionAuditRecord
     from .my_analytics_settings_audit_record import MyAnalyticsSettingsAuditRecord
     from .m_d_a_s_h_audit_record import MDASHAuditRecord
@@ -220,6 +240,7 @@ if TYPE_CHECKING:
     from .office_native_audit_record import OfficeNativeAuditRecord
     from .ome_portal_audit_record import OmePortalAuditRecord
     from .one_drive_audit_record import OneDriveAuditRecord
+    from .on_demand_exchange_classification import OnDemandExchangeClassification
     from .on_demand_share_point_classification_audit_record import OnDemandSharePointClassificationAuditRecord
     from .on_premises_file_share_scanner_d_l_p_audit_record import OnPremisesFileShareScannerDLPAuditRecord
     from .on_premises_share_point_scanner_d_l_p_audit_record import OnPremisesSharePointScannerDLPAuditRecord
@@ -230,13 +251,20 @@ if TYPE_CHECKING:
     from .p4ai_assessment_fabric_scanner_record import P4aiAssessmentFabricScannerRecord
     from .p4ai_assessment_location_result_record import P4aiAssessmentLocationResultRecord
     from .p4ai_assessment_record import P4aiAssessmentRecord
+    from .p4_ai_dag_site_permissions_record import P4AiDagSitePermissionsRecord
     from .p4_a_i_risk_score_record import P4AIRiskScoreRecord
     from .people_admin_settings_audit_record import PeopleAdminSettingsAuditRecord
+    from .people_skills_admin import PeopleSkillsAdmin
+    from .people_skills_user import PeopleSkillsUser
     from .physical_badging_signal_audit_record import PhysicalBadgingSignalAuditRecord
     from .places_directory_audit_record import PlacesDirectoryAuditRecord
     from .planner_chat_message_audit_record import PlannerChatMessageAuditRecord
     from .planner_chat_message_list_audit_record import PlannerChatMessageListAuditRecord
     from .planner_copy_plan_audit_record import PlannerCopyPlanAuditRecord
+    from .planner_custom_field_definition import PlannerCustomFieldDefinition
+    from .planner_custom_field_definition_list import PlannerCustomFieldDefinitionList
+    from .planner_dependency import PlannerDependency
+    from .planner_dependency_list import PlannerDependencyList
     from .planner_goal_audit_record import PlannerGoalAuditRecord
     from .planner_goal_list_audit_record import PlannerGoalListAuditRecord
     from .planner_plan_audit_record import PlannerPlanAuditRecord
@@ -323,6 +351,7 @@ if TYPE_CHECKING:
     from .share_point_content_type_operation_audit_record import SharePointContentTypeOperationAuditRecord
     from .share_point_e_signature_audit_record import SharePointESignatureAuditRecord
     from .share_point_field_operation_audit_record import SharePointFieldOperationAuditRecord
+    from .share_point_file_archive_policy import SharePointFileArchivePolicy
     from .share_point_file_operation_audit_record import SharePointFileOperationAuditRecord
     from .share_point_list_item_operation_audit_record import SharePointListItemOperationAuditRecord
     from .share_point_list_operation_audit_record import SharePointListOperationAuditRecord
@@ -338,6 +367,7 @@ if TYPE_CHECKING:
     from .spark_core_custom_live_pool_record import SparkCoreCustomLivePoolRecord
     from .submission_entity_audit_record import SubmissionEntityAuditRecord
     from .supervisory_review_day_x_insights_audit_record import SupervisoryReviewDayXInsightsAuditRecord
+    from .synthetic_media_detection_event import SyntheticMediaDetectionEvent
     from .synthetic_probe_audit_record import SyntheticProbeAuditRecord
     from .teams_easy_approvals_audit_record import TeamsEasyApprovalsAuditRecord
     from .teams_eval_data_hub_admin_operation_audit_record import TeamsEvalDataHubAdminOperationAuditRecord
@@ -361,6 +391,7 @@ if TYPE_CHECKING:
     from .unified_simulation_summary_audit_record import UnifiedSimulationSummaryAuditRecord
     from .universal_print_management_audit_record import UniversalPrintManagementAuditRecord
     from .universal_print_print_job_audit_record import UniversalPrintPrintJobAuditRecord
+    from .universal_print_secure_scan import UniversalPrintSecureScan
     from .urbac_assignment_audit_record import UrbacAssignmentAuditRecord
     from .urbac_enable_state_audit_record import UrbacEnableStateAuditRecord
     from .urbac_role_audit_record import UrbacRoleAuditRecord
@@ -375,6 +406,8 @@ if TYPE_CHECKING:
     from .viva_engage_segment_audit_record import VivaEngageSegmentAuditRecord
     from .viva_glint_advanced_configuration_audit_record import VivaGlintAdvancedConfigurationAuditRecord
     from .viva_glint_agentic_campaign_audit_record import VivaGlintAgenticCampaignAuditRecord
+    from .viva_glint_client_configuration import VivaGlintClientConfiguration
+    from .viva_glint_data_retention import VivaGlintDataRetention
     from .viva_glint_feedback_program_audit_record import VivaGlintFeedbackProgramAuditRecord
     from .viva_glint_organizational_data_audit_record import VivaGlintOrganizationalDataAuditRecord
     from .viva_glint_pulse_program_audit_record import VivaGlintPulseProgramAuditRecord
@@ -386,6 +419,7 @@ if TYPE_CHECKING:
     from .viva_glint_system_audit_record import VivaGlintSystemAuditRecord
     from .viva_glint_user_audit_record import VivaGlintUserAuditRecord
     from .viva_glint_user_group_audit_record import VivaGlintUserGroupAuditRecord
+    from .viva_glint_viva_insights_integration import VivaGlintVivaInsightsIntegration
     from .viva_goals_audit_record import VivaGoalsAuditRecord
     from .viva_learning_admin_audit_record import VivaLearningAdminAuditRecord
     from .viva_learning_audit_record import VivaLearningAuditRecord
@@ -397,6 +431,7 @@ if TYPE_CHECKING:
     from .web_content_filtering_audit_record import WebContentFilteringAuditRecord
     from .windows365_customer_lockbox_audit_record import Windows365CustomerLockboxAuditRecord
     from .workplace_analytics_audit_record import WorkplaceAnalyticsAuditRecord
+    from .work_i_q_admin_activity import WorkIQAdminActivity
     from .yammer_audit_record import YammerAuditRecord
     from .yammer_user_hiding_audit_record import YammerUserHidingAuditRecord
 
@@ -433,6 +468,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .a365_ai_execute_tool import A365AiExecuteTool
 
             return A365AiExecuteTool()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.a365AiGuardrail".casefold():
+            from .a365_ai_guardrail import A365AiGuardrail
+
+            return A365AiGuardrail()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.a365AiInferenceCall".casefold():
             from .a365_ai_inference_call import A365AiInferenceCall
 
@@ -473,6 +512,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .ai_execute_tool_audit_record import AiExecuteToolAuditRecord
 
             return AiExecuteToolAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.aiGuardrail".casefold():
+            from .ai_guardrail import AiGuardrail
+
+            return AiGuardrail()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.aiInteractionsChangeNotificationAuditRecord".casefold():
             from .ai_interactions_change_notification_audit_record import AiInteractionsChangeNotificationAuditRecord
 
@@ -625,6 +668,18 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .cdp_resource_scope_change_event_record import CdpResourceScopeChangeEventRecord
 
             return CdpResourceScopeChangeEventRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.cloudSecurityConnector".casefold():
+            from .cloud_security_connector import CloudSecurityConnector
+
+            return CloudSecurityConnector()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.cloudSecurityEnablement".casefold():
+            from .cloud_security_enablement import CloudSecurityEnablement
+
+            return CloudSecurityEnablement()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.cloudSecurityManagement".casefold():
+            from .cloud_security_management import CloudSecurityManagement
+
+            return CloudSecurityManagement()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.cloudUpdateDeviceConfigAuditRecord".casefold():
             from .cloud_update_device_config_audit_record import CloudUpdateDeviceConfigAuditRecord
 
@@ -701,6 +756,14 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .compliance_d_l_p_share_point_classification_extended_audit_record import ComplianceDLPSharePointClassificationExtendedAuditRecord
 
             return ComplianceDLPSharePointClassificationExtendedAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.complianceEndpointEvaluationIncomplete".casefold():
+            from .compliance_endpoint_evaluation_incomplete import ComplianceEndpointEvaluationIncomplete
+
+            return ComplianceEndpointEvaluationIncomplete()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.complianceEvaluationIncomplete".casefold():
+            from .compliance_evaluation_incomplete import ComplianceEvaluationIncomplete
+
+            return ComplianceEvaluationIncomplete()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.complianceExchangeOcrAuditRecord".casefold():
             from .compliance_exchange_ocr_audit_record import ComplianceExchangeOcrAuditRecord
 
@@ -793,6 +856,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .cross_tenant_access_policy_audit_record import CrossTenantAccessPolicyAuditRecord
 
             return CrossTenantAccessPolicyAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.cscContentMetadata".casefold():
+            from .csc_content_metadata import CscContentMetadata
+
+            return CscContentMetadata()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.customerKeyServiceEncryptionAuditRecord".casefold():
             from .customer_key_service_encryption_audit_record import CustomerKeyServiceEncryptionAuditRecord
 
@@ -825,10 +892,22 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .default_audit_data import DefaultAuditData
 
             return DefaultAuditData()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.defenderAutomationRule".casefold():
+            from .defender_automation_rule import DefenderAutomationRule
+
+            return DefenderAutomationRule()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.defenderCaseManagementAuditRecord".casefold():
             from .defender_case_management_audit_record import DefenderCaseManagementAuditRecord
 
             return DefenderCaseManagementAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.defenderGeneratedPlaybook".casefold():
+            from .defender_generated_playbook import DefenderGeneratedPlaybook
+
+            return DefenderGeneratedPlaybook()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.defenderIntegration".casefold():
+            from .defender_integration import DefenderIntegration
+
+            return DefenderIntegration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.defenderPreviewFeaturesRecord".casefold():
             from .defender_preview_features_record import DefenderPreviewFeaturesRecord
 
@@ -885,10 +964,18 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .dragon_copilot_session_record import DragonCopilotSessionRecord
 
             return DragonCopilotSessionRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.dspmAdminActivity".casefold():
+            from .dspm_admin_activity import DspmAdminActivity
+
+            return DspmAdminActivity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.dynamics365BusinessCentralAuditRecord".casefold():
             from .dynamics365_business_central_audit_record import Dynamics365BusinessCentralAuditRecord
 
             return Dynamics365BusinessCentralAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ecsContentMetadata".casefold():
+            from .ecs_content_metadata import EcsContentMetadata
+
+            return EcsContentMetadata()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ehrConnectorAuditBaseRecord".casefold():
             from .ehr_connector_audit_base_record import EhrConnectorAuditBaseRecord
 
@@ -925,6 +1012,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .fabric_policy_record import FabricPolicyRecord
 
             return FabricPolicyRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.filteringTeamsMessageFileInfo".casefold():
+            from .filtering_teams_message_file_info import FilteringTeamsMessageFileInfo
+
+            return FilteringTeamsMessageFileInfo()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.healthcareSignalRecord".casefold():
             from .healthcare_signal_record import HealthcareSignalRecord
 
@@ -1037,6 +1128,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .mcas_alerts_audit_record import McasAlertsAuditRecord
 
             return McasAlertsAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.mcsRawEmailContentMetadata".casefold():
+            from .mcs_raw_email_content_metadata import McsRawEmailContentMetadata
+
+            return McsRawEmailContentMetadata()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.mdaAuditRecord".casefold():
             from .mda_audit_record import MdaAuditRecord
 
@@ -1065,6 +1160,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .mesh_worlds_audit_record import MeshWorldsAuditRecord
 
             return MeshWorldsAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.mesRawEmailContentMetadata".casefold():
+            from .mes_raw_email_content_metadata import MesRawEmailContentMetadata
+
+            return MesRawEmailContentMetadata()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.microsoft365BackupBackupItemAuditRecord".casefold():
             from .microsoft365_backup_backup_item_audit_record import Microsoft365BackupBackupItemAuditRecord
 
@@ -1133,6 +1232,14 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .microsoft_purview_unified_catalog_operation_record import MicrosoftPurviewUnifiedCatalogOperationRecord
 
             return MicrosoftPurviewUnifiedCatalogOperationRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.microsoftSecurityForAiConfiguration".casefold():
+            from .microsoft_security_for_ai_configuration import MicrosoftSecurityForAiConfiguration
+
+            return MicrosoftSecurityForAiConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.microsoftSecurityForAiRealTimeProtection".casefold():
+            from .microsoft_security_for_ai_real_time_protection import MicrosoftSecurityForAiRealTimeProtection
+
+            return MicrosoftSecurityForAiRealTimeProtection()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.microsoftStreamAuditRecord".casefold():
             from .microsoft_stream_audit_record import MicrosoftStreamAuditRecord
 
@@ -1153,6 +1260,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .microsoft_teams_device_audit_record import MicrosoftTeamsDeviceAuditRecord
 
             return MicrosoftTeamsDeviceAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.microsoftTeamsMoveMessages".casefold():
+            from .microsoft_teams_move_messages import MicrosoftTeamsMoveMessages
+
+            return MicrosoftTeamsMoveMessages()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.microsoftTeamsRetentionLabelActionAuditRecord".casefold():
             from .microsoft_teams_retention_label_action_audit_record import MicrosoftTeamsRetentionLabelActionAuditRecord
 
@@ -1257,6 +1368,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .mstic_nation_state_notification_record import MsticNationStateNotificationRecord
 
             return MsticNationStateNotificationRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.mtpContentMetadata".casefold():
+            from .mtp_content_metadata import MtpContentMetadata
+
+            return MtpContentMetadata()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.multiStageDispositionAuditRecord".casefold():
             from .multi_stage_disposition_audit_record import MultiStageDispositionAuditRecord
 
@@ -1277,6 +1392,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .ome_portal_audit_record import OmePortalAuditRecord
 
             return OmePortalAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.onDemandExchangeClassification".casefold():
+            from .on_demand_exchange_classification import OnDemandExchangeClassification
+
+            return OnDemandExchangeClassification()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.onDemandSharePointClassificationAuditRecord".casefold():
             from .on_demand_share_point_classification_audit_record import OnDemandSharePointClassificationAuditRecord
 
@@ -1321,6 +1440,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .p4ai_assessment_record import P4aiAssessmentRecord
 
             return P4aiAssessmentRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.p4AiDagSitePermissionsRecord".casefold():
+            from .p4_ai_dag_site_permissions_record import P4AiDagSitePermissionsRecord
+
+            return P4AiDagSitePermissionsRecord()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.p4AIRiskScoreRecord".casefold():
             from .p4_a_i_risk_score_record import P4AIRiskScoreRecord
 
@@ -1329,6 +1452,14 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .people_admin_settings_audit_record import PeopleAdminSettingsAuditRecord
 
             return PeopleAdminSettingsAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.peopleSkillsAdmin".casefold():
+            from .people_skills_admin import PeopleSkillsAdmin
+
+            return PeopleSkillsAdmin()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.peopleSkillsUser".casefold():
+            from .people_skills_user import PeopleSkillsUser
+
+            return PeopleSkillsUser()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.physicalBadgingSignalAuditRecord".casefold():
             from .physical_badging_signal_audit_record import PhysicalBadgingSignalAuditRecord
 
@@ -1349,6 +1480,22 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .planner_copy_plan_audit_record import PlannerCopyPlanAuditRecord
 
             return PlannerCopyPlanAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.plannerCustomFieldDefinition".casefold():
+            from .planner_custom_field_definition import PlannerCustomFieldDefinition
+
+            return PlannerCustomFieldDefinition()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.plannerCustomFieldDefinitionList".casefold():
+            from .planner_custom_field_definition_list import PlannerCustomFieldDefinitionList
+
+            return PlannerCustomFieldDefinitionList()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.plannerDependency".casefold():
+            from .planner_dependency import PlannerDependency
+
+            return PlannerDependency()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.plannerDependencyList".casefold():
+            from .planner_dependency_list import PlannerDependencyList
+
+            return PlannerDependencyList()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.plannerGoalAuditRecord".casefold():
             from .planner_goal_audit_record import PlannerGoalAuditRecord
 
@@ -1693,6 +1840,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .share_point_field_operation_audit_record import SharePointFieldOperationAuditRecord
 
             return SharePointFieldOperationAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.sharePointFileArchivePolicy".casefold():
+            from .share_point_file_archive_policy import SharePointFileArchivePolicy
+
+            return SharePointFileArchivePolicy()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.sharePointFileOperationAuditRecord".casefold():
             from .share_point_file_operation_audit_record import SharePointFileOperationAuditRecord
 
@@ -1753,6 +1904,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .supervisory_review_day_x_insights_audit_record import SupervisoryReviewDayXInsightsAuditRecord
 
             return SupervisoryReviewDayXInsightsAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.syntheticMediaDetectionEvent".casefold():
+            from .synthetic_media_detection_event import SyntheticMediaDetectionEvent
+
+            return SyntheticMediaDetectionEvent()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.syntheticProbeAuditRecord".casefold():
             from .synthetic_probe_audit_record import SyntheticProbeAuditRecord
 
@@ -1845,6 +2000,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .universal_print_print_job_audit_record import UniversalPrintPrintJobAuditRecord
 
             return UniversalPrintPrintJobAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.universalPrintSecureScan".casefold():
+            from .universal_print_secure_scan import UniversalPrintSecureScan
+
+            return UniversalPrintSecureScan()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.urbacAssignmentAuditRecord".casefold():
             from .urbac_assignment_audit_record import UrbacAssignmentAuditRecord
 
@@ -1901,6 +2060,14 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .viva_glint_agentic_campaign_audit_record import VivaGlintAgenticCampaignAuditRecord
 
             return VivaGlintAgenticCampaignAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.vivaGlintClientConfiguration".casefold():
+            from .viva_glint_client_configuration import VivaGlintClientConfiguration
+
+            return VivaGlintClientConfiguration()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.vivaGlintDataRetention".casefold():
+            from .viva_glint_data_retention import VivaGlintDataRetention
+
+            return VivaGlintDataRetention()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.vivaGlintFeedbackProgramAuditRecord".casefold():
             from .viva_glint_feedback_program_audit_record import VivaGlintFeedbackProgramAuditRecord
 
@@ -1945,6 +2112,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .viva_glint_user_group_audit_record import VivaGlintUserGroupAuditRecord
 
             return VivaGlintUserGroupAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.vivaGlintVivaInsightsIntegration".casefold():
+            from .viva_glint_viva_insights_integration import VivaGlintVivaInsightsIntegration
+
+            return VivaGlintVivaInsightsIntegration()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.vivaGoalsAuditRecord".casefold():
             from .viva_goals_audit_record import VivaGoalsAuditRecord
 
@@ -1985,6 +2156,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
             from .windows365_customer_lockbox_audit_record import Windows365CustomerLockboxAuditRecord
 
             return Windows365CustomerLockboxAuditRecord()
+        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.workIQAdminActivity".casefold():
+            from .work_i_q_admin_activity import WorkIQAdminActivity
+
+            return WorkIQAdminActivity()
         if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.workplaceAnalyticsAuditRecord".casefold():
             from .workplace_analytics_audit_record import WorkplaceAnalyticsAuditRecord
 
@@ -2005,6 +2180,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .a365_ai_execute_tool import A365AiExecuteTool
+        from .a365_ai_guardrail import A365AiGuardrail
         from .a365_ai_inference_call import A365AiInferenceCall
         from .a365_ai_invoke_agent import A365AiInvokeAgent
         from .a365_ai_run_summary import A365AiRunSummary
@@ -2024,6 +2200,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .air_manual_investigation_data import AirManualInvestigationData
         from .ai_app_interaction_audit_record import AiAppInteractionAuditRecord
         from .ai_execute_tool_audit_record import AiExecuteToolAuditRecord
+        from .ai_guardrail import AiGuardrail
         from .ai_interactions_change_notification_audit_record import AiInteractionsChangeNotificationAuditRecord
         from .ai_interactions_export_audit_record import AiInteractionsExportAuditRecord
         from .ai_interactions_subscription_audit_record import AiInteractionsSubscriptionAuditRecord
@@ -2054,6 +2231,9 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .cdp_log_record import CdpLogRecord
         from .cdp_ocr_billing_record import CdpOcrBillingRecord
         from .cdp_resource_scope_change_event_record import CdpResourceScopeChangeEventRecord
+        from .cloud_security_connector import CloudSecurityConnector
+        from .cloud_security_enablement import CloudSecurityEnablement
+        from .cloud_security_management import CloudSecurityManagement
         from .cloud_update_device_config_audit_record import CloudUpdateDeviceConfigAuditRecord
         from .cloud_update_profile_config_audit_record import CloudUpdateProfileConfigAuditRecord
         from .cloud_update_tenant_config_audit_record import CloudUpdateTenantConfigAuditRecord
@@ -2073,6 +2253,8 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .compliance_d_l_p_share_point_classification_audit_record import ComplianceDLPSharePointClassificationAuditRecord
         from .compliance_d_l_p_share_point_classification_cdp_record import ComplianceDLPSharePointClassificationCdpRecord
         from .compliance_d_l_p_share_point_classification_extended_audit_record import ComplianceDLPSharePointClassificationExtendedAuditRecord
+        from .compliance_endpoint_evaluation_incomplete import ComplianceEndpointEvaluationIncomplete
+        from .compliance_evaluation_incomplete import ComplianceEvaluationIncomplete
         from .compliance_exchange_ocr_audit_record import ComplianceExchangeOcrAuditRecord
         from .compliance_manager_action_record import ComplianceManagerActionRecord
         from .compliance_policy_grading_share_point_audit_record import CompliancePolicyGradingSharePointAuditRecord
@@ -2096,6 +2278,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .critical_asset_management_classification_record import CriticalAssetManagementClassificationRecord
         from .crm_entity_operation_audit_record import CrmEntityOperationAuditRecord
         from .cross_tenant_access_policy_audit_record import CrossTenantAccessPolicyAuditRecord
+        from .csc_content_metadata import CscContentMetadata
         from .customer_key_service_encryption_audit_record import CustomerKeyServiceEncryptionAuditRecord
         from .data_center_security_cmdlet_audit_record import DataCenterSecurityCmdletAuditRecord
         from .data_governance_audit_record import DataGovernanceAuditRecord
@@ -2104,7 +2287,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .data_security_investigation_audit_record import DataSecurityInvestigationAuditRecord
         from .data_share_operation_audit_record import DataShareOperationAuditRecord
         from .default_audit_data import DefaultAuditData
+        from .defender_automation_rule import DefenderAutomationRule
         from .defender_case_management_audit_record import DefenderCaseManagementAuditRecord
+        from .defender_generated_playbook import DefenderGeneratedPlaybook
+        from .defender_integration import DefenderIntegration
         from .defender_preview_features_record import DefenderPreviewFeaturesRecord
         from .defender_security_for_a_i_configuration_audit_record import DefenderSecurityForAIConfigurationAuditRecord
         from .deploy_feature_activity_record import DeployFeatureActivityRecord
@@ -2119,7 +2305,9 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .dragon_copilot_admin_record import DragonCopilotAdminRecord
         from .dragon_copilot_clinical_data_record import DragonCopilotClinicalDataRecord
         from .dragon_copilot_session_record import DragonCopilotSessionRecord
+        from .dspm_admin_activity import DspmAdminActivity
         from .dynamics365_business_central_audit_record import Dynamics365BusinessCentralAuditRecord
+        from .ecs_content_metadata import EcsContentMetadata
         from .ehr_connector_audit_base_record import EhrConnectorAuditBaseRecord
         from .eop_submission_feed_entity_audit_record import EopSubmissionFeedEntityAuditRecord
         from .exchange_admin_audit_record import ExchangeAdminAuditRecord
@@ -2129,6 +2317,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .exchange_mailbox_audit_record import ExchangeMailboxAuditRecord
         from .fabric_audit_record import FabricAuditRecord
         from .fabric_policy_record import FabricPolicyRecord
+        from .filtering_teams_message_file_info import FilteringTeamsMessageFileInfo
         from .healthcare_signal_record import HealthcareSignalRecord
         from .hosted_rpa_audit_record import HostedRpaAuditRecord
         from .hr_signal_audit_record import HrSignalAuditRecord
@@ -2157,12 +2346,14 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .mapg_policy_audit_record import MapgPolicyAuditRecord
         from .mapg_remediation_audit_record import MapgRemediationAuditRecord
         from .mcas_alerts_audit_record import McasAlertsAuditRecord
+        from .mcs_raw_email_content_metadata import McsRawEmailContentMetadata
         from .mdatp_audit_record import MdatpAuditRecord
         from .mda_audit_record import MdaAuditRecord
         from .mda_data_security_signal_record import MdaDataSecuritySignalRecord
         from .mdc_events_record import MdcEventsRecord
         from .mdi_audit_record import MdiAuditRecord
         from .mesh_worlds_audit_record import MeshWorldsAuditRecord
+        from .mes_raw_email_content_metadata import MesRawEmailContentMetadata
         from .microsoft365_backup_backup_item_audit_record import Microsoft365BackupBackupItemAuditRecord
         from .microsoft365_backup_backup_policy_audit_record import Microsoft365BackupBackupPolicyAuditRecord
         from .microsoft365_backup_granular_browse_task_audit_record import Microsoft365BackupGranularBrowseTaskAuditRecord
@@ -2180,11 +2371,14 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .microsoft_purview_policy_operation_record import MicrosoftPurviewPolicyOperationRecord
         from .microsoft_purview_privacy_audit_event import MicrosoftPurviewPrivacyAuditEvent
         from .microsoft_purview_unified_catalog_operation_record import MicrosoftPurviewUnifiedCatalogOperationRecord
+        from .microsoft_security_for_ai_configuration import MicrosoftSecurityForAiConfiguration
+        from .microsoft_security_for_ai_real_time_protection import MicrosoftSecurityForAiRealTimeProtection
         from .microsoft_stream_audit_record import MicrosoftStreamAuditRecord
         from .microsoft_teams_admin_audit_record import MicrosoftTeamsAdminAuditRecord
         from .microsoft_teams_analytics_audit_record import MicrosoftTeamsAnalyticsAuditRecord
         from .microsoft_teams_audit_record import MicrosoftTeamsAuditRecord
         from .microsoft_teams_device_audit_record import MicrosoftTeamsDeviceAuditRecord
+        from .microsoft_teams_move_messages import MicrosoftTeamsMoveMessages
         from .microsoft_teams_retention_label_action_audit_record import MicrosoftTeamsRetentionLabelActionAuditRecord
         from .microsoft_teams_sensitivity_label_action_audit_record import MicrosoftTeamsSensitivityLabelActionAuditRecord
         from .microsoft_teams_shifts_audit_record import MicrosoftTeamsShiftsAuditRecord
@@ -2211,6 +2405,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .msde_roles_settings_audit_record import MsdeRolesSettingsAuditRecord
         from .msp_vector_search_content_metadata_audit_record import MspVectorSearchContentMetadataAuditRecord
         from .mstic_nation_state_notification_record import MsticNationStateNotificationRecord
+        from .mtp_content_metadata import MtpContentMetadata
         from .multi_stage_disposition_audit_record import MultiStageDispositionAuditRecord
         from .my_analytics_settings_audit_record import MyAnalyticsSettingsAuditRecord
         from .m_d_a_s_h_audit_record import MDASHAuditRecord
@@ -2218,6 +2413,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .office_native_audit_record import OfficeNativeAuditRecord
         from .ome_portal_audit_record import OmePortalAuditRecord
         from .one_drive_audit_record import OneDriveAuditRecord
+        from .on_demand_exchange_classification import OnDemandExchangeClassification
         from .on_demand_share_point_classification_audit_record import OnDemandSharePointClassificationAuditRecord
         from .on_premises_file_share_scanner_d_l_p_audit_record import OnPremisesFileShareScannerDLPAuditRecord
         from .on_premises_share_point_scanner_d_l_p_audit_record import OnPremisesSharePointScannerDLPAuditRecord
@@ -2228,13 +2424,20 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .p4ai_assessment_fabric_scanner_record import P4aiAssessmentFabricScannerRecord
         from .p4ai_assessment_location_result_record import P4aiAssessmentLocationResultRecord
         from .p4ai_assessment_record import P4aiAssessmentRecord
+        from .p4_ai_dag_site_permissions_record import P4AiDagSitePermissionsRecord
         from .p4_a_i_risk_score_record import P4AIRiskScoreRecord
         from .people_admin_settings_audit_record import PeopleAdminSettingsAuditRecord
+        from .people_skills_admin import PeopleSkillsAdmin
+        from .people_skills_user import PeopleSkillsUser
         from .physical_badging_signal_audit_record import PhysicalBadgingSignalAuditRecord
         from .places_directory_audit_record import PlacesDirectoryAuditRecord
         from .planner_chat_message_audit_record import PlannerChatMessageAuditRecord
         from .planner_chat_message_list_audit_record import PlannerChatMessageListAuditRecord
         from .planner_copy_plan_audit_record import PlannerCopyPlanAuditRecord
+        from .planner_custom_field_definition import PlannerCustomFieldDefinition
+        from .planner_custom_field_definition_list import PlannerCustomFieldDefinitionList
+        from .planner_dependency import PlannerDependency
+        from .planner_dependency_list import PlannerDependencyList
         from .planner_goal_audit_record import PlannerGoalAuditRecord
         from .planner_goal_list_audit_record import PlannerGoalListAuditRecord
         from .planner_plan_audit_record import PlannerPlanAuditRecord
@@ -2321,6 +2524,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .share_point_content_type_operation_audit_record import SharePointContentTypeOperationAuditRecord
         from .share_point_e_signature_audit_record import SharePointESignatureAuditRecord
         from .share_point_field_operation_audit_record import SharePointFieldOperationAuditRecord
+        from .share_point_file_archive_policy import SharePointFileArchivePolicy
         from .share_point_file_operation_audit_record import SharePointFileOperationAuditRecord
         from .share_point_list_item_operation_audit_record import SharePointListItemOperationAuditRecord
         from .share_point_list_operation_audit_record import SharePointListOperationAuditRecord
@@ -2336,6 +2540,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .spark_core_custom_live_pool_record import SparkCoreCustomLivePoolRecord
         from .submission_entity_audit_record import SubmissionEntityAuditRecord
         from .supervisory_review_day_x_insights_audit_record import SupervisoryReviewDayXInsightsAuditRecord
+        from .synthetic_media_detection_event import SyntheticMediaDetectionEvent
         from .synthetic_probe_audit_record import SyntheticProbeAuditRecord
         from .teams_easy_approvals_audit_record import TeamsEasyApprovalsAuditRecord
         from .teams_eval_data_hub_admin_operation_audit_record import TeamsEvalDataHubAdminOperationAuditRecord
@@ -2359,6 +2564,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .unified_simulation_summary_audit_record import UnifiedSimulationSummaryAuditRecord
         from .universal_print_management_audit_record import UniversalPrintManagementAuditRecord
         from .universal_print_print_job_audit_record import UniversalPrintPrintJobAuditRecord
+        from .universal_print_secure_scan import UniversalPrintSecureScan
         from .urbac_assignment_audit_record import UrbacAssignmentAuditRecord
         from .urbac_enable_state_audit_record import UrbacEnableStateAuditRecord
         from .urbac_role_audit_record import UrbacRoleAuditRecord
@@ -2373,6 +2579,8 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .viva_engage_segment_audit_record import VivaEngageSegmentAuditRecord
         from .viva_glint_advanced_configuration_audit_record import VivaGlintAdvancedConfigurationAuditRecord
         from .viva_glint_agentic_campaign_audit_record import VivaGlintAgenticCampaignAuditRecord
+        from .viva_glint_client_configuration import VivaGlintClientConfiguration
+        from .viva_glint_data_retention import VivaGlintDataRetention
         from .viva_glint_feedback_program_audit_record import VivaGlintFeedbackProgramAuditRecord
         from .viva_glint_organizational_data_audit_record import VivaGlintOrganizationalDataAuditRecord
         from .viva_glint_pulse_program_audit_record import VivaGlintPulseProgramAuditRecord
@@ -2384,6 +2592,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .viva_glint_system_audit_record import VivaGlintSystemAuditRecord
         from .viva_glint_user_audit_record import VivaGlintUserAuditRecord
         from .viva_glint_user_group_audit_record import VivaGlintUserGroupAuditRecord
+        from .viva_glint_viva_insights_integration import VivaGlintVivaInsightsIntegration
         from .viva_goals_audit_record import VivaGoalsAuditRecord
         from .viva_learning_admin_audit_record import VivaLearningAdminAuditRecord
         from .viva_learning_audit_record import VivaLearningAuditRecord
@@ -2395,10 +2604,12 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .web_content_filtering_audit_record import WebContentFilteringAuditRecord
         from .windows365_customer_lockbox_audit_record import Windows365CustomerLockboxAuditRecord
         from .workplace_analytics_audit_record import WorkplaceAnalyticsAuditRecord
+        from .work_i_q_admin_activity import WorkIQAdminActivity
         from .yammer_audit_record import YammerAuditRecord
         from .yammer_user_hiding_audit_record import YammerUserHidingAuditRecord
 
         from .a365_ai_execute_tool import A365AiExecuteTool
+        from .a365_ai_guardrail import A365AiGuardrail
         from .a365_ai_inference_call import A365AiInferenceCall
         from .a365_ai_invoke_agent import A365AiInvokeAgent
         from .a365_ai_run_summary import A365AiRunSummary
@@ -2418,6 +2629,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .air_manual_investigation_data import AirManualInvestigationData
         from .ai_app_interaction_audit_record import AiAppInteractionAuditRecord
         from .ai_execute_tool_audit_record import AiExecuteToolAuditRecord
+        from .ai_guardrail import AiGuardrail
         from .ai_interactions_change_notification_audit_record import AiInteractionsChangeNotificationAuditRecord
         from .ai_interactions_export_audit_record import AiInteractionsExportAuditRecord
         from .ai_interactions_subscription_audit_record import AiInteractionsSubscriptionAuditRecord
@@ -2448,6 +2660,9 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .cdp_log_record import CdpLogRecord
         from .cdp_ocr_billing_record import CdpOcrBillingRecord
         from .cdp_resource_scope_change_event_record import CdpResourceScopeChangeEventRecord
+        from .cloud_security_connector import CloudSecurityConnector
+        from .cloud_security_enablement import CloudSecurityEnablement
+        from .cloud_security_management import CloudSecurityManagement
         from .cloud_update_device_config_audit_record import CloudUpdateDeviceConfigAuditRecord
         from .cloud_update_profile_config_audit_record import CloudUpdateProfileConfigAuditRecord
         from .cloud_update_tenant_config_audit_record import CloudUpdateTenantConfigAuditRecord
@@ -2467,6 +2682,8 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .compliance_d_l_p_share_point_classification_audit_record import ComplianceDLPSharePointClassificationAuditRecord
         from .compliance_d_l_p_share_point_classification_cdp_record import ComplianceDLPSharePointClassificationCdpRecord
         from .compliance_d_l_p_share_point_classification_extended_audit_record import ComplianceDLPSharePointClassificationExtendedAuditRecord
+        from .compliance_endpoint_evaluation_incomplete import ComplianceEndpointEvaluationIncomplete
+        from .compliance_evaluation_incomplete import ComplianceEvaluationIncomplete
         from .compliance_exchange_ocr_audit_record import ComplianceExchangeOcrAuditRecord
         from .compliance_manager_action_record import ComplianceManagerActionRecord
         from .compliance_policy_grading_share_point_audit_record import CompliancePolicyGradingSharePointAuditRecord
@@ -2490,6 +2707,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .critical_asset_management_classification_record import CriticalAssetManagementClassificationRecord
         from .crm_entity_operation_audit_record import CrmEntityOperationAuditRecord
         from .cross_tenant_access_policy_audit_record import CrossTenantAccessPolicyAuditRecord
+        from .csc_content_metadata import CscContentMetadata
         from .customer_key_service_encryption_audit_record import CustomerKeyServiceEncryptionAuditRecord
         from .data_center_security_cmdlet_audit_record import DataCenterSecurityCmdletAuditRecord
         from .data_governance_audit_record import DataGovernanceAuditRecord
@@ -2498,7 +2716,10 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .data_security_investigation_audit_record import DataSecurityInvestigationAuditRecord
         from .data_share_operation_audit_record import DataShareOperationAuditRecord
         from .default_audit_data import DefaultAuditData
+        from .defender_automation_rule import DefenderAutomationRule
         from .defender_case_management_audit_record import DefenderCaseManagementAuditRecord
+        from .defender_generated_playbook import DefenderGeneratedPlaybook
+        from .defender_integration import DefenderIntegration
         from .defender_preview_features_record import DefenderPreviewFeaturesRecord
         from .defender_security_for_a_i_configuration_audit_record import DefenderSecurityForAIConfigurationAuditRecord
         from .deploy_feature_activity_record import DeployFeatureActivityRecord
@@ -2513,7 +2734,9 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .dragon_copilot_admin_record import DragonCopilotAdminRecord
         from .dragon_copilot_clinical_data_record import DragonCopilotClinicalDataRecord
         from .dragon_copilot_session_record import DragonCopilotSessionRecord
+        from .dspm_admin_activity import DspmAdminActivity
         from .dynamics365_business_central_audit_record import Dynamics365BusinessCentralAuditRecord
+        from .ecs_content_metadata import EcsContentMetadata
         from .ehr_connector_audit_base_record import EhrConnectorAuditBaseRecord
         from .eop_submission_feed_entity_audit_record import EopSubmissionFeedEntityAuditRecord
         from .exchange_admin_audit_record import ExchangeAdminAuditRecord
@@ -2523,6 +2746,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .exchange_mailbox_audit_record import ExchangeMailboxAuditRecord
         from .fabric_audit_record import FabricAuditRecord
         from .fabric_policy_record import FabricPolicyRecord
+        from .filtering_teams_message_file_info import FilteringTeamsMessageFileInfo
         from .healthcare_signal_record import HealthcareSignalRecord
         from .hosted_rpa_audit_record import HostedRpaAuditRecord
         from .hr_signal_audit_record import HrSignalAuditRecord
@@ -2551,12 +2775,14 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .mapg_policy_audit_record import MapgPolicyAuditRecord
         from .mapg_remediation_audit_record import MapgRemediationAuditRecord
         from .mcas_alerts_audit_record import McasAlertsAuditRecord
+        from .mcs_raw_email_content_metadata import McsRawEmailContentMetadata
         from .mdatp_audit_record import MdatpAuditRecord
         from .mda_audit_record import MdaAuditRecord
         from .mda_data_security_signal_record import MdaDataSecuritySignalRecord
         from .mdc_events_record import MdcEventsRecord
         from .mdi_audit_record import MdiAuditRecord
         from .mesh_worlds_audit_record import MeshWorldsAuditRecord
+        from .mes_raw_email_content_metadata import MesRawEmailContentMetadata
         from .microsoft365_backup_backup_item_audit_record import Microsoft365BackupBackupItemAuditRecord
         from .microsoft365_backup_backup_policy_audit_record import Microsoft365BackupBackupPolicyAuditRecord
         from .microsoft365_backup_granular_browse_task_audit_record import Microsoft365BackupGranularBrowseTaskAuditRecord
@@ -2574,11 +2800,14 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .microsoft_purview_policy_operation_record import MicrosoftPurviewPolicyOperationRecord
         from .microsoft_purview_privacy_audit_event import MicrosoftPurviewPrivacyAuditEvent
         from .microsoft_purview_unified_catalog_operation_record import MicrosoftPurviewUnifiedCatalogOperationRecord
+        from .microsoft_security_for_ai_configuration import MicrosoftSecurityForAiConfiguration
+        from .microsoft_security_for_ai_real_time_protection import MicrosoftSecurityForAiRealTimeProtection
         from .microsoft_stream_audit_record import MicrosoftStreamAuditRecord
         from .microsoft_teams_admin_audit_record import MicrosoftTeamsAdminAuditRecord
         from .microsoft_teams_analytics_audit_record import MicrosoftTeamsAnalyticsAuditRecord
         from .microsoft_teams_audit_record import MicrosoftTeamsAuditRecord
         from .microsoft_teams_device_audit_record import MicrosoftTeamsDeviceAuditRecord
+        from .microsoft_teams_move_messages import MicrosoftTeamsMoveMessages
         from .microsoft_teams_retention_label_action_audit_record import MicrosoftTeamsRetentionLabelActionAuditRecord
         from .microsoft_teams_sensitivity_label_action_audit_record import MicrosoftTeamsSensitivityLabelActionAuditRecord
         from .microsoft_teams_shifts_audit_record import MicrosoftTeamsShiftsAuditRecord
@@ -2605,6 +2834,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .msde_roles_settings_audit_record import MsdeRolesSettingsAuditRecord
         from .msp_vector_search_content_metadata_audit_record import MspVectorSearchContentMetadataAuditRecord
         from .mstic_nation_state_notification_record import MsticNationStateNotificationRecord
+        from .mtp_content_metadata import MtpContentMetadata
         from .multi_stage_disposition_audit_record import MultiStageDispositionAuditRecord
         from .my_analytics_settings_audit_record import MyAnalyticsSettingsAuditRecord
         from .m_d_a_s_h_audit_record import MDASHAuditRecord
@@ -2612,6 +2842,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .office_native_audit_record import OfficeNativeAuditRecord
         from .ome_portal_audit_record import OmePortalAuditRecord
         from .one_drive_audit_record import OneDriveAuditRecord
+        from .on_demand_exchange_classification import OnDemandExchangeClassification
         from .on_demand_share_point_classification_audit_record import OnDemandSharePointClassificationAuditRecord
         from .on_premises_file_share_scanner_d_l_p_audit_record import OnPremisesFileShareScannerDLPAuditRecord
         from .on_premises_share_point_scanner_d_l_p_audit_record import OnPremisesSharePointScannerDLPAuditRecord
@@ -2622,13 +2853,20 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .p4ai_assessment_fabric_scanner_record import P4aiAssessmentFabricScannerRecord
         from .p4ai_assessment_location_result_record import P4aiAssessmentLocationResultRecord
         from .p4ai_assessment_record import P4aiAssessmentRecord
+        from .p4_ai_dag_site_permissions_record import P4AiDagSitePermissionsRecord
         from .p4_a_i_risk_score_record import P4AIRiskScoreRecord
         from .people_admin_settings_audit_record import PeopleAdminSettingsAuditRecord
+        from .people_skills_admin import PeopleSkillsAdmin
+        from .people_skills_user import PeopleSkillsUser
         from .physical_badging_signal_audit_record import PhysicalBadgingSignalAuditRecord
         from .places_directory_audit_record import PlacesDirectoryAuditRecord
         from .planner_chat_message_audit_record import PlannerChatMessageAuditRecord
         from .planner_chat_message_list_audit_record import PlannerChatMessageListAuditRecord
         from .planner_copy_plan_audit_record import PlannerCopyPlanAuditRecord
+        from .planner_custom_field_definition import PlannerCustomFieldDefinition
+        from .planner_custom_field_definition_list import PlannerCustomFieldDefinitionList
+        from .planner_dependency import PlannerDependency
+        from .planner_dependency_list import PlannerDependencyList
         from .planner_goal_audit_record import PlannerGoalAuditRecord
         from .planner_goal_list_audit_record import PlannerGoalListAuditRecord
         from .planner_plan_audit_record import PlannerPlanAuditRecord
@@ -2715,6 +2953,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .share_point_content_type_operation_audit_record import SharePointContentTypeOperationAuditRecord
         from .share_point_e_signature_audit_record import SharePointESignatureAuditRecord
         from .share_point_field_operation_audit_record import SharePointFieldOperationAuditRecord
+        from .share_point_file_archive_policy import SharePointFileArchivePolicy
         from .share_point_file_operation_audit_record import SharePointFileOperationAuditRecord
         from .share_point_list_item_operation_audit_record import SharePointListItemOperationAuditRecord
         from .share_point_list_operation_audit_record import SharePointListOperationAuditRecord
@@ -2730,6 +2969,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .spark_core_custom_live_pool_record import SparkCoreCustomLivePoolRecord
         from .submission_entity_audit_record import SubmissionEntityAuditRecord
         from .supervisory_review_day_x_insights_audit_record import SupervisoryReviewDayXInsightsAuditRecord
+        from .synthetic_media_detection_event import SyntheticMediaDetectionEvent
         from .synthetic_probe_audit_record import SyntheticProbeAuditRecord
         from .teams_easy_approvals_audit_record import TeamsEasyApprovalsAuditRecord
         from .teams_eval_data_hub_admin_operation_audit_record import TeamsEvalDataHubAdminOperationAuditRecord
@@ -2753,6 +2993,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .unified_simulation_summary_audit_record import UnifiedSimulationSummaryAuditRecord
         from .universal_print_management_audit_record import UniversalPrintManagementAuditRecord
         from .universal_print_print_job_audit_record import UniversalPrintPrintJobAuditRecord
+        from .universal_print_secure_scan import UniversalPrintSecureScan
         from .urbac_assignment_audit_record import UrbacAssignmentAuditRecord
         from .urbac_enable_state_audit_record import UrbacEnableStateAuditRecord
         from .urbac_role_audit_record import UrbacRoleAuditRecord
@@ -2767,6 +3008,8 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .viva_engage_segment_audit_record import VivaEngageSegmentAuditRecord
         from .viva_glint_advanced_configuration_audit_record import VivaGlintAdvancedConfigurationAuditRecord
         from .viva_glint_agentic_campaign_audit_record import VivaGlintAgenticCampaignAuditRecord
+        from .viva_glint_client_configuration import VivaGlintClientConfiguration
+        from .viva_glint_data_retention import VivaGlintDataRetention
         from .viva_glint_feedback_program_audit_record import VivaGlintFeedbackProgramAuditRecord
         from .viva_glint_organizational_data_audit_record import VivaGlintOrganizationalDataAuditRecord
         from .viva_glint_pulse_program_audit_record import VivaGlintPulseProgramAuditRecord
@@ -2778,6 +3021,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .viva_glint_system_audit_record import VivaGlintSystemAuditRecord
         from .viva_glint_user_audit_record import VivaGlintUserAuditRecord
         from .viva_glint_user_group_audit_record import VivaGlintUserGroupAuditRecord
+        from .viva_glint_viva_insights_integration import VivaGlintVivaInsightsIntegration
         from .viva_goals_audit_record import VivaGoalsAuditRecord
         from .viva_learning_admin_audit_record import VivaLearningAdminAuditRecord
         from .viva_learning_audit_record import VivaLearningAuditRecord
@@ -2789,6 +3033,7 @@ class AuditData(AdditionalDataHolder, BackedModel, Parsable):
         from .web_content_filtering_audit_record import WebContentFilteringAuditRecord
         from .windows365_customer_lockbox_audit_record import Windows365CustomerLockboxAuditRecord
         from .workplace_analytics_audit_record import WorkplaceAnalyticsAuditRecord
+        from .work_i_q_admin_activity import WorkIQAdminActivity
         from .yammer_audit_record import YammerAuditRecord
         from .yammer_user_hiding_audit_record import YammerUserHidingAuditRecord
 

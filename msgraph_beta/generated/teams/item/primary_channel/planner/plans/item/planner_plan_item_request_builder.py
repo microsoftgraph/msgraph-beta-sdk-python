@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .archive.archive_request_builder import ArchiveRequestBuilder
     from .buckets.buckets_request_builder import BucketsRequestBuilder
     from .details.details_request_builder import DetailsRequestBuilder
+    from .extend_expiry.extend_expiry_request_builder import ExtendExpiryRequestBuilder
     from .get_usage_rights.get_usage_rights_request_builder import GetUsageRightsRequestBuilder
     from .goals.goals_request_builder import GoalsRequestBuilder
     from .history_items.history_items_request_builder import HistoryItemsRequestBuilder
@@ -173,6 +174,15 @@ class PlannerPlanItemRequestBuilder(BaseRequestBuilder):
         from .details.details_request_builder import DetailsRequestBuilder
 
         return DetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def extend_expiry(self) -> ExtendExpiryRequestBuilder:
+        """
+        Provides operations to call the extendExpiry method.
+        """
+        from .extend_expiry.extend_expiry_request_builder import ExtendExpiryRequestBuilder
+
+        return ExtendExpiryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_usage_rights(self) -> GetUsageRightsRequestBuilder:

@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .child_folders.child_folders_request_builder import ChildFoldersRequestBuilder
     from .copy.copy_request_builder import CopyRequestBuilder
+    from .import_mime.import_mime_request_builder import ImportMimeRequestBuilder
     from .messages.messages_request_builder import MessagesRequestBuilder
     from .message_rules.message_rules_request_builder import MessageRulesRequestBuilder
     from .move.move_request_builder import MoveRequestBuilder
@@ -164,6 +165,15 @@ class MailFolderItemRequestBuilder(BaseRequestBuilder):
         from .copy.copy_request_builder import CopyRequestBuilder
 
         return CopyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def import_mime(self) -> ImportMimeRequestBuilder:
+        """
+        Provides operations to call the importMime method.
+        """
+        from .import_mime.import_mime_request_builder import ImportMimeRequestBuilder
+
+        return ImportMimeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def message_rules(self) -> MessageRulesRequestBuilder:

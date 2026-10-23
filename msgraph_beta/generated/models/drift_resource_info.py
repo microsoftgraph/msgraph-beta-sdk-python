@@ -17,13 +17,13 @@ class DriftResourceInfo(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The catalogIdentifier property
+    # The identifier of the entitlement management catalog that contains the resource.
     catalog_identifier: Optional[str] = None
-    # The catalogName property
+    # The display name of the entitlement management catalog.
     catalog_name: Optional[str] = None
-    # The displayName property
+    # The display name of the governed resource.
     display_name: Optional[str] = None
-    # The identifier property
+    # The unique identifier of the governed resource.
     identifier: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None

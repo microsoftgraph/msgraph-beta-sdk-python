@@ -13,21 +13,21 @@ class OffboardingDetails(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The cancelledCount property
+    # The number of protection units whose offboarding was cancelled during the operation.
     cancelled_count: Optional[int] = None
-    # The failedCount property
+    # The number of protection units that failed to be offboarded during the operation.
     failed_count: Optional[int] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The offboardEndDateTime property
+    # The date and time when the offboarding operation ended.
     offboard_end_date_time: Optional[datetime.datetime] = None
-    # The offboardStartDateTime property
+    # The date and time when the offboarding operation started.
     offboard_start_date_time: Optional[datetime.datetime] = None
-    # The offboardedCount property
+    # The number of protection units that were successfully offboarded during the operation.
     offboarded_count: Optional[int] = None
-    # The offboardingStatus property
+    # The current status of the offboarding operation.
     offboarding_status: Optional[str] = None
-    # The totalRequestedCount property
+    # The total number of protection units that were requested to be offboarded in this operation.
     total_requested_count: Optional[int] = None
     
     @staticmethod

@@ -36,7 +36,9 @@ if TYPE_CHECKING:
     from .get_password_single_sign_on_credentials.get_password_single_sign_on_credentials_request_builder import GetPasswordSingleSignOnCredentialsRequestBuilder
     from .home_realm_discovery_policies.home_realm_discovery_policies_request_builder import HomeRealmDiscoveryPoliciesRequestBuilder
     from .license_details.license_details_request_builder import LicenseDetailsRequestBuilder
+    from .lifecycle.lifecycle_request_builder import LifecycleRequestBuilder
     from .member_of.member_of_request_builder import MemberOfRequestBuilder
+    from .microsoft_graph_identity_governance_attest.microsoft_graph_identity_governance_attest_request_builder import MicrosoftGraphIdentityGovernanceAttestRequestBuilder
     from .oauth2_permission_grants.oauth2_permission_grants_request_builder import Oauth2PermissionGrantsRequestBuilder
     from .owned_objects.owned_objects_request_builder import OwnedObjectsRequestBuilder
     from .owners.owners_request_builder import OwnersRequestBuilder
@@ -357,6 +359,15 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         return LicenseDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def lifecycle(self) -> LifecycleRequestBuilder:
+        """
+        Provides operations to manage the lifecycle property of the microsoft.graph.servicePrincipal entity.
+        """
+        from .lifecycle.lifecycle_request_builder import LifecycleRequestBuilder
+
+        return LifecycleRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def member_of(self) -> MemberOfRequestBuilder:
         """
         Provides operations to manage the memberOf property of the microsoft.graph.servicePrincipal entity.
@@ -364,6 +375,15 @@ class ServicePrincipalItemRequestBuilder(BaseRequestBuilder):
         from .member_of.member_of_request_builder import MemberOfRequestBuilder
 
         return MemberOfRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_identity_governance_attest(self) -> MicrosoftGraphIdentityGovernanceAttestRequestBuilder:
+        """
+        Provides operations to call the attest method.
+        """
+        from .microsoft_graph_identity_governance_attest.microsoft_graph_identity_governance_attest_request_builder import MicrosoftGraphIdentityGovernanceAttestRequestBuilder
+
+        return MicrosoftGraphIdentityGovernanceAttestRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def oauth2_permission_grants(self) -> Oauth2PermissionGrantsRequestBuilder:

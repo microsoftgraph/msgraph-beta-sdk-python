@@ -16,13 +16,13 @@ class DriftIdentityInfo(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The displayName property
+    # The display name of the identity.
     display_name: Optional[str] = None
-    # The identifier property
+    # The unique identifier for the identity within the drift record.
     identifier: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The principalName property
+    # The principal name of the identity.
     principal_name: Optional[str] = None
     
     @staticmethod

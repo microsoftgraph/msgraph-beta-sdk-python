@@ -7,7 +7,9 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .cloud_pc_disk_encryption_type import CloudPcDiskEncryptionType
     from .cloud_p_c_user_settings_persistence_profile_status import CloudPCUserSettingsPersistenceProfileStatus
+    from .cloud_p_c_user_settings_persistence_profile_usage_detail import CloudPCUserSettingsPersistenceProfileUsageDetail
 
 @dataclass
 class CloudPCUserSettingsPersistenceProfile(AdditionalDataHolder, BackedModel, Parsable):
@@ -20,12 +22,16 @@ class CloudPCUserSettingsPersistenceProfile(AdditionalDataHolder, BackedModel, P
     last_profile_attached_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The profileDiskEncryptionType property
+    profile_disk_encryption_type: Optional[CloudPcDiskEncryptionType] = None
     # Indicates the unique identifier of the Cloud PC user settings persistence profile for the selected Cloud PC user settings persistence. Required. Read-only.
     profile_id: Optional[str] = None
     # Indicates the maximum allowed size in gigabytes of the cloud profile for a specific user. For example, 10 GB of allocated size returns 10 as a response. Required. Read-only.
     profile_size_in_g_b: Optional[int] = None
     # The status property
     status: Optional[CloudPCUserSettingsPersistenceProfileStatus] = None
+    # The usageDetail property
+    usage_detail: Optional[CloudPCUserSettingsPersistenceProfileUsageDetail] = None
     # The user principal name of the owner of the cloud profile. For example, connie@contoso.com. Required. Read-only.
     user_principal_name: Optional[str] = None
     
@@ -45,16 +51,22 @@ class CloudPCUserSettingsPersistenceProfile(AdditionalDataHolder, BackedModel, P
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .cloud_pc_disk_encryption_type import CloudPcDiskEncryptionType
         from .cloud_p_c_user_settings_persistence_profile_status import CloudPCUserSettingsPersistenceProfileStatus
+        from .cloud_p_c_user_settings_persistence_profile_usage_detail import CloudPCUserSettingsPersistenceProfileUsageDetail
 
+        from .cloud_pc_disk_encryption_type import CloudPcDiskEncryptionType
         from .cloud_p_c_user_settings_persistence_profile_status import CloudPCUserSettingsPersistenceProfileStatus
+        from .cloud_p_c_user_settings_persistence_profile_usage_detail import CloudPCUserSettingsPersistenceProfileUsageDetail
 
         fields: dict[str, Callable[[Any], None]] = {
             "lastProfileAttachedDateTime": lambda n : setattr(self, 'last_profile_attached_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "profileDiskEncryptionType": lambda n : setattr(self, 'profile_disk_encryption_type', n.get_enum_value(CloudPcDiskEncryptionType)),
             "profileId": lambda n : setattr(self, 'profile_id', n.get_str_value()),
             "profileSizeInGB": lambda n : setattr(self, 'profile_size_in_g_b', n.get_int_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(CloudPCUserSettingsPersistenceProfileStatus)),
+            "usageDetail": lambda n : setattr(self, 'usage_detail', n.get_object_value(CloudPCUserSettingsPersistenceProfileUsageDetail)),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         return fields
@@ -69,9 +81,11 @@ class CloudPCUserSettingsPersistenceProfile(AdditionalDataHolder, BackedModel, P
             raise TypeError("writer cannot be null.")
         writer.write_datetime_value("lastProfileAttachedDateTime", self.last_profile_attached_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_enum_value("profileDiskEncryptionType", self.profile_disk_encryption_type)
         writer.write_str_value("profileId", self.profile_id)
         writer.write_int_value("profileSizeInGB", self.profile_size_in_g_b)
         writer.write_enum_value("status", self.status)
+        writer.write_object_value("usageDetail", self.usage_detail)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
         writer.write_additional_data_value(self.additional_data)
     

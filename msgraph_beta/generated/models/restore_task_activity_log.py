@@ -20,11 +20,11 @@ class RestoreTaskActivityLog(ActivityLogBase, Parsable):
     odata_type: Optional[str] = "#microsoft.graph.restoreTaskActivityLog"
     # The destinationType property
     destination_type: Optional[DestinationType] = None
-    # The restoreArtifactDetails property
+    # Contains detailed information about the artifacts being restored, including counts and status of restored items.
     restore_artifact_details: Optional[RestoreArtifactDetails] = None
-    # The restoreCompletionDateTime property
+    # The date and time when the restore task was completed.
     restore_completion_date_time: Optional[datetime.datetime] = None
-    # The restoreSessionId property
+    # The unique identifier of the restore session associated with this activity log.
     restore_session_id: Optional[str] = None
     # The restoreSessionStatus property
     restore_session_status: Optional[RestoreSessionStatus] = None

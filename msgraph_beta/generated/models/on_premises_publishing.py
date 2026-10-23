@@ -42,7 +42,7 @@ class OnPremisesPublishing(AdditionalDataHolder, BackedModel, Parsable):
     is_backend_certificate_validation_enabled: Optional[bool] = None
     # Indicates whether continuous access evaluation is enabled for Application Proxy application. For all Application Proxy apps, the property is set to true by default.
     is_continuous_access_evaluation_enabled: Optional[bool] = None
-    # The isDeviceAccessEnabled property
+    # Indicates whether the Microsoft Entra Private Access application is accessible or available in device access mode. false by default.
     is_device_access_enabled: Optional[bool] = None
     # Indicates Microsoft Entra Private Access should handle DNS resolution. false by default.
     is_dns_resolution_enabled: Optional[bool] = None

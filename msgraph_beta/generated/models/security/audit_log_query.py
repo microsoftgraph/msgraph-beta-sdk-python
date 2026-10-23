@@ -32,7 +32,7 @@ class AuditLogQuery(Entity, Parsable):
     ip_address_filters: Optional[list[str]] = None
     # Indicates whether the query exceeded the per-search record-count limit. The default value is false. A value of true is authoritative and isn't derived from approximateReturnedRecordCount. Read-only.
     is_record_count_limit_exceeded: Optional[bool] = None
-    # Free text field to search non-indexed properties of the audit log.
+    # Free text to match against the non-indexed content of each record: the workload-specific properties inside auditData, including its AppAccessContext object. The indexed common-schema properties, such as the operation name, aren't matched by keyword; use their own filters, such as operationFilters, for those.
     keyword_filter: Optional[str] = None
     # For SharePoint and OneDrive for Business activity, the full path name of the file or folder accessed by the user. For Exchange admin audit logging, the name of the object that was modified by the cmdlet.
     object_id_filters: Optional[list[str]] = None
