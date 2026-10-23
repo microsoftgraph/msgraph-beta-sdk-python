@@ -8,7 +8,7 @@ azure-core==1.41.0
 azure-identity==1.25.3
 build==1.5.0
 bumpver==2026.1132
-certifi==2026.6.17
+certifi==2026.10.19
 cffi==2.1.0
 click==8.4.2
 colorama==0.4.6
