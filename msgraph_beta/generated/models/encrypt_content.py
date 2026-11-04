@@ -33,11 +33,13 @@ class EncryptContent(LabelActionBase, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.encryptWithTemplate".casefold():
+        if not mapping_value:
+            return EncryptContent()
+        if mapping_value.casefold() == "#microsoft.graph.encryptWithTemplate".casefold():
             from .encrypt_with_template import EncryptWithTemplate
 
             return EncryptWithTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.encryptWithUserDefinedRights".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.encryptWithUserDefinedRights".casefold():
             from .encrypt_with_user_defined_rights import EncryptWithUserDefinedRights
 
             return EncryptWithUserDefinedRights()

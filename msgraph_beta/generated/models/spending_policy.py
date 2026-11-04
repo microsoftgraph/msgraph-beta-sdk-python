@@ -62,11 +62,13 @@ class SpendingPolicy(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allUsersSpendingPolicy".casefold():
+        if not mapping_value:
+            return SpendingPolicy()
+        if mapping_value.casefold() == "#microsoft.graph.allUsersSpendingPolicy".casefold():
             from .all_users_spending_policy import AllUsersSpendingPolicy
 
             return AllUsersSpendingPolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.selectedGroupsSpendingPolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.selectedGroupsSpendingPolicy".casefold():
             from .selected_groups_spending_policy import SelectedGroupsSpendingPolicy
 
             return SelectedGroupsSpendingPolicy()

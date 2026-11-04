@@ -37,15 +37,17 @@ class FilteringRule(PolicyRule, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.fqdnFilteringRule".casefold():
+        if not mapping_value:
+            return FilteringRule()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.fqdnFilteringRule".casefold():
             from .fqdn_filtering_rule import FqdnFilteringRule
 
             return FqdnFilteringRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.urlDestinationFilteringRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.urlDestinationFilteringRule".casefold():
             from .url_destination_filtering_rule import UrlDestinationFilteringRule
 
             return UrlDestinationFilteringRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategoryFilteringRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategoryFilteringRule".casefold():
             from .web_category_filtering_rule import WebCategoryFilteringRule
 
             return WebCategoryFilteringRule()

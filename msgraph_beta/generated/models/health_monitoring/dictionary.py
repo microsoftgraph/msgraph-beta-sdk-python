@@ -35,19 +35,21 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.documentation".casefold():
+        if not mapping_value:
+            return Dictionary()
+        if mapping_value.casefold() == "#microsoft.graph.healthMonitoring.documentation".casefold():
             from .documentation import Documentation
 
             return Documentation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.healthMonitoringDictionary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.healthMonitoring.healthMonitoringDictionary".casefold():
             from .health_monitoring_dictionary import HealthMonitoringDictionary
 
             return HealthMonitoringDictionary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.signals".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.healthMonitoring.signals".casefold():
             from .signals import Signals
 
             return Signals()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.supportingData".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.healthMonitoring.supportingData".casefold():
             from .supporting_data import SupportingData
 
             return SupportingData()

@@ -47,35 +47,37 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, BackedM
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstance".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationSettingInstance()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstance".casefold():
             from .device_management_configuration_choice_setting_collection_instance import DeviceManagementConfigurationChoiceSettingCollectionInstance
 
             return DeviceManagementConfigurationChoiceSettingCollectionInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance".casefold():
             from .device_management_configuration_choice_setting_instance import DeviceManagementConfigurationChoiceSettingInstance
 
             return DeviceManagementConfigurationChoiceSettingInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance".casefold():
             from .device_management_configuration_group_setting_collection_instance import DeviceManagementConfigurationGroupSettingCollectionInstance
 
             return DeviceManagementConfigurationGroupSettingCollectionInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingInstance".casefold():
             from .device_management_configuration_group_setting_instance import DeviceManagementConfigurationGroupSettingInstance
 
             return DeviceManagementConfigurationGroupSettingInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionInstance".casefold():
             from .device_management_configuration_setting_group_collection_instance import DeviceManagementConfigurationSettingGroupCollectionInstance
 
             return DeviceManagementConfigurationSettingGroupCollectionInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSettingGroupInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSettingGroupInstance".casefold():
             from .device_management_configuration_setting_group_instance import DeviceManagementConfigurationSettingGroupInstance
 
             return DeviceManagementConfigurationSettingGroupInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstance".casefold():
             from .device_management_configuration_simple_setting_collection_instance import DeviceManagementConfigurationSimpleSettingCollectionInstance
 
             return DeviceManagementConfigurationSimpleSettingCollectionInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance".casefold():
             from .device_management_configuration_simple_setting_instance import DeviceManagementConfigurationSimpleSettingInstance
 
             return DeviceManagementConfigurationSimpleSettingInstance()

@@ -47,55 +47,57 @@ class SingleSignOnExtension(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.credentialSingleSignOnExtension".casefold():
+        if not mapping_value:
+            return SingleSignOnExtension()
+        if mapping_value.casefold() == "#microsoft.graph.credentialSingleSignOnExtension".casefold():
             from .credential_single_sign_on_extension import CredentialSingleSignOnExtension
 
             return CredentialSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosAzureAdSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosAzureAdSingleSignOnExtension".casefold():
             from .ios_azure_ad_single_sign_on_extension import IosAzureAdSingleSignOnExtension
 
             return IosAzureAdSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosCredentialSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosCredentialSingleSignOnExtension".casefold():
             from .ios_credential_single_sign_on_extension import IosCredentialSingleSignOnExtension
 
             return IosCredentialSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosKerberosSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosKerberosSingleSignOnExtension".casefold():
             from .ios_kerberos_single_sign_on_extension import IosKerberosSingleSignOnExtension
 
             return IosKerberosSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosRedirectSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosRedirectSingleSignOnExtension".casefold():
             from .ios_redirect_single_sign_on_extension import IosRedirectSingleSignOnExtension
 
             return IosRedirectSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosSingleSignOnExtension".casefold():
             from .ios_single_sign_on_extension import IosSingleSignOnExtension
 
             return IosSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.kerberosSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.kerberosSingleSignOnExtension".casefold():
             from .kerberos_single_sign_on_extension import KerberosSingleSignOnExtension
 
             return KerberosSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSAzureAdSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSAzureAdSingleSignOnExtension".casefold():
             from .mac_o_s_azure_ad_single_sign_on_extension import MacOSAzureAdSingleSignOnExtension
 
             return MacOSAzureAdSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSCredentialSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSCredentialSingleSignOnExtension".casefold():
             from .mac_o_s_credential_single_sign_on_extension import MacOSCredentialSingleSignOnExtension
 
             return MacOSCredentialSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSKerberosSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSKerberosSingleSignOnExtension".casefold():
             from .mac_o_s_kerberos_single_sign_on_extension import MacOSKerberosSingleSignOnExtension
 
             return MacOSKerberosSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSRedirectSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSRedirectSingleSignOnExtension".casefold():
             from .mac_o_s_redirect_single_sign_on_extension import MacOSRedirectSingleSignOnExtension
 
             return MacOSRedirectSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSSingleSignOnExtension".casefold():
             from .mac_o_s_single_sign_on_extension import MacOSSingleSignOnExtension
 
             return MacOSSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.redirectSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.redirectSingleSignOnExtension".casefold():
             from .redirect_single_sign_on_extension import RedirectSingleSignOnExtension
 
             return RedirectSingleSignOnExtension()

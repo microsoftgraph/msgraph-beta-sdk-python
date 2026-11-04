@@ -37,15 +37,17 @@ class WindowsKioskAppConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsKioskMultipleApps".casefold():
+        if not mapping_value:
+            return WindowsKioskAppConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.windowsKioskMultipleApps".casefold():
             from .windows_kiosk_multiple_apps import WindowsKioskMultipleApps
 
             return WindowsKioskMultipleApps()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsKioskSingleUWPApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsKioskSingleUWPApp".casefold():
             from .windows_kiosk_single_u_w_p_app import WindowsKioskSingleUWPApp
 
             return WindowsKioskSingleUWPApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsKioskSingleWin32App".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsKioskSingleWin32App".casefold():
             from .windows_kiosk_single_win32_app import WindowsKioskSingleWin32App
 
             return WindowsKioskSingleWin32App()

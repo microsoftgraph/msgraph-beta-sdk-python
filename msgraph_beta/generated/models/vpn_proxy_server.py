@@ -42,11 +42,13 @@ class VpnProxyServer(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10VpnProxyServer".casefold():
+        if not mapping_value:
+            return VpnProxyServer()
+        if mapping_value.casefold() == "#microsoft.graph.windows10VpnProxyServer".casefold():
             from .windows10_vpn_proxy_server import Windows10VpnProxyServer
 
             return Windows10VpnProxyServer()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows81VpnProxyServer".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows81VpnProxyServer".casefold():
             from .windows81_vpn_proxy_server import Windows81VpnProxyServer
 
             return Windows81VpnProxyServer()

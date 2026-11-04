@@ -59,15 +59,17 @@ class DeviceManagementSettingDefinition(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementAbstractComplexSettingDefinition".casefold():
+        if not mapping_value:
+            return DeviceManagementSettingDefinition()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementAbstractComplexSettingDefinition".casefold():
             from .device_management_abstract_complex_setting_definition import DeviceManagementAbstractComplexSettingDefinition
 
             return DeviceManagementAbstractComplexSettingDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementCollectionSettingDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementCollectionSettingDefinition".casefold():
             from .device_management_collection_setting_definition import DeviceManagementCollectionSettingDefinition
 
             return DeviceManagementCollectionSettingDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementComplexSettingDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementComplexSettingDefinition".casefold():
             from .device_management_complex_setting_definition import DeviceManagementComplexSettingDefinition
 
             return DeviceManagementComplexSettingDefinition()

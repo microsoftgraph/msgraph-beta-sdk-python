@@ -40,7 +40,9 @@ class DeviceComplianceScriptError(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceComplianceScriptRuleError".casefold():
+        if not mapping_value:
+            return DeviceComplianceScriptError()
+        if mapping_value.casefold() == "#microsoft.graph.deviceComplianceScriptRuleError".casefold():
             from .device_compliance_script_rule_error import DeviceComplianceScriptRuleError
 
             return DeviceComplianceScriptRuleError()

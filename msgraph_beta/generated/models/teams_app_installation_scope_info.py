@@ -37,15 +37,17 @@ class TeamsAppInstallationScopeInfo(AdditionalDataHolder, BackedModel, Parsable)
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupChatTeamsAppInstallationScopeInfo".casefold():
+        if not mapping_value:
+            return TeamsAppInstallationScopeInfo()
+        if mapping_value.casefold() == "#microsoft.graph.groupChatTeamsAppInstallationScopeInfo".casefold():
             from .group_chat_teams_app_installation_scope_info import GroupChatTeamsAppInstallationScopeInfo
 
             return GroupChatTeamsAppInstallationScopeInfo()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.personalTeamsAppInstallationScopeInfo".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.personalTeamsAppInstallationScopeInfo".casefold():
             from .personal_teams_app_installation_scope_info import PersonalTeamsAppInstallationScopeInfo
 
             return PersonalTeamsAppInstallationScopeInfo()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.teamTeamsAppInstallationScopeInfo".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.teamTeamsAppInstallationScopeInfo".casefold():
             from .team_teams_app_installation_scope_info import TeamTeamsAppInstallationScopeInfo
 
             return TeamTeamsAppInstallationScopeInfo()

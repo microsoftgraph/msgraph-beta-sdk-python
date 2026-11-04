@@ -52,11 +52,13 @@ class EmailThreatSubmission(ThreatSubmission, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.emailContentThreatSubmission".casefold():
+        if not mapping_value:
+            return EmailThreatSubmission()
+        if mapping_value.casefold() == "#microsoft.graph.security.emailContentThreatSubmission".casefold():
             from .email_content_threat_submission import EmailContentThreatSubmission
 
             return EmailContentThreatSubmission()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.emailUrlThreatSubmission".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.emailUrlThreatSubmission".casefold():
             from .email_url_threat_submission import EmailUrlThreatSubmission
 
             return EmailUrlThreatSubmission()

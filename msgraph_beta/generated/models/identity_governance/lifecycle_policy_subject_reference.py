@@ -35,11 +35,13 @@ class LifecyclePolicySubjectReference(AdditionalDataHolder, BackedModel, Parsabl
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecyclePolicyAgentIdentitySubjectReference".casefold():
+        if not mapping_value:
+            return LifecyclePolicySubjectReference()
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecyclePolicyAgentIdentitySubjectReference".casefold():
             from .lifecycle_policy_agent_identity_subject_reference import LifecyclePolicyAgentIdentitySubjectReference
 
             return LifecyclePolicyAgentIdentitySubjectReference()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecyclePolicyUserSubjectReference".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.lifecyclePolicyUserSubjectReference".casefold():
             from .lifecycle_policy_user_subject_reference import LifecyclePolicyUserSubjectReference
 
             return LifecyclePolicyUserSubjectReference()

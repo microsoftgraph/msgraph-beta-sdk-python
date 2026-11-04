@@ -28,6 +28,8 @@ class Channel(Entity, Parsable):
     all_members: Optional[list[ConversationMember]] = None
     # Read-only. Timestamp at which the channel was created.
     created_date_time: Optional[datetime.datetime] = None
+    # The deletedDateTime property
+    deleted_date_time: Optional[datetime.datetime] = None
     # Optional textual description for the channel.
     description: Optional[str] = None
     # Channel name as it appears to the user in Microsoft Teams. The maximum length is 50 characters.
@@ -120,6 +122,7 @@ class Channel(Entity, Parsable):
         fields: dict[str, Callable[[Any], None]] = {
             "allMembers": lambda n : setattr(self, 'all_members', n.get_collection_of_object_values(ConversationMember)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deletedDateTime": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
@@ -157,6 +160,7 @@ class Channel(Entity, Parsable):
         super().serialize(writer)
         writer.write_collection_of_object_values("allMembers", self.all_members)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_datetime_value("deletedDateTime", self.deleted_date_time)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("email", self.email)

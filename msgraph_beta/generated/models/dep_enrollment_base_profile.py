@@ -78,11 +78,13 @@ class DepEnrollmentBaseProfile(EnrollmentProfile, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depIOSEnrollmentProfile".casefold():
+        if not mapping_value:
+            return DepEnrollmentBaseProfile()
+        if mapping_value.casefold() == "#microsoft.graph.depIOSEnrollmentProfile".casefold():
             from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
 
             return DepIOSEnrollmentProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depMacOSEnrollmentProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.depMacOSEnrollmentProfile".casefold():
             from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
 
             return DepMacOSEnrollmentProfile()

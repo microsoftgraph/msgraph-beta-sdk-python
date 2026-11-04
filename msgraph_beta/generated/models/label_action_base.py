@@ -43,43 +43,45 @@ class LabelActionBase(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.addFooter".casefold():
+        if not mapping_value:
+            return LabelActionBase()
+        if mapping_value.casefold() == "#microsoft.graph.addFooter".casefold():
             from .add_footer import AddFooter
 
             return AddFooter()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.addHeader".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.addHeader".casefold():
             from .add_header import AddHeader
 
             return AddHeader()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.addWatermark".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.addWatermark".casefold():
             from .add_watermark import AddWatermark
 
             return AddWatermark()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.encryptContent".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.encryptContent".casefold():
             from .encrypt_content import EncryptContent
 
             return EncryptContent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.encryptWithTemplate".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.encryptWithTemplate".casefold():
             from .encrypt_with_template import EncryptWithTemplate
 
             return EncryptWithTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.encryptWithUserDefinedRights".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.encryptWithUserDefinedRights".casefold():
             from .encrypt_with_user_defined_rights import EncryptWithUserDefinedRights
 
             return EncryptWithUserDefinedRights()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.markContent".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.markContent".casefold():
             from .mark_content import MarkContent
 
             return MarkContent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.protectGroup".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.protectGroup".casefold():
             from .protect_group import ProtectGroup
 
             return ProtectGroup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.protectOnlineMeetingAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.protectOnlineMeetingAction".casefold():
             from .protect_online_meeting_action import ProtectOnlineMeetingAction
 
             return ProtectOnlineMeetingAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.protectSite".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.protectSite".casefold():
             from .protect_site import ProtectSite
 
             return ProtectSite()

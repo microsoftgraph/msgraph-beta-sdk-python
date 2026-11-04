@@ -33,11 +33,13 @@ class CloudPcDisasterRecoveryNetworkSetting(AdditionalDataHolder, BackedModel, P
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcDisasterRecoveryAzureConnectionSetting".casefold():
+        if not mapping_value:
+            return CloudPcDisasterRecoveryNetworkSetting()
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcDisasterRecoveryAzureConnectionSetting".casefold():
             from .cloud_pc_disaster_recovery_azure_connection_setting import CloudPcDisasterRecoveryAzureConnectionSetting
 
             return CloudPcDisasterRecoveryAzureConnectionSetting()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcDisasterRecoveryMicrosoftHostedNetworkSetting".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcDisasterRecoveryMicrosoftHostedNetworkSetting".casefold():
             from .cloud_pc_disaster_recovery_microsoft_hosted_network_setting import CloudPcDisasterRecoveryMicrosoftHostedNetworkSetting
 
             return CloudPcDisasterRecoveryMicrosoftHostedNetworkSetting()

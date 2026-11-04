@@ -32,7 +32,9 @@ class ResourceConnection(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.operationalInsightsConnection".casefold():
+        if not mapping_value:
+            return ResourceConnection()
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.operationalInsightsConnection".casefold():
             from .operational_insights_connection import OperationalInsightsConnection
 
             return OperationalInsightsConnection()

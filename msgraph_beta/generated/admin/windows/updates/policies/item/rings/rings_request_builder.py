@@ -49,7 +49,7 @@ class RingsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RingsRequestBuilderGetQueryParameters]] = None) -> Optional[RingCollectionResponse]:
         """
-        Get a list of the ring objects and their properties. You can use this method with the following child object type: qualityUpdateRing.
+        Get a list of the ring objects and their properties. You can use this method with the following child object types: driverUpdateRing, featureUpdateRing, and qualityUpdateRing.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[RingCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-policy-list-rings?view=graph-rest-beta
@@ -70,7 +70,7 @@ class RingsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Ring, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Ring]:
         """
-        Create a new ring object. You can use this method with the following child object type: qualityUpdateRing.
+        Create a new ring object. You can use this method with the following child object types: driverUpdateRing, featureUpdateRing, and qualityUpdateRing.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Ring]
@@ -94,7 +94,7 @@ class RingsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RingsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the ring objects and their properties. You can use this method with the following child object type: qualityUpdateRing.
+        Get a list of the ring objects and their properties. You can use this method with the following child object types: driverUpdateRing, featureUpdateRing, and qualityUpdateRing.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class RingsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Ring, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new ring object. You can use this method with the following child object type: qualityUpdateRing.
+        Create a new ring object. You can use this method with the following child object types: driverUpdateRing, featureUpdateRing, and qualityUpdateRing.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -140,7 +140,7 @@ class RingsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RingsRequestBuilderGetQueryParameters():
         """
-        Get a list of the ring objects and their properties. You can use this method with the following child object type: qualityUpdateRing.
+        Get a list of the ring objects and their properties. You can use this method with the following child object types: driverUpdateRing, featureUpdateRing, and qualityUpdateRing.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

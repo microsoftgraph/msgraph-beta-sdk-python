@@ -42,47 +42,49 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.customAppScopeAttributesDictionary".casefold():
+        if not mapping_value:
+            return Dictionary()
+        if mapping_value.casefold() == "#microsoft.graph.customAppScopeAttributesDictionary".casefold():
             from .custom_app_scope_attributes_dictionary import CustomAppScopeAttributesDictionary
 
             return CustomAppScopeAttributesDictionary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.customMetadataDictionary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.customMetadataDictionary".casefold():
             from .custom_metadata_dictionary import CustomMetadataDictionary
 
             return CustomMetadataDictionary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.fileStorageContainerCustomPropertyDictionary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.fileStorageContainerCustomPropertyDictionary".casefold():
             from .file_storage_container_custom_property_dictionary import FileStorageContainerCustomPropertyDictionary
 
             return FileStorageContainerCustomPropertyDictionary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.extendedProperties".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.extendedProperties".casefold():
             from .networkaccess.extended_properties import ExtendedProperties
 
             return ExtendedProperties()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.openComplexDictionaryType".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.openComplexDictionaryType".casefold():
             from .open_complex_dictionary_type import OpenComplexDictionaryType
 
             return OpenComplexDictionaryType()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.additionalDataDictionary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.partner.security.additionalDataDictionary".casefold():
             from .partner.security.additional_data_dictionary import AdditionalDataDictionary
 
             return AdditionalDataDictionary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerFormsDictionary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.plannerFormsDictionary".casefold():
             from .planner_forms_dictionary import PlannerFormsDictionary
 
             return PlannerFormsDictionary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.resultTemplateDictionary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.resultTemplateDictionary".casefold():
             from .result_template_dictionary import ResultTemplateDictionary
 
             return ResultTemplateDictionary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.workbookContent".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.workbookContent".casefold():
             from .security.workbook_content import WorkbookContent
 
             return WorkbookContent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.stringDictionary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.stringDictionary".casefold():
             from .string_dictionary import StringDictionary
 
             return StringDictionary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.wafAllowedHeadersDictionary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.wafAllowedHeadersDictionary".casefold():
             from .waf_allowed_headers_dictionary import WafAllowedHeadersDictionary
 
             return WafAllowedHeadersDictionary()

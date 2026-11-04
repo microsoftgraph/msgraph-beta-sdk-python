@@ -63,55 +63,57 @@ class PolicySetItem(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceCompliancePolicyPolicySetItem".casefold():
+        if not mapping_value:
+            return PolicySetItem()
+        if mapping_value.casefold() == "#microsoft.graph.deviceCompliancePolicyPolicySetItem".casefold():
             from .device_compliance_policy_policy_set_item import DeviceCompliancePolicyPolicySetItem
 
             return DeviceCompliancePolicyPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceConfigurationPolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceConfigurationPolicySetItem".casefold():
             from .device_configuration_policy_set_item import DeviceConfigurationPolicySetItem
 
             return DeviceConfigurationPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationPolicyPolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationPolicyPolicySetItem".casefold():
             from .device_management_configuration_policy_policy_set_item import DeviceManagementConfigurationPolicyPolicySetItem
 
             return DeviceManagementConfigurationPolicyPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementScriptPolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementScriptPolicySetItem".casefold():
             from .device_management_script_policy_set_item import DeviceManagementScriptPolicySetItem
 
             return DeviceManagementScriptPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.enrollmentRestrictionsConfigurationPolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.enrollmentRestrictionsConfigurationPolicySetItem".casefold():
             from .enrollment_restrictions_configuration_policy_set_item import EnrollmentRestrictionsConfigurationPolicySetItem
 
             return EnrollmentRestrictionsConfigurationPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosLobAppProvisioningConfigurationPolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosLobAppProvisioningConfigurationPolicySetItem".casefold():
             from .ios_lob_app_provisioning_configuration_policy_set_item import IosLobAppProvisioningConfigurationPolicySetItem
 
             return IosLobAppProvisioningConfigurationPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedAppProtectionPolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.managedAppProtectionPolicySetItem".casefold():
             from .managed_app_protection_policy_set_item import ManagedAppProtectionPolicySetItem
 
             return ManagedAppProtectionPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedDeviceMobileAppConfigurationPolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.managedDeviceMobileAppConfigurationPolicySetItem".casefold():
             from .managed_device_mobile_app_configuration_policy_set_item import ManagedDeviceMobileAppConfigurationPolicySetItem
 
             return ManagedDeviceMobileAppConfigurationPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mdmWindowsInformationProtectionPolicyPolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mdmWindowsInformationProtectionPolicyPolicySetItem".casefold():
             from .mdm_windows_information_protection_policy_policy_set_item import MdmWindowsInformationProtectionPolicyPolicySetItem
 
             return MdmWindowsInformationProtectionPolicyPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppPolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mobileAppPolicySetItem".casefold():
             from .mobile_app_policy_set_item import MobileAppPolicySetItem
 
             return MobileAppPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.targetedManagedAppConfigurationPolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.targetedManagedAppConfigurationPolicySetItem".casefold():
             from .targeted_managed_app_configuration_policy_set_item import TargetedManagedAppConfigurationPolicySetItem
 
             return TargetedManagedAppConfigurationPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10EnrollmentCompletionPageConfigurationPolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows10EnrollmentCompletionPageConfigurationPolicySetItem".casefold():
             from .windows10_enrollment_completion_page_configuration_policy_set_item import Windows10EnrollmentCompletionPageConfigurationPolicySetItem
 
             return Windows10EnrollmentCompletionPageConfigurationPolicySetItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsAutopilotDeploymentProfilePolicySetItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsAutopilotDeploymentProfilePolicySetItem".casefold():
             from .windows_autopilot_deployment_profile_policy_set_item import WindowsAutopilotDeploymentProfilePolicySetItem
 
             return WindowsAutopilotDeploymentProfilePolicySetItem()

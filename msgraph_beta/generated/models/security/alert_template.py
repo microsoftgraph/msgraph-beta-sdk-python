@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .alert_custom_details import AlertCustomDetails
     from .alert_severity import AlertSeverity
     from .entity_mapping_configuration import EntityMappingConfiguration
+    from .event_grouping_kind import EventGroupingKind
     from .impacted_asset import ImpactedAsset
     from .mitre_tactic import MitreTactic
 
@@ -27,6 +28,8 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
     description: Optional[str] = None
     # The entityMappings property
     entity_mappings: Optional[EntityMappingConfiguration] = None
+    # The eventGroupingKind property
+    event_grouping_kind: Optional[EventGroupingKind] = None
     # Indicates the impacted assets for the alert triggered by the custom detection rule. Deprecated. Use entityMappings instead. This property will be removed from this resource on 2026-10-01.
     impacted_assets: Optional[list[ImpactedAsset]] = None
     # Indicates the MITRE techniques assigned to the alert triggered by the custom detection rule. Deprecated. Use tactics instead. This property will be removed from this resource on 2026-10-01.
@@ -61,12 +64,14 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
         from .alert_custom_details import AlertCustomDetails
         from .alert_severity import AlertSeverity
         from .entity_mapping_configuration import EntityMappingConfiguration
+        from .event_grouping_kind import EventGroupingKind
         from .impacted_asset import ImpactedAsset
         from .mitre_tactic import MitreTactic
 
         from .alert_custom_details import AlertCustomDetails
         from .alert_severity import AlertSeverity
         from .entity_mapping_configuration import EntityMappingConfiguration
+        from .event_grouping_kind import EventGroupingKind
         from .impacted_asset import ImpactedAsset
         from .mitre_tactic import MitreTactic
 
@@ -75,6 +80,7 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
             "customDetails": lambda n : setattr(self, 'custom_details', n.get_object_value(AlertCustomDetails)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "entityMappings": lambda n : setattr(self, 'entity_mappings', n.get_object_value(EntityMappingConfiguration)),
+            "eventGroupingKind": lambda n : setattr(self, 'event_grouping_kind', n.get_enum_value(EventGroupingKind)),
             "impactedAssets": lambda n : setattr(self, 'impacted_assets', n.get_collection_of_object_values(ImpactedAsset)),
             "mitreTechniques": lambda n : setattr(self, 'mitre_techniques', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -97,6 +103,7 @@ class AlertTemplate(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_object_value("customDetails", self.custom_details)
         writer.write_str_value("description", self.description)
         writer.write_object_value("entityMappings", self.entity_mappings)
+        writer.write_enum_value("eventGroupingKind", self.event_grouping_kind)
         writer.write_collection_of_object_values("impactedAssets", self.impacted_assets)
         writer.write_collection_of_primitive_values("mitreTechniques", self.mitre_techniques)
         writer.write_str_value("@odata.type", self.odata_type)

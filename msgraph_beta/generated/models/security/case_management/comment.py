@@ -13,7 +13,7 @@ from .activity import Activity
 class Comment(Activity, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.security.caseManagement.comment"
-    # The comment body. Supports $filter.
+    # The comment body. The maximum length is 1,000 characters for incident cases and 5,000 characters for generic cases. Supports $filter.
     message: Optional[str] = None
     
     @staticmethod

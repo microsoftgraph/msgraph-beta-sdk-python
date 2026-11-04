@@ -36,11 +36,13 @@ class DeliveryOptimizationGroupIdSource(AdditionalDataHolder, BackedModel, Parsa
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationGroupIdCustom".casefold():
+        if not mapping_value:
+            return DeliveryOptimizationGroupIdSource()
+        if mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationGroupIdCustom".casefold():
             from .delivery_optimization_group_id_custom import DeliveryOptimizationGroupIdCustom
 
             return DeliveryOptimizationGroupIdCustom()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationGroupIdSourceOptions".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationGroupIdSourceOptions".casefold():
             from .delivery_optimization_group_id_source_options import DeliveryOptimizationGroupIdSourceOptions
 
             return DeliveryOptimizationGroupIdSourceOptions()

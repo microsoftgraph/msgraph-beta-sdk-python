@@ -52,15 +52,17 @@ class SharePointMigrationTaskParameters(AdditionalDataHolder, BackedModel, Parsa
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointGroupMigrationTaskParameters".casefold():
+        if not mapping_value:
+            return SharePointMigrationTaskParameters()
+        if mapping_value.casefold() == "#microsoft.graph.sharePointGroupMigrationTaskParameters".casefold():
             from .share_point_group_migration_task_parameters import SharePointGroupMigrationTaskParameters
 
             return SharePointGroupMigrationTaskParameters()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointSiteMigrationTaskParameters".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.sharePointSiteMigrationTaskParameters".casefold():
             from .share_point_site_migration_task_parameters import SharePointSiteMigrationTaskParameters
 
             return SharePointSiteMigrationTaskParameters()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointUserMigrationTaskParameters".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.sharePointUserMigrationTaskParameters".casefold():
             from .share_point_user_migration_task_parameters import SharePointUserMigrationTaskParameters
 
             return SharePointUserMigrationTaskParameters()

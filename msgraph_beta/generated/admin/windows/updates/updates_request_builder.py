@@ -17,11 +17,13 @@ if TYPE_CHECKING:
     from ....models.admin_windows_updates import AdminWindowsUpdates
     from ....models.o_data_errors.o_data_error import ODataError
     from .catalog.catalog_request_builder import CatalogRequestBuilder
+    from .data.data_request_builder import DataRequestBuilder
     from .deployments.deployments_request_builder import DeploymentsRequestBuilder
     from .deployment_audiences.deployment_audiences_request_builder import DeploymentAudiencesRequestBuilder
     from .policies.policies_request_builder import PoliciesRequestBuilder
     from .products.products_request_builder import ProductsRequestBuilder
     from .resource_connections.resource_connections_request_builder import ResourceConnectionsRequestBuilder
+    from .tenant_settings.tenant_settings_request_builder import TenantSettingsRequestBuilder
     from .updatable_assets.updatable_assets_request_builder import UpdatableAssetsRequestBuilder
     from .update_policies.update_policies_request_builder import UpdatePoliciesRequestBuilder
 
@@ -156,6 +158,15 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         return CatalogRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def data(self) -> DataRequestBuilder:
+        """
+        Provides operations to manage the data property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        from .data.data_request_builder import DataRequestBuilder
+
+        return DataRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def deployment_audiences(self) -> DeploymentAudiencesRequestBuilder:
         """
         Provides operations to manage the deploymentAudiences property of the microsoft.graph.adminWindowsUpdates entity.
@@ -199,6 +210,15 @@ class UpdatesRequestBuilder(BaseRequestBuilder):
         from .resource_connections.resource_connections_request_builder import ResourceConnectionsRequestBuilder
 
         return ResourceConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tenant_settings(self) -> TenantSettingsRequestBuilder:
+        """
+        Provides operations to manage the tenantSettings property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        from .tenant_settings.tenant_settings_request_builder import TenantSettingsRequestBuilder
+
+        return TenantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def updatable_assets(self) -> UpdatableAssetsRequestBuilder:

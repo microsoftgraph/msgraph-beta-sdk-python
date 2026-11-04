@@ -41,23 +41,25 @@ class PolicyLink(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallPolicyLink".casefold():
+        if not mapping_value:
+            return PolicyLink()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallPolicyLink".casefold():
             from .cloud_firewall_policy_link import CloudFirewallPolicyLink
 
             return CloudFirewallPolicyLink()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringPolicyLink".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringPolicyLink".casefold():
             from .filtering_policy_link import FilteringPolicyLink
 
             return FilteringPolicyLink()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingPolicyLink".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingPolicyLink".casefold():
             from .forwarding_policy_link import ForwardingPolicyLink
 
             return ForwardingPolicyLink()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligencePolicyLink".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligencePolicyLink".casefold():
             from .threat_intelligence_policy_link import ThreatIntelligencePolicyLink
 
             return ThreatIntelligencePolicyLink()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionPolicyLink".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionPolicyLink".casefold():
             from .tls_inspection_policy_link import TlsInspectionPolicyLink
 
             return TlsInspectionPolicyLink()

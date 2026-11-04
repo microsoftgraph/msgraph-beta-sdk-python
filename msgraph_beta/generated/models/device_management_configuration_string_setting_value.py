@@ -34,7 +34,9 @@ class DeviceManagementConfigurationStringSettingValue(DeviceManagementConfigurat
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationReferenceSettingValue".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationStringSettingValue()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationReferenceSettingValue".casefold():
             from .device_management_configuration_reference_setting_value import DeviceManagementConfigurationReferenceSettingValue
 
             return DeviceManagementConfigurationReferenceSettingValue()

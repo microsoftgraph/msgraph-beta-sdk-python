@@ -52,23 +52,25 @@ class DeviceManagementResourceAccessProfileBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10XCertificateProfile".casefold():
+        if not mapping_value:
+            return DeviceManagementResourceAccessProfileBase()
+        if mapping_value.casefold() == "#microsoft.graph.windows10XCertificateProfile".casefold():
             from .windows10_x_certificate_profile import Windows10XCertificateProfile
 
             return Windows10XCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10XSCEPCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows10XSCEPCertificateProfile".casefold():
             from .windows10_x_s_c_e_p_certificate_profile import Windows10XSCEPCertificateProfile
 
             return Windows10XSCEPCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10XTrustedRootCertificate".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows10XTrustedRootCertificate".casefold():
             from .windows10_x_trusted_root_certificate import Windows10XTrustedRootCertificate
 
             return Windows10XTrustedRootCertificate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10XVpnConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows10XVpnConfiguration".casefold():
             from .windows10_x_vpn_configuration import Windows10XVpnConfiguration
 
             return Windows10XVpnConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10XWifiConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows10XWifiConfiguration".casefold():
             from .windows10_x_wifi_configuration import Windows10XWifiConfiguration
 
             return Windows10XWifiConfiguration()

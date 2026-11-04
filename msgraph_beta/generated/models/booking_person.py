@@ -35,11 +35,13 @@ class BookingPerson(BookingNamedEntity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.bookingCustomer".casefold():
+        if not mapping_value:
+            return BookingPerson()
+        if mapping_value.casefold() == "#microsoft.graph.bookingCustomer".casefold():
             from .booking_customer import BookingCustomer
 
             return BookingCustomer()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.bookingStaffMember".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.bookingStaffMember".casefold():
             from .booking_staff_member import BookingStaffMember
 
             return BookingStaffMember()

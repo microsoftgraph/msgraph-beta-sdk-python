@@ -52,19 +52,21 @@ class SecurityRequirement(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.adminsMfaEnforcedSecurityRequirement".casefold():
+        if not mapping_value:
+            return SecurityRequirement()
+        if mapping_value.casefold() == "#microsoft.graph.partner.security.adminsMfaEnforcedSecurityRequirement".casefold():
             from .admins_mfa_enforced_security_requirement import AdminsMfaEnforcedSecurityRequirement
 
             return AdminsMfaEnforcedSecurityRequirement()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.customersMfaEnforcedSecurityRequirement".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.partner.security.customersMfaEnforcedSecurityRequirement".casefold():
             from .customers_mfa_enforced_security_requirement import CustomersMfaEnforcedSecurityRequirement
 
             return CustomersMfaEnforcedSecurityRequirement()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.customersSpendingBudgetSecurityRequirement".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.partner.security.customersSpendingBudgetSecurityRequirement".casefold():
             from .customers_spending_budget_security_requirement import CustomersSpendingBudgetSecurityRequirement
 
             return CustomersSpendingBudgetSecurityRequirement()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.partner.security.responseTimeSecurityRequirement".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.partner.security.responseTimeSecurityRequirement".casefold():
             from .response_time_security_requirement import ResponseTimeSecurityRequirement
 
             return ResponseTimeSecurityRequirement()

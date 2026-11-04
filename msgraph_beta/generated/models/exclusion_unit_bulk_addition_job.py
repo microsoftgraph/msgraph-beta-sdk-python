@@ -49,15 +49,17 @@ class ExclusionUnitBulkAdditionJob(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.driveExclusionUnitsBulkAdditionJob".casefold():
+        if not mapping_value:
+            return ExclusionUnitBulkAdditionJob()
+        if mapping_value.casefold() == "#microsoft.graph.driveExclusionUnitsBulkAdditionJob".casefold():
             from .drive_exclusion_units_bulk_addition_job import DriveExclusionUnitsBulkAdditionJob
 
             return DriveExclusionUnitsBulkAdditionJob()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxExclusionUnitsBulkAdditionJob".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mailboxExclusionUnitsBulkAdditionJob".casefold():
             from .mailbox_exclusion_units_bulk_addition_job import MailboxExclusionUnitsBulkAdditionJob
 
             return MailboxExclusionUnitsBulkAdditionJob()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.siteExclusionUnitsBulkAdditionJob".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.siteExclusionUnitsBulkAdditionJob".casefold():
             from .site_exclusion_units_bulk_addition_job import SiteExclusionUnitsBulkAdditionJob
 
             return SiteExclusionUnitsBulkAdditionJob()

@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from .chat_message_hosted_content import ChatMessageHostedContent
     from .entity import Entity
+    from .teamwork_custom_emoji import TeamworkCustomEmoji
 
 from .entity import Entity
 
@@ -33,10 +34,16 @@ class TeamworkHostedContent(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.chatMessageHostedContent".casefold():
+        if not mapping_value:
+            return TeamworkHostedContent()
+        if mapping_value.casefold() == "#microsoft.graph.chatMessageHostedContent".casefold():
             from .chat_message_hosted_content import ChatMessageHostedContent
 
             return ChatMessageHostedContent()
+        if mapping_value.casefold() == "#microsoft.graph.teamworkCustomEmoji".casefold():
+            from .teamwork_custom_emoji import TeamworkCustomEmoji
+
+            return TeamworkCustomEmoji()
         return TeamworkHostedContent()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -46,9 +53,11 @@ class TeamworkHostedContent(Entity, Parsable):
         """
         from .chat_message_hosted_content import ChatMessageHostedContent
         from .entity import Entity
+        from .teamwork_custom_emoji import TeamworkCustomEmoji
 
         from .chat_message_hosted_content import ChatMessageHostedContent
         from .entity import Entity
+        from .teamwork_custom_emoji import TeamworkCustomEmoji
 
         fields: dict[str, Callable[[Any], None]] = {
             "contentBytes": lambda n : setattr(self, 'content_bytes', n.get_bytes_value()),

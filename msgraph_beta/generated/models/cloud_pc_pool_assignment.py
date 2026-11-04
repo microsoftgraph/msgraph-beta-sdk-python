@@ -29,7 +29,9 @@ class CloudPcPoolAssignment(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcAgentPoolUserAssignment".casefold():
+        if not mapping_value:
+            return CloudPcPoolAssignment()
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcAgentPoolUserAssignment".casefold():
             from .cloud_pc_agent_pool_user_assignment import CloudPcAgentPoolUserAssignment
 
             return CloudPcAgentPoolUserAssignment()

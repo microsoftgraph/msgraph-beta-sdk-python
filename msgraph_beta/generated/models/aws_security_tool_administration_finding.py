@@ -44,19 +44,21 @@ class AwsSecurityToolAdministrationFinding(Finding, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityToolAwsResourceAdministratorFinding".casefold():
+        if not mapping_value:
+            return AwsSecurityToolAdministrationFinding()
+        if mapping_value.casefold() == "#microsoft.graph.securityToolAwsResourceAdministratorFinding".casefold():
             from .security_tool_aws_resource_administrator_finding import SecurityToolAwsResourceAdministratorFinding
 
             return SecurityToolAwsResourceAdministratorFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityToolAwsRoleAdministratorFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.securityToolAwsRoleAdministratorFinding".casefold():
             from .security_tool_aws_role_administrator_finding import SecurityToolAwsRoleAdministratorFinding
 
             return SecurityToolAwsRoleAdministratorFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityToolAwsServerlessFunctionAdministratorFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.securityToolAwsServerlessFunctionAdministratorFinding".casefold():
             from .security_tool_aws_serverless_function_administrator_finding import SecurityToolAwsServerlessFunctionAdministratorFinding
 
             return SecurityToolAwsServerlessFunctionAdministratorFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityToolAwsUserAdministratorFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.securityToolAwsUserAdministratorFinding".casefold():
             from .security_tool_aws_user_administrator_finding import SecurityToolAwsUserAdministratorFinding
 
             return SecurityToolAwsUserAdministratorFinding()

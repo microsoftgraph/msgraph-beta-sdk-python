@@ -34,15 +34,17 @@ class VerifiableCredentialRequirementStatus(AdditionalDataHolder, BackedModel, P
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.verifiableCredentialRequired".casefold():
+        if not mapping_value:
+            return VerifiableCredentialRequirementStatus()
+        if mapping_value.casefold() == "#microsoft.graph.verifiableCredentialRequired".casefold():
             from .verifiable_credential_required import VerifiableCredentialRequired
 
             return VerifiableCredentialRequired()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.verifiableCredentialRetrieved".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.verifiableCredentialRetrieved".casefold():
             from .verifiable_credential_retrieved import VerifiableCredentialRetrieved
 
             return VerifiableCredentialRetrieved()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.verifiableCredentialVerified".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.verifiableCredentialVerified".casefold():
             from .verifiable_credential_verified import VerifiableCredentialVerified
 
             return VerifiableCredentialVerified()

@@ -33,11 +33,13 @@ class TlsInspectionDestination(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionFqdnDestination".casefold():
+        if not mapping_value:
+            return TlsInspectionDestination()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionFqdnDestination".casefold():
             from .tls_inspection_fqdn_destination import TlsInspectionFqdnDestination
 
             return TlsInspectionFqdnDestination()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionWebCategoryDestination".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionWebCategoryDestination".casefold():
             from .tls_inspection_web_category_destination import TlsInspectionWebCategoryDestination
 
             return TlsInspectionWebCategoryDestination()

@@ -30,11 +30,13 @@ class Extension(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.openTypeExtension".casefold():
+        if not mapping_value:
+            return Extension()
+        if mapping_value.casefold() == "#microsoft.graph.openTypeExtension".casefold():
             from .open_type_extension import OpenTypeExtension
 
             return OpenTypeExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.personExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.personExtension".casefold():
             from .person_extension import PersonExtension
 
             return PersonExtension()

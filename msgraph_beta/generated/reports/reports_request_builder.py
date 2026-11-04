@@ -65,6 +65,7 @@ if TYPE_CHECKING:
     from .get_microsoft365_copilot_usage_user_detail_with_periodversion_version.get_microsoft365_copilot_usage_user_detail_with_periodversion_version_request_builder import GetMicrosoft365CopilotUsageUserDetailWithPeriodversionVersionRequestBuilder
     from .get_microsoft365_copilot_user_count_summary_with_periodversion_version.get_microsoft365_copilot_user_count_summary_with_periodversion_version_request_builder import GetMicrosoft365CopilotUserCountSummaryWithPeriodversionVersionRequestBuilder
     from .get_microsoft365_copilot_user_count_trend_with_periodversion_version.get_microsoft365_copilot_user_count_trend_with_periodversion_version_request_builder import GetMicrosoft365CopilotUserCountTrendWithPeriodversionVersionRequestBuilder
+    from .get_microsoft365_emissions.get_microsoft365_emissions_request_builder import GetMicrosoft365EmissionsRequestBuilder
     from .get_office365_activations_user_counts.get_office365_activations_user_counts_request_builder import GetOffice365ActivationsUserCountsRequestBuilder
     from .get_office365_activations_user_detail.get_office365_activations_user_detail_request_builder import GetOffice365ActivationsUserDetailRequestBuilder
     from .get_office365_activation_counts.get_office365_activation_counts_request_builder import GetOffice365ActivationCountsRequestBuilder
@@ -1920,6 +1921,15 @@ class ReportsRequestBuilder(BaseRequestBuilder):
         from .get_credential_user_registration_count.get_credential_user_registration_count_request_builder import GetCredentialUserRegistrationCountRequestBuilder
 
         return GetCredentialUserRegistrationCountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_microsoft365_emissions(self) -> GetMicrosoft365EmissionsRequestBuilder:
+        """
+        Provides operations to call the getMicrosoft365Emissions method.
+        """
+        from .get_microsoft365_emissions.get_microsoft365_emissions_request_builder import GetMicrosoft365EmissionsRequestBuilder
+
+        return GetMicrosoft365EmissionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_office365_activation_counts(self) -> GetOffice365ActivationCountsRequestBuilder:

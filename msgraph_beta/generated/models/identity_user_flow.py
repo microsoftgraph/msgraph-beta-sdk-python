@@ -35,11 +35,13 @@ class IdentityUserFlow(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2cIdentityUserFlow".casefold():
+        if not mapping_value:
+            return IdentityUserFlow()
+        if mapping_value.casefold() == "#microsoft.graph.b2cIdentityUserFlow".casefold():
             from .b2c_identity_user_flow import B2cIdentityUserFlow
 
             return B2cIdentityUserFlow()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2xIdentityUserFlow".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.b2xIdentityUserFlow".casefold():
             from .b2x_identity_user_flow import B2xIdentityUserFlow
 
             return B2xIdentityUserFlow()

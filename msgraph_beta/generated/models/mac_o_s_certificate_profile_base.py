@@ -47,15 +47,17 @@ class MacOSCertificateProfileBase(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSImportedPFXCertificateProfile".casefold():
+        if not mapping_value:
+            return MacOSCertificateProfileBase()
+        if mapping_value.casefold() == "#microsoft.graph.macOSImportedPFXCertificateProfile".casefold():
             from .mac_o_s_imported_p_f_x_certificate_profile import MacOSImportedPFXCertificateProfile
 
             return MacOSImportedPFXCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSPkcsCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSPkcsCertificateProfile".casefold():
             from .mac_o_s_pkcs_certificate_profile import MacOSPkcsCertificateProfile
 
             return MacOSPkcsCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSScepCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSScepCertificateProfile".casefold():
             from .mac_o_s_scep_certificate_profile import MacOSScepCertificateProfile
 
             return MacOSScepCertificateProfile()

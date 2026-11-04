@@ -7,22 +7,20 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .custom_emoji_from_identity_set import CustomEmojiFromIdentitySet
-    from .entity import Entity
+    from .teamwork_hosted_content import TeamworkHostedContent
 
-from .entity import Entity
+from .teamwork_hosted_content import TeamworkHostedContent
 
 @dataclass
-class TeamworkCustomEmoji(Entity, Parsable):
-    # The base64-encoded image content of the emoji. Supported formats include PNG and GIF.
-    content_bytes: Optional[str] = None
+class TeamworkCustomEmoji(TeamworkHostedContent, Parsable):
+    # The OdataType property
+    odata_type: Optional[str] = "#microsoft.graph.teamworkCustomEmoji"
     # The createdBy property
     created_by: Optional[CustomEmojiFromIdentitySet] = None
     # The date and time when the emoji was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     created_date_time: Optional[datetime.datetime] = None
-    # The unique display name of the custom emoji. Key. Must be unique and must not conflict with existing emoji names.
+    # The unique display name of the custom emoji. This property is an alternate key and must not conflict with existing emoji names.
     display_name: Optional[str] = None
-    # The OdataType property
-    odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> TeamworkCustomEmoji:
@@ -41,13 +39,12 @@ class TeamworkCustomEmoji(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .custom_emoji_from_identity_set import CustomEmojiFromIdentitySet
-        from .entity import Entity
+        from .teamwork_hosted_content import TeamworkHostedContent
 
         from .custom_emoji_from_identity_set import CustomEmojiFromIdentitySet
-        from .entity import Entity
+        from .teamwork_hosted_content import TeamworkHostedContent
 
         fields: dict[str, Callable[[Any], None]] = {
-            "contentBytes": lambda n : setattr(self, 'content_bytes', n.get_str_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(CustomEmojiFromIdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
@@ -65,7 +62,6 @@ class TeamworkCustomEmoji(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
-        writer.write_str_value("contentBytes", self.content_bytes)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("displayName", self.display_name)

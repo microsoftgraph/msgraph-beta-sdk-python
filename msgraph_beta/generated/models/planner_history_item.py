@@ -45,7 +45,9 @@ class PlannerHistoryItem(PlannerDelta, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.taskHistoryItem".casefold():
+        if not mapping_value:
+            return PlannerHistoryItem()
+        if mapping_value.casefold() == "#microsoft.graph.taskHistoryItem".casefold():
             from .task_history_item import TaskHistoryItem
 
             return TaskHistoryItem()

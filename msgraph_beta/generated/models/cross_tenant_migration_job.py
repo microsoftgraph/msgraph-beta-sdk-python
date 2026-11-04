@@ -38,11 +38,11 @@ class CrossTenantMigrationJob(Entity, Parsable):
     resource_type: Optional[str] = None
     # IDs (GUID) of the resources that are migrated with the migration job.
     resources: Optional[list[str]] = None
-    # ID (GUID) of the tenant that content is migrated from.
+    # ID (GUID) of the source tenant for the content migration.
     source_tenant_id: Optional[str] = None
     # The status property
     status: Optional[CrossTenantMigrationJobStatus] = None
-    # ID of the tenant that content is migrated to. Read-only.
+    # ID of the target tenant for the content migration. Read-only.
     target_tenant_id: Optional[str] = None
     # Details and status of the users migrated in this migration job.
     users: Optional[list[CrossTenantMigrationTask]] = None

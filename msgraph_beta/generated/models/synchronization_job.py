@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from .bulk_upload import BulkUpload
     from .entity import Entity
     from .key_value_pair import KeyValuePair
+    from .object_connection import ObjectConnection
     from .synchronization_schedule import SynchronizationSchedule
     from .synchronization_schema import SynchronizationSchema
     from .synchronization_status import SynchronizationStatus
@@ -18,6 +19,8 @@ from .entity import Entity
 class SynchronizationJob(Entity, Parsable):
     # The bulk upload operation for the job.
     bulk_upload: Optional[BulkUpload] = None
+    # Connector data store linkage records contained by the job. During public preview, retrieve an individual connection using a known objectId, or delete it to clear its cached linkage. Collection listing isn't supported and returns 400 Bad Request.
+    object_connections: Optional[list[ObjectConnection]] = None
     # The OdataType property
     odata_type: Optional[str] = None
     # Schedule used to run the job. Read-only.
@@ -50,6 +53,7 @@ class SynchronizationJob(Entity, Parsable):
         from .bulk_upload import BulkUpload
         from .entity import Entity
         from .key_value_pair import KeyValuePair
+        from .object_connection import ObjectConnection
         from .synchronization_schedule import SynchronizationSchedule
         from .synchronization_schema import SynchronizationSchema
         from .synchronization_status import SynchronizationStatus
@@ -57,12 +61,14 @@ class SynchronizationJob(Entity, Parsable):
         from .bulk_upload import BulkUpload
         from .entity import Entity
         from .key_value_pair import KeyValuePair
+        from .object_connection import ObjectConnection
         from .synchronization_schedule import SynchronizationSchedule
         from .synchronization_schema import SynchronizationSchema
         from .synchronization_status import SynchronizationStatus
 
         fields: dict[str, Callable[[Any], None]] = {
             "bulkUpload": lambda n : setattr(self, 'bulk_upload', n.get_object_value(BulkUpload)),
+            "objectConnections": lambda n : setattr(self, 'object_connections', n.get_collection_of_object_values(ObjectConnection)),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(SynchronizationSchedule)),
             "schema": lambda n : setattr(self, 'schema', n.get_object_value(SynchronizationSchema)),
             "status": lambda n : setattr(self, 'status', n.get_object_value(SynchronizationStatus)),
@@ -83,6 +89,7 @@ class SynchronizationJob(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("bulkUpload", self.bulk_upload)
+        writer.write_collection_of_object_values("objectConnections", self.object_connections)
         writer.write_object_value("schedule", self.schedule)
         writer.write_object_value("schema", self.schema)
         writer.write_object_value("status", self.status)

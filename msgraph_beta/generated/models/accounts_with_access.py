@@ -33,11 +33,13 @@ class AccountsWithAccess(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allAccountsWithAccess".casefold():
+        if not mapping_value:
+            return AccountsWithAccess()
+        if mapping_value.casefold() == "#microsoft.graph.allAccountsWithAccess".casefold():
             from .all_accounts_with_access import AllAccountsWithAccess
 
             return AllAccountsWithAccess()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.enumeratedAccountsWithAccess".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.enumeratedAccountsWithAccess".casefold():
             from .enumerated_accounts_with_access import EnumeratedAccountsWithAccess
 
             return EnumeratedAccountsWithAccess()

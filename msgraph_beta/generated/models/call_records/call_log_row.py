@@ -47,15 +47,17 @@ class CallLogRow(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.callRecords.directRoutingLogRow".casefold():
+        if not mapping_value:
+            return CallLogRow()
+        if mapping_value.casefold() == "#microsoft.graph.callRecords.directRoutingLogRow".casefold():
             from .direct_routing_log_row import DirectRoutingLogRow
 
             return DirectRoutingLogRow()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.callRecords.pstnCallLogRow".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.callRecords.pstnCallLogRow".casefold():
             from .pstn_call_log_row import PstnCallLogRow
 
             return PstnCallLogRow()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.callRecords.smsLogRow".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.callRecords.smsLogRow".casefold():
             from .sms_log_row import SmsLogRow
 
             return SmsLogRow()

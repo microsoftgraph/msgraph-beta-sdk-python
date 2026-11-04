@@ -31,15 +31,17 @@ class IpDestination(RuleDestination, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.ipAddress".casefold():
+        if not mapping_value:
+            return IpDestination()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.ipAddress".casefold():
             from .ip_address import IpAddress
 
             return IpAddress()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.ipRange".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.ipRange".casefold():
             from .ip_range import IpRange
 
             return IpRange()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.ipSubnet".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.ipSubnet".casefold():
             from .ip_subnet import IpSubnet
 
             return IpSubnet()

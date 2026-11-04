@@ -34,15 +34,17 @@ class LifecyclePolicyEnforcementAction(AdditionalDataHolder, BackedModel, Parsab
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.deleteOnlyEnforcementAction".casefold():
+        if not mapping_value:
+            return LifecyclePolicyEnforcementAction()
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.deleteOnlyEnforcementAction".casefold():
             from .delete_only_enforcement_action import DeleteOnlyEnforcementAction
 
             return DeleteOnlyEnforcementAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.disableOnlyEnforcementAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.disableOnlyEnforcementAction".casefold():
             from .disable_only_enforcement_action import DisableOnlyEnforcementAction
 
             return DisableOnlyEnforcementAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.disableThenDeleteEnforcementAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.disableThenDeleteEnforcementAction".casefold():
             from .disable_then_delete_enforcement_action import DisableThenDeleteEnforcementAction
 
             return DisableThenDeleteEnforcementAction()

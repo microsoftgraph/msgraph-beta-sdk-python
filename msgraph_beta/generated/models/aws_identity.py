@@ -34,27 +34,29 @@ class AwsIdentity(AuthorizationSystemIdentity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsAccessKey".casefold():
+        if not mapping_value:
+            return AwsIdentity()
+        if mapping_value.casefold() == "#microsoft.graph.awsAccessKey".casefold():
             from .aws_access_key import AwsAccessKey
 
             return AwsAccessKey()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsEc2Instance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsEc2Instance".casefold():
             from .aws_ec2_instance import AwsEc2Instance
 
             return AwsEc2Instance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsGroup".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsGroup".casefold():
             from .aws_group import AwsGroup
 
             return AwsGroup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsLambda".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsLambda".casefold():
             from .aws_lambda import AwsLambda
 
             return AwsLambda()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsRole".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsRole".casefold():
             from .aws_role import AwsRole
 
             return AwsRole()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsUser".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsUser".casefold():
             from .aws_user import AwsUser
 
             return AwsUser()

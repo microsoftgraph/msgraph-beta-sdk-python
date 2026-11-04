@@ -54,31 +54,33 @@ class CaseOperation(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.addToReviewSetOperation".casefold():
+        if not mapping_value:
+            return CaseOperation()
+        if mapping_value.casefold() == "#microsoft.graph.ediscovery.addToReviewSetOperation".casefold():
             from .add_to_review_set_operation import AddToReviewSetOperation
 
             return AddToReviewSetOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.caseExportOperation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.ediscovery.caseExportOperation".casefold():
             from .case_export_operation import CaseExportOperation
 
             return CaseExportOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.caseHoldOperation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.ediscovery.caseHoldOperation".casefold():
             from .case_hold_operation import CaseHoldOperation
 
             return CaseHoldOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.caseIndexOperation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.ediscovery.caseIndexOperation".casefold():
             from .case_index_operation import CaseIndexOperation
 
             return CaseIndexOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.estimateStatisticsOperation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.ediscovery.estimateStatisticsOperation".casefold():
             from .estimate_statistics_operation import EstimateStatisticsOperation
 
             return EstimateStatisticsOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.purgeDataOperation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.ediscovery.purgeDataOperation".casefold():
             from .purge_data_operation import PurgeDataOperation
 
             return PurgeDataOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.tagOperation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.ediscovery.tagOperation".casefold():
             from .tag_operation import TagOperation
 
             return TagOperation()

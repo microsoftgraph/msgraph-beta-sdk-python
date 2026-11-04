@@ -48,11 +48,13 @@ class MobilityManagementPolicy(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppManagementPolicy".casefold():
+        if not mapping_value:
+            return MobilityManagementPolicy()
+        if mapping_value.casefold() == "#microsoft.graph.mobileAppManagementPolicy".casefold():
             from .mobile_app_management_policy import MobileAppManagementPolicy
 
             return MobileAppManagementPolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileDeviceManagementPolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mobileDeviceManagementPolicy".casefold():
             from .mobile_device_management_policy import MobileDeviceManagementPolicy
 
             return MobileDeviceManagementPolicy()

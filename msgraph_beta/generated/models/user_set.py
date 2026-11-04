@@ -42,39 +42,41 @@ class UserSet(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.attributeRuleMembers".casefold():
+        if not mapping_value:
+            return UserSet()
+        if mapping_value.casefold() == "#microsoft.graph.attributeRuleMembers".casefold():
             from .attribute_rule_members import AttributeRuleMembers
 
             return AttributeRuleMembers()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.connectedOrganizationMembers".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.connectedOrganizationMembers".casefold():
             from .connected_organization_members import ConnectedOrganizationMembers
 
             return ConnectedOrganizationMembers()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalSponsors".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.externalSponsors".casefold():
             from .external_sponsors import ExternalSponsors
 
             return ExternalSponsors()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupMembers".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupMembers".casefold():
             from .group_members import GroupMembers
 
             return GroupMembers()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.internalSponsors".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.internalSponsors".casefold():
             from .internal_sponsors import InternalSponsors
 
             return InternalSponsors()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.requestorManager".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.requestorManager".casefold():
             from .requestor_manager import RequestorManager
 
             return RequestorManager()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.singleUser".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.singleUser".casefold():
             from .single_user import SingleUser
 
             return SingleUser()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.targetAgentIdentitySponsorsOrOwners".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.targetAgentIdentitySponsorsOrOwners".casefold():
             from .target_agent_identity_sponsors_or_owners import TargetAgentIdentitySponsorsOrOwners
 
             return TargetAgentIdentitySponsorsOrOwners()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.targetUserSponsors".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.targetUserSponsors".casefold():
             from .target_user_sponsors import TargetUserSponsors
 
             return TargetUserSponsors()

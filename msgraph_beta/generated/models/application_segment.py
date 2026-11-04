@@ -30,11 +30,13 @@ class ApplicationSegment(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ipApplicationSegment".casefold():
+        if not mapping_value:
+            return ApplicationSegment()
+        if mapping_value.casefold() == "#microsoft.graph.ipApplicationSegment".casefold():
             from .ip_application_segment import IpApplicationSegment
 
             return IpApplicationSegment()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.webApplicationSegment".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.webApplicationSegment".casefold():
             from .web_application_segment import WebApplicationSegment
 
             return WebApplicationSegment()

@@ -36,11 +36,13 @@ class SignInAudienceRestrictionsBase(AdditionalDataHolder, BackedModel, Parsable
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allowedTenantsAudience".casefold():
+        if not mapping_value:
+            return SignInAudienceRestrictionsBase()
+        if mapping_value.casefold() == "#microsoft.graph.allowedTenantsAudience".casefold():
             from .allowed_tenants_audience import AllowedTenantsAudience
 
             return AllowedTenantsAudience()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unrestrictedAudience".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.unrestrictedAudience".casefold():
             from .unrestricted_audience import UnrestrictedAudience
 
             return UnrestrictedAudience()

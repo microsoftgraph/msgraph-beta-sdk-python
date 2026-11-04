@@ -40,19 +40,21 @@ class KeyTypedValuePair(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.keyBooleanValuePair".casefold():
+        if not mapping_value:
+            return KeyTypedValuePair()
+        if mapping_value.casefold() == "#microsoft.graph.keyBooleanValuePair".casefold():
             from .key_boolean_value_pair import KeyBooleanValuePair
 
             return KeyBooleanValuePair()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.keyIntegerValuePair".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.keyIntegerValuePair".casefold():
             from .key_integer_value_pair import KeyIntegerValuePair
 
             return KeyIntegerValuePair()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.keyRealValuePair".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.keyRealValuePair".casefold():
             from .key_real_value_pair import KeyRealValuePair
 
             return KeyRealValuePair()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.keyStringValuePair".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.keyStringValuePair".casefold():
             from .key_string_value_pair import KeyStringValuePair
 
             return KeyStringValuePair()

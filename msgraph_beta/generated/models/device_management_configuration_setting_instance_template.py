@@ -46,27 +46,29 @@ class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder,
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstanceTemplate".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationSettingInstanceTemplate()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstanceTemplate".casefold():
             from .device_management_configuration_choice_setting_collection_instance_template import DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate
 
             return DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstanceTemplate".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstanceTemplate".casefold():
             from .device_management_configuration_choice_setting_instance_template import DeviceManagementConfigurationChoiceSettingInstanceTemplate
 
             return DeviceManagementConfigurationChoiceSettingInstanceTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstanceTemplate".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstanceTemplate".casefold():
             from .device_management_configuration_group_setting_collection_instance_template import DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate
 
             return DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingInstanceTemplate".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingInstanceTemplate".casefold():
             from .device_management_configuration_group_setting_instance_template import DeviceManagementConfigurationGroupSettingInstanceTemplate
 
             return DeviceManagementConfigurationGroupSettingInstanceTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstanceTemplate".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstanceTemplate".casefold():
             from .device_management_configuration_simple_setting_collection_instance_template import DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate
 
             return DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstanceTemplate".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstanceTemplate".casefold():
             from .device_management_configuration_simple_setting_instance_template import DeviceManagementConfigurationSimpleSettingInstanceTemplate
 
             return DeviceManagementConfigurationSimpleSettingInstanceTemplate()

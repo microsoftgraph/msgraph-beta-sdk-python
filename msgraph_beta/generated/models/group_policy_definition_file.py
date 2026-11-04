@@ -55,7 +55,9 @@ class GroupPolicyDefinitionFile(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyUploadedDefinitionFile".casefold():
+        if not mapping_value:
+            return GroupPolicyDefinitionFile()
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyUploadedDefinitionFile".casefold():
             from .group_policy_uploaded_definition_file import GroupPolicyUploadedDefinitionFile
 
             return GroupPolicyUploadedDefinitionFile()

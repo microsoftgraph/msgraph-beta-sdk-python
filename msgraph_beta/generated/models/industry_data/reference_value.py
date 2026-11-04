@@ -42,27 +42,29 @@ class ReferenceValue(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.fileFormatReferenceValue".casefold():
+        if not mapping_value:
+            return ReferenceValue()
+        if mapping_value.casefold() == "#microsoft.graph.industryData.fileFormatReferenceValue".casefold():
             from .file_format_reference_value import FileFormatReferenceValue
 
             return FileFormatReferenceValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.identifierTypeReferenceValue".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.identifierTypeReferenceValue".casefold():
             from .identifier_type_reference_value import IdentifierTypeReferenceValue
 
             return IdentifierTypeReferenceValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.roleReferenceValue".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.roleReferenceValue".casefold():
             from .role_reference_value import RoleReferenceValue
 
             return RoleReferenceValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.sectionRoleReferenceValue".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.sectionRoleReferenceValue".casefold():
             from .section_role_reference_value import SectionRoleReferenceValue
 
             return SectionRoleReferenceValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.userMatchTargetReferenceValue".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.userMatchTargetReferenceValue".casefold():
             from .user_match_target_reference_value import UserMatchTargetReferenceValue
 
             return UserMatchTargetReferenceValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.yearReferenceValue".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.yearReferenceValue".casefold():
             from .year_reference_value import YearReferenceValue
 
             return YearReferenceValue()

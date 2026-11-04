@@ -64,15 +64,17 @@ class ManagedDeviceMobileAppConfiguration(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidForWorkMobileAppConfiguration".casefold():
+        if not mapping_value:
+            return ManagedDeviceMobileAppConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.androidForWorkMobileAppConfiguration".casefold():
             from .android_for_work_mobile_app_configuration import AndroidForWorkMobileAppConfiguration
 
             return AndroidForWorkMobileAppConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidManagedStoreAppConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidManagedStoreAppConfiguration".casefold():
             from .android_managed_store_app_configuration import AndroidManagedStoreAppConfiguration
 
             return AndroidManagedStoreAppConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosMobileAppConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosMobileAppConfiguration".casefold():
             from .ios_mobile_app_configuration import IosMobileAppConfiguration
 
             return IosMobileAppConfiguration()

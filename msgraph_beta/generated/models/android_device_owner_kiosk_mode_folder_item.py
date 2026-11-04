@@ -33,11 +33,13 @@ class AndroidDeviceOwnerKioskModeFolderItem(AndroidDeviceOwnerKioskModeHomeScree
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerKioskModeApp".casefold():
+        if not mapping_value:
+            return AndroidDeviceOwnerKioskModeFolderItem()
+        if mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerKioskModeApp".casefold():
             from .android_device_owner_kiosk_mode_app import AndroidDeviceOwnerKioskModeApp
 
             return AndroidDeviceOwnerKioskModeApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerKioskModeWeblink".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerKioskModeWeblink".casefold():
             from .android_device_owner_kiosk_mode_weblink import AndroidDeviceOwnerKioskModeWeblink
 
             return AndroidDeviceOwnerKioskModeWeblink()

@@ -45,23 +45,25 @@ class ActivityStatistics(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.callActivityStatistics".casefold():
+        if not mapping_value:
+            return ActivityStatistics()
+        if mapping_value.casefold() == "#microsoft.graph.callActivityStatistics".casefold():
             from .call_activity_statistics import CallActivityStatistics
 
             return CallActivityStatistics()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.chatActivityStatistics".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.chatActivityStatistics".casefold():
             from .chat_activity_statistics import ChatActivityStatistics
 
             return ChatActivityStatistics()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.emailActivityStatistics".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.emailActivityStatistics".casefold():
             from .email_activity_statistics import EmailActivityStatistics
 
             return EmailActivityStatistics()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.focusActivityStatistics".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.focusActivityStatistics".casefold():
             from .focus_activity_statistics import FocusActivityStatistics
 
             return FocusActivityStatistics()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.meetingActivityStatistics".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.meetingActivityStatistics".casefold():
             from .meeting_activity_statistics import MeetingActivityStatistics
 
             return MeetingActivityStatistics()

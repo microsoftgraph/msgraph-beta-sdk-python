@@ -51,7 +51,9 @@ class WindowsPhone81CertificateProfileBase(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhone81SCEPCertificateProfile".casefold():
+        if not mapping_value:
+            return WindowsPhone81CertificateProfileBase()
+        if mapping_value.casefold() == "#microsoft.graph.windowsPhone81SCEPCertificateProfile".casefold():
             from .windows_phone81_s_c_e_p_certificate_profile import WindowsPhone81SCEPCertificateProfile
 
             return WindowsPhone81SCEPCertificateProfile()

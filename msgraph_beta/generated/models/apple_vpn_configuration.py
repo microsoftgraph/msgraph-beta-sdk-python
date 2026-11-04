@@ -90,15 +90,17 @@ class AppleVpnConfiguration(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosikEv2VpnConfiguration".casefold():
+        if not mapping_value:
+            return AppleVpnConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.iosikEv2VpnConfiguration".casefold():
             from .iosik_ev2_vpn_configuration import IosikEv2VpnConfiguration
 
             return IosikEv2VpnConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosVpnConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosVpnConfiguration".casefold():
             from .ios_vpn_configuration import IosVpnConfiguration
 
             return IosVpnConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSVpnConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSVpnConfiguration".casefold():
             from .mac_o_s_vpn_configuration import MacOSVpnConfiguration
 
             return MacOSVpnConfiguration()

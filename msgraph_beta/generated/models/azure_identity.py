@@ -33,23 +33,25 @@ class AzureIdentity(AuthorizationSystemIdentity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureGroup".casefold():
+        if not mapping_value:
+            return AzureIdentity()
+        if mapping_value.casefold() == "#microsoft.graph.azureGroup".casefold():
             from .azure_group import AzureGroup
 
             return AzureGroup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureManagedIdentity".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureManagedIdentity".casefold():
             from .azure_managed_identity import AzureManagedIdentity
 
             return AzureManagedIdentity()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureServerlessFunction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureServerlessFunction".casefold():
             from .azure_serverless_function import AzureServerlessFunction
 
             return AzureServerlessFunction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureServicePrincipal".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureServicePrincipal".casefold():
             from .azure_service_principal import AzureServicePrincipal
 
             return AzureServicePrincipal()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureUser".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureUser".casefold():
             from .azure_user import AzureUser
 
             return AzureUser()

@@ -35,7 +35,9 @@ class PlannerBucketCreation(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerExternalBucketSource".casefold():
+        if not mapping_value:
+            return PlannerBucketCreation()
+        if mapping_value.casefold() == "#microsoft.graph.plannerExternalBucketSource".casefold():
             from .planner_external_bucket_source import PlannerExternalBucketSource
 
             return PlannerExternalBucketSource()

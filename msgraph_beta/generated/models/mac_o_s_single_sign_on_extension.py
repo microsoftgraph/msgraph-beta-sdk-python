@@ -35,19 +35,21 @@ class MacOSSingleSignOnExtension(SingleSignOnExtension, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSAzureAdSingleSignOnExtension".casefold():
+        if not mapping_value:
+            return MacOSSingleSignOnExtension()
+        if mapping_value.casefold() == "#microsoft.graph.macOSAzureAdSingleSignOnExtension".casefold():
             from .mac_o_s_azure_ad_single_sign_on_extension import MacOSAzureAdSingleSignOnExtension
 
             return MacOSAzureAdSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSCredentialSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSCredentialSingleSignOnExtension".casefold():
             from .mac_o_s_credential_single_sign_on_extension import MacOSCredentialSingleSignOnExtension
 
             return MacOSCredentialSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSKerberosSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSKerberosSingleSignOnExtension".casefold():
             from .mac_o_s_kerberos_single_sign_on_extension import MacOSKerberosSingleSignOnExtension
 
             return MacOSKerberosSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSRedirectSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSRedirectSingleSignOnExtension".casefold():
             from .mac_o_s_redirect_single_sign_on_extension import MacOSRedirectSingleSignOnExtension
 
             return MacOSRedirectSingleSignOnExtension()

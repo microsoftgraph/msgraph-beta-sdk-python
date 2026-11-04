@@ -52,11 +52,13 @@ class AndroidWorkProfileCertificateProfileBase(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidWorkProfilePkcsCertificateProfile".casefold():
+        if not mapping_value:
+            return AndroidWorkProfileCertificateProfileBase()
+        if mapping_value.casefold() == "#microsoft.graph.androidWorkProfilePkcsCertificateProfile".casefold():
             from .android_work_profile_pkcs_certificate_profile import AndroidWorkProfilePkcsCertificateProfile
 
             return AndroidWorkProfilePkcsCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidWorkProfileScepCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidWorkProfileScepCertificateProfile".casefold():
             from .android_work_profile_scep_certificate_profile import AndroidWorkProfileScepCertificateProfile
 
             return AndroidWorkProfileScepCertificateProfile()

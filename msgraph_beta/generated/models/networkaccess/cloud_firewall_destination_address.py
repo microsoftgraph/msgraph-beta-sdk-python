@@ -33,11 +33,13 @@ class CloudFirewallDestinationAddress(AdditionalDataHolder, BackedModel, Parsabl
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallDestinationFqdnAddress".casefold():
+        if not mapping_value:
+            return CloudFirewallDestinationAddress()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallDestinationFqdnAddress".casefold():
             from .cloud_firewall_destination_fqdn_address import CloudFirewallDestinationFqdnAddress
 
             return CloudFirewallDestinationFqdnAddress()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallDestinationIpAddress".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallDestinationIpAddress".casefold():
             from .cloud_firewall_destination_ip_address import CloudFirewallDestinationIpAddress
 
             return CloudFirewallDestinationIpAddress()

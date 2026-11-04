@@ -34,15 +34,17 @@ class SignInIdentity(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentSignIn".casefold():
+        if not mapping_value:
+            return SignInIdentity()
+        if mapping_value.casefold() == "#microsoft.graph.agentSignIn".casefold():
             from .agent_sign_in import AgentSignIn
 
             return AgentSignIn()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.servicePrincipalSignIn".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.servicePrincipalSignIn".casefold():
             from .service_principal_sign_in import ServicePrincipalSignIn
 
             return ServicePrincipalSignIn()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userSignIn".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.userSignIn".casefold():
             from .user_sign_in import UserSignIn
 
             return UserSignIn()

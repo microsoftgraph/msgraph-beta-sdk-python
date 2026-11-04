@@ -49,27 +49,29 @@ class LongRunningOperation(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.attackSimulationOperation".casefold():
+        if not mapping_value:
+            return LongRunningOperation()
+        if mapping_value.casefold() == "#microsoft.graph.attackSimulationOperation".casefold():
             from .attack_simulation_operation import AttackSimulationOperation
 
             return AttackSimulationOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.engagementAsyncOperation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.engagementAsyncOperation".casefold():
             from .engagement_async_operation import EngagementAsyncOperation
 
             return EngagementAsyncOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.goalsExportJob".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.goalsExportJob".casefold():
             from .goals_export_job import GoalsExportJob
 
             return GoalsExportJob()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.fileValidateOperation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.fileValidateOperation".casefold():
             from .industry_data.file_validate_operation import FileValidateOperation
 
             return FileValidateOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.validateOperation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.validateOperation".casefold():
             from .industry_data.validate_operation import ValidateOperation
 
             return ValidateOperation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.richLongRunningOperation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.richLongRunningOperation".casefold():
             from .rich_long_running_operation import RichLongRunningOperation
 
             return RichLongRunningOperation()

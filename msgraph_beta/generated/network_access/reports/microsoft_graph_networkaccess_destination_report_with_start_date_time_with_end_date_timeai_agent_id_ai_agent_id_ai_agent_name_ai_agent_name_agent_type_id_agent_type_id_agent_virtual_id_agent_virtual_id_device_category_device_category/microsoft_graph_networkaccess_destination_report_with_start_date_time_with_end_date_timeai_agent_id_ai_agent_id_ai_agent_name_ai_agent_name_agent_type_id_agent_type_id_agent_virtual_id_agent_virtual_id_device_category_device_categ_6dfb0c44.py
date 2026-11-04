@@ -16,15 +16,15 @@ from warnings import warn
 
 if TYPE_CHECKING:
     from ....models.o_data_errors.o_data_error import ODataError
-    from .destination_report_with_start_date_time_with_end_date_timeai_agent_id_ai_agent_id_ai_agent_name_ai_agent_name_agent_type_id_agent_type_id_agent_virtual_id_agent_virtual_id_get_response import DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdGetResponse
+    from .destination_report_with_start_date_time_with_end_date_timeai_agent_id_ai_agent_id_ai_agent_name_ai_agent_name_agent_type_id_agent_type_id_agent_virtual_id_agent_virtual_id_device_category_device_category_get_response import DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryGetResponse
 
-class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdRequestBuilder(BaseRequestBuilder):
+class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCateg_6dfb0c44(BaseRequestBuilder):
     """
-    Provides operations to call the destinationReport method.
+    Provides operations to call the destinationReport method. Original name: MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryRequestBuilder
     """
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Union[str, dict[str, Any]], end_date_time: Optional[datetime.datetime] = None, start_date_time: Optional[datetime.datetime] = None) -> None:
         """
-        Instantiates a new MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdRequestBuilder and sets the default values.
+        Instantiates a new MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCateg_6dfb0c44 and sets the default values.
         param end_date_time: Usage: endDateTime={endDateTime}
         param path_parameters: The raw url or the url-template parameters for the request.
         param request_adapter: The request adapter to use to execute the requests.
@@ -34,13 +34,13 @@ class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTi
         if isinstance(path_parameters, dict):
             path_parameters['endDateTime'] = end_date_time
             path_parameters['startDateTime'] = start_date_time
-        super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.destinationReport(startDateTime={startDateTime},endDateTime={endDateTime},aiAgentId='@aiAgentId',aiAgentName='@aiAgentName',agentTypeId='@agentTypeId',agentVirtualId='@agentVirtualId'){?%24count,%24filter,%24search,%24skip,%24top,agentTypeId*,agentVirtualId*,aiAgentId*,aiAgentName*}", path_parameters)
+        super().__init__(request_adapter, "{+baseurl}/networkAccess/reports/microsoft.graph.networkaccess.destinationReport(startDateTime={startDateTime},endDateTime={endDateTime},aiAgentId='@aiAgentId',aiAgentName='@aiAgentName',agentTypeId='@agentTypeId',agentVirtualId='@agentVirtualId',deviceCategory='@deviceCategory'){?%24count,%24filter,%24search,%24skip,%24top,agentTypeId*,agentVirtualId*,aiAgentId*,aiAgentName*,deviceCategory*}", path_parameters)
     
-    async def get(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdRequestBuilderGetQueryParameters]] = None) -> Optional[DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdGetResponse]:
+    async def get(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryRequestBuilderGetQueryParameters]] = None) -> Optional[DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryGetResponse]:
         """
         Invoke function destinationReport
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdGetResponse]
+        Returns: Optional[DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryGetResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -52,11 +52,11 @@ class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTi
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        from .destination_report_with_start_date_time_with_end_date_timeai_agent_id_ai_agent_id_ai_agent_name_ai_agent_name_agent_type_id_agent_type_id_agent_virtual_id_agent_virtual_id_get_response import DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdGetResponse
+        from .destination_report_with_start_date_time_with_end_date_timeai_agent_id_ai_agent_id_ai_agent_name_ai_agent_name_agent_type_id_agent_type_id_agent_virtual_id_agent_virtual_id_device_category_device_category_get_response import DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryGetResponse
 
-        return await self.request_adapter.send_async(request_info, DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdGetResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryGetResponse, error_mapping)
     
-    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
+    def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
         Invoke function destinationReport
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -67,18 +67,18 @@ class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTi
         request_info.headers.try_add("Accept", "application/json")
         return request_info
     
-    def with_url(self,raw_url: str) -> MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdRequestBuilder:
+    def with_url(self,raw_url: str) -> MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCateg_6dfb0c44:
         """
         Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         param raw_url: The raw URL to use for the request builder.
-        Returns: MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdRequestBuilder
+        Returns: MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCateg_6dfb0c44
         """
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
-        return MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdRequestBuilder(self.request_adapter, raw_url)
+        return MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCateg_6dfb0c44(self.request_adapter, raw_url)
     
     @dataclass
-    class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdRequestBuilderGetQueryParameters():
+    class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryRequestBuilderGetQueryParameters():
         """
         Invoke function destinationReport
         """
@@ -100,6 +100,8 @@ class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTi
                 return "aiAgentName"
             if original_name == "count":
                 return "%24count"
+            if original_name == "device_category":
+                return "deviceCategory"
             if original_name == "filter":
                 return "%24filter"
             if original_name == "search":
@@ -125,6 +127,9 @@ class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTi
         # Include count of items
         count: Optional[bool] = None
 
+        # Usage: deviceCategory='@deviceCategory'
+        device_category: Optional[str] = None
+
         # Filter items by property values
         filter: Optional[str] = None
 
@@ -139,7 +144,7 @@ class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTi
 
     
     @dataclass
-    class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdRequestBuilderGetRequestConfiguration(RequestConfiguration[MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdRequestBuilderGetQueryParameters]):
+    class MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryRequestBuilderGetRequestConfiguration(RequestConfiguration[MicrosoftGraphNetworkaccessDestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryRequestBuilderGetQueryParameters]):
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

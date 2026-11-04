@@ -33,11 +33,13 @@ class ValueProperty(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.booleanValueProperty".casefold():
+        if not mapping_value:
+            return ValueProperty()
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.booleanValueProperty".casefold():
             from .boolean_value_property import BooleanValueProperty
 
             return BooleanValueProperty()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.stringValueProperty".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.stringValueProperty".casefold():
             from .string_value_property import StringValueProperty
 
             return StringValueProperty()

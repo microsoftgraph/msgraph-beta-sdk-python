@@ -58,15 +58,17 @@ class DeviceAppManagementTask(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appVulnerabilityTask".casefold():
+        if not mapping_value:
+            return DeviceAppManagementTask()
+        if mapping_value.casefold() == "#microsoft.graph.appVulnerabilityTask".casefold():
             from .app_vulnerability_task import AppVulnerabilityTask
 
             return AppVulnerabilityTask()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.securityConfigurationTask".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.securityConfigurationTask".casefold():
             from .security_configuration_task import SecurityConfigurationTask
 
             return SecurityConfigurationTask()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unmanagedDeviceDiscoveryTask".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.unmanagedDeviceDiscoveryTask".casefold():
             from .unmanaged_device_discovery_task import UnmanagedDeviceDiscoveryTask
 
             return UnmanagedDeviceDiscoveryTask()

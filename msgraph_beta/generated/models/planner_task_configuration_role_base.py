@@ -35,7 +35,9 @@ class PlannerTaskConfigurationRoleBase(AdditionalDataHolder, BackedModel, Parsab
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerRelationshipBasedUserType".casefold():
+        if not mapping_value:
+            return PlannerTaskConfigurationRoleBase()
+        if mapping_value.casefold() == "#microsoft.graph.plannerRelationshipBasedUserType".casefold():
             from .planner_relationship_based_user_type import PlannerRelationshipBasedUserType
 
             return PlannerRelationshipBasedUserType()

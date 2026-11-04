@@ -38,11 +38,13 @@ class DeviceManagementConfigurationSimpleSettingValueTemplate(AdditionalDataHold
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueTemplate".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationSimpleSettingValueTemplate()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueTemplate".casefold():
             from .device_management_configuration_integer_setting_value_template import DeviceManagementConfigurationIntegerSettingValueTemplate
 
             return DeviceManagementConfigurationIntegerSettingValueTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationStringSettingValueTemplate".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationStringSettingValueTemplate".casefold():
             from .device_management_configuration_string_setting_value_template import DeviceManagementConfigurationStringSettingValueTemplate
 
             return DeviceManagementConfigurationStringSettingValueTemplate()

@@ -13,7 +13,7 @@ from .custom_extension_authentication_configuration import CustomExtensionAuthen
 class AzureAdTokenAuthentication(CustomExtensionAuthenticationConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.azureAdTokenAuthentication"
-    # The appID of the Microsoft Entra application to use to authenticate a logic app with a custom access package workflow extension.
+    # The app ID or identifier URI of the Microsoft Entra application used to authenticate calls to the external app.
     resource_id: Optional[str] = None
     
     @staticmethod

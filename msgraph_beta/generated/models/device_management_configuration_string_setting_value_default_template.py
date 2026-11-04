@@ -35,7 +35,9 @@ class DeviceManagementConfigurationStringSettingValueDefaultTemplate(AdditionalD
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationStringSettingValueConstantDefaultTemplate".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationStringSettingValueDefaultTemplate()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationStringSettingValueConstantDefaultTemplate".casefold():
             from .device_management_configuration_string_setting_value_constant_default_template import DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate
 
             return DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate()

@@ -42,15 +42,17 @@ class Win32LobAppRequirement(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppFileSystemRequirement".casefold():
+        if not mapping_value:
+            return Win32LobAppRequirement()
+        if mapping_value.casefold() == "#microsoft.graph.win32LobAppFileSystemRequirement".casefold():
             from .win32_lob_app_file_system_requirement import Win32LobAppFileSystemRequirement
 
             return Win32LobAppFileSystemRequirement()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppPowerShellScriptRequirement".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.win32LobAppPowerShellScriptRequirement".casefold():
             from .win32_lob_app_power_shell_script_requirement import Win32LobAppPowerShellScriptRequirement
 
             return Win32LobAppPowerShellScriptRequirement()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppRegistryRequirement".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.win32LobAppRegistryRequirement".casefold():
             from .win32_lob_app_registry_requirement import Win32LobAppRegistryRequirement
 
             return Win32LobAppRegistryRequirement()

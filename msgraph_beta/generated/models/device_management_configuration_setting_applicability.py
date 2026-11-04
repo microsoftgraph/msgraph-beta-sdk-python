@@ -49,31 +49,33 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Ba
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationAndroidSettingApplicability".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationSettingApplicability()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationAndroidSettingApplicability".casefold():
             from .device_management_configuration_android_setting_applicability import DeviceManagementConfigurationAndroidSettingApplicability
 
             return DeviceManagementConfigurationAndroidSettingApplicability()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationApplicationSettingApplicability".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationApplicationSettingApplicability".casefold():
             from .device_management_configuration_application_setting_applicability import DeviceManagementConfigurationApplicationSettingApplicability
 
             return DeviceManagementConfigurationApplicationSettingApplicability()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationEdgeSettingApplicability".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationEdgeSettingApplicability".casefold():
             from .device_management_configuration_edge_setting_applicability import DeviceManagementConfigurationEdgeSettingApplicability
 
             return DeviceManagementConfigurationEdgeSettingApplicability()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationExchangeOnlineSettingApplicability".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationExchangeOnlineSettingApplicability".casefold():
             from .device_management_configuration_exchange_online_setting_applicability import DeviceManagementConfigurationExchangeOnlineSettingApplicability
 
             return DeviceManagementConfigurationExchangeOnlineSettingApplicability()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIosSettingApplicability".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIosSettingApplicability".casefold():
             from .device_management_configuration_ios_setting_applicability import DeviceManagementConfigurationIosSettingApplicability
 
             return DeviceManagementConfigurationIosSettingApplicability()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationLinuxSettingApplicability".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationLinuxSettingApplicability".casefold():
             from .device_management_configuration_linux_setting_applicability import DeviceManagementConfigurationLinuxSettingApplicability
 
             return DeviceManagementConfigurationLinuxSettingApplicability()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationWindowsSettingApplicability".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationWindowsSettingApplicability".casefold():
             from .device_management_configuration_windows_setting_applicability import DeviceManagementConfigurationWindowsSettingApplicability
 
             return DeviceManagementConfigurationWindowsSettingApplicability()

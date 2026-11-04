@@ -52,19 +52,21 @@ class ActivityLogBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.backupPolicyActivityLog".casefold():
+        if not mapping_value:
+            return ActivityLogBase()
+        if mapping_value.casefold() == "#microsoft.graph.backupPolicyActivityLog".casefold():
             from .backup_policy_activity_log import BackupPolicyActivityLog
 
             return BackupPolicyActivityLog()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.dynamicRuleActivityLog".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.dynamicRuleActivityLog".casefold():
             from .dynamic_rule_activity_log import DynamicRuleActivityLog
 
             return DynamicRuleActivityLog()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.offboardingActivityLog".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.offboardingActivityLog".casefold():
             from .offboarding_activity_log import OffboardingActivityLog
 
             return OffboardingActivityLog()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.restoreTaskActivityLog".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.restoreTaskActivityLog".casefold():
             from .restore_task_activity_log import RestoreTaskActivityLog
 
             return RestoreTaskActivityLog()

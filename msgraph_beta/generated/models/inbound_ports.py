@@ -33,11 +33,13 @@ class InboundPorts(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allInboundPorts".casefold():
+        if not mapping_value:
+            return InboundPorts()
+        if mapping_value.casefold() == "#microsoft.graph.allInboundPorts".casefold():
             from .all_inbound_ports import AllInboundPorts
 
             return AllInboundPorts()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.enumeratedInboundPorts".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.enumeratedInboundPorts".casefold():
             from .enumerated_inbound_ports import EnumeratedInboundPorts
 
             return EnumeratedInboundPorts()

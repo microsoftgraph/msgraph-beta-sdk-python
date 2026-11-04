@@ -43,27 +43,29 @@ class ResourceImpactSummary(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.applicationImpactSummary".casefold():
+        if not mapping_value:
+            return ResourceImpactSummary()
+        if mapping_value.casefold() == "#microsoft.graph.healthMonitoring.applicationImpactSummary".casefold():
             from .application_impact_summary import ApplicationImpactSummary
 
             return ApplicationImpactSummary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.deviceImpactSummary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.healthMonitoring.deviceImpactSummary".casefold():
             from .device_impact_summary import DeviceImpactSummary
 
             return DeviceImpactSummary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.directoryObjectImpactSummary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.healthMonitoring.directoryObjectImpactSummary".casefold():
             from .directory_object_impact_summary import DirectoryObjectImpactSummary
 
             return DirectoryObjectImpactSummary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.groupImpactSummary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.healthMonitoring.groupImpactSummary".casefold():
             from .group_impact_summary import GroupImpactSummary
 
             return GroupImpactSummary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.servicePrincipalImpactSummary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.healthMonitoring.servicePrincipalImpactSummary".casefold():
             from .service_principal_impact_summary import ServicePrincipalImpactSummary
 
             return ServicePrincipalImpactSummary()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.healthMonitoring.userImpactSummary".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.healthMonitoring.userImpactSummary".casefold():
             from .user_impact_summary import UserImpactSummary
 
             return UserImpactSummary()

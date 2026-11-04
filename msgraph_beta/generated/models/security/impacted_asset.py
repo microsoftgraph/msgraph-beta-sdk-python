@@ -34,15 +34,17 @@ class ImpactedAsset(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.impactedDeviceAsset".casefold():
+        if not mapping_value:
+            return ImpactedAsset()
+        if mapping_value.casefold() == "#microsoft.graph.security.impactedDeviceAsset".casefold():
             from .impacted_device_asset import ImpactedDeviceAsset
 
             return ImpactedDeviceAsset()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.impactedMailboxAsset".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.impactedMailboxAsset".casefold():
             from .impacted_mailbox_asset import ImpactedMailboxAsset
 
             return ImpactedMailboxAsset()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.impactedUserAsset".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.impactedUserAsset".casefold():
             from .impacted_user_asset import ImpactedUserAsset
 
             return ImpactedUserAsset()

@@ -25,7 +25,7 @@ class TodoTaskList(Entity, Parsable):
     is_shared: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The collection of single-value extended properties defined for the task list. Read-only. Nullable.
+    # The collection of single-value extended properties defined for the task list. Nullable.
     single_value_extended_properties: Optional[list[SingleValueExtendedProperty]] = None
     # The tasks in this task list. Read-only. Nullable.
     tasks: Optional[list[TodoTask]] = None

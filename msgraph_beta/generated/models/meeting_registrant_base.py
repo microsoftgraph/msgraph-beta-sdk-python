@@ -32,11 +32,13 @@ class MeetingRegistrantBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalMeetingRegistrant".casefold():
+        if not mapping_value:
+            return MeetingRegistrantBase()
+        if mapping_value.casefold() == "#microsoft.graph.externalMeetingRegistrant".casefold():
             from .external_meeting_registrant import ExternalMeetingRegistrant
 
             return ExternalMeetingRegistrant()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.meetingRegistrant".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.meetingRegistrant".casefold():
             from .meeting_registrant import MeetingRegistrant
 
             return MeetingRegistrant()

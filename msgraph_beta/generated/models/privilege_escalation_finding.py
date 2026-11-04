@@ -44,19 +44,21 @@ class PrivilegeEscalationFinding(Finding, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeEscalationAwsResourceFinding".casefold():
+        if not mapping_value:
+            return PrivilegeEscalationFinding()
+        if mapping_value.casefold() == "#microsoft.graph.privilegeEscalationAwsResourceFinding".casefold():
             from .privilege_escalation_aws_resource_finding import PrivilegeEscalationAwsResourceFinding
 
             return PrivilegeEscalationAwsResourceFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeEscalationAwsRoleFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.privilegeEscalationAwsRoleFinding".casefold():
             from .privilege_escalation_aws_role_finding import PrivilegeEscalationAwsRoleFinding
 
             return PrivilegeEscalationAwsRoleFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeEscalationGcpServiceAccountFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.privilegeEscalationGcpServiceAccountFinding".casefold():
             from .privilege_escalation_gcp_service_account_finding import PrivilegeEscalationGcpServiceAccountFinding
 
             return PrivilegeEscalationGcpServiceAccountFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privilegeEscalationUserFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.privilegeEscalationUserFinding".casefold():
             from .privilege_escalation_user_finding import PrivilegeEscalationUserFinding
 
             return PrivilegeEscalationUserFinding()

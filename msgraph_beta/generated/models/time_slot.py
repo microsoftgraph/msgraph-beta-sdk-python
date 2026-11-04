@@ -37,7 +37,9 @@ class TimeSlot(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.timeSlotAvailability".casefold():
+        if not mapping_value:
+            return TimeSlot()
+        if mapping_value.casefold() == "#microsoft.graph.timeSlotAvailability".casefold():
             from .time_slot_availability import TimeSlotAvailability
 
             return TimeSlotAvailability()

@@ -42,15 +42,17 @@ class ControlConfiguration(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.endUserSettings".casefold():
+        if not mapping_value:
+            return ControlConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.endUserSettings".casefold():
             from .end_user_settings import EndUserSettings
 
             return EndUserSettings()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraIdProtectionRiskyUserApproval".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.entraIdProtectionRiskyUserApproval".casefold():
             from .entra_id_protection_risky_user_approval import EntraIdProtectionRiskyUserApproval
 
             return EntraIdProtectionRiskyUserApproval()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.insiderRiskyUserApproval".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.insiderRiskyUserApproval".casefold():
             from .insider_risky_user_approval import InsiderRiskyUserApproval
 
             return InsiderRiskyUserApproval()

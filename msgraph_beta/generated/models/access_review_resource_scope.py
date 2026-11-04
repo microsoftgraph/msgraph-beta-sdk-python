@@ -6,6 +6,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from .access_review_access_package_assignment_policy_scope import AccessReviewAccessPackageAssignmentPolicyScope
+    from .access_review_catalog_scope import AccessReviewCatalogScope
     from .access_review_resource_scope_type import AccessReviewResourceScopeType
     from .access_review_scope import AccessReviewScope
 
@@ -36,10 +37,16 @@ class AccessReviewResourceScope(AccessReviewScope, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewAccessPackageAssignmentPolicyScope".casefold():
+        if not mapping_value:
+            return AccessReviewResourceScope()
+        if mapping_value.casefold() == "#microsoft.graph.accessReviewAccessPackageAssignmentPolicyScope".casefold():
             from .access_review_access_package_assignment_policy_scope import AccessReviewAccessPackageAssignmentPolicyScope
 
             return AccessReviewAccessPackageAssignmentPolicyScope()
+        if mapping_value.casefold() == "#microsoft.graph.accessReviewCatalogScope".casefold():
+            from .access_review_catalog_scope import AccessReviewCatalogScope
+
+            return AccessReviewCatalogScope()
         return AccessReviewResourceScope()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
@@ -48,10 +55,12 @@ class AccessReviewResourceScope(AccessReviewScope, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from .access_review_access_package_assignment_policy_scope import AccessReviewAccessPackageAssignmentPolicyScope
+        from .access_review_catalog_scope import AccessReviewCatalogScope
         from .access_review_resource_scope_type import AccessReviewResourceScopeType
         from .access_review_scope import AccessReviewScope
 
         from .access_review_access_package_assignment_policy_scope import AccessReviewAccessPackageAssignmentPolicyScope
+        from .access_review_catalog_scope import AccessReviewCatalogScope
         from .access_review_resource_scope_type import AccessReviewResourceScopeType
         from .access_review_scope import AccessReviewScope
 

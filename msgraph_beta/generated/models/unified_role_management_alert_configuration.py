@@ -46,31 +46,33 @@ class UnifiedRoleManagementAlertConfiguration(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.invalidLicenseAlertConfiguration".casefold():
+        if not mapping_value:
+            return UnifiedRoleManagementAlertConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.invalidLicenseAlertConfiguration".casefold():
             from .invalid_license_alert_configuration import InvalidLicenseAlertConfiguration
 
             return InvalidLicenseAlertConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.noMfaOnRoleActivationAlertConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.noMfaOnRoleActivationAlertConfiguration".casefold():
             from .no_mfa_on_role_activation_alert_configuration import NoMfaOnRoleActivationAlertConfiguration
 
             return NoMfaOnRoleActivationAlertConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.redundantAssignmentAlertConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.redundantAssignmentAlertConfiguration".casefold():
             from .redundant_assignment_alert_configuration import RedundantAssignmentAlertConfiguration
 
             return RedundantAssignmentAlertConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.rolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.rolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration".casefold():
             from .roles_assigned_outside_privileged_identity_management_alert_configuration import RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration
 
             return RolesAssignedOutsidePrivilegedIdentityManagementAlertConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sequentialActivationRenewalsAlertConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.sequentialActivationRenewalsAlertConfiguration".casefold():
             from .sequential_activation_renewals_alert_configuration import SequentialActivationRenewalsAlertConfiguration
 
             return SequentialActivationRenewalsAlertConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.staleSignInAlertConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.staleSignInAlertConfiguration".casefold():
             from .stale_sign_in_alert_configuration import StaleSignInAlertConfiguration
 
             return StaleSignInAlertConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tooManyGlobalAdminsAssignedToTenantAlertConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.tooManyGlobalAdminsAssignedToTenantAlertConfiguration".casefold():
             from .too_many_global_admins_assigned_to_tenant_alert_configuration import TooManyGlobalAdminsAssignedToTenantAlertConfiguration
 
             return TooManyGlobalAdminsAssignedToTenantAlertConfiguration()

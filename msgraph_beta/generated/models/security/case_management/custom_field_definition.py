@@ -40,19 +40,21 @@ class CustomFieldDefinition(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.dateTimeCustomFieldDefinition".casefold():
+        if not mapping_value:
+            return CustomFieldDefinition()
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.dateTimeCustomFieldDefinition".casefold():
             from .date_time_custom_field_definition import DateTimeCustomFieldDefinition
 
             return DateTimeCustomFieldDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.numberCustomFieldDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.numberCustomFieldDefinition".casefold():
             from .number_custom_field_definition import NumberCustomFieldDefinition
 
             return NumberCustomFieldDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.optionsCustomFieldDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.optionsCustomFieldDefinition".casefold():
             from .options_custom_field_definition import OptionsCustomFieldDefinition
 
             return OptionsCustomFieldDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.stringCustomFieldDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.stringCustomFieldDefinition".casefold():
             from .string_custom_field_definition import StringCustomFieldDefinition
 
             return StringCustomFieldDefinition()

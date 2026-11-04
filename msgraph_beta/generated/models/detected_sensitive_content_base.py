@@ -45,15 +45,17 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.detectedSensitiveContent".casefold():
+        if not mapping_value:
+            return DetectedSensitiveContentBase()
+        if mapping_value.casefold() == "#microsoft.graph.detectedSensitiveContent".casefold():
             from .detected_sensitive_content import DetectedSensitiveContent
 
             return DetectedSensitiveContent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exactMatchDetectedSensitiveContent".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.exactMatchDetectedSensitiveContent".casefold():
             from .exact_match_detected_sensitive_content import ExactMatchDetectedSensitiveContent
 
             return ExactMatchDetectedSensitiveContent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.machineLearningDetectedSensitiveContent".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.machineLearningDetectedSensitiveContent".casefold():
             from .machine_learning_detected_sensitive_content import MachineLearningDetectedSensitiveContent
 
             return MachineLearningDetectedSensitiveContent()

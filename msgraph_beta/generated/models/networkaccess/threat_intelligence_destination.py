@@ -32,7 +32,9 @@ class ThreatIntelligenceDestination(AdditionalDataHolder, BackedModel, Parsable)
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligenceFqdnDestination".casefold():
+        if not mapping_value:
+            return ThreatIntelligenceDestination()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligenceFqdnDestination".casefold():
             from .threat_intelligence_fqdn_destination import ThreatIntelligenceFqdnDestination
 
             return ThreatIntelligenceFqdnDestination()

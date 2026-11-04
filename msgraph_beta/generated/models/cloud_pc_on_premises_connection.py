@@ -5,6 +5,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .cloud_pc_domain_join_credential import CloudPcDomainJoinCredential
     from .cloud_pc_management_service import CloudPcManagementService
     from .cloud_pc_on_premises_connection_status import CloudPcOnPremisesConnectionStatus
     from .cloud_pc_on_premises_connection_status_detail import CloudPcOnPremisesConnectionStatusDetail
@@ -19,9 +20,9 @@ from .entity import Entity
 class CloudPcOnPremisesConnection(Entity, Parsable):
     # The fully qualified domain name (FQDN) of the Active Directory domain you want to join. Optional.
     ad_domain_name: Optional[str] = None
-    # The password associated with adDomainUsername.
+    # The password associated with adDomainUsername. This deprecated property is retained for backward compatibility and will be removed on December 31, 2026. Going forward use the domainJoinCredential property instead. If both properties are provided, domainJoinCredential takes precedence.
     ad_domain_password: Optional[str] = None
-    # The username of an Active Directory account (user or service account) that has permissions to create computer objects in Active Directory. Required format: admin@contoso.com. Optional.
+    # The username of an Active Directory account that has permissions to create computer objects in Active Directory. This deprecated property is retained for backward compatibility and will be removed on December 31, 2026. Going forward use the domainJoinCredential/domainUserPrincipalName property instead.
     ad_domain_username: Optional[str] = None
     # The interface URL of the partner service's resource that links to this Azure network connection. Requires $select to retrieve.
     alternate_resource_url: Optional[str] = None
@@ -29,13 +30,15 @@ class CloudPcOnPremisesConnection(Entity, Parsable):
     connection_type: Optional[CloudPcOnPremisesConnectionType] = None
     # The display name for the Azure network connection.
     display_name: Optional[str] = None
+    # The Active Directory credential that Windows 365 uses to join Cloud PCs to the on-premises domain. Set @odata.type to #microsoft.graph.cloudPcPlainTextDomainJoinCredential to supply the username and password directly, or to #microsoft.graph.cloudPcKeyVaultDomainJoinCredential to retrieve the password from a customer-owned Azure Key Vault. Takes precedence over the deprecated adDomainPassword property when both are supplied.
+    domain_join_credential: Optional[CloudPcDomainJoinCredential] = None
     # Indicates whether regular health checks on the network or domain configuration are paused or active. false if the regular health checks on the network or domain configuration are currently active. true if the checks are paused. If you perform a create or update operation on a onPremisesNetworkConnection resource, this value is set to false for four weeks. If you retry a health check on network or domain configuration, this value is set to false for two weeks. If the onPremisesNetworkConnection resource is attached in a provisioningPolicy or used by a Cloud PC in the past four weeks, healthCheckPaused is set to false. Read-only. Default is false.
     health_check_paused: Optional[bool] = None
     # The healthCheckStatus property
     health_check_status: Optional[CloudPcOnPremisesConnectionStatus] = None
     # Indicates the results of health checks performed on the on-premises connection. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
     health_check_status_detail: Optional[CloudPcOnPremisesConnectionStatusDetail] = None
-    # The details of the connection's health checks and the corresponding results. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
+    # Indicates the health checks for the connection and their respective results. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only. The healthCheckStatusDetails property is deprecated and stopped returning data on January 31, 2024. Going forward, use the healthCheckStatusDetail property.
     health_check_status_details: Optional[CloudPcOnPremisesConnectionStatusDetails] = None
     # When true, the Azure network connection is in use. When false, the connection isn't in use. You can't delete a connection that’s in use. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
     in_use: Optional[bool] = None
@@ -82,6 +85,7 @@ class CloudPcOnPremisesConnection(Entity, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .cloud_pc_domain_join_credential import CloudPcDomainJoinCredential
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_on_premises_connection_status import CloudPcOnPremisesConnectionStatus
         from .cloud_pc_on_premises_connection_status_detail import CloudPcOnPremisesConnectionStatusDetail
@@ -90,6 +94,7 @@ class CloudPcOnPremisesConnection(Entity, Parsable):
         from .cloud_pc_on_premises_connection_type import CloudPcOnPremisesConnectionType
         from .entity import Entity
 
+        from .cloud_pc_domain_join_credential import CloudPcDomainJoinCredential
         from .cloud_pc_management_service import CloudPcManagementService
         from .cloud_pc_on_premises_connection_status import CloudPcOnPremisesConnectionStatus
         from .cloud_pc_on_premises_connection_status_detail import CloudPcOnPremisesConnectionStatusDetail
@@ -105,6 +110,7 @@ class CloudPcOnPremisesConnection(Entity, Parsable):
             "alternateResourceUrl": lambda n : setattr(self, 'alternate_resource_url', n.get_str_value()),
             "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(CloudPcOnPremisesConnectionType)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "domainJoinCredential": lambda n : setattr(self, 'domain_join_credential', n.get_object_value(CloudPcDomainJoinCredential)),
             "healthCheckPaused": lambda n : setattr(self, 'health_check_paused', n.get_bool_value()),
             "healthCheckStatus": lambda n : setattr(self, 'health_check_status', n.get_enum_value(CloudPcOnPremisesConnectionStatus)),
             "healthCheckStatusDetail": lambda n : setattr(self, 'health_check_status_detail', n.get_object_value(CloudPcOnPremisesConnectionStatusDetail)),
@@ -142,6 +148,7 @@ class CloudPcOnPremisesConnection(Entity, Parsable):
         writer.write_str_value("alternateResourceUrl", self.alternate_resource_url)
         writer.write_enum_value("connectionType", self.connection_type)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_object_value("domainJoinCredential", self.domain_join_credential)
         writer.write_bool_value("healthCheckPaused", self.health_check_paused)
         writer.write_enum_value("healthCheckStatus", self.health_check_status)
         writer.write_object_value("healthCheckStatusDetail", self.health_check_status_detail)

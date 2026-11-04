@@ -42,23 +42,25 @@ class NamedLocation(PolicyDeletableItem, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.compliantNetworkNamedLocation".casefold():
+        if not mapping_value:
+            return NamedLocation()
+        if mapping_value.casefold() == "#microsoft.graph.compliantNetworkNamedLocation".casefold():
             from .compliant_network_named_location import CompliantNetworkNamedLocation
 
             return CompliantNetworkNamedLocation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.countryNamedLocation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.countryNamedLocation".casefold():
             from .country_named_location import CountryNamedLocation
 
             return CountryNamedLocation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ipNamedLocation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.ipNamedLocation".casefold():
             from .ip_named_location import IpNamedLocation
 
             return IpNamedLocation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.privateLinkNamedLocation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.privateLinkNamedLocation".casefold():
             from .private_link_named_location import PrivateLinkNamedLocation
 
             return PrivateLinkNamedLocation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceTagNamedLocation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.serviceTagNamedLocation".casefold():
             from .service_tag_named_location import ServiceTagNamedLocation
 
             return ServiceTagNamedLocation()

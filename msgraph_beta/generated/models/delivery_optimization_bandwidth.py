@@ -37,15 +37,17 @@ class DeliveryOptimizationBandwidth(AdditionalDataHolder, BackedModel, Parsable)
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationBandwidthAbsolute".casefold():
+        if not mapping_value:
+            return DeliveryOptimizationBandwidth()
+        if mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationBandwidthAbsolute".casefold():
             from .delivery_optimization_bandwidth_absolute import DeliveryOptimizationBandwidthAbsolute
 
             return DeliveryOptimizationBandwidthAbsolute()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationBandwidthHoursWithPercentage".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationBandwidthHoursWithPercentage".casefold():
             from .delivery_optimization_bandwidth_hours_with_percentage import DeliveryOptimizationBandwidthHoursWithPercentage
 
             return DeliveryOptimizationBandwidthHoursWithPercentage()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationBandwidthPercentage".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationBandwidthPercentage".casefold():
             from .delivery_optimization_bandwidth_percentage import DeliveryOptimizationBandwidthPercentage
 
             return DeliveryOptimizationBandwidthPercentage()

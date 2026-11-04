@@ -35,19 +35,21 @@ class IosSingleSignOnExtension(SingleSignOnExtension, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosAzureAdSingleSignOnExtension".casefold():
+        if not mapping_value:
+            return IosSingleSignOnExtension()
+        if mapping_value.casefold() == "#microsoft.graph.iosAzureAdSingleSignOnExtension".casefold():
             from .ios_azure_ad_single_sign_on_extension import IosAzureAdSingleSignOnExtension
 
             return IosAzureAdSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosCredentialSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosCredentialSingleSignOnExtension".casefold():
             from .ios_credential_single_sign_on_extension import IosCredentialSingleSignOnExtension
 
             return IosCredentialSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosKerberosSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosKerberosSingleSignOnExtension".casefold():
             from .ios_kerberos_single_sign_on_extension import IosKerberosSingleSignOnExtension
 
             return IosKerberosSingleSignOnExtension()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosRedirectSingleSignOnExtension".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosRedirectSingleSignOnExtension".casefold():
             from .ios_redirect_single_sign_on_extension import IosRedirectSingleSignOnExtension
 
             return IosRedirectSingleSignOnExtension()

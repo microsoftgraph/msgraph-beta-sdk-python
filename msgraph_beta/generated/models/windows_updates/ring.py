@@ -7,7 +7,9 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from ..entity import Entity
+    from .driver_update_ring import DriverUpdateRing
     from .excluded_group_assignment import ExcludedGroupAssignment
+    from .feature_update_ring import FeatureUpdateRing
     from .included_group_assignment import IncludedGroupAssignment
     from .quality_update_ring import QualityUpdateRing
 
@@ -17,7 +19,7 @@ from ..entity import Entity
 class Ring(Entity, Parsable):
     # The date and time when the ring is created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only
     created_date_time: Optional[datetime.datetime] = None
-    # The quality update deferral period in days. The value must be between 0 and 30. Optional.
+    # The update deferral period in days. The value must be between 0 and 30. Optional.
     deferral_in_days: Optional[int] = None
     # The ring description. The maximum length is 1,500 characters. Required
     description: Optional[str] = None
@@ -27,9 +29,9 @@ class Ring(Entity, Parsable):
     excluded_group_assignment: Optional[ExcludedGroupAssignment] = None
     # The includedGroupAssignment property
     included_group_assignment: Optional[IncludedGroupAssignment] = None
-    # The pause action for the quality update ring policy. Required.
+    # The pause action for the update ring. Required.
     is_paused: Optional[bool] = None
-    # The date and time whenthe ring was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+    # The date and time when the ring was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
@@ -48,7 +50,17 @@ class Ring(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateRing".casefold():
+        if not mapping_value:
+            return Ring()
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.driverUpdateRing".casefold():
+            from .driver_update_ring import DriverUpdateRing
+
+            return DriverUpdateRing()
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.featureUpdateRing".casefold():
+            from .feature_update_ring import FeatureUpdateRing
+
+            return FeatureUpdateRing()
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateRing".casefold():
             from .quality_update_ring import QualityUpdateRing
 
             return QualityUpdateRing()
@@ -60,12 +72,16 @@ class Ring(Entity, Parsable):
         Returns: dict[str, Callable[[ParseNode], None]]
         """
         from ..entity import Entity
+        from .driver_update_ring import DriverUpdateRing
         from .excluded_group_assignment import ExcludedGroupAssignment
+        from .feature_update_ring import FeatureUpdateRing
         from .included_group_assignment import IncludedGroupAssignment
         from .quality_update_ring import QualityUpdateRing
 
         from ..entity import Entity
+        from .driver_update_ring import DriverUpdateRing
         from .excluded_group_assignment import ExcludedGroupAssignment
+        from .feature_update_ring import FeatureUpdateRing
         from .included_group_assignment import IncludedGroupAssignment
         from .quality_update_ring import QualityUpdateRing
 

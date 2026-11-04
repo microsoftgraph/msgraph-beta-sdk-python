@@ -49,63 +49,65 @@ class CustomClaimTransformation(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.containsTransformation".casefold():
+        if not mapping_value:
+            return CustomClaimTransformation()
+        if mapping_value.casefold() == "#microsoft.graph.containsTransformation".casefold():
             from .contains_transformation import ContainsTransformation
 
             return ContainsTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.endsWithTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.endsWithTransformation".casefold():
             from .ends_with_transformation import EndsWithTransformation
 
             return EndsWithTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.extractAlphaTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.extractAlphaTransformation".casefold():
             from .extract_alpha_transformation import ExtractAlphaTransformation
 
             return ExtractAlphaTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.extractMailPrefixTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.extractMailPrefixTransformation".casefold():
             from .extract_mail_prefix_transformation import ExtractMailPrefixTransformation
 
             return ExtractMailPrefixTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.extractNumberTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.extractNumberTransformation".casefold():
             from .extract_number_transformation import ExtractNumberTransformation
 
             return ExtractNumberTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.extractTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.extractTransformation".casefold():
             from .extract_transformation import ExtractTransformation
 
             return ExtractTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ifEmptyTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.ifEmptyTransformation".casefold():
             from .if_empty_transformation import IfEmptyTransformation
 
             return IfEmptyTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ifNotEmptyTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.ifNotEmptyTransformation".casefold():
             from .if_not_empty_transformation import IfNotEmptyTransformation
 
             return IfNotEmptyTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.joinTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.joinTransformation".casefold():
             from .join_transformation import JoinTransformation
 
             return JoinTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.regexReplaceTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.regexReplaceTransformation".casefold():
             from .regex_replace_transformation import RegexReplaceTransformation
 
             return RegexReplaceTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.startsWithTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.startsWithTransformation".casefold():
             from .starts_with_transformation import StartsWithTransformation
 
             return StartsWithTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.substringTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.substringTransformation".casefold():
             from .substring_transformation import SubstringTransformation
 
             return SubstringTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.toLowercaseTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.toLowercaseTransformation".casefold():
             from .to_lowercase_transformation import ToLowercaseTransformation
 
             return ToLowercaseTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.toUppercaseTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.toUppercaseTransformation".casefold():
             from .to_uppercase_transformation import ToUppercaseTransformation
 
             return ToUppercaseTransformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.trimTransformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.trimTransformation".casefold():
             from .trim_transformation import TrimTransformation
 
             return TrimTransformation()

@@ -103,7 +103,9 @@ class RecommendationBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.recommendation".casefold():
+        if not mapping_value:
+            return RecommendationBase()
+        if mapping_value.casefold() == "#microsoft.graph.recommendation".casefold():
             from .recommendation import Recommendation
 
             return Recommendation()

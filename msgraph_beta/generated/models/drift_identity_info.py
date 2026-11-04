@@ -39,11 +39,13 @@ class DriftIdentityInfo(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraDriftIdentityInfo".casefold():
+        if not mapping_value:
+            return DriftIdentityInfo()
+        if mapping_value.casefold() == "#microsoft.graph.entraDriftIdentityInfo".casefold():
             from .entra_drift_identity_info import EntraDriftIdentityInfo
 
             return EntraDriftIdentityInfo()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.localDriftIdentityInfo".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.localDriftIdentityInfo".casefold():
             from .local_drift_identity_info import LocalDriftIdentityInfo
 
             return LocalDriftIdentityInfo()

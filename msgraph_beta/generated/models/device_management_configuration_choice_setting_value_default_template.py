@@ -35,7 +35,9 @@ class DeviceManagementConfigurationChoiceSettingValueDefaultTemplate(AdditionalD
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationChoiceSettingValueDefaultTemplate()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate".casefold():
             from .device_management_configuration_choice_setting_value_constant_default_template import DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate
 
             return DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate()

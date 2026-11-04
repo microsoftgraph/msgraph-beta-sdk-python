@@ -6,6 +6,7 @@ from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFact
 from typing import Any, Optional, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
+    from .driver_update_approval_rule import DriverUpdateApprovalRule
     from .quality_update_approval_rule import QualityUpdateApprovalRule
     from .recovery_approval_rule import RecoveryApprovalRule
 
@@ -35,11 +36,17 @@ class ApprovalRule(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateApprovalRule".casefold():
+        if not mapping_value:
+            return ApprovalRule()
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.driverUpdateApprovalRule".casefold():
+            from .driver_update_approval_rule import DriverUpdateApprovalRule
+
+            return DriverUpdateApprovalRule()
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateApprovalRule".casefold():
             from .quality_update_approval_rule import QualityUpdateApprovalRule
 
             return QualityUpdateApprovalRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.recoveryApprovalRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.recoveryApprovalRule".casefold():
             from .recovery_approval_rule import RecoveryApprovalRule
 
             return RecoveryApprovalRule()
@@ -50,9 +57,11 @@ class ApprovalRule(AdditionalDataHolder, BackedModel, Parsable):
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from .driver_update_approval_rule import DriverUpdateApprovalRule
         from .quality_update_approval_rule import QualityUpdateApprovalRule
         from .recovery_approval_rule import RecoveryApprovalRule
 
+        from .driver_update_approval_rule import DriverUpdateApprovalRule
         from .quality_update_approval_rule import QualityUpdateApprovalRule
         from .recovery_approval_rule import RecoveryApprovalRule
 

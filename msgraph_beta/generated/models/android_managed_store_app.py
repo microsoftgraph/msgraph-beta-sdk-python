@@ -51,7 +51,9 @@ class AndroidManagedStoreApp(MobileApp, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidManagedStoreWebApp".casefold():
+        if not mapping_value:
+            return AndroidManagedStoreApp()
+        if mapping_value.casefold() == "#microsoft.graph.androidManagedStoreWebApp".casefold():
             from .android_managed_store_web_app import AndroidManagedStoreWebApp
 
             return AndroidManagedStoreWebApp()

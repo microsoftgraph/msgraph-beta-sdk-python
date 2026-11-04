@@ -48,71 +48,73 @@ class EntityMapping(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.accountEntityMapping".casefold():
+        if not mapping_value:
+            return EntityMapping()
+        if mapping_value.casefold() == "#microsoft.graph.security.accountEntityMapping".casefold():
             from .account_entity_mapping import AccountEntityMapping
 
             return AccountEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.amazonResourceEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.amazonResourceEntityMapping".casefold():
             from .amazon_resource_entity_mapping import AmazonResourceEntityMapping
 
             return AmazonResourceEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.azureResourceEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.azureResourceEntityMapping".casefold():
             from .azure_resource_entity_mapping import AzureResourceEntityMapping
 
             return AzureResourceEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.cloudApplicationEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.cloudApplicationEntityMapping".casefold():
             from .cloud_application_entity_mapping import CloudApplicationEntityMapping
 
             return CloudApplicationEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.dnsEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.dnsEntityMapping".casefold():
             from .dns_entity_mapping import DnsEntityMapping
 
             return DnsEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.fileEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.fileEntityMapping".casefold():
             from .file_entity_mapping import FileEntityMapping
 
             return FileEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.googleCloudResourceEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.googleCloudResourceEntityMapping".casefold():
             from .google_cloud_resource_entity_mapping import GoogleCloudResourceEntityMapping
 
             return GoogleCloudResourceEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.hostEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.hostEntityMapping".casefold():
             from .host_entity_mapping import HostEntityMapping
 
             return HostEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.ipEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.ipEntityMapping".casefold():
             from .ip_entity_mapping import IpEntityMapping
 
             return IpEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.mailboxEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.mailboxEntityMapping".casefold():
             from .mailbox_entity_mapping import MailboxEntityMapping
 
             return MailboxEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.mailClusterEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.mailClusterEntityMapping".casefold():
             from .mail_cluster_entity_mapping import MailClusterEntityMapping
 
             return MailClusterEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.mailMessageEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.mailMessageEntityMapping".casefold():
             from .mail_message_entity_mapping import MailMessageEntityMapping
 
             return MailMessageEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.oAuthApplicationEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.oAuthApplicationEntityMapping".casefold():
             from .o_auth_application_entity_mapping import OAuthApplicationEntityMapping
 
             return OAuthApplicationEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.processEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.processEntityMapping".casefold():
             from .process_entity_mapping import ProcessEntityMapping
 
             return ProcessEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.registryValueEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.registryValueEntityMapping".casefold():
             from .registry_value_entity_mapping import RegistryValueEntityMapping
 
             return RegistryValueEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.securityGroupEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.securityGroupEntityMapping".casefold():
             from .security_group_entity_mapping import SecurityGroupEntityMapping
 
             return SecurityGroupEntityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.urlEntityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.urlEntityMapping".casefold():
             from .url_entity_mapping import UrlEntityMapping
 
             return UrlEntityMapping()

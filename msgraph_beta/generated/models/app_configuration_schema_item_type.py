@@ -52,35 +52,37 @@ class AppConfigurationSchemaItemType(AdditionalDataHolder, BackedModel, Parsable
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemBooleanType".casefold():
+        if not mapping_value:
+            return AppConfigurationSchemaItemType()
+        if mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemBooleanType".casefold():
             from .app_configuration_schema_item_boolean_type import AppConfigurationSchemaItemBooleanType
 
             return AppConfigurationSchemaItemBooleanType()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemBundleArray".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemBundleArray".casefold():
             from .app_configuration_schema_item_bundle_array import AppConfigurationSchemaItemBundleArray
 
             return AppConfigurationSchemaItemBundleArray()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemBundleType".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemBundleType".casefold():
             from .app_configuration_schema_item_bundle_type import AppConfigurationSchemaItemBundleType
 
             return AppConfigurationSchemaItemBundleType()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemChoiceType".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemChoiceType".casefold():
             from .app_configuration_schema_item_choice_type import AppConfigurationSchemaItemChoiceType
 
             return AppConfigurationSchemaItemChoiceType()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemHiddenType".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemHiddenType".casefold():
             from .app_configuration_schema_item_hidden_type import AppConfigurationSchemaItemHiddenType
 
             return AppConfigurationSchemaItemHiddenType()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemIntegerType".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemIntegerType".casefold():
             from .app_configuration_schema_item_integer_type import AppConfigurationSchemaItemIntegerType
 
             return AppConfigurationSchemaItemIntegerType()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemMultiselectType".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemMultiselectType".casefold():
             from .app_configuration_schema_item_multiselect_type import AppConfigurationSchemaItemMultiselectType
 
             return AppConfigurationSchemaItemMultiselectType()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemStringType".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.appConfigurationSchemaItemStringType".casefold():
             from .app_configuration_schema_item_string_type import AppConfigurationSchemaItemStringType
 
             return AppConfigurationSchemaItemStringType()

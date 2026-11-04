@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from .incident_relation import IncidentRelation
     from .recommendation_relation import RecommendationRelation
     from .relation import Relation
+    from .sla_policy_definition import SlaPolicyDefinition
     from .task import Task
     from .workspace_indicator_relation import WorkspaceIndicatorRelation
 
@@ -50,55 +51,61 @@ class CaseManagementEntity(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.activity".casefold():
+        if not mapping_value:
+            return CaseManagementEntity()
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.activity".casefold():
             from .activity import Activity
 
             return Activity()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.attachment".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.attachment".casefold():
             from .attachment import Attachment
 
             return Attachment()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.auditLog".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.auditLog".casefold():
             from .audit_log import AuditLog
 
             return AuditLog()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.case".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.case".casefold():
             from .case import Case
 
             return Case()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.comment".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.comment".casefold():
             from .comment import Comment
 
             return Comment()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.exposureCase".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.exposureCase".casefold():
             from .exposure_case import ExposureCase
 
             return ExposureCase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.genericCase".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.genericCase".casefold():
             from .generic_case import GenericCase
 
             return GenericCase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.incidentCase".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.incidentCase".casefold():
             from .incident_case import IncidentCase
 
             return IncidentCase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.incidentRelation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.incidentRelation".casefold():
             from .incident_relation import IncidentRelation
 
             return IncidentRelation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.recommendationRelation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.recommendationRelation".casefold():
             from .recommendation_relation import RecommendationRelation
 
             return RecommendationRelation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.relation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.relation".casefold():
             from .relation import Relation
 
             return Relation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.task".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.slaPolicyDefinition".casefold():
+            from .sla_policy_definition import SlaPolicyDefinition
+
+            return SlaPolicyDefinition()
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.task".casefold():
             from .task import Task
 
             return Task()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.workspaceIndicatorRelation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.workspaceIndicatorRelation".casefold():
             from .workspace_indicator_relation import WorkspaceIndicatorRelation
 
             return WorkspaceIndicatorRelation()
@@ -121,6 +128,7 @@ class CaseManagementEntity(Entity, Parsable):
         from .incident_relation import IncidentRelation
         from .recommendation_relation import RecommendationRelation
         from .relation import Relation
+        from .sla_policy_definition import SlaPolicyDefinition
         from .task import Task
         from .workspace_indicator_relation import WorkspaceIndicatorRelation
 
@@ -136,6 +144,7 @@ class CaseManagementEntity(Entity, Parsable):
         from .incident_relation import IncidentRelation
         from .recommendation_relation import RecommendationRelation
         from .relation import Relation
+        from .sla_policy_definition import SlaPolicyDefinition
         from .task import Task
         from .workspace_indicator_relation import WorkspaceIndicatorRelation
 

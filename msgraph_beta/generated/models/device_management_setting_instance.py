@@ -41,27 +41,29 @@ class DeviceManagementSettingInstance(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementAbstractComplexSettingInstance".casefold():
+        if not mapping_value:
+            return DeviceManagementSettingInstance()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementAbstractComplexSettingInstance".casefold():
             from .device_management_abstract_complex_setting_instance import DeviceManagementAbstractComplexSettingInstance
 
             return DeviceManagementAbstractComplexSettingInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementBooleanSettingInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementBooleanSettingInstance".casefold():
             from .device_management_boolean_setting_instance import DeviceManagementBooleanSettingInstance
 
             return DeviceManagementBooleanSettingInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementCollectionSettingInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementCollectionSettingInstance".casefold():
             from .device_management_collection_setting_instance import DeviceManagementCollectionSettingInstance
 
             return DeviceManagementCollectionSettingInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementComplexSettingInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementComplexSettingInstance".casefold():
             from .device_management_complex_setting_instance import DeviceManagementComplexSettingInstance
 
             return DeviceManagementComplexSettingInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementIntegerSettingInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementIntegerSettingInstance".casefold():
             from .device_management_integer_setting_instance import DeviceManagementIntegerSettingInstance
 
             return DeviceManagementIntegerSettingInstance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementStringSettingInstance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementStringSettingInstance".casefold():
             from .device_management_string_setting_instance import DeviceManagementStringSettingInstance
 
             return DeviceManagementStringSettingInstance()

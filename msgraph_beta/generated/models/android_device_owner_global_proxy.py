@@ -36,11 +36,13 @@ class AndroidDeviceOwnerGlobalProxy(AdditionalDataHolder, BackedModel, Parsable)
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerGlobalProxyAutoConfig".casefold():
+        if not mapping_value:
+            return AndroidDeviceOwnerGlobalProxy()
+        if mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerGlobalProxyAutoConfig".casefold():
             from .android_device_owner_global_proxy_auto_config import AndroidDeviceOwnerGlobalProxyAutoConfig
 
             return AndroidDeviceOwnerGlobalProxyAutoConfig()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerGlobalProxyDirect".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerGlobalProxyDirect".casefold():
             from .android_device_owner_global_proxy_direct import AndroidDeviceOwnerGlobalProxyDirect
 
             return AndroidDeviceOwnerGlobalProxyDirect()

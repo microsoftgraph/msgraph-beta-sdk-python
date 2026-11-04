@@ -11,20 +11,20 @@ if TYPE_CHECKING:
 from ....models.base_collection_pagination_count_response import BaseCollectionPaginationCountResponse
 
 @dataclass
-class DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdGetResponse(BaseCollectionPaginationCountResponse, Parsable):
+class DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryGetResponse(BaseCollectionPaginationCountResponse, Parsable):
     # The value property
     value: Optional[list[Destination]] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: ParseNode) -> DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdGetResponse:
+    def create_from_discriminator_value(parse_node: ParseNode) -> DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryGetResponse:
         """
         Creates a new instance of the appropriate class based on discriminator value
         param parse_node: The parse node to use to read the discriminator value and create the object
-        Returns: DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdGetResponse
+        Returns: DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryGetResponse
         """
         if parse_node is None:
             raise TypeError("parse_node cannot be null.")
-        return DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdGetResponse()
+        return DestinationReportWithStartDateTimeWithEndDateTimeaiAgentIdAiAgentIdAiAgentNameAiAgentNameAgentTypeIdAgentTypeIdAgentVirtualIdAgentVirtualIdDeviceCategoryDeviceCategoryGetResponse()
     
     def get_field_deserializers(self,) -> dict[str, Callable[[ParseNode], None]]:
         """

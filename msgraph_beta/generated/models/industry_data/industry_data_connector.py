@@ -37,19 +37,21 @@ class IndustryDataConnector(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.apiDataConnector".casefold():
+        if not mapping_value:
+            return IndustryDataConnector()
+        if mapping_value.casefold() == "#microsoft.graph.industryData.apiDataConnector".casefold():
             from .api_data_connector import ApiDataConnector
 
             return ApiDataConnector()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.azureDataLakeConnector".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.azureDataLakeConnector".casefold():
             from .azure_data_lake_connector import AzureDataLakeConnector
 
             return AzureDataLakeConnector()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.fileDataConnector".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.fileDataConnector".casefold():
             from .file_data_connector import FileDataConnector
 
             return FileDataConnector()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.oneRosterApiDataConnector".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.oneRosterApiDataConnector".casefold():
             from .one_roster_api_data_connector import OneRosterApiDataConnector
 
             return OneRosterApiDataConnector()

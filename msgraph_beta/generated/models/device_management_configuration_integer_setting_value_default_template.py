@@ -35,7 +35,9 @@ class DeviceManagementConfigurationIntegerSettingValueDefaultTemplate(Additional
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationIntegerSettingValueDefaultTemplate()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate".casefold():
             from .device_management_configuration_integer_setting_value_constant_default_template import DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate
 
             return DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate()

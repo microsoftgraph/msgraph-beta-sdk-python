@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from .power_off.power_off_request_builder import PowerOffRequestBuilder
     from .power_on.power_on_request_builder import PowerOnRequestBuilder
     from .reboot.reboot_request_builder import RebootRequestBuilder
+    from .relocate.relocate_request_builder import RelocateRequestBuilder
     from .rename.rename_request_builder import RenameRequestBuilder
     from .reprovision.reprovision_request_builder import ReprovisionRequestBuilder
     from .resize.resize_request_builder import ResizeRequestBuilder
@@ -251,6 +252,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         from .reboot.reboot_request_builder import RebootRequestBuilder
 
         return RebootRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def relocate(self) -> RelocateRequestBuilder:
+        """
+        Provides operations to call the relocate method.
+        """
+        from .relocate.relocate_request_builder import RelocateRequestBuilder
+
+        return RelocateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def rename(self) -> RenameRequestBuilder:

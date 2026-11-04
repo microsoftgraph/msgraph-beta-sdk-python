@@ -19,7 +19,7 @@ class InteractionParticipant(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # The value property
+    # The identifier of the participant. Required.
     value: Optional[str] = None
     
     @staticmethod
@@ -36,15 +36,17 @@ class InteractionParticipant(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentParticipant".casefold():
+        if not mapping_value:
+            return InteractionParticipant()
+        if mapping_value.casefold() == "#microsoft.graph.agentParticipant".casefold():
             from .agent_participant import AgentParticipant
 
             return AgentParticipant()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.toolParticipant".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.toolParticipant".casefold():
             from .tool_participant import ToolParticipant
 
             return ToolParticipant()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userParticipant".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.userParticipant".casefold():
             from .user_participant import UserParticipant
 
             return UserParticipant()

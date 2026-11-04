@@ -15,7 +15,7 @@ from .authentication_method_configuration import AuthenticationMethodConfigurati
 class VerifiableCredentialsAuthenticationMethodConfiguration(AuthenticationMethodConfiguration, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.verifiableCredentialsAuthenticationMethodConfiguration"
-    # The identityVerificationEventsConfiguration property
+    # The optional tenant-level configuration that controls whether identity verification events and credential provenance information are collected and exposed for Verified ID verification. This setting isn't scoped to individual Verified ID profiles. If no configuration is stored or the stored value is null, event collection and exposure are disabled. Omitting this property from a PATCH request leaves its existing value unchanged.
     identity_verification_events_configuration: Optional[IdentityVerificationEventsConfiguration] = None
     # A collection of groups that are enabled to use the authentication method.
     include_targets: Optional[list[VerifiableCredentialAuthenticationMethodTarget]] = None

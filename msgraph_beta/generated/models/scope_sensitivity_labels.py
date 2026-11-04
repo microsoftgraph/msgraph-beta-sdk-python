@@ -36,11 +36,13 @@ class ScopeSensitivityLabels(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allScopeSensitivityLabels".casefold():
+        if not mapping_value:
+            return ScopeSensitivityLabels()
+        if mapping_value.casefold() == "#microsoft.graph.allScopeSensitivityLabels".casefold():
             from .all_scope_sensitivity_labels import AllScopeSensitivityLabels
 
             return AllScopeSensitivityLabels()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.enumeratedScopeSensitivityLabels".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.enumeratedScopeSensitivityLabels".casefold():
             from .enumerated_scope_sensitivity_labels import EnumeratedScopeSensitivityLabels
 
             return EnumeratedScopeSensitivityLabels()

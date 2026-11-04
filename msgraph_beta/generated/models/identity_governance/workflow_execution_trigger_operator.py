@@ -35,19 +35,21 @@ class WorkflowExecutionTriggerOperator(AdditionalDataHolder, BackedModel, Parsab
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.operatorBetween".casefold():
+        if not mapping_value:
+            return WorkflowExecutionTriggerOperator()
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.operatorBetween".casefold():
             from .operator_between import OperatorBetween
 
             return OperatorBetween()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.operatorEqualTo".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.operatorEqualTo".casefold():
             from .operator_equal_to import OperatorEqualTo
 
             return OperatorEqualTo()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.operatorLessThanEqualTo".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.operatorLessThanEqualTo".casefold():
             from .operator_less_than_equal_to import OperatorLessThanEqualTo
 
             return OperatorLessThanEqualTo()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.workflowTriggerTimeBasedOperator".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.workflowTriggerTimeBasedOperator".casefold():
             from .workflow_trigger_time_based_operator import WorkflowTriggerTimeBasedOperator
 
             return WorkflowTriggerTimeBasedOperator()

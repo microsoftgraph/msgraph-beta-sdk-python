@@ -34,11 +34,13 @@ class OAuthClientCredential(Credential, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.oAuth1ClientCredential".casefold():
+        if not mapping_value:
+            return OAuthClientCredential()
+        if mapping_value.casefold() == "#microsoft.graph.industryData.oAuth1ClientCredential".casefold():
             from .o_auth1_client_credential import OAuth1ClientCredential
 
             return OAuth1ClientCredential()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.oAuth2ClientCredential".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.oAuth2ClientCredential".casefold():
             from .o_auth2_client_credential import OAuth2ClientCredential
 
             return OAuth2ClientCredential()

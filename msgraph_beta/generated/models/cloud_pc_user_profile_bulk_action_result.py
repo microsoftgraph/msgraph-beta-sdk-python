@@ -37,11 +37,13 @@ class CloudPcUserProfileBulkActionResult(AdditionalDataHolder, BackedModel, Pars
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcUserProfileSnapshotCreateBulkActionResult".casefold():
+        if not mapping_value:
+            return CloudPcUserProfileBulkActionResult()
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcUserProfileSnapshotCreateBulkActionResult".casefold():
             from .cloud_pc_user_profile_snapshot_create_bulk_action_result import CloudPcUserProfileSnapshotCreateBulkActionResult
 
             return CloudPcUserProfileSnapshotCreateBulkActionResult()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcUserProfileSnapshotExportBulkActionResult".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcUserProfileSnapshotExportBulkActionResult".casefold():
             from .cloud_pc_user_profile_snapshot_export_bulk_action_result import CloudPcUserProfileSnapshotExportBulkActionResult
 
             return CloudPcUserProfileSnapshotExportBulkActionResult()

@@ -56,75 +56,77 @@ class AuthorizationSystemIdentity(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsAccessKey".casefold():
+        if not mapping_value:
+            return AuthorizationSystemIdentity()
+        if mapping_value.casefold() == "#microsoft.graph.awsAccessKey".casefold():
             from .aws_access_key import AwsAccessKey
 
             return AwsAccessKey()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsEc2Instance".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsEc2Instance".casefold():
             from .aws_ec2_instance import AwsEc2Instance
 
             return AwsEc2Instance()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsGroup".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsGroup".casefold():
             from .aws_group import AwsGroup
 
             return AwsGroup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsIdentity".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsIdentity".casefold():
             from .aws_identity import AwsIdentity
 
             return AwsIdentity()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsLambda".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsLambda".casefold():
             from .aws_lambda import AwsLambda
 
             return AwsLambda()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsRole".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsRole".casefold():
             from .aws_role import AwsRole
 
             return AwsRole()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsUser".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsUser".casefold():
             from .aws_user import AwsUser
 
             return AwsUser()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureGroup".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureGroup".casefold():
             from .azure_group import AzureGroup
 
             return AzureGroup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureIdentity".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureIdentity".casefold():
             from .azure_identity import AzureIdentity
 
             return AzureIdentity()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureManagedIdentity".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureManagedIdentity".casefold():
             from .azure_managed_identity import AzureManagedIdentity
 
             return AzureManagedIdentity()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureServerlessFunction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureServerlessFunction".casefold():
             from .azure_serverless_function import AzureServerlessFunction
 
             return AzureServerlessFunction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureServicePrincipal".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureServicePrincipal".casefold():
             from .azure_service_principal import AzureServicePrincipal
 
             return AzureServicePrincipal()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureUser".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureUser".casefold():
             from .azure_user import AzureUser
 
             return AzureUser()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpCloudFunction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpCloudFunction".casefold():
             from .gcp_cloud_function import GcpCloudFunction
 
             return GcpCloudFunction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpGroup".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpGroup".casefold():
             from .gcp_group import GcpGroup
 
             return GcpGroup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpIdentity".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpIdentity".casefold():
             from .gcp_identity import GcpIdentity
 
             return GcpIdentity()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpServiceAccount".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpServiceAccount".casefold():
             from .gcp_service_account import GcpServiceAccount
 
             return GcpServiceAccount()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpUser".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpUser".casefold():
             from .gcp_user import GcpUser
 
             return GcpUser()

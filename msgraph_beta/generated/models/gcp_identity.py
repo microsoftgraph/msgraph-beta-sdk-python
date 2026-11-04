@@ -32,19 +32,21 @@ class GcpIdentity(AuthorizationSystemIdentity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpCloudFunction".casefold():
+        if not mapping_value:
+            return GcpIdentity()
+        if mapping_value.casefold() == "#microsoft.graph.gcpCloudFunction".casefold():
             from .gcp_cloud_function import GcpCloudFunction
 
             return GcpCloudFunction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpGroup".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpGroup".casefold():
             from .gcp_group import GcpGroup
 
             return GcpGroup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpServiceAccount".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpServiceAccount".casefold():
             from .gcp_service_account import GcpServiceAccount
 
             return GcpServiceAccount()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpUser".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpUser".casefold():
             from .gcp_user import GcpUser
 
             return GcpUser()

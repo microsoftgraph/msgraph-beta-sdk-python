@@ -58,7 +58,9 @@ class AospDeviceOwnerWiFiConfiguration(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.aospDeviceOwnerEnterpriseWiFiConfiguration".casefold():
+        if not mapping_value:
+            return AospDeviceOwnerWiFiConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.aospDeviceOwnerEnterpriseWiFiConfiguration".casefold():
             from .aosp_device_owner_enterprise_wi_fi_configuration import AospDeviceOwnerEnterpriseWiFiConfiguration
 
             return AospDeviceOwnerEnterpriseWiFiConfiguration()

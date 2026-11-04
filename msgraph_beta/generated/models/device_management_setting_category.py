@@ -40,11 +40,13 @@ class DeviceManagementSettingCategory(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementIntentSettingCategory".casefold():
+        if not mapping_value:
+            return DeviceManagementSettingCategory()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementIntentSettingCategory".casefold():
             from .device_management_intent_setting_category import DeviceManagementIntentSettingCategory
 
             return DeviceManagementIntentSettingCategory()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementTemplateSettingCategory".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementTemplateSettingCategory".casefold():
             from .device_management_template_setting_category import DeviceManagementTemplateSettingCategory
 
             return DeviceManagementTemplateSettingCategory()

@@ -39,19 +39,21 @@ class SignInIdentifierBase(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.customUsernameSignInIdentifier".casefold():
+        if not mapping_value:
+            return SignInIdentifierBase()
+        if mapping_value.casefold() == "#microsoft.graph.customUsernameSignInIdentifier".casefold():
             from .custom_username_sign_in_identifier import CustomUsernameSignInIdentifier
 
             return CustomUsernameSignInIdentifier()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.emailSignInIdentifier".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.emailSignInIdentifier".casefold():
             from .email_sign_in_identifier import EmailSignInIdentifier
 
             return EmailSignInIdentifier()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.upnSignInIdentifier".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.upnSignInIdentifier".casefold():
             from .upn_sign_in_identifier import UpnSignInIdentifier
 
             return UpnSignInIdentifier()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.usernameSignInIdentifier".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.usernameSignInIdentifier".casefold():
             from .username_sign_in_identifier import UsernameSignInIdentifier
 
             return UsernameSignInIdentifier()

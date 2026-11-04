@@ -72,83 +72,85 @@ class ItemFacet(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.educationalActivity".casefold():
+        if not mapping_value:
+            return ItemFacet()
+        if mapping_value.casefold() == "#microsoft.graph.educationalActivity".casefold():
             from .educational_activity import EducationalActivity
 
             return EducationalActivity()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.itemAddress".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.itemAddress".casefold():
             from .item_address import ItemAddress
 
             return ItemAddress()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.itemEmail".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.itemEmail".casefold():
             from .item_email import ItemEmail
 
             return ItemEmail()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.itemPatent".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.itemPatent".casefold():
             from .item_patent import ItemPatent
 
             return ItemPatent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.itemPhone".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.itemPhone".casefold():
             from .item_phone import ItemPhone
 
             return ItemPhone()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.itemPublication".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.itemPublication".casefold():
             from .item_publication import ItemPublication
 
             return ItemPublication()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.languageProficiency".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.languageProficiency".casefold():
             from .language_proficiency import LanguageProficiency
 
             return LanguageProficiency()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.personAnnotation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.personAnnotation".casefold():
             from .person_annotation import PersonAnnotation
 
             return PersonAnnotation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.personAnnualEvent".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.personAnnualEvent".casefold():
             from .person_annual_event import PersonAnnualEvent
 
             return PersonAnnualEvent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.personAward".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.personAward".casefold():
             from .person_award import PersonAward
 
             return PersonAward()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.personCertification".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.personCertification".casefold():
             from .person_certification import PersonCertification
 
             return PersonCertification()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.personInterest".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.personInterest".casefold():
             from .person_interest import PersonInterest
 
             return PersonInterest()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.personName".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.personName".casefold():
             from .person_name import PersonName
 
             return PersonName()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.personResponsibility".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.personResponsibility".casefold():
             from .person_responsibility import PersonResponsibility
 
             return PersonResponsibility()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.personWebsite".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.personWebsite".casefold():
             from .person_website import PersonWebsite
 
             return PersonWebsite()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.projectParticipation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.projectParticipation".casefold():
             from .project_participation import ProjectParticipation
 
             return ProjectParticipation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.skillProficiency".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.skillProficiency".casefold():
             from .skill_proficiency import SkillProficiency
 
             return SkillProficiency()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userAccountInformation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.userAccountInformation".casefold():
             from .user_account_information import UserAccountInformation
 
             return UserAccountInformation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.webAccount".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.webAccount".casefold():
             from .web_account import WebAccount
 
             return WebAccount()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.workPosition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.workPosition".casefold():
             from .work_position import WorkPosition
 
             return WorkPosition()

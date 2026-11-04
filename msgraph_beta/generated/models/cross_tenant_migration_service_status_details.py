@@ -16,13 +16,13 @@ class CrossTenantMigrationServiceStatusDetails(AdditionalDataHolder, BackedModel
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # Errors associated with the migration for this service
+    # Errors associated with the migration for this service.
     errors: Optional[list[Error]] = None
-    # Service status message
+    # Service status message.
     message: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Service or workload the status details are associated with
+    # Service or workload associated with the status details.
     service: Optional[str] = None
     # The status property
     status: Optional[CrossTenantMigrationServiceStatus] = None

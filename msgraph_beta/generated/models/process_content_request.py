@@ -23,7 +23,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The activityMetadata property
     activity_metadata: Optional[ActivityMetadata] = None
-    # A collection of content entries to be processed. Each entry contains the content itself and its metadata. Use conversation metadata for content like prompts and responses and file metadata for files. For the ContentActivity API only, use content activity metadata for DLP enforcement results or evaluation incomplete activity metadata when policy evaluation couldn't be completed. The ContentActivity-specific types aren't supported by the processContent or processContentAsync APIs. Required.
+    # The content entries to process. Use processConversationMetadata for prompts and responses and processFileMetadata for files. For the ContentActivity API only, use contentActivityMetadata for DLP enforcement results or evaluationIncompleteActivityMetadata when policy evaluation couldn't be completed. The ContentActivity-specific types aren't supported by the processContent or processContentAsync APIs. Required.
     content_entries: Optional[list[ProcessContentMetadataBase]] = None
     # The contextMetadata property
     context_metadata: Optional[ContextMetadata] = None
@@ -35,7 +35,7 @@ class ProcessContentRequest(AdditionalDataHolder, BackedModel, Parsable):
     integrated_app_metadata: Optional[IntegratedApplicationMetadata] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Metadata about the protected application making the request. Required.
+    # Metadata about the protected application. For an agent request, applicationLocation must be a policyLocationAgent. Required for agent requests; otherwise optional.
     protected_app_metadata: Optional[ProtectedApplicationMetadata] = None
     
     @staticmethod

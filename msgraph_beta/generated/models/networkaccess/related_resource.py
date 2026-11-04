@@ -44,55 +44,57 @@ class RelatedResource(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedDestination".casefold():
+        if not mapping_value:
+            return RelatedResource()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedDestination".casefold():
             from .related_destination import RelatedDestination
 
             return RelatedDestination()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedDevice".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedDevice".casefold():
             from .related_device import RelatedDevice
 
             return RelatedDevice()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedFile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedFile".casefold():
             from .related_file import RelatedFile
 
             return RelatedFile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedFileHash".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedFileHash".casefold():
             from .related_file_hash import RelatedFileHash
 
             return RelatedFileHash()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedMalware".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedMalware".casefold():
             from .related_malware import RelatedMalware
 
             return RelatedMalware()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedRemoteNetwork".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedRemoteNetwork".casefold():
             from .related_remote_network import RelatedRemoteNetwork
 
             return RelatedRemoteNetwork()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedTenant".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedTenant".casefold():
             from .related_tenant import RelatedTenant
 
             return RelatedTenant()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedThreatIntelligence".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedThreatIntelligence".casefold():
             from .related_threat_intelligence import RelatedThreatIntelligence
 
             return RelatedThreatIntelligence()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedToken".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedToken".casefold():
             from .related_token import RelatedToken
 
             return RelatedToken()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedTransaction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedTransaction".casefold():
             from .related_transaction import RelatedTransaction
 
             return RelatedTransaction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedUrl".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedUrl".casefold():
             from .related_url import RelatedUrl
 
             return RelatedUrl()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedUser".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedUser".casefold():
             from .related_user import RelatedUser
 
             return RelatedUser()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedWebCategory".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.relatedWebCategory".casefold():
             from .related_web_category import RelatedWebCategory
 
             return RelatedWebCategory()

@@ -33,11 +33,13 @@ class AccessReviewInstanceDecisionItemTarget(AdditionalDataHolder, BackedModel, 
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalTarget".casefold():
+        if not mapping_value:
+            return AccessReviewInstanceDecisionItemTarget()
+        if mapping_value.casefold() == "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalTarget".casefold():
             from .access_review_instance_decision_item_service_principal_target import AccessReviewInstanceDecisionItemServicePrincipalTarget
 
             return AccessReviewInstanceDecisionItemServicePrincipalTarget()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.accessReviewInstanceDecisionItemUserTarget".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.accessReviewInstanceDecisionItemUserTarget".casefold():
             from .access_review_instance_decision_item_user_target import AccessReviewInstanceDecisionItemUserTarget
 
             return AccessReviewInstanceDecisionItemUserTarget()

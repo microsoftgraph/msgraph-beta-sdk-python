@@ -14,7 +14,7 @@ from .policy_location_application import PolicyLocationApplication
 class PolicyLocationAgent(PolicyLocationApplication, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.policyLocationAgent"
-    # The agentMetadata property
+    # Metadata used for agent policy scoping and evaluation. Optional.
     agent_metadata: Optional[AgentMetadata] = None
     
     @staticmethod

@@ -41,11 +41,13 @@ class CloudPcCloudAppDetail(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcAutomaticDiscoveredAppDetail".casefold():
+        if not mapping_value:
+            return CloudPcCloudAppDetail()
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcAutomaticDiscoveredAppDetail".casefold():
             from .cloud_pc_automatic_discovered_app_detail import CloudPcAutomaticDiscoveredAppDetail
 
             return CloudPcAutomaticDiscoveredAppDetail()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcFilePathAppDetail".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcFilePathAppDetail".casefold():
             from .cloud_pc_file_path_app_detail import CloudPcFilePathAppDetail
 
             return CloudPcFilePathAppDetail()

@@ -32,7 +32,9 @@ class Windows10XCertificateProfile(DeviceManagementResourceAccessProfileBase, Pa
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10XSCEPCertificateProfile".casefold():
+        if not mapping_value:
+            return Windows10XCertificateProfile()
+        if mapping_value.casefold() == "#microsoft.graph.windows10XSCEPCertificateProfile".casefold():
             from .windows10_x_s_c_e_p_certificate_profile import Windows10XSCEPCertificateProfile
 
             return Windows10XSCEPCertificateProfile()

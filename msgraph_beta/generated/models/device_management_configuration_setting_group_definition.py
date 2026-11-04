@@ -37,7 +37,9 @@ class DeviceManagementConfigurationSettingGroupDefinition(DeviceManagementConfig
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationSettingGroupDefinition()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition".casefold():
             from .device_management_configuration_setting_group_collection_definition import DeviceManagementConfigurationSettingGroupCollectionDefinition
 
             return DeviceManagementConfigurationSettingGroupCollectionDefinition()

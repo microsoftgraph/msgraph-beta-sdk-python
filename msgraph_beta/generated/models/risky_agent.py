@@ -78,19 +78,21 @@ class RiskyAgent(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgentDiscoveredAgentIdentity".casefold():
+        if not mapping_value:
+            return RiskyAgent()
+        if mapping_value.casefold() == "#microsoft.graph.riskyAgentDiscoveredAgentIdentity".casefold():
             from .risky_agent_discovered_agent_identity import RiskyAgentDiscoveredAgentIdentity
 
             return RiskyAgentDiscoveredAgentIdentity()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgentIdentity".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.riskyAgentIdentity".casefold():
             from .risky_agent_identity import RiskyAgentIdentity
 
             return RiskyAgentIdentity()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgentIdentityBlueprintPrincipal".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.riskyAgentIdentityBlueprintPrincipal".casefold():
             from .risky_agent_identity_blueprint_principal import RiskyAgentIdentityBlueprintPrincipal
 
             return RiskyAgentIdentityBlueprintPrincipal()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.riskyAgentUser".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.riskyAgentUser".casefold():
             from .risky_agent_user import RiskyAgentUser
 
             return RiskyAgentUser()

@@ -32,7 +32,9 @@ class CloudPcNetworkConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcMicrosoftHostedNetworkConfiguration".casefold():
+        if not mapping_value:
+            return CloudPcNetworkConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcMicrosoftHostedNetworkConfiguration".casefold():
             from .cloud_pc_microsoft_hosted_network_configuration import CloudPcMicrosoftHostedNetworkConfiguration
 
             return CloudPcMicrosoftHostedNetworkConfiguration()

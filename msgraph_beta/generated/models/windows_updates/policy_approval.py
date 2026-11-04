@@ -8,12 +8,15 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ..entity import Entity
     from .approval_status import ApprovalStatus
+    from .approved_by import ApprovedBy
     from .catalog_entry import CatalogEntry
 
 from ..entity import Entity
 
 @dataclass
 class PolicyApproval(Entity, Parsable):
+    # The approvedBy property
+    approved_by: Optional[ApprovedBy] = None
     # The content that you can approve for deployment. Read-only.
     catalog_entry: Optional[CatalogEntry] = None
     # The catalog entry ID to approve.
@@ -24,6 +27,8 @@ class PolicyApproval(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The date and time when the approved content can start being offered. If omitted when the approval is created, the service uses the current time.
+    start_date_time: Optional[datetime.datetime] = None
     # The status property
     status: Optional[ApprovalStatus] = None
     
@@ -45,17 +50,21 @@ class PolicyApproval(Entity, Parsable):
         """
         from ..entity import Entity
         from .approval_status import ApprovalStatus
+        from .approved_by import ApprovedBy
         from .catalog_entry import CatalogEntry
 
         from ..entity import Entity
         from .approval_status import ApprovalStatus
+        from .approved_by import ApprovedBy
         from .catalog_entry import CatalogEntry
 
         fields: dict[str, Callable[[Any], None]] = {
+            "approvedBy": lambda n : setattr(self, 'approved_by', n.get_enum_value(ApprovedBy)),
             "catalogEntry": lambda n : setattr(self, 'catalog_entry', n.get_object_value(CatalogEntry)),
             "catalogEntryId": lambda n : setattr(self, 'catalog_entry_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(ApprovalStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -71,10 +80,12 @@ class PolicyApproval(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_enum_value("approvedBy", self.approved_by)
         writer.write_object_value("catalogEntry", self.catalog_entry)
         writer.write_str_value("catalogEntryId", self.catalog_entry_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_enum_value("status", self.status)
     
 

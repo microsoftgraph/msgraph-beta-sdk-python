@@ -25,6 +25,8 @@ class RiskAlert(AdditionalDataHolder, BackedModel, Parsable):
     provider_alert_id: Optional[str] = None
     # The severity property
     severity: Optional[Severity] = None
+    # The source property
+    source: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RiskAlert:
@@ -52,6 +54,7 @@ class RiskAlert(AdditionalDataHolder, BackedModel, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "providerAlertId": lambda n : setattr(self, 'provider_alert_id', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(Severity)),
+            "source": lambda n : setattr(self, 'source', n.get_str_value()),
         }
         return fields
     
@@ -68,6 +71,7 @@ class RiskAlert(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("providerAlertId", self.provider_alert_id)
         writer.write_enum_value("severity", self.severity)
+        writer.write_str_value("source", self.source)
         writer.write_additional_data_value(self.additional_data)
     
 

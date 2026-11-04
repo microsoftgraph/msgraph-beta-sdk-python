@@ -37,15 +37,17 @@ class MarkContent(LabelActionBase, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.addFooter".casefold():
+        if not mapping_value:
+            return MarkContent()
+        if mapping_value.casefold() == "#microsoft.graph.addFooter".casefold():
             from .add_footer import AddFooter
 
             return AddFooter()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.addHeader".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.addHeader".casefold():
             from .add_header import AddHeader
 
             return AddHeader()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.addWatermark".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.addWatermark".casefold():
             from .add_watermark import AddWatermark
 
             return AddWatermark()

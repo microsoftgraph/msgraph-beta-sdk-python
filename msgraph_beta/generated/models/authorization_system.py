@@ -40,15 +40,17 @@ class AuthorizationSystem(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsAuthorizationSystem".casefold():
+        if not mapping_value:
+            return AuthorizationSystem()
+        if mapping_value.casefold() == "#microsoft.graph.awsAuthorizationSystem".casefold():
             from .aws_authorization_system import AwsAuthorizationSystem
 
             return AwsAuthorizationSystem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureAuthorizationSystem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureAuthorizationSystem".casefold():
             from .azure_authorization_system import AzureAuthorizationSystem
 
             return AzureAuthorizationSystem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpAuthorizationSystem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpAuthorizationSystem".casefold():
             from .gcp_authorization_system import GcpAuthorizationSystem
 
             return GcpAuthorizationSystem()

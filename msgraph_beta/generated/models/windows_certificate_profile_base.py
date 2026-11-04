@@ -53,27 +53,29 @@ class WindowsCertificateProfileBase(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10CertificateProfileBase".casefold():
+        if not mapping_value:
+            return WindowsCertificateProfileBase()
+        if mapping_value.casefold() == "#microsoft.graph.windows10CertificateProfileBase".casefold():
             from .windows10_certificate_profile_base import Windows10CertificateProfileBase
 
             return Windows10CertificateProfileBase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10ImportedPFXCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows10ImportedPFXCertificateProfile".casefold():
             from .windows10_imported_p_f_x_certificate_profile import Windows10ImportedPFXCertificateProfile
 
             return Windows10ImportedPFXCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10PkcsCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows10PkcsCertificateProfile".casefold():
             from .windows10_pkcs_certificate_profile import Windows10PkcsCertificateProfile
 
             return Windows10PkcsCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows81CertificateProfileBase".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows81CertificateProfileBase".casefold():
             from .windows81_certificate_profile_base import Windows81CertificateProfileBase
 
             return Windows81CertificateProfileBase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows81SCEPCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows81SCEPCertificateProfile".casefold():
             from .windows81_s_c_e_p_certificate_profile import Windows81SCEPCertificateProfile
 
             return Windows81SCEPCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhone81ImportedPFXCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsPhone81ImportedPFXCertificateProfile".casefold():
             from .windows_phone81_imported_p_f_x_certificate_profile import WindowsPhone81ImportedPFXCertificateProfile
 
             return WindowsPhone81ImportedPFXCertificateProfile()

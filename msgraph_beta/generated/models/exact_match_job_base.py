@@ -43,15 +43,17 @@ class ExactMatchJobBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exactMatchLookupJob".casefold():
+        if not mapping_value:
+            return ExactMatchJobBase()
+        if mapping_value.casefold() == "#microsoft.graph.exactMatchLookupJob".casefold():
             from .exact_match_lookup_job import ExactMatchLookupJob
 
             return ExactMatchLookupJob()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exactMatchSession".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.exactMatchSession".casefold():
             from .exact_match_session import ExactMatchSession
 
             return ExactMatchSession()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exactMatchSessionBase".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.exactMatchSessionBase".casefold():
             from .exact_match_session_base import ExactMatchSessionBase
 
             return ExactMatchSessionBase()

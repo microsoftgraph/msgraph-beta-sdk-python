@@ -48,27 +48,29 @@ class GroupPolicyPresentationValue(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueBoolean".casefold():
+        if not mapping_value:
+            return GroupPolicyPresentationValue()
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueBoolean".casefold():
             from .group_policy_presentation_value_boolean import GroupPolicyPresentationValueBoolean
 
             return GroupPolicyPresentationValueBoolean()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueDecimal".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueDecimal".casefold():
             from .group_policy_presentation_value_decimal import GroupPolicyPresentationValueDecimal
 
             return GroupPolicyPresentationValueDecimal()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueList".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueList".casefold():
             from .group_policy_presentation_value_list import GroupPolicyPresentationValueList
 
             return GroupPolicyPresentationValueList()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueLongDecimal".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueLongDecimal".casefold():
             from .group_policy_presentation_value_long_decimal import GroupPolicyPresentationValueLongDecimal
 
             return GroupPolicyPresentationValueLongDecimal()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueMultiText".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueMultiText".casefold():
             from .group_policy_presentation_value_multi_text import GroupPolicyPresentationValueMultiText
 
             return GroupPolicyPresentationValueMultiText()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueText".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationValueText".casefold():
             from .group_policy_presentation_value_text import GroupPolicyPresentationValueText
 
             return GroupPolicyPresentationValueText()

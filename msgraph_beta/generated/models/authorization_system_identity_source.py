@@ -38,23 +38,25 @@ class AuthorizationSystemIdentitySource(AdditionalDataHolder, BackedModel, Parsa
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.aadSource".casefold():
+        if not mapping_value:
+            return AuthorizationSystemIdentitySource()
+        if mapping_value.casefold() == "#microsoft.graph.aadSource".casefold():
             from .aad_source import AadSource
 
             return AadSource()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsSource".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsSource".casefold():
             from .aws_source import AwsSource
 
             return AwsSource()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureSource".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureSource".casefold():
             from .azure_source import AzureSource
 
             return AzureSource()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gsuiteSource".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gsuiteSource".casefold():
             from .gsuite_source import GsuiteSource
 
             return GsuiteSource()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unknownSource".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.unknownSource".casefold():
             from .unknown_source import UnknownSource
 
             return UnknownSource()

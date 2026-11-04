@@ -38,19 +38,21 @@ class Win32LobAppDetection(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppFileSystemDetection".casefold():
+        if not mapping_value:
+            return Win32LobAppDetection()
+        if mapping_value.casefold() == "#microsoft.graph.win32LobAppFileSystemDetection".casefold():
             from .win32_lob_app_file_system_detection import Win32LobAppFileSystemDetection
 
             return Win32LobAppFileSystemDetection()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppPowerShellScriptDetection".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.win32LobAppPowerShellScriptDetection".casefold():
             from .win32_lob_app_power_shell_script_detection import Win32LobAppPowerShellScriptDetection
 
             return Win32LobAppPowerShellScriptDetection()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppProductCodeDetection".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.win32LobAppProductCodeDetection".casefold():
             from .win32_lob_app_product_code_detection import Win32LobAppProductCodeDetection
 
             return Win32LobAppProductCodeDetection()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobAppRegistryDetection".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.win32LobAppRegistryDetection".casefold():
             from .win32_lob_app_registry_detection import Win32LobAppRegistryDetection
 
             return Win32LobAppRegistryDetection()

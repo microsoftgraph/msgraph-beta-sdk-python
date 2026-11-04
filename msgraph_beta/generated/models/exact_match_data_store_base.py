@@ -39,7 +39,9 @@ class ExactMatchDataStoreBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exactMatchDataStore".casefold():
+        if not mapping_value:
+            return ExactMatchDataStoreBase()
+        if mapping_value.casefold() == "#microsoft.graph.exactMatchDataStore".casefold():
             from .exact_match_data_store import ExactMatchDataStore
 
             return ExactMatchDataStore()

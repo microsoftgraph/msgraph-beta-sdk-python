@@ -45,15 +45,17 @@ class EasEmailProfileConfigurationBase(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosEasEmailProfileConfiguration".casefold():
+        if not mapping_value:
+            return EasEmailProfileConfigurationBase()
+        if mapping_value.casefold() == "#microsoft.graph.iosEasEmailProfileConfiguration".casefold():
             from .ios_eas_email_profile_configuration import IosEasEmailProfileConfiguration
 
             return IosEasEmailProfileConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10EasEmailProfileConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows10EasEmailProfileConfiguration".casefold():
             from .windows10_eas_email_profile_configuration import Windows10EasEmailProfileConfiguration
 
             return Windows10EasEmailProfileConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhoneEASEmailProfileConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsPhoneEASEmailProfileConfiguration".casefold():
             from .windows_phone_e_a_s_email_profile_configuration import WindowsPhoneEASEmailProfileConfiguration
 
             return WindowsPhoneEASEmailProfileConfiguration()

@@ -45,23 +45,25 @@ class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, BackedModel, Par
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppPolicyCreationHistory".casefold():
+        if not mapping_value:
+            return MobileAppTroubleshootingHistoryItem()
+        if mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppPolicyCreationHistory".casefold():
             from .mobile_app_troubleshooting_app_policy_creation_history import MobileAppTroubleshootingAppPolicyCreationHistory
 
             return MobileAppTroubleshootingAppPolicyCreationHistory()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppStateHistory".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppStateHistory".casefold():
             from .mobile_app_troubleshooting_app_state_history import MobileAppTroubleshootingAppStateHistory
 
             return MobileAppTroubleshootingAppStateHistory()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppTargetHistory".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppTargetHistory".casefold():
             from .mobile_app_troubleshooting_app_target_history import MobileAppTroubleshootingAppTargetHistory
 
             return MobileAppTroubleshootingAppTargetHistory()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppUpdateHistory".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingAppUpdateHistory".casefold():
             from .mobile_app_troubleshooting_app_update_history import MobileAppTroubleshootingAppUpdateHistory
 
             return MobileAppTroubleshootingAppUpdateHistory()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingDeviceCheckinHistory".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingDeviceCheckinHistory".casefold():
             from .mobile_app_troubleshooting_device_checkin_history import MobileAppTroubleshootingDeviceCheckinHistory
 
             return MobileAppTroubleshootingDeviceCheckinHistory()

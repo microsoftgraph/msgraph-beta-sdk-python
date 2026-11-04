@@ -49,15 +49,17 @@ class JobResponseBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.classificationJobResponse".casefold():
+        if not mapping_value:
+            return JobResponseBase()
+        if mapping_value.casefold() == "#microsoft.graph.classificationJobResponse".casefold():
             from .classification_job_response import ClassificationJobResponse
 
             return ClassificationJobResponse()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.dlpEvaluatePoliciesJobResponse".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.dlpEvaluatePoliciesJobResponse".casefold():
             from .dlp_evaluate_policies_job_response import DlpEvaluatePoliciesJobResponse
 
             return DlpEvaluatePoliciesJobResponse()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.evaluateLabelJobResponse".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.evaluateLabelJobResponse".casefold():
             from .evaluate_label_job_response import EvaluateLabelJobResponse
 
             return EvaluateLabelJobResponse()

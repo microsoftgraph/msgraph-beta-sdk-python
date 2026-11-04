@@ -32,7 +32,9 @@ class Dictionary(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.alertCustomDetails".casefold():
+        if not mapping_value:
+            return Dictionary()
+        if mapping_value.casefold() == "#microsoft.graph.security.alertCustomDetails".casefold():
             from .alert_custom_details import AlertCustomDetails
 
             return AlertCustomDetails()

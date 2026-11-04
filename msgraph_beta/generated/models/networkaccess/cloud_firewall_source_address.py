@@ -32,7 +32,9 @@ class CloudFirewallSourceAddress(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallSourceIpAddress".casefold():
+        if not mapping_value:
+            return CloudFirewallSourceAddress()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallSourceIpAddress".casefold():
             from .cloud_firewall_source_ip_address import CloudFirewallSourceIpAddress
 
             return CloudFirewallSourceIpAddress()
