@@ -14,6 +14,7 @@ from kiota_serialization_multipart.multipart_serialization_writer_factory import
 from kiota_serialization_text.text_parse_node_factory import TextParseNodeFactory
 from kiota_serialization_text.text_serialization_writer_factory import TextSerializationWriterFactory
 from typing import Any, Optional, TYPE_CHECKING, Union
+from warnings import warn
 
 if TYPE_CHECKING:
     from .access_reviews.access_reviews_request_builder import AccessReviewsRequestBuilder

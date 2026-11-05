@@ -36,11 +36,13 @@ class CustomClaimBase(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.customClaim".casefold():
+        if not mapping_value:
+            return CustomClaimBase()
+        if mapping_value.casefold() == "#microsoft.graph.customClaim".casefold():
             from .custom_claim import CustomClaim
 
             return CustomClaim()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.samlNameIdClaim".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.samlNameIdClaim".casefold():
             from .saml_name_id_claim import SamlNameIdClaim
 
             return SamlNameIdClaim()

@@ -43,15 +43,17 @@ class ForwardingRule(PolicyRule, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.internetAccessForwardingRule".casefold():
+        if not mapping_value:
+            return ForwardingRule()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.internetAccessForwardingRule".casefold():
             from .internet_access_forwarding_rule import InternetAccessForwardingRule
 
             return InternetAccessForwardingRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.m365ForwardingRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.m365ForwardingRule".casefold():
             from .m365_forwarding_rule import M365ForwardingRule
 
             return M365ForwardingRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.privateAccessForwardingRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.privateAccessForwardingRule".casefold():
             from .private_access_forwarding_rule import PrivateAccessForwardingRule
 
             return PrivateAccessForwardingRule()

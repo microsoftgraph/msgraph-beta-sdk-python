@@ -41,31 +41,33 @@ class WindowsKioskUser(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsKioskActiveDirectoryGroup".casefold():
+        if not mapping_value:
+            return WindowsKioskUser()
+        if mapping_value.casefold() == "#microsoft.graph.windowsKioskActiveDirectoryGroup".casefold():
             from .windows_kiosk_active_directory_group import WindowsKioskActiveDirectoryGroup
 
             return WindowsKioskActiveDirectoryGroup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsKioskAutologon".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsKioskAutologon".casefold():
             from .windows_kiosk_autologon import WindowsKioskAutologon
 
             return WindowsKioskAutologon()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsKioskAzureADGroup".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsKioskAzureADGroup".casefold():
             from .windows_kiosk_azure_a_d_group import WindowsKioskAzureADGroup
 
             return WindowsKioskAzureADGroup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsKioskAzureADUser".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsKioskAzureADUser".casefold():
             from .windows_kiosk_azure_a_d_user import WindowsKioskAzureADUser
 
             return WindowsKioskAzureADUser()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsKioskLocalGroup".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsKioskLocalGroup".casefold():
             from .windows_kiosk_local_group import WindowsKioskLocalGroup
 
             return WindowsKioskLocalGroup()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsKioskLocalUser".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsKioskLocalUser".casefold():
             from .windows_kiosk_local_user import WindowsKioskLocalUser
 
             return WindowsKioskLocalUser()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsKioskVisitor".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsKioskVisitor".casefold():
             from .windows_kiosk_visitor import WindowsKioskVisitor
 
             return WindowsKioskVisitor()

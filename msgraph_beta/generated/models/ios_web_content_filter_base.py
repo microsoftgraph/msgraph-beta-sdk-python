@@ -36,11 +36,13 @@ class IosWebContentFilterBase(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosWebContentFilterAutoFilter".casefold():
+        if not mapping_value:
+            return IosWebContentFilterBase()
+        if mapping_value.casefold() == "#microsoft.graph.iosWebContentFilterAutoFilter".casefold():
             from .ios_web_content_filter_auto_filter import IosWebContentFilterAutoFilter
 
             return IosWebContentFilterAutoFilter()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosWebContentFilterSpecificWebsitesAccess".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosWebContentFilterSpecificWebsitesAccess".casefold():
             from .ios_web_content_filter_specific_websites_access import IosWebContentFilterSpecificWebsitesAccess
 
             return IosWebContentFilterSpecificWebsitesAccess()

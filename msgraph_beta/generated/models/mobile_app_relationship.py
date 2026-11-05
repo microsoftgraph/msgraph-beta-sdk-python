@@ -54,11 +54,13 @@ class MobileAppRelationship(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppDependency".casefold():
+        if not mapping_value:
+            return MobileAppRelationship()
+        if mapping_value.casefold() == "#microsoft.graph.mobileAppDependency".casefold():
             from .mobile_app_dependency import MobileAppDependency
 
             return MobileAppDependency()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppSupersedence".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mobileAppSupersedence".casefold():
             from .mobile_app_supersedence import MobileAppSupersedence
 
             return MobileAppSupersedence()

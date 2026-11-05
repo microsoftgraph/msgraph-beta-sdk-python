@@ -30,11 +30,13 @@ class UpdatableAsset(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.azureADDevice".casefold():
+        if not mapping_value:
+            return UpdatableAsset()
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.azureADDevice".casefold():
             from .azure_a_d_device import AzureADDevice
 
             return AzureADDevice()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.updatableAssetGroup".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.updatableAssetGroup".casefold():
             from .updatable_asset_group import UpdatableAssetGroup
 
             return UpdatableAssetGroup()

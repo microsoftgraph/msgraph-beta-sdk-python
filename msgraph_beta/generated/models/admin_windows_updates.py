@@ -12,7 +12,9 @@ if TYPE_CHECKING:
     from .windows_updates.policy import Policy
     from .windows_updates.product import Product
     from .windows_updates.resource_connection import ResourceConnection
+    from .windows_updates.tenant_setting import TenantSetting
     from .windows_updates.updatable_asset import UpdatableAsset
+    from .windows_updates.update_data import UpdateData
     from .windows_updates.update_policy import UpdatePolicy
 
 from .entity import Entity
@@ -21,6 +23,8 @@ from .entity import Entity
 class AdminWindowsUpdates(Entity, Parsable):
     # Catalog of content that can be approved for deployment by Windows Autopatch. Read-only.
     catalog: Optional[Catalog] = None
+    # Read-only Windows Autopatch device, policy assignment, applicability, and driver reporting data.
+    data: Optional[UpdateData] = None
     # The set of updatableAsset resources to which a deployment can apply.
     deployment_audiences: Optional[list[DeploymentAudience]] = None
     # Deployments created using Windows Autopatch.
@@ -33,6 +37,8 @@ class AdminWindowsUpdates(Entity, Parsable):
     products: Optional[list[Product]] = None
     # Service connections to external resources such as analytics workspaces.
     resource_connections: Optional[list[ResourceConnection]] = None
+    # The Windows Autopatch settings for the current tenant.
+    tenant_settings: Optional[TenantSetting] = None
     # Assets registered with Windows Autopatch that can receive updates.
     updatable_assets: Optional[list[UpdatableAsset]] = None
     # A collection of policies for approving the deployment of different content to an audience over time.
@@ -61,7 +67,9 @@ class AdminWindowsUpdates(Entity, Parsable):
         from .windows_updates.policy import Policy
         from .windows_updates.product import Product
         from .windows_updates.resource_connection import ResourceConnection
+        from .windows_updates.tenant_setting import TenantSetting
         from .windows_updates.updatable_asset import UpdatableAsset
+        from .windows_updates.update_data import UpdateData
         from .windows_updates.update_policy import UpdatePolicy
 
         from .entity import Entity
@@ -71,16 +79,20 @@ class AdminWindowsUpdates(Entity, Parsable):
         from .windows_updates.policy import Policy
         from .windows_updates.product import Product
         from .windows_updates.resource_connection import ResourceConnection
+        from .windows_updates.tenant_setting import TenantSetting
         from .windows_updates.updatable_asset import UpdatableAsset
+        from .windows_updates.update_data import UpdateData
         from .windows_updates.update_policy import UpdatePolicy
 
         fields: dict[str, Callable[[Any], None]] = {
             "catalog": lambda n : setattr(self, 'catalog', n.get_object_value(Catalog)),
+            "data": lambda n : setattr(self, 'data', n.get_object_value(UpdateData)),
             "deploymentAudiences": lambda n : setattr(self, 'deployment_audiences', n.get_collection_of_object_values(DeploymentAudience)),
             "deployments": lambda n : setattr(self, 'deployments', n.get_collection_of_object_values(Deployment)),
             "policies": lambda n : setattr(self, 'policies', n.get_collection_of_object_values(Policy)),
             "products": lambda n : setattr(self, 'products', n.get_collection_of_object_values(Product)),
             "resourceConnections": lambda n : setattr(self, 'resource_connections', n.get_collection_of_object_values(ResourceConnection)),
+            "tenantSettings": lambda n : setattr(self, 'tenant_settings', n.get_object_value(TenantSetting)),
             "updatableAssets": lambda n : setattr(self, 'updatable_assets', n.get_collection_of_object_values(UpdatableAsset)),
             "updatePolicies": lambda n : setattr(self, 'update_policies', n.get_collection_of_object_values(UpdatePolicy)),
         }
@@ -98,11 +110,13 @@ class AdminWindowsUpdates(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_object_value("catalog", self.catalog)
+        writer.write_object_value("data", self.data)
         writer.write_collection_of_object_values("deploymentAudiences", self.deployment_audiences)
         writer.write_collection_of_object_values("deployments", self.deployments)
         writer.write_collection_of_object_values("policies", self.policies)
         writer.write_collection_of_object_values("products", self.products)
         writer.write_collection_of_object_values("resourceConnections", self.resource_connections)
+        writer.write_object_value("tenantSettings", self.tenant_settings)
         writer.write_collection_of_object_values("updatableAssets", self.updatable_assets)
         writer.write_collection_of_object_values("updatePolicies", self.update_policies)
     

@@ -36,11 +36,13 @@ class DeliveryOptimizationMaxCacheSize(AdditionalDataHolder, BackedModel, Parsab
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationMaxCacheSizeAbsolute".casefold():
+        if not mapping_value:
+            return DeliveryOptimizationMaxCacheSize()
+        if mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationMaxCacheSizeAbsolute".casefold():
             from .delivery_optimization_max_cache_size_absolute import DeliveryOptimizationMaxCacheSizeAbsolute
 
             return DeliveryOptimizationMaxCacheSizeAbsolute()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationMaxCacheSizePercentage".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deliveryOptimizationMaxCacheSizePercentage".casefold():
             from .delivery_optimization_max_cache_size_percentage import DeliveryOptimizationMaxCacheSizePercentage
 
             return DeliveryOptimizationMaxCacheSizePercentage()

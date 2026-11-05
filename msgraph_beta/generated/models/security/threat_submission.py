@@ -64,31 +64,33 @@ class ThreatSubmission(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.emailContentThreatSubmission".casefold():
+        if not mapping_value:
+            return ThreatSubmission()
+        if mapping_value.casefold() == "#microsoft.graph.security.emailContentThreatSubmission".casefold():
             from .email_content_threat_submission import EmailContentThreatSubmission
 
             return EmailContentThreatSubmission()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.emailThreatSubmission".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.emailThreatSubmission".casefold():
             from .email_threat_submission import EmailThreatSubmission
 
             return EmailThreatSubmission()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.emailUrlThreatSubmission".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.emailUrlThreatSubmission".casefold():
             from .email_url_threat_submission import EmailUrlThreatSubmission
 
             return EmailUrlThreatSubmission()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.fileContentThreatSubmission".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.fileContentThreatSubmission".casefold():
             from .file_content_threat_submission import FileContentThreatSubmission
 
             return FileContentThreatSubmission()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.fileThreatSubmission".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.fileThreatSubmission".casefold():
             from .file_threat_submission import FileThreatSubmission
 
             return FileThreatSubmission()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.fileUrlThreatSubmission".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.fileUrlThreatSubmission".casefold():
             from .file_url_threat_submission import FileUrlThreatSubmission
 
             return FileUrlThreatSubmission()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.urlThreatSubmission".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.urlThreatSubmission".casefold():
             from .url_threat_submission import UrlThreatSubmission
 
             return UrlThreatSubmission()

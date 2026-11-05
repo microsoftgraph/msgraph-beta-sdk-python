@@ -5,6 +5,9 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.store import BackedModel, BackingStore, BackingStoreFactorySingleton
 from typing import Any, Optional, TYPE_CHECKING, Union
 
+if TYPE_CHECKING:
+    from ......models.cloud_pc_domain_join_credential import CloudPcDomainJoinCredential
+
 @dataclass
 class UpdateAdDomainPasswordPostRequestBody(AdditionalDataHolder, BackedModel, Parsable):
     # Stores model information.
@@ -14,6 +17,8 @@ class UpdateAdDomainPasswordPostRequestBody(AdditionalDataHolder, BackedModel, P
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The adDomainPassword property
     ad_domain_password: Optional[str] = None
+    # The domainJoinCredential property
+    domain_join_credential: Optional[CloudPcDomainJoinCredential] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> UpdateAdDomainPasswordPostRequestBody:
@@ -31,8 +36,13 @@ class UpdateAdDomainPasswordPostRequestBody(AdditionalDataHolder, BackedModel, P
         The deserialization information for the current model
         Returns: dict[str, Callable[[ParseNode], None]]
         """
+        from ......models.cloud_pc_domain_join_credential import CloudPcDomainJoinCredential
+
+        from ......models.cloud_pc_domain_join_credential import CloudPcDomainJoinCredential
+
         fields: dict[str, Callable[[Any], None]] = {
             "adDomainPassword": lambda n : setattr(self, 'ad_domain_password', n.get_str_value()),
+            "domainJoinCredential": lambda n : setattr(self, 'domain_join_credential', n.get_object_value(CloudPcDomainJoinCredential)),
         }
         return fields
     
@@ -45,6 +55,7 @@ class UpdateAdDomainPasswordPostRequestBody(AdditionalDataHolder, BackedModel, P
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_str_value("adDomainPassword", self.ad_domain_password)
+        writer.write_object_value("domainJoinCredential", self.domain_join_credential)
         writer.write_additional_data_value(self.additional_data)
     
 

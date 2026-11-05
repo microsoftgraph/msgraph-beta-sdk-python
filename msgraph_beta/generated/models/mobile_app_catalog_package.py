@@ -42,7 +42,9 @@ class MobileAppCatalogPackage(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32MobileAppCatalogPackage".casefold():
+        if not mapping_value:
+            return MobileAppCatalogPackage()
+        if mapping_value.casefold() == "#microsoft.graph.win32MobileAppCatalogPackage".casefold():
             from .win32_mobile_app_catalog_package import Win32MobileAppCatalogPackage
 
             return Win32MobileAppCatalogPackage()

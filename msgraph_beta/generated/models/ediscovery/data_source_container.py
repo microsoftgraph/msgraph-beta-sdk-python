@@ -48,11 +48,13 @@ class DataSourceContainer(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.custodian".casefold():
+        if not mapping_value:
+            return DataSourceContainer()
+        if mapping_value.casefold() == "#microsoft.graph.ediscovery.custodian".casefold():
             from .custodian import Custodian
 
             return Custodian()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ediscovery.noncustodialDataSource".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.ediscovery.noncustodialDataSource".casefold():
             from .noncustodial_data_source import NoncustodialDataSource
 
             return NoncustodialDataSource()

@@ -70,11 +70,13 @@ class LifecyclePolicy(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.agentIdentityLifecyclePolicy".casefold():
+        if not mapping_value:
+            return LifecyclePolicy()
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.agentIdentityLifecyclePolicy".casefold():
             from .agent_identity_lifecycle_policy import AgentIdentityLifecyclePolicy
 
             return AgentIdentityLifecyclePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.guestLifecyclePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.guestLifecyclePolicy".casefold():
             from .guest_lifecycle_policy import GuestLifecyclePolicy
 
             return GuestLifecyclePolicy()

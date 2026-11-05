@@ -33,10 +33,11 @@ class ComputeRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ComputePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ComputePostResponse]:
         """
-        Invoke action compute
+        Compute tenant-wide data protection policies and actions, including user, group, or agent policy scopes.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ComputePostResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/tenantprotectionscopecontainer-compute?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -56,7 +57,7 @@ class ComputeRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ComputePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Invoke action compute
+        Compute tenant-wide data protection policies and actions, including user, group, or agent policy scopes.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

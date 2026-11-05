@@ -57,7 +57,9 @@ class DeviceAndAppManagementAssignmentFilter(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.payloadCompatibleAssignmentFilter".casefold():
+        if not mapping_value:
+            return DeviceAndAppManagementAssignmentFilter()
+        if mapping_value.casefold() == "#microsoft.graph.payloadCompatibleAssignmentFilter".casefold():
             from .payload_compatible_assignment_filter import PayloadCompatibleAssignmentFilter
 
             return PayloadCompatibleAssignmentFilter()

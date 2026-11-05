@@ -42,31 +42,33 @@ class StsPolicy(PolicyBase, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.activityBasedTimeoutPolicy".casefold():
+        if not mapping_value:
+            return StsPolicy()
+        if mapping_value.casefold() == "#microsoft.graph.activityBasedTimeoutPolicy".casefold():
             from .activity_based_timeout_policy import ActivityBasedTimeoutPolicy
 
             return ActivityBasedTimeoutPolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.b2bManagementPolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.b2bManagementPolicy".casefold():
             from .b2b_management_policy import B2bManagementPolicy
 
             return B2bManagementPolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.claimsMappingPolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.claimsMappingPolicy".casefold():
             from .claims_mapping_policy import ClaimsMappingPolicy
 
             return ClaimsMappingPolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.homeRealmDiscoveryPolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.homeRealmDiscoveryPolicy".casefold():
             from .home_realm_discovery_policy import HomeRealmDiscoveryPolicy
 
             return HomeRealmDiscoveryPolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.onPremAuthenticationPolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.onPremAuthenticationPolicy".casefold():
             from .on_prem_authentication_policy import OnPremAuthenticationPolicy
 
             return OnPremAuthenticationPolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tokenIssuancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.tokenIssuancePolicy".casefold():
             from .token_issuance_policy import TokenIssuancePolicy
 
             return TokenIssuancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.tokenLifetimePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.tokenLifetimePolicy".casefold():
             from .token_lifetime_policy import TokenLifetimePolicy
 
             return TokenLifetimePolicy()

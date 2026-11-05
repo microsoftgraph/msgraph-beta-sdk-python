@@ -83,7 +83,9 @@ class Win32LobApp(MobileLobApp, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32CatalogApp".casefold():
+        if not mapping_value:
+            return Win32LobApp()
+        if mapping_value.casefold() == "#microsoft.graph.win32CatalogApp".casefold():
             from .win32_catalog_app import Win32CatalogApp
 
             return Win32CatalogApp()

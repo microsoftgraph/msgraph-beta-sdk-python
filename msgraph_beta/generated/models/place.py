@@ -66,31 +66,33 @@ class Place(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.building".casefold():
+        if not mapping_value:
+            return Place()
+        if mapping_value.casefold() == "#microsoft.graph.building".casefold():
             from .building import Building
 
             return Building()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.desk".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.desk".casefold():
             from .desk import Desk
 
             return Desk()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.floor".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.floor".casefold():
             from .floor import Floor
 
             return Floor()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.room".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.room".casefold():
             from .room import Room
 
             return Room()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.roomList".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.roomList".casefold():
             from .room_list import RoomList
 
             return RoomList()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.section".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.section".casefold():
             from .section import Section
 
             return Section()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.workspace".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.workspace".casefold():
             from .workspace import Workspace
 
             return Workspace()

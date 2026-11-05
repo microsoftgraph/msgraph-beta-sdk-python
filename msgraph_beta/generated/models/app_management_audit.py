@@ -12,7 +12,7 @@ from .directory_audit import DirectoryAudit
 
 @dataclass
 class AppManagementAudit(DirectoryAudit, Parsable):
-    # The appliedAppManagementPolicyRestrictions property
+    # Details of the app management policy restrictions applied to the activity. Supports $filter (eq).
     applied_app_management_policy_restrictions: Optional[list[AppliedAppManagementPolicyRestriction]] = None
     # The OdataType property
     odata_type: Optional[str] = None

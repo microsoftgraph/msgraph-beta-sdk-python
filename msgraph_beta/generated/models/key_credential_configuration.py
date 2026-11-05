@@ -30,7 +30,7 @@ class KeyCredentialConfiguration(AdditionalDataHolder, BackedModel, Parsable):
     restrict_for_apps_created_after_date_time: Optional[datetime.datetime] = None
     # A unique identifier key for keyCredentialConfiguration. This value also represents the type of restriction being applied. Possible values are asymmetricKeyLifetime, trustedCertificateAuthority, and unknownFutureValue. Each value of restrictionType can be used only once per policy.
     restriction_type: Optional[AppKeyCredentialRestrictionType] = None
-    # Indicates whether the restriction is evaluated. The possible values are: enabled, disabled, unknownFutureValue. If enabled, the restriction is evaluated. If disabled, the restriction isn't evaluated or enforced.
+    # Indicates whether the restriction is evaluated. The possible values are: enabled, disabled, audit, unknownFutureValue. If enabled, the restriction is evaluated and enforced. If disabled, the restriction isn't evaluated or enforced. If audit, the restriction is evaluated but not enforced.
     state: Optional[AppManagementRestrictionState] = None
     
     @staticmethod

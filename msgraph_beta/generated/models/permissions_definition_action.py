@@ -40,39 +40,41 @@ class PermissionsDefinitionAction(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsActionsPermissionsDefinitionAction".casefold():
+        if not mapping_value:
+            return PermissionsDefinitionAction()
+        if mapping_value.casefold() == "#microsoft.graph.awsActionsPermissionsDefinitionAction".casefold():
             from .aws_actions_permissions_definition_action import AwsActionsPermissionsDefinitionAction
 
             return AwsActionsPermissionsDefinitionAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsPermissionsDefinitionAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsPermissionsDefinitionAction".casefold():
             from .aws_permissions_definition_action import AwsPermissionsDefinitionAction
 
             return AwsPermissionsDefinitionAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsPolicyPermissionsDefinitionAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.awsPolicyPermissionsDefinitionAction".casefold():
             from .aws_policy_permissions_definition_action import AwsPolicyPermissionsDefinitionAction
 
             return AwsPolicyPermissionsDefinitionAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureActionPermissionsDefinitionAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureActionPermissionsDefinitionAction".casefold():
             from .azure_action_permissions_definition_action import AzureActionPermissionsDefinitionAction
 
             return AzureActionPermissionsDefinitionAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azurePermissionsDefinitionAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azurePermissionsDefinitionAction".casefold():
             from .azure_permissions_definition_action import AzurePermissionsDefinitionAction
 
             return AzurePermissionsDefinitionAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureRolePermissionsDefinitionAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureRolePermissionsDefinitionAction".casefold():
             from .azure_role_permissions_definition_action import AzureRolePermissionsDefinitionAction
 
             return AzureRolePermissionsDefinitionAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpActionPermissionsDefinitionAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpActionPermissionsDefinitionAction".casefold():
             from .gcp_action_permissions_definition_action import GcpActionPermissionsDefinitionAction
 
             return GcpActionPermissionsDefinitionAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpPermissionsDefinitionAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpPermissionsDefinitionAction".casefold():
             from .gcp_permissions_definition_action import GcpPermissionsDefinitionAction
 
             return GcpPermissionsDefinitionAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpRolePermissionsDefinitionAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpRolePermissionsDefinitionAction".casefold():
             from .gcp_role_permissions_definition_action import GcpRolePermissionsDefinitionAction
 
             return GcpRolePermissionsDefinitionAction()

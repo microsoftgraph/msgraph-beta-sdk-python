@@ -119,6 +119,8 @@ class Group(DirectoryObject, Parsable):
     mail_enabled: Optional[bool] = None
     # The mail alias for the group, unique for Microsoft 365 groups in the organization. Maximum length is 64 characters. This property can contain only characters in the ASCII character set 0 - 127 except the following: @ () / [] ' ; : <> , SPACE. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith).
     mail_nickname: Optional[str] = None
+    # The identifier of the Exchange mailbox associated with a Microsoft 365 group. Treat this value as an opaque identifier and don't parse or validate its format. If the group mailbox isn't provisioned, this property returns 00000000-0000-0000-0000-000000000000. Requires $select to retrieve. Read-only.
+    mailbox_id: Optional[str] = None
     # Groups and administrative units that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
     member_of: Optional[list[DirectoryObject]] = None
     # Direct group members, who can be users, devices, other groups, or service principals. Supports the List members, Add member, and Remove member operations. Nullable. Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,'Role')&$select=id,displayName&$expand=members($select=id,userPrincipalName,displayName).
@@ -326,6 +328,7 @@ class Group(DirectoryObject, Parsable):
             "mail": lambda n : setattr(self, 'mail', n.get_str_value()),
             "mailEnabled": lambda n : setattr(self, 'mail_enabled', n.get_bool_value()),
             "mailNickname": lambda n : setattr(self, 'mail_nickname', n.get_str_value()),
+            "mailboxId": lambda n : setattr(self, 'mailbox_id', n.get_str_value()),
             "memberOf": lambda n : setattr(self, 'member_of', n.get_collection_of_object_values(DirectoryObject)),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(DirectoryObject)),
             "membersWithLicenseErrors": lambda n : setattr(self, 'members_with_license_errors', n.get_collection_of_object_values(DirectoryObject)),
@@ -425,6 +428,7 @@ class Group(DirectoryObject, Parsable):
         writer.write_str_value("mail", self.mail)
         writer.write_bool_value("mailEnabled", self.mail_enabled)
         writer.write_str_value("mailNickname", self.mail_nickname)
+        writer.write_str_value("mailboxId", self.mailbox_id)
         writer.write_collection_of_object_values("memberOf", self.member_of)
         writer.write_collection_of_object_values("members", self.members)
         writer.write_collection_of_object_values("membersWithLicenseErrors", self.members_with_license_errors)

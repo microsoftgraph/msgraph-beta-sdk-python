@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from ......models.windows_updates.policy import Policy
+    from .applicable_catalogs.applicable_catalogs_request_builder import ApplicableCatalogsRequestBuilder
     from .applicable_content.applicable_content_request_builder import ApplicableContentRequestBuilder
     from .approvals.approvals_request_builder import ApprovalsRequestBuilder
     from .rings.rings_request_builder import RingsRequestBuilder
@@ -35,7 +36,7 @@ class PolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a Windows update policy object. You can use this method with the following child object type: qualityUpdatePolicy.
+        Delete a Windows update policy object. You can use this method with the following child object types: driverUpdatePolicy, featureUpdatePolicy, and qualityUpdatePolicy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-policy-delete?view=graph-rest-beta
@@ -54,7 +55,7 @@ class PolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PolicyItemRequestBuilderGetQueryParameters]] = None) -> Optional[Policy]:
         """
-        Read the properties and relationships of a policy object. You can use this method with the following child object type: qualityUpdatePolicy.
+        Read the properties and relationships of a policy object. You can use this method with the following child object types: driverUpdatePolicy, featureUpdatePolicy, and qualityUpdatePolicy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Policy]
         Find more info here: https://learn.microsoft.com/graph/api/windowsupdates-policy-get?view=graph-rest-beta
@@ -75,7 +76,7 @@ class PolicyItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Policy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Policy]:
         """
-        Update the properties of a policy object. You can use this method with the following child object type: qualityUpdatePolicy.
+        Update the properties of a policy object. You can use this method with the following child object types: driverUpdatePolicy, featureUpdatePolicy, and qualityUpdatePolicy.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Policy]
@@ -99,7 +100,7 @@ class PolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a Windows update policy object. You can use this method with the following child object type: qualityUpdatePolicy.
+        Delete a Windows update policy object. You can use this method with the following child object types: driverUpdatePolicy, featureUpdatePolicy, and qualityUpdatePolicy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +111,7 @@ class PolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PolicyItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a policy object. You can use this method with the following child object type: qualityUpdatePolicy.
+        Read the properties and relationships of a policy object. You can use this method with the following child object types: driverUpdatePolicy, featureUpdatePolicy, and qualityUpdatePolicy.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -121,7 +122,7 @@ class PolicyItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Policy, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a policy object. You can use this method with the following child object type: qualityUpdatePolicy.
+        Update the properties of a policy object. You can use this method with the following child object types: driverUpdatePolicy, featureUpdatePolicy, and qualityUpdatePolicy.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -143,6 +144,15 @@ class PolicyItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return PolicyItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def applicable_catalogs(self) -> ApplicableCatalogsRequestBuilder:
+        """
+        Provides operations to manage the applicableCatalogs property of the microsoft.graph.windowsUpdates.policy entity.
+        """
+        from .applicable_catalogs.applicable_catalogs_request_builder import ApplicableCatalogsRequestBuilder
+
+        return ApplicableCatalogsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def applicable_content(self) -> ApplicableContentRequestBuilder:
@@ -181,7 +191,7 @@ class PolicyItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PolicyItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a policy object. You can use this method with the following child object type: qualityUpdatePolicy.
+        Read the properties and relationships of a policy object. You can use this method with the following child object types: driverUpdatePolicy, featureUpdatePolicy, and qualityUpdatePolicy.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

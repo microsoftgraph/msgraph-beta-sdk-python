@@ -54,11 +54,13 @@ class ExternalProfile(DirectoryObject, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.externalUserProfile".casefold():
+        if not mapping_value:
+            return ExternalProfile()
+        if mapping_value.casefold() == "#microsoft.graph.externalUserProfile".casefold():
             from .external_user_profile import ExternalUserProfile
 
             return ExternalUserProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.pendingExternalUserProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.pendingExternalUserProfile".casefold():
             from .pending_external_user_profile import PendingExternalUserProfile
 
             return PendingExternalUserProfile()

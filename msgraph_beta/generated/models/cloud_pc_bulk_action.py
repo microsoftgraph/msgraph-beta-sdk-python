@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
     from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
     from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
+    from .cloud_pc_bulk_relocate import CloudPcBulkRelocate
     from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
     from .cloud_pc_bulk_resize import CloudPcBulkResize
     from .cloud_pc_bulk_restart import CloudPcBulkRestart
@@ -60,63 +61,69 @@ class CloudPcBulkAction(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkCreateSnapshot".casefold():
+        if not mapping_value:
+            return CloudPcBulkAction()
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkCreateSnapshot".casefold():
             from .cloud_pc_bulk_create_snapshot import CloudPcBulkCreateSnapshot
 
             return CloudPcBulkCreateSnapshot()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecovery".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecovery".casefold():
             from .cloud_pc_bulk_disaster_recovery import CloudPcBulkDisasterRecovery
 
             return CloudPcBulkDisasterRecovery()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecoveryFailback".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecoveryFailback".casefold():
             from .cloud_pc_bulk_disaster_recovery_failback import CloudPcBulkDisasterRecoveryFailback
 
             return CloudPcBulkDisasterRecoveryFailback()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecoveryFailover".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkDisasterRecoveryFailover".casefold():
             from .cloud_pc_bulk_disaster_recovery_failover import CloudPcBulkDisasterRecoveryFailover
 
             return CloudPcBulkDisasterRecoveryFailover()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkModifyDiskEncryptionType".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkModifyDiskEncryptionType".casefold():
             from .cloud_pc_bulk_modify_disk_encryption_type import CloudPcBulkModifyDiskEncryptionType
 
             return CloudPcBulkModifyDiskEncryptionType()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkMove".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkMove".casefold():
             from .cloud_pc_bulk_move import CloudPcBulkMove
 
             return CloudPcBulkMove()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkPowerOff".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkPowerOff".casefold():
             from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
 
             return CloudPcBulkPowerOff()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkPowerOn".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkPowerOn".casefold():
             from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
 
             return CloudPcBulkPowerOn()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkReinstallAgent".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkReinstallAgent".casefold():
             from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
 
             return CloudPcBulkReinstallAgent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkReprovision".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkRelocate".casefold():
+            from .cloud_pc_bulk_relocate import CloudPcBulkRelocate
+
+            return CloudPcBulkRelocate()
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkReprovision".casefold():
             from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
 
             return CloudPcBulkReprovision()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkResize".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkResize".casefold():
             from .cloud_pc_bulk_resize import CloudPcBulkResize
 
             return CloudPcBulkResize()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkRestart".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkRestart".casefold():
             from .cloud_pc_bulk_restart import CloudPcBulkRestart
 
             return CloudPcBulkRestart()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkRestore".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkRestore".casefold():
             from .cloud_pc_bulk_restore import CloudPcBulkRestore
 
             return CloudPcBulkRestore()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkSetReviewStatus".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkSetReviewStatus".casefold():
             from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
 
             return CloudPcBulkSetReviewStatus()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.cloudPcBulkTroubleshoot".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkTroubleshoot".casefold():
             from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
 
             return CloudPcBulkTroubleshoot()
@@ -138,6 +145,7 @@ class CloudPcBulkAction(Entity, Parsable):
         from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
         from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
         from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
+        from .cloud_pc_bulk_relocate import CloudPcBulkRelocate
         from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
@@ -157,6 +165,7 @@ class CloudPcBulkAction(Entity, Parsable):
         from .cloud_pc_bulk_power_off import CloudPcBulkPowerOff
         from .cloud_pc_bulk_power_on import CloudPcBulkPowerOn
         from .cloud_pc_bulk_reinstall_agent import CloudPcBulkReinstallAgent
+        from .cloud_pc_bulk_relocate import CloudPcBulkRelocate
         from .cloud_pc_bulk_reprovision import CloudPcBulkReprovision
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart

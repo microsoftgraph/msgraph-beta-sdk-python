@@ -40,11 +40,13 @@ class ServiceProvisioningError(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceProvisioningResourceError".casefold():
+        if not mapping_value:
+            return ServiceProvisioningError()
+        if mapping_value.casefold() == "#microsoft.graph.serviceProvisioningResourceError".casefold():
             from .service_provisioning_resource_error import ServiceProvisioningResourceError
 
             return ServiceProvisioningResourceError()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.serviceProvisioningXmlError".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.serviceProvisioningXmlError".casefold():
             from .service_provisioning_xml_error import ServiceProvisioningXmlError
 
             return ServiceProvisioningXmlError()

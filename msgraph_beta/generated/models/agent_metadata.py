@@ -12,19 +12,19 @@ class AgentMetadata(AdditionalDataHolder, BackedModel, Parsable):
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The agentAdministrativeUnitId property
+    # The identifier of the administrative unit associated with the agent. Optional.
     agent_administrative_unit_id: Optional[str] = None
-    # The agentBlueprintId property
+    # The identifier of the blueprint from which the agent was created. Optional.
     agent_blueprint_id: Optional[str] = None
-    # The agentCategory property
+    # The category of the agent, for example, Agents.Foundry.MicrosoftAzure, Agents.Copilot.Studio, or Agents.Local. Optional.
     agent_category: Optional[str] = None
-    # The agentOwner property
+    # The owner associated with the agent. Optional.
     agent_owner: Optional[str] = None
-    # The agentPublisher property
+    # The publisher associated with the agent. Optional.
     agent_publisher: Optional[str] = None
-    # The altAgentIds property
+    # Alternate identifiers that can identify the agent. Required when agentMetadata is provided. Use an empty collection ([]) when the agent has no alternate identifiers.
     alt_agent_ids: Optional[list[str]] = None
-    # The isEntraAgentId property
+    # Indicates whether the value property of the associated policyLocationAgent is a Microsoft Entra agent ID. Required when agentMetadata is provided.
     is_entra_agent_id: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

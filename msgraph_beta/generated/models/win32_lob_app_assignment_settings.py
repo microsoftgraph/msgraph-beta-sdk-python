@@ -50,7 +50,9 @@ class Win32LobAppAssignmentSettings(MobileAppAssignmentSettings, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32CatalogAppAssignmentSettings".casefold():
+        if not mapping_value:
+            return Win32LobAppAssignmentSettings()
+        if mapping_value.casefold() == "#microsoft.graph.win32CatalogAppAssignmentSettings".casefold():
             from .win32_catalog_app_assignment_settings import Win32CatalogAppAssignmentSettings
 
             return Win32CatalogAppAssignmentSettings()

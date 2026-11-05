@@ -40,19 +40,21 @@ class ProvisioningFlow(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.administrativeUnitProvisioningFlow".casefold():
+        if not mapping_value:
+            return ProvisioningFlow()
+        if mapping_value.casefold() == "#microsoft.graph.industryData.administrativeUnitProvisioningFlow".casefold():
             from .administrative_unit_provisioning_flow import AdministrativeUnitProvisioningFlow
 
             return AdministrativeUnitProvisioningFlow()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.classGroupProvisioningFlow".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.classGroupProvisioningFlow".casefold():
             from .class_group_provisioning_flow import ClassGroupProvisioningFlow
 
             return ClassGroupProvisioningFlow()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.securityGroupProvisioningFlow".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.securityGroupProvisioningFlow".casefold():
             from .security_group_provisioning_flow import SecurityGroupProvisioningFlow
 
             return SecurityGroupProvisioningFlow()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.userProvisioningFlow".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.userProvisioningFlow".casefold():
             from .user_provisioning_flow import UserProvisioningFlow
 
             return UserProvisioningFlow()

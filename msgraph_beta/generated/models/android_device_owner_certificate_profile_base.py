@@ -53,15 +53,17 @@ class AndroidDeviceOwnerCertificateProfileBase(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerImportedPFXCertificateProfile".casefold():
+        if not mapping_value:
+            return AndroidDeviceOwnerCertificateProfileBase()
+        if mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerImportedPFXCertificateProfile".casefold():
             from .android_device_owner_imported_p_f_x_certificate_profile import AndroidDeviceOwnerImportedPFXCertificateProfile
 
             return AndroidDeviceOwnerImportedPFXCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerPkcsCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerPkcsCertificateProfile".casefold():
             from .android_device_owner_pkcs_certificate_profile import AndroidDeviceOwnerPkcsCertificateProfile
 
             return AndroidDeviceOwnerPkcsCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerScepCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerScepCertificateProfile".casefold():
             from .android_device_owner_scep_certificate_profile import AndroidDeviceOwnerScepCertificateProfile
 
             return AndroidDeviceOwnerScepCertificateProfile()

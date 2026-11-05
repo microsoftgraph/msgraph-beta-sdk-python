@@ -14,9 +14,9 @@ class ExchangeOnlineCrossTenantMigrationSettings(AdditionalDataHolder, BackedMod
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The OdataType property
     odata_type: Optional[str] = None
-    # Name of the Migration Endpoint in the source tenant
+    # Name of the migration endpoint in the source tenant.
     source_endpoint: Optional[str] = None
-    # Delivery domain on the target tenant
+    # Delivery domain on the target tenant.
     target_delivery_domain: Optional[str] = None
     
     @staticmethod

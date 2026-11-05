@@ -33,15 +33,17 @@ class Relation(CaseManagementEntity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.incidentRelation".casefold():
+        if not mapping_value:
+            return Relation()
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.incidentRelation".casefold():
             from .incident_relation import IncidentRelation
 
             return IncidentRelation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.recommendationRelation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.recommendationRelation".casefold():
             from .recommendation_relation import RecommendationRelation
 
             return RecommendationRelation()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.workspaceIndicatorRelation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.workspaceIndicatorRelation".casefold():
             from .workspace_indicator_relation import WorkspaceIndicatorRelation
 
             return WorkspaceIndicatorRelation()

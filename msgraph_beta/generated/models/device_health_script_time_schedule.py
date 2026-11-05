@@ -38,11 +38,13 @@ class DeviceHealthScriptTimeSchedule(DeviceHealthScriptRunSchedule, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptDailySchedule".casefold():
+        if not mapping_value:
+            return DeviceHealthScriptTimeSchedule()
+        if mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptDailySchedule".casefold():
             from .device_health_script_daily_schedule import DeviceHealthScriptDailySchedule
 
             return DeviceHealthScriptDailySchedule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptRunOnceSchedule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptRunOnceSchedule".casefold():
             from .device_health_script_run_once_schedule import DeviceHealthScriptRunOnceSchedule
 
             return DeviceHealthScriptRunOnceSchedule()

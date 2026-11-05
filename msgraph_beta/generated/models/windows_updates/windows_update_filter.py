@@ -31,15 +31,17 @@ class WindowsUpdateFilter(SoftwareUpdateFilter, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.driverUpdateFilter".casefold():
+        if not mapping_value:
+            return WindowsUpdateFilter()
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.driverUpdateFilter".casefold():
             from .driver_update_filter import DriverUpdateFilter
 
             return DriverUpdateFilter()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateFilter".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateFilter".casefold():
             from .quality_update_filter import QualityUpdateFilter
 
             return QualityUpdateFilter()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.remediationUpdateFilter".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.remediationUpdateFilter".casefold():
             from .remediation_update_filter import RemediationUpdateFilter
 
             return RemediationUpdateFilter()

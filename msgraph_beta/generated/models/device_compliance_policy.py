@@ -77,51 +77,53 @@ class DeviceCompliancePolicy(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidCompliancePolicy".casefold():
+        if not mapping_value:
+            return DeviceCompliancePolicy()
+        if mapping_value.casefold() == "#microsoft.graph.androidCompliancePolicy".casefold():
             from .android_compliance_policy import AndroidCompliancePolicy
 
             return AndroidCompliancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerCompliancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidDeviceOwnerCompliancePolicy".casefold():
             from .android_device_owner_compliance_policy import AndroidDeviceOwnerCompliancePolicy
 
             return AndroidDeviceOwnerCompliancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidForWorkCompliancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidForWorkCompliancePolicy".casefold():
             from .android_for_work_compliance_policy import AndroidForWorkCompliancePolicy
 
             return AndroidForWorkCompliancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidWorkProfileCompliancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidWorkProfileCompliancePolicy".casefold():
             from .android_work_profile_compliance_policy import AndroidWorkProfileCompliancePolicy
 
             return AndroidWorkProfileCompliancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.aospDeviceOwnerCompliancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.aospDeviceOwnerCompliancePolicy".casefold():
             from .aosp_device_owner_compliance_policy import AospDeviceOwnerCompliancePolicy
 
             return AospDeviceOwnerCompliancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.defaultDeviceCompliancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.defaultDeviceCompliancePolicy".casefold():
             from .default_device_compliance_policy import DefaultDeviceCompliancePolicy
 
             return DefaultDeviceCompliancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosCompliancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosCompliancePolicy".casefold():
             from .ios_compliance_policy import IosCompliancePolicy
 
             return IosCompliancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSCompliancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSCompliancePolicy".casefold():
             from .mac_o_s_compliance_policy import MacOSCompliancePolicy
 
             return MacOSCompliancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10CompliancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows10CompliancePolicy".casefold():
             from .windows10_compliance_policy import Windows10CompliancePolicy
 
             return Windows10CompliancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10MobileCompliancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows10MobileCompliancePolicy".casefold():
             from .windows10_mobile_compliance_policy import Windows10MobileCompliancePolicy
 
             return Windows10MobileCompliancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows81CompliancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows81CompliancePolicy".casefold():
             from .windows81_compliance_policy import Windows81CompliancePolicy
 
             return Windows81CompliancePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhone81CompliancePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsPhone81CompliancePolicy".casefold():
             from .windows_phone81_compliance_policy import WindowsPhone81CompliancePolicy
 
             return WindowsPhone81CompliancePolicy()

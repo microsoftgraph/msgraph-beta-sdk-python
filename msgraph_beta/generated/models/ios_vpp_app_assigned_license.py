@@ -41,11 +41,13 @@ class IosVppAppAssignedLicense(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosVppAppAssignedDeviceLicense".casefold():
+        if not mapping_value:
+            return IosVppAppAssignedLicense()
+        if mapping_value.casefold() == "#microsoft.graph.iosVppAppAssignedDeviceLicense".casefold():
             from .ios_vpp_app_assigned_device_license import IosVppAppAssignedDeviceLicense
 
             return IosVppAppAssignedDeviceLicense()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosVppAppAssignedUserLicense".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosVppAppAssignedUserLicense".casefold():
             from .ios_vpp_app_assigned_user_license import IosVppAppAssignedUserLicense
 
             return IosVppAppAssignedUserLicense()

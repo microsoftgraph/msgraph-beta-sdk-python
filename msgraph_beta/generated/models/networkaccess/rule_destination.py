@@ -38,31 +38,33 @@ class RuleDestination(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.fqdn".casefold():
+        if not mapping_value:
+            return RuleDestination()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.fqdn".casefold():
             from .fqdn import Fqdn
 
             return Fqdn()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.ipAddress".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.ipAddress".casefold():
             from .ip_address import IpAddress
 
             return IpAddress()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.ipDestination".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.ipDestination".casefold():
             from .ip_destination import IpDestination
 
             return IpDestination()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.ipRange".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.ipRange".casefold():
             from .ip_range import IpRange
 
             return IpRange()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.ipSubnet".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.ipSubnet".casefold():
             from .ip_subnet import IpSubnet
 
             return IpSubnet()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.url".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.url".casefold():
             from .url import Url
 
             return Url()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategory".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategory".casefold():
             from .web_category import WebCategory
 
             return WebCategory()

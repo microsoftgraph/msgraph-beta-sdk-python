@@ -37,7 +37,9 @@ class ApiDataConnector(IndustryDataConnector, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.oneRosterApiDataConnector".casefold():
+        if not mapping_value:
+            return ApiDataConnector()
+        if mapping_value.casefold() == "#microsoft.graph.industryData.oneRosterApiDataConnector".casefold():
             from .one_roster_api_data_connector import OneRosterApiDataConnector
 
             return OneRosterApiDataConnector()

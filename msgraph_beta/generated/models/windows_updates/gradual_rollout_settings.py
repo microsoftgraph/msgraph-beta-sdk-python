@@ -37,15 +37,17 @@ class GradualRolloutSettings(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.dateDrivenRolloutSettings".casefold():
+        if not mapping_value:
+            return GradualRolloutSettings()
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.dateDrivenRolloutSettings".casefold():
             from .date_driven_rollout_settings import DateDrivenRolloutSettings
 
             return DateDrivenRolloutSettings()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.durationDrivenRolloutSettings".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.durationDrivenRolloutSettings".casefold():
             from .duration_driven_rollout_settings import DurationDrivenRolloutSettings
 
             return DurationDrivenRolloutSettings()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.rateDrivenRolloutSettings".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.rateDrivenRolloutSettings".casefold():
             from .rate_driven_rollout_settings import RateDrivenRolloutSettings
 
             return RateDrivenRolloutSettings()

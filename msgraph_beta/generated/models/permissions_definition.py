@@ -40,15 +40,17 @@ class PermissionsDefinition(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsPermissionsDefinition".casefold():
+        if not mapping_value:
+            return PermissionsDefinition()
+        if mapping_value.casefold() == "#microsoft.graph.awsPermissionsDefinition".casefold():
             from .aws_permissions_definition import AwsPermissionsDefinition
 
             return AwsPermissionsDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.singleResourceAzurePermissionsDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.singleResourceAzurePermissionsDefinition".casefold():
             from .single_resource_azure_permissions_definition import SingleResourceAzurePermissionsDefinition
 
             return SingleResourceAzurePermissionsDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.singleResourceGcpPermissionsDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.singleResourceGcpPermissionsDefinition".casefold():
             from .single_resource_gcp_permissions_definition import SingleResourceGcpPermissionsDefinition
 
             return SingleResourceGcpPermissionsDefinition()

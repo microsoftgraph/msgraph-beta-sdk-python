@@ -40,11 +40,13 @@ class WindowsUpdateCatalogItem(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsFeatureUpdateCatalogItem".casefold():
+        if not mapping_value:
+            return WindowsUpdateCatalogItem()
+        if mapping_value.casefold() == "#microsoft.graph.windowsFeatureUpdateCatalogItem".casefold():
             from .windows_feature_update_catalog_item import WindowsFeatureUpdateCatalogItem
 
             return WindowsFeatureUpdateCatalogItem()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsQualityUpdateCatalogItem".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsQualityUpdateCatalogItem".casefold():
             from .windows_quality_update_catalog_item import WindowsQualityUpdateCatalogItem
 
             return WindowsQualityUpdateCatalogItem()

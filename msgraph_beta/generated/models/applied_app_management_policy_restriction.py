@@ -25,7 +25,7 @@ class AppliedAppManagementPolicyRestriction(AdditionalDataHolder, BackedModel, P
     audit_result: Optional[AppManagementAuditLogAuditResult] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The policyId property
+    # The unique identifier of the policy that contains the restriction.
     policy_id: Optional[str] = None
     # The policyType property
     policy_type: Optional[AppManagementAuditLogPolicyType] = None
@@ -35,7 +35,7 @@ class AppliedAppManagementPolicyRestriction(AdditionalDataHolder, BackedModel, P
     restriction_result: Optional[AppManagementAuditLogRestrictionResult] = None
     # The restrictionState property
     restriction_state: Optional[AppManagementAuditLogRestrictionState] = None
-    # The restrictionType property
+    # The type of restriction applied to the activity.
     restriction_type: Optional[str] = None
     
     @staticmethod

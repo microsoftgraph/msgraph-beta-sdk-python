@@ -13,7 +13,7 @@ from .interaction_participant import InteractionParticipant
 class ToolParticipant(InteractionParticipant, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.toolParticipant"
-    # The mcpServerId property
+    # The stable identifier of the Model Context Protocol (MCP) server that hosts the tool. Optional.
     mcp_server_id: Optional[str] = None
     
     @staticmethod

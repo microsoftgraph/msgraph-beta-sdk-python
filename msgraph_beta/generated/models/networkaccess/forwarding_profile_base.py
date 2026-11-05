@@ -42,7 +42,9 @@ class ForwardingProfileBase(Profile, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfile".casefold():
+        if not mapping_value:
+            return ForwardingProfileBase()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfile".casefold():
             from .forwarding_profile import ForwardingProfile
 
             return ForwardingProfile()

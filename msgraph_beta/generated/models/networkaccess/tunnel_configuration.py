@@ -37,11 +37,13 @@ class TunnelConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Custom".casefold():
+        if not mapping_value:
+            return TunnelConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Custom".casefold():
             from .tunnel_configuration_i_k_ev2_custom import TunnelConfigurationIKEv2Custom
 
             return TunnelConfigurationIKEv2Custom()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Default".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Default".casefold():
             from .tunnel_configuration_i_k_ev2_default import TunnelConfigurationIKEv2Default
 
             return TunnelConfigurationIKEv2Default()

@@ -45,7 +45,9 @@ class VppTokenActionResult(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.vppTokenRevokeLicensesActionResult".casefold():
+        if not mapping_value:
+            return VppTokenActionResult()
+        if mapping_value.casefold() == "#microsoft.graph.vppTokenRevokeLicensesActionResult".casefold():
             from .vpp_token_revoke_licenses_action_result import VppTokenRevokeLicensesActionResult
 
             return VppTokenRevokeLicensesActionResult()

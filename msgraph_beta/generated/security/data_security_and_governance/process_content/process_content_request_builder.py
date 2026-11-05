@@ -33,7 +33,7 @@ class ProcessContentRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ProcessContentPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ProcessContentResponse]:
         """
-        Evaluate content against Microsoft Purview Data Loss Prevention (DLP) policies and return the policy actions that apply to the supplied content. Use this API when an application needs to evaluate content before or during data movement. In Agent-to-Tool (A2T) scenarios, the agent runtime calls this API before invoking an external tool to determine whether the content should be allowed, blocked, or audited according to Microsoft Purview policies. For A2T scenarios: The response contains any applicable policy actions together with the protection scope state, allowing callers to determine whether cached protection scopes should be refreshed.
+        Process content from an agent interaction against tenant data protection policies. The protected agent is identified in protectedAppMetadata.applicationLocation, and the other parties in the interaction are identified in activityMetadata.participants.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ProcessContentResponse]
@@ -57,7 +57,7 @@ class ProcessContentRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ProcessContentPostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Evaluate content against Microsoft Purview Data Loss Prevention (DLP) policies and return the policy actions that apply to the supplied content. Use this API when an application needs to evaluate content before or during data movement. In Agent-to-Tool (A2T) scenarios, the agent runtime calls this API before invoking an external tool to determine whether the content should be allowed, blocked, or audited according to Microsoft Purview policies. For A2T scenarios: The response contains any applicable policy actions together with the protection scope state, allowing callers to determine whether cached protection scopes should be refreshed.
+        Process content from an agent interaction against tenant data protection policies. The protected agent is identified in protectedAppMetadata.applicationLocation, and the other parties in the interaction are identified in activityMetadata.participants.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

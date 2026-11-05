@@ -30,11 +30,13 @@ class GcpPermissionsDefinitionAction(PermissionsDefinitionAction, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpActionPermissionsDefinitionAction".casefold():
+        if not mapping_value:
+            return GcpPermissionsDefinitionAction()
+        if mapping_value.casefold() == "#microsoft.graph.gcpActionPermissionsDefinitionAction".casefold():
             from .gcp_action_permissions_definition_action import GcpActionPermissionsDefinitionAction
 
             return GcpActionPermissionsDefinitionAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.gcpRolePermissionsDefinitionAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.gcpRolePermissionsDefinitionAction".casefold():
             from .gcp_role_permissions_definition_action import GcpRolePermissionsDefinitionAction
 
             return GcpRolePermissionsDefinitionAction()

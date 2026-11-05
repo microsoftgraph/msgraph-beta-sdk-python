@@ -33,11 +33,13 @@ class SegmentConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.ipSegmentConfiguration".casefold():
+        if not mapping_value:
+            return SegmentConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.ipSegmentConfiguration".casefold():
             from .ip_segment_configuration import IpSegmentConfiguration
 
             return IpSegmentConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.webSegmentConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.webSegmentConfiguration".casefold():
             from .web_segment_configuration import WebSegmentConfiguration
 
             return WebSegmentConfiguration()

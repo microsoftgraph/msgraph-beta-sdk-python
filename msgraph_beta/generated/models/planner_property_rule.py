@@ -35,7 +35,9 @@ class PlannerPropertyRule(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.plannerTaskPropertyRule".casefold():
+        if not mapping_value:
+            return PlannerPropertyRule()
+        if mapping_value.casefold() == "#microsoft.graph.plannerTaskPropertyRule".casefold():
             from .planner_task_property_rule import PlannerTaskPropertyRule
 
             return PlannerTaskPropertyRule()

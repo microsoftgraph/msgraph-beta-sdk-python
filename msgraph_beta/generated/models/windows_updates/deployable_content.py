@@ -32,7 +32,9 @@ class DeployableContent(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.catalogContent".casefold():
+        if not mapping_value:
+            return DeployableContent()
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.catalogContent".casefold():
             from .catalog_content import CatalogContent
 
             return CatalogContent()

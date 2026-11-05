@@ -38,7 +38,9 @@ class Windows81CertificateProfileBase(WindowsCertificateProfileBase, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows81SCEPCertificateProfile".casefold():
+        if not mapping_value:
+            return Windows81CertificateProfileBase()
+        if mapping_value.casefold() == "#microsoft.graph.windows81SCEPCertificateProfile".casefold():
             from .windows81_s_c_e_p_certificate_profile import Windows81SCEPCertificateProfile
 
             return Windows81SCEPCertificateProfile()

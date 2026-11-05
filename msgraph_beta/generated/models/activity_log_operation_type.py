@@ -12,5 +12,6 @@ class ActivityLogOperationType(str, Enum):
     PolicyLevelOffboarding = "policyLevelOffboarding",
     RestoreTaskCreated = "restoreTaskCreated",
     RestoreTaskCompleted = "restoreTaskCompleted",
+    BackupPolicyDeleted = "backupPolicyDeleted",
     UnknownFutureValue = "unknownFutureValue",
 

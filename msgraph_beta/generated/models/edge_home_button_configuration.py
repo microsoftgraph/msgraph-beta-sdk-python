@@ -38,19 +38,21 @@ class EdgeHomeButtonConfiguration(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.edgeHomeButtonHidden".casefold():
+        if not mapping_value:
+            return EdgeHomeButtonConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.edgeHomeButtonHidden".casefold():
             from .edge_home_button_hidden import EdgeHomeButtonHidden
 
             return EdgeHomeButtonHidden()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.edgeHomeButtonLoadsStartPage".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.edgeHomeButtonLoadsStartPage".casefold():
             from .edge_home_button_loads_start_page import EdgeHomeButtonLoadsStartPage
 
             return EdgeHomeButtonLoadsStartPage()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.edgeHomeButtonOpensCustomURL".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.edgeHomeButtonOpensCustomURL".casefold():
             from .edge_home_button_opens_custom_u_r_l import EdgeHomeButtonOpensCustomURL
 
             return EdgeHomeButtonOpensCustomURL()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.edgeHomeButtonOpensNewTab".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.edgeHomeButtonOpensNewTab".casefold():
             from .edge_home_button_opens_new_tab import EdgeHomeButtonOpensNewTab
 
             return EdgeHomeButtonOpensNewTab()

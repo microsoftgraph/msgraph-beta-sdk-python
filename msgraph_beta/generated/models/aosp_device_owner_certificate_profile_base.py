@@ -52,11 +52,13 @@ class AospDeviceOwnerCertificateProfileBase(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.aospDeviceOwnerPkcsCertificateProfile".casefold():
+        if not mapping_value:
+            return AospDeviceOwnerCertificateProfileBase()
+        if mapping_value.casefold() == "#microsoft.graph.aospDeviceOwnerPkcsCertificateProfile".casefold():
             from .aosp_device_owner_pkcs_certificate_profile import AospDeviceOwnerPkcsCertificateProfile
 
             return AospDeviceOwnerPkcsCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.aospDeviceOwnerScepCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.aospDeviceOwnerScepCertificateProfile".casefold():
             from .aosp_device_owner_scep_certificate_profile import AospDeviceOwnerScepCertificateProfile
 
             return AospDeviceOwnerScepCertificateProfile()

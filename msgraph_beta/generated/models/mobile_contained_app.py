@@ -33,11 +33,13 @@ class MobileContainedApp(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.microsoftStoreForBusinessContainedApp".casefold():
+        if not mapping_value:
+            return MobileContainedApp()
+        if mapping_value.casefold() == "#microsoft.graph.microsoftStoreForBusinessContainedApp".casefold():
             from .microsoft_store_for_business_contained_app import MicrosoftStoreForBusinessContainedApp
 
             return MicrosoftStoreForBusinessContainedApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUniversalAppXContainedApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsUniversalAppXContainedApp".casefold():
             from .windows_universal_app_x_contained_app import WindowsUniversalAppXContainedApp
 
             return WindowsUniversalAppXContainedApp()

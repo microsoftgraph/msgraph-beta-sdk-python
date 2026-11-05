@@ -30,11 +30,13 @@ class Activity(CaseManagementEntity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.auditLog".casefold():
+        if not mapping_value:
+            return Activity()
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.auditLog".casefold():
             from .audit_log import AuditLog
 
             return AuditLog()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.comment".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.comment".casefold():
             from .comment import Comment
 
             return Comment()

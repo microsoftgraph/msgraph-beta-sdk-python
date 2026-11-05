@@ -81,31 +81,33 @@ class DeviceManagementConfigurationSettingDefinition(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionDefinition".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationSettingDefinition()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionDefinition".casefold():
             from .device_management_configuration_choice_setting_collection_definition import DeviceManagementConfigurationChoiceSettingCollectionDefinition
 
             return DeviceManagementConfigurationChoiceSettingCollectionDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition".casefold():
             from .device_management_configuration_choice_setting_definition import DeviceManagementConfigurationChoiceSettingDefinition
 
             return DeviceManagementConfigurationChoiceSettingDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationRedirectSettingDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationRedirectSettingDefinition".casefold():
             from .device_management_configuration_redirect_setting_definition import DeviceManagementConfigurationRedirectSettingDefinition
 
             return DeviceManagementConfigurationRedirectSettingDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition".casefold():
             from .device_management_configuration_setting_group_collection_definition import DeviceManagementConfigurationSettingGroupCollectionDefinition
 
             return DeviceManagementConfigurationSettingGroupCollectionDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSettingGroupDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSettingGroupDefinition".casefold():
             from .device_management_configuration_setting_group_definition import DeviceManagementConfigurationSettingGroupDefinition
 
             return DeviceManagementConfigurationSettingGroupDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionDefinition".casefold():
             from .device_management_configuration_simple_setting_collection_definition import DeviceManagementConfigurationSimpleSettingCollectionDefinition
 
             return DeviceManagementConfigurationSimpleSettingCollectionDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition".casefold():
             from .device_management_configuration_simple_setting_definition import DeviceManagementConfigurationSimpleSettingDefinition
 
             return DeviceManagementConfigurationSimpleSettingDefinition()

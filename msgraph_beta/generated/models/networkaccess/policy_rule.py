@@ -41,47 +41,49 @@ class PolicyRule(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallRule".casefold():
+        if not mapping_value:
+            return PolicyRule()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallRule".casefold():
             from .cloud_firewall_rule import CloudFirewallRule
 
             return CloudFirewallRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringRule".casefold():
             from .filtering_rule import FilteringRule
 
             return FilteringRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingRule".casefold():
             from .forwarding_rule import ForwardingRule
 
             return ForwardingRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.fqdnFilteringRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.fqdnFilteringRule".casefold():
             from .fqdn_filtering_rule import FqdnFilteringRule
 
             return FqdnFilteringRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.internetAccessForwardingRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.internetAccessForwardingRule".casefold():
             from .internet_access_forwarding_rule import InternetAccessForwardingRule
 
             return InternetAccessForwardingRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.m365ForwardingRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.m365ForwardingRule".casefold():
             from .m365_forwarding_rule import M365ForwardingRule
 
             return M365ForwardingRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.privateAccessForwardingRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.privateAccessForwardingRule".casefold():
             from .private_access_forwarding_rule import PrivateAccessForwardingRule
 
             return PrivateAccessForwardingRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligenceRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligenceRule".casefold():
             from .threat_intelligence_rule import ThreatIntelligenceRule
 
             return ThreatIntelligenceRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionRule".casefold():
             from .tls_inspection_rule import TlsInspectionRule
 
             return TlsInspectionRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.urlDestinationFilteringRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.urlDestinationFilteringRule".casefold():
             from .url_destination_filtering_rule import UrlDestinationFilteringRule
 
             return UrlDestinationFilteringRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategoryFilteringRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.webCategoryFilteringRule".casefold():
             from .web_category_filtering_rule import WebCategoryFilteringRule
 
             return WebCategoryFilteringRule()

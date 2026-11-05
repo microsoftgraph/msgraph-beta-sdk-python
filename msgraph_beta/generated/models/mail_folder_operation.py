@@ -34,7 +34,9 @@ class MailFolderOperation(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.updateAllMessagesReadStateOperation".casefold():
+        if not mapping_value:
+            return MailFolderOperation()
+        if mapping_value.casefold() == "#microsoft.graph.updateAllMessagesReadStateOperation".casefold():
             from .update_all_messages_read_state_operation import UpdateAllMessagesReadStateOperation
 
             return UpdateAllMessagesReadStateOperation()

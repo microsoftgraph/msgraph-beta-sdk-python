@@ -52,7 +52,7 @@ class ApplicableContentCatalogEntryItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ApplicableContentCatalogEntryItemRequestBuilderGetQueryParameters]] = None) -> Optional[ApplicableContent]:
         """
-        Represents content applicable for offering to the related collection of devices.
+        The existing applicable-content collection. For driver and feature update applicability, use applicableCatalogs.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ApplicableContent]
         """
@@ -106,7 +106,7 @@ class ApplicableContentCatalogEntryItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ApplicableContentCatalogEntryItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Represents content applicable for offering to the related collection of devices.
+        The existing applicable-content collection. For driver and feature update applicability, use applicableCatalogs.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -168,7 +168,7 @@ class ApplicableContentCatalogEntryItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ApplicableContentCatalogEntryItemRequestBuilderGetQueryParameters():
         """
-        Represents content applicable for offering to the related collection of devices.
+        The existing applicable-content collection. For driver and feature update applicability, use applicableCatalogs.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

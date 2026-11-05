@@ -36,11 +36,13 @@ class ActionResultPart(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.aadUserConversationMemberResult".casefold():
+        if not mapping_value:
+            return ActionResultPart()
+        if mapping_value.casefold() == "#microsoft.graph.aadUserConversationMemberResult".casefold():
             from .aad_user_conversation_member_result import AadUserConversationMemberResult
 
             return AadUserConversationMemberResult()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.forwardToChatResult".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.forwardToChatResult".casefold():
             from .forward_to_chat_result import ForwardToChatResult
 
             return ForwardToChatResult()

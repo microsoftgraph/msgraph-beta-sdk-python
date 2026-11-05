@@ -49,43 +49,45 @@ class GroupPolicyPresentation(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationCheckBox".casefold():
+        if not mapping_value:
+            return GroupPolicyPresentation()
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationCheckBox".casefold():
             from .group_policy_presentation_check_box import GroupPolicyPresentationCheckBox
 
             return GroupPolicyPresentationCheckBox()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationComboBox".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationComboBox".casefold():
             from .group_policy_presentation_combo_box import GroupPolicyPresentationComboBox
 
             return GroupPolicyPresentationComboBox()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationDecimalTextBox".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationDecimalTextBox".casefold():
             from .group_policy_presentation_decimal_text_box import GroupPolicyPresentationDecimalTextBox
 
             return GroupPolicyPresentationDecimalTextBox()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationDropdownList".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationDropdownList".casefold():
             from .group_policy_presentation_dropdown_list import GroupPolicyPresentationDropdownList
 
             return GroupPolicyPresentationDropdownList()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationListBox".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationListBox".casefold():
             from .group_policy_presentation_list_box import GroupPolicyPresentationListBox
 
             return GroupPolicyPresentationListBox()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationLongDecimalTextBox".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationLongDecimalTextBox".casefold():
             from .group_policy_presentation_long_decimal_text_box import GroupPolicyPresentationLongDecimalTextBox
 
             return GroupPolicyPresentationLongDecimalTextBox()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationMultiTextBox".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationMultiTextBox".casefold():
             from .group_policy_presentation_multi_text_box import GroupPolicyPresentationMultiTextBox
 
             return GroupPolicyPresentationMultiTextBox()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationText".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationText".casefold():
             from .group_policy_presentation_text import GroupPolicyPresentationText
 
             return GroupPolicyPresentationText()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationTextBox".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyPresentationTextBox".casefold():
             from .group_policy_presentation_text_box import GroupPolicyPresentationTextBox
 
             return GroupPolicyPresentationTextBox()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupPolicyUploadedPresentation".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.groupPolicyUploadedPresentation".casefold():
             from .group_policy_uploaded_presentation import GroupPolicyUploadedPresentation
 
             return GroupPolicyUploadedPresentation()

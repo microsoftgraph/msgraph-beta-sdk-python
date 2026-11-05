@@ -44,15 +44,17 @@ class Profile(BaseEntity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringProfile".casefold():
+        if not mapping_value:
+            return Profile()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringProfile".casefold():
             from .filtering_profile import FilteringProfile
 
             return FilteringProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfile".casefold():
             from .forwarding_profile import ForwardingProfile
 
             return ForwardingProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfileBase".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfileBase".casefold():
             from .forwarding_profile_base import ForwardingProfileBase
 
             return ForwardingProfileBase()

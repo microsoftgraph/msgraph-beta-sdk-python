@@ -7,6 +7,7 @@ from typing import Any, Optional, TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from ...entity import Entity
     from .custom_field_definition import CustomFieldDefinition
+    from .sla_policy_definition import SlaPolicyDefinition
     from .status_definition import StatusDefinition
 
 from ...entity import Entity
@@ -21,6 +22,8 @@ class CaseTypeConfiguration(Entity, Parsable):
     display_name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # The contained SLA policy definitions configured for this case type. Supports $filter and $orderby on createdBy, createdDateTime, description, displayName, id, isActive, lastModifiedBy, and lastModifiedDateTime on the collection endpoint. For information about supported query parameters, see List slaPolicies. Also supports $count, $select, $skip, and $top on the collection endpoint. Supports $expand=slaPolicies when getting a case type configuration.
+    sla_policies: Optional[list[SlaPolicyDefinition]] = None
     # The contained top-level statuses that a case of this type can be set to. Read-only. Supports $count, $expand, $filter, $orderby, $select, $skip, and $top.
     statuses: Optional[list[StatusDefinition]] = None
     
@@ -42,16 +45,19 @@ class CaseTypeConfiguration(Entity, Parsable):
         """
         from ...entity import Entity
         from .custom_field_definition import CustomFieldDefinition
+        from .sla_policy_definition import SlaPolicyDefinition
         from .status_definition import StatusDefinition
 
         from ...entity import Entity
         from .custom_field_definition import CustomFieldDefinition
+        from .sla_policy_definition import SlaPolicyDefinition
         from .status_definition import StatusDefinition
 
         fields: dict[str, Callable[[Any], None]] = {
             "customFields": lambda n : setattr(self, 'custom_fields', n.get_collection_of_object_values(CustomFieldDefinition)),
             "defaultStatusId": lambda n : setattr(self, 'default_status_id', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "slaPolicies": lambda n : setattr(self, 'sla_policies', n.get_collection_of_object_values(SlaPolicyDefinition)),
             "statuses": lambda n : setattr(self, 'statuses', n.get_collection_of_object_values(StatusDefinition)),
         }
         super_fields = super().get_field_deserializers()
@@ -70,6 +76,7 @@ class CaseTypeConfiguration(Entity, Parsable):
         writer.write_collection_of_object_values("customFields", self.custom_fields)
         writer.write_str_value("defaultStatusId", self.default_status_id)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_collection_of_object_values("slaPolicies", self.sla_policies)
         writer.write_collection_of_object_values("statuses", self.statuses)
     
 

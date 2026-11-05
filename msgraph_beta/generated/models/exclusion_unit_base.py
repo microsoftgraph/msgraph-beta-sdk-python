@@ -46,15 +46,17 @@ class ExclusionUnitBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.driveExclusionUnit".casefold():
+        if not mapping_value:
+            return ExclusionUnitBase()
+        if mapping_value.casefold() == "#microsoft.graph.driveExclusionUnit".casefold():
             from .drive_exclusion_unit import DriveExclusionUnit
 
             return DriveExclusionUnit()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mailboxExclusionUnit".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mailboxExclusionUnit".casefold():
             from .mailbox_exclusion_unit import MailboxExclusionUnit
 
             return MailboxExclusionUnit()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.siteExclusionUnit".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.siteExclusionUnit".casefold():
             from .site_exclusion_unit import SiteExclusionUnit
 
             return SiteExclusionUnit()

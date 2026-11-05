@@ -52,7 +52,9 @@ class AndroidWorkProfileWiFiConfiguration(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidWorkProfileEnterpriseWiFiConfiguration".casefold():
+        if not mapping_value:
+            return AndroidWorkProfileWiFiConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.androidWorkProfileEnterpriseWiFiConfiguration".casefold():
             from .android_work_profile_enterprise_wi_fi_configuration import AndroidWorkProfileEnterpriseWiFiConfiguration
 
             return AndroidWorkProfileEnterpriseWiFiConfiguration()

@@ -46,7 +46,9 @@ class ExactMatchSessionBase(ExactMatchJobBase, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exactMatchSession".casefold():
+        if not mapping_value:
+            return ExactMatchSessionBase()
+        if mapping_value.casefold() == "#microsoft.graph.exactMatchSession".casefold():
             from .exact_match_session import ExactMatchSession
 
             return ExactMatchSession()

@@ -47,7 +47,7 @@ class RulesRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[RulesRequestBuilderGetQueryParameters]] = None) -> Optional[LifecyclePolicyRuleCollectionResponse]:
         """
-        Get a list of the lifecyclePolicyRule objects and their properties for a lifecyclePolicy. Rules are evaluated together with AND logic.
+        Get a list of the lifecyclePolicyRule objects and their properties for a lifecyclePolicy. Each enabled rule is evaluated independently, and any violation makes the policy noncompliant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[LifecyclePolicyRuleCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/identitygovernance-lifecyclepolicy-list-rules?view=graph-rest-beta
@@ -68,7 +68,7 @@ class RulesRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[RulesRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the lifecyclePolicyRule objects and their properties for a lifecyclePolicy. Rules are evaluated together with AND logic.
+        Get a list of the lifecyclePolicyRule objects and their properties for a lifecyclePolicy. Each enabled rule is evaluated independently, and any violation makes the policy noncompliant.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -90,7 +90,7 @@ class RulesRequestBuilder(BaseRequestBuilder):
     @dataclass
     class RulesRequestBuilderGetQueryParameters():
         """
-        Get a list of the lifecyclePolicyRule objects and their properties for a lifecyclePolicy. Rules are evaluated together with AND logic.
+        Get a list of the lifecyclePolicyRule objects and their properties for a lifecyclePolicy. Each enabled rule is evaluated independently, and any violation makes the policy noncompliant.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

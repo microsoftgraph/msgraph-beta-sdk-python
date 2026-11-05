@@ -35,11 +35,13 @@ class AndroidDeviceComplianceLocalActionBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceComplianceLocalActionLockDevice".casefold():
+        if not mapping_value:
+            return AndroidDeviceComplianceLocalActionBase()
+        if mapping_value.casefold() == "#microsoft.graph.androidDeviceComplianceLocalActionLockDevice".casefold():
             from .android_device_compliance_local_action_lock_device import AndroidDeviceComplianceLocalActionLockDevice
 
             return AndroidDeviceComplianceLocalActionLockDevice()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidDeviceComplianceLocalActionLockDeviceWithPasscode".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidDeviceComplianceLocalActionLockDeviceWithPasscode".casefold():
             from .android_device_compliance_local_action_lock_device_with_passcode import AndroidDeviceComplianceLocalActionLockDeviceWithPasscode
 
             return AndroidDeviceComplianceLocalActionLockDeviceWithPasscode()

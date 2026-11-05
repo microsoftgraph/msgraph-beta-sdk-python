@@ -18,8 +18,6 @@ class EvaluationErrorDetail(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The errorCategory property
     error_category: Optional[EvaluationErrorCategory] = None
-    # The errorMessage property
-    error_message: Optional[str] = None
     # The errorType property
     error_type: Optional[EvaluationErrorType] = None
     # The OdataType property
@@ -49,7 +47,6 @@ class EvaluationErrorDetail(AdditionalDataHolder, BackedModel, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "errorCategory": lambda n : setattr(self, 'error_category', n.get_enum_value(EvaluationErrorCategory)),
-            "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
             "errorType": lambda n : setattr(self, 'error_type', n.get_enum_value(EvaluationErrorType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -64,7 +61,6 @@ class EvaluationErrorDetail(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_enum_value("errorCategory", self.error_category)
-        writer.write_str_value("errorMessage", self.error_message)
         writer.write_enum_value("errorType", self.error_type)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

@@ -32,7 +32,7 @@ class Case(CaseManagementEntity, Parsable):
     display_name: Optional[str] = None
     # Links from the case to related security resources. Supports $expand.
     relations: Optional[list[Relation]] = None
-    # A denormalized, read-only collection of SLA (service level agreement) policy status entries for the case. Each entry represents one SLA policy applied to the case, including its current status and breach target time. Computed by the service; any value supplied in a create or update request is silently ignored. Supports $filter using the any() lambda operator only, for example, $filter=slaPolicies/any(p: p/status eq 'breached'). The all() lambda operator and other collection functions aren't supported. Doesn't support $orderby.
+    # A read-only collection of SLA (service level agreement) policy status entries for the case. Each entry contains the policy's current status and breach target time. Computed by the service. Supports $filter using the any() lambda operator only, for example, $filter=slaPolicies/any(p: p/status eq 'breached'). The all() lambda operator and other collection functions aren't supported. Doesn't support $orderby.
     sla_policies: Optional[list[CaseSlaPolicyEntry]] = None
     # The tenant-defined lifecycle status of the case. Use a displayName value returned in the status tree by List statuses from /security/caseManagement/caseTypeConfigurations/genericCase/statuses or /security/caseManagement/caseTypeConfigurations/incidentCase/statuses, depending on the case type. Supports $filter (eq).
     status: Optional[str] = None
@@ -53,15 +53,17 @@ class Case(CaseManagementEntity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.exposureCase".casefold():
+        if not mapping_value:
+            return Case()
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.exposureCase".casefold():
             from .exposure_case import ExposureCase
 
             return ExposureCase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.genericCase".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.genericCase".casefold():
             from .generic_case import GenericCase
 
             return GenericCase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.caseManagement.incidentCase".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.caseManagement.incidentCase".casefold():
             from .incident_case import IncidentCase
 
             return IncidentCase()

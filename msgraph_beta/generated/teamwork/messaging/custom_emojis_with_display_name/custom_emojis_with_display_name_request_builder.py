@@ -35,9 +35,10 @@ class CustomEmojisWithDisplayNameRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property customEmojis for teamwork
+        Delete a custom emoji by display name from the teamwork messaging of the organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/teamworkcustomemoji-delete?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -53,9 +54,10 @@ class CustomEmojisWithDisplayNameRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CustomEmojisWithDisplayNameRequestBuilderGetQueryParameters]] = None) -> Optional[TeamworkCustomEmoji]:
         """
-        The collection of custom emojis available in organization messaging.
+        Get a single custom emoji or the raw image content of a custom emoji by display name from the teamwork messaging of the organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkCustomEmoji]
+        Find more info here: https://learn.microsoft.com/graph/api/teamworkcustomemoji-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -96,7 +98,7 @@ class CustomEmojisWithDisplayNameRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property customEmojis for teamwork
+        Delete a custom emoji by display name from the teamwork messaging of the organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -107,7 +109,7 @@ class CustomEmojisWithDisplayNameRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CustomEmojisWithDisplayNameRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The collection of custom emojis available in organization messaging.
+        Get a single custom emoji or the raw image content of a custom emoji by display name from the teamwork messaging of the organization.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -151,7 +153,7 @@ class CustomEmojisWithDisplayNameRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustomEmojisWithDisplayNameRequestBuilderGetQueryParameters():
         """
-        The collection of custom emojis available in organization messaging.
+        Get a single custom emoji or the raw image content of a custom emoji by display name from the teamwork messaging of the organization.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

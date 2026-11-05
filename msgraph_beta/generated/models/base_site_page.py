@@ -40,19 +40,21 @@ class BaseSitePage(BaseItem, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.newsLinkPage".casefold():
+        if not mapping_value:
+            return BaseSitePage()
+        if mapping_value.casefold() == "#microsoft.graph.newsLinkPage".casefold():
             from .news_link_page import NewsLinkPage
 
             return NewsLinkPage()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.pageTemplate".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.pageTemplate".casefold():
             from .page_template import PageTemplate
 
             return PageTemplate()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sitePage".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.sitePage".casefold():
             from .site_page import SitePage
 
             return SitePage()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.videoNewsLinkPage".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.videoNewsLinkPage".casefold():
             from .video_news_link_page import VideoNewsLinkPage
 
             return VideoNewsLinkPage()

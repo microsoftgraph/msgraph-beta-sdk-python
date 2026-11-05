@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ......models.o_data_errors.o_data_error import ODataError
     from ......models.synchronization_job import SynchronizationJob
     from .bulk_upload.bulk_upload_request_builder import BulkUploadRequestBuilder
+    from .object_connections.object_connections_request_builder import ObjectConnectionsRequestBuilder
     from .pause.pause_request_builder import PauseRequestBuilder
     from .provision_on_demand.provision_on_demand_request_builder import ProvisionOnDemandRequestBuilder
     from .restart.restart_request_builder import RestartRequestBuilder
@@ -155,6 +156,15 @@ class SynchronizationJobItemRequestBuilder(BaseRequestBuilder):
         from .bulk_upload.bulk_upload_request_builder import BulkUploadRequestBuilder
 
         return BulkUploadRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def object_connections(self) -> ObjectConnectionsRequestBuilder:
+        """
+        Provides operations to manage the objectConnections property of the microsoft.graph.synchronizationJob entity.
+        """
+        from .object_connections.object_connections_request_builder import ObjectConnectionsRequestBuilder
+
+        return ObjectConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def pause(self) -> PauseRequestBuilder:

@@ -78,11 +78,13 @@ class WindowsAutopilotDeploymentProfile(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.activeDirectoryWindowsAutopilotDeploymentProfile".casefold():
+        if not mapping_value:
+            return WindowsAutopilotDeploymentProfile()
+        if mapping_value.casefold() == "#microsoft.graph.activeDirectoryWindowsAutopilotDeploymentProfile".casefold():
             from .active_directory_windows_autopilot_deployment_profile import ActiveDirectoryWindowsAutopilotDeploymentProfile
 
             return ActiveDirectoryWindowsAutopilotDeploymentProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureADWindowsAutopilotDeploymentProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureADWindowsAutopilotDeploymentProfile".casefold():
             from .azure_a_d_windows_autopilot_deployment_profile import AzureADWindowsAutopilotDeploymentProfile
 
             return AzureADWindowsAutopilotDeploymentProfile()

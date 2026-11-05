@@ -34,7 +34,7 @@ class RestoreSessionBase(Entity, Parsable):
     last_modified_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The identifier of the protection policy that scopes the restore session. When supplied during create or update, the service validates that the referenced protection units belong to the specified policy.
+    # The identifier of the protection policy that scopes the restore session. When supplied during creation or update, the service validates that the referenced protection units belong to the specified policy.
     policy_id: Optional[str] = None
     # Indicates whether the restore session was created normally or by a bulk job.
     restore_job_type: Optional[RestoreJobType] = None
@@ -57,15 +57,17 @@ class RestoreSessionBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.exchangeRestoreSession".casefold():
+        if not mapping_value:
+            return RestoreSessionBase()
+        if mapping_value.casefold() == "#microsoft.graph.exchangeRestoreSession".casefold():
             from .exchange_restore_session import ExchangeRestoreSession
 
             return ExchangeRestoreSession()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.oneDriveForBusinessRestoreSession".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.oneDriveForBusinessRestoreSession".casefold():
             from .one_drive_for_business_restore_session import OneDriveForBusinessRestoreSession
 
             return OneDriveForBusinessRestoreSession()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointRestoreSession".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.sharePointRestoreSession".casefold():
             from .share_point_restore_session import SharePointRestoreSession
 
             return SharePointRestoreSession()

@@ -35,23 +35,25 @@ class BaseEntity(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringProfile".casefold():
+        if not mapping_value:
+            return BaseEntity()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringProfile".casefold():
             from .filtering_profile import FilteringProfile
 
             return FilteringProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfile".casefold():
             from .forwarding_profile import ForwardingProfile
 
             return ForwardingProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfileBase".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingProfileBase".casefold():
             from .forwarding_profile_base import ForwardingProfileBase
 
             return ForwardingProfileBase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.profile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.profile".casefold():
             from .profile import Profile
 
             return Profile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.remoteNetwork".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.remoteNetwork".casefold():
             from .remote_network import RemoteNetwork
 
             return RemoteNetwork()

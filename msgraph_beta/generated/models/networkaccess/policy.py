@@ -42,23 +42,25 @@ class Policy(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallPolicy".casefold():
+        if not mapping_value:
+            return Policy()
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.cloudFirewallPolicy".casefold():
             from .cloud_firewall_policy import CloudFirewallPolicy
 
             return CloudFirewallPolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringPolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.filteringPolicy".casefold():
             from .filtering_policy import FilteringPolicy
 
             return FilteringPolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingPolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.forwardingPolicy".casefold():
             from .forwarding_policy import ForwardingPolicy
 
             return ForwardingPolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligencePolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.threatIntelligencePolicy".casefold():
             from .threat_intelligence_policy import ThreatIntelligencePolicy
 
             return ThreatIntelligencePolicy()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionPolicy".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.networkaccess.tlsInspectionPolicy".casefold():
             from .tls_inspection_policy import TlsInspectionPolicy
 
             return TlsInspectionPolicy()

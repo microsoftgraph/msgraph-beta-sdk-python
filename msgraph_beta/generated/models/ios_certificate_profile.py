@@ -35,19 +35,21 @@ class IosCertificateProfile(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosCertificateProfileBase".casefold():
+        if not mapping_value:
+            return IosCertificateProfile()
+        if mapping_value.casefold() == "#microsoft.graph.iosCertificateProfileBase".casefold():
             from .ios_certificate_profile_base import IosCertificateProfileBase
 
             return IosCertificateProfileBase()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosImportedPFXCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosImportedPFXCertificateProfile".casefold():
             from .ios_imported_p_f_x_certificate_profile import IosImportedPFXCertificateProfile
 
             return IosImportedPFXCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosPkcsCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosPkcsCertificateProfile".casefold():
             from .ios_pkcs_certificate_profile import IosPkcsCertificateProfile
 
             return IosPkcsCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosScepCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosScepCertificateProfile".casefold():
             from .ios_scep_certificate_profile import IosScepCertificateProfile
 
             return IosScepCertificateProfile()

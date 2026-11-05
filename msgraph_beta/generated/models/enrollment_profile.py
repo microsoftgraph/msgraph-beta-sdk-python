@@ -49,27 +49,29 @@ class EnrollmentProfile(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depEnrollmentBaseProfile".casefold():
+        if not mapping_value:
+            return EnrollmentProfile()
+        if mapping_value.casefold() == "#microsoft.graph.depEnrollmentBaseProfile".casefold():
             from .dep_enrollment_base_profile import DepEnrollmentBaseProfile
 
             return DepEnrollmentBaseProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depEnrollmentProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.depEnrollmentProfile".casefold():
             from .dep_enrollment_profile import DepEnrollmentProfile
 
             return DepEnrollmentProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depIOSEnrollmentProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.depIOSEnrollmentProfile".casefold():
             from .dep_i_o_s_enrollment_profile import DepIOSEnrollmentProfile
 
             return DepIOSEnrollmentProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depMacOSEnrollmentProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.depMacOSEnrollmentProfile".casefold():
             from .dep_mac_o_s_enrollment_profile import DepMacOSEnrollmentProfile
 
             return DepMacOSEnrollmentProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depTvOSEnrollmentProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.depTvOSEnrollmentProfile".casefold():
             from .dep_tv_o_s_enrollment_profile import DepTvOSEnrollmentProfile
 
             return DepTvOSEnrollmentProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.depVisionOSEnrollmentProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.depVisionOSEnrollmentProfile".casefold():
             from .dep_vision_o_s_enrollment_profile import DepVisionOSEnrollmentProfile
 
             return DepVisionOSEnrollmentProfile()

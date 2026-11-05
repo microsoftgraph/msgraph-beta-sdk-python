@@ -52,11 +52,13 @@ class AndroidForWorkEasEmailProfileBase(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidForWorkGmailEasConfiguration".casefold():
+        if not mapping_value:
+            return AndroidForWorkEasEmailProfileBase()
+        if mapping_value.casefold() == "#microsoft.graph.androidForWorkGmailEasConfiguration".casefold():
             from .android_for_work_gmail_eas_configuration import AndroidForWorkGmailEasConfiguration
 
             return AndroidForWorkGmailEasConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidForWorkNineWorkEasConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidForWorkNineWorkEasConfiguration".casefold():
             from .android_for_work_nine_work_eas_configuration import AndroidForWorkNineWorkEasConfiguration
 
             return AndroidForWorkNineWorkEasConfiguration()

@@ -38,11 +38,13 @@ class CostManagementAlertThreshold(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.absoluteCostManagementAlertThreshold".casefold():
+        if not mapping_value:
+            return CostManagementAlertThreshold()
+        if mapping_value.casefold() == "#microsoft.graph.absoluteCostManagementAlertThreshold".casefold():
             from .absolute_cost_management_alert_threshold import AbsoluteCostManagementAlertThreshold
 
             return AbsoluteCostManagementAlertThreshold()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.percentageCostManagementAlertThreshold".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.percentageCostManagementAlertThreshold".casefold():
             from .percentage_cost_management_alert_threshold import PercentageCostManagementAlertThreshold
 
             return PercentageCostManagementAlertThreshold()

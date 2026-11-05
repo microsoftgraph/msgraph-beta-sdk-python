@@ -39,11 +39,13 @@ class IdentityLifecycle(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.agentIdentityLifecycle".casefold():
+        if not mapping_value:
+            return IdentityLifecycle()
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.agentIdentityLifecycle".casefold():
             from .agent_identity_lifecycle import AgentIdentityLifecycle
 
             return AgentIdentityLifecycle()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.userIdentityLifecycle".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.userIdentityLifecycle".casefold():
             from .user_identity_lifecycle import UserIdentityLifecycle
 
             return UserIdentityLifecycle()

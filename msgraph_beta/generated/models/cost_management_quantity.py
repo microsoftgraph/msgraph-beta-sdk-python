@@ -39,11 +39,13 @@ class CostManagementQuantity(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.limitedCostManagementQuantity".casefold():
+        if not mapping_value:
+            return CostManagementQuantity()
+        if mapping_value.casefold() == "#microsoft.graph.limitedCostManagementQuantity".casefold():
             from .limited_cost_management_quantity import LimitedCostManagementQuantity
 
             return LimitedCostManagementQuantity()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unlimitedCostManagementQuantity".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.unlimitedCostManagementQuantity".casefold():
             from .unlimited_cost_management_quantity import UnlimitedCostManagementQuantity
 
             return UnlimitedCostManagementQuantity()

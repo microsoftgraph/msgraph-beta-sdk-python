@@ -12,7 +12,7 @@ from .entity import Entity
 
 @dataclass
 class MigrationsRoot(Entity, Parsable):
-    # Migration Jobs associated with this tenant.
+    # Migration jobs associated with this tenant.
     cross_tenant_migration_jobs: Optional[list[CrossTenantMigrationJob]] = None
     # The OdataType property
     odata_type: Optional[str] = None

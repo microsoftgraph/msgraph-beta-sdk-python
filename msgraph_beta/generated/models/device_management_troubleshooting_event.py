@@ -47,15 +47,17 @@ class DeviceManagementTroubleshootingEvent(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.appleVppTokenTroubleshootingEvent".casefold():
+        if not mapping_value:
+            return DeviceManagementTroubleshootingEvent()
+        if mapping_value.casefold() == "#microsoft.graph.appleVppTokenTroubleshootingEvent".casefold():
             from .apple_vpp_token_troubleshooting_event import AppleVppTokenTroubleshootingEvent
 
             return AppleVppTokenTroubleshootingEvent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.enrollmentTroubleshootingEvent".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.enrollmentTroubleshootingEvent".casefold():
             from .enrollment_troubleshooting_event import EnrollmentTroubleshootingEvent
 
             return EnrollmentTroubleshootingEvent()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingEvent".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mobileAppTroubleshootingEvent".casefold():
             from .mobile_app_troubleshooting_event import MobileAppTroubleshootingEvent
 
             return MobileAppTroubleshootingEvent()

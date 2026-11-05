@@ -20,7 +20,7 @@ class ActivityMetadata(AdditionalDataHolder, BackedModel, Parsable):
     activity: Optional[UserActivityType] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # The participants property
+    # The other parties in an agent interaction. Specify the concrete participant type by using the @odata.type property. Required when evaluationScope.type is agent; otherwise optional.
     participants: Optional[list[InteractionParticipant]] = None
     
     @staticmethod

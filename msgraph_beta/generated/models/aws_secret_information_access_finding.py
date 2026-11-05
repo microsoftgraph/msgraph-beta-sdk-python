@@ -44,19 +44,21 @@ class AwsSecretInformationAccessFinding(Finding, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsResourceFinding".casefold():
+        if not mapping_value:
+            return AwsSecretInformationAccessFinding()
+        if mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsResourceFinding".casefold():
             from .secret_information_access_aws_resource_finding import SecretInformationAccessAwsResourceFinding
 
             return SecretInformationAccessAwsResourceFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsRoleFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsRoleFinding".casefold():
             from .secret_information_access_aws_role_finding import SecretInformationAccessAwsRoleFinding
 
             return SecretInformationAccessAwsRoleFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsServerlessFunctionFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsServerlessFunctionFinding".casefold():
             from .secret_information_access_aws_serverless_function_finding import SecretInformationAccessAwsServerlessFunctionFinding
 
             return SecretInformationAccessAwsServerlessFunctionFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsUserFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.secretInformationAccessAwsUserFinding".casefold():
             from .secret_information_access_aws_user_finding import SecretInformationAccessAwsUserFinding
 
             return SecretInformationAccessAwsUserFinding()

@@ -37,7 +37,9 @@ class IdentityProvider(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.openIdConnectProvider".casefold():
+        if not mapping_value:
+            return IdentityProvider()
+        if mapping_value.casefold() == "#microsoft.graph.openIdConnectProvider".casefold():
             from .open_id_connect_provider import OpenIdConnectProvider
 
             return OpenIdConnectProvider()

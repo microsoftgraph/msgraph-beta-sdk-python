@@ -44,11 +44,13 @@ class InboundFlow(IndustryDataActivity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.inboundApiFlow".casefold():
+        if not mapping_value:
+            return InboundFlow()
+        if mapping_value.casefold() == "#microsoft.graph.industryData.inboundApiFlow".casefold():
             from .inbound_api_flow import InboundApiFlow
 
             return InboundApiFlow()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.inboundFileFlow".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.industryData.inboundFileFlow".casefold():
             from .inbound_file_flow import InboundFileFlow
 
             return InboundFileFlow()

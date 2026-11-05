@@ -39,7 +39,6 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
         param cross_tenant_migration_job_id: The unique identifier of crossTenantMigrationJob
         Returns: CrossTenantMigrationJobItemRequestBuilder
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         if cross_tenant_migration_job_id is None:
             raise TypeError("cross_tenant_migration_job_id cannot be null.")
         from .item.cross_tenant_migration_job_item_request_builder import CrossTenantMigrationJobItemRequestBuilder
@@ -50,12 +49,11 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CrossTenantMigrationJobsRequestBuilderGetQueryParameters]] = None) -> Optional[CrossTenantMigrationJobCollectionResponse]:
         """
-        Get a list of the crossTenantMigrationJob objects and their properties. By default 20 objects are returned. More can be retrieved through the @odata.nextLink url provided in the response.
+        Get a list of the crossTenantMigrationJob objects and their properties. By default, 20 objects are returned. You can retrieve more objects by using the @odata.nextLink URL provided in the response.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantMigrationJobCollectionResponse]
         Find more info here: https://learn.microsoft.com/graph/api/migrationsroot-list-crosstenantmigrationjobs?view=graph-rest-beta
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -72,13 +70,12 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: CrossTenantMigrationJob, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CrossTenantMigrationJob]:
         """
-        Create a new crossTenantMigrationJob. A job defines the migration batch but doesn't start validation or migration. After you create the job, call validate to verify tenant and resource configuration, then call migrate to begin the actual migration.
+        Create a new crossTenantMigrationJob object. A job defines the migration batch but doesn't start validation or migration. After you create the job, call validate to verify tenant and resource configuration, then call migrate to begin the actual migration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantMigrationJob]
         Find more info here: https://learn.microsoft.com/graph/api/migrationsroot-post-crosstenantmigrationjobs?view=graph-rest-beta
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_post_request_information(
@@ -97,11 +94,10 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CrossTenantMigrationJobsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Get a list of the crossTenantMigrationJob objects and their properties. By default 20 objects are returned. More can be retrieved through the @odata.nextLink url provided in the response.
+        Get a list of the crossTenantMigrationJob objects and their properties. By default, 20 objects are returned. You can retrieve more objects by using the @odata.nextLink URL provided in the response.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -109,12 +105,11 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: CrossTenantMigrationJob, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new crossTenantMigrationJob. A job defines the migration batch but doesn't start validation or migration. After you create the job, call validate to verify tenant and resource configuration, then call migrate to begin the actual migration.
+        Create a new crossTenantMigrationJob object. A job defines the migration batch but doesn't start validation or migration. After you create the job, call validate to verify tenant and resource configuration, then call migrate to begin the actual migration.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
@@ -129,7 +124,6 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CrossTenantMigrationJobsRequestBuilder
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CrossTenantMigrationJobsRequestBuilder(self.request_adapter, raw_url)
@@ -146,7 +140,7 @@ class CrossTenantMigrationJobsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CrossTenantMigrationJobsRequestBuilderGetQueryParameters():
         """
-        Get a list of the crossTenantMigrationJob objects and their properties. By default 20 objects are returned. More can be retrieved through the @odata.nextLink url provided in the response.
+        Get a list of the crossTenantMigrationJob objects and their properties. By default, 20 objects are returned. You can retrieve more objects by using the @odata.nextLink URL provided in the response.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

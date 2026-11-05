@@ -40,15 +40,17 @@ class PreApprovedPermissions(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allPreApprovedPermissions".casefold():
+        if not mapping_value:
+            return PreApprovedPermissions()
+        if mapping_value.casefold() == "#microsoft.graph.allPreApprovedPermissions".casefold():
             from .all_pre_approved_permissions import AllPreApprovedPermissions
 
             return AllPreApprovedPermissions()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.allPreApprovedPermissionsOnResourceApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.allPreApprovedPermissionsOnResourceApp".casefold():
             from .all_pre_approved_permissions_on_resource_app import AllPreApprovedPermissionsOnResourceApp
 
             return AllPreApprovedPermissionsOnResourceApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.enumeratedPreApprovedPermissions".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.enumeratedPreApprovedPermissions".casefold():
             from .enumerated_pre_approved_permissions import EnumeratedPreApprovedPermissions
 
             return EnumeratedPreApprovedPermissions()

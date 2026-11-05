@@ -32,7 +32,9 @@ class AuthenticationEventHandlerResult(AdditionalDataHolder, BackedModel, Parsab
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.customExtensionCalloutResult".casefold():
+        if not mapping_value:
+            return AuthenticationEventHandlerResult()
+        if mapping_value.casefold() == "#microsoft.graph.customExtensionCalloutResult".casefold():
             from .custom_extension_callout_result import CustomExtensionCalloutResult
 
             return CustomExtensionCalloutResult()

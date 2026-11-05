@@ -44,7 +44,9 @@ class Windows81VpnConfiguration(WindowsVpnConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhone81VpnConfiguration".casefold():
+        if not mapping_value:
+            return Windows81VpnConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.windowsPhone81VpnConfiguration".casefold():
             from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
 
             return WindowsPhone81VpnConfiguration()

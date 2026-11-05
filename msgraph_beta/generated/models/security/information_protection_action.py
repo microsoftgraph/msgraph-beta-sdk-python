@@ -46,63 +46,65 @@ class InformationProtectionAction(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.addContentFooterAction".casefold():
+        if not mapping_value:
+            return InformationProtectionAction()
+        if mapping_value.casefold() == "#microsoft.graph.security.addContentFooterAction".casefold():
             from .add_content_footer_action import AddContentFooterAction
 
             return AddContentFooterAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.addContentHeaderAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.addContentHeaderAction".casefold():
             from .add_content_header_action import AddContentHeaderAction
 
             return AddContentHeaderAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.addWatermarkAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.addWatermarkAction".casefold():
             from .add_watermark_action import AddWatermarkAction
 
             return AddWatermarkAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.applyLabelAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.applyLabelAction".casefold():
             from .apply_label_action import ApplyLabelAction
 
             return ApplyLabelAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.customAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.customAction".casefold():
             from .custom_action import CustomAction
 
             return CustomAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.justifyAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.justifyAction".casefold():
             from .justify_action import JustifyAction
 
             return JustifyAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.metadataAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.metadataAction".casefold():
             from .metadata_action import MetadataAction
 
             return MetadataAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.protectAdhocAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.protectAdhocAction".casefold():
             from .protect_adhoc_action import ProtectAdhocAction
 
             return ProtectAdhocAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.protectByTemplateAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.protectByTemplateAction".casefold():
             from .protect_by_template_action import ProtectByTemplateAction
 
             return ProtectByTemplateAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.protectDoNotForwardAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.protectDoNotForwardAction".casefold():
             from .protect_do_not_forward_action import ProtectDoNotForwardAction
 
             return ProtectDoNotForwardAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.recommendLabelAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.recommendLabelAction".casefold():
             from .recommend_label_action import RecommendLabelAction
 
             return RecommendLabelAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.removeContentFooterAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.removeContentFooterAction".casefold():
             from .remove_content_footer_action import RemoveContentFooterAction
 
             return RemoveContentFooterAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.removeContentHeaderAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.removeContentHeaderAction".casefold():
             from .remove_content_header_action import RemoveContentHeaderAction
 
             return RemoveContentHeaderAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.removeProtectionAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.removeProtectionAction".casefold():
             from .remove_protection_action import RemoveProtectionAction
 
             return RemoveProtectionAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.removeWatermarkAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.removeWatermarkAction".casefold():
             from .remove_watermark_action import RemoveWatermarkAction
 
             return RemoveWatermarkAction()

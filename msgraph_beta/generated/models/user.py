@@ -229,7 +229,7 @@ class User(DirectoryObject, Parsable):
     hire_date: Optional[datetime.datetime] = None
     # Represents the identities that can be used to sign in to this user account. An identity can be provided by Microsoft (also known as a local account), by organizations, or by social identity providers such as Facebook, Google, and Microsoft and tied to a user account. It may contain multiple items with the same signInType value.  Supports $filter (eq) with limitations.
     identities: Optional[list[ObjectIdentity]] = None
-    # The identity governance settings for the user, including the approver delegate configuration. Nullable. Returned only on $select. Supports $expand.
+    # The identity governance settings for the user. You can get or update the user's approver delegate through the approverDelegate property. Nullable. Returned only on $select. Supports $expand.
     identity_governance: Optional[IdentityGovernanceUserSettings] = None
     # The object ID of the parent identity for agent users. Always null for regular user accounts. For agentUser resources, this property references the object ID of the associated agent identity.
     identity_parent_id: Optional[str] = None
@@ -448,7 +448,9 @@ class User(DirectoryObject, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.agentUser".casefold():
+        if not mapping_value:
+            return User()
+        if mapping_value.casefold() == "#microsoft.graph.agentUser".casefold():
             from .agent_user import AgentUser
 
             return AgentUser()

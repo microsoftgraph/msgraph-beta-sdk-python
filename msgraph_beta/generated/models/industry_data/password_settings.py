@@ -32,7 +32,9 @@ class PasswordSettings(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.industryData.simplePasswordSettings".casefold():
+        if not mapping_value:
+            return PasswordSettings()
+        if mapping_value.casefold() == "#microsoft.graph.industryData.simplePasswordSettings".casefold():
             from .simple_password_settings import SimplePasswordSettings
 
             return SimplePasswordSettings()

@@ -12,7 +12,7 @@ class IdentityVerificationEventsConfiguration(AdditionalDataHolder, BackedModel,
 
     # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additional_data: dict[str, Any] = field(default_factory=dict)
-    # The isEnabled property
+    # Indicates whether identity verification events and credential provenance information are collected and exposed for Verified ID verification across the tenant. The default value is false when this property is omitted from the configuration object.
     is_enabled: Optional[bool] = None
     # The OdataType property
     odata_type: Optional[str] = None

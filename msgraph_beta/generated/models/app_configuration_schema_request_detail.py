@@ -36,11 +36,13 @@ class AppConfigurationSchemaRequestDetail(AdditionalDataHolder, BackedModel, Par
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidLobAppConfigurationSchemaRequestDetail".casefold():
+        if not mapping_value:
+            return AppConfigurationSchemaRequestDetail()
+        if mapping_value.casefold() == "#microsoft.graph.androidLobAppConfigurationSchemaRequestDetail".casefold():
             from .android_lob_app_configuration_schema_request_detail import AndroidLobAppConfigurationSchemaRequestDetail
 
             return AndroidLobAppConfigurationSchemaRequestDetail()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedStoreAppConfigurationSchemaRequestDetail".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.managedStoreAppConfigurationSchemaRequestDetail".casefold():
             from .managed_store_app_configuration_schema_request_detail import ManagedStoreAppConfigurationSchemaRequestDetail
 
             return ManagedStoreAppConfigurationSchemaRequestDetail()

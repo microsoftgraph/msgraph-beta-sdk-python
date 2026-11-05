@@ -34,15 +34,17 @@ class GovernanceCriteria(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.groupMembershipGovernanceCriteria".casefold():
+        if not mapping_value:
+            return GovernanceCriteria()
+        if mapping_value.casefold() == "#microsoft.graph.groupMembershipGovernanceCriteria".casefold():
             from .group_membership_governance_criteria import GroupMembershipGovernanceCriteria
 
             return GroupMembershipGovernanceCriteria()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.roleMembershipGovernanceCriteria".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.roleMembershipGovernanceCriteria".casefold():
             from .role_membership_governance_criteria import RoleMembershipGovernanceCriteria
 
             return RoleMembershipGovernanceCriteria()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.userGovernanceCriteria".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.userGovernanceCriteria".casefold():
             from .user_governance_criteria import UserGovernanceCriteria
 
             return UserGovernanceCriteria()

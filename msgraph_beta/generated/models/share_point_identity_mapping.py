@@ -36,11 +36,13 @@ class SharePointIdentityMapping(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointGroupIdentityMapping".casefold():
+        if not mapping_value:
+            return SharePointIdentityMapping()
+        if mapping_value.casefold() == "#microsoft.graph.sharePointGroupIdentityMapping".casefold():
             from .share_point_group_identity_mapping import SharePointGroupIdentityMapping
 
             return SharePointGroupIdentityMapping()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sharePointUserIdentityMapping".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.sharePointUserIdentityMapping".casefold():
             from .share_point_user_identity_mapping import SharePointUserIdentityMapping
 
             return SharePointUserIdentityMapping()

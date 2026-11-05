@@ -4,4 +4,5 @@ class ApplicationMode(str, Enum):
     Manual = "manual",
     Automatic = "automatic",
     Recommended = "recommended",
+    UnknownFutureValue = "unknownFutureValue",
 

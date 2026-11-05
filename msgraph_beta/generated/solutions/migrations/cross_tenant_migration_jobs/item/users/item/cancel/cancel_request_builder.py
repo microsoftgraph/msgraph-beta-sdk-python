@@ -32,12 +32,11 @@ class CancelRequestBuilder(BaseRequestBuilder):
     
     async def post(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[CrossTenantMigrationCancelResponse]:
         """
-        Cancel a specific crossTenantMigrationTask for a User within a CrossTenantMigrationJob.  If the User migration can't be canceled or is in a terminal state, a 409 CONFLICT response code is returned, and the migration continues.
+        Cancel a specific crossTenantMigrationTask for a user in a crossTenantMigrationJob. If the user migration can't be canceled or is in a terminal state, a 409 Conflict response code is returned, and the migration continues.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantMigrationCancelResponse]
         Find more info here: https://learn.microsoft.com/graph/api/crosstenantmigrationtask-cancel?view=graph-rest-beta
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         request_info = self.to_post_request_information(
             request_configuration
         )
@@ -54,11 +53,10 @@ class CancelRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Cancel a specific crossTenantMigrationTask for a User within a CrossTenantMigrationJob.  If the User migration can't be canceled or is in a terminal state, a 409 CONFLICT response code is returned, and the migration continues.
+        Cancel a specific crossTenantMigrationTask for a user in a crossTenantMigrationJob. If the user migration can't be canceled or is in a terminal state, a 409 Conflict response code is returned, and the migration continues.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         request_info = RequestInformation(Method.POST, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -70,7 +68,6 @@ class CancelRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CancelRequestBuilder
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CancelRequestBuilder(self.request_adapter, raw_url)

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from .....models.o_data_errors.o_data_error import ODataError
     from .....models.security.case_management.case_type_configuration import CaseTypeConfiguration
     from .custom_fields.custom_fields_request_builder import CustomFieldsRequestBuilder
+    from .sla_policies.sla_policies_request_builder import SlaPoliciesRequestBuilder
     from .statuses.statuses_request_builder import StatusesRequestBuilder
 
 class CaseTypeConfigurationItemRequestBuilder(BaseRequestBuilder):
@@ -81,6 +82,15 @@ class CaseTypeConfigurationItemRequestBuilder(BaseRequestBuilder):
         from .custom_fields.custom_fields_request_builder import CustomFieldsRequestBuilder
 
         return CustomFieldsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def sla_policies(self) -> SlaPoliciesRequestBuilder:
+        """
+        Provides operations to manage the slaPolicies property of the microsoft.graph.security.caseManagement.caseTypeConfiguration entity.
+        """
+        from .sla_policies.sla_policies_request_builder import SlaPoliciesRequestBuilder
+
+        return SlaPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def statuses(self) -> StatusesRequestBuilder:

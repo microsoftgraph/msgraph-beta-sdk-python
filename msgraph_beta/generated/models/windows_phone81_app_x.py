@@ -50,7 +50,9 @@ class WindowsPhone81AppX(MobileLobApp, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhone81AppXBundle".casefold():
+        if not mapping_value:
+            return WindowsPhone81AppX()
+        if mapping_value.casefold() == "#microsoft.graph.windowsPhone81AppXBundle".casefold():
             from .windows_phone81_app_x_bundle import WindowsPhone81AppXBundle
 
             return WindowsPhone81AppXBundle()

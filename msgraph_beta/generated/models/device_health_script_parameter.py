@@ -45,15 +45,17 @@ class DeviceHealthScriptParameter(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptBooleanParameter".casefold():
+        if not mapping_value:
+            return DeviceHealthScriptParameter()
+        if mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptBooleanParameter".casefold():
             from .device_health_script_boolean_parameter import DeviceHealthScriptBooleanParameter
 
             return DeviceHealthScriptBooleanParameter()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptIntegerParameter".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptIntegerParameter".casefold():
             from .device_health_script_integer_parameter import DeviceHealthScriptIntegerParameter
 
             return DeviceHealthScriptIntegerParameter()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptStringParameter".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceHealthScriptStringParameter".casefold():
             from .device_health_script_string_parameter import DeviceHealthScriptStringParameter
 
             return DeviceHealthScriptStringParameter()

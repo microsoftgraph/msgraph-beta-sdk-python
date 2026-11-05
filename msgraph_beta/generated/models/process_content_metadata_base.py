@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .content_activity_metadata import ContentActivityMetadata
     from .content_base import ContentBase
     from .content_category import ContentCategory
+    from .current_label import CurrentLabel
     from .evaluation_incomplete_activity_metadata import EvaluationIncompleteActivityMetadata
     from .process_conversation_metadata import ProcessConversationMetadata
     from .process_file_metadata import ProcessFileMetadata
@@ -41,6 +42,8 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
     name: Optional[str] = None
     # The OdataType property
     odata_type: Optional[str] = None
+    # Caller-supplied sensitivity labels describing the content.
+    sensitivity_labels: Optional[list[CurrentLabel]] = None
     # A sequence number indicating the order in which content was generated or should be processed, required when correlationId is used.
     sequence_number: Optional[int] = None
     
@@ -58,19 +61,21 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.contentActivityMetadata".casefold():
+        if not mapping_value:
+            return ProcessContentMetadataBase()
+        if mapping_value.casefold() == "#microsoft.graph.contentActivityMetadata".casefold():
             from .content_activity_metadata import ContentActivityMetadata
 
             return ContentActivityMetadata()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.evaluationIncompleteActivityMetadata".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.evaluationIncompleteActivityMetadata".casefold():
             from .evaluation_incomplete_activity_metadata import EvaluationIncompleteActivityMetadata
 
             return EvaluationIncompleteActivityMetadata()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.processConversationMetadata".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.processConversationMetadata".casefold():
             from .process_conversation_metadata import ProcessConversationMetadata
 
             return ProcessConversationMetadata()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.processFileMetadata".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.processFileMetadata".casefold():
             from .process_file_metadata import ProcessFileMetadata
 
             return ProcessFileMetadata()
@@ -84,6 +89,7 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
         from .content_activity_metadata import ContentActivityMetadata
         from .content_base import ContentBase
         from .content_category import ContentCategory
+        from .current_label import CurrentLabel
         from .evaluation_incomplete_activity_metadata import EvaluationIncompleteActivityMetadata
         from .process_conversation_metadata import ProcessConversationMetadata
         from .process_file_metadata import ProcessFileMetadata
@@ -91,6 +97,7 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
         from .content_activity_metadata import ContentActivityMetadata
         from .content_base import ContentBase
         from .content_category import ContentCategory
+        from .current_label import CurrentLabel
         from .evaluation_incomplete_activity_metadata import EvaluationIncompleteActivityMetadata
         from .process_conversation_metadata import ProcessConversationMetadata
         from .process_file_metadata import ProcessFileMetadata
@@ -106,6 +113,7 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
             "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "sensitivityLabels": lambda n : setattr(self, 'sensitivity_labels', n.get_collection_of_object_values(CurrentLabel)),
             "sequenceNumber": lambda n : setattr(self, 'sequence_number', n.get_int_value()),
         }
         return fields
@@ -128,6 +136,7 @@ class ProcessContentMetadataBase(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_datetime_value("modifiedDateTime", self.modified_date_time)
         writer.write_str_value("name", self.name)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_collection_of_object_values("sensitivityLabels", self.sensitivity_labels)
         writer.write_int_value("sequenceNumber", self.sequence_number)
         writer.write_additional_data_value(self.additional_data)
     

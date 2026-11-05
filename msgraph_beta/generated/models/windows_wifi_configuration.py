@@ -61,7 +61,9 @@ class WindowsWifiConfiguration(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsWifiEnterpriseEAPConfiguration".casefold():
+        if not mapping_value:
+            return WindowsWifiConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.windowsWifiEnterpriseEAPConfiguration".casefold():
             from .windows_wifi_enterprise_e_a_p_configuration import WindowsWifiEnterpriseEAPConfiguration
 
             return WindowsWifiEnterpriseEAPConfiguration()

@@ -54,15 +54,17 @@ class ComplianceDLPBaseAuditRecord(ComplianceBaseAuditRecord, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.dlp.complianceDlpEndpointAuditRecord".casefold():
+        if not mapping_value:
+            return ComplianceDLPBaseAuditRecord()
+        if mapping_value.casefold() == "#microsoft.graph.security.dlp.complianceDlpEndpointAuditRecord".casefold():
             from .compliance_dlp_endpoint_audit_record import ComplianceDlpEndpointAuditRecord
 
             return ComplianceDlpEndpointAuditRecord()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.dlp.complianceDlpExchangeAuditRecord".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.dlp.complianceDlpExchangeAuditRecord".casefold():
             from .compliance_dlp_exchange_audit_record import ComplianceDlpExchangeAuditRecord
 
             return ComplianceDlpExchangeAuditRecord()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.dlp.complianceDlpSharePointAuditRecord".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.dlp.complianceDlpSharePointAuditRecord".casefold():
             from .compliance_dlp_share_point_audit_record import ComplianceDlpSharePointAuditRecord
 
             return ComplianceDlpSharePointAuditRecord()

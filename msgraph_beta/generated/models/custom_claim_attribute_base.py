@@ -33,11 +33,13 @@ class CustomClaimAttributeBase(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.sourcedAttribute".casefold():
+        if not mapping_value:
+            return CustomClaimAttributeBase()
+        if mapping_value.casefold() == "#microsoft.graph.sourcedAttribute".casefold():
             from .sourced_attribute import SourcedAttribute
 
             return SourcedAttribute()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.valueBasedAttribute".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.valueBasedAttribute".casefold():
             from .value_based_attribute import ValueBasedAttribute
 
             return ValueBasedAttribute()

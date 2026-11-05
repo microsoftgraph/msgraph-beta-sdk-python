@@ -41,11 +41,13 @@ class InactiveUsersByApplicationMetricBase(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.dailyInactiveUsersByApplicationMetric".casefold():
+        if not mapping_value:
+            return InactiveUsersByApplicationMetricBase()
+        if mapping_value.casefold() == "#microsoft.graph.dailyInactiveUsersByApplicationMetric".casefold():
             from .daily_inactive_users_by_application_metric import DailyInactiveUsersByApplicationMetric
 
             return DailyInactiveUsersByApplicationMetric()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.monthlyInactiveUsersByApplicationMetric".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.monthlyInactiveUsersByApplicationMetric".casefold():
             from .monthly_inactive_users_by_application_metric import MonthlyInactiveUsersByApplicationMetric
 
             return MonthlyInactiveUsersByApplicationMetric()

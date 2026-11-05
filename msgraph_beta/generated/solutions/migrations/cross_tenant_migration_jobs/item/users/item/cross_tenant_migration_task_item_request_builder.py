@@ -37,7 +37,6 @@ class CrossTenantMigrationTaskItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         request_info = self.to_delete_request_information(
             request_configuration
         )
@@ -52,12 +51,11 @@ class CrossTenantMigrationTaskItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CrossTenantMigrationTaskItemRequestBuilderGetQueryParameters]] = None) -> Optional[CrossTenantMigrationTask]:
         """
-        Read the properties and relationships of crossTenantMigrationTask, which shows the details of the migration task for a single user of a crossTenantMigrationJob. The crossTenantMigrationTask contains the status details of migrations for the workloads specified in the crossTenantMigrationJob. 
+        Read the properties and relationships of a crossTenantMigrationTask object that provides details about the migration task for a single user in a crossTenantMigrationJob. The crossTenantMigrationTask contains the status details of migrations for the workloads specified in the crossTenantMigrationJob.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantMigrationTask]
         Find more info here: https://learn.microsoft.com/graph/api/crosstenantmigrationtask-get?view=graph-rest-beta
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         request_info = self.to_get_request_information(
             request_configuration
         )
@@ -79,7 +77,6 @@ class CrossTenantMigrationTaskItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CrossTenantMigrationTask]
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = self.to_patch_request_information(
@@ -102,7 +99,6 @@ class CrossTenantMigrationTaskItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         request_info = RequestInformation(Method.DELETE, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -110,11 +106,10 @@ class CrossTenantMigrationTaskItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CrossTenantMigrationTaskItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of crossTenantMigrationTask, which shows the details of the migration task for a single user of a crossTenantMigrationJob. The crossTenantMigrationTask contains the status details of migrations for the workloads specified in the crossTenantMigrationJob. 
+        Read the properties and relationships of a crossTenantMigrationTask object that provides details about the migration task for a single user in a crossTenantMigrationJob. The crossTenantMigrationTask contains the status details of migrations for the workloads specified in the crossTenantMigrationJob.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         request_info = RequestInformation(Method.GET, self.url_template, self.path_parameters)
         request_info.configure(request_configuration)
         request_info.headers.try_add("Accept", "application/json")
@@ -127,7 +122,6 @@ class CrossTenantMigrationTaskItemRequestBuilder(BaseRequestBuilder):
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         if body is None:
             raise TypeError("body cannot be null.")
         request_info = RequestInformation(Method.PATCH, self.url_template, self.path_parameters)
@@ -142,7 +136,6 @@ class CrossTenantMigrationTaskItemRequestBuilder(BaseRequestBuilder):
         param raw_url: The raw URL to use for the request builder.
         Returns: CrossTenantMigrationTaskItemRequestBuilder
         """
-        warn(" as of 2023-11/PrivatePreview:CrossTenantContentMigrationAPI on 2023-11-15 and will be removed 2026-07-09", DeprecationWarning)
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return CrossTenantMigrationTaskItemRequestBuilder(self.request_adapter, raw_url)
@@ -166,7 +159,7 @@ class CrossTenantMigrationTaskItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CrossTenantMigrationTaskItemRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of crossTenantMigrationTask, which shows the details of the migration task for a single user of a crossTenantMigrationJob. The crossTenantMigrationTask contains the status details of migrations for the workloads specified in the crossTenantMigrationJob. 
+        Read the properties and relationships of a crossTenantMigrationTask object that provides details about the migration task for a single user in a crossTenantMigrationJob. The crossTenantMigrationTask contains the status details of migrations for the workloads specified in the crossTenantMigrationJob.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

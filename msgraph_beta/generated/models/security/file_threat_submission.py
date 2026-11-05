@@ -32,11 +32,13 @@ class FileThreatSubmission(ThreatSubmission, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.fileContentThreatSubmission".casefold():
+        if not mapping_value:
+            return FileThreatSubmission()
+        if mapping_value.casefold() == "#microsoft.graph.security.fileContentThreatSubmission".casefold():
             from .file_content_threat_submission import FileContentThreatSubmission
 
             return FileContentThreatSubmission()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.fileUrlThreatSubmission".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.fileUrlThreatSubmission".casefold():
             from .file_url_threat_submission import FileUrlThreatSubmission
 
             return FileUrlThreatSubmission()

@@ -35,19 +35,21 @@ class PermissionsDefinitionIdentitySource(AdditionalDataHolder, BackedModel, Par
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.awsIdentitySource".casefold():
+        if not mapping_value:
+            return PermissionsDefinitionIdentitySource()
+        if mapping_value.casefold() == "#microsoft.graph.awsIdentitySource".casefold():
             from .aws_identity_source import AwsIdentitySource
 
             return AwsIdentitySource()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.edIdentitySource".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.edIdentitySource".casefold():
             from .ed_identity_source import EdIdentitySource
 
             return EdIdentitySource()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.localIdentitySource".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.localIdentitySource".casefold():
             from .local_identity_source import LocalIdentitySource
 
             return LocalIdentitySource()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.samlIdentitySource".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.samlIdentitySource".casefold():
             from .saml_identity_source import SamlIdentitySource
 
             return SamlIdentitySource()

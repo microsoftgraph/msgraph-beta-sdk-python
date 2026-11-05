@@ -30,11 +30,13 @@ class AzurePermissionsDefinitionAction(PermissionsDefinitionAction, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureActionPermissionsDefinitionAction".casefold():
+        if not mapping_value:
+            return AzurePermissionsDefinitionAction()
+        if mapping_value.casefold() == "#microsoft.graph.azureActionPermissionsDefinitionAction".casefold():
             from .azure_action_permissions_definition_action import AzureActionPermissionsDefinitionAction
 
             return AzureActionPermissionsDefinitionAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.azureRolePermissionsDefinitionAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.azureRolePermissionsDefinitionAction".casefold():
             from .azure_role_permissions_definition_action import AzureRolePermissionsDefinitionAction
 
             return AzureRolePermissionsDefinitionAction()

@@ -1,4 +1,5 @@
 from __future__ import annotations
+import datetime
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
@@ -15,6 +16,8 @@ from .entity import Entity
 class UnifiedRoleDefinition(Entity, Parsable):
     # Types of principals that can be assigned the role. Read-only. The possible values are: user, servicePrincipal, group, unknownFutureValue. This is a multi-valued enumeration that can contain up to three values as a comma-separated string. For example, user, group. Supports $filter (eq).
     allowed_principal_types: Optional[AllowedRolePrincipalTypes] = None
+    # The date and time when the custom role definition was deleted. The value is null for active and restored role definitions. Read-only.
+    deleted_date_time: Optional[datetime.datetime] = None
     # The description for the unifiedRoleDefinition. Read-only when isBuiltIn is true.
     description: Optional[str] = None
     # The display name for the unifiedRoleDefinition. Read-only when isBuiltIn is true. Required.  Supports $filter (eq and startsWith).
@@ -64,6 +67,7 @@ class UnifiedRoleDefinition(Entity, Parsable):
 
         fields: dict[str, Callable[[Any], None]] = {
             "allowedPrincipalTypes": lambda n : setattr(self, 'allowed_principal_types', n.get_collection_of_enum_values(AllowedRolePrincipalTypes)),
+            "deletedDateTime": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "inheritsPermissionsFrom": lambda n : setattr(self, 'inherits_permissions_from', n.get_collection_of_object_values(UnifiedRoleDefinition)),
@@ -89,6 +93,7 @@ class UnifiedRoleDefinition(Entity, Parsable):
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
         writer.write_enum_value("allowedPrincipalTypes", self.allowed_principal_types)
+        writer.write_datetime_value("deletedDateTime", self.deleted_date_time)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("inheritsPermissionsFrom", self.inherits_permissions_from)

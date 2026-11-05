@@ -32,19 +32,21 @@ class SoftwareUpdateCatalogEntry(CatalogEntry, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.driverUpdateCatalogEntry".casefold():
+        if not mapping_value:
+            return SoftwareUpdateCatalogEntry()
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.driverUpdateCatalogEntry".casefold():
             from .driver_update_catalog_entry import DriverUpdateCatalogEntry
 
             return DriverUpdateCatalogEntry()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.featureUpdateCatalogEntry".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.featureUpdateCatalogEntry".casefold():
             from .feature_update_catalog_entry import FeatureUpdateCatalogEntry
 
             return FeatureUpdateCatalogEntry()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateCatalogEntry".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.qualityUpdateCatalogEntry".casefold():
             from .quality_update_catalog_entry import QualityUpdateCatalogEntry
 
             return QualityUpdateCatalogEntry()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUpdates.recoveryUpdateCatalogEntry".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsUpdates.recoveryUpdateCatalogEntry".casefold():
             from .recovery_update_catalog_entry import RecoveryUpdateCatalogEntry
 
             return RecoveryUpdateCatalogEntry()

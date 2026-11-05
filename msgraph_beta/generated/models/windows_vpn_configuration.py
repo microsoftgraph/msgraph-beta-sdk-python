@@ -41,15 +41,17 @@ class WindowsVpnConfiguration(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows10VpnConfiguration".casefold():
+        if not mapping_value:
+            return WindowsVpnConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.windows10VpnConfiguration".casefold():
             from .windows10_vpn_configuration import Windows10VpnConfiguration
 
             return Windows10VpnConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windows81VpnConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windows81VpnConfiguration".casefold():
             from .windows81_vpn_configuration import Windows81VpnConfiguration
 
             return Windows81VpnConfiguration()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhone81VpnConfiguration".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsPhone81VpnConfiguration".casefold():
             from .windows_phone81_vpn_configuration import WindowsPhone81VpnConfiguration
 
             return WindowsPhone81VpnConfiguration()

@@ -34,15 +34,17 @@ class DeviceManagementConfigurationSettingValueDefinition(AdditionalDataHolder, 
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationFloatSettingValueDefinition".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationSettingValueDefinition()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationFloatSettingValueDefinition".casefold():
             from .device_management_configuration_float_setting_value_definition import DeviceManagementConfigurationFloatSettingValueDefinition
 
             return DeviceManagementConfigurationFloatSettingValueDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIntegerSettingValueDefinition".casefold():
             from .device_management_configuration_integer_setting_value_definition import DeviceManagementConfigurationIntegerSettingValueDefinition
 
             return DeviceManagementConfigurationIntegerSettingValueDefinition()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationStringSettingValueDefinition".casefold():
             from .device_management_configuration_string_setting_value_definition import DeviceManagementConfigurationStringSettingValueDefinition
 
             return DeviceManagementConfigurationStringSettingValueDefinition()

@@ -59,79 +59,81 @@ class IdentityFinding(Finding, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveAwsResourceFinding".casefold():
+        if not mapping_value:
+            return IdentityFinding()
+        if mapping_value.casefold() == "#microsoft.graph.inactiveAwsResourceFinding".casefold():
             from .inactive_aws_resource_finding import InactiveAwsResourceFinding
 
             return InactiveAwsResourceFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveAwsRoleFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.inactiveAwsRoleFinding".casefold():
             from .inactive_aws_role_finding import InactiveAwsRoleFinding
 
             return InactiveAwsRoleFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveAzureServicePrincipalFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.inactiveAzureServicePrincipalFinding".casefold():
             from .inactive_azure_service_principal_finding import InactiveAzureServicePrincipalFinding
 
             return InactiveAzureServicePrincipalFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveGcpServiceAccountFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.inactiveGcpServiceAccountFinding".casefold():
             from .inactive_gcp_service_account_finding import InactiveGcpServiceAccountFinding
 
             return InactiveGcpServiceAccountFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveServerlessFunctionFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.inactiveServerlessFunctionFinding".casefold():
             from .inactive_serverless_function_finding import InactiveServerlessFunctionFinding
 
             return InactiveServerlessFunctionFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.inactiveUserFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.inactiveUserFinding".casefold():
             from .inactive_user_finding import InactiveUserFinding
 
             return InactiveUserFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedAwsResourceFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.overprovisionedAwsResourceFinding".casefold():
             from .overprovisioned_aws_resource_finding import OverprovisionedAwsResourceFinding
 
             return OverprovisionedAwsResourceFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedAwsRoleFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.overprovisionedAwsRoleFinding".casefold():
             from .overprovisioned_aws_role_finding import OverprovisionedAwsRoleFinding
 
             return OverprovisionedAwsRoleFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedAzureServicePrincipalFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.overprovisionedAzureServicePrincipalFinding".casefold():
             from .overprovisioned_azure_service_principal_finding import OverprovisionedAzureServicePrincipalFinding
 
             return OverprovisionedAzureServicePrincipalFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedGcpServiceAccountFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.overprovisionedGcpServiceAccountFinding".casefold():
             from .overprovisioned_gcp_service_account_finding import OverprovisionedGcpServiceAccountFinding
 
             return OverprovisionedGcpServiceAccountFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedServerlessFunctionFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.overprovisionedServerlessFunctionFinding".casefold():
             from .overprovisioned_serverless_function_finding import OverprovisionedServerlessFunctionFinding
 
             return OverprovisionedServerlessFunctionFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.overprovisionedUserFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.overprovisionedUserFinding".casefold():
             from .overprovisioned_user_finding import OverprovisionedUserFinding
 
             return OverprovisionedUserFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superAwsResourceFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.superAwsResourceFinding".casefold():
             from .super_aws_resource_finding import SuperAwsResourceFinding
 
             return SuperAwsResourceFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superAwsRoleFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.superAwsRoleFinding".casefold():
             from .super_aws_role_finding import SuperAwsRoleFinding
 
             return SuperAwsRoleFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superAzureServicePrincipalFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.superAzureServicePrincipalFinding".casefold():
             from .super_azure_service_principal_finding import SuperAzureServicePrincipalFinding
 
             return SuperAzureServicePrincipalFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superGcpServiceAccountFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.superGcpServiceAccountFinding".casefold():
             from .super_gcp_service_account_finding import SuperGcpServiceAccountFinding
 
             return SuperGcpServiceAccountFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superServerlessFunctionFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.superServerlessFunctionFinding".casefold():
             from .super_serverless_function_finding import SuperServerlessFunctionFinding
 
             return SuperServerlessFunctionFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.superUserFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.superUserFinding".casefold():
             from .super_user_finding import SuperUserFinding
 
             return SuperUserFinding()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.unenforcedMfaAwsUserFinding".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.unenforcedMfaAwsUserFinding".casefold():
             from .unenforced_mfa_aws_user_finding import UnenforcedMfaAwsUserFinding
 
             return UnenforcedMfaAwsUserFinding()

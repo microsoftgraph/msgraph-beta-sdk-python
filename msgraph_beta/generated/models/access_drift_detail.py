@@ -44,7 +44,9 @@ class AccessDriftDetail(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entraAccessDriftDetail".casefold():
+        if not mapping_value:
+            return AccessDriftDetail()
+        if mapping_value.casefold() == "#microsoft.graph.entraAccessDriftDetail".casefold():
             from .entra_access_drift_detail import EntraAccessDriftDetail
 
             return EntraAccessDriftDetail()

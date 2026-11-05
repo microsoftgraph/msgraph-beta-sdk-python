@@ -16,6 +16,8 @@ from ..entity import Entity
 
 @dataclass
 class LifecyclePolicyRule(Entity, Parsable):
+    # The optional grace period, in days, that starts when the rule violation is first detected. The allowed range is 0 through 30. If omitted or set to null, the gracePeriodInDays value of the containing lifecycle policy applies. A value of 0 means no additional grace period. If multiple rules remain violated, the earliest rule grace-period expiry starts the policy action sequence; the policy-level grace period isn't added again.
+    grace_period_in_days: Optional[int] = None
     # Indicates whether the rule is enabled and evaluated as part of its policy.
     is_enabled: Optional[bool] = None
     # The OdataType property
@@ -35,23 +37,25 @@ class LifecyclePolicyRule(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.accessPackageAssignmentRequiredRule".casefold():
+        if not mapping_value:
+            return LifecyclePolicyRule()
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.accessPackageAssignmentRequiredRule".casefold():
             from .access_package_assignment_required_rule import AccessPackageAssignmentRequiredRule
 
             return AccessPackageAssignmentRequiredRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.inactivityRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.inactivityRule".casefold():
             from .inactivity_rule import InactivityRule
 
             return InactivityRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.invitationRedemptionRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.invitationRedemptionRule".casefold():
             from .invitation_redemption_rule import InvitationRedemptionRule
 
             return InvitationRedemptionRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.periodicAttestationRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.periodicAttestationRule".casefold():
             from .periodic_attestation_rule import PeriodicAttestationRule
 
             return PeriodicAttestationRule()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.identityGovernance.sponsorPresenceRule".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.identityGovernance.sponsorPresenceRule".casefold():
             from .sponsor_presence_rule import SponsorPresenceRule
 
             return SponsorPresenceRule()
@@ -77,6 +81,7 @@ class LifecyclePolicyRule(Entity, Parsable):
         from .sponsor_presence_rule import SponsorPresenceRule
 
         fields: dict[str, Callable[[Any], None]] = {
+            "gracePeriodInDays": lambda n : setattr(self, 'grace_period_in_days', n.get_int_value()),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -92,6 +97,7 @@ class LifecyclePolicyRule(Entity, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         super().serialize(writer)
+        writer.write_int_value("gracePeriodInDays", self.grace_period_in_days)
         writer.write_bool_value("isEnabled", self.is_enabled)
     
 

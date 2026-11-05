@@ -15,6 +15,8 @@ class RuleSchedule(AdditionalDataHolder, BackedModel, Parsable):
     additional_data: dict[str, Any] = field(default_factory=dict)
     # The recurring time interval at which the rule runs (ISO 8601 duration, for example P1D for daily, PT1H for hourly).
     frequency: Optional[datetime.timedelta] = None
+    # The lookback property
+    lookback: Optional[datetime.timedelta] = None
     # Timestamp of the custom detection rule's next scheduled run. Deprecated. This property will be removed from this resource on 2026-10-01.
     next_run_date_time: Optional[datetime.datetime] = None
     # The OdataType property
@@ -40,6 +42,7 @@ class RuleSchedule(AdditionalDataHolder, BackedModel, Parsable):
         """
         fields: dict[str, Callable[[Any], None]] = {
             "frequency": lambda n : setattr(self, 'frequency', n.get_timedelta_value()),
+            "lookback": lambda n : setattr(self, 'lookback', n.get_timedelta_value()),
             "nextRunDateTime": lambda n : setattr(self, 'next_run_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "period": lambda n : setattr(self, 'period', n.get_str_value()),
@@ -55,6 +58,7 @@ class RuleSchedule(AdditionalDataHolder, BackedModel, Parsable):
         if writer is None:
             raise TypeError("writer cannot be null.")
         writer.write_timedelta_value("frequency", self.frequency)
+        writer.write_timedelta_value("lookback", self.lookback)
         writer.write_datetime_value("nextRunDateTime", self.next_run_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("period", self.period)

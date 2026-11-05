@@ -13,13 +13,13 @@ from .entity import Entity
 
 @dataclass
 class CrossTenantMigrationTask(Entity, Parsable):
-    # Most recent status of this migration task
+    # Most recent status of this migration task.
     current_status: Optional[list[CrossTenantMigrationServiceStatusDetails]] = None
-    # Time the task was last updated
+    # Date and time when the task was last updated. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2024, is 2024-01-01T00:00:00Z.
     last_updated_date_time: Optional[datetime.datetime] = None
     # The OdataType property
     odata_type: Optional[str] = None
-    # Type of migration task. Only Users are supported at this time.
+    # Type of migration task. Currently, only Users is supported.
     task_type: Optional[str] = None
     
     @staticmethod

@@ -14,7 +14,7 @@ from .integrated_application_metadata import IntegratedApplicationMetadata
 class ProtectedApplicationMetadata(IntegratedApplicationMetadata, Parsable):
     # The OdataType property
     odata_type: Optional[str] = "#microsoft.graph.protectedApplicationMetadata"
-    # The location of the application being protected. For Agent-to-Tool (A2T) scenarios, this represents the tool receiving the content. Required.
+    # The location that identifies the protected application. For agent evaluation, use policyLocationAgent. Optional.
     application_location: Optional[PolicyLocation] = None
     
     @staticmethod

@@ -33,11 +33,13 @@ class EntitlementsDataCollectionInfo(AdditionalDataHolder, BackedModel, Parsable
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.entitlementsDataCollection".casefold():
+        if not mapping_value:
+            return EntitlementsDataCollectionInfo()
+        if mapping_value.casefold() == "#microsoft.graph.entitlementsDataCollection".casefold():
             from .entitlements_data_collection import EntitlementsDataCollection
 
             return EntitlementsDataCollection()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.noEntitlementsDataCollection".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.noEntitlementsDataCollection".casefold():
             from .no_entitlements_data_collection import NoEntitlementsDataCollection
 
             return NoEntitlementsDataCollection()

@@ -44,31 +44,33 @@ class DeviceManagementConfigurationSettingValue(AdditionalDataHolder, BackedMode
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue".casefold():
+        if not mapping_value:
+            return DeviceManagementConfigurationSettingValue()
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue".casefold():
             from .device_management_configuration_choice_setting_value import DeviceManagementConfigurationChoiceSettingValue
 
             return DeviceManagementConfigurationChoiceSettingValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingValue".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationGroupSettingValue".casefold():
             from .device_management_configuration_group_setting_value import DeviceManagementConfigurationGroupSettingValue
 
             return DeviceManagementConfigurationGroupSettingValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIntegerSettingValue".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationIntegerSettingValue".casefold():
             from .device_management_configuration_integer_setting_value import DeviceManagementConfigurationIntegerSettingValue
 
             return DeviceManagementConfigurationIntegerSettingValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationReferenceSettingValue".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationReferenceSettingValue".casefold():
             from .device_management_configuration_reference_setting_value import DeviceManagementConfigurationReferenceSettingValue
 
             return DeviceManagementConfigurationReferenceSettingValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSecretSettingValue".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSecretSettingValue".casefold():
             from .device_management_configuration_secret_setting_value import DeviceManagementConfigurationSecretSettingValue
 
             return DeviceManagementConfigurationSecretSettingValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingValue".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationSimpleSettingValue".casefold():
             from .device_management_configuration_simple_setting_value import DeviceManagementConfigurationSimpleSettingValue
 
             return DeviceManagementConfigurationSimpleSettingValue()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationStringSettingValue".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.deviceManagementConfigurationStringSettingValue".casefold():
             from .device_management_configuration_string_setting_value import DeviceManagementConfigurationStringSettingValue
 
             return DeviceManagementConfigurationStringSettingValue()

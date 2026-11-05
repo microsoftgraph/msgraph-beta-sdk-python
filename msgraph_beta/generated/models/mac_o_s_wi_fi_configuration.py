@@ -59,7 +59,9 @@ class MacOSWiFiConfiguration(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSEnterpriseWiFiConfiguration".casefold():
+        if not mapping_value:
+            return MacOSWiFiConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.macOSEnterpriseWiFiConfiguration".casefold():
             from .mac_o_s_enterprise_wi_fi_configuration import MacOSEnterpriseWiFiConfiguration
 
             return MacOSEnterpriseWiFiConfiguration()

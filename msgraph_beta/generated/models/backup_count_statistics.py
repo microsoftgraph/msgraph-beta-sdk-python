@@ -29,7 +29,7 @@ class BackupCountStatistics(AdditionalDataHolder, BackedModel, Parsable):
     removed: Optional[int] = None
     # The count of artifacts in the specified entity. The currently supported entity is a backup policy.
     total: Optional[int] = None
-    # The count of artifacts that are no longer actively protected. These artifacts have historical restore points, but no new backups are being taken.
+    # The count of artifacts that are no longer actively protected. These artifacts have historical restore points, but no new backups are taken.
     unprotected_completed: Optional[int] = None
     # The count of artifacts for which unprotection was attempted but didn't complete. These artifacts are typically in the protected state.
     unprotected_failed: Optional[int] = None

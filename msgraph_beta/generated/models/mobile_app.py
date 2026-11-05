@@ -123,171 +123,173 @@ class MobileApp(Entity, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidAospReferencedApp".casefold():
+        if not mapping_value:
+            return MobileApp()
+        if mapping_value.casefold() == "#microsoft.graph.androidAospReferencedApp".casefold():
             from .android_aosp_referenced_app import AndroidAospReferencedApp
 
             return AndroidAospReferencedApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidForWorkApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidForWorkApp".casefold():
             from .android_for_work_app import AndroidForWorkApp
 
             return AndroidForWorkApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidLobApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidLobApp".casefold():
             from .android_lob_app import AndroidLobApp
 
             return AndroidLobApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidManagedStoreApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidManagedStoreApp".casefold():
             from .android_managed_store_app import AndroidManagedStoreApp
 
             return AndroidManagedStoreApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidManagedStoreWebApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidManagedStoreWebApp".casefold():
             from .android_managed_store_web_app import AndroidManagedStoreWebApp
 
             return AndroidManagedStoreWebApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidStoreApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidStoreApp".casefold():
             from .android_store_app import AndroidStoreApp
 
             return AndroidStoreApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosiPadOSWebClip".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosiPadOSWebClip".casefold():
             from .iosi_pad_o_s_web_clip import IosiPadOSWebClip
 
             return IosiPadOSWebClip()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosLobApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosLobApp".casefold():
             from .ios_lob_app import IosLobApp
 
             return IosLobApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosStoreApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosStoreApp".casefold():
             from .ios_store_app import IosStoreApp
 
             return IosStoreApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.iosVppApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.iosVppApp".casefold():
             from .ios_vpp_app import IosVppApp
 
             return IosVppApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSDmgApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSDmgApp".casefold():
             from .mac_o_s_dmg_app import MacOSDmgApp
 
             return MacOSDmgApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSLobApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSLobApp".casefold():
             from .mac_o_s_lob_app import MacOSLobApp
 
             return MacOSLobApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSMicrosoftDefenderApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSMicrosoftDefenderApp".casefold():
             from .mac_o_s_microsoft_defender_app import MacOSMicrosoftDefenderApp
 
             return MacOSMicrosoftDefenderApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSMicrosoftEdgeApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSMicrosoftEdgeApp".casefold():
             from .mac_o_s_microsoft_edge_app import MacOSMicrosoftEdgeApp
 
             return MacOSMicrosoftEdgeApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSOfficeSuiteApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSOfficeSuiteApp".casefold():
             from .mac_o_s_office_suite_app import MacOSOfficeSuiteApp
 
             return MacOSOfficeSuiteApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSPkgApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSPkgApp".casefold():
             from .mac_o_s_pkg_app import MacOSPkgApp
 
             return MacOSPkgApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOsVppApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOsVppApp".casefold():
             from .mac_os_vpp_app import MacOsVppApp
 
             return MacOsVppApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.macOSWebClip".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.macOSWebClip".casefold():
             from .mac_o_s_web_clip import MacOSWebClip
 
             return MacOSWebClip()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedAndroidLobApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.managedAndroidLobApp".casefold():
             from .managed_android_lob_app import ManagedAndroidLobApp
 
             return ManagedAndroidLobApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedAndroidStoreApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.managedAndroidStoreApp".casefold():
             from .managed_android_store_app import ManagedAndroidStoreApp
 
             return ManagedAndroidStoreApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.managedApp".casefold():
             from .managed_app import ManagedApp
 
             return ManagedApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedIOSLobApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.managedIOSLobApp".casefold():
             from .managed_i_o_s_lob_app import ManagedIOSLobApp
 
             return ManagedIOSLobApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedIOSStoreApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.managedIOSStoreApp".casefold():
             from .managed_i_o_s_store_app import ManagedIOSStoreApp
 
             return ManagedIOSStoreApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.managedMobileLobApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.managedMobileLobApp".casefold():
             from .managed_mobile_lob_app import ManagedMobileLobApp
 
             return ManagedMobileLobApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.microsoftStoreForBusinessApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.microsoftStoreForBusinessApp".casefold():
             from .microsoft_store_for_business_app import MicrosoftStoreForBusinessApp
 
             return MicrosoftStoreForBusinessApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.mobileLobApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.mobileLobApp".casefold():
             from .mobile_lob_app import MobileLobApp
 
             return MobileLobApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.officeSuiteApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.officeSuiteApp".casefold():
             from .office_suite_app import OfficeSuiteApp
 
             return OfficeSuiteApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.webApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.webApp".casefold():
             from .web_app import WebApp
 
             return WebApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32CatalogApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.win32CatalogApp".casefold():
             from .win32_catalog_app import Win32CatalogApp
 
             return Win32CatalogApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.win32LobApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.win32LobApp".casefold():
             from .win32_lob_app import Win32LobApp
 
             return Win32LobApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsAppX".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsAppX".casefold():
             from .windows_app_x import WindowsAppX
 
             return WindowsAppX()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsAutoUpdateCatalogApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsAutoUpdateCatalogApp".casefold():
             from .windows_auto_update_catalog_app import WindowsAutoUpdateCatalogApp
 
             return WindowsAutoUpdateCatalogApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsMicrosoftEdgeApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsMicrosoftEdgeApp".casefold():
             from .windows_microsoft_edge_app import WindowsMicrosoftEdgeApp
 
             return WindowsMicrosoftEdgeApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsMobileMSI".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsMobileMSI".casefold():
             from .windows_mobile_m_s_i import WindowsMobileMSI
 
             return WindowsMobileMSI()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhone81AppX".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsPhone81AppX".casefold():
             from .windows_phone81_app_x import WindowsPhone81AppX
 
             return WindowsPhone81AppX()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhone81AppXBundle".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsPhone81AppXBundle".casefold():
             from .windows_phone81_app_x_bundle import WindowsPhone81AppXBundle
 
             return WindowsPhone81AppXBundle()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhone81StoreApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsPhone81StoreApp".casefold():
             from .windows_phone81_store_app import WindowsPhone81StoreApp
 
             return WindowsPhone81StoreApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsPhoneXAP".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsPhoneXAP".casefold():
             from .windows_phone_x_a_p import WindowsPhoneXAP
 
             return WindowsPhoneXAP()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsStoreApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsStoreApp".casefold():
             from .windows_store_app import WindowsStoreApp
 
             return WindowsStoreApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsUniversalAppX".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsUniversalAppX".casefold():
             from .windows_universal_app_x import WindowsUniversalAppX
 
             return WindowsUniversalAppX()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.windowsWebApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.windowsWebApp".casefold():
             from .windows_web_app import WindowsWebApp
 
             return WindowsWebApp()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.winGetApp".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.winGetApp".casefold():
             from .win_get_app import WinGetApp
 
             return WinGetApp()

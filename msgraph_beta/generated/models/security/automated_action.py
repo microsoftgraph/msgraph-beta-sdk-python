@@ -38,31 +38,33 @@ class AutomatedAction(AdditionalDataHolder, BackedModel, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.accountObjectIdAction".casefold():
+        if not mapping_value:
+            return AutomatedAction()
+        if mapping_value.casefold() == "#microsoft.graph.security.accountObjectIdAction".casefold():
             from .account_object_id_action import AccountObjectIdAction
 
             return AccountObjectIdAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.accountSidAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.accountSidAction".casefold():
             from .account_sid_action import AccountSidAction
 
             return AccountSidAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.deviceAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.deviceAction".casefold():
             from .device_action import DeviceAction
 
             return DeviceAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.emailAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.emailAction".casefold():
             from .email_action import EmailAction
 
             return EmailAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.fileAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.fileAction".casefold():
             from .file_action import FileAction
 
             return FileAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.isolateDeviceAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.isolateDeviceAction".casefold():
             from .isolate_device_action import IsolateDeviceAction
 
             return IsolateDeviceAction()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.security.stopAndQuarantineFileAction".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.security.stopAndQuarantineFileAction".casefold():
             from .stop_and_quarantine_file_action import StopAndQuarantineFileAction
 
             return StopAndQuarantineFileAction()

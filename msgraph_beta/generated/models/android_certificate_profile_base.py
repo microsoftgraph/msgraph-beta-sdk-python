@@ -54,19 +54,21 @@ class AndroidCertificateProfileBase(DeviceConfiguration, Parsable):
             mapping_value = child_node.get_str_value() if child_node else None
         except AttributeError:
             mapping_value = None
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidForWorkImportedPFXCertificateProfile".casefold():
+        if not mapping_value:
+            return AndroidCertificateProfileBase()
+        if mapping_value.casefold() == "#microsoft.graph.androidForWorkImportedPFXCertificateProfile".casefold():
             from .android_for_work_imported_p_f_x_certificate_profile import AndroidForWorkImportedPFXCertificateProfile
 
             return AndroidForWorkImportedPFXCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidImportedPFXCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidImportedPFXCertificateProfile".casefold():
             from .android_imported_p_f_x_certificate_profile import AndroidImportedPFXCertificateProfile
 
             return AndroidImportedPFXCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidPkcsCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidPkcsCertificateProfile".casefold():
             from .android_pkcs_certificate_profile import AndroidPkcsCertificateProfile
 
             return AndroidPkcsCertificateProfile()
-        if mapping_value and mapping_value.casefold() == "#microsoft.graph.androidScepCertificateProfile".casefold():
+        if mapping_value.casefold() == "#microsoft.graph.androidScepCertificateProfile".casefold():
             from .android_scep_certificate_profile import AndroidScepCertificateProfile
 
             return AndroidScepCertificateProfile()

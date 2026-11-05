@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from .activity_log_base import ActivityLogBase
     from .destination_type import DestinationType
     from .restore_artifact_details import RestoreArtifactDetails
-    from .restore_point_tags import RestorePointTags
+    from .restore_job_type import RestoreJobType
     from .restore_session_status import RestoreSessionStatus
 
 from .activity_log_base import ActivityLogBase
@@ -24,12 +24,12 @@ class RestoreTaskActivityLog(ActivityLogBase, Parsable):
     restore_artifact_details: Optional[RestoreArtifactDetails] = None
     # The date and time when the restore task was completed.
     restore_completion_date_time: Optional[datetime.datetime] = None
+    # Indicates whether the restore job is standard, bulk, or granular. The possible values are: standard, bulk, unknownFutureValue, granular. Use the Prefer: include-unknown-enum-members request header to get the following value from this evolvable enum: granular.
+    restore_job_type: Optional[RestoreJobType] = None
     # The unique identifier of the restore session associated with this activity log.
     restore_session_id: Optional[str] = None
     # The restoreSessionStatus property
     restore_session_status: Optional[RestoreSessionStatus] = None
-    # The tags property
-    tags: Optional[RestorePointTags] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: ParseNode) -> RestoreTaskActivityLog:
@@ -50,22 +50,22 @@ class RestoreTaskActivityLog(ActivityLogBase, Parsable):
         from .activity_log_base import ActivityLogBase
         from .destination_type import DestinationType
         from .restore_artifact_details import RestoreArtifactDetails
-        from .restore_point_tags import RestorePointTags
+        from .restore_job_type import RestoreJobType
         from .restore_session_status import RestoreSessionStatus
 
         from .activity_log_base import ActivityLogBase
         from .destination_type import DestinationType
         from .restore_artifact_details import RestoreArtifactDetails
-        from .restore_point_tags import RestorePointTags
+        from .restore_job_type import RestoreJobType
         from .restore_session_status import RestoreSessionStatus
 
         fields: dict[str, Callable[[Any], None]] = {
             "destinationType": lambda n : setattr(self, 'destination_type', n.get_enum_value(DestinationType)),
             "restoreArtifactDetails": lambda n : setattr(self, 'restore_artifact_details', n.get_object_value(RestoreArtifactDetails)),
             "restoreCompletionDateTime": lambda n : setattr(self, 'restore_completion_date_time', n.get_datetime_value()),
+            "restoreJobType": lambda n : setattr(self, 'restore_job_type', n.get_enum_value(RestoreJobType)),
             "restoreSessionId": lambda n : setattr(self, 'restore_session_id', n.get_str_value()),
             "restoreSessionStatus": lambda n : setattr(self, 'restore_session_status', n.get_enum_value(RestoreSessionStatus)),
-            "tags": lambda n : setattr(self, 'tags', n.get_collection_of_enum_values(RestorePointTags)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -83,8 +83,8 @@ class RestoreTaskActivityLog(ActivityLogBase, Parsable):
         writer.write_enum_value("destinationType", self.destination_type)
         writer.write_object_value("restoreArtifactDetails", self.restore_artifact_details)
         writer.write_datetime_value("restoreCompletionDateTime", self.restore_completion_date_time)
+        writer.write_enum_value("restoreJobType", self.restore_job_type)
         writer.write_str_value("restoreSessionId", self.restore_session_id)
         writer.write_enum_value("restoreSessionStatus", self.restore_session_status)
-        writer.write_enum_value("tags", self.tags)
     
 
