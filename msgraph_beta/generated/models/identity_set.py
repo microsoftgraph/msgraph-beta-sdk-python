@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .custom_emoji_from_identity_set import CustomEmojiFromIdentitySet
     from .engagement_identity_set import EngagementIdentitySet
     from .identity import Identity
+    from .investigation_identity_set import InvestigationIdentitySet
     from .share_point_identity_set import SharePointIdentitySet
 
 @dataclass
@@ -81,6 +82,10 @@ class IdentitySet(AdditionalDataHolder, BackedModel, Parsable):
             from .engagement_identity_set import EngagementIdentitySet
 
             return EngagementIdentitySet()
+        if mapping_value.casefold() == "#microsoft.graph.investigationIdentitySet".casefold():
+            from .investigation_identity_set import InvestigationIdentitySet
+
+            return InvestigationIdentitySet()
         if mapping_value.casefold() == "#microsoft.graph.sharePointIdentitySet".casefold():
             from .share_point_identity_set import SharePointIdentitySet
 
@@ -101,6 +106,7 @@ class IdentitySet(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_emoji_from_identity_set import CustomEmojiFromIdentitySet
         from .engagement_identity_set import EngagementIdentitySet
         from .identity import Identity
+        from .investigation_identity_set import InvestigationIdentitySet
         from .share_point_identity_set import SharePointIdentitySet
 
         from .ai_interaction_mentioned_identity_set import AiInteractionMentionedIdentitySet
@@ -112,6 +118,7 @@ class IdentitySet(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_emoji_from_identity_set import CustomEmojiFromIdentitySet
         from .engagement_identity_set import EngagementIdentitySet
         from .identity import Identity
+        from .investigation_identity_set import InvestigationIdentitySet
         from .share_point_identity_set import SharePointIdentitySet
 
         fields: dict[str, Callable[[Any], None]] = {

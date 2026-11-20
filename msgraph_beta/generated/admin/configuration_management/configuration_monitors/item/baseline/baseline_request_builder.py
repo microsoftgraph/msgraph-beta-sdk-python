@@ -32,7 +32,7 @@ class BaselineRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[BaselineRequestBuilderGetQueryParameters]] = None) -> Optional[ConfigurationBaseline]:
         """
-        Read the properties and relationships of a configurationBaseline object that is attached to a specific monitor.
+        Get the configurationBaseline attached to a monitor or a configurationTemplateVersion.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConfigurationBaseline]
         Find more info here: https://learn.microsoft.com/graph/api/configurationbaseline-get?view=graph-rest-beta
@@ -53,7 +53,7 @@ class BaselineRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[BaselineRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read the properties and relationships of a configurationBaseline object that is attached to a specific monitor.
+        Get the configurationBaseline attached to a monitor or a configurationTemplateVersion.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -75,7 +75,7 @@ class BaselineRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BaselineRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of a configurationBaseline object that is attached to a specific monitor.
+        Get the configurationBaseline attached to a monitor or a configurationTemplateVersion.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

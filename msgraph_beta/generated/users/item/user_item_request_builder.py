@@ -75,6 +75,7 @@ if TYPE_CHECKING:
     from .get_member_groups.get_member_groups_request_builder import GetMemberGroupsRequestBuilder
     from .get_member_objects.get_member_objects_request_builder import GetMemberObjectsRequestBuilder
     from .get_password_single_sign_on_credentials.get_password_single_sign_on_credentials_request_builder import GetPasswordSingleSignOnCredentialsRequestBuilder
+    from .identity_verification_status.identity_verification_status_request_builder import IdentityVerificationStatusRequestBuilder
     from .inference_classification.inference_classification_request_builder import InferenceClassificationRequestBuilder
     from .information_protection.information_protection_request_builder import InformationProtectionRequestBuilder
     from .insights.insights_request_builder import InsightsRequestBuilder
@@ -841,6 +842,15 @@ class UserItemRequestBuilder(BaseRequestBuilder):
         from .get_password_single_sign_on_credentials.get_password_single_sign_on_credentials_request_builder import GetPasswordSingleSignOnCredentialsRequestBuilder
 
         return GetPasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def identity_verification_status(self) -> IdentityVerificationStatusRequestBuilder:
+        """
+        Provides operations to manage the identityVerificationStatus property of the microsoft.graph.user entity.
+        """
+        from .identity_verification_status.identity_verification_status_request_builder import IdentityVerificationStatusRequestBuilder
+
+        return IdentityVerificationStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def inference_classification(self) -> InferenceClassificationRequestBuilder:

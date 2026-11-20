@@ -32,7 +32,7 @@ class TaskItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[TaskItemRequestBuilderGetQueryParameters]] = None) -> Optional[Task]:
         """
-        Read-only. Nullable. The collection of Planner Graph V4 tasks assigned to the user.
+        Read-only. Nullable. The collection of tasks in the Planner Unified plans Graph API assigned to the user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Task]
         """
@@ -52,7 +52,7 @@ class TaskItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[TaskItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read-only. Nullable. The collection of Planner Graph V4 tasks assigned to the user.
+        Read-only. Nullable. The collection of tasks in the Planner Unified plans Graph API assigned to the user.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class TaskItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class TaskItemRequestBuilderGetQueryParameters():
         """
-        Read-only. Nullable. The collection of Planner Graph V4 tasks assigned to the user.
+        Read-only. Nullable. The collection of tasks in the Planner Unified plans Graph API assigned to the user.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

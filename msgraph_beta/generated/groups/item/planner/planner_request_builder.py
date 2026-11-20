@@ -34,10 +34,9 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a plannerGroup object.
+        Delete navigation property planner for groups
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
-        Find more info here: https://learn.microsoft.com/graph/api/group-delete-planner?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -74,11 +73,10 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: PlannerGroup, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[PlannerGroup]:
         """
-        Update the properties of a plannerGroup object.
+        Update the navigation property planner in groups
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlannerGroup]
-        Find more info here: https://learn.microsoft.com/graph/api/plannergroup-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -98,7 +96,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a plannerGroup object.
+        Delete navigation property planner for groups
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +118,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: PlannerGroup, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a plannerGroup object.
+        Update the navigation property planner in groups
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

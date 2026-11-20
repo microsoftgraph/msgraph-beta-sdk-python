@@ -48,7 +48,7 @@ class Plans_v2RequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[Plans_v2RequestBuilderGetQueryParameters]] = None) -> Optional[PlanCollectionResponse]:
         """
-        Read-only. Nullable. The collection of Planner Graph V4 plans owned by the Teams channel. Currently, only shared channels are supported.
+        Read-only. Nullable. The collection of plans in the Planner Unified plans Graph API owned by the Teams channel. Currently, only shared channels are supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlanCollectionResponse]
         """
@@ -68,7 +68,7 @@ class Plans_v2RequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[Plans_v2RequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read-only. Nullable. The collection of Planner Graph V4 plans owned by the Teams channel. Currently, only shared channels are supported.
+        Read-only. Nullable. The collection of plans in the Planner Unified plans Graph API owned by the Teams channel. Currently, only shared channels are supported.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +99,7 @@ class Plans_v2RequestBuilder(BaseRequestBuilder):
     @dataclass
     class Plans_v2RequestBuilderGetQueryParameters():
         """
-        Read-only. Nullable. The collection of Planner Graph V4 plans owned by the Teams channel. Currently, only shared channels are supported.
+        Read-only. Nullable. The collection of plans in the Planner Unified plans Graph API owned by the Teams channel. Currently, only shared channels are supported.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

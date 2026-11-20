@@ -52,7 +52,7 @@ class Tasks_v2RequestBuilder(BaseRequestBuilder):
         Get a list of the task objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TaskCollectionResponse]
-        Find more info here: https://learn.microsoft.com/graph/api/plan-list-tasks?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/planner-list-tasks_v2?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -74,7 +74,7 @@ class Tasks_v2RequestBuilder(BaseRequestBuilder):
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Task]
-        Find more info here: https://learn.microsoft.com/graph/api/plan-post-tasks?view=graph-rest-beta
+        Find more info here: https://learn.microsoft.com/graph/api/planner-post-tasks_v2?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")

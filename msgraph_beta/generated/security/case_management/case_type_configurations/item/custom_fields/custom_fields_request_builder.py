@@ -48,7 +48,7 @@ class CustomFieldsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[CustomFieldsRequestBuilderGetQueryParameters]] = None) -> Optional[CustomFieldDefinitionCollectionResponse]:
         """
-        The contained custom-field definitions that make up the blank-form schema for this case type. Read-only. Supports $count, $expand, $filter, $orderby, $select, $skip, and $top.
+        The contained custom-field definitions that make up the blank-form schema for this case type. Read-only. Supports $count, $expand, $filter, $orderby, $select, and $top.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[CustomFieldDefinitionCollectionResponse]
         """
@@ -68,7 +68,7 @@ class CustomFieldsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[CustomFieldsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The contained custom-field definitions that make up the blank-form schema for this case type. Read-only. Supports $count, $expand, $filter, $orderby, $select, $skip, and $top.
+        The contained custom-field definitions that make up the blank-form schema for this case type. Read-only. Supports $count, $expand, $filter, $orderby, $select, and $top.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -99,7 +99,7 @@ class CustomFieldsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class CustomFieldsRequestBuilderGetQueryParameters():
         """
-        The contained custom-field definitions that make up the blank-form schema for this case type. Read-only. Supports $count, $expand, $filter, $orderby, $select, $skip, and $top.
+        The contained custom-field definitions that make up the blank-form schema for this case type. Read-only. Supports $count, $expand, $filter, $orderby, $select, and $top.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

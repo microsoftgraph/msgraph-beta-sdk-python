@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .evaluate.evaluate_request_builder import EvaluateRequestBuilder
     from .named_locations.named_locations_request_builder import NamedLocationsRequestBuilder
     from .policies.policies_request_builder import PoliciesRequestBuilder
+    from .settings.settings_request_builder import SettingsRequestBuilder
     from .templates.templates_request_builder import TemplatesRequestBuilder
 
 class ConditionalAccessRequestBuilder(BaseRequestBuilder):
@@ -91,6 +92,15 @@ class ConditionalAccessRequestBuilder(BaseRequestBuilder):
         from .policies.policies_request_builder import PoliciesRequestBuilder
 
         return PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def settings(self) -> SettingsRequestBuilder:
+        """
+        Provides operations to manage the settings property of the microsoft.graph.conditionalAccessRoot entity.
+        """
+        from .settings.settings_request_builder import SettingsRequestBuilder
+
+        return SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def templates(self) -> TemplatesRequestBuilder:

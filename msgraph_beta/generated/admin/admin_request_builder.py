@@ -27,6 +27,7 @@ if TYPE_CHECKING:
     from .microsoft365_apps.microsoft365_apps_request_builder import Microsoft365AppsRequestBuilder
     from .people.people_request_builder import PeopleRequestBuilder
     from .report_settings.report_settings_request_builder import ReportSettingsRequestBuilder
+    from .resource_policy.resource_policy_request_builder import ResourcePolicyRequestBuilder
     from .service_announcement.service_announcement_request_builder import ServiceAnnouncementRequestBuilder
     from .sharepoint.sharepoint_request_builder import SharepointRequestBuilder
     from .teams.teams_request_builder import TeamsRequestBuilder
@@ -223,6 +224,15 @@ class AdminRequestBuilder(BaseRequestBuilder):
         from .report_settings.report_settings_request_builder import ReportSettingsRequestBuilder
 
         return ReportSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def resource_policy(self) -> ResourcePolicyRequestBuilder:
+        """
+        Provides operations to manage the resourcePolicy property of the microsoft.graph.admin entity.
+        """
+        from .resource_policy.resource_policy_request_builder import ResourcePolicyRequestBuilder
+
+        return ResourcePolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def service_announcement(self) -> ServiceAnnouncementRequestBuilder:

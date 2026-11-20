@@ -73,7 +73,7 @@ class ConfigurationMonitorItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: ConfigurationMonitor, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ConfigurationMonitor]:
         """
-        Update the properties of a configurationMonitor object, including the monitor name, description, and baseline. You must provide the full monitor body when you call this API.
+        Update the properties of a configurationMonitor, including its name, description, baseline, mode, status, or referenced version of the same template. When updating an inline baseline, provide the full monitor body as described in the request body section.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConfigurationMonitor]
@@ -119,7 +119,7 @@ class ConfigurationMonitorItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: ConfigurationMonitor, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a configurationMonitor object, including the monitor name, description, and baseline. You must provide the full monitor body when you call this API.
+        Update the properties of a configurationMonitor, including its name, description, baseline, mode, status, or referenced version of the same template. When updating an inline baseline, provide the full monitor body as described in the request body section.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

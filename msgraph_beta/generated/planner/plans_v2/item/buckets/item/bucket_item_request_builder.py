@@ -32,9 +32,10 @@ class BucketItemRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete navigation property buckets for planner
+        Delete a bucket object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
+        Find more info here: https://learn.microsoft.com/graph/api/plan-delete-buckets?view=graph-rest-beta
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,9 +51,10 @@ class BucketItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[BucketItemRequestBuilderGetQueryParameters]] = None) -> Optional[Bucket]:
         """
-        The collection of buckets in the plan. Read-only. Nullable.
+        Read the properties and relationships of bucket object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Bucket]
+        Find more info here: https://learn.microsoft.com/graph/api/bucket-get?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -70,10 +72,11 @@ class BucketItemRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Bucket, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Bucket]:
         """
-        Update the navigation property buckets in planner
+        Update the properties of a bucket object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Bucket]
+        Find more info here: https://learn.microsoft.com/graph/api/bucket-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -93,7 +96,7 @@ class BucketItemRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete navigation property buckets for planner
+        Delete a bucket object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +107,7 @@ class BucketItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[BucketItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The collection of buckets in the plan. Read-only. Nullable.
+        Read the properties and relationships of bucket object.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -115,7 +118,7 @@ class BucketItemRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Bucket, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the navigation property buckets in planner
+        Update the properties of a bucket object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -148,7 +151,7 @@ class BucketItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BucketItemRequestBuilderGetQueryParameters():
         """
-        The collection of buckets in the plan. Read-only. Nullable.
+        Read the properties and relationships of bucket object.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

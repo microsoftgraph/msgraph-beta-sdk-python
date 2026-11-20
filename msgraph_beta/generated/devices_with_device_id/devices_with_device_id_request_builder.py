@@ -35,7 +35,7 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
     
     async def delete(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> None:
         """
-        Delete a registered device.
+        Delete a registered device. When deleted, the device is moved to the deleted items container and is available for recovery for up to 30 days. After 30 days, the device is permanently deleted.- To learn more, see deletedItems.- For more information about soft deletion behavior for devices, see Device soft delete overview (preview).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: None
         Find more info here: https://learn.microsoft.com/graph/api/device-delete?view=graph-rest-beta
@@ -99,7 +99,7 @@ class DevicesWithDeviceIdRequestBuilder(BaseRequestBuilder):
     
     def to_delete_request_information(self,request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Delete a registered device.
+        Delete a registered device. When deleted, the device is moved to the deleted items container and is available for recovery for up to 30 days. After 30 days, the device is permanently deleted.- To learn more, see deletedItems.- For more information about soft deletion behavior for devices, see Device soft delete overview (preview).
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
