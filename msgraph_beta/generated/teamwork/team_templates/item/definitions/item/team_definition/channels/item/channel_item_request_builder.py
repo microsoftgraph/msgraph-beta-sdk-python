@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     from .shared_with_teams.shared_with_teams_request_builder import SharedWithTeamsRequestBuilder
     from .start_migration.start_migration_request_builder import StartMigrationRequestBuilder
     from .tabs.tabs_request_builder import TabsRequestBuilder
+    from .tags.tags_request_builder import TagsRequestBuilder
     from .unarchive.unarchive_request_builder import UnarchiveRequestBuilder
 
 class ChannelItemRequestBuilder(BaseRequestBuilder):
@@ -288,6 +289,15 @@ class ChannelItemRequestBuilder(BaseRequestBuilder):
         from .tabs.tabs_request_builder import TabsRequestBuilder
 
         return TabsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def tags(self) -> TagsRequestBuilder:
+        """
+        Provides operations to manage the tags property of the microsoft.graph.channel entity.
+        """
+        from .tags.tags_request_builder import TagsRequestBuilder
+
+        return TagsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def unarchive(self) -> UnarchiveRequestBuilder:

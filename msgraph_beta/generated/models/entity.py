@@ -59,6 +59,7 @@ if TYPE_CHECKING:
     from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
     from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
     from .agent import Agent
+    from .agentic_security_root import AgenticSecurityRoot
     from .agent_card_manifest import AgentCardManifest
     from .agent_collection import AgentCollection
     from .agent_communication_configuration import AgentCommunicationConfiguration
@@ -68,6 +69,7 @@ if TYPE_CHECKING:
     from .agent_instance import AgentInstance
     from .agent_registration import AgentRegistration
     from .agent_risk_detection import AgentRiskDetection
+    from .agent_run import AgentRun
     from .agent_user import AgentUser
     from .agreement import Agreement
     from .agreement_acceptance import AgreementAcceptance
@@ -392,6 +394,7 @@ if TYPE_CHECKING:
     from .cloud_pc_bulk_resize import CloudPcBulkResize
     from .cloud_pc_bulk_restart import CloudPcBulkRestart
     from .cloud_pc_bulk_restore import CloudPcBulkRestore
+    from .cloud_pc_bulk_set_device_name import CloudPcBulkSetDeviceName
     from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
     from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
     from .cloud_pc_cloud_app import CloudPcCloudApp
@@ -429,6 +432,7 @@ if TYPE_CHECKING:
     from .company_subscription import CompanySubscription
     from .compliance_management_partner import ComplianceManagementPartner
     from .conditional_access_root import ConditionalAccessRoot
+    from .conditional_access_settings import ConditionalAccessSettings
     from .conditional_access_template import ConditionalAccessTemplate
     from .configuration_baseline import ConfigurationBaseline
     from .configuration_drift import ConfigurationDrift
@@ -446,6 +450,7 @@ if TYPE_CHECKING:
     from .contact_merge_suggestions import ContactMergeSuggestions
     from .content_activity import ContentActivity
     from .content_link import ContentLink
+    from .content_management_root import ContentManagementRoot
     from .content_model import ContentModel
     from .content_sharing_session import ContentSharingSession
     from .content_type import ContentType
@@ -473,11 +478,16 @@ if TYPE_CHECKING:
     from .correlated_identity import CorrelatedIdentity
     from .cors_configuration_v2 import CorsConfiguration_v2
     from .cost_management_alert_setting import CostManagementAlertSetting
+    from .cost_management_funding_usage_record import CostManagementFundingUsageRecord
     from .cost_management_root import CostManagementRoot
+    from .cost_management_usage_report_root import CostManagementUsageReportRoot
     from .cost_management_user_balance import CostManagementUserBalance
+    from .cost_management_user_usage_service_detail import CostManagementUserUsageServiceDetail
+    from .cost_management_user_usage_session_detail import CostManagementUserUsageSessionDetail
     from .credential_usage_summary import CredentialUsageSummary
     from .credential_user_registration_count import CredentialUserRegistrationCount
     from .credential_user_registration_details import CredentialUserRegistrationDetails
+    from .credit_request import CreditRequest
     from .cross_tenant_access_policy import CrossTenantAccessPolicy
     from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
     from .cross_tenant_calendar_availability_basic import CrossTenantCalendarAvailabilityBasic
@@ -701,6 +711,7 @@ if TYPE_CHECKING:
     from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
     from .drive_restore_artifact import DriveRestoreArtifact
     from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
+    from .dynamic_permissions_management_root import DynamicPermissionsManagementRoot
     from .dynamic_rule_activity_log import DynamicRuleActivityLog
     from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
     from .edge import Edge
@@ -987,6 +998,8 @@ if TYPE_CHECKING:
     from .identity_user_flow import IdentityUserFlow
     from .identity_user_flow_attribute import IdentityUserFlowAttribute
     from .identity_user_flow_attribute_assignment import IdentityUserFlowAttributeAssignment
+    from .identity_verification_event import IdentityVerificationEvent
+    from .identity_verification_status import IdentityVerificationStatus
     from .identity_verified_id_root import IdentityVerifiedIdRoot
     from .impacted_resource import ImpactedResource
     from .imported_apple_device_identity import ImportedAppleDeviceIdentity
@@ -1044,6 +1057,10 @@ if TYPE_CHECKING:
     from .intune_branding_profile_assignment import IntuneBrandingProfileAssignment
     from .invalid_license_alert_configuration import InvalidLicenseAlertConfiguration
     from .invalid_license_alert_incident import InvalidLicenseAlertIncident
+    from .investigation_input import InvestigationInput
+    from .investigation_message import InvestigationMessage
+    from .investigation_output import InvestigationOutput
+    from .investigation_session import InvestigationSession
     from .invitation import Invitation
     from .invite_participants_operation import InviteParticipantsOperation
     from .invoke_user_flow_listener import InvokeUserFlowListener
@@ -1544,6 +1561,7 @@ if TYPE_CHECKING:
     from .planner_user import PlannerUser
     from .plan_context_link import PlanContextLink
     from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
+    from .playbook_definition import PlaybookDefinition
     from .play_prompt_operation import PlayPromptOperation
     from .policy_base import PolicyBase
     from .policy_deletable_root import PolicyDeletableRoot
@@ -1657,6 +1675,10 @@ if TYPE_CHECKING:
     from .reseller_delegated_admin_relationship import ResellerDelegatedAdminRelationship
     from .resource_account_key_authentication_method import ResourceAccountKeyAuthenticationMethod
     from .resource_operation import ResourceOperation
+    from .resource_policy_configuration import ResourcePolicyConfiguration
+    from .resource_policy_deletable_root import ResourcePolicyDeletableRoot
+    from .resource_policy_evaluation_event import ResourcePolicyEvaluationEvent
+    from .resource_policy_root import ResourcePolicyRoot
     from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
     from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
     from .restore_artifact_base import RestoreArtifactBase
@@ -1752,6 +1774,7 @@ if TYPE_CHECKING:
     from .security.citation_template import CitationTemplate
     from .security.cloud_app_discovery_report import CloudAppDiscoveryReport
     from .security.collaboration_root import CollaborationRoot
+    from .security.content_management.content_management_repository import ContentManagementRepository
     from .security.data_discovery_report import DataDiscoveryReport
     from .security.data_discovery_root import DataDiscoveryRoot
     from .security.data_set import DataSet
@@ -2028,6 +2051,7 @@ if TYPE_CHECKING:
     from .teams_template import TeamsTemplate
     from .teamwork import Teamwork
     from .teamwork_bot import TeamworkBot
+    from .teamwork_channel_tag import TeamworkChannelTag
     from .teamwork_custom_emoji import TeamworkCustomEmoji
     from .teamwork_device import TeamworkDevice
     from .teamwork_device_activity import TeamworkDeviceActivity
@@ -2714,6 +2738,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .agent_communication_configuration import AgentCommunicationConfiguration
 
             return AgentCommunicationConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.agenticSecurityRoot".casefold():
+            from .agentic_security_root import AgenticSecurityRoot
+
+            return AgenticSecurityRoot()
         if mapping_value.casefold() == "#microsoft.graph.agentIdentity".casefold():
             from .agent_identity import AgentIdentity
 
@@ -2738,6 +2766,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .agent_risk_detection import AgentRiskDetection
 
             return AgentRiskDetection()
+        if mapping_value.casefold() == "#microsoft.graph.agentRun".casefold():
+            from .agent_run import AgentRun
+
+            return AgentRun()
         if mapping_value.casefold() == "#microsoft.graph.agentUser".casefold():
             from .agent_user import AgentUser
 
@@ -4046,6 +4078,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cloud_pc_bulk_restore import CloudPcBulkRestore
 
             return CloudPcBulkRestore()
+        if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkSetDeviceName".casefold():
+            from .cloud_pc_bulk_set_device_name import CloudPcBulkSetDeviceName
+
+            return CloudPcBulkSetDeviceName()
         if mapping_value.casefold() == "#microsoft.graph.cloudPcBulkSetReviewStatus".casefold():
             from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
 
@@ -4190,6 +4226,11 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .conditional_access_root import ConditionalAccessRoot
 
             return ConditionalAccessRoot()
+        if mapping_value.casefold() == "#microsoft.graph.conditionalAccessSettings".casefold():
+            from .conditional_access_settings import ConditionalAccessSettings
+            from .networkaccess.conditional_access_settings import ConditionalAccessSettings
+
+            return ConditionalAccessSettings()
         if mapping_value.casefold() == "#microsoft.graph.conditionalAccessTemplate".casefold():
             from .conditional_access_template import ConditionalAccessTemplate
 
@@ -4259,6 +4300,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .content_link import ContentLink
 
             return ContentLink()
+        if mapping_value.casefold() == "#microsoft.graph.contentManagementRoot".casefold():
+            from .content_management_root import ContentManagementRoot
+
+            return ContentManagementRoot()
         if mapping_value.casefold() == "#microsoft.graph.contentModel".casefold():
             from .content_model import ContentModel
 
@@ -4367,14 +4412,30 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .cost_management_alert_setting import CostManagementAlertSetting
 
             return CostManagementAlertSetting()
+        if mapping_value.casefold() == "#microsoft.graph.costManagementFundingUsageRecord".casefold():
+            from .cost_management_funding_usage_record import CostManagementFundingUsageRecord
+
+            return CostManagementFundingUsageRecord()
         if mapping_value.casefold() == "#microsoft.graph.costManagementRoot".casefold():
             from .cost_management_root import CostManagementRoot
 
             return CostManagementRoot()
+        if mapping_value.casefold() == "#microsoft.graph.costManagementUsageReportRoot".casefold():
+            from .cost_management_usage_report_root import CostManagementUsageReportRoot
+
+            return CostManagementUsageReportRoot()
         if mapping_value.casefold() == "#microsoft.graph.costManagementUserBalance".casefold():
             from .cost_management_user_balance import CostManagementUserBalance
 
             return CostManagementUserBalance()
+        if mapping_value.casefold() == "#microsoft.graph.costManagementUserUsageServiceDetail".casefold():
+            from .cost_management_user_usage_service_detail import CostManagementUserUsageServiceDetail
+
+            return CostManagementUserUsageServiceDetail()
+        if mapping_value.casefold() == "#microsoft.graph.costManagementUserUsageSessionDetail".casefold():
+            from .cost_management_user_usage_session_detail import CostManagementUserUsageSessionDetail
+
+            return CostManagementUserUsageSessionDetail()
         if mapping_value.casefold() == "#microsoft.graph.credentialUsageSummary".casefold():
             from .credential_usage_summary import CredentialUsageSummary
 
@@ -4387,6 +4448,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .credential_user_registration_details import CredentialUserRegistrationDetails
 
             return CredentialUserRegistrationDetails()
+        if mapping_value.casefold() == "#microsoft.graph.creditRequest".casefold():
+            from .credit_request import CreditRequest
+
+            return CreditRequest()
         if mapping_value.casefold() == "#microsoft.graph.crossTenantAccessPolicy".casefold():
             from .cross_tenant_access_policy import CrossTenantAccessPolicy
 
@@ -5281,6 +5346,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
 
             return DriveRestoreArtifactsBulkAdditionRequest()
+        if mapping_value.casefold() == "#microsoft.graph.dynamicPermissionsManagementRoot".casefold():
+            from .dynamic_permissions_management_root import DynamicPermissionsManagementRoot
+
+            return DynamicPermissionsManagementRoot()
         if mapping_value.casefold() == "#microsoft.graph.dynamicRuleActivityLog".casefold():
             from .dynamic_rule_activity_log import DynamicRuleActivityLog
 
@@ -6448,6 +6517,14 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .identity_user_flow_attribute_assignment import IdentityUserFlowAttributeAssignment
 
             return IdentityUserFlowAttributeAssignment()
+        if mapping_value.casefold() == "#microsoft.graph.identityVerificationEvent".casefold():
+            from .identity_verification_event import IdentityVerificationEvent
+
+            return IdentityVerificationEvent()
+        if mapping_value.casefold() == "#microsoft.graph.identityVerificationStatus".casefold():
+            from .identity_verification_status import IdentityVerificationStatus
+
+            return IdentityVerificationStatus()
         if mapping_value.casefold() == "#microsoft.graph.identityVerifiedIdRoot".casefold():
             from .identity_verified_id_root import IdentityVerifiedIdRoot
 
@@ -6677,6 +6754,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .invalid_license_alert_incident import InvalidLicenseAlertIncident
 
             return InvalidLicenseAlertIncident()
+        if mapping_value.casefold() == "#microsoft.graph.investigationInput".casefold():
+            from .investigation_input import InvestigationInput
+
+            return InvestigationInput()
+        if mapping_value.casefold() == "#microsoft.graph.investigationMessage".casefold():
+            from .investigation_message import InvestigationMessage
+
+            return InvestigationMessage()
+        if mapping_value.casefold() == "#microsoft.graph.investigationOutput".casefold():
+            from .investigation_output import InvestigationOutput
+
+            return InvestigationOutput()
+        if mapping_value.casefold() == "#microsoft.graph.investigationSession".casefold():
+            from .investigation_session import InvestigationSession
+
+            return InvestigationSession()
         if mapping_value.casefold() == "#microsoft.graph.invitation".casefold():
             from .invitation import Invitation
 
@@ -7793,6 +7886,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
 
             return ConditionalAccessPolicy()
         if mapping_value.casefold() == "#microsoft.graph.networkaccess.conditionalAccessSettings".casefold():
+            from .conditional_access_settings import ConditionalAccessSettings
             from .networkaccess.conditional_access_settings import ConditionalAccessSettings
 
             return ConditionalAccessSettings()
@@ -8689,6 +8783,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
 
             return PlatformCredentialAuthenticationMethod()
+        if mapping_value.casefold() == "#microsoft.graph.playbookDefinition".casefold():
+            from .playbook_definition import PlaybookDefinition
+
+            return PlaybookDefinition()
         if mapping_value.casefold() == "#microsoft.graph.playPromptOperation".casefold():
             from .play_prompt_operation import PlayPromptOperation
 
@@ -9143,6 +9241,22 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .resource_operation import ResourceOperation
 
             return ResourceOperation()
+        if mapping_value.casefold() == "#microsoft.graph.resourcePolicyConfiguration".casefold():
+            from .resource_policy_configuration import ResourcePolicyConfiguration
+
+            return ResourcePolicyConfiguration()
+        if mapping_value.casefold() == "#microsoft.graph.resourcePolicyDeletableRoot".casefold():
+            from .resource_policy_deletable_root import ResourcePolicyDeletableRoot
+
+            return ResourcePolicyDeletableRoot()
+        if mapping_value.casefold() == "#microsoft.graph.resourcePolicyEvaluationEvent".casefold():
+            from .resource_policy_evaluation_event import ResourcePolicyEvaluationEvent
+
+            return ResourcePolicyEvaluationEvent()
+        if mapping_value.casefold() == "#microsoft.graph.resourcePolicyRoot".casefold():
+            from .resource_policy_root import ResourcePolicyRoot
+
+            return ResourcePolicyRoot()
         if mapping_value.casefold() == "#microsoft.graph.resourceSpecificPermissionGrant".casefold():
             from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
 
@@ -9537,6 +9651,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .security.collaboration_root import CollaborationRoot
 
             return CollaborationRoot()
+        if mapping_value.casefold() == "#microsoft.graph.security.contentManagement.contentManagementRepository".casefold():
+            from .security.content_management.content_management_repository import ContentManagementRepository
+
+            return ContentManagementRepository()
         if mapping_value.casefold() == "#microsoft.graph.security.dataDiscoveryReport".casefold():
             from .security.data_discovery_report import DataDiscoveryReport
 
@@ -10669,6 +10787,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
             from .teamwork_bot import TeamworkBot
 
             return TeamworkBot()
+        if mapping_value.casefold() == "#microsoft.graph.teamworkChannelTag".casefold():
+            from .teamwork_channel_tag import TeamworkChannelTag
+
+            return TeamworkChannelTag()
         if mapping_value.casefold() == "#microsoft.graph.teamworkCustomEmoji".casefold():
             from .teamwork_custom_emoji import TeamworkCustomEmoji
 
@@ -12458,6 +12580,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
         from .agent import Agent
+        from .agentic_security_root import AgenticSecurityRoot
         from .agent_card_manifest import AgentCardManifest
         from .agent_collection import AgentCollection
         from .agent_communication_configuration import AgentCommunicationConfiguration
@@ -12467,6 +12590,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .agent_instance import AgentInstance
         from .agent_registration import AgentRegistration
         from .agent_risk_detection import AgentRiskDetection
+        from .agent_run import AgentRun
         from .agent_user import AgentUser
         from .agreement import Agreement
         from .agreement_acceptance import AgreementAcceptance
@@ -12791,6 +12915,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
         from .cloud_pc_bulk_restore import CloudPcBulkRestore
+        from .cloud_pc_bulk_set_device_name import CloudPcBulkSetDeviceName
         from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
         from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
         from .cloud_pc_cloud_app import CloudPcCloudApp
@@ -12828,6 +12953,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .company_subscription import CompanySubscription
         from .compliance_management_partner import ComplianceManagementPartner
         from .conditional_access_root import ConditionalAccessRoot
+        from .conditional_access_settings import ConditionalAccessSettings
         from .conditional_access_template import ConditionalAccessTemplate
         from .configuration_baseline import ConfigurationBaseline
         from .configuration_drift import ConfigurationDrift
@@ -12845,6 +12971,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .contact_merge_suggestions import ContactMergeSuggestions
         from .content_activity import ContentActivity
         from .content_link import ContentLink
+        from .content_management_root import ContentManagementRoot
         from .content_model import ContentModel
         from .content_sharing_session import ContentSharingSession
         from .content_type import ContentType
@@ -12872,11 +12999,16 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .correlated_identity import CorrelatedIdentity
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .cost_management_alert_setting import CostManagementAlertSetting
+        from .cost_management_funding_usage_record import CostManagementFundingUsageRecord
         from .cost_management_root import CostManagementRoot
+        from .cost_management_usage_report_root import CostManagementUsageReportRoot
         from .cost_management_user_balance import CostManagementUserBalance
+        from .cost_management_user_usage_service_detail import CostManagementUserUsageServiceDetail
+        from .cost_management_user_usage_session_detail import CostManagementUserUsageSessionDetail
         from .credential_usage_summary import CredentialUsageSummary
         from .credential_user_registration_count import CredentialUserRegistrationCount
         from .credential_user_registration_details import CredentialUserRegistrationDetails
+        from .credit_request import CreditRequest
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
         from .cross_tenant_calendar_availability_basic import CrossTenantCalendarAvailabilityBasic
@@ -13100,6 +13232,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
         from .drive_restore_artifact import DriveRestoreArtifact
         from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
+        from .dynamic_permissions_management_root import DynamicPermissionsManagementRoot
         from .dynamic_rule_activity_log import DynamicRuleActivityLog
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
         from .edge import Edge
@@ -13386,6 +13519,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_user_flow import IdentityUserFlow
         from .identity_user_flow_attribute import IdentityUserFlowAttribute
         from .identity_user_flow_attribute_assignment import IdentityUserFlowAttributeAssignment
+        from .identity_verification_event import IdentityVerificationEvent
+        from .identity_verification_status import IdentityVerificationStatus
         from .identity_verified_id_root import IdentityVerifiedIdRoot
         from .impacted_resource import ImpactedResource
         from .imported_apple_device_identity import ImportedAppleDeviceIdentity
@@ -13443,6 +13578,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .intune_branding_profile_assignment import IntuneBrandingProfileAssignment
         from .invalid_license_alert_configuration import InvalidLicenseAlertConfiguration
         from .invalid_license_alert_incident import InvalidLicenseAlertIncident
+        from .investigation_input import InvestigationInput
+        from .investigation_message import InvestigationMessage
+        from .investigation_output import InvestigationOutput
+        from .investigation_session import InvestigationSession
         from .invitation import Invitation
         from .invite_participants_operation import InviteParticipantsOperation
         from .invoke_user_flow_listener import InvokeUserFlowListener
@@ -13943,6 +14082,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .planner_user import PlannerUser
         from .plan_context_link import PlanContextLink
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
+        from .playbook_definition import PlaybookDefinition
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
         from .policy_deletable_root import PolicyDeletableRoot
@@ -14056,6 +14196,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .reseller_delegated_admin_relationship import ResellerDelegatedAdminRelationship
         from .resource_account_key_authentication_method import ResourceAccountKeyAuthenticationMethod
         from .resource_operation import ResourceOperation
+        from .resource_policy_configuration import ResourcePolicyConfiguration
+        from .resource_policy_deletable_root import ResourcePolicyDeletableRoot
+        from .resource_policy_evaluation_event import ResourcePolicyEvaluationEvent
+        from .resource_policy_root import ResourcePolicyRoot
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
         from .restore_artifact_base import RestoreArtifactBase
@@ -14151,6 +14295,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.citation_template import CitationTemplate
         from .security.cloud_app_discovery_report import CloudAppDiscoveryReport
         from .security.collaboration_root import CollaborationRoot
+        from .security.content_management.content_management_repository import ContentManagementRepository
         from .security.data_discovery_report import DataDiscoveryReport
         from .security.data_discovery_root import DataDiscoveryRoot
         from .security.data_set import DataSet
@@ -14427,6 +14572,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_template import TeamsTemplate
         from .teamwork import Teamwork
         from .teamwork_bot import TeamworkBot
+        from .teamwork_channel_tag import TeamworkChannelTag
         from .teamwork_custom_emoji import TeamworkCustomEmoji
         from .teamwork_device import TeamworkDevice
         from .teamwork_device_activity import TeamworkDeviceActivity
@@ -14914,6 +15060,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .advanced_threat_protection_onboarding_device_setting_state import AdvancedThreatProtectionOnboardingDeviceSettingState
         from .advanced_threat_protection_onboarding_state_summary import AdvancedThreatProtectionOnboardingStateSummary
         from .agent import Agent
+        from .agentic_security_root import AgenticSecurityRoot
         from .agent_card_manifest import AgentCardManifest
         from .agent_collection import AgentCollection
         from .agent_communication_configuration import AgentCommunicationConfiguration
@@ -14923,6 +15070,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .agent_instance import AgentInstance
         from .agent_registration import AgentRegistration
         from .agent_risk_detection import AgentRiskDetection
+        from .agent_run import AgentRun
         from .agent_user import AgentUser
         from .agreement import Agreement
         from .agreement_acceptance import AgreementAcceptance
@@ -15247,6 +15395,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .cloud_pc_bulk_resize import CloudPcBulkResize
         from .cloud_pc_bulk_restart import CloudPcBulkRestart
         from .cloud_pc_bulk_restore import CloudPcBulkRestore
+        from .cloud_pc_bulk_set_device_name import CloudPcBulkSetDeviceName
         from .cloud_pc_bulk_set_review_status import CloudPcBulkSetReviewStatus
         from .cloud_pc_bulk_troubleshoot import CloudPcBulkTroubleshoot
         from .cloud_pc_cloud_app import CloudPcCloudApp
@@ -15284,6 +15433,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .company_subscription import CompanySubscription
         from .compliance_management_partner import ComplianceManagementPartner
         from .conditional_access_root import ConditionalAccessRoot
+        from .conditional_access_settings import ConditionalAccessSettings
         from .conditional_access_template import ConditionalAccessTemplate
         from .configuration_baseline import ConfigurationBaseline
         from .configuration_drift import ConfigurationDrift
@@ -15301,6 +15451,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .contact_merge_suggestions import ContactMergeSuggestions
         from .content_activity import ContentActivity
         from .content_link import ContentLink
+        from .content_management_root import ContentManagementRoot
         from .content_model import ContentModel
         from .content_sharing_session import ContentSharingSession
         from .content_type import ContentType
@@ -15328,11 +15479,16 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .correlated_identity import CorrelatedIdentity
         from .cors_configuration_v2 import CorsConfiguration_v2
         from .cost_management_alert_setting import CostManagementAlertSetting
+        from .cost_management_funding_usage_record import CostManagementFundingUsageRecord
         from .cost_management_root import CostManagementRoot
+        from .cost_management_usage_report_root import CostManagementUsageReportRoot
         from .cost_management_user_balance import CostManagementUserBalance
+        from .cost_management_user_usage_service_detail import CostManagementUserUsageServiceDetail
+        from .cost_management_user_usage_session_detail import CostManagementUserUsageSessionDetail
         from .credential_usage_summary import CredentialUsageSummary
         from .credential_user_registration_count import CredentialUserRegistrationCount
         from .credential_user_registration_details import CredentialUserRegistrationDetails
+        from .credit_request import CreditRequest
         from .cross_tenant_access_policy import CrossTenantAccessPolicy
         from .cross_tenant_access_policy_configuration_default import CrossTenantAccessPolicyConfigurationDefault
         from .cross_tenant_calendar_availability_basic import CrossTenantCalendarAvailabilityBasic
@@ -15556,6 +15712,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .drive_protection_units_bulk_addition_job import DriveProtectionUnitsBulkAdditionJob
         from .drive_restore_artifact import DriveRestoreArtifact
         from .drive_restore_artifacts_bulk_addition_request import DriveRestoreArtifactsBulkAdditionRequest
+        from .dynamic_permissions_management_root import DynamicPermissionsManagementRoot
         from .dynamic_rule_activity_log import DynamicRuleActivityLog
         from .eas_email_profile_configuration_base import EasEmailProfileConfigurationBase
         from .edge import Edge
@@ -15842,6 +15999,8 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .identity_user_flow import IdentityUserFlow
         from .identity_user_flow_attribute import IdentityUserFlowAttribute
         from .identity_user_flow_attribute_assignment import IdentityUserFlowAttributeAssignment
+        from .identity_verification_event import IdentityVerificationEvent
+        from .identity_verification_status import IdentityVerificationStatus
         from .identity_verified_id_root import IdentityVerifiedIdRoot
         from .impacted_resource import ImpactedResource
         from .imported_apple_device_identity import ImportedAppleDeviceIdentity
@@ -15899,6 +16058,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .intune_branding_profile_assignment import IntuneBrandingProfileAssignment
         from .invalid_license_alert_configuration import InvalidLicenseAlertConfiguration
         from .invalid_license_alert_incident import InvalidLicenseAlertIncident
+        from .investigation_input import InvestigationInput
+        from .investigation_message import InvestigationMessage
+        from .investigation_output import InvestigationOutput
+        from .investigation_session import InvestigationSession
         from .invitation import Invitation
         from .invite_participants_operation import InviteParticipantsOperation
         from .invoke_user_flow_listener import InvokeUserFlowListener
@@ -16399,6 +16562,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .planner_user import PlannerUser
         from .plan_context_link import PlanContextLink
         from .platform_credential_authentication_method import PlatformCredentialAuthenticationMethod
+        from .playbook_definition import PlaybookDefinition
         from .play_prompt_operation import PlayPromptOperation
         from .policy_base import PolicyBase
         from .policy_deletable_root import PolicyDeletableRoot
@@ -16512,6 +16676,10 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .reseller_delegated_admin_relationship import ResellerDelegatedAdminRelationship
         from .resource_account_key_authentication_method import ResourceAccountKeyAuthenticationMethod
         from .resource_operation import ResourceOperation
+        from .resource_policy_configuration import ResourcePolicyConfiguration
+        from .resource_policy_deletable_root import ResourcePolicyDeletableRoot
+        from .resource_policy_evaluation_event import ResourcePolicyEvaluationEvent
+        from .resource_policy_root import ResourcePolicyRoot
         from .resource_specific_permission_grant import ResourceSpecificPermissionGrant
         from .restore_artifacts_bulk_request_base import RestoreArtifactsBulkRequestBase
         from .restore_artifact_base import RestoreArtifactBase
@@ -16607,6 +16775,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .security.citation_template import CitationTemplate
         from .security.cloud_app_discovery_report import CloudAppDiscoveryReport
         from .security.collaboration_root import CollaborationRoot
+        from .security.content_management.content_management_repository import ContentManagementRepository
         from .security.data_discovery_report import DataDiscoveryReport
         from .security.data_discovery_root import DataDiscoveryRoot
         from .security.data_set import DataSet
@@ -16883,6 +17052,7 @@ class Entity(AdditionalDataHolder, BackedModel, Parsable):
         from .teams_template import TeamsTemplate
         from .teamwork import Teamwork
         from .teamwork_bot import TeamworkBot
+        from .teamwork_channel_tag import TeamworkChannelTag
         from .teamwork_custom_emoji import TeamworkCustomEmoji
         from .teamwork_device import TeamworkDevice
         from .teamwork_device_activity import TeamworkDeviceActivity

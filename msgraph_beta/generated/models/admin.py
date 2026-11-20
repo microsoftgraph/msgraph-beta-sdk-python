@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from .entra import Entra
     from .exchange_admin import ExchangeAdmin
     from .people_admin_settings import PeopleAdminSettings
+    from .resource_policy_root import ResourcePolicyRoot
     from .service_announcement import ServiceAnnouncement
     from .sharepoint import Sharepoint
     from .teams_administration.teams_admin_root import TeamsAdminRoot
@@ -54,6 +55,8 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
     people: Optional[PeopleAdminSettings] = None
     # A container for administrative resources to manage reports.
     report_settings: Optional[AdminReportSettings] = None
+    # The resourcePolicy property
+    resource_policy: Optional[ResourcePolicyRoot] = None
     # A container for service communications resources. Read-only.
     service_announcement: Optional[ServiceAnnouncement] = None
     # The sharepoint property
@@ -94,6 +97,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .entra import Entra
         from .exchange_admin import ExchangeAdmin
         from .people_admin_settings import PeopleAdminSettings
+        from .resource_policy_root import ResourcePolicyRoot
         from .service_announcement import ServiceAnnouncement
         from .sharepoint import Sharepoint
         from .teams_administration.teams_admin_root import TeamsAdminRoot
@@ -111,6 +115,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         from .entra import Entra
         from .exchange_admin import ExchangeAdmin
         from .people_admin_settings import PeopleAdminSettings
+        from .resource_policy_root import ResourcePolicyRoot
         from .service_announcement import ServiceAnnouncement
         from .sharepoint import Sharepoint
         from .teams_administration.teams_admin_root import TeamsAdminRoot
@@ -128,6 +133,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "people": lambda n : setattr(self, 'people', n.get_object_value(PeopleAdminSettings)),
             "reportSettings": lambda n : setattr(self, 'report_settings', n.get_object_value(AdminReportSettings)),
+            "resourcePolicy": lambda n : setattr(self, 'resource_policy', n.get_object_value(ResourcePolicyRoot)),
             "serviceAnnouncement": lambda n : setattr(self, 'service_announcement', n.get_object_value(ServiceAnnouncement)),
             "sharepoint": lambda n : setattr(self, 'sharepoint', n.get_object_value(Sharepoint)),
             "teams": lambda n : setattr(self, 'teams', n.get_object_value(TeamsAdminRoot)),
@@ -156,6 +162,7 @@ class Admin(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("people", self.people)
         writer.write_object_value("reportSettings", self.report_settings)
+        writer.write_object_value("resourcePolicy", self.resource_policy)
         writer.write_object_value("serviceAnnouncement", self.service_announcement)
         writer.write_object_value("sharepoint", self.sharepoint)
         writer.write_object_value("teams", self.teams)

@@ -33,7 +33,7 @@ class MoveRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: MovePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[TeamworkSectionItem]:
         """
-        Move an item from one user-defined section to another user-defined section in a user's teamwork. Each item can belong to only one section at a time. This action removes the item from its current section and adds it to the target section. Use this action instead of add when the item is already in a user-defined section.
+        Move an item from one user-defined section to another user-defined section in a user's teamwork. Each item can belong to only one section at a time. This action removes the item from its current section and adds it to the target section.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[TeamworkSectionItem]
@@ -57,7 +57,7 @@ class MoveRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: MovePostRequestBody, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Move an item from one user-defined section to another user-defined section in a user's teamwork. Each item can belong to only one section at a time. This action removes the item from its current section and adds it to the target section. Use this action instead of add when the item is already in a user-defined section.
+        Move an item from one user-defined section to another user-defined section in a user's teamwork. Each item can belong to only one section at a time. This action removes the item from its current section and adds it to the target section.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

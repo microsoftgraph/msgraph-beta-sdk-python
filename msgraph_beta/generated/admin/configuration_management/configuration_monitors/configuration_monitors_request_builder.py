@@ -70,7 +70,7 @@ class ConfigurationMonitorsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: ConfigurationMonitor, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[ConfigurationMonitor]:
         """
-        Create a new configurationMonitor object that runs periodically in the background at a scheduled frequency.
+        Create a new configurationMonitor object that runs periodically in the background at a scheduled frequency to detect configuration drift in monitorOnly mode, or applies a desired-state baseline once in applyOnce mode.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ConfigurationMonitor]
@@ -105,7 +105,7 @@ class ConfigurationMonitorsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: ConfigurationMonitor, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create a new configurationMonitor object that runs periodically in the background at a scheduled frequency.
+        Create a new configurationMonitor object that runs periodically in the background at a scheduled frequency to detect configuration drift in monitorOnly mode, or applies a desired-state baseline once in applyOnce mode.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

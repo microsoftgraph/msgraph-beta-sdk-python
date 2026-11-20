@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .custom_security_attribute_audit import CustomSecurityAttributeAudit
     from .directory_audit import DirectoryAudit
     from .provisioning_object_summary import ProvisioningObjectSummary
+    from .resource_policy_evaluation_event import ResourcePolicyEvaluationEvent
     from .self_service_sign_up import SelfServiceSignUp
     from .sign_in import SignIn
     from .sign_in_events_activity import SignInEventsActivity
@@ -34,6 +35,8 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
     odata_type: Optional[str] = None
     # Represents an action performed by the Microsoft Entra provisioning service and its associated properties.
     provisioning: Optional[list[ProvisioningObjectSummary]] = None
+    # The resourcePolicy property
+    resource_policy: Optional[list[ResourcePolicyEvaluationEvent]] = None
     # Represents the number of sign-in events for a specific application.
     sign_in_events_app_summary: Optional[list[SignInEventsAppActivity]] = None
     # Represents the total number of sign-in events for a specific day.
@@ -63,6 +66,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
         from .directory_audit import DirectoryAudit
         from .provisioning_object_summary import ProvisioningObjectSummary
+        from .resource_policy_evaluation_event import ResourcePolicyEvaluationEvent
         from .self_service_sign_up import SelfServiceSignUp
         from .sign_in import SignIn
         from .sign_in_events_activity import SignInEventsActivity
@@ -72,6 +76,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
         from .custom_security_attribute_audit import CustomSecurityAttributeAudit
         from .directory_audit import DirectoryAudit
         from .provisioning_object_summary import ProvisioningObjectSummary
+        from .resource_policy_evaluation_event import ResourcePolicyEvaluationEvent
         from .self_service_sign_up import SelfServiceSignUp
         from .sign_in import SignIn
         from .sign_in_events_activity import SignInEventsActivity
@@ -84,6 +89,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
             "directoryProvisioning": lambda n : setattr(self, 'directory_provisioning', n.get_collection_of_object_values(ProvisioningObjectSummary)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "provisioning": lambda n : setattr(self, 'provisioning', n.get_collection_of_object_values(ProvisioningObjectSummary)),
+            "resourcePolicy": lambda n : setattr(self, 'resource_policy', n.get_collection_of_object_values(ResourcePolicyEvaluationEvent)),
             "signInEventsAppSummary": lambda n : setattr(self, 'sign_in_events_app_summary', n.get_collection_of_object_values(SignInEventsAppActivity)),
             "signInEventsSummary": lambda n : setattr(self, 'sign_in_events_summary', n.get_collection_of_object_values(SignInEventsActivity)),
             "signIns": lambda n : setattr(self, 'sign_ins', n.get_collection_of_object_values(SignIn)),
@@ -105,6 +111,7 @@ class AuditLogRoot(AdditionalDataHolder, BackedModel, Parsable):
         writer.write_collection_of_object_values("directoryProvisioning", self.directory_provisioning)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("provisioning", self.provisioning)
+        writer.write_collection_of_object_values("resourcePolicy", self.resource_policy)
         writer.write_collection_of_object_values("signInEventsAppSummary", self.sign_in_events_app_summary)
         writer.write_collection_of_object_values("signInEventsSummary", self.sign_in_events_summary)
         writer.write_collection_of_object_values("signIns", self.sign_ins)

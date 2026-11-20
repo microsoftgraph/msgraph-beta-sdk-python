@@ -50,7 +50,7 @@ class ContentLinkItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ContentLinkItemRequestBuilderGetQueryParameters]] = None) -> Optional[ContentLink]:
         """
-        The collection of content links attached to the task. Read-only. Nullable.
+        Content links attached to the task. Can be supplied when creating a task by using a deep insert. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ContentLink]
         """
@@ -104,7 +104,7 @@ class ContentLinkItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ContentLinkItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The collection of content links attached to the task. Read-only. Nullable.
+        Content links attached to the task. Can be supplied when creating a task by using a deep insert. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class ContentLinkItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContentLinkItemRequestBuilderGetQueryParameters():
         """
-        The collection of content links attached to the task. Read-only. Nullable.
+        Content links attached to the task. Can be supplied when creating a task by using a deep insert. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

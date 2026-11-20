@@ -50,7 +50,7 @@ class UserAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[UserAssignmentItemRequestBuilderGetQueryParameters]] = None) -> Optional[UserAssignment]:
         """
-        The collection of user assignments on the task. Read-only. Nullable.
+        User assignments on the task. Can be supplied when creating a task by using a deep insert. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[UserAssignment]
         """
@@ -104,7 +104,7 @@ class UserAssignmentItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[UserAssignmentItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The collection of user assignments on the task. Read-only. Nullable.
+        User assignments on the task. Can be supplied when creating a task by using a deep insert. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class UserAssignmentItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class UserAssignmentItemRequestBuilderGetQueryParameters():
         """
-        The collection of user assignments on the task. Read-only. Nullable.
+        User assignments on the task. Can be supplied when creating a task by using a deep insert. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

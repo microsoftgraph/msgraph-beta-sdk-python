@@ -49,7 +49,7 @@ class ContextsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ContextsRequestBuilderGetQueryParameters]] = None) -> Optional[PlanContextLinkCollectionResponse]:
         """
-        The collection of context links describing where the plan is surfaced. Read-only. Nullable.
+        Context links describing where the plan is surfaced. Can be supplied when creating a plan by using a deep insert. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[PlanContextLinkCollectionResponse]
         """
@@ -92,7 +92,7 @@ class ContextsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ContextsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The collection of context links describing where the plan is surfaced. Read-only. Nullable.
+        Context links describing where the plan is surfaced. Can be supplied when creating a plan by using a deep insert. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class ContextsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ContextsRequestBuilderGetQueryParameters():
         """
-        The collection of context links describing where the plan is surfaced. Read-only. Nullable.
+        Context links describing where the plan is surfaced. Can be supplied when creating a plan by using a deep insert. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

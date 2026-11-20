@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ..models.o_data_errors.o_data_error import ODataError
     from ..models.security.security import Security
+    from .agentic_security.agentic_security_request_builder import AgenticSecurityRequestBuilder
     from .alerts.alerts_request_builder import AlertsRequestBuilder
     from .alerts_v2.alerts_v2_request_builder import Alerts_v2RequestBuilder
     from .attack_simulation.attack_simulation_request_builder import AttackSimulationRequestBuilder
@@ -24,6 +25,7 @@ if TYPE_CHECKING:
     from .case_management.case_management_request_builder import CaseManagementRequestBuilder
     from .cloud_app_security_profiles.cloud_app_security_profiles_request_builder import CloudAppSecurityProfilesRequestBuilder
     from .collaboration.collaboration_request_builder import CollaborationRequestBuilder
+    from .content_management.content_management_request_builder import ContentManagementRequestBuilder
     from .data_discovery.data_discovery_request_builder import DataDiscoveryRequestBuilder
     from .data_security_and_governance.data_security_and_governance_request_builder import DataSecurityAndGovernanceRequestBuilder
     from .domain_security_profiles.domain_security_profiles_request_builder import DomainSecurityProfilesRequestBuilder
@@ -161,6 +163,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         return SecurityRequestBuilder(self.request_adapter, raw_url)
     
     @property
+    def agentic_security(self) -> AgenticSecurityRequestBuilder:
+        """
+        The agenticSecurity property
+        """
+        from .agentic_security.agentic_security_request_builder import AgenticSecurityRequestBuilder
+
+        return AgenticSecurityRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def alerts(self) -> AlertsRequestBuilder:
         """
         Provides operations to manage the alerts property of the microsoft.graph.security entity.
@@ -231,6 +242,15 @@ class SecurityRequestBuilder(BaseRequestBuilder):
         from .collaboration.collaboration_request_builder import CollaborationRequestBuilder
 
         return CollaborationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def content_management(self) -> ContentManagementRequestBuilder:
+        """
+        The contentManagement property
+        """
+        from .content_management.content_management_request_builder import ContentManagementRequestBuilder
+
+        return ContentManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def data_discovery(self) -> DataDiscoveryRequestBuilder:

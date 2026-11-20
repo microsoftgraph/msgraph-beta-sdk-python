@@ -60,11 +60,10 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     async def patch(self,body: Planner, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Planner]:
         """
-        Update the properties of a planner object.
+        Update planner
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Planner]
-        Find more info here: https://learn.microsoft.com/graph/api/planner-update?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -95,7 +94,7 @@ class PlannerRequestBuilder(BaseRequestBuilder):
     
     def to_patch_request_information(self,body: Planner, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Update the properties of a planner object.
+        Update planner
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation

@@ -32,7 +32,7 @@ class StatusDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[StatusDefinitionItemRequestBuilderGetQueryParameters]] = None) -> Optional[StatusDefinition]:
         """
-        The contained top-level statuses that a case of this type can be set to. Read-only. Supports $count, $expand, $filter, $orderby, $select, $skip, and $top.
+        The contained top-level statuses that a case of this type can be set to. Read-only. Supports $count, $expand, $filter, $orderby, $select, and $top.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[StatusDefinition]
         """
@@ -52,7 +52,7 @@ class StatusDefinitionItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[StatusDefinitionItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The contained top-level statuses that a case of this type can be set to. Read-only. Supports $count, $expand, $filter, $orderby, $select, $skip, and $top.
+        The contained top-level statuses that a case of this type can be set to. Read-only. Supports $count, $expand, $filter, $orderby, $select, and $top.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class StatusDefinitionItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class StatusDefinitionItemRequestBuilderGetQueryParameters():
         """
-        The contained top-level statuses that a case of this type can be set to. Read-only. Supports $count, $expand, $filter, $orderby, $select, $skip, and $top.
+        The contained top-level statuses that a case of this type can be set to. Read-only. Supports $count, $expand, $filter, $orderby, $select, and $top.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

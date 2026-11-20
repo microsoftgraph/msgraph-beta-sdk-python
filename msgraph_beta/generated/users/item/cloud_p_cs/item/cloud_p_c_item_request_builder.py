@@ -33,10 +33,13 @@ if TYPE_CHECKING:
     from .restore.restore_request_builder import RestoreRequestBuilder
     from .retrieve_cloud_pc_launch_detail.retrieve_cloud_pc_launch_detail_request_builder import RetrieveCloudPcLaunchDetailRequestBuilder
     from .retrieve_cloud_p_c_remote_action_results.retrieve_cloud_p_c_remote_action_results_request_builder import RetrieveCloudPCRemoteActionResultsRequestBuilder
+    from .retrieve_flex_cloud_pc_access_configuration.retrieve_flex_cloud_pc_access_configuration_request_builder import RetrieveFlexCloudPcAccessConfigurationRequestBuilder
+    from .retrieve_flex_cloud_pc_configuration_detail.retrieve_flex_cloud_pc_configuration_detail_request_builder import RetrieveFlexCloudPcConfigurationDetailRequestBuilder
     from .retrieve_frontline_cloud_pc_detail.retrieve_frontline_cloud_pc_detail_request_builder import RetrieveFrontlineCloudPcDetailRequestBuilder
     from .retrieve_review_status.retrieve_review_status_request_builder import RetrieveReviewStatusRequestBuilder
     from .retrieve_snapshots.retrieve_snapshots_request_builder import RetrieveSnapshotsRequestBuilder
     from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
+    from .set_device_name.set_device_name_request_builder import SetDeviceNameRequestBuilder
     from .set_review_status.set_review_status_request_builder import SetReviewStatusRequestBuilder
     from .start.start_request_builder import StartRequestBuilder
     from .stop.stop_request_builder import StopRequestBuilder
@@ -317,6 +320,24 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         return RetrieveCloudPcLaunchDetailRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def retrieve_flex_cloud_pc_access_configuration(self) -> RetrieveFlexCloudPcAccessConfigurationRequestBuilder:
+        """
+        Provides operations to call the retrieveFlexCloudPcAccessConfiguration method.
+        """
+        from .retrieve_flex_cloud_pc_access_configuration.retrieve_flex_cloud_pc_access_configuration_request_builder import RetrieveFlexCloudPcAccessConfigurationRequestBuilder
+
+        return RetrieveFlexCloudPcAccessConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def retrieve_flex_cloud_pc_configuration_detail(self) -> RetrieveFlexCloudPcConfigurationDetailRequestBuilder:
+        """
+        Provides operations to call the retrieveFlexCloudPcConfigurationDetail method.
+        """
+        from .retrieve_flex_cloud_pc_configuration_detail.retrieve_flex_cloud_pc_configuration_detail_request_builder import RetrieveFlexCloudPcConfigurationDetailRequestBuilder
+
+        return RetrieveFlexCloudPcConfigurationDetailRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def retrieve_frontline_cloud_pc_detail(self) -> RetrieveFrontlineCloudPcDetailRequestBuilder:
         """
         Provides operations to call the retrieveFrontlineCloudPcDetail method.
@@ -351,6 +372,15 @@ class CloudPCItemRequestBuilder(BaseRequestBuilder):
         from .retry_partner_agent_installation.retry_partner_agent_installation_request_builder import RetryPartnerAgentInstallationRequestBuilder
 
         return RetryPartnerAgentInstallationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def set_device_name(self) -> SetDeviceNameRequestBuilder:
+        """
+        Provides operations to call the setDeviceName method.
+        """
+        from .set_device_name.set_device_name_request_builder import SetDeviceNameRequestBuilder
+
+        return SetDeviceNameRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def set_review_status(self) -> SetReviewStatusRequestBuilder:

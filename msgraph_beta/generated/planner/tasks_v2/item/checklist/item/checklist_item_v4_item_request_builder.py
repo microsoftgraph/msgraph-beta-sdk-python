@@ -50,7 +50,7 @@ class ChecklistItemV4ItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[ChecklistItemV4ItemRequestBuilderGetQueryParameters]] = None) -> Optional[ChecklistItemV4]:
         """
-        The collection of checklist items on the task. Read-only. Nullable.
+        Checklist items on the task. Can be supplied when creating a task by using a deep insert. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[ChecklistItemV4]
         """
@@ -104,7 +104,7 @@ class ChecklistItemV4ItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[ChecklistItemV4ItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The collection of checklist items on the task. Read-only. Nullable.
+        Checklist items on the task. Can be supplied when creating a task by using a deep insert. Nullable.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +148,7 @@ class ChecklistItemV4ItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class ChecklistItemV4ItemRequestBuilderGetQueryParameters():
         """
-        The collection of checklist items on the task. Read-only. Nullable.
+        Checklist items on the task. Can be supplied when creating a task by using a deep insert. Nullable.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

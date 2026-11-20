@@ -16,6 +16,7 @@ from warnings import warn
 if TYPE_CHECKING:
     from ......models.authentication_method import AuthenticationMethod
     from ......models.o_data_errors.o_data_error import ODataError
+    from .attest_provenance.attest_provenance_request_builder import AttestProvenanceRequestBuilder
     from .disable_sms_sign_in.disable_sms_sign_in_request_builder import DisableSmsSignInRequestBuilder
     from .enable_sms_sign_in.enable_sms_sign_in_request_builder import EnableSmsSignInRequestBuilder
     from .reset_password.reset_password_request_builder import ResetPasswordRequestBuilder
@@ -111,6 +112,15 @@ class AuthenticationMethodItemRequestBuilder(BaseRequestBuilder):
         if raw_url is None:
             raise TypeError("raw_url cannot be null.")
         return AuthenticationMethodItemRequestBuilder(self.request_adapter, raw_url)
+    
+    @property
+    def attest_provenance(self) -> AttestProvenanceRequestBuilder:
+        """
+        Provides operations to call the attestProvenance method.
+        """
+        from .attest_provenance.attest_provenance_request_builder import AttestProvenanceRequestBuilder
+
+        return AttestProvenanceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def disable_sms_sign_in(self) -> DisableSmsSignInRequestBuilder:

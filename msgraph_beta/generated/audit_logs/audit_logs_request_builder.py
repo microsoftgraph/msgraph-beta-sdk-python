@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from .get_summarized_non_interactive_sign_ins_with_aggregation_window.get_summarized_non_interactive_sign_ins_with_aggregation_window_request_builder import GetSummarizedNonInteractiveSignInsWithAggregationWindowRequestBuilder
     from .get_summarized_service_principal_sign_ins_with_aggregation_window.get_summarized_service_principal_sign_ins_with_aggregation_window_request_builder import GetSummarizedServicePrincipalSignInsWithAggregationWindowRequestBuilder
     from .provisioning.provisioning_request_builder import ProvisioningRequestBuilder
+    from .resource_policy.resource_policy_request_builder import ResourcePolicyRequestBuilder
     from .sign_ins.sign_ins_request_builder import SignInsRequestBuilder
     from .sign_in_events_app_summary.sign_in_events_app_summary_request_builder import SignInEventsAppSummaryRequestBuilder
     from .sign_in_events_summary.sign_in_events_summary_request_builder import SignInEventsSummaryRequestBuilder
@@ -201,6 +202,15 @@ class AuditLogsRequestBuilder(BaseRequestBuilder):
         from .provisioning.provisioning_request_builder import ProvisioningRequestBuilder
 
         return ProvisioningRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def resource_policy(self) -> ResourcePolicyRequestBuilder:
+        """
+        Provides operations to manage the resourcePolicy property of the microsoft.graph.auditLogRoot entity.
+        """
+        from .resource_policy.resource_policy_request_builder import ResourcePolicyRequestBuilder
+
+        return ResourcePolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sign_in_events_app_summary(self) -> SignInEventsAppSummaryRequestBuilder:

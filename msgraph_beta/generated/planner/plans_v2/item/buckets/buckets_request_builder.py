@@ -49,9 +49,10 @@ class BucketsRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[BucketsRequestBuilderGetQueryParameters]] = None) -> Optional[BucketCollectionResponse]:
         """
-        The collection of buckets in the plan. Read-only. Nullable.
+        Get a list of the bucket objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[BucketCollectionResponse]
+        Find more info here: https://learn.microsoft.com/graph/api/plan-list-buckets?view=graph-rest-beta
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -69,10 +70,11 @@ class BucketsRequestBuilder(BaseRequestBuilder):
     
     async def post(self,body: Bucket, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> Optional[Bucket]:
         """
-        Create new navigation property to buckets for planner
+        Create a new bucket object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Bucket]
+        Find more info here: https://learn.microsoft.com/graph/api/plan-post-buckets?view=graph-rest-beta
         """
         if body is None:
             raise TypeError("body cannot be null.")
@@ -92,7 +94,7 @@ class BucketsRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[BucketsRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        The collection of buckets in the plan. Read-only. Nullable.
+        Get a list of the bucket objects and their properties.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -103,7 +105,7 @@ class BucketsRequestBuilder(BaseRequestBuilder):
     
     def to_post_request_information(self,body: Bucket, request_configuration: Optional[RequestConfiguration[QueryParameters]] = None) -> RequestInformation:
         """
-        Create new navigation property to buckets for planner
+        Create a new bucket object.
         param body: The request body
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -138,7 +140,7 @@ class BucketsRequestBuilder(BaseRequestBuilder):
     @dataclass
     class BucketsRequestBuilderGetQueryParameters():
         """
-        The collection of buckets in the plan. Read-only. Nullable.
+        Get a list of the bucket objects and their properties.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

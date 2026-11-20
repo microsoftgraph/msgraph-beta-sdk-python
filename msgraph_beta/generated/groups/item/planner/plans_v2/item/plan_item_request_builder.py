@@ -32,7 +32,7 @@ class PlanItemRequestBuilder(BaseRequestBuilder):
     
     async def get(self,request_configuration: Optional[RequestConfiguration[PlanItemRequestBuilderGetQueryParameters]] = None) -> Optional[Plan]:
         """
-        Read-only. Nullable. The collection of Planner Graph V4 plans owned by the group.
+        Read-only. Nullable. The collection of plans in the Planner Unified plans Graph API owned by the group.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[Plan]
         """
@@ -52,7 +52,7 @@ class PlanItemRequestBuilder(BaseRequestBuilder):
     
     def to_get_request_information(self,request_configuration: Optional[RequestConfiguration[PlanItemRequestBuilderGetQueryParameters]] = None) -> RequestInformation:
         """
-        Read-only. Nullable. The collection of Planner Graph V4 plans owned by the group.
+        Read-only. Nullable. The collection of plans in the Planner Unified plans Graph API owned by the group.
         param request_configuration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -74,7 +74,7 @@ class PlanItemRequestBuilder(BaseRequestBuilder):
     @dataclass
     class PlanItemRequestBuilderGetQueryParameters():
         """
-        Read-only. Nullable. The collection of Planner Graph V4 plans owned by the group.
+        Read-only. Nullable. The collection of plans in the Planner Unified plans Graph API owned by the group.
         """
         def get_query_parameter(self,original_name: str) -> str:
             """

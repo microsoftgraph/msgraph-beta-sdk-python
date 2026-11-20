@@ -18,7 +18,7 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, BackedModel, Parsable)
     additional_data: dict[str, Any] = field(default_factory=dict)
     # Indicates the state of the supported action capability to perform a Cloud PC remote action. The possible values are: enabled, disabled. Default value is enabled.
     action_capability: Optional[ActionCapability] = None
-    # The name of the supported Cloud PC remote action. The possible values are: unknown, restart, rename, restore, resize, reprovision, troubleShoot, changeUserAccountType, placeUnderReview. Default value is unknown.
+    # The name of the supported Cloud PC remote action. The possible values are: unknown, restart, rename, restore, resize, reprovision, troubleShoot, changeUserAccountType, placeUnderReview, unknownFutureValue, setDeviceName. Use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: setDeviceName. The default value is unknown.
     action_name: Optional[CloudPcRemoteActionName] = None
     # The OdataType property
     odata_type: Optional[str] = None

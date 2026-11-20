@@ -15,4 +15,5 @@ class CloudPcRemoteActionName(str, Enum):
     PowerOn = "powerOn",
     PowerOff = "powerOff",
     MoveRegion = "moveRegion",
+    SetDeviceName = "setDeviceName",
 
